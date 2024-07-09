@@ -1,0 +1,76 @@
+syntax = "proto3";
+package Nrmk.IndyFramework;
+import "config_msgs.proto";
+import "common_msgs.proto";
+
+service Config {
+
+  rpc GetRefFrame(Empty) returns (Frame) {}
+  rpc SetRefFrame(Frame) returns (Response) {}
+  rpc SetRefFramePlanar(PlanarFrame) returns (FrameResult) {}
+  rpc SetToolFrame(Frame) returns (Response) {}
+  rpc SetSpeedRatio(Ratio) returns (Response) {}
+
+  rpc SetFTsensorFrame(FTsensorFrame) returns (Response) {}
+  rpc GetFTsensorFrame(Response) returns (FTsensorFrame) {}
+
+  rpc SetDIConfigList(DIConfigList) returns (Response) {}
+  rpc GetDIConfigList(Empty) returns (DIConfigList) {}
+
+  rpc SetDOConfigList(DOConfigList) returns (Response) {}
+  rpc GetDOConfigList(Empty) returns (DOConfigList) {}
+
+  rpc SetHomePosition(JointPos) returns (Response) {}
+  rpc GetHomePosition(Empty) returns (JointPos) {}
+
+  rpc SetAutoServoOff(AutoServoOffConfig) returns (Response) {}
+  rpc GetAutoServoOff(Empty) returns (AutoServoOffConfig) {}
+
+  rpc SetJointControlGain(JointGainSet) returns (Response) {}
+  rpc GetJointControlGain(Empty) returns (JointGainSet) {}
+
+  rpc SetTaskControlGain(TaskGainSet) returns (Response) {}
+  rpc GetTaskControlGain(Empty) returns (TaskGainSet) {}
+
+  rpc SetImpedanceControlGain(ImpedanceGainSet) returns (Response) {}
+  rpc GetImpedanceControlGain(Empty) returns (ImpedanceGainSet) {}
+
+  rpc SetForceControlGain(ForceGainSet) returns (Response) {}
+  rpc GetForceControlGain(Empty) returns (ForceGainSet) {}
+
+  rpc SetTestControlGain(TestGainSet) returns (Response) {}
+  rpc GetTestControlGain(Empty) returns (TestGainSet) {}
+
+  rpc SetCustomControlGain(CustomGainSet) returns (Response) {}
+  rpc GetCustomControlGain(Empty) returns (CustomGainSet) {}
+
+  rpc SetNewControllerTestOnOff(NewControllerTestState) returns (Response) {}
+  rpc GetNewControllerTestOnOffState(Empty) returns (NewControllerTestState) {}
+
+
+  rpc SetFrictionComp(FrictionCompSet) returns (Response) {}
+  rpc GetFrictionComp(Empty) returns (FrictionCompSet) {}
+
+  rpc SetMountPos(MountingAngles) returns (Response) {}
+  rpc GetMountPos(Empty) returns (MountingAngles) {}
+
+  rpc SetToolProperty(ToolProperties) returns (Response) {}
+  rpc GetToolProperty(Empty) returns (ToolProperties) {}
+
+  rpc SetCollSensLevel(CollisionSensLevel) returns (Response) {}
+  rpc GetCollSensLevel(Empty) returns (CollisionSensLevel) {}
+
+  rpc SetCollSensParam(CollisionThresholds) returns (Response) {}
+  rpc GetCollSensParam(Empty) returns (CollisionThresholds) {}
+
+  rpc SetCollPolicy(CollisionPolicy) returns (Response) {}
+  rpc GetCollPolicy(Empty) returns (CollisionPolicy) {}
+
+  rpc SetSafetyLimits(SafetyLimits) returns (Response) {}
+  rpc GetSafetyLimits(Empty) returns (SafetyLimits) {}
+
+  rpc SetSafetyStopConfig(SafetyStopConfig) returns (Response) {}
+  rpc GetSafetyStopConfig(Empty) returns (SafetyStopConfig) {}
+
+  rpc SetCollTuning(CollTuningConfig) returns (Response) {}
+}

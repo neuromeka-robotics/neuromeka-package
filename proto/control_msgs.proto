@@ -1,0 +1,520 @@
+syntax = "proto3";
+package Nrmk.IndyFramework;
+import "device_msgs.proto";
+import "common_msgs.proto";
+
+//////////////////////////ControlInfo/////////////////////////
+message ControlInfo {
+  string control_version = 1;
+  string robot_model = 2;
+
+  Response response = 100;
+}
+
+message SDKLicenseInfo {
+  string license_key = 1;   // string license key paired with device
+  string expire_date = 2;   // expire date of license key
+}
+message SDKLicenseResp {
+  bool activated = 1;       // true if activated
+  Response response = 100;  // error code, message
+}
+
+//////////////////////////VariableCondition/////////////////////////
+message VariableCondition {
+  repeated IntVariable i_vars = 1;
+  repeated FloatVariable f_vars = 2;
+  repeated BoolVariable b_vars = 3;
+  repeated ModbusVariable m_vars = 4;
+  repeated JPosVariable j_vars = 5;
+  repeated TPosVariable t_vars = 6;
+}
+
+//////////////////////////IOCondition/////////////////////////
+message IOCondition {
+  repeated DigitalSignal di = 1;
+  repeated DigitalSignal end_di = 2;
+}
+//////////////////////////MotionCondition/////////////////////////
+message MotionCondition {
+  enum ConditionType {
+    CONST_COND = 0;
+    IO_COND = 1;
+    VAR_COND = 2;
+  }
+  enum ReactionType {
+    NONE_COND = 0;
+    STOP_COND = 1;
+    PAUSE_COND = 2;
+  }
+
+  ConditionType type_cond = 1;
+  ReactionType type_react = 2;
+  bool const_cond = 3;
+  IOCondition io_cond = 4;
+  VariableCondition var_cond = 5;
+}
+
+//////////////////////////BlendingType/////////////////////////
+message BlendingType {
+  enum Type {
+    NONE = 0;
+    OVERRIDE = 1;
+    DUPLICATE = 2;
+  }
+
+  Type type = 1;
+  float blending_radius = 2;
+}
+
+//////////////////////////JointBaseType/////////////////////////
+enum JointBaseType {
+  ABSOLUTE_JOINT = 0;
+  RELATIVE_JOINT = 1;
+}
+
+//////////////////////////TargetJ/////////////////////////
+message TargetJ {
+  repeated float j_start = 1;
+  repeated float j_target = 2;
+  JointBaseType base_type = 3;
+}
+
+//////////////////////////MoveJReq/////////////////////////
+message MoveJReq {
+  TargetJ target = 1;
+  BlendingType blending = 2;
+  float vel_ratio = 3;
+  float acc_ratio = 4;
+  MotionCondition post_condition = 20;
+  bool teaching_mode = 30;
+}
+
+//////////////////////////MoveJCondReq/////////////////////////
+message MoveJCondReq {
+  TargetJ target = 1;
+  BlendingType blending = 2;
+  float vel_ratio = 3;
+  float acc_ratio = 4;
+  MotionCondition post_condition = 20;
+  bool teaching_mode = 30;
+}
+
+//////////////////////////MoveJTReq/////////////////////////
+message MoveJTReq {
+  TargetJ target = 1;
+  BlendingType blending = 2;
+  float time = 3;
+  MotionCondition post_condition = 20;
+}
+
+//////////////////////////TaskBaseType/////////////////////////
+enum TaskBaseType {
+  ABSOLUTE_TASK = 0;
+  RELATIVE_TASK = 1;
+  TCP_TASK = 2;
+}
+
+//////////////////////////VelocityModeType/////////////////////////
+enum VelocityModeType {
+  TIME_ORIENTED = 0;
+  DISP_ORIENTED = 1;
+  ROT_ORIENTED = 2;
+}
+
+//////////////////////////TargetP/////////////////////////
+message TargetP {
+  repeated float t_start = 1;
+  repeated float t_target = 2;
+  TaskBaseType base_type = 3;
+}
+
+//////////////////////////TargetC/////////////////////////
+message TargetC {
+  repeated float t_start = 1;
+  repeated float t_pos0 = 2;
+  repeated float t_pos1 = 3;
+  TaskBaseType base_type = 4;
+}
+
+//////////////////////////MoveLReq/////////////////////////
+message MoveLReq {
+  TargetP target = 1;
+  BlendingType blending = 2;
+  float vel_ratio = 3;
+  float acc_ratio = 4;
+  VelocityModeType vel_type = 5;
+  MotionCondition post_condition = 20;
+  bool teaching_mode = 30;
+}
+
+//////////////////////////MoveLTReq/////////////////////////
+message MoveLTReq {
+  TargetP target = 1;
+  BlendingType blending = 2;
+  float time = 3;
+  MotionCondition post_condition = 20;
+}
+
+//////////////////////////CircularSettingType/////////////////////////
+enum CircularSettingType {
+  POINT_SET = 0;
+  CENTER_AXIS = 1;
+}
+
+//////////////////////////CircularMovingType/////////////////////////
+enum CircularMovingType {
+  CONSTANT = 0;
+  RADIAL = 1;
+  SMOOTH = 2;
+}
+
+//////////////////////////MoveCReq/////////////////////////
+message MoveCReq {
+  TargetC target = 1;
+  BlendingType blending = 2;
+  float angle = 3;
+
+  CircularSettingType setting_type = 10;
+  CircularMovingType move_type = 11;
+
+  float vel_ratio = 20;
+  float acc_ratio = 21;
+  VelocityModeType vel_type = 22;
+
+  MotionCondition post_condition = 25;
+
+  bool teaching_mode = 30;
+}
+
+//////////////////////////MoveCTReq/////////////////////////
+message MoveCTReq {
+  TargetC target = 1;
+  BlendingType blending = 2;
+  float angle = 3;
+
+  CircularSettingType setting_type = 10;
+  CircularMovingType move_type = 11;
+
+  float time = 20;
+
+  MotionCondition post_condition = 25;
+}
+
+//////////////////////////WaitIOReq/////////////////////////
+message WaitIOReq {
+  repeated DigitalSignal di_list = 1;
+  repeated DigitalSignal do_list = 2;
+  repeated DigitalSignal end_di_list = 3;
+  repeated DigitalSignal end_do_list = 4;
+  int32 conjunction = 5;
+
+  repeated DigitalSignal set_do_list = 6;
+  repeated DigitalSignal set_end_do_list = 7;
+  repeated AnalogSignal set_ao_list = 8;
+  repeated AnalogSignal set_end_ao_list = 9;
+}
+
+//////////////////////////WaitTimeReq/////////////////////////
+message WaitTimeReq {
+  float time = 1;
+  repeated DigitalSignal set_do_list = 2;
+  repeated DigitalSignal set_end_do_list = 3;
+  repeated AnalogSignal set_ao_list = 4;
+  repeated AnalogSignal set_end_ao_list = 5;
+}
+
+//////////////////////////WaitProgressReq/////////////////////////
+message WaitProgressReq {
+  int32 progress = 1; // 0 ~ 100
+  repeated DigitalSignal set_do_list = 2;
+  repeated DigitalSignal set_end_do_list = 3;
+  repeated AnalogSignal set_ao_list = 4;
+  repeated AnalogSignal set_end_ao_list = 5;
+}
+
+//////////////////////////WaitTrajReq/////////////////////////
+message WaitTrajReq {
+  TrajCondition traj_condition = 1;
+  repeated DigitalSignal set_do_list = 2;
+  repeated DigitalSignal set_end_do_list = 3;
+  repeated AnalogSignal set_ao_list = 4;
+  repeated AnalogSignal set_end_ao_list = 5;
+}
+
+//////////////////////////WaitRadiusReq/////////////////////////
+message WaitRadiusReq {
+  int32 radius = 1; // mm
+  repeated DigitalSignal set_do_list = 2;
+  repeated DigitalSignal set_end_do_list = 3;
+  repeated AnalogSignal set_ao_list = 4;
+  repeated AnalogSignal set_end_ao_list = 5;
+}
+
+//////////////////////////Program/////////////////////////
+message Program {
+  string prog_name = 1;
+  int32 prog_idx = 2;
+}
+
+//////////////////////////TuningProgram/////////////////////////
+message TuningProgram {
+  Program program = 1;
+  TuningSpace tuning_space = 2;
+  TuningPrecision precision = 3;
+  uint32 vel_level_max = 4;
+}
+
+//////////////////////////ProgramInfo/////////////////////////
+message ProgramInfo {
+  string path = 1;
+  uint64 size = 2;
+  string timestamp = 3;
+}
+
+//////////////////////////Variable/////////////////////////
+message Variable {
+  string name = 1;
+  int32 addr = 2;
+  string type = 3;
+  bool in_watching = 4;
+}
+message IntVariable {
+  int32 addr = 1;
+  int64 value = 2;
+}
+message ModbusVariable {
+  enum SignalType {
+    ReadCoil = 0;
+    WriteCoil = 1;
+    ReadRegister = 2;
+    WriteRegister = 3;
+  }
+
+  string name = 1;
+  int32 addr = 2;
+  int32 value = 3;
+  SignalType signal_type = 4;
+}
+message BoolVariable {
+  int32 addr = 1;
+  bool value = 2;
+}
+message FloatVariable {
+  int32 addr = 1;
+  float value = 2;
+}
+message JPosVariable {
+  int32 addr = 1;
+  repeated float jpos = 2;
+}
+message TPosVariable {
+  int32 addr = 1;
+  repeated float tpos = 2;
+}
+
+message ModbusServer {
+  string server_name = 1;
+  string ip = 2;
+  int32 port = 3;
+  repeated ModbusVariable variable_list = 4;
+}
+message ModbusVariableList {
+  repeated ModbusServer modbus_variables = 1;
+}
+//////////////////////////AllVars/////////////////////////
+message AllVars {
+  repeated Variable variables = 1;
+}
+
+message IntVars {
+  repeated IntVariable variables = 1;
+}
+
+message ModbusVars {
+  repeated ModbusVariable variables = 1;
+}
+
+message BoolVars {
+  repeated BoolVariable variables = 1;
+}
+
+message FloatVars {
+  repeated FloatVariable variables = 1;
+}
+
+message JPosVars {
+  repeated JPosVariable variables = 1;
+}
+
+message TPosVars {
+  repeated TPosVariable variables = 1;
+}
+
+//////////////////////////InverseKinematics/////////////////////////
+message InverseKinematicsReq {
+  repeated float tpos = 1;
+  repeated float init_jpos = 2;
+}
+
+message InverseKinematicsRes {
+  repeated float jpos = 1;
+
+  Response response = 100;
+}
+
+//////////////////////////CheckAproachRetractValid/////////////////////////
+message CheckAproachRetractValidReq {
+  repeated float tpos = 1;
+  repeated float init_jpos = 2;
+  repeated float pre_tpos = 3;
+  repeated float post_tpos = 4;
+}
+
+message CheckAproachRetractValidRes {
+  bool is_valid = 1;
+  repeated float tar_pos = 2;
+  repeated float approach_pos = 3;
+  repeated float retract_pos = 4;
+
+  Response response = 100;
+}
+
+//////////////////////////GetPalletPointList/////////////////////////
+message GetPalletPointListReq {
+  repeated float tpos = 1;
+  repeated float jpos = 2;
+  repeated float pre_tpos = 3;
+  repeated float post_tpos = 4;
+  int32 pallet_pattern = 5;
+  int32 width = 6;
+  int32 height = 7;
+}
+
+//////////////////////////PalletPoint/////////////////////////
+message PalletPoint {
+  repeated float tar_pos = 1;
+  repeated float approach_pos = 2;
+  repeated float retract_pos = 3;
+  repeated float tar_jpos = 4;
+}
+
+message GetPalletPointListRes {
+  repeated PalletPoint pallet_points = 1;
+
+  Response response = 100;
+}
+
+//////////////////////////CalculateRelativePose/////////////////////////
+message CalculateRelativePoseReq {
+  repeated float start_pos = 1;
+  repeated float end_pos = 2;
+  TaskBaseType base_type = 3;
+}
+
+message CalculateRelativePoseRes {
+  repeated float relative_pos = 1;
+
+  Response response = 100;
+}
+
+//////////////////////////CalculateCurrentPoseRel/////////////////////////
+message CalculateCurrentPoseRelReq {
+  repeated float current_pos = 1;
+  repeated float relative_pos = 2;
+  TaskBaseType base_type = 3;
+}
+
+message CalculateCurrentPoseRelRes {
+  repeated float calculated_pos = 1;
+
+  Response response = 100;
+}
+
+////////////////////////// TeleOperation /////////////////////////
+message TeleOpDevice {
+  enum TeleOpDeviceType {
+    NONE = 0;
+    VIVE = 1;
+  }
+  string name = 1;
+  TeleOpDeviceType type = 2;
+  string ip = 3;
+  uint32 port = 4;
+  bool connected = 5;
+}
+
+enum TeleMode {
+  TELE_INACTIVE = 0;
+  TELE_CALIB = 1;
+  TELE_RECORD = 2;
+  TELE_PLAY = 3;
+  TELE_RAW = 10;
+  TELE_MOVE = 20;
+}
+
+enum TeleMethod {
+  TELE_TASK_ABSOLUTE = 0;
+  TELE_TASK_RELATIVE = 1;
+  TELE_TASK_TCP = 2;
+  TELE_JOINT_ABSOLUTE = 10;
+  TELE_JOINT_RELATIVE = 11;
+  TELE_RECORD_ABSOLUTE = 20;
+}
+
+message TeleOpState {
+  TeleMode mode = 1;
+  TeleMethod method = 2;
+}
+
+message TeleP {
+  repeated float tpos = 1;
+  Response response = 100;
+}
+
+message TeleOpFileList {
+  repeated string files = 1;
+  Response response = 100;
+}
+
+message TeleFileReq {
+  string name = 1;
+}
+
+message TelePlayRate {
+  float rate = 1;
+}
+
+//////////////////////////MoveTele/////////////////////////
+message MoveTeleJReq {
+  repeated float jpos = 1;  // degs
+  float vel_ratio = 2;
+  float acc_ratio = 3;
+  TeleMethod method = 10;   // for cross-check
+
+}
+
+message MoveTeleLReq {
+  repeated float tpos = 1;  // mm / degs
+  float vel_ratio = 2;
+  float acc_ratio = 3;
+  TeleMethod method = 10;   // for cross-check
+}
+
+
+//////////////////////////MoveFL/////////////////////////
+message MoveFLReq {
+  TargetP target = 1;
+  BlendingType blending = 2;
+  float vel_ratio = 3;
+  float acc_ratio = 4;
+  VelocityModeType vel_type = 5;
+  float des_force = 6;
+  bool enableForceControl = 7;
+  MotionCondition post_condition = 20;
+  bool teaching_mode = 30;
+}
+
+message MoveFLRes {
+  string msg = 100;
+}

@@ -1,0 +1,16 @@
+syntax = "proto3";
+package Nrmk.IndyFramework;
+import "rtde_msgs.proto";
+import "common_msgs.proto";
+
+service RTDataExchange {
+  rpc GetMotionData(Empty) returns (MotionData) {}
+  rpc GetControlData(Empty) returns (ControlData) {}
+  rpc GetControlState(Empty) returns (ControlData2) {}
+  rpc GetIOData(Empty) returns (IOData) {}
+  rpc GetServoData(Empty) returns (ServoData) {}
+  rpc GetViolationData(Empty) returns (ViolationData) {}
+  rpc GetProgramData(Empty) returns (ProgramData) {}
+
+  rpc TestFunction(TestRequest) returns (TestResponse) {}
+}

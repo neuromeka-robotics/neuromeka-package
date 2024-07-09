@@ -1,0 +1,142 @@
+syntax = "proto3";
+package Nrmk.IndyFramework;
+import "common_msgs.proto";
+
+//////////////////////////Motor/////////////////////////
+message Motor {
+  uint32 index = 1;
+  bool enable = 2;
+}
+
+//////////////////////////Servo/////////////////////////
+message Servo {
+  uint32 index = 1;
+  bool enable = 2;
+}
+
+//////////////////////////DigitalSignal/////////////////////////
+message DigitalSignal {
+  uint32 address = 1;
+  DigitalState state = 2;
+}
+
+//////////////////////////DigitalState/////////////////////////
+enum DigitalState {
+  OFF_STATE = 0;
+  ON_STATE = 1;
+  UNUSED_STATE = 2;
+}
+
+//////////////////////////EndtoolState/////////////////////////
+enum EndtoolState {
+  UNUSED = 0;
+  HIGH_PNP = 2;
+  HIGH_NPN = 1;
+  LOW_NPN = -1;
+  LOW_PNP = -2;
+}
+
+//enum EndToolPort {
+//  PORT_C = 0;
+//  PORT_B = 1;
+//  PORT_A = 2;
+//}
+
+//////////////////////////DigitalSignal/////////////////////////
+message EndtoolSignal {
+  string port = 1;
+  repeated EndtoolState states = 2;
+}
+
+//////////////////////////AnalogSignal/////////////////////////
+message AnalogSignal {
+  uint32 address = 1;
+  int32 voltage = 2;
+}
+
+//////////////////////////MotorList/////////////////////////
+message MotorList {
+  repeated Motor motors = 1;
+}
+
+//////////////////////////DigitalList/////////////////////////
+message DigitalList {
+  repeated DigitalSignal signals = 1;
+}
+
+//////////////////////////EndtoolSignalList/////////////////////////
+message EndtoolSignalList {
+  repeated EndtoolSignal signals = 1;
+}
+
+//////////////////////////AnalogList/////////////////////////
+message AnalogList {
+  repeated AnalogSignal signals = 1;
+}
+
+//////////////////////////DeviceInfo/////////////////////////
+message DeviceInfo {
+  uint32 num_joints = 1;
+  string robot_serial = 2;
+  float payload = 3;
+
+  string io_board_fw_ver = 10;
+  repeated string core_board_fw_vers = 11;
+  string endtool_board_fw_ver = 12;
+
+  string controller_ver = 20;
+  string controller_detail = 21;
+  string controller_date = 22;
+
+  Response response = 100;
+}
+//////////////////////////BrakeControlStyle/////////////////////////
+message BrakeControlStyle {
+  enum ControlStyle {
+    UNAVAILABLE = 0;
+    CONCURRENT = 1;
+    INDIVIDUAL = 2;
+  }
+  ControlStyle style = 1;
+
+  Response response = 100;
+}
+//////////////////////////GetEL5001Data/////////////////////////
+message GetEL5001Data {
+  int32 status = 1;
+  int32 value = 2;
+  int32 delta = 3;
+  float average = 4;
+
+  Response response = 100;
+}
+//////////////////////////GetEL5101Data/////////////////////////
+message GetEL5101Data {
+  int32 status = 1;
+  int32 value = 2;
+  int32 latch = 3;
+  int32 delta = 4;
+  float average = 5;
+
+  Response response = 100;
+}
+
+//////////////////////////GetFTSensorType/////////////////////////
+message FTSensorType{
+  string ft_sensor_type =1;
+
+  Response response = 100;
+}
+
+//////////////////////////GetFTSensorData/////////////////////////
+message FTSensorData{
+  float ft_Fx = 1;
+  float ft_Fy = 2;
+  float ft_Fz = 3;
+  float ft_Tx = 4;
+  float ft_Ty = 5;
+  float ft_Tz = 6;
+
+  Response response = 100;
+
+}

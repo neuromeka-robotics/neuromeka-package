@@ -1,0 +1,71 @@
+syntax = "proto3";
+package Nrmk.IndyFramework;
+import "moby_msgs.proto";
+import "common_msgs.proto";
+
+service Moby {
+    // Get Moby state
+    rpc GetMobyState(Empty) returns (MobyState) {}
+    rpc GetMobyErrorState(Empty) returns (MobyErrorState) {}
+    rpc Recover(Empty) returns (Empty) {}
+
+    // Get Moby's odometry and physical data
+    rpc GetMobyPose(Empty) returns (MobyPose) {}
+    rpc GetMobyVel(Empty) returns (MobyVel) {}
+    rpc ResetMobyPose(Empty) returns (Empty) {}
+    rpc GetRotationAngleDeg(Empty) returns (SwerveDoubles) {}
+    rpc GetDriveSpeed(Empty) returns (SwerveDoubles) {}
+    rpc GetTargetVel(Empty) returns (TargetVel) {}
+    rpc GetRotationZeroCount(Empty) returns (ZeroCount) {}
+
+    // Gyro value related
+    rpc GetGyroData(Empty) returns (DoubleVals) {}
+    rpc ResetGyroSensor(Empty) returns (Empty) {}
+    rpc UseGyroForOdom(BoolVal) returns (Empty) {}
+    rpc GetGyroFullData(Empty) returns (IMUData) {}
+
+    // IR sensor
+    rpc GetIRSensorData(Empty) returns (IRData) {}
+    rpc GetUSSensorData(Empty) returns (USData) {}
+
+    // BMS data
+    rpc GetBMSData(Empty) returns (BMSData) {}
+
+    // Moby motion command
+    rpc SetStepControl(TargetVel) returns (Empty) {}
+    rpc StopMotion(Empty) returns (Empty) {}
+    rpc SetRotationAngleDeg(SwerveDoubles) returns (Empty) {}
+    rpc DriveWheel(SwerveDoubles) returns (Empty) {}
+
+    // Set Moby parameters
+    rpc SetZeroPosAsCurrentPos(Empty) returns (Empty) {}
+    rpc SetRotationVelAcc(DoubleVals) returns (Empty) {}
+    rpc SetRotationInterpolator(IntVal) returns (Empty) {}
+    rpc SetDriveAccDec(DoubleVals) returns (Empty) {}
+    rpc SetDriveInterpolatorOnOff(BoolVal) returns (Empty) {}
+    //rpc SetRotationInterpolatorParam(DoubleVals) returns (Empty) {}
+    rpc SetRotationControllerType(IntVal) returns (Empty) {}
+    rpc SetForceKinematics(BoolVal) returns (Empty) {}
+    rpc GetForceKinematics(Empty) returns (BoolVal) {}
+
+    // Moby-Agri related commands
+    rpc PauseBumper(BoolVal) returns (Empty) {}
+    rpc TurnLightOnOff(BoolVal) returns (Empty) {}
+    rpc TurnBuzzOnOff(BoolVal) returns (Empty) {}
+    // rpc GetRobotZeroCount(Empty) returns (RobotZeroCount) {}
+    // rpc SetRobotZeroAsCurrent(Empty) returns (Empty) {}
+
+
+    // Gain setting
+    //rpc SetRotationTorqueMode(BoolVal) returns (Empty) {}
+    rpc SetControlParam(RotationGain) returns (Empty) {}
+    rpc GetControlParam(IntVal) returns (RotationGain) {}
+
+    // Data logging
+    rpc StartRTLogging(Empty) returns (Empty) {}
+    rpc EndRTLogging(Empty) returns (Empty) {}
+    // rpc SetLoggerBuffer(IntVal) returns (Empty) {}
+    // rpc RTLoggerSave(Empty) returns (Empty) {}
+
+
+}

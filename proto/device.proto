@@ -1,0 +1,43 @@
+syntax = "proto3";
+package Nrmk.IndyFramework;
+import "device_msgs.proto";
+import "common_msgs.proto";
+
+service Device {
+  rpc SetBrakes(MotorList) returns (Response) {}
+  rpc SetServoAll(State) returns (Response) {}
+  rpc SetServo(Servo) returns (Response) {}
+
+  rpc SetDI(DigitalList) returns (Response) {}
+  rpc SetDO(DigitalList) returns (Response) {}
+  rpc SetEndDI(EndtoolSignalList) returns (Response) {}
+  rpc SetEndDO(EndtoolSignalList) returns (Response) {}
+
+  rpc SetAI(AnalogList) returns (Response) {}
+  rpc SetAO(AnalogList) returns (Response) {}
+  rpc SetEndAI(AnalogList) returns (Response) {}
+  rpc SetEndAO(AnalogList) returns (Response) {}
+
+  rpc GetDI(Empty) returns (DigitalList) {}
+  rpc GetDO(Empty) returns (DigitalList) {}
+  rpc GetEndDI(Empty) returns (EndtoolSignalList) {}
+  rpc GetEndDO(Empty) returns (EndtoolSignalList) {}
+
+  rpc GetAI(Empty) returns (AnalogList) {}
+  rpc GetAO(Empty) returns (AnalogList) {}
+  rpc GetEndAI(Empty) returns (AnalogList) {}
+  rpc GetEndAO(Empty) returns (AnalogList) {}
+
+  // beckhoff_conv
+  rpc GetEL5001(Empty) returns (GetEL5001Data) {}
+  rpc GetEL5101(Empty) returns (GetEL5101Data) {}
+  // beckhoff_conv
+
+  rpc GetDeviceInfo(Empty) returns (DeviceInfo) {}
+  rpc GetBrakeControlStyle(Empty) returns (BrakeControlStyle) {}
+
+  rpc SetFTSensorType(FTSensorType) returns (Response) {}
+  rpc GetFTSensorType(Empty) returns (FTSensorType) {}
+
+  rpc GetFTSensorData(Empty) returns (FTSensorData) {}
+}
