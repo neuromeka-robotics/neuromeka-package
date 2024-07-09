@@ -30,13 +30,13 @@ else:
 
 setup(
     name="neuromeka",
-    version="3.2.0.4",
+    version="3.2.0.5",
     author="Neuromeka",
-    author_email="youngjin.heo@neuromeka.com",
+    author_email="technical-suuport@neuromeka.com",
     description="Neuromeka client protocols for IndyDCP3, IndyEye, Moby, Ecat, and Motor",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/neuromeka-robotics/neuromeka-clients3",
+    url="https://github.com/neuromeka-robotics/neuromeka-package",
     packages=find_packages(),
     classifiers=[
         "Development Status :: 3 - Alpha",

@@ -55,29 +55,7 @@ class IndyDCP3:
     ############################
     # IndyDCP3 API protocols
     ############################
-    def get_motion_data(self):
-        """
-        Motion Data:
-            traj_state   -> TrajState
-            traj_progress   -> int32
-            is_in_motion  -> bool
-            is_target_reached  -> bool
-            is_pausing  -> bool
-            is_stopping  -> bool
-            has_motion  -> bool
-            speed_ratio  -> int32
-            motion_id  -> int32
-            remain_distance  -> float
-            motion_queue_size  -> uint32
-            cur_traj_progress  -> int32
-        """
-        response = self.rtde.GetMotionData(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
-
-    def get_control_data(self):
+    def get_robot_data(self):
         """
         Control Data:
             running_hours   -> uint32
@@ -98,6 +76,8 @@ class IndyDCP3:
                                          including_default_value_fields=True,
                                          preserving_proto_field_name=True,
                                          use_integers_for_enums=True)
+    def get_control_data(self):
+        return self.get_robot_data()
 
     def get_control_state(self):
         """
@@ -119,6 +99,28 @@ class IndyDCP3:
             tau_ext  -> float[]
         """
         response = self.rtde.GetControlState(common_msgs.Empty())
+        return json_format.MessageToDict(response,
+                                         including_default_value_fields=True,
+                                         preserving_proto_field_name=True,
+                                         use_integers_for_enums=True)
+
+    def get_motion_data(self):
+        """
+        Motion Data:
+            traj_state   -> TrajState
+            traj_progress   -> int32
+            is_in_motion  -> bool
+            is_target_reached  -> bool
+            is_pausing  -> bool
+            is_stopping  -> bool
+            has_motion  -> bool
+            speed_ratio  -> int32
+            motion_id  -> int32
+            remain_distance  -> float
+            motion_queue_size  -> uint32
+            cur_traj_progress  -> int32
+        """
+        response = self.rtde.GetMotionData(common_msgs.Empty())
         return json_format.MessageToDict(response,
                                          including_default_value_fields=True,
                                          preserving_proto_field_name=True,
@@ -410,7 +412,7 @@ class IndyDCP3:
                    blending_type=BlendingType.NONE,
                    base_type=JointBaseType.ABSOLUTE,
                    blending_radius=0.0,
-                   move_time=2.0,
+                   move_time=5.0,
                    post_condition=PostCondition()) -> dict:
         """
         jtarget = [deg, deg, deg, deg, deg, deg]
@@ -488,10 +490,52 @@ class IndyDCP3:
                                          preserving_proto_field_name=True,
                                          use_integers_for_enums=True)
 
+    def movel_time(self, ttarget,
+              blending_type=BlendingType.NONE,
+              base_type=TaskBaseType.ABSOLUTE,
+              blending_radius=0.0,
+              move_time=5.0,
+              post_condition=PostCondition()) -> dict:
+        """
+        tstart = [mm, mm, mm, deg, deg, deg]
+        ttarget = [mm, mm, mm, deg, deg, deg]
+
+            base_tye -> TaskBaseType
+                ABSOLUTE
+                RELATIVE
+                TCP
+        """
+        ptarget = control_msgs.TargetP(t_start=[], t_target=list(ttarget), base_type=base_type)
+        blending = control_msgs.BlendingType(type=blending_type, blending_radius=blending_radius)
+        post_cond = control_msgs.MotionCondition()
+        if post_condition is not None:
+            post_cond = control_msgs.MotionCondition(
+                type_cond=post_condition.condition_type,
+                type_react=post_condition.reaction_type,
+                const_cond=post_condition.const_cond,
+                io_cond=control_msgs.IOCondition(
+                    di=self.__to_digital_request_list__(
+                        [{'address': di[0], 'state': di[1]} for di in post_condition.digital_inputs]),
+                    # di=self.__to_digital_request_list__(post_condition.digital_inputs),
+                    # end_di=self.__to_digital_request_list__(post_condition['enddi_condition']),
+                ),
+            )
+
+        response = self.control.MoveLT(control_msgs.MoveLTReq(
+            target=ptarget,
+            blending=blending,
+            time=move_time,
+            post_condition=post_cond
+        ))
+        return json_format.MessageToDict(response,
+                                         including_default_value_fields=True,
+                                         preserving_proto_field_name=True,
+                                         use_integers_for_enums=True)
+
     def movec(self, tpos0, tpos1,
               blending_type=BlendingType.NONE,
               base_type=TaskBaseType.ABSOLUTE,
-              angle=90.0,
+              angle=0.0,
               setting_type=CircularSettingType.POINT_SET,
               move_type=control_msgs.CONSTANT,
               blending_radius=0.0,
@@ -541,9 +585,9 @@ class IndyDCP3:
     # Motion Control (Teaching mode)
     ############################
     def move_home(self):
-        home_pos = self.get_home_pos()
+        home_pos = self.get_home_pos()['jpos']
         self.movej(home_pos,
-                  blending_type=NO_BLENDING,
+                  blending_type=BlendingType.NONE,
                   base_type=JointBaseType.ABSOLUTE,
                   blending_radius=0.0,
                   vel_ratio=Limits.JogVelRatioDefault,

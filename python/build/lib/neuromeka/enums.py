@@ -1,21 +1,62 @@
 from enum import IntEnum
 import neuromeka.proto.common_msgs_pb2 as common_msgs
 import neuromeka.proto.control_msgs_pb2 as control_msgs
+import neuromeka.proto.device_msgs_pb2 as device_msgs
 
 from dataclasses import dataclass, field
 from typing import List, Tuple
 
 
-class StopCategory(IntEnum):
+
+class OpState:
+    SYSTEM_OFF = common_msgs.OP_SYSTEM_OFF
+    SYSTEM_ON = common_msgs.OP_SYSTEM_ON
+    VIOLATE = common_msgs.OP_VIOLATE
+    RECOVER_HARD = common_msgs.OP_RECOVER_HARD
+    RECOVER_SOFT = common_msgs.OP_RECOVER_SOFT
+    IDLE = common_msgs.OP_IDLE
+    MOVING = common_msgs.OP_MOVING
+    TEACHING = common_msgs.OP_TEACHING
+    COLLISION = common_msgs.OP_COLLISION
+    STOP_AND_OFF = common_msgs.OP_STOP_AND_OFF
+    COMPLIANCE = common_msgs.OP_COMPLIANCE
+    BRAKE_CONTROL = common_msgs.OP_BRAKE_CONTROL
+    SYSTEM_RESET = common_msgs.OP_SYSTEM_RESET
+    SYSTEM_SWITCH = common_msgs.OP_SYSTEM_SWITCH
+    VIOLATE_HARD = common_msgs.OP_VIOLATE_HARD
+    MANUAL_RECOVER = common_msgs.OP_MANUAL_RECOVER
+    TELE_OP = common_msgs.TELE_OP
+
+
+class ProgramState:
+    IDLE = common_msgs.PROG_IDLE
+    RUNNING = common_msgs.PROG_RUNNING
+    PAUSING = common_msgs.PROG_PAUSING
+    STOPPING = common_msgs.PROG_STOPPING
+
+class DigitalState:
+    UNUSED = device_msgs.UNUSED_STATE
+    OFF = device_msgs.OFF_STATE
+    ON = device_msgs.ON_STATE
+
+class EndtoolState:
+    UNUSED = device_msgs.UNUSED
+    HIGH_PNP = device_msgs.HIGH_PNP
+    HIGH_NPN = device_msgs.HIGH_NPN
+    LOW_NPN = device_msgs.LOW_NPN
+    LOW_PNP = device_msgs.LOW_PNP
+
+
+class StopCategory:
     CAT0 = common_msgs.IMMEDIATE_BRAKE
     CAT1 = common_msgs.SMOOTH_BRAKE
     CAT2 = common_msgs.SMOOTH_ONLY
 
-class JointBaseType(IntEnum):
+class JointBaseType:
     ABSOLUTE = control_msgs.ABSOLUTE_JOINT
     RELATIVE = control_msgs.RELATIVE_JOINT
 
-class TaskBaseType(IntEnum):
+class TaskBaseType:
     ABSOLUTE = control_msgs.ABSOLUTE_TASK
     RELATIVE = control_msgs.RELATIVE_TASK
     TCP = control_msgs.TCP_TASK
@@ -36,6 +77,13 @@ class BlendingType:
     DUPLICATE = control_msgs.BlendingType.DUPLICATE
     RADIUS = 4
 
+class JointTeleopType:
+    ABSOLUTE = control_msgs.TELE_JOINT_ABSOLUTE
+    RELATIVE = control_msgs.TELE_JOINT_RELATIVE
+
+class TaskTeleopType:
+    ABSOLUTE = control_msgs.TELE_TASK_ABSOLUTE
+    RELATIVE = control_msgs.TELE_TASK_RELATIVE
 
 class TrajCondType:
     STARTED = common_msgs.TRAJ_STARTED
@@ -152,8 +200,6 @@ class Limits(IntEnum):
     TaskRotVelValueMax = 120  # deg/s
 
     ExternalMotorSpeedMax = 250  # mm/s : 3000rpm -> 50 rev/sec * 5 mm/rev -> 250 mm/s
-
-
 
 
 class DetectType:
