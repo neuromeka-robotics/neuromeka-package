@@ -3,16 +3,27 @@
 
 This package provides client protocols for users to interact with Neuromeka's products, including Indy, Moby, Ecat, and Motor.
 
+* Website: http://www.neuromeka.com
+* Source code: https://github.com/neuromeka-robotics/neuromeka-package
+* PyPI package: https://pypi.org/project/neuromeka/
+* Documents: https://docs.neuromeka.com
+
 ## Installation
 
+### Python
 You can install the package from PyPI:
 
 ```bash
 pip install neuromeka
 ```
 
+### C++
+TBD
+
 ## Usage
-The package contatins the following client classes:
+
+### Python
+Python `neuromeka` package contatins the following client classes:
 
 * IndyDCP3 in indydcp3.py
 * IndyEye in eye.py
@@ -24,13 +35,19 @@ To use a client class, simply import it and create an instance:
 ```python
 from neuromeka import IndyDCP3, IndyEye, EtherCAT, MobyClient
 
-ecat = EtherCAT("192.168.214.20")
 moby = MobyClient("192.168.214.20")
 indy = IndyDCP3("192.168.0.11")
 eye = IndyEye("192.168.0.12")
+ecat = EtherCAT("192.168.0.11")
 ```
 
+### C++
+TBD
+
+
 ## Dependencies
+
+### Python
 This package requires the following dependencies:
 
 * grpcio
@@ -44,8 +61,11 @@ This package requires the following dependencies:
 
 These dependencies will be automatically installed when you install the package using pip.
 
+### C++
+TBD
+
 ## Examples
-Please refer to the 'example.py' file in the package for usage examples.
+Please refer to the 'python/examples' folder in the package for Python usage examples.
 
 ## Support
 If you encounter any issues or need help, please open an issue on the project's repository.
