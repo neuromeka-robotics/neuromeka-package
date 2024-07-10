@@ -1,9 +1,8 @@
 from setuptools import setup, find_packages
 import sys
 
-with open("README.md", "r", encoding="utf-8") as fh:
+with open("../README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
-
 
 if sys.version_info < (3, 9):
     install_requires = [
@@ -25,12 +24,12 @@ else:
         "Pillow",
         "numpy",
         "pyModbusTCP",
-        "netifaces"
+        "netifaces2"
     ]
 
 setup(
     name="neuromeka",
-    version="3.2.0.5",
+    version="3.2.0.6",
     author="Neuromeka",
     author_email="technical-suuport@neuromeka.com",
     description="Neuromeka client protocols for IndyDCP3, IndyEye, Moby, Ecat, and Motor",
