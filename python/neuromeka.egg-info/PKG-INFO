@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: neuromeka
-Version: 3.2.0.5
+Version: 3.2.0.7
 Summary: Neuromeka client protocols for IndyDCP3, IndyEye, Moby, Ecat, and Motor
 Home-page: https://github.com/neuromeka-robotics/neuromeka-package
 Author: Neuromeka
@@ -9,32 +9,33 @@ Classifier: Development Status :: 3 - Alpha
 Classifier: Intended Audience :: Developers
 Classifier: License :: OSI Approved :: MIT License
 Classifier: Operating System :: OS Independent
-Classifier: Programming Language :: Python :: 3
 Classifier: Programming Language :: Python :: 3.6
 Classifier: Programming Language :: Python :: 3.7
 Classifier: Programming Language :: Python :: 3.8
 Classifier: Programming Language :: Python :: 3.9
-Classifier: Programming Language :: Python :: 3.10
 Requires-Python: >=3.6
 Description-Content-Type: text/markdown
-Requires-Dist: grpcio==1.39.0
-Requires-Dist: grpcio-tools==1.39.0
-Requires-Dist: protobuf==3.17.3
-Requires-Dist: requests==2.22.0
+Requires-Dist: grpcio<=1.44.0,>=1.39.0
+Requires-Dist: grpcio-tools<=1.44.0,>=1.39.0
+Requires-Dist: protobuf<=3.20.3,>=3.17.3
+Requires-Dist: requests<=2.32.3,>=2.22.0
 Requires-Dist: Pillow==9.5.0
 Requires-Dist: numpy==1.21.6
+Requires-Dist: pandas-stubs<=2.0.1.230501
 Requires-Dist: pyModbusTCP==0.2.1
-Requires-Dist: netifaces==0.11.0
+Requires-Dist: netifaces2
 
-# Neuromeka Clients
+# Neuromeka Robot API
 ![PyPI](https://img.shields.io/pypi/v/neuromeka)
 
-This package provides client protocols for users to interact with Neuromeka's products, including Indy, Moby, Ecat, and Motor.
+This package provides client protocols for users to interact with Neuromeka's robot products, including Indy, Moby, Ecat, and Motor.
 
 * Website: http://www.neuromeka.com
 * Source code: https://github.com/neuromeka-robotics/neuromeka-package
 * PyPI package: https://pypi.org/project/neuromeka/
 * Documents: https://docs.neuromeka.com
+
+
 
 ## Installation
 

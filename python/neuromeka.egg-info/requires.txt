@@ -1,8 +1,9 @@
-grpcio==1.39.0
-grpcio-tools==1.39.0
-protobuf==3.17.3
-requests==2.22.0
+grpcio<=1.44.0,>=1.39.0
+grpcio-tools<=1.44.0,>=1.39.0
+protobuf<=3.20.3,>=3.17.3
+requests<=2.32.3,>=2.22.0
 Pillow==9.5.0
 numpy==1.21.6
+pandas-stubs<=2.0.1.230501
 pyModbusTCP==0.2.1
-netifaces==0.11.0
+netifaces2
