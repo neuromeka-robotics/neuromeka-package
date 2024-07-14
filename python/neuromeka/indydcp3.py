@@ -2,7 +2,6 @@ from neuromeka.proto import *
 from neuromeka.common import *
 from neuromeka.enums import *
 
-
 import grpc
 from google.protobuf import json_format
 from google.protobuf.json_format import ParseDict
@@ -76,6 +75,7 @@ class IndyDCP3:
                                          including_default_value_fields=True,
                                          preserving_proto_field_name=True,
                                          use_integers_for_enums=True)
+
     def get_control_data(self):
         return self.get_robot_data()
 
@@ -491,11 +491,11 @@ class IndyDCP3:
                                          use_integers_for_enums=True)
 
     def movel_time(self, ttarget,
-              blending_type=BlendingType.NONE,
-              base_type=TaskBaseType.ABSOLUTE,
-              blending_radius=0.0,
-              move_time=5.0,
-              post_condition=PostCondition()) -> dict:
+                   blending_type=BlendingType.NONE,
+                   base_type=TaskBaseType.ABSOLUTE,
+                   blending_radius=0.0,
+                   move_time=5.0,
+                   post_condition=PostCondition()) -> dict:
         """
         tstart = [mm, mm, mm, deg, deg, deg]
         ttarget = [mm, mm, mm, deg, deg, deg]
@@ -587,15 +587,13 @@ class IndyDCP3:
     def move_home(self):
         home_pos = self.get_home_pos()['jpos']
         self.movej(home_pos,
-                  blending_type=BlendingType.NONE,
-                  base_type=JointBaseType.ABSOLUTE,
-                  blending_radius=0.0,
-                  vel_ratio=Limits.JogVelRatioDefault,
-                  acc_ratio=Limits.JogAccRatioDefault,
-                  post_condition=PostCondition(),
-                  teaching_mode=False)
-
-
+                   blending_type=BlendingType.NONE,
+                   base_type=JointBaseType.ABSOLUTE,
+                   blending_radius=0.0,
+                   vel_ratio=Limits.JogVelRatioDefault,
+                   acc_ratio=Limits.JogAccRatioDefault,
+                   post_condition=PostCondition(),
+                   teaching_mode=False)
 
     ############################
     # Motion Control (Teleoperation)
@@ -609,7 +607,8 @@ class IndyDCP3:
             TELE_JOINT_ABSOLUTE = 10
             TELE_JOINT_RELATIVE = 11
         """
-        response = self.control.StartTeleOp(control_msgs.TeleOpState(mode=control_msgs.TeleMode.TELE_RAW, method=method))
+        response = self.control.StartTeleOp(
+            control_msgs.TeleOpState(mode=control_msgs.TeleMode.TELE_RAW, method=method))
         return json_format.MessageToDict(response,
                                          including_default_value_fields=True,
                                          preserving_proto_field_name=True,
@@ -655,7 +654,7 @@ class IndyDCP3:
         jpos = [mm, mm, mm, deg, deg, deg]
         """
         response = self.control.MoveTeleL(control_msgs.MoveTeleLReq(tpos=tpos, vel_ratio=vel_ratio, acc_ratio=acc_ratio,
-                                      method=control_msgs.TELE_TASK_ABSOLUTE))
+                                                                    method=control_msgs.TELE_TASK_ABSOLUTE))
         return json_format.MessageToDict(response,
                                          including_default_value_fields=True,
                                          preserving_proto_field_name=True,
@@ -667,12 +666,11 @@ class IndyDCP3:
         jpos = [mm, mm, mm, deg, deg, deg]
         """
         response = self.control.MoveTeleL(control_msgs.MoveTeleLReq(tpos=tpos, vel_ratio=vel_ratio, acc_ratio=acc_ratio,
-                                      method=control_msgs.TELE_TASK_RELATIVE))
+                                                                    method=control_msgs.TELE_TASK_RELATIVE))
         return json_format.MessageToDict(response,
                                          including_default_value_fields=True,
                                          preserving_proto_field_name=True,
                                          use_integers_for_enums=True)
-
 
     ############################
     # Control - Additional
@@ -748,7 +746,6 @@ class IndyDCP3:
                                          preserving_proto_field_name=True,
                                          use_integers_for_enums=True)
 
-
     def calculate_current_pose_rel(self, current_pos, relative_pos,
                                    base_type=TaskBaseType.ABSOLUTE):
         """
@@ -822,7 +819,6 @@ class IndyDCP3:
                                          including_default_value_fields=True,
                                          preserving_proto_field_name=True,
                                          use_integers_for_enums=True)
-
 
     ############################
     # Variables
@@ -997,7 +993,6 @@ class IndyDCP3:
                                          preserving_proto_field_name=True,
                                          use_integers_for_enums=True)
 
-
     ############################
     # Config
     ############################
@@ -1024,7 +1019,6 @@ class IndyDCP3:
                                          including_default_value_fields=True,
                                          preserving_proto_field_name=True,
                                          use_integers_for_enums=True)
-
 
     def get_ref_frame(self):
         """
@@ -1077,7 +1071,6 @@ class IndyDCP3:
                                          preserving_proto_field_name=True,
                                          use_integers_for_enums=True)
 
-
     def get_friction_comp(self):
         """
         Friction Compensation Set:
@@ -1112,7 +1105,6 @@ class IndyDCP3:
                                          including_default_value_fields=True,
                                          preserving_proto_field_name=True,
                                          use_integers_for_enums=True)
-
 
     def get_tool_property(self):
         """
@@ -1290,7 +1282,6 @@ class IndyDCP3:
                                          preserving_proto_field_name=True,
                                          use_integers_for_enums=True)
 
-
     ############################
     # IndySDK related
     ############################
@@ -1331,6 +1322,55 @@ class IndyDCP3:
 
         """
         response = self.control.GetCustomControlMode(common_msgs.Empty())
+        return json_format.MessageToDict(response,
+                                         including_default_value_fields=True,
+                                         preserving_proto_field_name=True,
+                                         use_integers_for_enums=True)
+
+    def get_custom_control_gain(self):
+        """
+        Custom Control Gain
+            gain0   -> float[6]
+            gain1   -> float[6]
+            gain2   -> float[6]
+            gain3   -> float[6]
+            gain4   -> float[6]
+            gain5   -> float[6]
+            gain6   -> float[6]
+            gain7   -> float[6]
+            gain8   -> float[6]
+            gain9   -> float[6]
+        """
+        response = self.config.GetCustomControlGain(common_msgs.Empty())
+        return json_format.MessageToDict(response,
+                                         including_default_value_fields=True,
+                                         preserving_proto_field_name=True,
+                                         use_integers_for_enums=True)
+
+    def set_custom_control_gain2(self, gain0, gain1):
+        return self._set_custom_control_gain(gain0, gain1, *[([0] * 6) for _ in range(8)])
+
+    def set_custom_control_gain3(self, gain0, gain1, gain2):
+        return self._set_custom_control_gain(gain0, gain1, gain2, *[([0] * 6) for _ in range(7)])
+
+    def set_custom_control_gain6(self, gain0, gain1, gain2, gain3, gain4, gain5):
+        return self._set_custom_control_gain(gain0, gain1, gain2, gain3, gain4, gain5, *[([0] * 6) for _ in range(4)])
+
+    def set_custom_control_gain(self, gain0, gain1, gain2, gain3, gain4, gain5, gain6, gain7, gain8, gain9):
+        return self._set_custom_control_gain(gain0, gain1, gain2, gain3, gain4, gain5, gain6, gain7, gain8, gain9)
+
+    def _set_custom_control_gain(self, *gains):
+        """
+        Private method to set custom control gains with a variable number of gain arrays.
+
+        Args:
+            *gains: Up to 10 lists of gain values. Each gain should be a list of floats.
+        """
+        response = self.config.SetCustomControlGain(config_msgs.CustomGainSet(
+            gain0=list(gains[0]), gain1=list(gains[1]), gain2=list(gains[2]), gain3=list(gains[3]),
+            gain4=list(gains[4]), gain5=list(gains[5]), gain6=list(gains[6]), gain7=list(gains[7]),
+            gain8=list(gains[8]), gain9=list(gains[9])
+        ))
         return json_format.MessageToDict(response,
                                          including_default_value_fields=True,
                                          preserving_proto_field_name=True,
@@ -1495,7 +1535,6 @@ class IndyDCP3:
                                          preserving_proto_field_name=True,
                                          use_integers_for_enums=True)
 
-
     def check_aproach_retract_valid(self, tpos, init_jpos, pre_tpos, post_tpos):
         """
         Check aproach retract valid
@@ -1528,7 +1567,6 @@ class IndyDCP3:
                                          including_default_value_fields=True,
                                          preserving_proto_field_name=True,
                                          use_integers_for_enums=True)
-
 
     def play_tuning_program(self, prog_name: str = '', prog_idx: int = -1,
                             tuning_space=common_msgs.TUNE_ALL, precision=common_msgs.HIGH_PRECISION,
@@ -1599,8 +1637,6 @@ class IndyDCP3:
                                          including_default_value_fields=True,
                                          preserving_proto_field_name=True,
                                          use_integers_for_enums=True)
-
-
 
     def set_auto_servo_Off(self, enable: bool, time: float):
         """

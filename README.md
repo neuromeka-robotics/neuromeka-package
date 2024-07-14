@@ -12,14 +12,20 @@ This package provides client protocols for users to interact with Neuromeka's ro
 
 ## Installation
 
+### Python
 You can install the package from PyPI:
 
 ```bash
 pip install neuromeka
 ```
 
+### C++
+TBD
+
 ## Usage
-The package contatins the following client classes:
+
+### Python
+Python `neuromeka` package contatins the following client classes:
 
 * IndyDCP3 in indydcp3.py
 * IndyEye in eye.py
@@ -37,7 +43,13 @@ eye = IndyEye("192.168.0.12")
 ecat = EtherCAT("192.168.0.11")
 ```
 
+### C++
+TBD
+
+
 ## Dependencies
+
+### Python
 This package requires the following dependencies:
 
 * grpcio
@@ -51,8 +63,11 @@ This package requires the following dependencies:
 
 These dependencies will be automatically installed when you install the package using pip.
 
+### C++
+TBD
+
 ## Examples
-Please refer to the 'example.py' file in the package for usage examples.
+Please refer to the 'python/examples' folder in the package for Python usage examples.
 
 ## Support
 If you encounter any issues or need help, please open an issue on the project's repository.

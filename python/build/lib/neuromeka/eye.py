@@ -81,6 +81,7 @@ EYE_PORT_TCP = 2002  # default IndyEye Task Server Port
 EYE_PORT_GRPC = 10511
 custom_dat_len = 32  # default custom data length
 
+MAX_POS_LOCATION = 10.0 #10 meters
 
 class EyeCommand:
     DETECT = 0  # detect command
@@ -105,11 +106,13 @@ class DetectKey:
 # @class IndyEyeClient
 # @brief Rest API client
 class IndyEye:
-    def __init__(self, eye_ip):
+    # @param pose_unit   unit of the end-effector pose, "mm" or "m", default: "mm"
+    def __init__(self, eye_ip, pose_unit="mm"):
         self.session = requests.session()
         self.eye_ip = eye_ip
         self.url = f"http://{eye_ip}:8088"
         self.version = self.get_version()
+        self.pose_unit = pose_unit.lower()
         if float(".".join(self.version.split(".")[:2])) >= 0.5:
             # initialize gRPC
             self.channel = grpc.insecure_channel('{}:{}'.format(eye_ip, EYE_PORT_GRPC),
@@ -120,11 +123,37 @@ class IndyEye:
         else:
             self.run_command = self.run_command_tcp
 
+    def get_unit_multiplier(self, pose_unit=None):
+        if pose_unit is None:
+            pose_unit = self.pose_unit
+        if pose_unit in ["m", "meter", "meters"]:
+            return 1.0
+        else: #mm unit
+            return 1000.0
+
+    def fix_pose_unit_input(self, pos):
+        if pos is not None:
+            new_pos = [p for p in pos]
+            if len(new_pos) == 6:
+                for i in range(3):
+                    new_pos[i] = new_pos[i]/self.get_unit_multiplier()
+            return new_pos
+        return pos
+
+    def fix_pose_unit_output(self, pos):
+        if pos is not None:
+            new_pos = [p for p in pos]
+            if len(new_pos) == 6:
+                for i in range(3):
+                    new_pos[i] = new_pos[i]*self.get_unit_multiplier("mm")
+            return new_pos
+        return pos
+
     ##
     # @brief indyeye communication function
     # @param cmd        command id, 0~3
     # @param cls        index of target class to detect. 0: ALL, 1~: index of class
-    # @param pose_cmd   end-effector pose, [x,y,z,u,v,w] (unit: m, deg)
+    # @param pose_cmd   end-effector pose, [x,y,z,u,v,w] (unit: self.pose_unit, deg)
     # @param robot_ip   ip address of robot, for multi-robot use
     def run_command_grpc(self, cmd, cls=0, pose_cmd=None, robot_ip=None, **kwargs):
         self.request_id += 1
@@ -136,7 +165,9 @@ class IndyEye:
             sdict = {'id': self.request_id, 'cls': int(cls)}
             if cmd == EyeCommand.DETECT:
                 if pose_cmd is not None:
-                    sdict['pose_cmd'] = pose_cmd
+                    sdict['pose_cmd'] = self.fix_pose_unit_input(pose_cmd)
+                    if max(sdict['pose_cmd'][:3]) >= MAX_POS_LOCATION or min(sdict['pose_cmd'][:3]) <= MAX_POS_LOCATION * -1:
+                        raise(ValueError("Input pose exceeds {}m".format(MAX_POS_LOCATION)))
                 if robot_ip is not None:
                     sdict['robot_ip'] = robot_ip
                 resp = self.stub.Detect(EyeTask_pb2.DetectRequest(**sdict))
@@ -146,7 +177,7 @@ class IndyEye:
                 resp = self.stub.Retrieve(EyeTask_pb2.RetrieveRequest(**sdict))
             else:
                 raise(NotImplementedError("Unknown command {}".format(cmd)))
-            return {DetectKey.DETECTED: resp.detected,
+            result = {DetectKey.DETECTED: resp.detected,
                     DetectKey.PASSED: resp.passed,
                     DetectKey.CLASS: resp.cls,
                     DetectKey.REF_TO_END_TOOL: resp.tar_ee_pose,
@@ -155,12 +186,21 @@ class IndyEye:
                     DetectKey.TOOL_INDEX: resp.tool_idx,
                     DetectKey.ERROR_STATE: resp.error_state,
                     DetectKey.ERROR_MODULE: resp.error_module}
+            
+            if DetectKey.REF_TO_END_TOOL in result:
+                result[DetectKey.REF_TO_END_TOOL] = self.fix_pose_unit_output(result[DetectKey.REF_TO_END_TOOL])
+            if DetectKey.REF_TO_PICK_POINT in result:
+                result[DetectKey.REF_TO_PICK_POINT] = self.fix_pose_unit_output(result[DetectKey.REF_TO_PICK_POINT])
+            if DetectKey.REF_TO_OBJECT in result:
+                result[DetectKey.REF_TO_OBJECT] = self.fix_pose_unit_output(result[DetectKey.REF_TO_OBJECT])
+            
+            return result
 
     ##
     # @brief indyeye communication function
     # @param cmd        command id, 0~3
     # @param cls        index of target class to detect. 0: ALL, 1~: index of class
-    # @param pose_cmd   end-effector pose, [x,y,z,u,v,w] (unit: m, deg)
+    # @param pose_cmd   end-effector pose, [x,y,z,u,v,w] (unit: self.pose_unit, deg)
     # @param robot_ip   ip address of robot, for multi-robot use
     def run_command_tcp(self, cmd, cls, pose_cmd=None, robot_ip=None, **kwargs):
         sock = socket.socket(socket.AF_INET,
@@ -170,7 +210,9 @@ class IndyEye:
             sock.connect((self.eye_ip, EYE_PORT_TCP))
             sdict = {'command': int(cmd), 'class_tar': int(cls), }
             if pose_cmd is not None:
-                sdict['pose_cmd'] = pose_cmd
+                sdict['pose_cmd'] = self.fix_pose_unit_input(pose_cmd)
+                if max(sdict['pose_cmd'][:3]) >= MAX_POS_LOCATION or min(sdict['pose_cmd'][:3]) <= MAX_POS_LOCATION * -1:
+                    raise(ValueError("Input pose exceeds {}m".format(MAX_POS_LOCATION)))
             if robot_ip is not None:
                 sdict['robot_ip'] = robot_ip
             sdict.update(kwargs)
@@ -195,6 +237,13 @@ class IndyEye:
                          DetectKey.TOOL_INDEX: rdict['tool_idx'],
                          DetectKey.ERROR_STATE: rdict['STATE']!=0,
                          DetectKey.ERROR_MODULE: None}
+            
+                if DetectKey.REF_TO_END_TOOL in rdict:
+                    rdict[DetectKey.REF_TO_END_TOOL] = self.fix_pose_unit_output(rdict[DetectKey.REF_TO_END_TOOL])
+                if DetectKey.REF_TO_PICK_POINT in rdict:
+                    rdict[DetectKey.REF_TO_PICK_POINT] = self.fix_pose_unit_output(rdict[DetectKey.REF_TO_PICK_POINT])
+                if DetectKey.REF_TO_OBJECT in rdict:
+                    rdict[DetectKey.REF_TO_OBJECT] = self.fix_pose_unit_output(rdict[DetectKey.REF_TO_OBJECT])
             else:
                 raise(NotImplementedError("Unknown command {}".format(cmd)))
             return rdict

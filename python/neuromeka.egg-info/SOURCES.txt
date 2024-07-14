@@ -1,4 +1,3 @@
-README.md
 setup.py
 neuromeka/__init__.py
 neuromeka/ecat.py
