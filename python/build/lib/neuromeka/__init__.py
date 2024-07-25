@@ -9,7 +9,7 @@ from .indydcp3 import IndyDCP3
 # from .indydcp2 import IndyDCP2
 from .eye import IndyEye
 from .ecat import EtherCAT
-# from .moby import MobyDCP3
+from .moby import MobyClient
 # from .motor import MotorClient
 
 from .enums import *

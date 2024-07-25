@@ -172,8 +172,6 @@ class IndyEye:
                     sdict['robot_ip'] = robot_ip
                 resp = self.stub.Detect(EyeTask_pb2.DetectRequest(**sdict))
             elif cmd == EyeCommand.RETRIEVE:
-                if robot_ip is not None:
-                    sdict['robot_ip'] = robot_ip
                 resp = self.stub.Retrieve(EyeTask_pb2.RetrieveRequest(**sdict))
             else:
                 raise(NotImplementedError("Unknown command {}".format(cmd)))
@@ -281,7 +279,7 @@ class IndyEye:
                 found_target_idx = key
         if found_target_idx != -1:
             result = self.run_command(cmd=EyeCommand.DETECT, cls=found_target_idx, pose_cmd=task_pos, **kwargs)
-            if rdict is not None and rdict[DetectKey.DETECTED]:
+            if result is not None and result[DetectKey.DETECTED]:
                 found_target = result[mode]
             else:
                 found_target = None

@@ -15,6 +15,17 @@ This package provides client protocols for users to interact with Neuromeka's ro
 ### Python
 You can install the package from PyPI:
 
+Install dependencies if missing:
+```bash
+sudo apt-get install libjpeg-dev zlib1g-dev 
+```
+
+On python < 3.12: 
+```bash
+sudo apt install -y python-distutils 
+```
+
+Install Neuromeka package
 ```bash
 pip install neuromeka
 ```
