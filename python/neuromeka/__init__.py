@@ -10,6 +10,7 @@ from .indydcp3 import IndyDCP3
 from .eye import IndyEye
 from .ecat import EtherCAT
 from .moby import MobyClient
+from .performancebenchmark import PerformanceBenchmark
 # from .motor import MotorClient
 
 from .enums import *
