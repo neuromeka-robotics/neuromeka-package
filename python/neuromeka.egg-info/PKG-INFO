@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: neuromeka
-Version: 3.2.0.8
+Version: 3.2.0.9
 Summary: Neuromeka client protocols for IndyDCP3, IndyEye, Moby, Ecat, and Motor
 Home-page: https://github.com/neuromeka-robotics/neuromeka-package
 Author: Neuromeka
@@ -9,20 +9,19 @@ Classifier: Development Status :: 3 - Alpha
 Classifier: Intended Audience :: Developers
 Classifier: License :: OSI Approved :: MIT License
 Classifier: Operating System :: OS Independent
-Classifier: Programming Language :: Python :: 3.6
 Classifier: Programming Language :: Python :: 3.7
 Classifier: Programming Language :: Python :: 3.8
 Classifier: Programming Language :: Python :: 3.9
 Classifier: Programming Language :: Python :: 3.10
 Classifier: Programming Language :: Python :: 3.11
 Classifier: Programming Language :: Python :: 3.12
-Requires-Python: >=3.6
+Requires-Python: >=3.7
 Description-Content-Type: text/markdown
-Requires-Dist: grpcio<=1.59.0,>=1.39.0
-Requires-Dist: grpcio-tools<=1.59.0,>=1.39.0
-Requires-Dist: protobuf<=4.25.4,>=3.17.3
-Requires-Dist: requests==2.32.0
-Requires-Dist: urllib3==2.2.2
+Requires-Dist: grpcio==1.59.0
+Requires-Dist: grpcio-tools==1.59.0
+Requires-Dist: protobuf<=4.25.4,>=4.24.4
+Requires-Dist: requests<=2.32.0,>=2.31.0
+Requires-Dist: urllib3<=2.2.2,>=2.0.7
 Requires-Dist: Pillow==9.5.0
 Requires-Dist: numpy<=1.26.4,>=1.21.6
 Requires-Dist: pyModbusTCP==0.2.1
@@ -45,6 +44,17 @@ This package provides client protocols for users to interact with Neuromeka's ro
 ### Python
 You can install the package from PyPI:
 
+Install dependencies if missing:
+```bash
+sudo apt-get install libjpeg-dev zlib1g-dev 
+```
+
+On python < 3.12: 
+```bash
+sudo apt install -y python-distutils 
+```
+
+Install Neuromeka package
 ```bash
 pip install neuromeka
 ```
