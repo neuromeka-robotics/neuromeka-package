@@ -92,6 +92,75 @@ class PerformanceBenchmark:
                     }
                 },
             },
+            'Opti5v2': {
+                'joint_motion': {
+                    'benchmark_pos': {
+                        1: {'RMS Error': 0.0010679608197766508, 'Max Error': 0.0025580000000000602},
+                        2: {'RMS Error': 0.0006629722840178017, 'Max Error': 0.0016890000000000516},
+                        3: {'RMS Error': 0.00026698869878287885, 'Max Error': 0.0007610000000002337},
+                        4: {'RMS Error': 0.0006332673190881512, 'Max Error': 0.002307000000000059},
+                        5: {'RMS Error': 0.0003769276129520633, 'Max Error': 0.0016940000000000843},
+                        6: {'RMS Error': 0.000660136536956631, 'Max Error': 0.0023360000000001158}
+                    },
+                    'benchmark_vel': {
+                        1: {'RMS Error': 0.013590021537021813, 'Max Error': 0.06461700000000015},
+                        2: {'RMS Error': 0.011511617374396885, 'Max Error': 0.05181400000000003},
+                        3: {'RMS Error': 0.026357345475827937, 'Max Error': 0.14511800000000008},
+                        4: {'RMS Error': 0.02682945597175326, 'Max Error': 0.12799000000000005},
+                        5: {'RMS Error': 0.017096185025341885, 'Max Error': 0.07719600000000004},
+                        6: {'RMS Error': 0.01043740251428306, 'Max Error': 0.040326}
+                    },
+                    'benchmark_torque': {1: {'Max torque': 239.343567, 'Min torque': -222.051718},
+                                         2: {'Max torque': 179.071569, 'Min torque': -189.113692},
+                                         3: {'Max torque': 86.857993, 'Min torque': -76.877952},
+                                         4: {'Max torque': 24.14527, 'Min torque': -27.27053},
+                                         5: {'Max torque': 14.354939, 'Min torque': -13.502547},
+                                         6: {'Max torque': 21.698, 'Min torque': -21.260868}
+                                         },
+                    'joint_gain': {
+                        'kp': [100.0, 100.0, 100.0, 100.0, 100.0, 100.0],
+                        'kv': [20.0, 20.0, 20.0, 20.0, 20.0, 20.0],
+                        'kl2': [800.0, 800.0, 600.0, 400.0, 400.0, 400.0]
+                    }
+                },
+                'task_motion': {
+                    'benchmark_trans': [
+                        ['X', 0.0001725565353294829, 0.0005269999999999997],
+                        ['Y', 0.00036342131302670287, 0.0009500000000000029],
+                        ['Z', 0.00028573317573190666, 0.0008619999999999739]
+                    ],
+                    'benchmark_rot': [
+                        ['U', 0.0001897, 0.00035],
+                        ['V', 0.0002958, 0.00078],
+                        ['W', 0.0001931, 0.000483]
+                    ],
+                    'task_gain': {
+                        'kp': [100.0, 100.0, 100.0, 100.0, 100.0, 100.0],
+                        'kv': [20.0, 20.0, 20.0, 20.0, 20.0, 20.0],
+                        'kl2': [800.0, 800.0, 600.0, 400.0, 400.0, 400.0]
+                    }
+                },
+                'movelf_motion': {
+                    'benchmark_trans': [
+                        ['X', 0.0001725565353294829, 0.0005269999999999997],
+                        ['Y', 0.00036342131302670287, 0.0009500000000000029],
+                        ['Z', 0.00028573317573190666, 0.0008619999999999739]
+                    ],
+                    'benchmark_rot': [
+                        ['U', 0.0001897, 0.00035],
+                        ['V', 0.0002958, 0.00078],
+                        ['W', 0.0001931, 0.000483]
+                    ],
+                    'force_gain': {
+                        'kp': [100.0, 100.0, 100.0, 100.0, 100.0, 100.0],
+                        'kv': [20.0, 20.0, 20.0, 20.0, 20.0, 20.0],
+                        'kl2': [800.0, 800.0, 600.0, 400.0, 400.0, 400.0],
+                        'mass': [1.0, 1.0, 1.0, 0.06, 0.06, 0.06],
+                        'damping': [2000.0, 2000.0, 2000.0, 200, 200, 200],
+                        'stiffness': [650.0, 650.0, 650.0, 80, 80, 80]
+                    }
+                },
+            },
             'Indy7v2': {
                 'task_motion': {
                     'benchmark_trans': [
@@ -399,14 +468,15 @@ class PerformanceBenchmark:
                 self.record[f"pd{i}"].append(float(line[56 + i]))
                 self.record[f"fact{i}"].append(float(line[62 + i]))
                 self.record[f"fdes{i}"].append(-float(line[68 + i]))
+                self.record[f"tauref{i}"].append(float(line[80 + i]))
                 self.record[f"taugrav{i}"].append(float(line[86 + i]))
                 self.record[f"taufric{i}"].append(float(line[92 + i]))
                 self.record[f"tauJts{i}"].append(float(line[104 + i]))
-
+                self.record[f"pe{i}"].append(float(line[122 + i]))
                 # Compute Joint and Task Position errors
                 self.record[f"qe{i}"].append(self.record[f"qd{i}"][-1] - self.record[f"q{i}"][-1])
                 self.record[f"qdote{i}"].append(self.record[f"qdotd{i}"][-1] - self.record[f"qdot{i}"][-1])
-                self.record[f"pe{i}"].append(self.record[f"pd{i}"][-1] - self.record[f"p{i}"][-1])
+                # self.record[f"pe{i}"].append(self.record[f"pd{i}"][-1] - self.record[f"p{i}"][-1])
 
     # Plot recorded data
     def extract_errors_for_all_joints(self, num_joints=6):
@@ -604,18 +674,22 @@ class PerformanceBenchmark:
         return min_torque, max_torque
 
     def plot_error_task_translation_rotation_plt(self, joint_number):
-        errors = np.array(self.record['pe' + str(joint_number)])
-        rms_error = np.sqrt(np.mean(errors ** 2))
-        max_error = np.max(np.abs(errors))
-
         labels = {1: 'X', 2: 'Y', 3: 'Z', 4: 'U', 5: 'V', 6: 'W'}
 
         label = labels[joint_number]
 
         if joint_number in [1, 2, 3]:
+            errors = np.array(self.record['pe' + str(joint_number)])
+            errors = errors * 1000
+            rms_error = np.sqrt(np.mean(errors ** 2))
+            max_error = np.max(np.abs(errors))
             error_type = 'Translation'
-            y_axis = 'm'
+            y_axis = 'mm'
         elif joint_number in [4, 5, 6]:
+            errors = np.array(self.record['pe' + str(joint_number)])
+            errors = np.rad2deg(errors)
+            rms_error = np.sqrt(np.mean(errors ** 2))
+            max_error = np.max(np.abs(errors))
             error_type = 'Rotation'
             y_axis = 'deg'
         else:
@@ -1628,13 +1702,7 @@ class PerformanceBenchmark:
                             &nbsp;&nbsp; Position Tracking Error (deg) &nbsp;&nbsp;&nbsp;\
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\
                             &nbsp;&nbsp;&nbsp; Velocity Tracking Error (deg/s)", TA_LEFT)
-        torque_table = self.create_torque_table(combine_torque, "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Joint Torque (Nm)\
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\
-                            Joint Control Gain", TA_CENTER)
+        torque_table = self.create_torque_table(combine_torque, "Joint Torque (Nm)", TA_CENTER)
 
         status_sign = False
         pos_rms_error_sign, pos_max_error_sign = False, False
@@ -1875,10 +1943,11 @@ class PerformanceBenchmark:
         sub_title = Paragraph("<b>3. Result Tables</b>", title_style)
         plot_title = Paragraph("<b>4. Error Plot</b>", title_style)
         task_title = Paragraph("<b>5. Task Space Tracking Plot</b>", title_style)
-        pos_title = Paragraph("<b>6. Joint Position Plot</b>", title_style)
-        vel_title = Paragraph("<b>7. Joint Velocity Plot</b>", title_style)
-        fric_title = Paragraph("<b>8. Joint Friction Plot</b>", title_style)
-        force_title = Paragraph("<b>9. Joint Force Plot</b>", title_style)
+        torque_plot_title = Paragraph("<b>7. Joint Torque Plot</b>", title_style)
+        pos_title = Paragraph("<b>8. Joint Position Plot</b>", title_style)
+        vel_title = Paragraph("<b>9. Joint Velocity Plot</b>", title_style)
+        fric_title = Paragraph("<b>10. Joint Friction Plot</b>", title_style)
+        force_title = Paragraph("<b>11. Joint Force Plot</b>", title_style)
 
         first_info = Paragraph(f"<b>- Motion:</b> {motion_type}\
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\
@@ -2021,16 +2090,15 @@ class PerformanceBenchmark:
         ############################### Task Space Tracking Plot ###############################
         elements += [task_title]
 
-        elements.append(Image(image_path[15], width=480, height=180))  # Adjust width and height as needed
+        elements.append(Image(image_path[18], width=480, height=180))  # Adjust width and height as needed
         elements.append(Spacer(1, 10))
-        elements.append(Image(image_path[16], width=480, height=180))  # Adjust width and height as needed
+        elements.append(Image(image_path[19], width=480, height=180))  # Adjust width and height as needed
         elements.append(Spacer(1, 10))
 
         elements.append(PageBreak())
 
-        ################################### Position Plot #####################################
-        elements += [pos_title]
-
+        ################################### Torque Plot #######################################
+        elements += [torque_plot_title]
         elements.append(Image(image_path[3], width=480, height=180))  # Adjust width and height as needed
         elements.append(Spacer(1, 10))
         elements.append(Image(image_path[4], width=480, height=180))  # Adjust width and height as needed
@@ -2040,8 +2108,8 @@ class PerformanceBenchmark:
 
         elements.append(PageBreak())
 
-        ################################### Velocity Plot #####################################
-        elements += [vel_title]
+        ################################### Position Plot #####################################
+        elements += [pos_title]
 
         elements.append(Image(image_path[6], width=480, height=180))  # Adjust width and height as needed
         elements.append(Spacer(1, 10))
@@ -2052,14 +2120,26 @@ class PerformanceBenchmark:
 
         elements.append(PageBreak())
 
-        ################################### Friction Plot #####################################
-        elements += [fric_title]
+        ################################### Velocity Plot #####################################
+        elements += [vel_title]
 
         elements.append(Image(image_path[9], width=480, height=180))  # Adjust width and height as needed
         elements.append(Spacer(1, 10))
         elements.append(Image(image_path[10], width=480, height=180))  # Adjust width and height as needed
         elements.append(Spacer(1, 10))
         elements.append(Image(image_path[11], width=480, height=180))  # Adjust width and height as needed
+        elements.append(Spacer(1, 10))
+
+        elements.append(PageBreak())
+
+        ################################### Friction Plot #####################################
+        elements += [fric_title]
+
+        elements.append(Image(image_path[12], width=480, height=180))  # Adjust width and height as needed
+        elements.append(Spacer(1, 10))
+        elements.append(Image(image_path[13], width=480, height=180))  # Adjust width and height as needed
+        elements.append(Spacer(1, 10))
+        elements.append(Image(image_path[14], width=480, height=180))  # Adjust width and height as needed
         elements.append(Spacer(1, 10))
 
         # Create a PDF document
