@@ -10,7 +10,7 @@ This package provides client protocols for users to interact with Neuromeka's ro
 
 
 ## Installation
-Current default grpc version for both python and c++ is 1.59.
+The current default grpc version for both python and c++ is 1.59.
 
 ### Python
 You can install the package from PyPI:
@@ -136,7 +136,7 @@ Install [Visual Studio Code](https://code.visualstudio.com/download)
 Install [vs_BuildTools](https://visualstudio.microsoft.com/downloads/)
 - In BuildTools option, please choose Desktop Development with C++ and Visual Studio extension development.
 
-#### **1. Install GRPC**
+#### **2. Install GRPC**
 
 When you are all set, please open Developer Command Prompt and run the following commands:
 ```bash
@@ -163,7 +163,7 @@ Build and install grpc
 cmake --build . --config Release --target install
 ```
 
-#### **2. Download and Build example**
+#### **3. Download and Build example**
 Clone the Example Repository
 ```bash
 git clone https://github.com/neuromeka-robotics/neuromeka-package.git
