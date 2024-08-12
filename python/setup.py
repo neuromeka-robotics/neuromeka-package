@@ -7,7 +7,17 @@ with open("../README.md", "r", encoding="utf-8") as fh:
 if sys.version_info < (3, 12):
     print("Please build with python 3.12")
 else:
-    install_requires = [
+    step_requires = [
+        "grpcio>=1.34.1, <=1.39.0",
+        "grpcio-tools>=1.34.1, <=1.39.0",
+        "protobuf==3.17.3",
+        "requests==2.22.0",
+        "Pillow>=8.4.0, <=9.5.0",
+        "numpy>=1.19.4, <=1.21.6",
+        "pyModbusTCP==0.2.1",
+        "netifaces==0.11.0",
+    ]
+    common_requires = [
         "grpcio==1.59.0",
         "grpcio-tools==1.59.0",
         "protobuf>=4.24.4, <=4.25.4",
@@ -18,9 +28,10 @@ else:
         "pyModbusTCP==0.2.1",
         "netifaces2",
     ]
+    
     setup(
         name="neuromeka",
-        version="3.2.0.9",
+        version="3.2.1.0",
         author="Neuromeka",
         author_email="technical-suuport@neuromeka.com",
         description="Neuromeka client protocols for IndyDCP3, IndyEye, Moby, Ecat, and Motor",
@@ -41,5 +52,9 @@ else:
             "Programming Language :: Python :: 3.12"
         ],
         python_requires=">=3.7",
-        install_requires=install_requires,
+        # install_requires=install_requires,
+        extras_require={
+        ':python_version < "3.8"': step_requires,
+        ':python_version >= "3.8"': common_requires,
+        },
     )

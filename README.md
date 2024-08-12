@@ -123,10 +123,11 @@ mkdir build && cd build
 Run CMake Configuration and Build the Example
 ```bash
 cmake -DBUILD_PROTO=OFF ..
+cmake --build .
 ```
 If you need to rebuild the **.proto** files, set **-DBUILD_PROTO=ON**. The build_proto executable file will be generated. After running this file, the generated proto files will be located in the proto/cpp_generated folder.
 
-### C++ (On Window)
+### C++ (On Windows)
 It is recommended to use Visual Studio Code for this setup.
 
 #### **1. Setup your environment**
@@ -154,7 +155,7 @@ cd build
 
 Configure and build using Cmake
 ```bash
-cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_STANDARD=17 -DBUILD_SHARED_LIBS=OFF -DABSL_PROPAGATE_CXX_STD=ON -DgRPC_INSTALL=ON -DgRPC_BUILD_TESTS=OFF -DCMAKE_INSTALL_PREFIX=..\..\..\install ../..
+cmake -G "Visual Studio 17 2022" -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_STANDARD=17 -DBUILD_SHARED_LIBS=OFF -DABSL_PROPAGATE_CXX_STD=ON -DgRPC_INSTALL=ON -DgRPC_BUILD_TESTS=OFF -DCMAKE_INSTALL_PREFIX=..\..\..\install ../..
 ```
 You can set you install path with "-DCMAKE_INSTALL_PREFIX=\<your path\>
 

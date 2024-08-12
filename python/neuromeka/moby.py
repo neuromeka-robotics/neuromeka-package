@@ -1,4 +1,9 @@
-from neuromeka.proto import *
+import sys
+if sys.version_info >= (3, 8):
+    from neuromeka.proto import *
+else:
+    from neuromeka.proto_step import *
+    
 from neuromeka.common import *
 
 import grpc, time
@@ -363,3 +368,19 @@ class MobyClient:
         End RT logging
         """
         return self.__moby_stub.EndRTLogging(common_msgs.Empty())
+
+
+    #GetIRSensorData    
+    def get_ir_data(self):
+        value = self.__moby_stub.GetIRSensorData(common_msgs.Empty())
+        return {'ir_front1': value.ir_front1, 
+                'ir_front2': value.ir_front2, 
+                'ir_left1':value.ir_left1, 
+                'ir_left2':value.ir_left2, 
+                'ir_left3':value.ir_left3, 
+                'ir_rear':value.ir_rear, 
+                'ir_right1':value.ir_right1, 
+                'ir_right2':value.ir_right2, 
+                'ir_right3':value.ir_right3}
+    
+    

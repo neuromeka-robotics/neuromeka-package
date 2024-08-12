@@ -1,7 +1,14 @@
 from enum import IntEnum
-import neuromeka.proto.common_msgs_pb2 as common_msgs
-import neuromeka.proto.control_msgs_pb2 as control_msgs
-import neuromeka.proto.device_msgs_pb2 as device_msgs
+
+import sys
+if sys.version_info >= (3, 8):
+    import neuromeka.proto.common_msgs_pb2 as common_msgs
+    import neuromeka.proto.control_msgs_pb2 as control_msgs
+    import neuromeka.proto.device_msgs_pb2 as device_msgs
+else:
+    import neuromeka.proto_step.common_msgs_pb2 as common_msgs
+    import neuromeka.proto_step.control_msgs_pb2 as control_msgs
+    import neuromeka.proto_step.device_msgs_pb2 as device_msgs
 
 from dataclasses import dataclass, field
 from typing import List, Tuple

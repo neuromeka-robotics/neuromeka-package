@@ -12,8 +12,14 @@ import pickle
 import time
 
 import grpc
-from .proto.eyetask_pb2_grpc import EyeTaskStub
-from .proto import eyetask_pb2 as EyeTask_pb2
+
+import sys
+if sys.version_info >= (3, 8):
+    from neuromeka.proto.eyetask_pb2_grpc import EyeTaskStub
+    from neuromeka.proto import eyetask_pb2 as EyeTask_pb2
+else:
+    from neuromeka.proto_step.eyetask_pb2_grpc import EyeTaskStub
+    from neuromeka.proto_step import eyetask_pb2 as EyeTask_pb2
 
 ConnectUI = '/main/connect'
 GetVersion = '/main/version'

@@ -1,4 +1,9 @@
-from neuromeka.proto import *
+import sys
+if sys.version_info >= (3, 8):
+    from neuromeka.proto import *
+else:
+    from neuromeka.proto_step import *
+    
 from neuromeka.common import *
 from neuromeka.enums import *
 
@@ -177,7 +182,7 @@ class EtherCAT:
         Set Servo driver's Rx PDO values
         """
         print(servo_idx, control_word, mode_op, target_pos, target_vel, target_tor)
-        servo_rx = ServoRx(controlWord=control_word, modeOp=mode_op, targetPosition=target_pos, targetVelocity=target_vel, targetTorque=target_tor)
+        servo_rx = ethercat_msgs.ServoRx(controlWord=control_word, modeOp=mode_op, targetPosition=target_pos, targetVelocity=target_vel, targetTorque=target_tor)
         return self.__ethercat_stub.SetServoRx(ethercat_msgs.ServoRxIndex(servoIndex=servo_idx, rx=servo_rx))
 
     @Utils.exception_handler
@@ -196,7 +201,7 @@ class EtherCAT:
         target_tor = rx1[2]
         target_tor2 = rx2[2]
         target_tor3 = rx3[2]
-        servo_rx = ServoRxKeba(controlWord=control_word, controlWord2=control_word2, controlWord3=control_word3,
+        servo_rx = ethercat_msgs.ServoRxKeba(controlWord=control_word, controlWord2=control_word2, controlWord3=control_word3,
                                targetPosition=target_pos, targetPosition2=target_pos2, targetPosition3=target_pos3,
                                targetTorque=target_tor, targetTorque2=target_tor2, targetTorque3=target_tor3)
         return self.__ethercat_stub.SetServoRx(ethercat_msgs.ServoRxIndexKeba(servoIndex=servo_idx, rx=servo_rx))
@@ -241,7 +246,7 @@ class EtherCAT:
         led_g = endtool_rx["led_g"]
         led_r = endtool_rx["led_r"]
         led_b = endtool_rx["led_b"]
-        return self.__ethercat_stub.SetEndtoolRx(EndtoolRx(eqc=eqc, gripper=gripper, ft_param=ft_param, led_mode=led_mode, led_g=led_g, led_r=led_r, led_b=led_b))
+        return self.__ethercat_stub.SetEndtoolRx(ethercat_msgs.EndtoolRx(eqc=eqc, gripper=gripper, ft_param=ft_param, led_mode=led_mode, led_g=led_g, led_r=led_r, led_b=led_b))
 
     @Utils.exception_handler
     def get_endtool_rx(self):
@@ -314,7 +319,7 @@ class EtherCAT:
         ao2 = ioboard_rx["ao2"]
         ft_param = ioboard_rx["ft_param"]
         return self.__ethercat_stub.SetIOBoardRx(
-            EndtoolRx(do5v=do5v, do24v1=do24v1, do24v2=do24v2, ao1=ao1, ao2=ao2, ft_param=ft_param))
+            ethercat_msgs.EndtoolRx(do5v=do5v, do24v1=do24v1, do24v2=do24v2, ao1=ao1, ao2=ao2, ft_param=ft_param))
 
 
     @Utils.exception_handler
@@ -570,3 +575,7 @@ class EtherCAT:
     def stop_motion(self, servo_idx):
         print("StopMotion Frome Ethercat_client")
         self.set_servo_rx(servo_idx, 15, 10, 0, 0, 0)
+
+    def set_max_motor_speed(self, slave_idx, value):
+        return self.__ethercat_stub.SetServoMaxMotorSpeed(ethercat_msgs.ServoParam(slaveIdx=slave_idx, val=value))
+    

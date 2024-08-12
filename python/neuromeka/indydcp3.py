@@ -1,4 +1,9 @@
-from neuromeka.proto import *
+import sys
+if sys.version_info >= (3, 8):
+    from neuromeka.proto import *
+else:
+    from neuromeka.proto_step import *
+
 from neuromeka.common import *
 from neuromeka.enums import *
 
