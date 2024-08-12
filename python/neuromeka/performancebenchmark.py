@@ -17,7 +17,7 @@ import json
 import time
 import csv
 import os
-
+import math
 
 class PerformanceBenchmark:
     def __init__(self, step_ip, robot_name, category, target_path):
@@ -341,10 +341,23 @@ class PerformanceBenchmark:
             **{f"tauref{i}": [] for i in range(1, 7)},
             **{f"taugrav{i}": [] for i in range(1, 7)},
             **{f"taufric{i}": [] for i in range(1, 7)},
-            **{f"tauext{i}": [] for i in range(1, 7)},
+            **{f"extau{i}": [] for i in range(1, 7)},
             **{f"tauJts{i}": [] for i in range(1, 7)},
             **{f"tauJtsRaw1{i}": [] for i in range(1, 7)},
             **{f"tauJtsRaw2{i}": [] for i in range(1, 7)},
+            **{f"epos{i}": [] for i in range(1, 7)},
+            **{f"eres1{i}": [] for i in range(1, 7)},
+            **{f"eres2{i}": [] for i in range(1, 7)},
+            **{f"eres3{i}": [] for i in range(1, 7)},
+            **{f"edotres1{i}": [] for i in range(1, 7)},
+            **{f"edotres2{i}": [] for i in range(1, 7)},
+            **{f"edotres3{i}": [] for i in range(1, 7)},
+            **{f"qres1{i}": [] for i in range(1, 7)},
+            **{f"qres2{i}": [] for i in range(1, 7)},
+            **{f"qres3{i}": [] for i in range(1, 7)},
+            **{f"qdotres1{i}": [] for i in range(1, 7)},
+            **{f"qdotres2{i}": [] for i in range(1, 7)},
+            **{f"qdotres3{i}": [] for i in range(1, 7)}
         }
 
         self.step_ip = step_ip
@@ -460,23 +473,42 @@ class PerformanceBenchmark:
             for i in range(1, 7):
                 self.record[f"q{i}"].append(np.rad2deg(float(line[2 + i])))
                 self.record[f"qdot{i}"].append(np.rad2deg(float(line[8 + i])))
+                self.record[f"qddot{i}"].append(np.rad2deg(float(line[14 + i])))
                 self.record[f"tau{i}"].append(float(line[20 + i]))
                 self.record[f"tauact{i}"].append(float(line[26 + i]))
                 self.record[f"qd{i}"].append(np.rad2deg(float(line[32 + i])))
                 self.record[f"qdotd{i}"].append(np.rad2deg(float(line[38 + i])))
-                self.record[f"p{i}"].append(float(line[50 + i]))
-                self.record[f"pd{i}"].append(float(line[56 + i]))
+                self.record[f"qddotd{i}"].append(np.rad2deg(float(line[44 + i])))
+                self.record[f"p{i}"].append(float(line[50 + i])*1000)
+                self.record[f"pd{i}"].append(float(line[56 + i])*1000)
                 self.record[f"fact{i}"].append(float(line[62 + i]))
                 self.record[f"fdes{i}"].append(-float(line[68 + i]))
+                self.record[f"tauidyn{i}"].append(float(line[74 + i]))
                 self.record[f"tauref{i}"].append(float(line[80 + i]))
                 self.record[f"taugrav{i}"].append(float(line[86 + i]))
                 self.record[f"taufric{i}"].append(float(line[92 + i]))
+                self.record[f"extau{i}"].append(float(line[98 + i]))
                 self.record[f"tauJts{i}"].append(float(line[104 + i]))
-                self.record[f"pe{i}"].append(float(line[122 + i]))
+                self.record[f"tauJtsRaw1{i}"].append(float(line[110 + i]))
+                self.record[f"tauJtsRaw2{i}"].append(float(line[116 + i]))
+                self.record[f"epos{i}"].append(float(line[122 + i])*1000)
+                self.record[f"eres1{i}"].append(float(line[128 + i]))
+                self.record[f"eres2{i}"].append(float(line[134 + i]))
+                self.record[f"eres3{i}"].append(float(line[140 + i]))
+                self.record[f"edotres1{i}"].append(float(line[146 + i]))
+                self.record[f"edotres2{i}"].append(float(line[152 + i]))
+                self.record[f"edotres3{i}"].append(float(line[158 + i]))
+                self.record[f"qres1{i}"].append(float(line[164 + i]))
+                self.record[f"qres2{i}"].append(float(line[170 + i]))
+                self.record[f"qres3{i}"].append(float(line[176 + i]))
+                self.record[f"qdotres1{i}"].append(float(line[182 + i]))
+                self.record[f"qdotres2{i}"].append(float(line[188 + i]))
+                self.record[f"qdotres3{i}"].append(float(line[194 + i]))
+
                 # Compute Joint and Task Position errors
                 self.record[f"qe{i}"].append(self.record[f"qd{i}"][-1] - self.record[f"q{i}"][-1])
                 self.record[f"qdote{i}"].append(self.record[f"qdotd{i}"][-1] - self.record[f"qdot{i}"][-1])
-                # self.record[f"pe{i}"].append(self.record[f"pd{i}"][-1] - self.record[f"p{i}"][-1])
+                self.record[f"pe{i}"].append(self.record[f"pd{i}"][-1] - self.record[f"p{i}"][-1])
 
     # Plot recorded data
     def extract_errors_for_all_joints(self, num_joints=6):
@@ -679,19 +711,20 @@ class PerformanceBenchmark:
         label = labels[joint_number]
 
         if joint_number in [1, 2, 3]:
-            errors = np.array(self.record['pe' + str(joint_number)])
-            errors = errors * 1000
+            errors = np.array(self.record['epos' + str(joint_number)])
             rms_error = np.sqrt(np.mean(errors ** 2))
             max_error = np.max(np.abs(errors))
             error_type = 'Translation'
             y_axis = 'mm'
+
         elif joint_number in [4, 5, 6]:
-            errors = np.array(self.record['pe' + str(joint_number)])
+            errors = np.array(self.record['epos' + str(joint_number)])
             errors = np.rad2deg(errors)
             rms_error = np.sqrt(np.mean(errors ** 2))
             max_error = np.max(np.abs(errors))
             error_type = 'Rotation'
             y_axis = 'deg'
+
         else:
             raise ValueError("Invalid joint number")
 
@@ -984,6 +1017,30 @@ class PerformanceBenchmark:
             else:
                 status_list[i + 1][6] = 1
 
+        return status_list
+
+    def status_fric(self):
+        status_list = [3 for col in range(6)]
+
+        ssh = paramiko.SSHClient()
+        ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+        ssh.connect(self.step_ip, username='root', password='root')
+
+        sftp = ssh.open_sftp()
+
+        fric_json = '/home/user/release/IndyConfigurations/Cobot/Specs/FrictionParameter.json'
+
+        with sftp.open(fric_json, 'r') as file:
+            data = json.load(file)
+            fric_data = dict(data)
+
+        for i in range(6):
+            fric = fric_data['FricParameter'][i]
+
+            if abs(fric['F_c_n']) <= 30 and abs(fric['F_c_n']) <= 30 and abs(fric['F_v1_n']) <= 50 and abs(fric['F_v1_p']) <= 50:
+                status_list[i] = 0
+            else:
+                status_list[i] = 1
         return status_list
 
     # Create each result tables
@@ -1333,24 +1390,6 @@ class PerformanceBenchmark:
                     fric_list = []
                     image_paths.append(fric_image_path)
 
-            force_list = []
-            for joint_number in range(1, 7):  # Assuming joint numbers are 1 through 6
-                self.plot_force_plt(joint_number)
-                file_name = f'Joint_{joint_number}_Force.png'
-                image_path = os.path.join(self.result_path, file_name)
-                # Append the path to the list
-                force_image = Img.open(image_path)
-                force_list.append(force_image)
-                if len(force_list) == 2:
-                    new_force_image = Img.new('RGB', (2 * 640, 480))
-                    new_force_image.paste(force_list[0], (0, 0))
-                    new_force_image.paste(force_list[1], (640, 0))
-                    force_combine_name = f'Joint_combine{joint_number}_Force.png'
-                    force_image_path = os.path.join(self.result_path, force_combine_name)
-                    new_force_image.save(force_image_path, "png")
-                    force_list = []
-                    image_paths.append(force_image_path)
-
             test_info = {
                 "motion_type": self.category,
                 "robot_name": self.robot_name
@@ -1445,42 +1484,6 @@ class PerformanceBenchmark:
                     tor_image_list = []
                     image_paths.append(tor_image_path)
 
-            pos_list = []
-            for joint_number in range(1, 7):  # Assuming joint numbers are 1 through 6
-                self.plot_position_plt(joint_number)
-                file_name = f'Joint_{joint_number}_Position.png'
-                image_path = os.path.join(self.result_path, file_name)
-                # Append the path to the list
-                pos_image = Img.open(image_path)
-                pos_list.append(pos_image)
-                if len(pos_list) == 2:
-                    new_pos_image = Img.new('RGB', (2 * 640, 480))
-                    new_pos_image.paste(pos_list[0], (0, 0))
-                    new_pos_image.paste(pos_list[1], (640, 0))
-                    pos_combine_name = f'Joint_combine{joint_number}_Position.png'
-                    pos_image_path = os.path.join(self.result_path, pos_combine_name)
-                    new_pos_image.save(pos_image_path, "png")
-                    pos_list = []
-                    image_paths.append(pos_image_path)
-
-            vel_list = []
-            for joint_number in range(1, 7):  # Assuming joint numbers are 1 through 6
-                self.plot_velocity_plt(joint_number)
-                file_name = f'Joint_{joint_number}_Velocity.png'
-                image_path = os.path.join(self.result_path, file_name)
-                # Append the path to the list
-                vel_image = Img.open(image_path)
-                vel_list.append(vel_image)
-                if len(vel_list) == 2:
-                    new_vel_image = Img.new('RGB', (2 * 640, 480))
-                    new_vel_image.paste(vel_list[0], (0, 0))
-                    new_vel_image.paste(vel_list[1], (640, 0))
-                    vel_combine_name = f'Joint_combine{joint_number}_Velocity.png'
-                    vel_image_path = os.path.join(self.result_path, vel_combine_name)
-                    new_vel_image.save(vel_image_path, "png")
-                    vel_list = []
-                    image_paths.append(vel_image_path)
-
             fric_list = []
             for joint_number in range(1, 7):  # Assuming joint numbers are 1 through 6
                 self.plot_friction_plt(joint_number)
@@ -1498,24 +1501,6 @@ class PerformanceBenchmark:
                     new_fric_image.save(fric_image_path, "png")
                     fric_list = []
                     image_paths.append(fric_image_path)
-
-            force_list = []
-            for joint_number in range(1, 7):  # Assuming joint numbers are 1 through 6
-                self.plot_force_plt(joint_number)
-                file_name = f'Joint_{joint_number}_Force.png'
-                image_path = os.path.join(self.result_path, file_name)
-                # Append the path to the list
-                force_image = Img.open(image_path)
-                force_list.append(force_image)
-                if len(force_list) == 2:
-                    new_force_image = Img.new('RGB', (2 * 640, 480))
-                    new_force_image.paste(force_list[0], (0, 0))
-                    new_force_image.paste(force_list[1], (640, 0))
-                    force_combine_name = f'Joint_combine{joint_number}_Force.png'
-                    force_image_path = os.path.join(self.result_path, force_combine_name)
-                    new_force_image.save(force_image_path, "png")
-                    force_list = []
-                    image_paths.append(force_image_path)
 
             self.plot_task_motion_2D_plt("XY")
             self.plot_task_motion_2D_plt("YZ")
@@ -1577,6 +1562,10 @@ class PerformanceBenchmark:
 
     def gen_joint_pdf_report_step(self, critia, position_errors, velocity_errors, torques, test_info, pdf_path,
                                   image_path):
+
+        indy = IndyDCP3(self.step_ip)
+        fric_comp = indy.get_friction_comp()['control_comp_enable']
+
         # Create DataFrames
         df_pos = pd.DataFrame(position_errors).T
         df_vel = pd.DataFrame(velocity_errors).T
@@ -1601,10 +1590,16 @@ class PerformanceBenchmark:
         df_vel['RMS Error (deg/s)'] = df_vel['RMS Error (deg/s)'].apply(lambda x: f'{x:.3e}')
         df_vel['Max Error (deg/s)'] = df_vel['Max Error (deg/s)'].apply(lambda x: f'{x:.3e}')
 
+        rad_to_deg = lambda rad: rad * (180 / math.pi)
         critia_df_pos['RMS Error (deg)'] = critia_df_pos['RMS Error']
         critia_df_pos['Max Error (deg)'] = critia_df_pos['Max Error']
         critia_df_vel['RMS Error (deg/s)'] = critia_df_vel['RMS Error']
         critia_df_vel['Max Error (deg/s)'] = critia_df_vel['Max Error']
+
+        critia_df_pos['RMS Error (deg)'] = critia_df_pos['RMS Error (deg)'].apply(rad_to_deg)
+        critia_df_pos['Max Error (deg)'] = critia_df_pos['Max Error (deg)'].apply(rad_to_deg)
+        critia_df_vel['RMS Error (deg/s)'] = critia_df_vel['RMS Error (deg/s)'].apply(rad_to_deg)
+        critia_df_vel['Max Error (deg/s)'] = critia_df_vel['Max Error (deg/s)'].apply(rad_to_deg)
 
         critia_df_pos['RMS Error'] = critia_df_pos['RMS Error'].apply(lambda x: f'{x:.3e}')
         critia_df_pos['Max Error'] = critia_df_pos['Max Error'].apply(lambda x: f'{x:.3e}')
@@ -1867,17 +1862,18 @@ class PerformanceBenchmark:
         elements.append(Image(image_path[14], width=480, height=180))  # Adjust width and height as needed
         elements.append(Spacer(1, 10))
 
-        elements.append(PageBreak())
+        if fric_comp:
+            elements.append(PageBreak())
 
-        ################################### Friction Plot #####################################
-        elements += [fric_title]
+            ################################### Friction Plot #####################################
+            elements += [fric_title]
 
-        elements.append(Image(image_path[15], width=480, height=180))  # Adjust width and height as needed
-        elements.append(Spacer(1, 10))
-        elements.append(Image(image_path[16], width=480, height=180))  # Adjust width and height as needed
-        elements.append(Spacer(1, 10))
-        elements.append(Image(image_path[17], width=480, height=180))  # Adjust width and height as needed
-        elements.append(Spacer(1, 10))
+            elements.append(Image(image_path[15], width=480, height=180))  # Adjust width and height as needed
+            elements.append(Spacer(1, 10))
+            elements.append(Image(image_path[16], width=480, height=180))  # Adjust width and height as needed
+            elements.append(Spacer(1, 10))
+            elements.append(Image(image_path[17], width=480, height=180))  # Adjust width and height as needed
+            elements.append(Spacer(1, 10))
 
         # Create a PDF document
         pdf = SimpleDocTemplate(pdf_path, pagesize=letter)
@@ -1887,15 +1883,20 @@ class PerformanceBenchmark:
 
     def gen_task_pdf_report_step(self, critia, translation_errors, rotation_errors, test_info, pdf_path, image_path):
 
+        indy = IndyDCP3(self.step_ip)
+        fric_comp = indy.get_friction_comp()['control_comp_enable']
+
+        rad_to_deg = lambda rad: rad * (180 / math.pi)
         # Convert translation errors from meters to millimeters
-        formatted_translation_errors = [[axis, rms * 1000, max_err * 1000] for axis, rms, max_err in translation_errors]
+        formatted_translation_errors = [[axis, rms, max_err] for axis, rms, max_err in translation_errors]
         formatted_translation_errors = [[axis, f'{rms:.3e}', f'{max_err:.3e}'] for axis, rms, max_err in
                                         formatted_translation_errors]
         formatted_rotation_errors = [[axis, f'{rms:.3e}', f'{max_err:.3e}'] for axis, rms, max_err in rotation_errors]
 
         critia_trans_errors = [[axis, rms * 1000, max_err * 1000] for axis, rms, max_err in critia['benchmark_trans']]
         critia_trans_errors = [[axis, f'{rms:.3e}', f'{max_err:.3e}'] for axis, rms, max_err in critia_trans_errors]
-        critia_rot_errors = [[axis, f'{rms:.3e}', f'{max_err:.3e}'] for axis, rms, max_err in critia['benchmark_rot']]
+        critia_rot_errors = [[axis, np.rad2deg(rms), np.rad2deg(max_err)] for axis, rms, max_err in critia['benchmark_rot']]
+        critia_rot_errors = [[axis, f'{np.rad2deg(rms):.3e}', f'{np.rad2deg(max_err):.3e}'] for axis, rms, max_err in critia_rot_errors]
 
         # Create DataFrames
         df_translation = pd.DataFrame(formatted_translation_errors, columns=['Axis', 'RMS Error', 'Max Error'])
@@ -1943,11 +1944,8 @@ class PerformanceBenchmark:
         sub_title = Paragraph("<b>3. Result Tables</b>", title_style)
         plot_title = Paragraph("<b>4. Error Plot</b>", title_style)
         task_title = Paragraph("<b>5. Task Space Tracking Plot</b>", title_style)
-        torque_plot_title = Paragraph("<b>7. Joint Torque Plot</b>", title_style)
-        pos_title = Paragraph("<b>8. Joint Position Plot</b>", title_style)
-        vel_title = Paragraph("<b>9. Joint Velocity Plot</b>", title_style)
-        fric_title = Paragraph("<b>10. Joint Friction Plot</b>", title_style)
-        force_title = Paragraph("<b>11. Joint Force Plot</b>", title_style)
+        torque_plot_title = Paragraph("<b>6. Joint Torque Plot</b>", title_style)
+        fric_title = Paragraph("<b>7. Joint Friction Plot</b>", title_style)
 
         first_info = Paragraph(f"<b>- Motion:</b> {motion_type}\
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\
@@ -2090,9 +2088,9 @@ class PerformanceBenchmark:
         ############################### Task Space Tracking Plot ###############################
         elements += [task_title]
 
-        elements.append(Image(image_path[18], width=480, height=180))  # Adjust width and height as needed
+        elements.append(Image(image_path[9], width=480, height=180))  # Adjust width and height as needed
         elements.append(Spacer(1, 10))
-        elements.append(Image(image_path[19], width=480, height=180))  # Adjust width and height as needed
+        elements.append(Image(image_path[10], width=480, height=180))  # Adjust width and height as needed
         elements.append(Spacer(1, 10))
 
         elements.append(PageBreak())
@@ -2108,39 +2106,18 @@ class PerformanceBenchmark:
 
         elements.append(PageBreak())
 
-        ################################### Position Plot #####################################
-        elements += [pos_title]
+        if fric_comp:
+            elements.append(PageBreak())
 
-        elements.append(Image(image_path[6], width=480, height=180))  # Adjust width and height as needed
-        elements.append(Spacer(1, 10))
-        elements.append(Image(image_path[7], width=480, height=180))  # Adjust width and height as needed
-        elements.append(Spacer(1, 10))
-        elements.append(Image(image_path[8], width=480, height=180))  # Adjust width and height as needed
-        elements.append(Spacer(1, 10))
+            ################################### Friction Plot #####################################
+            elements += [fric_title]
 
-        elements.append(PageBreak())
-
-        ################################### Velocity Plot #####################################
-        elements += [vel_title]
-
-        elements.append(Image(image_path[9], width=480, height=180))  # Adjust width and height as needed
-        elements.append(Spacer(1, 10))
-        elements.append(Image(image_path[10], width=480, height=180))  # Adjust width and height as needed
-        elements.append(Spacer(1, 10))
-        elements.append(Image(image_path[11], width=480, height=180))  # Adjust width and height as needed
-        elements.append(Spacer(1, 10))
-
-        elements.append(PageBreak())
-
-        ################################### Friction Plot #####################################
-        elements += [fric_title]
-
-        elements.append(Image(image_path[12], width=480, height=180))  # Adjust width and height as needed
-        elements.append(Spacer(1, 10))
-        elements.append(Image(image_path[13], width=480, height=180))  # Adjust width and height as needed
-        elements.append(Spacer(1, 10))
-        elements.append(Image(image_path[14], width=480, height=180))  # Adjust width and height as needed
-        elements.append(Spacer(1, 10))
+            elements.append(Image(image_path[6], width=480, height=180))  # Adjust width and height as needed
+            elements.append(Spacer(1, 10))
+            elements.append(Image(image_path[7], width=480, height=180))  # Adjust width and height as needed
+            elements.append(Spacer(1, 10))
+            elements.append(Image(image_path[8], width=480, height=180))  # Adjust width and height as needed
+            elements.append(Spacer(1, 10))
 
         # Create a PDF document
         pdf = SimpleDocTemplate(pdf_path, pagesize=letter)
