@@ -7,6 +7,7 @@ else:
 from neuromeka.common import *
 from neuromeka.enums import *
 
+import time
 import grpc
 from google.protobuf import json_format
 from google.protobuf.json_format import ParseDict
@@ -31,6 +32,9 @@ class IndyDCP3:
         self.device = DeviceStub(self.device_channel)
         self.config = ConfigStub(self.config_channel)
         self.rtde = RTDataExchangeStub(self.rtde_channel)
+        
+        self._joint_waypoint = []
+        self._task_waypoint = []
 
     def __del__(self):
         if self.control_channel is not None:
@@ -449,7 +453,7 @@ class IndyDCP3:
                                          including_default_value_fields=True,
                                          preserving_proto_field_name=True,
                                          use_integers_for_enums=True)
-
+    
     def movel(self, ttarget,
               blending_type=BlendingType.NONE,
               base_type=TaskBaseType.ABSOLUTE,
@@ -585,6 +589,50 @@ class IndyDCP3:
                                          including_default_value_fields=True,
                                          preserving_proto_field_name=True,
                                          use_integers_for_enums=True)
+
+    ############################
+    # Move Waypoints
+    ############################
+    
+    def add_joint_waypoint(self, waypoint: list):
+        self._joint_waypoint.append(waypoint)
+        return True
+
+    def get_joint_waypoint(self):
+        return self._joint_waypoint
+    
+    def clear_joint_waypoint(self):
+        self._joint_waypoint.clear()
+        return True
+    
+    def move_joint_waypoint(self, move_time=None):
+        for wp in self._joint_waypoint:
+            if move_time is None:
+                self.movej(jtarget = wp, blending_type=BlendingType.OVERRIDE)
+            else:
+                self.movej_time(jtarget = wp, blending_type=BlendingType.OVERRIDE, move_time=move_time)
+            self.wait_progress(progress=100)
+        return True
+
+    def add_task_waypoint(self, waypoint: list):
+        self._task_waypoint.append(waypoint)
+        return True
+    
+    def get_task_waypoint(self):
+        return self._task_waypoint
+    
+    def clear_task_waypoint(self):
+        self._task_waypoint.clear()
+        return True
+    
+    def move_task_waypoint(self, move_time=None):
+        for wp in self._task_waypoint:
+            if move_time is None:
+                self.movel(ttarget = wp, blending_type=BlendingType.OVERRIDE)
+            else:
+                self.movel_time(ttarget = wp, blending_type=BlendingType.OVERRIDE, move_time=move_time)
+            self.wait_progress(progress=100)
+        return True
 
     ############################
     # Motion Control (Teaching mode)
@@ -1351,38 +1399,32 @@ class IndyDCP3:
                                          including_default_value_fields=True,
                                          preserving_proto_field_name=True,
                                          use_integers_for_enums=True)
-
-    def set_custom_control_gain2(self, gain0, gain1):
-        return self._set_custom_control_gain(gain0, gain1, *[([0] * 6) for _ in range(8)])
-
-    def set_custom_control_gain3(self, gain0, gain1, gain2):
-        return self._set_custom_control_gain(gain0, gain1, gain2, *[([0] * 6) for _ in range(7)])
-
-    def set_custom_control_gain6(self, gain0, gain1, gain2, gain3, gain4, gain5):
-        return self._set_custom_control_gain(gain0, gain1, gain2, gain3, gain4, gain5, *[([0] * 6) for _ in range(4)])
-
-    def set_custom_control_gain(self, gain0, gain1, gain2, gain3, gain4, gain5, gain6, gain7, gain8, gain9):
-        return self._set_custom_control_gain(gain0, gain1, gain2, gain3, gain4, gain5, gain6, gain7, gain8, gain9)
-
-    def _set_custom_control_gain(self, *gains):
+    
+    def set_custom_control_gain(self, gain0=None, gain1=None, gain2=None, gain3=None, gain4=None, 
+                                gain5=None, gain6=None, gain7=None, gain8=None, gain9=None):
         """
-        Private method to set custom control gains with a variable number of gain arrays.
-
+        Set custom control gains with up to 10 gain arrays.
         Args:
-            *gains: Up to 10 lists of gain values. Each gain should be a list of floats.
+            gain0, gain1, ..., gain9: Up to 10 lists of gain values. Each gain should be a list of floats.
+                                    If a gain is None, it will be replaced with a default list [0, 0, 0, 0, 0, 0].
         """
+        # Replace None with a list of six 0s
+        gains = [gain if gain is not None else [0] * 6 for gain in [gain0, gain1, gain2, gain3, gain4, gain5, gain6, gain7, gain8, gain9]]
+
         response = self.config.SetCustomControlGain(config_msgs.CustomGainSet(
-            gain0=list(gains[0]), gain1=list(gains[1]), gain2=list(gains[2]), gain3=list(gains[3]),
-            gain4=list(gains[4]), gain5=list(gains[5]), gain6=list(gains[6]), gain7=list(gains[7]),
-            gain8=list(gains[8]), gain9=list(gains[9])
+            gain0=gains[0], gain1=gains[1], gain2=gains[2], gain3=gains[3],
+            gain4=gains[4], gain5=gains[5], gain6=gains[6], gain7=gains[7],
+            gain8=gains[8], gain9=gains[9]
         ))
+
         return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+                                        including_default_value_fields=True,
+                                        preserving_proto_field_name=True,
+                                        use_integers_for_enums=True)
+
 
     ############################
-    # Uility functions
+    # Utility functions
     ############################
     def start_log(self):
         """
@@ -1400,8 +1442,17 @@ class IndyDCP3:
         int_vars_to_set = [{"addr": 300, "value": 2}]
         self.set_int_variable(int_vars_to_set)
 
-    ############################
-    # NOT Yet Released
+    def wait_for_operation_state(self, wait_op_state=None):
+        if wait_op_state is not None:
+            while self.get_robot_data()['op_state'] != wait_op_state:
+                time.sleep(0.01)
+                
+    def wait_for_motion_state(self, wait_motion_state=None): 
+        motion_list = ["is_in_motion", "is_target_reached", "is_pausing", "is_stopping", "has_motion"]
+        if wait_motion_state is not None and wait_motion_state in motion_list:
+            while self.get_motion_data()[wait_motion_state] is False:
+                time.sleep(0.01)
+
     ############################
     def wait_time(self, time: float,
                   set_do_signal_list=None, set_end_do_signal_list=None,
@@ -1474,7 +1525,9 @@ class IndyDCP3:
                                          including_default_value_fields=True,
                                          preserving_proto_field_name=True,
                                          use_integers_for_enums=True)
+    
 
+    ############################
     def set_do_config_list(self, do_config_list: dict):
         """
         DO Configuration List

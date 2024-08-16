@@ -19,7 +19,7 @@
 using google::protobuf::util::MessageToJsonString;
 using google::protobuf::util::JsonStringToMessage;
 
-// using Nrmk::IndyFramework::TrajState;
+using Nrmk::IndyFramework::OpState;
 using Nrmk::IndyFramework::JointBaseType;
 using Nrmk::IndyFramework::TaskBaseType;
 using Nrmk::IndyFramework::DigitalState;
@@ -80,6 +80,7 @@ class IndyDCP3
         IndyDCP3(const std::string& robot_ip = "127.0.0.1", int index = 0);
         ~IndyDCP3();
 
+        //----------------------------------
         bool get_robot_data(Nrmk::IndyFramework::ControlData &control_data);
         bool get_control_data(Nrmk::IndyFramework::ControlData &control_data);
         bool get_control_state(Nrmk::IndyFramework::ControlData2 &control_state);
@@ -111,6 +112,7 @@ class IndyDCP3
 
         bool get_home_pos(Nrmk::IndyFramework::JointPos &home_jpos);
 
+        //----------------------------------
         bool movej(const std::vector<float> jtarget,
                     const int base_type=JointBaseType::ABSOLUTE_JOINT,
                     const int blending_type=BlendingType_Type::BlendingType_Type_NONE,
@@ -124,6 +126,17 @@ class IndyDCP3
                     const DCPVarCond var_condition={},
                     const bool teaching_mode=false);
         
+        bool movej_time(const std::vector<float> jtarget,
+                    const int base_type=JointBaseType::ABSOLUTE_JOINT,
+                    const int blending_type=BlendingType_Type::BlendingType_Type_NONE,
+                    const float blending_radius=0.0,
+                    const float move_time=5.0,
+                    const bool const_cond=true,
+                    const int cond_type=MotionCondition_ConditionType::MotionCondition_ConditionType_CONST_COND,
+                    const int react_type=MotionCondition_ReactionType::MotionCondition_ReactionType_NONE_COND,
+                    const DCPDICond di_condition={},
+                    const DCPVarCond var_condition={});
+        
         bool movel(const std::array<float, 6> ttarget,
                     const int base_type=TaskBaseType::ABSOLUTE_TASK,
                     const int blending_type=BlendingType_Type::BlendingType_Type_NONE,
@@ -136,6 +149,17 @@ class IndyDCP3
                     const DCPDICond di_condition={},
                     const DCPVarCond var_condition={},
                     const bool teaching_mode=false);
+
+        bool movel_time(const std::array<float, 6> ttarget,
+                    const int base_type=TaskBaseType::ABSOLUTE_TASK,
+                    const int blending_type=BlendingType_Type::BlendingType_Type_NONE,
+                    const float blending_radius=0.0,
+                    const float move_time=5.0,
+                    const bool const_cond=true,
+                    const int cond_type=MotionCondition_ConditionType::MotionCondition_ConditionType_CONST_COND,
+                    const int react_type=MotionCondition_ReactionType::MotionCondition_ReactionType_NONE_COND,
+                    const DCPDICond di_condition={},
+                    const DCPVarCond var_condition={});
 
         bool movec(const std::array<float, 6> tpos1,
                     const std::array<float, 6> tpos2,
@@ -154,10 +178,38 @@ class IndyDCP3
                     const DCPVarCond var_condition={},
                     const bool teaching_mode=false);
 
+        bool movec_time(const std::array<float, 6> tpos1,
+                    const std::array<float, 6> tpos2,
+                    const float angle=0.0,
+                    const int setting_type=CircularSettingType::POINT_SET,
+                    const int move_type=CircularMovingType::CONSTANT,
+                    const int base_type=TaskBaseType::ABSOLUTE_TASK,
+                    const int blending_type=BlendingType_Type::BlendingType_Type_NONE,
+                    const float blending_radius=0.0,
+                    const float move_time=5.0,
+                    const bool const_cond=true,
+                    const int cond_type=MotionCondition_ConditionType::MotionCondition_ConditionType_CONST_COND,
+                    const int react_type=MotionCondition_ReactionType::MotionCondition_ReactionType_NONE_COND,
+                    const DCPDICond di_condition={},
+                    const DCPVarCond var_condition={});
+
+        //----------------------------------
+        bool add_joint_waypoint(const std::vector<float>& waypoint);
+        bool get_joint_waypoint(std::vector<std::vector<float>>& waypoints) const;
+        bool clear_joint_waypoint();
+        bool move_joint_waypoint(float move_time = -1);
+
+        bool add_task_waypoint(const std::array<float, 6>& waypoint);
+        bool get_task_waypoint(std::vector<std::array<float, 6>>& waypoints) const;
+        bool clear_task_waypoint();
+        bool move_task_waypoint(float move_time = -1);
+
+        //----------------------------------
         bool move_home();
         bool start_teleop(const TeleMethod method);
         bool stop_teleop();
 
+        //----------------------------------
         bool movetelej(const std::vector<float> jpos, 
                         const float vel_ratio=1.0, 
                         const float acc_ratio=1.0,
@@ -168,6 +220,7 @@ class IndyDCP3
                         const float acc_ratio=1.0,
                         const TeleMethod method=TeleMethod::TELE_TASK_ABSOLUTE);
 
+        //----------------------------------
         bool inverse_kin(const std::array<float, 6>& tpos, 
                         const std::vector<float>& init_jpos, 
                         std::vector<float>& jpos);
@@ -187,12 +240,13 @@ class IndyDCP3
                                         int base_type,
                                         std::array<float, 6>& calculated_pose);
 
+        //----------------------------------
         bool play_program(const std::string& prog_name = "", int prog_idx = -1);
         bool pause_program();
         bool resume_program();
         bool stop_program();
-        bool set_speed_ratio(unsigned int speed_ratio);
 
+        //----------------------------------        
         bool get_bool_variable(std::vector<Nrmk::IndyFramework::BoolVariable>& bool_variables);
         bool get_int_variable(std::vector<Nrmk::IndyFramework::IntVariable>& int_variables);
         bool get_float_variable(std::vector<Nrmk::IndyFramework::FloatVariable>& float_variables);
@@ -205,8 +259,10 @@ class IndyDCP3
         bool set_jpos_variable(const std::vector<Nrmk::IndyFramework::JPosVariable>& jpos_variables);
         bool set_tpos_variable(const std::vector<Nrmk::IndyFramework::TPosVariable>& tpos_variables);
 
+        bool set_speed_ratio(unsigned int speed_ratio);
         bool set_home_pos(const Nrmk::IndyFramework::JointPos& home_jpos);
 
+        //----------------------------------
         bool get_ref_frame(std::array<float, 6>& fpos);
         bool set_ref_frame(const std::array<float, 6>& fpos);
 
@@ -216,13 +272,14 @@ class IndyDCP3
                             const std::array<float, 6>& fpos2);
 
         bool set_tool_frame(const std::array<float, 6>& fpos);
+        //----------------------------------
 
         bool get_friction_comp(Nrmk::IndyFramework::FrictionCompSet& friction_comp);
         bool set_friction_comp(const Nrmk::IndyFramework::FrictionCompSet& friction_comp);
 
         bool get_tool_property(Nrmk::IndyFramework::ToolProperties& tool_properties);
         bool set_tool_property(const Nrmk::IndyFramework::ToolProperties& tool_properties);
-                            
+
         bool get_coll_sens_level(unsigned int &level);
         bool set_coll_sens_level(unsigned int level);
 
@@ -238,20 +295,51 @@ class IndyDCP3
         bool activate_sdk(const Nrmk::IndyFramework::SDKLicenseInfo& request, 
                                 Nrmk::IndyFramework::SDKLicenseResp& response);
 
-
+        //----------------------------------
         bool set_custom_control_mode(const int mode);
         bool get_custom_control_mode(int& mode);
 
         bool get_custom_control_gain(Nrmk::IndyFramework::CustomGainSet& custom_gains);
         bool set_custom_control_gain(const Nrmk::IndyFramework::CustomGainSet& custom_gains);
 
+        //----------------------------------
+        bool wait_time(float time,
+               const std::vector<Nrmk::IndyFramework::DigitalSignal>& set_do_signal_list = {},
+               const std::vector<Nrmk::IndyFramework::DigitalSignal>& set_end_do_signal_list = {},
+               const std::vector<Nrmk::IndyFramework::AnalogSignal>& set_ao_signal_list = {},
+               const std::vector<Nrmk::IndyFramework::AnalogSignal>& set_end_ao_signal_list = {});
+
+        bool wait_progress(int progress,
+                   const std::vector<Nrmk::IndyFramework::DigitalSignal>& set_do_signal_list = {},
+                   const std::vector<Nrmk::IndyFramework::DigitalSignal>& set_end_do_signal_list = {},
+                   const std::vector<Nrmk::IndyFramework::AnalogSignal>& set_ao_signal_list = {},
+                   const std::vector<Nrmk::IndyFramework::AnalogSignal>& set_end_ao_signal_list = {});
+
+        bool wait_traj(const Nrmk::IndyFramework::TrajCondition& traj_condition,
+               const std::vector<Nrmk::IndyFramework::DigitalSignal>& set_do_signal_list = {},
+               const std::vector<Nrmk::IndyFramework::DigitalSignal>& set_end_do_signal_list = {},
+               const std::vector<Nrmk::IndyFramework::AnalogSignal>& set_ao_signal_list = {},
+               const std::vector<Nrmk::IndyFramework::AnalogSignal>& set_end_ao_signal_list = {});
+
+        bool wait_radius(int radius,
+                 const std::vector<Nrmk::IndyFramework::DigitalSignal>& set_do_signal_list = {},
+                 const std::vector<Nrmk::IndyFramework::DigitalSignal>& set_end_do_signal_list = {},
+                 const std::vector<Nrmk::IndyFramework::AnalogSignal>& set_ao_signal_list = {},
+                 const std::vector<Nrmk::IndyFramework::AnalogSignal>& set_end_ao_signal_list = {});
+
+        // bool wait_for_time(float wait_time = -1.0);
+        bool wait_for_operation_state(int wait_op_state = -1);
+        bool wait_for_motion_state(const std::string& wait_motion_state = "");
+
         bool start_log();
         bool end_log();
-        
 
     private:
         bool _isConnected;
         unsigned int _cobotDOF;
+
+        std::vector<std::vector<float>> _joint_waypoint;
+        std::vector<std::array<float, 6>> _task_waypoint;
 
         std::shared_ptr<grpc::Channel> control_channel;
         std::shared_ptr<grpc::Channel> device_channel;
