@@ -32,6 +32,7 @@ using Nrmk::IndyFramework::MotionCondition_ReactionType;
 using Nrmk::IndyFramework::CircularSettingType;
 using Nrmk::IndyFramework::CircularMovingType;
 using Nrmk::IndyFramework::TeleMethod;
+using Nrmk::IndyFramework::TrajCondition;
 
 #define LIMIT_LEVEL_MIN  1
 #define LIMIT_LEVEL_MAX  9
@@ -310,10 +311,10 @@ class IndyDCP3
                const std::vector<Nrmk::IndyFramework::AnalogSignal>& set_end_ao_signal_list = {});
 
         bool wait_progress(int progress,
-                   const std::vector<Nrmk::IndyFramework::DigitalSignal>& set_do_signal_list = {},
-                   const std::vector<Nrmk::IndyFramework::DigitalSignal>& set_end_do_signal_list = {},
-                   const std::vector<Nrmk::IndyFramework::AnalogSignal>& set_ao_signal_list = {},
-                   const std::vector<Nrmk::IndyFramework::AnalogSignal>& set_end_ao_signal_list = {});
+                const std::vector<Nrmk::IndyFramework::DigitalSignal>& set_do_signal_list = {},
+                const std::vector<Nrmk::IndyFramework::DigitalSignal>& set_end_do_signal_list = {},
+                const std::vector<Nrmk::IndyFramework::AnalogSignal>& set_ao_signal_list = {},
+                const std::vector<Nrmk::IndyFramework::AnalogSignal>& set_end_ao_signal_list = {});
 
         bool wait_traj(const Nrmk::IndyFramework::TrajCondition& traj_condition,
                const std::vector<Nrmk::IndyFramework::DigitalSignal>& set_do_signal_list = {},

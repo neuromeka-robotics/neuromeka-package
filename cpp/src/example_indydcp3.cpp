@@ -1153,6 +1153,27 @@ void example_end_log(IndyDCP3& indy) {
     }
 }
 
+void example_wait_cmd(IndyDCP3& indy, int exam=0) {
+    std::vector<float> j_pos_1 = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
+    indy.movej(j_pos_1, JointBaseType::ABSOLUTE_JOINT, BlendingType_Type::BlendingType_Type_OVERRIDE);
+
+    if (exam == 0){
+        indy.wait_time(0.1f);
+    }
+    else if (exam == 1){
+        indy.wait_progress(15);
+    }
+    else if (exam == 2){
+        indy.wait_traj(TrajCondition::TRAJ_ACC_DONE); // when acceleration done
+    }
+    else if (exam == 3){
+        indy.wait_radius(10);
+    }
+
+    std::vector<float> j_pos_2 = {0.0, 0.0, -90.0, 0.0, -90.0, 0.0};
+    indy.movej(j_pos_2, JointBaseType::ABSOLUTE_JOINT, BlendingType_Type::BlendingType_Type_OVERRIDE);
+}
+
 void example_wait_for_operation_state(IndyDCP3& indy) {
     bool is_success = indy.wait_for_operation_state(OpState::OP_MOVING);
     if (is_success) {
@@ -1366,6 +1387,11 @@ int main() {
     // example_start_log(indy);
     // example_end_log(indy);
  
+    // example_wait_cmd(indy, 0); // wait_time
+    example_wait_cmd(indy, 1); // wait_progress
+    // example_wait_cmd(indy, 2); // wait_traj
+    // example_wait_cmd(indy, 3); // wait_radius
+
     // example_wait_for_operation_state(indy);
     // example_wait_for_motion_state(indy);
 

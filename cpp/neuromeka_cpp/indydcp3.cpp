@@ -3000,55 +3000,6 @@ bool IndyDCP3::wait_for_motion_state(const std::string& wait_motion_state) {
     return true;
 }
 
-// bool IndyDCP3::wait_for_time(float wait_time, 
-//                                     int wait_op_state,
-//                                     const std::string& wait_motion_state = "") {
-    
-//     int non_none_conditions = 0;
-//     if (wait_time != -1.0) non_none_conditions++;
-//     if (wait_op_state != -1) non_none_conditions++;
-//     if (!wait_motion_state.empty()) non_none_conditions++;
-
-//     // If more than one condition is provided, return false
-//     if (non_none_conditions > 1) {
-//         std::cerr << "Only accept one condition!" << std::endl;
-//         return false;
-//     }
-
-//     if (wait_time != -1.0) {
-//         std::this_thread::sleep_for(std::chrono::duration<float>(wait_time));
-//     } 
-//     else if (wait_op_state != -1) {
-//         bool isDone = false;
-//         while (!isDone) {
-//             Nrmk::IndyFramework::ControlData crr_control_data;
-//             bool is_success = get_robot_data(crr_control_data);
-//             if (is_success){
-//                 if (crr_control_data.op_state() == wait_op_state){
-//                     std::cout << "Wait finish" << std::endl;
-//                     isDone = true;
-//                 }
-//             }
-//             else{
-//                 std::cout << "Failed to get_robot_data" << std::endl;
-//                 break;
-//             }
-
-//             std::this_thread::sleep_for(std::chrono::milliseconds(10));
-//         }
-//     }
-
-//     // else if (!wait_motion_state.empty()) {
-//     //     while (!get_motion_data().at(wait_motion_state)) {
-//     //         std::this_thread::sleep_for(std::chrono::milliseconds(10));
-//     //     }
-//     // }
-
-//     return true;
-// }
-
-
-
 
 bool IndyDCP3::start_log() {
     /*
