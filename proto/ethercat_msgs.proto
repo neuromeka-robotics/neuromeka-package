@@ -154,7 +154,9 @@ message EndtoolDockingTx {
     uint32 joystic2x = 16;
     uint32 joystic2y = 17;
 }
-
+message LedDim {
+    uint32 led_dim = 1;
+}
 //////////////////////////IOBoard/////////////////////////
 message IOBoardTx {
     uint32 di5v = 1; // 8ch

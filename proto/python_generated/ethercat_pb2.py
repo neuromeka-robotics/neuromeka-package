@@ -21,7 +21,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x0e\x65thercat.proto\x12\x12Nrmk.IndyFramework\x1a\x13\x65thercat_msgs.proto\x1a\x11\x63ommon_msgs.proto2\x88\x1a\n\x08\x45therCAT\x12P\n\x0fGetMasterStatus\x12\x19.Nrmk.IndyFramework.Empty\x1a .Nrmk.IndyFramework.MasterStatus\"\x00\x12N\n\x0eGetSlaveStatus\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1f.Nrmk.IndyFramework.SlaveStatus\"\x00\x12V\n\x11GetRxDomainStatus\x12\x19.Nrmk.IndyFramework.Empty\x1a$.Nrmk.IndyFramework.EcatDomainStatus\"\x00\x12V\n\x11GetTxDomainStatus\x12\x19.Nrmk.IndyFramework.Empty\x1a$.Nrmk.IndyFramework.EcatDomainStatus\"\x00\x12Q\n\rIsSystemReady\x12\x19.Nrmk.IndyFramework.Empty\x1a#.Nrmk.IndyFramework.EcatSystemReady\"\x00\x12I\n\tIsServoOn\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1f.Nrmk.IndyFramework.EcatServoOn\"\x00\x12P\n\x0fGetSlaveTypeNum\x12\x19.Nrmk.IndyFramework.Empty\x1a .Nrmk.IndyFramework.SlaveTypeNum\"\x00\x12L\n\x12ResetOverflowCount\x12\x19.Nrmk.IndyFramework.Empty\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12K\n\nSetServoRx\x12 .Nrmk.IndyFramework.ServoRxIndex\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12K\n\nGetServoRx\x12\x1e.Nrmk.IndyFramework.ServoIndex\x1a\x1b.Nrmk.IndyFramework.ServoRx\"\x00\x12K\n\nGetServoTx\x12\x1e.Nrmk.IndyFramework.ServoIndex\x1a\x1b.Nrmk.IndyFramework.ServoTx\"\x00\x12S\n\x0eSetServoRxKeba\x12$.Nrmk.IndyFramework.ServoRxIndexKeba\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12S\n\x0eGetServoRxKeba\x12\x1e.Nrmk.IndyFramework.ServoIndex\x1a\x1f.Nrmk.IndyFramework.ServoRxKeba\"\x00\x12S\n\x0eGetServoTxKeba\x12\x1e.Nrmk.IndyFramework.ServoIndex\x1a\x1f.Nrmk.IndyFramework.ServoTxKeba\"\x00\x12I\n\nSetServoOn\x12\x1e.Nrmk.IndyFramework.ServoIndex\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12J\n\x0bSetServoOff\x12\x1e.Nrmk.IndyFramework.ServoIndex\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12T\n\x15SetServoMaxMotorSpeed\x12\x1e.Nrmk.IndyFramework.ServoParam\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12V\n\x13GetServoTemperature\x12\x1e.Nrmk.IndyFramework.ServoIndex\x1a\x1d.Nrmk.IndyFramework.ServoTemp\"\x00\x12U\n\x11GetServoErrorCode\x12\x1e.Nrmk.IndyFramework.ServoIndex\x1a\x1e.Nrmk.IndyFramework.ServoError\"\x00\x12I\n\nResetServo\x12\x1e.Nrmk.IndyFramework.ServoIndex\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12Q\n\x12SetCOREManualBrake\x12\x1e.Nrmk.IndyFramework.ServoBrake\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12J\n\x0cSetEndtoolRx\x12\x1d.Nrmk.IndyFramework.EndtoolRx\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12J\n\x0cGetEndtoolRx\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1d.Nrmk.IndyFramework.EndtoolRx\"\x00\x12J\n\x0cGetEndtoolTx\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1d.Nrmk.IndyFramework.EndtoolTx\"\x00\x12X\n\x13GetEndtoolDockingTx\x12\x19.Nrmk.IndyFramework.Empty\x1a$.Nrmk.IndyFramework.EndtoolDockingTx\"\x00\x12J\n\x0cSetIOBoardRx\x12\x1d.Nrmk.IndyFramework.IOBoardRx\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12J\n\x0cGetIOBoardTx\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1d.Nrmk.IndyFramework.IOBoardTx\"\x00\x12J\n\x0cGetIOBoardRx\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1d.Nrmk.IndyFramework.IOBoardRx\"\x00\x12L\n\x05GetDI\x12\x1c.Nrmk.IndyFramework.DIOIndex\x1a#.Nrmk.IndyFramework.DIODigitalInput\"\x00\x12M\n\x05GetDO\x12\x1c.Nrmk.IndyFramework.DIOIndex\x1a$.Nrmk.IndyFramework.DIODigitalOutput\"\x00\x12J\n\x05SetDO\x12$.Nrmk.IndyFramework.DIODigitalOutput\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12Q\n\x0fGetMaxTorqueSDO\x12\x1d.Nrmk.IndyFramework.EcatIndex\x1a\x1d.Nrmk.IndyFramework.SDOIntVal\"\x00\x12R\n\x10GetProfileVelSDO\x12\x1d.Nrmk.IndyFramework.EcatIndex\x1a\x1d.Nrmk.IndyFramework.SDOIntVal\"\x00\x12R\n\x10GetProfileAccSDO\x12\x1d.Nrmk.IndyFramework.EcatIndex\x1a\x1d.Nrmk.IndyFramework.SDOIntVal\"\x00\x12R\n\x10GetProfileDecSDO\x12\x1d.Nrmk.IndyFramework.EcatIndex\x1a\x1d.Nrmk.IndyFramework.SDOIntVal\"\x00\x12N\n\x0fSetMaxTorqueSDO\x12\x1e.Nrmk.IndyFramework.ServoParam\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12O\n\x10SetProfileVelSDO\x12\x1e.Nrmk.IndyFramework.ServoParam\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12O\n\x10SetProfileAccSDO\x12\x1e.Nrmk.IndyFramework.ServoParam\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12O\n\x10SetProfileDecSDO\x12\x1e.Nrmk.IndyFramework.ServoParam\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12Y\n\x11GetRobotZeroCount\x12\x1e.Nrmk.IndyFramework.ServoIndex\x1a\".Nrmk.IndyFramework.RobotZeroCount\"\x00\x12T\n\x15SetRobotZeroAsCurrent\x12\x1e.Nrmk.IndyFramework.ServoIndex\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x62\x06proto3'
+  serialized_pb=b'\n\x0e\x65thercat.proto\x12\x12Nrmk.IndyFramework\x1a\x13\x65thercat_msgs.proto\x1a\x11\x63ommon_msgs.proto2\x81\x1c\n\x08\x45therCAT\x12P\n\x0fGetMasterStatus\x12\x19.Nrmk.IndyFramework.Empty\x1a .Nrmk.IndyFramework.MasterStatus\"\x00\x12N\n\x0eGetSlaveStatus\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1f.Nrmk.IndyFramework.SlaveStatus\"\x00\x12V\n\x11GetRxDomainStatus\x12\x19.Nrmk.IndyFramework.Empty\x1a$.Nrmk.IndyFramework.EcatDomainStatus\"\x00\x12V\n\x11GetTxDomainStatus\x12\x19.Nrmk.IndyFramework.Empty\x1a$.Nrmk.IndyFramework.EcatDomainStatus\"\x00\x12Q\n\rIsSystemReady\x12\x19.Nrmk.IndyFramework.Empty\x1a#.Nrmk.IndyFramework.EcatSystemReady\"\x00\x12I\n\tIsServoOn\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1f.Nrmk.IndyFramework.EcatServoOn\"\x00\x12P\n\x0fGetSlaveTypeNum\x12\x19.Nrmk.IndyFramework.Empty\x1a .Nrmk.IndyFramework.SlaveTypeNum\"\x00\x12L\n\x12ResetOverflowCount\x12\x19.Nrmk.IndyFramework.Empty\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12K\n\nSetServoRx\x12 .Nrmk.IndyFramework.ServoRxIndex\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12K\n\nGetServoRx\x12\x1e.Nrmk.IndyFramework.ServoIndex\x1a\x1b.Nrmk.IndyFramework.ServoRx\"\x00\x12K\n\nGetServoTx\x12\x1e.Nrmk.IndyFramework.ServoIndex\x1a\x1b.Nrmk.IndyFramework.ServoTx\"\x00\x12S\n\x0eSetServoRxKeba\x12$.Nrmk.IndyFramework.ServoRxIndexKeba\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12S\n\x0eGetServoRxKeba\x12\x1e.Nrmk.IndyFramework.ServoIndex\x1a\x1f.Nrmk.IndyFramework.ServoRxKeba\"\x00\x12S\n\x0eGetServoTxKeba\x12\x1e.Nrmk.IndyFramework.ServoIndex\x1a\x1f.Nrmk.IndyFramework.ServoTxKeba\"\x00\x12I\n\nSetServoOn\x12\x1e.Nrmk.IndyFramework.ServoIndex\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12J\n\x0bSetServoOff\x12\x1e.Nrmk.IndyFramework.ServoIndex\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12V\n\x13GetServoTemperature\x12\x1e.Nrmk.IndyFramework.ServoIndex\x1a\x1d.Nrmk.IndyFramework.ServoTemp\"\x00\x12U\n\x11GetServoErrorCode\x12\x1e.Nrmk.IndyFramework.ServoIndex\x1a\x1e.Nrmk.IndyFramework.ServoError\"\x00\x12I\n\nResetServo\x12\x1e.Nrmk.IndyFramework.ServoIndex\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12Q\n\x12SetCOREManualBrake\x12\x1e.Nrmk.IndyFramework.ServoBrake\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12J\n\x0cSetEndtoolRx\x12\x1d.Nrmk.IndyFramework.EndtoolRx\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12J\n\x0cGetEndtoolRx\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1d.Nrmk.IndyFramework.EndtoolRx\"\x00\x12J\n\x0cGetEndtoolTx\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1d.Nrmk.IndyFramework.EndtoolTx\"\x00\x12X\n\x13GetEndtoolDockingTx\x12\x19.Nrmk.IndyFramework.Empty\x1a$.Nrmk.IndyFramework.EndtoolDockingTx\"\x00\x12T\n\x11SetEndtoolRS485Rx\x12\".Nrmk.IndyFramework.EndtoolRS485Rx\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12T\n\x11GetEndtoolRS485Rx\x12\x19.Nrmk.IndyFramework.Empty\x1a\".Nrmk.IndyFramework.EndtoolRS485Rx\"\x00\x12T\n\x11GetEndtoolRS485Tx\x12\x19.Nrmk.IndyFramework.Empty\x1a\".Nrmk.IndyFramework.EndtoolRS485Tx\"\x00\x12K\n\x10SetEndtoolLedDim\x12\x1a.Nrmk.IndyFramework.LedDim\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12J\n\x0cSetIOBoardRx\x12\x1d.Nrmk.IndyFramework.IOBoardRx\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12J\n\x0cGetIOBoardTx\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1d.Nrmk.IndyFramework.IOBoardTx\"\x00\x12J\n\x0cGetIOBoardRx\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1d.Nrmk.IndyFramework.IOBoardRx\"\x00\x12L\n\x05GetDI\x12\x1c.Nrmk.IndyFramework.DIOIndex\x1a#.Nrmk.IndyFramework.DIODigitalInput\"\x00\x12M\n\x05GetDO\x12\x1c.Nrmk.IndyFramework.DIOIndex\x1a$.Nrmk.IndyFramework.DIODigitalOutput\"\x00\x12J\n\x05SetDO\x12$.Nrmk.IndyFramework.DIODigitalOutput\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12Q\n\x0fGetMaxTorqueSDO\x12\x1d.Nrmk.IndyFramework.EcatIndex\x1a\x1d.Nrmk.IndyFramework.SDOIntVal\"\x00\x12R\n\x10GetProfileVelSDO\x12\x1d.Nrmk.IndyFramework.EcatIndex\x1a\x1d.Nrmk.IndyFramework.SDOIntVal\"\x00\x12R\n\x10GetProfileAccSDO\x12\x1d.Nrmk.IndyFramework.EcatIndex\x1a\x1d.Nrmk.IndyFramework.SDOIntVal\"\x00\x12R\n\x10GetProfileDecSDO\x12\x1d.Nrmk.IndyFramework.EcatIndex\x1a\x1d.Nrmk.IndyFramework.SDOIntVal\"\x00\x12N\n\x0fSetMaxTorqueSDO\x12\x1e.Nrmk.IndyFramework.ServoParam\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12O\n\x10SetProfileVelSDO\x12\x1e.Nrmk.IndyFramework.ServoParam\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12O\n\x10SetProfileAccSDO\x12\x1e.Nrmk.IndyFramework.ServoParam\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12O\n\x10SetProfileDecSDO\x12\x1e.Nrmk.IndyFramework.ServoParam\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12Y\n\x11GetRobotZeroCount\x12\x1e.Nrmk.IndyFramework.ServoIndex\x1a\".Nrmk.IndyFramework.RobotZeroCount\"\x00\x12T\n\x15SetRobotZeroAsCurrent\x12\x1e.Nrmk.IndyFramework.ServoIndex\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x62\x06proto3'
   ,
   dependencies=[ethercat__msgs__pb2.DESCRIPTOR,common__msgs__pb2.DESCRIPTOR,])
 
@@ -39,7 +39,7 @@ _ETHERCAT = _descriptor.ServiceDescriptor(
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
   serialized_start=79,
-  serialized_end=3415,
+  serialized_end=3664,
   methods=[
   _descriptor.MethodDescriptor(
     name='GetMasterStatus',
@@ -202,19 +202,9 @@ _ETHERCAT = _descriptor.ServiceDescriptor(
     create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
-    name='SetServoMaxMotorSpeed',
-    full_name='Nrmk.IndyFramework.EtherCAT.SetServoMaxMotorSpeed',
-    index=16,
-    containing_service=None,
-    input_type=ethercat__msgs__pb2._SERVOPARAM,
-    output_type=common__msgs__pb2._EMPTY,
-    serialized_options=None,
-    create_key=_descriptor._internal_create_key,
-  ),
-  _descriptor.MethodDescriptor(
     name='GetServoTemperature',
     full_name='Nrmk.IndyFramework.EtherCAT.GetServoTemperature',
-    index=17,
+    index=16,
     containing_service=None,
     input_type=ethercat__msgs__pb2._SERVOINDEX,
     output_type=ethercat__msgs__pb2._SERVOTEMP,
@@ -224,7 +214,7 @@ _ETHERCAT = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='GetServoErrorCode',
     full_name='Nrmk.IndyFramework.EtherCAT.GetServoErrorCode',
-    index=18,
+    index=17,
     containing_service=None,
     input_type=ethercat__msgs__pb2._SERVOINDEX,
     output_type=ethercat__msgs__pb2._SERVOERROR,
@@ -234,7 +224,7 @@ _ETHERCAT = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='ResetServo',
     full_name='Nrmk.IndyFramework.EtherCAT.ResetServo',
-    index=19,
+    index=18,
     containing_service=None,
     input_type=ethercat__msgs__pb2._SERVOINDEX,
     output_type=common__msgs__pb2._EMPTY,
@@ -244,7 +234,7 @@ _ETHERCAT = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SetCOREManualBrake',
     full_name='Nrmk.IndyFramework.EtherCAT.SetCOREManualBrake',
-    index=20,
+    index=19,
     containing_service=None,
     input_type=ethercat__msgs__pb2._SERVOBRAKE,
     output_type=common__msgs__pb2._EMPTY,
@@ -254,7 +244,7 @@ _ETHERCAT = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SetEndtoolRx',
     full_name='Nrmk.IndyFramework.EtherCAT.SetEndtoolRx',
-    index=21,
+    index=20,
     containing_service=None,
     input_type=ethercat__msgs__pb2._ENDTOOLRX,
     output_type=common__msgs__pb2._EMPTY,
@@ -264,7 +254,7 @@ _ETHERCAT = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='GetEndtoolRx',
     full_name='Nrmk.IndyFramework.EtherCAT.GetEndtoolRx',
-    index=22,
+    index=21,
     containing_service=None,
     input_type=common__msgs__pb2._EMPTY,
     output_type=ethercat__msgs__pb2._ENDTOOLRX,
@@ -274,7 +264,7 @@ _ETHERCAT = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='GetEndtoolTx',
     full_name='Nrmk.IndyFramework.EtherCAT.GetEndtoolTx',
-    index=23,
+    index=22,
     containing_service=None,
     input_type=common__msgs__pb2._EMPTY,
     output_type=ethercat__msgs__pb2._ENDTOOLTX,
@@ -284,7 +274,7 @@ _ETHERCAT = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='GetEndtoolDockingTx',
     full_name='Nrmk.IndyFramework.EtherCAT.GetEndtoolDockingTx',
-    index=24,
+    index=23,
     containing_service=None,
     input_type=common__msgs__pb2._EMPTY,
     output_type=ethercat__msgs__pb2._ENDTOOLDOCKINGTX,
@@ -292,9 +282,49 @@ _ETHERCAT = _descriptor.ServiceDescriptor(
     create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
+    name='SetEndtoolRS485Rx',
+    full_name='Nrmk.IndyFramework.EtherCAT.SetEndtoolRS485Rx',
+    index=24,
+    containing_service=None,
+    input_type=common__msgs__pb2._ENDTOOLRS485RX,
+    output_type=common__msgs__pb2._EMPTY,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='GetEndtoolRS485Rx',
+    full_name='Nrmk.IndyFramework.EtherCAT.GetEndtoolRS485Rx',
+    index=25,
+    containing_service=None,
+    input_type=common__msgs__pb2._EMPTY,
+    output_type=common__msgs__pb2._ENDTOOLRS485RX,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='GetEndtoolRS485Tx',
+    full_name='Nrmk.IndyFramework.EtherCAT.GetEndtoolRS485Tx',
+    index=26,
+    containing_service=None,
+    input_type=common__msgs__pb2._EMPTY,
+    output_type=common__msgs__pb2._ENDTOOLRS485TX,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='SetEndtoolLedDim',
+    full_name='Nrmk.IndyFramework.EtherCAT.SetEndtoolLedDim',
+    index=27,
+    containing_service=None,
+    input_type=ethercat__msgs__pb2._LEDDIM,
+    output_type=common__msgs__pb2._EMPTY,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
     name='SetIOBoardRx',
     full_name='Nrmk.IndyFramework.EtherCAT.SetIOBoardRx',
-    index=25,
+    index=28,
     containing_service=None,
     input_type=ethercat__msgs__pb2._IOBOARDRX,
     output_type=common__msgs__pb2._EMPTY,
@@ -304,7 +334,7 @@ _ETHERCAT = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='GetIOBoardTx',
     full_name='Nrmk.IndyFramework.EtherCAT.GetIOBoardTx',
-    index=26,
+    index=29,
     containing_service=None,
     input_type=common__msgs__pb2._EMPTY,
     output_type=ethercat__msgs__pb2._IOBOARDTX,
@@ -314,7 +344,7 @@ _ETHERCAT = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='GetIOBoardRx',
     full_name='Nrmk.IndyFramework.EtherCAT.GetIOBoardRx',
-    index=27,
+    index=30,
     containing_service=None,
     input_type=common__msgs__pb2._EMPTY,
     output_type=ethercat__msgs__pb2._IOBOARDRX,
@@ -324,7 +354,7 @@ _ETHERCAT = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='GetDI',
     full_name='Nrmk.IndyFramework.EtherCAT.GetDI',
-    index=28,
+    index=31,
     containing_service=None,
     input_type=ethercat__msgs__pb2._DIOINDEX,
     output_type=ethercat__msgs__pb2._DIODIGITALINPUT,
@@ -334,7 +364,7 @@ _ETHERCAT = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='GetDO',
     full_name='Nrmk.IndyFramework.EtherCAT.GetDO',
-    index=29,
+    index=32,
     containing_service=None,
     input_type=ethercat__msgs__pb2._DIOINDEX,
     output_type=ethercat__msgs__pb2._DIODIGITALOUTPUT,
@@ -344,7 +374,7 @@ _ETHERCAT = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SetDO',
     full_name='Nrmk.IndyFramework.EtherCAT.SetDO',
-    index=30,
+    index=33,
     containing_service=None,
     input_type=ethercat__msgs__pb2._DIODIGITALOUTPUT,
     output_type=common__msgs__pb2._EMPTY,
@@ -354,7 +384,7 @@ _ETHERCAT = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='GetMaxTorqueSDO',
     full_name='Nrmk.IndyFramework.EtherCAT.GetMaxTorqueSDO',
-    index=31,
+    index=34,
     containing_service=None,
     input_type=ethercat__msgs__pb2._ECATINDEX,
     output_type=ethercat__msgs__pb2._SDOINTVAL,
@@ -364,7 +394,7 @@ _ETHERCAT = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='GetProfileVelSDO',
     full_name='Nrmk.IndyFramework.EtherCAT.GetProfileVelSDO',
-    index=32,
+    index=35,
     containing_service=None,
     input_type=ethercat__msgs__pb2._ECATINDEX,
     output_type=ethercat__msgs__pb2._SDOINTVAL,
@@ -374,7 +404,7 @@ _ETHERCAT = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='GetProfileAccSDO',
     full_name='Nrmk.IndyFramework.EtherCAT.GetProfileAccSDO',
-    index=33,
+    index=36,
     containing_service=None,
     input_type=ethercat__msgs__pb2._ECATINDEX,
     output_type=ethercat__msgs__pb2._SDOINTVAL,
@@ -384,7 +414,7 @@ _ETHERCAT = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='GetProfileDecSDO',
     full_name='Nrmk.IndyFramework.EtherCAT.GetProfileDecSDO',
-    index=34,
+    index=37,
     containing_service=None,
     input_type=ethercat__msgs__pb2._ECATINDEX,
     output_type=ethercat__msgs__pb2._SDOINTVAL,
@@ -394,7 +424,7 @@ _ETHERCAT = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SetMaxTorqueSDO',
     full_name='Nrmk.IndyFramework.EtherCAT.SetMaxTorqueSDO',
-    index=35,
+    index=38,
     containing_service=None,
     input_type=ethercat__msgs__pb2._SERVOPARAM,
     output_type=common__msgs__pb2._EMPTY,
@@ -404,7 +434,7 @@ _ETHERCAT = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SetProfileVelSDO',
     full_name='Nrmk.IndyFramework.EtherCAT.SetProfileVelSDO',
-    index=36,
+    index=39,
     containing_service=None,
     input_type=ethercat__msgs__pb2._SERVOPARAM,
     output_type=common__msgs__pb2._EMPTY,
@@ -414,7 +444,7 @@ _ETHERCAT = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SetProfileAccSDO',
     full_name='Nrmk.IndyFramework.EtherCAT.SetProfileAccSDO',
-    index=37,
+    index=40,
     containing_service=None,
     input_type=ethercat__msgs__pb2._SERVOPARAM,
     output_type=common__msgs__pb2._EMPTY,
@@ -424,7 +454,7 @@ _ETHERCAT = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SetProfileDecSDO',
     full_name='Nrmk.IndyFramework.EtherCAT.SetProfileDecSDO',
-    index=38,
+    index=41,
     containing_service=None,
     input_type=ethercat__msgs__pb2._SERVOPARAM,
     output_type=common__msgs__pb2._EMPTY,
@@ -434,7 +464,7 @@ _ETHERCAT = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='GetRobotZeroCount',
     full_name='Nrmk.IndyFramework.EtherCAT.GetRobotZeroCount',
-    index=39,
+    index=42,
     containing_service=None,
     input_type=ethercat__msgs__pb2._SERVOINDEX,
     output_type=ethercat__msgs__pb2._ROBOTZEROCOUNT,
@@ -444,7 +474,7 @@ _ETHERCAT = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SetRobotZeroAsCurrent',
     full_name='Nrmk.IndyFramework.EtherCAT.SetRobotZeroAsCurrent',
-    index=40,
+    index=43,
     containing_service=None,
     input_type=ethercat__msgs__pb2._SERVOINDEX,
     output_type=common__msgs__pb2._EMPTY,

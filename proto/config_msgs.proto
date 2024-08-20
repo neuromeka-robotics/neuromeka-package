@@ -8,13 +8,6 @@ message Frame {
   repeated float fpos = 1;
 }
 
-//////////////////////////FT sensor Frame/////////////////////////
-message FTsensorFrame {
-  float translation = 1;
-  float rotation = 2;
-}
-
-
 //////////////////////////JointPos/////////////////////////
 message JointPos {
   repeated float jpos = 1;
@@ -174,7 +167,8 @@ message SafetyLimits {
   float tcp_force_limit_ratio = 4;
   float tcp_speed_limit = 5;
   float tcp_speed_limit_ratio = 6;
-  repeated float joint_limits = 7;
+  repeated float joint_upper_limits = 7;
+  repeated float joint_lower_limits = 8;
 }
 //////////////////////////SafetyStopConfig/////////////////////////
 message SafetyStopConfig {
@@ -213,3 +207,71 @@ message DOConfig {
 message DOConfigList {
   repeated DOConfig do_configs = 1;
 }
+//////////////////////////GetReducedRatio/////////////////////////
+message GetReducedRatioRes {
+  float ratio = 1;  // 0~100
+  string msg = 100;
+}
+//////////////////////////GetReducedRatio/////////////////////////
+message GetReducedSpeedRes {
+  float speed = 1;  // mm/s
+  string msg = 100;
+}
+//////////////////////////GetReducedRatio/////////////////////////
+message SetReducedSpeedReq {
+  float speed = 1;  // mm/s
+}
+//////////////////////////GetFTSensorConfig/////////////////////////
+message FTSensorDevice{
+  enum FTSensorDeviceType {
+    NONE = 0;
+    AFT200_D80 = 1;
+    AFT200_D80_EC = 2;
+    RFT80_6A01 = 3;
+    RFT60_HA01 = 4;
+    HEX_E_H_QC = 5;
+  }
+  enum FTSensorDeviceComType {
+    ENDTOOLCAN = 0;
+    CBCAN = 1;
+    MODBUSCLIENT = 2;
+    ETHERCAT = 3;
+  }
+  FTSensorDeviceType dev_type = 1;
+  FTSensorDeviceComType com_type = 2;
+  string ip_address = 3;
+  float ft_frame_translation_offset_x = 11;
+  float ft_frame_translation_offset_y = 12;
+  float ft_frame_translation_offset_z = 13;
+  float ft_frame_rotation_offset_r = 14;
+  float ft_frame_rotation_offset_p = 15;
+  float ft_frame_rotation_offset_y = 16;
+}
+
+message FTSensorDeviceRes {
+  string msg = 100;
+}
+//////////////////////////SetTeleOpParams/////////////////////////
+message TeleOpParams {
+  float smooth_factor = 1;
+  float cutoff_freq = 2;
+  float error_gain = 3;
+}
+
+message KinematicsParams {
+  enum JointType{
+    REVOLUTE = 0;
+    PRISMATIC = 1;
+  }
+  message MDH {
+    float a = 1;
+    float alpha = 2;
+    float d0 = 3;
+    float theta0 = 4;
+    JointType type = 5;
+    int32 index = 10;
+    int32 parent = 11;
+  }
+  repeated MDH mdh = 1;
+}
+

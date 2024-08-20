@@ -148,6 +148,11 @@ message BMSData {
     repeated int32 cell_volt = 21;
 }
 
+message ForcedKinematicsData {
+    bool activate = 1;
+    int32 angle = 2;
+}
+
 // Global variables
 message GBool {
     int32 idx = 1;
@@ -172,6 +177,10 @@ message GString {
 // Common use
 message BoolVal {
     bool val = 1;
+}
+
+message BoolVals {
+    repeated bool val = 1;
 }
 
 message IntVal {

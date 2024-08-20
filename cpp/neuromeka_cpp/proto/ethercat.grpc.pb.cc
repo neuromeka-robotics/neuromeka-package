@@ -6,19 +6,16 @@
 #include "ethercat.grpc.pb.h"
 
 #include <functional>
-#include <grpcpp/support/async_stream.h>
-#include <grpcpp/support/async_unary_call.h>
-#include <grpcpp/impl/channel_interface.h>
-#include <grpcpp/impl/client_unary_call.h>
-#include <grpcpp/support/client_callback.h>
-#include <grpcpp/support/message_allocator.h>
-#include <grpcpp/support/method_handler.h>
-#include <grpcpp/impl/rpc_service_method.h>
-#include <grpcpp/support/server_callback.h>
-#include <grpcpp/impl/server_callback_handlers.h>
-#include <grpcpp/server_context.h>
-#include <grpcpp/impl/service_type.h>
-#include <grpcpp/support/sync_stream.h>
+#include <grpcpp/impl/codegen/async_stream.h>
+#include <grpcpp/impl/codegen/async_unary_call.h>
+#include <grpcpp/impl/codegen/channel_interface.h>
+#include <grpcpp/impl/codegen/client_unary_call.h>
+#include <grpcpp/impl/codegen/client_callback.h>
+#include <grpcpp/impl/codegen/method_handler_impl.h>
+#include <grpcpp/impl/codegen/rpc_service_method.h>
+#include <grpcpp/impl/codegen/server_callback.h>
+#include <grpcpp/impl/codegen/service_type.h>
+#include <grpcpp/impl/codegen/sync_stream.h>
 namespace Nrmk {
 namespace IndyFramework {
 
@@ -47,6 +44,10 @@ static const char* EtherCAT_method_names[] = {
   "/Nrmk.IndyFramework.EtherCAT/GetEndtoolRx",
   "/Nrmk.IndyFramework.EtherCAT/GetEndtoolTx",
   "/Nrmk.IndyFramework.EtherCAT/GetEndtoolDockingTx",
+  "/Nrmk.IndyFramework.EtherCAT/SetEndtoolRS485Rx",
+  "/Nrmk.IndyFramework.EtherCAT/GetEndtoolRS485Rx",
+  "/Nrmk.IndyFramework.EtherCAT/GetEndtoolRS485Tx",
+  "/Nrmk.IndyFramework.EtherCAT/SetEndtoolLedDim",
   "/Nrmk.IndyFramework.EtherCAT/SetIOBoardRx",
   "/Nrmk.IndyFramework.EtherCAT/GetIOBoardTx",
   "/Nrmk.IndyFramework.EtherCAT/GetIOBoardRx",
@@ -67,1374 +68,1510 @@ static const char* EtherCAT_method_names[] = {
 
 std::unique_ptr< EtherCAT::Stub> EtherCAT::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
   (void)options;
-  std::unique_ptr< EtherCAT::Stub> stub(new EtherCAT::Stub(channel, options));
+  std::unique_ptr< EtherCAT::Stub> stub(new EtherCAT::Stub(channel));
   return stub;
 }
 
-EtherCAT::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
-  : channel_(channel), rpcmethod_GetMasterStatus_(EtherCAT_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetSlaveStatus_(EtherCAT_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetRxDomainStatus_(EtherCAT_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetTxDomainStatus_(EtherCAT_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_IsSystemReady_(EtherCAT_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_IsServoOn_(EtherCAT_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetSlaveTypeNum_(EtherCAT_method_names[6], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ResetOverflowCount_(EtherCAT_method_names[7], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetServoRx_(EtherCAT_method_names[8], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetServoRx_(EtherCAT_method_names[9], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetServoTx_(EtherCAT_method_names[10], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetServoRxKeba_(EtherCAT_method_names[11], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetServoRxKeba_(EtherCAT_method_names[12], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetServoTxKeba_(EtherCAT_method_names[13], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetServoOn_(EtherCAT_method_names[14], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetServoOff_(EtherCAT_method_names[15], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetServoTemperature_(EtherCAT_method_names[16], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetServoErrorCode_(EtherCAT_method_names[17], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ResetServo_(EtherCAT_method_names[18], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetCOREManualBrake_(EtherCAT_method_names[19], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetEndtoolRx_(EtherCAT_method_names[20], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetEndtoolRx_(EtherCAT_method_names[21], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetEndtoolTx_(EtherCAT_method_names[22], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetEndtoolDockingTx_(EtherCAT_method_names[23], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetIOBoardRx_(EtherCAT_method_names[24], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetIOBoardTx_(EtherCAT_method_names[25], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetIOBoardRx_(EtherCAT_method_names[26], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetDI_(EtherCAT_method_names[27], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetDO_(EtherCAT_method_names[28], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetDO_(EtherCAT_method_names[29], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetMaxTorqueSDO_(EtherCAT_method_names[30], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetProfileVelSDO_(EtherCAT_method_names[31], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetProfileAccSDO_(EtherCAT_method_names[32], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetProfileDecSDO_(EtherCAT_method_names[33], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetMaxTorqueSDO_(EtherCAT_method_names[34], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetProfileVelSDO_(EtherCAT_method_names[35], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetProfileAccSDO_(EtherCAT_method_names[36], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetProfileDecSDO_(EtherCAT_method_names[37], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetRobotZeroCount_(EtherCAT_method_names[38], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetRobotZeroAsCurrent_(EtherCAT_method_names[39], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+EtherCAT::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel)
+  : channel_(channel), rpcmethod_GetMasterStatus_(EtherCAT_method_names[0], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetSlaveStatus_(EtherCAT_method_names[1], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetRxDomainStatus_(EtherCAT_method_names[2], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetTxDomainStatus_(EtherCAT_method_names[3], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_IsSystemReady_(EtherCAT_method_names[4], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_IsServoOn_(EtherCAT_method_names[5], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetSlaveTypeNum_(EtherCAT_method_names[6], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ResetOverflowCount_(EtherCAT_method_names[7], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetServoRx_(EtherCAT_method_names[8], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetServoRx_(EtherCAT_method_names[9], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetServoTx_(EtherCAT_method_names[10], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetServoRxKeba_(EtherCAT_method_names[11], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetServoRxKeba_(EtherCAT_method_names[12], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetServoTxKeba_(EtherCAT_method_names[13], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetServoOn_(EtherCAT_method_names[14], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetServoOff_(EtherCAT_method_names[15], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetServoTemperature_(EtherCAT_method_names[16], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetServoErrorCode_(EtherCAT_method_names[17], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ResetServo_(EtherCAT_method_names[18], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetCOREManualBrake_(EtherCAT_method_names[19], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetEndtoolRx_(EtherCAT_method_names[20], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetEndtoolRx_(EtherCAT_method_names[21], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetEndtoolTx_(EtherCAT_method_names[22], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetEndtoolDockingTx_(EtherCAT_method_names[23], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetEndtoolRS485Rx_(EtherCAT_method_names[24], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetEndtoolRS485Rx_(EtherCAT_method_names[25], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetEndtoolRS485Tx_(EtherCAT_method_names[26], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetEndtoolLedDim_(EtherCAT_method_names[27], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetIOBoardRx_(EtherCAT_method_names[28], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetIOBoardTx_(EtherCAT_method_names[29], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetIOBoardRx_(EtherCAT_method_names[30], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetDI_(EtherCAT_method_names[31], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetDO_(EtherCAT_method_names[32], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetDO_(EtherCAT_method_names[33], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetMaxTorqueSDO_(EtherCAT_method_names[34], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetProfileVelSDO_(EtherCAT_method_names[35], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetProfileAccSDO_(EtherCAT_method_names[36], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetProfileDecSDO_(EtherCAT_method_names[37], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetMaxTorqueSDO_(EtherCAT_method_names[38], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetProfileVelSDO_(EtherCAT_method_names[39], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetProfileAccSDO_(EtherCAT_method_names[40], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetProfileDecSDO_(EtherCAT_method_names[41], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetRobotZeroCount_(EtherCAT_method_names[42], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetRobotZeroAsCurrent_(EtherCAT_method_names[43], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status EtherCAT::Stub::GetMasterStatus(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::MasterStatus* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::MasterStatus, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetMasterStatus_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetMasterStatus_, context, request, response);
 }
 
-void EtherCAT::Stub::async::GetMasterStatus(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::MasterStatus* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::MasterStatus, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetMasterStatus_, context, request, response, std::move(f));
+void EtherCAT::Stub::experimental_async::GetMasterStatus(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::MasterStatus* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetMasterStatus_, context, request, response, std::move(f));
 }
 
-void EtherCAT::Stub::async::GetMasterStatus(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::MasterStatus* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetMasterStatus_, context, request, response, reactor);
+void EtherCAT::Stub::experimental_async::GetMasterStatus(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::MasterStatus* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetMasterStatus_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::MasterStatus>* EtherCAT::Stub::PrepareAsyncGetMasterStatusRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::MasterStatus, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetMasterStatus_, context, request);
+void EtherCAT::Stub::experimental_async::GetMasterStatus(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::MasterStatus* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetMasterStatus_, context, request, response, reactor);
+}
+
+void EtherCAT::Stub::experimental_async::GetMasterStatus(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::MasterStatus* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetMasterStatus_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::MasterStatus>* EtherCAT::Stub::AsyncGetMasterStatusRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncGetMasterStatusRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::MasterStatus>::Create(channel_.get(), cq, rpcmethod_GetMasterStatus_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::MasterStatus>* EtherCAT::Stub::PrepareAsyncGetMasterStatusRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::MasterStatus>::Create(channel_.get(), cq, rpcmethod_GetMasterStatus_, context, request, false);
 }
 
 ::grpc::Status EtherCAT::Stub::GetSlaveStatus(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::SlaveStatus* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::SlaveStatus, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetSlaveStatus_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetSlaveStatus_, context, request, response);
 }
 
-void EtherCAT::Stub::async::GetSlaveStatus(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::SlaveStatus* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::SlaveStatus, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetSlaveStatus_, context, request, response, std::move(f));
+void EtherCAT::Stub::experimental_async::GetSlaveStatus(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::SlaveStatus* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetSlaveStatus_, context, request, response, std::move(f));
 }
 
-void EtherCAT::Stub::async::GetSlaveStatus(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::SlaveStatus* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetSlaveStatus_, context, request, response, reactor);
+void EtherCAT::Stub::experimental_async::GetSlaveStatus(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::SlaveStatus* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetSlaveStatus_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::SlaveStatus>* EtherCAT::Stub::PrepareAsyncGetSlaveStatusRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::SlaveStatus, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetSlaveStatus_, context, request);
+void EtherCAT::Stub::experimental_async::GetSlaveStatus(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::SlaveStatus* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetSlaveStatus_, context, request, response, reactor);
+}
+
+void EtherCAT::Stub::experimental_async::GetSlaveStatus(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::SlaveStatus* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetSlaveStatus_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::SlaveStatus>* EtherCAT::Stub::AsyncGetSlaveStatusRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncGetSlaveStatusRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::SlaveStatus>::Create(channel_.get(), cq, rpcmethod_GetSlaveStatus_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::SlaveStatus>* EtherCAT::Stub::PrepareAsyncGetSlaveStatusRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::SlaveStatus>::Create(channel_.get(), cq, rpcmethod_GetSlaveStatus_, context, request, false);
 }
 
 ::grpc::Status EtherCAT::Stub::GetRxDomainStatus(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::EcatDomainStatus* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::EcatDomainStatus, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetRxDomainStatus_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetRxDomainStatus_, context, request, response);
 }
 
-void EtherCAT::Stub::async::GetRxDomainStatus(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::EcatDomainStatus* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::EcatDomainStatus, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetRxDomainStatus_, context, request, response, std::move(f));
+void EtherCAT::Stub::experimental_async::GetRxDomainStatus(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::EcatDomainStatus* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetRxDomainStatus_, context, request, response, std::move(f));
 }
 
-void EtherCAT::Stub::async::GetRxDomainStatus(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::EcatDomainStatus* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetRxDomainStatus_, context, request, response, reactor);
+void EtherCAT::Stub::experimental_async::GetRxDomainStatus(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::EcatDomainStatus* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetRxDomainStatus_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::EcatDomainStatus>* EtherCAT::Stub::PrepareAsyncGetRxDomainStatusRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::EcatDomainStatus, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetRxDomainStatus_, context, request);
+void EtherCAT::Stub::experimental_async::GetRxDomainStatus(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::EcatDomainStatus* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetRxDomainStatus_, context, request, response, reactor);
+}
+
+void EtherCAT::Stub::experimental_async::GetRxDomainStatus(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::EcatDomainStatus* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetRxDomainStatus_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::EcatDomainStatus>* EtherCAT::Stub::AsyncGetRxDomainStatusRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncGetRxDomainStatusRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::EcatDomainStatus>::Create(channel_.get(), cq, rpcmethod_GetRxDomainStatus_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::EcatDomainStatus>* EtherCAT::Stub::PrepareAsyncGetRxDomainStatusRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::EcatDomainStatus>::Create(channel_.get(), cq, rpcmethod_GetRxDomainStatus_, context, request, false);
 }
 
 ::grpc::Status EtherCAT::Stub::GetTxDomainStatus(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::EcatDomainStatus* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::EcatDomainStatus, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetTxDomainStatus_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetTxDomainStatus_, context, request, response);
 }
 
-void EtherCAT::Stub::async::GetTxDomainStatus(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::EcatDomainStatus* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::EcatDomainStatus, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetTxDomainStatus_, context, request, response, std::move(f));
+void EtherCAT::Stub::experimental_async::GetTxDomainStatus(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::EcatDomainStatus* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetTxDomainStatus_, context, request, response, std::move(f));
 }
 
-void EtherCAT::Stub::async::GetTxDomainStatus(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::EcatDomainStatus* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetTxDomainStatus_, context, request, response, reactor);
+void EtherCAT::Stub::experimental_async::GetTxDomainStatus(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::EcatDomainStatus* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetTxDomainStatus_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::EcatDomainStatus>* EtherCAT::Stub::PrepareAsyncGetTxDomainStatusRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::EcatDomainStatus, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetTxDomainStatus_, context, request);
+void EtherCAT::Stub::experimental_async::GetTxDomainStatus(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::EcatDomainStatus* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetTxDomainStatus_, context, request, response, reactor);
+}
+
+void EtherCAT::Stub::experimental_async::GetTxDomainStatus(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::EcatDomainStatus* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetTxDomainStatus_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::EcatDomainStatus>* EtherCAT::Stub::AsyncGetTxDomainStatusRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncGetTxDomainStatusRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::EcatDomainStatus>::Create(channel_.get(), cq, rpcmethod_GetTxDomainStatus_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::EcatDomainStatus>* EtherCAT::Stub::PrepareAsyncGetTxDomainStatusRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::EcatDomainStatus>::Create(channel_.get(), cq, rpcmethod_GetTxDomainStatus_, context, request, false);
 }
 
 ::grpc::Status EtherCAT::Stub::IsSystemReady(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::EcatSystemReady* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::EcatSystemReady, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_IsSystemReady_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_IsSystemReady_, context, request, response);
 }
 
-void EtherCAT::Stub::async::IsSystemReady(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::EcatSystemReady* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::EcatSystemReady, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_IsSystemReady_, context, request, response, std::move(f));
+void EtherCAT::Stub::experimental_async::IsSystemReady(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::EcatSystemReady* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_IsSystemReady_, context, request, response, std::move(f));
 }
 
-void EtherCAT::Stub::async::IsSystemReady(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::EcatSystemReady* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_IsSystemReady_, context, request, response, reactor);
+void EtherCAT::Stub::experimental_async::IsSystemReady(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::EcatSystemReady* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_IsSystemReady_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::EcatSystemReady>* EtherCAT::Stub::PrepareAsyncIsSystemReadyRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::EcatSystemReady, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_IsSystemReady_, context, request);
+void EtherCAT::Stub::experimental_async::IsSystemReady(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::EcatSystemReady* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_IsSystemReady_, context, request, response, reactor);
+}
+
+void EtherCAT::Stub::experimental_async::IsSystemReady(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::EcatSystemReady* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_IsSystemReady_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::EcatSystemReady>* EtherCAT::Stub::AsyncIsSystemReadyRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncIsSystemReadyRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::EcatSystemReady>::Create(channel_.get(), cq, rpcmethod_IsSystemReady_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::EcatSystemReady>* EtherCAT::Stub::PrepareAsyncIsSystemReadyRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::EcatSystemReady>::Create(channel_.get(), cq, rpcmethod_IsSystemReady_, context, request, false);
 }
 
 ::grpc::Status EtherCAT::Stub::IsServoOn(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::EcatServoOn* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::EcatServoOn, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_IsServoOn_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_IsServoOn_, context, request, response);
 }
 
-void EtherCAT::Stub::async::IsServoOn(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::EcatServoOn* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::EcatServoOn, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_IsServoOn_, context, request, response, std::move(f));
+void EtherCAT::Stub::experimental_async::IsServoOn(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::EcatServoOn* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_IsServoOn_, context, request, response, std::move(f));
 }
 
-void EtherCAT::Stub::async::IsServoOn(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::EcatServoOn* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_IsServoOn_, context, request, response, reactor);
+void EtherCAT::Stub::experimental_async::IsServoOn(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::EcatServoOn* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_IsServoOn_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::EcatServoOn>* EtherCAT::Stub::PrepareAsyncIsServoOnRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::EcatServoOn, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_IsServoOn_, context, request);
+void EtherCAT::Stub::experimental_async::IsServoOn(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::EcatServoOn* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_IsServoOn_, context, request, response, reactor);
+}
+
+void EtherCAT::Stub::experimental_async::IsServoOn(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::EcatServoOn* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_IsServoOn_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::EcatServoOn>* EtherCAT::Stub::AsyncIsServoOnRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncIsServoOnRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::EcatServoOn>::Create(channel_.get(), cq, rpcmethod_IsServoOn_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::EcatServoOn>* EtherCAT::Stub::PrepareAsyncIsServoOnRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::EcatServoOn>::Create(channel_.get(), cq, rpcmethod_IsServoOn_, context, request, false);
 }
 
 ::grpc::Status EtherCAT::Stub::GetSlaveTypeNum(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::SlaveTypeNum* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::SlaveTypeNum, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetSlaveTypeNum_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetSlaveTypeNum_, context, request, response);
 }
 
-void EtherCAT::Stub::async::GetSlaveTypeNum(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::SlaveTypeNum* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::SlaveTypeNum, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetSlaveTypeNum_, context, request, response, std::move(f));
+void EtherCAT::Stub::experimental_async::GetSlaveTypeNum(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::SlaveTypeNum* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetSlaveTypeNum_, context, request, response, std::move(f));
 }
 
-void EtherCAT::Stub::async::GetSlaveTypeNum(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::SlaveTypeNum* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetSlaveTypeNum_, context, request, response, reactor);
+void EtherCAT::Stub::experimental_async::GetSlaveTypeNum(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::SlaveTypeNum* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetSlaveTypeNum_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::SlaveTypeNum>* EtherCAT::Stub::PrepareAsyncGetSlaveTypeNumRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::SlaveTypeNum, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetSlaveTypeNum_, context, request);
+void EtherCAT::Stub::experimental_async::GetSlaveTypeNum(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::SlaveTypeNum* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetSlaveTypeNum_, context, request, response, reactor);
+}
+
+void EtherCAT::Stub::experimental_async::GetSlaveTypeNum(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::SlaveTypeNum* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetSlaveTypeNum_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::SlaveTypeNum>* EtherCAT::Stub::AsyncGetSlaveTypeNumRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncGetSlaveTypeNumRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::SlaveTypeNum>::Create(channel_.get(), cq, rpcmethod_GetSlaveTypeNum_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::SlaveTypeNum>* EtherCAT::Stub::PrepareAsyncGetSlaveTypeNumRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::SlaveTypeNum>::Create(channel_.get(), cq, rpcmethod_GetSlaveTypeNum_, context, request, false);
 }
 
 ::grpc::Status EtherCAT::Stub::ResetOverflowCount(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::Empty* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ResetOverflowCount_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_ResetOverflowCount_, context, request, response);
 }
 
-void EtherCAT::Stub::async::ResetOverflowCount(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ResetOverflowCount_, context, request, response, std::move(f));
+void EtherCAT::Stub::experimental_async::ResetOverflowCount(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ResetOverflowCount_, context, request, response, std::move(f));
 }
 
-void EtherCAT::Stub::async::ResetOverflowCount(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ResetOverflowCount_, context, request, response, reactor);
+void EtherCAT::Stub::experimental_async::ResetOverflowCount(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ResetOverflowCount_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* EtherCAT::Stub::PrepareAsyncResetOverflowCountRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ResetOverflowCount_, context, request);
+void EtherCAT::Stub::experimental_async::ResetOverflowCount(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ResetOverflowCount_, context, request, response, reactor);
+}
+
+void EtherCAT::Stub::experimental_async::ResetOverflowCount(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ResetOverflowCount_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* EtherCAT::Stub::AsyncResetOverflowCountRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncResetOverflowCountRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_ResetOverflowCount_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* EtherCAT::Stub::PrepareAsyncResetOverflowCountRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_ResetOverflowCount_, context, request, false);
 }
 
 ::grpc::Status EtherCAT::Stub::SetServoRx(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoRxIndex& request, ::Nrmk::IndyFramework::Empty* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::ServoRxIndex, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetServoRx_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetServoRx_, context, request, response);
 }
 
-void EtherCAT::Stub::async::SetServoRx(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoRxIndex* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::ServoRxIndex, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetServoRx_, context, request, response, std::move(f));
+void EtherCAT::Stub::experimental_async::SetServoRx(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoRxIndex* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetServoRx_, context, request, response, std::move(f));
 }
 
-void EtherCAT::Stub::async::SetServoRx(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoRxIndex* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetServoRx_, context, request, response, reactor);
+void EtherCAT::Stub::experimental_async::SetServoRx(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetServoRx_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* EtherCAT::Stub::PrepareAsyncSetServoRxRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoRxIndex& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ServoRxIndex, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetServoRx_, context, request);
+void EtherCAT::Stub::experimental_async::SetServoRx(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoRxIndex* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetServoRx_, context, request, response, reactor);
+}
+
+void EtherCAT::Stub::experimental_async::SetServoRx(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetServoRx_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* EtherCAT::Stub::AsyncSetServoRxRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoRxIndex& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncSetServoRxRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_SetServoRx_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* EtherCAT::Stub::PrepareAsyncSetServoRxRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoRxIndex& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_SetServoRx_, context, request, false);
 }
 
 ::grpc::Status EtherCAT::Stub::GetServoRx(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex& request, ::Nrmk::IndyFramework::ServoRx* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::ServoIndex, ::Nrmk::IndyFramework::ServoRx, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetServoRx_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetServoRx_, context, request, response);
 }
 
-void EtherCAT::Stub::async::GetServoRx(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex* request, ::Nrmk::IndyFramework::ServoRx* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::ServoIndex, ::Nrmk::IndyFramework::ServoRx, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetServoRx_, context, request, response, std::move(f));
+void EtherCAT::Stub::experimental_async::GetServoRx(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex* request, ::Nrmk::IndyFramework::ServoRx* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetServoRx_, context, request, response, std::move(f));
 }
 
-void EtherCAT::Stub::async::GetServoRx(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex* request, ::Nrmk::IndyFramework::ServoRx* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetServoRx_, context, request, response, reactor);
+void EtherCAT::Stub::experimental_async::GetServoRx(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::ServoRx* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetServoRx_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ServoRx>* EtherCAT::Stub::PrepareAsyncGetServoRxRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::ServoRx, ::Nrmk::IndyFramework::ServoIndex, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetServoRx_, context, request);
+void EtherCAT::Stub::experimental_async::GetServoRx(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex* request, ::Nrmk::IndyFramework::ServoRx* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetServoRx_, context, request, response, reactor);
+}
+
+void EtherCAT::Stub::experimental_async::GetServoRx(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::ServoRx* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetServoRx_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ServoRx>* EtherCAT::Stub::AsyncGetServoRxRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncGetServoRxRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::ServoRx>::Create(channel_.get(), cq, rpcmethod_GetServoRx_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ServoRx>* EtherCAT::Stub::PrepareAsyncGetServoRxRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::ServoRx>::Create(channel_.get(), cq, rpcmethod_GetServoRx_, context, request, false);
 }
 
 ::grpc::Status EtherCAT::Stub::GetServoTx(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex& request, ::Nrmk::IndyFramework::ServoTx* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::ServoIndex, ::Nrmk::IndyFramework::ServoTx, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetServoTx_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetServoTx_, context, request, response);
 }
 
-void EtherCAT::Stub::async::GetServoTx(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex* request, ::Nrmk::IndyFramework::ServoTx* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::ServoIndex, ::Nrmk::IndyFramework::ServoTx, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetServoTx_, context, request, response, std::move(f));
+void EtherCAT::Stub::experimental_async::GetServoTx(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex* request, ::Nrmk::IndyFramework::ServoTx* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetServoTx_, context, request, response, std::move(f));
 }
 
-void EtherCAT::Stub::async::GetServoTx(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex* request, ::Nrmk::IndyFramework::ServoTx* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetServoTx_, context, request, response, reactor);
+void EtherCAT::Stub::experimental_async::GetServoTx(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::ServoTx* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetServoTx_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ServoTx>* EtherCAT::Stub::PrepareAsyncGetServoTxRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::ServoTx, ::Nrmk::IndyFramework::ServoIndex, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetServoTx_, context, request);
+void EtherCAT::Stub::experimental_async::GetServoTx(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex* request, ::Nrmk::IndyFramework::ServoTx* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetServoTx_, context, request, response, reactor);
+}
+
+void EtherCAT::Stub::experimental_async::GetServoTx(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::ServoTx* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetServoTx_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ServoTx>* EtherCAT::Stub::AsyncGetServoTxRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncGetServoTxRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::ServoTx>::Create(channel_.get(), cq, rpcmethod_GetServoTx_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ServoTx>* EtherCAT::Stub::PrepareAsyncGetServoTxRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::ServoTx>::Create(channel_.get(), cq, rpcmethod_GetServoTx_, context, request, false);
 }
 
 ::grpc::Status EtherCAT::Stub::SetServoRxKeba(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoRxIndexKeba& request, ::Nrmk::IndyFramework::Empty* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::ServoRxIndexKeba, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetServoRxKeba_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetServoRxKeba_, context, request, response);
 }
 
-void EtherCAT::Stub::async::SetServoRxKeba(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoRxIndexKeba* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::ServoRxIndexKeba, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetServoRxKeba_, context, request, response, std::move(f));
+void EtherCAT::Stub::experimental_async::SetServoRxKeba(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoRxIndexKeba* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetServoRxKeba_, context, request, response, std::move(f));
 }
 
-void EtherCAT::Stub::async::SetServoRxKeba(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoRxIndexKeba* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetServoRxKeba_, context, request, response, reactor);
+void EtherCAT::Stub::experimental_async::SetServoRxKeba(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetServoRxKeba_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* EtherCAT::Stub::PrepareAsyncSetServoRxKebaRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoRxIndexKeba& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ServoRxIndexKeba, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetServoRxKeba_, context, request);
+void EtherCAT::Stub::experimental_async::SetServoRxKeba(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoRxIndexKeba* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetServoRxKeba_, context, request, response, reactor);
+}
+
+void EtherCAT::Stub::experimental_async::SetServoRxKeba(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetServoRxKeba_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* EtherCAT::Stub::AsyncSetServoRxKebaRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoRxIndexKeba& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncSetServoRxKebaRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_SetServoRxKeba_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* EtherCAT::Stub::PrepareAsyncSetServoRxKebaRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoRxIndexKeba& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_SetServoRxKeba_, context, request, false);
 }
 
 ::grpc::Status EtherCAT::Stub::GetServoRxKeba(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex& request, ::Nrmk::IndyFramework::ServoRxKeba* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::ServoIndex, ::Nrmk::IndyFramework::ServoRxKeba, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetServoRxKeba_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetServoRxKeba_, context, request, response);
 }
 
-void EtherCAT::Stub::async::GetServoRxKeba(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex* request, ::Nrmk::IndyFramework::ServoRxKeba* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::ServoIndex, ::Nrmk::IndyFramework::ServoRxKeba, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetServoRxKeba_, context, request, response, std::move(f));
+void EtherCAT::Stub::experimental_async::GetServoRxKeba(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex* request, ::Nrmk::IndyFramework::ServoRxKeba* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetServoRxKeba_, context, request, response, std::move(f));
 }
 
-void EtherCAT::Stub::async::GetServoRxKeba(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex* request, ::Nrmk::IndyFramework::ServoRxKeba* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetServoRxKeba_, context, request, response, reactor);
+void EtherCAT::Stub::experimental_async::GetServoRxKeba(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::ServoRxKeba* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetServoRxKeba_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ServoRxKeba>* EtherCAT::Stub::PrepareAsyncGetServoRxKebaRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::ServoRxKeba, ::Nrmk::IndyFramework::ServoIndex, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetServoRxKeba_, context, request);
+void EtherCAT::Stub::experimental_async::GetServoRxKeba(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex* request, ::Nrmk::IndyFramework::ServoRxKeba* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetServoRxKeba_, context, request, response, reactor);
+}
+
+void EtherCAT::Stub::experimental_async::GetServoRxKeba(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::ServoRxKeba* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetServoRxKeba_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ServoRxKeba>* EtherCAT::Stub::AsyncGetServoRxKebaRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncGetServoRxKebaRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::ServoRxKeba>::Create(channel_.get(), cq, rpcmethod_GetServoRxKeba_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ServoRxKeba>* EtherCAT::Stub::PrepareAsyncGetServoRxKebaRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::ServoRxKeba>::Create(channel_.get(), cq, rpcmethod_GetServoRxKeba_, context, request, false);
 }
 
 ::grpc::Status EtherCAT::Stub::GetServoTxKeba(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex& request, ::Nrmk::IndyFramework::ServoTxKeba* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::ServoIndex, ::Nrmk::IndyFramework::ServoTxKeba, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetServoTxKeba_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetServoTxKeba_, context, request, response);
 }
 
-void EtherCAT::Stub::async::GetServoTxKeba(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex* request, ::Nrmk::IndyFramework::ServoTxKeba* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::ServoIndex, ::Nrmk::IndyFramework::ServoTxKeba, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetServoTxKeba_, context, request, response, std::move(f));
+void EtherCAT::Stub::experimental_async::GetServoTxKeba(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex* request, ::Nrmk::IndyFramework::ServoTxKeba* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetServoTxKeba_, context, request, response, std::move(f));
 }
 
-void EtherCAT::Stub::async::GetServoTxKeba(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex* request, ::Nrmk::IndyFramework::ServoTxKeba* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetServoTxKeba_, context, request, response, reactor);
+void EtherCAT::Stub::experimental_async::GetServoTxKeba(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::ServoTxKeba* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetServoTxKeba_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ServoTxKeba>* EtherCAT::Stub::PrepareAsyncGetServoTxKebaRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::ServoTxKeba, ::Nrmk::IndyFramework::ServoIndex, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetServoTxKeba_, context, request);
+void EtherCAT::Stub::experimental_async::GetServoTxKeba(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex* request, ::Nrmk::IndyFramework::ServoTxKeba* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetServoTxKeba_, context, request, response, reactor);
+}
+
+void EtherCAT::Stub::experimental_async::GetServoTxKeba(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::ServoTxKeba* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetServoTxKeba_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ServoTxKeba>* EtherCAT::Stub::AsyncGetServoTxKebaRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncGetServoTxKebaRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::ServoTxKeba>::Create(channel_.get(), cq, rpcmethod_GetServoTxKeba_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ServoTxKeba>* EtherCAT::Stub::PrepareAsyncGetServoTxKebaRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::ServoTxKeba>::Create(channel_.get(), cq, rpcmethod_GetServoTxKeba_, context, request, false);
 }
 
 ::grpc::Status EtherCAT::Stub::SetServoOn(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex& request, ::Nrmk::IndyFramework::Empty* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::ServoIndex, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetServoOn_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetServoOn_, context, request, response);
 }
 
-void EtherCAT::Stub::async::SetServoOn(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::ServoIndex, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetServoOn_, context, request, response, std::move(f));
+void EtherCAT::Stub::experimental_async::SetServoOn(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetServoOn_, context, request, response, std::move(f));
 }
 
-void EtherCAT::Stub::async::SetServoOn(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetServoOn_, context, request, response, reactor);
+void EtherCAT::Stub::experimental_async::SetServoOn(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetServoOn_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* EtherCAT::Stub::PrepareAsyncSetServoOnRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ServoIndex, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetServoOn_, context, request);
+void EtherCAT::Stub::experimental_async::SetServoOn(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetServoOn_, context, request, response, reactor);
+}
+
+void EtherCAT::Stub::experimental_async::SetServoOn(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetServoOn_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* EtherCAT::Stub::AsyncSetServoOnRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncSetServoOnRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_SetServoOn_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* EtherCAT::Stub::PrepareAsyncSetServoOnRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_SetServoOn_, context, request, false);
 }
 
 ::grpc::Status EtherCAT::Stub::SetServoOff(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex& request, ::Nrmk::IndyFramework::Empty* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::ServoIndex, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetServoOff_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetServoOff_, context, request, response);
 }
 
-void EtherCAT::Stub::async::SetServoOff(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::ServoIndex, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetServoOff_, context, request, response, std::move(f));
+void EtherCAT::Stub::experimental_async::SetServoOff(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetServoOff_, context, request, response, std::move(f));
 }
 
-void EtherCAT::Stub::async::SetServoOff(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetServoOff_, context, request, response, reactor);
+void EtherCAT::Stub::experimental_async::SetServoOff(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetServoOff_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* EtherCAT::Stub::PrepareAsyncSetServoOffRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ServoIndex, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetServoOff_, context, request);
+void EtherCAT::Stub::experimental_async::SetServoOff(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetServoOff_, context, request, response, reactor);
+}
+
+void EtherCAT::Stub::experimental_async::SetServoOff(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetServoOff_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* EtherCAT::Stub::AsyncSetServoOffRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncSetServoOffRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_SetServoOff_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* EtherCAT::Stub::PrepareAsyncSetServoOffRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_SetServoOff_, context, request, false);
 }
 
 ::grpc::Status EtherCAT::Stub::GetServoTemperature(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex& request, ::Nrmk::IndyFramework::ServoTemp* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::ServoIndex, ::Nrmk::IndyFramework::ServoTemp, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetServoTemperature_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetServoTemperature_, context, request, response);
 }
 
-void EtherCAT::Stub::async::GetServoTemperature(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex* request, ::Nrmk::IndyFramework::ServoTemp* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::ServoIndex, ::Nrmk::IndyFramework::ServoTemp, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetServoTemperature_, context, request, response, std::move(f));
+void EtherCAT::Stub::experimental_async::GetServoTemperature(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex* request, ::Nrmk::IndyFramework::ServoTemp* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetServoTemperature_, context, request, response, std::move(f));
 }
 
-void EtherCAT::Stub::async::GetServoTemperature(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex* request, ::Nrmk::IndyFramework::ServoTemp* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetServoTemperature_, context, request, response, reactor);
+void EtherCAT::Stub::experimental_async::GetServoTemperature(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::ServoTemp* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetServoTemperature_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ServoTemp>* EtherCAT::Stub::PrepareAsyncGetServoTemperatureRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::ServoTemp, ::Nrmk::IndyFramework::ServoIndex, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetServoTemperature_, context, request);
+void EtherCAT::Stub::experimental_async::GetServoTemperature(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex* request, ::Nrmk::IndyFramework::ServoTemp* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetServoTemperature_, context, request, response, reactor);
+}
+
+void EtherCAT::Stub::experimental_async::GetServoTemperature(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::ServoTemp* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetServoTemperature_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ServoTemp>* EtherCAT::Stub::AsyncGetServoTemperatureRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncGetServoTemperatureRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::ServoTemp>::Create(channel_.get(), cq, rpcmethod_GetServoTemperature_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ServoTemp>* EtherCAT::Stub::PrepareAsyncGetServoTemperatureRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::ServoTemp>::Create(channel_.get(), cq, rpcmethod_GetServoTemperature_, context, request, false);
 }
 
 ::grpc::Status EtherCAT::Stub::GetServoErrorCode(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex& request, ::Nrmk::IndyFramework::ServoError* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::ServoIndex, ::Nrmk::IndyFramework::ServoError, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetServoErrorCode_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetServoErrorCode_, context, request, response);
 }
 
-void EtherCAT::Stub::async::GetServoErrorCode(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex* request, ::Nrmk::IndyFramework::ServoError* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::ServoIndex, ::Nrmk::IndyFramework::ServoError, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetServoErrorCode_, context, request, response, std::move(f));
+void EtherCAT::Stub::experimental_async::GetServoErrorCode(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex* request, ::Nrmk::IndyFramework::ServoError* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetServoErrorCode_, context, request, response, std::move(f));
 }
 
-void EtherCAT::Stub::async::GetServoErrorCode(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex* request, ::Nrmk::IndyFramework::ServoError* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetServoErrorCode_, context, request, response, reactor);
+void EtherCAT::Stub::experimental_async::GetServoErrorCode(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::ServoError* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetServoErrorCode_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ServoError>* EtherCAT::Stub::PrepareAsyncGetServoErrorCodeRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::ServoError, ::Nrmk::IndyFramework::ServoIndex, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetServoErrorCode_, context, request);
+void EtherCAT::Stub::experimental_async::GetServoErrorCode(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex* request, ::Nrmk::IndyFramework::ServoError* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetServoErrorCode_, context, request, response, reactor);
+}
+
+void EtherCAT::Stub::experimental_async::GetServoErrorCode(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::ServoError* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetServoErrorCode_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ServoError>* EtherCAT::Stub::AsyncGetServoErrorCodeRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncGetServoErrorCodeRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::ServoError>::Create(channel_.get(), cq, rpcmethod_GetServoErrorCode_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ServoError>* EtherCAT::Stub::PrepareAsyncGetServoErrorCodeRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::ServoError>::Create(channel_.get(), cq, rpcmethod_GetServoErrorCode_, context, request, false);
 }
 
 ::grpc::Status EtherCAT::Stub::ResetServo(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex& request, ::Nrmk::IndyFramework::Empty* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::ServoIndex, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ResetServo_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_ResetServo_, context, request, response);
 }
 
-void EtherCAT::Stub::async::ResetServo(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::ServoIndex, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ResetServo_, context, request, response, std::move(f));
+void EtherCAT::Stub::experimental_async::ResetServo(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ResetServo_, context, request, response, std::move(f));
 }
 
-void EtherCAT::Stub::async::ResetServo(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ResetServo_, context, request, response, reactor);
+void EtherCAT::Stub::experimental_async::ResetServo(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ResetServo_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* EtherCAT::Stub::PrepareAsyncResetServoRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ServoIndex, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ResetServo_, context, request);
+void EtherCAT::Stub::experimental_async::ResetServo(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ResetServo_, context, request, response, reactor);
+}
+
+void EtherCAT::Stub::experimental_async::ResetServo(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ResetServo_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* EtherCAT::Stub::AsyncResetServoRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncResetServoRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_ResetServo_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* EtherCAT::Stub::PrepareAsyncResetServoRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_ResetServo_, context, request, false);
 }
 
 ::grpc::Status EtherCAT::Stub::SetCOREManualBrake(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoBrake& request, ::Nrmk::IndyFramework::Empty* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::ServoBrake, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetCOREManualBrake_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetCOREManualBrake_, context, request, response);
 }
 
-void EtherCAT::Stub::async::SetCOREManualBrake(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoBrake* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::ServoBrake, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetCOREManualBrake_, context, request, response, std::move(f));
+void EtherCAT::Stub::experimental_async::SetCOREManualBrake(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoBrake* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetCOREManualBrake_, context, request, response, std::move(f));
 }
 
-void EtherCAT::Stub::async::SetCOREManualBrake(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoBrake* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetCOREManualBrake_, context, request, response, reactor);
+void EtherCAT::Stub::experimental_async::SetCOREManualBrake(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetCOREManualBrake_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* EtherCAT::Stub::PrepareAsyncSetCOREManualBrakeRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoBrake& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ServoBrake, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetCOREManualBrake_, context, request);
+void EtherCAT::Stub::experimental_async::SetCOREManualBrake(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoBrake* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetCOREManualBrake_, context, request, response, reactor);
+}
+
+void EtherCAT::Stub::experimental_async::SetCOREManualBrake(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetCOREManualBrake_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* EtherCAT::Stub::AsyncSetCOREManualBrakeRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoBrake& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncSetCOREManualBrakeRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_SetCOREManualBrake_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* EtherCAT::Stub::PrepareAsyncSetCOREManualBrakeRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoBrake& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_SetCOREManualBrake_, context, request, false);
 }
 
 ::grpc::Status EtherCAT::Stub::SetEndtoolRx(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::EndtoolRx& request, ::Nrmk::IndyFramework::Empty* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::EndtoolRx, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetEndtoolRx_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetEndtoolRx_, context, request, response);
 }
 
-void EtherCAT::Stub::async::SetEndtoolRx(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::EndtoolRx* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::EndtoolRx, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetEndtoolRx_, context, request, response, std::move(f));
+void EtherCAT::Stub::experimental_async::SetEndtoolRx(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::EndtoolRx* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetEndtoolRx_, context, request, response, std::move(f));
 }
 
-void EtherCAT::Stub::async::SetEndtoolRx(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::EndtoolRx* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetEndtoolRx_, context, request, response, reactor);
+void EtherCAT::Stub::experimental_async::SetEndtoolRx(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetEndtoolRx_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* EtherCAT::Stub::PrepareAsyncSetEndtoolRxRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::EndtoolRx& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::EndtoolRx, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetEndtoolRx_, context, request);
+void EtherCAT::Stub::experimental_async::SetEndtoolRx(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::EndtoolRx* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetEndtoolRx_, context, request, response, reactor);
+}
+
+void EtherCAT::Stub::experimental_async::SetEndtoolRx(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetEndtoolRx_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* EtherCAT::Stub::AsyncSetEndtoolRxRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::EndtoolRx& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncSetEndtoolRxRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_SetEndtoolRx_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* EtherCAT::Stub::PrepareAsyncSetEndtoolRxRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::EndtoolRx& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_SetEndtoolRx_, context, request, false);
 }
 
 ::grpc::Status EtherCAT::Stub::GetEndtoolRx(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::EndtoolRx* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::EndtoolRx, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetEndtoolRx_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetEndtoolRx_, context, request, response);
 }
 
-void EtherCAT::Stub::async::GetEndtoolRx(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::EndtoolRx* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::EndtoolRx, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetEndtoolRx_, context, request, response, std::move(f));
+void EtherCAT::Stub::experimental_async::GetEndtoolRx(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::EndtoolRx* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetEndtoolRx_, context, request, response, std::move(f));
 }
 
-void EtherCAT::Stub::async::GetEndtoolRx(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::EndtoolRx* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetEndtoolRx_, context, request, response, reactor);
+void EtherCAT::Stub::experimental_async::GetEndtoolRx(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::EndtoolRx* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetEndtoolRx_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::EndtoolRx>* EtherCAT::Stub::PrepareAsyncGetEndtoolRxRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::EndtoolRx, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetEndtoolRx_, context, request);
+void EtherCAT::Stub::experimental_async::GetEndtoolRx(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::EndtoolRx* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetEndtoolRx_, context, request, response, reactor);
+}
+
+void EtherCAT::Stub::experimental_async::GetEndtoolRx(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::EndtoolRx* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetEndtoolRx_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::EndtoolRx>* EtherCAT::Stub::AsyncGetEndtoolRxRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncGetEndtoolRxRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::EndtoolRx>::Create(channel_.get(), cq, rpcmethod_GetEndtoolRx_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::EndtoolRx>* EtherCAT::Stub::PrepareAsyncGetEndtoolRxRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::EndtoolRx>::Create(channel_.get(), cq, rpcmethod_GetEndtoolRx_, context, request, false);
 }
 
 ::grpc::Status EtherCAT::Stub::GetEndtoolTx(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::EndtoolTx* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::EndtoolTx, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetEndtoolTx_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetEndtoolTx_, context, request, response);
 }
 
-void EtherCAT::Stub::async::GetEndtoolTx(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::EndtoolTx* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::EndtoolTx, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetEndtoolTx_, context, request, response, std::move(f));
+void EtherCAT::Stub::experimental_async::GetEndtoolTx(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::EndtoolTx* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetEndtoolTx_, context, request, response, std::move(f));
 }
 
-void EtherCAT::Stub::async::GetEndtoolTx(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::EndtoolTx* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetEndtoolTx_, context, request, response, reactor);
+void EtherCAT::Stub::experimental_async::GetEndtoolTx(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::EndtoolTx* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetEndtoolTx_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::EndtoolTx>* EtherCAT::Stub::PrepareAsyncGetEndtoolTxRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::EndtoolTx, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetEndtoolTx_, context, request);
+void EtherCAT::Stub::experimental_async::GetEndtoolTx(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::EndtoolTx* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetEndtoolTx_, context, request, response, reactor);
+}
+
+void EtherCAT::Stub::experimental_async::GetEndtoolTx(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::EndtoolTx* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetEndtoolTx_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::EndtoolTx>* EtherCAT::Stub::AsyncGetEndtoolTxRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncGetEndtoolTxRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::EndtoolTx>::Create(channel_.get(), cq, rpcmethod_GetEndtoolTx_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::EndtoolTx>* EtherCAT::Stub::PrepareAsyncGetEndtoolTxRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::EndtoolTx>::Create(channel_.get(), cq, rpcmethod_GetEndtoolTx_, context, request, false);
 }
 
 ::grpc::Status EtherCAT::Stub::GetEndtoolDockingTx(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::EndtoolDockingTx* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::EndtoolDockingTx, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetEndtoolDockingTx_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetEndtoolDockingTx_, context, request, response);
 }
 
-void EtherCAT::Stub::async::GetEndtoolDockingTx(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::EndtoolDockingTx* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::EndtoolDockingTx, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetEndtoolDockingTx_, context, request, response, std::move(f));
+void EtherCAT::Stub::experimental_async::GetEndtoolDockingTx(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::EndtoolDockingTx* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetEndtoolDockingTx_, context, request, response, std::move(f));
 }
 
-void EtherCAT::Stub::async::GetEndtoolDockingTx(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::EndtoolDockingTx* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetEndtoolDockingTx_, context, request, response, reactor);
+void EtherCAT::Stub::experimental_async::GetEndtoolDockingTx(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::EndtoolDockingTx* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetEndtoolDockingTx_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::EndtoolDockingTx>* EtherCAT::Stub::PrepareAsyncGetEndtoolDockingTxRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::EndtoolDockingTx, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetEndtoolDockingTx_, context, request);
+void EtherCAT::Stub::experimental_async::GetEndtoolDockingTx(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::EndtoolDockingTx* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetEndtoolDockingTx_, context, request, response, reactor);
+}
+
+void EtherCAT::Stub::experimental_async::GetEndtoolDockingTx(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::EndtoolDockingTx* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetEndtoolDockingTx_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::EndtoolDockingTx>* EtherCAT::Stub::AsyncGetEndtoolDockingTxRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncGetEndtoolDockingTxRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::EndtoolDockingTx>::Create(channel_.get(), cq, rpcmethod_GetEndtoolDockingTx_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::EndtoolDockingTx>* EtherCAT::Stub::PrepareAsyncGetEndtoolDockingTxRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::EndtoolDockingTx>::Create(channel_.get(), cq, rpcmethod_GetEndtoolDockingTx_, context, request, false);
+}
+
+::grpc::Status EtherCAT::Stub::SetEndtoolRS485Rx(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::EndtoolRS485Rx& request, ::Nrmk::IndyFramework::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetEndtoolRS485Rx_, context, request, response);
+}
+
+void EtherCAT::Stub::experimental_async::SetEndtoolRS485Rx(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::EndtoolRS485Rx* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetEndtoolRS485Rx_, context, request, response, std::move(f));
+}
+
+void EtherCAT::Stub::experimental_async::SetEndtoolRS485Rx(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetEndtoolRS485Rx_, context, request, response, std::move(f));
+}
+
+void EtherCAT::Stub::experimental_async::SetEndtoolRS485Rx(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::EndtoolRS485Rx* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetEndtoolRS485Rx_, context, request, response, reactor);
+}
+
+void EtherCAT::Stub::experimental_async::SetEndtoolRS485Rx(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetEndtoolRS485Rx_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* EtherCAT::Stub::AsyncSetEndtoolRS485RxRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::EndtoolRS485Rx& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_SetEndtoolRS485Rx_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* EtherCAT::Stub::PrepareAsyncSetEndtoolRS485RxRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::EndtoolRS485Rx& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_SetEndtoolRS485Rx_, context, request, false);
+}
+
+::grpc::Status EtherCAT::Stub::GetEndtoolRS485Rx(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::EndtoolRS485Rx* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetEndtoolRS485Rx_, context, request, response);
+}
+
+void EtherCAT::Stub::experimental_async::GetEndtoolRS485Rx(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::EndtoolRS485Rx* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetEndtoolRS485Rx_, context, request, response, std::move(f));
+}
+
+void EtherCAT::Stub::experimental_async::GetEndtoolRS485Rx(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::EndtoolRS485Rx* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetEndtoolRS485Rx_, context, request, response, std::move(f));
+}
+
+void EtherCAT::Stub::experimental_async::GetEndtoolRS485Rx(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::EndtoolRS485Rx* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetEndtoolRS485Rx_, context, request, response, reactor);
+}
+
+void EtherCAT::Stub::experimental_async::GetEndtoolRS485Rx(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::EndtoolRS485Rx* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetEndtoolRS485Rx_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::EndtoolRS485Rx>* EtherCAT::Stub::AsyncGetEndtoolRS485RxRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::EndtoolRS485Rx>::Create(channel_.get(), cq, rpcmethod_GetEndtoolRS485Rx_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::EndtoolRS485Rx>* EtherCAT::Stub::PrepareAsyncGetEndtoolRS485RxRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::EndtoolRS485Rx>::Create(channel_.get(), cq, rpcmethod_GetEndtoolRS485Rx_, context, request, false);
+}
+
+::grpc::Status EtherCAT::Stub::GetEndtoolRS485Tx(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::EndtoolRS485Tx* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetEndtoolRS485Tx_, context, request, response);
+}
+
+void EtherCAT::Stub::experimental_async::GetEndtoolRS485Tx(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::EndtoolRS485Tx* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetEndtoolRS485Tx_, context, request, response, std::move(f));
+}
+
+void EtherCAT::Stub::experimental_async::GetEndtoolRS485Tx(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::EndtoolRS485Tx* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetEndtoolRS485Tx_, context, request, response, std::move(f));
+}
+
+void EtherCAT::Stub::experimental_async::GetEndtoolRS485Tx(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::EndtoolRS485Tx* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetEndtoolRS485Tx_, context, request, response, reactor);
+}
+
+void EtherCAT::Stub::experimental_async::GetEndtoolRS485Tx(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::EndtoolRS485Tx* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetEndtoolRS485Tx_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::EndtoolRS485Tx>* EtherCAT::Stub::AsyncGetEndtoolRS485TxRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::EndtoolRS485Tx>::Create(channel_.get(), cq, rpcmethod_GetEndtoolRS485Tx_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::EndtoolRS485Tx>* EtherCAT::Stub::PrepareAsyncGetEndtoolRS485TxRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::EndtoolRS485Tx>::Create(channel_.get(), cq, rpcmethod_GetEndtoolRS485Tx_, context, request, false);
+}
+
+::grpc::Status EtherCAT::Stub::SetEndtoolLedDim(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::LedDim& request, ::Nrmk::IndyFramework::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetEndtoolLedDim_, context, request, response);
+}
+
+void EtherCAT::Stub::experimental_async::SetEndtoolLedDim(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::LedDim* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetEndtoolLedDim_, context, request, response, std::move(f));
+}
+
+void EtherCAT::Stub::experimental_async::SetEndtoolLedDim(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetEndtoolLedDim_, context, request, response, std::move(f));
+}
+
+void EtherCAT::Stub::experimental_async::SetEndtoolLedDim(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::LedDim* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetEndtoolLedDim_, context, request, response, reactor);
+}
+
+void EtherCAT::Stub::experimental_async::SetEndtoolLedDim(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetEndtoolLedDim_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* EtherCAT::Stub::AsyncSetEndtoolLedDimRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::LedDim& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_SetEndtoolLedDim_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* EtherCAT::Stub::PrepareAsyncSetEndtoolLedDimRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::LedDim& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_SetEndtoolLedDim_, context, request, false);
 }
 
 ::grpc::Status EtherCAT::Stub::SetIOBoardRx(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::IOBoardRx& request, ::Nrmk::IndyFramework::Empty* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::IOBoardRx, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetIOBoardRx_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetIOBoardRx_, context, request, response);
 }
 
-void EtherCAT::Stub::async::SetIOBoardRx(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::IOBoardRx* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::IOBoardRx, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetIOBoardRx_, context, request, response, std::move(f));
+void EtherCAT::Stub::experimental_async::SetIOBoardRx(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::IOBoardRx* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetIOBoardRx_, context, request, response, std::move(f));
 }
 
-void EtherCAT::Stub::async::SetIOBoardRx(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::IOBoardRx* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetIOBoardRx_, context, request, response, reactor);
+void EtherCAT::Stub::experimental_async::SetIOBoardRx(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetIOBoardRx_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* EtherCAT::Stub::PrepareAsyncSetIOBoardRxRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::IOBoardRx& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::IOBoardRx, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetIOBoardRx_, context, request);
+void EtherCAT::Stub::experimental_async::SetIOBoardRx(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::IOBoardRx* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetIOBoardRx_, context, request, response, reactor);
+}
+
+void EtherCAT::Stub::experimental_async::SetIOBoardRx(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetIOBoardRx_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* EtherCAT::Stub::AsyncSetIOBoardRxRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::IOBoardRx& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncSetIOBoardRxRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_SetIOBoardRx_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* EtherCAT::Stub::PrepareAsyncSetIOBoardRxRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::IOBoardRx& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_SetIOBoardRx_, context, request, false);
 }
 
 ::grpc::Status EtherCAT::Stub::GetIOBoardTx(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::IOBoardTx* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::IOBoardTx, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetIOBoardTx_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetIOBoardTx_, context, request, response);
 }
 
-void EtherCAT::Stub::async::GetIOBoardTx(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::IOBoardTx* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::IOBoardTx, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetIOBoardTx_, context, request, response, std::move(f));
+void EtherCAT::Stub::experimental_async::GetIOBoardTx(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::IOBoardTx* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetIOBoardTx_, context, request, response, std::move(f));
 }
 
-void EtherCAT::Stub::async::GetIOBoardTx(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::IOBoardTx* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetIOBoardTx_, context, request, response, reactor);
+void EtherCAT::Stub::experimental_async::GetIOBoardTx(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::IOBoardTx* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetIOBoardTx_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::IOBoardTx>* EtherCAT::Stub::PrepareAsyncGetIOBoardTxRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::IOBoardTx, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetIOBoardTx_, context, request);
+void EtherCAT::Stub::experimental_async::GetIOBoardTx(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::IOBoardTx* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetIOBoardTx_, context, request, response, reactor);
+}
+
+void EtherCAT::Stub::experimental_async::GetIOBoardTx(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::IOBoardTx* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetIOBoardTx_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::IOBoardTx>* EtherCAT::Stub::AsyncGetIOBoardTxRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncGetIOBoardTxRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::IOBoardTx>::Create(channel_.get(), cq, rpcmethod_GetIOBoardTx_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::IOBoardTx>* EtherCAT::Stub::PrepareAsyncGetIOBoardTxRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::IOBoardTx>::Create(channel_.get(), cq, rpcmethod_GetIOBoardTx_, context, request, false);
 }
 
 ::grpc::Status EtherCAT::Stub::GetIOBoardRx(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::IOBoardRx* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::IOBoardRx, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetIOBoardRx_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetIOBoardRx_, context, request, response);
 }
 
-void EtherCAT::Stub::async::GetIOBoardRx(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::IOBoardRx* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::IOBoardRx, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetIOBoardRx_, context, request, response, std::move(f));
+void EtherCAT::Stub::experimental_async::GetIOBoardRx(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::IOBoardRx* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetIOBoardRx_, context, request, response, std::move(f));
 }
 
-void EtherCAT::Stub::async::GetIOBoardRx(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::IOBoardRx* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetIOBoardRx_, context, request, response, reactor);
+void EtherCAT::Stub::experimental_async::GetIOBoardRx(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::IOBoardRx* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetIOBoardRx_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::IOBoardRx>* EtherCAT::Stub::PrepareAsyncGetIOBoardRxRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::IOBoardRx, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetIOBoardRx_, context, request);
+void EtherCAT::Stub::experimental_async::GetIOBoardRx(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::IOBoardRx* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetIOBoardRx_, context, request, response, reactor);
+}
+
+void EtherCAT::Stub::experimental_async::GetIOBoardRx(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::IOBoardRx* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetIOBoardRx_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::IOBoardRx>* EtherCAT::Stub::AsyncGetIOBoardRxRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncGetIOBoardRxRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::IOBoardRx>::Create(channel_.get(), cq, rpcmethod_GetIOBoardRx_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::IOBoardRx>* EtherCAT::Stub::PrepareAsyncGetIOBoardRxRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::IOBoardRx>::Create(channel_.get(), cq, rpcmethod_GetIOBoardRx_, context, request, false);
 }
 
 ::grpc::Status EtherCAT::Stub::GetDI(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DIOIndex& request, ::Nrmk::IndyFramework::DIODigitalInput* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::DIOIndex, ::Nrmk::IndyFramework::DIODigitalInput, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetDI_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetDI_, context, request, response);
 }
 
-void EtherCAT::Stub::async::GetDI(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DIOIndex* request, ::Nrmk::IndyFramework::DIODigitalInput* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::DIOIndex, ::Nrmk::IndyFramework::DIODigitalInput, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetDI_, context, request, response, std::move(f));
+void EtherCAT::Stub::experimental_async::GetDI(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DIOIndex* request, ::Nrmk::IndyFramework::DIODigitalInput* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetDI_, context, request, response, std::move(f));
 }
 
-void EtherCAT::Stub::async::GetDI(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DIOIndex* request, ::Nrmk::IndyFramework::DIODigitalInput* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetDI_, context, request, response, reactor);
+void EtherCAT::Stub::experimental_async::GetDI(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::DIODigitalInput* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetDI_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::DIODigitalInput>* EtherCAT::Stub::PrepareAsyncGetDIRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DIOIndex& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::DIODigitalInput, ::Nrmk::IndyFramework::DIOIndex, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetDI_, context, request);
+void EtherCAT::Stub::experimental_async::GetDI(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DIOIndex* request, ::Nrmk::IndyFramework::DIODigitalInput* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetDI_, context, request, response, reactor);
+}
+
+void EtherCAT::Stub::experimental_async::GetDI(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::DIODigitalInput* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetDI_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::DIODigitalInput>* EtherCAT::Stub::AsyncGetDIRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DIOIndex& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncGetDIRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::DIODigitalInput>::Create(channel_.get(), cq, rpcmethod_GetDI_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::DIODigitalInput>* EtherCAT::Stub::PrepareAsyncGetDIRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DIOIndex& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::DIODigitalInput>::Create(channel_.get(), cq, rpcmethod_GetDI_, context, request, false);
 }
 
 ::grpc::Status EtherCAT::Stub::GetDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DIOIndex& request, ::Nrmk::IndyFramework::DIODigitalOutput* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::DIOIndex, ::Nrmk::IndyFramework::DIODigitalOutput, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetDO_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetDO_, context, request, response);
 }
 
-void EtherCAT::Stub::async::GetDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DIOIndex* request, ::Nrmk::IndyFramework::DIODigitalOutput* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::DIOIndex, ::Nrmk::IndyFramework::DIODigitalOutput, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetDO_, context, request, response, std::move(f));
+void EtherCAT::Stub::experimental_async::GetDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DIOIndex* request, ::Nrmk::IndyFramework::DIODigitalOutput* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetDO_, context, request, response, std::move(f));
 }
 
-void EtherCAT::Stub::async::GetDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DIOIndex* request, ::Nrmk::IndyFramework::DIODigitalOutput* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetDO_, context, request, response, reactor);
+void EtherCAT::Stub::experimental_async::GetDO(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::DIODigitalOutput* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetDO_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::DIODigitalOutput>* EtherCAT::Stub::PrepareAsyncGetDORaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DIOIndex& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::DIODigitalOutput, ::Nrmk::IndyFramework::DIOIndex, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetDO_, context, request);
+void EtherCAT::Stub::experimental_async::GetDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DIOIndex* request, ::Nrmk::IndyFramework::DIODigitalOutput* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetDO_, context, request, response, reactor);
+}
+
+void EtherCAT::Stub::experimental_async::GetDO(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::DIODigitalOutput* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetDO_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::DIODigitalOutput>* EtherCAT::Stub::AsyncGetDORaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DIOIndex& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncGetDORaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::DIODigitalOutput>::Create(channel_.get(), cq, rpcmethod_GetDO_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::DIODigitalOutput>* EtherCAT::Stub::PrepareAsyncGetDORaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DIOIndex& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::DIODigitalOutput>::Create(channel_.get(), cq, rpcmethod_GetDO_, context, request, false);
 }
 
 ::grpc::Status EtherCAT::Stub::SetDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DIODigitalOutput& request, ::Nrmk::IndyFramework::Empty* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::DIODigitalOutput, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetDO_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetDO_, context, request, response);
 }
 
-void EtherCAT::Stub::async::SetDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DIODigitalOutput* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::DIODigitalOutput, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetDO_, context, request, response, std::move(f));
+void EtherCAT::Stub::experimental_async::SetDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DIODigitalOutput* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetDO_, context, request, response, std::move(f));
 }
 
-void EtherCAT::Stub::async::SetDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DIODigitalOutput* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetDO_, context, request, response, reactor);
+void EtherCAT::Stub::experimental_async::SetDO(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetDO_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* EtherCAT::Stub::PrepareAsyncSetDORaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DIODigitalOutput& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::DIODigitalOutput, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetDO_, context, request);
+void EtherCAT::Stub::experimental_async::SetDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DIODigitalOutput* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetDO_, context, request, response, reactor);
+}
+
+void EtherCAT::Stub::experimental_async::SetDO(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetDO_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* EtherCAT::Stub::AsyncSetDORaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DIODigitalOutput& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncSetDORaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_SetDO_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* EtherCAT::Stub::PrepareAsyncSetDORaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DIODigitalOutput& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_SetDO_, context, request, false);
 }
 
 ::grpc::Status EtherCAT::Stub::GetMaxTorqueSDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::EcatIndex& request, ::Nrmk::IndyFramework::SDOIntVal* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::EcatIndex, ::Nrmk::IndyFramework::SDOIntVal, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetMaxTorqueSDO_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetMaxTorqueSDO_, context, request, response);
 }
 
-void EtherCAT::Stub::async::GetMaxTorqueSDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::EcatIndex* request, ::Nrmk::IndyFramework::SDOIntVal* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::EcatIndex, ::Nrmk::IndyFramework::SDOIntVal, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetMaxTorqueSDO_, context, request, response, std::move(f));
+void EtherCAT::Stub::experimental_async::GetMaxTorqueSDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::EcatIndex* request, ::Nrmk::IndyFramework::SDOIntVal* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetMaxTorqueSDO_, context, request, response, std::move(f));
 }
 
-void EtherCAT::Stub::async::GetMaxTorqueSDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::EcatIndex* request, ::Nrmk::IndyFramework::SDOIntVal* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetMaxTorqueSDO_, context, request, response, reactor);
+void EtherCAT::Stub::experimental_async::GetMaxTorqueSDO(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::SDOIntVal* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetMaxTorqueSDO_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::SDOIntVal>* EtherCAT::Stub::PrepareAsyncGetMaxTorqueSDORaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::EcatIndex& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::SDOIntVal, ::Nrmk::IndyFramework::EcatIndex, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetMaxTorqueSDO_, context, request);
+void EtherCAT::Stub::experimental_async::GetMaxTorqueSDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::EcatIndex* request, ::Nrmk::IndyFramework::SDOIntVal* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetMaxTorqueSDO_, context, request, response, reactor);
+}
+
+void EtherCAT::Stub::experimental_async::GetMaxTorqueSDO(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::SDOIntVal* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetMaxTorqueSDO_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::SDOIntVal>* EtherCAT::Stub::AsyncGetMaxTorqueSDORaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::EcatIndex& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncGetMaxTorqueSDORaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::SDOIntVal>::Create(channel_.get(), cq, rpcmethod_GetMaxTorqueSDO_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::SDOIntVal>* EtherCAT::Stub::PrepareAsyncGetMaxTorqueSDORaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::EcatIndex& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::SDOIntVal>::Create(channel_.get(), cq, rpcmethod_GetMaxTorqueSDO_, context, request, false);
 }
 
 ::grpc::Status EtherCAT::Stub::GetProfileVelSDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::EcatIndex& request, ::Nrmk::IndyFramework::SDOIntVal* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::EcatIndex, ::Nrmk::IndyFramework::SDOIntVal, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetProfileVelSDO_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetProfileVelSDO_, context, request, response);
 }
 
-void EtherCAT::Stub::async::GetProfileVelSDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::EcatIndex* request, ::Nrmk::IndyFramework::SDOIntVal* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::EcatIndex, ::Nrmk::IndyFramework::SDOIntVal, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetProfileVelSDO_, context, request, response, std::move(f));
+void EtherCAT::Stub::experimental_async::GetProfileVelSDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::EcatIndex* request, ::Nrmk::IndyFramework::SDOIntVal* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetProfileVelSDO_, context, request, response, std::move(f));
 }
 
-void EtherCAT::Stub::async::GetProfileVelSDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::EcatIndex* request, ::Nrmk::IndyFramework::SDOIntVal* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetProfileVelSDO_, context, request, response, reactor);
+void EtherCAT::Stub::experimental_async::GetProfileVelSDO(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::SDOIntVal* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetProfileVelSDO_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::SDOIntVal>* EtherCAT::Stub::PrepareAsyncGetProfileVelSDORaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::EcatIndex& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::SDOIntVal, ::Nrmk::IndyFramework::EcatIndex, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetProfileVelSDO_, context, request);
+void EtherCAT::Stub::experimental_async::GetProfileVelSDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::EcatIndex* request, ::Nrmk::IndyFramework::SDOIntVal* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetProfileVelSDO_, context, request, response, reactor);
+}
+
+void EtherCAT::Stub::experimental_async::GetProfileVelSDO(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::SDOIntVal* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetProfileVelSDO_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::SDOIntVal>* EtherCAT::Stub::AsyncGetProfileVelSDORaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::EcatIndex& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncGetProfileVelSDORaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::SDOIntVal>::Create(channel_.get(), cq, rpcmethod_GetProfileVelSDO_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::SDOIntVal>* EtherCAT::Stub::PrepareAsyncGetProfileVelSDORaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::EcatIndex& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::SDOIntVal>::Create(channel_.get(), cq, rpcmethod_GetProfileVelSDO_, context, request, false);
 }
 
 ::grpc::Status EtherCAT::Stub::GetProfileAccSDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::EcatIndex& request, ::Nrmk::IndyFramework::SDOIntVal* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::EcatIndex, ::Nrmk::IndyFramework::SDOIntVal, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetProfileAccSDO_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetProfileAccSDO_, context, request, response);
 }
 
-void EtherCAT::Stub::async::GetProfileAccSDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::EcatIndex* request, ::Nrmk::IndyFramework::SDOIntVal* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::EcatIndex, ::Nrmk::IndyFramework::SDOIntVal, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetProfileAccSDO_, context, request, response, std::move(f));
+void EtherCAT::Stub::experimental_async::GetProfileAccSDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::EcatIndex* request, ::Nrmk::IndyFramework::SDOIntVal* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetProfileAccSDO_, context, request, response, std::move(f));
 }
 
-void EtherCAT::Stub::async::GetProfileAccSDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::EcatIndex* request, ::Nrmk::IndyFramework::SDOIntVal* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetProfileAccSDO_, context, request, response, reactor);
+void EtherCAT::Stub::experimental_async::GetProfileAccSDO(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::SDOIntVal* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetProfileAccSDO_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::SDOIntVal>* EtherCAT::Stub::PrepareAsyncGetProfileAccSDORaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::EcatIndex& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::SDOIntVal, ::Nrmk::IndyFramework::EcatIndex, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetProfileAccSDO_, context, request);
+void EtherCAT::Stub::experimental_async::GetProfileAccSDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::EcatIndex* request, ::Nrmk::IndyFramework::SDOIntVal* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetProfileAccSDO_, context, request, response, reactor);
+}
+
+void EtherCAT::Stub::experimental_async::GetProfileAccSDO(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::SDOIntVal* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetProfileAccSDO_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::SDOIntVal>* EtherCAT::Stub::AsyncGetProfileAccSDORaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::EcatIndex& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncGetProfileAccSDORaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::SDOIntVal>::Create(channel_.get(), cq, rpcmethod_GetProfileAccSDO_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::SDOIntVal>* EtherCAT::Stub::PrepareAsyncGetProfileAccSDORaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::EcatIndex& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::SDOIntVal>::Create(channel_.get(), cq, rpcmethod_GetProfileAccSDO_, context, request, false);
 }
 
 ::grpc::Status EtherCAT::Stub::GetProfileDecSDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::EcatIndex& request, ::Nrmk::IndyFramework::SDOIntVal* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::EcatIndex, ::Nrmk::IndyFramework::SDOIntVal, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetProfileDecSDO_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetProfileDecSDO_, context, request, response);
 }
 
-void EtherCAT::Stub::async::GetProfileDecSDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::EcatIndex* request, ::Nrmk::IndyFramework::SDOIntVal* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::EcatIndex, ::Nrmk::IndyFramework::SDOIntVal, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetProfileDecSDO_, context, request, response, std::move(f));
+void EtherCAT::Stub::experimental_async::GetProfileDecSDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::EcatIndex* request, ::Nrmk::IndyFramework::SDOIntVal* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetProfileDecSDO_, context, request, response, std::move(f));
 }
 
-void EtherCAT::Stub::async::GetProfileDecSDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::EcatIndex* request, ::Nrmk::IndyFramework::SDOIntVal* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetProfileDecSDO_, context, request, response, reactor);
+void EtherCAT::Stub::experimental_async::GetProfileDecSDO(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::SDOIntVal* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetProfileDecSDO_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::SDOIntVal>* EtherCAT::Stub::PrepareAsyncGetProfileDecSDORaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::EcatIndex& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::SDOIntVal, ::Nrmk::IndyFramework::EcatIndex, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetProfileDecSDO_, context, request);
+void EtherCAT::Stub::experimental_async::GetProfileDecSDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::EcatIndex* request, ::Nrmk::IndyFramework::SDOIntVal* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetProfileDecSDO_, context, request, response, reactor);
+}
+
+void EtherCAT::Stub::experimental_async::GetProfileDecSDO(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::SDOIntVal* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetProfileDecSDO_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::SDOIntVal>* EtherCAT::Stub::AsyncGetProfileDecSDORaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::EcatIndex& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncGetProfileDecSDORaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::SDOIntVal>::Create(channel_.get(), cq, rpcmethod_GetProfileDecSDO_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::SDOIntVal>* EtherCAT::Stub::PrepareAsyncGetProfileDecSDORaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::EcatIndex& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::SDOIntVal>::Create(channel_.get(), cq, rpcmethod_GetProfileDecSDO_, context, request, false);
 }
 
 ::grpc::Status EtherCAT::Stub::SetMaxTorqueSDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoParam& request, ::Nrmk::IndyFramework::Empty* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::ServoParam, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetMaxTorqueSDO_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetMaxTorqueSDO_, context, request, response);
 }
 
-void EtherCAT::Stub::async::SetMaxTorqueSDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoParam* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::ServoParam, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetMaxTorqueSDO_, context, request, response, std::move(f));
+void EtherCAT::Stub::experimental_async::SetMaxTorqueSDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoParam* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetMaxTorqueSDO_, context, request, response, std::move(f));
 }
 
-void EtherCAT::Stub::async::SetMaxTorqueSDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoParam* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetMaxTorqueSDO_, context, request, response, reactor);
+void EtherCAT::Stub::experimental_async::SetMaxTorqueSDO(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetMaxTorqueSDO_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* EtherCAT::Stub::PrepareAsyncSetMaxTorqueSDORaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoParam& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ServoParam, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetMaxTorqueSDO_, context, request);
+void EtherCAT::Stub::experimental_async::SetMaxTorqueSDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoParam* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetMaxTorqueSDO_, context, request, response, reactor);
+}
+
+void EtherCAT::Stub::experimental_async::SetMaxTorqueSDO(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetMaxTorqueSDO_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* EtherCAT::Stub::AsyncSetMaxTorqueSDORaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoParam& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncSetMaxTorqueSDORaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_SetMaxTorqueSDO_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* EtherCAT::Stub::PrepareAsyncSetMaxTorqueSDORaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoParam& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_SetMaxTorqueSDO_, context, request, false);
 }
 
 ::grpc::Status EtherCAT::Stub::SetProfileVelSDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoParam& request, ::Nrmk::IndyFramework::Empty* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::ServoParam, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetProfileVelSDO_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetProfileVelSDO_, context, request, response);
 }
 
-void EtherCAT::Stub::async::SetProfileVelSDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoParam* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::ServoParam, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetProfileVelSDO_, context, request, response, std::move(f));
+void EtherCAT::Stub::experimental_async::SetProfileVelSDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoParam* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetProfileVelSDO_, context, request, response, std::move(f));
 }
 
-void EtherCAT::Stub::async::SetProfileVelSDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoParam* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetProfileVelSDO_, context, request, response, reactor);
+void EtherCAT::Stub::experimental_async::SetProfileVelSDO(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetProfileVelSDO_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* EtherCAT::Stub::PrepareAsyncSetProfileVelSDORaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoParam& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ServoParam, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetProfileVelSDO_, context, request);
+void EtherCAT::Stub::experimental_async::SetProfileVelSDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoParam* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetProfileVelSDO_, context, request, response, reactor);
+}
+
+void EtherCAT::Stub::experimental_async::SetProfileVelSDO(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetProfileVelSDO_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* EtherCAT::Stub::AsyncSetProfileVelSDORaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoParam& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncSetProfileVelSDORaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_SetProfileVelSDO_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* EtherCAT::Stub::PrepareAsyncSetProfileVelSDORaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoParam& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_SetProfileVelSDO_, context, request, false);
 }
 
 ::grpc::Status EtherCAT::Stub::SetProfileAccSDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoParam& request, ::Nrmk::IndyFramework::Empty* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::ServoParam, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetProfileAccSDO_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetProfileAccSDO_, context, request, response);
 }
 
-void EtherCAT::Stub::async::SetProfileAccSDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoParam* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::ServoParam, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetProfileAccSDO_, context, request, response, std::move(f));
+void EtherCAT::Stub::experimental_async::SetProfileAccSDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoParam* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetProfileAccSDO_, context, request, response, std::move(f));
 }
 
-void EtherCAT::Stub::async::SetProfileAccSDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoParam* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetProfileAccSDO_, context, request, response, reactor);
+void EtherCAT::Stub::experimental_async::SetProfileAccSDO(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetProfileAccSDO_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* EtherCAT::Stub::PrepareAsyncSetProfileAccSDORaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoParam& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ServoParam, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetProfileAccSDO_, context, request);
+void EtherCAT::Stub::experimental_async::SetProfileAccSDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoParam* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetProfileAccSDO_, context, request, response, reactor);
+}
+
+void EtherCAT::Stub::experimental_async::SetProfileAccSDO(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetProfileAccSDO_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* EtherCAT::Stub::AsyncSetProfileAccSDORaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoParam& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncSetProfileAccSDORaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_SetProfileAccSDO_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* EtherCAT::Stub::PrepareAsyncSetProfileAccSDORaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoParam& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_SetProfileAccSDO_, context, request, false);
 }
 
 ::grpc::Status EtherCAT::Stub::SetProfileDecSDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoParam& request, ::Nrmk::IndyFramework::Empty* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::ServoParam, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetProfileDecSDO_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetProfileDecSDO_, context, request, response);
 }
 
-void EtherCAT::Stub::async::SetProfileDecSDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoParam* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::ServoParam, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetProfileDecSDO_, context, request, response, std::move(f));
+void EtherCAT::Stub::experimental_async::SetProfileDecSDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoParam* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetProfileDecSDO_, context, request, response, std::move(f));
 }
 
-void EtherCAT::Stub::async::SetProfileDecSDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoParam* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetProfileDecSDO_, context, request, response, reactor);
+void EtherCAT::Stub::experimental_async::SetProfileDecSDO(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetProfileDecSDO_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* EtherCAT::Stub::PrepareAsyncSetProfileDecSDORaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoParam& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ServoParam, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetProfileDecSDO_, context, request);
+void EtherCAT::Stub::experimental_async::SetProfileDecSDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoParam* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetProfileDecSDO_, context, request, response, reactor);
+}
+
+void EtherCAT::Stub::experimental_async::SetProfileDecSDO(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetProfileDecSDO_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* EtherCAT::Stub::AsyncSetProfileDecSDORaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoParam& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncSetProfileDecSDORaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_SetProfileDecSDO_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* EtherCAT::Stub::PrepareAsyncSetProfileDecSDORaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoParam& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_SetProfileDecSDO_, context, request, false);
 }
 
 ::grpc::Status EtherCAT::Stub::GetRobotZeroCount(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex& request, ::Nrmk::IndyFramework::RobotZeroCount* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::ServoIndex, ::Nrmk::IndyFramework::RobotZeroCount, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetRobotZeroCount_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetRobotZeroCount_, context, request, response);
 }
 
-void EtherCAT::Stub::async::GetRobotZeroCount(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex* request, ::Nrmk::IndyFramework::RobotZeroCount* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::ServoIndex, ::Nrmk::IndyFramework::RobotZeroCount, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetRobotZeroCount_, context, request, response, std::move(f));
+void EtherCAT::Stub::experimental_async::GetRobotZeroCount(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex* request, ::Nrmk::IndyFramework::RobotZeroCount* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetRobotZeroCount_, context, request, response, std::move(f));
 }
 
-void EtherCAT::Stub::async::GetRobotZeroCount(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex* request, ::Nrmk::IndyFramework::RobotZeroCount* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetRobotZeroCount_, context, request, response, reactor);
+void EtherCAT::Stub::experimental_async::GetRobotZeroCount(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::RobotZeroCount* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetRobotZeroCount_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::RobotZeroCount>* EtherCAT::Stub::PrepareAsyncGetRobotZeroCountRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::RobotZeroCount, ::Nrmk::IndyFramework::ServoIndex, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetRobotZeroCount_, context, request);
+void EtherCAT::Stub::experimental_async::GetRobotZeroCount(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex* request, ::Nrmk::IndyFramework::RobotZeroCount* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetRobotZeroCount_, context, request, response, reactor);
+}
+
+void EtherCAT::Stub::experimental_async::GetRobotZeroCount(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::RobotZeroCount* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetRobotZeroCount_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::RobotZeroCount>* EtherCAT::Stub::AsyncGetRobotZeroCountRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncGetRobotZeroCountRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::RobotZeroCount>::Create(channel_.get(), cq, rpcmethod_GetRobotZeroCount_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::RobotZeroCount>* EtherCAT::Stub::PrepareAsyncGetRobotZeroCountRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::RobotZeroCount>::Create(channel_.get(), cq, rpcmethod_GetRobotZeroCount_, context, request, false);
 }
 
 ::grpc::Status EtherCAT::Stub::SetRobotZeroAsCurrent(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex& request, ::Nrmk::IndyFramework::Empty* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::ServoIndex, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetRobotZeroAsCurrent_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetRobotZeroAsCurrent_, context, request, response);
 }
 
-void EtherCAT::Stub::async::SetRobotZeroAsCurrent(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::ServoIndex, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetRobotZeroAsCurrent_, context, request, response, std::move(f));
+void EtherCAT::Stub::experimental_async::SetRobotZeroAsCurrent(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetRobotZeroAsCurrent_, context, request, response, std::move(f));
 }
 
-void EtherCAT::Stub::async::SetRobotZeroAsCurrent(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetRobotZeroAsCurrent_, context, request, response, reactor);
+void EtherCAT::Stub::experimental_async::SetRobotZeroAsCurrent(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetRobotZeroAsCurrent_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* EtherCAT::Stub::PrepareAsyncSetRobotZeroAsCurrentRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ServoIndex, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetRobotZeroAsCurrent_, context, request);
+void EtherCAT::Stub::experimental_async::SetRobotZeroAsCurrent(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetRobotZeroAsCurrent_, context, request, response, reactor);
+}
+
+void EtherCAT::Stub::experimental_async::SetRobotZeroAsCurrent(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetRobotZeroAsCurrent_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* EtherCAT::Stub::AsyncSetRobotZeroAsCurrentRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncSetRobotZeroAsCurrentRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_SetRobotZeroAsCurrent_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* EtherCAT::Stub::PrepareAsyncSetRobotZeroAsCurrentRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ServoIndex& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_SetRobotZeroAsCurrent_, context, request, false);
 }
 
 EtherCAT::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       EtherCAT_method_names[0],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::MasterStatus, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](EtherCAT::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::Nrmk::IndyFramework::Empty* req,
-             ::Nrmk::IndyFramework::MasterStatus* resp) {
-               return service->GetMasterStatus(ctx, req, resp);
-             }, this)));
+      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::MasterStatus>(
+          std::mem_fn(&EtherCAT::Service::GetMasterStatus), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       EtherCAT_method_names[1],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::SlaveStatus, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](EtherCAT::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::Nrmk::IndyFramework::Empty* req,
-             ::Nrmk::IndyFramework::SlaveStatus* resp) {
-               return service->GetSlaveStatus(ctx, req, resp);
-             }, this)));
+      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::SlaveStatus>(
+          std::mem_fn(&EtherCAT::Service::GetSlaveStatus), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       EtherCAT_method_names[2],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::EcatDomainStatus, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](EtherCAT::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::Nrmk::IndyFramework::Empty* req,
-             ::Nrmk::IndyFramework::EcatDomainStatus* resp) {
-               return service->GetRxDomainStatus(ctx, req, resp);
-             }, this)));
+      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::EcatDomainStatus>(
+          std::mem_fn(&EtherCAT::Service::GetRxDomainStatus), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       EtherCAT_method_names[3],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::EcatDomainStatus, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](EtherCAT::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::Nrmk::IndyFramework::Empty* req,
-             ::Nrmk::IndyFramework::EcatDomainStatus* resp) {
-               return service->GetTxDomainStatus(ctx, req, resp);
-             }, this)));
+      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::EcatDomainStatus>(
+          std::mem_fn(&EtherCAT::Service::GetTxDomainStatus), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       EtherCAT_method_names[4],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::EcatSystemReady, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](EtherCAT::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::Nrmk::IndyFramework::Empty* req,
-             ::Nrmk::IndyFramework::EcatSystemReady* resp) {
-               return service->IsSystemReady(ctx, req, resp);
-             }, this)));
+      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::EcatSystemReady>(
+          std::mem_fn(&EtherCAT::Service::IsSystemReady), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       EtherCAT_method_names[5],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::EcatServoOn, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](EtherCAT::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::Nrmk::IndyFramework::Empty* req,
-             ::Nrmk::IndyFramework::EcatServoOn* resp) {
-               return service->IsServoOn(ctx, req, resp);
-             }, this)));
+      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::EcatServoOn>(
+          std::mem_fn(&EtherCAT::Service::IsServoOn), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       EtherCAT_method_names[6],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::SlaveTypeNum, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](EtherCAT::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::Nrmk::IndyFramework::Empty* req,
-             ::Nrmk::IndyFramework::SlaveTypeNum* resp) {
-               return service->GetSlaveTypeNum(ctx, req, resp);
-             }, this)));
+      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::SlaveTypeNum>(
+          std::mem_fn(&EtherCAT::Service::GetSlaveTypeNum), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       EtherCAT_method_names[7],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](EtherCAT::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::Nrmk::IndyFramework::Empty* req,
-             ::Nrmk::IndyFramework::Empty* resp) {
-               return service->ResetOverflowCount(ctx, req, resp);
-             }, this)));
+      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Empty>(
+          std::mem_fn(&EtherCAT::Service::ResetOverflowCount), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       EtherCAT_method_names[8],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::ServoRxIndex, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](EtherCAT::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::Nrmk::IndyFramework::ServoRxIndex* req,
-             ::Nrmk::IndyFramework::Empty* resp) {
-               return service->SetServoRx(ctx, req, resp);
-             }, this)));
+      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::ServoRxIndex, ::Nrmk::IndyFramework::Empty>(
+          std::mem_fn(&EtherCAT::Service::SetServoRx), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       EtherCAT_method_names[9],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::ServoIndex, ::Nrmk::IndyFramework::ServoRx, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](EtherCAT::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::Nrmk::IndyFramework::ServoIndex* req,
-             ::Nrmk::IndyFramework::ServoRx* resp) {
-               return service->GetServoRx(ctx, req, resp);
-             }, this)));
+      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::ServoIndex, ::Nrmk::IndyFramework::ServoRx>(
+          std::mem_fn(&EtherCAT::Service::GetServoRx), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       EtherCAT_method_names[10],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::ServoIndex, ::Nrmk::IndyFramework::ServoTx, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](EtherCAT::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::Nrmk::IndyFramework::ServoIndex* req,
-             ::Nrmk::IndyFramework::ServoTx* resp) {
-               return service->GetServoTx(ctx, req, resp);
-             }, this)));
+      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::ServoIndex, ::Nrmk::IndyFramework::ServoTx>(
+          std::mem_fn(&EtherCAT::Service::GetServoTx), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       EtherCAT_method_names[11],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::ServoRxIndexKeba, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](EtherCAT::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::Nrmk::IndyFramework::ServoRxIndexKeba* req,
-             ::Nrmk::IndyFramework::Empty* resp) {
-               return service->SetServoRxKeba(ctx, req, resp);
-             }, this)));
+      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::ServoRxIndexKeba, ::Nrmk::IndyFramework::Empty>(
+          std::mem_fn(&EtherCAT::Service::SetServoRxKeba), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       EtherCAT_method_names[12],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::ServoIndex, ::Nrmk::IndyFramework::ServoRxKeba, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](EtherCAT::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::Nrmk::IndyFramework::ServoIndex* req,
-             ::Nrmk::IndyFramework::ServoRxKeba* resp) {
-               return service->GetServoRxKeba(ctx, req, resp);
-             }, this)));
+      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::ServoIndex, ::Nrmk::IndyFramework::ServoRxKeba>(
+          std::mem_fn(&EtherCAT::Service::GetServoRxKeba), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       EtherCAT_method_names[13],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::ServoIndex, ::Nrmk::IndyFramework::ServoTxKeba, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](EtherCAT::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::Nrmk::IndyFramework::ServoIndex* req,
-             ::Nrmk::IndyFramework::ServoTxKeba* resp) {
-               return service->GetServoTxKeba(ctx, req, resp);
-             }, this)));
+      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::ServoIndex, ::Nrmk::IndyFramework::ServoTxKeba>(
+          std::mem_fn(&EtherCAT::Service::GetServoTxKeba), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       EtherCAT_method_names[14],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::ServoIndex, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](EtherCAT::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::Nrmk::IndyFramework::ServoIndex* req,
-             ::Nrmk::IndyFramework::Empty* resp) {
-               return service->SetServoOn(ctx, req, resp);
-             }, this)));
+      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::ServoIndex, ::Nrmk::IndyFramework::Empty>(
+          std::mem_fn(&EtherCAT::Service::SetServoOn), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       EtherCAT_method_names[15],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::ServoIndex, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](EtherCAT::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::Nrmk::IndyFramework::ServoIndex* req,
-             ::Nrmk::IndyFramework::Empty* resp) {
-               return service->SetServoOff(ctx, req, resp);
-             }, this)));
+      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::ServoIndex, ::Nrmk::IndyFramework::Empty>(
+          std::mem_fn(&EtherCAT::Service::SetServoOff), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       EtherCAT_method_names[16],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::ServoIndex, ::Nrmk::IndyFramework::ServoTemp, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](EtherCAT::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::Nrmk::IndyFramework::ServoIndex* req,
-             ::Nrmk::IndyFramework::ServoTemp* resp) {
-               return service->GetServoTemperature(ctx, req, resp);
-             }, this)));
+      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::ServoIndex, ::Nrmk::IndyFramework::ServoTemp>(
+          std::mem_fn(&EtherCAT::Service::GetServoTemperature), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       EtherCAT_method_names[17],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::ServoIndex, ::Nrmk::IndyFramework::ServoError, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](EtherCAT::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::Nrmk::IndyFramework::ServoIndex* req,
-             ::Nrmk::IndyFramework::ServoError* resp) {
-               return service->GetServoErrorCode(ctx, req, resp);
-             }, this)));
+      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::ServoIndex, ::Nrmk::IndyFramework::ServoError>(
+          std::mem_fn(&EtherCAT::Service::GetServoErrorCode), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       EtherCAT_method_names[18],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::ServoIndex, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](EtherCAT::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::Nrmk::IndyFramework::ServoIndex* req,
-             ::Nrmk::IndyFramework::Empty* resp) {
-               return service->ResetServo(ctx, req, resp);
-             }, this)));
+      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::ServoIndex, ::Nrmk::IndyFramework::Empty>(
+          std::mem_fn(&EtherCAT::Service::ResetServo), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       EtherCAT_method_names[19],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::ServoBrake, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](EtherCAT::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::Nrmk::IndyFramework::ServoBrake* req,
-             ::Nrmk::IndyFramework::Empty* resp) {
-               return service->SetCOREManualBrake(ctx, req, resp);
-             }, this)));
+      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::ServoBrake, ::Nrmk::IndyFramework::Empty>(
+          std::mem_fn(&EtherCAT::Service::SetCOREManualBrake), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       EtherCAT_method_names[20],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::EndtoolRx, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](EtherCAT::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::Nrmk::IndyFramework::EndtoolRx* req,
-             ::Nrmk::IndyFramework::Empty* resp) {
-               return service->SetEndtoolRx(ctx, req, resp);
-             }, this)));
+      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::EndtoolRx, ::Nrmk::IndyFramework::Empty>(
+          std::mem_fn(&EtherCAT::Service::SetEndtoolRx), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       EtherCAT_method_names[21],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::EndtoolRx, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](EtherCAT::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::Nrmk::IndyFramework::Empty* req,
-             ::Nrmk::IndyFramework::EndtoolRx* resp) {
-               return service->GetEndtoolRx(ctx, req, resp);
-             }, this)));
+      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::EndtoolRx>(
+          std::mem_fn(&EtherCAT::Service::GetEndtoolRx), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       EtherCAT_method_names[22],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::EndtoolTx, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](EtherCAT::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::Nrmk::IndyFramework::Empty* req,
-             ::Nrmk::IndyFramework::EndtoolTx* resp) {
-               return service->GetEndtoolTx(ctx, req, resp);
-             }, this)));
+      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::EndtoolTx>(
+          std::mem_fn(&EtherCAT::Service::GetEndtoolTx), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       EtherCAT_method_names[23],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::EndtoolDockingTx, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](EtherCAT::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::Nrmk::IndyFramework::Empty* req,
-             ::Nrmk::IndyFramework::EndtoolDockingTx* resp) {
-               return service->GetEndtoolDockingTx(ctx, req, resp);
-             }, this)));
+      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::EndtoolDockingTx>(
+          std::mem_fn(&EtherCAT::Service::GetEndtoolDockingTx), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       EtherCAT_method_names[24],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::IOBoardRx, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](EtherCAT::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::Nrmk::IndyFramework::IOBoardRx* req,
-             ::Nrmk::IndyFramework::Empty* resp) {
-               return service->SetIOBoardRx(ctx, req, resp);
-             }, this)));
+      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::EndtoolRS485Rx, ::Nrmk::IndyFramework::Empty>(
+          std::mem_fn(&EtherCAT::Service::SetEndtoolRS485Rx), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       EtherCAT_method_names[25],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::IOBoardTx, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](EtherCAT::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::Nrmk::IndyFramework::Empty* req,
-             ::Nrmk::IndyFramework::IOBoardTx* resp) {
-               return service->GetIOBoardTx(ctx, req, resp);
-             }, this)));
+      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::EndtoolRS485Rx>(
+          std::mem_fn(&EtherCAT::Service::GetEndtoolRS485Rx), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       EtherCAT_method_names[26],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::IOBoardRx, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](EtherCAT::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::Nrmk::IndyFramework::Empty* req,
-             ::Nrmk::IndyFramework::IOBoardRx* resp) {
-               return service->GetIOBoardRx(ctx, req, resp);
-             }, this)));
+      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::EndtoolRS485Tx>(
+          std::mem_fn(&EtherCAT::Service::GetEndtoolRS485Tx), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       EtherCAT_method_names[27],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::DIOIndex, ::Nrmk::IndyFramework::DIODigitalInput, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](EtherCAT::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::Nrmk::IndyFramework::DIOIndex* req,
-             ::Nrmk::IndyFramework::DIODigitalInput* resp) {
-               return service->GetDI(ctx, req, resp);
-             }, this)));
+      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::LedDim, ::Nrmk::IndyFramework::Empty>(
+          std::mem_fn(&EtherCAT::Service::SetEndtoolLedDim), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       EtherCAT_method_names[28],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::DIOIndex, ::Nrmk::IndyFramework::DIODigitalOutput, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](EtherCAT::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::Nrmk::IndyFramework::DIOIndex* req,
-             ::Nrmk::IndyFramework::DIODigitalOutput* resp) {
-               return service->GetDO(ctx, req, resp);
-             }, this)));
+      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::IOBoardRx, ::Nrmk::IndyFramework::Empty>(
+          std::mem_fn(&EtherCAT::Service::SetIOBoardRx), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       EtherCAT_method_names[29],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::DIODigitalOutput, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](EtherCAT::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::Nrmk::IndyFramework::DIODigitalOutput* req,
-             ::Nrmk::IndyFramework::Empty* resp) {
-               return service->SetDO(ctx, req, resp);
-             }, this)));
+      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::IOBoardTx>(
+          std::mem_fn(&EtherCAT::Service::GetIOBoardTx), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       EtherCAT_method_names[30],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::EcatIndex, ::Nrmk::IndyFramework::SDOIntVal, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](EtherCAT::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::Nrmk::IndyFramework::EcatIndex* req,
-             ::Nrmk::IndyFramework::SDOIntVal* resp) {
-               return service->GetMaxTorqueSDO(ctx, req, resp);
-             }, this)));
+      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::IOBoardRx>(
+          std::mem_fn(&EtherCAT::Service::GetIOBoardRx), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       EtherCAT_method_names[31],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::EcatIndex, ::Nrmk::IndyFramework::SDOIntVal, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](EtherCAT::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::Nrmk::IndyFramework::EcatIndex* req,
-             ::Nrmk::IndyFramework::SDOIntVal* resp) {
-               return service->GetProfileVelSDO(ctx, req, resp);
-             }, this)));
+      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::DIOIndex, ::Nrmk::IndyFramework::DIODigitalInput>(
+          std::mem_fn(&EtherCAT::Service::GetDI), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       EtherCAT_method_names[32],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::EcatIndex, ::Nrmk::IndyFramework::SDOIntVal, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](EtherCAT::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::Nrmk::IndyFramework::EcatIndex* req,
-             ::Nrmk::IndyFramework::SDOIntVal* resp) {
-               return service->GetProfileAccSDO(ctx, req, resp);
-             }, this)));
+      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::DIOIndex, ::Nrmk::IndyFramework::DIODigitalOutput>(
+          std::mem_fn(&EtherCAT::Service::GetDO), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       EtherCAT_method_names[33],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::EcatIndex, ::Nrmk::IndyFramework::SDOIntVal, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](EtherCAT::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::Nrmk::IndyFramework::EcatIndex* req,
-             ::Nrmk::IndyFramework::SDOIntVal* resp) {
-               return service->GetProfileDecSDO(ctx, req, resp);
-             }, this)));
+      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::DIODigitalOutput, ::Nrmk::IndyFramework::Empty>(
+          std::mem_fn(&EtherCAT::Service::SetDO), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       EtherCAT_method_names[34],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::ServoParam, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](EtherCAT::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::Nrmk::IndyFramework::ServoParam* req,
-             ::Nrmk::IndyFramework::Empty* resp) {
-               return service->SetMaxTorqueSDO(ctx, req, resp);
-             }, this)));
+      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::EcatIndex, ::Nrmk::IndyFramework::SDOIntVal>(
+          std::mem_fn(&EtherCAT::Service::GetMaxTorqueSDO), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       EtherCAT_method_names[35],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::ServoParam, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](EtherCAT::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::Nrmk::IndyFramework::ServoParam* req,
-             ::Nrmk::IndyFramework::Empty* resp) {
-               return service->SetProfileVelSDO(ctx, req, resp);
-             }, this)));
+      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::EcatIndex, ::Nrmk::IndyFramework::SDOIntVal>(
+          std::mem_fn(&EtherCAT::Service::GetProfileVelSDO), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       EtherCAT_method_names[36],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::ServoParam, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](EtherCAT::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::Nrmk::IndyFramework::ServoParam* req,
-             ::Nrmk::IndyFramework::Empty* resp) {
-               return service->SetProfileAccSDO(ctx, req, resp);
-             }, this)));
+      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::EcatIndex, ::Nrmk::IndyFramework::SDOIntVal>(
+          std::mem_fn(&EtherCAT::Service::GetProfileAccSDO), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       EtherCAT_method_names[37],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::ServoParam, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](EtherCAT::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::Nrmk::IndyFramework::ServoParam* req,
-             ::Nrmk::IndyFramework::Empty* resp) {
-               return service->SetProfileDecSDO(ctx, req, resp);
-             }, this)));
+      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::EcatIndex, ::Nrmk::IndyFramework::SDOIntVal>(
+          std::mem_fn(&EtherCAT::Service::GetProfileDecSDO), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       EtherCAT_method_names[38],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::ServoIndex, ::Nrmk::IndyFramework::RobotZeroCount, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](EtherCAT::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::Nrmk::IndyFramework::ServoIndex* req,
-             ::Nrmk::IndyFramework::RobotZeroCount* resp) {
-               return service->GetRobotZeroCount(ctx, req, resp);
-             }, this)));
+      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::ServoParam, ::Nrmk::IndyFramework::Empty>(
+          std::mem_fn(&EtherCAT::Service::SetMaxTorqueSDO), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       EtherCAT_method_names[39],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::ServoIndex, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](EtherCAT::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::Nrmk::IndyFramework::ServoIndex* req,
-             ::Nrmk::IndyFramework::Empty* resp) {
-               return service->SetRobotZeroAsCurrent(ctx, req, resp);
-             }, this)));
+      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::ServoParam, ::Nrmk::IndyFramework::Empty>(
+          std::mem_fn(&EtherCAT::Service::SetProfileVelSDO), this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      EtherCAT_method_names[40],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::ServoParam, ::Nrmk::IndyFramework::Empty>(
+          std::mem_fn(&EtherCAT::Service::SetProfileAccSDO), this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      EtherCAT_method_names[41],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::ServoParam, ::Nrmk::IndyFramework::Empty>(
+          std::mem_fn(&EtherCAT::Service::SetProfileDecSDO), this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      EtherCAT_method_names[42],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::ServoIndex, ::Nrmk::IndyFramework::RobotZeroCount>(
+          std::mem_fn(&EtherCAT::Service::GetRobotZeroCount), this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      EtherCAT_method_names[43],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::ServoIndex, ::Nrmk::IndyFramework::Empty>(
+          std::mem_fn(&EtherCAT::Service::SetRobotZeroAsCurrent), this)));
 }
 
 EtherCAT::Service::~Service() {
@@ -1602,6 +1739,34 @@ EtherCAT::Service::~Service() {
 }
 
 ::grpc::Status EtherCAT::Service::GetEndtoolDockingTx(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::EndtoolDockingTx* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status EtherCAT::Service::SetEndtoolRS485Rx(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::EndtoolRS485Rx* request, ::Nrmk::IndyFramework::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status EtherCAT::Service::GetEndtoolRS485Rx(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::EndtoolRS485Rx* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status EtherCAT::Service::GetEndtoolRS485Tx(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::EndtoolRS485Tx* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status EtherCAT::Service::SetEndtoolLedDim(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::LedDim* request, ::Nrmk::IndyFramework::Empty* response) {
   (void) context;
   (void) request;
   (void) response;

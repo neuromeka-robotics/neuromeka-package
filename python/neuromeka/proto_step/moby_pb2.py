@@ -21,7 +21,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\nmoby.proto\x12\x12Nrmk.IndyFramework\x1a\x0fmoby_msgs.proto\x1a\x11\x63ommon_msgs.proto2\x82\x16\n\x04Moby\x12J\n\x0cGetMobyState\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1d.Nrmk.IndyFramework.MobyState\"\x00\x12T\n\x11GetMobyErrorState\x12\x19.Nrmk.IndyFramework.Empty\x1a\".Nrmk.IndyFramework.MobyErrorState\"\x00\x12\x41\n\x07Recover\x12\x19.Nrmk.IndyFramework.Empty\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12H\n\x0bGetMobyPose\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1c.Nrmk.IndyFramework.MobyPose\"\x00\x12\x46\n\nGetMobyVel\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1b.Nrmk.IndyFramework.MobyVel\"\x00\x12G\n\rResetMobyPose\x12\x19.Nrmk.IndyFramework.Empty\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12U\n\x13GetRotationAngleDeg\x12\x19.Nrmk.IndyFramework.Empty\x1a!.Nrmk.IndyFramework.SwerveDoubles\"\x00\x12O\n\rGetDriveSpeed\x12\x19.Nrmk.IndyFramework.Empty\x1a!.Nrmk.IndyFramework.SwerveDoubles\"\x00\x12J\n\x0cGetTargetVel\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1d.Nrmk.IndyFramework.TargetVel\"\x00\x12R\n\x14GetRotationZeroCount\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1d.Nrmk.IndyFramework.ZeroCount\"\x00\x12J\n\x0bGetGyroData\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1e.Nrmk.IndyFramework.DoubleVals\"\x00\x12I\n\x0fResetGyroSensor\x12\x19.Nrmk.IndyFramework.Empty\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12J\n\x0eUseGyroForOdom\x12\x1b.Nrmk.IndyFramework.BoolVal\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12K\n\x0fGetGyroFullData\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1b.Nrmk.IndyFramework.IMUData\"\x00\x12J\n\x0fGetIRSensorData\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1a.Nrmk.IndyFramework.IRData\"\x00\x12J\n\x0fGetUSSensorData\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1a.Nrmk.IndyFramework.USData\"\x00\x12\x46\n\nGetBMSData\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1b.Nrmk.IndyFramework.BMSData\"\x00\x12L\n\x0eSetStepControl\x12\x1d.Nrmk.IndyFramework.TargetVel\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12\x44\n\nStopMotion\x12\x19.Nrmk.IndyFramework.Empty\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12U\n\x13SetRotationAngleDeg\x12!.Nrmk.IndyFramework.SwerveDoubles\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12L\n\nDriveWheel\x12!.Nrmk.IndyFramework.SwerveDoubles\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12P\n\x16SetZeroPosAsCurrentPos\x12\x19.Nrmk.IndyFramework.Empty\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12P\n\x11SetRotationVelAcc\x12\x1e.Nrmk.IndyFramework.DoubleVals\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12R\n\x17SetRotationInterpolator\x12\x1a.Nrmk.IndyFramework.IntVal\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12M\n\x0eSetDriveAccDec\x12\x1e.Nrmk.IndyFramework.DoubleVals\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12U\n\x19SetDriveInterpolatorOnOff\x12\x1b.Nrmk.IndyFramework.BoolVal\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12T\n\x19SetRotationControllerType\x12\x1a.Nrmk.IndyFramework.IntVal\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12N\n\x12SetForceKinematics\x12\x1b.Nrmk.IndyFramework.BoolVal\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12N\n\x12GetForceKinematics\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1b.Nrmk.IndyFramework.BoolVal\"\x00\x12G\n\x0bPauseBumper\x12\x1b.Nrmk.IndyFramework.BoolVal\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12J\n\x0eTurnLightOnOff\x12\x1b.Nrmk.IndyFramework.BoolVal\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12I\n\rTurnBuzzOnOff\x12\x1b.Nrmk.IndyFramework.BoolVal\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12P\n\x0fSetControlParam\x12 .Nrmk.IndyFramework.RotationGain\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12Q\n\x0fGetControlParam\x12\x1a.Nrmk.IndyFramework.IntVal\x1a .Nrmk.IndyFramework.RotationGain\"\x00\x12H\n\x0eStartRTLogging\x12\x19.Nrmk.IndyFramework.Empty\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12\x46\n\x0c\x45ndRTLogging\x12\x19.Nrmk.IndyFramework.Empty\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x62\x06proto3'
+  serialized_pb=b'\n\nmoby.proto\x12\x12Nrmk.IndyFramework\x1a\x0fmoby_msgs.proto\x1a\x11\x63ommon_msgs.proto2\xe5\x16\n\x04Moby\x12J\n\x0cGetMobyState\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1d.Nrmk.IndyFramework.MobyState\"\x00\x12T\n\x11GetMobyErrorState\x12\x19.Nrmk.IndyFramework.Empty\x1a\".Nrmk.IndyFramework.MobyErrorState\"\x00\x12\x41\n\x07Recover\x12\x19.Nrmk.IndyFramework.Empty\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12H\n\x0bGetMobyPose\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1c.Nrmk.IndyFramework.MobyPose\"\x00\x12\x46\n\nGetMobyVel\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1b.Nrmk.IndyFramework.MobyVel\"\x00\x12G\n\rResetMobyPose\x12\x19.Nrmk.IndyFramework.Empty\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12U\n\x13GetRotationAngleDeg\x12\x19.Nrmk.IndyFramework.Empty\x1a!.Nrmk.IndyFramework.SwerveDoubles\"\x00\x12O\n\rGetDriveSpeed\x12\x19.Nrmk.IndyFramework.Empty\x1a!.Nrmk.IndyFramework.SwerveDoubles\"\x00\x12J\n\x0cGetTargetVel\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1d.Nrmk.IndyFramework.TargetVel\"\x00\x12R\n\x14GetRotationZeroCount\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1d.Nrmk.IndyFramework.ZeroCount\"\x00\x12J\n\x0bGetGyroData\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1e.Nrmk.IndyFramework.DoubleVals\"\x00\x12I\n\x0fResetGyroSensor\x12\x19.Nrmk.IndyFramework.Empty\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12J\n\x0eUseGyroForOdom\x12\x1b.Nrmk.IndyFramework.BoolVal\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12K\n\x0fGetGyroFullData\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1b.Nrmk.IndyFramework.IMUData\"\x00\x12J\n\x0fGetIRSensorData\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1a.Nrmk.IndyFramework.IRData\"\x00\x12J\n\x0fGetUSSensorData\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1a.Nrmk.IndyFramework.USData\"\x00\x12\x46\n\nGetBMSData\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1b.Nrmk.IndyFramework.BMSData\"\x00\x12L\n\x0eSetStepControl\x12\x1d.Nrmk.IndyFramework.TargetVel\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12\x44\n\nStopMotion\x12\x19.Nrmk.IndyFramework.Empty\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12U\n\x13SetRotationAngleDeg\x12!.Nrmk.IndyFramework.SwerveDoubles\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12L\n\nDriveWheel\x12!.Nrmk.IndyFramework.SwerveDoubles\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12P\n\x16SetZeroPosAsCurrentPos\x12\x19.Nrmk.IndyFramework.Empty\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12P\n\x11SetRotationVelAcc\x12\x1e.Nrmk.IndyFramework.DoubleVals\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12R\n\x17SetRotationInterpolator\x12\x1a.Nrmk.IndyFramework.IntVal\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12M\n\x0eSetDriveAccDec\x12\x1e.Nrmk.IndyFramework.DoubleVals\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12U\n\x19SetDriveInterpolatorOnOff\x12\x1b.Nrmk.IndyFramework.BoolVal\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12T\n\x19SetRotationControllerType\x12\x1a.Nrmk.IndyFramework.IntVal\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12[\n\x12SetForceKinematics\x12(.Nrmk.IndyFramework.ForcedKinematicsData\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12[\n\x12GetForceKinematics\x12\x19.Nrmk.IndyFramework.Empty\x1a(.Nrmk.IndyFramework.ForcedKinematicsData\"\x00\x12G\n\x0bPauseBumper\x12\x1b.Nrmk.IndyFramework.BoolVal\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12J\n\x0eTurnLightOnOff\x12\x1b.Nrmk.IndyFramework.BoolVal\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12I\n\rTurnBuzzOnOff\x12\x1b.Nrmk.IndyFramework.BoolVal\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12G\n\nSetExtraDO\x12\x1c.Nrmk.IndyFramework.BoolVals\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12P\n\x0fSetControlParam\x12 .Nrmk.IndyFramework.RotationGain\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12Q\n\x0fGetControlParam\x12\x1a.Nrmk.IndyFramework.IntVal\x1a .Nrmk.IndyFramework.RotationGain\"\x00\x12H\n\x0eStartRTLogging\x12\x19.Nrmk.IndyFramework.Empty\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12\x46\n\x0c\x45ndRTLogging\x12\x19.Nrmk.IndyFramework.Empty\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x62\x06proto3'
   ,
   dependencies=[moby__msgs__pb2.DESCRIPTOR,common__msgs__pb2.DESCRIPTOR,])
 
@@ -39,7 +39,7 @@ _MOBY = _descriptor.ServiceDescriptor(
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
   serialized_start=71,
-  serialized_end=2889,
+  serialized_end=2988,
   methods=[
   _descriptor.MethodDescriptor(
     name='GetMobyState',
@@ -316,7 +316,7 @@ _MOBY = _descriptor.ServiceDescriptor(
     full_name='Nrmk.IndyFramework.Moby.SetForceKinematics',
     index=27,
     containing_service=None,
-    input_type=moby__msgs__pb2._BOOLVAL,
+    input_type=moby__msgs__pb2._FORCEDKINEMATICSDATA,
     output_type=common__msgs__pb2._EMPTY,
     serialized_options=None,
     create_key=_descriptor._internal_create_key,
@@ -327,7 +327,7 @@ _MOBY = _descriptor.ServiceDescriptor(
     index=28,
     containing_service=None,
     input_type=common__msgs__pb2._EMPTY,
-    output_type=moby__msgs__pb2._BOOLVAL,
+    output_type=moby__msgs__pb2._FORCEDKINEMATICSDATA,
     serialized_options=None,
     create_key=_descriptor._internal_create_key,
   ),
@@ -362,9 +362,19 @@ _MOBY = _descriptor.ServiceDescriptor(
     create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
+    name='SetExtraDO',
+    full_name='Nrmk.IndyFramework.Moby.SetExtraDO',
+    index=32,
+    containing_service=None,
+    input_type=moby__msgs__pb2._BOOLVALS,
+    output_type=common__msgs__pb2._EMPTY,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
     name='SetControlParam',
     full_name='Nrmk.IndyFramework.Moby.SetControlParam',
-    index=32,
+    index=33,
     containing_service=None,
     input_type=moby__msgs__pb2._ROTATIONGAIN,
     output_type=common__msgs__pb2._EMPTY,
@@ -374,7 +384,7 @@ _MOBY = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='GetControlParam',
     full_name='Nrmk.IndyFramework.Moby.GetControlParam',
-    index=33,
+    index=34,
     containing_service=None,
     input_type=moby__msgs__pb2._INTVAL,
     output_type=moby__msgs__pb2._ROTATIONGAIN,
@@ -384,7 +394,7 @@ _MOBY = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='StartRTLogging',
     full_name='Nrmk.IndyFramework.Moby.StartRTLogging',
-    index=34,
+    index=35,
     containing_service=None,
     input_type=common__msgs__pb2._EMPTY,
     output_type=common__msgs__pb2._EMPTY,
@@ -394,7 +404,7 @@ _MOBY = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='EndRTLogging',
     full_name='Nrmk.IndyFramework.Moby.EndRTLogging',
-    index=35,
+    index=36,
     containing_service=None,
     input_type=common__msgs__pb2._EMPTY,
     output_type=common__msgs__pb2._EMPTY,

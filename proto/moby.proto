@@ -45,13 +45,14 @@ service Moby {
     rpc SetDriveInterpolatorOnOff(BoolVal) returns (Empty) {}
     //rpc SetRotationInterpolatorParam(DoubleVals) returns (Empty) {}
     rpc SetRotationControllerType(IntVal) returns (Empty) {}
-    rpc SetForceKinematics(BoolVal) returns (Empty) {}
-    rpc GetForceKinematics(Empty) returns (BoolVal) {}
+    rpc SetForceKinematics(ForcedKinematicsData) returns (Empty) {}
+    rpc GetForceKinematics(Empty) returns (ForcedKinematicsData) {}
 
     // Moby-Agri related commands
     rpc PauseBumper(BoolVal) returns (Empty) {}
     rpc TurnLightOnOff(BoolVal) returns (Empty) {}
     rpc TurnBuzzOnOff(BoolVal) returns (Empty) {}
+    rpc SetExtraDO(BoolVals) returns (Empty) {}
     // rpc GetRobotZeroCount(Empty) returns (RobotZeroCount) {}
     // rpc SetRobotZeroAsCurrent(Empty) returns (Empty) {}
 

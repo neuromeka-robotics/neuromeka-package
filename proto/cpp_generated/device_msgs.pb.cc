@@ -4,662 +4,1046 @@
 #include "device_msgs.pb.h"
 
 #include <algorithm>
-#include "google/protobuf/io/coded_stream.h"
-#include "google/protobuf/extension_set.h"
-#include "google/protobuf/wire_format_lite.h"
-#include "google/protobuf/descriptor.h"
-#include "google/protobuf/generated_message_reflection.h"
-#include "google/protobuf/reflection_ops.h"
-#include "google/protobuf/wire_format.h"
-#include "google/protobuf/generated_message_tctable_impl.h"
-// @@protoc_insertion_point(includes)
 
-// Must be included last.
-#include "google/protobuf/port_def.inc"
-PROTOBUF_PRAGMA_INIT_SEG
-namespace _pb = ::google::protobuf;
-namespace _pbi = ::google::protobuf::internal;
-namespace _fl = ::google::protobuf::internal::field_layout;
+#include <google/protobuf/stubs/common.h>
+#include <google/protobuf/io/coded_stream.h>
+#include <google/protobuf/extension_set.h>
+#include <google/protobuf/wire_format_lite.h>
+#include <google/protobuf/descriptor.h>
+#include <google/protobuf/generated_message_reflection.h>
+#include <google/protobuf/reflection_ops.h>
+#include <google/protobuf/wire_format.h>
+// @@protoc_insertion_point(includes)
+#include <google/protobuf/port_def.inc>
+extern PROTOBUF_INTERNAL_EXPORT_device_5fmsgs_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_AnalogSignal_device_5fmsgs_2eproto;
+extern PROTOBUF_INTERNAL_EXPORT_device_5fmsgs_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_DigitalSignal_device_5fmsgs_2eproto;
+extern PROTOBUF_INTERNAL_EXPORT_device_5fmsgs_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Encoder_device_5fmsgs_2eproto;
+extern PROTOBUF_INTERNAL_EXPORT_device_5fmsgs_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_EndtoolSignal_device_5fmsgs_2eproto;
+extern PROTOBUF_INTERNAL_EXPORT_device_5fmsgs_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Motor_device_5fmsgs_2eproto;
+extern PROTOBUF_INTERNAL_EXPORT_common_5fmsgs_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_PosePair_common_5fmsgs_2eproto;
+extern PROTOBUF_INTERNAL_EXPORT_common_5fmsgs_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Response_common_5fmsgs_2eproto;
+extern PROTOBUF_INTERNAL_EXPORT_device_5fmsgs_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_SafetyFunctionState_device_5fmsgs_2eproto;
+extern PROTOBUF_INTERNAL_EXPORT_device_5fmsgs_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Trigger_device_5fmsgs_2eproto;
+extern PROTOBUF_INTERNAL_EXPORT_common_5fmsgs_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Vector_common_5fmsgs_2eproto;
 namespace Nrmk {
 namespace IndyFramework {
-        template <typename>
-PROTOBUF_CONSTEXPR Motor::Motor(::_pbi::ConstantInitialized)
-    : _impl_{
-      /*decltype(_impl_.index_)*/ 0u,
-      /*decltype(_impl_.enable_)*/ false,
-      /*decltype(_impl_._cached_size_)*/ {},
-    } {}
-struct MotorDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR MotorDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~MotorDefaultTypeInternal() {}
-  union {
-    Motor _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MotorDefaultTypeInternal _Motor_default_instance_;
-        template <typename>
-PROTOBUF_CONSTEXPR Servo::Servo(::_pbi::ConstantInitialized)
-    : _impl_{
-      /*decltype(_impl_.index_)*/ 0u,
-      /*decltype(_impl_.enable_)*/ false,
-      /*decltype(_impl_._cached_size_)*/ {},
-    } {}
-struct ServoDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR ServoDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~ServoDefaultTypeInternal() {}
-  union {
-    Servo _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ServoDefaultTypeInternal _Servo_default_instance_;
-        template <typename>
-PROTOBUF_CONSTEXPR DigitalSignal::DigitalSignal(::_pbi::ConstantInitialized)
-    : _impl_{
-      /*decltype(_impl_.address_)*/ 0u,
-      /*decltype(_impl_.state_)*/ 0,
-      /*decltype(_impl_._cached_size_)*/ {},
-    } {}
-struct DigitalSignalDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR DigitalSignalDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~DigitalSignalDefaultTypeInternal() {}
-  union {
-    DigitalSignal _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 DigitalSignalDefaultTypeInternal _DigitalSignal_default_instance_;
-        template <typename>
-PROTOBUF_CONSTEXPR EndtoolSignal::EndtoolSignal(::_pbi::ConstantInitialized)
-    : _impl_{
-      /*decltype(_impl_.states_)*/ {},
-      /*decltype(_impl_._states_cached_byte_size_)*/ {0},
-      /*decltype(_impl_.port_)*/ {
-          &::_pbi::fixed_address_empty_string,
-          ::_pbi::ConstantInitialized{},
-      },
-      /*decltype(_impl_._cached_size_)*/ {},
-    } {}
-struct EndtoolSignalDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR EndtoolSignalDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~EndtoolSignalDefaultTypeInternal() {}
-  union {
-    EndtoolSignal _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 EndtoolSignalDefaultTypeInternal _EndtoolSignal_default_instance_;
-        template <typename>
-PROTOBUF_CONSTEXPR AnalogSignal::AnalogSignal(::_pbi::ConstantInitialized)
-    : _impl_{
-      /*decltype(_impl_.address_)*/ 0u,
-      /*decltype(_impl_.voltage_)*/ 0,
-      /*decltype(_impl_._cached_size_)*/ {},
-    } {}
-struct AnalogSignalDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR AnalogSignalDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~AnalogSignalDefaultTypeInternal() {}
-  union {
-    AnalogSignal _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AnalogSignalDefaultTypeInternal _AnalogSignal_default_instance_;
-        template <typename>
-PROTOBUF_CONSTEXPR MotorList::MotorList(::_pbi::ConstantInitialized)
-    : _impl_{
-      /*decltype(_impl_.motors_)*/ {},
-      /*decltype(_impl_._cached_size_)*/ {},
-    } {}
-struct MotorListDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR MotorListDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~MotorListDefaultTypeInternal() {}
-  union {
-    MotorList _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MotorListDefaultTypeInternal _MotorList_default_instance_;
-        template <typename>
-PROTOBUF_CONSTEXPR DigitalList::DigitalList(::_pbi::ConstantInitialized)
-    : _impl_{
-      /*decltype(_impl_.signals_)*/ {},
-      /*decltype(_impl_._cached_size_)*/ {},
-    } {}
-struct DigitalListDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR DigitalListDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~DigitalListDefaultTypeInternal() {}
-  union {
-    DigitalList _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 DigitalListDefaultTypeInternal _DigitalList_default_instance_;
-        template <typename>
-PROTOBUF_CONSTEXPR EndtoolSignalList::EndtoolSignalList(::_pbi::ConstantInitialized)
-    : _impl_{
-      /*decltype(_impl_.signals_)*/ {},
-      /*decltype(_impl_._cached_size_)*/ {},
-    } {}
-struct EndtoolSignalListDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR EndtoolSignalListDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~EndtoolSignalListDefaultTypeInternal() {}
-  union {
-    EndtoolSignalList _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 EndtoolSignalListDefaultTypeInternal _EndtoolSignalList_default_instance_;
-        template <typename>
-PROTOBUF_CONSTEXPR AnalogList::AnalogList(::_pbi::ConstantInitialized)
-    : _impl_{
-      /*decltype(_impl_.signals_)*/ {},
-      /*decltype(_impl_._cached_size_)*/ {},
-    } {}
-struct AnalogListDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR AnalogListDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~AnalogListDefaultTypeInternal() {}
-  union {
-    AnalogList _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AnalogListDefaultTypeInternal _AnalogList_default_instance_;
-        template <typename>
-PROTOBUF_CONSTEXPR DeviceInfo::DeviceInfo(::_pbi::ConstantInitialized)
-    : _impl_{
-      /*decltype(_impl_._has_bits_)*/ {},
-      /*decltype(_impl_._cached_size_)*/ {},
-      /*decltype(_impl_.core_board_fw_vers_)*/ {},
-      /*decltype(_impl_.robot_serial_)*/ {
-          &::_pbi::fixed_address_empty_string,
-          ::_pbi::ConstantInitialized{},
-      },
-      /*decltype(_impl_.io_board_fw_ver_)*/ {
-          &::_pbi::fixed_address_empty_string,
-          ::_pbi::ConstantInitialized{},
-      },
-      /*decltype(_impl_.endtool_board_fw_ver_)*/ {
-          &::_pbi::fixed_address_empty_string,
-          ::_pbi::ConstantInitialized{},
-      },
-      /*decltype(_impl_.controller_ver_)*/ {
-          &::_pbi::fixed_address_empty_string,
-          ::_pbi::ConstantInitialized{},
-      },
-      /*decltype(_impl_.controller_detail_)*/ {
-          &::_pbi::fixed_address_empty_string,
-          ::_pbi::ConstantInitialized{},
-      },
-      /*decltype(_impl_.controller_date_)*/ {
-          &::_pbi::fixed_address_empty_string,
-          ::_pbi::ConstantInitialized{},
-      },
-      /*decltype(_impl_.response_)*/ nullptr,
-      /*decltype(_impl_.num_joints_)*/ 0u,
-      /*decltype(_impl_.payload_)*/ 0,
-    } {}
-struct DeviceInfoDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR DeviceInfoDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~DeviceInfoDefaultTypeInternal() {}
-  union {
-    DeviceInfo _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 DeviceInfoDefaultTypeInternal _DeviceInfo_default_instance_;
-        template <typename>
-PROTOBUF_CONSTEXPR BrakeControlStyle::BrakeControlStyle(::_pbi::ConstantInitialized)
-    : _impl_{
-      /*decltype(_impl_._has_bits_)*/ {},
-      /*decltype(_impl_._cached_size_)*/ {},
-      /*decltype(_impl_.response_)*/ nullptr,
-      /*decltype(_impl_.style_)*/ 0,
-    } {}
-struct BrakeControlStyleDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR BrakeControlStyleDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~BrakeControlStyleDefaultTypeInternal() {}
-  union {
-    BrakeControlStyle _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 BrakeControlStyleDefaultTypeInternal _BrakeControlStyle_default_instance_;
-        template <typename>
-PROTOBUF_CONSTEXPR GetEL5001Data::GetEL5001Data(::_pbi::ConstantInitialized)
-    : _impl_{
-      /*decltype(_impl_._has_bits_)*/ {},
-      /*decltype(_impl_._cached_size_)*/ {},
-      /*decltype(_impl_.response_)*/ nullptr,
-      /*decltype(_impl_.status_)*/ 0,
-      /*decltype(_impl_.value_)*/ 0,
-      /*decltype(_impl_.delta_)*/ 0,
-      /*decltype(_impl_.average_)*/ 0,
-    } {}
-struct GetEL5001DataDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR GetEL5001DataDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~GetEL5001DataDefaultTypeInternal() {}
-  union {
-    GetEL5001Data _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetEL5001DataDefaultTypeInternal _GetEL5001Data_default_instance_;
-        template <typename>
-PROTOBUF_CONSTEXPR GetEL5101Data::GetEL5101Data(::_pbi::ConstantInitialized)
-    : _impl_{
-      /*decltype(_impl_._has_bits_)*/ {},
-      /*decltype(_impl_._cached_size_)*/ {},
-      /*decltype(_impl_.response_)*/ nullptr,
-      /*decltype(_impl_.status_)*/ 0,
-      /*decltype(_impl_.value_)*/ 0,
-      /*decltype(_impl_.latch_)*/ 0,
-      /*decltype(_impl_.delta_)*/ 0,
-      /*decltype(_impl_.average_)*/ 0,
-    } {}
-struct GetEL5101DataDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR GetEL5101DataDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~GetEL5101DataDefaultTypeInternal() {}
-  union {
-    GetEL5101Data _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetEL5101DataDefaultTypeInternal _GetEL5101Data_default_instance_;
-        template <typename>
-PROTOBUF_CONSTEXPR FTSensorType::FTSensorType(::_pbi::ConstantInitialized)
-    : _impl_{
-      /*decltype(_impl_._has_bits_)*/ {},
-      /*decltype(_impl_._cached_size_)*/ {},
-      /*decltype(_impl_.ft_sensor_type_)*/ {
-          &::_pbi::fixed_address_empty_string,
-          ::_pbi::ConstantInitialized{},
-      },
-      /*decltype(_impl_.response_)*/ nullptr,
-    } {}
-struct FTSensorTypeDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR FTSensorTypeDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~FTSensorTypeDefaultTypeInternal() {}
-  union {
-    FTSensorType _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 FTSensorTypeDefaultTypeInternal _FTSensorType_default_instance_;
-        template <typename>
-PROTOBUF_CONSTEXPR FTSensorData::FTSensorData(::_pbi::ConstantInitialized)
-    : _impl_{
-      /*decltype(_impl_._has_bits_)*/ {},
-      /*decltype(_impl_._cached_size_)*/ {},
-      /*decltype(_impl_.response_)*/ nullptr,
-      /*decltype(_impl_.ft_fx_)*/ 0,
-      /*decltype(_impl_.ft_fy_)*/ 0,
-      /*decltype(_impl_.ft_fz_)*/ 0,
-      /*decltype(_impl_.ft_tx_)*/ 0,
-      /*decltype(_impl_.ft_ty_)*/ 0,
-      /*decltype(_impl_.ft_tz_)*/ 0,
-    } {}
-struct FTSensorDataDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR FTSensorDataDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~FTSensorDataDefaultTypeInternal() {}
-  union {
-    FTSensorData _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 FTSensorDataDefaultTypeInternal _FTSensorData_default_instance_;
+class MotorDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<Motor> _instance;
+} _Motor_default_instance_;
+class ServoDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<Servo> _instance;
+} _Servo_default_instance_;
+class GripperDataDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<GripperData> _instance;
+} _GripperData_default_instance_;
+class GripperCommandDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<GripperCommand> _instance;
+} _GripperCommand_default_instance_;
+class DigitalSignalDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<DigitalSignal> _instance;
+} _DigitalSignal_default_instance_;
+class EndLedDimDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<EndLedDim> _instance;
+} _EndLedDim_default_instance_;
+class EndtoolSignalDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<EndtoolSignal> _instance;
+} _EndtoolSignal_default_instance_;
+class AnalogSignalDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<AnalogSignal> _instance;
+} _AnalogSignal_default_instance_;
+class MotorListDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<MotorList> _instance;
+} _MotorList_default_instance_;
+class DigitalListDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<DigitalList> _instance;
+} _DigitalList_default_instance_;
+class EndtoolSignalListDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<EndtoolSignalList> _instance;
+} _EndtoolSignalList_default_instance_;
+class AnalogListDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<AnalogList> _instance;
+} _AnalogList_default_instance_;
+class DeviceInfoDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<DeviceInfo> _instance;
+} _DeviceInfo_default_instance_;
+class BrakeControlStyleDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<BrakeControlStyle> _instance;
+} _BrakeControlStyle_default_instance_;
+class GetEL5001DataDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<GetEL5001Data> _instance;
+} _GetEL5001Data_default_instance_;
+class GetEL5101DataDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<GetEL5101Data> _instance;
+} _GetEL5101Data_default_instance_;
+class FTSensorDataDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<FTSensorData> _instance;
+} _FTSensorData_default_instance_;
+class GetLoadFactorsResDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<GetLoadFactorsRes> _instance;
+} _GetLoadFactorsRes_default_instance_;
+class SetAutoModeReqDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<SetAutoModeReq> _instance;
+} _SetAutoModeReq_default_instance_;
+class SetAutoModeResDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<SetAutoModeRes> _instance;
+} _SetAutoModeRes_default_instance_;
+class CheckAutoModeResDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<CheckAutoModeRes> _instance;
+} _CheckAutoModeRes_default_instance_;
+class CheckReducedModeResDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<CheckReducedModeRes> _instance;
+} _CheckReducedModeRes_default_instance_;
+class SafetyFunctionStateDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<SafetyFunctionState> _instance;
+} _SafetyFunctionState_default_instance_;
+class SafetyControlDataDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<SafetyControlData> _instance;
+} _SafetyControlData_default_instance_;
+class SanderCommandDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<SanderCommand> _instance;
+} _SanderCommand_default_instance_;
+class EncoderDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<Encoder> _instance;
+} _Encoder_default_instance_;
+class TriggerDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<Trigger> _instance;
+} _Trigger_default_instance_;
+class ConveyorDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<Conveyor> _instance;
+} _Conveyor_default_instance_;
+class ConveyorStateDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<ConveyorState> _instance;
+} _ConveyorState_default_instance_;
 }  // namespace IndyFramework
 }  // namespace Nrmk
-static ::_pb::Metadata file_level_metadata_device_5fmsgs_2eproto[15];
-static const ::_pb::EnumDescriptor* file_level_enum_descriptors_device_5fmsgs_2eproto[3];
-static constexpr const ::_pb::ServiceDescriptor**
-    file_level_service_descriptors_device_5fmsgs_2eproto = nullptr;
-const ::uint32_t TableStruct_device_5fmsgs_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(
-    protodesc_cold) = {
-    ~0u,  // no _has_bits_
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::Motor, _internal_metadata_),
-    ~0u,  // no _extensions_
-    ~0u,  // no _oneof_case_
-    ~0u,  // no _weak_field_map_
-    ~0u,  // no _inlined_string_donated_
-    ~0u,  // no _split_
-    ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::Motor, _impl_.index_),
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::Motor, _impl_.enable_),
-    ~0u,  // no _has_bits_
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::Servo, _internal_metadata_),
-    ~0u,  // no _extensions_
-    ~0u,  // no _oneof_case_
-    ~0u,  // no _weak_field_map_
-    ~0u,  // no _inlined_string_donated_
-    ~0u,  // no _split_
-    ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::Servo, _impl_.index_),
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::Servo, _impl_.enable_),
-    ~0u,  // no _has_bits_
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::DigitalSignal, _internal_metadata_),
-    ~0u,  // no _extensions_
-    ~0u,  // no _oneof_case_
-    ~0u,  // no _weak_field_map_
-    ~0u,  // no _inlined_string_donated_
-    ~0u,  // no _split_
-    ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::DigitalSignal, _impl_.address_),
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::DigitalSignal, _impl_.state_),
-    ~0u,  // no _has_bits_
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::EndtoolSignal, _internal_metadata_),
-    ~0u,  // no _extensions_
-    ~0u,  // no _oneof_case_
-    ~0u,  // no _weak_field_map_
-    ~0u,  // no _inlined_string_donated_
-    ~0u,  // no _split_
-    ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::EndtoolSignal, _impl_.port_),
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::EndtoolSignal, _impl_.states_),
-    ~0u,  // no _has_bits_
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::AnalogSignal, _internal_metadata_),
-    ~0u,  // no _extensions_
-    ~0u,  // no _oneof_case_
-    ~0u,  // no _weak_field_map_
-    ~0u,  // no _inlined_string_donated_
-    ~0u,  // no _split_
-    ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::AnalogSignal, _impl_.address_),
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::AnalogSignal, _impl_.voltage_),
-    ~0u,  // no _has_bits_
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::MotorList, _internal_metadata_),
-    ~0u,  // no _extensions_
-    ~0u,  // no _oneof_case_
-    ~0u,  // no _weak_field_map_
-    ~0u,  // no _inlined_string_donated_
-    ~0u,  // no _split_
-    ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::MotorList, _impl_.motors_),
-    ~0u,  // no _has_bits_
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::DigitalList, _internal_metadata_),
-    ~0u,  // no _extensions_
-    ~0u,  // no _oneof_case_
-    ~0u,  // no _weak_field_map_
-    ~0u,  // no _inlined_string_donated_
-    ~0u,  // no _split_
-    ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::DigitalList, _impl_.signals_),
-    ~0u,  // no _has_bits_
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::EndtoolSignalList, _internal_metadata_),
-    ~0u,  // no _extensions_
-    ~0u,  // no _oneof_case_
-    ~0u,  // no _weak_field_map_
-    ~0u,  // no _inlined_string_donated_
-    ~0u,  // no _split_
-    ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::EndtoolSignalList, _impl_.signals_),
-    ~0u,  // no _has_bits_
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::AnalogList, _internal_metadata_),
-    ~0u,  // no _extensions_
-    ~0u,  // no _oneof_case_
-    ~0u,  // no _weak_field_map_
-    ~0u,  // no _inlined_string_donated_
-    ~0u,  // no _split_
-    ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::AnalogList, _impl_.signals_),
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::DeviceInfo, _impl_._has_bits_),
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::DeviceInfo, _internal_metadata_),
-    ~0u,  // no _extensions_
-    ~0u,  // no _oneof_case_
-    ~0u,  // no _weak_field_map_
-    ~0u,  // no _inlined_string_donated_
-    ~0u,  // no _split_
-    ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::DeviceInfo, _impl_.num_joints_),
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::DeviceInfo, _impl_.robot_serial_),
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::DeviceInfo, _impl_.payload_),
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::DeviceInfo, _impl_.io_board_fw_ver_),
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::DeviceInfo, _impl_.core_board_fw_vers_),
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::DeviceInfo, _impl_.endtool_board_fw_ver_),
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::DeviceInfo, _impl_.controller_ver_),
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::DeviceInfo, _impl_.controller_detail_),
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::DeviceInfo, _impl_.controller_date_),
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::DeviceInfo, _impl_.response_),
-    ~0u,
-    ~0u,
-    ~0u,
-    ~0u,
-    ~0u,
-    ~0u,
-    ~0u,
-    ~0u,
-    ~0u,
-    0,
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::BrakeControlStyle, _impl_._has_bits_),
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::BrakeControlStyle, _internal_metadata_),
-    ~0u,  // no _extensions_
-    ~0u,  // no _oneof_case_
-    ~0u,  // no _weak_field_map_
-    ~0u,  // no _inlined_string_donated_
-    ~0u,  // no _split_
-    ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::BrakeControlStyle, _impl_.style_),
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::BrakeControlStyle, _impl_.response_),
-    ~0u,
-    0,
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::GetEL5001Data, _impl_._has_bits_),
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::GetEL5001Data, _internal_metadata_),
-    ~0u,  // no _extensions_
-    ~0u,  // no _oneof_case_
-    ~0u,  // no _weak_field_map_
-    ~0u,  // no _inlined_string_donated_
-    ~0u,  // no _split_
-    ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::GetEL5001Data, _impl_.status_),
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::GetEL5001Data, _impl_.value_),
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::GetEL5001Data, _impl_.delta_),
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::GetEL5001Data, _impl_.average_),
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::GetEL5001Data, _impl_.response_),
-    ~0u,
-    ~0u,
-    ~0u,
-    ~0u,
-    0,
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::GetEL5101Data, _impl_._has_bits_),
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::GetEL5101Data, _internal_metadata_),
-    ~0u,  // no _extensions_
-    ~0u,  // no _oneof_case_
-    ~0u,  // no _weak_field_map_
-    ~0u,  // no _inlined_string_donated_
-    ~0u,  // no _split_
-    ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::GetEL5101Data, _impl_.status_),
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::GetEL5101Data, _impl_.value_),
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::GetEL5101Data, _impl_.latch_),
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::GetEL5101Data, _impl_.delta_),
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::GetEL5101Data, _impl_.average_),
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::GetEL5101Data, _impl_.response_),
-    ~0u,
-    ~0u,
-    ~0u,
-    ~0u,
-    ~0u,
-    0,
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::FTSensorType, _impl_._has_bits_),
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::FTSensorType, _internal_metadata_),
-    ~0u,  // no _extensions_
-    ~0u,  // no _oneof_case_
-    ~0u,  // no _weak_field_map_
-    ~0u,  // no _inlined_string_donated_
-    ~0u,  // no _split_
-    ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::FTSensorType, _impl_.ft_sensor_type_),
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::FTSensorType, _impl_.response_),
-    ~0u,
-    0,
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::FTSensorData, _impl_._has_bits_),
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::FTSensorData, _internal_metadata_),
-    ~0u,  // no _extensions_
-    ~0u,  // no _oneof_case_
-    ~0u,  // no _weak_field_map_
-    ~0u,  // no _inlined_string_donated_
-    ~0u,  // no _split_
-    ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::FTSensorData, _impl_.ft_fx_),
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::FTSensorData, _impl_.ft_fy_),
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::FTSensorData, _impl_.ft_fz_),
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::FTSensorData, _impl_.ft_tx_),
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::FTSensorData, _impl_.ft_ty_),
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::FTSensorData, _impl_.ft_tz_),
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::FTSensorData, _impl_.response_),
-    ~0u,
-    ~0u,
-    ~0u,
-    ~0u,
-    ~0u,
-    ~0u,
-    0,
-};
+static void InitDefaultsscc_info_AnalogList_device_5fmsgs_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
 
-static const ::_pbi::MigrationSchema
-    schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-        {0, -1, -1, sizeof(::Nrmk::IndyFramework::Motor)},
-        {10, -1, -1, sizeof(::Nrmk::IndyFramework::Servo)},
-        {20, -1, -1, sizeof(::Nrmk::IndyFramework::DigitalSignal)},
-        {30, -1, -1, sizeof(::Nrmk::IndyFramework::EndtoolSignal)},
-        {40, -1, -1, sizeof(::Nrmk::IndyFramework::AnalogSignal)},
-        {50, -1, -1, sizeof(::Nrmk::IndyFramework::MotorList)},
-        {59, -1, -1, sizeof(::Nrmk::IndyFramework::DigitalList)},
-        {68, -1, -1, sizeof(::Nrmk::IndyFramework::EndtoolSignalList)},
-        {77, -1, -1, sizeof(::Nrmk::IndyFramework::AnalogList)},
-        {86, 104, -1, sizeof(::Nrmk::IndyFramework::DeviceInfo)},
-        {114, 124, -1, sizeof(::Nrmk::IndyFramework::BrakeControlStyle)},
-        {126, 139, -1, sizeof(::Nrmk::IndyFramework::GetEL5001Data)},
-        {144, 158, -1, sizeof(::Nrmk::IndyFramework::GetEL5101Data)},
-        {164, 174, -1, sizeof(::Nrmk::IndyFramework::FTSensorType)},
-        {176, 191, -1, sizeof(::Nrmk::IndyFramework::FTSensorData)},
-};
-
-static const ::_pb::Message* const file_default_instances[] = {
-    &::Nrmk::IndyFramework::_Motor_default_instance_._instance,
-    &::Nrmk::IndyFramework::_Servo_default_instance_._instance,
-    &::Nrmk::IndyFramework::_DigitalSignal_default_instance_._instance,
-    &::Nrmk::IndyFramework::_EndtoolSignal_default_instance_._instance,
-    &::Nrmk::IndyFramework::_AnalogSignal_default_instance_._instance,
-    &::Nrmk::IndyFramework::_MotorList_default_instance_._instance,
-    &::Nrmk::IndyFramework::_DigitalList_default_instance_._instance,
-    &::Nrmk::IndyFramework::_EndtoolSignalList_default_instance_._instance,
-    &::Nrmk::IndyFramework::_AnalogList_default_instance_._instance,
-    &::Nrmk::IndyFramework::_DeviceInfo_default_instance_._instance,
-    &::Nrmk::IndyFramework::_BrakeControlStyle_default_instance_._instance,
-    &::Nrmk::IndyFramework::_GetEL5001Data_default_instance_._instance,
-    &::Nrmk::IndyFramework::_GetEL5101Data_default_instance_._instance,
-    &::Nrmk::IndyFramework::_FTSensorType_default_instance_._instance,
-    &::Nrmk::IndyFramework::_FTSensorData_default_instance_._instance,
-};
-const char descriptor_table_protodef_device_5fmsgs_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-    "\n\021device_msgs.proto\022\022Nrmk.IndyFramework\032"
-    "\021common_msgs.proto\"&\n\005Motor\022\r\n\005index\030\001 \001"
-    "(\r\022\016\n\006enable\030\002 \001(\010\"&\n\005Servo\022\r\n\005index\030\001 \001"
-    "(\r\022\016\n\006enable\030\002 \001(\010\"Q\n\rDigitalSignal\022\017\n\007a"
-    "ddress\030\001 \001(\r\022/\n\005state\030\002 \001(\0162 .Nrmk.IndyF"
-    "ramework.DigitalState\"O\n\rEndtoolSignal\022\014"
-    "\n\004port\030\001 \001(\t\0220\n\006states\030\002 \003(\0162 .Nrmk.Indy"
-    "Framework.EndtoolState\"0\n\014AnalogSignal\022\017"
-    "\n\007address\030\001 \001(\r\022\017\n\007voltage\030\002 \001(\005\"6\n\tMoto"
-    "rList\022)\n\006motors\030\001 \003(\0132\031.Nrmk.IndyFramewo"
-    "rk.Motor\"A\n\013DigitalList\0222\n\007signals\030\001 \003(\013"
-    "2!.Nrmk.IndyFramework.DigitalSignal\"G\n\021E"
-    "ndtoolSignalList\0222\n\007signals\030\001 \003(\0132!.Nrmk"
-    ".IndyFramework.EndtoolSignal\"\?\n\nAnalogLi"
-    "st\0221\n\007signals\030\001 \003(\0132 .Nrmk.IndyFramework"
-    ".AnalogSignal\"\226\002\n\nDeviceInfo\022\022\n\nnum_join"
-    "ts\030\001 \001(\r\022\024\n\014robot_serial\030\002 \001(\t\022\017\n\007payloa"
-    "d\030\003 \001(\002\022\027\n\017io_board_fw_ver\030\n \001(\t\022\032\n\022core"
-    "_board_fw_vers\030\013 \003(\t\022\034\n\024endtool_board_fw"
-    "_ver\030\014 \001(\t\022\026\n\016controller_ver\030\024 \001(\t\022\031\n\021co"
-    "ntroller_detail\030\025 \001(\t\022\027\n\017controller_date"
-    "\030\026 \001(\t\022.\n\010response\030d \001(\0132\034.Nrmk.IndyFram"
-    "ework.Response\"\307\001\n\021BrakeControlStyle\022A\n\005"
-    "style\030\001 \001(\01622.Nrmk.IndyFramework.BrakeCo"
-    "ntrolStyle.ControlStyle\022.\n\010response\030d \001("
-    "\0132\034.Nrmk.IndyFramework.Response\"\?\n\014Contr"
-    "olStyle\022\017\n\013UNAVAILABLE\020\000\022\016\n\nCONCURRENT\020\001"
-    "\022\016\n\nINDIVIDUAL\020\002\"~\n\rGetEL5001Data\022\016\n\006sta"
-    "tus\030\001 \001(\005\022\r\n\005value\030\002 \001(\005\022\r\n\005delta\030\003 \001(\005\022"
-    "\017\n\007average\030\004 \001(\002\022.\n\010response\030d \001(\0132\034.Nrm"
-    "k.IndyFramework.Response\"\215\001\n\rGetEL5101Da"
-    "ta\022\016\n\006status\030\001 \001(\005\022\r\n\005value\030\002 \001(\005\022\r\n\005lat"
-    "ch\030\003 \001(\005\022\r\n\005delta\030\004 \001(\005\022\017\n\007average\030\005 \001(\002"
-    "\022.\n\010response\030d \001(\0132\034.Nrmk.IndyFramework."
-    "Response\"V\n\014FTSensorType\022\026\n\016ft_sensor_ty"
-    "pe\030\001 \001(\t\022.\n\010response\030d \001(\0132\034.Nrmk.IndyFr"
-    "amework.Response\"\230\001\n\014FTSensorData\022\r\n\005ft_"
-    "Fx\030\001 \001(\002\022\r\n\005ft_Fy\030\002 \001(\002\022\r\n\005ft_Fz\030\003 \001(\002\022\r"
-    "\n\005ft_Tx\030\004 \001(\002\022\r\n\005ft_Ty\030\005 \001(\002\022\r\n\005ft_Tz\030\006 "
-    "\001(\002\022.\n\010response\030d \001(\0132\034.Nrmk.IndyFramewo"
-    "rk.Response*=\n\014DigitalState\022\r\n\tOFF_STATE"
-    "\020\000\022\014\n\010ON_STATE\020\001\022\020\n\014UNUSED_STATE\020\002*b\n\014En"
-    "dtoolState\022\n\n\006UNUSED\020\000\022\014\n\010HIGH_PNP\020\002\022\014\n\010"
-    "HIGH_NPN\020\001\022\024\n\007LOW_NPN\020\377\377\377\377\377\377\377\377\377\001\022\024\n\007LOW_"
-    "PNP\020\376\377\377\377\377\377\377\377\377\001b\006proto3"
-};
-static const ::_pbi::DescriptorTable* const descriptor_table_device_5fmsgs_2eproto_deps[1] =
-    {
-        &::descriptor_table_common_5fmsgs_2eproto,
-};
-static ::absl::once_flag descriptor_table_device_5fmsgs_2eproto_once;
-const ::_pbi::DescriptorTable descriptor_table_device_5fmsgs_2eproto = {
-    false,
-    false,
-    1782,
-    descriptor_table_protodef_device_5fmsgs_2eproto,
-    "device_msgs.proto",
-    &descriptor_table_device_5fmsgs_2eproto_once,
-    descriptor_table_device_5fmsgs_2eproto_deps,
-    1,
-    15,
-    schemas,
-    file_default_instances,
-    TableStruct_device_5fmsgs_2eproto::offsets,
-    file_level_metadata_device_5fmsgs_2eproto,
-    file_level_enum_descriptors_device_5fmsgs_2eproto,
-    file_level_service_descriptors_device_5fmsgs_2eproto,
-};
-
-// This function exists to be marked as weak.
-// It can significantly speed up compilation by breaking up LLVM's SCC
-// in the .pb.cc translation units. Large translation units see a
-// reduction of more than 35% of walltime for optimized builds. Without
-// the weak attribute all the messages in the file, including all the
-// vtables and everything they use become part of the same SCC through
-// a cycle like:
-// GetMetadata -> descriptor table -> default instances ->
-//   vtables -> GetMetadata
-// By adding a weak function here we break the connection from the
-// individual vtables back into the descriptor table.
-PROTOBUF_ATTRIBUTE_WEAK const ::_pbi::DescriptorTable* descriptor_table_device_5fmsgs_2eproto_getter() {
-  return &descriptor_table_device_5fmsgs_2eproto;
+  {
+    void* ptr = &::Nrmk::IndyFramework::_AnalogList_default_instance_;
+    new (ptr) ::Nrmk::IndyFramework::AnalogList();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::Nrmk::IndyFramework::AnalogList::InitAsDefaultInstance();
 }
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_AnalogList_device_5fmsgs_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, InitDefaultsscc_info_AnalogList_device_5fmsgs_2eproto}, {
+      &scc_info_AnalogSignal_device_5fmsgs_2eproto.base,}};
+
+static void InitDefaultsscc_info_AnalogSignal_device_5fmsgs_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::Nrmk::IndyFramework::_AnalogSignal_default_instance_;
+    new (ptr) ::Nrmk::IndyFramework::AnalogSignal();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::Nrmk::IndyFramework::AnalogSignal::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_AnalogSignal_device_5fmsgs_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsscc_info_AnalogSignal_device_5fmsgs_2eproto}, {}};
+
+static void InitDefaultsscc_info_BrakeControlStyle_device_5fmsgs_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::Nrmk::IndyFramework::_BrakeControlStyle_default_instance_;
+    new (ptr) ::Nrmk::IndyFramework::BrakeControlStyle();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::Nrmk::IndyFramework::BrakeControlStyle::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_BrakeControlStyle_device_5fmsgs_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, InitDefaultsscc_info_BrakeControlStyle_device_5fmsgs_2eproto}, {
+      &scc_info_Response_common_5fmsgs_2eproto.base,}};
+
+static void InitDefaultsscc_info_CheckAutoModeRes_device_5fmsgs_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::Nrmk::IndyFramework::_CheckAutoModeRes_default_instance_;
+    new (ptr) ::Nrmk::IndyFramework::CheckAutoModeRes();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::Nrmk::IndyFramework::CheckAutoModeRes::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_CheckAutoModeRes_device_5fmsgs_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsscc_info_CheckAutoModeRes_device_5fmsgs_2eproto}, {}};
+
+static void InitDefaultsscc_info_CheckReducedModeRes_device_5fmsgs_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::Nrmk::IndyFramework::_CheckReducedModeRes_default_instance_;
+    new (ptr) ::Nrmk::IndyFramework::CheckReducedModeRes();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::Nrmk::IndyFramework::CheckReducedModeRes::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_CheckReducedModeRes_device_5fmsgs_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsscc_info_CheckReducedModeRes_device_5fmsgs_2eproto}, {}};
+
+static void InitDefaultsscc_info_Conveyor_device_5fmsgs_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::Nrmk::IndyFramework::_Conveyor_default_instance_;
+    new (ptr) ::Nrmk::IndyFramework::Conveyor();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::Nrmk::IndyFramework::Conveyor::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<4> scc_info_Conveyor_device_5fmsgs_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 4, InitDefaultsscc_info_Conveyor_device_5fmsgs_2eproto}, {
+      &scc_info_Encoder_device_5fmsgs_2eproto.base,
+      &scc_info_Trigger_device_5fmsgs_2eproto.base,
+      &scc_info_Vector_common_5fmsgs_2eproto.base,
+      &scc_info_PosePair_common_5fmsgs_2eproto.base,}};
+
+static void InitDefaultsscc_info_ConveyorState_device_5fmsgs_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::Nrmk::IndyFramework::_ConveyorState_default_instance_;
+    new (ptr) ::Nrmk::IndyFramework::ConveyorState();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::Nrmk::IndyFramework::ConveyorState::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_ConveyorState_device_5fmsgs_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsscc_info_ConveyorState_device_5fmsgs_2eproto}, {}};
+
+static void InitDefaultsscc_info_DeviceInfo_device_5fmsgs_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::Nrmk::IndyFramework::_DeviceInfo_default_instance_;
+    new (ptr) ::Nrmk::IndyFramework::DeviceInfo();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::Nrmk::IndyFramework::DeviceInfo::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_DeviceInfo_device_5fmsgs_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, InitDefaultsscc_info_DeviceInfo_device_5fmsgs_2eproto}, {
+      &scc_info_Response_common_5fmsgs_2eproto.base,}};
+
+static void InitDefaultsscc_info_DigitalList_device_5fmsgs_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::Nrmk::IndyFramework::_DigitalList_default_instance_;
+    new (ptr) ::Nrmk::IndyFramework::DigitalList();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::Nrmk::IndyFramework::DigitalList::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_DigitalList_device_5fmsgs_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, InitDefaultsscc_info_DigitalList_device_5fmsgs_2eproto}, {
+      &scc_info_DigitalSignal_device_5fmsgs_2eproto.base,}};
+
+static void InitDefaultsscc_info_DigitalSignal_device_5fmsgs_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::Nrmk::IndyFramework::_DigitalSignal_default_instance_;
+    new (ptr) ::Nrmk::IndyFramework::DigitalSignal();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::Nrmk::IndyFramework::DigitalSignal::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_DigitalSignal_device_5fmsgs_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsscc_info_DigitalSignal_device_5fmsgs_2eproto}, {}};
+
+static void InitDefaultsscc_info_Encoder_device_5fmsgs_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::Nrmk::IndyFramework::_Encoder_default_instance_;
+    new (ptr) ::Nrmk::IndyFramework::Encoder();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::Nrmk::IndyFramework::Encoder::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Encoder_device_5fmsgs_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsscc_info_Encoder_device_5fmsgs_2eproto}, {}};
+
+static void InitDefaultsscc_info_EndLedDim_device_5fmsgs_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::Nrmk::IndyFramework::_EndLedDim_default_instance_;
+    new (ptr) ::Nrmk::IndyFramework::EndLedDim();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::Nrmk::IndyFramework::EndLedDim::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_EndLedDim_device_5fmsgs_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsscc_info_EndLedDim_device_5fmsgs_2eproto}, {}};
+
+static void InitDefaultsscc_info_EndtoolSignal_device_5fmsgs_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::Nrmk::IndyFramework::_EndtoolSignal_default_instance_;
+    new (ptr) ::Nrmk::IndyFramework::EndtoolSignal();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::Nrmk::IndyFramework::EndtoolSignal::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_EndtoolSignal_device_5fmsgs_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsscc_info_EndtoolSignal_device_5fmsgs_2eproto}, {}};
+
+static void InitDefaultsscc_info_EndtoolSignalList_device_5fmsgs_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::Nrmk::IndyFramework::_EndtoolSignalList_default_instance_;
+    new (ptr) ::Nrmk::IndyFramework::EndtoolSignalList();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::Nrmk::IndyFramework::EndtoolSignalList::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_EndtoolSignalList_device_5fmsgs_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, InitDefaultsscc_info_EndtoolSignalList_device_5fmsgs_2eproto}, {
+      &scc_info_EndtoolSignal_device_5fmsgs_2eproto.base,}};
+
+static void InitDefaultsscc_info_FTSensorData_device_5fmsgs_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::Nrmk::IndyFramework::_FTSensorData_default_instance_;
+    new (ptr) ::Nrmk::IndyFramework::FTSensorData();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::Nrmk::IndyFramework::FTSensorData::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_FTSensorData_device_5fmsgs_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, InitDefaultsscc_info_FTSensorData_device_5fmsgs_2eproto}, {
+      &scc_info_Response_common_5fmsgs_2eproto.base,}};
+
+static void InitDefaultsscc_info_GetEL5001Data_device_5fmsgs_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::Nrmk::IndyFramework::_GetEL5001Data_default_instance_;
+    new (ptr) ::Nrmk::IndyFramework::GetEL5001Data();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::Nrmk::IndyFramework::GetEL5001Data::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_GetEL5001Data_device_5fmsgs_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, InitDefaultsscc_info_GetEL5001Data_device_5fmsgs_2eproto}, {
+      &scc_info_Response_common_5fmsgs_2eproto.base,}};
+
+static void InitDefaultsscc_info_GetEL5101Data_device_5fmsgs_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::Nrmk::IndyFramework::_GetEL5101Data_default_instance_;
+    new (ptr) ::Nrmk::IndyFramework::GetEL5101Data();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::Nrmk::IndyFramework::GetEL5101Data::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_GetEL5101Data_device_5fmsgs_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, InitDefaultsscc_info_GetEL5101Data_device_5fmsgs_2eproto}, {
+      &scc_info_Response_common_5fmsgs_2eproto.base,}};
+
+static void InitDefaultsscc_info_GetLoadFactorsRes_device_5fmsgs_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::Nrmk::IndyFramework::_GetLoadFactorsRes_default_instance_;
+    new (ptr) ::Nrmk::IndyFramework::GetLoadFactorsRes();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::Nrmk::IndyFramework::GetLoadFactorsRes::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_GetLoadFactorsRes_device_5fmsgs_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, InitDefaultsscc_info_GetLoadFactorsRes_device_5fmsgs_2eproto}, {
+      &scc_info_Response_common_5fmsgs_2eproto.base,}};
+
+static void InitDefaultsscc_info_GripperCommand_device_5fmsgs_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::Nrmk::IndyFramework::_GripperCommand_default_instance_;
+    new (ptr) ::Nrmk::IndyFramework::GripperCommand();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::Nrmk::IndyFramework::GripperCommand::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_GripperCommand_device_5fmsgs_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsscc_info_GripperCommand_device_5fmsgs_2eproto}, {}};
+
+static void InitDefaultsscc_info_GripperData_device_5fmsgs_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::Nrmk::IndyFramework::_GripperData_default_instance_;
+    new (ptr) ::Nrmk::IndyFramework::GripperData();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::Nrmk::IndyFramework::GripperData::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_GripperData_device_5fmsgs_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsscc_info_GripperData_device_5fmsgs_2eproto}, {}};
+
+static void InitDefaultsscc_info_Motor_device_5fmsgs_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::Nrmk::IndyFramework::_Motor_default_instance_;
+    new (ptr) ::Nrmk::IndyFramework::Motor();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::Nrmk::IndyFramework::Motor::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Motor_device_5fmsgs_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsscc_info_Motor_device_5fmsgs_2eproto}, {}};
+
+static void InitDefaultsscc_info_MotorList_device_5fmsgs_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::Nrmk::IndyFramework::_MotorList_default_instance_;
+    new (ptr) ::Nrmk::IndyFramework::MotorList();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::Nrmk::IndyFramework::MotorList::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_MotorList_device_5fmsgs_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, InitDefaultsscc_info_MotorList_device_5fmsgs_2eproto}, {
+      &scc_info_Motor_device_5fmsgs_2eproto.base,}};
+
+static void InitDefaultsscc_info_SafetyControlData_device_5fmsgs_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::Nrmk::IndyFramework::_SafetyControlData_default_instance_;
+    new (ptr) ::Nrmk::IndyFramework::SafetyControlData();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::Nrmk::IndyFramework::SafetyControlData::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_SafetyControlData_device_5fmsgs_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, InitDefaultsscc_info_SafetyControlData_device_5fmsgs_2eproto}, {
+      &scc_info_SafetyFunctionState_device_5fmsgs_2eproto.base,}};
+
+static void InitDefaultsscc_info_SafetyFunctionState_device_5fmsgs_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::Nrmk::IndyFramework::_SafetyFunctionState_default_instance_;
+    new (ptr) ::Nrmk::IndyFramework::SafetyFunctionState();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::Nrmk::IndyFramework::SafetyFunctionState::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_SafetyFunctionState_device_5fmsgs_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, InitDefaultsscc_info_SafetyFunctionState_device_5fmsgs_2eproto}, {
+      &scc_info_Response_common_5fmsgs_2eproto.base,}};
+
+static void InitDefaultsscc_info_SanderCommand_device_5fmsgs_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::Nrmk::IndyFramework::_SanderCommand_default_instance_;
+    new (ptr) ::Nrmk::IndyFramework::SanderCommand();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::Nrmk::IndyFramework::SanderCommand::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_SanderCommand_device_5fmsgs_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsscc_info_SanderCommand_device_5fmsgs_2eproto}, {}};
+
+static void InitDefaultsscc_info_Servo_device_5fmsgs_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::Nrmk::IndyFramework::_Servo_default_instance_;
+    new (ptr) ::Nrmk::IndyFramework::Servo();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::Nrmk::IndyFramework::Servo::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Servo_device_5fmsgs_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsscc_info_Servo_device_5fmsgs_2eproto}, {}};
+
+static void InitDefaultsscc_info_SetAutoModeReq_device_5fmsgs_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::Nrmk::IndyFramework::_SetAutoModeReq_default_instance_;
+    new (ptr) ::Nrmk::IndyFramework::SetAutoModeReq();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::Nrmk::IndyFramework::SetAutoModeReq::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_SetAutoModeReq_device_5fmsgs_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsscc_info_SetAutoModeReq_device_5fmsgs_2eproto}, {}};
+
+static void InitDefaultsscc_info_SetAutoModeRes_device_5fmsgs_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::Nrmk::IndyFramework::_SetAutoModeRes_default_instance_;
+    new (ptr) ::Nrmk::IndyFramework::SetAutoModeRes();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::Nrmk::IndyFramework::SetAutoModeRes::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_SetAutoModeRes_device_5fmsgs_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsscc_info_SetAutoModeRes_device_5fmsgs_2eproto}, {}};
+
+static void InitDefaultsscc_info_Trigger_device_5fmsgs_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::Nrmk::IndyFramework::_Trigger_default_instance_;
+    new (ptr) ::Nrmk::IndyFramework::Trigger();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::Nrmk::IndyFramework::Trigger::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Trigger_device_5fmsgs_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsscc_info_Trigger_device_5fmsgs_2eproto}, {}};
+
+static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_device_5fmsgs_2eproto[29];
+static const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* file_level_enum_descriptors_device_5fmsgs_2eproto[8];
+static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_device_5fmsgs_2eproto = nullptr;
+
+const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_device_5fmsgs_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::Motor, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::Motor, index_),
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::Motor, enable_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::Servo, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::Servo, index_),
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::Servo, enable_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::GripperData, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::GripperData, gripper_type_),
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::GripperData, gripper_position_),
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::GripperData, gripper_state_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::GripperCommand, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::GripperCommand, gripper_command_),
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::GripperCommand, gripper_type_),
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::GripperCommand, gripper_pvt_data_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::DigitalSignal, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::DigitalSignal, address_),
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::DigitalSignal, state_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::EndLedDim, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::EndLedDim, led_dim_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::EndtoolSignal, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::EndtoolSignal, port_),
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::EndtoolSignal, states_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::AnalogSignal, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::AnalogSignal, address_),
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::AnalogSignal, voltage_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::MotorList, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::MotorList, motors_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::DigitalList, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::DigitalList, signals_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::EndtoolSignalList, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::EndtoolSignalList, signals_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::AnalogList, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::AnalogList, signals_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::DeviceInfo, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::DeviceInfo, num_joints_),
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::DeviceInfo, robot_serial_),
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::DeviceInfo, payload_),
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::DeviceInfo, io_board_fw_ver_),
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::DeviceInfo, core_board_fw_vers_),
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::DeviceInfo, endtool_board_fw_ver_),
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::DeviceInfo, controller_ver_),
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::DeviceInfo, controller_detail_),
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::DeviceInfo, controller_date_),
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::DeviceInfo, teleop_loaded_),
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::DeviceInfo, calibrated_),
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::DeviceInfo, response_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::BrakeControlStyle, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::BrakeControlStyle, style_),
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::BrakeControlStyle, response_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::GetEL5001Data, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::GetEL5001Data, status_),
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::GetEL5001Data, value_),
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::GetEL5001Data, delta_),
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::GetEL5001Data, average_),
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::GetEL5001Data, response_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::GetEL5101Data, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::GetEL5101Data, status_),
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::GetEL5101Data, value_),
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::GetEL5101Data, latch_),
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::GetEL5101Data, delta_),
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::GetEL5101Data, average_),
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::GetEL5101Data, response_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::FTSensorData, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::FTSensorData, ft_fx_),
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::FTSensorData, ft_fy_),
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::FTSensorData, ft_fz_),
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::FTSensorData, ft_tx_),
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::FTSensorData, ft_ty_),
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::FTSensorData, ft_tz_),
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::FTSensorData, response_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::GetLoadFactorsRes, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::GetLoadFactorsRes, percents_),
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::GetLoadFactorsRes, torques_),
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::GetLoadFactorsRes, response_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::SetAutoModeReq, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::SetAutoModeReq, on_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::SetAutoModeRes, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::SetAutoModeRes, msg_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::CheckAutoModeRes, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::CheckAutoModeRes, on_),
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::CheckAutoModeRes, msg_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::CheckReducedModeRes, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::CheckReducedModeRes, on_),
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::CheckReducedModeRes, msg_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::SafetyFunctionState, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::SafetyFunctionState, id_),
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::SafetyFunctionState, state_),
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::SafetyFunctionState, response_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::SafetyControlData, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::SafetyControlData, auto_mode_),
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::SafetyControlData, reduced_mode_),
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::SafetyControlData, enabler_pressed_),
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::SafetyControlData, safety_state_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::SanderCommand, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::SanderCommand, type_),
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::SanderCommand, ip_),
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::SanderCommand, speed_),
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::SanderCommand, state_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::Encoder, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::Encoder, type_),
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::Encoder, channel1_),
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::Encoder, channel2_),
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::Encoder, sample_num_),
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::Encoder, mm_per_tick_),
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::Encoder, vel_const_mmps_),
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::Encoder, reversed_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::Trigger, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::Trigger, type_),
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::Trigger, channel_),
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::Trigger, detect_rise_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::Conveyor, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::Conveyor, name_),
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::Conveyor, encoder_),
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::Conveyor, trigger_),
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::Conveyor, offset_dist_),
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::Conveyor, working_dist_),
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::Conveyor, direction_),
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::Conveyor, starting_pose_),
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::Conveyor, terminal_pose_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ConveyorState, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ConveyorState, velocity_),
+  PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ConveyorState, triggered_),
+};
+static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
+  { 0, -1, sizeof(::Nrmk::IndyFramework::Motor)},
+  { 7, -1, sizeof(::Nrmk::IndyFramework::Servo)},
+  { 14, -1, sizeof(::Nrmk::IndyFramework::GripperData)},
+  { 22, -1, sizeof(::Nrmk::IndyFramework::GripperCommand)},
+  { 30, -1, sizeof(::Nrmk::IndyFramework::DigitalSignal)},
+  { 37, -1, sizeof(::Nrmk::IndyFramework::EndLedDim)},
+  { 43, -1, sizeof(::Nrmk::IndyFramework::EndtoolSignal)},
+  { 50, -1, sizeof(::Nrmk::IndyFramework::AnalogSignal)},
+  { 57, -1, sizeof(::Nrmk::IndyFramework::MotorList)},
+  { 63, -1, sizeof(::Nrmk::IndyFramework::DigitalList)},
+  { 69, -1, sizeof(::Nrmk::IndyFramework::EndtoolSignalList)},
+  { 75, -1, sizeof(::Nrmk::IndyFramework::AnalogList)},
+  { 81, -1, sizeof(::Nrmk::IndyFramework::DeviceInfo)},
+  { 98, -1, sizeof(::Nrmk::IndyFramework::BrakeControlStyle)},
+  { 105, -1, sizeof(::Nrmk::IndyFramework::GetEL5001Data)},
+  { 115, -1, sizeof(::Nrmk::IndyFramework::GetEL5101Data)},
+  { 126, -1, sizeof(::Nrmk::IndyFramework::FTSensorData)},
+  { 138, -1, sizeof(::Nrmk::IndyFramework::GetLoadFactorsRes)},
+  { 146, -1, sizeof(::Nrmk::IndyFramework::SetAutoModeReq)},
+  { 152, -1, sizeof(::Nrmk::IndyFramework::SetAutoModeRes)},
+  { 158, -1, sizeof(::Nrmk::IndyFramework::CheckAutoModeRes)},
+  { 165, -1, sizeof(::Nrmk::IndyFramework::CheckReducedModeRes)},
+  { 172, -1, sizeof(::Nrmk::IndyFramework::SafetyFunctionState)},
+  { 180, -1, sizeof(::Nrmk::IndyFramework::SafetyControlData)},
+  { 189, -1, sizeof(::Nrmk::IndyFramework::SanderCommand)},
+  { 198, -1, sizeof(::Nrmk::IndyFramework::Encoder)},
+  { 210, -1, sizeof(::Nrmk::IndyFramework::Trigger)},
+  { 218, -1, sizeof(::Nrmk::IndyFramework::Conveyor)},
+  { 231, -1, sizeof(::Nrmk::IndyFramework::ConveyorState)},
+};
+
+static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Nrmk::IndyFramework::_Motor_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Nrmk::IndyFramework::_Servo_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Nrmk::IndyFramework::_GripperData_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Nrmk::IndyFramework::_GripperCommand_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Nrmk::IndyFramework::_DigitalSignal_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Nrmk::IndyFramework::_EndLedDim_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Nrmk::IndyFramework::_EndtoolSignal_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Nrmk::IndyFramework::_AnalogSignal_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Nrmk::IndyFramework::_MotorList_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Nrmk::IndyFramework::_DigitalList_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Nrmk::IndyFramework::_EndtoolSignalList_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Nrmk::IndyFramework::_AnalogList_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Nrmk::IndyFramework::_DeviceInfo_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Nrmk::IndyFramework::_BrakeControlStyle_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Nrmk::IndyFramework::_GetEL5001Data_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Nrmk::IndyFramework::_GetEL5101Data_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Nrmk::IndyFramework::_FTSensorData_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Nrmk::IndyFramework::_GetLoadFactorsRes_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Nrmk::IndyFramework::_SetAutoModeReq_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Nrmk::IndyFramework::_SetAutoModeRes_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Nrmk::IndyFramework::_CheckAutoModeRes_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Nrmk::IndyFramework::_CheckReducedModeRes_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Nrmk::IndyFramework::_SafetyFunctionState_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Nrmk::IndyFramework::_SafetyControlData_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Nrmk::IndyFramework::_SanderCommand_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Nrmk::IndyFramework::_Encoder_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Nrmk::IndyFramework::_Trigger_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Nrmk::IndyFramework::_Conveyor_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Nrmk::IndyFramework::_ConveyorState_default_instance_),
+};
+
+const char descriptor_table_protodef_device_5fmsgs_2eproto[] =
+  "\n\021device_msgs.proto\022\022Nrmk.IndyFramework\032"
+  "\021common_msgs.proto\"&\n\005Motor\022\r\n\005index\030\001 \001"
+  "(\r\022\016\n\006enable\030\002 \001(\010\"&\n\005Servo\022\r\n\005index\030\001 \001"
+  "(\r\022\016\n\006enable\030\002 \001(\010\"u\n\013GripperData\0225\n\014gri"
+  "pper_type\030\001 \001(\0162\037.Nrmk.IndyFramework.Gri"
+  "pperType\022\030\n\020gripper_position\030\002 \001(\005\022\025\n\rgr"
+  "ipper_state\030\003 \001(\005\"\204\002\n\016GripperCommand\022N\n\017"
+  "gripper_command\030\001 \001(\01625.Nrmk.IndyFramewo"
+  "rk.GripperCommand.GripperCommandType\0225\n\014"
+  "gripper_type\030\002 \001(\0162\037.Nrmk.IndyFramework."
+  "GripperType\022\030\n\020gripper_pvt_data\030\003 \003(\005\"Q\n"
+  "\022GripperCommandType\022\017\n\013AUTO_DETECT\020\000\022\014\n\010"
+  "ACTIVATE\020\001\022\017\n\013RE_ACTIVATE\020\002\022\013\n\007SET_PVT\020\003"
+  "\"Q\n\rDigitalSignal\022\017\n\007address\030\001 \001(\r\022/\n\005st"
+  "ate\030\002 \001(\0162 .Nrmk.IndyFramework.DigitalSt"
+  "ate\"\034\n\tEndLedDim\022\017\n\007led_dim\030\001 \001(\r\"O\n\rEnd"
+  "toolSignal\022\014\n\004port\030\001 \001(\t\0220\n\006states\030\002 \003(\016"
+  "2 .Nrmk.IndyFramework.EndtoolState\"0\n\014An"
+  "alogSignal\022\017\n\007address\030\001 \001(\r\022\017\n\007voltage\030\002"
+  " \001(\005\"6\n\tMotorList\022)\n\006motors\030\001 \003(\0132\031.Nrmk"
+  ".IndyFramework.Motor\"A\n\013DigitalList\0222\n\007s"
+  "ignals\030\001 \003(\0132!.Nrmk.IndyFramework.Digita"
+  "lSignal\"G\n\021EndtoolSignalList\0222\n\007signals\030"
+  "\001 \003(\0132!.Nrmk.IndyFramework.EndtoolSignal"
+  "\"\?\n\nAnalogList\0221\n\007signals\030\001 \003(\0132 .Nrmk.I"
+  "ndyFramework.AnalogSignal\"\301\002\n\nDeviceInfo"
+  "\022\022\n\nnum_joints\030\001 \001(\r\022\024\n\014robot_serial\030\002 \001"
+  "(\t\022\017\n\007payload\030\003 \001(\002\022\027\n\017io_board_fw_ver\030\n"
+  " \001(\t\022\032\n\022core_board_fw_vers\030\013 \003(\t\022\034\n\024endt"
+  "ool_board_fw_ver\030\014 \001(\t\022\026\n\016controller_ver"
+  "\030\024 \001(\t\022\031\n\021controller_detail\030\025 \001(\t\022\027\n\017con"
+  "troller_date\030\026 \001(\t\022\025\n\rteleop_loaded\030\036 \001("
+  "\010\022\022\n\ncalibrated\030\037 \001(\010\022.\n\010response\030d \001(\0132"
+  "\034.Nrmk.IndyFramework.Response\"\307\001\n\021BrakeC"
+  "ontrolStyle\022A\n\005style\030\001 \001(\01622.Nrmk.IndyFr"
+  "amework.BrakeControlStyle.ControlStyle\022."
+  "\n\010response\030d \001(\0132\034.Nrmk.IndyFramework.Re"
+  "sponse\"\?\n\014ControlStyle\022\017\n\013UNAVAILABLE\020\000\022"
+  "\016\n\nCONCURRENT\020\001\022\016\n\nINDIVIDUAL\020\002\"~\n\rGetEL"
+  "5001Data\022\016\n\006status\030\001 \001(\005\022\r\n\005value\030\002 \001(\005\022"
+  "\r\n\005delta\030\003 \001(\005\022\017\n\007average\030\004 \001(\002\022.\n\010respo"
+  "nse\030d \001(\0132\034.Nrmk.IndyFramework.Response\""
+  "\215\001\n\rGetEL5101Data\022\016\n\006status\030\001 \001(\005\022\r\n\005val"
+  "ue\030\002 \001(\005\022\r\n\005latch\030\003 \001(\005\022\r\n\005delta\030\004 \001(\005\022\017"
+  "\n\007average\030\005 \001(\002\022.\n\010response\030d \001(\0132\034.Nrmk"
+  ".IndyFramework.Response\"\230\001\n\014FTSensorData"
+  "\022\r\n\005ft_Fx\030\001 \001(\002\022\r\n\005ft_Fy\030\002 \001(\002\022\r\n\005ft_Fz\030"
+  "\003 \001(\002\022\r\n\005ft_Tx\030\004 \001(\002\022\r\n\005ft_Ty\030\005 \001(\002\022\r\n\005f"
+  "t_Tz\030\006 \001(\002\022.\n\010response\030d \001(\0132\034.Nrmk.Indy"
+  "Framework.Response\"f\n\021GetLoadFactorsRes\022"
+  "\020\n\010percents\030\001 \003(\005\022\017\n\007torques\030\002 \003(\002\022.\n\010re"
+  "sponse\030d \001(\0132\034.Nrmk.IndyFramework.Respon"
+  "se\"\034\n\016SetAutoModeReq\022\n\n\002on\030\001 \001(\010\"\035\n\016SetA"
+  "utoModeRes\022\013\n\003msg\030d \001(\t\"+\n\020CheckAutoMode"
+  "Res\022\n\n\002on\030\001 \001(\010\022\013\n\003msg\030d \001(\t\".\n\023CheckRed"
+  "ucedModeRes\022\n\n\002on\030\001 \001(\010\022\013\n\003msg\030d \001(\t\"`\n\023"
+  "SafetyFunctionState\022\n\n\002id\030\001 \001(\r\022\r\n\005state"
+  "\030\002 \001(\r\022.\n\010response\030d \001(\0132\034.Nrmk.IndyFram"
+  "ework.Response\"\224\001\n\021SafetyControlData\022\021\n\t"
+  "auto_mode\030\001 \001(\010\022\024\n\014reduced_mode\030\002 \001(\010\022\027\n"
+  "\017enabler_pressed\030\003 \001(\010\022=\n\014safety_state\030\005"
+  " \001(\0132\'.Nrmk.IndyFramework.SafetyFunction"
+  "State\"\227\001\n\rSanderCommand\022:\n\004type\030\001 \001(\0162,."
+  "Nrmk.IndyFramework.SanderCommand.SanderT"
+  "ype\022\n\n\002ip\030\002 \001(\t\022\r\n\005speed\030\003 \001(\002\022\r\n\005state\030"
+  "\n \001(\010\" \n\nSanderType\022\022\n\016SANDER_ONROBOT\020\000\""
+  "\211\002\n\007Encoder\0225\n\004type\030\001 \001(\0162\'.Nrmk.IndyFra"
+  "mework.Encoder.EncoderType\022\020\n\010channel1\030\002"
+  " \001(\003\022\020\n\010channel2\030\003 \001(\003\022\022\n\nsample_num\030\004 \001"
+  "(\003\022\023\n\013mm_per_tick\030\005 \001(\002\022\026\n\016vel_const_mmp"
+  "s\030\006 \001(\002\022\020\n\010reversed\030\007 \001(\010\"P\n\013EncoderType"
+  "\022\014\n\010CONSTANT\020\000\022\016\n\nQUADRATURE\020\001\022\n\n\006RISING"
+  "\020\002\022\013\n\007FALLING\020\003\022\n\n\006MODBUS\020\004\"\216\001\n\007Trigger\022"
+  "5\n\004type\030\001 \001(\0162\'.Nrmk.IndyFramework.Trigg"
+  "er.TriggerType\022\017\n\007channel\030\002 \001(\003\022\023\n\013detec"
+  "t_rise\030\003 \001(\010\"&\n\013TriggerType\022\013\n\007DIGITAL\020\000"
+  "\022\n\n\006MODBUS\020\001\"\270\002\n\010Conveyor\022\014\n\004name\030\001 \001(\t\022"
+  ",\n\007encoder\030\002 \001(\0132\033.Nrmk.IndyFramework.En"
+  "coder\022,\n\007trigger\030\003 \001(\0132\033.Nrmk.IndyFramew"
+  "ork.Trigger\022\023\n\013offset_dist\030\004 \001(\002\022\024\n\014work"
+  "ing_dist\030\005 \001(\002\022-\n\tdirection\030\006 \001(\0132\032.Nrmk"
+  ".IndyFramework.Vector\0223\n\rstarting_pose\030\n"
+  " \001(\0132\034.Nrmk.IndyFramework.PosePair\0223\n\rte"
+  "rminal_pose\030\013 \001(\0132\034.Nrmk.IndyFramework.P"
+  "osePair\"4\n\rConveyorState\022\020\n\010velocity\030\001 \001"
+  "(\002\022\021\n\ttriggered\030\002 \001(\002*<\n\013GripperType\022\010\n\004"
+  "NONE\020\000\022\023\n\017ROBOTIQ_GRIPPER\020\001\022\016\n\nDH_GRIPPE"
+  "R\020\002*=\n\014DigitalState\022\r\n\tOFF_STATE\020\000\022\014\n\010ON"
+  "_STATE\020\001\022\020\n\014UNUSED_STATE\020\002*b\n\014EndtoolSta"
+  "te\022\n\n\006UNUSED\020\000\022\014\n\010HIGH_PNP\020\002\022\014\n\010HIGH_NPN"
+  "\020\001\022\024\n\007LOW_NPN\020\377\377\377\377\377\377\377\377\377\001\022\024\n\007LOW_PNP\020\376\377\377\377"
+  "\377\377\377\377\377\001b\006proto3"
+  ;
+static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_device_5fmsgs_2eproto_deps[1] = {
+  &::descriptor_table_common_5fmsgs_2eproto,
+};
+static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_device_5fmsgs_2eproto_sccs[29] = {
+  &scc_info_AnalogList_device_5fmsgs_2eproto.base,
+  &scc_info_AnalogSignal_device_5fmsgs_2eproto.base,
+  &scc_info_BrakeControlStyle_device_5fmsgs_2eproto.base,
+  &scc_info_CheckAutoModeRes_device_5fmsgs_2eproto.base,
+  &scc_info_CheckReducedModeRes_device_5fmsgs_2eproto.base,
+  &scc_info_Conveyor_device_5fmsgs_2eproto.base,
+  &scc_info_ConveyorState_device_5fmsgs_2eproto.base,
+  &scc_info_DeviceInfo_device_5fmsgs_2eproto.base,
+  &scc_info_DigitalList_device_5fmsgs_2eproto.base,
+  &scc_info_DigitalSignal_device_5fmsgs_2eproto.base,
+  &scc_info_Encoder_device_5fmsgs_2eproto.base,
+  &scc_info_EndLedDim_device_5fmsgs_2eproto.base,
+  &scc_info_EndtoolSignal_device_5fmsgs_2eproto.base,
+  &scc_info_EndtoolSignalList_device_5fmsgs_2eproto.base,
+  &scc_info_FTSensorData_device_5fmsgs_2eproto.base,
+  &scc_info_GetEL5001Data_device_5fmsgs_2eproto.base,
+  &scc_info_GetEL5101Data_device_5fmsgs_2eproto.base,
+  &scc_info_GetLoadFactorsRes_device_5fmsgs_2eproto.base,
+  &scc_info_GripperCommand_device_5fmsgs_2eproto.base,
+  &scc_info_GripperData_device_5fmsgs_2eproto.base,
+  &scc_info_Motor_device_5fmsgs_2eproto.base,
+  &scc_info_MotorList_device_5fmsgs_2eproto.base,
+  &scc_info_SafetyControlData_device_5fmsgs_2eproto.base,
+  &scc_info_SafetyFunctionState_device_5fmsgs_2eproto.base,
+  &scc_info_SanderCommand_device_5fmsgs_2eproto.base,
+  &scc_info_Servo_device_5fmsgs_2eproto.base,
+  &scc_info_SetAutoModeReq_device_5fmsgs_2eproto.base,
+  &scc_info_SetAutoModeRes_device_5fmsgs_2eproto.base,
+  &scc_info_Trigger_device_5fmsgs_2eproto.base,
+};
+static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_device_5fmsgs_2eproto_once;
+static bool descriptor_table_device_5fmsgs_2eproto_initialized = false;
+const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_device_5fmsgs_2eproto = {
+  &descriptor_table_device_5fmsgs_2eproto_initialized, descriptor_table_protodef_device_5fmsgs_2eproto, "device_msgs.proto", 3654,
+  &descriptor_table_device_5fmsgs_2eproto_once, descriptor_table_device_5fmsgs_2eproto_sccs, descriptor_table_device_5fmsgs_2eproto_deps, 29, 1,
+  schemas, file_default_instances, TableStruct_device_5fmsgs_2eproto::offsets,
+  file_level_metadata_device_5fmsgs_2eproto, 29, file_level_enum_descriptors_device_5fmsgs_2eproto, file_level_service_descriptors_device_5fmsgs_2eproto,
+};
+
 // Force running AddDescriptors() at dynamic initialization time.
-PROTOBUF_ATTRIBUTE_INIT_PRIORITY2
-static ::_pbi::AddDescriptorsRunner dynamic_init_dummy_device_5fmsgs_2eproto(&descriptor_table_device_5fmsgs_2eproto);
+static bool dynamic_init_dummy_device_5fmsgs_2eproto = (  ::PROTOBUF_NAMESPACE_ID::internal::AddDescriptors(&descriptor_table_device_5fmsgs_2eproto), true);
 namespace Nrmk {
 namespace IndyFramework {
-const ::google::protobuf::EnumDescriptor* BrakeControlStyle_ControlStyle_descriptor() {
-  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_device_5fmsgs_2eproto);
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* GripperCommand_GripperCommandType_descriptor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_device_5fmsgs_2eproto);
   return file_level_enum_descriptors_device_5fmsgs_2eproto[0];
+}
+bool GripperCommand_GripperCommandType_IsValid(int value) {
+  switch (value) {
+    case 0:
+    case 1:
+    case 2:
+    case 3:
+      return true;
+    default:
+      return false;
+  }
+}
+
+#if (__cplusplus < 201703) && (!defined(_MSC_VER) || _MSC_VER >= 1900)
+constexpr GripperCommand_GripperCommandType GripperCommand::AUTO_DETECT;
+constexpr GripperCommand_GripperCommandType GripperCommand::ACTIVATE;
+constexpr GripperCommand_GripperCommandType GripperCommand::RE_ACTIVATE;
+constexpr GripperCommand_GripperCommandType GripperCommand::SET_PVT;
+constexpr GripperCommand_GripperCommandType GripperCommand::GripperCommandType_MIN;
+constexpr GripperCommand_GripperCommandType GripperCommand::GripperCommandType_MAX;
+constexpr int GripperCommand::GripperCommandType_ARRAYSIZE;
+#endif  // (__cplusplus < 201703) && (!defined(_MSC_VER) || _MSC_VER >= 1900)
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* BrakeControlStyle_ControlStyle_descriptor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_device_5fmsgs_2eproto);
+  return file_level_enum_descriptors_device_5fmsgs_2eproto[1];
 }
 bool BrakeControlStyle_ControlStyle_IsValid(int value) {
   switch (value) {
@@ -671,21 +1055,100 @@ bool BrakeControlStyle_ControlStyle_IsValid(int value) {
       return false;
   }
 }
-#if (__cplusplus < 201703) && \
-  (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
 
+#if (__cplusplus < 201703) && (!defined(_MSC_VER) || _MSC_VER >= 1900)
 constexpr BrakeControlStyle_ControlStyle BrakeControlStyle::UNAVAILABLE;
 constexpr BrakeControlStyle_ControlStyle BrakeControlStyle::CONCURRENT;
 constexpr BrakeControlStyle_ControlStyle BrakeControlStyle::INDIVIDUAL;
 constexpr BrakeControlStyle_ControlStyle BrakeControlStyle::ControlStyle_MIN;
 constexpr BrakeControlStyle_ControlStyle BrakeControlStyle::ControlStyle_MAX;
 constexpr int BrakeControlStyle::ControlStyle_ARRAYSIZE;
+#endif  // (__cplusplus < 201703) && (!defined(_MSC_VER) || _MSC_VER >= 1900)
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* SanderCommand_SanderType_descriptor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_device_5fmsgs_2eproto);
+  return file_level_enum_descriptors_device_5fmsgs_2eproto[2];
+}
+bool SanderCommand_SanderType_IsValid(int value) {
+  switch (value) {
+    case 0:
+      return true;
+    default:
+      return false;
+  }
+}
 
-#endif  // (__cplusplus < 201703) &&
-        // (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
-const ::google::protobuf::EnumDescriptor* DigitalState_descriptor() {
-  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_device_5fmsgs_2eproto);
-  return file_level_enum_descriptors_device_5fmsgs_2eproto[1];
+#if (__cplusplus < 201703) && (!defined(_MSC_VER) || _MSC_VER >= 1900)
+constexpr SanderCommand_SanderType SanderCommand::SANDER_ONROBOT;
+constexpr SanderCommand_SanderType SanderCommand::SanderType_MIN;
+constexpr SanderCommand_SanderType SanderCommand::SanderType_MAX;
+constexpr int SanderCommand::SanderType_ARRAYSIZE;
+#endif  // (__cplusplus < 201703) && (!defined(_MSC_VER) || _MSC_VER >= 1900)
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* Encoder_EncoderType_descriptor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_device_5fmsgs_2eproto);
+  return file_level_enum_descriptors_device_5fmsgs_2eproto[3];
+}
+bool Encoder_EncoderType_IsValid(int value) {
+  switch (value) {
+    case 0:
+    case 1:
+    case 2:
+    case 3:
+    case 4:
+      return true;
+    default:
+      return false;
+  }
+}
+
+#if (__cplusplus < 201703) && (!defined(_MSC_VER) || _MSC_VER >= 1900)
+constexpr Encoder_EncoderType Encoder::CONSTANT;
+constexpr Encoder_EncoderType Encoder::QUADRATURE;
+constexpr Encoder_EncoderType Encoder::RISING;
+constexpr Encoder_EncoderType Encoder::FALLING;
+constexpr Encoder_EncoderType Encoder::MODBUS;
+constexpr Encoder_EncoderType Encoder::EncoderType_MIN;
+constexpr Encoder_EncoderType Encoder::EncoderType_MAX;
+constexpr int Encoder::EncoderType_ARRAYSIZE;
+#endif  // (__cplusplus < 201703) && (!defined(_MSC_VER) || _MSC_VER >= 1900)
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* Trigger_TriggerType_descriptor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_device_5fmsgs_2eproto);
+  return file_level_enum_descriptors_device_5fmsgs_2eproto[4];
+}
+bool Trigger_TriggerType_IsValid(int value) {
+  switch (value) {
+    case 0:
+    case 1:
+      return true;
+    default:
+      return false;
+  }
+}
+
+#if (__cplusplus < 201703) && (!defined(_MSC_VER) || _MSC_VER >= 1900)
+constexpr Trigger_TriggerType Trigger::DIGITAL;
+constexpr Trigger_TriggerType Trigger::MODBUS;
+constexpr Trigger_TriggerType Trigger::TriggerType_MIN;
+constexpr Trigger_TriggerType Trigger::TriggerType_MAX;
+constexpr int Trigger::TriggerType_ARRAYSIZE;
+#endif  // (__cplusplus < 201703) && (!defined(_MSC_VER) || _MSC_VER >= 1900)
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* GripperType_descriptor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_device_5fmsgs_2eproto);
+  return file_level_enum_descriptors_device_5fmsgs_2eproto[5];
+}
+bool GripperType_IsValid(int value) {
+  switch (value) {
+    case 0:
+    case 1:
+    case 2:
+      return true;
+    default:
+      return false;
+  }
+}
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* DigitalState_descriptor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_device_5fmsgs_2eproto);
+  return file_level_enum_descriptors_device_5fmsgs_2eproto[6];
 }
 bool DigitalState_IsValid(int value) {
   switch (value) {
@@ -697,9 +1160,10 @@ bool DigitalState_IsValid(int value) {
       return false;
   }
 }
-const ::google::protobuf::EnumDescriptor* EndtoolState_descriptor() {
-  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_device_5fmsgs_2eproto);
-  return file_level_enum_descriptors_device_5fmsgs_2eproto[2];
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* EndtoolState_descriptor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_device_5fmsgs_2eproto);
+  return file_level_enum_descriptors_device_5fmsgs_2eproto[7];
 }
 bool EndtoolState_IsValid(int value) {
   switch (value) {
@@ -713,172 +1177,282 @@ bool EndtoolState_IsValid(int value) {
       return false;
   }
 }
+
+
 // ===================================================================
 
-class Motor::_Internal {
+void Motor::InitAsDefaultInstance() {
+}
+class Motor::HasBitSetters {
  public:
 };
 
-Motor::Motor(::google::protobuf::Arena* arena)
-    : ::google::protobuf::Message(arena) {
-  SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:Nrmk.IndyFramework.Motor)
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int Motor::kIndexFieldNumber;
+const int Motor::kEnableFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+Motor::Motor()
+  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:Nrmk.IndyFramework.Motor)
 }
 Motor::Motor(const Motor& from)
-    : ::google::protobuf::Message(), _impl_(from._impl_) {
-  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
-      from._internal_metadata_);
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _internal_metadata_(nullptr) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::memcpy(&index_, &from.index_,
+    static_cast<size_t>(reinterpret_cast<char*>(&enable_) -
+    reinterpret_cast<char*>(&index_)) + sizeof(enable_));
   // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.Motor)
 }
-inline void Motor::SharedCtor(::_pb::Arena* arena) {
-  (void)arena;
-  new (&_impl_) Impl_{
-      decltype(_impl_.index_){0u},
-      decltype(_impl_.enable_){false},
-      /*decltype(_impl_._cached_size_)*/ {},
-  };
-}
-Motor::~Motor() {
-  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.Motor)
-  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
-  SharedDtor();
-}
-inline void Motor::SharedDtor() {
-  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
-}
-void Motor::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+
+void Motor::SharedCtor() {
+  ::memset(&index_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&enable_) -
+      reinterpret_cast<char*>(&index_)) + sizeof(enable_));
 }
 
-PROTOBUF_NOINLINE void Motor::Clear() {
+Motor::~Motor() {
+  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.Motor)
+  SharedDtor();
+}
+
+void Motor::SharedDtor() {
+}
+
+void Motor::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const Motor& Motor::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_Motor_device_5fmsgs_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void Motor::Clear() {
 // @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.Motor)
-  ::uint32_t cached_has_bits = 0;
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  ::memset(&_impl_.index_, 0, static_cast<::size_t>(
-      reinterpret_cast<char*>(&_impl_.enable_) -
-      reinterpret_cast<char*>(&_impl_.index_)) + sizeof(_impl_.enable_));
-  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+  ::memset(&index_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&enable_) -
+      reinterpret_cast<char*>(&index_)) + sizeof(enable_));
+  _internal_metadata_.Clear();
 }
 
-const char* Motor::_InternalParse(
-    const char* ptr, ::_pbi::ParseContext* ctx) {
-  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+#if GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+const char* Motor::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // uint32 index = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          index_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // bool enable = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
+          enable_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
   return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
 }
+#else  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+bool Motor::MergePartialFromCodedStream(
+    ::PROTOBUF_NAMESPACE_ID::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!PROTOBUF_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+  // @@protoc_insertion_point(parse_start:Nrmk.IndyFramework.Motor)
+  for (;;) {
+    ::std::pair<::PROTOBUF_NAMESPACE_ID::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // uint32 index = 1;
+      case 1: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (8 & 0xFF)) {
 
+          DO_((::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadPrimitive<
+                   ::PROTOBUF_NAMESPACE_ID::uint32, ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_UINT32>(
+                 input, &index_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
 
-PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 2, 0, 0, 2> Motor::_table_ = {
-  {
-    0,  // no _has_bits_
-    0, // no _extensions_
-    2, 8,  // max_field_number, fast_idx_mask
-    offsetof(decltype(_table_), field_lookup_table),
-    4294967292,  // skipmap
-    offsetof(decltype(_table_), field_entries),
-    2,  // num_field_entries
-    0,  // num_aux_entries
-    offsetof(decltype(_table_), field_names),  // no aux_entries
-    &_Motor_default_instance_._instance,
-    ::_pbi::TcParser::GenericFallback,  // fallback
-  }, {{
-    // bool enable = 2;
-    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(Motor, _impl_.enable_), 63>(),
-     {16, 63, 0, PROTOBUF_FIELD_OFFSET(Motor, _impl_.enable_)}},
-    // uint32 index = 1;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Motor, _impl_.index_), 63>(),
-     {8, 63, 0, PROTOBUF_FIELD_OFFSET(Motor, _impl_.index_)}},
-  }}, {{
-    65535, 65535
-  }}, {{
-    // uint32 index = 1;
-    {PROTOBUF_FIELD_OFFSET(Motor, _impl_.index_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
-    // bool enable = 2;
-    {PROTOBUF_FIELD_OFFSET(Motor, _impl_.enable_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
-  }},
-  // no aux_entries
-  {{
-  }},
-};
+      // bool enable = 2;
+      case 2: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (16 & 0xFF)) {
 
-::uint8_t* Motor::_InternalSerialize(
-    ::uint8_t* target,
-    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.Motor)
-  ::uint32_t cached_has_bits = 0;
-  (void)cached_has_bits;
+          DO_((::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadPrimitive<
+                   bool, ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_BOOL>(
+                 input, &enable_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0) {
+          goto success;
+        }
+        DO_(::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:Nrmk.IndyFramework.Motor)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:Nrmk.IndyFramework.Motor)
+  return false;
+#undef DO_
+}
+#endif  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+
+void Motor::SerializeWithCachedSizes(
+    ::PROTOBUF_NAMESPACE_ID::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:Nrmk.IndyFramework.Motor)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
 
   // uint32 index = 1;
-  if (this->_internal_index() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
-        1, this->_internal_index(), target);
+  if (this->index() != 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt32(1, this->index(), output);
   }
 
   // bool enable = 2;
-  if (this->_internal_enable() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteBoolToArray(
-        2, this->_internal_enable(), target);
+  if (this->enable() != 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBool(2, this->enable(), output);
   }
 
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target =
-        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  if (_internal_metadata_.have_unknown_fields()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SerializeUnknownFields(
+        _internal_metadata_.unknown_fields(), output);
+  }
+  // @@protoc_insertion_point(serialize_end:Nrmk.IndyFramework.Motor)
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* Motor::InternalSerializeWithCachedSizesToArray(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.Motor)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // uint32 index = 1;
+  if (this->index() != 0) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt32ToArray(1, this->index(), target);
+  }
+
+  // bool enable = 2;
+  if (this->enable() != 0) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(2, this->enable(), target);
+  }
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields(), target);
   }
   // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.Motor)
   return target;
 }
 
-::size_t Motor::ByteSizeLong() const {
+size_t Motor::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.Motor)
-  ::size_t total_size = 0;
+  size_t total_size = 0;
 
-  ::uint32_t cached_has_bits = 0;
+  if (_internal_metadata_.have_unknown_fields()) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::ComputeUnknownFieldsSize(
+        _internal_metadata_.unknown_fields());
+  }
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // uint32 index = 1;
-  if (this->_internal_index() != 0) {
-    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
-        this->_internal_index());
+  if (this->index() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt32Size(
+        this->index());
   }
 
   // bool enable = 2;
-  if (this->_internal_enable() != 0) {
-    total_size += 2;
+  if (this->enable() != 0) {
+    total_size += 1 + 1;
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
 }
 
-const ::google::protobuf::Message::ClassData Motor::_class_data_ = {
-    ::google::protobuf::Message::CopyWithSourceCheck,
-    Motor::MergeImpl
-};
-const ::google::protobuf::Message::ClassData*Motor::GetClassData() const { return &_class_data_; }
+void Motor::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:Nrmk.IndyFramework.Motor)
+  GOOGLE_DCHECK_NE(&from, this);
+  const Motor* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<Motor>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Nrmk.IndyFramework.Motor)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:Nrmk.IndyFramework.Motor)
+    MergeFrom(*source);
+  }
+}
 
-
-void Motor::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
-  auto* const _this = static_cast<Motor*>(&to_msg);
-  auto& from = static_cast<const Motor&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.Motor)
-  ABSL_DCHECK_NE(&from, _this);
-  ::uint32_t cached_has_bits = 0;
+void Motor::MergeFrom(const Motor& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.Motor)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from._internal_index() != 0) {
-    _this->_internal_set_index(from._internal_index());
+  if (from.index() != 0) {
+    set_index(from.index());
   }
-  if (from._internal_enable() != 0) {
-    _this->_internal_set_enable(from._internal_enable());
+  if (from.enable() != 0) {
+    set_enable(from.enable());
   }
-  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void Motor::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:Nrmk.IndyFramework.Motor)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void Motor::CopyFrom(const Motor& from) {
@@ -888,192 +1462,300 @@ void Motor::CopyFrom(const Motor& from) {
   MergeFrom(from);
 }
 
-PROTOBUF_NOINLINE bool Motor::IsInitialized() const {
+bool Motor::IsInitialized() const {
   return true;
 }
 
+void Motor::Swap(Motor* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
 void Motor::InternalSwap(Motor* other) {
   using std::swap;
-  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::google::protobuf::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(Motor, _impl_.enable_)
-      + sizeof(Motor::_impl_.enable_)
-      - PROTOBUF_FIELD_OFFSET(Motor, _impl_.index_)>(
-          reinterpret_cast<char*>(&_impl_.index_),
-          reinterpret_cast<char*>(&other->_impl_.index_));
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  swap(index_, other->index_);
+  swap(enable_, other->enable_);
 }
 
-::google::protobuf::Metadata Motor::GetMetadata() const {
-  return ::_pbi::AssignDescriptors(
-      &descriptor_table_device_5fmsgs_2eproto_getter, &descriptor_table_device_5fmsgs_2eproto_once,
-      file_level_metadata_device_5fmsgs_2eproto[0]);
+::PROTOBUF_NAMESPACE_ID::Metadata Motor::GetMetadata() const {
+  return GetMetadataStatic();
 }
+
+
 // ===================================================================
 
-class Servo::_Internal {
+void Servo::InitAsDefaultInstance() {
+}
+class Servo::HasBitSetters {
  public:
 };
 
-Servo::Servo(::google::protobuf::Arena* arena)
-    : ::google::protobuf::Message(arena) {
-  SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:Nrmk.IndyFramework.Servo)
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int Servo::kIndexFieldNumber;
+const int Servo::kEnableFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+Servo::Servo()
+  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:Nrmk.IndyFramework.Servo)
 }
 Servo::Servo(const Servo& from)
-    : ::google::protobuf::Message(), _impl_(from._impl_) {
-  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
-      from._internal_metadata_);
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _internal_metadata_(nullptr) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::memcpy(&index_, &from.index_,
+    static_cast<size_t>(reinterpret_cast<char*>(&enable_) -
+    reinterpret_cast<char*>(&index_)) + sizeof(enable_));
   // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.Servo)
 }
-inline void Servo::SharedCtor(::_pb::Arena* arena) {
-  (void)arena;
-  new (&_impl_) Impl_{
-      decltype(_impl_.index_){0u},
-      decltype(_impl_.enable_){false},
-      /*decltype(_impl_._cached_size_)*/ {},
-  };
-}
-Servo::~Servo() {
-  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.Servo)
-  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
-  SharedDtor();
-}
-inline void Servo::SharedDtor() {
-  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
-}
-void Servo::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+
+void Servo::SharedCtor() {
+  ::memset(&index_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&enable_) -
+      reinterpret_cast<char*>(&index_)) + sizeof(enable_));
 }
 
-PROTOBUF_NOINLINE void Servo::Clear() {
+Servo::~Servo() {
+  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.Servo)
+  SharedDtor();
+}
+
+void Servo::SharedDtor() {
+}
+
+void Servo::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const Servo& Servo::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_Servo_device_5fmsgs_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void Servo::Clear() {
 // @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.Servo)
-  ::uint32_t cached_has_bits = 0;
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  ::memset(&_impl_.index_, 0, static_cast<::size_t>(
-      reinterpret_cast<char*>(&_impl_.enable_) -
-      reinterpret_cast<char*>(&_impl_.index_)) + sizeof(_impl_.enable_));
-  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+  ::memset(&index_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&enable_) -
+      reinterpret_cast<char*>(&index_)) + sizeof(enable_));
+  _internal_metadata_.Clear();
 }
 
-const char* Servo::_InternalParse(
-    const char* ptr, ::_pbi::ParseContext* ctx) {
-  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+#if GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+const char* Servo::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // uint32 index = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          index_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // bool enable = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
+          enable_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
   return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
 }
+#else  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+bool Servo::MergePartialFromCodedStream(
+    ::PROTOBUF_NAMESPACE_ID::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!PROTOBUF_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+  // @@protoc_insertion_point(parse_start:Nrmk.IndyFramework.Servo)
+  for (;;) {
+    ::std::pair<::PROTOBUF_NAMESPACE_ID::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // uint32 index = 1;
+      case 1: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (8 & 0xFF)) {
 
+          DO_((::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadPrimitive<
+                   ::PROTOBUF_NAMESPACE_ID::uint32, ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_UINT32>(
+                 input, &index_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
 
-PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 2, 0, 0, 2> Servo::_table_ = {
-  {
-    0,  // no _has_bits_
-    0, // no _extensions_
-    2, 8,  // max_field_number, fast_idx_mask
-    offsetof(decltype(_table_), field_lookup_table),
-    4294967292,  // skipmap
-    offsetof(decltype(_table_), field_entries),
-    2,  // num_field_entries
-    0,  // num_aux_entries
-    offsetof(decltype(_table_), field_names),  // no aux_entries
-    &_Servo_default_instance_._instance,
-    ::_pbi::TcParser::GenericFallback,  // fallback
-  }, {{
-    // bool enable = 2;
-    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(Servo, _impl_.enable_), 63>(),
-     {16, 63, 0, PROTOBUF_FIELD_OFFSET(Servo, _impl_.enable_)}},
-    // uint32 index = 1;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Servo, _impl_.index_), 63>(),
-     {8, 63, 0, PROTOBUF_FIELD_OFFSET(Servo, _impl_.index_)}},
-  }}, {{
-    65535, 65535
-  }}, {{
-    // uint32 index = 1;
-    {PROTOBUF_FIELD_OFFSET(Servo, _impl_.index_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
-    // bool enable = 2;
-    {PROTOBUF_FIELD_OFFSET(Servo, _impl_.enable_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
-  }},
-  // no aux_entries
-  {{
-  }},
-};
+      // bool enable = 2;
+      case 2: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (16 & 0xFF)) {
 
-::uint8_t* Servo::_InternalSerialize(
-    ::uint8_t* target,
-    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.Servo)
-  ::uint32_t cached_has_bits = 0;
-  (void)cached_has_bits;
+          DO_((::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadPrimitive<
+                   bool, ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_BOOL>(
+                 input, &enable_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0) {
+          goto success;
+        }
+        DO_(::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:Nrmk.IndyFramework.Servo)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:Nrmk.IndyFramework.Servo)
+  return false;
+#undef DO_
+}
+#endif  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+
+void Servo::SerializeWithCachedSizes(
+    ::PROTOBUF_NAMESPACE_ID::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:Nrmk.IndyFramework.Servo)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
 
   // uint32 index = 1;
-  if (this->_internal_index() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
-        1, this->_internal_index(), target);
+  if (this->index() != 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt32(1, this->index(), output);
   }
 
   // bool enable = 2;
-  if (this->_internal_enable() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteBoolToArray(
-        2, this->_internal_enable(), target);
+  if (this->enable() != 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBool(2, this->enable(), output);
   }
 
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target =
-        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  if (_internal_metadata_.have_unknown_fields()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SerializeUnknownFields(
+        _internal_metadata_.unknown_fields(), output);
+  }
+  // @@protoc_insertion_point(serialize_end:Nrmk.IndyFramework.Servo)
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* Servo::InternalSerializeWithCachedSizesToArray(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.Servo)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // uint32 index = 1;
+  if (this->index() != 0) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt32ToArray(1, this->index(), target);
+  }
+
+  // bool enable = 2;
+  if (this->enable() != 0) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(2, this->enable(), target);
+  }
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields(), target);
   }
   // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.Servo)
   return target;
 }
 
-::size_t Servo::ByteSizeLong() const {
+size_t Servo::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.Servo)
-  ::size_t total_size = 0;
+  size_t total_size = 0;
 
-  ::uint32_t cached_has_bits = 0;
+  if (_internal_metadata_.have_unknown_fields()) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::ComputeUnknownFieldsSize(
+        _internal_metadata_.unknown_fields());
+  }
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // uint32 index = 1;
-  if (this->_internal_index() != 0) {
-    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
-        this->_internal_index());
+  if (this->index() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt32Size(
+        this->index());
   }
 
   // bool enable = 2;
-  if (this->_internal_enable() != 0) {
-    total_size += 2;
+  if (this->enable() != 0) {
+    total_size += 1 + 1;
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
 }
 
-const ::google::protobuf::Message::ClassData Servo::_class_data_ = {
-    ::google::protobuf::Message::CopyWithSourceCheck,
-    Servo::MergeImpl
-};
-const ::google::protobuf::Message::ClassData*Servo::GetClassData() const { return &_class_data_; }
+void Servo::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:Nrmk.IndyFramework.Servo)
+  GOOGLE_DCHECK_NE(&from, this);
+  const Servo* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<Servo>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Nrmk.IndyFramework.Servo)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:Nrmk.IndyFramework.Servo)
+    MergeFrom(*source);
+  }
+}
 
-
-void Servo::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
-  auto* const _this = static_cast<Servo*>(&to_msg);
-  auto& from = static_cast<const Servo&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.Servo)
-  ABSL_DCHECK_NE(&from, _this);
-  ::uint32_t cached_has_bits = 0;
+void Servo::MergeFrom(const Servo& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.Servo)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from._internal_index() != 0) {
-    _this->_internal_set_index(from._internal_index());
+  if (from.index() != 0) {
+    set_index(from.index());
   }
-  if (from._internal_enable() != 0) {
-    _this->_internal_set_enable(from._internal_enable());
+  if (from.enable() != 0) {
+    set_enable(from.enable());
   }
-  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void Servo::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:Nrmk.IndyFramework.Servo)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void Servo::CopyFrom(const Servo& from) {
@@ -1083,193 +1765,1036 @@ void Servo::CopyFrom(const Servo& from) {
   MergeFrom(from);
 }
 
-PROTOBUF_NOINLINE bool Servo::IsInitialized() const {
+bool Servo::IsInitialized() const {
   return true;
 }
 
+void Servo::Swap(Servo* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
 void Servo::InternalSwap(Servo* other) {
   using std::swap;
-  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::google::protobuf::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(Servo, _impl_.enable_)
-      + sizeof(Servo::_impl_.enable_)
-      - PROTOBUF_FIELD_OFFSET(Servo, _impl_.index_)>(
-          reinterpret_cast<char*>(&_impl_.index_),
-          reinterpret_cast<char*>(&other->_impl_.index_));
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  swap(index_, other->index_);
+  swap(enable_, other->enable_);
 }
 
-::google::protobuf::Metadata Servo::GetMetadata() const {
-  return ::_pbi::AssignDescriptors(
-      &descriptor_table_device_5fmsgs_2eproto_getter, &descriptor_table_device_5fmsgs_2eproto_once,
-      file_level_metadata_device_5fmsgs_2eproto[1]);
+::PROTOBUF_NAMESPACE_ID::Metadata Servo::GetMetadata() const {
+  return GetMetadataStatic();
 }
+
+
 // ===================================================================
 
-class DigitalSignal::_Internal {
+void GripperData::InitAsDefaultInstance() {
+}
+class GripperData::HasBitSetters {
  public:
 };
 
-DigitalSignal::DigitalSignal(::google::protobuf::Arena* arena)
-    : ::google::protobuf::Message(arena) {
-  SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:Nrmk.IndyFramework.DigitalSignal)
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int GripperData::kGripperTypeFieldNumber;
+const int GripperData::kGripperPositionFieldNumber;
+const int GripperData::kGripperStateFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+GripperData::GripperData()
+  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:Nrmk.IndyFramework.GripperData)
 }
-DigitalSignal::DigitalSignal(const DigitalSignal& from)
-    : ::google::protobuf::Message(), _impl_(from._impl_) {
-  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
-      from._internal_metadata_);
-  // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.DigitalSignal)
-}
-inline void DigitalSignal::SharedCtor(::_pb::Arena* arena) {
-  (void)arena;
-  new (&_impl_) Impl_{
-      decltype(_impl_.address_){0u},
-      decltype(_impl_.state_){0},
-      /*decltype(_impl_._cached_size_)*/ {},
-  };
-}
-DigitalSignal::~DigitalSignal() {
-  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.DigitalSignal)
-  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
-  SharedDtor();
-}
-inline void DigitalSignal::SharedDtor() {
-  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
-}
-void DigitalSignal::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+GripperData::GripperData(const GripperData& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _internal_metadata_(nullptr) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::memcpy(&gripper_type_, &from.gripper_type_,
+    static_cast<size_t>(reinterpret_cast<char*>(&gripper_state_) -
+    reinterpret_cast<char*>(&gripper_type_)) + sizeof(gripper_state_));
+  // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.GripperData)
 }
 
-PROTOBUF_NOINLINE void DigitalSignal::Clear() {
-// @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.DigitalSignal)
-  ::uint32_t cached_has_bits = 0;
+void GripperData::SharedCtor() {
+  ::memset(&gripper_type_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&gripper_state_) -
+      reinterpret_cast<char*>(&gripper_type_)) + sizeof(gripper_state_));
+}
+
+GripperData::~GripperData() {
+  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.GripperData)
+  SharedDtor();
+}
+
+void GripperData::SharedDtor() {
+}
+
+void GripperData::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const GripperData& GripperData::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_GripperData_device_5fmsgs_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void GripperData::Clear() {
+// @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.GripperData)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  ::memset(&_impl_.address_, 0, static_cast<::size_t>(
-      reinterpret_cast<char*>(&_impl_.state_) -
-      reinterpret_cast<char*>(&_impl_.address_)) + sizeof(_impl_.state_));
-  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+  ::memset(&gripper_type_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&gripper_state_) -
+      reinterpret_cast<char*>(&gripper_type_)) + sizeof(gripper_state_));
+  _internal_metadata_.Clear();
 }
 
-const char* DigitalSignal::_InternalParse(
-    const char* ptr, ::_pbi::ParseContext* ctx) {
-  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+#if GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+const char* GripperData::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // .Nrmk.IndyFramework.GripperType gripper_type = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+          set_gripper_type(static_cast<::Nrmk::IndyFramework::GripperType>(val));
+        } else goto handle_unusual;
+        continue;
+      // int32 gripper_position = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
+          gripper_position_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // int32 gripper_state = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 24)) {
+          gripper_state_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
   return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+#else  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+bool GripperData::MergePartialFromCodedStream(
+    ::PROTOBUF_NAMESPACE_ID::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!PROTOBUF_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+  // @@protoc_insertion_point(parse_start:Nrmk.IndyFramework.GripperData)
+  for (;;) {
+    ::std::pair<::PROTOBUF_NAMESPACE_ID::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // .Nrmk.IndyFramework.GripperType gripper_type = 1;
+      case 1: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (8 & 0xFF)) {
+          int value = 0;
+          DO_((::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadPrimitive<
+                   int, ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_ENUM>(
+                 input, &value)));
+          set_gripper_type(static_cast< ::Nrmk::IndyFramework::GripperType >(value));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // int32 gripper_position = 2;
+      case 2: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (16 & 0xFF)) {
+
+          DO_((::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadPrimitive<
+                   ::PROTOBUF_NAMESPACE_ID::int32, ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_INT32>(
+                 input, &gripper_position_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // int32 gripper_state = 3;
+      case 3: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (24 & 0xFF)) {
+
+          DO_((::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadPrimitive<
+                   ::PROTOBUF_NAMESPACE_ID::int32, ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_INT32>(
+                 input, &gripper_state_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0) {
+          goto success;
+        }
+        DO_(::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:Nrmk.IndyFramework.GripperData)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:Nrmk.IndyFramework.GripperData)
+  return false;
+#undef DO_
+}
+#endif  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+
+void GripperData::SerializeWithCachedSizes(
+    ::PROTOBUF_NAMESPACE_ID::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:Nrmk.IndyFramework.GripperData)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .Nrmk.IndyFramework.GripperType gripper_type = 1;
+  if (this->gripper_type() != 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnum(
+      1, this->gripper_type(), output);
+  }
+
+  // int32 gripper_position = 2;
+  if (this->gripper_position() != 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32(2, this->gripper_position(), output);
+  }
+
+  // int32 gripper_state = 3;
+  if (this->gripper_state() != 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32(3, this->gripper_state(), output);
+  }
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SerializeUnknownFields(
+        _internal_metadata_.unknown_fields(), output);
+  }
+  // @@protoc_insertion_point(serialize_end:Nrmk.IndyFramework.GripperData)
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* GripperData::InternalSerializeWithCachedSizesToArray(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.GripperData)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .Nrmk.IndyFramework.GripperType gripper_type = 1;
+  if (this->gripper_type() != 0) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
+      1, this->gripper_type(), target);
+  }
+
+  // int32 gripper_position = 2;
+  if (this->gripper_position() != 0) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(2, this->gripper_position(), target);
+  }
+
+  // int32 gripper_state = 3;
+  if (this->gripper_state() != 0) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(3, this->gripper_state(), target);
+  }
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields(), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.GripperData)
+  return target;
+}
+
+size_t GripperData::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.GripperData)
+  size_t total_size = 0;
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::ComputeUnknownFieldsSize(
+        _internal_metadata_.unknown_fields());
+  }
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // .Nrmk.IndyFramework.GripperType gripper_type = 1;
+  if (this->gripper_type() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->gripper_type());
+  }
+
+  // int32 gripper_position = 2;
+  if (this->gripper_position() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->gripper_position());
+  }
+
+  // int32 gripper_state = 3;
+  if (this->gripper_state() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->gripper_state());
+  }
+
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void GripperData::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:Nrmk.IndyFramework.GripperData)
+  GOOGLE_DCHECK_NE(&from, this);
+  const GripperData* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<GripperData>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Nrmk.IndyFramework.GripperData)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:Nrmk.IndyFramework.GripperData)
+    MergeFrom(*source);
+  }
+}
+
+void GripperData::MergeFrom(const GripperData& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.GripperData)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.gripper_type() != 0) {
+    set_gripper_type(from.gripper_type());
+  }
+  if (from.gripper_position() != 0) {
+    set_gripper_position(from.gripper_position());
+  }
+  if (from.gripper_state() != 0) {
+    set_gripper_state(from.gripper_state());
+  }
+}
+
+void GripperData::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:Nrmk.IndyFramework.GripperData)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void GripperData::CopyFrom(const GripperData& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Nrmk.IndyFramework.GripperData)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool GripperData::IsInitialized() const {
+  return true;
+}
+
+void GripperData::Swap(GripperData* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void GripperData::InternalSwap(GripperData* other) {
+  using std::swap;
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  swap(gripper_type_, other->gripper_type_);
+  swap(gripper_position_, other->gripper_position_);
+  swap(gripper_state_, other->gripper_state_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata GripperData::GetMetadata() const {
+  return GetMetadataStatic();
 }
 
 
-PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 2, 0, 0, 2> DigitalSignal::_table_ = {
-  {
-    0,  // no _has_bits_
-    0, // no _extensions_
-    2, 8,  // max_field_number, fast_idx_mask
-    offsetof(decltype(_table_), field_lookup_table),
-    4294967292,  // skipmap
-    offsetof(decltype(_table_), field_entries),
-    2,  // num_field_entries
-    0,  // num_aux_entries
-    offsetof(decltype(_table_), field_names),  // no aux_entries
-    &_DigitalSignal_default_instance_._instance,
-    ::_pbi::TcParser::GenericFallback,  // fallback
-  }, {{
-    // .Nrmk.IndyFramework.DigitalState state = 2;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(DigitalSignal, _impl_.state_), 63>(),
-     {16, 63, 0, PROTOBUF_FIELD_OFFSET(DigitalSignal, _impl_.state_)}},
-    // uint32 address = 1;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(DigitalSignal, _impl_.address_), 63>(),
-     {8, 63, 0, PROTOBUF_FIELD_OFFSET(DigitalSignal, _impl_.address_)}},
-  }}, {{
-    65535, 65535
-  }}, {{
-    // uint32 address = 1;
-    {PROTOBUF_FIELD_OFFSET(DigitalSignal, _impl_.address_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
-    // .Nrmk.IndyFramework.DigitalState state = 2;
-    {PROTOBUF_FIELD_OFFSET(DigitalSignal, _impl_.state_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
-  }},
-  // no aux_entries
-  {{
-  }},
+// ===================================================================
+
+void GripperCommand::InitAsDefaultInstance() {
+}
+class GripperCommand::HasBitSetters {
+ public:
 };
 
-::uint8_t* DigitalSignal::_InternalSerialize(
-    ::uint8_t* target,
-    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.DigitalSignal)
-  ::uint32_t cached_has_bits = 0;
-  (void)cached_has_bits;
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int GripperCommand::kGripperCommandFieldNumber;
+const int GripperCommand::kGripperTypeFieldNumber;
+const int GripperCommand::kGripperPvtDataFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+GripperCommand::GripperCommand()
+  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:Nrmk.IndyFramework.GripperCommand)
+}
+GripperCommand::GripperCommand(const GripperCommand& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _internal_metadata_(nullptr),
+      gripper_pvt_data_(from.gripper_pvt_data_) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::memcpy(&gripper_command_, &from.gripper_command_,
+    static_cast<size_t>(reinterpret_cast<char*>(&gripper_type_) -
+    reinterpret_cast<char*>(&gripper_command_)) + sizeof(gripper_type_));
+  // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.GripperCommand)
+}
+
+void GripperCommand::SharedCtor() {
+  ::memset(&gripper_command_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&gripper_type_) -
+      reinterpret_cast<char*>(&gripper_command_)) + sizeof(gripper_type_));
+}
+
+GripperCommand::~GripperCommand() {
+  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.GripperCommand)
+  SharedDtor();
+}
+
+void GripperCommand::SharedDtor() {
+}
+
+void GripperCommand::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const GripperCommand& GripperCommand::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_GripperCommand_device_5fmsgs_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void GripperCommand::Clear() {
+// @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.GripperCommand)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  gripper_pvt_data_.Clear();
+  ::memset(&gripper_command_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&gripper_type_) -
+      reinterpret_cast<char*>(&gripper_command_)) + sizeof(gripper_type_));
+  _internal_metadata_.Clear();
+}
+
+#if GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+const char* GripperCommand::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // .Nrmk.IndyFramework.GripperCommand.GripperCommandType gripper_command = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+          set_gripper_command(static_cast<::Nrmk::IndyFramework::GripperCommand_GripperCommandType>(val));
+        } else goto handle_unusual;
+        continue;
+      // .Nrmk.IndyFramework.GripperType gripper_type = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
+          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+          set_gripper_type(static_cast<::Nrmk::IndyFramework::GripperType>(val));
+        } else goto handle_unusual;
+        continue;
+      // repeated int32 gripper_pvt_data = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::PackedInt32Parser(mutable_gripper_pvt_data(), ptr, ctx);
+          CHK_(ptr);
+        } else if (static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 24) {
+          add_gripper_pvt_data(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+#else  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+bool GripperCommand::MergePartialFromCodedStream(
+    ::PROTOBUF_NAMESPACE_ID::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!PROTOBUF_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+  // @@protoc_insertion_point(parse_start:Nrmk.IndyFramework.GripperCommand)
+  for (;;) {
+    ::std::pair<::PROTOBUF_NAMESPACE_ID::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // .Nrmk.IndyFramework.GripperCommand.GripperCommandType gripper_command = 1;
+      case 1: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (8 & 0xFF)) {
+          int value = 0;
+          DO_((::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadPrimitive<
+                   int, ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_ENUM>(
+                 input, &value)));
+          set_gripper_command(static_cast< ::Nrmk::IndyFramework::GripperCommand_GripperCommandType >(value));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // .Nrmk.IndyFramework.GripperType gripper_type = 2;
+      case 2: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (16 & 0xFF)) {
+          int value = 0;
+          DO_((::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadPrimitive<
+                   int, ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_ENUM>(
+                 input, &value)));
+          set_gripper_type(static_cast< ::Nrmk::IndyFramework::GripperType >(value));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // repeated int32 gripper_pvt_data = 3;
+      case 3: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (26 & 0xFF)) {
+          DO_((::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadPackedPrimitive<
+                   ::PROTOBUF_NAMESPACE_ID::int32, ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_INT32>(
+                 input, this->mutable_gripper_pvt_data())));
+        } else if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (24 & 0xFF)) {
+          DO_((::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadRepeatedPrimitiveNoInline<
+                   ::PROTOBUF_NAMESPACE_ID::int32, ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_INT32>(
+                 1, 26u, input, this->mutable_gripper_pvt_data())));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0) {
+          goto success;
+        }
+        DO_(::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:Nrmk.IndyFramework.GripperCommand)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:Nrmk.IndyFramework.GripperCommand)
+  return false;
+#undef DO_
+}
+#endif  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+
+void GripperCommand::SerializeWithCachedSizes(
+    ::PROTOBUF_NAMESPACE_ID::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:Nrmk.IndyFramework.GripperCommand)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .Nrmk.IndyFramework.GripperCommand.GripperCommandType gripper_command = 1;
+  if (this->gripper_command() != 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnum(
+      1, this->gripper_command(), output);
+  }
+
+  // .Nrmk.IndyFramework.GripperType gripper_type = 2;
+  if (this->gripper_type() != 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnum(
+      2, this->gripper_type(), output);
+  }
+
+  // repeated int32 gripper_pvt_data = 3;
+  if (this->gripper_pvt_data_size() > 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteTag(3, ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED, output);
+    output->WriteVarint32(_gripper_pvt_data_cached_byte_size_.load(
+        std::memory_order_relaxed));
+  }
+  for (int i = 0, n = this->gripper_pvt_data_size(); i < n; i++) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32NoTag(
+      this->gripper_pvt_data(i), output);
+  }
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SerializeUnknownFields(
+        _internal_metadata_.unknown_fields(), output);
+  }
+  // @@protoc_insertion_point(serialize_end:Nrmk.IndyFramework.GripperCommand)
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* GripperCommand::InternalSerializeWithCachedSizesToArray(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.GripperCommand)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .Nrmk.IndyFramework.GripperCommand.GripperCommandType gripper_command = 1;
+  if (this->gripper_command() != 0) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
+      1, this->gripper_command(), target);
+  }
+
+  // .Nrmk.IndyFramework.GripperType gripper_type = 2;
+  if (this->gripper_type() != 0) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
+      2, this->gripper_type(), target);
+  }
+
+  // repeated int32 gripper_pvt_data = 3;
+  if (this->gripper_pvt_data_size() > 0) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteTagToArray(
+      3,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED,
+      target);
+    target = ::PROTOBUF_NAMESPACE_ID::io::CodedOutputStream::WriteVarint32ToArray(
+        _gripper_pvt_data_cached_byte_size_.load(std::memory_order_relaxed),
+         target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      WriteInt32NoTagToArray(this->gripper_pvt_data_, target);
+  }
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields(), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.GripperCommand)
+  return target;
+}
+
+size_t GripperCommand::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.GripperCommand)
+  size_t total_size = 0;
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::ComputeUnknownFieldsSize(
+        _internal_metadata_.unknown_fields());
+  }
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated int32 gripper_pvt_data = 3;
+  {
+    size_t data_size = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      Int32Size(this->gripper_pvt_data_);
+    if (data_size > 0) {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+            static_cast<::PROTOBUF_NAMESPACE_ID::int32>(data_size));
+    }
+    int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(data_size);
+    _gripper_pvt_data_cached_byte_size_.store(cached_size,
+                                    std::memory_order_relaxed);
+    total_size += data_size;
+  }
+
+  // .Nrmk.IndyFramework.GripperCommand.GripperCommandType gripper_command = 1;
+  if (this->gripper_command() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->gripper_command());
+  }
+
+  // .Nrmk.IndyFramework.GripperType gripper_type = 2;
+  if (this->gripper_type() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->gripper_type());
+  }
+
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void GripperCommand::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:Nrmk.IndyFramework.GripperCommand)
+  GOOGLE_DCHECK_NE(&from, this);
+  const GripperCommand* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<GripperCommand>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Nrmk.IndyFramework.GripperCommand)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:Nrmk.IndyFramework.GripperCommand)
+    MergeFrom(*source);
+  }
+}
+
+void GripperCommand::MergeFrom(const GripperCommand& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.GripperCommand)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  gripper_pvt_data_.MergeFrom(from.gripper_pvt_data_);
+  if (from.gripper_command() != 0) {
+    set_gripper_command(from.gripper_command());
+  }
+  if (from.gripper_type() != 0) {
+    set_gripper_type(from.gripper_type());
+  }
+}
+
+void GripperCommand::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:Nrmk.IndyFramework.GripperCommand)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void GripperCommand::CopyFrom(const GripperCommand& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Nrmk.IndyFramework.GripperCommand)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool GripperCommand::IsInitialized() const {
+  return true;
+}
+
+void GripperCommand::Swap(GripperCommand* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void GripperCommand::InternalSwap(GripperCommand* other) {
+  using std::swap;
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  gripper_pvt_data_.InternalSwap(&other->gripper_pvt_data_);
+  swap(gripper_command_, other->gripper_command_);
+  swap(gripper_type_, other->gripper_type_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata GripperCommand::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
+// ===================================================================
+
+void DigitalSignal::InitAsDefaultInstance() {
+}
+class DigitalSignal::HasBitSetters {
+ public:
+};
+
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int DigitalSignal::kAddressFieldNumber;
+const int DigitalSignal::kStateFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+DigitalSignal::DigitalSignal()
+  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:Nrmk.IndyFramework.DigitalSignal)
+}
+DigitalSignal::DigitalSignal(const DigitalSignal& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _internal_metadata_(nullptr) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::memcpy(&address_, &from.address_,
+    static_cast<size_t>(reinterpret_cast<char*>(&state_) -
+    reinterpret_cast<char*>(&address_)) + sizeof(state_));
+  // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.DigitalSignal)
+}
+
+void DigitalSignal::SharedCtor() {
+  ::memset(&address_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&state_) -
+      reinterpret_cast<char*>(&address_)) + sizeof(state_));
+}
+
+DigitalSignal::~DigitalSignal() {
+  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.DigitalSignal)
+  SharedDtor();
+}
+
+void DigitalSignal::SharedDtor() {
+}
+
+void DigitalSignal::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const DigitalSignal& DigitalSignal::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_DigitalSignal_device_5fmsgs_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void DigitalSignal::Clear() {
+// @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.DigitalSignal)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ::memset(&address_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&state_) -
+      reinterpret_cast<char*>(&address_)) + sizeof(state_));
+  _internal_metadata_.Clear();
+}
+
+#if GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+const char* DigitalSignal::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // uint32 address = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          address_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .Nrmk.IndyFramework.DigitalState state = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
+          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+          set_state(static_cast<::Nrmk::IndyFramework::DigitalState>(val));
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+#else  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+bool DigitalSignal::MergePartialFromCodedStream(
+    ::PROTOBUF_NAMESPACE_ID::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!PROTOBUF_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+  // @@protoc_insertion_point(parse_start:Nrmk.IndyFramework.DigitalSignal)
+  for (;;) {
+    ::std::pair<::PROTOBUF_NAMESPACE_ID::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // uint32 address = 1;
+      case 1: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (8 & 0xFF)) {
+
+          DO_((::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadPrimitive<
+                   ::PROTOBUF_NAMESPACE_ID::uint32, ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_UINT32>(
+                 input, &address_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // .Nrmk.IndyFramework.DigitalState state = 2;
+      case 2: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (16 & 0xFF)) {
+          int value = 0;
+          DO_((::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadPrimitive<
+                   int, ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_ENUM>(
+                 input, &value)));
+          set_state(static_cast< ::Nrmk::IndyFramework::DigitalState >(value));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0) {
+          goto success;
+        }
+        DO_(::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:Nrmk.IndyFramework.DigitalSignal)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:Nrmk.IndyFramework.DigitalSignal)
+  return false;
+#undef DO_
+}
+#endif  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+
+void DigitalSignal::SerializeWithCachedSizes(
+    ::PROTOBUF_NAMESPACE_ID::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:Nrmk.IndyFramework.DigitalSignal)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
 
   // uint32 address = 1;
-  if (this->_internal_address() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
-        1, this->_internal_address(), target);
+  if (this->address() != 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt32(1, this->address(), output);
   }
 
   // .Nrmk.IndyFramework.DigitalState state = 2;
-  if (this->_internal_state() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteEnumToArray(
-        2, this->_internal_state(), target);
+  if (this->state() != 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnum(
+      2, this->state(), output);
   }
 
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target =
-        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  if (_internal_metadata_.have_unknown_fields()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SerializeUnknownFields(
+        _internal_metadata_.unknown_fields(), output);
+  }
+  // @@protoc_insertion_point(serialize_end:Nrmk.IndyFramework.DigitalSignal)
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* DigitalSignal::InternalSerializeWithCachedSizesToArray(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.DigitalSignal)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // uint32 address = 1;
+  if (this->address() != 0) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt32ToArray(1, this->address(), target);
+  }
+
+  // .Nrmk.IndyFramework.DigitalState state = 2;
+  if (this->state() != 0) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
+      2, this->state(), target);
+  }
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields(), target);
   }
   // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.DigitalSignal)
   return target;
 }
 
-::size_t DigitalSignal::ByteSizeLong() const {
+size_t DigitalSignal::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.DigitalSignal)
-  ::size_t total_size = 0;
+  size_t total_size = 0;
 
-  ::uint32_t cached_has_bits = 0;
+  if (_internal_metadata_.have_unknown_fields()) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::ComputeUnknownFieldsSize(
+        _internal_metadata_.unknown_fields());
+  }
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // uint32 address = 1;
-  if (this->_internal_address() != 0) {
-    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
-        this->_internal_address());
+  if (this->address() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt32Size(
+        this->address());
   }
 
   // .Nrmk.IndyFramework.DigitalState state = 2;
-  if (this->_internal_state() != 0) {
+  if (this->state() != 0) {
     total_size += 1 +
-                  ::_pbi::WireFormatLite::EnumSize(this->_internal_state());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->state());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
 }
 
-const ::google::protobuf::Message::ClassData DigitalSignal::_class_data_ = {
-    ::google::protobuf::Message::CopyWithSourceCheck,
-    DigitalSignal::MergeImpl
-};
-const ::google::protobuf::Message::ClassData*DigitalSignal::GetClassData() const { return &_class_data_; }
+void DigitalSignal::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:Nrmk.IndyFramework.DigitalSignal)
+  GOOGLE_DCHECK_NE(&from, this);
+  const DigitalSignal* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<DigitalSignal>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Nrmk.IndyFramework.DigitalSignal)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:Nrmk.IndyFramework.DigitalSignal)
+    MergeFrom(*source);
+  }
+}
 
-
-void DigitalSignal::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
-  auto* const _this = static_cast<DigitalSignal*>(&to_msg);
-  auto& from = static_cast<const DigitalSignal&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.DigitalSignal)
-  ABSL_DCHECK_NE(&from, _this);
-  ::uint32_t cached_has_bits = 0;
+void DigitalSignal::MergeFrom(const DigitalSignal& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.DigitalSignal)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from._internal_address() != 0) {
-    _this->_internal_set_address(from._internal_address());
+  if (from.address() != 0) {
+    set_address(from.address());
   }
-  if (from._internal_state() != 0) {
-    _this->_internal_set_state(from._internal_state());
+  if (from.state() != 0) {
+    set_state(from.state());
   }
-  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void DigitalSignal::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:Nrmk.IndyFramework.DigitalSignal)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void DigitalSignal::CopyFrom(const DigitalSignal& from) {
@@ -1279,229 +2804,616 @@ void DigitalSignal::CopyFrom(const DigitalSignal& from) {
   MergeFrom(from);
 }
 
-PROTOBUF_NOINLINE bool DigitalSignal::IsInitialized() const {
+bool DigitalSignal::IsInitialized() const {
   return true;
 }
 
+void DigitalSignal::Swap(DigitalSignal* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
 void DigitalSignal::InternalSwap(DigitalSignal* other) {
   using std::swap;
-  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::google::protobuf::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(DigitalSignal, _impl_.state_)
-      + sizeof(DigitalSignal::_impl_.state_)
-      - PROTOBUF_FIELD_OFFSET(DigitalSignal, _impl_.address_)>(
-          reinterpret_cast<char*>(&_impl_.address_),
-          reinterpret_cast<char*>(&other->_impl_.address_));
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  swap(address_, other->address_);
+  swap(state_, other->state_);
 }
 
-::google::protobuf::Metadata DigitalSignal::GetMetadata() const {
-  return ::_pbi::AssignDescriptors(
-      &descriptor_table_device_5fmsgs_2eproto_getter, &descriptor_table_device_5fmsgs_2eproto_once,
-      file_level_metadata_device_5fmsgs_2eproto[2]);
+::PROTOBUF_NAMESPACE_ID::Metadata DigitalSignal::GetMetadata() const {
+  return GetMetadataStatic();
 }
+
+
 // ===================================================================
 
-class EndtoolSignal::_Internal {
+void EndLedDim::InitAsDefaultInstance() {
+}
+class EndLedDim::HasBitSetters {
  public:
 };
 
-EndtoolSignal::EndtoolSignal(::google::protobuf::Arena* arena)
-    : ::google::protobuf::Message(arena) {
-  SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:Nrmk.IndyFramework.EndtoolSignal)
-}
-EndtoolSignal::EndtoolSignal(const EndtoolSignal& from) : ::google::protobuf::Message() {
-  EndtoolSignal* const _this = this;
-  (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.states_){from._internal_states()},
-      /*decltype(_impl_._states_cached_byte_size_)*/ {0},
-      decltype(_impl_.port_){},
-      /*decltype(_impl_._cached_size_)*/ {},
-  };
-  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
-      from._internal_metadata_);
-  _impl_.port_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        _impl_.port_.Set("", GetArenaForAllocation());
-  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_port().empty()) {
-    _this->_impl_.port_.Set(from._internal_port(), _this->GetArenaForAllocation());
-  }
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int EndLedDim::kLedDimFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
-  // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.EndtoolSignal)
+EndLedDim::EndLedDim()
+  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:Nrmk.IndyFramework.EndLedDim)
 }
-inline void EndtoolSignal::SharedCtor(::_pb::Arena* arena) {
-  (void)arena;
-  new (&_impl_) Impl_{
-      decltype(_impl_.states_){arena},
-      /*decltype(_impl_._states_cached_byte_size_)*/ {0},
-      decltype(_impl_.port_){},
-      /*decltype(_impl_._cached_size_)*/ {},
-  };
-  _impl_.port_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        _impl_.port_.Set("", GetArenaForAllocation());
-  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+EndLedDim::EndLedDim(const EndLedDim& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _internal_metadata_(nullptr) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  led_dim_ = from.led_dim_;
+  // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.EndLedDim)
 }
-EndtoolSignal::~EndtoolSignal() {
-  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.EndtoolSignal)
-  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+
+void EndLedDim::SharedCtor() {
+  led_dim_ = 0u;
+}
+
+EndLedDim::~EndLedDim() {
+  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.EndLedDim)
   SharedDtor();
 }
-inline void EndtoolSignal::SharedDtor() {
-  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
-  _internal_mutable_states()->~RepeatedField();
-  _impl_.port_.Destroy();
-}
-void EndtoolSignal::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+
+void EndLedDim::SharedDtor() {
 }
 
-PROTOBUF_NOINLINE void EndtoolSignal::Clear() {
-// @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.EndtoolSignal)
-  ::uint32_t cached_has_bits = 0;
+void EndLedDim::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const EndLedDim& EndLedDim::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_EndLedDim_device_5fmsgs_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void EndLedDim::Clear() {
+// @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.EndLedDim)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _internal_mutable_states()->Clear();
-  _impl_.port_.ClearToEmpty();
-  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+  led_dim_ = 0u;
+  _internal_metadata_.Clear();
 }
 
-const char* EndtoolSignal::_InternalParse(
-    const char* ptr, ::_pbi::ParseContext* ctx) {
-  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+#if GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+const char* EndLedDim::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // uint32 led_dim = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          led_dim_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
   return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+#else  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+bool EndLedDim::MergePartialFromCodedStream(
+    ::PROTOBUF_NAMESPACE_ID::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!PROTOBUF_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+  // @@protoc_insertion_point(parse_start:Nrmk.IndyFramework.EndLedDim)
+  for (;;) {
+    ::std::pair<::PROTOBUF_NAMESPACE_ID::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // uint32 led_dim = 1;
+      case 1: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (8 & 0xFF)) {
+
+          DO_((::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadPrimitive<
+                   ::PROTOBUF_NAMESPACE_ID::uint32, ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_UINT32>(
+                 input, &led_dim_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0) {
+          goto success;
+        }
+        DO_(::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:Nrmk.IndyFramework.EndLedDim)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:Nrmk.IndyFramework.EndLedDim)
+  return false;
+#undef DO_
+}
+#endif  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+
+void EndLedDim::SerializeWithCachedSizes(
+    ::PROTOBUF_NAMESPACE_ID::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:Nrmk.IndyFramework.EndLedDim)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // uint32 led_dim = 1;
+  if (this->led_dim() != 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt32(1, this->led_dim(), output);
+  }
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SerializeUnknownFields(
+        _internal_metadata_.unknown_fields(), output);
+  }
+  // @@protoc_insertion_point(serialize_end:Nrmk.IndyFramework.EndLedDim)
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* EndLedDim::InternalSerializeWithCachedSizesToArray(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.EndLedDim)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // uint32 led_dim = 1;
+  if (this->led_dim() != 0) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt32ToArray(1, this->led_dim(), target);
+  }
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields(), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.EndLedDim)
+  return target;
+}
+
+size_t EndLedDim::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.EndLedDim)
+  size_t total_size = 0;
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::ComputeUnknownFieldsSize(
+        _internal_metadata_.unknown_fields());
+  }
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // uint32 led_dim = 1;
+  if (this->led_dim() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt32Size(
+        this->led_dim());
+  }
+
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void EndLedDim::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:Nrmk.IndyFramework.EndLedDim)
+  GOOGLE_DCHECK_NE(&from, this);
+  const EndLedDim* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<EndLedDim>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Nrmk.IndyFramework.EndLedDim)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:Nrmk.IndyFramework.EndLedDim)
+    MergeFrom(*source);
+  }
+}
+
+void EndLedDim::MergeFrom(const EndLedDim& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.EndLedDim)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.led_dim() != 0) {
+    set_led_dim(from.led_dim());
+  }
+}
+
+void EndLedDim::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:Nrmk.IndyFramework.EndLedDim)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void EndLedDim::CopyFrom(const EndLedDim& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Nrmk.IndyFramework.EndLedDim)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool EndLedDim::IsInitialized() const {
+  return true;
+}
+
+void EndLedDim::Swap(EndLedDim* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void EndLedDim::InternalSwap(EndLedDim* other) {
+  using std::swap;
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  swap(led_dim_, other->led_dim_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata EndLedDim::GetMetadata() const {
+  return GetMetadataStatic();
 }
 
 
-PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 2, 0, 45, 2> EndtoolSignal::_table_ = {
-  {
-    0,  // no _has_bits_
-    0, // no _extensions_
-    2, 8,  // max_field_number, fast_idx_mask
-    offsetof(decltype(_table_), field_lookup_table),
-    4294967292,  // skipmap
-    offsetof(decltype(_table_), field_entries),
-    2,  // num_field_entries
-    0,  // num_aux_entries
-    offsetof(decltype(_table_), field_names),  // no aux_entries
-    &_EndtoolSignal_default_instance_._instance,
-    ::_pbi::TcParser::GenericFallback,  // fallback
-  }, {{
-    // repeated .Nrmk.IndyFramework.EndtoolState states = 2;
-    {::_pbi::TcParser::FastV32P1,
-     {18, 63, 0, PROTOBUF_FIELD_OFFSET(EndtoolSignal, _impl_.states_)}},
-    // string port = 1;
-    {::_pbi::TcParser::FastUS1,
-     {10, 63, 0, PROTOBUF_FIELD_OFFSET(EndtoolSignal, _impl_.port_)}},
-  }}, {{
-    65535, 65535
-  }}, {{
-    // string port = 1;
-    {PROTOBUF_FIELD_OFFSET(EndtoolSignal, _impl_.port_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // repeated .Nrmk.IndyFramework.EndtoolState states = 2;
-    {PROTOBUF_FIELD_OFFSET(EndtoolSignal, _impl_.states_), 0, 0,
-    (0 | ::_fl::kFcRepeated | ::_fl::kPackedOpenEnum)},
-  }},
-  // no aux_entries
-  {{
-    "\40\4\0\0\0\0\0\0"
-    "Nrmk.IndyFramework.EndtoolSignal"
-    "port"
-  }},
+// ===================================================================
+
+void EndtoolSignal::InitAsDefaultInstance() {
+}
+class EndtoolSignal::HasBitSetters {
+ public:
 };
 
-::uint8_t* EndtoolSignal::_InternalSerialize(
-    ::uint8_t* target,
-    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.EndtoolSignal)
-  ::uint32_t cached_has_bits = 0;
-  (void)cached_has_bits;
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int EndtoolSignal::kPortFieldNumber;
+const int EndtoolSignal::kStatesFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+EndtoolSignal::EndtoolSignal()
+  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:Nrmk.IndyFramework.EndtoolSignal)
+}
+EndtoolSignal::EndtoolSignal(const EndtoolSignal& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _internal_metadata_(nullptr),
+      states_(from.states_) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  port_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (from.port().size() > 0) {
+    port_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.port_);
+  }
+  // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.EndtoolSignal)
+}
+
+void EndtoolSignal::SharedCtor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_EndtoolSignal_device_5fmsgs_2eproto.base);
+  port_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+EndtoolSignal::~EndtoolSignal() {
+  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.EndtoolSignal)
+  SharedDtor();
+}
+
+void EndtoolSignal::SharedDtor() {
+  port_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void EndtoolSignal::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const EndtoolSignal& EndtoolSignal::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_EndtoolSignal_device_5fmsgs_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void EndtoolSignal::Clear() {
+// @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.EndtoolSignal)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  states_.Clear();
+  port_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  _internal_metadata_.Clear();
+}
+
+#if GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+const char* EndtoolSignal::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // string port = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParserUTF8(mutable_port(), ptr, ctx, "Nrmk.IndyFramework.EndtoolSignal.port");
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // repeated .Nrmk.IndyFramework.EndtoolState states = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::PackedEnumParser(mutable_states(), ptr, ctx);
+          CHK_(ptr);
+        } else if (static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16) {
+          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+          add_states(static_cast<::Nrmk::IndyFramework::EndtoolState>(val));
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+#else  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+bool EndtoolSignal::MergePartialFromCodedStream(
+    ::PROTOBUF_NAMESPACE_ID::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!PROTOBUF_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+  // @@protoc_insertion_point(parse_start:Nrmk.IndyFramework.EndtoolSignal)
+  for (;;) {
+    ::std::pair<::PROTOBUF_NAMESPACE_ID::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // string port = 1;
+      case 1: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (10 & 0xFF)) {
+          DO_(::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadString(
+                input, this->mutable_port()));
+          DO_(::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+            this->port().data(), static_cast<int>(this->port().length()),
+            ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE,
+            "Nrmk.IndyFramework.EndtoolSignal.port"));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // repeated .Nrmk.IndyFramework.EndtoolState states = 2;
+      case 2: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (18 & 0xFF)) {
+          ::PROTOBUF_NAMESPACE_ID::uint32 length;
+          DO_(input->ReadVarint32(&length));
+          ::PROTOBUF_NAMESPACE_ID::io::CodedInputStream::Limit limit = input->PushLimit(static_cast<int>(length));
+          while (input->BytesUntilLimit() > 0) {
+            int value = 0;
+            DO_((::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadPrimitive<
+                   int, ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_ENUM>(
+                 input, &value)));
+            add_states(static_cast< ::Nrmk::IndyFramework::EndtoolState >(value));
+          }
+          input->PopLimit(limit);
+        } else if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (16 & 0xFF)) {
+          int value = 0;
+          DO_((::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadPrimitive<
+                   int, ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_ENUM>(
+                 input, &value)));
+          add_states(static_cast< ::Nrmk::IndyFramework::EndtoolState >(value));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0) {
+          goto success;
+        }
+        DO_(::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:Nrmk.IndyFramework.EndtoolSignal)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:Nrmk.IndyFramework.EndtoolSignal)
+  return false;
+#undef DO_
+}
+#endif  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+
+void EndtoolSignal::SerializeWithCachedSizes(
+    ::PROTOBUF_NAMESPACE_ID::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:Nrmk.IndyFramework.EndtoolSignal)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
 
   // string port = 1;
-  if (!this->_internal_port().empty()) {
-    const std::string& _s = this->_internal_port();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "Nrmk.IndyFramework.EndtoolSignal.port");
-    target = stream->WriteStringMaybeAliased(1, _s, target);
+  if (this->port().size() > 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->port().data(), static_cast<int>(this->port().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Nrmk.IndyFramework.EndtoolSignal.port");
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteStringMaybeAliased(
+      1, this->port(), output);
   }
 
   // repeated .Nrmk.IndyFramework.EndtoolState states = 2;
-  {
-    int byte_size = _impl_._states_cached_byte_size_.Get();
-    if (byte_size > 0) {
-      target = stream->WriteEnumPacked(2, _internal_states(),
-                                       byte_size, target);
-    }
+  if (this->states_size() > 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteTag(
+      2,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED,
+      output);
+    output->WriteVarint32(_states_cached_byte_size_.load(
+        std::memory_order_relaxed));
+  }
+  for (int i = 0, n = this->states_size(); i < n; i++) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumNoTag(
+      this->states(i), output);
   }
 
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+  if (_internal_metadata_.have_unknown_fields()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SerializeUnknownFields(
+        _internal_metadata_.unknown_fields(), output);
+  }
+  // @@protoc_insertion_point(serialize_end:Nrmk.IndyFramework.EndtoolSignal)
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* EndtoolSignal::InternalSerializeWithCachedSizesToArray(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.EndtoolSignal)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string port = 1;
+  if (this->port().size() > 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->port().data(), static_cast<int>(this->port().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Nrmk.IndyFramework.EndtoolSignal.port");
     target =
-        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteStringToArray(
+        1, this->port(), target);
+  }
+
+  // repeated .Nrmk.IndyFramework.EndtoolState states = 2;
+  if (this->states_size() > 0) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteTagToArray(
+      2,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED,
+      target);
+    target = ::PROTOBUF_NAMESPACE_ID::io::CodedOutputStream::WriteVarint32ToArray(      _states_cached_byte_size_.load(std::memory_order_relaxed),
+        target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumNoTagToArray(
+      this->states_, target);
+  }
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields(), target);
   }
   // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.EndtoolSignal)
   return target;
 }
 
-::size_t EndtoolSignal::ByteSizeLong() const {
+size_t EndtoolSignal::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.EndtoolSignal)
-  ::size_t total_size = 0;
+  size_t total_size = 0;
 
-  ::uint32_t cached_has_bits = 0;
+  if (_internal_metadata_.have_unknown_fields()) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::ComputeUnknownFieldsSize(
+        _internal_metadata_.unknown_fields());
+  }
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // repeated .Nrmk.IndyFramework.EndtoolState states = 2;
   {
-    std::size_t data_size = 0;
-    auto count = static_cast<std::size_t>(this->_internal_states_size());
-
-    for (std::size_t i = 0; i < count; ++i) {
-      data_size += ::_pbi::WireFormatLite::EnumSize(
-          this->_internal_states().Get(static_cast<int>(i)));
+    size_t data_size = 0;
+    unsigned int count = static_cast<unsigned int>(this->states_size());for (unsigned int i = 0; i < count; i++) {
+      data_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(
+        this->states(static_cast<int>(i)));
     }
-    total_size += data_size;
     if (data_size > 0) {
-      total_size += 1;
-      total_size += ::_pbi::WireFormatLite::Int32Size(
-          static_cast<int32_t>(data_size));
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+            static_cast<::PROTOBUF_NAMESPACE_ID::int32>(data_size));
     }
-    _impl_._states_cached_byte_size_.Set(::_pbi::ToCachedSize(data_size));
-  }
-  // string port = 1;
-  if (!this->_internal_port().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                    this->_internal_port());
+    int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(data_size);
+    _states_cached_byte_size_.store(cached_size,
+                                    std::memory_order_relaxed);
+    total_size += data_size;
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  // string port = 1;
+  if (this->port().size() > 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->port());
+  }
+
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
 }
 
-const ::google::protobuf::Message::ClassData EndtoolSignal::_class_data_ = {
-    ::google::protobuf::Message::CopyWithSourceCheck,
-    EndtoolSignal::MergeImpl
-};
-const ::google::protobuf::Message::ClassData*EndtoolSignal::GetClassData() const { return &_class_data_; }
+void EndtoolSignal::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:Nrmk.IndyFramework.EndtoolSignal)
+  GOOGLE_DCHECK_NE(&from, this);
+  const EndtoolSignal* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<EndtoolSignal>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Nrmk.IndyFramework.EndtoolSignal)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:Nrmk.IndyFramework.EndtoolSignal)
+    MergeFrom(*source);
+  }
+}
 
-
-void EndtoolSignal::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
-  auto* const _this = static_cast<EndtoolSignal*>(&to_msg);
-  auto& from = static_cast<const EndtoolSignal&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.EndtoolSignal)
-  ABSL_DCHECK_NE(&from, _this);
-  ::uint32_t cached_has_bits = 0;
+void EndtoolSignal::MergeFrom(const EndtoolSignal& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.EndtoolSignal)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_internal_mutable_states()->MergeFrom(from._internal_states());
-  if (!from._internal_port().empty()) {
-    _this->_internal_set_port(from._internal_port());
+  states_.MergeFrom(from.states_);
+  if (from.port().size() > 0) {
+
+    port_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.port_);
   }
-  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void EndtoolSignal::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:Nrmk.IndyFramework.EndtoolSignal)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void EndtoolSignal::CopyFrom(const EndtoolSignal& from) {
@@ -1511,192 +3423,303 @@ void EndtoolSignal::CopyFrom(const EndtoolSignal& from) {
   MergeFrom(from);
 }
 
-PROTOBUF_NOINLINE bool EndtoolSignal::IsInitialized() const {
+bool EndtoolSignal::IsInitialized() const {
   return true;
 }
 
+void EndtoolSignal::Swap(EndtoolSignal* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
 void EndtoolSignal::InternalSwap(EndtoolSignal* other) {
   using std::swap;
-  auto* lhs_arena = GetArenaForAllocation();
-  auto* rhs_arena = other->GetArenaForAllocation();
-  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  _impl_.states_.InternalSwap(&other->_impl_.states_);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.port_, lhs_arena,
-                                       &other->_impl_.port_, rhs_arena);
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  states_.InternalSwap(&other->states_);
+  port_.Swap(&other->port_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+    GetArenaNoVirtual());
 }
 
-::google::protobuf::Metadata EndtoolSignal::GetMetadata() const {
-  return ::_pbi::AssignDescriptors(
-      &descriptor_table_device_5fmsgs_2eproto_getter, &descriptor_table_device_5fmsgs_2eproto_once,
-      file_level_metadata_device_5fmsgs_2eproto[3]);
+::PROTOBUF_NAMESPACE_ID::Metadata EndtoolSignal::GetMetadata() const {
+  return GetMetadataStatic();
 }
+
+
 // ===================================================================
 
-class AnalogSignal::_Internal {
+void AnalogSignal::InitAsDefaultInstance() {
+}
+class AnalogSignal::HasBitSetters {
  public:
 };
 
-AnalogSignal::AnalogSignal(::google::protobuf::Arena* arena)
-    : ::google::protobuf::Message(arena) {
-  SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:Nrmk.IndyFramework.AnalogSignal)
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int AnalogSignal::kAddressFieldNumber;
+const int AnalogSignal::kVoltageFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+AnalogSignal::AnalogSignal()
+  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:Nrmk.IndyFramework.AnalogSignal)
 }
 AnalogSignal::AnalogSignal(const AnalogSignal& from)
-    : ::google::protobuf::Message(), _impl_(from._impl_) {
-  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
-      from._internal_metadata_);
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _internal_metadata_(nullptr) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::memcpy(&address_, &from.address_,
+    static_cast<size_t>(reinterpret_cast<char*>(&voltage_) -
+    reinterpret_cast<char*>(&address_)) + sizeof(voltage_));
   // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.AnalogSignal)
 }
-inline void AnalogSignal::SharedCtor(::_pb::Arena* arena) {
-  (void)arena;
-  new (&_impl_) Impl_{
-      decltype(_impl_.address_){0u},
-      decltype(_impl_.voltage_){0},
-      /*decltype(_impl_._cached_size_)*/ {},
-  };
-}
-AnalogSignal::~AnalogSignal() {
-  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.AnalogSignal)
-  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
-  SharedDtor();
-}
-inline void AnalogSignal::SharedDtor() {
-  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
-}
-void AnalogSignal::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+
+void AnalogSignal::SharedCtor() {
+  ::memset(&address_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&voltage_) -
+      reinterpret_cast<char*>(&address_)) + sizeof(voltage_));
 }
 
-PROTOBUF_NOINLINE void AnalogSignal::Clear() {
+AnalogSignal::~AnalogSignal() {
+  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.AnalogSignal)
+  SharedDtor();
+}
+
+void AnalogSignal::SharedDtor() {
+}
+
+void AnalogSignal::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const AnalogSignal& AnalogSignal::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_AnalogSignal_device_5fmsgs_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void AnalogSignal::Clear() {
 // @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.AnalogSignal)
-  ::uint32_t cached_has_bits = 0;
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  ::memset(&_impl_.address_, 0, static_cast<::size_t>(
-      reinterpret_cast<char*>(&_impl_.voltage_) -
-      reinterpret_cast<char*>(&_impl_.address_)) + sizeof(_impl_.voltage_));
-  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+  ::memset(&address_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&voltage_) -
+      reinterpret_cast<char*>(&address_)) + sizeof(voltage_));
+  _internal_metadata_.Clear();
 }
 
-const char* AnalogSignal::_InternalParse(
-    const char* ptr, ::_pbi::ParseContext* ctx) {
-  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+#if GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+const char* AnalogSignal::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // uint32 address = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          address_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // int32 voltage = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
+          voltage_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
   return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
 }
+#else  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+bool AnalogSignal::MergePartialFromCodedStream(
+    ::PROTOBUF_NAMESPACE_ID::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!PROTOBUF_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+  // @@protoc_insertion_point(parse_start:Nrmk.IndyFramework.AnalogSignal)
+  for (;;) {
+    ::std::pair<::PROTOBUF_NAMESPACE_ID::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // uint32 address = 1;
+      case 1: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (8 & 0xFF)) {
 
+          DO_((::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadPrimitive<
+                   ::PROTOBUF_NAMESPACE_ID::uint32, ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_UINT32>(
+                 input, &address_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
 
-PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 2, 0, 0, 2> AnalogSignal::_table_ = {
-  {
-    0,  // no _has_bits_
-    0, // no _extensions_
-    2, 8,  // max_field_number, fast_idx_mask
-    offsetof(decltype(_table_), field_lookup_table),
-    4294967292,  // skipmap
-    offsetof(decltype(_table_), field_entries),
-    2,  // num_field_entries
-    0,  // num_aux_entries
-    offsetof(decltype(_table_), field_names),  // no aux_entries
-    &_AnalogSignal_default_instance_._instance,
-    ::_pbi::TcParser::GenericFallback,  // fallback
-  }, {{
-    // int32 voltage = 2;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(AnalogSignal, _impl_.voltage_), 63>(),
-     {16, 63, 0, PROTOBUF_FIELD_OFFSET(AnalogSignal, _impl_.voltage_)}},
-    // uint32 address = 1;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(AnalogSignal, _impl_.address_), 63>(),
-     {8, 63, 0, PROTOBUF_FIELD_OFFSET(AnalogSignal, _impl_.address_)}},
-  }}, {{
-    65535, 65535
-  }}, {{
-    // uint32 address = 1;
-    {PROTOBUF_FIELD_OFFSET(AnalogSignal, _impl_.address_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
-    // int32 voltage = 2;
-    {PROTOBUF_FIELD_OFFSET(AnalogSignal, _impl_.voltage_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
-  }},
-  // no aux_entries
-  {{
-  }},
-};
+      // int32 voltage = 2;
+      case 2: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (16 & 0xFF)) {
 
-::uint8_t* AnalogSignal::_InternalSerialize(
-    ::uint8_t* target,
-    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.AnalogSignal)
-  ::uint32_t cached_has_bits = 0;
-  (void)cached_has_bits;
+          DO_((::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadPrimitive<
+                   ::PROTOBUF_NAMESPACE_ID::int32, ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_INT32>(
+                 input, &voltage_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0) {
+          goto success;
+        }
+        DO_(::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:Nrmk.IndyFramework.AnalogSignal)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:Nrmk.IndyFramework.AnalogSignal)
+  return false;
+#undef DO_
+}
+#endif  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+
+void AnalogSignal::SerializeWithCachedSizes(
+    ::PROTOBUF_NAMESPACE_ID::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:Nrmk.IndyFramework.AnalogSignal)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
 
   // uint32 address = 1;
-  if (this->_internal_address() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
-        1, this->_internal_address(), target);
+  if (this->address() != 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt32(1, this->address(), output);
   }
 
   // int32 voltage = 2;
-  if (this->_internal_voltage() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::
-        WriteInt32ToArrayWithField<2>(
-            stream, this->_internal_voltage(), target);
+  if (this->voltage() != 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32(2, this->voltage(), output);
   }
 
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target =
-        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  if (_internal_metadata_.have_unknown_fields()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SerializeUnknownFields(
+        _internal_metadata_.unknown_fields(), output);
+  }
+  // @@protoc_insertion_point(serialize_end:Nrmk.IndyFramework.AnalogSignal)
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* AnalogSignal::InternalSerializeWithCachedSizesToArray(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.AnalogSignal)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // uint32 address = 1;
+  if (this->address() != 0) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt32ToArray(1, this->address(), target);
+  }
+
+  // int32 voltage = 2;
+  if (this->voltage() != 0) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(2, this->voltage(), target);
+  }
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields(), target);
   }
   // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.AnalogSignal)
   return target;
 }
 
-::size_t AnalogSignal::ByteSizeLong() const {
+size_t AnalogSignal::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.AnalogSignal)
-  ::size_t total_size = 0;
+  size_t total_size = 0;
 
-  ::uint32_t cached_has_bits = 0;
+  if (_internal_metadata_.have_unknown_fields()) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::ComputeUnknownFieldsSize(
+        _internal_metadata_.unknown_fields());
+  }
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // uint32 address = 1;
-  if (this->_internal_address() != 0) {
-    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
-        this->_internal_address());
+  if (this->address() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt32Size(
+        this->address());
   }
 
   // int32 voltage = 2;
-  if (this->_internal_voltage() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
-        this->_internal_voltage());
+  if (this->voltage() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->voltage());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
 }
 
-const ::google::protobuf::Message::ClassData AnalogSignal::_class_data_ = {
-    ::google::protobuf::Message::CopyWithSourceCheck,
-    AnalogSignal::MergeImpl
-};
-const ::google::protobuf::Message::ClassData*AnalogSignal::GetClassData() const { return &_class_data_; }
+void AnalogSignal::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:Nrmk.IndyFramework.AnalogSignal)
+  GOOGLE_DCHECK_NE(&from, this);
+  const AnalogSignal* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<AnalogSignal>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Nrmk.IndyFramework.AnalogSignal)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:Nrmk.IndyFramework.AnalogSignal)
+    MergeFrom(*source);
+  }
+}
 
-
-void AnalogSignal::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
-  auto* const _this = static_cast<AnalogSignal*>(&to_msg);
-  auto& from = static_cast<const AnalogSignal&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.AnalogSignal)
-  ABSL_DCHECK_NE(&from, _this);
-  ::uint32_t cached_has_bits = 0;
+void AnalogSignal::MergeFrom(const AnalogSignal& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.AnalogSignal)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from._internal_address() != 0) {
-    _this->_internal_set_address(from._internal_address());
+  if (from.address() != 0) {
+    set_address(from.address());
   }
-  if (from._internal_voltage() != 0) {
-    _this->_internal_set_voltage(from._internal_voltage());
+  if (from.voltage() != 0) {
+    set_voltage(from.voltage());
   }
-  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void AnalogSignal::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:Nrmk.IndyFramework.AnalogSignal)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void AnalogSignal::CopyFrom(const AnalogSignal& from) {
@@ -1706,174 +3729,267 @@ void AnalogSignal::CopyFrom(const AnalogSignal& from) {
   MergeFrom(from);
 }
 
-PROTOBUF_NOINLINE bool AnalogSignal::IsInitialized() const {
+bool AnalogSignal::IsInitialized() const {
   return true;
 }
 
+void AnalogSignal::Swap(AnalogSignal* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
 void AnalogSignal::InternalSwap(AnalogSignal* other) {
   using std::swap;
-  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::google::protobuf::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(AnalogSignal, _impl_.voltage_)
-      + sizeof(AnalogSignal::_impl_.voltage_)
-      - PROTOBUF_FIELD_OFFSET(AnalogSignal, _impl_.address_)>(
-          reinterpret_cast<char*>(&_impl_.address_),
-          reinterpret_cast<char*>(&other->_impl_.address_));
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  swap(address_, other->address_);
+  swap(voltage_, other->voltage_);
 }
 
-::google::protobuf::Metadata AnalogSignal::GetMetadata() const {
-  return ::_pbi::AssignDescriptors(
-      &descriptor_table_device_5fmsgs_2eproto_getter, &descriptor_table_device_5fmsgs_2eproto_once,
-      file_level_metadata_device_5fmsgs_2eproto[4]);
+::PROTOBUF_NAMESPACE_ID::Metadata AnalogSignal::GetMetadata() const {
+  return GetMetadataStatic();
 }
+
+
 // ===================================================================
 
-class MotorList::_Internal {
+void MotorList::InitAsDefaultInstance() {
+}
+class MotorList::HasBitSetters {
  public:
 };
 
-MotorList::MotorList(::google::protobuf::Arena* arena)
-    : ::google::protobuf::Message(arena) {
-  SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:Nrmk.IndyFramework.MotorList)
-}
-MotorList::MotorList(const MotorList& from) : ::google::protobuf::Message() {
-  MotorList* const _this = this;
-  (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.motors_){from._impl_.motors_},
-      /*decltype(_impl_._cached_size_)*/ {},
-  };
-  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
-      from._internal_metadata_);
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int MotorList::kMotorsFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
+MotorList::MotorList()
+  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:Nrmk.IndyFramework.MotorList)
+}
+MotorList::MotorList(const MotorList& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _internal_metadata_(nullptr),
+      motors_(from.motors_) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.MotorList)
 }
-inline void MotorList::SharedCtor(::_pb::Arena* arena) {
-  (void)arena;
-  new (&_impl_) Impl_{
-      decltype(_impl_.motors_){arena},
-      /*decltype(_impl_._cached_size_)*/ {},
-  };
-}
-MotorList::~MotorList() {
-  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.MotorList)
-  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
-  SharedDtor();
-}
-inline void MotorList::SharedDtor() {
-  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.motors_.~RepeatedPtrField();
-}
-void MotorList::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+
+void MotorList::SharedCtor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_MotorList_device_5fmsgs_2eproto.base);
 }
 
-PROTOBUF_NOINLINE void MotorList::Clear() {
+MotorList::~MotorList() {
+  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.MotorList)
+  SharedDtor();
+}
+
+void MotorList::SharedDtor() {
+}
+
+void MotorList::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const MotorList& MotorList::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_MotorList_device_5fmsgs_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void MotorList::Clear() {
 // @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.MotorList)
-  ::uint32_t cached_has_bits = 0;
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _internal_mutable_motors()->Clear();
-  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+  motors_.Clear();
+  _internal_metadata_.Clear();
 }
 
-const char* MotorList::_InternalParse(
-    const char* ptr, ::_pbi::ParseContext* ctx) {
-  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+#if GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+const char* MotorList::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // repeated .Nrmk.IndyFramework.Motor motors = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(add_motors(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<::PROTOBUF_NAMESPACE_ID::uint8>(ptr) == 10);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
   return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
 }
+#else  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+bool MotorList::MergePartialFromCodedStream(
+    ::PROTOBUF_NAMESPACE_ID::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!PROTOBUF_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+  // @@protoc_insertion_point(parse_start:Nrmk.IndyFramework.MotorList)
+  for (;;) {
+    ::std::pair<::PROTOBUF_NAMESPACE_ID::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // repeated .Nrmk.IndyFramework.Motor motors = 1;
+      case 1: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (10 & 0xFF)) {
+          DO_(::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadMessage(
+                input, add_motors()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
 
+      default: {
+      handle_unusual:
+        if (tag == 0) {
+          goto success;
+        }
+        DO_(::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:Nrmk.IndyFramework.MotorList)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:Nrmk.IndyFramework.MotorList)
+  return false;
+#undef DO_
+}
+#endif  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
 
-PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<0, 1, 1, 0, 2> MotorList::_table_ = {
-  {
-    0,  // no _has_bits_
-    0, // no _extensions_
-    1, 0,  // max_field_number, fast_idx_mask
-    offsetof(decltype(_table_), field_lookup_table),
-    4294967294,  // skipmap
-    offsetof(decltype(_table_), field_entries),
-    1,  // num_field_entries
-    1,  // num_aux_entries
-    offsetof(decltype(_table_), aux_entries),
-    &_MotorList_default_instance_._instance,
-    ::_pbi::TcParser::GenericFallback,  // fallback
-  }, {{
-    // repeated .Nrmk.IndyFramework.Motor motors = 1;
-    {::_pbi::TcParser::FastMtR1,
-     {10, 63, 0, PROTOBUF_FIELD_OFFSET(MotorList, _impl_.motors_)}},
-  }}, {{
-    65535, 65535
-  }}, {{
-    // repeated .Nrmk.IndyFramework.Motor motors = 1;
-    {PROTOBUF_FIELD_OFFSET(MotorList, _impl_.motors_), 0, 0,
-    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
-  }}, {{
-    {::_pbi::TcParser::GetTable<::Nrmk::IndyFramework::Motor>()},
-  }}, {{
-  }},
-};
-
-::uint8_t* MotorList::_InternalSerialize(
-    ::uint8_t* target,
-    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.MotorList)
-  ::uint32_t cached_has_bits = 0;
-  (void)cached_has_bits;
+void MotorList::SerializeWithCachedSizes(
+    ::PROTOBUF_NAMESPACE_ID::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:Nrmk.IndyFramework.MotorList)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
 
   // repeated .Nrmk.IndyFramework.Motor motors = 1;
-  for (unsigned i = 0,
-      n = static_cast<unsigned>(this->_internal_motors_size()); i < n; i++) {
-    const auto& repfield = this->_internal_motors().Get(i);
-    target = ::google::protobuf::internal::WireFormatLite::
-        InternalWriteMessage(1, repfield, repfield.GetCachedSize(), target, stream);
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->motors_size()); i < n; i++) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteMessageMaybeToArray(
+      1,
+      this->motors(static_cast<int>(i)),
+      output);
   }
 
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target =
-        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  if (_internal_metadata_.have_unknown_fields()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SerializeUnknownFields(
+        _internal_metadata_.unknown_fields(), output);
+  }
+  // @@protoc_insertion_point(serialize_end:Nrmk.IndyFramework.MotorList)
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* MotorList::InternalSerializeWithCachedSizesToArray(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.MotorList)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // repeated .Nrmk.IndyFramework.Motor motors = 1;
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->motors_size()); i < n; i++) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessageToArray(
+        1, this->motors(static_cast<int>(i)), target);
+  }
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields(), target);
   }
   // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.MotorList)
   return target;
 }
 
-::size_t MotorList::ByteSizeLong() const {
+size_t MotorList::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.MotorList)
-  ::size_t total_size = 0;
+  size_t total_size = 0;
 
-  ::uint32_t cached_has_bits = 0;
+  if (_internal_metadata_.have_unknown_fields()) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::ComputeUnknownFieldsSize(
+        _internal_metadata_.unknown_fields());
+  }
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // repeated .Nrmk.IndyFramework.Motor motors = 1;
-  total_size += 1UL * this->_internal_motors_size();
-  for (const auto& msg : this->_internal_motors()) {
-    total_size +=
-      ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
+  {
+    unsigned int count = static_cast<unsigned int>(this->motors_size());
+    total_size += 1UL * count;
+    for (unsigned int i = 0; i < count; i++) {
+      total_size +=
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+          this->motors(static_cast<int>(i)));
+    }
   }
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
 }
 
-const ::google::protobuf::Message::ClassData MotorList::_class_data_ = {
-    ::google::protobuf::Message::CopyWithSourceCheck,
-    MotorList::MergeImpl
-};
-const ::google::protobuf::Message::ClassData*MotorList::GetClassData() const { return &_class_data_; }
+void MotorList::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:Nrmk.IndyFramework.MotorList)
+  GOOGLE_DCHECK_NE(&from, this);
+  const MotorList* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<MotorList>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Nrmk.IndyFramework.MotorList)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:Nrmk.IndyFramework.MotorList)
+    MergeFrom(*source);
+  }
+}
 
-
-void MotorList::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
-  auto* const _this = static_cast<MotorList*>(&to_msg);
-  auto& from = static_cast<const MotorList&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.MotorList)
-  ABSL_DCHECK_NE(&from, _this);
-  ::uint32_t cached_has_bits = 0;
+void MotorList::MergeFrom(const MotorList& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.MotorList)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_internal_mutable_motors()->MergeFrom(from._internal_motors());
-  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+  motors_.MergeFrom(from.motors_);
+}
+
+void MotorList::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:Nrmk.IndyFramework.MotorList)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void MotorList::CopyFrom(const MotorList& from) {
@@ -1883,169 +3999,266 @@ void MotorList::CopyFrom(const MotorList& from) {
   MergeFrom(from);
 }
 
-PROTOBUF_NOINLINE bool MotorList::IsInitialized() const {
+bool MotorList::IsInitialized() const {
   return true;
 }
 
+void MotorList::Swap(MotorList* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
 void MotorList::InternalSwap(MotorList* other) {
   using std::swap;
-  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  _impl_.motors_.InternalSwap(&other->_impl_.motors_);
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  CastToBase(&motors_)->InternalSwap(CastToBase(&other->motors_));
 }
 
-::google::protobuf::Metadata MotorList::GetMetadata() const {
-  return ::_pbi::AssignDescriptors(
-      &descriptor_table_device_5fmsgs_2eproto_getter, &descriptor_table_device_5fmsgs_2eproto_once,
-      file_level_metadata_device_5fmsgs_2eproto[5]);
+::PROTOBUF_NAMESPACE_ID::Metadata MotorList::GetMetadata() const {
+  return GetMetadataStatic();
 }
+
+
 // ===================================================================
 
-class DigitalList::_Internal {
+void DigitalList::InitAsDefaultInstance() {
+}
+class DigitalList::HasBitSetters {
  public:
 };
 
-DigitalList::DigitalList(::google::protobuf::Arena* arena)
-    : ::google::protobuf::Message(arena) {
-  SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:Nrmk.IndyFramework.DigitalList)
-}
-DigitalList::DigitalList(const DigitalList& from) : ::google::protobuf::Message() {
-  DigitalList* const _this = this;
-  (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.signals_){from._impl_.signals_},
-      /*decltype(_impl_._cached_size_)*/ {},
-  };
-  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
-      from._internal_metadata_);
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int DigitalList::kSignalsFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
+DigitalList::DigitalList()
+  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:Nrmk.IndyFramework.DigitalList)
+}
+DigitalList::DigitalList(const DigitalList& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _internal_metadata_(nullptr),
+      signals_(from.signals_) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.DigitalList)
 }
-inline void DigitalList::SharedCtor(::_pb::Arena* arena) {
-  (void)arena;
-  new (&_impl_) Impl_{
-      decltype(_impl_.signals_){arena},
-      /*decltype(_impl_._cached_size_)*/ {},
-  };
-}
-DigitalList::~DigitalList() {
-  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.DigitalList)
-  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
-  SharedDtor();
-}
-inline void DigitalList::SharedDtor() {
-  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.signals_.~RepeatedPtrField();
-}
-void DigitalList::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+
+void DigitalList::SharedCtor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_DigitalList_device_5fmsgs_2eproto.base);
 }
 
-PROTOBUF_NOINLINE void DigitalList::Clear() {
+DigitalList::~DigitalList() {
+  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.DigitalList)
+  SharedDtor();
+}
+
+void DigitalList::SharedDtor() {
+}
+
+void DigitalList::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const DigitalList& DigitalList::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_DigitalList_device_5fmsgs_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void DigitalList::Clear() {
 // @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.DigitalList)
-  ::uint32_t cached_has_bits = 0;
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _internal_mutable_signals()->Clear();
-  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+  signals_.Clear();
+  _internal_metadata_.Clear();
 }
 
-const char* DigitalList::_InternalParse(
-    const char* ptr, ::_pbi::ParseContext* ctx) {
-  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+#if GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+const char* DigitalList::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // repeated .Nrmk.IndyFramework.DigitalSignal signals = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(add_signals(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<::PROTOBUF_NAMESPACE_ID::uint8>(ptr) == 10);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
   return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
 }
+#else  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+bool DigitalList::MergePartialFromCodedStream(
+    ::PROTOBUF_NAMESPACE_ID::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!PROTOBUF_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+  // @@protoc_insertion_point(parse_start:Nrmk.IndyFramework.DigitalList)
+  for (;;) {
+    ::std::pair<::PROTOBUF_NAMESPACE_ID::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // repeated .Nrmk.IndyFramework.DigitalSignal signals = 1;
+      case 1: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (10 & 0xFF)) {
+          DO_(::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadMessage(
+                input, add_signals()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
 
+      default: {
+      handle_unusual:
+        if (tag == 0) {
+          goto success;
+        }
+        DO_(::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:Nrmk.IndyFramework.DigitalList)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:Nrmk.IndyFramework.DigitalList)
+  return false;
+#undef DO_
+}
+#endif  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
 
-PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<0, 1, 1, 0, 2> DigitalList::_table_ = {
-  {
-    0,  // no _has_bits_
-    0, // no _extensions_
-    1, 0,  // max_field_number, fast_idx_mask
-    offsetof(decltype(_table_), field_lookup_table),
-    4294967294,  // skipmap
-    offsetof(decltype(_table_), field_entries),
-    1,  // num_field_entries
-    1,  // num_aux_entries
-    offsetof(decltype(_table_), aux_entries),
-    &_DigitalList_default_instance_._instance,
-    ::_pbi::TcParser::GenericFallback,  // fallback
-  }, {{
-    // repeated .Nrmk.IndyFramework.DigitalSignal signals = 1;
-    {::_pbi::TcParser::FastMtR1,
-     {10, 63, 0, PROTOBUF_FIELD_OFFSET(DigitalList, _impl_.signals_)}},
-  }}, {{
-    65535, 65535
-  }}, {{
-    // repeated .Nrmk.IndyFramework.DigitalSignal signals = 1;
-    {PROTOBUF_FIELD_OFFSET(DigitalList, _impl_.signals_), 0, 0,
-    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
-  }}, {{
-    {::_pbi::TcParser::GetTable<::Nrmk::IndyFramework::DigitalSignal>()},
-  }}, {{
-  }},
-};
-
-::uint8_t* DigitalList::_InternalSerialize(
-    ::uint8_t* target,
-    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.DigitalList)
-  ::uint32_t cached_has_bits = 0;
-  (void)cached_has_bits;
+void DigitalList::SerializeWithCachedSizes(
+    ::PROTOBUF_NAMESPACE_ID::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:Nrmk.IndyFramework.DigitalList)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
 
   // repeated .Nrmk.IndyFramework.DigitalSignal signals = 1;
-  for (unsigned i = 0,
-      n = static_cast<unsigned>(this->_internal_signals_size()); i < n; i++) {
-    const auto& repfield = this->_internal_signals().Get(i);
-    target = ::google::protobuf::internal::WireFormatLite::
-        InternalWriteMessage(1, repfield, repfield.GetCachedSize(), target, stream);
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->signals_size()); i < n; i++) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteMessageMaybeToArray(
+      1,
+      this->signals(static_cast<int>(i)),
+      output);
   }
 
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target =
-        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  if (_internal_metadata_.have_unknown_fields()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SerializeUnknownFields(
+        _internal_metadata_.unknown_fields(), output);
+  }
+  // @@protoc_insertion_point(serialize_end:Nrmk.IndyFramework.DigitalList)
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* DigitalList::InternalSerializeWithCachedSizesToArray(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.DigitalList)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // repeated .Nrmk.IndyFramework.DigitalSignal signals = 1;
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->signals_size()); i < n; i++) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessageToArray(
+        1, this->signals(static_cast<int>(i)), target);
+  }
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields(), target);
   }
   // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.DigitalList)
   return target;
 }
 
-::size_t DigitalList::ByteSizeLong() const {
+size_t DigitalList::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.DigitalList)
-  ::size_t total_size = 0;
+  size_t total_size = 0;
 
-  ::uint32_t cached_has_bits = 0;
+  if (_internal_metadata_.have_unknown_fields()) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::ComputeUnknownFieldsSize(
+        _internal_metadata_.unknown_fields());
+  }
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // repeated .Nrmk.IndyFramework.DigitalSignal signals = 1;
-  total_size += 1UL * this->_internal_signals_size();
-  for (const auto& msg : this->_internal_signals()) {
-    total_size +=
-      ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
+  {
+    unsigned int count = static_cast<unsigned int>(this->signals_size());
+    total_size += 1UL * count;
+    for (unsigned int i = 0; i < count; i++) {
+      total_size +=
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+          this->signals(static_cast<int>(i)));
+    }
   }
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
 }
 
-const ::google::protobuf::Message::ClassData DigitalList::_class_data_ = {
-    ::google::protobuf::Message::CopyWithSourceCheck,
-    DigitalList::MergeImpl
-};
-const ::google::protobuf::Message::ClassData*DigitalList::GetClassData() const { return &_class_data_; }
+void DigitalList::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:Nrmk.IndyFramework.DigitalList)
+  GOOGLE_DCHECK_NE(&from, this);
+  const DigitalList* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<DigitalList>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Nrmk.IndyFramework.DigitalList)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:Nrmk.IndyFramework.DigitalList)
+    MergeFrom(*source);
+  }
+}
 
-
-void DigitalList::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
-  auto* const _this = static_cast<DigitalList*>(&to_msg);
-  auto& from = static_cast<const DigitalList&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.DigitalList)
-  ABSL_DCHECK_NE(&from, _this);
-  ::uint32_t cached_has_bits = 0;
+void DigitalList::MergeFrom(const DigitalList& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.DigitalList)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_internal_mutable_signals()->MergeFrom(from._internal_signals());
-  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+  signals_.MergeFrom(from.signals_);
+}
+
+void DigitalList::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:Nrmk.IndyFramework.DigitalList)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void DigitalList::CopyFrom(const DigitalList& from) {
@@ -2055,169 +4268,266 @@ void DigitalList::CopyFrom(const DigitalList& from) {
   MergeFrom(from);
 }
 
-PROTOBUF_NOINLINE bool DigitalList::IsInitialized() const {
+bool DigitalList::IsInitialized() const {
   return true;
 }
 
+void DigitalList::Swap(DigitalList* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
 void DigitalList::InternalSwap(DigitalList* other) {
   using std::swap;
-  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  _impl_.signals_.InternalSwap(&other->_impl_.signals_);
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  CastToBase(&signals_)->InternalSwap(CastToBase(&other->signals_));
 }
 
-::google::protobuf::Metadata DigitalList::GetMetadata() const {
-  return ::_pbi::AssignDescriptors(
-      &descriptor_table_device_5fmsgs_2eproto_getter, &descriptor_table_device_5fmsgs_2eproto_once,
-      file_level_metadata_device_5fmsgs_2eproto[6]);
+::PROTOBUF_NAMESPACE_ID::Metadata DigitalList::GetMetadata() const {
+  return GetMetadataStatic();
 }
+
+
 // ===================================================================
 
-class EndtoolSignalList::_Internal {
+void EndtoolSignalList::InitAsDefaultInstance() {
+}
+class EndtoolSignalList::HasBitSetters {
  public:
 };
 
-EndtoolSignalList::EndtoolSignalList(::google::protobuf::Arena* arena)
-    : ::google::protobuf::Message(arena) {
-  SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:Nrmk.IndyFramework.EndtoolSignalList)
-}
-EndtoolSignalList::EndtoolSignalList(const EndtoolSignalList& from) : ::google::protobuf::Message() {
-  EndtoolSignalList* const _this = this;
-  (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.signals_){from._impl_.signals_},
-      /*decltype(_impl_._cached_size_)*/ {},
-  };
-  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
-      from._internal_metadata_);
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int EndtoolSignalList::kSignalsFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
+EndtoolSignalList::EndtoolSignalList()
+  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:Nrmk.IndyFramework.EndtoolSignalList)
+}
+EndtoolSignalList::EndtoolSignalList(const EndtoolSignalList& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _internal_metadata_(nullptr),
+      signals_(from.signals_) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.EndtoolSignalList)
 }
-inline void EndtoolSignalList::SharedCtor(::_pb::Arena* arena) {
-  (void)arena;
-  new (&_impl_) Impl_{
-      decltype(_impl_.signals_){arena},
-      /*decltype(_impl_._cached_size_)*/ {},
-  };
-}
-EndtoolSignalList::~EndtoolSignalList() {
-  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.EndtoolSignalList)
-  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
-  SharedDtor();
-}
-inline void EndtoolSignalList::SharedDtor() {
-  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.signals_.~RepeatedPtrField();
-}
-void EndtoolSignalList::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+
+void EndtoolSignalList::SharedCtor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_EndtoolSignalList_device_5fmsgs_2eproto.base);
 }
 
-PROTOBUF_NOINLINE void EndtoolSignalList::Clear() {
+EndtoolSignalList::~EndtoolSignalList() {
+  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.EndtoolSignalList)
+  SharedDtor();
+}
+
+void EndtoolSignalList::SharedDtor() {
+}
+
+void EndtoolSignalList::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const EndtoolSignalList& EndtoolSignalList::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_EndtoolSignalList_device_5fmsgs_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void EndtoolSignalList::Clear() {
 // @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.EndtoolSignalList)
-  ::uint32_t cached_has_bits = 0;
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _internal_mutable_signals()->Clear();
-  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+  signals_.Clear();
+  _internal_metadata_.Clear();
 }
 
-const char* EndtoolSignalList::_InternalParse(
-    const char* ptr, ::_pbi::ParseContext* ctx) {
-  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+#if GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+const char* EndtoolSignalList::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // repeated .Nrmk.IndyFramework.EndtoolSignal signals = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(add_signals(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<::PROTOBUF_NAMESPACE_ID::uint8>(ptr) == 10);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
   return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
 }
+#else  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+bool EndtoolSignalList::MergePartialFromCodedStream(
+    ::PROTOBUF_NAMESPACE_ID::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!PROTOBUF_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+  // @@protoc_insertion_point(parse_start:Nrmk.IndyFramework.EndtoolSignalList)
+  for (;;) {
+    ::std::pair<::PROTOBUF_NAMESPACE_ID::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // repeated .Nrmk.IndyFramework.EndtoolSignal signals = 1;
+      case 1: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (10 & 0xFF)) {
+          DO_(::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadMessage(
+                input, add_signals()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
 
+      default: {
+      handle_unusual:
+        if (tag == 0) {
+          goto success;
+        }
+        DO_(::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:Nrmk.IndyFramework.EndtoolSignalList)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:Nrmk.IndyFramework.EndtoolSignalList)
+  return false;
+#undef DO_
+}
+#endif  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
 
-PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<0, 1, 1, 0, 2> EndtoolSignalList::_table_ = {
-  {
-    0,  // no _has_bits_
-    0, // no _extensions_
-    1, 0,  // max_field_number, fast_idx_mask
-    offsetof(decltype(_table_), field_lookup_table),
-    4294967294,  // skipmap
-    offsetof(decltype(_table_), field_entries),
-    1,  // num_field_entries
-    1,  // num_aux_entries
-    offsetof(decltype(_table_), aux_entries),
-    &_EndtoolSignalList_default_instance_._instance,
-    ::_pbi::TcParser::GenericFallback,  // fallback
-  }, {{
-    // repeated .Nrmk.IndyFramework.EndtoolSignal signals = 1;
-    {::_pbi::TcParser::FastMtR1,
-     {10, 63, 0, PROTOBUF_FIELD_OFFSET(EndtoolSignalList, _impl_.signals_)}},
-  }}, {{
-    65535, 65535
-  }}, {{
-    // repeated .Nrmk.IndyFramework.EndtoolSignal signals = 1;
-    {PROTOBUF_FIELD_OFFSET(EndtoolSignalList, _impl_.signals_), 0, 0,
-    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
-  }}, {{
-    {::_pbi::TcParser::GetTable<::Nrmk::IndyFramework::EndtoolSignal>()},
-  }}, {{
-  }},
-};
-
-::uint8_t* EndtoolSignalList::_InternalSerialize(
-    ::uint8_t* target,
-    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.EndtoolSignalList)
-  ::uint32_t cached_has_bits = 0;
-  (void)cached_has_bits;
+void EndtoolSignalList::SerializeWithCachedSizes(
+    ::PROTOBUF_NAMESPACE_ID::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:Nrmk.IndyFramework.EndtoolSignalList)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
 
   // repeated .Nrmk.IndyFramework.EndtoolSignal signals = 1;
-  for (unsigned i = 0,
-      n = static_cast<unsigned>(this->_internal_signals_size()); i < n; i++) {
-    const auto& repfield = this->_internal_signals().Get(i);
-    target = ::google::protobuf::internal::WireFormatLite::
-        InternalWriteMessage(1, repfield, repfield.GetCachedSize(), target, stream);
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->signals_size()); i < n; i++) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteMessageMaybeToArray(
+      1,
+      this->signals(static_cast<int>(i)),
+      output);
   }
 
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target =
-        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  if (_internal_metadata_.have_unknown_fields()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SerializeUnknownFields(
+        _internal_metadata_.unknown_fields(), output);
+  }
+  // @@protoc_insertion_point(serialize_end:Nrmk.IndyFramework.EndtoolSignalList)
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* EndtoolSignalList::InternalSerializeWithCachedSizesToArray(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.EndtoolSignalList)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // repeated .Nrmk.IndyFramework.EndtoolSignal signals = 1;
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->signals_size()); i < n; i++) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessageToArray(
+        1, this->signals(static_cast<int>(i)), target);
+  }
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields(), target);
   }
   // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.EndtoolSignalList)
   return target;
 }
 
-::size_t EndtoolSignalList::ByteSizeLong() const {
+size_t EndtoolSignalList::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.EndtoolSignalList)
-  ::size_t total_size = 0;
+  size_t total_size = 0;
 
-  ::uint32_t cached_has_bits = 0;
+  if (_internal_metadata_.have_unknown_fields()) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::ComputeUnknownFieldsSize(
+        _internal_metadata_.unknown_fields());
+  }
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // repeated .Nrmk.IndyFramework.EndtoolSignal signals = 1;
-  total_size += 1UL * this->_internal_signals_size();
-  for (const auto& msg : this->_internal_signals()) {
-    total_size +=
-      ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
+  {
+    unsigned int count = static_cast<unsigned int>(this->signals_size());
+    total_size += 1UL * count;
+    for (unsigned int i = 0; i < count; i++) {
+      total_size +=
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+          this->signals(static_cast<int>(i)));
+    }
   }
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
 }
 
-const ::google::protobuf::Message::ClassData EndtoolSignalList::_class_data_ = {
-    ::google::protobuf::Message::CopyWithSourceCheck,
-    EndtoolSignalList::MergeImpl
-};
-const ::google::protobuf::Message::ClassData*EndtoolSignalList::GetClassData() const { return &_class_data_; }
+void EndtoolSignalList::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:Nrmk.IndyFramework.EndtoolSignalList)
+  GOOGLE_DCHECK_NE(&from, this);
+  const EndtoolSignalList* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<EndtoolSignalList>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Nrmk.IndyFramework.EndtoolSignalList)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:Nrmk.IndyFramework.EndtoolSignalList)
+    MergeFrom(*source);
+  }
+}
 
-
-void EndtoolSignalList::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
-  auto* const _this = static_cast<EndtoolSignalList*>(&to_msg);
-  auto& from = static_cast<const EndtoolSignalList&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.EndtoolSignalList)
-  ABSL_DCHECK_NE(&from, _this);
-  ::uint32_t cached_has_bits = 0;
+void EndtoolSignalList::MergeFrom(const EndtoolSignalList& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.EndtoolSignalList)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_internal_mutable_signals()->MergeFrom(from._internal_signals());
-  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+  signals_.MergeFrom(from.signals_);
+}
+
+void EndtoolSignalList::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:Nrmk.IndyFramework.EndtoolSignalList)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void EndtoolSignalList::CopyFrom(const EndtoolSignalList& from) {
@@ -2227,169 +4537,266 @@ void EndtoolSignalList::CopyFrom(const EndtoolSignalList& from) {
   MergeFrom(from);
 }
 
-PROTOBUF_NOINLINE bool EndtoolSignalList::IsInitialized() const {
+bool EndtoolSignalList::IsInitialized() const {
   return true;
 }
 
+void EndtoolSignalList::Swap(EndtoolSignalList* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
 void EndtoolSignalList::InternalSwap(EndtoolSignalList* other) {
   using std::swap;
-  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  _impl_.signals_.InternalSwap(&other->_impl_.signals_);
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  CastToBase(&signals_)->InternalSwap(CastToBase(&other->signals_));
 }
 
-::google::protobuf::Metadata EndtoolSignalList::GetMetadata() const {
-  return ::_pbi::AssignDescriptors(
-      &descriptor_table_device_5fmsgs_2eproto_getter, &descriptor_table_device_5fmsgs_2eproto_once,
-      file_level_metadata_device_5fmsgs_2eproto[7]);
+::PROTOBUF_NAMESPACE_ID::Metadata EndtoolSignalList::GetMetadata() const {
+  return GetMetadataStatic();
 }
+
+
 // ===================================================================
 
-class AnalogList::_Internal {
+void AnalogList::InitAsDefaultInstance() {
+}
+class AnalogList::HasBitSetters {
  public:
 };
 
-AnalogList::AnalogList(::google::protobuf::Arena* arena)
-    : ::google::protobuf::Message(arena) {
-  SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:Nrmk.IndyFramework.AnalogList)
-}
-AnalogList::AnalogList(const AnalogList& from) : ::google::protobuf::Message() {
-  AnalogList* const _this = this;
-  (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.signals_){from._impl_.signals_},
-      /*decltype(_impl_._cached_size_)*/ {},
-  };
-  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
-      from._internal_metadata_);
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int AnalogList::kSignalsFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
+AnalogList::AnalogList()
+  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:Nrmk.IndyFramework.AnalogList)
+}
+AnalogList::AnalogList(const AnalogList& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _internal_metadata_(nullptr),
+      signals_(from.signals_) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.AnalogList)
 }
-inline void AnalogList::SharedCtor(::_pb::Arena* arena) {
-  (void)arena;
-  new (&_impl_) Impl_{
-      decltype(_impl_.signals_){arena},
-      /*decltype(_impl_._cached_size_)*/ {},
-  };
-}
-AnalogList::~AnalogList() {
-  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.AnalogList)
-  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
-  SharedDtor();
-}
-inline void AnalogList::SharedDtor() {
-  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.signals_.~RepeatedPtrField();
-}
-void AnalogList::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+
+void AnalogList::SharedCtor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_AnalogList_device_5fmsgs_2eproto.base);
 }
 
-PROTOBUF_NOINLINE void AnalogList::Clear() {
+AnalogList::~AnalogList() {
+  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.AnalogList)
+  SharedDtor();
+}
+
+void AnalogList::SharedDtor() {
+}
+
+void AnalogList::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const AnalogList& AnalogList::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_AnalogList_device_5fmsgs_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void AnalogList::Clear() {
 // @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.AnalogList)
-  ::uint32_t cached_has_bits = 0;
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _internal_mutable_signals()->Clear();
-  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+  signals_.Clear();
+  _internal_metadata_.Clear();
 }
 
-const char* AnalogList::_InternalParse(
-    const char* ptr, ::_pbi::ParseContext* ctx) {
-  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+#if GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+const char* AnalogList::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // repeated .Nrmk.IndyFramework.AnalogSignal signals = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(add_signals(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<::PROTOBUF_NAMESPACE_ID::uint8>(ptr) == 10);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
   return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
 }
+#else  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+bool AnalogList::MergePartialFromCodedStream(
+    ::PROTOBUF_NAMESPACE_ID::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!PROTOBUF_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+  // @@protoc_insertion_point(parse_start:Nrmk.IndyFramework.AnalogList)
+  for (;;) {
+    ::std::pair<::PROTOBUF_NAMESPACE_ID::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // repeated .Nrmk.IndyFramework.AnalogSignal signals = 1;
+      case 1: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (10 & 0xFF)) {
+          DO_(::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadMessage(
+                input, add_signals()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
 
+      default: {
+      handle_unusual:
+        if (tag == 0) {
+          goto success;
+        }
+        DO_(::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:Nrmk.IndyFramework.AnalogList)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:Nrmk.IndyFramework.AnalogList)
+  return false;
+#undef DO_
+}
+#endif  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
 
-PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<0, 1, 1, 0, 2> AnalogList::_table_ = {
-  {
-    0,  // no _has_bits_
-    0, // no _extensions_
-    1, 0,  // max_field_number, fast_idx_mask
-    offsetof(decltype(_table_), field_lookup_table),
-    4294967294,  // skipmap
-    offsetof(decltype(_table_), field_entries),
-    1,  // num_field_entries
-    1,  // num_aux_entries
-    offsetof(decltype(_table_), aux_entries),
-    &_AnalogList_default_instance_._instance,
-    ::_pbi::TcParser::GenericFallback,  // fallback
-  }, {{
-    // repeated .Nrmk.IndyFramework.AnalogSignal signals = 1;
-    {::_pbi::TcParser::FastMtR1,
-     {10, 63, 0, PROTOBUF_FIELD_OFFSET(AnalogList, _impl_.signals_)}},
-  }}, {{
-    65535, 65535
-  }}, {{
-    // repeated .Nrmk.IndyFramework.AnalogSignal signals = 1;
-    {PROTOBUF_FIELD_OFFSET(AnalogList, _impl_.signals_), 0, 0,
-    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
-  }}, {{
-    {::_pbi::TcParser::GetTable<::Nrmk::IndyFramework::AnalogSignal>()},
-  }}, {{
-  }},
-};
-
-::uint8_t* AnalogList::_InternalSerialize(
-    ::uint8_t* target,
-    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.AnalogList)
-  ::uint32_t cached_has_bits = 0;
-  (void)cached_has_bits;
+void AnalogList::SerializeWithCachedSizes(
+    ::PROTOBUF_NAMESPACE_ID::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:Nrmk.IndyFramework.AnalogList)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
 
   // repeated .Nrmk.IndyFramework.AnalogSignal signals = 1;
-  for (unsigned i = 0,
-      n = static_cast<unsigned>(this->_internal_signals_size()); i < n; i++) {
-    const auto& repfield = this->_internal_signals().Get(i);
-    target = ::google::protobuf::internal::WireFormatLite::
-        InternalWriteMessage(1, repfield, repfield.GetCachedSize(), target, stream);
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->signals_size()); i < n; i++) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteMessageMaybeToArray(
+      1,
+      this->signals(static_cast<int>(i)),
+      output);
   }
 
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target =
-        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  if (_internal_metadata_.have_unknown_fields()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SerializeUnknownFields(
+        _internal_metadata_.unknown_fields(), output);
+  }
+  // @@protoc_insertion_point(serialize_end:Nrmk.IndyFramework.AnalogList)
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* AnalogList::InternalSerializeWithCachedSizesToArray(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.AnalogList)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // repeated .Nrmk.IndyFramework.AnalogSignal signals = 1;
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->signals_size()); i < n; i++) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessageToArray(
+        1, this->signals(static_cast<int>(i)), target);
+  }
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields(), target);
   }
   // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.AnalogList)
   return target;
 }
 
-::size_t AnalogList::ByteSizeLong() const {
+size_t AnalogList::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.AnalogList)
-  ::size_t total_size = 0;
+  size_t total_size = 0;
 
-  ::uint32_t cached_has_bits = 0;
+  if (_internal_metadata_.have_unknown_fields()) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::ComputeUnknownFieldsSize(
+        _internal_metadata_.unknown_fields());
+  }
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // repeated .Nrmk.IndyFramework.AnalogSignal signals = 1;
-  total_size += 1UL * this->_internal_signals_size();
-  for (const auto& msg : this->_internal_signals()) {
-    total_size +=
-      ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
+  {
+    unsigned int count = static_cast<unsigned int>(this->signals_size());
+    total_size += 1UL * count;
+    for (unsigned int i = 0; i < count; i++) {
+      total_size +=
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+          this->signals(static_cast<int>(i)));
+    }
   }
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
 }
 
-const ::google::protobuf::Message::ClassData AnalogList::_class_data_ = {
-    ::google::protobuf::Message::CopyWithSourceCheck,
-    AnalogList::MergeImpl
-};
-const ::google::protobuf::Message::ClassData*AnalogList::GetClassData() const { return &_class_data_; }
+void AnalogList::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:Nrmk.IndyFramework.AnalogList)
+  GOOGLE_DCHECK_NE(&from, this);
+  const AnalogList* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<AnalogList>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Nrmk.IndyFramework.AnalogList)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:Nrmk.IndyFramework.AnalogList)
+    MergeFrom(*source);
+  }
+}
 
-
-void AnalogList::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
-  auto* const _this = static_cast<AnalogList*>(&to_msg);
-  auto& from = static_cast<const AnalogList&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.AnalogList)
-  ABSL_DCHECK_NE(&from, _this);
-  ::uint32_t cached_has_bits = 0;
+void AnalogList::MergeFrom(const AnalogList& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.AnalogList)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_internal_mutable_signals()->MergeFrom(from._internal_signals());
-  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+  signals_.MergeFrom(from.signals_);
+}
+
+void AnalogList::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:Nrmk.IndyFramework.AnalogList)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void AnalogList::CopyFrom(const AnalogList& from) {
@@ -2399,534 +4806,875 @@ void AnalogList::CopyFrom(const AnalogList& from) {
   MergeFrom(from);
 }
 
-PROTOBUF_NOINLINE bool AnalogList::IsInitialized() const {
+bool AnalogList::IsInitialized() const {
   return true;
 }
 
+void AnalogList::Swap(AnalogList* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
 void AnalogList::InternalSwap(AnalogList* other) {
   using std::swap;
-  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  _impl_.signals_.InternalSwap(&other->_impl_.signals_);
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  CastToBase(&signals_)->InternalSwap(CastToBase(&other->signals_));
 }
 
-::google::protobuf::Metadata AnalogList::GetMetadata() const {
-  return ::_pbi::AssignDescriptors(
-      &descriptor_table_device_5fmsgs_2eproto_getter, &descriptor_table_device_5fmsgs_2eproto_once,
-      file_level_metadata_device_5fmsgs_2eproto[8]);
+::PROTOBUF_NAMESPACE_ID::Metadata AnalogList::GetMetadata() const {
+  return GetMetadataStatic();
 }
+
+
 // ===================================================================
 
-class DeviceInfo::_Internal {
+void DeviceInfo::InitAsDefaultInstance() {
+  ::Nrmk::IndyFramework::_DeviceInfo_default_instance_._instance.get_mutable()->response_ = const_cast< ::Nrmk::IndyFramework::Response*>(
+      ::Nrmk::IndyFramework::Response::internal_default_instance());
+}
+class DeviceInfo::HasBitSetters {
  public:
-  using HasBits = decltype(std::declval<DeviceInfo>()._impl_._has_bits_);
-  static constexpr ::int32_t kHasBitsOffset =
-    8 * PROTOBUF_FIELD_OFFSET(DeviceInfo, _impl_._has_bits_);
   static const ::Nrmk::IndyFramework::Response& response(const DeviceInfo* msg);
-  static void set_has_response(HasBits* has_bits) {
-    (*has_bits)[0] |= 1u;
-  }
 };
 
-const ::Nrmk::IndyFramework::Response& DeviceInfo::_Internal::response(const DeviceInfo* msg) {
-  return *msg->_impl_.response_;
+const ::Nrmk::IndyFramework::Response&
+DeviceInfo::HasBitSetters::response(const DeviceInfo* msg) {
+  return *msg->response_;
 }
 void DeviceInfo::clear_response() {
-  if (_impl_.response_ != nullptr) _impl_.response_->Clear();
-  _impl_._has_bits_[0] &= ~0x00000001u;
+  if (GetArenaNoVirtual() == nullptr && response_ != nullptr) {
+    delete response_;
+  }
+  response_ = nullptr;
 }
-DeviceInfo::DeviceInfo(::google::protobuf::Arena* arena)
-    : ::google::protobuf::Message(arena) {
-  SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:Nrmk.IndyFramework.DeviceInfo)
-}
-DeviceInfo::DeviceInfo(const DeviceInfo& from) : ::google::protobuf::Message() {
-  DeviceInfo* const _this = this;
-  (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_._has_bits_){from._impl_._has_bits_},
-      /*decltype(_impl_._cached_size_)*/ {},
-      decltype(_impl_.core_board_fw_vers_){from._impl_.core_board_fw_vers_},
-      decltype(_impl_.robot_serial_){},
-      decltype(_impl_.io_board_fw_ver_){},
-      decltype(_impl_.endtool_board_fw_ver_){},
-      decltype(_impl_.controller_ver_){},
-      decltype(_impl_.controller_detail_){},
-      decltype(_impl_.controller_date_){},
-      decltype(_impl_.response_){nullptr},
-      decltype(_impl_.num_joints_){},
-      decltype(_impl_.payload_){},
-  };
-  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
-      from._internal_metadata_);
-  _impl_.robot_serial_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        _impl_.robot_serial_.Set("", GetArenaForAllocation());
-  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_robot_serial().empty()) {
-    _this->_impl_.robot_serial_.Set(from._internal_robot_serial(), _this->GetArenaForAllocation());
-  }
-  _impl_.io_board_fw_ver_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        _impl_.io_board_fw_ver_.Set("", GetArenaForAllocation());
-  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_io_board_fw_ver().empty()) {
-    _this->_impl_.io_board_fw_ver_.Set(from._internal_io_board_fw_ver(), _this->GetArenaForAllocation());
-  }
-  _impl_.endtool_board_fw_ver_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        _impl_.endtool_board_fw_ver_.Set("", GetArenaForAllocation());
-  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_endtool_board_fw_ver().empty()) {
-    _this->_impl_.endtool_board_fw_ver_.Set(from._internal_endtool_board_fw_ver(), _this->GetArenaForAllocation());
-  }
-  _impl_.controller_ver_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        _impl_.controller_ver_.Set("", GetArenaForAllocation());
-  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_controller_ver().empty()) {
-    _this->_impl_.controller_ver_.Set(from._internal_controller_ver(), _this->GetArenaForAllocation());
-  }
-  _impl_.controller_detail_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        _impl_.controller_detail_.Set("", GetArenaForAllocation());
-  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_controller_detail().empty()) {
-    _this->_impl_.controller_detail_.Set(from._internal_controller_detail(), _this->GetArenaForAllocation());
-  }
-  _impl_.controller_date_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        _impl_.controller_date_.Set("", GetArenaForAllocation());
-  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_controller_date().empty()) {
-    _this->_impl_.controller_date_.Set(from._internal_controller_date(), _this->GetArenaForAllocation());
-  }
-  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
-    _this->_impl_.response_ = new ::Nrmk::IndyFramework::Response(*from._impl_.response_);
-  }
-  ::memcpy(&_impl_.num_joints_, &from._impl_.num_joints_,
-    static_cast<::size_t>(reinterpret_cast<char*>(&_impl_.payload_) -
-    reinterpret_cast<char*>(&_impl_.num_joints_)) + sizeof(_impl_.payload_));
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int DeviceInfo::kNumJointsFieldNumber;
+const int DeviceInfo::kRobotSerialFieldNumber;
+const int DeviceInfo::kPayloadFieldNumber;
+const int DeviceInfo::kIoBoardFwVerFieldNumber;
+const int DeviceInfo::kCoreBoardFwVersFieldNumber;
+const int DeviceInfo::kEndtoolBoardFwVerFieldNumber;
+const int DeviceInfo::kControllerVerFieldNumber;
+const int DeviceInfo::kControllerDetailFieldNumber;
+const int DeviceInfo::kControllerDateFieldNumber;
+const int DeviceInfo::kTeleopLoadedFieldNumber;
+const int DeviceInfo::kCalibratedFieldNumber;
+const int DeviceInfo::kResponseFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
+DeviceInfo::DeviceInfo()
+  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:Nrmk.IndyFramework.DeviceInfo)
+}
+DeviceInfo::DeviceInfo(const DeviceInfo& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _internal_metadata_(nullptr),
+      core_board_fw_vers_(from.core_board_fw_vers_) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  robot_serial_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (from.robot_serial().size() > 0) {
+    robot_serial_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.robot_serial_);
+  }
+  io_board_fw_ver_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (from.io_board_fw_ver().size() > 0) {
+    io_board_fw_ver_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.io_board_fw_ver_);
+  }
+  endtool_board_fw_ver_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (from.endtool_board_fw_ver().size() > 0) {
+    endtool_board_fw_ver_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.endtool_board_fw_ver_);
+  }
+  controller_ver_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (from.controller_ver().size() > 0) {
+    controller_ver_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.controller_ver_);
+  }
+  controller_detail_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (from.controller_detail().size() > 0) {
+    controller_detail_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.controller_detail_);
+  }
+  controller_date_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (from.controller_date().size() > 0) {
+    controller_date_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.controller_date_);
+  }
+  if (from.has_response()) {
+    response_ = new ::Nrmk::IndyFramework::Response(*from.response_);
+  } else {
+    response_ = nullptr;
+  }
+  ::memcpy(&num_joints_, &from.num_joints_,
+    static_cast<size_t>(reinterpret_cast<char*>(&calibrated_) -
+    reinterpret_cast<char*>(&num_joints_)) + sizeof(calibrated_));
   // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.DeviceInfo)
 }
-inline void DeviceInfo::SharedCtor(::_pb::Arena* arena) {
-  (void)arena;
-  new (&_impl_) Impl_{
-      decltype(_impl_._has_bits_){},
-      /*decltype(_impl_._cached_size_)*/ {},
-      decltype(_impl_.core_board_fw_vers_){arena},
-      decltype(_impl_.robot_serial_){},
-      decltype(_impl_.io_board_fw_ver_){},
-      decltype(_impl_.endtool_board_fw_ver_){},
-      decltype(_impl_.controller_ver_){},
-      decltype(_impl_.controller_detail_){},
-      decltype(_impl_.controller_date_){},
-      decltype(_impl_.response_){nullptr},
-      decltype(_impl_.num_joints_){0u},
-      decltype(_impl_.payload_){0},
-  };
-  _impl_.robot_serial_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        _impl_.robot_serial_.Set("", GetArenaForAllocation());
-  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.io_board_fw_ver_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        _impl_.io_board_fw_ver_.Set("", GetArenaForAllocation());
-  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.endtool_board_fw_ver_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        _impl_.endtool_board_fw_ver_.Set("", GetArenaForAllocation());
-  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.controller_ver_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        _impl_.controller_ver_.Set("", GetArenaForAllocation());
-  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.controller_detail_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        _impl_.controller_detail_.Set("", GetArenaForAllocation());
-  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.controller_date_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        _impl_.controller_date_.Set("", GetArenaForAllocation());
-  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-}
-DeviceInfo::~DeviceInfo() {
-  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.DeviceInfo)
-  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
-  SharedDtor();
-}
-inline void DeviceInfo::SharedDtor() {
-  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
-  _internal_mutable_core_board_fw_vers()->~RepeatedPtrField();
-  _impl_.robot_serial_.Destroy();
-  _impl_.io_board_fw_ver_.Destroy();
-  _impl_.endtool_board_fw_ver_.Destroy();
-  _impl_.controller_ver_.Destroy();
-  _impl_.controller_detail_.Destroy();
-  _impl_.controller_date_.Destroy();
-  if (this != internal_default_instance()) delete _impl_.response_;
-}
-void DeviceInfo::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+
+void DeviceInfo::SharedCtor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_DeviceInfo_device_5fmsgs_2eproto.base);
+  robot_serial_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  io_board_fw_ver_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  endtool_board_fw_ver_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  controller_ver_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  controller_detail_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  controller_date_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  ::memset(&response_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&calibrated_) -
+      reinterpret_cast<char*>(&response_)) + sizeof(calibrated_));
 }
 
-PROTOBUF_NOINLINE void DeviceInfo::Clear() {
+DeviceInfo::~DeviceInfo() {
+  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.DeviceInfo)
+  SharedDtor();
+}
+
+void DeviceInfo::SharedDtor() {
+  robot_serial_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  io_board_fw_ver_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  endtool_board_fw_ver_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  controller_ver_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  controller_detail_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  controller_date_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (this != internal_default_instance()) delete response_;
+}
+
+void DeviceInfo::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const DeviceInfo& DeviceInfo::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_DeviceInfo_device_5fmsgs_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void DeviceInfo::Clear() {
 // @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.DeviceInfo)
-  ::uint32_t cached_has_bits = 0;
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _internal_mutable_core_board_fw_vers()->Clear();
-  _impl_.robot_serial_.ClearToEmpty();
-  _impl_.io_board_fw_ver_.ClearToEmpty();
-  _impl_.endtool_board_fw_ver_.ClearToEmpty();
-  _impl_.controller_ver_.ClearToEmpty();
-  _impl_.controller_detail_.ClearToEmpty();
-  _impl_.controller_date_.ClearToEmpty();
-  cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    ABSL_DCHECK(_impl_.response_ != nullptr);
-    _impl_.response_->Clear();
+  core_board_fw_vers_.Clear();
+  robot_serial_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  io_board_fw_ver_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  endtool_board_fw_ver_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  controller_ver_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  controller_detail_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  controller_date_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (GetArenaNoVirtual() == nullptr && response_ != nullptr) {
+    delete response_;
   }
-  ::memset(&_impl_.num_joints_, 0, static_cast<::size_t>(
-      reinterpret_cast<char*>(&_impl_.payload_) -
-      reinterpret_cast<char*>(&_impl_.num_joints_)) + sizeof(_impl_.payload_));
-  _impl_._has_bits_.Clear();
-  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+  response_ = nullptr;
+  ::memset(&num_joints_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&calibrated_) -
+      reinterpret_cast<char*>(&num_joints_)) + sizeof(calibrated_));
+  _internal_metadata_.Clear();
 }
 
-const char* DeviceInfo::_InternalParse(
-    const char* ptr, ::_pbi::ParseContext* ctx) {
-  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+#if GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+const char* DeviceInfo::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // uint32 num_joints = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          num_joints_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string robot_serial = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParserUTF8(mutable_robot_serial(), ptr, ctx, "Nrmk.IndyFramework.DeviceInfo.robot_serial");
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // float payload = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 29)) {
+          payload_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else goto handle_unusual;
+        continue;
+      // string io_board_fw_ver = 10;
+      case 10:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 82)) {
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParserUTF8(mutable_io_board_fw_ver(), ptr, ctx, "Nrmk.IndyFramework.DeviceInfo.io_board_fw_ver");
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // repeated string core_board_fw_vers = 11;
+      case 11:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 90)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParserUTF8(add_core_board_fw_vers(), ptr, ctx, "Nrmk.IndyFramework.DeviceInfo.core_board_fw_vers");
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<::PROTOBUF_NAMESPACE_ID::uint8>(ptr) == 90);
+        } else goto handle_unusual;
+        continue;
+      // string endtool_board_fw_ver = 12;
+      case 12:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 98)) {
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParserUTF8(mutable_endtool_board_fw_ver(), ptr, ctx, "Nrmk.IndyFramework.DeviceInfo.endtool_board_fw_ver");
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string controller_ver = 20;
+      case 20:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 162)) {
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParserUTF8(mutable_controller_ver(), ptr, ctx, "Nrmk.IndyFramework.DeviceInfo.controller_ver");
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string controller_detail = 21;
+      case 21:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 170)) {
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParserUTF8(mutable_controller_detail(), ptr, ctx, "Nrmk.IndyFramework.DeviceInfo.controller_detail");
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string controller_date = 22;
+      case 22:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 178)) {
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParserUTF8(mutable_controller_date(), ptr, ctx, "Nrmk.IndyFramework.DeviceInfo.controller_date");
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // bool teleop_loaded = 30;
+      case 30:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 240)) {
+          teleop_loaded_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // bool calibrated = 31;
+      case 31:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 248)) {
+          calibrated_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .Nrmk.IndyFramework.Response response = 100;
+      case 100:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
+          ptr = ctx->ParseMessage(mutable_response(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
   return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
 }
+#else  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+bool DeviceInfo::MergePartialFromCodedStream(
+    ::PROTOBUF_NAMESPACE_ID::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!PROTOBUF_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+  // @@protoc_insertion_point(parse_start:Nrmk.IndyFramework.DeviceInfo)
+  for (;;) {
+    ::std::pair<::PROTOBUF_NAMESPACE_ID::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(16383u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // uint32 num_joints = 1;
+      case 1: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (8 & 0xFF)) {
 
+          DO_((::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadPrimitive<
+                   ::PROTOBUF_NAMESPACE_ID::uint32, ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_UINT32>(
+                 input, &num_joints_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
 
-PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<4, 10, 1, 157, 7> DeviceInfo::_table_ = {
-  {
-    PROTOBUF_FIELD_OFFSET(DeviceInfo, _impl_._has_bits_),
-    0, // no _extensions_
-    100, 120,  // max_field_number, fast_idx_mask
-    offsetof(decltype(_table_), field_lookup_table),
-    4291293688,  // skipmap
-    offsetof(decltype(_table_), field_entries),
-    10,  // num_field_entries
-    1,  // num_aux_entries
-    offsetof(decltype(_table_), aux_entries),
-    &_DeviceInfo_default_instance_._instance,
-    ::_pbi::TcParser::GenericFallback,  // fallback
-  }, {{
-    {::_pbi::TcParser::MiniParse, {}},
-    // uint32 num_joints = 1;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(DeviceInfo, _impl_.num_joints_), 63>(),
-     {8, 63, 0, PROTOBUF_FIELD_OFFSET(DeviceInfo, _impl_.num_joints_)}},
-    // string robot_serial = 2;
-    {::_pbi::TcParser::FastUS1,
-     {18, 63, 0, PROTOBUF_FIELD_OFFSET(DeviceInfo, _impl_.robot_serial_)}},
-    // float payload = 3;
-    {::_pbi::TcParser::FastF32S1,
-     {29, 63, 0, PROTOBUF_FIELD_OFFSET(DeviceInfo, _impl_.payload_)}},
-    // string controller_ver = 20;
-    {::_pbi::TcParser::FastUS2,
-     {418, 63, 0, PROTOBUF_FIELD_OFFSET(DeviceInfo, _impl_.controller_ver_)}},
-    // string controller_detail = 21;
-    {::_pbi::TcParser::FastUS2,
-     {426, 63, 0, PROTOBUF_FIELD_OFFSET(DeviceInfo, _impl_.controller_detail_)}},
-    // string controller_date = 22;
-    {::_pbi::TcParser::FastUS2,
-     {434, 63, 0, PROTOBUF_FIELD_OFFSET(DeviceInfo, _impl_.controller_date_)}},
-    {::_pbi::TcParser::MiniParse, {}},
-    {::_pbi::TcParser::MiniParse, {}},
-    {::_pbi::TcParser::MiniParse, {}},
-    // string io_board_fw_ver = 10;
-    {::_pbi::TcParser::FastUS1,
-     {82, 63, 0, PROTOBUF_FIELD_OFFSET(DeviceInfo, _impl_.io_board_fw_ver_)}},
-    // repeated string core_board_fw_vers = 11;
-    {::_pbi::TcParser::FastUR1,
-     {90, 63, 0, PROTOBUF_FIELD_OFFSET(DeviceInfo, _impl_.core_board_fw_vers_)}},
-    // string endtool_board_fw_ver = 12;
-    {::_pbi::TcParser::FastUS1,
-     {98, 63, 0, PROTOBUF_FIELD_OFFSET(DeviceInfo, _impl_.endtool_board_fw_ver_)}},
-    {::_pbi::TcParser::MiniParse, {}},
-    {::_pbi::TcParser::MiniParse, {}},
-    {::_pbi::TcParser::MiniParse, {}},
-  }}, {{
-    100, 0, 1,
-    65534, 9,
-    65535, 65535
-  }}, {{
-    // uint32 num_joints = 1;
-    {PROTOBUF_FIELD_OFFSET(DeviceInfo, _impl_.num_joints_), -1, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
-    // string robot_serial = 2;
-    {PROTOBUF_FIELD_OFFSET(DeviceInfo, _impl_.robot_serial_), -1, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // float payload = 3;
-    {PROTOBUF_FIELD_OFFSET(DeviceInfo, _impl_.payload_), -1, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kFloat)},
-    // string io_board_fw_ver = 10;
-    {PROTOBUF_FIELD_OFFSET(DeviceInfo, _impl_.io_board_fw_ver_), -1, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // repeated string core_board_fw_vers = 11;
-    {PROTOBUF_FIELD_OFFSET(DeviceInfo, _impl_.core_board_fw_vers_), -1, 0,
-    (0 | ::_fl::kFcRepeated | ::_fl::kUtf8String | ::_fl::kRepSString)},
-    // string endtool_board_fw_ver = 12;
-    {PROTOBUF_FIELD_OFFSET(DeviceInfo, _impl_.endtool_board_fw_ver_), -1, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // string controller_ver = 20;
-    {PROTOBUF_FIELD_OFFSET(DeviceInfo, _impl_.controller_ver_), -1, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // string controller_detail = 21;
-    {PROTOBUF_FIELD_OFFSET(DeviceInfo, _impl_.controller_detail_), -1, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // string controller_date = 22;
-    {PROTOBUF_FIELD_OFFSET(DeviceInfo, _impl_.controller_date_), -1, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // .Nrmk.IndyFramework.Response response = 100;
-    {PROTOBUF_FIELD_OFFSET(DeviceInfo, _impl_.response_), _Internal::kHasBitsOffset + 0, 0,
-    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
-  }}, {{
-    {::_pbi::TcParser::GetTable<::Nrmk::IndyFramework::Response>()},
-  }}, {{
-    "\35\0\14\0\17\22\24\16\21\17\0\0\0\0\0\0"
-    "Nrmk.IndyFramework.DeviceInfo"
-    "robot_serial"
-    "io_board_fw_ver"
-    "core_board_fw_vers"
-    "endtool_board_fw_ver"
-    "controller_ver"
-    "controller_detail"
-    "controller_date"
-  }},
-};
+      // string robot_serial = 2;
+      case 2: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (18 & 0xFF)) {
+          DO_(::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadString(
+                input, this->mutable_robot_serial()));
+          DO_(::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+            this->robot_serial().data(), static_cast<int>(this->robot_serial().length()),
+            ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE,
+            "Nrmk.IndyFramework.DeviceInfo.robot_serial"));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
 
-::uint8_t* DeviceInfo::_InternalSerialize(
-    ::uint8_t* target,
-    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.DeviceInfo)
-  ::uint32_t cached_has_bits = 0;
-  (void)cached_has_bits;
+      // float payload = 3;
+      case 3: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (29 & 0xFF)) {
+
+          DO_((::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadPrimitive<
+                   float, ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_FLOAT>(
+                 input, &payload_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // string io_board_fw_ver = 10;
+      case 10: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (82 & 0xFF)) {
+          DO_(::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadString(
+                input, this->mutable_io_board_fw_ver()));
+          DO_(::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+            this->io_board_fw_ver().data(), static_cast<int>(this->io_board_fw_ver().length()),
+            ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE,
+            "Nrmk.IndyFramework.DeviceInfo.io_board_fw_ver"));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // repeated string core_board_fw_vers = 11;
+      case 11: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (90 & 0xFF)) {
+          DO_(::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadString(
+                input, this->add_core_board_fw_vers()));
+          DO_(::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+            this->core_board_fw_vers(this->core_board_fw_vers_size() - 1).data(),
+            static_cast<int>(this->core_board_fw_vers(this->core_board_fw_vers_size() - 1).length()),
+            ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE,
+            "Nrmk.IndyFramework.DeviceInfo.core_board_fw_vers"));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // string endtool_board_fw_ver = 12;
+      case 12: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (98 & 0xFF)) {
+          DO_(::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadString(
+                input, this->mutable_endtool_board_fw_ver()));
+          DO_(::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+            this->endtool_board_fw_ver().data(), static_cast<int>(this->endtool_board_fw_ver().length()),
+            ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE,
+            "Nrmk.IndyFramework.DeviceInfo.endtool_board_fw_ver"));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // string controller_ver = 20;
+      case 20: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (162 & 0xFF)) {
+          DO_(::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadString(
+                input, this->mutable_controller_ver()));
+          DO_(::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+            this->controller_ver().data(), static_cast<int>(this->controller_ver().length()),
+            ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE,
+            "Nrmk.IndyFramework.DeviceInfo.controller_ver"));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // string controller_detail = 21;
+      case 21: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (170 & 0xFF)) {
+          DO_(::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadString(
+                input, this->mutable_controller_detail()));
+          DO_(::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+            this->controller_detail().data(), static_cast<int>(this->controller_detail().length()),
+            ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE,
+            "Nrmk.IndyFramework.DeviceInfo.controller_detail"));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // string controller_date = 22;
+      case 22: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (178 & 0xFF)) {
+          DO_(::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadString(
+                input, this->mutable_controller_date()));
+          DO_(::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+            this->controller_date().data(), static_cast<int>(this->controller_date().length()),
+            ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE,
+            "Nrmk.IndyFramework.DeviceInfo.controller_date"));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // bool teleop_loaded = 30;
+      case 30: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (240 & 0xFF)) {
+
+          DO_((::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadPrimitive<
+                   bool, ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_BOOL>(
+                 input, &teleop_loaded_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // bool calibrated = 31;
+      case 31: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (248 & 0xFF)) {
+
+          DO_((::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadPrimitive<
+                   bool, ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_BOOL>(
+                 input, &calibrated_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // .Nrmk.IndyFramework.Response response = 100;
+      case 100: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (802 & 0xFF)) {
+          DO_(::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadMessage(
+               input, mutable_response()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0) {
+          goto success;
+        }
+        DO_(::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:Nrmk.IndyFramework.DeviceInfo)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:Nrmk.IndyFramework.DeviceInfo)
+  return false;
+#undef DO_
+}
+#endif  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+
+void DeviceInfo::SerializeWithCachedSizes(
+    ::PROTOBUF_NAMESPACE_ID::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:Nrmk.IndyFramework.DeviceInfo)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
 
   // uint32 num_joints = 1;
-  if (this->_internal_num_joints() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
-        1, this->_internal_num_joints(), target);
+  if (this->num_joints() != 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt32(1, this->num_joints(), output);
   }
 
   // string robot_serial = 2;
-  if (!this->_internal_robot_serial().empty()) {
-    const std::string& _s = this->_internal_robot_serial();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "Nrmk.IndyFramework.DeviceInfo.robot_serial");
-    target = stream->WriteStringMaybeAliased(2, _s, target);
+  if (this->robot_serial().size() > 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->robot_serial().data(), static_cast<int>(this->robot_serial().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Nrmk.IndyFramework.DeviceInfo.robot_serial");
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteStringMaybeAliased(
+      2, this->robot_serial(), output);
   }
 
   // float payload = 3;
-  static_assert(sizeof(::uint32_t) == sizeof(float),
-                "Code assumes ::uint32_t and float are the same size.");
-  float tmp_payload = this->_internal_payload();
-  ::uint32_t raw_payload;
-  memcpy(&raw_payload, &tmp_payload, sizeof(tmp_payload));
-  if (raw_payload != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteFloatToArray(
-        3, this->_internal_payload(), target);
+  if (!(this->payload() <= 0 && this->payload() >= 0)) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloat(3, this->payload(), output);
   }
 
   // string io_board_fw_ver = 10;
-  if (!this->_internal_io_board_fw_ver().empty()) {
-    const std::string& _s = this->_internal_io_board_fw_ver();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "Nrmk.IndyFramework.DeviceInfo.io_board_fw_ver");
-    target = stream->WriteStringMaybeAliased(10, _s, target);
+  if (this->io_board_fw_ver().size() > 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->io_board_fw_ver().data(), static_cast<int>(this->io_board_fw_ver().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Nrmk.IndyFramework.DeviceInfo.io_board_fw_ver");
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteStringMaybeAliased(
+      10, this->io_board_fw_ver(), output);
   }
 
   // repeated string core_board_fw_vers = 11;
-  for (int i = 0, n = this->_internal_core_board_fw_vers_size(); i < n; ++i) {
-    const auto& s = this->_internal_core_board_fw_vers().Get(i);
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        s.data(), static_cast<int>(s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "Nrmk.IndyFramework.DeviceInfo.core_board_fw_vers");
-    target = stream->WriteString(11, s, target);
+  for (int i = 0, n = this->core_board_fw_vers_size(); i < n; i++) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->core_board_fw_vers(i).data(), static_cast<int>(this->core_board_fw_vers(i).length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Nrmk.IndyFramework.DeviceInfo.core_board_fw_vers");
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteString(
+      11, this->core_board_fw_vers(i), output);
   }
 
   // string endtool_board_fw_ver = 12;
-  if (!this->_internal_endtool_board_fw_ver().empty()) {
-    const std::string& _s = this->_internal_endtool_board_fw_ver();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "Nrmk.IndyFramework.DeviceInfo.endtool_board_fw_ver");
-    target = stream->WriteStringMaybeAliased(12, _s, target);
+  if (this->endtool_board_fw_ver().size() > 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->endtool_board_fw_ver().data(), static_cast<int>(this->endtool_board_fw_ver().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Nrmk.IndyFramework.DeviceInfo.endtool_board_fw_ver");
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteStringMaybeAliased(
+      12, this->endtool_board_fw_ver(), output);
   }
 
   // string controller_ver = 20;
-  if (!this->_internal_controller_ver().empty()) {
-    const std::string& _s = this->_internal_controller_ver();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "Nrmk.IndyFramework.DeviceInfo.controller_ver");
-    target = stream->WriteStringMaybeAliased(20, _s, target);
+  if (this->controller_ver().size() > 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->controller_ver().data(), static_cast<int>(this->controller_ver().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Nrmk.IndyFramework.DeviceInfo.controller_ver");
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteStringMaybeAliased(
+      20, this->controller_ver(), output);
   }
 
   // string controller_detail = 21;
-  if (!this->_internal_controller_detail().empty()) {
-    const std::string& _s = this->_internal_controller_detail();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "Nrmk.IndyFramework.DeviceInfo.controller_detail");
-    target = stream->WriteStringMaybeAliased(21, _s, target);
+  if (this->controller_detail().size() > 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->controller_detail().data(), static_cast<int>(this->controller_detail().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Nrmk.IndyFramework.DeviceInfo.controller_detail");
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteStringMaybeAliased(
+      21, this->controller_detail(), output);
   }
 
   // string controller_date = 22;
-  if (!this->_internal_controller_date().empty()) {
-    const std::string& _s = this->_internal_controller_date();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "Nrmk.IndyFramework.DeviceInfo.controller_date");
-    target = stream->WriteStringMaybeAliased(22, _s, target);
+  if (this->controller_date().size() > 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->controller_date().data(), static_cast<int>(this->controller_date().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Nrmk.IndyFramework.DeviceInfo.controller_date");
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteStringMaybeAliased(
+      22, this->controller_date(), output);
   }
 
-  cached_has_bits = _impl_._has_bits_[0];
+  // bool teleop_loaded = 30;
+  if (this->teleop_loaded() != 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBool(30, this->teleop_loaded(), output);
+  }
+
+  // bool calibrated = 31;
+  if (this->calibrated() != 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBool(31, this->calibrated(), output);
+  }
+
   // .Nrmk.IndyFramework.Response response = 100;
-  if (cached_has_bits & 0x00000001u) {
-    target = ::google::protobuf::internal::WireFormatLite::
-      InternalWriteMessage(100, _Internal::response(this),
-        _Internal::response(this).GetCachedSize(), target, stream);
+  if (this->has_response()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteMessageMaybeToArray(
+      100, HasBitSetters::response(this), output);
   }
 
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+  if (_internal_metadata_.have_unknown_fields()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SerializeUnknownFields(
+        _internal_metadata_.unknown_fields(), output);
+  }
+  // @@protoc_insertion_point(serialize_end:Nrmk.IndyFramework.DeviceInfo)
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* DeviceInfo::InternalSerializeWithCachedSizesToArray(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.DeviceInfo)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // uint32 num_joints = 1;
+  if (this->num_joints() != 0) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt32ToArray(1, this->num_joints(), target);
+  }
+
+  // string robot_serial = 2;
+  if (this->robot_serial().size() > 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->robot_serial().data(), static_cast<int>(this->robot_serial().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Nrmk.IndyFramework.DeviceInfo.robot_serial");
     target =
-        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteStringToArray(
+        2, this->robot_serial(), target);
+  }
+
+  // float payload = 3;
+  if (!(this->payload() <= 0 && this->payload() >= 0)) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(3, this->payload(), target);
+  }
+
+  // string io_board_fw_ver = 10;
+  if (this->io_board_fw_ver().size() > 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->io_board_fw_ver().data(), static_cast<int>(this->io_board_fw_ver().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Nrmk.IndyFramework.DeviceInfo.io_board_fw_ver");
+    target =
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteStringToArray(
+        10, this->io_board_fw_ver(), target);
+  }
+
+  // repeated string core_board_fw_vers = 11;
+  for (int i = 0, n = this->core_board_fw_vers_size(); i < n; i++) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->core_board_fw_vers(i).data(), static_cast<int>(this->core_board_fw_vers(i).length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Nrmk.IndyFramework.DeviceInfo.core_board_fw_vers");
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      WriteStringToArray(11, this->core_board_fw_vers(i), target);
+  }
+
+  // string endtool_board_fw_ver = 12;
+  if (this->endtool_board_fw_ver().size() > 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->endtool_board_fw_ver().data(), static_cast<int>(this->endtool_board_fw_ver().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Nrmk.IndyFramework.DeviceInfo.endtool_board_fw_ver");
+    target =
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteStringToArray(
+        12, this->endtool_board_fw_ver(), target);
+  }
+
+  // string controller_ver = 20;
+  if (this->controller_ver().size() > 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->controller_ver().data(), static_cast<int>(this->controller_ver().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Nrmk.IndyFramework.DeviceInfo.controller_ver");
+    target =
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteStringToArray(
+        20, this->controller_ver(), target);
+  }
+
+  // string controller_detail = 21;
+  if (this->controller_detail().size() > 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->controller_detail().data(), static_cast<int>(this->controller_detail().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Nrmk.IndyFramework.DeviceInfo.controller_detail");
+    target =
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteStringToArray(
+        21, this->controller_detail(), target);
+  }
+
+  // string controller_date = 22;
+  if (this->controller_date().size() > 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->controller_date().data(), static_cast<int>(this->controller_date().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Nrmk.IndyFramework.DeviceInfo.controller_date");
+    target =
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteStringToArray(
+        22, this->controller_date(), target);
+  }
+
+  // bool teleop_loaded = 30;
+  if (this->teleop_loaded() != 0) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(30, this->teleop_loaded(), target);
+  }
+
+  // bool calibrated = 31;
+  if (this->calibrated() != 0) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(31, this->calibrated(), target);
+  }
+
+  // .Nrmk.IndyFramework.Response response = 100;
+  if (this->has_response()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessageToArray(
+        100, HasBitSetters::response(this), target);
+  }
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields(), target);
   }
   // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.DeviceInfo)
   return target;
 }
 
-::size_t DeviceInfo::ByteSizeLong() const {
+size_t DeviceInfo::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.DeviceInfo)
-  ::size_t total_size = 0;
+  size_t total_size = 0;
 
-  ::uint32_t cached_has_bits = 0;
+  if (_internal_metadata_.have_unknown_fields()) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::ComputeUnknownFieldsSize(
+        _internal_metadata_.unknown_fields());
+  }
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // repeated string core_board_fw_vers = 11;
-  total_size += 1 * ::google::protobuf::internal::FromIntSize(_internal_core_board_fw_vers().size());
-  for (int i = 0, n = _internal_core_board_fw_vers().size(); i < n; ++i) {
-    total_size += ::google::protobuf::internal::WireFormatLite::StringSize(
-        _internal_core_board_fw_vers().Get(i));
+  total_size += 1 *
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(this->core_board_fw_vers_size());
+  for (int i = 0, n = this->core_board_fw_vers_size(); i < n; i++) {
+    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+      this->core_board_fw_vers(i));
   }
+
   // string robot_serial = 2;
-  if (!this->_internal_robot_serial().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                    this->_internal_robot_serial());
+  if (this->robot_serial().size() > 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->robot_serial());
   }
 
   // string io_board_fw_ver = 10;
-  if (!this->_internal_io_board_fw_ver().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                    this->_internal_io_board_fw_ver());
+  if (this->io_board_fw_ver().size() > 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->io_board_fw_ver());
   }
 
   // string endtool_board_fw_ver = 12;
-  if (!this->_internal_endtool_board_fw_ver().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                    this->_internal_endtool_board_fw_ver());
+  if (this->endtool_board_fw_ver().size() > 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->endtool_board_fw_ver());
   }
 
   // string controller_ver = 20;
-  if (!this->_internal_controller_ver().empty()) {
-    total_size += 2 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                    this->_internal_controller_ver());
+  if (this->controller_ver().size() > 0) {
+    total_size += 2 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->controller_ver());
   }
 
   // string controller_detail = 21;
-  if (!this->_internal_controller_detail().empty()) {
-    total_size += 2 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                    this->_internal_controller_detail());
+  if (this->controller_detail().size() > 0) {
+    total_size += 2 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->controller_detail());
   }
 
   // string controller_date = 22;
-  if (!this->_internal_controller_date().empty()) {
-    total_size += 2 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                    this->_internal_controller_date());
+  if (this->controller_date().size() > 0) {
+    total_size += 2 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->controller_date());
   }
 
   // .Nrmk.IndyFramework.Response response = 100;
-  cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
+  if (this->has_response()) {
     total_size += 2 +
-      ::google::protobuf::internal::WireFormatLite::MessageSize(
-        *_impl_.response_);
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *response_);
   }
 
   // uint32 num_joints = 1;
-  if (this->_internal_num_joints() != 0) {
-    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
-        this->_internal_num_joints());
+  if (this->num_joints() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt32Size(
+        this->num_joints());
   }
 
   // float payload = 3;
-  static_assert(sizeof(::uint32_t) == sizeof(float),
-                "Code assumes ::uint32_t and float are the same size.");
-  float tmp_payload = this->_internal_payload();
-  ::uint32_t raw_payload;
-  memcpy(&raw_payload, &tmp_payload, sizeof(tmp_payload));
-  if (raw_payload != 0) {
-    total_size += 5;
+  if (!(this->payload() <= 0 && this->payload() >= 0)) {
+    total_size += 1 + 4;
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  // bool teleop_loaded = 30;
+  if (this->teleop_loaded() != 0) {
+    total_size += 2 + 1;
+  }
+
+  // bool calibrated = 31;
+  if (this->calibrated() != 0) {
+    total_size += 2 + 1;
+  }
+
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
 }
 
-const ::google::protobuf::Message::ClassData DeviceInfo::_class_data_ = {
-    ::google::protobuf::Message::CopyWithSourceCheck,
-    DeviceInfo::MergeImpl
-};
-const ::google::protobuf::Message::ClassData*DeviceInfo::GetClassData() const { return &_class_data_; }
+void DeviceInfo::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:Nrmk.IndyFramework.DeviceInfo)
+  GOOGLE_DCHECK_NE(&from, this);
+  const DeviceInfo* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<DeviceInfo>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Nrmk.IndyFramework.DeviceInfo)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:Nrmk.IndyFramework.DeviceInfo)
+    MergeFrom(*source);
+  }
+}
 
-
-void DeviceInfo::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
-  auto* const _this = static_cast<DeviceInfo*>(&to_msg);
-  auto& from = static_cast<const DeviceInfo&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.DeviceInfo)
-  ABSL_DCHECK_NE(&from, _this);
-  ::uint32_t cached_has_bits = 0;
+void DeviceInfo::MergeFrom(const DeviceInfo& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.DeviceInfo)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_internal_mutable_core_board_fw_vers()->MergeFrom(from._internal_core_board_fw_vers());
-  if (!from._internal_robot_serial().empty()) {
-    _this->_internal_set_robot_serial(from._internal_robot_serial());
+  core_board_fw_vers_.MergeFrom(from.core_board_fw_vers_);
+  if (from.robot_serial().size() > 0) {
+
+    robot_serial_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.robot_serial_);
   }
-  if (!from._internal_io_board_fw_ver().empty()) {
-    _this->_internal_set_io_board_fw_ver(from._internal_io_board_fw_ver());
+  if (from.io_board_fw_ver().size() > 0) {
+
+    io_board_fw_ver_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.io_board_fw_ver_);
   }
-  if (!from._internal_endtool_board_fw_ver().empty()) {
-    _this->_internal_set_endtool_board_fw_ver(from._internal_endtool_board_fw_ver());
+  if (from.endtool_board_fw_ver().size() > 0) {
+
+    endtool_board_fw_ver_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.endtool_board_fw_ver_);
   }
-  if (!from._internal_controller_ver().empty()) {
-    _this->_internal_set_controller_ver(from._internal_controller_ver());
+  if (from.controller_ver().size() > 0) {
+
+    controller_ver_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.controller_ver_);
   }
-  if (!from._internal_controller_detail().empty()) {
-    _this->_internal_set_controller_detail(from._internal_controller_detail());
+  if (from.controller_detail().size() > 0) {
+
+    controller_detail_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.controller_detail_);
   }
-  if (!from._internal_controller_date().empty()) {
-    _this->_internal_set_controller_date(from._internal_controller_date());
+  if (from.controller_date().size() > 0) {
+
+    controller_date_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.controller_date_);
   }
-  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
-    _this->_internal_mutable_response()->::Nrmk::IndyFramework::Response::MergeFrom(
-        from._internal_response());
+  if (from.has_response()) {
+    mutable_response()->::Nrmk::IndyFramework::Response::MergeFrom(from.response());
   }
-  if (from._internal_num_joints() != 0) {
-    _this->_internal_set_num_joints(from._internal_num_joints());
+  if (from.num_joints() != 0) {
+    set_num_joints(from.num_joints());
   }
-  static_assert(sizeof(::uint32_t) == sizeof(float),
-                "Code assumes ::uint32_t and float are the same size.");
-  float tmp_payload = from._internal_payload();
-  ::uint32_t raw_payload;
-  memcpy(&raw_payload, &tmp_payload, sizeof(tmp_payload));
-  if (raw_payload != 0) {
-    _this->_internal_set_payload(from._internal_payload());
+  if (!(from.payload() <= 0 && from.payload() >= 0)) {
+    set_payload(from.payload());
   }
-  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+  if (from.teleop_loaded() != 0) {
+    set_teleop_loaded(from.teleop_loaded());
+  }
+  if (from.calibrated() != 0) {
+    set_calibrated(from.calibrated());
+  }
+}
+
+void DeviceInfo::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:Nrmk.IndyFramework.DeviceInfo)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void DeviceInfo::CopyFrom(const DeviceInfo& from) {
@@ -2936,247 +5684,342 @@ void DeviceInfo::CopyFrom(const DeviceInfo& from) {
   MergeFrom(from);
 }
 
-PROTOBUF_NOINLINE bool DeviceInfo::IsInitialized() const {
+bool DeviceInfo::IsInitialized() const {
   return true;
 }
 
+void DeviceInfo::Swap(DeviceInfo* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
 void DeviceInfo::InternalSwap(DeviceInfo* other) {
   using std::swap;
-  auto* lhs_arena = GetArenaForAllocation();
-  auto* rhs_arena = other->GetArenaForAllocation();
-  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
-  _impl_.core_board_fw_vers_.InternalSwap(&other->_impl_.core_board_fw_vers_);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.robot_serial_, lhs_arena,
-                                       &other->_impl_.robot_serial_, rhs_arena);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.io_board_fw_ver_, lhs_arena,
-                                       &other->_impl_.io_board_fw_ver_, rhs_arena);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.endtool_board_fw_ver_, lhs_arena,
-                                       &other->_impl_.endtool_board_fw_ver_, rhs_arena);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.controller_ver_, lhs_arena,
-                                       &other->_impl_.controller_ver_, rhs_arena);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.controller_detail_, lhs_arena,
-                                       &other->_impl_.controller_detail_, rhs_arena);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.controller_date_, lhs_arena,
-                                       &other->_impl_.controller_date_, rhs_arena);
-  ::google::protobuf::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(DeviceInfo, _impl_.payload_)
-      + sizeof(DeviceInfo::_impl_.payload_)
-      - PROTOBUF_FIELD_OFFSET(DeviceInfo, _impl_.response_)>(
-          reinterpret_cast<char*>(&_impl_.response_),
-          reinterpret_cast<char*>(&other->_impl_.response_));
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  core_board_fw_vers_.InternalSwap(CastToBase(&other->core_board_fw_vers_));
+  robot_serial_.Swap(&other->robot_serial_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+    GetArenaNoVirtual());
+  io_board_fw_ver_.Swap(&other->io_board_fw_ver_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+    GetArenaNoVirtual());
+  endtool_board_fw_ver_.Swap(&other->endtool_board_fw_ver_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+    GetArenaNoVirtual());
+  controller_ver_.Swap(&other->controller_ver_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+    GetArenaNoVirtual());
+  controller_detail_.Swap(&other->controller_detail_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+    GetArenaNoVirtual());
+  controller_date_.Swap(&other->controller_date_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+    GetArenaNoVirtual());
+  swap(response_, other->response_);
+  swap(num_joints_, other->num_joints_);
+  swap(payload_, other->payload_);
+  swap(teleop_loaded_, other->teleop_loaded_);
+  swap(calibrated_, other->calibrated_);
 }
 
-::google::protobuf::Metadata DeviceInfo::GetMetadata() const {
-  return ::_pbi::AssignDescriptors(
-      &descriptor_table_device_5fmsgs_2eproto_getter, &descriptor_table_device_5fmsgs_2eproto_once,
-      file_level_metadata_device_5fmsgs_2eproto[9]);
+::PROTOBUF_NAMESPACE_ID::Metadata DeviceInfo::GetMetadata() const {
+  return GetMetadataStatic();
 }
+
+
 // ===================================================================
 
-class BrakeControlStyle::_Internal {
+void BrakeControlStyle::InitAsDefaultInstance() {
+  ::Nrmk::IndyFramework::_BrakeControlStyle_default_instance_._instance.get_mutable()->response_ = const_cast< ::Nrmk::IndyFramework::Response*>(
+      ::Nrmk::IndyFramework::Response::internal_default_instance());
+}
+class BrakeControlStyle::HasBitSetters {
  public:
-  using HasBits = decltype(std::declval<BrakeControlStyle>()._impl_._has_bits_);
-  static constexpr ::int32_t kHasBitsOffset =
-    8 * PROTOBUF_FIELD_OFFSET(BrakeControlStyle, _impl_._has_bits_);
   static const ::Nrmk::IndyFramework::Response& response(const BrakeControlStyle* msg);
-  static void set_has_response(HasBits* has_bits) {
-    (*has_bits)[0] |= 1u;
-  }
 };
 
-const ::Nrmk::IndyFramework::Response& BrakeControlStyle::_Internal::response(const BrakeControlStyle* msg) {
-  return *msg->_impl_.response_;
+const ::Nrmk::IndyFramework::Response&
+BrakeControlStyle::HasBitSetters::response(const BrakeControlStyle* msg) {
+  return *msg->response_;
 }
 void BrakeControlStyle::clear_response() {
-  if (_impl_.response_ != nullptr) _impl_.response_->Clear();
-  _impl_._has_bits_[0] &= ~0x00000001u;
-}
-BrakeControlStyle::BrakeControlStyle(::google::protobuf::Arena* arena)
-    : ::google::protobuf::Message(arena) {
-  SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:Nrmk.IndyFramework.BrakeControlStyle)
-}
-BrakeControlStyle::BrakeControlStyle(const BrakeControlStyle& from) : ::google::protobuf::Message() {
-  BrakeControlStyle* const _this = this;
-  (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_._has_bits_){from._impl_._has_bits_},
-      /*decltype(_impl_._cached_size_)*/ {},
-      decltype(_impl_.response_){nullptr},
-      decltype(_impl_.style_){},
-  };
-  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
-      from._internal_metadata_);
-  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
-    _this->_impl_.response_ = new ::Nrmk::IndyFramework::Response(*from._impl_.response_);
+  if (GetArenaNoVirtual() == nullptr && response_ != nullptr) {
+    delete response_;
   }
-  _this->_impl_.style_ = from._impl_.style_;
+  response_ = nullptr;
+}
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int BrakeControlStyle::kStyleFieldNumber;
+const int BrakeControlStyle::kResponseFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
+BrakeControlStyle::BrakeControlStyle()
+  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:Nrmk.IndyFramework.BrakeControlStyle)
+}
+BrakeControlStyle::BrakeControlStyle(const BrakeControlStyle& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _internal_metadata_(nullptr) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  if (from.has_response()) {
+    response_ = new ::Nrmk::IndyFramework::Response(*from.response_);
+  } else {
+    response_ = nullptr;
+  }
+  style_ = from.style_;
   // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.BrakeControlStyle)
 }
-inline void BrakeControlStyle::SharedCtor(::_pb::Arena* arena) {
-  (void)arena;
-  new (&_impl_) Impl_{
-      decltype(_impl_._has_bits_){},
-      /*decltype(_impl_._cached_size_)*/ {},
-      decltype(_impl_.response_){nullptr},
-      decltype(_impl_.style_){0},
-  };
-}
-BrakeControlStyle::~BrakeControlStyle() {
-  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.BrakeControlStyle)
-  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
-  SharedDtor();
-}
-inline void BrakeControlStyle::SharedDtor() {
-  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
-  if (this != internal_default_instance()) delete _impl_.response_;
-}
-void BrakeControlStyle::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+
+void BrakeControlStyle::SharedCtor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_BrakeControlStyle_device_5fmsgs_2eproto.base);
+  ::memset(&response_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&style_) -
+      reinterpret_cast<char*>(&response_)) + sizeof(style_));
 }
 
-PROTOBUF_NOINLINE void BrakeControlStyle::Clear() {
+BrakeControlStyle::~BrakeControlStyle() {
+  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.BrakeControlStyle)
+  SharedDtor();
+}
+
+void BrakeControlStyle::SharedDtor() {
+  if (this != internal_default_instance()) delete response_;
+}
+
+void BrakeControlStyle::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const BrakeControlStyle& BrakeControlStyle::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_BrakeControlStyle_device_5fmsgs_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void BrakeControlStyle::Clear() {
 // @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.BrakeControlStyle)
-  ::uint32_t cached_has_bits = 0;
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    ABSL_DCHECK(_impl_.response_ != nullptr);
-    _impl_.response_->Clear();
+  if (GetArenaNoVirtual() == nullptr && response_ != nullptr) {
+    delete response_;
   }
-  _impl_.style_ = 0;
-  _impl_._has_bits_.Clear();
-  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+  response_ = nullptr;
+  style_ = 0;
+  _internal_metadata_.Clear();
 }
 
-const char* BrakeControlStyle::_InternalParse(
-    const char* ptr, ::_pbi::ParseContext* ctx) {
-  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+#if GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+const char* BrakeControlStyle::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // .Nrmk.IndyFramework.BrakeControlStyle.ControlStyle style = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+          set_style(static_cast<::Nrmk::IndyFramework::BrakeControlStyle_ControlStyle>(val));
+        } else goto handle_unusual;
+        continue;
+      // .Nrmk.IndyFramework.Response response = 100;
+      case 100:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
+          ptr = ctx->ParseMessage(mutable_response(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
   return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
 }
+#else  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+bool BrakeControlStyle::MergePartialFromCodedStream(
+    ::PROTOBUF_NAMESPACE_ID::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!PROTOBUF_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+  // @@protoc_insertion_point(parse_start:Nrmk.IndyFramework.BrakeControlStyle)
+  for (;;) {
+    ::std::pair<::PROTOBUF_NAMESPACE_ID::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(16383u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // .Nrmk.IndyFramework.BrakeControlStyle.ControlStyle style = 1;
+      case 1: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (8 & 0xFF)) {
+          int value = 0;
+          DO_((::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadPrimitive<
+                   int, ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_ENUM>(
+                 input, &value)));
+          set_style(static_cast< ::Nrmk::IndyFramework::BrakeControlStyle_ControlStyle >(value));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
 
+      // .Nrmk.IndyFramework.Response response = 100;
+      case 100: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (802 & 0xFF)) {
+          DO_(::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadMessage(
+               input, mutable_response()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
 
-PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 2, 1, 0, 7> BrakeControlStyle::_table_ = {
-  {
-    PROTOBUF_FIELD_OFFSET(BrakeControlStyle, _impl_._has_bits_),
-    0, // no _extensions_
-    100, 8,  // max_field_number, fast_idx_mask
-    offsetof(decltype(_table_), field_lookup_table),
-    4294967294,  // skipmap
-    offsetof(decltype(_table_), field_entries),
-    2,  // num_field_entries
-    1,  // num_aux_entries
-    offsetof(decltype(_table_), aux_entries),
-    &_BrakeControlStyle_default_instance_._instance,
-    ::_pbi::TcParser::GenericFallback,  // fallback
-  }, {{
-    // .Nrmk.IndyFramework.Response response = 100;
-    {::_pbi::TcParser::FastMtS2,
-     {1698, 0, 0, PROTOBUF_FIELD_OFFSET(BrakeControlStyle, _impl_.response_)}},
-    // .Nrmk.IndyFramework.BrakeControlStyle.ControlStyle style = 1;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(BrakeControlStyle, _impl_.style_), 63>(),
-     {8, 63, 0, PROTOBUF_FIELD_OFFSET(BrakeControlStyle, _impl_.style_)}},
-  }}, {{
-    100, 0, 1,
-    65534, 1,
-    65535, 65535
-  }}, {{
-    // .Nrmk.IndyFramework.BrakeControlStyle.ControlStyle style = 1;
-    {PROTOBUF_FIELD_OFFSET(BrakeControlStyle, _impl_.style_), -1, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
-    // .Nrmk.IndyFramework.Response response = 100;
-    {PROTOBUF_FIELD_OFFSET(BrakeControlStyle, _impl_.response_), _Internal::kHasBitsOffset + 0, 0,
-    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
-  }}, {{
-    {::_pbi::TcParser::GetTable<::Nrmk::IndyFramework::Response>()},
-  }}, {{
-  }},
-};
+      default: {
+      handle_unusual:
+        if (tag == 0) {
+          goto success;
+        }
+        DO_(::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:Nrmk.IndyFramework.BrakeControlStyle)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:Nrmk.IndyFramework.BrakeControlStyle)
+  return false;
+#undef DO_
+}
+#endif  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
 
-::uint8_t* BrakeControlStyle::_InternalSerialize(
-    ::uint8_t* target,
-    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.BrakeControlStyle)
-  ::uint32_t cached_has_bits = 0;
-  (void)cached_has_bits;
+void BrakeControlStyle::SerializeWithCachedSizes(
+    ::PROTOBUF_NAMESPACE_ID::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:Nrmk.IndyFramework.BrakeControlStyle)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
 
   // .Nrmk.IndyFramework.BrakeControlStyle.ControlStyle style = 1;
-  if (this->_internal_style() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteEnumToArray(
-        1, this->_internal_style(), target);
+  if (this->style() != 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnum(
+      1, this->style(), output);
   }
 
-  cached_has_bits = _impl_._has_bits_[0];
   // .Nrmk.IndyFramework.Response response = 100;
-  if (cached_has_bits & 0x00000001u) {
-    target = ::google::protobuf::internal::WireFormatLite::
-      InternalWriteMessage(100, _Internal::response(this),
-        _Internal::response(this).GetCachedSize(), target, stream);
+  if (this->has_response()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteMessageMaybeToArray(
+      100, HasBitSetters::response(this), output);
   }
 
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target =
-        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  if (_internal_metadata_.have_unknown_fields()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SerializeUnknownFields(
+        _internal_metadata_.unknown_fields(), output);
+  }
+  // @@protoc_insertion_point(serialize_end:Nrmk.IndyFramework.BrakeControlStyle)
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* BrakeControlStyle::InternalSerializeWithCachedSizesToArray(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.BrakeControlStyle)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .Nrmk.IndyFramework.BrakeControlStyle.ControlStyle style = 1;
+  if (this->style() != 0) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
+      1, this->style(), target);
+  }
+
+  // .Nrmk.IndyFramework.Response response = 100;
+  if (this->has_response()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessageToArray(
+        100, HasBitSetters::response(this), target);
+  }
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields(), target);
   }
   // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.BrakeControlStyle)
   return target;
 }
 
-::size_t BrakeControlStyle::ByteSizeLong() const {
+size_t BrakeControlStyle::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.BrakeControlStyle)
-  ::size_t total_size = 0;
+  size_t total_size = 0;
 
-  ::uint32_t cached_has_bits = 0;
+  if (_internal_metadata_.have_unknown_fields()) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::ComputeUnknownFieldsSize(
+        _internal_metadata_.unknown_fields());
+  }
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // .Nrmk.IndyFramework.Response response = 100;
-  cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
+  if (this->has_response()) {
     total_size += 2 +
-      ::google::protobuf::internal::WireFormatLite::MessageSize(
-        *_impl_.response_);
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *response_);
   }
 
   // .Nrmk.IndyFramework.BrakeControlStyle.ControlStyle style = 1;
-  if (this->_internal_style() != 0) {
+  if (this->style() != 0) {
     total_size += 1 +
-                  ::_pbi::WireFormatLite::EnumSize(this->_internal_style());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->style());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
 }
 
-const ::google::protobuf::Message::ClassData BrakeControlStyle::_class_data_ = {
-    ::google::protobuf::Message::CopyWithSourceCheck,
-    BrakeControlStyle::MergeImpl
-};
-const ::google::protobuf::Message::ClassData*BrakeControlStyle::GetClassData() const { return &_class_data_; }
+void BrakeControlStyle::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:Nrmk.IndyFramework.BrakeControlStyle)
+  GOOGLE_DCHECK_NE(&from, this);
+  const BrakeControlStyle* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<BrakeControlStyle>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Nrmk.IndyFramework.BrakeControlStyle)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:Nrmk.IndyFramework.BrakeControlStyle)
+    MergeFrom(*source);
+  }
+}
 
-
-void BrakeControlStyle::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
-  auto* const _this = static_cast<BrakeControlStyle*>(&to_msg);
-  auto& from = static_cast<const BrakeControlStyle&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.BrakeControlStyle)
-  ABSL_DCHECK_NE(&from, _this);
-  ::uint32_t cached_has_bits = 0;
+void BrakeControlStyle::MergeFrom(const BrakeControlStyle& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.BrakeControlStyle)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
-    _this->_internal_mutable_response()->::Nrmk::IndyFramework::Response::MergeFrom(
-        from._internal_response());
+  if (from.has_response()) {
+    mutable_response()->::Nrmk::IndyFramework::Response::MergeFrom(from.response());
   }
-  if (from._internal_style() != 0) {
-    _this->_internal_set_style(from._internal_style());
+  if (from.style() != 0) {
+    set_style(from.style());
   }
-  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void BrakeControlStyle::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:Nrmk.IndyFramework.BrakeControlStyle)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void BrakeControlStyle::CopyFrom(const BrakeControlStyle& from) {
@@ -3186,319 +6029,448 @@ void BrakeControlStyle::CopyFrom(const BrakeControlStyle& from) {
   MergeFrom(from);
 }
 
-PROTOBUF_NOINLINE bool BrakeControlStyle::IsInitialized() const {
+bool BrakeControlStyle::IsInitialized() const {
   return true;
 }
 
+void BrakeControlStyle::Swap(BrakeControlStyle* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
 void BrakeControlStyle::InternalSwap(BrakeControlStyle* other) {
   using std::swap;
-  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
-  ::google::protobuf::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(BrakeControlStyle, _impl_.style_)
-      + sizeof(BrakeControlStyle::_impl_.style_)
-      - PROTOBUF_FIELD_OFFSET(BrakeControlStyle, _impl_.response_)>(
-          reinterpret_cast<char*>(&_impl_.response_),
-          reinterpret_cast<char*>(&other->_impl_.response_));
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  swap(response_, other->response_);
+  swap(style_, other->style_);
 }
 
-::google::protobuf::Metadata BrakeControlStyle::GetMetadata() const {
-  return ::_pbi::AssignDescriptors(
-      &descriptor_table_device_5fmsgs_2eproto_getter, &descriptor_table_device_5fmsgs_2eproto_once,
-      file_level_metadata_device_5fmsgs_2eproto[10]);
+::PROTOBUF_NAMESPACE_ID::Metadata BrakeControlStyle::GetMetadata() const {
+  return GetMetadataStatic();
 }
+
+
 // ===================================================================
 
-class GetEL5001Data::_Internal {
+void GetEL5001Data::InitAsDefaultInstance() {
+  ::Nrmk::IndyFramework::_GetEL5001Data_default_instance_._instance.get_mutable()->response_ = const_cast< ::Nrmk::IndyFramework::Response*>(
+      ::Nrmk::IndyFramework::Response::internal_default_instance());
+}
+class GetEL5001Data::HasBitSetters {
  public:
-  using HasBits = decltype(std::declval<GetEL5001Data>()._impl_._has_bits_);
-  static constexpr ::int32_t kHasBitsOffset =
-    8 * PROTOBUF_FIELD_OFFSET(GetEL5001Data, _impl_._has_bits_);
   static const ::Nrmk::IndyFramework::Response& response(const GetEL5001Data* msg);
-  static void set_has_response(HasBits* has_bits) {
-    (*has_bits)[0] |= 1u;
-  }
 };
 
-const ::Nrmk::IndyFramework::Response& GetEL5001Data::_Internal::response(const GetEL5001Data* msg) {
-  return *msg->_impl_.response_;
+const ::Nrmk::IndyFramework::Response&
+GetEL5001Data::HasBitSetters::response(const GetEL5001Data* msg) {
+  return *msg->response_;
 }
 void GetEL5001Data::clear_response() {
-  if (_impl_.response_ != nullptr) _impl_.response_->Clear();
-  _impl_._has_bits_[0] &= ~0x00000001u;
-}
-GetEL5001Data::GetEL5001Data(::google::protobuf::Arena* arena)
-    : ::google::protobuf::Message(arena) {
-  SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:Nrmk.IndyFramework.GetEL5001Data)
-}
-GetEL5001Data::GetEL5001Data(const GetEL5001Data& from) : ::google::protobuf::Message() {
-  GetEL5001Data* const _this = this;
-  (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_._has_bits_){from._impl_._has_bits_},
-      /*decltype(_impl_._cached_size_)*/ {},
-      decltype(_impl_.response_){nullptr},
-      decltype(_impl_.status_){},
-      decltype(_impl_.value_){},
-      decltype(_impl_.delta_){},
-      decltype(_impl_.average_){},
-  };
-  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
-      from._internal_metadata_);
-  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
-    _this->_impl_.response_ = new ::Nrmk::IndyFramework::Response(*from._impl_.response_);
+  if (GetArenaNoVirtual() == nullptr && response_ != nullptr) {
+    delete response_;
   }
-  ::memcpy(&_impl_.status_, &from._impl_.status_,
-    static_cast<::size_t>(reinterpret_cast<char*>(&_impl_.average_) -
-    reinterpret_cast<char*>(&_impl_.status_)) + sizeof(_impl_.average_));
+  response_ = nullptr;
+}
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int GetEL5001Data::kStatusFieldNumber;
+const int GetEL5001Data::kValueFieldNumber;
+const int GetEL5001Data::kDeltaFieldNumber;
+const int GetEL5001Data::kAverageFieldNumber;
+const int GetEL5001Data::kResponseFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
+GetEL5001Data::GetEL5001Data()
+  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:Nrmk.IndyFramework.GetEL5001Data)
+}
+GetEL5001Data::GetEL5001Data(const GetEL5001Data& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _internal_metadata_(nullptr) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  if (from.has_response()) {
+    response_ = new ::Nrmk::IndyFramework::Response(*from.response_);
+  } else {
+    response_ = nullptr;
+  }
+  ::memcpy(&status_, &from.status_,
+    static_cast<size_t>(reinterpret_cast<char*>(&average_) -
+    reinterpret_cast<char*>(&status_)) + sizeof(average_));
   // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.GetEL5001Data)
 }
-inline void GetEL5001Data::SharedCtor(::_pb::Arena* arena) {
-  (void)arena;
-  new (&_impl_) Impl_{
-      decltype(_impl_._has_bits_){},
-      /*decltype(_impl_._cached_size_)*/ {},
-      decltype(_impl_.response_){nullptr},
-      decltype(_impl_.status_){0},
-      decltype(_impl_.value_){0},
-      decltype(_impl_.delta_){0},
-      decltype(_impl_.average_){0},
-  };
-}
-GetEL5001Data::~GetEL5001Data() {
-  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.GetEL5001Data)
-  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
-  SharedDtor();
-}
-inline void GetEL5001Data::SharedDtor() {
-  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
-  if (this != internal_default_instance()) delete _impl_.response_;
-}
-void GetEL5001Data::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+
+void GetEL5001Data::SharedCtor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_GetEL5001Data_device_5fmsgs_2eproto.base);
+  ::memset(&response_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&average_) -
+      reinterpret_cast<char*>(&response_)) + sizeof(average_));
 }
 
-PROTOBUF_NOINLINE void GetEL5001Data::Clear() {
+GetEL5001Data::~GetEL5001Data() {
+  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.GetEL5001Data)
+  SharedDtor();
+}
+
+void GetEL5001Data::SharedDtor() {
+  if (this != internal_default_instance()) delete response_;
+}
+
+void GetEL5001Data::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const GetEL5001Data& GetEL5001Data::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_GetEL5001Data_device_5fmsgs_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void GetEL5001Data::Clear() {
 // @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.GetEL5001Data)
-  ::uint32_t cached_has_bits = 0;
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    ABSL_DCHECK(_impl_.response_ != nullptr);
-    _impl_.response_->Clear();
+  if (GetArenaNoVirtual() == nullptr && response_ != nullptr) {
+    delete response_;
   }
-  ::memset(&_impl_.status_, 0, static_cast<::size_t>(
-      reinterpret_cast<char*>(&_impl_.average_) -
-      reinterpret_cast<char*>(&_impl_.status_)) + sizeof(_impl_.average_));
-  _impl_._has_bits_.Clear();
-  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+  response_ = nullptr;
+  ::memset(&status_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&average_) -
+      reinterpret_cast<char*>(&status_)) + sizeof(average_));
+  _internal_metadata_.Clear();
 }
 
-const char* GetEL5001Data::_InternalParse(
-    const char* ptr, ::_pbi::ParseContext* ctx) {
-  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+#if GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+const char* GetEL5001Data::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // int32 status = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          status_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // int32 value = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
+          value_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // int32 delta = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 24)) {
+          delta_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // float average = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 37)) {
+          average_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else goto handle_unusual;
+        continue;
+      // .Nrmk.IndyFramework.Response response = 100;
+      case 100:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
+          ptr = ctx->ParseMessage(mutable_response(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
   return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
 }
+#else  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+bool GetEL5001Data::MergePartialFromCodedStream(
+    ::PROTOBUF_NAMESPACE_ID::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!PROTOBUF_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+  // @@protoc_insertion_point(parse_start:Nrmk.IndyFramework.GetEL5001Data)
+  for (;;) {
+    ::std::pair<::PROTOBUF_NAMESPACE_ID::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(16383u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // int32 status = 1;
+      case 1: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (8 & 0xFF)) {
 
+          DO_((::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadPrimitive<
+                   ::PROTOBUF_NAMESPACE_ID::int32, ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_INT32>(
+                 input, &status_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
 
-PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<2, 5, 1, 0, 7> GetEL5001Data::_table_ = {
-  {
-    PROTOBUF_FIELD_OFFSET(GetEL5001Data, _impl_._has_bits_),
-    0, // no _extensions_
-    100, 24,  // max_field_number, fast_idx_mask
-    offsetof(decltype(_table_), field_lookup_table),
-    4294967280,  // skipmap
-    offsetof(decltype(_table_), field_entries),
-    5,  // num_field_entries
-    1,  // num_aux_entries
-    offsetof(decltype(_table_), aux_entries),
-    &_GetEL5001Data_default_instance_._instance,
-    ::_pbi::TcParser::GenericFallback,  // fallback
-  }, {{
-    // float average = 4;
-    {::_pbi::TcParser::FastF32S1,
-     {37, 63, 0, PROTOBUF_FIELD_OFFSET(GetEL5001Data, _impl_.average_)}},
-    // int32 status = 1;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(GetEL5001Data, _impl_.status_), 63>(),
-     {8, 63, 0, PROTOBUF_FIELD_OFFSET(GetEL5001Data, _impl_.status_)}},
-    // int32 value = 2;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(GetEL5001Data, _impl_.value_), 63>(),
-     {16, 63, 0, PROTOBUF_FIELD_OFFSET(GetEL5001Data, _impl_.value_)}},
-    // int32 delta = 3;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(GetEL5001Data, _impl_.delta_), 63>(),
-     {24, 63, 0, PROTOBUF_FIELD_OFFSET(GetEL5001Data, _impl_.delta_)}},
-  }}, {{
-    100, 0, 1,
-    65534, 4,
-    65535, 65535
-  }}, {{
-    // int32 status = 1;
-    {PROTOBUF_FIELD_OFFSET(GetEL5001Data, _impl_.status_), -1, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
-    // int32 value = 2;
-    {PROTOBUF_FIELD_OFFSET(GetEL5001Data, _impl_.value_), -1, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
-    // int32 delta = 3;
-    {PROTOBUF_FIELD_OFFSET(GetEL5001Data, _impl_.delta_), -1, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
-    // float average = 4;
-    {PROTOBUF_FIELD_OFFSET(GetEL5001Data, _impl_.average_), -1, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kFloat)},
-    // .Nrmk.IndyFramework.Response response = 100;
-    {PROTOBUF_FIELD_OFFSET(GetEL5001Data, _impl_.response_), _Internal::kHasBitsOffset + 0, 0,
-    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
-  }}, {{
-    {::_pbi::TcParser::GetTable<::Nrmk::IndyFramework::Response>()},
-  }}, {{
-  }},
-};
+      // int32 value = 2;
+      case 2: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (16 & 0xFF)) {
 
-::uint8_t* GetEL5001Data::_InternalSerialize(
-    ::uint8_t* target,
-    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.GetEL5001Data)
-  ::uint32_t cached_has_bits = 0;
-  (void)cached_has_bits;
+          DO_((::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadPrimitive<
+                   ::PROTOBUF_NAMESPACE_ID::int32, ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_INT32>(
+                 input, &value_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // int32 delta = 3;
+      case 3: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (24 & 0xFF)) {
+
+          DO_((::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadPrimitive<
+                   ::PROTOBUF_NAMESPACE_ID::int32, ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_INT32>(
+                 input, &delta_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // float average = 4;
+      case 4: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (37 & 0xFF)) {
+
+          DO_((::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadPrimitive<
+                   float, ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_FLOAT>(
+                 input, &average_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // .Nrmk.IndyFramework.Response response = 100;
+      case 100: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (802 & 0xFF)) {
+          DO_(::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadMessage(
+               input, mutable_response()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0) {
+          goto success;
+        }
+        DO_(::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:Nrmk.IndyFramework.GetEL5001Data)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:Nrmk.IndyFramework.GetEL5001Data)
+  return false;
+#undef DO_
+}
+#endif  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+
+void GetEL5001Data::SerializeWithCachedSizes(
+    ::PROTOBUF_NAMESPACE_ID::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:Nrmk.IndyFramework.GetEL5001Data)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
 
   // int32 status = 1;
-  if (this->_internal_status() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::
-        WriteInt32ToArrayWithField<1>(
-            stream, this->_internal_status(), target);
+  if (this->status() != 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32(1, this->status(), output);
   }
 
   // int32 value = 2;
-  if (this->_internal_value() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::
-        WriteInt32ToArrayWithField<2>(
-            stream, this->_internal_value(), target);
+  if (this->value() != 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32(2, this->value(), output);
   }
 
   // int32 delta = 3;
-  if (this->_internal_delta() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::
-        WriteInt32ToArrayWithField<3>(
-            stream, this->_internal_delta(), target);
+  if (this->delta() != 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32(3, this->delta(), output);
   }
 
   // float average = 4;
-  static_assert(sizeof(::uint32_t) == sizeof(float),
-                "Code assumes ::uint32_t and float are the same size.");
-  float tmp_average = this->_internal_average();
-  ::uint32_t raw_average;
-  memcpy(&raw_average, &tmp_average, sizeof(tmp_average));
-  if (raw_average != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteFloatToArray(
-        4, this->_internal_average(), target);
+  if (!(this->average() <= 0 && this->average() >= 0)) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloat(4, this->average(), output);
   }
 
-  cached_has_bits = _impl_._has_bits_[0];
   // .Nrmk.IndyFramework.Response response = 100;
-  if (cached_has_bits & 0x00000001u) {
-    target = ::google::protobuf::internal::WireFormatLite::
-      InternalWriteMessage(100, _Internal::response(this),
-        _Internal::response(this).GetCachedSize(), target, stream);
+  if (this->has_response()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteMessageMaybeToArray(
+      100, HasBitSetters::response(this), output);
   }
 
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target =
-        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  if (_internal_metadata_.have_unknown_fields()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SerializeUnknownFields(
+        _internal_metadata_.unknown_fields(), output);
+  }
+  // @@protoc_insertion_point(serialize_end:Nrmk.IndyFramework.GetEL5001Data)
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* GetEL5001Data::InternalSerializeWithCachedSizesToArray(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.GetEL5001Data)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // int32 status = 1;
+  if (this->status() != 0) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(1, this->status(), target);
+  }
+
+  // int32 value = 2;
+  if (this->value() != 0) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(2, this->value(), target);
+  }
+
+  // int32 delta = 3;
+  if (this->delta() != 0) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(3, this->delta(), target);
+  }
+
+  // float average = 4;
+  if (!(this->average() <= 0 && this->average() >= 0)) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(4, this->average(), target);
+  }
+
+  // .Nrmk.IndyFramework.Response response = 100;
+  if (this->has_response()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessageToArray(
+        100, HasBitSetters::response(this), target);
+  }
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields(), target);
   }
   // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.GetEL5001Data)
   return target;
 }
 
-::size_t GetEL5001Data::ByteSizeLong() const {
+size_t GetEL5001Data::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.GetEL5001Data)
-  ::size_t total_size = 0;
+  size_t total_size = 0;
 
-  ::uint32_t cached_has_bits = 0;
+  if (_internal_metadata_.have_unknown_fields()) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::ComputeUnknownFieldsSize(
+        _internal_metadata_.unknown_fields());
+  }
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // .Nrmk.IndyFramework.Response response = 100;
-  cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
+  if (this->has_response()) {
     total_size += 2 +
-      ::google::protobuf::internal::WireFormatLite::MessageSize(
-        *_impl_.response_);
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *response_);
   }
 
   // int32 status = 1;
-  if (this->_internal_status() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
-        this->_internal_status());
+  if (this->status() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->status());
   }
 
   // int32 value = 2;
-  if (this->_internal_value() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
-        this->_internal_value());
+  if (this->value() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->value());
   }
 
   // int32 delta = 3;
-  if (this->_internal_delta() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
-        this->_internal_delta());
+  if (this->delta() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->delta());
   }
 
   // float average = 4;
-  static_assert(sizeof(::uint32_t) == sizeof(float),
-                "Code assumes ::uint32_t and float are the same size.");
-  float tmp_average = this->_internal_average();
-  ::uint32_t raw_average;
-  memcpy(&raw_average, &tmp_average, sizeof(tmp_average));
-  if (raw_average != 0) {
-    total_size += 5;
+  if (!(this->average() <= 0 && this->average() >= 0)) {
+    total_size += 1 + 4;
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
 }
 
-const ::google::protobuf::Message::ClassData GetEL5001Data::_class_data_ = {
-    ::google::protobuf::Message::CopyWithSourceCheck,
-    GetEL5001Data::MergeImpl
-};
-const ::google::protobuf::Message::ClassData*GetEL5001Data::GetClassData() const { return &_class_data_; }
+void GetEL5001Data::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:Nrmk.IndyFramework.GetEL5001Data)
+  GOOGLE_DCHECK_NE(&from, this);
+  const GetEL5001Data* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<GetEL5001Data>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Nrmk.IndyFramework.GetEL5001Data)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:Nrmk.IndyFramework.GetEL5001Data)
+    MergeFrom(*source);
+  }
+}
 
-
-void GetEL5001Data::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
-  auto* const _this = static_cast<GetEL5001Data*>(&to_msg);
-  auto& from = static_cast<const GetEL5001Data&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.GetEL5001Data)
-  ABSL_DCHECK_NE(&from, _this);
-  ::uint32_t cached_has_bits = 0;
+void GetEL5001Data::MergeFrom(const GetEL5001Data& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.GetEL5001Data)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
-    _this->_internal_mutable_response()->::Nrmk::IndyFramework::Response::MergeFrom(
-        from._internal_response());
+  if (from.has_response()) {
+    mutable_response()->::Nrmk::IndyFramework::Response::MergeFrom(from.response());
   }
-  if (from._internal_status() != 0) {
-    _this->_internal_set_status(from._internal_status());
+  if (from.status() != 0) {
+    set_status(from.status());
   }
-  if (from._internal_value() != 0) {
-    _this->_internal_set_value(from._internal_value());
+  if (from.value() != 0) {
+    set_value(from.value());
   }
-  if (from._internal_delta() != 0) {
-    _this->_internal_set_delta(from._internal_delta());
+  if (from.delta() != 0) {
+    set_delta(from.delta());
   }
-  static_assert(sizeof(::uint32_t) == sizeof(float),
-                "Code assumes ::uint32_t and float are the same size.");
-  float tmp_average = from._internal_average();
-  ::uint32_t raw_average;
-  memcpy(&raw_average, &tmp_average, sizeof(tmp_average));
-  if (raw_average != 0) {
-    _this->_internal_set_average(from._internal_average());
+  if (!(from.average() <= 0 && from.average() >= 0)) {
+    set_average(from.average());
   }
-  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void GetEL5001Data::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:Nrmk.IndyFramework.GetEL5001Data)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void GetEL5001Data::CopyFrom(const GetEL5001Data& from) {
@@ -3508,346 +6480,492 @@ void GetEL5001Data::CopyFrom(const GetEL5001Data& from) {
   MergeFrom(from);
 }
 
-PROTOBUF_NOINLINE bool GetEL5001Data::IsInitialized() const {
+bool GetEL5001Data::IsInitialized() const {
   return true;
 }
 
+void GetEL5001Data::Swap(GetEL5001Data* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
 void GetEL5001Data::InternalSwap(GetEL5001Data* other) {
   using std::swap;
-  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
-  ::google::protobuf::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(GetEL5001Data, _impl_.average_)
-      + sizeof(GetEL5001Data::_impl_.average_)
-      - PROTOBUF_FIELD_OFFSET(GetEL5001Data, _impl_.response_)>(
-          reinterpret_cast<char*>(&_impl_.response_),
-          reinterpret_cast<char*>(&other->_impl_.response_));
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  swap(response_, other->response_);
+  swap(status_, other->status_);
+  swap(value_, other->value_);
+  swap(delta_, other->delta_);
+  swap(average_, other->average_);
 }
 
-::google::protobuf::Metadata GetEL5001Data::GetMetadata() const {
-  return ::_pbi::AssignDescriptors(
-      &descriptor_table_device_5fmsgs_2eproto_getter, &descriptor_table_device_5fmsgs_2eproto_once,
-      file_level_metadata_device_5fmsgs_2eproto[11]);
+::PROTOBUF_NAMESPACE_ID::Metadata GetEL5001Data::GetMetadata() const {
+  return GetMetadataStatic();
 }
+
+
 // ===================================================================
 
-class GetEL5101Data::_Internal {
+void GetEL5101Data::InitAsDefaultInstance() {
+  ::Nrmk::IndyFramework::_GetEL5101Data_default_instance_._instance.get_mutable()->response_ = const_cast< ::Nrmk::IndyFramework::Response*>(
+      ::Nrmk::IndyFramework::Response::internal_default_instance());
+}
+class GetEL5101Data::HasBitSetters {
  public:
-  using HasBits = decltype(std::declval<GetEL5101Data>()._impl_._has_bits_);
-  static constexpr ::int32_t kHasBitsOffset =
-    8 * PROTOBUF_FIELD_OFFSET(GetEL5101Data, _impl_._has_bits_);
   static const ::Nrmk::IndyFramework::Response& response(const GetEL5101Data* msg);
-  static void set_has_response(HasBits* has_bits) {
-    (*has_bits)[0] |= 1u;
-  }
 };
 
-const ::Nrmk::IndyFramework::Response& GetEL5101Data::_Internal::response(const GetEL5101Data* msg) {
-  return *msg->_impl_.response_;
+const ::Nrmk::IndyFramework::Response&
+GetEL5101Data::HasBitSetters::response(const GetEL5101Data* msg) {
+  return *msg->response_;
 }
 void GetEL5101Data::clear_response() {
-  if (_impl_.response_ != nullptr) _impl_.response_->Clear();
-  _impl_._has_bits_[0] &= ~0x00000001u;
-}
-GetEL5101Data::GetEL5101Data(::google::protobuf::Arena* arena)
-    : ::google::protobuf::Message(arena) {
-  SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:Nrmk.IndyFramework.GetEL5101Data)
-}
-GetEL5101Data::GetEL5101Data(const GetEL5101Data& from) : ::google::protobuf::Message() {
-  GetEL5101Data* const _this = this;
-  (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_._has_bits_){from._impl_._has_bits_},
-      /*decltype(_impl_._cached_size_)*/ {},
-      decltype(_impl_.response_){nullptr},
-      decltype(_impl_.status_){},
-      decltype(_impl_.value_){},
-      decltype(_impl_.latch_){},
-      decltype(_impl_.delta_){},
-      decltype(_impl_.average_){},
-  };
-  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
-      from._internal_metadata_);
-  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
-    _this->_impl_.response_ = new ::Nrmk::IndyFramework::Response(*from._impl_.response_);
+  if (GetArenaNoVirtual() == nullptr && response_ != nullptr) {
+    delete response_;
   }
-  ::memcpy(&_impl_.status_, &from._impl_.status_,
-    static_cast<::size_t>(reinterpret_cast<char*>(&_impl_.average_) -
-    reinterpret_cast<char*>(&_impl_.status_)) + sizeof(_impl_.average_));
+  response_ = nullptr;
+}
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int GetEL5101Data::kStatusFieldNumber;
+const int GetEL5101Data::kValueFieldNumber;
+const int GetEL5101Data::kLatchFieldNumber;
+const int GetEL5101Data::kDeltaFieldNumber;
+const int GetEL5101Data::kAverageFieldNumber;
+const int GetEL5101Data::kResponseFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
+GetEL5101Data::GetEL5101Data()
+  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:Nrmk.IndyFramework.GetEL5101Data)
+}
+GetEL5101Data::GetEL5101Data(const GetEL5101Data& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _internal_metadata_(nullptr) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  if (from.has_response()) {
+    response_ = new ::Nrmk::IndyFramework::Response(*from.response_);
+  } else {
+    response_ = nullptr;
+  }
+  ::memcpy(&status_, &from.status_,
+    static_cast<size_t>(reinterpret_cast<char*>(&average_) -
+    reinterpret_cast<char*>(&status_)) + sizeof(average_));
   // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.GetEL5101Data)
 }
-inline void GetEL5101Data::SharedCtor(::_pb::Arena* arena) {
-  (void)arena;
-  new (&_impl_) Impl_{
-      decltype(_impl_._has_bits_){},
-      /*decltype(_impl_._cached_size_)*/ {},
-      decltype(_impl_.response_){nullptr},
-      decltype(_impl_.status_){0},
-      decltype(_impl_.value_){0},
-      decltype(_impl_.latch_){0},
-      decltype(_impl_.delta_){0},
-      decltype(_impl_.average_){0},
-  };
-}
-GetEL5101Data::~GetEL5101Data() {
-  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.GetEL5101Data)
-  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
-  SharedDtor();
-}
-inline void GetEL5101Data::SharedDtor() {
-  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
-  if (this != internal_default_instance()) delete _impl_.response_;
-}
-void GetEL5101Data::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+
+void GetEL5101Data::SharedCtor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_GetEL5101Data_device_5fmsgs_2eproto.base);
+  ::memset(&response_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&average_) -
+      reinterpret_cast<char*>(&response_)) + sizeof(average_));
 }
 
-PROTOBUF_NOINLINE void GetEL5101Data::Clear() {
+GetEL5101Data::~GetEL5101Data() {
+  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.GetEL5101Data)
+  SharedDtor();
+}
+
+void GetEL5101Data::SharedDtor() {
+  if (this != internal_default_instance()) delete response_;
+}
+
+void GetEL5101Data::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const GetEL5101Data& GetEL5101Data::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_GetEL5101Data_device_5fmsgs_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void GetEL5101Data::Clear() {
 // @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.GetEL5101Data)
-  ::uint32_t cached_has_bits = 0;
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    ABSL_DCHECK(_impl_.response_ != nullptr);
-    _impl_.response_->Clear();
+  if (GetArenaNoVirtual() == nullptr && response_ != nullptr) {
+    delete response_;
   }
-  ::memset(&_impl_.status_, 0, static_cast<::size_t>(
-      reinterpret_cast<char*>(&_impl_.average_) -
-      reinterpret_cast<char*>(&_impl_.status_)) + sizeof(_impl_.average_));
-  _impl_._has_bits_.Clear();
-  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+  response_ = nullptr;
+  ::memset(&status_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&average_) -
+      reinterpret_cast<char*>(&status_)) + sizeof(average_));
+  _internal_metadata_.Clear();
 }
 
-const char* GetEL5101Data::_InternalParse(
-    const char* ptr, ::_pbi::ParseContext* ctx) {
-  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+#if GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+const char* GetEL5101Data::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // int32 status = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          status_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // int32 value = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
+          value_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // int32 latch = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 24)) {
+          latch_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // int32 delta = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 32)) {
+          delta_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // float average = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 45)) {
+          average_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else goto handle_unusual;
+        continue;
+      // .Nrmk.IndyFramework.Response response = 100;
+      case 100:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
+          ptr = ctx->ParseMessage(mutable_response(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
   return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
 }
+#else  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+bool GetEL5101Data::MergePartialFromCodedStream(
+    ::PROTOBUF_NAMESPACE_ID::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!PROTOBUF_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+  // @@protoc_insertion_point(parse_start:Nrmk.IndyFramework.GetEL5101Data)
+  for (;;) {
+    ::std::pair<::PROTOBUF_NAMESPACE_ID::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(16383u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // int32 status = 1;
+      case 1: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (8 & 0xFF)) {
 
+          DO_((::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadPrimitive<
+                   ::PROTOBUF_NAMESPACE_ID::int32, ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_INT32>(
+                 input, &status_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
 
-PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<3, 6, 1, 0, 7> GetEL5101Data::_table_ = {
-  {
-    PROTOBUF_FIELD_OFFSET(GetEL5101Data, _impl_._has_bits_),
-    0, // no _extensions_
-    100, 56,  // max_field_number, fast_idx_mask
-    offsetof(decltype(_table_), field_lookup_table),
-    4294967264,  // skipmap
-    offsetof(decltype(_table_), field_entries),
-    6,  // num_field_entries
-    1,  // num_aux_entries
-    offsetof(decltype(_table_), aux_entries),
-    &_GetEL5101Data_default_instance_._instance,
-    ::_pbi::TcParser::GenericFallback,  // fallback
-  }, {{
-    {::_pbi::TcParser::MiniParse, {}},
-    // int32 status = 1;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(GetEL5101Data, _impl_.status_), 63>(),
-     {8, 63, 0, PROTOBUF_FIELD_OFFSET(GetEL5101Data, _impl_.status_)}},
-    // int32 value = 2;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(GetEL5101Data, _impl_.value_), 63>(),
-     {16, 63, 0, PROTOBUF_FIELD_OFFSET(GetEL5101Data, _impl_.value_)}},
-    // int32 latch = 3;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(GetEL5101Data, _impl_.latch_), 63>(),
-     {24, 63, 0, PROTOBUF_FIELD_OFFSET(GetEL5101Data, _impl_.latch_)}},
-    // int32 delta = 4;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(GetEL5101Data, _impl_.delta_), 63>(),
-     {32, 63, 0, PROTOBUF_FIELD_OFFSET(GetEL5101Data, _impl_.delta_)}},
-    // float average = 5;
-    {::_pbi::TcParser::FastF32S1,
-     {45, 63, 0, PROTOBUF_FIELD_OFFSET(GetEL5101Data, _impl_.average_)}},
-    {::_pbi::TcParser::MiniParse, {}},
-    {::_pbi::TcParser::MiniParse, {}},
-  }}, {{
-    100, 0, 1,
-    65534, 5,
-    65535, 65535
-  }}, {{
-    // int32 status = 1;
-    {PROTOBUF_FIELD_OFFSET(GetEL5101Data, _impl_.status_), -1, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
-    // int32 value = 2;
-    {PROTOBUF_FIELD_OFFSET(GetEL5101Data, _impl_.value_), -1, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
-    // int32 latch = 3;
-    {PROTOBUF_FIELD_OFFSET(GetEL5101Data, _impl_.latch_), -1, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
-    // int32 delta = 4;
-    {PROTOBUF_FIELD_OFFSET(GetEL5101Data, _impl_.delta_), -1, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
-    // float average = 5;
-    {PROTOBUF_FIELD_OFFSET(GetEL5101Data, _impl_.average_), -1, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kFloat)},
-    // .Nrmk.IndyFramework.Response response = 100;
-    {PROTOBUF_FIELD_OFFSET(GetEL5101Data, _impl_.response_), _Internal::kHasBitsOffset + 0, 0,
-    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
-  }}, {{
-    {::_pbi::TcParser::GetTable<::Nrmk::IndyFramework::Response>()},
-  }}, {{
-  }},
-};
+      // int32 value = 2;
+      case 2: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (16 & 0xFF)) {
 
-::uint8_t* GetEL5101Data::_InternalSerialize(
-    ::uint8_t* target,
-    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.GetEL5101Data)
-  ::uint32_t cached_has_bits = 0;
-  (void)cached_has_bits;
+          DO_((::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadPrimitive<
+                   ::PROTOBUF_NAMESPACE_ID::int32, ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_INT32>(
+                 input, &value_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // int32 latch = 3;
+      case 3: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (24 & 0xFF)) {
+
+          DO_((::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadPrimitive<
+                   ::PROTOBUF_NAMESPACE_ID::int32, ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_INT32>(
+                 input, &latch_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // int32 delta = 4;
+      case 4: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (32 & 0xFF)) {
+
+          DO_((::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadPrimitive<
+                   ::PROTOBUF_NAMESPACE_ID::int32, ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_INT32>(
+                 input, &delta_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // float average = 5;
+      case 5: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (45 & 0xFF)) {
+
+          DO_((::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadPrimitive<
+                   float, ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_FLOAT>(
+                 input, &average_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // .Nrmk.IndyFramework.Response response = 100;
+      case 100: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (802 & 0xFF)) {
+          DO_(::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadMessage(
+               input, mutable_response()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0) {
+          goto success;
+        }
+        DO_(::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:Nrmk.IndyFramework.GetEL5101Data)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:Nrmk.IndyFramework.GetEL5101Data)
+  return false;
+#undef DO_
+}
+#endif  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+
+void GetEL5101Data::SerializeWithCachedSizes(
+    ::PROTOBUF_NAMESPACE_ID::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:Nrmk.IndyFramework.GetEL5101Data)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
 
   // int32 status = 1;
-  if (this->_internal_status() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::
-        WriteInt32ToArrayWithField<1>(
-            stream, this->_internal_status(), target);
+  if (this->status() != 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32(1, this->status(), output);
   }
 
   // int32 value = 2;
-  if (this->_internal_value() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::
-        WriteInt32ToArrayWithField<2>(
-            stream, this->_internal_value(), target);
+  if (this->value() != 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32(2, this->value(), output);
   }
 
   // int32 latch = 3;
-  if (this->_internal_latch() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::
-        WriteInt32ToArrayWithField<3>(
-            stream, this->_internal_latch(), target);
+  if (this->latch() != 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32(3, this->latch(), output);
   }
 
   // int32 delta = 4;
-  if (this->_internal_delta() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::
-        WriteInt32ToArrayWithField<4>(
-            stream, this->_internal_delta(), target);
+  if (this->delta() != 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32(4, this->delta(), output);
   }
 
   // float average = 5;
-  static_assert(sizeof(::uint32_t) == sizeof(float),
-                "Code assumes ::uint32_t and float are the same size.");
-  float tmp_average = this->_internal_average();
-  ::uint32_t raw_average;
-  memcpy(&raw_average, &tmp_average, sizeof(tmp_average));
-  if (raw_average != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteFloatToArray(
-        5, this->_internal_average(), target);
+  if (!(this->average() <= 0 && this->average() >= 0)) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloat(5, this->average(), output);
   }
 
-  cached_has_bits = _impl_._has_bits_[0];
   // .Nrmk.IndyFramework.Response response = 100;
-  if (cached_has_bits & 0x00000001u) {
-    target = ::google::protobuf::internal::WireFormatLite::
-      InternalWriteMessage(100, _Internal::response(this),
-        _Internal::response(this).GetCachedSize(), target, stream);
+  if (this->has_response()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteMessageMaybeToArray(
+      100, HasBitSetters::response(this), output);
   }
 
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target =
-        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  if (_internal_metadata_.have_unknown_fields()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SerializeUnknownFields(
+        _internal_metadata_.unknown_fields(), output);
+  }
+  // @@protoc_insertion_point(serialize_end:Nrmk.IndyFramework.GetEL5101Data)
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* GetEL5101Data::InternalSerializeWithCachedSizesToArray(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.GetEL5101Data)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // int32 status = 1;
+  if (this->status() != 0) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(1, this->status(), target);
+  }
+
+  // int32 value = 2;
+  if (this->value() != 0) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(2, this->value(), target);
+  }
+
+  // int32 latch = 3;
+  if (this->latch() != 0) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(3, this->latch(), target);
+  }
+
+  // int32 delta = 4;
+  if (this->delta() != 0) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(4, this->delta(), target);
+  }
+
+  // float average = 5;
+  if (!(this->average() <= 0 && this->average() >= 0)) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(5, this->average(), target);
+  }
+
+  // .Nrmk.IndyFramework.Response response = 100;
+  if (this->has_response()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessageToArray(
+        100, HasBitSetters::response(this), target);
+  }
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields(), target);
   }
   // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.GetEL5101Data)
   return target;
 }
 
-::size_t GetEL5101Data::ByteSizeLong() const {
+size_t GetEL5101Data::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.GetEL5101Data)
-  ::size_t total_size = 0;
+  size_t total_size = 0;
 
-  ::uint32_t cached_has_bits = 0;
+  if (_internal_metadata_.have_unknown_fields()) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::ComputeUnknownFieldsSize(
+        _internal_metadata_.unknown_fields());
+  }
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // .Nrmk.IndyFramework.Response response = 100;
-  cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
+  if (this->has_response()) {
     total_size += 2 +
-      ::google::protobuf::internal::WireFormatLite::MessageSize(
-        *_impl_.response_);
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *response_);
   }
 
   // int32 status = 1;
-  if (this->_internal_status() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
-        this->_internal_status());
+  if (this->status() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->status());
   }
 
   // int32 value = 2;
-  if (this->_internal_value() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
-        this->_internal_value());
+  if (this->value() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->value());
   }
 
   // int32 latch = 3;
-  if (this->_internal_latch() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
-        this->_internal_latch());
+  if (this->latch() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->latch());
   }
 
   // int32 delta = 4;
-  if (this->_internal_delta() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
-        this->_internal_delta());
+  if (this->delta() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->delta());
   }
 
   // float average = 5;
-  static_assert(sizeof(::uint32_t) == sizeof(float),
-                "Code assumes ::uint32_t and float are the same size.");
-  float tmp_average = this->_internal_average();
-  ::uint32_t raw_average;
-  memcpy(&raw_average, &tmp_average, sizeof(tmp_average));
-  if (raw_average != 0) {
-    total_size += 5;
+  if (!(this->average() <= 0 && this->average() >= 0)) {
+    total_size += 1 + 4;
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
 }
 
-const ::google::protobuf::Message::ClassData GetEL5101Data::_class_data_ = {
-    ::google::protobuf::Message::CopyWithSourceCheck,
-    GetEL5101Data::MergeImpl
-};
-const ::google::protobuf::Message::ClassData*GetEL5101Data::GetClassData() const { return &_class_data_; }
+void GetEL5101Data::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:Nrmk.IndyFramework.GetEL5101Data)
+  GOOGLE_DCHECK_NE(&from, this);
+  const GetEL5101Data* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<GetEL5101Data>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Nrmk.IndyFramework.GetEL5101Data)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:Nrmk.IndyFramework.GetEL5101Data)
+    MergeFrom(*source);
+  }
+}
 
-
-void GetEL5101Data::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
-  auto* const _this = static_cast<GetEL5101Data*>(&to_msg);
-  auto& from = static_cast<const GetEL5101Data&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.GetEL5101Data)
-  ABSL_DCHECK_NE(&from, _this);
-  ::uint32_t cached_has_bits = 0;
+void GetEL5101Data::MergeFrom(const GetEL5101Data& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.GetEL5101Data)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
-    _this->_internal_mutable_response()->::Nrmk::IndyFramework::Response::MergeFrom(
-        from._internal_response());
+  if (from.has_response()) {
+    mutable_response()->::Nrmk::IndyFramework::Response::MergeFrom(from.response());
   }
-  if (from._internal_status() != 0) {
-    _this->_internal_set_status(from._internal_status());
+  if (from.status() != 0) {
+    set_status(from.status());
   }
-  if (from._internal_value() != 0) {
-    _this->_internal_set_value(from._internal_value());
+  if (from.value() != 0) {
+    set_value(from.value());
   }
-  if (from._internal_latch() != 0) {
-    _this->_internal_set_latch(from._internal_latch());
+  if (from.latch() != 0) {
+    set_latch(from.latch());
   }
-  if (from._internal_delta() != 0) {
-    _this->_internal_set_delta(from._internal_delta());
+  if (from.delta() != 0) {
+    set_delta(from.delta());
   }
-  static_assert(sizeof(::uint32_t) == sizeof(float),
-                "Code assumes ::uint32_t and float are the same size.");
-  float tmp_average = from._internal_average();
-  ::uint32_t raw_average;
-  memcpy(&raw_average, &tmp_average, sizeof(tmp_average));
-  if (raw_average != 0) {
-    _this->_internal_set_average(from._internal_average());
+  if (!(from.average() <= 0 && from.average() >= 0)) {
+    set_average(from.average());
   }
-  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void GetEL5101Data::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:Nrmk.IndyFramework.GetEL5101Data)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void GetEL5101Data::CopyFrom(const GetEL5101Data& from) {
@@ -3857,688 +6975,524 @@ void GetEL5101Data::CopyFrom(const GetEL5101Data& from) {
   MergeFrom(from);
 }
 
-PROTOBUF_NOINLINE bool GetEL5101Data::IsInitialized() const {
+bool GetEL5101Data::IsInitialized() const {
   return true;
 }
 
+void GetEL5101Data::Swap(GetEL5101Data* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
 void GetEL5101Data::InternalSwap(GetEL5101Data* other) {
   using std::swap;
-  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
-  ::google::protobuf::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(GetEL5101Data, _impl_.average_)
-      + sizeof(GetEL5101Data::_impl_.average_)
-      - PROTOBUF_FIELD_OFFSET(GetEL5101Data, _impl_.response_)>(
-          reinterpret_cast<char*>(&_impl_.response_),
-          reinterpret_cast<char*>(&other->_impl_.response_));
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  swap(response_, other->response_);
+  swap(status_, other->status_);
+  swap(value_, other->value_);
+  swap(latch_, other->latch_);
+  swap(delta_, other->delta_);
+  swap(average_, other->average_);
 }
 
-::google::protobuf::Metadata GetEL5101Data::GetMetadata() const {
-  return ::_pbi::AssignDescriptors(
-      &descriptor_table_device_5fmsgs_2eproto_getter, &descriptor_table_device_5fmsgs_2eproto_once,
-      file_level_metadata_device_5fmsgs_2eproto[12]);
+::PROTOBUF_NAMESPACE_ID::Metadata GetEL5101Data::GetMetadata() const {
+  return GetMetadataStatic();
 }
+
+
 // ===================================================================
 
-class FTSensorType::_Internal {
+void FTSensorData::InitAsDefaultInstance() {
+  ::Nrmk::IndyFramework::_FTSensorData_default_instance_._instance.get_mutable()->response_ = const_cast< ::Nrmk::IndyFramework::Response*>(
+      ::Nrmk::IndyFramework::Response::internal_default_instance());
+}
+class FTSensorData::HasBitSetters {
  public:
-  using HasBits = decltype(std::declval<FTSensorType>()._impl_._has_bits_);
-  static constexpr ::int32_t kHasBitsOffset =
-    8 * PROTOBUF_FIELD_OFFSET(FTSensorType, _impl_._has_bits_);
-  static const ::Nrmk::IndyFramework::Response& response(const FTSensorType* msg);
-  static void set_has_response(HasBits* has_bits) {
-    (*has_bits)[0] |= 1u;
-  }
-};
-
-const ::Nrmk::IndyFramework::Response& FTSensorType::_Internal::response(const FTSensorType* msg) {
-  return *msg->_impl_.response_;
-}
-void FTSensorType::clear_response() {
-  if (_impl_.response_ != nullptr) _impl_.response_->Clear();
-  _impl_._has_bits_[0] &= ~0x00000001u;
-}
-FTSensorType::FTSensorType(::google::protobuf::Arena* arena)
-    : ::google::protobuf::Message(arena) {
-  SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:Nrmk.IndyFramework.FTSensorType)
-}
-FTSensorType::FTSensorType(const FTSensorType& from) : ::google::protobuf::Message() {
-  FTSensorType* const _this = this;
-  (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_._has_bits_){from._impl_._has_bits_},
-      /*decltype(_impl_._cached_size_)*/ {},
-      decltype(_impl_.ft_sensor_type_){},
-      decltype(_impl_.response_){nullptr},
-  };
-  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
-      from._internal_metadata_);
-  _impl_.ft_sensor_type_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        _impl_.ft_sensor_type_.Set("", GetArenaForAllocation());
-  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_ft_sensor_type().empty()) {
-    _this->_impl_.ft_sensor_type_.Set(from._internal_ft_sensor_type(), _this->GetArenaForAllocation());
-  }
-  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
-    _this->_impl_.response_ = new ::Nrmk::IndyFramework::Response(*from._impl_.response_);
-  }
-
-  // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.FTSensorType)
-}
-inline void FTSensorType::SharedCtor(::_pb::Arena* arena) {
-  (void)arena;
-  new (&_impl_) Impl_{
-      decltype(_impl_._has_bits_){},
-      /*decltype(_impl_._cached_size_)*/ {},
-      decltype(_impl_.ft_sensor_type_){},
-      decltype(_impl_.response_){nullptr},
-  };
-  _impl_.ft_sensor_type_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        _impl_.ft_sensor_type_.Set("", GetArenaForAllocation());
-  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-}
-FTSensorType::~FTSensorType() {
-  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.FTSensorType)
-  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
-  SharedDtor();
-}
-inline void FTSensorType::SharedDtor() {
-  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.ft_sensor_type_.Destroy();
-  if (this != internal_default_instance()) delete _impl_.response_;
-}
-void FTSensorType::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
-}
-
-PROTOBUF_NOINLINE void FTSensorType::Clear() {
-// @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.FTSensorType)
-  ::uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  _impl_.ft_sensor_type_.ClearToEmpty();
-  cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    ABSL_DCHECK(_impl_.response_ != nullptr);
-    _impl_.response_->Clear();
-  }
-  _impl_._has_bits_.Clear();
-  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
-}
-
-const char* FTSensorType::_InternalParse(
-    const char* ptr, ::_pbi::ParseContext* ctx) {
-  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
-  return ptr;
-}
-
-
-PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 2, 1, 54, 7> FTSensorType::_table_ = {
-  {
-    PROTOBUF_FIELD_OFFSET(FTSensorType, _impl_._has_bits_),
-    0, // no _extensions_
-    100, 8,  // max_field_number, fast_idx_mask
-    offsetof(decltype(_table_), field_lookup_table),
-    4294967294,  // skipmap
-    offsetof(decltype(_table_), field_entries),
-    2,  // num_field_entries
-    1,  // num_aux_entries
-    offsetof(decltype(_table_), aux_entries),
-    &_FTSensorType_default_instance_._instance,
-    ::_pbi::TcParser::GenericFallback,  // fallback
-  }, {{
-    // .Nrmk.IndyFramework.Response response = 100;
-    {::_pbi::TcParser::FastMtS2,
-     {1698, 0, 0, PROTOBUF_FIELD_OFFSET(FTSensorType, _impl_.response_)}},
-    // string ft_sensor_type = 1;
-    {::_pbi::TcParser::FastUS1,
-     {10, 63, 0, PROTOBUF_FIELD_OFFSET(FTSensorType, _impl_.ft_sensor_type_)}},
-  }}, {{
-    100, 0, 1,
-    65534, 1,
-    65535, 65535
-  }}, {{
-    // string ft_sensor_type = 1;
-    {PROTOBUF_FIELD_OFFSET(FTSensorType, _impl_.ft_sensor_type_), -1, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // .Nrmk.IndyFramework.Response response = 100;
-    {PROTOBUF_FIELD_OFFSET(FTSensorType, _impl_.response_), _Internal::kHasBitsOffset + 0, 0,
-    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
-  }}, {{
-    {::_pbi::TcParser::GetTable<::Nrmk::IndyFramework::Response>()},
-  }}, {{
-    "\37\16\0\0\0\0\0\0"
-    "Nrmk.IndyFramework.FTSensorType"
-    "ft_sensor_type"
-  }},
-};
-
-::uint8_t* FTSensorType::_InternalSerialize(
-    ::uint8_t* target,
-    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.FTSensorType)
-  ::uint32_t cached_has_bits = 0;
-  (void)cached_has_bits;
-
-  // string ft_sensor_type = 1;
-  if (!this->_internal_ft_sensor_type().empty()) {
-    const std::string& _s = this->_internal_ft_sensor_type();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "Nrmk.IndyFramework.FTSensorType.ft_sensor_type");
-    target = stream->WriteStringMaybeAliased(1, _s, target);
-  }
-
-  cached_has_bits = _impl_._has_bits_[0];
-  // .Nrmk.IndyFramework.Response response = 100;
-  if (cached_has_bits & 0x00000001u) {
-    target = ::google::protobuf::internal::WireFormatLite::
-      InternalWriteMessage(100, _Internal::response(this),
-        _Internal::response(this).GetCachedSize(), target, stream);
-  }
-
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target =
-        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
-  }
-  // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.FTSensorType)
-  return target;
-}
-
-::size_t FTSensorType::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.FTSensorType)
-  ::size_t total_size = 0;
-
-  ::uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  // string ft_sensor_type = 1;
-  if (!this->_internal_ft_sensor_type().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                    this->_internal_ft_sensor_type());
-  }
-
-  // .Nrmk.IndyFramework.Response response = 100;
-  cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    total_size += 2 +
-      ::google::protobuf::internal::WireFormatLite::MessageSize(
-        *_impl_.response_);
-  }
-
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
-}
-
-const ::google::protobuf::Message::ClassData FTSensorType::_class_data_ = {
-    ::google::protobuf::Message::CopyWithSourceCheck,
-    FTSensorType::MergeImpl
-};
-const ::google::protobuf::Message::ClassData*FTSensorType::GetClassData() const { return &_class_data_; }
-
-
-void FTSensorType::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
-  auto* const _this = static_cast<FTSensorType*>(&to_msg);
-  auto& from = static_cast<const FTSensorType&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.FTSensorType)
-  ABSL_DCHECK_NE(&from, _this);
-  ::uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  if (!from._internal_ft_sensor_type().empty()) {
-    _this->_internal_set_ft_sensor_type(from._internal_ft_sensor_type());
-  }
-  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
-    _this->_internal_mutable_response()->::Nrmk::IndyFramework::Response::MergeFrom(
-        from._internal_response());
-  }
-  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
-}
-
-void FTSensorType::CopyFrom(const FTSensorType& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:Nrmk.IndyFramework.FTSensorType)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-PROTOBUF_NOINLINE bool FTSensorType::IsInitialized() const {
-  return true;
-}
-
-void FTSensorType::InternalSwap(FTSensorType* other) {
-  using std::swap;
-  auto* lhs_arena = GetArenaForAllocation();
-  auto* rhs_arena = other->GetArenaForAllocation();
-  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.ft_sensor_type_, lhs_arena,
-                                       &other->_impl_.ft_sensor_type_, rhs_arena);
-  swap(_impl_.response_, other->_impl_.response_);
-}
-
-::google::protobuf::Metadata FTSensorType::GetMetadata() const {
-  return ::_pbi::AssignDescriptors(
-      &descriptor_table_device_5fmsgs_2eproto_getter, &descriptor_table_device_5fmsgs_2eproto_once,
-      file_level_metadata_device_5fmsgs_2eproto[13]);
-}
-// ===================================================================
-
-class FTSensorData::_Internal {
- public:
-  using HasBits = decltype(std::declval<FTSensorData>()._impl_._has_bits_);
-  static constexpr ::int32_t kHasBitsOffset =
-    8 * PROTOBUF_FIELD_OFFSET(FTSensorData, _impl_._has_bits_);
   static const ::Nrmk::IndyFramework::Response& response(const FTSensorData* msg);
-  static void set_has_response(HasBits* has_bits) {
-    (*has_bits)[0] |= 1u;
-  }
 };
 
-const ::Nrmk::IndyFramework::Response& FTSensorData::_Internal::response(const FTSensorData* msg) {
-  return *msg->_impl_.response_;
+const ::Nrmk::IndyFramework::Response&
+FTSensorData::HasBitSetters::response(const FTSensorData* msg) {
+  return *msg->response_;
 }
 void FTSensorData::clear_response() {
-  if (_impl_.response_ != nullptr) _impl_.response_->Clear();
-  _impl_._has_bits_[0] &= ~0x00000001u;
-}
-FTSensorData::FTSensorData(::google::protobuf::Arena* arena)
-    : ::google::protobuf::Message(arena) {
-  SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:Nrmk.IndyFramework.FTSensorData)
-}
-FTSensorData::FTSensorData(const FTSensorData& from) : ::google::protobuf::Message() {
-  FTSensorData* const _this = this;
-  (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_._has_bits_){from._impl_._has_bits_},
-      /*decltype(_impl_._cached_size_)*/ {},
-      decltype(_impl_.response_){nullptr},
-      decltype(_impl_.ft_fx_){},
-      decltype(_impl_.ft_fy_){},
-      decltype(_impl_.ft_fz_){},
-      decltype(_impl_.ft_tx_){},
-      decltype(_impl_.ft_ty_){},
-      decltype(_impl_.ft_tz_){},
-  };
-  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
-      from._internal_metadata_);
-  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
-    _this->_impl_.response_ = new ::Nrmk::IndyFramework::Response(*from._impl_.response_);
+  if (GetArenaNoVirtual() == nullptr && response_ != nullptr) {
+    delete response_;
   }
-  ::memcpy(&_impl_.ft_fx_, &from._impl_.ft_fx_,
-    static_cast<::size_t>(reinterpret_cast<char*>(&_impl_.ft_tz_) -
-    reinterpret_cast<char*>(&_impl_.ft_fx_)) + sizeof(_impl_.ft_tz_));
+  response_ = nullptr;
+}
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int FTSensorData::kFtFxFieldNumber;
+const int FTSensorData::kFtFyFieldNumber;
+const int FTSensorData::kFtFzFieldNumber;
+const int FTSensorData::kFtTxFieldNumber;
+const int FTSensorData::kFtTyFieldNumber;
+const int FTSensorData::kFtTzFieldNumber;
+const int FTSensorData::kResponseFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
+FTSensorData::FTSensorData()
+  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:Nrmk.IndyFramework.FTSensorData)
+}
+FTSensorData::FTSensorData(const FTSensorData& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _internal_metadata_(nullptr) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  if (from.has_response()) {
+    response_ = new ::Nrmk::IndyFramework::Response(*from.response_);
+  } else {
+    response_ = nullptr;
+  }
+  ::memcpy(&ft_fx_, &from.ft_fx_,
+    static_cast<size_t>(reinterpret_cast<char*>(&ft_tz_) -
+    reinterpret_cast<char*>(&ft_fx_)) + sizeof(ft_tz_));
   // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.FTSensorData)
 }
-inline void FTSensorData::SharedCtor(::_pb::Arena* arena) {
-  (void)arena;
-  new (&_impl_) Impl_{
-      decltype(_impl_._has_bits_){},
-      /*decltype(_impl_._cached_size_)*/ {},
-      decltype(_impl_.response_){nullptr},
-      decltype(_impl_.ft_fx_){0},
-      decltype(_impl_.ft_fy_){0},
-      decltype(_impl_.ft_fz_){0},
-      decltype(_impl_.ft_tx_){0},
-      decltype(_impl_.ft_ty_){0},
-      decltype(_impl_.ft_tz_){0},
-  };
-}
-FTSensorData::~FTSensorData() {
-  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.FTSensorData)
-  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
-  SharedDtor();
-}
-inline void FTSensorData::SharedDtor() {
-  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
-  if (this != internal_default_instance()) delete _impl_.response_;
-}
-void FTSensorData::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+
+void FTSensorData::SharedCtor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_FTSensorData_device_5fmsgs_2eproto.base);
+  ::memset(&response_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&ft_tz_) -
+      reinterpret_cast<char*>(&response_)) + sizeof(ft_tz_));
 }
 
-PROTOBUF_NOINLINE void FTSensorData::Clear() {
+FTSensorData::~FTSensorData() {
+  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.FTSensorData)
+  SharedDtor();
+}
+
+void FTSensorData::SharedDtor() {
+  if (this != internal_default_instance()) delete response_;
+}
+
+void FTSensorData::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const FTSensorData& FTSensorData::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_FTSensorData_device_5fmsgs_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void FTSensorData::Clear() {
 // @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.FTSensorData)
-  ::uint32_t cached_has_bits = 0;
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    ABSL_DCHECK(_impl_.response_ != nullptr);
-    _impl_.response_->Clear();
+  if (GetArenaNoVirtual() == nullptr && response_ != nullptr) {
+    delete response_;
   }
-  ::memset(&_impl_.ft_fx_, 0, static_cast<::size_t>(
-      reinterpret_cast<char*>(&_impl_.ft_tz_) -
-      reinterpret_cast<char*>(&_impl_.ft_fx_)) + sizeof(_impl_.ft_tz_));
-  _impl_._has_bits_.Clear();
-  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+  response_ = nullptr;
+  ::memset(&ft_fx_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&ft_tz_) -
+      reinterpret_cast<char*>(&ft_fx_)) + sizeof(ft_tz_));
+  _internal_metadata_.Clear();
 }
 
-const char* FTSensorData::_InternalParse(
-    const char* ptr, ::_pbi::ParseContext* ctx) {
-  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+#if GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+const char* FTSensorData::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // float ft_Fx = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 13)) {
+          ft_fx_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else goto handle_unusual;
+        continue;
+      // float ft_Fy = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 21)) {
+          ft_fy_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else goto handle_unusual;
+        continue;
+      // float ft_Fz = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 29)) {
+          ft_fz_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else goto handle_unusual;
+        continue;
+      // float ft_Tx = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 37)) {
+          ft_tx_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else goto handle_unusual;
+        continue;
+      // float ft_Ty = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 45)) {
+          ft_ty_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else goto handle_unusual;
+        continue;
+      // float ft_Tz = 6;
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 53)) {
+          ft_tz_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else goto handle_unusual;
+        continue;
+      // .Nrmk.IndyFramework.Response response = 100;
+      case 100:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
+          ptr = ctx->ParseMessage(mutable_response(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
   return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
 }
+#else  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+bool FTSensorData::MergePartialFromCodedStream(
+    ::PROTOBUF_NAMESPACE_ID::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!PROTOBUF_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+  // @@protoc_insertion_point(parse_start:Nrmk.IndyFramework.FTSensorData)
+  for (;;) {
+    ::std::pair<::PROTOBUF_NAMESPACE_ID::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(16383u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // float ft_Fx = 1;
+      case 1: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (13 & 0xFF)) {
 
+          DO_((::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadPrimitive<
+                   float, ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_FLOAT>(
+                 input, &ft_fx_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
 
-PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<3, 7, 1, 0, 7> FTSensorData::_table_ = {
-  {
-    PROTOBUF_FIELD_OFFSET(FTSensorData, _impl_._has_bits_),
-    0, // no _extensions_
-    100, 56,  // max_field_number, fast_idx_mask
-    offsetof(decltype(_table_), field_lookup_table),
-    4294967232,  // skipmap
-    offsetof(decltype(_table_), field_entries),
-    7,  // num_field_entries
-    1,  // num_aux_entries
-    offsetof(decltype(_table_), aux_entries),
-    &_FTSensorData_default_instance_._instance,
-    ::_pbi::TcParser::GenericFallback,  // fallback
-  }, {{
-    {::_pbi::TcParser::MiniParse, {}},
-    // float ft_Fx = 1;
-    {::_pbi::TcParser::FastF32S1,
-     {13, 63, 0, PROTOBUF_FIELD_OFFSET(FTSensorData, _impl_.ft_fx_)}},
-    // float ft_Fy = 2;
-    {::_pbi::TcParser::FastF32S1,
-     {21, 63, 0, PROTOBUF_FIELD_OFFSET(FTSensorData, _impl_.ft_fy_)}},
-    // float ft_Fz = 3;
-    {::_pbi::TcParser::FastF32S1,
-     {29, 63, 0, PROTOBUF_FIELD_OFFSET(FTSensorData, _impl_.ft_fz_)}},
-    // float ft_Tx = 4;
-    {::_pbi::TcParser::FastF32S1,
-     {37, 63, 0, PROTOBUF_FIELD_OFFSET(FTSensorData, _impl_.ft_tx_)}},
-    // float ft_Ty = 5;
-    {::_pbi::TcParser::FastF32S1,
-     {45, 63, 0, PROTOBUF_FIELD_OFFSET(FTSensorData, _impl_.ft_ty_)}},
-    // float ft_Tz = 6;
-    {::_pbi::TcParser::FastF32S1,
-     {53, 63, 0, PROTOBUF_FIELD_OFFSET(FTSensorData, _impl_.ft_tz_)}},
-    {::_pbi::TcParser::MiniParse, {}},
-  }}, {{
-    100, 0, 1,
-    65534, 6,
-    65535, 65535
-  }}, {{
-    // float ft_Fx = 1;
-    {PROTOBUF_FIELD_OFFSET(FTSensorData, _impl_.ft_fx_), -1, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kFloat)},
-    // float ft_Fy = 2;
-    {PROTOBUF_FIELD_OFFSET(FTSensorData, _impl_.ft_fy_), -1, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kFloat)},
-    // float ft_Fz = 3;
-    {PROTOBUF_FIELD_OFFSET(FTSensorData, _impl_.ft_fz_), -1, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kFloat)},
-    // float ft_Tx = 4;
-    {PROTOBUF_FIELD_OFFSET(FTSensorData, _impl_.ft_tx_), -1, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kFloat)},
-    // float ft_Ty = 5;
-    {PROTOBUF_FIELD_OFFSET(FTSensorData, _impl_.ft_ty_), -1, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kFloat)},
-    // float ft_Tz = 6;
-    {PROTOBUF_FIELD_OFFSET(FTSensorData, _impl_.ft_tz_), -1, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kFloat)},
-    // .Nrmk.IndyFramework.Response response = 100;
-    {PROTOBUF_FIELD_OFFSET(FTSensorData, _impl_.response_), _Internal::kHasBitsOffset + 0, 0,
-    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
-  }}, {{
-    {::_pbi::TcParser::GetTable<::Nrmk::IndyFramework::Response>()},
-  }}, {{
-  }},
-};
+      // float ft_Fy = 2;
+      case 2: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (21 & 0xFF)) {
 
-::uint8_t* FTSensorData::_InternalSerialize(
-    ::uint8_t* target,
-    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.FTSensorData)
-  ::uint32_t cached_has_bits = 0;
-  (void)cached_has_bits;
+          DO_((::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadPrimitive<
+                   float, ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_FLOAT>(
+                 input, &ft_fy_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // float ft_Fz = 3;
+      case 3: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (29 & 0xFF)) {
+
+          DO_((::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadPrimitive<
+                   float, ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_FLOAT>(
+                 input, &ft_fz_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // float ft_Tx = 4;
+      case 4: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (37 & 0xFF)) {
+
+          DO_((::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadPrimitive<
+                   float, ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_FLOAT>(
+                 input, &ft_tx_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // float ft_Ty = 5;
+      case 5: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (45 & 0xFF)) {
+
+          DO_((::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadPrimitive<
+                   float, ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_FLOAT>(
+                 input, &ft_ty_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // float ft_Tz = 6;
+      case 6: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (53 & 0xFF)) {
+
+          DO_((::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadPrimitive<
+                   float, ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_FLOAT>(
+                 input, &ft_tz_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // .Nrmk.IndyFramework.Response response = 100;
+      case 100: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (802 & 0xFF)) {
+          DO_(::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadMessage(
+               input, mutable_response()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0) {
+          goto success;
+        }
+        DO_(::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:Nrmk.IndyFramework.FTSensorData)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:Nrmk.IndyFramework.FTSensorData)
+  return false;
+#undef DO_
+}
+#endif  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+
+void FTSensorData::SerializeWithCachedSizes(
+    ::PROTOBUF_NAMESPACE_ID::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:Nrmk.IndyFramework.FTSensorData)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
 
   // float ft_Fx = 1;
-  static_assert(sizeof(::uint32_t) == sizeof(float),
-                "Code assumes ::uint32_t and float are the same size.");
-  float tmp_ft_fx = this->_internal_ft_fx();
-  ::uint32_t raw_ft_fx;
-  memcpy(&raw_ft_fx, &tmp_ft_fx, sizeof(tmp_ft_fx));
-  if (raw_ft_fx != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteFloatToArray(
-        1, this->_internal_ft_fx(), target);
+  if (!(this->ft_fx() <= 0 && this->ft_fx() >= 0)) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloat(1, this->ft_fx(), output);
   }
 
   // float ft_Fy = 2;
-  static_assert(sizeof(::uint32_t) == sizeof(float),
-                "Code assumes ::uint32_t and float are the same size.");
-  float tmp_ft_fy = this->_internal_ft_fy();
-  ::uint32_t raw_ft_fy;
-  memcpy(&raw_ft_fy, &tmp_ft_fy, sizeof(tmp_ft_fy));
-  if (raw_ft_fy != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteFloatToArray(
-        2, this->_internal_ft_fy(), target);
+  if (!(this->ft_fy() <= 0 && this->ft_fy() >= 0)) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloat(2, this->ft_fy(), output);
   }
 
   // float ft_Fz = 3;
-  static_assert(sizeof(::uint32_t) == sizeof(float),
-                "Code assumes ::uint32_t and float are the same size.");
-  float tmp_ft_fz = this->_internal_ft_fz();
-  ::uint32_t raw_ft_fz;
-  memcpy(&raw_ft_fz, &tmp_ft_fz, sizeof(tmp_ft_fz));
-  if (raw_ft_fz != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteFloatToArray(
-        3, this->_internal_ft_fz(), target);
+  if (!(this->ft_fz() <= 0 && this->ft_fz() >= 0)) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloat(3, this->ft_fz(), output);
   }
 
   // float ft_Tx = 4;
-  static_assert(sizeof(::uint32_t) == sizeof(float),
-                "Code assumes ::uint32_t and float are the same size.");
-  float tmp_ft_tx = this->_internal_ft_tx();
-  ::uint32_t raw_ft_tx;
-  memcpy(&raw_ft_tx, &tmp_ft_tx, sizeof(tmp_ft_tx));
-  if (raw_ft_tx != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteFloatToArray(
-        4, this->_internal_ft_tx(), target);
+  if (!(this->ft_tx() <= 0 && this->ft_tx() >= 0)) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloat(4, this->ft_tx(), output);
   }
 
   // float ft_Ty = 5;
-  static_assert(sizeof(::uint32_t) == sizeof(float),
-                "Code assumes ::uint32_t and float are the same size.");
-  float tmp_ft_ty = this->_internal_ft_ty();
-  ::uint32_t raw_ft_ty;
-  memcpy(&raw_ft_ty, &tmp_ft_ty, sizeof(tmp_ft_ty));
-  if (raw_ft_ty != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteFloatToArray(
-        5, this->_internal_ft_ty(), target);
+  if (!(this->ft_ty() <= 0 && this->ft_ty() >= 0)) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloat(5, this->ft_ty(), output);
   }
 
   // float ft_Tz = 6;
-  static_assert(sizeof(::uint32_t) == sizeof(float),
-                "Code assumes ::uint32_t and float are the same size.");
-  float tmp_ft_tz = this->_internal_ft_tz();
-  ::uint32_t raw_ft_tz;
-  memcpy(&raw_ft_tz, &tmp_ft_tz, sizeof(tmp_ft_tz));
-  if (raw_ft_tz != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteFloatToArray(
-        6, this->_internal_ft_tz(), target);
+  if (!(this->ft_tz() <= 0 && this->ft_tz() >= 0)) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloat(6, this->ft_tz(), output);
   }
 
-  cached_has_bits = _impl_._has_bits_[0];
   // .Nrmk.IndyFramework.Response response = 100;
-  if (cached_has_bits & 0x00000001u) {
-    target = ::google::protobuf::internal::WireFormatLite::
-      InternalWriteMessage(100, _Internal::response(this),
-        _Internal::response(this).GetCachedSize(), target, stream);
+  if (this->has_response()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteMessageMaybeToArray(
+      100, HasBitSetters::response(this), output);
   }
 
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target =
-        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  if (_internal_metadata_.have_unknown_fields()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SerializeUnknownFields(
+        _internal_metadata_.unknown_fields(), output);
+  }
+  // @@protoc_insertion_point(serialize_end:Nrmk.IndyFramework.FTSensorData)
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* FTSensorData::InternalSerializeWithCachedSizesToArray(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.FTSensorData)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // float ft_Fx = 1;
+  if (!(this->ft_fx() <= 0 && this->ft_fx() >= 0)) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(1, this->ft_fx(), target);
+  }
+
+  // float ft_Fy = 2;
+  if (!(this->ft_fy() <= 0 && this->ft_fy() >= 0)) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(2, this->ft_fy(), target);
+  }
+
+  // float ft_Fz = 3;
+  if (!(this->ft_fz() <= 0 && this->ft_fz() >= 0)) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(3, this->ft_fz(), target);
+  }
+
+  // float ft_Tx = 4;
+  if (!(this->ft_tx() <= 0 && this->ft_tx() >= 0)) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(4, this->ft_tx(), target);
+  }
+
+  // float ft_Ty = 5;
+  if (!(this->ft_ty() <= 0 && this->ft_ty() >= 0)) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(5, this->ft_ty(), target);
+  }
+
+  // float ft_Tz = 6;
+  if (!(this->ft_tz() <= 0 && this->ft_tz() >= 0)) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(6, this->ft_tz(), target);
+  }
+
+  // .Nrmk.IndyFramework.Response response = 100;
+  if (this->has_response()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessageToArray(
+        100, HasBitSetters::response(this), target);
+  }
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields(), target);
   }
   // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.FTSensorData)
   return target;
 }
 
-::size_t FTSensorData::ByteSizeLong() const {
+size_t FTSensorData::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.FTSensorData)
-  ::size_t total_size = 0;
+  size_t total_size = 0;
 
-  ::uint32_t cached_has_bits = 0;
+  if (_internal_metadata_.have_unknown_fields()) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::ComputeUnknownFieldsSize(
+        _internal_metadata_.unknown_fields());
+  }
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // .Nrmk.IndyFramework.Response response = 100;
-  cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
+  if (this->has_response()) {
     total_size += 2 +
-      ::google::protobuf::internal::WireFormatLite::MessageSize(
-        *_impl_.response_);
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *response_);
   }
 
   // float ft_Fx = 1;
-  static_assert(sizeof(::uint32_t) == sizeof(float),
-                "Code assumes ::uint32_t and float are the same size.");
-  float tmp_ft_fx = this->_internal_ft_fx();
-  ::uint32_t raw_ft_fx;
-  memcpy(&raw_ft_fx, &tmp_ft_fx, sizeof(tmp_ft_fx));
-  if (raw_ft_fx != 0) {
-    total_size += 5;
+  if (!(this->ft_fx() <= 0 && this->ft_fx() >= 0)) {
+    total_size += 1 + 4;
   }
 
   // float ft_Fy = 2;
-  static_assert(sizeof(::uint32_t) == sizeof(float),
-                "Code assumes ::uint32_t and float are the same size.");
-  float tmp_ft_fy = this->_internal_ft_fy();
-  ::uint32_t raw_ft_fy;
-  memcpy(&raw_ft_fy, &tmp_ft_fy, sizeof(tmp_ft_fy));
-  if (raw_ft_fy != 0) {
-    total_size += 5;
+  if (!(this->ft_fy() <= 0 && this->ft_fy() >= 0)) {
+    total_size += 1 + 4;
   }
 
   // float ft_Fz = 3;
-  static_assert(sizeof(::uint32_t) == sizeof(float),
-                "Code assumes ::uint32_t and float are the same size.");
-  float tmp_ft_fz = this->_internal_ft_fz();
-  ::uint32_t raw_ft_fz;
-  memcpy(&raw_ft_fz, &tmp_ft_fz, sizeof(tmp_ft_fz));
-  if (raw_ft_fz != 0) {
-    total_size += 5;
+  if (!(this->ft_fz() <= 0 && this->ft_fz() >= 0)) {
+    total_size += 1 + 4;
   }
 
   // float ft_Tx = 4;
-  static_assert(sizeof(::uint32_t) == sizeof(float),
-                "Code assumes ::uint32_t and float are the same size.");
-  float tmp_ft_tx = this->_internal_ft_tx();
-  ::uint32_t raw_ft_tx;
-  memcpy(&raw_ft_tx, &tmp_ft_tx, sizeof(tmp_ft_tx));
-  if (raw_ft_tx != 0) {
-    total_size += 5;
+  if (!(this->ft_tx() <= 0 && this->ft_tx() >= 0)) {
+    total_size += 1 + 4;
   }
 
   // float ft_Ty = 5;
-  static_assert(sizeof(::uint32_t) == sizeof(float),
-                "Code assumes ::uint32_t and float are the same size.");
-  float tmp_ft_ty = this->_internal_ft_ty();
-  ::uint32_t raw_ft_ty;
-  memcpy(&raw_ft_ty, &tmp_ft_ty, sizeof(tmp_ft_ty));
-  if (raw_ft_ty != 0) {
-    total_size += 5;
+  if (!(this->ft_ty() <= 0 && this->ft_ty() >= 0)) {
+    total_size += 1 + 4;
   }
 
   // float ft_Tz = 6;
-  static_assert(sizeof(::uint32_t) == sizeof(float),
-                "Code assumes ::uint32_t and float are the same size.");
-  float tmp_ft_tz = this->_internal_ft_tz();
-  ::uint32_t raw_ft_tz;
-  memcpy(&raw_ft_tz, &tmp_ft_tz, sizeof(tmp_ft_tz));
-  if (raw_ft_tz != 0) {
-    total_size += 5;
+  if (!(this->ft_tz() <= 0 && this->ft_tz() >= 0)) {
+    total_size += 1 + 4;
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
 }
 
-const ::google::protobuf::Message::ClassData FTSensorData::_class_data_ = {
-    ::google::protobuf::Message::CopyWithSourceCheck,
-    FTSensorData::MergeImpl
-};
-const ::google::protobuf::Message::ClassData*FTSensorData::GetClassData() const { return &_class_data_; }
+void FTSensorData::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:Nrmk.IndyFramework.FTSensorData)
+  GOOGLE_DCHECK_NE(&from, this);
+  const FTSensorData* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<FTSensorData>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Nrmk.IndyFramework.FTSensorData)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:Nrmk.IndyFramework.FTSensorData)
+    MergeFrom(*source);
+  }
+}
 
-
-void FTSensorData::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
-  auto* const _this = static_cast<FTSensorData*>(&to_msg);
-  auto& from = static_cast<const FTSensorData&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.FTSensorData)
-  ABSL_DCHECK_NE(&from, _this);
-  ::uint32_t cached_has_bits = 0;
+void FTSensorData::MergeFrom(const FTSensorData& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.FTSensorData)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
-    _this->_internal_mutable_response()->::Nrmk::IndyFramework::Response::MergeFrom(
-        from._internal_response());
+  if (from.has_response()) {
+    mutable_response()->::Nrmk::IndyFramework::Response::MergeFrom(from.response());
   }
-  static_assert(sizeof(::uint32_t) == sizeof(float),
-                "Code assumes ::uint32_t and float are the same size.");
-  float tmp_ft_fx = from._internal_ft_fx();
-  ::uint32_t raw_ft_fx;
-  memcpy(&raw_ft_fx, &tmp_ft_fx, sizeof(tmp_ft_fx));
-  if (raw_ft_fx != 0) {
-    _this->_internal_set_ft_fx(from._internal_ft_fx());
+  if (!(from.ft_fx() <= 0 && from.ft_fx() >= 0)) {
+    set_ft_fx(from.ft_fx());
   }
-  static_assert(sizeof(::uint32_t) == sizeof(float),
-                "Code assumes ::uint32_t and float are the same size.");
-  float tmp_ft_fy = from._internal_ft_fy();
-  ::uint32_t raw_ft_fy;
-  memcpy(&raw_ft_fy, &tmp_ft_fy, sizeof(tmp_ft_fy));
-  if (raw_ft_fy != 0) {
-    _this->_internal_set_ft_fy(from._internal_ft_fy());
+  if (!(from.ft_fy() <= 0 && from.ft_fy() >= 0)) {
+    set_ft_fy(from.ft_fy());
   }
-  static_assert(sizeof(::uint32_t) == sizeof(float),
-                "Code assumes ::uint32_t and float are the same size.");
-  float tmp_ft_fz = from._internal_ft_fz();
-  ::uint32_t raw_ft_fz;
-  memcpy(&raw_ft_fz, &tmp_ft_fz, sizeof(tmp_ft_fz));
-  if (raw_ft_fz != 0) {
-    _this->_internal_set_ft_fz(from._internal_ft_fz());
+  if (!(from.ft_fz() <= 0 && from.ft_fz() >= 0)) {
+    set_ft_fz(from.ft_fz());
   }
-  static_assert(sizeof(::uint32_t) == sizeof(float),
-                "Code assumes ::uint32_t and float are the same size.");
-  float tmp_ft_tx = from._internal_ft_tx();
-  ::uint32_t raw_ft_tx;
-  memcpy(&raw_ft_tx, &tmp_ft_tx, sizeof(tmp_ft_tx));
-  if (raw_ft_tx != 0) {
-    _this->_internal_set_ft_tx(from._internal_ft_tx());
+  if (!(from.ft_tx() <= 0 && from.ft_tx() >= 0)) {
+    set_ft_tx(from.ft_tx());
   }
-  static_assert(sizeof(::uint32_t) == sizeof(float),
-                "Code assumes ::uint32_t and float are the same size.");
-  float tmp_ft_ty = from._internal_ft_ty();
-  ::uint32_t raw_ft_ty;
-  memcpy(&raw_ft_ty, &tmp_ft_ty, sizeof(tmp_ft_ty));
-  if (raw_ft_ty != 0) {
-    _this->_internal_set_ft_ty(from._internal_ft_ty());
+  if (!(from.ft_ty() <= 0 && from.ft_ty() >= 0)) {
+    set_ft_ty(from.ft_ty());
   }
-  static_assert(sizeof(::uint32_t) == sizeof(float),
-                "Code assumes ::uint32_t and float are the same size.");
-  float tmp_ft_tz = from._internal_ft_tz();
-  ::uint32_t raw_ft_tz;
-  memcpy(&raw_ft_tz, &tmp_ft_tz, sizeof(tmp_ft_tz));
-  if (raw_ft_tz != 0) {
-    _this->_internal_set_ft_tz(from._internal_ft_tz());
+  if (!(from.ft_tz() <= 0 && from.ft_tz() >= 0)) {
+    set_ft_tz(from.ft_tz());
   }
-  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void FTSensorData::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:Nrmk.IndyFramework.FTSensorData)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void FTSensorData::CopyFrom(const FTSensorData& from) {
@@ -4548,33 +7502,4743 @@ void FTSensorData::CopyFrom(const FTSensorData& from) {
   MergeFrom(from);
 }
 
-PROTOBUF_NOINLINE bool FTSensorData::IsInitialized() const {
+bool FTSensorData::IsInitialized() const {
   return true;
 }
 
+void FTSensorData::Swap(FTSensorData* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
 void FTSensorData::InternalSwap(FTSensorData* other) {
   using std::swap;
-  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
-  ::google::protobuf::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(FTSensorData, _impl_.ft_tz_)
-      + sizeof(FTSensorData::_impl_.ft_tz_)
-      - PROTOBUF_FIELD_OFFSET(FTSensorData, _impl_.response_)>(
-          reinterpret_cast<char*>(&_impl_.response_),
-          reinterpret_cast<char*>(&other->_impl_.response_));
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  swap(response_, other->response_);
+  swap(ft_fx_, other->ft_fx_);
+  swap(ft_fy_, other->ft_fy_);
+  swap(ft_fz_, other->ft_fz_);
+  swap(ft_tx_, other->ft_tx_);
+  swap(ft_ty_, other->ft_ty_);
+  swap(ft_tz_, other->ft_tz_);
 }
 
-::google::protobuf::Metadata FTSensorData::GetMetadata() const {
-  return ::_pbi::AssignDescriptors(
-      &descriptor_table_device_5fmsgs_2eproto_getter, &descriptor_table_device_5fmsgs_2eproto_once,
-      file_level_metadata_device_5fmsgs_2eproto[14]);
+::PROTOBUF_NAMESPACE_ID::Metadata FTSensorData::GetMetadata() const {
+  return GetMetadataStatic();
 }
+
+
+// ===================================================================
+
+void GetLoadFactorsRes::InitAsDefaultInstance() {
+  ::Nrmk::IndyFramework::_GetLoadFactorsRes_default_instance_._instance.get_mutable()->response_ = const_cast< ::Nrmk::IndyFramework::Response*>(
+      ::Nrmk::IndyFramework::Response::internal_default_instance());
+}
+class GetLoadFactorsRes::HasBitSetters {
+ public:
+  static const ::Nrmk::IndyFramework::Response& response(const GetLoadFactorsRes* msg);
+};
+
+const ::Nrmk::IndyFramework::Response&
+GetLoadFactorsRes::HasBitSetters::response(const GetLoadFactorsRes* msg) {
+  return *msg->response_;
+}
+void GetLoadFactorsRes::clear_response() {
+  if (GetArenaNoVirtual() == nullptr && response_ != nullptr) {
+    delete response_;
+  }
+  response_ = nullptr;
+}
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int GetLoadFactorsRes::kPercentsFieldNumber;
+const int GetLoadFactorsRes::kTorquesFieldNumber;
+const int GetLoadFactorsRes::kResponseFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+GetLoadFactorsRes::GetLoadFactorsRes()
+  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:Nrmk.IndyFramework.GetLoadFactorsRes)
+}
+GetLoadFactorsRes::GetLoadFactorsRes(const GetLoadFactorsRes& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _internal_metadata_(nullptr),
+      percents_(from.percents_),
+      torques_(from.torques_) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  if (from.has_response()) {
+    response_ = new ::Nrmk::IndyFramework::Response(*from.response_);
+  } else {
+    response_ = nullptr;
+  }
+  // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.GetLoadFactorsRes)
+}
+
+void GetLoadFactorsRes::SharedCtor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_GetLoadFactorsRes_device_5fmsgs_2eproto.base);
+  response_ = nullptr;
+}
+
+GetLoadFactorsRes::~GetLoadFactorsRes() {
+  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.GetLoadFactorsRes)
+  SharedDtor();
+}
+
+void GetLoadFactorsRes::SharedDtor() {
+  if (this != internal_default_instance()) delete response_;
+}
+
+void GetLoadFactorsRes::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const GetLoadFactorsRes& GetLoadFactorsRes::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_GetLoadFactorsRes_device_5fmsgs_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void GetLoadFactorsRes::Clear() {
+// @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.GetLoadFactorsRes)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  percents_.Clear();
+  torques_.Clear();
+  if (GetArenaNoVirtual() == nullptr && response_ != nullptr) {
+    delete response_;
+  }
+  response_ = nullptr;
+  _internal_metadata_.Clear();
+}
+
+#if GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+const char* GetLoadFactorsRes::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // repeated int32 percents = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::PackedInt32Parser(mutable_percents(), ptr, ctx);
+          CHK_(ptr);
+        } else if (static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8) {
+          add_percents(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // repeated float torques = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::PackedFloatParser(mutable_torques(), ptr, ctx);
+          CHK_(ptr);
+        } else if (static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 21) {
+          add_torques(::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr));
+          ptr += sizeof(float);
+        } else goto handle_unusual;
+        continue;
+      // .Nrmk.IndyFramework.Response response = 100;
+      case 100:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
+          ptr = ctx->ParseMessage(mutable_response(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+#else  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+bool GetLoadFactorsRes::MergePartialFromCodedStream(
+    ::PROTOBUF_NAMESPACE_ID::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!PROTOBUF_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+  // @@protoc_insertion_point(parse_start:Nrmk.IndyFramework.GetLoadFactorsRes)
+  for (;;) {
+    ::std::pair<::PROTOBUF_NAMESPACE_ID::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(16383u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // repeated int32 percents = 1;
+      case 1: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (10 & 0xFF)) {
+          DO_((::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadPackedPrimitive<
+                   ::PROTOBUF_NAMESPACE_ID::int32, ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_INT32>(
+                 input, this->mutable_percents())));
+        } else if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (8 & 0xFF)) {
+          DO_((::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadRepeatedPrimitiveNoInline<
+                   ::PROTOBUF_NAMESPACE_ID::int32, ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_INT32>(
+                 1, 10u, input, this->mutable_percents())));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // repeated float torques = 2;
+      case 2: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (18 & 0xFF)) {
+          DO_((::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadPackedPrimitive<
+                   float, ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_FLOAT>(
+                 input, this->mutable_torques())));
+        } else if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (21 & 0xFF)) {
+          DO_((::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadRepeatedPrimitiveNoInline<
+                   float, ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_FLOAT>(
+                 1, 18u, input, this->mutable_torques())));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // .Nrmk.IndyFramework.Response response = 100;
+      case 100: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (802 & 0xFF)) {
+          DO_(::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadMessage(
+               input, mutable_response()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0) {
+          goto success;
+        }
+        DO_(::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:Nrmk.IndyFramework.GetLoadFactorsRes)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:Nrmk.IndyFramework.GetLoadFactorsRes)
+  return false;
+#undef DO_
+}
+#endif  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+
+void GetLoadFactorsRes::SerializeWithCachedSizes(
+    ::PROTOBUF_NAMESPACE_ID::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:Nrmk.IndyFramework.GetLoadFactorsRes)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // repeated int32 percents = 1;
+  if (this->percents_size() > 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteTag(1, ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED, output);
+    output->WriteVarint32(_percents_cached_byte_size_.load(
+        std::memory_order_relaxed));
+  }
+  for (int i = 0, n = this->percents_size(); i < n; i++) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32NoTag(
+      this->percents(i), output);
+  }
+
+  // repeated float torques = 2;
+  if (this->torques_size() > 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteTag(2, ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED, output);
+    output->WriteVarint32(_torques_cached_byte_size_.load(
+        std::memory_order_relaxed));
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatArray(
+      this->torques().data(), this->torques_size(), output);
+  }
+
+  // .Nrmk.IndyFramework.Response response = 100;
+  if (this->has_response()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteMessageMaybeToArray(
+      100, HasBitSetters::response(this), output);
+  }
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SerializeUnknownFields(
+        _internal_metadata_.unknown_fields(), output);
+  }
+  // @@protoc_insertion_point(serialize_end:Nrmk.IndyFramework.GetLoadFactorsRes)
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* GetLoadFactorsRes::InternalSerializeWithCachedSizesToArray(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.GetLoadFactorsRes)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // repeated int32 percents = 1;
+  if (this->percents_size() > 0) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteTagToArray(
+      1,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED,
+      target);
+    target = ::PROTOBUF_NAMESPACE_ID::io::CodedOutputStream::WriteVarint32ToArray(
+        _percents_cached_byte_size_.load(std::memory_order_relaxed),
+         target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      WriteInt32NoTagToArray(this->percents_, target);
+  }
+
+  // repeated float torques = 2;
+  if (this->torques_size() > 0) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteTagToArray(
+      2,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED,
+      target);
+    target = ::PROTOBUF_NAMESPACE_ID::io::CodedOutputStream::WriteVarint32ToArray(
+        _torques_cached_byte_size_.load(std::memory_order_relaxed),
+         target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      WriteFloatNoTagToArray(this->torques_, target);
+  }
+
+  // .Nrmk.IndyFramework.Response response = 100;
+  if (this->has_response()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessageToArray(
+        100, HasBitSetters::response(this), target);
+  }
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields(), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.GetLoadFactorsRes)
+  return target;
+}
+
+size_t GetLoadFactorsRes::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.GetLoadFactorsRes)
+  size_t total_size = 0;
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::ComputeUnknownFieldsSize(
+        _internal_metadata_.unknown_fields());
+  }
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated int32 percents = 1;
+  {
+    size_t data_size = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      Int32Size(this->percents_);
+    if (data_size > 0) {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+            static_cast<::PROTOBUF_NAMESPACE_ID::int32>(data_size));
+    }
+    int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(data_size);
+    _percents_cached_byte_size_.store(cached_size,
+                                    std::memory_order_relaxed);
+    total_size += data_size;
+  }
+
+  // repeated float torques = 2;
+  {
+    unsigned int count = static_cast<unsigned int>(this->torques_size());
+    size_t data_size = 4UL * count;
+    if (data_size > 0) {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+            static_cast<::PROTOBUF_NAMESPACE_ID::int32>(data_size));
+    }
+    int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(data_size);
+    _torques_cached_byte_size_.store(cached_size,
+                                    std::memory_order_relaxed);
+    total_size += data_size;
+  }
+
+  // .Nrmk.IndyFramework.Response response = 100;
+  if (this->has_response()) {
+    total_size += 2 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *response_);
+  }
+
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void GetLoadFactorsRes::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:Nrmk.IndyFramework.GetLoadFactorsRes)
+  GOOGLE_DCHECK_NE(&from, this);
+  const GetLoadFactorsRes* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<GetLoadFactorsRes>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Nrmk.IndyFramework.GetLoadFactorsRes)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:Nrmk.IndyFramework.GetLoadFactorsRes)
+    MergeFrom(*source);
+  }
+}
+
+void GetLoadFactorsRes::MergeFrom(const GetLoadFactorsRes& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.GetLoadFactorsRes)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  percents_.MergeFrom(from.percents_);
+  torques_.MergeFrom(from.torques_);
+  if (from.has_response()) {
+    mutable_response()->::Nrmk::IndyFramework::Response::MergeFrom(from.response());
+  }
+}
+
+void GetLoadFactorsRes::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:Nrmk.IndyFramework.GetLoadFactorsRes)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void GetLoadFactorsRes::CopyFrom(const GetLoadFactorsRes& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Nrmk.IndyFramework.GetLoadFactorsRes)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool GetLoadFactorsRes::IsInitialized() const {
+  return true;
+}
+
+void GetLoadFactorsRes::Swap(GetLoadFactorsRes* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void GetLoadFactorsRes::InternalSwap(GetLoadFactorsRes* other) {
+  using std::swap;
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  percents_.InternalSwap(&other->percents_);
+  torques_.InternalSwap(&other->torques_);
+  swap(response_, other->response_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata GetLoadFactorsRes::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
+// ===================================================================
+
+void SetAutoModeReq::InitAsDefaultInstance() {
+}
+class SetAutoModeReq::HasBitSetters {
+ public:
+};
+
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int SetAutoModeReq::kOnFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+SetAutoModeReq::SetAutoModeReq()
+  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:Nrmk.IndyFramework.SetAutoModeReq)
+}
+SetAutoModeReq::SetAutoModeReq(const SetAutoModeReq& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _internal_metadata_(nullptr) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  on_ = from.on_;
+  // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.SetAutoModeReq)
+}
+
+void SetAutoModeReq::SharedCtor() {
+  on_ = false;
+}
+
+SetAutoModeReq::~SetAutoModeReq() {
+  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.SetAutoModeReq)
+  SharedDtor();
+}
+
+void SetAutoModeReq::SharedDtor() {
+}
+
+void SetAutoModeReq::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const SetAutoModeReq& SetAutoModeReq::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_SetAutoModeReq_device_5fmsgs_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void SetAutoModeReq::Clear() {
+// @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.SetAutoModeReq)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  on_ = false;
+  _internal_metadata_.Clear();
+}
+
+#if GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+const char* SetAutoModeReq::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // bool on = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          on_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+#else  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+bool SetAutoModeReq::MergePartialFromCodedStream(
+    ::PROTOBUF_NAMESPACE_ID::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!PROTOBUF_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+  // @@protoc_insertion_point(parse_start:Nrmk.IndyFramework.SetAutoModeReq)
+  for (;;) {
+    ::std::pair<::PROTOBUF_NAMESPACE_ID::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // bool on = 1;
+      case 1: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (8 & 0xFF)) {
+
+          DO_((::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadPrimitive<
+                   bool, ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_BOOL>(
+                 input, &on_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0) {
+          goto success;
+        }
+        DO_(::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:Nrmk.IndyFramework.SetAutoModeReq)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:Nrmk.IndyFramework.SetAutoModeReq)
+  return false;
+#undef DO_
+}
+#endif  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+
+void SetAutoModeReq::SerializeWithCachedSizes(
+    ::PROTOBUF_NAMESPACE_ID::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:Nrmk.IndyFramework.SetAutoModeReq)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // bool on = 1;
+  if (this->on() != 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBool(1, this->on(), output);
+  }
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SerializeUnknownFields(
+        _internal_metadata_.unknown_fields(), output);
+  }
+  // @@protoc_insertion_point(serialize_end:Nrmk.IndyFramework.SetAutoModeReq)
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* SetAutoModeReq::InternalSerializeWithCachedSizesToArray(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.SetAutoModeReq)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // bool on = 1;
+  if (this->on() != 0) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(1, this->on(), target);
+  }
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields(), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.SetAutoModeReq)
+  return target;
+}
+
+size_t SetAutoModeReq::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.SetAutoModeReq)
+  size_t total_size = 0;
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::ComputeUnknownFieldsSize(
+        _internal_metadata_.unknown_fields());
+  }
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // bool on = 1;
+  if (this->on() != 0) {
+    total_size += 1 + 1;
+  }
+
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void SetAutoModeReq::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:Nrmk.IndyFramework.SetAutoModeReq)
+  GOOGLE_DCHECK_NE(&from, this);
+  const SetAutoModeReq* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<SetAutoModeReq>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Nrmk.IndyFramework.SetAutoModeReq)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:Nrmk.IndyFramework.SetAutoModeReq)
+    MergeFrom(*source);
+  }
+}
+
+void SetAutoModeReq::MergeFrom(const SetAutoModeReq& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.SetAutoModeReq)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.on() != 0) {
+    set_on(from.on());
+  }
+}
+
+void SetAutoModeReq::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:Nrmk.IndyFramework.SetAutoModeReq)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void SetAutoModeReq::CopyFrom(const SetAutoModeReq& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Nrmk.IndyFramework.SetAutoModeReq)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool SetAutoModeReq::IsInitialized() const {
+  return true;
+}
+
+void SetAutoModeReq::Swap(SetAutoModeReq* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void SetAutoModeReq::InternalSwap(SetAutoModeReq* other) {
+  using std::swap;
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  swap(on_, other->on_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata SetAutoModeReq::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
+// ===================================================================
+
+void SetAutoModeRes::InitAsDefaultInstance() {
+}
+class SetAutoModeRes::HasBitSetters {
+ public:
+};
+
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int SetAutoModeRes::kMsgFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+SetAutoModeRes::SetAutoModeRes()
+  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:Nrmk.IndyFramework.SetAutoModeRes)
+}
+SetAutoModeRes::SetAutoModeRes(const SetAutoModeRes& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _internal_metadata_(nullptr) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  msg_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (from.msg().size() > 0) {
+    msg_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.msg_);
+  }
+  // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.SetAutoModeRes)
+}
+
+void SetAutoModeRes::SharedCtor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_SetAutoModeRes_device_5fmsgs_2eproto.base);
+  msg_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+SetAutoModeRes::~SetAutoModeRes() {
+  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.SetAutoModeRes)
+  SharedDtor();
+}
+
+void SetAutoModeRes::SharedDtor() {
+  msg_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void SetAutoModeRes::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const SetAutoModeRes& SetAutoModeRes::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_SetAutoModeRes_device_5fmsgs_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void SetAutoModeRes::Clear() {
+// @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.SetAutoModeRes)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  msg_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  _internal_metadata_.Clear();
+}
+
+#if GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+const char* SetAutoModeRes::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // string msg = 100;
+      case 100:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParserUTF8(mutable_msg(), ptr, ctx, "Nrmk.IndyFramework.SetAutoModeRes.msg");
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+#else  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+bool SetAutoModeRes::MergePartialFromCodedStream(
+    ::PROTOBUF_NAMESPACE_ID::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!PROTOBUF_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+  // @@protoc_insertion_point(parse_start:Nrmk.IndyFramework.SetAutoModeRes)
+  for (;;) {
+    ::std::pair<::PROTOBUF_NAMESPACE_ID::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(16383u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // string msg = 100;
+      case 100: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (802 & 0xFF)) {
+          DO_(::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadString(
+                input, this->mutable_msg()));
+          DO_(::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+            this->msg().data(), static_cast<int>(this->msg().length()),
+            ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE,
+            "Nrmk.IndyFramework.SetAutoModeRes.msg"));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0) {
+          goto success;
+        }
+        DO_(::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:Nrmk.IndyFramework.SetAutoModeRes)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:Nrmk.IndyFramework.SetAutoModeRes)
+  return false;
+#undef DO_
+}
+#endif  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+
+void SetAutoModeRes::SerializeWithCachedSizes(
+    ::PROTOBUF_NAMESPACE_ID::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:Nrmk.IndyFramework.SetAutoModeRes)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string msg = 100;
+  if (this->msg().size() > 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->msg().data(), static_cast<int>(this->msg().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Nrmk.IndyFramework.SetAutoModeRes.msg");
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteStringMaybeAliased(
+      100, this->msg(), output);
+  }
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SerializeUnknownFields(
+        _internal_metadata_.unknown_fields(), output);
+  }
+  // @@protoc_insertion_point(serialize_end:Nrmk.IndyFramework.SetAutoModeRes)
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* SetAutoModeRes::InternalSerializeWithCachedSizesToArray(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.SetAutoModeRes)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string msg = 100;
+  if (this->msg().size() > 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->msg().data(), static_cast<int>(this->msg().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Nrmk.IndyFramework.SetAutoModeRes.msg");
+    target =
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteStringToArray(
+        100, this->msg(), target);
+  }
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields(), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.SetAutoModeRes)
+  return target;
+}
+
+size_t SetAutoModeRes::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.SetAutoModeRes)
+  size_t total_size = 0;
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::ComputeUnknownFieldsSize(
+        _internal_metadata_.unknown_fields());
+  }
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string msg = 100;
+  if (this->msg().size() > 0) {
+    total_size += 2 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->msg());
+  }
+
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void SetAutoModeRes::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:Nrmk.IndyFramework.SetAutoModeRes)
+  GOOGLE_DCHECK_NE(&from, this);
+  const SetAutoModeRes* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<SetAutoModeRes>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Nrmk.IndyFramework.SetAutoModeRes)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:Nrmk.IndyFramework.SetAutoModeRes)
+    MergeFrom(*source);
+  }
+}
+
+void SetAutoModeRes::MergeFrom(const SetAutoModeRes& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.SetAutoModeRes)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.msg().size() > 0) {
+
+    msg_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.msg_);
+  }
+}
+
+void SetAutoModeRes::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:Nrmk.IndyFramework.SetAutoModeRes)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void SetAutoModeRes::CopyFrom(const SetAutoModeRes& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Nrmk.IndyFramework.SetAutoModeRes)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool SetAutoModeRes::IsInitialized() const {
+  return true;
+}
+
+void SetAutoModeRes::Swap(SetAutoModeRes* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void SetAutoModeRes::InternalSwap(SetAutoModeRes* other) {
+  using std::swap;
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  msg_.Swap(&other->msg_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+    GetArenaNoVirtual());
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata SetAutoModeRes::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
+// ===================================================================
+
+void CheckAutoModeRes::InitAsDefaultInstance() {
+}
+class CheckAutoModeRes::HasBitSetters {
+ public:
+};
+
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int CheckAutoModeRes::kOnFieldNumber;
+const int CheckAutoModeRes::kMsgFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+CheckAutoModeRes::CheckAutoModeRes()
+  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:Nrmk.IndyFramework.CheckAutoModeRes)
+}
+CheckAutoModeRes::CheckAutoModeRes(const CheckAutoModeRes& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _internal_metadata_(nullptr) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  msg_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (from.msg().size() > 0) {
+    msg_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.msg_);
+  }
+  on_ = from.on_;
+  // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.CheckAutoModeRes)
+}
+
+void CheckAutoModeRes::SharedCtor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_CheckAutoModeRes_device_5fmsgs_2eproto.base);
+  msg_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  on_ = false;
+}
+
+CheckAutoModeRes::~CheckAutoModeRes() {
+  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.CheckAutoModeRes)
+  SharedDtor();
+}
+
+void CheckAutoModeRes::SharedDtor() {
+  msg_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void CheckAutoModeRes::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const CheckAutoModeRes& CheckAutoModeRes::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_CheckAutoModeRes_device_5fmsgs_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void CheckAutoModeRes::Clear() {
+// @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.CheckAutoModeRes)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  msg_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  on_ = false;
+  _internal_metadata_.Clear();
+}
+
+#if GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+const char* CheckAutoModeRes::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // bool on = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          on_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string msg = 100;
+      case 100:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParserUTF8(mutable_msg(), ptr, ctx, "Nrmk.IndyFramework.CheckAutoModeRes.msg");
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+#else  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+bool CheckAutoModeRes::MergePartialFromCodedStream(
+    ::PROTOBUF_NAMESPACE_ID::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!PROTOBUF_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+  // @@protoc_insertion_point(parse_start:Nrmk.IndyFramework.CheckAutoModeRes)
+  for (;;) {
+    ::std::pair<::PROTOBUF_NAMESPACE_ID::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(16383u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // bool on = 1;
+      case 1: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (8 & 0xFF)) {
+
+          DO_((::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadPrimitive<
+                   bool, ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_BOOL>(
+                 input, &on_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // string msg = 100;
+      case 100: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (802 & 0xFF)) {
+          DO_(::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadString(
+                input, this->mutable_msg()));
+          DO_(::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+            this->msg().data(), static_cast<int>(this->msg().length()),
+            ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE,
+            "Nrmk.IndyFramework.CheckAutoModeRes.msg"));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0) {
+          goto success;
+        }
+        DO_(::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:Nrmk.IndyFramework.CheckAutoModeRes)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:Nrmk.IndyFramework.CheckAutoModeRes)
+  return false;
+#undef DO_
+}
+#endif  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+
+void CheckAutoModeRes::SerializeWithCachedSizes(
+    ::PROTOBUF_NAMESPACE_ID::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:Nrmk.IndyFramework.CheckAutoModeRes)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // bool on = 1;
+  if (this->on() != 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBool(1, this->on(), output);
+  }
+
+  // string msg = 100;
+  if (this->msg().size() > 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->msg().data(), static_cast<int>(this->msg().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Nrmk.IndyFramework.CheckAutoModeRes.msg");
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteStringMaybeAliased(
+      100, this->msg(), output);
+  }
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SerializeUnknownFields(
+        _internal_metadata_.unknown_fields(), output);
+  }
+  // @@protoc_insertion_point(serialize_end:Nrmk.IndyFramework.CheckAutoModeRes)
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* CheckAutoModeRes::InternalSerializeWithCachedSizesToArray(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.CheckAutoModeRes)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // bool on = 1;
+  if (this->on() != 0) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(1, this->on(), target);
+  }
+
+  // string msg = 100;
+  if (this->msg().size() > 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->msg().data(), static_cast<int>(this->msg().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Nrmk.IndyFramework.CheckAutoModeRes.msg");
+    target =
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteStringToArray(
+        100, this->msg(), target);
+  }
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields(), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.CheckAutoModeRes)
+  return target;
+}
+
+size_t CheckAutoModeRes::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.CheckAutoModeRes)
+  size_t total_size = 0;
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::ComputeUnknownFieldsSize(
+        _internal_metadata_.unknown_fields());
+  }
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string msg = 100;
+  if (this->msg().size() > 0) {
+    total_size += 2 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->msg());
+  }
+
+  // bool on = 1;
+  if (this->on() != 0) {
+    total_size += 1 + 1;
+  }
+
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void CheckAutoModeRes::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:Nrmk.IndyFramework.CheckAutoModeRes)
+  GOOGLE_DCHECK_NE(&from, this);
+  const CheckAutoModeRes* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<CheckAutoModeRes>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Nrmk.IndyFramework.CheckAutoModeRes)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:Nrmk.IndyFramework.CheckAutoModeRes)
+    MergeFrom(*source);
+  }
+}
+
+void CheckAutoModeRes::MergeFrom(const CheckAutoModeRes& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.CheckAutoModeRes)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.msg().size() > 0) {
+
+    msg_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.msg_);
+  }
+  if (from.on() != 0) {
+    set_on(from.on());
+  }
+}
+
+void CheckAutoModeRes::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:Nrmk.IndyFramework.CheckAutoModeRes)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void CheckAutoModeRes::CopyFrom(const CheckAutoModeRes& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Nrmk.IndyFramework.CheckAutoModeRes)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool CheckAutoModeRes::IsInitialized() const {
+  return true;
+}
+
+void CheckAutoModeRes::Swap(CheckAutoModeRes* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void CheckAutoModeRes::InternalSwap(CheckAutoModeRes* other) {
+  using std::swap;
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  msg_.Swap(&other->msg_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+    GetArenaNoVirtual());
+  swap(on_, other->on_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata CheckAutoModeRes::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
+// ===================================================================
+
+void CheckReducedModeRes::InitAsDefaultInstance() {
+}
+class CheckReducedModeRes::HasBitSetters {
+ public:
+};
+
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int CheckReducedModeRes::kOnFieldNumber;
+const int CheckReducedModeRes::kMsgFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+CheckReducedModeRes::CheckReducedModeRes()
+  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:Nrmk.IndyFramework.CheckReducedModeRes)
+}
+CheckReducedModeRes::CheckReducedModeRes(const CheckReducedModeRes& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _internal_metadata_(nullptr) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  msg_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (from.msg().size() > 0) {
+    msg_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.msg_);
+  }
+  on_ = from.on_;
+  // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.CheckReducedModeRes)
+}
+
+void CheckReducedModeRes::SharedCtor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_CheckReducedModeRes_device_5fmsgs_2eproto.base);
+  msg_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  on_ = false;
+}
+
+CheckReducedModeRes::~CheckReducedModeRes() {
+  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.CheckReducedModeRes)
+  SharedDtor();
+}
+
+void CheckReducedModeRes::SharedDtor() {
+  msg_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void CheckReducedModeRes::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const CheckReducedModeRes& CheckReducedModeRes::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_CheckReducedModeRes_device_5fmsgs_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void CheckReducedModeRes::Clear() {
+// @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.CheckReducedModeRes)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  msg_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  on_ = false;
+  _internal_metadata_.Clear();
+}
+
+#if GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+const char* CheckReducedModeRes::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // bool on = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          on_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string msg = 100;
+      case 100:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParserUTF8(mutable_msg(), ptr, ctx, "Nrmk.IndyFramework.CheckReducedModeRes.msg");
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+#else  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+bool CheckReducedModeRes::MergePartialFromCodedStream(
+    ::PROTOBUF_NAMESPACE_ID::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!PROTOBUF_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+  // @@protoc_insertion_point(parse_start:Nrmk.IndyFramework.CheckReducedModeRes)
+  for (;;) {
+    ::std::pair<::PROTOBUF_NAMESPACE_ID::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(16383u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // bool on = 1;
+      case 1: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (8 & 0xFF)) {
+
+          DO_((::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadPrimitive<
+                   bool, ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_BOOL>(
+                 input, &on_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // string msg = 100;
+      case 100: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (802 & 0xFF)) {
+          DO_(::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadString(
+                input, this->mutable_msg()));
+          DO_(::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+            this->msg().data(), static_cast<int>(this->msg().length()),
+            ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE,
+            "Nrmk.IndyFramework.CheckReducedModeRes.msg"));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0) {
+          goto success;
+        }
+        DO_(::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:Nrmk.IndyFramework.CheckReducedModeRes)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:Nrmk.IndyFramework.CheckReducedModeRes)
+  return false;
+#undef DO_
+}
+#endif  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+
+void CheckReducedModeRes::SerializeWithCachedSizes(
+    ::PROTOBUF_NAMESPACE_ID::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:Nrmk.IndyFramework.CheckReducedModeRes)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // bool on = 1;
+  if (this->on() != 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBool(1, this->on(), output);
+  }
+
+  // string msg = 100;
+  if (this->msg().size() > 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->msg().data(), static_cast<int>(this->msg().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Nrmk.IndyFramework.CheckReducedModeRes.msg");
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteStringMaybeAliased(
+      100, this->msg(), output);
+  }
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SerializeUnknownFields(
+        _internal_metadata_.unknown_fields(), output);
+  }
+  // @@protoc_insertion_point(serialize_end:Nrmk.IndyFramework.CheckReducedModeRes)
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* CheckReducedModeRes::InternalSerializeWithCachedSizesToArray(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.CheckReducedModeRes)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // bool on = 1;
+  if (this->on() != 0) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(1, this->on(), target);
+  }
+
+  // string msg = 100;
+  if (this->msg().size() > 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->msg().data(), static_cast<int>(this->msg().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Nrmk.IndyFramework.CheckReducedModeRes.msg");
+    target =
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteStringToArray(
+        100, this->msg(), target);
+  }
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields(), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.CheckReducedModeRes)
+  return target;
+}
+
+size_t CheckReducedModeRes::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.CheckReducedModeRes)
+  size_t total_size = 0;
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::ComputeUnknownFieldsSize(
+        _internal_metadata_.unknown_fields());
+  }
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string msg = 100;
+  if (this->msg().size() > 0) {
+    total_size += 2 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->msg());
+  }
+
+  // bool on = 1;
+  if (this->on() != 0) {
+    total_size += 1 + 1;
+  }
+
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void CheckReducedModeRes::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:Nrmk.IndyFramework.CheckReducedModeRes)
+  GOOGLE_DCHECK_NE(&from, this);
+  const CheckReducedModeRes* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<CheckReducedModeRes>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Nrmk.IndyFramework.CheckReducedModeRes)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:Nrmk.IndyFramework.CheckReducedModeRes)
+    MergeFrom(*source);
+  }
+}
+
+void CheckReducedModeRes::MergeFrom(const CheckReducedModeRes& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.CheckReducedModeRes)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.msg().size() > 0) {
+
+    msg_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.msg_);
+  }
+  if (from.on() != 0) {
+    set_on(from.on());
+  }
+}
+
+void CheckReducedModeRes::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:Nrmk.IndyFramework.CheckReducedModeRes)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void CheckReducedModeRes::CopyFrom(const CheckReducedModeRes& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Nrmk.IndyFramework.CheckReducedModeRes)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool CheckReducedModeRes::IsInitialized() const {
+  return true;
+}
+
+void CheckReducedModeRes::Swap(CheckReducedModeRes* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void CheckReducedModeRes::InternalSwap(CheckReducedModeRes* other) {
+  using std::swap;
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  msg_.Swap(&other->msg_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+    GetArenaNoVirtual());
+  swap(on_, other->on_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata CheckReducedModeRes::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
+// ===================================================================
+
+void SafetyFunctionState::InitAsDefaultInstance() {
+  ::Nrmk::IndyFramework::_SafetyFunctionState_default_instance_._instance.get_mutable()->response_ = const_cast< ::Nrmk::IndyFramework::Response*>(
+      ::Nrmk::IndyFramework::Response::internal_default_instance());
+}
+class SafetyFunctionState::HasBitSetters {
+ public:
+  static const ::Nrmk::IndyFramework::Response& response(const SafetyFunctionState* msg);
+};
+
+const ::Nrmk::IndyFramework::Response&
+SafetyFunctionState::HasBitSetters::response(const SafetyFunctionState* msg) {
+  return *msg->response_;
+}
+void SafetyFunctionState::clear_response() {
+  if (GetArenaNoVirtual() == nullptr && response_ != nullptr) {
+    delete response_;
+  }
+  response_ = nullptr;
+}
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int SafetyFunctionState::kIdFieldNumber;
+const int SafetyFunctionState::kStateFieldNumber;
+const int SafetyFunctionState::kResponseFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+SafetyFunctionState::SafetyFunctionState()
+  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:Nrmk.IndyFramework.SafetyFunctionState)
+}
+SafetyFunctionState::SafetyFunctionState(const SafetyFunctionState& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _internal_metadata_(nullptr) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  if (from.has_response()) {
+    response_ = new ::Nrmk::IndyFramework::Response(*from.response_);
+  } else {
+    response_ = nullptr;
+  }
+  ::memcpy(&id_, &from.id_,
+    static_cast<size_t>(reinterpret_cast<char*>(&state_) -
+    reinterpret_cast<char*>(&id_)) + sizeof(state_));
+  // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.SafetyFunctionState)
+}
+
+void SafetyFunctionState::SharedCtor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_SafetyFunctionState_device_5fmsgs_2eproto.base);
+  ::memset(&response_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&state_) -
+      reinterpret_cast<char*>(&response_)) + sizeof(state_));
+}
+
+SafetyFunctionState::~SafetyFunctionState() {
+  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.SafetyFunctionState)
+  SharedDtor();
+}
+
+void SafetyFunctionState::SharedDtor() {
+  if (this != internal_default_instance()) delete response_;
+}
+
+void SafetyFunctionState::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const SafetyFunctionState& SafetyFunctionState::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_SafetyFunctionState_device_5fmsgs_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void SafetyFunctionState::Clear() {
+// @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.SafetyFunctionState)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  if (GetArenaNoVirtual() == nullptr && response_ != nullptr) {
+    delete response_;
+  }
+  response_ = nullptr;
+  ::memset(&id_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&state_) -
+      reinterpret_cast<char*>(&id_)) + sizeof(state_));
+  _internal_metadata_.Clear();
+}
+
+#if GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+const char* SafetyFunctionState::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // uint32 id = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // uint32 state = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
+          state_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .Nrmk.IndyFramework.Response response = 100;
+      case 100:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
+          ptr = ctx->ParseMessage(mutable_response(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+#else  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+bool SafetyFunctionState::MergePartialFromCodedStream(
+    ::PROTOBUF_NAMESPACE_ID::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!PROTOBUF_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+  // @@protoc_insertion_point(parse_start:Nrmk.IndyFramework.SafetyFunctionState)
+  for (;;) {
+    ::std::pair<::PROTOBUF_NAMESPACE_ID::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(16383u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // uint32 id = 1;
+      case 1: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (8 & 0xFF)) {
+
+          DO_((::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadPrimitive<
+                   ::PROTOBUF_NAMESPACE_ID::uint32, ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_UINT32>(
+                 input, &id_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // uint32 state = 2;
+      case 2: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (16 & 0xFF)) {
+
+          DO_((::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadPrimitive<
+                   ::PROTOBUF_NAMESPACE_ID::uint32, ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_UINT32>(
+                 input, &state_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // .Nrmk.IndyFramework.Response response = 100;
+      case 100: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (802 & 0xFF)) {
+          DO_(::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadMessage(
+               input, mutable_response()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0) {
+          goto success;
+        }
+        DO_(::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:Nrmk.IndyFramework.SafetyFunctionState)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:Nrmk.IndyFramework.SafetyFunctionState)
+  return false;
+#undef DO_
+}
+#endif  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+
+void SafetyFunctionState::SerializeWithCachedSizes(
+    ::PROTOBUF_NAMESPACE_ID::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:Nrmk.IndyFramework.SafetyFunctionState)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // uint32 id = 1;
+  if (this->id() != 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt32(1, this->id(), output);
+  }
+
+  // uint32 state = 2;
+  if (this->state() != 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt32(2, this->state(), output);
+  }
+
+  // .Nrmk.IndyFramework.Response response = 100;
+  if (this->has_response()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteMessageMaybeToArray(
+      100, HasBitSetters::response(this), output);
+  }
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SerializeUnknownFields(
+        _internal_metadata_.unknown_fields(), output);
+  }
+  // @@protoc_insertion_point(serialize_end:Nrmk.IndyFramework.SafetyFunctionState)
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* SafetyFunctionState::InternalSerializeWithCachedSizesToArray(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.SafetyFunctionState)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // uint32 id = 1;
+  if (this->id() != 0) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt32ToArray(1, this->id(), target);
+  }
+
+  // uint32 state = 2;
+  if (this->state() != 0) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt32ToArray(2, this->state(), target);
+  }
+
+  // .Nrmk.IndyFramework.Response response = 100;
+  if (this->has_response()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessageToArray(
+        100, HasBitSetters::response(this), target);
+  }
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields(), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.SafetyFunctionState)
+  return target;
+}
+
+size_t SafetyFunctionState::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.SafetyFunctionState)
+  size_t total_size = 0;
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::ComputeUnknownFieldsSize(
+        _internal_metadata_.unknown_fields());
+  }
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // .Nrmk.IndyFramework.Response response = 100;
+  if (this->has_response()) {
+    total_size += 2 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *response_);
+  }
+
+  // uint32 id = 1;
+  if (this->id() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt32Size(
+        this->id());
+  }
+
+  // uint32 state = 2;
+  if (this->state() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt32Size(
+        this->state());
+  }
+
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void SafetyFunctionState::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:Nrmk.IndyFramework.SafetyFunctionState)
+  GOOGLE_DCHECK_NE(&from, this);
+  const SafetyFunctionState* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<SafetyFunctionState>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Nrmk.IndyFramework.SafetyFunctionState)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:Nrmk.IndyFramework.SafetyFunctionState)
+    MergeFrom(*source);
+  }
+}
+
+void SafetyFunctionState::MergeFrom(const SafetyFunctionState& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.SafetyFunctionState)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.has_response()) {
+    mutable_response()->::Nrmk::IndyFramework::Response::MergeFrom(from.response());
+  }
+  if (from.id() != 0) {
+    set_id(from.id());
+  }
+  if (from.state() != 0) {
+    set_state(from.state());
+  }
+}
+
+void SafetyFunctionState::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:Nrmk.IndyFramework.SafetyFunctionState)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void SafetyFunctionState::CopyFrom(const SafetyFunctionState& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Nrmk.IndyFramework.SafetyFunctionState)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool SafetyFunctionState::IsInitialized() const {
+  return true;
+}
+
+void SafetyFunctionState::Swap(SafetyFunctionState* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void SafetyFunctionState::InternalSwap(SafetyFunctionState* other) {
+  using std::swap;
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  swap(response_, other->response_);
+  swap(id_, other->id_);
+  swap(state_, other->state_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata SafetyFunctionState::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
+// ===================================================================
+
+void SafetyControlData::InitAsDefaultInstance() {
+  ::Nrmk::IndyFramework::_SafetyControlData_default_instance_._instance.get_mutable()->safety_state_ = const_cast< ::Nrmk::IndyFramework::SafetyFunctionState*>(
+      ::Nrmk::IndyFramework::SafetyFunctionState::internal_default_instance());
+}
+class SafetyControlData::HasBitSetters {
+ public:
+  static const ::Nrmk::IndyFramework::SafetyFunctionState& safety_state(const SafetyControlData* msg);
+};
+
+const ::Nrmk::IndyFramework::SafetyFunctionState&
+SafetyControlData::HasBitSetters::safety_state(const SafetyControlData* msg) {
+  return *msg->safety_state_;
+}
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int SafetyControlData::kAutoModeFieldNumber;
+const int SafetyControlData::kReducedModeFieldNumber;
+const int SafetyControlData::kEnablerPressedFieldNumber;
+const int SafetyControlData::kSafetyStateFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+SafetyControlData::SafetyControlData()
+  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:Nrmk.IndyFramework.SafetyControlData)
+}
+SafetyControlData::SafetyControlData(const SafetyControlData& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _internal_metadata_(nullptr) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  if (from.has_safety_state()) {
+    safety_state_ = new ::Nrmk::IndyFramework::SafetyFunctionState(*from.safety_state_);
+  } else {
+    safety_state_ = nullptr;
+  }
+  ::memcpy(&auto_mode_, &from.auto_mode_,
+    static_cast<size_t>(reinterpret_cast<char*>(&enabler_pressed_) -
+    reinterpret_cast<char*>(&auto_mode_)) + sizeof(enabler_pressed_));
+  // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.SafetyControlData)
+}
+
+void SafetyControlData::SharedCtor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_SafetyControlData_device_5fmsgs_2eproto.base);
+  ::memset(&safety_state_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&enabler_pressed_) -
+      reinterpret_cast<char*>(&safety_state_)) + sizeof(enabler_pressed_));
+}
+
+SafetyControlData::~SafetyControlData() {
+  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.SafetyControlData)
+  SharedDtor();
+}
+
+void SafetyControlData::SharedDtor() {
+  if (this != internal_default_instance()) delete safety_state_;
+}
+
+void SafetyControlData::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const SafetyControlData& SafetyControlData::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_SafetyControlData_device_5fmsgs_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void SafetyControlData::Clear() {
+// @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.SafetyControlData)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  if (GetArenaNoVirtual() == nullptr && safety_state_ != nullptr) {
+    delete safety_state_;
+  }
+  safety_state_ = nullptr;
+  ::memset(&auto_mode_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&enabler_pressed_) -
+      reinterpret_cast<char*>(&auto_mode_)) + sizeof(enabler_pressed_));
+  _internal_metadata_.Clear();
+}
+
+#if GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+const char* SafetyControlData::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // bool auto_mode = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          auto_mode_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // bool reduced_mode = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
+          reduced_mode_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // bool enabler_pressed = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 24)) {
+          enabler_pressed_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .Nrmk.IndyFramework.SafetyFunctionState safety_state = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 42)) {
+          ptr = ctx->ParseMessage(mutable_safety_state(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+#else  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+bool SafetyControlData::MergePartialFromCodedStream(
+    ::PROTOBUF_NAMESPACE_ID::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!PROTOBUF_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+  // @@protoc_insertion_point(parse_start:Nrmk.IndyFramework.SafetyControlData)
+  for (;;) {
+    ::std::pair<::PROTOBUF_NAMESPACE_ID::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // bool auto_mode = 1;
+      case 1: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (8 & 0xFF)) {
+
+          DO_((::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadPrimitive<
+                   bool, ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_BOOL>(
+                 input, &auto_mode_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // bool reduced_mode = 2;
+      case 2: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (16 & 0xFF)) {
+
+          DO_((::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadPrimitive<
+                   bool, ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_BOOL>(
+                 input, &reduced_mode_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // bool enabler_pressed = 3;
+      case 3: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (24 & 0xFF)) {
+
+          DO_((::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadPrimitive<
+                   bool, ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_BOOL>(
+                 input, &enabler_pressed_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // .Nrmk.IndyFramework.SafetyFunctionState safety_state = 5;
+      case 5: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (42 & 0xFF)) {
+          DO_(::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadMessage(
+               input, mutable_safety_state()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0) {
+          goto success;
+        }
+        DO_(::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:Nrmk.IndyFramework.SafetyControlData)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:Nrmk.IndyFramework.SafetyControlData)
+  return false;
+#undef DO_
+}
+#endif  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+
+void SafetyControlData::SerializeWithCachedSizes(
+    ::PROTOBUF_NAMESPACE_ID::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:Nrmk.IndyFramework.SafetyControlData)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // bool auto_mode = 1;
+  if (this->auto_mode() != 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBool(1, this->auto_mode(), output);
+  }
+
+  // bool reduced_mode = 2;
+  if (this->reduced_mode() != 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBool(2, this->reduced_mode(), output);
+  }
+
+  // bool enabler_pressed = 3;
+  if (this->enabler_pressed() != 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBool(3, this->enabler_pressed(), output);
+  }
+
+  // .Nrmk.IndyFramework.SafetyFunctionState safety_state = 5;
+  if (this->has_safety_state()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteMessageMaybeToArray(
+      5, HasBitSetters::safety_state(this), output);
+  }
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SerializeUnknownFields(
+        _internal_metadata_.unknown_fields(), output);
+  }
+  // @@protoc_insertion_point(serialize_end:Nrmk.IndyFramework.SafetyControlData)
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* SafetyControlData::InternalSerializeWithCachedSizesToArray(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.SafetyControlData)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // bool auto_mode = 1;
+  if (this->auto_mode() != 0) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(1, this->auto_mode(), target);
+  }
+
+  // bool reduced_mode = 2;
+  if (this->reduced_mode() != 0) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(2, this->reduced_mode(), target);
+  }
+
+  // bool enabler_pressed = 3;
+  if (this->enabler_pressed() != 0) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(3, this->enabler_pressed(), target);
+  }
+
+  // .Nrmk.IndyFramework.SafetyFunctionState safety_state = 5;
+  if (this->has_safety_state()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessageToArray(
+        5, HasBitSetters::safety_state(this), target);
+  }
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields(), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.SafetyControlData)
+  return target;
+}
+
+size_t SafetyControlData::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.SafetyControlData)
+  size_t total_size = 0;
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::ComputeUnknownFieldsSize(
+        _internal_metadata_.unknown_fields());
+  }
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // .Nrmk.IndyFramework.SafetyFunctionState safety_state = 5;
+  if (this->has_safety_state()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *safety_state_);
+  }
+
+  // bool auto_mode = 1;
+  if (this->auto_mode() != 0) {
+    total_size += 1 + 1;
+  }
+
+  // bool reduced_mode = 2;
+  if (this->reduced_mode() != 0) {
+    total_size += 1 + 1;
+  }
+
+  // bool enabler_pressed = 3;
+  if (this->enabler_pressed() != 0) {
+    total_size += 1 + 1;
+  }
+
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void SafetyControlData::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:Nrmk.IndyFramework.SafetyControlData)
+  GOOGLE_DCHECK_NE(&from, this);
+  const SafetyControlData* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<SafetyControlData>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Nrmk.IndyFramework.SafetyControlData)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:Nrmk.IndyFramework.SafetyControlData)
+    MergeFrom(*source);
+  }
+}
+
+void SafetyControlData::MergeFrom(const SafetyControlData& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.SafetyControlData)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.has_safety_state()) {
+    mutable_safety_state()->::Nrmk::IndyFramework::SafetyFunctionState::MergeFrom(from.safety_state());
+  }
+  if (from.auto_mode() != 0) {
+    set_auto_mode(from.auto_mode());
+  }
+  if (from.reduced_mode() != 0) {
+    set_reduced_mode(from.reduced_mode());
+  }
+  if (from.enabler_pressed() != 0) {
+    set_enabler_pressed(from.enabler_pressed());
+  }
+}
+
+void SafetyControlData::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:Nrmk.IndyFramework.SafetyControlData)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void SafetyControlData::CopyFrom(const SafetyControlData& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Nrmk.IndyFramework.SafetyControlData)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool SafetyControlData::IsInitialized() const {
+  return true;
+}
+
+void SafetyControlData::Swap(SafetyControlData* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void SafetyControlData::InternalSwap(SafetyControlData* other) {
+  using std::swap;
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  swap(safety_state_, other->safety_state_);
+  swap(auto_mode_, other->auto_mode_);
+  swap(reduced_mode_, other->reduced_mode_);
+  swap(enabler_pressed_, other->enabler_pressed_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata SafetyControlData::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
+// ===================================================================
+
+void SanderCommand::InitAsDefaultInstance() {
+}
+class SanderCommand::HasBitSetters {
+ public:
+};
+
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int SanderCommand::kTypeFieldNumber;
+const int SanderCommand::kIpFieldNumber;
+const int SanderCommand::kSpeedFieldNumber;
+const int SanderCommand::kStateFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+SanderCommand::SanderCommand()
+  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:Nrmk.IndyFramework.SanderCommand)
+}
+SanderCommand::SanderCommand(const SanderCommand& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _internal_metadata_(nullptr) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ip_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (from.ip().size() > 0) {
+    ip_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.ip_);
+  }
+  ::memcpy(&type_, &from.type_,
+    static_cast<size_t>(reinterpret_cast<char*>(&state_) -
+    reinterpret_cast<char*>(&type_)) + sizeof(state_));
+  // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.SanderCommand)
+}
+
+void SanderCommand::SharedCtor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_SanderCommand_device_5fmsgs_2eproto.base);
+  ip_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  ::memset(&type_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&state_) -
+      reinterpret_cast<char*>(&type_)) + sizeof(state_));
+}
+
+SanderCommand::~SanderCommand() {
+  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.SanderCommand)
+  SharedDtor();
+}
+
+void SanderCommand::SharedDtor() {
+  ip_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void SanderCommand::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const SanderCommand& SanderCommand::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_SanderCommand_device_5fmsgs_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void SanderCommand::Clear() {
+// @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.SanderCommand)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ip_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  ::memset(&type_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&state_) -
+      reinterpret_cast<char*>(&type_)) + sizeof(state_));
+  _internal_metadata_.Clear();
+}
+
+#if GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+const char* SanderCommand::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // .Nrmk.IndyFramework.SanderCommand.SanderType type = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+          set_type(static_cast<::Nrmk::IndyFramework::SanderCommand_SanderType>(val));
+        } else goto handle_unusual;
+        continue;
+      // string ip = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParserUTF8(mutable_ip(), ptr, ctx, "Nrmk.IndyFramework.SanderCommand.ip");
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // float speed = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 29)) {
+          speed_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else goto handle_unusual;
+        continue;
+      // bool state = 10;
+      case 10:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 80)) {
+          state_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+#else  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+bool SanderCommand::MergePartialFromCodedStream(
+    ::PROTOBUF_NAMESPACE_ID::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!PROTOBUF_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+  // @@protoc_insertion_point(parse_start:Nrmk.IndyFramework.SanderCommand)
+  for (;;) {
+    ::std::pair<::PROTOBUF_NAMESPACE_ID::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // .Nrmk.IndyFramework.SanderCommand.SanderType type = 1;
+      case 1: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (8 & 0xFF)) {
+          int value = 0;
+          DO_((::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadPrimitive<
+                   int, ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_ENUM>(
+                 input, &value)));
+          set_type(static_cast< ::Nrmk::IndyFramework::SanderCommand_SanderType >(value));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // string ip = 2;
+      case 2: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (18 & 0xFF)) {
+          DO_(::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadString(
+                input, this->mutable_ip()));
+          DO_(::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+            this->ip().data(), static_cast<int>(this->ip().length()),
+            ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE,
+            "Nrmk.IndyFramework.SanderCommand.ip"));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // float speed = 3;
+      case 3: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (29 & 0xFF)) {
+
+          DO_((::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadPrimitive<
+                   float, ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_FLOAT>(
+                 input, &speed_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // bool state = 10;
+      case 10: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (80 & 0xFF)) {
+
+          DO_((::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadPrimitive<
+                   bool, ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_BOOL>(
+                 input, &state_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0) {
+          goto success;
+        }
+        DO_(::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:Nrmk.IndyFramework.SanderCommand)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:Nrmk.IndyFramework.SanderCommand)
+  return false;
+#undef DO_
+}
+#endif  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+
+void SanderCommand::SerializeWithCachedSizes(
+    ::PROTOBUF_NAMESPACE_ID::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:Nrmk.IndyFramework.SanderCommand)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .Nrmk.IndyFramework.SanderCommand.SanderType type = 1;
+  if (this->type() != 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnum(
+      1, this->type(), output);
+  }
+
+  // string ip = 2;
+  if (this->ip().size() > 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->ip().data(), static_cast<int>(this->ip().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Nrmk.IndyFramework.SanderCommand.ip");
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteStringMaybeAliased(
+      2, this->ip(), output);
+  }
+
+  // float speed = 3;
+  if (!(this->speed() <= 0 && this->speed() >= 0)) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloat(3, this->speed(), output);
+  }
+
+  // bool state = 10;
+  if (this->state() != 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBool(10, this->state(), output);
+  }
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SerializeUnknownFields(
+        _internal_metadata_.unknown_fields(), output);
+  }
+  // @@protoc_insertion_point(serialize_end:Nrmk.IndyFramework.SanderCommand)
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* SanderCommand::InternalSerializeWithCachedSizesToArray(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.SanderCommand)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .Nrmk.IndyFramework.SanderCommand.SanderType type = 1;
+  if (this->type() != 0) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
+      1, this->type(), target);
+  }
+
+  // string ip = 2;
+  if (this->ip().size() > 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->ip().data(), static_cast<int>(this->ip().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Nrmk.IndyFramework.SanderCommand.ip");
+    target =
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteStringToArray(
+        2, this->ip(), target);
+  }
+
+  // float speed = 3;
+  if (!(this->speed() <= 0 && this->speed() >= 0)) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(3, this->speed(), target);
+  }
+
+  // bool state = 10;
+  if (this->state() != 0) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(10, this->state(), target);
+  }
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields(), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.SanderCommand)
+  return target;
+}
+
+size_t SanderCommand::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.SanderCommand)
+  size_t total_size = 0;
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::ComputeUnknownFieldsSize(
+        _internal_metadata_.unknown_fields());
+  }
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string ip = 2;
+  if (this->ip().size() > 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->ip());
+  }
+
+  // .Nrmk.IndyFramework.SanderCommand.SanderType type = 1;
+  if (this->type() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->type());
+  }
+
+  // float speed = 3;
+  if (!(this->speed() <= 0 && this->speed() >= 0)) {
+    total_size += 1 + 4;
+  }
+
+  // bool state = 10;
+  if (this->state() != 0) {
+    total_size += 1 + 1;
+  }
+
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void SanderCommand::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:Nrmk.IndyFramework.SanderCommand)
+  GOOGLE_DCHECK_NE(&from, this);
+  const SanderCommand* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<SanderCommand>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Nrmk.IndyFramework.SanderCommand)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:Nrmk.IndyFramework.SanderCommand)
+    MergeFrom(*source);
+  }
+}
+
+void SanderCommand::MergeFrom(const SanderCommand& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.SanderCommand)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.ip().size() > 0) {
+
+    ip_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.ip_);
+  }
+  if (from.type() != 0) {
+    set_type(from.type());
+  }
+  if (!(from.speed() <= 0 && from.speed() >= 0)) {
+    set_speed(from.speed());
+  }
+  if (from.state() != 0) {
+    set_state(from.state());
+  }
+}
+
+void SanderCommand::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:Nrmk.IndyFramework.SanderCommand)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void SanderCommand::CopyFrom(const SanderCommand& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Nrmk.IndyFramework.SanderCommand)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool SanderCommand::IsInitialized() const {
+  return true;
+}
+
+void SanderCommand::Swap(SanderCommand* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void SanderCommand::InternalSwap(SanderCommand* other) {
+  using std::swap;
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  ip_.Swap(&other->ip_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+    GetArenaNoVirtual());
+  swap(type_, other->type_);
+  swap(speed_, other->speed_);
+  swap(state_, other->state_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata SanderCommand::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
+// ===================================================================
+
+void Encoder::InitAsDefaultInstance() {
+}
+class Encoder::HasBitSetters {
+ public:
+};
+
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int Encoder::kTypeFieldNumber;
+const int Encoder::kChannel1FieldNumber;
+const int Encoder::kChannel2FieldNumber;
+const int Encoder::kSampleNumFieldNumber;
+const int Encoder::kMmPerTickFieldNumber;
+const int Encoder::kVelConstMmpsFieldNumber;
+const int Encoder::kReversedFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+Encoder::Encoder()
+  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:Nrmk.IndyFramework.Encoder)
+}
+Encoder::Encoder(const Encoder& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _internal_metadata_(nullptr) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::memcpy(&channel1_, &from.channel1_,
+    static_cast<size_t>(reinterpret_cast<char*>(&reversed_) -
+    reinterpret_cast<char*>(&channel1_)) + sizeof(reversed_));
+  // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.Encoder)
+}
+
+void Encoder::SharedCtor() {
+  ::memset(&channel1_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&reversed_) -
+      reinterpret_cast<char*>(&channel1_)) + sizeof(reversed_));
+}
+
+Encoder::~Encoder() {
+  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.Encoder)
+  SharedDtor();
+}
+
+void Encoder::SharedDtor() {
+}
+
+void Encoder::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const Encoder& Encoder::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_Encoder_device_5fmsgs_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void Encoder::Clear() {
+// @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.Encoder)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ::memset(&channel1_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&reversed_) -
+      reinterpret_cast<char*>(&channel1_)) + sizeof(reversed_));
+  _internal_metadata_.Clear();
+}
+
+#if GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+const char* Encoder::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // .Nrmk.IndyFramework.Encoder.EncoderType type = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+          set_type(static_cast<::Nrmk::IndyFramework::Encoder_EncoderType>(val));
+        } else goto handle_unusual;
+        continue;
+      // int64 channel1 = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
+          channel1_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // int64 channel2 = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 24)) {
+          channel2_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // int64 sample_num = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 32)) {
+          sample_num_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // float mm_per_tick = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 45)) {
+          mm_per_tick_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else goto handle_unusual;
+        continue;
+      // float vel_const_mmps = 6;
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 53)) {
+          vel_const_mmps_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else goto handle_unusual;
+        continue;
+      // bool reversed = 7;
+      case 7:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 56)) {
+          reversed_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+#else  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+bool Encoder::MergePartialFromCodedStream(
+    ::PROTOBUF_NAMESPACE_ID::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!PROTOBUF_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+  // @@protoc_insertion_point(parse_start:Nrmk.IndyFramework.Encoder)
+  for (;;) {
+    ::std::pair<::PROTOBUF_NAMESPACE_ID::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // .Nrmk.IndyFramework.Encoder.EncoderType type = 1;
+      case 1: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (8 & 0xFF)) {
+          int value = 0;
+          DO_((::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadPrimitive<
+                   int, ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_ENUM>(
+                 input, &value)));
+          set_type(static_cast< ::Nrmk::IndyFramework::Encoder_EncoderType >(value));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // int64 channel1 = 2;
+      case 2: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (16 & 0xFF)) {
+
+          DO_((::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadPrimitive<
+                   ::PROTOBUF_NAMESPACE_ID::int64, ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_INT64>(
+                 input, &channel1_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // int64 channel2 = 3;
+      case 3: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (24 & 0xFF)) {
+
+          DO_((::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadPrimitive<
+                   ::PROTOBUF_NAMESPACE_ID::int64, ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_INT64>(
+                 input, &channel2_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // int64 sample_num = 4;
+      case 4: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (32 & 0xFF)) {
+
+          DO_((::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadPrimitive<
+                   ::PROTOBUF_NAMESPACE_ID::int64, ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_INT64>(
+                 input, &sample_num_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // float mm_per_tick = 5;
+      case 5: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (45 & 0xFF)) {
+
+          DO_((::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadPrimitive<
+                   float, ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_FLOAT>(
+                 input, &mm_per_tick_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // float vel_const_mmps = 6;
+      case 6: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (53 & 0xFF)) {
+
+          DO_((::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadPrimitive<
+                   float, ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_FLOAT>(
+                 input, &vel_const_mmps_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // bool reversed = 7;
+      case 7: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (56 & 0xFF)) {
+
+          DO_((::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadPrimitive<
+                   bool, ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_BOOL>(
+                 input, &reversed_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0) {
+          goto success;
+        }
+        DO_(::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:Nrmk.IndyFramework.Encoder)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:Nrmk.IndyFramework.Encoder)
+  return false;
+#undef DO_
+}
+#endif  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+
+void Encoder::SerializeWithCachedSizes(
+    ::PROTOBUF_NAMESPACE_ID::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:Nrmk.IndyFramework.Encoder)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .Nrmk.IndyFramework.Encoder.EncoderType type = 1;
+  if (this->type() != 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnum(
+      1, this->type(), output);
+  }
+
+  // int64 channel1 = 2;
+  if (this->channel1() != 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt64(2, this->channel1(), output);
+  }
+
+  // int64 channel2 = 3;
+  if (this->channel2() != 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt64(3, this->channel2(), output);
+  }
+
+  // int64 sample_num = 4;
+  if (this->sample_num() != 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt64(4, this->sample_num(), output);
+  }
+
+  // float mm_per_tick = 5;
+  if (!(this->mm_per_tick() <= 0 && this->mm_per_tick() >= 0)) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloat(5, this->mm_per_tick(), output);
+  }
+
+  // float vel_const_mmps = 6;
+  if (!(this->vel_const_mmps() <= 0 && this->vel_const_mmps() >= 0)) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloat(6, this->vel_const_mmps(), output);
+  }
+
+  // bool reversed = 7;
+  if (this->reversed() != 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBool(7, this->reversed(), output);
+  }
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SerializeUnknownFields(
+        _internal_metadata_.unknown_fields(), output);
+  }
+  // @@protoc_insertion_point(serialize_end:Nrmk.IndyFramework.Encoder)
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* Encoder::InternalSerializeWithCachedSizesToArray(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.Encoder)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .Nrmk.IndyFramework.Encoder.EncoderType type = 1;
+  if (this->type() != 0) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
+      1, this->type(), target);
+  }
+
+  // int64 channel1 = 2;
+  if (this->channel1() != 0) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt64ToArray(2, this->channel1(), target);
+  }
+
+  // int64 channel2 = 3;
+  if (this->channel2() != 0) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt64ToArray(3, this->channel2(), target);
+  }
+
+  // int64 sample_num = 4;
+  if (this->sample_num() != 0) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt64ToArray(4, this->sample_num(), target);
+  }
+
+  // float mm_per_tick = 5;
+  if (!(this->mm_per_tick() <= 0 && this->mm_per_tick() >= 0)) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(5, this->mm_per_tick(), target);
+  }
+
+  // float vel_const_mmps = 6;
+  if (!(this->vel_const_mmps() <= 0 && this->vel_const_mmps() >= 0)) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(6, this->vel_const_mmps(), target);
+  }
+
+  // bool reversed = 7;
+  if (this->reversed() != 0) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(7, this->reversed(), target);
+  }
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields(), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.Encoder)
+  return target;
+}
+
+size_t Encoder::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.Encoder)
+  size_t total_size = 0;
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::ComputeUnknownFieldsSize(
+        _internal_metadata_.unknown_fields());
+  }
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // int64 channel1 = 2;
+  if (this->channel1() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int64Size(
+        this->channel1());
+  }
+
+  // int64 channel2 = 3;
+  if (this->channel2() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int64Size(
+        this->channel2());
+  }
+
+  // .Nrmk.IndyFramework.Encoder.EncoderType type = 1;
+  if (this->type() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->type());
+  }
+
+  // float mm_per_tick = 5;
+  if (!(this->mm_per_tick() <= 0 && this->mm_per_tick() >= 0)) {
+    total_size += 1 + 4;
+  }
+
+  // int64 sample_num = 4;
+  if (this->sample_num() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int64Size(
+        this->sample_num());
+  }
+
+  // float vel_const_mmps = 6;
+  if (!(this->vel_const_mmps() <= 0 && this->vel_const_mmps() >= 0)) {
+    total_size += 1 + 4;
+  }
+
+  // bool reversed = 7;
+  if (this->reversed() != 0) {
+    total_size += 1 + 1;
+  }
+
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void Encoder::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:Nrmk.IndyFramework.Encoder)
+  GOOGLE_DCHECK_NE(&from, this);
+  const Encoder* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<Encoder>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Nrmk.IndyFramework.Encoder)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:Nrmk.IndyFramework.Encoder)
+    MergeFrom(*source);
+  }
+}
+
+void Encoder::MergeFrom(const Encoder& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.Encoder)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.channel1() != 0) {
+    set_channel1(from.channel1());
+  }
+  if (from.channel2() != 0) {
+    set_channel2(from.channel2());
+  }
+  if (from.type() != 0) {
+    set_type(from.type());
+  }
+  if (!(from.mm_per_tick() <= 0 && from.mm_per_tick() >= 0)) {
+    set_mm_per_tick(from.mm_per_tick());
+  }
+  if (from.sample_num() != 0) {
+    set_sample_num(from.sample_num());
+  }
+  if (!(from.vel_const_mmps() <= 0 && from.vel_const_mmps() >= 0)) {
+    set_vel_const_mmps(from.vel_const_mmps());
+  }
+  if (from.reversed() != 0) {
+    set_reversed(from.reversed());
+  }
+}
+
+void Encoder::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:Nrmk.IndyFramework.Encoder)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void Encoder::CopyFrom(const Encoder& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Nrmk.IndyFramework.Encoder)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool Encoder::IsInitialized() const {
+  return true;
+}
+
+void Encoder::Swap(Encoder* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void Encoder::InternalSwap(Encoder* other) {
+  using std::swap;
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  swap(channel1_, other->channel1_);
+  swap(channel2_, other->channel2_);
+  swap(type_, other->type_);
+  swap(mm_per_tick_, other->mm_per_tick_);
+  swap(sample_num_, other->sample_num_);
+  swap(vel_const_mmps_, other->vel_const_mmps_);
+  swap(reversed_, other->reversed_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata Encoder::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
+// ===================================================================
+
+void Trigger::InitAsDefaultInstance() {
+}
+class Trigger::HasBitSetters {
+ public:
+};
+
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int Trigger::kTypeFieldNumber;
+const int Trigger::kChannelFieldNumber;
+const int Trigger::kDetectRiseFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+Trigger::Trigger()
+  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:Nrmk.IndyFramework.Trigger)
+}
+Trigger::Trigger(const Trigger& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _internal_metadata_(nullptr) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::memcpy(&channel_, &from.channel_,
+    static_cast<size_t>(reinterpret_cast<char*>(&detect_rise_) -
+    reinterpret_cast<char*>(&channel_)) + sizeof(detect_rise_));
+  // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.Trigger)
+}
+
+void Trigger::SharedCtor() {
+  ::memset(&channel_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&detect_rise_) -
+      reinterpret_cast<char*>(&channel_)) + sizeof(detect_rise_));
+}
+
+Trigger::~Trigger() {
+  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.Trigger)
+  SharedDtor();
+}
+
+void Trigger::SharedDtor() {
+}
+
+void Trigger::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const Trigger& Trigger::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_Trigger_device_5fmsgs_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void Trigger::Clear() {
+// @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.Trigger)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ::memset(&channel_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&detect_rise_) -
+      reinterpret_cast<char*>(&channel_)) + sizeof(detect_rise_));
+  _internal_metadata_.Clear();
+}
+
+#if GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+const char* Trigger::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // .Nrmk.IndyFramework.Trigger.TriggerType type = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+          set_type(static_cast<::Nrmk::IndyFramework::Trigger_TriggerType>(val));
+        } else goto handle_unusual;
+        continue;
+      // int64 channel = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
+          channel_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // bool detect_rise = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 24)) {
+          detect_rise_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+#else  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+bool Trigger::MergePartialFromCodedStream(
+    ::PROTOBUF_NAMESPACE_ID::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!PROTOBUF_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+  // @@protoc_insertion_point(parse_start:Nrmk.IndyFramework.Trigger)
+  for (;;) {
+    ::std::pair<::PROTOBUF_NAMESPACE_ID::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // .Nrmk.IndyFramework.Trigger.TriggerType type = 1;
+      case 1: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (8 & 0xFF)) {
+          int value = 0;
+          DO_((::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadPrimitive<
+                   int, ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_ENUM>(
+                 input, &value)));
+          set_type(static_cast< ::Nrmk::IndyFramework::Trigger_TriggerType >(value));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // int64 channel = 2;
+      case 2: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (16 & 0xFF)) {
+
+          DO_((::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadPrimitive<
+                   ::PROTOBUF_NAMESPACE_ID::int64, ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_INT64>(
+                 input, &channel_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // bool detect_rise = 3;
+      case 3: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (24 & 0xFF)) {
+
+          DO_((::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadPrimitive<
+                   bool, ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_BOOL>(
+                 input, &detect_rise_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0) {
+          goto success;
+        }
+        DO_(::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:Nrmk.IndyFramework.Trigger)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:Nrmk.IndyFramework.Trigger)
+  return false;
+#undef DO_
+}
+#endif  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+
+void Trigger::SerializeWithCachedSizes(
+    ::PROTOBUF_NAMESPACE_ID::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:Nrmk.IndyFramework.Trigger)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .Nrmk.IndyFramework.Trigger.TriggerType type = 1;
+  if (this->type() != 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnum(
+      1, this->type(), output);
+  }
+
+  // int64 channel = 2;
+  if (this->channel() != 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt64(2, this->channel(), output);
+  }
+
+  // bool detect_rise = 3;
+  if (this->detect_rise() != 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBool(3, this->detect_rise(), output);
+  }
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SerializeUnknownFields(
+        _internal_metadata_.unknown_fields(), output);
+  }
+  // @@protoc_insertion_point(serialize_end:Nrmk.IndyFramework.Trigger)
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* Trigger::InternalSerializeWithCachedSizesToArray(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.Trigger)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .Nrmk.IndyFramework.Trigger.TriggerType type = 1;
+  if (this->type() != 0) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
+      1, this->type(), target);
+  }
+
+  // int64 channel = 2;
+  if (this->channel() != 0) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt64ToArray(2, this->channel(), target);
+  }
+
+  // bool detect_rise = 3;
+  if (this->detect_rise() != 0) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(3, this->detect_rise(), target);
+  }
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields(), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.Trigger)
+  return target;
+}
+
+size_t Trigger::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.Trigger)
+  size_t total_size = 0;
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::ComputeUnknownFieldsSize(
+        _internal_metadata_.unknown_fields());
+  }
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // int64 channel = 2;
+  if (this->channel() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int64Size(
+        this->channel());
+  }
+
+  // .Nrmk.IndyFramework.Trigger.TriggerType type = 1;
+  if (this->type() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->type());
+  }
+
+  // bool detect_rise = 3;
+  if (this->detect_rise() != 0) {
+    total_size += 1 + 1;
+  }
+
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void Trigger::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:Nrmk.IndyFramework.Trigger)
+  GOOGLE_DCHECK_NE(&from, this);
+  const Trigger* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<Trigger>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Nrmk.IndyFramework.Trigger)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:Nrmk.IndyFramework.Trigger)
+    MergeFrom(*source);
+  }
+}
+
+void Trigger::MergeFrom(const Trigger& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.Trigger)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.channel() != 0) {
+    set_channel(from.channel());
+  }
+  if (from.type() != 0) {
+    set_type(from.type());
+  }
+  if (from.detect_rise() != 0) {
+    set_detect_rise(from.detect_rise());
+  }
+}
+
+void Trigger::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:Nrmk.IndyFramework.Trigger)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void Trigger::CopyFrom(const Trigger& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Nrmk.IndyFramework.Trigger)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool Trigger::IsInitialized() const {
+  return true;
+}
+
+void Trigger::Swap(Trigger* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void Trigger::InternalSwap(Trigger* other) {
+  using std::swap;
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  swap(channel_, other->channel_);
+  swap(type_, other->type_);
+  swap(detect_rise_, other->detect_rise_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata Trigger::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
+// ===================================================================
+
+void Conveyor::InitAsDefaultInstance() {
+  ::Nrmk::IndyFramework::_Conveyor_default_instance_._instance.get_mutable()->encoder_ = const_cast< ::Nrmk::IndyFramework::Encoder*>(
+      ::Nrmk::IndyFramework::Encoder::internal_default_instance());
+  ::Nrmk::IndyFramework::_Conveyor_default_instance_._instance.get_mutable()->trigger_ = const_cast< ::Nrmk::IndyFramework::Trigger*>(
+      ::Nrmk::IndyFramework::Trigger::internal_default_instance());
+  ::Nrmk::IndyFramework::_Conveyor_default_instance_._instance.get_mutable()->direction_ = const_cast< ::Nrmk::IndyFramework::Vector*>(
+      ::Nrmk::IndyFramework::Vector::internal_default_instance());
+  ::Nrmk::IndyFramework::_Conveyor_default_instance_._instance.get_mutable()->starting_pose_ = const_cast< ::Nrmk::IndyFramework::PosePair*>(
+      ::Nrmk::IndyFramework::PosePair::internal_default_instance());
+  ::Nrmk::IndyFramework::_Conveyor_default_instance_._instance.get_mutable()->terminal_pose_ = const_cast< ::Nrmk::IndyFramework::PosePair*>(
+      ::Nrmk::IndyFramework::PosePair::internal_default_instance());
+}
+class Conveyor::HasBitSetters {
+ public:
+  static const ::Nrmk::IndyFramework::Encoder& encoder(const Conveyor* msg);
+  static const ::Nrmk::IndyFramework::Trigger& trigger(const Conveyor* msg);
+  static const ::Nrmk::IndyFramework::Vector& direction(const Conveyor* msg);
+  static const ::Nrmk::IndyFramework::PosePair& starting_pose(const Conveyor* msg);
+  static const ::Nrmk::IndyFramework::PosePair& terminal_pose(const Conveyor* msg);
+};
+
+const ::Nrmk::IndyFramework::Encoder&
+Conveyor::HasBitSetters::encoder(const Conveyor* msg) {
+  return *msg->encoder_;
+}
+const ::Nrmk::IndyFramework::Trigger&
+Conveyor::HasBitSetters::trigger(const Conveyor* msg) {
+  return *msg->trigger_;
+}
+const ::Nrmk::IndyFramework::Vector&
+Conveyor::HasBitSetters::direction(const Conveyor* msg) {
+  return *msg->direction_;
+}
+const ::Nrmk::IndyFramework::PosePair&
+Conveyor::HasBitSetters::starting_pose(const Conveyor* msg) {
+  return *msg->starting_pose_;
+}
+const ::Nrmk::IndyFramework::PosePair&
+Conveyor::HasBitSetters::terminal_pose(const Conveyor* msg) {
+  return *msg->terminal_pose_;
+}
+void Conveyor::clear_direction() {
+  if (GetArenaNoVirtual() == nullptr && direction_ != nullptr) {
+    delete direction_;
+  }
+  direction_ = nullptr;
+}
+void Conveyor::clear_starting_pose() {
+  if (GetArenaNoVirtual() == nullptr && starting_pose_ != nullptr) {
+    delete starting_pose_;
+  }
+  starting_pose_ = nullptr;
+}
+void Conveyor::clear_terminal_pose() {
+  if (GetArenaNoVirtual() == nullptr && terminal_pose_ != nullptr) {
+    delete terminal_pose_;
+  }
+  terminal_pose_ = nullptr;
+}
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int Conveyor::kNameFieldNumber;
+const int Conveyor::kEncoderFieldNumber;
+const int Conveyor::kTriggerFieldNumber;
+const int Conveyor::kOffsetDistFieldNumber;
+const int Conveyor::kWorkingDistFieldNumber;
+const int Conveyor::kDirectionFieldNumber;
+const int Conveyor::kStartingPoseFieldNumber;
+const int Conveyor::kTerminalPoseFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+Conveyor::Conveyor()
+  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:Nrmk.IndyFramework.Conveyor)
+}
+Conveyor::Conveyor(const Conveyor& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _internal_metadata_(nullptr) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (from.name().size() > 0) {
+    name_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.name_);
+  }
+  if (from.has_encoder()) {
+    encoder_ = new ::Nrmk::IndyFramework::Encoder(*from.encoder_);
+  } else {
+    encoder_ = nullptr;
+  }
+  if (from.has_trigger()) {
+    trigger_ = new ::Nrmk::IndyFramework::Trigger(*from.trigger_);
+  } else {
+    trigger_ = nullptr;
+  }
+  if (from.has_direction()) {
+    direction_ = new ::Nrmk::IndyFramework::Vector(*from.direction_);
+  } else {
+    direction_ = nullptr;
+  }
+  if (from.has_starting_pose()) {
+    starting_pose_ = new ::Nrmk::IndyFramework::PosePair(*from.starting_pose_);
+  } else {
+    starting_pose_ = nullptr;
+  }
+  if (from.has_terminal_pose()) {
+    terminal_pose_ = new ::Nrmk::IndyFramework::PosePair(*from.terminal_pose_);
+  } else {
+    terminal_pose_ = nullptr;
+  }
+  ::memcpy(&offset_dist_, &from.offset_dist_,
+    static_cast<size_t>(reinterpret_cast<char*>(&working_dist_) -
+    reinterpret_cast<char*>(&offset_dist_)) + sizeof(working_dist_));
+  // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.Conveyor)
+}
+
+void Conveyor::SharedCtor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_Conveyor_device_5fmsgs_2eproto.base);
+  name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  ::memset(&encoder_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&working_dist_) -
+      reinterpret_cast<char*>(&encoder_)) + sizeof(working_dist_));
+}
+
+Conveyor::~Conveyor() {
+  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.Conveyor)
+  SharedDtor();
+}
+
+void Conveyor::SharedDtor() {
+  name_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (this != internal_default_instance()) delete encoder_;
+  if (this != internal_default_instance()) delete trigger_;
+  if (this != internal_default_instance()) delete direction_;
+  if (this != internal_default_instance()) delete starting_pose_;
+  if (this != internal_default_instance()) delete terminal_pose_;
+}
+
+void Conveyor::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const Conveyor& Conveyor::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_Conveyor_device_5fmsgs_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void Conveyor::Clear() {
+// @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.Conveyor)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  name_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (GetArenaNoVirtual() == nullptr && encoder_ != nullptr) {
+    delete encoder_;
+  }
+  encoder_ = nullptr;
+  if (GetArenaNoVirtual() == nullptr && trigger_ != nullptr) {
+    delete trigger_;
+  }
+  trigger_ = nullptr;
+  if (GetArenaNoVirtual() == nullptr && direction_ != nullptr) {
+    delete direction_;
+  }
+  direction_ = nullptr;
+  if (GetArenaNoVirtual() == nullptr && starting_pose_ != nullptr) {
+    delete starting_pose_;
+  }
+  starting_pose_ = nullptr;
+  if (GetArenaNoVirtual() == nullptr && terminal_pose_ != nullptr) {
+    delete terminal_pose_;
+  }
+  terminal_pose_ = nullptr;
+  ::memset(&offset_dist_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&working_dist_) -
+      reinterpret_cast<char*>(&offset_dist_)) + sizeof(working_dist_));
+  _internal_metadata_.Clear();
+}
+
+#if GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+const char* Conveyor::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // string name = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParserUTF8(mutable_name(), ptr, ctx, "Nrmk.IndyFramework.Conveyor.name");
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .Nrmk.IndyFramework.Encoder encoder = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          ptr = ctx->ParseMessage(mutable_encoder(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .Nrmk.IndyFramework.Trigger trigger = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
+          ptr = ctx->ParseMessage(mutable_trigger(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // float offset_dist = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 37)) {
+          offset_dist_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else goto handle_unusual;
+        continue;
+      // float working_dist = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 45)) {
+          working_dist_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else goto handle_unusual;
+        continue;
+      // .Nrmk.IndyFramework.Vector direction = 6;
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 50)) {
+          ptr = ctx->ParseMessage(mutable_direction(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .Nrmk.IndyFramework.PosePair starting_pose = 10;
+      case 10:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 82)) {
+          ptr = ctx->ParseMessage(mutable_starting_pose(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .Nrmk.IndyFramework.PosePair terminal_pose = 11;
+      case 11:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 90)) {
+          ptr = ctx->ParseMessage(mutable_terminal_pose(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+#else  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+bool Conveyor::MergePartialFromCodedStream(
+    ::PROTOBUF_NAMESPACE_ID::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!PROTOBUF_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+  // @@protoc_insertion_point(parse_start:Nrmk.IndyFramework.Conveyor)
+  for (;;) {
+    ::std::pair<::PROTOBUF_NAMESPACE_ID::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // string name = 1;
+      case 1: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (10 & 0xFF)) {
+          DO_(::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadString(
+                input, this->mutable_name()));
+          DO_(::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+            this->name().data(), static_cast<int>(this->name().length()),
+            ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE,
+            "Nrmk.IndyFramework.Conveyor.name"));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // .Nrmk.IndyFramework.Encoder encoder = 2;
+      case 2: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (18 & 0xFF)) {
+          DO_(::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadMessage(
+               input, mutable_encoder()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // .Nrmk.IndyFramework.Trigger trigger = 3;
+      case 3: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (26 & 0xFF)) {
+          DO_(::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadMessage(
+               input, mutable_trigger()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // float offset_dist = 4;
+      case 4: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (37 & 0xFF)) {
+
+          DO_((::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadPrimitive<
+                   float, ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_FLOAT>(
+                 input, &offset_dist_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // float working_dist = 5;
+      case 5: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (45 & 0xFF)) {
+
+          DO_((::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadPrimitive<
+                   float, ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_FLOAT>(
+                 input, &working_dist_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // .Nrmk.IndyFramework.Vector direction = 6;
+      case 6: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (50 & 0xFF)) {
+          DO_(::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadMessage(
+               input, mutable_direction()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // .Nrmk.IndyFramework.PosePair starting_pose = 10;
+      case 10: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (82 & 0xFF)) {
+          DO_(::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadMessage(
+               input, mutable_starting_pose()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // .Nrmk.IndyFramework.PosePair terminal_pose = 11;
+      case 11: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (90 & 0xFF)) {
+          DO_(::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadMessage(
+               input, mutable_terminal_pose()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0) {
+          goto success;
+        }
+        DO_(::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:Nrmk.IndyFramework.Conveyor)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:Nrmk.IndyFramework.Conveyor)
+  return false;
+#undef DO_
+}
+#endif  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+
+void Conveyor::SerializeWithCachedSizes(
+    ::PROTOBUF_NAMESPACE_ID::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:Nrmk.IndyFramework.Conveyor)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string name = 1;
+  if (this->name().size() > 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->name().data(), static_cast<int>(this->name().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Nrmk.IndyFramework.Conveyor.name");
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteStringMaybeAliased(
+      1, this->name(), output);
+  }
+
+  // .Nrmk.IndyFramework.Encoder encoder = 2;
+  if (this->has_encoder()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteMessageMaybeToArray(
+      2, HasBitSetters::encoder(this), output);
+  }
+
+  // .Nrmk.IndyFramework.Trigger trigger = 3;
+  if (this->has_trigger()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteMessageMaybeToArray(
+      3, HasBitSetters::trigger(this), output);
+  }
+
+  // float offset_dist = 4;
+  if (!(this->offset_dist() <= 0 && this->offset_dist() >= 0)) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloat(4, this->offset_dist(), output);
+  }
+
+  // float working_dist = 5;
+  if (!(this->working_dist() <= 0 && this->working_dist() >= 0)) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloat(5, this->working_dist(), output);
+  }
+
+  // .Nrmk.IndyFramework.Vector direction = 6;
+  if (this->has_direction()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteMessageMaybeToArray(
+      6, HasBitSetters::direction(this), output);
+  }
+
+  // .Nrmk.IndyFramework.PosePair starting_pose = 10;
+  if (this->has_starting_pose()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteMessageMaybeToArray(
+      10, HasBitSetters::starting_pose(this), output);
+  }
+
+  // .Nrmk.IndyFramework.PosePair terminal_pose = 11;
+  if (this->has_terminal_pose()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteMessageMaybeToArray(
+      11, HasBitSetters::terminal_pose(this), output);
+  }
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SerializeUnknownFields(
+        _internal_metadata_.unknown_fields(), output);
+  }
+  // @@protoc_insertion_point(serialize_end:Nrmk.IndyFramework.Conveyor)
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* Conveyor::InternalSerializeWithCachedSizesToArray(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.Conveyor)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string name = 1;
+  if (this->name().size() > 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->name().data(), static_cast<int>(this->name().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Nrmk.IndyFramework.Conveyor.name");
+    target =
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteStringToArray(
+        1, this->name(), target);
+  }
+
+  // .Nrmk.IndyFramework.Encoder encoder = 2;
+  if (this->has_encoder()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessageToArray(
+        2, HasBitSetters::encoder(this), target);
+  }
+
+  // .Nrmk.IndyFramework.Trigger trigger = 3;
+  if (this->has_trigger()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessageToArray(
+        3, HasBitSetters::trigger(this), target);
+  }
+
+  // float offset_dist = 4;
+  if (!(this->offset_dist() <= 0 && this->offset_dist() >= 0)) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(4, this->offset_dist(), target);
+  }
+
+  // float working_dist = 5;
+  if (!(this->working_dist() <= 0 && this->working_dist() >= 0)) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(5, this->working_dist(), target);
+  }
+
+  // .Nrmk.IndyFramework.Vector direction = 6;
+  if (this->has_direction()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessageToArray(
+        6, HasBitSetters::direction(this), target);
+  }
+
+  // .Nrmk.IndyFramework.PosePair starting_pose = 10;
+  if (this->has_starting_pose()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessageToArray(
+        10, HasBitSetters::starting_pose(this), target);
+  }
+
+  // .Nrmk.IndyFramework.PosePair terminal_pose = 11;
+  if (this->has_terminal_pose()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessageToArray(
+        11, HasBitSetters::terminal_pose(this), target);
+  }
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields(), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.Conveyor)
+  return target;
+}
+
+size_t Conveyor::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.Conveyor)
+  size_t total_size = 0;
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::ComputeUnknownFieldsSize(
+        _internal_metadata_.unknown_fields());
+  }
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string name = 1;
+  if (this->name().size() > 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->name());
+  }
+
+  // .Nrmk.IndyFramework.Encoder encoder = 2;
+  if (this->has_encoder()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *encoder_);
+  }
+
+  // .Nrmk.IndyFramework.Trigger trigger = 3;
+  if (this->has_trigger()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *trigger_);
+  }
+
+  // .Nrmk.IndyFramework.Vector direction = 6;
+  if (this->has_direction()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *direction_);
+  }
+
+  // .Nrmk.IndyFramework.PosePair starting_pose = 10;
+  if (this->has_starting_pose()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *starting_pose_);
+  }
+
+  // .Nrmk.IndyFramework.PosePair terminal_pose = 11;
+  if (this->has_terminal_pose()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *terminal_pose_);
+  }
+
+  // float offset_dist = 4;
+  if (!(this->offset_dist() <= 0 && this->offset_dist() >= 0)) {
+    total_size += 1 + 4;
+  }
+
+  // float working_dist = 5;
+  if (!(this->working_dist() <= 0 && this->working_dist() >= 0)) {
+    total_size += 1 + 4;
+  }
+
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void Conveyor::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:Nrmk.IndyFramework.Conveyor)
+  GOOGLE_DCHECK_NE(&from, this);
+  const Conveyor* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<Conveyor>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Nrmk.IndyFramework.Conveyor)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:Nrmk.IndyFramework.Conveyor)
+    MergeFrom(*source);
+  }
+}
+
+void Conveyor::MergeFrom(const Conveyor& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.Conveyor)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.name().size() > 0) {
+
+    name_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.name_);
+  }
+  if (from.has_encoder()) {
+    mutable_encoder()->::Nrmk::IndyFramework::Encoder::MergeFrom(from.encoder());
+  }
+  if (from.has_trigger()) {
+    mutable_trigger()->::Nrmk::IndyFramework::Trigger::MergeFrom(from.trigger());
+  }
+  if (from.has_direction()) {
+    mutable_direction()->::Nrmk::IndyFramework::Vector::MergeFrom(from.direction());
+  }
+  if (from.has_starting_pose()) {
+    mutable_starting_pose()->::Nrmk::IndyFramework::PosePair::MergeFrom(from.starting_pose());
+  }
+  if (from.has_terminal_pose()) {
+    mutable_terminal_pose()->::Nrmk::IndyFramework::PosePair::MergeFrom(from.terminal_pose());
+  }
+  if (!(from.offset_dist() <= 0 && from.offset_dist() >= 0)) {
+    set_offset_dist(from.offset_dist());
+  }
+  if (!(from.working_dist() <= 0 && from.working_dist() >= 0)) {
+    set_working_dist(from.working_dist());
+  }
+}
+
+void Conveyor::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:Nrmk.IndyFramework.Conveyor)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void Conveyor::CopyFrom(const Conveyor& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Nrmk.IndyFramework.Conveyor)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool Conveyor::IsInitialized() const {
+  return true;
+}
+
+void Conveyor::Swap(Conveyor* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void Conveyor::InternalSwap(Conveyor* other) {
+  using std::swap;
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  name_.Swap(&other->name_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+    GetArenaNoVirtual());
+  swap(encoder_, other->encoder_);
+  swap(trigger_, other->trigger_);
+  swap(direction_, other->direction_);
+  swap(starting_pose_, other->starting_pose_);
+  swap(terminal_pose_, other->terminal_pose_);
+  swap(offset_dist_, other->offset_dist_);
+  swap(working_dist_, other->working_dist_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata Conveyor::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
+// ===================================================================
+
+void ConveyorState::InitAsDefaultInstance() {
+}
+class ConveyorState::HasBitSetters {
+ public:
+};
+
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int ConveyorState::kVelocityFieldNumber;
+const int ConveyorState::kTriggeredFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+ConveyorState::ConveyorState()
+  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:Nrmk.IndyFramework.ConveyorState)
+}
+ConveyorState::ConveyorState(const ConveyorState& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _internal_metadata_(nullptr) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::memcpy(&velocity_, &from.velocity_,
+    static_cast<size_t>(reinterpret_cast<char*>(&triggered_) -
+    reinterpret_cast<char*>(&velocity_)) + sizeof(triggered_));
+  // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.ConveyorState)
+}
+
+void ConveyorState::SharedCtor() {
+  ::memset(&velocity_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&triggered_) -
+      reinterpret_cast<char*>(&velocity_)) + sizeof(triggered_));
+}
+
+ConveyorState::~ConveyorState() {
+  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.ConveyorState)
+  SharedDtor();
+}
+
+void ConveyorState::SharedDtor() {
+}
+
+void ConveyorState::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const ConveyorState& ConveyorState::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_ConveyorState_device_5fmsgs_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void ConveyorState::Clear() {
+// @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.ConveyorState)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ::memset(&velocity_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&triggered_) -
+      reinterpret_cast<char*>(&velocity_)) + sizeof(triggered_));
+  _internal_metadata_.Clear();
+}
+
+#if GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+const char* ConveyorState::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // float velocity = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 13)) {
+          velocity_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else goto handle_unusual;
+        continue;
+      // float triggered = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 21)) {
+          triggered_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+#else  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+bool ConveyorState::MergePartialFromCodedStream(
+    ::PROTOBUF_NAMESPACE_ID::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!PROTOBUF_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+  // @@protoc_insertion_point(parse_start:Nrmk.IndyFramework.ConveyorState)
+  for (;;) {
+    ::std::pair<::PROTOBUF_NAMESPACE_ID::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // float velocity = 1;
+      case 1: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (13 & 0xFF)) {
+
+          DO_((::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadPrimitive<
+                   float, ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_FLOAT>(
+                 input, &velocity_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // float triggered = 2;
+      case 2: {
+        if (static_cast< ::PROTOBUF_NAMESPACE_ID::uint8>(tag) == (21 & 0xFF)) {
+
+          DO_((::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::ReadPrimitive<
+                   float, ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_FLOAT>(
+                 input, &triggered_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0) {
+          goto success;
+        }
+        DO_(::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:Nrmk.IndyFramework.ConveyorState)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:Nrmk.IndyFramework.ConveyorState)
+  return false;
+#undef DO_
+}
+#endif  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+
+void ConveyorState::SerializeWithCachedSizes(
+    ::PROTOBUF_NAMESPACE_ID::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:Nrmk.IndyFramework.ConveyorState)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // float velocity = 1;
+  if (!(this->velocity() <= 0 && this->velocity() >= 0)) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloat(1, this->velocity(), output);
+  }
+
+  // float triggered = 2;
+  if (!(this->triggered() <= 0 && this->triggered() >= 0)) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloat(2, this->triggered(), output);
+  }
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SerializeUnknownFields(
+        _internal_metadata_.unknown_fields(), output);
+  }
+  // @@protoc_insertion_point(serialize_end:Nrmk.IndyFramework.ConveyorState)
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* ConveyorState::InternalSerializeWithCachedSizesToArray(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.ConveyorState)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // float velocity = 1;
+  if (!(this->velocity() <= 0 && this->velocity() >= 0)) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(1, this->velocity(), target);
+  }
+
+  // float triggered = 2;
+  if (!(this->triggered() <= 0 && this->triggered() >= 0)) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(2, this->triggered(), target);
+  }
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields(), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.ConveyorState)
+  return target;
+}
+
+size_t ConveyorState::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.ConveyorState)
+  size_t total_size = 0;
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::ComputeUnknownFieldsSize(
+        _internal_metadata_.unknown_fields());
+  }
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // float velocity = 1;
+  if (!(this->velocity() <= 0 && this->velocity() >= 0)) {
+    total_size += 1 + 4;
+  }
+
+  // float triggered = 2;
+  if (!(this->triggered() <= 0 && this->triggered() >= 0)) {
+    total_size += 1 + 4;
+  }
+
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void ConveyorState::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:Nrmk.IndyFramework.ConveyorState)
+  GOOGLE_DCHECK_NE(&from, this);
+  const ConveyorState* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<ConveyorState>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Nrmk.IndyFramework.ConveyorState)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:Nrmk.IndyFramework.ConveyorState)
+    MergeFrom(*source);
+  }
+}
+
+void ConveyorState::MergeFrom(const ConveyorState& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.ConveyorState)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!(from.velocity() <= 0 && from.velocity() >= 0)) {
+    set_velocity(from.velocity());
+  }
+  if (!(from.triggered() <= 0 && from.triggered() >= 0)) {
+    set_triggered(from.triggered());
+  }
+}
+
+void ConveyorState::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:Nrmk.IndyFramework.ConveyorState)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void ConveyorState::CopyFrom(const ConveyorState& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Nrmk.IndyFramework.ConveyorState)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool ConveyorState::IsInitialized() const {
+  return true;
+}
+
+void ConveyorState::Swap(ConveyorState* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void ConveyorState::InternalSwap(ConveyorState* other) {
+  using std::swap;
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  swap(velocity_, other->velocity_);
+  swap(triggered_, other->triggered_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata ConveyorState::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace IndyFramework
 }  // namespace Nrmk
-namespace google {
-namespace protobuf {
-}  // namespace protobuf
-}  // namespace google
+PROTOBUF_NAMESPACE_OPEN
+template<> PROTOBUF_NOINLINE ::Nrmk::IndyFramework::Motor* Arena::CreateMaybeMessage< ::Nrmk::IndyFramework::Motor >(Arena* arena) {
+  return Arena::CreateInternal< ::Nrmk::IndyFramework::Motor >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Nrmk::IndyFramework::Servo* Arena::CreateMaybeMessage< ::Nrmk::IndyFramework::Servo >(Arena* arena) {
+  return Arena::CreateInternal< ::Nrmk::IndyFramework::Servo >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Nrmk::IndyFramework::GripperData* Arena::CreateMaybeMessage< ::Nrmk::IndyFramework::GripperData >(Arena* arena) {
+  return Arena::CreateInternal< ::Nrmk::IndyFramework::GripperData >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Nrmk::IndyFramework::GripperCommand* Arena::CreateMaybeMessage< ::Nrmk::IndyFramework::GripperCommand >(Arena* arena) {
+  return Arena::CreateInternal< ::Nrmk::IndyFramework::GripperCommand >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Nrmk::IndyFramework::DigitalSignal* Arena::CreateMaybeMessage< ::Nrmk::IndyFramework::DigitalSignal >(Arena* arena) {
+  return Arena::CreateInternal< ::Nrmk::IndyFramework::DigitalSignal >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Nrmk::IndyFramework::EndLedDim* Arena::CreateMaybeMessage< ::Nrmk::IndyFramework::EndLedDim >(Arena* arena) {
+  return Arena::CreateInternal< ::Nrmk::IndyFramework::EndLedDim >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Nrmk::IndyFramework::EndtoolSignal* Arena::CreateMaybeMessage< ::Nrmk::IndyFramework::EndtoolSignal >(Arena* arena) {
+  return Arena::CreateInternal< ::Nrmk::IndyFramework::EndtoolSignal >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Nrmk::IndyFramework::AnalogSignal* Arena::CreateMaybeMessage< ::Nrmk::IndyFramework::AnalogSignal >(Arena* arena) {
+  return Arena::CreateInternal< ::Nrmk::IndyFramework::AnalogSignal >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Nrmk::IndyFramework::MotorList* Arena::CreateMaybeMessage< ::Nrmk::IndyFramework::MotorList >(Arena* arena) {
+  return Arena::CreateInternal< ::Nrmk::IndyFramework::MotorList >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Nrmk::IndyFramework::DigitalList* Arena::CreateMaybeMessage< ::Nrmk::IndyFramework::DigitalList >(Arena* arena) {
+  return Arena::CreateInternal< ::Nrmk::IndyFramework::DigitalList >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Nrmk::IndyFramework::EndtoolSignalList* Arena::CreateMaybeMessage< ::Nrmk::IndyFramework::EndtoolSignalList >(Arena* arena) {
+  return Arena::CreateInternal< ::Nrmk::IndyFramework::EndtoolSignalList >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Nrmk::IndyFramework::AnalogList* Arena::CreateMaybeMessage< ::Nrmk::IndyFramework::AnalogList >(Arena* arena) {
+  return Arena::CreateInternal< ::Nrmk::IndyFramework::AnalogList >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Nrmk::IndyFramework::DeviceInfo* Arena::CreateMaybeMessage< ::Nrmk::IndyFramework::DeviceInfo >(Arena* arena) {
+  return Arena::CreateInternal< ::Nrmk::IndyFramework::DeviceInfo >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Nrmk::IndyFramework::BrakeControlStyle* Arena::CreateMaybeMessage< ::Nrmk::IndyFramework::BrakeControlStyle >(Arena* arena) {
+  return Arena::CreateInternal< ::Nrmk::IndyFramework::BrakeControlStyle >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Nrmk::IndyFramework::GetEL5001Data* Arena::CreateMaybeMessage< ::Nrmk::IndyFramework::GetEL5001Data >(Arena* arena) {
+  return Arena::CreateInternal< ::Nrmk::IndyFramework::GetEL5001Data >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Nrmk::IndyFramework::GetEL5101Data* Arena::CreateMaybeMessage< ::Nrmk::IndyFramework::GetEL5101Data >(Arena* arena) {
+  return Arena::CreateInternal< ::Nrmk::IndyFramework::GetEL5101Data >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Nrmk::IndyFramework::FTSensorData* Arena::CreateMaybeMessage< ::Nrmk::IndyFramework::FTSensorData >(Arena* arena) {
+  return Arena::CreateInternal< ::Nrmk::IndyFramework::FTSensorData >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Nrmk::IndyFramework::GetLoadFactorsRes* Arena::CreateMaybeMessage< ::Nrmk::IndyFramework::GetLoadFactorsRes >(Arena* arena) {
+  return Arena::CreateInternal< ::Nrmk::IndyFramework::GetLoadFactorsRes >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Nrmk::IndyFramework::SetAutoModeReq* Arena::CreateMaybeMessage< ::Nrmk::IndyFramework::SetAutoModeReq >(Arena* arena) {
+  return Arena::CreateInternal< ::Nrmk::IndyFramework::SetAutoModeReq >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Nrmk::IndyFramework::SetAutoModeRes* Arena::CreateMaybeMessage< ::Nrmk::IndyFramework::SetAutoModeRes >(Arena* arena) {
+  return Arena::CreateInternal< ::Nrmk::IndyFramework::SetAutoModeRes >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Nrmk::IndyFramework::CheckAutoModeRes* Arena::CreateMaybeMessage< ::Nrmk::IndyFramework::CheckAutoModeRes >(Arena* arena) {
+  return Arena::CreateInternal< ::Nrmk::IndyFramework::CheckAutoModeRes >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Nrmk::IndyFramework::CheckReducedModeRes* Arena::CreateMaybeMessage< ::Nrmk::IndyFramework::CheckReducedModeRes >(Arena* arena) {
+  return Arena::CreateInternal< ::Nrmk::IndyFramework::CheckReducedModeRes >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Nrmk::IndyFramework::SafetyFunctionState* Arena::CreateMaybeMessage< ::Nrmk::IndyFramework::SafetyFunctionState >(Arena* arena) {
+  return Arena::CreateInternal< ::Nrmk::IndyFramework::SafetyFunctionState >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Nrmk::IndyFramework::SafetyControlData* Arena::CreateMaybeMessage< ::Nrmk::IndyFramework::SafetyControlData >(Arena* arena) {
+  return Arena::CreateInternal< ::Nrmk::IndyFramework::SafetyControlData >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Nrmk::IndyFramework::SanderCommand* Arena::CreateMaybeMessage< ::Nrmk::IndyFramework::SanderCommand >(Arena* arena) {
+  return Arena::CreateInternal< ::Nrmk::IndyFramework::SanderCommand >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Nrmk::IndyFramework::Encoder* Arena::CreateMaybeMessage< ::Nrmk::IndyFramework::Encoder >(Arena* arena) {
+  return Arena::CreateInternal< ::Nrmk::IndyFramework::Encoder >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Nrmk::IndyFramework::Trigger* Arena::CreateMaybeMessage< ::Nrmk::IndyFramework::Trigger >(Arena* arena) {
+  return Arena::CreateInternal< ::Nrmk::IndyFramework::Trigger >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Nrmk::IndyFramework::Conveyor* Arena::CreateMaybeMessage< ::Nrmk::IndyFramework::Conveyor >(Arena* arena) {
+  return Arena::CreateInternal< ::Nrmk::IndyFramework::Conveyor >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Nrmk::IndyFramework::ConveyorState* Arena::CreateMaybeMessage< ::Nrmk::IndyFramework::ConveyorState >(Arena* arena) {
+  return Arena::CreateInternal< ::Nrmk::IndyFramework::ConveyorState >(arena);
+}
+PROTOBUF_NAMESPACE_CLOSE
+
 // @@protoc_insertion_point(global_scope)
-#include "google/protobuf/port_undef.inc"
+#include <google/protobuf/port_undef.inc>

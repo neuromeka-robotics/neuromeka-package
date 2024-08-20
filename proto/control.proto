@@ -21,6 +21,11 @@ service Control {
   rpc MoveC(MoveCReq) returns (Response) {}
   rpc MoveCT(MoveCTReq) returns (Response) {}
 
+  rpc MoveJointTraj(MoveJointTrajReq) returns (Response) {}
+  rpc MoveTaskTraj(MoveTaskTrajReq) returns (Response) {}
+
+  rpc MoveConveyor(MoveConveyorReq) returns (Response) {}
+
   rpc WaitIO(WaitIOReq) returns (Response) {}
   rpc WaitTime(WaitTimeReq) returns (Response) {}
   rpc WaitProgress(WaitProgressReq) returns (Response) {}
@@ -29,6 +34,8 @@ service Control {
 //  rpc MotionStop(MotionStopReq) returns (Response) {}
 
   rpc MoveJCond(MoveJCondReq) returns (Response) {}
+
+  rpc MoveLinearAxis(MoveAxisReq) returns (Response) {}
 
   // ---------------------------------------------------------------- //
   // Command
@@ -41,11 +48,14 @@ service Control {
   rpc GetCustomControlMode(Empty) returns (IntMode) {}     // 0: default controller | 1~: reserved for custom control
   rpc SetFrictionCompensation(State) returns (Response) {}
   rpc GetFrictionCompensationState(Empty) returns (State) {}
+  rpc SetTactTime(TactTime) returns (Response) {}
+  rpc GetTactTime(Empty) returns (TactTime) {}
 
   // ---------------------------------------------------------------- //
   // Violation Recovery
   // ---------------------------------------------------------------- //
   rpc Recover(Empty) returns (Response) {}
+  rpc Reboot(Empty) returns (Response) {}
   rpc SetManualRecovery(State) returns (Response) {}
   rpc MoveRecoverJoint(TargetJ) returns (Response) {}
 
@@ -60,6 +70,7 @@ service Control {
   rpc SendAlarm(Message) returns (Empty) {}
   rpc SendAnnotation(Message) returns (Empty) {}
   rpc PlayTuningProgram(TuningProgram) returns (CollisionThresholds) {}
+  rpc PlayProgramLine(Program) returns (Response) {}
 
   // ---------------------------------------------------------------- //
   // Custom Variable
@@ -91,6 +102,7 @@ service Control {
   // Utility
   // ---------------------------------------------------------------- //
   rpc InverseKinematics(InverseKinematicsReq) returns (InverseKinematicsRes) {}
+  rpc ForwardKinematics(ForwardKinematicsReq) returns (ForwardKinematicsRes) {}
   rpc CheckAproachRetractValid(CheckAproachRetractValidReq) returns (CheckAproachRetractValidRes) {}
   rpc GetPalletPointList(GetPalletPointListReq) returns (GetPalletPointListRes) {}
   rpc CalculateRelativePose(CalculateRelativePoseReq) returns (CalculateRelativePoseRes) {}
@@ -125,6 +137,6 @@ service Control {
   // ---------------------------------------------------------------- //
   // Sanding
   // ---------------------------------------------------------------- //
-
-  rpc MoveFL(MoveFLReq) returns (MoveFLRes) {}
+  rpc MoveLF(MoveLFReq) returns (Response) {}
+  rpc GetTransformedFTSensorData(Empty) returns (TransformedFTSensorData) {}
 }

@@ -1,0 +1,43 @@
+syntax = "proto3";
+package Nrmk.IndyFramework;
+import "common_msgs.proto";
+
+//////////////////////////CRI/////////////////////////
+service CRI {
+  rpc SetActivate(State) returns (Response) {}
+  rpc IsActivate(Empty) returns (State) {}
+  
+  rpc Login(Account) returns (Response) {}
+  rpc IsLogin(Empty) returns (State) {}
+  
+  rpc SetTarget(CriTarget) returns (Response) {}
+  rpc SetOption(State) returns (Response) {}
+
+  rpc GetProjList(Empty) returns (ProjectList) {}
+
+  rpc GetCRI(Empty) returns (CriData) {}
+}
+
+//////////////////////////Account/////////////////////////
+message Account {
+  string email = 1;
+  string token = 2;
+}
+
+//////////////////////////CriTarget/////////////////////////
+message CriTarget {
+  string pn = 1;
+  string fn = 2;
+  string rn = 3;
+}
+
+//////////////////////////CriData/////////////////////////
+message CriData {
+  double time = 1;
+  double cri = 2;
+}
+
+//////////////////////////ProjectList/////////////////////////
+message ProjectList {
+  string list = 1;
+}

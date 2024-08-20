@@ -18,6 +18,11 @@ service Device {
   rpc SetEndAI(AnalogList) returns (Response) {}
   rpc SetEndAO(AnalogList) returns (Response) {}
 
+  rpc SetEndRS485Rx(EndtoolRS485Rx) returns (Response) {}
+  rpc GetEndRS485Rx(Empty) returns (EndtoolRS485Rx) {}
+  rpc GetEndRS485Tx(Empty) returns (EndtoolRS485Tx) {}
+  rpc SetEndLedDim(EndLedDim) returns (Empty) {}
+
   rpc GetDI(Empty) returns (DigitalList) {}
   rpc GetDO(Empty) returns (DigitalList) {}
   rpc GetEndDI(Empty) returns (EndtoolSignalList) {}
@@ -36,8 +41,33 @@ service Device {
   rpc GetDeviceInfo(Empty) returns (DeviceInfo) {}
   rpc GetBrakeControlStyle(Empty) returns (BrakeControlStyle) {}
 
-  rpc SetFTSensorType(FTSensorType) returns (Response) {}
-  rpc GetFTSensorType(Empty) returns (FTSensorType) {}
+  /////////////// Sander ////////////////
+  rpc SetSanderCommand(SanderCommand) returns (Response) {}
+  rpc GetSanderCommand(Empty) returns (SanderCommand) {}
 
   rpc GetFTSensorData(Empty) returns (FTSensorData) {}
+
+  /////////////// Conveyor ///////////////
+  rpc GetConveyor(Empty) returns (Conveyor) {}
+  rpc SetConveyorName(Name) returns (Response) {}
+  rpc SetConveyorByName(Name) returns (Response) {}
+  rpc SetConveyorEncoder(Encoder) returns (Response) {}
+  rpc SetConveyorTrigger(Trigger) returns (Response) {}
+  rpc SetConveyorOffset(Float) returns (Response) {}
+  rpc SetConveyorStartingPose(PosePair) returns (Response) {}
+  rpc SetConveyorTerminalPose(PosePair) returns (Response) {}
+  rpc GetConveyorState(Empty) returns (ConveyorState) {}
+
+  /////////////// Safety ////////////////
+  rpc GetLoadFactors(Empty) returns (GetLoadFactorsRes) {}
+  rpc SetAutoMode(SetAutoModeReq) returns (SetAutoModeRes) {}
+  rpc CheckAutoMode(Empty) returns (CheckAutoModeRes) {}
+  rpc CheckReducedMode(Empty) returns (CheckReducedModeRes) {}
+  rpc GetSafetyFunctionState(Empty) returns (SafetyFunctionState) {}
+  rpc RequestSafetyFunction(SafetyFunctionState) returns (Response) {}
+  rpc GetSafetyControlData(Empty) returns (SafetyControlData) {}
+
+  ///////////////485Gripper//////////////////////
+  rpc GetGripperData(Empty) returns(GripperData) {}
+  rpc SetGripperCommand(GripperCommand) returns(Empty) {}
 }

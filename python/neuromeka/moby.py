@@ -321,11 +321,11 @@ class MobyClient:
         return {'k': val.k, 'kv': val.kv, 'kp': val.kp}
 
     @Utils.exception_handler
-    def set_kinematics_forced(self, onoff):
+    def set_kinematics_forced(self, activate, angle):
         """
-        Set Kinematics Forced( on=true, off=false )
+        Set Kinematics Forced( activate: allow infinite steering, angle: steering error limit to allow wheel driving )
         """
-        self.__moby_stub.SetForceKinematics(moby_msgs.BoolVal(val=onoff))
+        self.__moby_stub.SetForceKinematics(moby_msgs.ForcedKinematicsData(activate=activate, angle=angle))
 
     @Utils.exception_handler
     def get_kinematics_forced(self):
@@ -350,6 +350,10 @@ class MobyClient:
     @Utils.exception_handler
     def pause_bumper(self, on):
         return self.__moby_stub.PauseBumper(moby_msgs.BoolVal(val=on))
+
+    @Utils.exception_handler
+    def set_extra_do(self, val):
+        return self.__moby_stub.SetExtraDO(moby_msgs.BoolVals(val=val))
 
     ############################
     # Moby Data logging

@@ -265,6 +265,22 @@ class EtherCAT:
         return endtool_rx
 
     @Utils.exception_handler
+    def set_endtool_rs485_rx(self, word1, word2):
+        return self.__ethercat_stub.SetEndtoolRS485Rx(common_msgs.EndtoolRS485Rx(word1=word1, word2=word2))
+
+    @Utils.exception_handler
+    def get_endtool_rs485_rx(self):
+        return self.__ethercat_stub.GetEndtoolRS485Rx(common_msgs.Empty())
+
+    @Utils.exception_handler
+    def get_endtool_rs485_tx(self):
+        return self.__ethercat_stub.GetEndtoolRS485Tx(common_msgs.Empty())
+
+    @Utils.exception_handler
+    def set_endtool_led_dim(self, led_dim):
+        return self.__ethercat_stub.SetEndtoolLedDim(ethercat_msgs.LedDim(led_dim=led_dim))
+
+    @Utils.exception_handler
     def get_endtool_tx(self):
         """
         Get endtool Tx data
@@ -575,7 +591,3 @@ class EtherCAT:
     def stop_motion(self, servo_idx):
         print("StopMotion Frome Ethercat_client")
         self.set_servo_rx(servo_idx, 15, 10, 0, 0, 0)
-
-    def set_max_motor_speed(self, slave_idx, value):
-        return self.__ethercat_stub.SetServoMaxMotorSpeed(ethercat_msgs.ServoParam(slaveIdx=slave_idx, val=value))
-    

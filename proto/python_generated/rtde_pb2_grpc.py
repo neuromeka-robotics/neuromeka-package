@@ -45,10 +45,20 @@ class RTDataExchangeStub(object):
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
                 response_deserializer=rtde__msgs__pb2.ViolationData.FromString,
                 )
+        self.GetViolationMessageQueue = channel.unary_unary(
+                '/Nrmk.IndyFramework.RTDataExchange/GetViolationMessageQueue',
+                request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=rtde__msgs__pb2.ViolationMessageQueue.FromString,
+                )
         self.GetProgramData = channel.unary_unary(
                 '/Nrmk.IndyFramework.RTDataExchange/GetProgramData',
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
                 response_deserializer=rtde__msgs__pb2.ProgramData.FromString,
+                )
+        self.GetStopState = channel.unary_unary(
+                '/Nrmk.IndyFramework.RTDataExchange/GetStopState',
+                request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=rtde__msgs__pb2.StopState.FromString,
                 )
         self.TestFunction = channel.unary_unary(
                 '/Nrmk.IndyFramework.RTDataExchange/TestFunction',
@@ -96,7 +106,19 @@ class RTDataExchangeServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetViolationMessageQueue(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def GetProgramData(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetStopState(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -141,10 +163,20 @@ def add_RTDataExchangeServicer_to_server(servicer, server):
                     request_deserializer=common__msgs__pb2.Empty.FromString,
                     response_serializer=rtde__msgs__pb2.ViolationData.SerializeToString,
             ),
+            'GetViolationMessageQueue': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetViolationMessageQueue,
+                    request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=rtde__msgs__pb2.ViolationMessageQueue.SerializeToString,
+            ),
             'GetProgramData': grpc.unary_unary_rpc_method_handler(
                     servicer.GetProgramData,
                     request_deserializer=common__msgs__pb2.Empty.FromString,
                     response_serializer=rtde__msgs__pb2.ProgramData.SerializeToString,
+            ),
+            'GetStopState': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetStopState,
+                    request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=rtde__msgs__pb2.StopState.SerializeToString,
             ),
             'TestFunction': grpc.unary_unary_rpc_method_handler(
                     servicer.TestFunction,
@@ -264,6 +296,23 @@ class RTDataExchange(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
+    def GetViolationMessageQueue(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.RTDataExchange/GetViolationMessageQueue',
+            common__msgs__pb2.Empty.SerializeToString,
+            rtde__msgs__pb2.ViolationMessageQueue.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
     def GetProgramData(request,
             target,
             options=(),
@@ -277,6 +326,23 @@ class RTDataExchange(object):
         return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.RTDataExchange/GetProgramData',
             common__msgs__pb2.Empty.SerializeToString,
             rtde__msgs__pb2.ProgramData.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetStopState(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.RTDataExchange/GetStopState',
+            common__msgs__pb2.Empty.SerializeToString,
+            rtde__msgs__pb2.StopState.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

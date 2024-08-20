@@ -30,7 +30,7 @@ service EtherCAT {
     //rpc GetServoMaxTorque(ServoIndex) returns (IntVal) {}
     //rpc SetServoMaxTorque(ServoParam) returns (Empty) {}
     //rpc GetServoMaxMotorSpeed(ServoIndex) returns (ServoIndex) {}
-    rpc SetServoMaxMotorSpeed(ServoParam) returns (Empty) {}
+    //rpc SetServoMaxMotorSpeed(ServoParam) returns (Empty) {}
     //rpc GetExtendedPosition(Empty) returns (ExtendedPosition) {}
     //rpc SetExtendedPositionZero(Empty) returns (Empty) {}
 
@@ -45,6 +45,10 @@ service EtherCAT {
     rpc GetEndtoolRx(Empty) returns (EndtoolRx) {}
     rpc GetEndtoolTx(Empty) returns (EndtoolTx) {}
     rpc GetEndtoolDockingTx(Empty) returns (EndtoolDockingTx) {}
+    rpc SetEndtoolRS485Rx(EndtoolRS485Rx) returns (Empty) {}
+    rpc GetEndtoolRS485Rx(Empty) returns (EndtoolRS485Rx) {}
+    rpc GetEndtoolRS485Tx(Empty) returns (EndtoolRS485Tx) {}
+    rpc SetEndtoolLedDim(LedDim) returns (Empty) {}
 
     // IOBoard PDO
     rpc SetIOBoardRx(IOBoardRx) returns (Empty) {}

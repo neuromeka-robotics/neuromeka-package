@@ -40,16 +40,6 @@ class ConfigStub(object):
                 request_serializer=config__msgs__pb2.Ratio.SerializeToString,
                 response_deserializer=common__msgs__pb2.Response.FromString,
                 )
-        self.SetFTsensorFrame = channel.unary_unary(
-                '/Nrmk.IndyFramework.Config/SetFTsensorFrame',
-                request_serializer=config__msgs__pb2.FTsensorFrame.SerializeToString,
-                response_deserializer=common__msgs__pb2.Response.FromString,
-                )
-        self.GetFTsensorFrame = channel.unary_unary(
-                '/Nrmk.IndyFramework.Config/GetFTsensorFrame',
-                request_serializer=common__msgs__pb2.Response.SerializeToString,
-                response_deserializer=config__msgs__pb2.FTsensorFrame.FromString,
-                )
         self.SetDIConfigList = channel.unary_unary(
                 '/Nrmk.IndyFramework.Config/SetDIConfigList',
                 request_serializer=config__msgs__pb2.DIConfigList.SerializeToString,
@@ -77,6 +67,11 @@ class ConfigStub(object):
                 )
         self.GetHomePosition = channel.unary_unary(
                 '/Nrmk.IndyFramework.Config/GetHomePosition',
+                request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=config__msgs__pb2.JointPos.FromString,
+                )
+        self.GetPackPosition = channel.unary_unary(
+                '/Nrmk.IndyFramework.Config/GetPackPosition',
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
                 response_deserializer=config__msgs__pb2.JointPos.FromString,
                 )
@@ -240,10 +235,45 @@ class ConfigStub(object):
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
                 response_deserializer=config__msgs__pb2.SafetyStopConfig.FromString,
                 )
-        self.SetCollTuning = channel.unary_unary(
-                '/Nrmk.IndyFramework.Config/SetCollTuning',
-                request_serializer=config__msgs__pb2.CollTuningConfig.SerializeToString,
+        self.GetReducedRatio = channel.unary_unary(
+                '/Nrmk.IndyFramework.Config/GetReducedRatio',
+                request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=config__msgs__pb2.GetReducedRatioRes.FromString,
+                )
+        self.GetReducedSpeed = channel.unary_unary(
+                '/Nrmk.IndyFramework.Config/GetReducedSpeed',
+                request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=config__msgs__pb2.GetReducedSpeedRes.FromString,
+                )
+        self.SetReducedSpeed = channel.unary_unary(
+                '/Nrmk.IndyFramework.Config/SetReducedSpeed',
+                request_serializer=config__msgs__pb2.SetReducedSpeedReq.SerializeToString,
                 response_deserializer=common__msgs__pb2.Response.FromString,
+                )
+        self.SetFTSensorConfig = channel.unary_unary(
+                '/Nrmk.IndyFramework.Config/SetFTSensorConfig',
+                request_serializer=config__msgs__pb2.FTSensorDevice.SerializeToString,
+                response_deserializer=common__msgs__pb2.Response.FromString,
+                )
+        self.GetFTSensorConfig = channel.unary_unary(
+                '/Nrmk.IndyFramework.Config/GetFTSensorConfig',
+                request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=config__msgs__pb2.FTSensorDevice.FromString,
+                )
+        self.SetTeleOpParams = channel.unary_unary(
+                '/Nrmk.IndyFramework.Config/SetTeleOpParams',
+                request_serializer=config__msgs__pb2.TeleOpParams.SerializeToString,
+                response_deserializer=common__msgs__pb2.Response.FromString,
+                )
+        self.GetTeleOpParams = channel.unary_unary(
+                '/Nrmk.IndyFramework.Config/GetTeleOpParams',
+                request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=config__msgs__pb2.TeleOpParams.FromString,
+                )
+        self.GetKinematicsParams = channel.unary_unary(
+                '/Nrmk.IndyFramework.Config/GetKinematicsParams',
+                request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=config__msgs__pb2.KinematicsParams.FromString,
                 )
 
 
@@ -280,18 +310,6 @@ class ConfigServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def SetFTsensorFrame(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def GetFTsensorFrame(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
     def SetDIConfigList(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -323,6 +341,12 @@ class ConfigServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def GetHomePosition(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetPackPosition(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -520,7 +544,49 @@ class ConfigServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def SetCollTuning(self, request, context):
+    def GetReducedRatio(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetReducedSpeed(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SetReducedSpeed(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SetFTSensorConfig(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetFTSensorConfig(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SetTeleOpParams(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetTeleOpParams(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetKinematicsParams(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -554,16 +620,6 @@ def add_ConfigServicer_to_server(servicer, server):
                     request_deserializer=config__msgs__pb2.Ratio.FromString,
                     response_serializer=common__msgs__pb2.Response.SerializeToString,
             ),
-            'SetFTsensorFrame': grpc.unary_unary_rpc_method_handler(
-                    servicer.SetFTsensorFrame,
-                    request_deserializer=config__msgs__pb2.FTsensorFrame.FromString,
-                    response_serializer=common__msgs__pb2.Response.SerializeToString,
-            ),
-            'GetFTsensorFrame': grpc.unary_unary_rpc_method_handler(
-                    servicer.GetFTsensorFrame,
-                    request_deserializer=common__msgs__pb2.Response.FromString,
-                    response_serializer=config__msgs__pb2.FTsensorFrame.SerializeToString,
-            ),
             'SetDIConfigList': grpc.unary_unary_rpc_method_handler(
                     servicer.SetDIConfigList,
                     request_deserializer=config__msgs__pb2.DIConfigList.FromString,
@@ -591,6 +647,11 @@ def add_ConfigServicer_to_server(servicer, server):
             ),
             'GetHomePosition': grpc.unary_unary_rpc_method_handler(
                     servicer.GetHomePosition,
+                    request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=config__msgs__pb2.JointPos.SerializeToString,
+            ),
+            'GetPackPosition': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetPackPosition,
                     request_deserializer=common__msgs__pb2.Empty.FromString,
                     response_serializer=config__msgs__pb2.JointPos.SerializeToString,
             ),
@@ -754,10 +815,45 @@ def add_ConfigServicer_to_server(servicer, server):
                     request_deserializer=common__msgs__pb2.Empty.FromString,
                     response_serializer=config__msgs__pb2.SafetyStopConfig.SerializeToString,
             ),
-            'SetCollTuning': grpc.unary_unary_rpc_method_handler(
-                    servicer.SetCollTuning,
-                    request_deserializer=config__msgs__pb2.CollTuningConfig.FromString,
+            'GetReducedRatio': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetReducedRatio,
+                    request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=config__msgs__pb2.GetReducedRatioRes.SerializeToString,
+            ),
+            'GetReducedSpeed': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetReducedSpeed,
+                    request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=config__msgs__pb2.GetReducedSpeedRes.SerializeToString,
+            ),
+            'SetReducedSpeed': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetReducedSpeed,
+                    request_deserializer=config__msgs__pb2.SetReducedSpeedReq.FromString,
                     response_serializer=common__msgs__pb2.Response.SerializeToString,
+            ),
+            'SetFTSensorConfig': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetFTSensorConfig,
+                    request_deserializer=config__msgs__pb2.FTSensorDevice.FromString,
+                    response_serializer=common__msgs__pb2.Response.SerializeToString,
+            ),
+            'GetFTSensorConfig': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetFTSensorConfig,
+                    request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=config__msgs__pb2.FTSensorDevice.SerializeToString,
+            ),
+            'SetTeleOpParams': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetTeleOpParams,
+                    request_deserializer=config__msgs__pb2.TeleOpParams.FromString,
+                    response_serializer=common__msgs__pb2.Response.SerializeToString,
+            ),
+            'GetTeleOpParams': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetTeleOpParams,
+                    request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=config__msgs__pb2.TeleOpParams.SerializeToString,
+            ),
+            'GetKinematicsParams': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetKinematicsParams,
+                    request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=config__msgs__pb2.KinematicsParams.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -851,40 +947,6 @@ class Config(object):
         return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Config/SetSpeedRatio',
             config__msgs__pb2.Ratio.SerializeToString,
             common__msgs__pb2.Response.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def SetFTsensorFrame(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Config/SetFTsensorFrame',
-            config__msgs__pb2.FTsensorFrame.SerializeToString,
-            common__msgs__pb2.Response.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def GetFTsensorFrame(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Config/GetFTsensorFrame',
-            common__msgs__pb2.Response.SerializeToString,
-            config__msgs__pb2.FTsensorFrame.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -985,6 +1047,23 @@ class Config(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Config/GetHomePosition',
+            common__msgs__pb2.Empty.SerializeToString,
+            config__msgs__pb2.JointPos.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetPackPosition(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Config/GetPackPosition',
             common__msgs__pb2.Empty.SerializeToString,
             config__msgs__pb2.JointPos.FromString,
             options, channel_credentials,
@@ -1535,7 +1614,7 @@ class Config(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def SetCollTuning(request,
+    def GetReducedRatio(request,
             target,
             options=(),
             channel_credentials=None,
@@ -1545,8 +1624,127 @@ class Config(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Config/SetCollTuning',
-            config__msgs__pb2.CollTuningConfig.SerializeToString,
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Config/GetReducedRatio',
+            common__msgs__pb2.Empty.SerializeToString,
+            config__msgs__pb2.GetReducedRatioRes.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetReducedSpeed(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Config/GetReducedSpeed',
+            common__msgs__pb2.Empty.SerializeToString,
+            config__msgs__pb2.GetReducedSpeedRes.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SetReducedSpeed(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Config/SetReducedSpeed',
+            config__msgs__pb2.SetReducedSpeedReq.SerializeToString,
             common__msgs__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SetFTSensorConfig(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Config/SetFTSensorConfig',
+            config__msgs__pb2.FTSensorDevice.SerializeToString,
+            common__msgs__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetFTSensorConfig(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Config/GetFTSensorConfig',
+            common__msgs__pb2.Empty.SerializeToString,
+            config__msgs__pb2.FTSensorDevice.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SetTeleOpParams(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Config/SetTeleOpParams',
+            config__msgs__pb2.TeleOpParams.SerializeToString,
+            common__msgs__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetTeleOpParams(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Config/GetTeleOpParams',
+            common__msgs__pb2.Empty.SerializeToString,
+            config__msgs__pb2.TeleOpParams.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetKinematicsParams(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Config/GetKinematicsParams',
+            common__msgs__pb2.Empty.SerializeToString,
+            config__msgs__pb2.KinematicsParams.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

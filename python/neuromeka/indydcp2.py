@@ -21,6 +21,7 @@ import ctypes
 from ctypes import *
 from threading import Lock
 
+
 ###############################################################################
 # Robot S/W version                                                           #
 ###############################################################################
@@ -43,27 +44,27 @@ JOINT_DOF = 6
 SIZE_HEADER = 52
 SIZE_COMMAND = 4
 SIZE_HEADER_COMMAND = 56
-SIZE_DATA_TCP_MAX = 200
+SIZE_DATA_TCP_MAX  = 200
 SIZE_DATA_MAX = 200
 SIZE_DATA_ASCII_MAX = 32
 SIZE_PACKET = 512
 
+
 ###############################################################################
 # Robot Type                                                                  #
 ###############################################################################
-ROBOT_INDY7 = "NRMK-Indy7"
-ROBOT_INDYRP2 = "NRMK-IndyRP2"
-ROBOT_INDY12 = "NRMK-Indy12"
+ROBOT_INDY7    = "NRMK-Indy7"
+ROBOT_INDYRP2   = "NRMK-IndyRP2"
+ROBOT_INDY12   = "NRMK-Indy12"
 
 # Deprecated
-ROBOT_INDYRP = "NRMK-IndyRP"
-ROBOT_INDY3 = "NRMK-Indy3"
-ROBOT_INDY5 = "NRMK-Indy5"
-ROBOT_INDY10 = "NRMK-Indy10"
-ROBOT_INDY15 = "NRMK-Indy15"
-ROBOT_OPTI5 = "NRMK-OPTi5"
-ROBOT_OPTI10 = "NRMK-OPTi10"
-
+ROBOT_INDYRP    = "NRMK-IndyRP"
+ROBOT_INDY3     = "NRMK-Indy3"
+ROBOT_INDY5     = "NRMK-Indy5"
+ROBOT_INDY10    = "NRMK-Indy10"
+ROBOT_INDY15    = "NRMK-Indy15"
+ROBOT_OPTI5     = "NRMK-OPTi5"
+ROBOT_OPTI10    = "NRMK-OPTi10"
 
 ###############################################################################
 # C-type Data                                                                 #
@@ -127,10 +128,10 @@ class Data(Union):
                 ("double7dArr", c_double * 7),
                 ("doubleArr", c_double * 50),
                 ("byteArr", c_ubyte * 200),
-                ("wordArr", c_ubyte * 2 * 100),
-                ("uwordArr", c_ubyte * 2 * 100),
-                ("dwordArr", c_ubyte * 4 * 50),
-                ("lwordArr", c_ubyte * 8 * 25)]
+                ("wordArr", c_ubyte * 2*100),
+                ("uwordArr", c_ubyte * 2*100),
+                ("dwordArr", c_ubyte * 4*50),
+                ("lwordArr", c_ubyte * 8*25)]
 
 
 class Packet(Union):
@@ -164,179 +165,192 @@ class DIO(Structure):
 #########################################################################
 # Command                                                               #
 #########################################################################
-CMD_CHECK = 0
-CMD_EMERGENCY_STOP = 1
-CMD_RESET_ROBOT = 2
-CMD_SET_SERVO = 3
-CMD_SET_BRAKE = 4
-CMD_STOP = 5
-CMD_MOVE = 6
-CMD_MOVE_HOME = 7
-CMD_MOVE_ZERO = 8
-CMD_JOINT_MOVE_TO = 9
-CMD_JOINT_MOVE_BY = 10
-CMD_TASK_MOVE_TO = 11
-CMD_TASK_MOVE_BY = 12
+CMD_CHECK                                   = 0
+CMD_EMERGENCY_STOP                          = 1
+CMD_RESET_ROBOT                             = 2
+CMD_SET_SERVO                               = 3
+CMD_SET_BRAKE                               = 4
+CMD_STOP                                    = 5
+CMD_MOVE                                    = 6
+CMD_MOVE_HOME                               = 7
+CMD_MOVE_ZERO                               = 8
+CMD_JOINT_MOVE_TO                           = 9
+CMD_JOINT_MOVE_BY                           = 10
+CMD_TASK_MOVE_TO                            = 11
+CMD_TASK_MOVE_BY                            = 12
 
-CMD_START_CURRENT_PROGRAM = 14
-CMD_PAUSE_CURRENT_PROGRAM = 15
-CMD_RESUME_CURRENT_PROGRAM = 16
-CMD_STOP_CURRENT_PROGRAM = 17
-CMD_START_DEFAULT_PROGRAM = 18
-CMD_REGISTER_DEFAULT_PROGRAM_IDX = 19
-CMD_GET_REGISTERED_DEFAULT_PROGRAM_IDX = 20
+CMD_START_CURRENT_PROGRAM                   = 14
+CMD_PAUSE_CURRENT_PROGRAM                   = 15
+CMD_RESUME_CURRENT_PROGRAM                  = 16
+CMD_STOP_CURRENT_PROGRAM                    = 17
+CMD_START_DEFAULT_PROGRAM                   = 18
+CMD_REGISTER_DEFAULT_PROGRAM_IDX            = 19
+CMD_GET_REGISTERED_DEFAULT_PROGRAM_IDX      = 20
 
-CMD_IS_ROBOT_RUNNING = 30
-CMD_IS_READY = 31
-CMD_IS_EMG = 32
-CMD_IS_COLLIDED = 33
-CMD_IS_ERR = 34
-CMD_IS_BUSY = 35
-CMD_IS_MOVE_FINISEHD = 36
-CMD_IS_HOME = 37
-CMD_IS_ZERO = 38
-CMD_IS_IN_RESETTING = 39
+CMD_IS_ROBOT_RUNNING                        = 30
+CMD_IS_READY                                = 31
+CMD_IS_EMG                                  = 32
+CMD_IS_COLLIDED                             = 33
+CMD_IS_ERR                                  = 34
+CMD_IS_BUSY                                 = 35
+CMD_IS_MOVE_FINISEHD                        = 36
+CMD_IS_HOME                                 = 37
+CMD_IS_ZERO                                 = 38
+CMD_IS_IN_RESETTING                         = 39
 
-CMD_IS_DIRECT_TECAHING = 60
-CMD_IS_TEACHING = 61
-CMD_IS_PROGRAM_RUNNING = 62
-CMD_IS_PROGRAM_PAUSED = 63
-CMD_IS_CONTY_CONNECTED = 64
+CMD_IS_DIRECT_TECAHING                      = 60
+CMD_IS_TEACHING                             = 61
+CMD_IS_PROGRAM_RUNNING                      = 62
+CMD_IS_PROGRAM_PAUSED                       = 63
+CMD_IS_CONTY_CONNECTED                      = 64
 
-CMD_CHANGE_DIRECT_TEACHING = 80
-CMD_FINISH_DIRECT_TEACHING = 81
+CMD_CHANGE_DIRECT_TEACHING                  = 80
+CMD_FINISH_DIRECT_TEACHING                  = 81
 
-CMD_JOINT_PUSH_BACK_WAYPOINT_SET = 90
-CMD_JOINT_POP_BACK_WAYPOINT_SET = 91
-CMD_JOINT_CLEAR_WAYPOINT_SET = 92
-CMD_JOINT_EXECUTE_WAYPOINT_SET = 94
-CMD_TASK_PUSH_BACK_WAYPOINT_SET = 95
-CMD_TASK_POP_BACK_WAYPOINT_SET = 96
-CMD_TASK_CLEAR_WAYPOINT_SET = 97
-CMD_TASK_EXECUTE_WAYPOINT_SET = 99
+CMD_JOINT_PUSH_BACK_WAYPOINT_SET            = 90
+CMD_JOINT_POP_BACK_WAYPOINT_SET             = 91
+CMD_JOINT_CLEAR_WAYPOINT_SET                = 92
+CMD_JOINT_EXECUTE_WAYPOINT_SET              = 94
+CMD_TASK_PUSH_BACK_WAYPOINT_SET             = 95
+CMD_TASK_POP_BACK_WAYPOINT_SET              = 96
+CMD_TASK_CLEAR_WAYPOINT_SET                 = 97
+CMD_TASK_EXECUTE_WAYPOINT_SET               = 99
 
-CMD_SET_DEFAULT_TCP = 100
-CMD_RESET_DEFAULT_TCP = 101
-CMD_SET_COMP_TCP = 102
-CMD_RESET_COMP_TCP = 103
-CMD_SET_REFFRAME = 104
-CMD_RESET_REFFRAME = 105
-CMD_SET_COLLISION_LEVEL = 106
-CMD_SET_JOINT_BOUNDARY = 107
-CMD_SET_TASK_BOUNDARY = 108
-CMD_SET_JOINT_ACCELERATION = 109
-CMD_SET_TASK_ACCELERATION = 110
-CMD_SET_JOINT_WTIME = 111
-CMD_SET_TASK_WTIME = 112
-CMD_SET_TASK_CMODE = 113
-CMD_SET_JOINT_BLEND_RADIUS = 116
-CMD_SET_TASK_BLEND_RADIUS = 117
-CMD_SET_JOINT_BLEND_TYPE = 118
-CMD_SET_TASK_BLEND_TYPE = 119
+CMD_SET_DEFAULT_TCP                         = 100
+CMD_RESET_DEFAULT_TCP                       = 101
+CMD_SET_COMP_TCP                            = 102
+CMD_RESET_COMP_TCP                          = 103
+CMD_SET_REFFRAME                            = 104
+CMD_RESET_REFFRAME                          = 105
+CMD_SET_COLLISION_LEVEL                     = 106
+CMD_SET_JOINT_BOUNDARY                      = 107
+CMD_SET_TASK_BOUNDARY                       = 108
+CMD_SET_JOINT_ACCELERATION                  = 109
+CMD_SET_TASK_ACCELERATION                   = 110
+CMD_SET_JOINT_WTIME                         = 111
+CMD_SET_TASK_WTIME                          = 112
+CMD_SET_TASK_CMODE                          = 113
+CMD_SET_JOINT_BLEND_RADIUS                  = 116
+CMD_SET_TASK_BLEND_RADIUS                   = 117
+CMD_SET_JOINT_BLEND_TYPE                    = 118
+CMD_SET_TASK_BLEND_TYPE                     = 119
 
-CMD_SET_REDUCED_SPEED_RATIO = 131
-CMD_GET_REDUCED_SPEED_RATIO = 231
+CMD_SET_REDUCED_SPEED_RATIO                 = 131 
+CMD_GET_REDUCED_SPEED_RATIO                 = 231 
 
-CMD_GET_DEFAULT_TCP = 200
-CMD_GET_COMP_TCP = 201
-CMD_GET_REFFRAME = 202
-CMD_GET_COLLISION_LEVEL = 203
-CMD_GET_JOINT_BOUNDARY = 204
-CMD_GET_TASK_BOUNDARY = 205
-CMD_GET_JOINT_ACCELERATION = 206
-CMD_GET_TASK_ACCELERATION = 207
-CMD_GET_JOINT_WTIME = 208
-CMD_GET_TASK_WTIME = 209
-CMD_GET_TASK_CMODE = 210
-CMD_GET_JOINT_BLEND_RADIUS = 213
-CMD_GET_TASK_BLEND_RADIUS = 214
+CMD_GET_DEFAULT_TCP                         = 200
+CMD_GET_COMP_TCP                            = 201
+CMD_GET_REFFRAME                            = 202
+CMD_GET_COLLISION_LEVEL                     = 203
+CMD_GET_JOINT_BOUNDARY                      = 204
+CMD_GET_TASK_BOUNDARY                       = 205
+CMD_GET_JOINT_ACCELERATION                  = 206
+CMD_GET_TASK_ACCELERATION                   = 207
+CMD_GET_JOINT_WTIME                         = 208
+CMD_GET_TASK_WTIME                          = 209
+CMD_GET_TASK_CMODE                          = 210
+CMD_GET_JOINT_BLEND_RADIUS                  = 213
+CMD_GET_TASK_BLEND_RADIUS                   = 214
 
-CMD_GET_RUNNING_TIME = 300
-CMD_GET_CMODE = 301
-CMD_GET_JOINT_STATE = 302
-CMD_GET_JOINT_POSITION = 320
-CMD_GET_JOINT_VELOCITY = 321
-CMD_GET_TASK_POSITION = 322
-CMD_GET_TASK_VELOCITY = 323
-CMD_GET_TORQUE = 324
-CMD_GET_INV_KIN = 325
+CMD_GET_RUNNING_TIME                        = 300
+CMD_GET_CMODE                               = 301
+CMD_GET_JOINT_STATE                         = 302
+CMD_GET_JOINT_POSITION                      = 320
+CMD_GET_JOINT_VELOCITY                      = 321
+CMD_GET_TASK_POSITION                       = 322
+CMD_GET_TASK_VELOCITY                       = 323
+CMD_GET_TORQUE                              = 324
+CMD_GET_INV_KIN                             = 325
 
-CMD_GET_LAST_EMG_INFO = 380
+CMD_GET_LAST_EMG_INFO                       = 380
 
-CMD_GET_SMART_DI = 400
-CMD_GET_SMART_DIS = 401
-CMD_SET_SMART_DO = 402
-CMD_SET_SMART_DOS = 403
-CMD_GET_SMART_AI = 404
-CMD_SET_SMART_AO = 405
-CMD_GET_SMART_DO = 406
-CMD_GET_SMART_DOS = 407
-CMD_GET_SMART_AO = 408
-CMD_SET_ENDTOOL_DO = 409
-CMD_GET_ENDTOOL_DO = 410
+CMD_GET_SMART_DI                            = 400
+CMD_GET_SMART_DIS                           = 401
+CMD_SET_SMART_DO                            = 402
+CMD_SET_SMART_DOS                           = 403
+CMD_GET_SMART_AI                            = 404
+CMD_SET_SMART_AO                            = 405
+CMD_GET_SMART_DO                            = 406
+CMD_GET_SMART_DOS                           = 407
+CMD_GET_SMART_AO                            = 408
+CMD_SET_ENDTOOL_DO                          = 409 
+CMD_GET_ENDTOOL_DO                          = 410 
+CMD_GET_ENDTOOL_DI                          = 411 
+CMD_GET_ENDTOOL_AI                          = 414 
 
-CMD_GET_ENDTOOL_DI = 411
-CMD_GET_ENDTOOL_AI = 414
 
-CMD_GET_EXTIO_FTCAN_ROBOT_TRANS = 421
-CMD_GET_EXTIO_FTCAN_CB_TRANS = 423
+CMD_GET_EXTIO_FTCAN_ROBOT_RAW               = 420
+CMD_GET_EXTIO_FTCAN_ROBOT_TRANS             = 421
+CMD_GET_EXTIO_FTCAN_CB_RAW                  = 422
+CMD_GET_EXTIO_FTCAN_CB_TRANS                = 423
 
-CMD_START_TELE = 500
-CMD_STOP_TELE = 501
-CMD_TELE_MOVEJ = 502
-CMD_TELE_MOVEL = 503
+CMD_READ_DIRECT_VARIABLE                    = 460
+CMD_READ_DIRECT_VARIABLES                   = 461
+CMD_WRITE_DIRECT_VARIABLE                   = 462
+CMD_WRITE_DIRECT_VARIABLES                  = 463
 
-CMD_GET_INT_VAL = 510
-CMD_GET_FLOAT_VAL = 511
-CMD_GET_BOOL_VAL = 512
 
-CMD_GET_TPOS_VAL = 520
-CMD_GET_JPOS_VAL = 521
+CMD_START_TELE                              = 500
+CMD_STOP_TELE                               = 501
+CMD_TELE_MOVEJ                              = 502
+CMD_TELE_MOVEL                              = 503
 
-CMD_MOVE_C = 535
-CMD_SET_MOVE_C_ANGLE = 536
-CMD_SET_MOVE_C_VEL = 537
-CMD_SET_MOVE_C_ACC = 538
+CMD_GET_INT_VAL                             = 510
+CMD_GET_FLOAT_VAL                           = 511
+CMD_GET_BOOL_VAL                            = 512
 
-CMD_GET_SERVO_NUM = 650
-CMD_GET_SERVO_TX = 651
-CMD_GET_SERVO_RX = 652
-CMD_SET_SERVO_RX = 653
+CMD_GET_TPOS_VAL                            = 520
+CMD_GET_JPOS_VAL                            = 521
 
-CMD_GET_INDY7_TX = 654
-CMD_GET_INDY7_RX = 655
-CMD_SET_INDY7_RX = 656
+CMD_MOVE_C                                  = 535
+CMD_SET_MOVE_C_ANGLE                        = 536
+CMD_SET_MOVE_C_VEL                          = 537
+CMD_SET_MOVE_C_ACC                          = 538
 
-CMD_ACTIVE_SDK = 670
-CMD_SET_CUSTOM_CONTROL_MOD = 671
-CMD_GET_CUSTOM_CONTROL_MOD = 672
 
-CMD_ERROR = 9999
+CMD_GET_SERVO_NUM                           = 650
+CMD_GET_SERVO_TX                            = 651
+CMD_GET_SERVO_RX                            = 652
+CMD_SET_SERVO_RX                            = 653
+
+CMD_GET_INDY7_TX                            = 654
+CMD_GET_INDY7_RX                            = 655
+CMD_SET_INDY7_RX                            = 656
+
+CMD_ACTIVE_SDK                              = 670
+CMD_SET_CUSTOM_CONTROL_MOD                  = 671
+CMD_GET_CUSTOM_CONTROL_MOD                  = 672
+
+
+CMD_SEND_KEYCOMMAND			                = 9996
+CMD_READ_MEMORY				                = 9997
+CMD_WRITE_MEMORY			                = 9998
+CMD_ERROR					                = 9999
 
 #########################################################################
 # Error code                                                            #
 #########################################################################
-ERR_NONE = 0
-ERR_NO_MATCHED_ROBOT = 1
-ERR_NO_MATCHED_STEP = 2
-ERR_HEADER_FORMAT = 4
-ERR_OVER_DATA_SIZE = 5
-ERR_NOT_SUPPORT_COMMAND = 6
-ERR_UNKNOWN_COMMAND = 7
-ERR_UNKNOWN_DATA = 8
-ERR_PROCESS_FAILED = 9
-ERR_PARSE_FAILED = 10
+ERR_NONE                 = 0
+ERR_NO_MATCHED_ROBOT     = 1
+ERR_NO_MATCHED_STEP      = 2
+ERR_HEADER_FORMAT        = 4
+ERR_OVER_DATA_SIZE       = 5
+ERR_NOT_SUPPORT_COMMAND  = 6
+ERR_UNKNOWN_COMMAND      = 7
+ERR_UNKNOWN_DATA         = 8
+ERR_PROCESS_FAILED       = 9
+ERR_PARSE_FAILED         = 10
 ERR_NO_MATCHED_PARAMETER = 11
 ERR_NO_MATCHED_DATA_SIZE = 12
-ERR_WRONG_ASCII_FORMAT = 13
-ERR_ROBOT_MOVING_STATE = 14
+ERR_WRONG_ASCII_FORMAT   = 13
+ERR_ROBOT_MOVING_STATE   = 14
 ERR_ROBOT_PROGRAM_RUNNING = 15
-ERR_ROBOT_MOVE_FAILED = 16
-ERR_NO_DEFAULT_PROGRAM = 17
-ERR_NO_CURRENT_PROGRAM = 18
+ERR_ROBOT_MOVE_FAILED     = 16
+ERR_NO_DEFAULT_PROGRAM    = 17
+ERR_NO_CURRENT_PROGRAM    = 18
 ERR_CURRENT_PROGRAM_STATE = 19
-ERR_EMG_STATE = 20
-ERR_ROBOT_STATE = 21
+ERR_EMG_STATE             = 20
+ERR_ROBOT_STATE           = 21
 ERR_ROBOT_PROGRAM_LOAD_FAILED = 22
 ERR_DIRECT_VARIABLE_INVALID_ADDRESS = 23
 ERR_DIRECT_VARIABLE_INVALID_FORMAT = 24
@@ -344,67 +358,74 @@ ERR_DIRECT_VARIABLE_REFNUM_LIMIT = 25
 ERR_CONNECTION_EXCEPTION = 600
 ERR_CONNECTION_TIMEOUT = 601
 
-
 def err_to_string(err_cmd):
-    return {ERR_NONE: "ErrorCode {}: No Error".format(err_cmd),
-            ERR_NO_MATCHED_ROBOT: "ErrorCode {}: Not matched robot".format(err_cmd),
-            ERR_NO_MATCHED_STEP: "ErrorCode {}: Not matched step".format(err_cmd),
-            ERR_HEADER_FORMAT: "ErrorCode {}: Invalid header format".format(err_cmd),
-            ERR_OVER_DATA_SIZE: "ErrorCode {}: Over data size".format(err_cmd),
-            ERR_NOT_SUPPORT_COMMAND: "ErrorCode {}: Unsupported command".format(err_cmd),
-            ERR_UNKNOWN_COMMAND: "ErrorCode {}: Unknown command".format(err_cmd),
-            ERR_UNKNOWN_DATA: "ErrorCode {}: Unknown data".format(err_cmd),
-            ERR_PROCESS_FAILED: "ErrorCode {}: Process fail".format(err_cmd),
-            ERR_PARSE_FAILED: "ErrorCode {}: Parsing fail (data error)".format(err_cmd),
-            ERR_NO_MATCHED_PARAMETER: "ErrorCode {}: Not matched data type".format(err_cmd),
-            ERR_NO_MATCHED_DATA_SIZE: "ErrorCode {}: Not matched data size ".format(err_cmd),
-            # ERR_WRONG_ASCII_FORMAT: "ErrorCode {}: ".format(err_cmd),
-            ERR_ROBOT_MOVING_STATE: "ErrorCode {}: Robot is moving".format(err_cmd),
-            ERR_ROBOT_PROGRAM_RUNNING: "ErrorCode {}: Robot program is running".format(err_cmd),
-            ERR_ROBOT_MOVE_FAILED: "ErrorCode {}: Move fail".format(err_cmd),
-            ERR_NO_DEFAULT_PROGRAM: "ErrorCode {}: No default program".format(err_cmd),
-            ERR_NO_CURRENT_PROGRAM: "ErrorCode {}: No loaded program".format(err_cmd),
-            ERR_CURRENT_PROGRAM_STATE: "ErrorCode {}: No proper program state".format(err_cmd),
-            ERR_EMG_STATE: "ErrorCode {}: Robot is emergency state".format(err_cmd),
-            ERR_ROBOT_STATE: "ErrorCode {}: Not proper robot state".format(err_cmd),
-            ERR_ROBOT_PROGRAM_LOAD_FAILED: "ErrorCode {}: Program load fail".format(err_cmd),
-            ERR_DIRECT_VARIABLE_INVALID_ADDRESS: "ErrorCode {}: Invalid direct variable address".format(err_cmd),
-            ERR_DIRECT_VARIABLE_INVALID_FORMAT: "ErrorCode {}: Invalid direct variable format".format(err_cmd),
-            ERR_DIRECT_VARIABLE_REFNUM_LIMIT: "ErrorCode {}: Limit of direct variable size".format(err_cmd)}.get(
-        err_cmd, "None")
+    return  {ERR_NONE: "ErrorCode {}: No Error".format(err_cmd),
+              ERR_NO_MATCHED_ROBOT: "ErrorCode {}: Not matched robot".format(err_cmd),
+              ERR_NO_MATCHED_STEP: "ErrorCode {}: Not matched step".format(err_cmd),
+              ERR_HEADER_FORMAT: "ErrorCode {}: Invalid header format".format(err_cmd),
+              ERR_OVER_DATA_SIZE: "ErrorCode {}: Over data size".format(err_cmd),
+              ERR_NOT_SUPPORT_COMMAND: "ErrorCode {}: Unsupported command".format(err_cmd),
+              ERR_UNKNOWN_COMMAND: "ErrorCode {}: Unknown command".format(err_cmd),
+              ERR_UNKNOWN_DATA: "ErrorCode {}: Unknown data".format(err_cmd),
+              ERR_PROCESS_FAILED: "ErrorCode {}: Process fail".format(err_cmd),
+              ERR_PARSE_FAILED: "ErrorCode {}: Parsing fail (data error)".format(err_cmd),
+              ERR_NO_MATCHED_PARAMETER: "ErrorCode {}: Not matched data type".format(err_cmd),
+              ERR_NO_MATCHED_DATA_SIZE: "ErrorCode {}: Not matched data size ".format(err_cmd),
+              # ERR_WRONG_ASCII_FORMAT: "ErrorCode {}: ".format(err_cmd),
+              ERR_ROBOT_MOVING_STATE: "ErrorCode {}: Robot is moving".format(err_cmd),
+              ERR_ROBOT_PROGRAM_RUNNING: "ErrorCode {}: Robot program is running".format(err_cmd),
+              ERR_ROBOT_MOVE_FAILED: "ErrorCode {}: Move fail".format(err_cmd),
+              ERR_NO_DEFAULT_PROGRAM: "ErrorCode {}: No default program".format(err_cmd),
+              ERR_NO_CURRENT_PROGRAM: "ErrorCode {}: No loaded program".format(err_cmd),
+              ERR_CURRENT_PROGRAM_STATE: "ErrorCode {}: No proper program state".format(err_cmd),
+              ERR_EMG_STATE: "ErrorCode {}: Robot is emergency state".format(err_cmd),
+              ERR_ROBOT_STATE: "ErrorCode {}: Not proper robot state".format(err_cmd),
+              ERR_ROBOT_PROGRAM_LOAD_FAILED: "ErrorCode {}: Program load fail".format(err_cmd),
+              ERR_DIRECT_VARIABLE_INVALID_ADDRESS: "ErrorCode {}: Invalid direct variable address".format(err_cmd),
+              ERR_DIRECT_VARIABLE_INVALID_FORMAT: "ErrorCode {}: Invalid direct variable format".format(err_cmd),
+              ERR_DIRECT_VARIABLE_REFNUM_LIMIT: "ErrorCode {}: Limit of direct variable size".format(err_cmd) }.get(err_cmd, "None")
 
 
 #########################################################################
 # Header Status Bit                                                     #
 #########################################################################
-HEADER_STATUS_BIT_TASK_RUNNING = 0x80000000  # 0b 1000 0000 0000 0000 0000 0000 0000 0000
-HEADER_STATUS_BIT_ROBOT_READY = 0x40000000  # 0b 0100 0000 0000 0000 0000 0000 0000 0000
-HEADER_STATUS_BIT_EMG_STOPPED = 0x20000000  # 0b 0010 0000 0000 0000 0000 0000 0000 0000
-HEADER_STATUS_BIT_COLLIDED = 0x10000000  # 0b 0001 0000 0000 0000 0000 0000 0000 0000
-HEADER_STATUS_BIT_ERR_STATE = 0x08000000  # 0b 0000 1000 0000 0000 0000 0000 0000 0000
-HEADER_STATUS_BIT_BUSY = 0x04000000  # 0b 0000 0100 0000 0000 0000 0000 0000 0000
-HEADER_STATUS_BIT_MOVE_FINISHED = 0x02000000  # 0b 0000 0010 0000 0000 0000 0000 0000 0000
-HEADER_STATUS_BIT_HOME = 0x01000000  # 0b 0000 0001 0000 0000 0000 0000 0000 0000
-HEADER_STATUS_BIT_ZERO = 0x00800000  # 0b 0000 0000 1000 0000 0000 0000 0000 0000
-HEADER_STATUS_BIT_IN_RESETTING = 0x00400000  # 0b 0000 0000 0100 0000 0000 0000 0000 0000
+HEADER_STATUS_BIT_TASK_RUNNING		= 0x80000000	# 0b 1000 0000 0000 0000 0000 0000 0000 0000
+HEADER_STATUS_BIT_ROBOT_READY		= 0x40000000	# 0b 0100 0000 0000 0000 0000 0000 0000 0000
+HEADER_STATUS_BIT_EMG_STOPPED		= 0x20000000	# 0b 0010 0000 0000 0000 0000 0000 0000 0000
+HEADER_STATUS_BIT_COLLIDED			= 0x10000000	# 0b 0001 0000 0000 0000 0000 0000 0000 0000
+HEADER_STATUS_BIT_ERR_STATE			= 0x08000000	# 0b 0000 1000 0000 0000 0000 0000 0000 0000
+HEADER_STATUS_BIT_BUSY				= 0x04000000	# 0b 0000 0100 0000 0000 0000 0000 0000 0000
+HEADER_STATUS_BIT_MOVE_FINISHED		= 0x02000000	# 0b 0000 0010 0000 0000 0000 0000 0000 0000
+HEADER_STATUS_BIT_HOME				= 0x01000000	# 0b 0000 0001 0000 0000 0000 0000 0000 0000
+HEADER_STATUS_BIT_ZERO				= 0x00800000	# 0b 0000 0000 1000 0000 0000 0000 0000 0000
+HEADER_STATUS_BIT_IN_RESETTING		= 0x00400000	# 0b 0000 0000 0100 0000 0000 0000 0000 0000
 
-HEADER_STATUS_BIT_DIRECT_TEACHING = 0x00000080  # 0b 0000 0000 0000 0000 0000 0000 1000 0000
-HEADER_STATUS_BIT_TEACHING = 0x00000040  # 0b 0000 0000 0000 0000 0000 0000 0100 0000
-HEADER_STATUS_BIT_PROGRAM_RUNNING = 0x00000020  # 0b 0000 0000 0000 0000 0000 0000 0010 0000
-HEADER_STATUS_BIT_PROGRAM_PAUSED = 0x00000010  # 0b 0000 0000 0000 0000 0000 0000 0001 0000
-HEADER_STATUS_BIT_CONTY_CONNECTED = 0x00000008  # 0b 0000 0000 0000 0000 0000 0000 0000 1000
-
+HEADER_STATUS_BIT_DIRECT_TEACHING	= 0x00000080	# 0b 0000 0000 0000 0000 0000 0000 1000 0000
+HEADER_STATUS_BIT_TEACHING			= 0x00000040	# 0b 0000 0000 0000 0000 0000 0000 0100 0000
+HEADER_STATUS_BIT_PROGRAM_RUNNING	= 0x00000020	# 0b 0000 0000 0000 0000 0000 0000 0010 0000
+HEADER_STATUS_BIT_PROGRAM_PAUSED	= 0x00000010	# 0b 0000 0000 0000 0000 0000 0000 0001 0000
+HEADER_STATUS_BIT_CONTY_CONNECTED	= 0x00000008	# 0b 0000 0000 0000 0000 0000 0000 0000 1000
+#########################################################################
+# DirectVariableType                                                    #
+#########################################################################
+DIRECT_VAR_TYPE_ERROR       = -1
+DIRECT_VAR_TYPE_BYTE        = 0
+DIRECT_VAR_TYPE_WORD        = 1
+DIRECT_VAR_TYPE_DWORD       = 2
+DIRECT_VAR_TYPE_LWORD       = 3
+DIRECT_VAR_TYPE_FLOAT       = 4
+DIRECT_VAR_TYPE_DFLOAT      = 5
+DIRECT_VAR_TYPE_MODBUS_REG  = 10
 
 ###############################################################################
 # Debug                                                                       #
 ###############################################################################
-def dump_buf(msg, buf, length):
+def dump_buf(msg, buf, length) :
     if debugging:
-        print(msg)
-        for i in range(0, length):
+        print (msg)
+        for i in range (0, length):
             # print(i, end=' - ')
             print(buf[i])
-
 
 ###############################################################################
 # Decorators                                                                  #
@@ -417,9 +438,7 @@ def socket_connect(func):
         # args[0].disconnect()
         args[0].lock.release()
         return func_out
-
     return decorated
-
 
 # gwkim
 
@@ -432,10 +451,10 @@ def tcp_command(cmd, response_type=None):
                 error_code, _res_data, _ = args[0]._handle_command(cmd)
             else:
                 error_code, _res_data, _ = args[0]._handle_command(cmd, _req_data[0], _req_data[1])
-
+            
             if error_code:
                 return error_code
-
+            
             if response_type == 'jointArr':
                 if JOINT_DOF == 6:
                     return np.array(_res_data.double6dArr).tolist()
@@ -447,14 +466,14 @@ def tcp_command(cmd, response_type=None):
                 return None
 
         return decorated
-
     return decorate
+
 
 
 ###############################################################################
 # Indy Client Class                                                           #
 ###############################################################################
-class IndyDCP2:
+class IndyDCPClient:
     def __init__(self, server_ip, robot_name, robot_version=""):
         global JOINT_DOF
 
@@ -532,16 +551,16 @@ class IndyDCP2:
             chunk = self.sock_fd.recv(size - bytes_recd)
             if chunk == b'':
                 print('Error: receive error')
-                memset(buf, 0, sizeof(buf))
+                memset (buf, 0, sizeof (buf))
                 # self.__lock.release()
                 self.shutdown()
                 return -1
             chunks.append(chunk)
-            if (bytes_recd + len(chunk)) > sizeof(buf):
+            if (bytes_recd + len(chunk)) > sizeof (buf):
                 break
             bytes_recd += len(chunk)
         data = b''.join(chunks)
-        memset(buf, 0, sizeof(buf))
+        memset(buf, 0, sizeof (buf))
         memmove(buf, data, len(data))
         return buf
 
@@ -549,20 +568,15 @@ class IndyDCP2:
         req_robot_name = np.array(req.val.robotName).tostring().decode('utf-8')
         res_robot_name = np.array(res.val.robotName).tostring().decode('utf-8')
         if req_robot_name != res_robot_name:
-            print("Header check fail (robotName): Request {_req}, Response {_res}".format(_req=req_robot_name,
-                                                                                          _res=res_robot_name))
+            print("Header check fail (robotName): Request {_req}, Response {_res}".format(_req=req_robot_name, _res=res_robot_name))
         if req.val.stepInfo != res.val.stepInfo:
-            print("Header check fail (stepInfo): Request {_req}, Response {_res}".format(_req=req.val.stepInfo,
-                                                                                         _res=res.val.stepInfo))
+            print("Header check fail (stepInfo): Request {_req}, Response {_res}".format(_req=req.val.stepInfo, _res=res.val.stepInfo))
         if req.val.invokeId != res.val.invokeId:
-            print("Header check fail (invokeId): Request {_req}, Response {_res}".format(_req=req.val.invokeId,
-                                                                                         _res=res.val.invokeId))
+            print("Header check fail (invokeId): Request {_req}, Response {_res}".format(_req=req.val.invokeId, _res=res.val.invokeId))
         if res.val.sof != self.__sof_server:
-            print("Header check fail (sof): Request {_req}, Response {_res}".format(_req=self.__sof_server,
-                                                                                    _res=res.val.sof))
+            print("Header check fail (sof): Request {_req}, Response {_res}".format(_req=self.__sof_server, _res=res.val.sof))
         if req.val.cmdId != res.val.cmdId:
-            print("Header check fail (cmdId): Request {_req}, Response {_res}".format(_req=req.val.cmdId,
-                                                                                      _res=res.val.cmdId))
+            print("Header check fail (cmdId): Request {_req}, Response {_res}".format(_req=req.val.cmdId, _res=res.val.cmdId))
         if res.val.cmdId == CMD_ERROR:
             print(err_to_string(err_code))
             return err_code
@@ -571,25 +585,25 @@ class IndyDCP2:
     def parse_robot_status(self, status):
         status_str = bin(status).lstrip('0b')
         # self.robot_status.is_robot_running        = int(status_str[0])
-        self.robot_status.is_robot_ready = int(status_str[1])
-        self.robot_status.is_emergency_stop = int(status_str[2])
-        self.robot_status.is_collided = int(status_str[3])
-        self.robot_status.is_error_state = int(status_str[4])
-        self.robot_status.is_busy = int(status_str[5])
-        self.robot_status.is_move_finished = int(status_str[6])
-        self.robot_status.is_home = int(status_str[7])
-        self.robot_status.is_zero = int(status_str[8])
-        self.robot_status.is_in_resetting = int(status_str[9])
-        self.robot_status.is_teaching_mode = int(status_str[25])
+        self.robot_status.is_robot_ready          = int(status_str[1])
+        self.robot_status.is_emergency_stop       = int(status_str[2])
+        self.robot_status.is_collided             = int(status_str[3])
+        self.robot_status.is_error_state          = int(status_str[4])
+        self.robot_status.is_busy                 = int(status_str[5])
+        self.robot_status.is_move_finished        = int(status_str[6])
+        self.robot_status.is_home                 = int(status_str[7])
+        self.robot_status.is_zero                 = int(status_str[8])
+        self.robot_status.is_in_resetting         = int(status_str[9])
+        self.robot_status.is_teaching_mode        = int(status_str[25])
         self.robot_status.is_direct_teaching_mode = int(status_str[24])
-        self.robot_status.is_program_running = int(status_str[26])
-        self.robot_status.is_program_paused = int(status_str[27])
-        self.robot_status.is_conty_connected = int(status_str[28])
+        self.robot_status.is_program_running      = int(status_str[26])
+        self.robot_status.is_program_paused       = int(status_str[27])
+        self.robot_status.is_conty_connected      = int(status_str[28])
 
     @socket_connect
     def _handle_command(self, cmd, req_data=Data(), req_data_size=0):
-        write_buffer = (c_char * 1024)()
-        read_buffer = (c_char * 1024)()
+        write_buffer = (c_char* 1024)()
+        read_buffer = (c_char* 1024)()
 
         if req_data_size > SIZE_DATA_TCP_MAX or req_data_size < 0:
             self.disconnect()
@@ -621,7 +635,7 @@ class IndyDCP2:
             if hasattr(req_data, 'byte'):
                 memmove(write_buffer, req_data.byte, req_data_size)
             else:
-                memmove(write_buffer, req_data, req_data_size)  # For execute command move
+                memmove(write_buffer, req_data, req_data_size) # For execute command move
             self._send_message(write_buffer, req_data_size)
 
         # Recv header from socket
@@ -699,6 +713,7 @@ class IndyDCP2:
         read_buffer = self._recv_message(read_buffer, SIZE_HEADER_COMMAND)
         memmove(res_header.byte, read_buffer, SIZE_HEADER_COMMAND)
 
+
         # Recv data from socket
         res_data = Data()
         res_data_size = res_header.val.dataSize
@@ -729,16 +744,15 @@ class IndyDCP2:
         else:
             return ret, res_data, res_data_size
 
-    # gwkim
+# gwkim
     ############################################################################
     ## Robot command function (Check all)                                     #
     ############################################################################
     @tcp_command(CMD_CHECK)
     def check(self):
-        pass
+        pass        
 
-        # Get robot status
-
+    # Get robot status
     def get_robot_status(self):
         self.check()
         res = {'ready': self.robot_status.is_robot_ready,
@@ -954,12 +968,24 @@ class IndyDCP2:
         brake_state = result[JOINT_DOF:2 * JOINT_DOF].tolist()
         return servo_state, brake_state
 
+    # Not released
+    @tcp_command(CMD_SET_REDUCED_MODE)
+    def set_reduced_mode(self, mode):
+        data = Data()
+        data_size = 1
+        data.boolVal = mode
+        return (data, data_size)
+
     @tcp_command(CMD_SET_REDUCED_SPEED_RATIO)
     def set_reduced_speed_ratio(self, ratio):
         data = Data()
         data_size = 8
         data.doubleVal = ratio
         return (data, data_size)
+
+    @tcp_command(CMD_GET_REDUCED_MODE, 'boolVal')
+    def get_reduced_mode(self):
+        pass
 
     @tcp_command(CMD_GET_REDUCED_SPEED_RATIO, 'doubleVal')
     def get_reduced_speed_ratio(self):
@@ -1059,12 +1085,12 @@ class IndyDCP2:
 
         if blend_radius >= 3 and blend_radius <= 27:
             data.doubleArr[1] = blend_radius
-        else:
+        else: 
             data.doubleArr[1] = 0
 
         for i in range(JOINT_DOF):
             data.doubleArr[i + 2] = q[i]
-
+        
         return (data, data_size)
 
     @tcp_command(CMD_JOINT_POP_BACK_WAYPOINT_SET)
@@ -1075,7 +1101,7 @@ class IndyDCP2:
     def joint_waypoint_clean(self):
         pass
 
-    # gwkim
+# gwkim
     @tcp_command(CMD_JOINT_EXECUTE_WAYPOINT_SET)
     def joint_waypoint_execute(self, policy=0, resume_time=2):
         # 0 : stop
@@ -1089,7 +1115,7 @@ class IndyDCP2:
 
         data.doubleArr[0] = policy
         data.doubleArr[1] = resume_time
-
+        
         return (data, data_size)
 
     @tcp_command(CMD_TASK_PUSH_BACK_WAYPOINT_SET)
@@ -1104,7 +1130,7 @@ class IndyDCP2:
 
         if blend_radius >= 0.02 and blend_radius <= 0.2:
             data.doubleArr[1] = blend_radius
-        else:
+        else: 
             data.doubleArr[1] = 0
 
         for i in range(6):
@@ -1120,7 +1146,7 @@ class IndyDCP2:
     def task_waypoint_clean(self):
         pass
 
-    # gwkim
+# gwkim
     @tcp_command(CMD_TASK_EXECUTE_WAYPOINT_SET)
     def task_waypoint_execute(self, policy=0, resume_time=2):
         # 0 : stop
@@ -1135,6 +1161,7 @@ class IndyDCP2:
         data.doubleArr[1] = resume_time
 
         return (data, data_size)
+
 
     # Conty's move command
     @tcp_command(CMD_MOVE)
@@ -1164,6 +1191,17 @@ class IndyDCP2:
     def start_default_program(self):
         pass
 
+    @tcp_command(CMD_REGISTER_DEFAULT_PROGRAM_IDX)
+    def set_default_program(self, idx):
+        data = Data()
+        data_size = 4
+        data.intVal = idx
+        return (data, data_size)
+
+    @tcp_command(CMD_GET_REGISTERED_DEFAULT_PROGRAM_IDX, 'intVal')
+    def get_default_program_idx(self):
+        pass
+
     # Digital/Analog IO
     def get_di(self):
         error_code, _res_data, _res_data_size = self._handle_command(CMD_GET_SMART_DIS)
@@ -1171,67 +1209,62 @@ class IndyDCP2:
             return error_code
         else:
             return np.array(_res_data.charArr).tolist()[0:32]
-
+        
     def get_servo_num(self):
         error_code, _res_data, _res_data_size = self._handle_command(CMD_GET_SERVO_NUM)
         if error_code:
             return error_code
         else:
             return _res_data.intVal
-
+        
+        
     @tcp_command(CMD_GET_SERVO_TX, 'int5dArr')
     def get_servo_tx(self, idx):
         data = Data()
         data_size = 4
         data.intVal = idx
         return (data, data_size)
-
+    
     @tcp_command(CMD_GET_SERVO_RX, 'int5dArr')
     def get_servo_rx(self, idx):
         data = Data()
         data_size = 4
         data.intVal = idx
         return (data, data_size)
-
+    
     @tcp_command(CMD_ACTIVE_SDK)
-    def active_sdk(self, key, date):
+    def active_sdk(self, key,date):
         data = Data()
-        data_size = 74
-        data.char74dArr = (ctypes.c_ubyte * 74)(*(key + date).encode('ascii'))
+        data_size = 74        
+        data.char74dArr = (ctypes.c_ubyte * 74)(*(key+date).encode('ascii'))
         return (data, data_size)
+    
 
-    @tcp_command(CMD_SET_CUSTOM_CONTROL_MOD)
-    def set_custom_control_mode(self, mode):
-        data = Data()
-        data_size = 4
-        data.intVal = mode
-        return (data, data_size)
 
-    @tcp_command(CMD_GET_CUSTOM_CONTROL_MOD, 'int4dArr')
-    def get_custom_control_mode(self):
-        pass
 
     @tcp_command(CMD_GET_INDY7_TX, 'int30dArr')
     def get_indy7_servo_tx(self, idx):
         pass
-
+    
+    
     @tcp_command(CMD_SET_SERVO_RX)
-    def set_servo_rx(self, idx, rx_data):
-        data = Data()
+    def set_servo_rx(self, idx,rx_data):
+        data = Data()        
         data_size = 24
-        data.intArr[0] = idx
+        data.intArr[0]=idx
         for i in range(5):
-            data.intArr[i + 1] = rx_data[i]
-
+            data.intArr[i+1] = rx_data[i]
+          
         return (data, data_size)
+        
 
     @tcp_command(CMD_SET_INDY7_RX)
-    def set_indy7_servo_rx(self, rx_data):
-        data = Data()
-        data_size = 4 * 5 * 6
+    def set_indy7_servo_rx(self,rx_data):
+        data = Data()        
+        data_size = 4*5*6
         for i in range(30):
             data.intArr[i] = rx_data[i]
-
+          
         return (data, data_size)
 
     @tcp_command(CMD_SET_SMART_DO)
@@ -1241,20 +1274,12 @@ class IndyDCP2:
 
         memset(data.byte, 0, sizeof(data.byte))
         memmove(data.byte, pointer(c_int32(idx)), sizeof(c_int32))
-        memmove(addressof(data.byte) + 4, pointer(c_ubyte(val)), sizeof(c_ubyte))
+        memmove(addressof(data.byte)+4, pointer(c_ubyte(val)), sizeof(c_ubyte))
 
         return (data, data_size)
 
     @tcp_command(CMD_GET_SMART_DOS, 'charArr')
     def get_do(self):
-        pass
-
-    @tcp_command(CMD_GET_ENDTOOL_DI, 'int2dArr')
-    def get_end_di(self):
-        pass
-
-    @tcp_command(CMD_GET_ENDTOOL_AI, 'float2dArr')
-    def get_end_ai(self):
         pass
 
     @tcp_command(CMD_GET_SMART_AI, 'intVal')
@@ -1293,6 +1318,10 @@ class IndyDCP2:
 
     @tcp_command(CMD_GET_ENDTOOL_DO, 'int4dArr')
     def get_endtool_do(self):
+        # data = Data()
+        # data_size = 4
+        # data.intVal = type
+        # return (data, data_size)
         pass
 
     # FT sensor interface
@@ -1312,6 +1341,214 @@ class IndyDCP2:
     def get_cb_ft(self):
         pass
 
+    # Direct variables
+    def read_direct_variable(self, dv_type, dv_addr):
+        _req_data = Data()
+        _req_data_size = 8
+        _req_data.int2dArr[0] = dv_type
+        _req_data.int2dArr[1] = dv_addr
+
+        error_code, _res_data, _res_data_size = self._handle_command(CMD_READ_DIRECT_VARIABLE, _req_data, _req_data_size)
+
+        if not error_code:
+            if dv_type == DIRECT_VAR_TYPE_BYTE: # B
+                if _res_data_size == 1:
+                    return int(_res_data.byteVal)
+
+            elif dv_type == DIRECT_VAR_TYPE_WORD: # W
+                if _res_data_size == 2:
+                    val = np.array(_res_data.wordVal).tolist()
+                    res = int.from_bytes(val, byteorder='little', signed=True)
+                    return res
+
+            elif dv_type == DIRECT_VAR_TYPE_DWORD: # I
+                if _res_data_size == 4:
+                    val = np.array(_res_data.dwordVal).tolist()
+                    res = int.from_bytes(val, byteorder='little', signed=True)
+                    return res
+
+            elif dv_type == DIRECT_VAR_TYPE_LWORD: # L
+                if _res_data_size == 8:
+                    val = np.array(_res_data.lwordVal).tolist()
+                    res = int.from_bytes(val, byteorder='little', signed=True)
+                    return res
+
+            elif dv_type == DIRECT_VAR_TYPE_FLOAT: # F
+                if _res_data_size == 4:
+                    return np.array(_res_data.floatVal)
+
+            elif dv_type == DIRECT_VAR_TYPE_DFLOAT: # D
+                if _res_data_size == 8:
+                    return np.array(_res_data.doubleVal)
+
+            elif dv_type == DIRECT_VAR_TYPE_MODBUS_REG: # M
+                if _res_data_size == 2:
+                    val = np.array(_res_data.uwordVal).tolist()
+                    res = int.from_bytes(val, byteorder='little', signed=False)
+                    return res
+
+            else:
+                print("None matched type")
+                return False
+        else:
+            return error_code
+
+    def read_direct_variables(self, dv_type, dv_addr, dv_len):
+        _req_data = Data()
+        _req_data_size = 12
+        _req_data.int3dArr[0] = dv_type
+        _req_data.int3dArr[1] = dv_addr
+        if dv_len > 20:
+            print("Length should be less than 20, but {}".format(dv_len))
+            return
+        _req_data.int3dArr[2] = dv_len
+
+        error_code, _res_data, _res_data_size = self._handle_command(CMD_READ_DIRECT_VARIABLES, _req_data,
+                                                                     _req_data_size)
+
+        if not error_code:
+            if dv_type == DIRECT_VAR_TYPE_BYTE: # B
+                if _res_data_size == 1*dv_len:
+                    res = []
+                    for dv_n in range(0, dv_len):
+                        res.append(np.array(_res_data.byteArr)[dv_n])
+                    return res
+
+            elif dv_type == DIRECT_VAR_TYPE_WORD: # W
+                if _res_data_size == 2*dv_len:
+                    res = []
+                    for dv_n in range(0, dv_len):
+                        val = np.array(_res_data.wordArr)[dv_n].tolist()
+                        res.append(int.from_bytes(val, byteorder='little', signed=True))
+                    return res
+
+            elif dv_type == DIRECT_VAR_TYPE_DWORD: # I
+                if _res_data_size == 4*dv_len:
+                    res = []
+                    for dv_n in range(0, dv_len):
+                        val = np.array(_res_data.dwordArr)[dv_n].tolist()
+                        res.append(int.from_bytes(val, byteorder='little', signed=True))
+                    return res
+
+            elif dv_type == DIRECT_VAR_TYPE_LWORD: # L
+                if _res_data_size == 8*dv_len:
+                    res = []
+                    for dv_n in range(0, dv_len):
+                        val = np.array(_res_data.lwordArr)[dv_n].tolist()
+                        res.append(int.from_bytes(val, byteorder='little', signed=True))
+                    return res
+
+            elif dv_type == DIRECT_VAR_TYPE_FLOAT: # F
+                if _res_data_size == 4*dv_len:
+                    res = []
+                    for dv_n in range(0, dv_len):
+                        res.append(np.array(_res_data.floatArr)[dv_n])
+                    return res
+
+            elif dv_type == DIRECT_VAR_TYPE_DFLOAT: # D
+                if _res_data_size == 8*dv_len:
+                    res = []
+                    for dv_n in range(0, dv_len):
+                        res.append(np.array(_res_data.doubleArr)[dv_n])
+                    return res
+
+            elif dv_type == DIRECT_VAR_TYPE_MODBUS_REG: # M
+                if _res_data_size == 2*dv_len:
+                    res = []
+                    for dv_n in range(0, dv_len):
+                        val = np.array(_res_data.uwordArr)[dv_n].tolist()
+                        res.append(int.from_bytes(val, byteorder='little', signed=False))
+                    return res
+            else:
+                print("None matched type")
+                return False
+        else:
+            return error_code
+
+    def write_direct_variable(self, dv_type, dv_addr, val):
+        _req_data = Data()
+        _req_data_size = 8
+        _req_data.int2dArr[0] = dv_type
+        _req_data.int2dArr[1] = dv_addr
+
+        if dv_type == DIRECT_VAR_TYPE_BYTE:
+            memmove(addressof(_req_data.byte) + 8, pointer(c_uint8(val)), 1)
+            _req_data_size += 1
+        elif dv_type == DIRECT_VAR_TYPE_WORD:
+            memmove(addressof(_req_data.byte) + 8, pointer(c_int16(val)), 2)
+            _req_data_size += 2
+        elif dv_type == DIRECT_VAR_TYPE_DWORD:
+            memmove(addressof(_req_data.byte) + 8, pointer(c_int32(val)), 4)
+            _req_data_size += 4
+        elif dv_type == DIRECT_VAR_TYPE_LWORD:
+            memmove(addressof(_req_data.byte) + 8, pointer(c_int64(val)), 8)
+            _req_data_size += 8
+        elif dv_type == DIRECT_VAR_TYPE_FLOAT:
+            memmove(addressof(_req_data.byte) + 8, pointer(c_float(val)), 4)
+            _req_data_size += 4
+        elif dv_type == DIRECT_VAR_TYPE_DFLOAT:
+            memmove(addressof(_req_data.byte) + 8, pointer(c_double(val)), 8)
+            _req_data_size += 8
+        elif dv_type == DIRECT_VAR_TYPE_MODBUS_REG:
+            memmove(addressof(_req_data.byte) + 8, pointer(c_uint16(val)), 2)
+            _req_data_size += 2
+        else:
+            print("None matched type")
+
+        self._handle_command(CMD_WRITE_DIRECT_VARIABLE, _req_data, _req_data_size)
+
+    def write_direct_variables(self, dv_type, dv_addr, dv_len, val):
+        _req_data = Data()
+        _req_data_size = 12
+        _req_data.int3dArr[0] = dv_type
+        _req_data.int3dArr[1] = dv_addr
+        _req_data.int3dArr[2] = dv_len
+
+        if dv_type == DIRECT_VAR_TYPE_BYTE:
+            for ii in range(0, dv_len):
+                memmove(addressof(_req_data.byte) + 12 + 1*ii, pointer(c_uint8(val[ii])), 1)
+                _req_data_size += 1
+
+        elif dv_type == DIRECT_VAR_TYPE_WORD:
+            for ii in range(0, dv_len):
+                type_size = 2
+                memmove(addressof(_req_data.byte) + 12 + type_size*ii, pointer(c_int16(val[ii])), type_size)
+                _req_data_size += type_size
+
+        elif dv_type == DIRECT_VAR_TYPE_DWORD:
+            for ii in range(0, dv_len):
+                type_size = 4
+                memmove(addressof(_req_data.byte) + 12 + type_size*ii, pointer(c_int32(val[ii])), type_size)
+                _req_data_size += type_size
+
+        elif dv_type == DIRECT_VAR_TYPE_LWORD:
+            for ii in range(0, dv_len):
+                type_size = 8
+                memmove(addressof(_req_data.byte) + 12 + type_size*ii, pointer(c_int64(val[ii])), type_size)
+                _req_data_size += type_size
+
+        elif dv_type == DIRECT_VAR_TYPE_FLOAT:
+            for ii in range(0, dv_len):
+                type_size = 4
+                memmove(addressof(_req_data.byte) + 12 + type_size*ii, pointer(c_float(val[ii])), type_size)
+                _req_data_size += type_size
+
+        elif dv_type == DIRECT_VAR_TYPE_DFLOAT:
+            for ii in range(0, dv_len):
+                type_size = 8
+                memmove(addressof(_req_data.byte) + 12 + type_size*ii, pointer(c_double(val[ii])), type_size)
+                _req_data_size += type_size
+
+        elif dv_type == DIRECT_VAR_TYPE_MODBUS_REG:
+            for ii in range(0, dv_len):
+                type_size = 2
+                memmove(addressof(_req_data.byte) + 12 + type_size*ii, pointer(c_uint16(val[ii])), type_size)
+                _req_data_size += type_size
+        else:
+            print("None matched type")
+
+        self._handle_command(CMD_WRITE_DIRECT_VARIABLES, _req_data, _req_data_size)
+
     @tcp_command(CMD_GET_INV_KIN, 'jointArr')
     def get_inv_kin(self, task_pos, init_q):
         data = Data()
@@ -1321,75 +1558,80 @@ class IndyDCP2:
             data.doubleArr[i] = task_pos[i]
 
         for i in range(JOINT_DOF):
-            data.doubleArr[i + 6] = init_q[i]
+            data.doubleArr[i+6] = init_q[i]
 
         return (data, data_size)
 
-    @tcp_command(CMD_START_TELE)
-    def start_teleop(self, mode):
+    @tcp_command(CMD_SET_SYNC_MODE)
+    def set_sync_mode(self, isSyncMode):
         data = Data()
-        data_size = 4
-        data.intVal = mode
+        data_size = 1
+        data.boolVal = isSyncMode
         return (data, data_size)
 
-    @tcp_command(CMD_STOP_TELE)
-    def stop_teleop(self):
+    ############################################################################
+    ## Extended IndyDCP command (Check all)                                    #
+    ############################################################################
+    def move_ext_traj_bin(self, traj_type, traj_freq, dat_size, traj_data, dat_num=3):
+        opt_len = 5
+        dat_len = len(traj_data)
+        opt_data = [None] * opt_len
+        opt_data[0] = traj_type
+        opt_data[1] = traj_freq
+        opt_data[2] = dat_num
+        opt_data[3] = dat_size
+        opt_data[4] = int(dat_len/(dat_size*dat_num))  # traj_len
+
+        ext_data1 = np.array(opt_data).tobytes()
+        ext_data2 = np.array(traj_data).tobytes()
+        req_ext_data = ext_data1 + ext_data2
+        req_ext_data_size = len(req_ext_data)
+
+        self._handle_extended_command(EXT_CMD_MOVE_TRAJ_BY_DATA,
+                                      req_ext_data,
+                                      req_ext_data_size)
+
+    def move_ext_traj_txt(self, traj_type, traj_freq, dat_size, traj_data, dat_num=3):
+        opt_len = 5
+        dat_len = len(traj_data)
+        ext_data_size = opt_len + dat_len
+        ext_data = [None] * ext_data_size
+        ext_data[0] = traj_type
+        ext_data[1] = traj_freq
+        ext_data[2] = dat_num
+        ext_data[3] = dat_size
+        ext_data[4] = int(dat_len/(dat_size*dat_num))  # traj_len
+        ext_data[5:-1] = traj_data
+
+        ext_data_str = ' '.join(str(e) for e in ext_data)
+        req_ext_data = ext_data_str.encode('ascii')
+        req_ext_data_size = len(ext_data_str)
+
+        self._handle_extended_command(EXT_CMD_MOVE_TRAJ_BY_TXT_DATA,
+                                      req_ext_data,
+                                      req_ext_data_size)
+
+    def move_ext_traj_bin_file(self, file_name):
+        file_name += "\0"  # last char should be null
+        req_ext_data = file_name.encode('ascii')
+        req_ext_data_size = len(file_name)
+        self._handle_extended_command(EXT_CMD_MOVE_TRAJ_BY_FILE,
+                                      req_ext_data,
+                                      req_ext_data_size)
+
+    def move_ext_traj_txt_file(self, file_name):
+        file_name += "\0"  # last char should be null
+        req_ext_data = file_name.encode('ascii')
+        req_ext_data_size = len(file_name)
+        self._handle_extended_command(EXT_CMD_MOVE_TRAJ_BY_TXT_FILE,
+                                      req_ext_data,
+                                      req_ext_data_size)
+
+    def joint_move_to_wp_set(self):
         pass
 
-    @tcp_command(CMD_TELE_MOVEJ)
-    def tele_movej(self, q):
-        data = Data()
-        data_size = JOINT_DOF * 8
-        for i in range(JOINT_DOF):
-            data.doubleArr[i] = q[i]
-        return (data, data_size)
-
-    @tcp_command(CMD_TELE_MOVEL)
-    def tele_movel(self, p):
-        data = Data()
-        data_size = 6 * 8
-        for i in range(6):
-            data.double6dArr[i] = p[i]
-        return (data, data_size)
-
-    @tcp_command(CMD_SET_MOVE_C)
-    def moveC(self, via_p, end_p):
-        data = Data()
-        data_size = 84
-        for i in range(6):
-            data.doubleArr[i] = via_p[i]
-            data.doubleArr[i + 6] = end_p[i]
-        return (data, data_size)
-
-    @tcp_command(CMD_MOVE_C)
-    def moveC(self, via_p, end_p):
-        data = Data()
-        data_size = 84
-        for i in range(6):
-            data.doubleArr[i] = via_p[i]
-            data.doubleArr[i + 6] = end_p[i]
-        return (data, data_size)
-
-    @tcp_command(CMD_SET_MOVE_C_ANGLE)
-    def set_moveC_angle(self, angle):
-        data = Data()
-        data_size = 4
-        data.intVal = angle
-        return (data, data_size)
-
-    @tcp_command(CMD_SET_MOVE_C_VEL)
-    def set_moveC_vel(self, velocity):
-        data = Data()
-        data_size = 4
-        data.intVal = velocity
-        return (data, data_size)
-
-    @tcp_command(CMD_SET_MOVE_C_ACC)
-    def set_moveC_acc(self, acceleration):
-        data = Data()
-        data_size = 4
-        data.intVal = acceleration
-        return (data, data_size)
+    def task_move_to_wp_set(self):
+        pass
 
     ############################################################################
     ## JSON program
@@ -1424,7 +1666,6 @@ class IndyDCP2:
         else:
             return False
 
-
 ############################################################################
 ## Teaching points                                                         #
 ############################################################################
@@ -1432,7 +1673,6 @@ def load_teaching_data(file_name):
     with open(file_name, "r") as json_file:
         teach_config = json.load(json_file)
         return teach_config
-
 
 def update_teaching_data(file_name, wp_name, j_pos):
     new_pos = []
@@ -1454,7 +1694,6 @@ def update_teaching_data(file_name, wp_name, j_pos):
     with open(file_name, "w+") as json_file:
         json.dump(teach_config, json_file)
         return teach_config
-
 
 def del_teaching_data(file_name, wp_name):
     with open(file_name) as json_file:
@@ -1479,6 +1718,56 @@ if __name__ == '__main__':
     _name = sys.argv[2]
 
     # Connect
-    indy = IndyDCPClient(_server_ip, _name)
+    indy= IndyDCPClient(_server_ip, _name)
+    indy.connect()
 
 
+    # Check robot ready
+    print('### Test: IsReady() ###')
+    if indy.is_robot_ready():
+        print('Robot is ready!')
+    else:
+        print('Robot is not ready!')
+
+    # Check moving finished
+    print('### Test: IsMoveFinished() ###')
+    if indy.is_move_finished():
+        print('Robot is not moving!')
+    else:
+        print('Robot is moving!')
+
+    # Check DirectTeaching
+    print('### Test: StartDirectTeaching() ###')
+    if indy.direct_teaching(True):
+        print('Start DirectTeaching success!')
+    else:
+        print('Start DirectTeaching failed!')
+
+    print('### Test: StopDirectTeaching() ###')
+    if indy.direct_teaching(False):
+        print('Stop DirectTeaching success!')
+    else:
+        print('Stop DirectTeaching failed!')
+
+    # Get Task Position
+    print('### Test: GetTaskPos() ###')
+    task_pos = indy.get_task_pos()
+    print ("Task Pos: ")
+    print (task_pos)
+
+    # Get Joint Position
+    print('### Test: GetJointPos() ###')
+    joint_pos = indy.get_joint_pos()
+    print ("Joint Pos: ")
+    print (joint_pos)
+
+    # Move to Task
+    print('### Test: MoveToT() ###')
+    indy.task_move_to(task_pos)
+
+    # Move to Joint
+    print('### Test: MoveToJ() ###')
+    indy.joint_move_to(joint_pos)
+    # Disconnect
+    indy.disconnect()
+    print("Test finished")

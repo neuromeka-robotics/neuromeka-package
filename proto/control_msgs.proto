@@ -146,6 +146,7 @@ message MoveLReq {
   VelocityModeType vel_type = 5;
   MotionCondition post_condition = 20;
   bool teaching_mode = 30;
+  bool bypass_singular = 40;
 }
 
 //////////////////////////MoveLTReq/////////////////////////
@@ -154,6 +155,16 @@ message MoveLTReq {
   BlendingType blending = 2;
   float time = 3;
   MotionCondition post_condition = 20;
+}
+
+//////////////////////////MoveAxisReq/////////////////////////
+message MoveAxisReq {
+  repeated float start_mm = 1;
+  repeated float target_mm = 2;
+  float vel_percentage = 3;
+  float acc_percentage = 4;
+  bool is_absolute = 5;
+  bool teaching_mode = 10;
 }
 
 //////////////////////////CircularSettingType/////////////////////////
@@ -185,6 +196,7 @@ message MoveCReq {
   MotionCondition post_condition = 25;
 
   bool teaching_mode = 30;
+  bool bypass_singular = 40;
 }
 
 //////////////////////////MoveCTReq/////////////////////////
@@ -199,6 +211,27 @@ message MoveCTReq {
   float time = 20;
 
   MotionCondition post_condition = 25;
+}
+
+//////////////////////////MoveTrajReq/////////////////////////
+message MoveJointTrajReq {
+  repeated Vector q_list = 1;
+  repeated Vector qdot_list = 2;
+  repeated Vector qddot_list = 3;
+}
+
+message MoveTaskTrajReq {
+  repeated Vector p_list = 1;
+  repeated Vector pdot_list = 2;
+  repeated Vector pddot_list = 3;
+}
+
+//////////////////////////MoveConveyor/////////////////////////
+message MoveConveyorReq {
+  bool teaching_mode = 1;
+  bool bypass_singular = 2;
+  float acc_ratio = 3;  // PERCENT 0~1000
+  MotionCondition post_condition = 10;
 }
 
 //////////////////////////WaitIOReq/////////////////////////
@@ -363,6 +396,17 @@ message InverseKinematicsRes {
   Response response = 100;
 }
 
+//////////////////////////ForwardKinematics/////////////////////////
+message ForwardKinematicsReq {
+  repeated float jpos = 1;
+}
+
+message ForwardKinematicsRes {
+  repeated float tpos = 1;
+
+  Response response = 100;
+}
+
 //////////////////////////CheckAproachRetractValid/////////////////////////
 message CheckAproachRetractValidReq {
   repeated float tpos = 1;
@@ -503,18 +547,31 @@ message MoveTeleLReq {
 
 
 //////////////////////////MoveFL/////////////////////////
-message MoveFLReq {
+message MoveLFReq {
   TargetP target = 1;
   BlendingType blending = 2;
   float vel_ratio = 3;
   float acc_ratio = 4;
   VelocityModeType vel_type = 5;
-  float des_force = 6;
-  bool enableForceControl = 7;
+  repeated float des_force = 6;
+  repeated bool enabled_force = 7;
   MotionCondition post_condition = 20;
   bool teaching_mode = 30;
 }
 
 message MoveFLRes {
   string msg = 100;
+}
+
+//////////////////////////GetTransformedFTSensorData/////////////////////////
+message TransformedFTSensorData{
+  float ft_Fx = 1;
+  float ft_Fy = 2;
+  float ft_Fz = 3;
+  float ft_Tx = 4;
+  float ft_Ty = 5;
+  float ft_Tz = 6;
+
+  Response response = 100;
+
 }

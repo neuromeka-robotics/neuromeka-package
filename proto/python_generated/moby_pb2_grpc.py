@@ -152,13 +152,13 @@ class MobyStub(object):
                 )
         self.SetForceKinematics = channel.unary_unary(
                 '/Nrmk.IndyFramework.Moby/SetForceKinematics',
-                request_serializer=moby__msgs__pb2.BoolVal.SerializeToString,
+                request_serializer=moby__msgs__pb2.ForcedKinematicsData.SerializeToString,
                 response_deserializer=common__msgs__pb2.Empty.FromString,
                 )
         self.GetForceKinematics = channel.unary_unary(
                 '/Nrmk.IndyFramework.Moby/GetForceKinematics',
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
-                response_deserializer=moby__msgs__pb2.BoolVal.FromString,
+                response_deserializer=moby__msgs__pb2.ForcedKinematicsData.FromString,
                 )
         self.PauseBumper = channel.unary_unary(
                 '/Nrmk.IndyFramework.Moby/PauseBumper',
@@ -173,6 +173,11 @@ class MobyStub(object):
         self.TurnBuzzOnOff = channel.unary_unary(
                 '/Nrmk.IndyFramework.Moby/TurnBuzzOnOff',
                 request_serializer=moby__msgs__pb2.BoolVal.SerializeToString,
+                response_deserializer=common__msgs__pb2.Empty.FromString,
+                )
+        self.SetExtraDO = channel.unary_unary(
+                '/Nrmk.IndyFramework.Moby/SetExtraDO',
+                request_serializer=moby__msgs__pb2.BoolVals.SerializeToString,
                 response_deserializer=common__msgs__pb2.Empty.FromString,
                 )
         self.SetControlParam = channel.unary_unary(
@@ -401,6 +406,12 @@ class MobyServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def SetExtraDO(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def SetControlParam(self, request, context):
         """Gain setting
         rpc SetRotationTorqueMode(BoolVal) returns (Empty) {}
@@ -568,13 +579,13 @@ def add_MobyServicer_to_server(servicer, server):
             ),
             'SetForceKinematics': grpc.unary_unary_rpc_method_handler(
                     servicer.SetForceKinematics,
-                    request_deserializer=moby__msgs__pb2.BoolVal.FromString,
+                    request_deserializer=moby__msgs__pb2.ForcedKinematicsData.FromString,
                     response_serializer=common__msgs__pb2.Empty.SerializeToString,
             ),
             'GetForceKinematics': grpc.unary_unary_rpc_method_handler(
                     servicer.GetForceKinematics,
                     request_deserializer=common__msgs__pb2.Empty.FromString,
-                    response_serializer=moby__msgs__pb2.BoolVal.SerializeToString,
+                    response_serializer=moby__msgs__pb2.ForcedKinematicsData.SerializeToString,
             ),
             'PauseBumper': grpc.unary_unary_rpc_method_handler(
                     servicer.PauseBumper,
@@ -589,6 +600,11 @@ def add_MobyServicer_to_server(servicer, server):
             'TurnBuzzOnOff': grpc.unary_unary_rpc_method_handler(
                     servicer.TurnBuzzOnOff,
                     request_deserializer=moby__msgs__pb2.BoolVal.FromString,
+                    response_serializer=common__msgs__pb2.Empty.SerializeToString,
+            ),
+            'SetExtraDO': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetExtraDO,
+                    request_deserializer=moby__msgs__pb2.BoolVals.FromString,
                     response_serializer=common__msgs__pb2.Empty.SerializeToString,
             ),
             'SetControlParam': grpc.unary_unary_rpc_method_handler(
@@ -1092,7 +1108,7 @@ class Moby(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Moby/SetForceKinematics',
-            moby__msgs__pb2.BoolVal.SerializeToString,
+            moby__msgs__pb2.ForcedKinematicsData.SerializeToString,
             common__msgs__pb2.Empty.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
@@ -1110,7 +1126,7 @@ class Moby(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Moby/GetForceKinematics',
             common__msgs__pb2.Empty.SerializeToString,
-            moby__msgs__pb2.BoolVal.FromString,
+            moby__msgs__pb2.ForcedKinematicsData.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -1161,6 +1177,23 @@ class Moby(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Moby/TurnBuzzOnOff',
             moby__msgs__pb2.BoolVal.SerializeToString,
+            common__msgs__pb2.Empty.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SetExtraDO(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Moby/SetExtraDO',
+            moby__msgs__pb2.BoolVals.SerializeToString,
             common__msgs__pb2.Empty.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

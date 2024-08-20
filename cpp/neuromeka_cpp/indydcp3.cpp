@@ -2468,7 +2468,7 @@ bool IndyDCP3::get_tool_property(Nrmk::IndyFramework::ToolProperties& tool_prope
 }
 
 
-bool IndyDCP3::set_tool_property(const Nrmk::IndyFramework::ToolProperties& tool_properties) 
+bool IndyDCP3::set_tool_property(const Nrmk::IndyFramework::ToolProperties& tool_properties)
 {
     /*
         Tool Properties:
@@ -2488,6 +2488,38 @@ bool IndyDCP3::set_tool_property(const Nrmk::IndyFramework::ToolProperties& tool
     }
 
     return true;
+}
+
+bool IndyDCP3::set_mount_pos(float rot_y, float rot_z)
+{
+    Nrmk::IndyFramework::MountingAngles request;
+    Nrmk::IndyFramework::Response response;
+    grpc::ClientContext context;
+
+    request.set_ry(rot_y);
+    request.set_rz(rot_z);
+
+    grpc::Status status = config_stub_->SetMountPos(&context, request, &response);
+
+    if(status.ok())
+        return true;
+    return false;
+}
+
+bool IndyDCP3::get_mount_pos(float &rot_y, float &rot_z)
+{
+    Nrmk::IndyFramework::Empty request;
+    Nrmk::IndyFramework::MountingAngles response;
+    grpc::ClientContext context;
+
+    grpc::Status status = config_stub_->GetMountPos(&context, request, &response);
+
+    rot_y = response.ry();
+    rot_z = response.rz();
+
+    if(status.ok())
+        return true;
+    return false;
 }
 
 

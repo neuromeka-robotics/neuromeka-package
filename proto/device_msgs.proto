@@ -14,6 +14,31 @@ message Servo {
   bool enable = 2;
 }
 
+//////////////////////////485Gripper/////////////////////////
+enum GripperType{
+  NONE              = 0;
+  ROBOTIQ_GRIPPER   = 1;
+  DH_GRIPPER        = 2;
+}
+
+message GripperData {
+    GripperType gripper_type = 1;
+    int32 gripper_position = 2;
+    int32 gripper_state = 3;
+}
+
+message GripperCommand{
+    enum GripperCommandType{
+      AUTO_DETECT   = 0;
+      ACTIVATE      = 1;
+      RE_ACTIVATE   = 2;
+      SET_PVT       = 3;
+    }
+    GripperCommandType gripper_command = 1;
+    GripperType gripper_type = 2;
+    repeated int32 gripper_pvt_data = 3;
+}
+
 //////////////////////////DigitalSignal/////////////////////////
 message DigitalSignal {
   uint32 address = 1;
@@ -35,7 +60,9 @@ enum EndtoolState {
   LOW_NPN = -1;
   LOW_PNP = -2;
 }
-
+message EndLedDim {
+    uint32 led_dim = 1;
+}
 //enum EndToolPort {
 //  PORT_C = 0;
 //  PORT_B = 1;
@@ -69,6 +96,7 @@ message EndtoolSignalList {
   repeated EndtoolSignal signals = 1;
 }
 
+
 //////////////////////////AnalogList/////////////////////////
 message AnalogList {
   repeated AnalogSignal signals = 1;
@@ -87,6 +115,9 @@ message DeviceInfo {
   string controller_ver = 20;
   string controller_detail = 21;
   string controller_date = 22;
+
+  bool teleop_loaded = 30;
+  bool calibrated = 31;
 
   Response response = 100;
 }
@@ -121,13 +152,6 @@ message GetEL5101Data {
   Response response = 100;
 }
 
-//////////////////////////GetFTSensorType/////////////////////////
-message FTSensorType{
-  string ft_sensor_type =1;
-
-  Response response = 100;
-}
-
 //////////////////////////GetFTSensorData/////////////////////////
 message FTSensorData{
   float ft_Fx = 1;
@@ -139,4 +163,101 @@ message FTSensorData{
 
   Response response = 100;
 
+}
+//////////////////////////GetLoadFactors/////////////////////////
+message GetLoadFactorsRes{
+  repeated int32 percents = 1;    // percent
+  repeated float torques = 2;     // Nm
+  Response response = 100;
+}
+
+//////////////////////////SetAutoMode/////////////////////////
+message SetAutoModeReq {
+  bool on = 1;
+}
+
+message SetAutoModeRes {
+  string msg = 100;
+}
+
+//////////////////////////CheckAutoMode/////////////////////////
+message CheckAutoModeRes {
+  bool on = 1;
+  string msg = 100;
+}
+
+//////////////////////////CheckReducedMode/////////////////////////
+message CheckReducedModeRes {
+  bool on = 1;
+  string msg = 100;
+}
+
+//////////////////////////RequestSafetyFunction/////////////////////////
+message SafetyFunctionState {
+  uint32 id = 1;
+  uint32 state = 2;
+  Response response = 100;
+}
+
+//////////////////////////GetSafetyState/////////////////////////
+message SafetyControlData{
+  bool auto_mode = 1;
+  bool reduced_mode = 2;
+  bool enabler_pressed = 3;
+
+  SafetyFunctionState safety_state = 5;
+}
+
+//////////////////////////SanderCommand/////////////////////////
+message SanderCommand {
+  enum SanderType{
+    SANDER_ONROBOT=0;
+  }
+  SanderType type = 1;
+  string ip = 2;
+  float speed = 3;
+  bool state = 10;
+}
+
+//////////////////////////Conveyor/////////////////////////
+message Encoder {
+  enum EncoderType {
+    CONSTANT = 0;
+    QUADRATURE = 1;
+    RISING = 2;
+    FALLING = 3;
+    MODBUS = 4;
+  }
+  EncoderType type = 1;
+  int64 channel1 = 2;
+  int64 channel2 = 3;
+  int64 sample_num = 4;
+  float mm_per_tick = 5;
+  float vel_const_mmps = 6;
+  bool reversed = 7;
+}
+message Trigger {
+  enum TriggerType {
+    DIGITAL = 0;
+    MODBUS = 1;
+  }
+  TriggerType type = 1;
+  int64 channel = 2;
+  bool detect_rise = 3;
+}
+message Conveyor {
+  string name = 1;
+  Encoder encoder = 2;
+  Trigger trigger = 3;
+  float offset_dist = 4;
+  float working_dist = 5;
+  Nrmk.IndyFramework.Vector direction = 6;
+  PosePair starting_pose = 10;
+  PosePair terminal_pose = 11;
+}
+
+//////////////////////////GetConveyorState/////////////////////////
+message ConveyorState {
+  float velocity = 1;
+  float triggered = 2;
 }

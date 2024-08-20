@@ -6,19 +6,16 @@
 #include "device.grpc.pb.h"
 
 #include <functional>
-#include <grpcpp/support/async_stream.h>
-#include <grpcpp/support/async_unary_call.h>
-#include <grpcpp/impl/channel_interface.h>
-#include <grpcpp/impl/client_unary_call.h>
-#include <grpcpp/support/client_callback.h>
-#include <grpcpp/support/message_allocator.h>
-#include <grpcpp/support/method_handler.h>
-#include <grpcpp/impl/rpc_service_method.h>
-#include <grpcpp/support/server_callback.h>
-#include <grpcpp/impl/server_callback_handlers.h>
-#include <grpcpp/server_context.h>
-#include <grpcpp/impl/service_type.h>
-#include <grpcpp/support/sync_stream.h>
+#include <grpcpp/impl/codegen/async_stream.h>
+#include <grpcpp/impl/codegen/async_unary_call.h>
+#include <grpcpp/impl/codegen/channel_interface.h>
+#include <grpcpp/impl/codegen/client_unary_call.h>
+#include <grpcpp/impl/codegen/client_callback.h>
+#include <grpcpp/impl/codegen/method_handler_impl.h>
+#include <grpcpp/impl/codegen/rpc_service_method.h>
+#include <grpcpp/impl/codegen/server_callback.h>
+#include <grpcpp/impl/codegen/service_type.h>
+#include <grpcpp/impl/codegen/sync_stream.h>
 namespace Nrmk {
 namespace IndyFramework {
 
@@ -34,6 +31,10 @@ static const char* Device_method_names[] = {
   "/Nrmk.IndyFramework.Device/SetAO",
   "/Nrmk.IndyFramework.Device/SetEndAI",
   "/Nrmk.IndyFramework.Device/SetEndAO",
+  "/Nrmk.IndyFramework.Device/SetEndRS485Rx",
+  "/Nrmk.IndyFramework.Device/GetEndRS485Rx",
+  "/Nrmk.IndyFramework.Device/GetEndRS485Tx",
+  "/Nrmk.IndyFramework.Device/SetEndLedDim",
   "/Nrmk.IndyFramework.Device/GetDI",
   "/Nrmk.IndyFramework.Device/GetDO",
   "/Nrmk.IndyFramework.Device/GetEndDI",
@@ -46,905 +47,1671 @@ static const char* Device_method_names[] = {
   "/Nrmk.IndyFramework.Device/GetEL5101",
   "/Nrmk.IndyFramework.Device/GetDeviceInfo",
   "/Nrmk.IndyFramework.Device/GetBrakeControlStyle",
-  "/Nrmk.IndyFramework.Device/SetFTSensorType",
-  "/Nrmk.IndyFramework.Device/GetFTSensorType",
+  "/Nrmk.IndyFramework.Device/SetSanderCommand",
+  "/Nrmk.IndyFramework.Device/GetSanderCommand",
   "/Nrmk.IndyFramework.Device/GetFTSensorData",
+  "/Nrmk.IndyFramework.Device/GetConveyor",
+  "/Nrmk.IndyFramework.Device/SetConveyorName",
+  "/Nrmk.IndyFramework.Device/SetConveyorByName",
+  "/Nrmk.IndyFramework.Device/SetConveyorEncoder",
+  "/Nrmk.IndyFramework.Device/SetConveyorTrigger",
+  "/Nrmk.IndyFramework.Device/SetConveyorOffset",
+  "/Nrmk.IndyFramework.Device/SetConveyorStartingPose",
+  "/Nrmk.IndyFramework.Device/SetConveyorTerminalPose",
+  "/Nrmk.IndyFramework.Device/GetConveyorState",
+  "/Nrmk.IndyFramework.Device/GetLoadFactors",
+  "/Nrmk.IndyFramework.Device/SetAutoMode",
+  "/Nrmk.IndyFramework.Device/CheckAutoMode",
+  "/Nrmk.IndyFramework.Device/CheckReducedMode",
+  "/Nrmk.IndyFramework.Device/GetSafetyFunctionState",
+  "/Nrmk.IndyFramework.Device/RequestSafetyFunction",
+  "/Nrmk.IndyFramework.Device/GetSafetyControlData",
+  "/Nrmk.IndyFramework.Device/GetGripperData",
+  "/Nrmk.IndyFramework.Device/SetGripperCommand",
 };
 
 std::unique_ptr< Device::Stub> Device::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
   (void)options;
-  std::unique_ptr< Device::Stub> stub(new Device::Stub(channel, options));
+  std::unique_ptr< Device::Stub> stub(new Device::Stub(channel));
   return stub;
 }
 
-Device::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
-  : channel_(channel), rpcmethod_SetBrakes_(Device_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetServoAll_(Device_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetServo_(Device_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetDI_(Device_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetDO_(Device_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetEndDI_(Device_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetEndDO_(Device_method_names[6], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetAI_(Device_method_names[7], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetAO_(Device_method_names[8], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetEndAI_(Device_method_names[9], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetEndAO_(Device_method_names[10], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetDI_(Device_method_names[11], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetDO_(Device_method_names[12], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetEndDI_(Device_method_names[13], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetEndDO_(Device_method_names[14], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetAI_(Device_method_names[15], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetAO_(Device_method_names[16], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetEndAI_(Device_method_names[17], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetEndAO_(Device_method_names[18], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetEL5001_(Device_method_names[19], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetEL5101_(Device_method_names[20], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetDeviceInfo_(Device_method_names[21], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetBrakeControlStyle_(Device_method_names[22], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetFTSensorType_(Device_method_names[23], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetFTSensorType_(Device_method_names[24], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetFTSensorData_(Device_method_names[25], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+Device::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel)
+  : channel_(channel), rpcmethod_SetBrakes_(Device_method_names[0], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetServoAll_(Device_method_names[1], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetServo_(Device_method_names[2], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetDI_(Device_method_names[3], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetDO_(Device_method_names[4], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetEndDI_(Device_method_names[5], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetEndDO_(Device_method_names[6], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetAI_(Device_method_names[7], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetAO_(Device_method_names[8], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetEndAI_(Device_method_names[9], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetEndAO_(Device_method_names[10], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetEndRS485Rx_(Device_method_names[11], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetEndRS485Rx_(Device_method_names[12], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetEndRS485Tx_(Device_method_names[13], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetEndLedDim_(Device_method_names[14], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetDI_(Device_method_names[15], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetDO_(Device_method_names[16], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetEndDI_(Device_method_names[17], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetEndDO_(Device_method_names[18], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetAI_(Device_method_names[19], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetAO_(Device_method_names[20], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetEndAI_(Device_method_names[21], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetEndAO_(Device_method_names[22], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetEL5001_(Device_method_names[23], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetEL5101_(Device_method_names[24], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetDeviceInfo_(Device_method_names[25], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetBrakeControlStyle_(Device_method_names[26], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetSanderCommand_(Device_method_names[27], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetSanderCommand_(Device_method_names[28], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetFTSensorData_(Device_method_names[29], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetConveyor_(Device_method_names[30], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetConveyorName_(Device_method_names[31], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetConveyorByName_(Device_method_names[32], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetConveyorEncoder_(Device_method_names[33], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetConveyorTrigger_(Device_method_names[34], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetConveyorOffset_(Device_method_names[35], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetConveyorStartingPose_(Device_method_names[36], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetConveyorTerminalPose_(Device_method_names[37], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetConveyorState_(Device_method_names[38], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetLoadFactors_(Device_method_names[39], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetAutoMode_(Device_method_names[40], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_CheckAutoMode_(Device_method_names[41], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_CheckReducedMode_(Device_method_names[42], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetSafetyFunctionState_(Device_method_names[43], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_RequestSafetyFunction_(Device_method_names[44], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetSafetyControlData_(Device_method_names[45], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetGripperData_(Device_method_names[46], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetGripperCommand_(Device_method_names[47], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status Device::Stub::SetBrakes(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::MotorList& request, ::Nrmk::IndyFramework::Response* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::MotorList, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetBrakes_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetBrakes_, context, request, response);
 }
 
-void Device::Stub::async::SetBrakes(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::MotorList* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::MotorList, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetBrakes_, context, request, response, std::move(f));
+void Device::Stub::experimental_async::SetBrakes(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::MotorList* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetBrakes_, context, request, response, std::move(f));
 }
 
-void Device::Stub::async::SetBrakes(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::MotorList* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetBrakes_, context, request, response, reactor);
+void Device::Stub::experimental_async::SetBrakes(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetBrakes_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Device::Stub::PrepareAsyncSetBrakesRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::MotorList& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Response, ::Nrmk::IndyFramework::MotorList, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetBrakes_, context, request);
+void Device::Stub::experimental_async::SetBrakes(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::MotorList* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetBrakes_, context, request, response, reactor);
+}
+
+void Device::Stub::experimental_async::SetBrakes(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetBrakes_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Device::Stub::AsyncSetBrakesRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::MotorList& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncSetBrakesRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetBrakes_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Device::Stub::PrepareAsyncSetBrakesRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::MotorList& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetBrakes_, context, request, false);
 }
 
 ::grpc::Status Device::Stub::SetServoAll(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::State& request, ::Nrmk::IndyFramework::Response* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::State, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetServoAll_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetServoAll_, context, request, response);
 }
 
-void Device::Stub::async::SetServoAll(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::State* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::State, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetServoAll_, context, request, response, std::move(f));
+void Device::Stub::experimental_async::SetServoAll(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::State* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetServoAll_, context, request, response, std::move(f));
 }
 
-void Device::Stub::async::SetServoAll(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::State* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetServoAll_, context, request, response, reactor);
+void Device::Stub::experimental_async::SetServoAll(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetServoAll_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Device::Stub::PrepareAsyncSetServoAllRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::State& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Response, ::Nrmk::IndyFramework::State, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetServoAll_, context, request);
+void Device::Stub::experimental_async::SetServoAll(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::State* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetServoAll_, context, request, response, reactor);
+}
+
+void Device::Stub::experimental_async::SetServoAll(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetServoAll_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Device::Stub::AsyncSetServoAllRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::State& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncSetServoAllRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetServoAll_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Device::Stub::PrepareAsyncSetServoAllRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::State& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetServoAll_, context, request, false);
 }
 
 ::grpc::Status Device::Stub::SetServo(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Servo& request, ::Nrmk::IndyFramework::Response* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Servo, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetServo_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetServo_, context, request, response);
 }
 
-void Device::Stub::async::SetServo(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Servo* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Servo, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetServo_, context, request, response, std::move(f));
+void Device::Stub::experimental_async::SetServo(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Servo* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetServo_, context, request, response, std::move(f));
 }
 
-void Device::Stub::async::SetServo(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Servo* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetServo_, context, request, response, reactor);
+void Device::Stub::experimental_async::SetServo(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetServo_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Device::Stub::PrepareAsyncSetServoRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Servo& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Response, ::Nrmk::IndyFramework::Servo, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetServo_, context, request);
+void Device::Stub::experimental_async::SetServo(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Servo* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetServo_, context, request, response, reactor);
+}
+
+void Device::Stub::experimental_async::SetServo(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetServo_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Device::Stub::AsyncSetServoRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Servo& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncSetServoRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetServo_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Device::Stub::PrepareAsyncSetServoRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Servo& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetServo_, context, request, false);
 }
 
 ::grpc::Status Device::Stub::SetDI(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DigitalList& request, ::Nrmk::IndyFramework::Response* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::DigitalList, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetDI_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetDI_, context, request, response);
 }
 
-void Device::Stub::async::SetDI(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DigitalList* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::DigitalList, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetDI_, context, request, response, std::move(f));
+void Device::Stub::experimental_async::SetDI(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DigitalList* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetDI_, context, request, response, std::move(f));
 }
 
-void Device::Stub::async::SetDI(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DigitalList* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetDI_, context, request, response, reactor);
+void Device::Stub::experimental_async::SetDI(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetDI_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Device::Stub::PrepareAsyncSetDIRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DigitalList& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Response, ::Nrmk::IndyFramework::DigitalList, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetDI_, context, request);
+void Device::Stub::experimental_async::SetDI(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DigitalList* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetDI_, context, request, response, reactor);
+}
+
+void Device::Stub::experimental_async::SetDI(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetDI_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Device::Stub::AsyncSetDIRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DigitalList& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncSetDIRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetDI_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Device::Stub::PrepareAsyncSetDIRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DigitalList& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetDI_, context, request, false);
 }
 
 ::grpc::Status Device::Stub::SetDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DigitalList& request, ::Nrmk::IndyFramework::Response* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::DigitalList, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetDO_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetDO_, context, request, response);
 }
 
-void Device::Stub::async::SetDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DigitalList* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::DigitalList, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetDO_, context, request, response, std::move(f));
+void Device::Stub::experimental_async::SetDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DigitalList* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetDO_, context, request, response, std::move(f));
 }
 
-void Device::Stub::async::SetDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DigitalList* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetDO_, context, request, response, reactor);
+void Device::Stub::experimental_async::SetDO(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetDO_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Device::Stub::PrepareAsyncSetDORaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DigitalList& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Response, ::Nrmk::IndyFramework::DigitalList, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetDO_, context, request);
+void Device::Stub::experimental_async::SetDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DigitalList* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetDO_, context, request, response, reactor);
+}
+
+void Device::Stub::experimental_async::SetDO(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetDO_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Device::Stub::AsyncSetDORaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DigitalList& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncSetDORaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetDO_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Device::Stub::PrepareAsyncSetDORaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DigitalList& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetDO_, context, request, false);
 }
 
 ::grpc::Status Device::Stub::SetEndDI(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::EndtoolSignalList& request, ::Nrmk::IndyFramework::Response* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::EndtoolSignalList, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetEndDI_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetEndDI_, context, request, response);
 }
 
-void Device::Stub::async::SetEndDI(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::EndtoolSignalList* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::EndtoolSignalList, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetEndDI_, context, request, response, std::move(f));
+void Device::Stub::experimental_async::SetEndDI(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::EndtoolSignalList* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetEndDI_, context, request, response, std::move(f));
 }
 
-void Device::Stub::async::SetEndDI(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::EndtoolSignalList* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetEndDI_, context, request, response, reactor);
+void Device::Stub::experimental_async::SetEndDI(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetEndDI_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Device::Stub::PrepareAsyncSetEndDIRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::EndtoolSignalList& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Response, ::Nrmk::IndyFramework::EndtoolSignalList, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetEndDI_, context, request);
+void Device::Stub::experimental_async::SetEndDI(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::EndtoolSignalList* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetEndDI_, context, request, response, reactor);
+}
+
+void Device::Stub::experimental_async::SetEndDI(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetEndDI_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Device::Stub::AsyncSetEndDIRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::EndtoolSignalList& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncSetEndDIRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetEndDI_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Device::Stub::PrepareAsyncSetEndDIRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::EndtoolSignalList& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetEndDI_, context, request, false);
 }
 
 ::grpc::Status Device::Stub::SetEndDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::EndtoolSignalList& request, ::Nrmk::IndyFramework::Response* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::EndtoolSignalList, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetEndDO_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetEndDO_, context, request, response);
 }
 
-void Device::Stub::async::SetEndDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::EndtoolSignalList* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::EndtoolSignalList, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetEndDO_, context, request, response, std::move(f));
+void Device::Stub::experimental_async::SetEndDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::EndtoolSignalList* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetEndDO_, context, request, response, std::move(f));
 }
 
-void Device::Stub::async::SetEndDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::EndtoolSignalList* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetEndDO_, context, request, response, reactor);
+void Device::Stub::experimental_async::SetEndDO(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetEndDO_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Device::Stub::PrepareAsyncSetEndDORaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::EndtoolSignalList& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Response, ::Nrmk::IndyFramework::EndtoolSignalList, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetEndDO_, context, request);
+void Device::Stub::experimental_async::SetEndDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::EndtoolSignalList* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetEndDO_, context, request, response, reactor);
+}
+
+void Device::Stub::experimental_async::SetEndDO(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetEndDO_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Device::Stub::AsyncSetEndDORaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::EndtoolSignalList& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncSetEndDORaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetEndDO_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Device::Stub::PrepareAsyncSetEndDORaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::EndtoolSignalList& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetEndDO_, context, request, false);
 }
 
 ::grpc::Status Device::Stub::SetAI(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::AnalogList& request, ::Nrmk::IndyFramework::Response* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::AnalogList, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetAI_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetAI_, context, request, response);
 }
 
-void Device::Stub::async::SetAI(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::AnalogList* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::AnalogList, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetAI_, context, request, response, std::move(f));
+void Device::Stub::experimental_async::SetAI(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::AnalogList* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetAI_, context, request, response, std::move(f));
 }
 
-void Device::Stub::async::SetAI(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::AnalogList* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetAI_, context, request, response, reactor);
+void Device::Stub::experimental_async::SetAI(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetAI_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Device::Stub::PrepareAsyncSetAIRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::AnalogList& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Response, ::Nrmk::IndyFramework::AnalogList, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetAI_, context, request);
+void Device::Stub::experimental_async::SetAI(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::AnalogList* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetAI_, context, request, response, reactor);
+}
+
+void Device::Stub::experimental_async::SetAI(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetAI_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Device::Stub::AsyncSetAIRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::AnalogList& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncSetAIRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetAI_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Device::Stub::PrepareAsyncSetAIRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::AnalogList& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetAI_, context, request, false);
 }
 
 ::grpc::Status Device::Stub::SetAO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::AnalogList& request, ::Nrmk::IndyFramework::Response* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::AnalogList, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetAO_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetAO_, context, request, response);
 }
 
-void Device::Stub::async::SetAO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::AnalogList* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::AnalogList, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetAO_, context, request, response, std::move(f));
+void Device::Stub::experimental_async::SetAO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::AnalogList* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetAO_, context, request, response, std::move(f));
 }
 
-void Device::Stub::async::SetAO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::AnalogList* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetAO_, context, request, response, reactor);
+void Device::Stub::experimental_async::SetAO(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetAO_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Device::Stub::PrepareAsyncSetAORaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::AnalogList& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Response, ::Nrmk::IndyFramework::AnalogList, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetAO_, context, request);
+void Device::Stub::experimental_async::SetAO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::AnalogList* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetAO_, context, request, response, reactor);
+}
+
+void Device::Stub::experimental_async::SetAO(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetAO_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Device::Stub::AsyncSetAORaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::AnalogList& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncSetAORaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetAO_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Device::Stub::PrepareAsyncSetAORaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::AnalogList& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetAO_, context, request, false);
 }
 
 ::grpc::Status Device::Stub::SetEndAI(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::AnalogList& request, ::Nrmk::IndyFramework::Response* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::AnalogList, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetEndAI_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetEndAI_, context, request, response);
 }
 
-void Device::Stub::async::SetEndAI(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::AnalogList* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::AnalogList, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetEndAI_, context, request, response, std::move(f));
+void Device::Stub::experimental_async::SetEndAI(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::AnalogList* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetEndAI_, context, request, response, std::move(f));
 }
 
-void Device::Stub::async::SetEndAI(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::AnalogList* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetEndAI_, context, request, response, reactor);
+void Device::Stub::experimental_async::SetEndAI(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetEndAI_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Device::Stub::PrepareAsyncSetEndAIRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::AnalogList& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Response, ::Nrmk::IndyFramework::AnalogList, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetEndAI_, context, request);
+void Device::Stub::experimental_async::SetEndAI(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::AnalogList* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetEndAI_, context, request, response, reactor);
+}
+
+void Device::Stub::experimental_async::SetEndAI(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetEndAI_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Device::Stub::AsyncSetEndAIRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::AnalogList& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncSetEndAIRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetEndAI_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Device::Stub::PrepareAsyncSetEndAIRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::AnalogList& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetEndAI_, context, request, false);
 }
 
 ::grpc::Status Device::Stub::SetEndAO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::AnalogList& request, ::Nrmk::IndyFramework::Response* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::AnalogList, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetEndAO_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetEndAO_, context, request, response);
 }
 
-void Device::Stub::async::SetEndAO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::AnalogList* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::AnalogList, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetEndAO_, context, request, response, std::move(f));
+void Device::Stub::experimental_async::SetEndAO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::AnalogList* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetEndAO_, context, request, response, std::move(f));
 }
 
-void Device::Stub::async::SetEndAO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::AnalogList* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetEndAO_, context, request, response, reactor);
+void Device::Stub::experimental_async::SetEndAO(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetEndAO_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Device::Stub::PrepareAsyncSetEndAORaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::AnalogList& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Response, ::Nrmk::IndyFramework::AnalogList, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetEndAO_, context, request);
+void Device::Stub::experimental_async::SetEndAO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::AnalogList* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetEndAO_, context, request, response, reactor);
+}
+
+void Device::Stub::experimental_async::SetEndAO(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetEndAO_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Device::Stub::AsyncSetEndAORaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::AnalogList& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncSetEndAORaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetEndAO_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Device::Stub::PrepareAsyncSetEndAORaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::AnalogList& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetEndAO_, context, request, false);
+}
+
+::grpc::Status Device::Stub::SetEndRS485Rx(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::EndtoolRS485Rx& request, ::Nrmk::IndyFramework::Response* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetEndRS485Rx_, context, request, response);
+}
+
+void Device::Stub::experimental_async::SetEndRS485Rx(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::EndtoolRS485Rx* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetEndRS485Rx_, context, request, response, std::move(f));
+}
+
+void Device::Stub::experimental_async::SetEndRS485Rx(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetEndRS485Rx_, context, request, response, std::move(f));
+}
+
+void Device::Stub::experimental_async::SetEndRS485Rx(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::EndtoolRS485Rx* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetEndRS485Rx_, context, request, response, reactor);
+}
+
+void Device::Stub::experimental_async::SetEndRS485Rx(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetEndRS485Rx_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Device::Stub::AsyncSetEndRS485RxRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::EndtoolRS485Rx& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetEndRS485Rx_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Device::Stub::PrepareAsyncSetEndRS485RxRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::EndtoolRS485Rx& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetEndRS485Rx_, context, request, false);
+}
+
+::grpc::Status Device::Stub::GetEndRS485Rx(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::EndtoolRS485Rx* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetEndRS485Rx_, context, request, response);
+}
+
+void Device::Stub::experimental_async::GetEndRS485Rx(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::EndtoolRS485Rx* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetEndRS485Rx_, context, request, response, std::move(f));
+}
+
+void Device::Stub::experimental_async::GetEndRS485Rx(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::EndtoolRS485Rx* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetEndRS485Rx_, context, request, response, std::move(f));
+}
+
+void Device::Stub::experimental_async::GetEndRS485Rx(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::EndtoolRS485Rx* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetEndRS485Rx_, context, request, response, reactor);
+}
+
+void Device::Stub::experimental_async::GetEndRS485Rx(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::EndtoolRS485Rx* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetEndRS485Rx_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::EndtoolRS485Rx>* Device::Stub::AsyncGetEndRS485RxRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::EndtoolRS485Rx>::Create(channel_.get(), cq, rpcmethod_GetEndRS485Rx_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::EndtoolRS485Rx>* Device::Stub::PrepareAsyncGetEndRS485RxRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::EndtoolRS485Rx>::Create(channel_.get(), cq, rpcmethod_GetEndRS485Rx_, context, request, false);
+}
+
+::grpc::Status Device::Stub::GetEndRS485Tx(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::EndtoolRS485Tx* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetEndRS485Tx_, context, request, response);
+}
+
+void Device::Stub::experimental_async::GetEndRS485Tx(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::EndtoolRS485Tx* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetEndRS485Tx_, context, request, response, std::move(f));
+}
+
+void Device::Stub::experimental_async::GetEndRS485Tx(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::EndtoolRS485Tx* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetEndRS485Tx_, context, request, response, std::move(f));
+}
+
+void Device::Stub::experimental_async::GetEndRS485Tx(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::EndtoolRS485Tx* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetEndRS485Tx_, context, request, response, reactor);
+}
+
+void Device::Stub::experimental_async::GetEndRS485Tx(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::EndtoolRS485Tx* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetEndRS485Tx_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::EndtoolRS485Tx>* Device::Stub::AsyncGetEndRS485TxRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::EndtoolRS485Tx>::Create(channel_.get(), cq, rpcmethod_GetEndRS485Tx_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::EndtoolRS485Tx>* Device::Stub::PrepareAsyncGetEndRS485TxRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::EndtoolRS485Tx>::Create(channel_.get(), cq, rpcmethod_GetEndRS485Tx_, context, request, false);
+}
+
+::grpc::Status Device::Stub::SetEndLedDim(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::EndLedDim& request, ::Nrmk::IndyFramework::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetEndLedDim_, context, request, response);
+}
+
+void Device::Stub::experimental_async::SetEndLedDim(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::EndLedDim* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetEndLedDim_, context, request, response, std::move(f));
+}
+
+void Device::Stub::experimental_async::SetEndLedDim(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetEndLedDim_, context, request, response, std::move(f));
+}
+
+void Device::Stub::experimental_async::SetEndLedDim(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::EndLedDim* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetEndLedDim_, context, request, response, reactor);
+}
+
+void Device::Stub::experimental_async::SetEndLedDim(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetEndLedDim_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Device::Stub::AsyncSetEndLedDimRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::EndLedDim& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_SetEndLedDim_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Device::Stub::PrepareAsyncSetEndLedDimRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::EndLedDim& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_SetEndLedDim_, context, request, false);
 }
 
 ::grpc::Status Device::Stub::GetDI(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::DigitalList* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::DigitalList, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetDI_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetDI_, context, request, response);
 }
 
-void Device::Stub::async::GetDI(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::DigitalList* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::DigitalList, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetDI_, context, request, response, std::move(f));
+void Device::Stub::experimental_async::GetDI(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::DigitalList* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetDI_, context, request, response, std::move(f));
 }
 
-void Device::Stub::async::GetDI(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::DigitalList* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetDI_, context, request, response, reactor);
+void Device::Stub::experimental_async::GetDI(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::DigitalList* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetDI_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::DigitalList>* Device::Stub::PrepareAsyncGetDIRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::DigitalList, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetDI_, context, request);
+void Device::Stub::experimental_async::GetDI(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::DigitalList* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetDI_, context, request, response, reactor);
+}
+
+void Device::Stub::experimental_async::GetDI(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::DigitalList* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetDI_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::DigitalList>* Device::Stub::AsyncGetDIRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncGetDIRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::DigitalList>::Create(channel_.get(), cq, rpcmethod_GetDI_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::DigitalList>* Device::Stub::PrepareAsyncGetDIRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::DigitalList>::Create(channel_.get(), cq, rpcmethod_GetDI_, context, request, false);
 }
 
 ::grpc::Status Device::Stub::GetDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::DigitalList* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::DigitalList, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetDO_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetDO_, context, request, response);
 }
 
-void Device::Stub::async::GetDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::DigitalList* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::DigitalList, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetDO_, context, request, response, std::move(f));
+void Device::Stub::experimental_async::GetDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::DigitalList* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetDO_, context, request, response, std::move(f));
 }
 
-void Device::Stub::async::GetDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::DigitalList* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetDO_, context, request, response, reactor);
+void Device::Stub::experimental_async::GetDO(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::DigitalList* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetDO_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::DigitalList>* Device::Stub::PrepareAsyncGetDORaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::DigitalList, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetDO_, context, request);
+void Device::Stub::experimental_async::GetDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::DigitalList* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetDO_, context, request, response, reactor);
+}
+
+void Device::Stub::experimental_async::GetDO(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::DigitalList* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetDO_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::DigitalList>* Device::Stub::AsyncGetDORaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncGetDORaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::DigitalList>::Create(channel_.get(), cq, rpcmethod_GetDO_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::DigitalList>* Device::Stub::PrepareAsyncGetDORaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::DigitalList>::Create(channel_.get(), cq, rpcmethod_GetDO_, context, request, false);
 }
 
 ::grpc::Status Device::Stub::GetEndDI(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::EndtoolSignalList* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::EndtoolSignalList, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetEndDI_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetEndDI_, context, request, response);
 }
 
-void Device::Stub::async::GetEndDI(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::EndtoolSignalList* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::EndtoolSignalList, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetEndDI_, context, request, response, std::move(f));
+void Device::Stub::experimental_async::GetEndDI(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::EndtoolSignalList* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetEndDI_, context, request, response, std::move(f));
 }
 
-void Device::Stub::async::GetEndDI(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::EndtoolSignalList* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetEndDI_, context, request, response, reactor);
+void Device::Stub::experimental_async::GetEndDI(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::EndtoolSignalList* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetEndDI_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::EndtoolSignalList>* Device::Stub::PrepareAsyncGetEndDIRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::EndtoolSignalList, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetEndDI_, context, request);
+void Device::Stub::experimental_async::GetEndDI(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::EndtoolSignalList* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetEndDI_, context, request, response, reactor);
+}
+
+void Device::Stub::experimental_async::GetEndDI(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::EndtoolSignalList* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetEndDI_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::EndtoolSignalList>* Device::Stub::AsyncGetEndDIRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncGetEndDIRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::EndtoolSignalList>::Create(channel_.get(), cq, rpcmethod_GetEndDI_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::EndtoolSignalList>* Device::Stub::PrepareAsyncGetEndDIRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::EndtoolSignalList>::Create(channel_.get(), cq, rpcmethod_GetEndDI_, context, request, false);
 }
 
 ::grpc::Status Device::Stub::GetEndDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::EndtoolSignalList* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::EndtoolSignalList, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetEndDO_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetEndDO_, context, request, response);
 }
 
-void Device::Stub::async::GetEndDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::EndtoolSignalList* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::EndtoolSignalList, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetEndDO_, context, request, response, std::move(f));
+void Device::Stub::experimental_async::GetEndDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::EndtoolSignalList* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetEndDO_, context, request, response, std::move(f));
 }
 
-void Device::Stub::async::GetEndDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::EndtoolSignalList* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetEndDO_, context, request, response, reactor);
+void Device::Stub::experimental_async::GetEndDO(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::EndtoolSignalList* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetEndDO_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::EndtoolSignalList>* Device::Stub::PrepareAsyncGetEndDORaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::EndtoolSignalList, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetEndDO_, context, request);
+void Device::Stub::experimental_async::GetEndDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::EndtoolSignalList* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetEndDO_, context, request, response, reactor);
+}
+
+void Device::Stub::experimental_async::GetEndDO(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::EndtoolSignalList* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetEndDO_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::EndtoolSignalList>* Device::Stub::AsyncGetEndDORaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncGetEndDORaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::EndtoolSignalList>::Create(channel_.get(), cq, rpcmethod_GetEndDO_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::EndtoolSignalList>* Device::Stub::PrepareAsyncGetEndDORaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::EndtoolSignalList>::Create(channel_.get(), cq, rpcmethod_GetEndDO_, context, request, false);
 }
 
 ::grpc::Status Device::Stub::GetAI(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::AnalogList* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::AnalogList, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetAI_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetAI_, context, request, response);
 }
 
-void Device::Stub::async::GetAI(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::AnalogList* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::AnalogList, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetAI_, context, request, response, std::move(f));
+void Device::Stub::experimental_async::GetAI(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::AnalogList* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetAI_, context, request, response, std::move(f));
 }
 
-void Device::Stub::async::GetAI(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::AnalogList* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetAI_, context, request, response, reactor);
+void Device::Stub::experimental_async::GetAI(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::AnalogList* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetAI_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::AnalogList>* Device::Stub::PrepareAsyncGetAIRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::AnalogList, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetAI_, context, request);
+void Device::Stub::experimental_async::GetAI(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::AnalogList* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetAI_, context, request, response, reactor);
+}
+
+void Device::Stub::experimental_async::GetAI(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::AnalogList* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetAI_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::AnalogList>* Device::Stub::AsyncGetAIRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncGetAIRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::AnalogList>::Create(channel_.get(), cq, rpcmethod_GetAI_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::AnalogList>* Device::Stub::PrepareAsyncGetAIRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::AnalogList>::Create(channel_.get(), cq, rpcmethod_GetAI_, context, request, false);
 }
 
 ::grpc::Status Device::Stub::GetAO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::AnalogList* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::AnalogList, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetAO_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetAO_, context, request, response);
 }
 
-void Device::Stub::async::GetAO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::AnalogList* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::AnalogList, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetAO_, context, request, response, std::move(f));
+void Device::Stub::experimental_async::GetAO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::AnalogList* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetAO_, context, request, response, std::move(f));
 }
 
-void Device::Stub::async::GetAO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::AnalogList* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetAO_, context, request, response, reactor);
+void Device::Stub::experimental_async::GetAO(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::AnalogList* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetAO_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::AnalogList>* Device::Stub::PrepareAsyncGetAORaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::AnalogList, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetAO_, context, request);
+void Device::Stub::experimental_async::GetAO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::AnalogList* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetAO_, context, request, response, reactor);
+}
+
+void Device::Stub::experimental_async::GetAO(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::AnalogList* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetAO_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::AnalogList>* Device::Stub::AsyncGetAORaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncGetAORaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::AnalogList>::Create(channel_.get(), cq, rpcmethod_GetAO_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::AnalogList>* Device::Stub::PrepareAsyncGetAORaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::AnalogList>::Create(channel_.get(), cq, rpcmethod_GetAO_, context, request, false);
 }
 
 ::grpc::Status Device::Stub::GetEndAI(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::AnalogList* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::AnalogList, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetEndAI_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetEndAI_, context, request, response);
 }
 
-void Device::Stub::async::GetEndAI(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::AnalogList* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::AnalogList, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetEndAI_, context, request, response, std::move(f));
+void Device::Stub::experimental_async::GetEndAI(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::AnalogList* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetEndAI_, context, request, response, std::move(f));
 }
 
-void Device::Stub::async::GetEndAI(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::AnalogList* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetEndAI_, context, request, response, reactor);
+void Device::Stub::experimental_async::GetEndAI(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::AnalogList* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetEndAI_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::AnalogList>* Device::Stub::PrepareAsyncGetEndAIRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::AnalogList, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetEndAI_, context, request);
+void Device::Stub::experimental_async::GetEndAI(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::AnalogList* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetEndAI_, context, request, response, reactor);
+}
+
+void Device::Stub::experimental_async::GetEndAI(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::AnalogList* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetEndAI_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::AnalogList>* Device::Stub::AsyncGetEndAIRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncGetEndAIRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::AnalogList>::Create(channel_.get(), cq, rpcmethod_GetEndAI_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::AnalogList>* Device::Stub::PrepareAsyncGetEndAIRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::AnalogList>::Create(channel_.get(), cq, rpcmethod_GetEndAI_, context, request, false);
 }
 
 ::grpc::Status Device::Stub::GetEndAO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::AnalogList* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::AnalogList, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetEndAO_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetEndAO_, context, request, response);
 }
 
-void Device::Stub::async::GetEndAO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::AnalogList* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::AnalogList, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetEndAO_, context, request, response, std::move(f));
+void Device::Stub::experimental_async::GetEndAO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::AnalogList* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetEndAO_, context, request, response, std::move(f));
 }
 
-void Device::Stub::async::GetEndAO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::AnalogList* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetEndAO_, context, request, response, reactor);
+void Device::Stub::experimental_async::GetEndAO(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::AnalogList* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetEndAO_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::AnalogList>* Device::Stub::PrepareAsyncGetEndAORaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::AnalogList, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetEndAO_, context, request);
+void Device::Stub::experimental_async::GetEndAO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::AnalogList* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetEndAO_, context, request, response, reactor);
+}
+
+void Device::Stub::experimental_async::GetEndAO(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::AnalogList* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetEndAO_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::AnalogList>* Device::Stub::AsyncGetEndAORaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncGetEndAORaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::AnalogList>::Create(channel_.get(), cq, rpcmethod_GetEndAO_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::AnalogList>* Device::Stub::PrepareAsyncGetEndAORaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::AnalogList>::Create(channel_.get(), cq, rpcmethod_GetEndAO_, context, request, false);
 }
 
 ::grpc::Status Device::Stub::GetEL5001(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::GetEL5001Data* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::GetEL5001Data, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetEL5001_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetEL5001_, context, request, response);
 }
 
-void Device::Stub::async::GetEL5001(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::GetEL5001Data* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::GetEL5001Data, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetEL5001_, context, request, response, std::move(f));
+void Device::Stub::experimental_async::GetEL5001(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::GetEL5001Data* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetEL5001_, context, request, response, std::move(f));
 }
 
-void Device::Stub::async::GetEL5001(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::GetEL5001Data* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetEL5001_, context, request, response, reactor);
+void Device::Stub::experimental_async::GetEL5001(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::GetEL5001Data* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetEL5001_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::GetEL5001Data>* Device::Stub::PrepareAsyncGetEL5001Raw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::GetEL5001Data, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetEL5001_, context, request);
+void Device::Stub::experimental_async::GetEL5001(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::GetEL5001Data* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetEL5001_, context, request, response, reactor);
+}
+
+void Device::Stub::experimental_async::GetEL5001(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::GetEL5001Data* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetEL5001_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::GetEL5001Data>* Device::Stub::AsyncGetEL5001Raw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncGetEL5001Raw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::GetEL5001Data>::Create(channel_.get(), cq, rpcmethod_GetEL5001_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::GetEL5001Data>* Device::Stub::PrepareAsyncGetEL5001Raw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::GetEL5001Data>::Create(channel_.get(), cq, rpcmethod_GetEL5001_, context, request, false);
 }
 
 ::grpc::Status Device::Stub::GetEL5101(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::GetEL5101Data* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::GetEL5101Data, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetEL5101_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetEL5101_, context, request, response);
 }
 
-void Device::Stub::async::GetEL5101(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::GetEL5101Data* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::GetEL5101Data, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetEL5101_, context, request, response, std::move(f));
+void Device::Stub::experimental_async::GetEL5101(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::GetEL5101Data* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetEL5101_, context, request, response, std::move(f));
 }
 
-void Device::Stub::async::GetEL5101(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::GetEL5101Data* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetEL5101_, context, request, response, reactor);
+void Device::Stub::experimental_async::GetEL5101(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::GetEL5101Data* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetEL5101_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::GetEL5101Data>* Device::Stub::PrepareAsyncGetEL5101Raw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::GetEL5101Data, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetEL5101_, context, request);
+void Device::Stub::experimental_async::GetEL5101(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::GetEL5101Data* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetEL5101_, context, request, response, reactor);
+}
+
+void Device::Stub::experimental_async::GetEL5101(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::GetEL5101Data* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetEL5101_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::GetEL5101Data>* Device::Stub::AsyncGetEL5101Raw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncGetEL5101Raw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::GetEL5101Data>::Create(channel_.get(), cq, rpcmethod_GetEL5101_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::GetEL5101Data>* Device::Stub::PrepareAsyncGetEL5101Raw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::GetEL5101Data>::Create(channel_.get(), cq, rpcmethod_GetEL5101_, context, request, false);
 }
 
 ::grpc::Status Device::Stub::GetDeviceInfo(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::DeviceInfo* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::DeviceInfo, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetDeviceInfo_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetDeviceInfo_, context, request, response);
 }
 
-void Device::Stub::async::GetDeviceInfo(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::DeviceInfo* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::DeviceInfo, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetDeviceInfo_, context, request, response, std::move(f));
+void Device::Stub::experimental_async::GetDeviceInfo(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::DeviceInfo* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetDeviceInfo_, context, request, response, std::move(f));
 }
 
-void Device::Stub::async::GetDeviceInfo(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::DeviceInfo* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetDeviceInfo_, context, request, response, reactor);
+void Device::Stub::experimental_async::GetDeviceInfo(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::DeviceInfo* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetDeviceInfo_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::DeviceInfo>* Device::Stub::PrepareAsyncGetDeviceInfoRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::DeviceInfo, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetDeviceInfo_, context, request);
+void Device::Stub::experimental_async::GetDeviceInfo(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::DeviceInfo* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetDeviceInfo_, context, request, response, reactor);
+}
+
+void Device::Stub::experimental_async::GetDeviceInfo(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::DeviceInfo* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetDeviceInfo_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::DeviceInfo>* Device::Stub::AsyncGetDeviceInfoRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncGetDeviceInfoRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::DeviceInfo>::Create(channel_.get(), cq, rpcmethod_GetDeviceInfo_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::DeviceInfo>* Device::Stub::PrepareAsyncGetDeviceInfoRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::DeviceInfo>::Create(channel_.get(), cq, rpcmethod_GetDeviceInfo_, context, request, false);
 }
 
 ::grpc::Status Device::Stub::GetBrakeControlStyle(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::BrakeControlStyle* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::BrakeControlStyle, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetBrakeControlStyle_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetBrakeControlStyle_, context, request, response);
 }
 
-void Device::Stub::async::GetBrakeControlStyle(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::BrakeControlStyle* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::BrakeControlStyle, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetBrakeControlStyle_, context, request, response, std::move(f));
+void Device::Stub::experimental_async::GetBrakeControlStyle(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::BrakeControlStyle* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetBrakeControlStyle_, context, request, response, std::move(f));
 }
 
-void Device::Stub::async::GetBrakeControlStyle(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::BrakeControlStyle* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetBrakeControlStyle_, context, request, response, reactor);
+void Device::Stub::experimental_async::GetBrakeControlStyle(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::BrakeControlStyle* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetBrakeControlStyle_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::BrakeControlStyle>* Device::Stub::PrepareAsyncGetBrakeControlStyleRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::BrakeControlStyle, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetBrakeControlStyle_, context, request);
+void Device::Stub::experimental_async::GetBrakeControlStyle(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::BrakeControlStyle* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetBrakeControlStyle_, context, request, response, reactor);
+}
+
+void Device::Stub::experimental_async::GetBrakeControlStyle(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::BrakeControlStyle* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetBrakeControlStyle_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::BrakeControlStyle>* Device::Stub::AsyncGetBrakeControlStyleRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncGetBrakeControlStyleRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::BrakeControlStyle>::Create(channel_.get(), cq, rpcmethod_GetBrakeControlStyle_, context, request, true);
 }
 
-::grpc::Status Device::Stub::SetFTSensorType(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::FTSensorType& request, ::Nrmk::IndyFramework::Response* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::FTSensorType, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetFTSensorType_, context, request, response);
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::BrakeControlStyle>* Device::Stub::PrepareAsyncGetBrakeControlStyleRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::BrakeControlStyle>::Create(channel_.get(), cq, rpcmethod_GetBrakeControlStyle_, context, request, false);
 }
 
-void Device::Stub::async::SetFTSensorType(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::FTSensorType* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::FTSensorType, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetFTSensorType_, context, request, response, std::move(f));
+::grpc::Status Device::Stub::SetSanderCommand(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SanderCommand& request, ::Nrmk::IndyFramework::Response* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetSanderCommand_, context, request, response);
 }
 
-void Device::Stub::async::SetFTSensorType(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::FTSensorType* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetFTSensorType_, context, request, response, reactor);
+void Device::Stub::experimental_async::SetSanderCommand(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SanderCommand* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetSanderCommand_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Device::Stub::PrepareAsyncSetFTSensorTypeRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::FTSensorType& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Response, ::Nrmk::IndyFramework::FTSensorType, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetFTSensorType_, context, request);
+void Device::Stub::experimental_async::SetSanderCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetSanderCommand_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Device::Stub::AsyncSetFTSensorTypeRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::FTSensorType& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncSetFTSensorTypeRaw(context, request, cq);
-  result->StartCall();
-  return result;
+void Device::Stub::experimental_async::SetSanderCommand(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SanderCommand* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetSanderCommand_, context, request, response, reactor);
 }
 
-::grpc::Status Device::Stub::GetFTSensorType(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::FTSensorType* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::FTSensorType, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetFTSensorType_, context, request, response);
+void Device::Stub::experimental_async::SetSanderCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetSanderCommand_, context, request, response, reactor);
 }
 
-void Device::Stub::async::GetFTSensorType(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::FTSensorType* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::FTSensorType, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetFTSensorType_, context, request, response, std::move(f));
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Device::Stub::AsyncSetSanderCommandRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SanderCommand& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetSanderCommand_, context, request, true);
 }
 
-void Device::Stub::async::GetFTSensorType(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::FTSensorType* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetFTSensorType_, context, request, response, reactor);
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Device::Stub::PrepareAsyncSetSanderCommandRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SanderCommand& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetSanderCommand_, context, request, false);
 }
 
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::FTSensorType>* Device::Stub::PrepareAsyncGetFTSensorTypeRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::FTSensorType, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetFTSensorType_, context, request);
+::grpc::Status Device::Stub::GetSanderCommand(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::SanderCommand* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetSanderCommand_, context, request, response);
 }
 
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::FTSensorType>* Device::Stub::AsyncGetFTSensorTypeRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncGetFTSensorTypeRaw(context, request, cq);
-  result->StartCall();
-  return result;
+void Device::Stub::experimental_async::GetSanderCommand(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::SanderCommand* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetSanderCommand_, context, request, response, std::move(f));
+}
+
+void Device::Stub::experimental_async::GetSanderCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::SanderCommand* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetSanderCommand_, context, request, response, std::move(f));
+}
+
+void Device::Stub::experimental_async::GetSanderCommand(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::SanderCommand* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetSanderCommand_, context, request, response, reactor);
+}
+
+void Device::Stub::experimental_async::GetSanderCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::SanderCommand* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetSanderCommand_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::SanderCommand>* Device::Stub::AsyncGetSanderCommandRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::SanderCommand>::Create(channel_.get(), cq, rpcmethod_GetSanderCommand_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::SanderCommand>* Device::Stub::PrepareAsyncGetSanderCommandRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::SanderCommand>::Create(channel_.get(), cq, rpcmethod_GetSanderCommand_, context, request, false);
 }
 
 ::grpc::Status Device::Stub::GetFTSensorData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::FTSensorData* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::FTSensorData, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetFTSensorData_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetFTSensorData_, context, request, response);
 }
 
-void Device::Stub::async::GetFTSensorData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::FTSensorData* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::FTSensorData, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetFTSensorData_, context, request, response, std::move(f));
+void Device::Stub::experimental_async::GetFTSensorData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::FTSensorData* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetFTSensorData_, context, request, response, std::move(f));
 }
 
-void Device::Stub::async::GetFTSensorData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::FTSensorData* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetFTSensorData_, context, request, response, reactor);
+void Device::Stub::experimental_async::GetFTSensorData(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::FTSensorData* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetFTSensorData_, context, request, response, std::move(f));
 }
 
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::FTSensorData>* Device::Stub::PrepareAsyncGetFTSensorDataRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::FTSensorData, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetFTSensorData_, context, request);
+void Device::Stub::experimental_async::GetFTSensorData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::FTSensorData* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetFTSensorData_, context, request, response, reactor);
+}
+
+void Device::Stub::experimental_async::GetFTSensorData(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::FTSensorData* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetFTSensorData_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::FTSensorData>* Device::Stub::AsyncGetFTSensorDataRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncGetFTSensorDataRaw(context, request, cq);
-  result->StartCall();
-  return result;
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::FTSensorData>::Create(channel_.get(), cq, rpcmethod_GetFTSensorData_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::FTSensorData>* Device::Stub::PrepareAsyncGetFTSensorDataRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::FTSensorData>::Create(channel_.get(), cq, rpcmethod_GetFTSensorData_, context, request, false);
+}
+
+::grpc::Status Device::Stub::GetConveyor(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::Conveyor* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetConveyor_, context, request, response);
+}
+
+void Device::Stub::experimental_async::GetConveyor(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::Conveyor* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetConveyor_, context, request, response, std::move(f));
+}
+
+void Device::Stub::experimental_async::GetConveyor(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Conveyor* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetConveyor_, context, request, response, std::move(f));
+}
+
+void Device::Stub::experimental_async::GetConveyor(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::Conveyor* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetConveyor_, context, request, response, reactor);
+}
+
+void Device::Stub::experimental_async::GetConveyor(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Conveyor* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetConveyor_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Conveyor>* Device::Stub::AsyncGetConveyorRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Conveyor>::Create(channel_.get(), cq, rpcmethod_GetConveyor_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Conveyor>* Device::Stub::PrepareAsyncGetConveyorRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Conveyor>::Create(channel_.get(), cq, rpcmethod_GetConveyor_, context, request, false);
+}
+
+::grpc::Status Device::Stub::SetConveyorName(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Name& request, ::Nrmk::IndyFramework::Response* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetConveyorName_, context, request, response);
+}
+
+void Device::Stub::experimental_async::SetConveyorName(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Name* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetConveyorName_, context, request, response, std::move(f));
+}
+
+void Device::Stub::experimental_async::SetConveyorName(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetConveyorName_, context, request, response, std::move(f));
+}
+
+void Device::Stub::experimental_async::SetConveyorName(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Name* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetConveyorName_, context, request, response, reactor);
+}
+
+void Device::Stub::experimental_async::SetConveyorName(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetConveyorName_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Device::Stub::AsyncSetConveyorNameRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Name& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetConveyorName_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Device::Stub::PrepareAsyncSetConveyorNameRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Name& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetConveyorName_, context, request, false);
+}
+
+::grpc::Status Device::Stub::SetConveyorByName(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Name& request, ::Nrmk::IndyFramework::Response* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetConveyorByName_, context, request, response);
+}
+
+void Device::Stub::experimental_async::SetConveyorByName(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Name* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetConveyorByName_, context, request, response, std::move(f));
+}
+
+void Device::Stub::experimental_async::SetConveyorByName(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetConveyorByName_, context, request, response, std::move(f));
+}
+
+void Device::Stub::experimental_async::SetConveyorByName(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Name* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetConveyorByName_, context, request, response, reactor);
+}
+
+void Device::Stub::experimental_async::SetConveyorByName(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetConveyorByName_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Device::Stub::AsyncSetConveyorByNameRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Name& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetConveyorByName_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Device::Stub::PrepareAsyncSetConveyorByNameRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Name& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetConveyorByName_, context, request, false);
+}
+
+::grpc::Status Device::Stub::SetConveyorEncoder(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Encoder& request, ::Nrmk::IndyFramework::Response* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetConveyorEncoder_, context, request, response);
+}
+
+void Device::Stub::experimental_async::SetConveyorEncoder(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Encoder* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetConveyorEncoder_, context, request, response, std::move(f));
+}
+
+void Device::Stub::experimental_async::SetConveyorEncoder(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetConveyorEncoder_, context, request, response, std::move(f));
+}
+
+void Device::Stub::experimental_async::SetConveyorEncoder(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Encoder* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetConveyorEncoder_, context, request, response, reactor);
+}
+
+void Device::Stub::experimental_async::SetConveyorEncoder(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetConveyorEncoder_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Device::Stub::AsyncSetConveyorEncoderRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Encoder& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetConveyorEncoder_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Device::Stub::PrepareAsyncSetConveyorEncoderRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Encoder& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetConveyorEncoder_, context, request, false);
+}
+
+::grpc::Status Device::Stub::SetConveyorTrigger(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Trigger& request, ::Nrmk::IndyFramework::Response* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetConveyorTrigger_, context, request, response);
+}
+
+void Device::Stub::experimental_async::SetConveyorTrigger(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Trigger* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetConveyorTrigger_, context, request, response, std::move(f));
+}
+
+void Device::Stub::experimental_async::SetConveyorTrigger(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetConveyorTrigger_, context, request, response, std::move(f));
+}
+
+void Device::Stub::experimental_async::SetConveyorTrigger(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Trigger* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetConveyorTrigger_, context, request, response, reactor);
+}
+
+void Device::Stub::experimental_async::SetConveyorTrigger(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetConveyorTrigger_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Device::Stub::AsyncSetConveyorTriggerRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Trigger& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetConveyorTrigger_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Device::Stub::PrepareAsyncSetConveyorTriggerRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Trigger& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetConveyorTrigger_, context, request, false);
+}
+
+::grpc::Status Device::Stub::SetConveyorOffset(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Float& request, ::Nrmk::IndyFramework::Response* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetConveyorOffset_, context, request, response);
+}
+
+void Device::Stub::experimental_async::SetConveyorOffset(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Float* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetConveyorOffset_, context, request, response, std::move(f));
+}
+
+void Device::Stub::experimental_async::SetConveyorOffset(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetConveyorOffset_, context, request, response, std::move(f));
+}
+
+void Device::Stub::experimental_async::SetConveyorOffset(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Float* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetConveyorOffset_, context, request, response, reactor);
+}
+
+void Device::Stub::experimental_async::SetConveyorOffset(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetConveyorOffset_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Device::Stub::AsyncSetConveyorOffsetRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Float& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetConveyorOffset_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Device::Stub::PrepareAsyncSetConveyorOffsetRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Float& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetConveyorOffset_, context, request, false);
+}
+
+::grpc::Status Device::Stub::SetConveyorStartingPose(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::PosePair& request, ::Nrmk::IndyFramework::Response* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetConveyorStartingPose_, context, request, response);
+}
+
+void Device::Stub::experimental_async::SetConveyorStartingPose(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::PosePair* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetConveyorStartingPose_, context, request, response, std::move(f));
+}
+
+void Device::Stub::experimental_async::SetConveyorStartingPose(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetConveyorStartingPose_, context, request, response, std::move(f));
+}
+
+void Device::Stub::experimental_async::SetConveyorStartingPose(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::PosePair* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetConveyorStartingPose_, context, request, response, reactor);
+}
+
+void Device::Stub::experimental_async::SetConveyorStartingPose(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetConveyorStartingPose_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Device::Stub::AsyncSetConveyorStartingPoseRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::PosePair& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetConveyorStartingPose_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Device::Stub::PrepareAsyncSetConveyorStartingPoseRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::PosePair& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetConveyorStartingPose_, context, request, false);
+}
+
+::grpc::Status Device::Stub::SetConveyorTerminalPose(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::PosePair& request, ::Nrmk::IndyFramework::Response* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetConveyorTerminalPose_, context, request, response);
+}
+
+void Device::Stub::experimental_async::SetConveyorTerminalPose(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::PosePair* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetConveyorTerminalPose_, context, request, response, std::move(f));
+}
+
+void Device::Stub::experimental_async::SetConveyorTerminalPose(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetConveyorTerminalPose_, context, request, response, std::move(f));
+}
+
+void Device::Stub::experimental_async::SetConveyorTerminalPose(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::PosePair* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetConveyorTerminalPose_, context, request, response, reactor);
+}
+
+void Device::Stub::experimental_async::SetConveyorTerminalPose(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetConveyorTerminalPose_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Device::Stub::AsyncSetConveyorTerminalPoseRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::PosePair& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetConveyorTerminalPose_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Device::Stub::PrepareAsyncSetConveyorTerminalPoseRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::PosePair& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetConveyorTerminalPose_, context, request, false);
+}
+
+::grpc::Status Device::Stub::GetConveyorState(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::ConveyorState* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetConveyorState_, context, request, response);
+}
+
+void Device::Stub::experimental_async::GetConveyorState(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ConveyorState* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetConveyorState_, context, request, response, std::move(f));
+}
+
+void Device::Stub::experimental_async::GetConveyorState(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::ConveyorState* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetConveyorState_, context, request, response, std::move(f));
+}
+
+void Device::Stub::experimental_async::GetConveyorState(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ConveyorState* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetConveyorState_, context, request, response, reactor);
+}
+
+void Device::Stub::experimental_async::GetConveyorState(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::ConveyorState* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetConveyorState_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ConveyorState>* Device::Stub::AsyncGetConveyorStateRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::ConveyorState>::Create(channel_.get(), cq, rpcmethod_GetConveyorState_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ConveyorState>* Device::Stub::PrepareAsyncGetConveyorStateRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::ConveyorState>::Create(channel_.get(), cq, rpcmethod_GetConveyorState_, context, request, false);
+}
+
+::grpc::Status Device::Stub::GetLoadFactors(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::GetLoadFactorsRes* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetLoadFactors_, context, request, response);
+}
+
+void Device::Stub::experimental_async::GetLoadFactors(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::GetLoadFactorsRes* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetLoadFactors_, context, request, response, std::move(f));
+}
+
+void Device::Stub::experimental_async::GetLoadFactors(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::GetLoadFactorsRes* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetLoadFactors_, context, request, response, std::move(f));
+}
+
+void Device::Stub::experimental_async::GetLoadFactors(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::GetLoadFactorsRes* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetLoadFactors_, context, request, response, reactor);
+}
+
+void Device::Stub::experimental_async::GetLoadFactors(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::GetLoadFactorsRes* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetLoadFactors_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::GetLoadFactorsRes>* Device::Stub::AsyncGetLoadFactorsRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::GetLoadFactorsRes>::Create(channel_.get(), cq, rpcmethod_GetLoadFactors_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::GetLoadFactorsRes>* Device::Stub::PrepareAsyncGetLoadFactorsRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::GetLoadFactorsRes>::Create(channel_.get(), cq, rpcmethod_GetLoadFactors_, context, request, false);
+}
+
+::grpc::Status Device::Stub::SetAutoMode(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SetAutoModeReq& request, ::Nrmk::IndyFramework::SetAutoModeRes* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetAutoMode_, context, request, response);
+}
+
+void Device::Stub::experimental_async::SetAutoMode(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SetAutoModeReq* request, ::Nrmk::IndyFramework::SetAutoModeRes* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetAutoMode_, context, request, response, std::move(f));
+}
+
+void Device::Stub::experimental_async::SetAutoMode(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::SetAutoModeRes* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetAutoMode_, context, request, response, std::move(f));
+}
+
+void Device::Stub::experimental_async::SetAutoMode(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SetAutoModeReq* request, ::Nrmk::IndyFramework::SetAutoModeRes* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetAutoMode_, context, request, response, reactor);
+}
+
+void Device::Stub::experimental_async::SetAutoMode(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::SetAutoModeRes* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetAutoMode_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::SetAutoModeRes>* Device::Stub::AsyncSetAutoModeRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SetAutoModeReq& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::SetAutoModeRes>::Create(channel_.get(), cq, rpcmethod_SetAutoMode_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::SetAutoModeRes>* Device::Stub::PrepareAsyncSetAutoModeRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SetAutoModeReq& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::SetAutoModeRes>::Create(channel_.get(), cq, rpcmethod_SetAutoMode_, context, request, false);
+}
+
+::grpc::Status Device::Stub::CheckAutoMode(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::CheckAutoModeRes* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_CheckAutoMode_, context, request, response);
+}
+
+void Device::Stub::experimental_async::CheckAutoMode(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::CheckAutoModeRes* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_CheckAutoMode_, context, request, response, std::move(f));
+}
+
+void Device::Stub::experimental_async::CheckAutoMode(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::CheckAutoModeRes* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_CheckAutoMode_, context, request, response, std::move(f));
+}
+
+void Device::Stub::experimental_async::CheckAutoMode(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::CheckAutoModeRes* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_CheckAutoMode_, context, request, response, reactor);
+}
+
+void Device::Stub::experimental_async::CheckAutoMode(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::CheckAutoModeRes* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_CheckAutoMode_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::CheckAutoModeRes>* Device::Stub::AsyncCheckAutoModeRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::CheckAutoModeRes>::Create(channel_.get(), cq, rpcmethod_CheckAutoMode_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::CheckAutoModeRes>* Device::Stub::PrepareAsyncCheckAutoModeRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::CheckAutoModeRes>::Create(channel_.get(), cq, rpcmethod_CheckAutoMode_, context, request, false);
+}
+
+::grpc::Status Device::Stub::CheckReducedMode(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::CheckReducedModeRes* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_CheckReducedMode_, context, request, response);
+}
+
+void Device::Stub::experimental_async::CheckReducedMode(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::CheckReducedModeRes* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_CheckReducedMode_, context, request, response, std::move(f));
+}
+
+void Device::Stub::experimental_async::CheckReducedMode(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::CheckReducedModeRes* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_CheckReducedMode_, context, request, response, std::move(f));
+}
+
+void Device::Stub::experimental_async::CheckReducedMode(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::CheckReducedModeRes* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_CheckReducedMode_, context, request, response, reactor);
+}
+
+void Device::Stub::experimental_async::CheckReducedMode(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::CheckReducedModeRes* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_CheckReducedMode_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::CheckReducedModeRes>* Device::Stub::AsyncCheckReducedModeRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::CheckReducedModeRes>::Create(channel_.get(), cq, rpcmethod_CheckReducedMode_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::CheckReducedModeRes>* Device::Stub::PrepareAsyncCheckReducedModeRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::CheckReducedModeRes>::Create(channel_.get(), cq, rpcmethod_CheckReducedMode_, context, request, false);
+}
+
+::grpc::Status Device::Stub::GetSafetyFunctionState(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::SafetyFunctionState* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetSafetyFunctionState_, context, request, response);
+}
+
+void Device::Stub::experimental_async::GetSafetyFunctionState(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::SafetyFunctionState* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetSafetyFunctionState_, context, request, response, std::move(f));
+}
+
+void Device::Stub::experimental_async::GetSafetyFunctionState(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::SafetyFunctionState* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetSafetyFunctionState_, context, request, response, std::move(f));
+}
+
+void Device::Stub::experimental_async::GetSafetyFunctionState(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::SafetyFunctionState* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetSafetyFunctionState_, context, request, response, reactor);
+}
+
+void Device::Stub::experimental_async::GetSafetyFunctionState(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::SafetyFunctionState* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetSafetyFunctionState_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::SafetyFunctionState>* Device::Stub::AsyncGetSafetyFunctionStateRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::SafetyFunctionState>::Create(channel_.get(), cq, rpcmethod_GetSafetyFunctionState_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::SafetyFunctionState>* Device::Stub::PrepareAsyncGetSafetyFunctionStateRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::SafetyFunctionState>::Create(channel_.get(), cq, rpcmethod_GetSafetyFunctionState_, context, request, false);
+}
+
+::grpc::Status Device::Stub::RequestSafetyFunction(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SafetyFunctionState& request, ::Nrmk::IndyFramework::Response* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_RequestSafetyFunction_, context, request, response);
+}
+
+void Device::Stub::experimental_async::RequestSafetyFunction(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SafetyFunctionState* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_RequestSafetyFunction_, context, request, response, std::move(f));
+}
+
+void Device::Stub::experimental_async::RequestSafetyFunction(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_RequestSafetyFunction_, context, request, response, std::move(f));
+}
+
+void Device::Stub::experimental_async::RequestSafetyFunction(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SafetyFunctionState* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_RequestSafetyFunction_, context, request, response, reactor);
+}
+
+void Device::Stub::experimental_async::RequestSafetyFunction(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_RequestSafetyFunction_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Device::Stub::AsyncRequestSafetyFunctionRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SafetyFunctionState& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_RequestSafetyFunction_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Device::Stub::PrepareAsyncRequestSafetyFunctionRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SafetyFunctionState& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_RequestSafetyFunction_, context, request, false);
+}
+
+::grpc::Status Device::Stub::GetSafetyControlData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::SafetyControlData* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetSafetyControlData_, context, request, response);
+}
+
+void Device::Stub::experimental_async::GetSafetyControlData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::SafetyControlData* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetSafetyControlData_, context, request, response, std::move(f));
+}
+
+void Device::Stub::experimental_async::GetSafetyControlData(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::SafetyControlData* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetSafetyControlData_, context, request, response, std::move(f));
+}
+
+void Device::Stub::experimental_async::GetSafetyControlData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::SafetyControlData* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetSafetyControlData_, context, request, response, reactor);
+}
+
+void Device::Stub::experimental_async::GetSafetyControlData(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::SafetyControlData* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetSafetyControlData_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::SafetyControlData>* Device::Stub::AsyncGetSafetyControlDataRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::SafetyControlData>::Create(channel_.get(), cq, rpcmethod_GetSafetyControlData_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::SafetyControlData>* Device::Stub::PrepareAsyncGetSafetyControlDataRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::SafetyControlData>::Create(channel_.get(), cq, rpcmethod_GetSafetyControlData_, context, request, false);
+}
+
+::grpc::Status Device::Stub::GetGripperData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::GripperData* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetGripperData_, context, request, response);
+}
+
+void Device::Stub::experimental_async::GetGripperData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::GripperData* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetGripperData_, context, request, response, std::move(f));
+}
+
+void Device::Stub::experimental_async::GetGripperData(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::GripperData* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetGripperData_, context, request, response, std::move(f));
+}
+
+void Device::Stub::experimental_async::GetGripperData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::GripperData* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetGripperData_, context, request, response, reactor);
+}
+
+void Device::Stub::experimental_async::GetGripperData(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::GripperData* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetGripperData_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::GripperData>* Device::Stub::AsyncGetGripperDataRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::GripperData>::Create(channel_.get(), cq, rpcmethod_GetGripperData_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::GripperData>* Device::Stub::PrepareAsyncGetGripperDataRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::GripperData>::Create(channel_.get(), cq, rpcmethod_GetGripperData_, context, request, false);
+}
+
+::grpc::Status Device::Stub::SetGripperCommand(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::GripperCommand& request, ::Nrmk::IndyFramework::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetGripperCommand_, context, request, response);
+}
+
+void Device::Stub::experimental_async::SetGripperCommand(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::GripperCommand* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetGripperCommand_, context, request, response, std::move(f));
+}
+
+void Device::Stub::experimental_async::SetGripperCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetGripperCommand_, context, request, response, std::move(f));
+}
+
+void Device::Stub::experimental_async::SetGripperCommand(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::GripperCommand* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetGripperCommand_, context, request, response, reactor);
+}
+
+void Device::Stub::experimental_async::SetGripperCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetGripperCommand_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Device::Stub::AsyncSetGripperCommandRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::GripperCommand& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_SetGripperCommand_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Device::Stub::PrepareAsyncSetGripperCommandRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::GripperCommand& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_SetGripperCommand_, context, request, false);
 }
 
 Device::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Device_method_names[0],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::MotorList, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](Device::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::Nrmk::IndyFramework::MotorList* req,
-             ::Nrmk::IndyFramework::Response* resp) {
-               return service->SetBrakes(ctx, req, resp);
-             }, this)));
+      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::MotorList, ::Nrmk::IndyFramework::Response>(
+          std::mem_fn(&Device::Service::SetBrakes), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Device_method_names[1],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::State, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](Device::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::Nrmk::IndyFramework::State* req,
-             ::Nrmk::IndyFramework::Response* resp) {
-               return service->SetServoAll(ctx, req, resp);
-             }, this)));
+      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::State, ::Nrmk::IndyFramework::Response>(
+          std::mem_fn(&Device::Service::SetServoAll), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Device_method_names[2],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Servo, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](Device::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::Nrmk::IndyFramework::Servo* req,
-             ::Nrmk::IndyFramework::Response* resp) {
-               return service->SetServo(ctx, req, resp);
-             }, this)));
+      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Servo, ::Nrmk::IndyFramework::Response>(
+          std::mem_fn(&Device::Service::SetServo), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Device_method_names[3],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::DigitalList, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](Device::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::Nrmk::IndyFramework::DigitalList* req,
-             ::Nrmk::IndyFramework::Response* resp) {
-               return service->SetDI(ctx, req, resp);
-             }, this)));
+      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::DigitalList, ::Nrmk::IndyFramework::Response>(
+          std::mem_fn(&Device::Service::SetDI), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Device_method_names[4],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::DigitalList, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](Device::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::Nrmk::IndyFramework::DigitalList* req,
-             ::Nrmk::IndyFramework::Response* resp) {
-               return service->SetDO(ctx, req, resp);
-             }, this)));
+      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::DigitalList, ::Nrmk::IndyFramework::Response>(
+          std::mem_fn(&Device::Service::SetDO), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Device_method_names[5],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::EndtoolSignalList, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](Device::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::Nrmk::IndyFramework::EndtoolSignalList* req,
-             ::Nrmk::IndyFramework::Response* resp) {
-               return service->SetEndDI(ctx, req, resp);
-             }, this)));
+      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::EndtoolSignalList, ::Nrmk::IndyFramework::Response>(
+          std::mem_fn(&Device::Service::SetEndDI), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Device_method_names[6],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::EndtoolSignalList, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](Device::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::Nrmk::IndyFramework::EndtoolSignalList* req,
-             ::Nrmk::IndyFramework::Response* resp) {
-               return service->SetEndDO(ctx, req, resp);
-             }, this)));
+      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::EndtoolSignalList, ::Nrmk::IndyFramework::Response>(
+          std::mem_fn(&Device::Service::SetEndDO), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Device_method_names[7],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::AnalogList, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](Device::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::Nrmk::IndyFramework::AnalogList* req,
-             ::Nrmk::IndyFramework::Response* resp) {
-               return service->SetAI(ctx, req, resp);
-             }, this)));
+      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::AnalogList, ::Nrmk::IndyFramework::Response>(
+          std::mem_fn(&Device::Service::SetAI), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Device_method_names[8],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::AnalogList, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](Device::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::Nrmk::IndyFramework::AnalogList* req,
-             ::Nrmk::IndyFramework::Response* resp) {
-               return service->SetAO(ctx, req, resp);
-             }, this)));
+      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::AnalogList, ::Nrmk::IndyFramework::Response>(
+          std::mem_fn(&Device::Service::SetAO), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Device_method_names[9],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::AnalogList, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](Device::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::Nrmk::IndyFramework::AnalogList* req,
-             ::Nrmk::IndyFramework::Response* resp) {
-               return service->SetEndAI(ctx, req, resp);
-             }, this)));
+      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::AnalogList, ::Nrmk::IndyFramework::Response>(
+          std::mem_fn(&Device::Service::SetEndAI), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Device_method_names[10],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::AnalogList, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](Device::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::Nrmk::IndyFramework::AnalogList* req,
-             ::Nrmk::IndyFramework::Response* resp) {
-               return service->SetEndAO(ctx, req, resp);
-             }, this)));
+      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::AnalogList, ::Nrmk::IndyFramework::Response>(
+          std::mem_fn(&Device::Service::SetEndAO), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Device_method_names[11],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::DigitalList, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](Device::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::Nrmk::IndyFramework::Empty* req,
-             ::Nrmk::IndyFramework::DigitalList* resp) {
-               return service->GetDI(ctx, req, resp);
-             }, this)));
+      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::EndtoolRS485Rx, ::Nrmk::IndyFramework::Response>(
+          std::mem_fn(&Device::Service::SetEndRS485Rx), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Device_method_names[12],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::DigitalList, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](Device::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::Nrmk::IndyFramework::Empty* req,
-             ::Nrmk::IndyFramework::DigitalList* resp) {
-               return service->GetDO(ctx, req, resp);
-             }, this)));
+      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::EndtoolRS485Rx>(
+          std::mem_fn(&Device::Service::GetEndRS485Rx), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Device_method_names[13],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::EndtoolSignalList, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](Device::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::Nrmk::IndyFramework::Empty* req,
-             ::Nrmk::IndyFramework::EndtoolSignalList* resp) {
-               return service->GetEndDI(ctx, req, resp);
-             }, this)));
+      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::EndtoolRS485Tx>(
+          std::mem_fn(&Device::Service::GetEndRS485Tx), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Device_method_names[14],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::EndtoolSignalList, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](Device::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::Nrmk::IndyFramework::Empty* req,
-             ::Nrmk::IndyFramework::EndtoolSignalList* resp) {
-               return service->GetEndDO(ctx, req, resp);
-             }, this)));
+      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::EndLedDim, ::Nrmk::IndyFramework::Empty>(
+          std::mem_fn(&Device::Service::SetEndLedDim), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Device_method_names[15],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::AnalogList, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](Device::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::Nrmk::IndyFramework::Empty* req,
-             ::Nrmk::IndyFramework::AnalogList* resp) {
-               return service->GetAI(ctx, req, resp);
-             }, this)));
+      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::DigitalList>(
+          std::mem_fn(&Device::Service::GetDI), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Device_method_names[16],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::AnalogList, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](Device::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::Nrmk::IndyFramework::Empty* req,
-             ::Nrmk::IndyFramework::AnalogList* resp) {
-               return service->GetAO(ctx, req, resp);
-             }, this)));
+      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::DigitalList>(
+          std::mem_fn(&Device::Service::GetDO), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Device_method_names[17],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::AnalogList, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](Device::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::Nrmk::IndyFramework::Empty* req,
-             ::Nrmk::IndyFramework::AnalogList* resp) {
-               return service->GetEndAI(ctx, req, resp);
-             }, this)));
+      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::EndtoolSignalList>(
+          std::mem_fn(&Device::Service::GetEndDI), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Device_method_names[18],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::AnalogList, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](Device::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::Nrmk::IndyFramework::Empty* req,
-             ::Nrmk::IndyFramework::AnalogList* resp) {
-               return service->GetEndAO(ctx, req, resp);
-             }, this)));
+      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::EndtoolSignalList>(
+          std::mem_fn(&Device::Service::GetEndDO), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Device_method_names[19],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::GetEL5001Data, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](Device::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::Nrmk::IndyFramework::Empty* req,
-             ::Nrmk::IndyFramework::GetEL5001Data* resp) {
-               return service->GetEL5001(ctx, req, resp);
-             }, this)));
+      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::AnalogList>(
+          std::mem_fn(&Device::Service::GetAI), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Device_method_names[20],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::GetEL5101Data, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](Device::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::Nrmk::IndyFramework::Empty* req,
-             ::Nrmk::IndyFramework::GetEL5101Data* resp) {
-               return service->GetEL5101(ctx, req, resp);
-             }, this)));
+      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::AnalogList>(
+          std::mem_fn(&Device::Service::GetAO), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Device_method_names[21],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::DeviceInfo, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](Device::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::Nrmk::IndyFramework::Empty* req,
-             ::Nrmk::IndyFramework::DeviceInfo* resp) {
-               return service->GetDeviceInfo(ctx, req, resp);
-             }, this)));
+      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::AnalogList>(
+          std::mem_fn(&Device::Service::GetEndAI), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Device_method_names[22],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::BrakeControlStyle, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](Device::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::Nrmk::IndyFramework::Empty* req,
-             ::Nrmk::IndyFramework::BrakeControlStyle* resp) {
-               return service->GetBrakeControlStyle(ctx, req, resp);
-             }, this)));
+      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::AnalogList>(
+          std::mem_fn(&Device::Service::GetEndAO), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Device_method_names[23],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::FTSensorType, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](Device::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::Nrmk::IndyFramework::FTSensorType* req,
-             ::Nrmk::IndyFramework::Response* resp) {
-               return service->SetFTSensorType(ctx, req, resp);
-             }, this)));
+      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::GetEL5001Data>(
+          std::mem_fn(&Device::Service::GetEL5001), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Device_method_names[24],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::FTSensorType, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](Device::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::Nrmk::IndyFramework::Empty* req,
-             ::Nrmk::IndyFramework::FTSensorType* resp) {
-               return service->GetFTSensorType(ctx, req, resp);
-             }, this)));
+      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::GetEL5101Data>(
+          std::mem_fn(&Device::Service::GetEL5101), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Device_method_names[25],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::FTSensorData, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](Device::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::Nrmk::IndyFramework::Empty* req,
-             ::Nrmk::IndyFramework::FTSensorData* resp) {
-               return service->GetFTSensorData(ctx, req, resp);
-             }, this)));
+      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::DeviceInfo>(
+          std::mem_fn(&Device::Service::GetDeviceInfo), this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Device_method_names[26],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::BrakeControlStyle>(
+          std::mem_fn(&Device::Service::GetBrakeControlStyle), this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Device_method_names[27],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::SanderCommand, ::Nrmk::IndyFramework::Response>(
+          std::mem_fn(&Device::Service::SetSanderCommand), this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Device_method_names[28],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::SanderCommand>(
+          std::mem_fn(&Device::Service::GetSanderCommand), this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Device_method_names[29],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::FTSensorData>(
+          std::mem_fn(&Device::Service::GetFTSensorData), this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Device_method_names[30],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Conveyor>(
+          std::mem_fn(&Device::Service::GetConveyor), this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Device_method_names[31],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Name, ::Nrmk::IndyFramework::Response>(
+          std::mem_fn(&Device::Service::SetConveyorName), this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Device_method_names[32],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Name, ::Nrmk::IndyFramework::Response>(
+          std::mem_fn(&Device::Service::SetConveyorByName), this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Device_method_names[33],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Encoder, ::Nrmk::IndyFramework::Response>(
+          std::mem_fn(&Device::Service::SetConveyorEncoder), this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Device_method_names[34],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Trigger, ::Nrmk::IndyFramework::Response>(
+          std::mem_fn(&Device::Service::SetConveyorTrigger), this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Device_method_names[35],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Float, ::Nrmk::IndyFramework::Response>(
+          std::mem_fn(&Device::Service::SetConveyorOffset), this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Device_method_names[36],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::PosePair, ::Nrmk::IndyFramework::Response>(
+          std::mem_fn(&Device::Service::SetConveyorStartingPose), this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Device_method_names[37],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::PosePair, ::Nrmk::IndyFramework::Response>(
+          std::mem_fn(&Device::Service::SetConveyorTerminalPose), this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Device_method_names[38],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ConveyorState>(
+          std::mem_fn(&Device::Service::GetConveyorState), this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Device_method_names[39],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::GetLoadFactorsRes>(
+          std::mem_fn(&Device::Service::GetLoadFactors), this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Device_method_names[40],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::SetAutoModeReq, ::Nrmk::IndyFramework::SetAutoModeRes>(
+          std::mem_fn(&Device::Service::SetAutoMode), this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Device_method_names[41],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::CheckAutoModeRes>(
+          std::mem_fn(&Device::Service::CheckAutoMode), this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Device_method_names[42],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::CheckReducedModeRes>(
+          std::mem_fn(&Device::Service::CheckReducedMode), this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Device_method_names[43],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::SafetyFunctionState>(
+          std::mem_fn(&Device::Service::GetSafetyFunctionState), this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Device_method_names[44],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::SafetyFunctionState, ::Nrmk::IndyFramework::Response>(
+          std::mem_fn(&Device::Service::RequestSafetyFunction), this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Device_method_names[45],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::SafetyControlData>(
+          std::mem_fn(&Device::Service::GetSafetyControlData), this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Device_method_names[46],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::GripperData>(
+          std::mem_fn(&Device::Service::GetGripperData), this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Device_method_names[47],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::GripperCommand, ::Nrmk::IndyFramework::Empty>(
+          std::mem_fn(&Device::Service::SetGripperCommand), this)));
 }
 
 Device::Service::~Service() {
@@ -1021,6 +1788,34 @@ Device::Service::~Service() {
 }
 
 ::grpc::Status Device::Service::SetEndAO(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::AnalogList* request, ::Nrmk::IndyFramework::Response* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Device::Service::SetEndRS485Rx(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::EndtoolRS485Rx* request, ::Nrmk::IndyFramework::Response* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Device::Service::GetEndRS485Rx(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::EndtoolRS485Rx* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Device::Service::GetEndRS485Tx(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::EndtoolRS485Tx* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Device::Service::SetEndLedDim(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::EndLedDim* request, ::Nrmk::IndyFramework::Empty* response) {
   (void) context;
   (void) request;
   (void) response;
@@ -1111,14 +1906,14 @@ Device::Service::~Service() {
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-::grpc::Status Device::Service::SetFTSensorType(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::FTSensorType* request, ::Nrmk::IndyFramework::Response* response) {
+::grpc::Status Device::Service::SetSanderCommand(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::SanderCommand* request, ::Nrmk::IndyFramework::Response* response) {
   (void) context;
   (void) request;
   (void) response;
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-::grpc::Status Device::Service::GetFTSensorType(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::FTSensorType* response) {
+::grpc::Status Device::Service::GetSanderCommand(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::SanderCommand* response) {
   (void) context;
   (void) request;
   (void) response;
@@ -1126,6 +1921,132 @@ Device::Service::~Service() {
 }
 
 ::grpc::Status Device::Service::GetFTSensorData(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::FTSensorData* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Device::Service::GetConveyor(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::Conveyor* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Device::Service::SetConveyorName(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Name* request, ::Nrmk::IndyFramework::Response* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Device::Service::SetConveyorByName(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Name* request, ::Nrmk::IndyFramework::Response* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Device::Service::SetConveyorEncoder(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Encoder* request, ::Nrmk::IndyFramework::Response* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Device::Service::SetConveyorTrigger(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Trigger* request, ::Nrmk::IndyFramework::Response* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Device::Service::SetConveyorOffset(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Float* request, ::Nrmk::IndyFramework::Response* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Device::Service::SetConveyorStartingPose(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::PosePair* request, ::Nrmk::IndyFramework::Response* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Device::Service::SetConveyorTerminalPose(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::PosePair* request, ::Nrmk::IndyFramework::Response* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Device::Service::GetConveyorState(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ConveyorState* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Device::Service::GetLoadFactors(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::GetLoadFactorsRes* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Device::Service::SetAutoMode(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::SetAutoModeReq* request, ::Nrmk::IndyFramework::SetAutoModeRes* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Device::Service::CheckAutoMode(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::CheckAutoModeRes* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Device::Service::CheckReducedMode(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::CheckReducedModeRes* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Device::Service::GetSafetyFunctionState(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::SafetyFunctionState* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Device::Service::RequestSafetyFunction(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::SafetyFunctionState* request, ::Nrmk::IndyFramework::Response* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Device::Service::GetSafetyControlData(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::SafetyControlData* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Device::Service::GetGripperData(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::GripperData* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Device::Service::SetGripperCommand(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::GripperCommand* request, ::Nrmk::IndyFramework::Empty* response) {
   (void) context;
   (void) request;
   (void) response;

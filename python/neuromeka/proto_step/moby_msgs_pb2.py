@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x0fmoby_msgs.proto\x12\x12Nrmk.IndyFramework\" \n\nDriveIndex\x12\x12\n\nmoby_index\x18\x01 \x01(\r\"}\n\rMotorDriverTx\x12\x12\n\nstatusWord\x18\x01 \x01(\r\x12\x12\n\nmodeOpDisp\x18\x02 \x01(\x05\x12\x16\n\x0e\x61\x63tualPosition\x18\x03 \x01(\x05\x12\x16\n\x0e\x61\x63tualVelocity\x18\x04 \x01(\x05\x12\x14\n\x0c\x61\x63tualTorque\x18\x05 \x01(\x05\"z\n\rMotorDriverRx\x12\x13\n\x0b\x63ontrolWord\x18\x01 \x01(\r\x12\x0e\n\x06modeOp\x18\x02 \x01(\x05\x12\x16\n\x0etargetPosition\x18\x03 \x01(\x05\x12\x16\n\x0etargetVelocity\x18\x04 \x01(\x05\x12\x14\n\x0ctargetTorque\x18\x05 \x01(\x05\"i\n\tMobyState\x12\x0e\n\x06status\x18\x01 \x01(\r\x12\x10\n\x08is_ready\x18\x02 \x01(\x08\x12\x11\n\tis_enable\x18\x03 \x01(\x08\x12\x11\n\tis_moving\x18\x04 \x01(\x08\x12\x14\n\x0cis_violation\x18\x05 \x01(\x08\"c\n\x0eMobyErrorState\x12\x12\n\nerrorState\x18\x01 \x01(\x04\x12\x13\n\x0b\x65rrorIndex1\x18\x02 \x01(\x05\x12\x13\n\x0b\x65rrorIndex2\x18\x03 \x01(\x05\x12\x13\n\x0b\x65rrorIndex3\x18\x04 \x01(\x05\".\n\x08MobyPose\x12\n\n\x02px\x18\x01 \x01(\x01\x12\n\n\x02py\x18\x02 \x01(\x01\x12\n\n\x02pw\x18\x03 \x01(\x01\"-\n\x07MobyVel\x12\n\n\x02vx\x18\x01 \x01(\x01\x12\n\n\x02vy\x18\x02 \x01(\x01\x12\n\n\x02vw\x18\x03 \x01(\x01\"\xa5\x01\n\x07IMUData\x12\x0e\n\x06\x61ngleX\x18\x01 \x01(\x01\x12\x0e\n\x06\x61ngleY\x18\x02 \x01(\x01\x12\x0e\n\x06\x61ngleZ\x18\x03 \x01(\x01\x12\x11\n\tangleVelX\x18\x04 \x01(\x01\x12\x11\n\tangleVelY\x18\x05 \x01(\x01\x12\x11\n\tangleVelZ\x18\x06 \x01(\x01\x12\x0f\n\x07linAccX\x18\x07 \x01(\x01\x12\x0f\n\x07linAccY\x18\x08 \x01(\x01\x12\x0f\n\x07linAccZ\x18\t \x01(\x01\"?\n\rSwerveDoubles\x12\n\n\x02\x66l\x18\x01 \x01(\x01\x12\n\n\x02\x66r\x18\x02 \x01(\x01\x12\n\n\x02\x62l\x18\x03 \x01(\x01\x12\n\n\x02\x62r\x18\x04 \x01(\x01\"/\n\tTargetVel\x12\n\n\x02vx\x18\x01 \x01(\x01\x12\n\n\x02vy\x18\x02 \x01(\x01\x12\n\n\x02vw\x18\x03 \x01(\x01\";\n\tZeroCount\x12\n\n\x02\x66l\x18\x01 \x01(\x05\x12\n\n\x02\x66r\x18\x02 \x01(\x05\x12\n\n\x02\x62l\x18\x03 \x01(\x05\x12\n\n\x02\x62r\x18\x04 \x01(\x05\"\xae\x01\n\x06IRData\x12\x11\n\tir_front1\x18\x01 \x01(\x05\x12\x11\n\tir_front2\x18\x02 \x01(\x05\x12\x10\n\x08ir_left1\x18\x03 \x01(\x05\x12\x10\n\x08ir_left2\x18\x04 \x01(\x05\x12\x10\n\x08ir_left3\x18\x05 \x01(\x05\x12\x0f\n\x07ir_rear\x18\x06 \x01(\x05\x12\x11\n\tir_right1\x18\x07 \x01(\x05\x12\x11\n\tir_right2\x18\x08 \x01(\x05\x12\x11\n\tir_right3\x18\t \x01(\x05\"\x89\x03\n\x06USData\x12\x16\n\x0eus_front_left1\x18\x01 \x01(\x05\x12\x16\n\x0eus_front_left2\x18\x02 \x01(\x05\x12\x16\n\x0eus_front_left3\x18\x03 \x01(\x05\x12\x17\n\x0fus_front_ground\x18\x04 \x01(\x05\x12\x17\n\x0fus_front_right1\x18\x05 \x01(\x05\x12\x17\n\x0fus_front_right2\x18\x06 \x01(\x05\x12\x17\n\x0fus_front_right3\x18\x07 \x01(\x05\x12\x17\n\x0fus_front_right4\x18\x08 \x01(\x05\x12\x16\n\x0eus_back_right1\x18\t \x01(\x05\x12\x16\n\x0eus_back_right2\x18\n \x01(\x05\x12\x16\n\x0eus_back_right3\x18\x0b \x01(\x05\x12\x16\n\x0eus_back_ground\x18\x0c \x01(\x05\x12\x15\n\rus_back_left1\x18\r \x01(\x05\x12\x15\n\rus_back_left2\x18\x0e \x01(\x05\x12\x15\n\rus_back_left3\x18\x0f \x01(\x05\x12\x15\n\rus_back_left4\x18\x10 \x01(\x05\"\xcc\x03\n\x07\x42MSData\x12\x12\n\nbms_status\x18\x01 \x03(\x05\x12\x11\n\tpack_volt\x18\x02 \x03(\x05\x12\x14\n\x0c\x62\x61ttery_volt\x18\x03 \x03(\x05\x12\x15\n\rpack_current1\x18\x04 \x03(\x05\x12\x15\n\rpack_current2\x18\x05 \x03(\x05\x12\x10\n\x08isCharge\x18\x06 \x01(\x05\x12\x16\n\x0eisCellOverVolt\x18\x07 \x01(\x05\x12\x17\n\x0fisCellUnderVolt\x18\x08 \x01(\x05\x12\x17\n\x0fisOverCurCharge\x18\t \x01(\x05\x12\x18\n\x10isOverCurDischrg\x18\n \x01(\x05\x12\x16\n\x0eisShortCircuit\x18\x0b \x01(\x05\x12\x19\n\x11isOverTemperature\x18\x0c \x01(\x05\x12\x16\n\x0eisPackOverVolt\x18\r \x01(\x05\x12\x0b\n\x03SOC\x18\x0e \x01(\x05\x12\x0b\n\x03SOH\x18\x0f \x01(\x05\x12\x13\n\x0btime_charge\x18\x10 \x01(\x05\x12\x14\n\x0ctime_dcharge\x18\x11 \x01(\x05\x12\x11\n\trem_capAh\x18\x12 \x01(\x05\x12\x11\n\trem_capWh\x18\x13 \x01(\x05\x12\x17\n\x0f\x62ms_temperature\x18\x14 \x03(\x05\x12\x11\n\tcell_volt\x18\x15 \x03(\x05\"!\n\x05GBool\x12\x0b\n\x03idx\x18\x01 \x01(\x05\x12\x0b\n\x03val\x18\x02 \x01(\x08\" \n\x04GInt\x12\x0b\n\x03idx\x18\x01 \x01(\x05\x12\x0b\n\x03val\x18\x02 \x01(\x05\"\"\n\x06GFloat\x12\x0b\n\x03idx\x18\x01 \x01(\x05\x12\x0b\n\x03val\x18\x02 \x01(\x02\"#\n\x07GString\x12\x0b\n\x03idx\x18\x01 \x01(\x05\x12\x0b\n\x03val\x18\x02 \x01(\t\"\x16\n\x07\x42oolVal\x12\x0b\n\x03val\x18\x01 \x01(\x08\"\x15\n\x06IntVal\x12\x0b\n\x03val\x18\x01 \x01(\x05\"\x16\n\x07IntVals\x12\x0b\n\x03val\x18\x01 \x03(\x05\"\x17\n\x08\x46loatVal\x12\x0b\n\x03val\x18\x01 \x01(\x02\"\x18\n\tFloatVals\x12\x0b\n\x03val\x18\x01 \x03(\x02\"\x18\n\tDoubleVal\x12\x0b\n\x03val\x18\x01 \x01(\x01\"\x19\n\nDoubleVals\x12\x0b\n\x03val\x18\x01 \x03(\x01\">\n\x0cRotationGain\x12\x0b\n\x03idx\x18\x01 \x01(\x05\x12\t\n\x01k\x18\x02 \x01(\x01\x12\n\n\x02kv\x18\x03 \x01(\x01\x12\n\n\x02kp\x18\x04 \x01(\x01\"9\n\x0eVelAccBoundary\x12\x0b\n\x03idx\x18\x01 \x01(\x05\x12\x0c\n\x04vmax\x18\x02 \x01(\x02\x12\x0c\n\x04\x61max\x18\x03 \x01(\x02\x62\x06proto3'
+  serialized_pb=b'\n\x0fmoby_msgs.proto\x12\x12Nrmk.IndyFramework\" \n\nDriveIndex\x12\x12\n\nmoby_index\x18\x01 \x01(\r\"}\n\rMotorDriverTx\x12\x12\n\nstatusWord\x18\x01 \x01(\r\x12\x12\n\nmodeOpDisp\x18\x02 \x01(\x05\x12\x16\n\x0e\x61\x63tualPosition\x18\x03 \x01(\x05\x12\x16\n\x0e\x61\x63tualVelocity\x18\x04 \x01(\x05\x12\x14\n\x0c\x61\x63tualTorque\x18\x05 \x01(\x05\"z\n\rMotorDriverRx\x12\x13\n\x0b\x63ontrolWord\x18\x01 \x01(\r\x12\x0e\n\x06modeOp\x18\x02 \x01(\x05\x12\x16\n\x0etargetPosition\x18\x03 \x01(\x05\x12\x16\n\x0etargetVelocity\x18\x04 \x01(\x05\x12\x14\n\x0ctargetTorque\x18\x05 \x01(\x05\"i\n\tMobyState\x12\x0e\n\x06status\x18\x01 \x01(\r\x12\x10\n\x08is_ready\x18\x02 \x01(\x08\x12\x11\n\tis_enable\x18\x03 \x01(\x08\x12\x11\n\tis_moving\x18\x04 \x01(\x08\x12\x14\n\x0cis_violation\x18\x05 \x01(\x08\"c\n\x0eMobyErrorState\x12\x12\n\nerrorState\x18\x01 \x01(\x04\x12\x13\n\x0b\x65rrorIndex1\x18\x02 \x01(\x05\x12\x13\n\x0b\x65rrorIndex2\x18\x03 \x01(\x05\x12\x13\n\x0b\x65rrorIndex3\x18\x04 \x01(\x05\".\n\x08MobyPose\x12\n\n\x02px\x18\x01 \x01(\x01\x12\n\n\x02py\x18\x02 \x01(\x01\x12\n\n\x02pw\x18\x03 \x01(\x01\"-\n\x07MobyVel\x12\n\n\x02vx\x18\x01 \x01(\x01\x12\n\n\x02vy\x18\x02 \x01(\x01\x12\n\n\x02vw\x18\x03 \x01(\x01\"\xa5\x01\n\x07IMUData\x12\x0e\n\x06\x61ngleX\x18\x01 \x01(\x01\x12\x0e\n\x06\x61ngleY\x18\x02 \x01(\x01\x12\x0e\n\x06\x61ngleZ\x18\x03 \x01(\x01\x12\x11\n\tangleVelX\x18\x04 \x01(\x01\x12\x11\n\tangleVelY\x18\x05 \x01(\x01\x12\x11\n\tangleVelZ\x18\x06 \x01(\x01\x12\x0f\n\x07linAccX\x18\x07 \x01(\x01\x12\x0f\n\x07linAccY\x18\x08 \x01(\x01\x12\x0f\n\x07linAccZ\x18\t \x01(\x01\"?\n\rSwerveDoubles\x12\n\n\x02\x66l\x18\x01 \x01(\x01\x12\n\n\x02\x66r\x18\x02 \x01(\x01\x12\n\n\x02\x62l\x18\x03 \x01(\x01\x12\n\n\x02\x62r\x18\x04 \x01(\x01\"/\n\tTargetVel\x12\n\n\x02vx\x18\x01 \x01(\x01\x12\n\n\x02vy\x18\x02 \x01(\x01\x12\n\n\x02vw\x18\x03 \x01(\x01\";\n\tZeroCount\x12\n\n\x02\x66l\x18\x01 \x01(\x05\x12\n\n\x02\x66r\x18\x02 \x01(\x05\x12\n\n\x02\x62l\x18\x03 \x01(\x05\x12\n\n\x02\x62r\x18\x04 \x01(\x05\"\xae\x01\n\x06IRData\x12\x11\n\tir_front1\x18\x01 \x01(\x05\x12\x11\n\tir_front2\x18\x02 \x01(\x05\x12\x10\n\x08ir_left1\x18\x03 \x01(\x05\x12\x10\n\x08ir_left2\x18\x04 \x01(\x05\x12\x10\n\x08ir_left3\x18\x05 \x01(\x05\x12\x0f\n\x07ir_rear\x18\x06 \x01(\x05\x12\x11\n\tir_right1\x18\x07 \x01(\x05\x12\x11\n\tir_right2\x18\x08 \x01(\x05\x12\x11\n\tir_right3\x18\t \x01(\x05\"\x89\x03\n\x06USData\x12\x16\n\x0eus_front_left1\x18\x01 \x01(\x05\x12\x16\n\x0eus_front_left2\x18\x02 \x01(\x05\x12\x16\n\x0eus_front_left3\x18\x03 \x01(\x05\x12\x17\n\x0fus_front_ground\x18\x04 \x01(\x05\x12\x17\n\x0fus_front_right1\x18\x05 \x01(\x05\x12\x17\n\x0fus_front_right2\x18\x06 \x01(\x05\x12\x17\n\x0fus_front_right3\x18\x07 \x01(\x05\x12\x17\n\x0fus_front_right4\x18\x08 \x01(\x05\x12\x16\n\x0eus_back_right1\x18\t \x01(\x05\x12\x16\n\x0eus_back_right2\x18\n \x01(\x05\x12\x16\n\x0eus_back_right3\x18\x0b \x01(\x05\x12\x16\n\x0eus_back_ground\x18\x0c \x01(\x05\x12\x15\n\rus_back_left1\x18\r \x01(\x05\x12\x15\n\rus_back_left2\x18\x0e \x01(\x05\x12\x15\n\rus_back_left3\x18\x0f \x01(\x05\x12\x15\n\rus_back_left4\x18\x10 \x01(\x05\"\xcc\x03\n\x07\x42MSData\x12\x12\n\nbms_status\x18\x01 \x03(\x05\x12\x11\n\tpack_volt\x18\x02 \x03(\x05\x12\x14\n\x0c\x62\x61ttery_volt\x18\x03 \x03(\x05\x12\x15\n\rpack_current1\x18\x04 \x03(\x05\x12\x15\n\rpack_current2\x18\x05 \x03(\x05\x12\x10\n\x08isCharge\x18\x06 \x01(\x05\x12\x16\n\x0eisCellOverVolt\x18\x07 \x01(\x05\x12\x17\n\x0fisCellUnderVolt\x18\x08 \x01(\x05\x12\x17\n\x0fisOverCurCharge\x18\t \x01(\x05\x12\x18\n\x10isOverCurDischrg\x18\n \x01(\x05\x12\x16\n\x0eisShortCircuit\x18\x0b \x01(\x05\x12\x19\n\x11isOverTemperature\x18\x0c \x01(\x05\x12\x16\n\x0eisPackOverVolt\x18\r \x01(\x05\x12\x0b\n\x03SOC\x18\x0e \x01(\x05\x12\x0b\n\x03SOH\x18\x0f \x01(\x05\x12\x13\n\x0btime_charge\x18\x10 \x01(\x05\x12\x14\n\x0ctime_dcharge\x18\x11 \x01(\x05\x12\x11\n\trem_capAh\x18\x12 \x01(\x05\x12\x11\n\trem_capWh\x18\x13 \x01(\x05\x12\x17\n\x0f\x62ms_temperature\x18\x14 \x03(\x05\x12\x11\n\tcell_volt\x18\x15 \x03(\x05\"7\n\x14\x46orcedKinematicsData\x12\x10\n\x08\x61\x63tivate\x18\x01 \x01(\x08\x12\r\n\x05\x61ngle\x18\x02 \x01(\x05\"!\n\x05GBool\x12\x0b\n\x03idx\x18\x01 \x01(\x05\x12\x0b\n\x03val\x18\x02 \x01(\x08\" \n\x04GInt\x12\x0b\n\x03idx\x18\x01 \x01(\x05\x12\x0b\n\x03val\x18\x02 \x01(\x05\"\"\n\x06GFloat\x12\x0b\n\x03idx\x18\x01 \x01(\x05\x12\x0b\n\x03val\x18\x02 \x01(\x02\"#\n\x07GString\x12\x0b\n\x03idx\x18\x01 \x01(\x05\x12\x0b\n\x03val\x18\x02 \x01(\t\"\x16\n\x07\x42oolVal\x12\x0b\n\x03val\x18\x01 \x01(\x08\"\x17\n\x08\x42oolVals\x12\x0b\n\x03val\x18\x01 \x03(\x08\"\x15\n\x06IntVal\x12\x0b\n\x03val\x18\x01 \x01(\x05\"\x16\n\x07IntVals\x12\x0b\n\x03val\x18\x01 \x03(\x05\"\x17\n\x08\x46loatVal\x12\x0b\n\x03val\x18\x01 \x01(\x02\"\x18\n\tFloatVals\x12\x0b\n\x03val\x18\x01 \x03(\x02\"\x18\n\tDoubleVal\x12\x0b\n\x03val\x18\x01 \x01(\x01\"\x19\n\nDoubleVals\x12\x0b\n\x03val\x18\x01 \x03(\x01\">\n\x0cRotationGain\x12\x0b\n\x03idx\x18\x01 \x01(\x05\x12\t\n\x01k\x18\x02 \x01(\x01\x12\n\n\x02kv\x18\x03 \x01(\x01\x12\n\n\x02kp\x18\x04 \x01(\x01\"9\n\x0eVelAccBoundary\x12\x0b\n\x03idx\x18\x01 \x01(\x05\x12\x0c\n\x04vmax\x18\x02 \x01(\x02\x12\x0c\n\x04\x61max\x18\x03 \x01(\x02\x62\x06proto3'
 )
 
 
@@ -1019,6 +1019,45 @@ _BMSDATA = _descriptor.Descriptor(
 )
 
 
+_FORCEDKINEMATICSDATA = _descriptor.Descriptor(
+  name='ForcedKinematicsData',
+  full_name='Nrmk.IndyFramework.ForcedKinematicsData',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='activate', full_name='Nrmk.IndyFramework.ForcedKinematicsData.activate', index=0,
+      number=1, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='angle', full_name='Nrmk.IndyFramework.ForcedKinematicsData.angle', index=1,
+      number=2, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=2006,
+  serialized_end=2061,
+)
+
+
 _GBOOL = _descriptor.Descriptor(
   name='GBool',
   full_name='Nrmk.IndyFramework.GBool',
@@ -1053,8 +1092,8 @@ _GBOOL = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2006,
-  serialized_end=2039,
+  serialized_start=2063,
+  serialized_end=2096,
 )
 
 
@@ -1092,8 +1131,8 @@ _GINT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2041,
-  serialized_end=2073,
+  serialized_start=2098,
+  serialized_end=2130,
 )
 
 
@@ -1131,8 +1170,8 @@ _GFLOAT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2075,
-  serialized_end=2109,
+  serialized_start=2132,
+  serialized_end=2166,
 )
 
 
@@ -1170,8 +1209,8 @@ _GSTRING = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2111,
-  serialized_end=2146,
+  serialized_start=2168,
+  serialized_end=2203,
 )
 
 
@@ -1202,8 +1241,40 @@ _BOOLVAL = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2148,
-  serialized_end=2170,
+  serialized_start=2205,
+  serialized_end=2227,
+)
+
+
+_BOOLVALS = _descriptor.Descriptor(
+  name='BoolVals',
+  full_name='Nrmk.IndyFramework.BoolVals',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='val', full_name='Nrmk.IndyFramework.BoolVals.val', index=0,
+      number=1, type=8, cpp_type=7, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=2229,
+  serialized_end=2252,
 )
 
 
@@ -1234,8 +1305,8 @@ _INTVAL = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2172,
-  serialized_end=2193,
+  serialized_start=2254,
+  serialized_end=2275,
 )
 
 
@@ -1266,8 +1337,8 @@ _INTVALS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2195,
-  serialized_end=2217,
+  serialized_start=2277,
+  serialized_end=2299,
 )
 
 
@@ -1298,8 +1369,8 @@ _FLOATVAL = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2219,
-  serialized_end=2242,
+  serialized_start=2301,
+  serialized_end=2324,
 )
 
 
@@ -1330,8 +1401,8 @@ _FLOATVALS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2244,
-  serialized_end=2268,
+  serialized_start=2326,
+  serialized_end=2350,
 )
 
 
@@ -1362,8 +1433,8 @@ _DOUBLEVAL = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2270,
-  serialized_end=2294,
+  serialized_start=2352,
+  serialized_end=2376,
 )
 
 
@@ -1394,8 +1465,8 @@ _DOUBLEVALS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2296,
-  serialized_end=2321,
+  serialized_start=2378,
+  serialized_end=2403,
 )
 
 
@@ -1447,8 +1518,8 @@ _ROTATIONGAIN = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2323,
-  serialized_end=2385,
+  serialized_start=2405,
+  serialized_end=2467,
 )
 
 
@@ -1493,8 +1564,8 @@ _VELACCBOUNDARY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2387,
-  serialized_end=2444,
+  serialized_start=2469,
+  serialized_end=2526,
 )
 
 DESCRIPTOR.message_types_by_name['DriveIndex'] = _DRIVEINDEX
@@ -1511,11 +1582,13 @@ DESCRIPTOR.message_types_by_name['ZeroCount'] = _ZEROCOUNT
 DESCRIPTOR.message_types_by_name['IRData'] = _IRDATA
 DESCRIPTOR.message_types_by_name['USData'] = _USDATA
 DESCRIPTOR.message_types_by_name['BMSData'] = _BMSDATA
+DESCRIPTOR.message_types_by_name['ForcedKinematicsData'] = _FORCEDKINEMATICSDATA
 DESCRIPTOR.message_types_by_name['GBool'] = _GBOOL
 DESCRIPTOR.message_types_by_name['GInt'] = _GINT
 DESCRIPTOR.message_types_by_name['GFloat'] = _GFLOAT
 DESCRIPTOR.message_types_by_name['GString'] = _GSTRING
 DESCRIPTOR.message_types_by_name['BoolVal'] = _BOOLVAL
+DESCRIPTOR.message_types_by_name['BoolVals'] = _BOOLVALS
 DESCRIPTOR.message_types_by_name['IntVal'] = _INTVAL
 DESCRIPTOR.message_types_by_name['IntVals'] = _INTVALS
 DESCRIPTOR.message_types_by_name['FloatVal'] = _FLOATVAL
@@ -1624,6 +1697,13 @@ BMSData = _reflection.GeneratedProtocolMessageType('BMSData', (_message.Message,
   })
 _sym_db.RegisterMessage(BMSData)
 
+ForcedKinematicsData = _reflection.GeneratedProtocolMessageType('ForcedKinematicsData', (_message.Message,), {
+  'DESCRIPTOR' : _FORCEDKINEMATICSDATA,
+  '__module__' : 'moby_msgs_pb2'
+  # @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.ForcedKinematicsData)
+  })
+_sym_db.RegisterMessage(ForcedKinematicsData)
+
 GBool = _reflection.GeneratedProtocolMessageType('GBool', (_message.Message,), {
   'DESCRIPTOR' : _GBOOL,
   '__module__' : 'moby_msgs_pb2'
@@ -1658,6 +1738,13 @@ BoolVal = _reflection.GeneratedProtocolMessageType('BoolVal', (_message.Message,
   # @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.BoolVal)
   })
 _sym_db.RegisterMessage(BoolVal)
+
+BoolVals = _reflection.GeneratedProtocolMessageType('BoolVals', (_message.Message,), {
+  'DESCRIPTOR' : _BOOLVALS,
+  '__module__' : 'moby_msgs_pb2'
+  # @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.BoolVals)
+  })
+_sym_db.RegisterMessage(BoolVals)
 
 IntVal = _reflection.GeneratedProtocolMessageType('IntVal', (_message.Message,), {
   'DESCRIPTOR' : _INTVAL,

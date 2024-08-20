@@ -7,23 +7,34 @@
 #include "rtde.pb.h"
 
 #include <functional>
-#include <grpcpp/generic/async_generic_service.h>
-#include <grpcpp/support/async_stream.h>
-#include <grpcpp/support/async_unary_call.h>
-#include <grpcpp/support/client_callback.h>
-#include <grpcpp/client_context.h>
-#include <grpcpp/completion_queue.h>
-#include <grpcpp/support/message_allocator.h>
-#include <grpcpp/support/method_handler.h>
-#include <grpcpp/impl/proto_utils.h>
-#include <grpcpp/impl/rpc_method.h>
-#include <grpcpp/support/server_callback.h>
-#include <grpcpp/impl/server_callback_handlers.h>
-#include <grpcpp/server_context.h>
-#include <grpcpp/impl/service_type.h>
-#include <grpcpp/support/status.h>
-#include <grpcpp/support/stub_options.h>
-#include <grpcpp/support/sync_stream.h>
+#include <grpcpp/impl/codegen/async_generic_service.h>
+#include <grpcpp/impl/codegen/async_stream.h>
+#include <grpcpp/impl/codegen/async_unary_call.h>
+#include <grpcpp/impl/codegen/client_callback.h>
+#include <grpcpp/impl/codegen/client_context.h>
+#include <grpcpp/impl/codegen/completion_queue.h>
+#include <grpcpp/impl/codegen/method_handler_impl.h>
+#include <grpcpp/impl/codegen/proto_utils.h>
+#include <grpcpp/impl/codegen/rpc_method.h>
+#include <grpcpp/impl/codegen/server_callback.h>
+#include <grpcpp/impl/codegen/server_context.h>
+#include <grpcpp/impl/codegen/service_type.h>
+#include <grpcpp/impl/codegen/status.h>
+#include <grpcpp/impl/codegen/stub_options.h>
+#include <grpcpp/impl/codegen/sync_stream.h>
+
+namespace grpc_impl {
+class CompletionQueue;
+class ServerCompletionQueue;
+class ServerContext;
+}  // namespace grpc_impl
+
+namespace grpc {
+namespace experimental {
+template <typename RequestT, typename ResponseT>
+class MessageAllocator;
+}  // namespace experimental
+}  // namespace grpc
 
 namespace Nrmk {
 namespace IndyFramework {
@@ -78,12 +89,26 @@ class RTDataExchange final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::ViolationData>> PrepareAsyncGetViolationData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::ViolationData>>(PrepareAsyncGetViolationDataRaw(context, request, cq));
     }
+    virtual ::grpc::Status GetViolationMessageQueue(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::ViolationMessageQueue* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::ViolationMessageQueue>> AsyncGetViolationMessageQueue(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::ViolationMessageQueue>>(AsyncGetViolationMessageQueueRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::ViolationMessageQueue>> PrepareAsyncGetViolationMessageQueue(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::ViolationMessageQueue>>(PrepareAsyncGetViolationMessageQueueRaw(context, request, cq));
+    }
     virtual ::grpc::Status GetProgramData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::ProgramData* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::ProgramData>> AsyncGetProgramData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::ProgramData>>(AsyncGetProgramDataRaw(context, request, cq));
     }
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::ProgramData>> PrepareAsyncGetProgramData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::ProgramData>>(PrepareAsyncGetProgramDataRaw(context, request, cq));
+    }
+    virtual ::grpc::Status GetStopState(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::StopState* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::StopState>> AsyncGetStopState(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::StopState>>(AsyncGetStopStateRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::StopState>> PrepareAsyncGetStopState(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::StopState>>(PrepareAsyncGetStopStateRaw(context, request, cq));
     }
     virtual ::grpc::Status TestFunction(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TestRequest& request, ::Nrmk::IndyFramework::TestResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::TestResponse>> AsyncTestFunction(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TestRequest& request, ::grpc::CompletionQueue* cq) {
@@ -92,30 +117,52 @@ class RTDataExchange final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::TestResponse>> PrepareAsyncTestFunction(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TestRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::TestResponse>>(PrepareAsyncTestFunctionRaw(context, request, cq));
     }
-    class async_interface {
+    class experimental_async_interface {
      public:
-      virtual ~async_interface() {}
+      virtual ~experimental_async_interface() {}
       virtual void GetMotionData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::MotionData* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void GetMotionData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::MotionData* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void GetMotionData(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::MotionData* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetMotionData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::MotionData* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      virtual void GetMotionData(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::MotionData* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       virtual void GetControlData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ControlData* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void GetControlData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ControlData* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void GetControlData(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::ControlData* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetControlData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ControlData* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      virtual void GetControlData(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::ControlData* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       virtual void GetControlState(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ControlData2* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void GetControlState(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ControlData2* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void GetControlState(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::ControlData2* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetControlState(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ControlData2* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      virtual void GetControlState(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::ControlData2* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       virtual void GetIOData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::IOData* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void GetIOData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::IOData* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void GetIOData(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::IOData* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetIOData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::IOData* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      virtual void GetIOData(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::IOData* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       virtual void GetServoData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ServoData* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void GetServoData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ServoData* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void GetServoData(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::ServoData* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetServoData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ServoData* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      virtual void GetServoData(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::ServoData* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       virtual void GetViolationData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ViolationData* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void GetViolationData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ViolationData* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void GetViolationData(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::ViolationData* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetViolationData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ViolationData* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      virtual void GetViolationData(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::ViolationData* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      virtual void GetViolationMessageQueue(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ViolationMessageQueue* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetViolationMessageQueue(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::ViolationMessageQueue* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetViolationMessageQueue(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ViolationMessageQueue* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      virtual void GetViolationMessageQueue(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::ViolationMessageQueue* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       virtual void GetProgramData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ProgramData* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void GetProgramData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ProgramData* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void GetProgramData(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::ProgramData* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetProgramData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ProgramData* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      virtual void GetProgramData(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::ProgramData* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      virtual void GetStopState(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::StopState* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetStopState(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::StopState* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetStopState(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::StopState* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      virtual void GetStopState(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::StopState* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       virtual void TestFunction(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TestRequest* request, ::Nrmk::IndyFramework::TestResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void TestFunction(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TestRequest* request, ::Nrmk::IndyFramework::TestResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void TestFunction(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::TestResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void TestFunction(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TestRequest* request, ::Nrmk::IndyFramework::TestResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      virtual void TestFunction(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::TestResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
     };
-    typedef class async_interface experimental_async_interface;
-    virtual class async_interface* async() { return nullptr; }
-    class async_interface* experimental_async() { return async(); }
-   private:
+    virtual class experimental_async_interface* experimental_async() { return nullptr; }
+  private:
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::MotionData>* AsyncGetMotionDataRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::MotionData>* PrepareAsyncGetMotionDataRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::ControlData>* AsyncGetControlDataRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
@@ -128,14 +175,18 @@ class RTDataExchange final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::ServoData>* PrepareAsyncGetServoDataRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::ViolationData>* AsyncGetViolationDataRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::ViolationData>* PrepareAsyncGetViolationDataRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::ViolationMessageQueue>* AsyncGetViolationMessageQueueRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::ViolationMessageQueue>* PrepareAsyncGetViolationMessageQueueRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::ProgramData>* AsyncGetProgramDataRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::ProgramData>* PrepareAsyncGetProgramDataRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::StopState>* AsyncGetStopStateRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::StopState>* PrepareAsyncGetStopStateRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::TestResponse>* AsyncTestFunctionRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TestRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::TestResponse>* PrepareAsyncTestFunctionRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TestRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
-    Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
+    Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel);
     ::grpc::Status GetMotionData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::MotionData* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::MotionData>> AsyncGetMotionData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::MotionData>>(AsyncGetMotionDataRaw(context, request, cq));
@@ -178,12 +229,26 @@ class RTDataExchange final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ViolationData>> PrepareAsyncGetViolationData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ViolationData>>(PrepareAsyncGetViolationDataRaw(context, request, cq));
     }
+    ::grpc::Status GetViolationMessageQueue(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::ViolationMessageQueue* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ViolationMessageQueue>> AsyncGetViolationMessageQueue(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ViolationMessageQueue>>(AsyncGetViolationMessageQueueRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ViolationMessageQueue>> PrepareAsyncGetViolationMessageQueue(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ViolationMessageQueue>>(PrepareAsyncGetViolationMessageQueueRaw(context, request, cq));
+    }
     ::grpc::Status GetProgramData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::ProgramData* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ProgramData>> AsyncGetProgramData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ProgramData>>(AsyncGetProgramDataRaw(context, request, cq));
     }
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ProgramData>> PrepareAsyncGetProgramData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ProgramData>>(PrepareAsyncGetProgramDataRaw(context, request, cq));
+    }
+    ::grpc::Status GetStopState(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::StopState* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::StopState>> AsyncGetStopState(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::StopState>>(AsyncGetStopStateRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::StopState>> PrepareAsyncGetStopState(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::StopState>>(PrepareAsyncGetStopStateRaw(context, request, cq));
     }
     ::grpc::Status TestFunction(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TestRequest& request, ::Nrmk::IndyFramework::TestResponse* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::TestResponse>> AsyncTestFunction(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TestRequest& request, ::grpc::CompletionQueue* cq) {
@@ -192,36 +257,60 @@ class RTDataExchange final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::TestResponse>> PrepareAsyncTestFunction(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TestRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::TestResponse>>(PrepareAsyncTestFunctionRaw(context, request, cq));
     }
-    class async final :
-      public StubInterface::async_interface {
+    class experimental_async final :
+      public StubInterface::experimental_async_interface {
      public:
       void GetMotionData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::MotionData* response, std::function<void(::grpc::Status)>) override;
-      void GetMotionData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::MotionData* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void GetMotionData(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::MotionData* response, std::function<void(::grpc::Status)>) override;
+      void GetMotionData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::MotionData* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      void GetMotionData(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::MotionData* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
       void GetControlData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ControlData* response, std::function<void(::grpc::Status)>) override;
-      void GetControlData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ControlData* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void GetControlData(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::ControlData* response, std::function<void(::grpc::Status)>) override;
+      void GetControlData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ControlData* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      void GetControlData(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::ControlData* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
       void GetControlState(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ControlData2* response, std::function<void(::grpc::Status)>) override;
-      void GetControlState(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ControlData2* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void GetControlState(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::ControlData2* response, std::function<void(::grpc::Status)>) override;
+      void GetControlState(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ControlData2* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      void GetControlState(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::ControlData2* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
       void GetIOData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::IOData* response, std::function<void(::grpc::Status)>) override;
-      void GetIOData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::IOData* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void GetIOData(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::IOData* response, std::function<void(::grpc::Status)>) override;
+      void GetIOData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::IOData* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      void GetIOData(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::IOData* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
       void GetServoData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ServoData* response, std::function<void(::grpc::Status)>) override;
-      void GetServoData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ServoData* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void GetServoData(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::ServoData* response, std::function<void(::grpc::Status)>) override;
+      void GetServoData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ServoData* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      void GetServoData(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::ServoData* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
       void GetViolationData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ViolationData* response, std::function<void(::grpc::Status)>) override;
-      void GetViolationData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ViolationData* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void GetViolationData(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::ViolationData* response, std::function<void(::grpc::Status)>) override;
+      void GetViolationData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ViolationData* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      void GetViolationData(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::ViolationData* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      void GetViolationMessageQueue(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ViolationMessageQueue* response, std::function<void(::grpc::Status)>) override;
+      void GetViolationMessageQueue(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::ViolationMessageQueue* response, std::function<void(::grpc::Status)>) override;
+      void GetViolationMessageQueue(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ViolationMessageQueue* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      void GetViolationMessageQueue(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::ViolationMessageQueue* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
       void GetProgramData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ProgramData* response, std::function<void(::grpc::Status)>) override;
-      void GetProgramData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ProgramData* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void GetProgramData(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::ProgramData* response, std::function<void(::grpc::Status)>) override;
+      void GetProgramData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ProgramData* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      void GetProgramData(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::ProgramData* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      void GetStopState(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::StopState* response, std::function<void(::grpc::Status)>) override;
+      void GetStopState(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::StopState* response, std::function<void(::grpc::Status)>) override;
+      void GetStopState(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::StopState* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      void GetStopState(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::StopState* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
       void TestFunction(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TestRequest* request, ::Nrmk::IndyFramework::TestResponse* response, std::function<void(::grpc::Status)>) override;
-      void TestFunction(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TestRequest* request, ::Nrmk::IndyFramework::TestResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void TestFunction(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::TestResponse* response, std::function<void(::grpc::Status)>) override;
+      void TestFunction(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TestRequest* request, ::Nrmk::IndyFramework::TestResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      void TestFunction(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::TestResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
-      explicit async(Stub* stub): stub_(stub) { }
+      explicit experimental_async(Stub* stub): stub_(stub) { }
       Stub* stub() { return stub_; }
       Stub* stub_;
     };
-    class async* async() override { return &async_stub_; }
+    class experimental_async_interface* experimental_async() override { return &async_stub_; }
 
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
-    class async async_stub_{this};
+    class experimental_async async_stub_{this};
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::MotionData>* AsyncGetMotionDataRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::MotionData>* PrepareAsyncGetMotionDataRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ControlData>* AsyncGetControlDataRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
@@ -234,8 +323,12 @@ class RTDataExchange final {
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ServoData>* PrepareAsyncGetServoDataRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ViolationData>* AsyncGetViolationDataRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ViolationData>* PrepareAsyncGetViolationDataRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ViolationMessageQueue>* AsyncGetViolationMessageQueueRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ViolationMessageQueue>* PrepareAsyncGetViolationMessageQueueRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ProgramData>* AsyncGetProgramDataRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ProgramData>* PrepareAsyncGetProgramDataRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::StopState>* AsyncGetStopStateRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::StopState>* PrepareAsyncGetStopStateRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::TestResponse>* AsyncTestFunctionRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TestRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::TestResponse>* PrepareAsyncTestFunctionRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TestRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_GetMotionData_;
@@ -244,7 +337,9 @@ class RTDataExchange final {
     const ::grpc::internal::RpcMethod rpcmethod_GetIOData_;
     const ::grpc::internal::RpcMethod rpcmethod_GetServoData_;
     const ::grpc::internal::RpcMethod rpcmethod_GetViolationData_;
+    const ::grpc::internal::RpcMethod rpcmethod_GetViolationMessageQueue_;
     const ::grpc::internal::RpcMethod rpcmethod_GetProgramData_;
+    const ::grpc::internal::RpcMethod rpcmethod_GetStopState_;
     const ::grpc::internal::RpcMethod rpcmethod_TestFunction_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
@@ -259,7 +354,9 @@ class RTDataExchange final {
     virtual ::grpc::Status GetIOData(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::IOData* response);
     virtual ::grpc::Status GetServoData(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ServoData* response);
     virtual ::grpc::Status GetViolationData(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ViolationData* response);
+    virtual ::grpc::Status GetViolationMessageQueue(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ViolationMessageQueue* response);
     virtual ::grpc::Status GetProgramData(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ProgramData* response);
+    virtual ::grpc::Status GetStopState(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::StopState* response);
     virtual ::grpc::Status TestFunction(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::TestRequest* request, ::Nrmk::IndyFramework::TestResponse* response);
   };
   template <class BaseClass>
@@ -383,12 +480,32 @@ class RTDataExchange final {
     }
   };
   template <class BaseClass>
+  class WithAsyncMethod_GetViolationMessageQueue : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_GetViolationMessageQueue() {
+      ::grpc::Service::MarkMethodAsync(6);
+    }
+    ~WithAsyncMethod_GetViolationMessageQueue() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetViolationMessageQueue(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::ViolationMessageQueue* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetViolationMessageQueue(::grpc::ServerContext* context, ::Nrmk::IndyFramework::Empty* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::ViolationMessageQueue>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithAsyncMethod_GetProgramData : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetProgramData() {
-      ::grpc::Service::MarkMethodAsync(6);
+      ::grpc::Service::MarkMethodAsync(7);
     }
     ~WithAsyncMethod_GetProgramData() override {
       BaseClassMustBeDerivedFromService(this);
@@ -399,7 +516,27 @@ class RTDataExchange final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetProgramData(::grpc::ServerContext* context, ::Nrmk::IndyFramework::Empty* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::ProgramData>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_GetStopState : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_GetStopState() {
+      ::grpc::Service::MarkMethodAsync(8);
+    }
+    ~WithAsyncMethod_GetStopState() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetStopState(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::StopState* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetStopState(::grpc::ServerContext* context, ::Nrmk::IndyFramework::Empty* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::StopState>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(8, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -408,7 +545,7 @@ class RTDataExchange final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_TestFunction() {
-      ::grpc::Service::MarkMethodAsync(7);
+      ::grpc::Service::MarkMethodAsync(9);
     }
     ~WithAsyncMethod_TestFunction() override {
       BaseClassMustBeDerivedFromService(this);
@@ -419,27 +556,32 @@ class RTDataExchange final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestTestFunction(::grpc::ServerContext* context, ::Nrmk::IndyFramework::TestRequest* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::TestResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(9, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_GetMotionData<WithAsyncMethod_GetControlData<WithAsyncMethod_GetControlState<WithAsyncMethod_GetIOData<WithAsyncMethod_GetServoData<WithAsyncMethod_GetViolationData<WithAsyncMethod_GetProgramData<WithAsyncMethod_TestFunction<Service > > > > > > > > AsyncService;
+  typedef WithAsyncMethod_GetMotionData<WithAsyncMethod_GetControlData<WithAsyncMethod_GetControlState<WithAsyncMethod_GetIOData<WithAsyncMethod_GetServoData<WithAsyncMethod_GetViolationData<WithAsyncMethod_GetViolationMessageQueue<WithAsyncMethod_GetProgramData<WithAsyncMethod_GetStopState<WithAsyncMethod_TestFunction<Service > > > > > > > > > > AsyncService;
   template <class BaseClass>
-  class WithCallbackMethod_GetMotionData : public BaseClass {
+  class ExperimentalWithCallbackMethod_GetMotionData : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_GetMotionData() {
-      ::grpc::Service::MarkMethodCallback(0,
-          new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::MotionData>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::MotionData* response) { return this->GetMotionData(context, request, response); }));}
+    ExperimentalWithCallbackMethod_GetMotionData() {
+      ::grpc::Service::experimental().MarkMethodCallback(0,
+        new ::grpc_impl::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::MotionData>(
+          [this](::grpc::ServerContext* context,
+                 const ::Nrmk::IndyFramework::Empty* request,
+                 ::Nrmk::IndyFramework::MotionData* response,
+                 ::grpc::experimental::ServerCallbackRpcController* controller) {
+                   return this->GetMotionData(context, request, response, controller);
+                 }));
+    }
     void SetMessageAllocatorFor_GetMotionData(
-        ::grpc::MessageAllocator< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::MotionData>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::MotionData>*>(handler)
+        ::grpc::experimental::MessageAllocator< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::MotionData>* allocator) {
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::MotionData>*>(
+          ::grpc::Service::experimental().GetHandler(0))
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_GetMotionData() override {
+    ~ExperimentalWithCallbackMethod_GetMotionData() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -447,26 +589,30 @@ class RTDataExchange final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerUnaryReactor* GetMotionData(
-      ::grpc::CallbackServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::MotionData* /*response*/)  { return nullptr; }
+    virtual void GetMotionData(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::MotionData* /*response*/, ::grpc::experimental::ServerCallbackRpcController* controller) { controller->Finish(::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "")); }
   };
   template <class BaseClass>
-  class WithCallbackMethod_GetControlData : public BaseClass {
+  class ExperimentalWithCallbackMethod_GetControlData : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_GetControlData() {
-      ::grpc::Service::MarkMethodCallback(1,
-          new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ControlData>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ControlData* response) { return this->GetControlData(context, request, response); }));}
+    ExperimentalWithCallbackMethod_GetControlData() {
+      ::grpc::Service::experimental().MarkMethodCallback(1,
+        new ::grpc_impl::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ControlData>(
+          [this](::grpc::ServerContext* context,
+                 const ::Nrmk::IndyFramework::Empty* request,
+                 ::Nrmk::IndyFramework::ControlData* response,
+                 ::grpc::experimental::ServerCallbackRpcController* controller) {
+                   return this->GetControlData(context, request, response, controller);
+                 }));
+    }
     void SetMessageAllocatorFor_GetControlData(
-        ::grpc::MessageAllocator< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ControlData>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ControlData>*>(handler)
+        ::grpc::experimental::MessageAllocator< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ControlData>* allocator) {
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ControlData>*>(
+          ::grpc::Service::experimental().GetHandler(1))
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_GetControlData() override {
+    ~ExperimentalWithCallbackMethod_GetControlData() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -474,26 +620,30 @@ class RTDataExchange final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerUnaryReactor* GetControlData(
-      ::grpc::CallbackServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::ControlData* /*response*/)  { return nullptr; }
+    virtual void GetControlData(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::ControlData* /*response*/, ::grpc::experimental::ServerCallbackRpcController* controller) { controller->Finish(::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "")); }
   };
   template <class BaseClass>
-  class WithCallbackMethod_GetControlState : public BaseClass {
+  class ExperimentalWithCallbackMethod_GetControlState : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_GetControlState() {
-      ::grpc::Service::MarkMethodCallback(2,
-          new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ControlData2>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ControlData2* response) { return this->GetControlState(context, request, response); }));}
+    ExperimentalWithCallbackMethod_GetControlState() {
+      ::grpc::Service::experimental().MarkMethodCallback(2,
+        new ::grpc_impl::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ControlData2>(
+          [this](::grpc::ServerContext* context,
+                 const ::Nrmk::IndyFramework::Empty* request,
+                 ::Nrmk::IndyFramework::ControlData2* response,
+                 ::grpc::experimental::ServerCallbackRpcController* controller) {
+                   return this->GetControlState(context, request, response, controller);
+                 }));
+    }
     void SetMessageAllocatorFor_GetControlState(
-        ::grpc::MessageAllocator< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ControlData2>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ControlData2>*>(handler)
+        ::grpc::experimental::MessageAllocator< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ControlData2>* allocator) {
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ControlData2>*>(
+          ::grpc::Service::experimental().GetHandler(2))
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_GetControlState() override {
+    ~ExperimentalWithCallbackMethod_GetControlState() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -501,26 +651,30 @@ class RTDataExchange final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerUnaryReactor* GetControlState(
-      ::grpc::CallbackServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::ControlData2* /*response*/)  { return nullptr; }
+    virtual void GetControlState(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::ControlData2* /*response*/, ::grpc::experimental::ServerCallbackRpcController* controller) { controller->Finish(::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "")); }
   };
   template <class BaseClass>
-  class WithCallbackMethod_GetIOData : public BaseClass {
+  class ExperimentalWithCallbackMethod_GetIOData : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_GetIOData() {
-      ::grpc::Service::MarkMethodCallback(3,
-          new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::IOData>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::IOData* response) { return this->GetIOData(context, request, response); }));}
+    ExperimentalWithCallbackMethod_GetIOData() {
+      ::grpc::Service::experimental().MarkMethodCallback(3,
+        new ::grpc_impl::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::IOData>(
+          [this](::grpc::ServerContext* context,
+                 const ::Nrmk::IndyFramework::Empty* request,
+                 ::Nrmk::IndyFramework::IOData* response,
+                 ::grpc::experimental::ServerCallbackRpcController* controller) {
+                   return this->GetIOData(context, request, response, controller);
+                 }));
+    }
     void SetMessageAllocatorFor_GetIOData(
-        ::grpc::MessageAllocator< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::IOData>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(3);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::IOData>*>(handler)
+        ::grpc::experimental::MessageAllocator< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::IOData>* allocator) {
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::IOData>*>(
+          ::grpc::Service::experimental().GetHandler(3))
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_GetIOData() override {
+    ~ExperimentalWithCallbackMethod_GetIOData() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -528,26 +682,30 @@ class RTDataExchange final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerUnaryReactor* GetIOData(
-      ::grpc::CallbackServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::IOData* /*response*/)  { return nullptr; }
+    virtual void GetIOData(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::IOData* /*response*/, ::grpc::experimental::ServerCallbackRpcController* controller) { controller->Finish(::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "")); }
   };
   template <class BaseClass>
-  class WithCallbackMethod_GetServoData : public BaseClass {
+  class ExperimentalWithCallbackMethod_GetServoData : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_GetServoData() {
-      ::grpc::Service::MarkMethodCallback(4,
-          new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ServoData>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ServoData* response) { return this->GetServoData(context, request, response); }));}
+    ExperimentalWithCallbackMethod_GetServoData() {
+      ::grpc::Service::experimental().MarkMethodCallback(4,
+        new ::grpc_impl::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ServoData>(
+          [this](::grpc::ServerContext* context,
+                 const ::Nrmk::IndyFramework::Empty* request,
+                 ::Nrmk::IndyFramework::ServoData* response,
+                 ::grpc::experimental::ServerCallbackRpcController* controller) {
+                   return this->GetServoData(context, request, response, controller);
+                 }));
+    }
     void SetMessageAllocatorFor_GetServoData(
-        ::grpc::MessageAllocator< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ServoData>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(4);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ServoData>*>(handler)
+        ::grpc::experimental::MessageAllocator< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ServoData>* allocator) {
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ServoData>*>(
+          ::grpc::Service::experimental().GetHandler(4))
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_GetServoData() override {
+    ~ExperimentalWithCallbackMethod_GetServoData() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -555,26 +713,30 @@ class RTDataExchange final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerUnaryReactor* GetServoData(
-      ::grpc::CallbackServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::ServoData* /*response*/)  { return nullptr; }
+    virtual void GetServoData(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::ServoData* /*response*/, ::grpc::experimental::ServerCallbackRpcController* controller) { controller->Finish(::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "")); }
   };
   template <class BaseClass>
-  class WithCallbackMethod_GetViolationData : public BaseClass {
+  class ExperimentalWithCallbackMethod_GetViolationData : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_GetViolationData() {
-      ::grpc::Service::MarkMethodCallback(5,
-          new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ViolationData>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ViolationData* response) { return this->GetViolationData(context, request, response); }));}
+    ExperimentalWithCallbackMethod_GetViolationData() {
+      ::grpc::Service::experimental().MarkMethodCallback(5,
+        new ::grpc_impl::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ViolationData>(
+          [this](::grpc::ServerContext* context,
+                 const ::Nrmk::IndyFramework::Empty* request,
+                 ::Nrmk::IndyFramework::ViolationData* response,
+                 ::grpc::experimental::ServerCallbackRpcController* controller) {
+                   return this->GetViolationData(context, request, response, controller);
+                 }));
+    }
     void SetMessageAllocatorFor_GetViolationData(
-        ::grpc::MessageAllocator< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ViolationData>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(5);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ViolationData>*>(handler)
+        ::grpc::experimental::MessageAllocator< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ViolationData>* allocator) {
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ViolationData>*>(
+          ::grpc::Service::experimental().GetHandler(5))
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_GetViolationData() override {
+    ~ExperimentalWithCallbackMethod_GetViolationData() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -582,26 +744,61 @@ class RTDataExchange final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerUnaryReactor* GetViolationData(
-      ::grpc::CallbackServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::ViolationData* /*response*/)  { return nullptr; }
+    virtual void GetViolationData(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::ViolationData* /*response*/, ::grpc::experimental::ServerCallbackRpcController* controller) { controller->Finish(::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "")); }
   };
   template <class BaseClass>
-  class WithCallbackMethod_GetProgramData : public BaseClass {
+  class ExperimentalWithCallbackMethod_GetViolationMessageQueue : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_GetProgramData() {
-      ::grpc::Service::MarkMethodCallback(6,
-          new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ProgramData>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ProgramData* response) { return this->GetProgramData(context, request, response); }));}
-    void SetMessageAllocatorFor_GetProgramData(
-        ::grpc::MessageAllocator< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ProgramData>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(6);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ProgramData>*>(handler)
+    ExperimentalWithCallbackMethod_GetViolationMessageQueue() {
+      ::grpc::Service::experimental().MarkMethodCallback(6,
+        new ::grpc_impl::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ViolationMessageQueue>(
+          [this](::grpc::ServerContext* context,
+                 const ::Nrmk::IndyFramework::Empty* request,
+                 ::Nrmk::IndyFramework::ViolationMessageQueue* response,
+                 ::grpc::experimental::ServerCallbackRpcController* controller) {
+                   return this->GetViolationMessageQueue(context, request, response, controller);
+                 }));
+    }
+    void SetMessageAllocatorFor_GetViolationMessageQueue(
+        ::grpc::experimental::MessageAllocator< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ViolationMessageQueue>* allocator) {
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ViolationMessageQueue>*>(
+          ::grpc::Service::experimental().GetHandler(6))
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_GetProgramData() override {
+    ~ExperimentalWithCallbackMethod_GetViolationMessageQueue() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetViolationMessageQueue(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::ViolationMessageQueue* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual void GetViolationMessageQueue(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::ViolationMessageQueue* /*response*/, ::grpc::experimental::ServerCallbackRpcController* controller) { controller->Finish(::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "")); }
+  };
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_GetProgramData : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_GetProgramData() {
+      ::grpc::Service::experimental().MarkMethodCallback(7,
+        new ::grpc_impl::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ProgramData>(
+          [this](::grpc::ServerContext* context,
+                 const ::Nrmk::IndyFramework::Empty* request,
+                 ::Nrmk::IndyFramework::ProgramData* response,
+                 ::grpc::experimental::ServerCallbackRpcController* controller) {
+                   return this->GetProgramData(context, request, response, controller);
+                 }));
+    }
+    void SetMessageAllocatorFor_GetProgramData(
+        ::grpc::experimental::MessageAllocator< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ProgramData>* allocator) {
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ProgramData>*>(
+          ::grpc::Service::experimental().GetHandler(7))
+              ->SetMessageAllocator(allocator);
+    }
+    ~ExperimentalWithCallbackMethod_GetProgramData() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -609,26 +806,61 @@ class RTDataExchange final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerUnaryReactor* GetProgramData(
-      ::grpc::CallbackServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::ProgramData* /*response*/)  { return nullptr; }
+    virtual void GetProgramData(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::ProgramData* /*response*/, ::grpc::experimental::ServerCallbackRpcController* controller) { controller->Finish(::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "")); }
   };
   template <class BaseClass>
-  class WithCallbackMethod_TestFunction : public BaseClass {
+  class ExperimentalWithCallbackMethod_GetStopState : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_TestFunction() {
-      ::grpc::Service::MarkMethodCallback(7,
-          new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::TestRequest, ::Nrmk::IndyFramework::TestResponse>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::TestRequest* request, ::Nrmk::IndyFramework::TestResponse* response) { return this->TestFunction(context, request, response); }));}
-    void SetMessageAllocatorFor_TestFunction(
-        ::grpc::MessageAllocator< ::Nrmk::IndyFramework::TestRequest, ::Nrmk::IndyFramework::TestResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(7);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::TestRequest, ::Nrmk::IndyFramework::TestResponse>*>(handler)
+    ExperimentalWithCallbackMethod_GetStopState() {
+      ::grpc::Service::experimental().MarkMethodCallback(8,
+        new ::grpc_impl::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::StopState>(
+          [this](::grpc::ServerContext* context,
+                 const ::Nrmk::IndyFramework::Empty* request,
+                 ::Nrmk::IndyFramework::StopState* response,
+                 ::grpc::experimental::ServerCallbackRpcController* controller) {
+                   return this->GetStopState(context, request, response, controller);
+                 }));
+    }
+    void SetMessageAllocatorFor_GetStopState(
+        ::grpc::experimental::MessageAllocator< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::StopState>* allocator) {
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::StopState>*>(
+          ::grpc::Service::experimental().GetHandler(8))
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_TestFunction() override {
+    ~ExperimentalWithCallbackMethod_GetStopState() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetStopState(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::StopState* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual void GetStopState(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::StopState* /*response*/, ::grpc::experimental::ServerCallbackRpcController* controller) { controller->Finish(::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "")); }
+  };
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_TestFunction : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_TestFunction() {
+      ::grpc::Service::experimental().MarkMethodCallback(9,
+        new ::grpc_impl::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::TestRequest, ::Nrmk::IndyFramework::TestResponse>(
+          [this](::grpc::ServerContext* context,
+                 const ::Nrmk::IndyFramework::TestRequest* request,
+                 ::Nrmk::IndyFramework::TestResponse* response,
+                 ::grpc::experimental::ServerCallbackRpcController* controller) {
+                   return this->TestFunction(context, request, response, controller);
+                 }));
+    }
+    void SetMessageAllocatorFor_TestFunction(
+        ::grpc::experimental::MessageAllocator< ::Nrmk::IndyFramework::TestRequest, ::Nrmk::IndyFramework::TestResponse>* allocator) {
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::TestRequest, ::Nrmk::IndyFramework::TestResponse>*>(
+          ::grpc::Service::experimental().GetHandler(9))
+              ->SetMessageAllocator(allocator);
+    }
+    ~ExperimentalWithCallbackMethod_TestFunction() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -636,11 +868,9 @@ class RTDataExchange final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerUnaryReactor* TestFunction(
-      ::grpc::CallbackServerContext* /*context*/, const ::Nrmk::IndyFramework::TestRequest* /*request*/, ::Nrmk::IndyFramework::TestResponse* /*response*/)  { return nullptr; }
+    virtual void TestFunction(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::TestRequest* /*request*/, ::Nrmk::IndyFramework::TestResponse* /*response*/, ::grpc::experimental::ServerCallbackRpcController* controller) { controller->Finish(::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "")); }
   };
-  typedef WithCallbackMethod_GetMotionData<WithCallbackMethod_GetControlData<WithCallbackMethod_GetControlState<WithCallbackMethod_GetIOData<WithCallbackMethod_GetServoData<WithCallbackMethod_GetViolationData<WithCallbackMethod_GetProgramData<WithCallbackMethod_TestFunction<Service > > > > > > > > CallbackService;
-  typedef CallbackService ExperimentalCallbackService;
+  typedef ExperimentalWithCallbackMethod_GetMotionData<ExperimentalWithCallbackMethod_GetControlData<ExperimentalWithCallbackMethod_GetControlState<ExperimentalWithCallbackMethod_GetIOData<ExperimentalWithCallbackMethod_GetServoData<ExperimentalWithCallbackMethod_GetViolationData<ExperimentalWithCallbackMethod_GetViolationMessageQueue<ExperimentalWithCallbackMethod_GetProgramData<ExperimentalWithCallbackMethod_GetStopState<ExperimentalWithCallbackMethod_TestFunction<Service > > > > > > > > > > ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_GetMotionData : public BaseClass {
    private:
@@ -744,12 +974,29 @@ class RTDataExchange final {
     }
   };
   template <class BaseClass>
+  class WithGenericMethod_GetViolationMessageQueue : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_GetViolationMessageQueue() {
+      ::grpc::Service::MarkMethodGeneric(6);
+    }
+    ~WithGenericMethod_GetViolationMessageQueue() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetViolationMessageQueue(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::ViolationMessageQueue* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
   class WithGenericMethod_GetProgramData : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetProgramData() {
-      ::grpc::Service::MarkMethodGeneric(6);
+      ::grpc::Service::MarkMethodGeneric(7);
     }
     ~WithGenericMethod_GetProgramData() override {
       BaseClassMustBeDerivedFromService(this);
@@ -761,12 +1008,29 @@ class RTDataExchange final {
     }
   };
   template <class BaseClass>
+  class WithGenericMethod_GetStopState : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_GetStopState() {
+      ::grpc::Service::MarkMethodGeneric(8);
+    }
+    ~WithGenericMethod_GetStopState() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetStopState(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::StopState* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
   class WithGenericMethod_TestFunction : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_TestFunction() {
-      ::grpc::Service::MarkMethodGeneric(7);
+      ::grpc::Service::MarkMethodGeneric(9);
     }
     ~WithGenericMethod_TestFunction() override {
       BaseClassMustBeDerivedFromService(this);
@@ -898,12 +1162,32 @@ class RTDataExchange final {
     }
   };
   template <class BaseClass>
+  class WithRawMethod_GetViolationMessageQueue : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_GetViolationMessageQueue() {
+      ::grpc::Service::MarkMethodRaw(6);
+    }
+    ~WithRawMethod_GetViolationMessageQueue() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetViolationMessageQueue(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::ViolationMessageQueue* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetViolationMessageQueue(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithRawMethod_GetProgramData : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetProgramData() {
-      ::grpc::Service::MarkMethodRaw(6);
+      ::grpc::Service::MarkMethodRaw(7);
     }
     ~WithRawMethod_GetProgramData() override {
       BaseClassMustBeDerivedFromService(this);
@@ -914,7 +1198,27 @@ class RTDataExchange final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetProgramData(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_GetStopState : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_GetStopState() {
+      ::grpc::Service::MarkMethodRaw(8);
+    }
+    ~WithRawMethod_GetStopState() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetStopState(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::StopState* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetStopState(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(8, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -923,7 +1227,7 @@ class RTDataExchange final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_TestFunction() {
-      ::grpc::Service::MarkMethodRaw(7);
+      ::grpc::Service::MarkMethodRaw(9);
     }
     ~WithRawMethod_TestFunction() override {
       BaseClassMustBeDerivedFromService(this);
@@ -934,21 +1238,25 @@ class RTDataExchange final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestTestFunction(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(9, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_GetMotionData : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_GetMotionData : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_GetMotionData() {
-      ::grpc::Service::MarkMethodRawCallback(0,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetMotionData(context, request, response); }));
+    ExperimentalWithRawCallbackMethod_GetMotionData() {
+      ::grpc::Service::experimental().MarkMethodRawCallback(0,
+        new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+          [this](::grpc::ServerContext* context,
+                 const ::grpc::ByteBuffer* request,
+                 ::grpc::ByteBuffer* response,
+                 ::grpc::experimental::ServerCallbackRpcController* controller) {
+                   this->GetMotionData(context, request, response, controller);
+                 }));
     }
-    ~WithRawCallbackMethod_GetMotionData() override {
+    ~ExperimentalWithRawCallbackMethod_GetMotionData() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -956,21 +1264,24 @@ class RTDataExchange final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerUnaryReactor* GetMotionData(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+    virtual void GetMotionData(::grpc::ServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/, ::grpc::experimental::ServerCallbackRpcController* controller) { controller->Finish(::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "")); }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_GetControlData : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_GetControlData : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_GetControlData() {
-      ::grpc::Service::MarkMethodRawCallback(1,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetControlData(context, request, response); }));
+    ExperimentalWithRawCallbackMethod_GetControlData() {
+      ::grpc::Service::experimental().MarkMethodRawCallback(1,
+        new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+          [this](::grpc::ServerContext* context,
+                 const ::grpc::ByteBuffer* request,
+                 ::grpc::ByteBuffer* response,
+                 ::grpc::experimental::ServerCallbackRpcController* controller) {
+                   this->GetControlData(context, request, response, controller);
+                 }));
     }
-    ~WithRawCallbackMethod_GetControlData() override {
+    ~ExperimentalWithRawCallbackMethod_GetControlData() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -978,21 +1289,24 @@ class RTDataExchange final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerUnaryReactor* GetControlData(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+    virtual void GetControlData(::grpc::ServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/, ::grpc::experimental::ServerCallbackRpcController* controller) { controller->Finish(::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "")); }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_GetControlState : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_GetControlState : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_GetControlState() {
-      ::grpc::Service::MarkMethodRawCallback(2,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetControlState(context, request, response); }));
+    ExperimentalWithRawCallbackMethod_GetControlState() {
+      ::grpc::Service::experimental().MarkMethodRawCallback(2,
+        new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+          [this](::grpc::ServerContext* context,
+                 const ::grpc::ByteBuffer* request,
+                 ::grpc::ByteBuffer* response,
+                 ::grpc::experimental::ServerCallbackRpcController* controller) {
+                   this->GetControlState(context, request, response, controller);
+                 }));
     }
-    ~WithRawCallbackMethod_GetControlState() override {
+    ~ExperimentalWithRawCallbackMethod_GetControlState() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1000,21 +1314,24 @@ class RTDataExchange final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerUnaryReactor* GetControlState(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+    virtual void GetControlState(::grpc::ServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/, ::grpc::experimental::ServerCallbackRpcController* controller) { controller->Finish(::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "")); }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_GetIOData : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_GetIOData : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_GetIOData() {
-      ::grpc::Service::MarkMethodRawCallback(3,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetIOData(context, request, response); }));
+    ExperimentalWithRawCallbackMethod_GetIOData() {
+      ::grpc::Service::experimental().MarkMethodRawCallback(3,
+        new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+          [this](::grpc::ServerContext* context,
+                 const ::grpc::ByteBuffer* request,
+                 ::grpc::ByteBuffer* response,
+                 ::grpc::experimental::ServerCallbackRpcController* controller) {
+                   this->GetIOData(context, request, response, controller);
+                 }));
     }
-    ~WithRawCallbackMethod_GetIOData() override {
+    ~ExperimentalWithRawCallbackMethod_GetIOData() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1022,21 +1339,24 @@ class RTDataExchange final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerUnaryReactor* GetIOData(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+    virtual void GetIOData(::grpc::ServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/, ::grpc::experimental::ServerCallbackRpcController* controller) { controller->Finish(::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "")); }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_GetServoData : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_GetServoData : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_GetServoData() {
-      ::grpc::Service::MarkMethodRawCallback(4,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetServoData(context, request, response); }));
+    ExperimentalWithRawCallbackMethod_GetServoData() {
+      ::grpc::Service::experimental().MarkMethodRawCallback(4,
+        new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+          [this](::grpc::ServerContext* context,
+                 const ::grpc::ByteBuffer* request,
+                 ::grpc::ByteBuffer* response,
+                 ::grpc::experimental::ServerCallbackRpcController* controller) {
+                   this->GetServoData(context, request, response, controller);
+                 }));
     }
-    ~WithRawCallbackMethod_GetServoData() override {
+    ~ExperimentalWithRawCallbackMethod_GetServoData() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1044,21 +1364,24 @@ class RTDataExchange final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerUnaryReactor* GetServoData(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+    virtual void GetServoData(::grpc::ServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/, ::grpc::experimental::ServerCallbackRpcController* controller) { controller->Finish(::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "")); }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_GetViolationData : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_GetViolationData : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_GetViolationData() {
-      ::grpc::Service::MarkMethodRawCallback(5,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetViolationData(context, request, response); }));
+    ExperimentalWithRawCallbackMethod_GetViolationData() {
+      ::grpc::Service::experimental().MarkMethodRawCallback(5,
+        new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+          [this](::grpc::ServerContext* context,
+                 const ::grpc::ByteBuffer* request,
+                 ::grpc::ByteBuffer* response,
+                 ::grpc::experimental::ServerCallbackRpcController* controller) {
+                   this->GetViolationData(context, request, response, controller);
+                 }));
     }
-    ~WithRawCallbackMethod_GetViolationData() override {
+    ~ExperimentalWithRawCallbackMethod_GetViolationData() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1066,21 +1389,49 @@ class RTDataExchange final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerUnaryReactor* GetViolationData(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+    virtual void GetViolationData(::grpc::ServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/, ::grpc::experimental::ServerCallbackRpcController* controller) { controller->Finish(::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "")); }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_GetProgramData : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_GetViolationMessageQueue : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_GetProgramData() {
-      ::grpc::Service::MarkMethodRawCallback(6,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetProgramData(context, request, response); }));
+    ExperimentalWithRawCallbackMethod_GetViolationMessageQueue() {
+      ::grpc::Service::experimental().MarkMethodRawCallback(6,
+        new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+          [this](::grpc::ServerContext* context,
+                 const ::grpc::ByteBuffer* request,
+                 ::grpc::ByteBuffer* response,
+                 ::grpc::experimental::ServerCallbackRpcController* controller) {
+                   this->GetViolationMessageQueue(context, request, response, controller);
+                 }));
     }
-    ~WithRawCallbackMethod_GetProgramData() override {
+    ~ExperimentalWithRawCallbackMethod_GetViolationMessageQueue() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetViolationMessageQueue(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::ViolationMessageQueue* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual void GetViolationMessageQueue(::grpc::ServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/, ::grpc::experimental::ServerCallbackRpcController* controller) { controller->Finish(::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "")); }
+  };
+  template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_GetProgramData : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_GetProgramData() {
+      ::grpc::Service::experimental().MarkMethodRawCallback(7,
+        new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+          [this](::grpc::ServerContext* context,
+                 const ::grpc::ByteBuffer* request,
+                 ::grpc::ByteBuffer* response,
+                 ::grpc::experimental::ServerCallbackRpcController* controller) {
+                   this->GetProgramData(context, request, response, controller);
+                 }));
+    }
+    ~ExperimentalWithRawCallbackMethod_GetProgramData() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1088,21 +1439,49 @@ class RTDataExchange final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerUnaryReactor* GetProgramData(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+    virtual void GetProgramData(::grpc::ServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/, ::grpc::experimental::ServerCallbackRpcController* controller) { controller->Finish(::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "")); }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_TestFunction : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_GetStopState : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_TestFunction() {
-      ::grpc::Service::MarkMethodRawCallback(7,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->TestFunction(context, request, response); }));
+    ExperimentalWithRawCallbackMethod_GetStopState() {
+      ::grpc::Service::experimental().MarkMethodRawCallback(8,
+        new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+          [this](::grpc::ServerContext* context,
+                 const ::grpc::ByteBuffer* request,
+                 ::grpc::ByteBuffer* response,
+                 ::grpc::experimental::ServerCallbackRpcController* controller) {
+                   this->GetStopState(context, request, response, controller);
+                 }));
     }
-    ~WithRawCallbackMethod_TestFunction() override {
+    ~ExperimentalWithRawCallbackMethod_GetStopState() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetStopState(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::StopState* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual void GetStopState(::grpc::ServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/, ::grpc::experimental::ServerCallbackRpcController* controller) { controller->Finish(::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "")); }
+  };
+  template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_TestFunction : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_TestFunction() {
+      ::grpc::Service::experimental().MarkMethodRawCallback(9,
+        new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+          [this](::grpc::ServerContext* context,
+                 const ::grpc::ByteBuffer* request,
+                 ::grpc::ByteBuffer* response,
+                 ::grpc::experimental::ServerCallbackRpcController* controller) {
+                   this->TestFunction(context, request, response, controller);
+                 }));
+    }
+    ~ExperimentalWithRawCallbackMethod_TestFunction() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1110,8 +1489,7 @@ class RTDataExchange final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerUnaryReactor* TestFunction(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+    virtual void TestFunction(::grpc::ServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/, ::grpc::experimental::ServerCallbackRpcController* controller) { controller->Finish(::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "")); }
   };
   template <class BaseClass>
   class WithStreamedUnaryMethod_GetMotionData : public BaseClass {
@@ -1120,14 +1498,7 @@ class RTDataExchange final {
    public:
     WithStreamedUnaryMethod_GetMotionData() {
       ::grpc::Service::MarkMethodStreamed(0,
-        new ::grpc::internal::StreamedUnaryHandler<
-          ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::MotionData>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
-                     ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::MotionData>* streamer) {
-                       return this->StreamedGetMotionData(context,
-                         streamer);
-                  }));
+        new ::grpc::internal::StreamedUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::MotionData>(std::bind(&WithStreamedUnaryMethod_GetMotionData<BaseClass>::StreamedGetMotionData, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_GetMotionData() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1147,14 +1518,7 @@ class RTDataExchange final {
    public:
     WithStreamedUnaryMethod_GetControlData() {
       ::grpc::Service::MarkMethodStreamed(1,
-        new ::grpc::internal::StreamedUnaryHandler<
-          ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ControlData>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
-                     ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ControlData>* streamer) {
-                       return this->StreamedGetControlData(context,
-                         streamer);
-                  }));
+        new ::grpc::internal::StreamedUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ControlData>(std::bind(&WithStreamedUnaryMethod_GetControlData<BaseClass>::StreamedGetControlData, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_GetControlData() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1174,14 +1538,7 @@ class RTDataExchange final {
    public:
     WithStreamedUnaryMethod_GetControlState() {
       ::grpc::Service::MarkMethodStreamed(2,
-        new ::grpc::internal::StreamedUnaryHandler<
-          ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ControlData2>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
-                     ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ControlData2>* streamer) {
-                       return this->StreamedGetControlState(context,
-                         streamer);
-                  }));
+        new ::grpc::internal::StreamedUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ControlData2>(std::bind(&WithStreamedUnaryMethod_GetControlState<BaseClass>::StreamedGetControlState, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_GetControlState() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1201,14 +1558,7 @@ class RTDataExchange final {
    public:
     WithStreamedUnaryMethod_GetIOData() {
       ::grpc::Service::MarkMethodStreamed(3,
-        new ::grpc::internal::StreamedUnaryHandler<
-          ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::IOData>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
-                     ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::IOData>* streamer) {
-                       return this->StreamedGetIOData(context,
-                         streamer);
-                  }));
+        new ::grpc::internal::StreamedUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::IOData>(std::bind(&WithStreamedUnaryMethod_GetIOData<BaseClass>::StreamedGetIOData, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_GetIOData() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1228,14 +1578,7 @@ class RTDataExchange final {
    public:
     WithStreamedUnaryMethod_GetServoData() {
       ::grpc::Service::MarkMethodStreamed(4,
-        new ::grpc::internal::StreamedUnaryHandler<
-          ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ServoData>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
-                     ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ServoData>* streamer) {
-                       return this->StreamedGetServoData(context,
-                         streamer);
-                  }));
+        new ::grpc::internal::StreamedUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ServoData>(std::bind(&WithStreamedUnaryMethod_GetServoData<BaseClass>::StreamedGetServoData, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_GetServoData() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1255,14 +1598,7 @@ class RTDataExchange final {
    public:
     WithStreamedUnaryMethod_GetViolationData() {
       ::grpc::Service::MarkMethodStreamed(5,
-        new ::grpc::internal::StreamedUnaryHandler<
-          ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ViolationData>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
-                     ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ViolationData>* streamer) {
-                       return this->StreamedGetViolationData(context,
-                         streamer);
-                  }));
+        new ::grpc::internal::StreamedUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ViolationData>(std::bind(&WithStreamedUnaryMethod_GetViolationData<BaseClass>::StreamedGetViolationData, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_GetViolationData() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1276,20 +1612,33 @@ class RTDataExchange final {
     virtual ::grpc::Status StreamedGetViolationData(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Nrmk::IndyFramework::Empty,::Nrmk::IndyFramework::ViolationData>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
+  class WithStreamedUnaryMethod_GetViolationMessageQueue : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_GetViolationMessageQueue() {
+      ::grpc::Service::MarkMethodStreamed(6,
+        new ::grpc::internal::StreamedUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ViolationMessageQueue>(std::bind(&WithStreamedUnaryMethod_GetViolationMessageQueue<BaseClass>::StreamedGetViolationMessageQueue, this, std::placeholders::_1, std::placeholders::_2)));
+    }
+    ~WithStreamedUnaryMethod_GetViolationMessageQueue() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status GetViolationMessageQueue(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::ViolationMessageQueue* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedGetViolationMessageQueue(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Nrmk::IndyFramework::Empty,::Nrmk::IndyFramework::ViolationMessageQueue>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
   class WithStreamedUnaryMethod_GetProgramData : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetProgramData() {
-      ::grpc::Service::MarkMethodStreamed(6,
-        new ::grpc::internal::StreamedUnaryHandler<
-          ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ProgramData>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
-                     ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ProgramData>* streamer) {
-                       return this->StreamedGetProgramData(context,
-                         streamer);
-                  }));
+      ::grpc::Service::MarkMethodStreamed(7,
+        new ::grpc::internal::StreamedUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ProgramData>(std::bind(&WithStreamedUnaryMethod_GetProgramData<BaseClass>::StreamedGetProgramData, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_GetProgramData() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1303,20 +1652,33 @@ class RTDataExchange final {
     virtual ::grpc::Status StreamedGetProgramData(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Nrmk::IndyFramework::Empty,::Nrmk::IndyFramework::ProgramData>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
+  class WithStreamedUnaryMethod_GetStopState : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_GetStopState() {
+      ::grpc::Service::MarkMethodStreamed(8,
+        new ::grpc::internal::StreamedUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::StopState>(std::bind(&WithStreamedUnaryMethod_GetStopState<BaseClass>::StreamedGetStopState, this, std::placeholders::_1, std::placeholders::_2)));
+    }
+    ~WithStreamedUnaryMethod_GetStopState() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status GetStopState(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::StopState* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedGetStopState(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Nrmk::IndyFramework::Empty,::Nrmk::IndyFramework::StopState>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
   class WithStreamedUnaryMethod_TestFunction : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_TestFunction() {
-      ::grpc::Service::MarkMethodStreamed(7,
-        new ::grpc::internal::StreamedUnaryHandler<
-          ::Nrmk::IndyFramework::TestRequest, ::Nrmk::IndyFramework::TestResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
-                     ::Nrmk::IndyFramework::TestRequest, ::Nrmk::IndyFramework::TestResponse>* streamer) {
-                       return this->StreamedTestFunction(context,
-                         streamer);
-                  }));
+      ::grpc::Service::MarkMethodStreamed(9,
+        new ::grpc::internal::StreamedUnaryHandler< ::Nrmk::IndyFramework::TestRequest, ::Nrmk::IndyFramework::TestResponse>(std::bind(&WithStreamedUnaryMethod_TestFunction<BaseClass>::StreamedTestFunction, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_TestFunction() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1329,9 +1691,9 @@ class RTDataExchange final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedTestFunction(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Nrmk::IndyFramework::TestRequest,::Nrmk::IndyFramework::TestResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_GetMotionData<WithStreamedUnaryMethod_GetControlData<WithStreamedUnaryMethod_GetControlState<WithStreamedUnaryMethod_GetIOData<WithStreamedUnaryMethod_GetServoData<WithStreamedUnaryMethod_GetViolationData<WithStreamedUnaryMethod_GetProgramData<WithStreamedUnaryMethod_TestFunction<Service > > > > > > > > StreamedUnaryService;
+  typedef WithStreamedUnaryMethod_GetMotionData<WithStreamedUnaryMethod_GetControlData<WithStreamedUnaryMethod_GetControlState<WithStreamedUnaryMethod_GetIOData<WithStreamedUnaryMethod_GetServoData<WithStreamedUnaryMethod_GetViolationData<WithStreamedUnaryMethod_GetViolationMessageQueue<WithStreamedUnaryMethod_GetProgramData<WithStreamedUnaryMethod_GetStopState<WithStreamedUnaryMethod_TestFunction<Service > > > > > > > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_GetMotionData<WithStreamedUnaryMethod_GetControlData<WithStreamedUnaryMethod_GetControlState<WithStreamedUnaryMethod_GetIOData<WithStreamedUnaryMethod_GetServoData<WithStreamedUnaryMethod_GetViolationData<WithStreamedUnaryMethod_GetProgramData<WithStreamedUnaryMethod_TestFunction<Service > > > > > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_GetMotionData<WithStreamedUnaryMethod_GetControlData<WithStreamedUnaryMethod_GetControlState<WithStreamedUnaryMethod_GetIOData<WithStreamedUnaryMethod_GetServoData<WithStreamedUnaryMethod_GetViolationData<WithStreamedUnaryMethod_GetViolationMessageQueue<WithStreamedUnaryMethod_GetProgramData<WithStreamedUnaryMethod_GetStopState<WithStreamedUnaryMethod_TestFunction<Service > > > > > > > > > > StreamedService;
 };
 
 }  // namespace IndyFramework

@@ -4,137 +4,154 @@
 #include "device.pb.h"
 
 #include <algorithm>
-#include "google/protobuf/io/coded_stream.h"
-#include "google/protobuf/extension_set.h"
-#include "google/protobuf/wire_format_lite.h"
-#include "google/protobuf/descriptor.h"
-#include "google/protobuf/generated_message_reflection.h"
-#include "google/protobuf/reflection_ops.h"
-#include "google/protobuf/wire_format.h"
-#include "google/protobuf/generated_message_tctable_impl.h"
-// @@protoc_insertion_point(includes)
 
-// Must be included last.
-#include "google/protobuf/port_def.inc"
-PROTOBUF_PRAGMA_INIT_SEG
-namespace _pb = ::google::protobuf;
-namespace _pbi = ::google::protobuf::internal;
-namespace _fl = ::google::protobuf::internal::field_layout;
+#include <google/protobuf/stubs/common.h>
+#include <google/protobuf/io/coded_stream.h>
+#include <google/protobuf/extension_set.h>
+#include <google/protobuf/wire_format_lite.h>
+#include <google/protobuf/descriptor.h>
+#include <google/protobuf/generated_message_reflection.h>
+#include <google/protobuf/reflection_ops.h>
+#include <google/protobuf/wire_format.h>
+// @@protoc_insertion_point(includes)
+#include <google/protobuf/port_def.inc>
 namespace Nrmk {
 namespace IndyFramework {
 }  // namespace IndyFramework
 }  // namespace Nrmk
-static constexpr const ::_pb::EnumDescriptor**
-    file_level_enum_descriptors_device_2eproto = nullptr;
-static constexpr const ::_pb::ServiceDescriptor**
-    file_level_service_descriptors_device_2eproto = nullptr;
-const ::uint32_t TableStruct_device_2eproto::offsets[1] = {};
-static constexpr ::_pbi::MigrationSchema* schemas = nullptr;
-static constexpr ::_pb::Message* const* file_default_instances = nullptr;
-const char descriptor_table_protodef_device_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-    "\n\014device.proto\022\022Nrmk.IndyFramework\032\021devi"
-    "ce_msgs.proto\032\021common_msgs.proto2\322\017\n\006Dev"
-    "ice\022J\n\tSetBrakes\022\035.Nrmk.IndyFramework.Mo"
-    "torList\032\034.Nrmk.IndyFramework.Response\"\000\022"
-    "H\n\013SetServoAll\022\031.Nrmk.IndyFramework.Stat"
-    "e\032\034.Nrmk.IndyFramework.Response\"\000\022E\n\010Set"
-    "Servo\022\031.Nrmk.IndyFramework.Servo\032\034.Nrmk."
-    "IndyFramework.Response\"\000\022H\n\005SetDI\022\037.Nrmk"
-    ".IndyFramework.DigitalList\032\034.Nrmk.IndyFr"
-    "amework.Response\"\000\022H\n\005SetDO\022\037.Nrmk.IndyF"
-    "ramework.DigitalList\032\034.Nrmk.IndyFramewor"
-    "k.Response\"\000\022Q\n\010SetEndDI\022%.Nrmk.IndyFram"
-    "ework.EndtoolSignalList\032\034.Nrmk.IndyFrame"
-    "work.Response\"\000\022Q\n\010SetEndDO\022%.Nrmk.IndyF"
-    "ramework.EndtoolSignalList\032\034.Nrmk.IndyFr"
-    "amework.Response\"\000\022G\n\005SetAI\022\036.Nrmk.IndyF"
-    "ramework.AnalogList\032\034.Nrmk.IndyFramework"
-    ".Response\"\000\022G\n\005SetAO\022\036.Nrmk.IndyFramewor"
-    "k.AnalogList\032\034.Nrmk.IndyFramework.Respon"
-    "se\"\000\022J\n\010SetEndAI\022\036.Nrmk.IndyFramework.An"
-    "alogList\032\034.Nrmk.IndyFramework.Response\"\000"
-    "\022J\n\010SetEndAO\022\036.Nrmk.IndyFramework.Analog"
-    "List\032\034.Nrmk.IndyFramework.Response\"\000\022E\n\005"
-    "GetDI\022\031.Nrmk.IndyFramework.Empty\032\037.Nrmk."
-    "IndyFramework.DigitalList\"\000\022E\n\005GetDO\022\031.N"
-    "rmk.IndyFramework.Empty\032\037.Nrmk.IndyFrame"
-    "work.DigitalList\"\000\022N\n\010GetEndDI\022\031.Nrmk.In"
-    "dyFramework.Empty\032%.Nrmk.IndyFramework.E"
-    "ndtoolSignalList\"\000\022N\n\010GetEndDO\022\031.Nrmk.In"
-    "dyFramework.Empty\032%.Nrmk.IndyFramework.E"
-    "ndtoolSignalList\"\000\022D\n\005GetAI\022\031.Nrmk.IndyF"
-    "ramework.Empty\032\036.Nrmk.IndyFramework.Anal"
-    "ogList\"\000\022D\n\005GetAO\022\031.Nrmk.IndyFramework.E"
-    "mpty\032\036.Nrmk.IndyFramework.AnalogList\"\000\022G"
-    "\n\010GetEndAI\022\031.Nrmk.IndyFramework.Empty\032\036."
-    "Nrmk.IndyFramework.AnalogList\"\000\022G\n\010GetEn"
-    "dAO\022\031.Nrmk.IndyFramework.Empty\032\036.Nrmk.In"
-    "dyFramework.AnalogList\"\000\022K\n\tGetEL5001\022\031."
-    "Nrmk.IndyFramework.Empty\032!.Nrmk.IndyFram"
-    "ework.GetEL5001Data\"\000\022K\n\tGetEL5101\022\031.Nrm"
-    "k.IndyFramework.Empty\032!.Nrmk.IndyFramewo"
-    "rk.GetEL5101Data\"\000\022L\n\rGetDeviceInfo\022\031.Nr"
-    "mk.IndyFramework.Empty\032\036.Nrmk.IndyFramew"
-    "ork.DeviceInfo\"\000\022Z\n\024GetBrakeControlStyle"
-    "\022\031.Nrmk.IndyFramework.Empty\032%.Nrmk.IndyF"
-    "ramework.BrakeControlStyle\"\000\022S\n\017SetFTSen"
-    "sorType\022 .Nrmk.IndyFramework.FTSensorTyp"
-    "e\032\034.Nrmk.IndyFramework.Response\"\000\022P\n\017Get"
-    "FTSensorType\022\031.Nrmk.IndyFramework.Empty\032"
-    " .Nrmk.IndyFramework.FTSensorType\"\000\022P\n\017G"
-    "etFTSensorData\022\031.Nrmk.IndyFramework.Empt"
-    "y\032 .Nrmk.IndyFramework.FTSensorData\"\000b\006p"
-    "roto3"
+static constexpr ::PROTOBUF_NAMESPACE_ID::Metadata* file_level_metadata_device_2eproto = nullptr;
+static constexpr ::PROTOBUF_NAMESPACE_ID::EnumDescriptor const** file_level_enum_descriptors_device_2eproto = nullptr;
+static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_device_2eproto = nullptr;
+const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_device_2eproto::offsets[1] = {};
+static constexpr ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema* schemas = nullptr;
+static constexpr ::PROTOBUF_NAMESPACE_ID::Message* const* file_default_instances = nullptr;
+
+const char descriptor_table_protodef_device_2eproto[] =
+  "\n\014device.proto\022\022Nrmk.IndyFramework\032\021devi"
+  "ce_msgs.proto\032\021common_msgs.proto2\236\036\n\006Dev"
+  "ice\022J\n\tSetBrakes\022\035.Nrmk.IndyFramework.Mo"
+  "torList\032\034.Nrmk.IndyFramework.Response\"\000\022"
+  "H\n\013SetServoAll\022\031.Nrmk.IndyFramework.Stat"
+  "e\032\034.Nrmk.IndyFramework.Response\"\000\022E\n\010Set"
+  "Servo\022\031.Nrmk.IndyFramework.Servo\032\034.Nrmk."
+  "IndyFramework.Response\"\000\022H\n\005SetDI\022\037.Nrmk"
+  ".IndyFramework.DigitalList\032\034.Nrmk.IndyFr"
+  "amework.Response\"\000\022H\n\005SetDO\022\037.Nrmk.IndyF"
+  "ramework.DigitalList\032\034.Nrmk.IndyFramewor"
+  "k.Response\"\000\022Q\n\010SetEndDI\022%.Nrmk.IndyFram"
+  "ework.EndtoolSignalList\032\034.Nrmk.IndyFrame"
+  "work.Response\"\000\022Q\n\010SetEndDO\022%.Nrmk.IndyF"
+  "ramework.EndtoolSignalList\032\034.Nrmk.IndyFr"
+  "amework.Response\"\000\022G\n\005SetAI\022\036.Nrmk.IndyF"
+  "ramework.AnalogList\032\034.Nrmk.IndyFramework"
+  ".Response\"\000\022G\n\005SetAO\022\036.Nrmk.IndyFramewor"
+  "k.AnalogList\032\034.Nrmk.IndyFramework.Respon"
+  "se\"\000\022J\n\010SetEndAI\022\036.Nrmk.IndyFramework.An"
+  "alogList\032\034.Nrmk.IndyFramework.Response\"\000"
+  "\022J\n\010SetEndAO\022\036.Nrmk.IndyFramework.Analog"
+  "List\032\034.Nrmk.IndyFramework.Response\"\000\022S\n\r"
+  "SetEndRS485Rx\022\".Nrmk.IndyFramework.Endto"
+  "olRS485Rx\032\034.Nrmk.IndyFramework.Response\""
+  "\000\022P\n\rGetEndRS485Rx\022\031.Nrmk.IndyFramework."
+  "Empty\032\".Nrmk.IndyFramework.EndtoolRS485R"
+  "x\"\000\022P\n\rGetEndRS485Tx\022\031.Nrmk.IndyFramewor"
+  "k.Empty\032\".Nrmk.IndyFramework.EndtoolRS48"
+  "5Tx\"\000\022J\n\014SetEndLedDim\022\035.Nrmk.IndyFramewo"
+  "rk.EndLedDim\032\031.Nrmk.IndyFramework.Empty\""
+  "\000\022E\n\005GetDI\022\031.Nrmk.IndyFramework.Empty\032\037."
+  "Nrmk.IndyFramework.DigitalList\"\000\022E\n\005GetD"
+  "O\022\031.Nrmk.IndyFramework.Empty\032\037.Nrmk.Indy"
+  "Framework.DigitalList\"\000\022N\n\010GetEndDI\022\031.Nr"
+  "mk.IndyFramework.Empty\032%.Nrmk.IndyFramew"
+  "ork.EndtoolSignalList\"\000\022N\n\010GetEndDO\022\031.Nr"
+  "mk.IndyFramework.Empty\032%.Nrmk.IndyFramew"
+  "ork.EndtoolSignalList\"\000\022D\n\005GetAI\022\031.Nrmk."
+  "IndyFramework.Empty\032\036.Nrmk.IndyFramework"
+  ".AnalogList\"\000\022D\n\005GetAO\022\031.Nrmk.IndyFramew"
+  "ork.Empty\032\036.Nrmk.IndyFramework.AnalogLis"
+  "t\"\000\022G\n\010GetEndAI\022\031.Nrmk.IndyFramework.Emp"
+  "ty\032\036.Nrmk.IndyFramework.AnalogList\"\000\022G\n\010"
+  "GetEndAO\022\031.Nrmk.IndyFramework.Empty\032\036.Nr"
+  "mk.IndyFramework.AnalogList\"\000\022K\n\tGetEL50"
+  "01\022\031.Nrmk.IndyFramework.Empty\032!.Nrmk.Ind"
+  "yFramework.GetEL5001Data\"\000\022K\n\tGetEL5101\022"
+  "\031.Nrmk.IndyFramework.Empty\032!.Nrmk.IndyFr"
+  "amework.GetEL5101Data\"\000\022L\n\rGetDeviceInfo"
+  "\022\031.Nrmk.IndyFramework.Empty\032\036.Nrmk.IndyF"
+  "ramework.DeviceInfo\"\000\022Z\n\024GetBrakeControl"
+  "Style\022\031.Nrmk.IndyFramework.Empty\032%.Nrmk."
+  "IndyFramework.BrakeControlStyle\"\000\022U\n\020Set"
+  "SanderCommand\022!.Nrmk.IndyFramework.Sande"
+  "rCommand\032\034.Nrmk.IndyFramework.Response\"\000"
+  "\022R\n\020GetSanderCommand\022\031.Nrmk.IndyFramewor"
+  "k.Empty\032!.Nrmk.IndyFramework.SanderComma"
+  "nd\"\000\022P\n\017GetFTSensorData\022\031.Nrmk.IndyFrame"
+  "work.Empty\032 .Nrmk.IndyFramework.FTSensor"
+  "Data\"\000\022H\n\013GetConveyor\022\031.Nrmk.IndyFramewo"
+  "rk.Empty\032\034.Nrmk.IndyFramework.Conveyor\"\000"
+  "\022K\n\017SetConveyorName\022\030.Nrmk.IndyFramework"
+  ".Name\032\034.Nrmk.IndyFramework.Response\"\000\022M\n"
+  "\021SetConveyorByName\022\030.Nrmk.IndyFramework."
+  "Name\032\034.Nrmk.IndyFramework.Response\"\000\022Q\n\022"
+  "SetConveyorEncoder\022\033.Nrmk.IndyFramework."
+  "Encoder\032\034.Nrmk.IndyFramework.Response\"\000\022"
+  "Q\n\022SetConveyorTrigger\022\033.Nrmk.IndyFramewo"
+  "rk.Trigger\032\034.Nrmk.IndyFramework.Response"
+  "\"\000\022N\n\021SetConveyorOffset\022\031.Nrmk.IndyFrame"
+  "work.Float\032\034.Nrmk.IndyFramework.Response"
+  "\"\000\022W\n\027SetConveyorStartingPose\022\034.Nrmk.Ind"
+  "yFramework.PosePair\032\034.Nrmk.IndyFramework"
+  ".Response\"\000\022W\n\027SetConveyorTerminalPose\022\034"
+  ".Nrmk.IndyFramework.PosePair\032\034.Nrmk.Indy"
+  "Framework.Response\"\000\022R\n\020GetConveyorState"
+  "\022\031.Nrmk.IndyFramework.Empty\032!.Nrmk.IndyF"
+  "ramework.ConveyorState\"\000\022T\n\016GetLoadFacto"
+  "rs\022\031.Nrmk.IndyFramework.Empty\032%.Nrmk.Ind"
+  "yFramework.GetLoadFactorsRes\"\000\022W\n\013SetAut"
+  "oMode\022\".Nrmk.IndyFramework.SetAutoModeRe"
+  "q\032\".Nrmk.IndyFramework.SetAutoModeRes\"\000\022"
+  "R\n\rCheckAutoMode\022\031.Nrmk.IndyFramework.Em"
+  "pty\032$.Nrmk.IndyFramework.CheckAutoModeRe"
+  "s\"\000\022X\n\020CheckReducedMode\022\031.Nrmk.IndyFrame"
+  "work.Empty\032\'.Nrmk.IndyFramework.CheckRed"
+  "ucedModeRes\"\000\022^\n\026GetSafetyFunctionState\022"
+  "\031.Nrmk.IndyFramework.Empty\032\'.Nrmk.IndyFr"
+  "amework.SafetyFunctionState\"\000\022`\n\025Request"
+  "SafetyFunction\022\'.Nrmk.IndyFramework.Safe"
+  "tyFunctionState\032\034.Nrmk.IndyFramework.Res"
+  "ponse\"\000\022Z\n\024GetSafetyControlData\022\031.Nrmk.I"
+  "ndyFramework.Empty\032%.Nrmk.IndyFramework."
+  "SafetyControlData\"\000\022N\n\016GetGripperData\022\031."
+  "Nrmk.IndyFramework.Empty\032\037.Nrmk.IndyFram"
+  "ework.GripperData\"\000\022T\n\021SetGripperCommand"
+  "\022\".Nrmk.IndyFramework.GripperCommand\032\031.N"
+  "rmk.IndyFramework.Empty\"\000b\006proto3"
+  ;
+static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_device_2eproto_deps[2] = {
+  &::descriptor_table_common_5fmsgs_2eproto,
+  &::descriptor_table_device_5fmsgs_2eproto,
 };
-static const ::_pbi::DescriptorTable* const descriptor_table_device_2eproto_deps[2] =
-    {
-        &::descriptor_table_common_5fmsgs_2eproto,
-        &::descriptor_table_device_5fmsgs_2eproto,
+static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_device_2eproto_sccs[1] = {
 };
-static ::absl::once_flag descriptor_table_device_2eproto_once;
-const ::_pbi::DescriptorTable descriptor_table_device_2eproto = {
-    false,
-    false,
-    2085,
-    descriptor_table_protodef_device_2eproto,
-    "device.proto",
-    &descriptor_table_device_2eproto_once,
-    descriptor_table_device_2eproto_deps,
-    2,
-    0,
-    schemas,
-    file_default_instances,
-    TableStruct_device_2eproto::offsets,
-    nullptr,
-    file_level_enum_descriptors_device_2eproto,
-    file_level_service_descriptors_device_2eproto,
+static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_device_2eproto_once;
+static bool descriptor_table_device_2eproto_initialized = false;
+const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_device_2eproto = {
+  &descriptor_table_device_2eproto_initialized, descriptor_table_protodef_device_2eproto, "device.proto", 3953,
+  &descriptor_table_device_2eproto_once, descriptor_table_device_2eproto_sccs, descriptor_table_device_2eproto_deps, 0, 2,
+  schemas, file_default_instances, TableStruct_device_2eproto::offsets,
+  file_level_metadata_device_2eproto, 0, file_level_enum_descriptors_device_2eproto, file_level_service_descriptors_device_2eproto,
 };
 
-// This function exists to be marked as weak.
-// It can significantly speed up compilation by breaking up LLVM's SCC
-// in the .pb.cc translation units. Large translation units see a
-// reduction of more than 35% of walltime for optimized builds. Without
-// the weak attribute all the messages in the file, including all the
-// vtables and everything they use become part of the same SCC through
-// a cycle like:
-// GetMetadata -> descriptor table -> default instances ->
-//   vtables -> GetMetadata
-// By adding a weak function here we break the connection from the
-// individual vtables back into the descriptor table.
-PROTOBUF_ATTRIBUTE_WEAK const ::_pbi::DescriptorTable* descriptor_table_device_2eproto_getter() {
-  return &descriptor_table_device_2eproto;
-}
 // Force running AddDescriptors() at dynamic initialization time.
-PROTOBUF_ATTRIBUTE_INIT_PRIORITY2
-static ::_pbi::AddDescriptorsRunner dynamic_init_dummy_device_2eproto(&descriptor_table_device_2eproto);
+static bool dynamic_init_dummy_device_2eproto = (  ::PROTOBUF_NAMESPACE_ID::internal::AddDescriptors(&descriptor_table_device_2eproto), true);
 namespace Nrmk {
 namespace IndyFramework {
+
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace IndyFramework
 }  // namespace Nrmk
-namespace google {
-namespace protobuf {
-}  // namespace protobuf
-}  // namespace google
+PROTOBUF_NAMESPACE_OPEN
+PROTOBUF_NAMESPACE_CLOSE
+
 // @@protoc_insertion_point(global_scope)
-#include "google/protobuf/port_undef.inc"
+#include <google/protobuf/port_undef.inc>

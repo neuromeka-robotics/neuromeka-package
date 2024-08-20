@@ -10,7 +10,9 @@ service RTDataExchange {
   rpc GetIOData(Empty) returns (IOData) {}
   rpc GetServoData(Empty) returns (ServoData) {}
   rpc GetViolationData(Empty) returns (ViolationData) {}
+  rpc GetViolationMessageQueue(Empty) returns (ViolationMessageQueue) {}
   rpc GetProgramData(Empty) returns (ProgramData) {}
+  rpc GetStopState(Empty) returns (StopState) {}
 
   rpc TestFunction(TestRequest) returns (TestResponse) {}
 }

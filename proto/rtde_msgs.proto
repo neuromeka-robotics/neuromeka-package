@@ -100,6 +100,10 @@ message ViolationData {
 
   Response response = 100;
 }
+message ViolationMessageQueue {
+  repeated ViolationData violation_queue = 1;
+  Response response = 100;
+}
 
 //////////////////////////ServoData/////////////////////////
 message ServoData {
@@ -125,6 +129,19 @@ message ProgramData {
   string program_name = 7;
   string program_alarm = 8;
   string program_annotation = 9;
+  int32 speed_ratio = 10;
 
+  Response response = 100;
+}
+
+//////////////////////////StopState/////////////////////////
+message StopState {
+  enum StopCategory{
+    STOP_CAT_0 = 0;
+    STOP_CAT_1 = 1;
+    STOP_CAT_2 = 2;
+    STOP_CAT_NONE = -1;
+  }
+  StopCategory category = 1;
   Response response = 100;
 }

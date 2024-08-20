@@ -11,9 +11,6 @@ service Config {
   rpc SetToolFrame(Frame) returns (Response) {}
   rpc SetSpeedRatio(Ratio) returns (Response) {}
 
-  rpc SetFTsensorFrame(FTsensorFrame) returns (Response) {}
-  rpc GetFTsensorFrame(Response) returns (FTsensorFrame) {}
-
   rpc SetDIConfigList(DIConfigList) returns (Response) {}
   rpc GetDIConfigList(Empty) returns (DIConfigList) {}
 
@@ -22,6 +19,7 @@ service Config {
 
   rpc SetHomePosition(JointPos) returns (Response) {}
   rpc GetHomePosition(Empty) returns (JointPos) {}
+  rpc GetPackPosition(Empty) returns (JointPos) {}
 
   rpc SetAutoServoOff(AutoServoOffConfig) returns (Response) {}
   rpc GetAutoServoOff(Empty) returns (AutoServoOffConfig) {}
@@ -47,7 +45,6 @@ service Config {
   rpc SetNewControllerTestOnOff(NewControllerTestState) returns (Response) {}
   rpc GetNewControllerTestOnOffState(Empty) returns (NewControllerTestState) {}
 
-
   rpc SetFrictionComp(FrictionCompSet) returns (Response) {}
   rpc GetFrictionComp(Empty) returns (FrictionCompSet) {}
 
@@ -72,5 +69,15 @@ service Config {
   rpc SetSafetyStopConfig(SafetyStopConfig) returns (Response) {}
   rpc GetSafetyStopConfig(Empty) returns (SafetyStopConfig) {}
 
-  rpc SetCollTuning(CollTuningConfig) returns (Response) {}
+  rpc GetReducedRatio(Empty) returns (GetReducedRatioRes) {}
+  rpc GetReducedSpeed(Empty) returns (GetReducedSpeedRes) {}
+  rpc SetReducedSpeed(SetReducedSpeedReq) returns (Response) {}
+
+  rpc SetFTSensorConfig(FTSensorDevice) returns (Response) {}
+  rpc GetFTSensorConfig(Empty) returns (FTSensorDevice) {}
+
+  rpc SetTeleOpParams(TeleOpParams) returns (Response) {}
+  rpc GetTeleOpParams(Empty) returns (TeleOpParams) {}
+
+  rpc GetKinematicsParams(Empty) returns (KinematicsParams) {}
 }

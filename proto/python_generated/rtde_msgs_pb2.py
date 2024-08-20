@@ -21,11 +21,46 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x0frtde_msgs.proto\x12\x12Nrmk.IndyFramework\x1a\x11\x64\x65vice_msgs.proto\x1a\x11\x63ommon_msgs.proto\"-\n\x0bTestRequest\x12\x0e\n\x06intVal\x18\x01 \x01(\x05\x12\x0e\n\x06strVal\x18\x02 \x01(\t\")\n\x0cTestResponse\x12\x0c\n\x04\x63ode\x18\x01 \x01(\x03\x12\x0b\n\x03msg\x18\x02 \x01(\t\"\xeb\x02\n\nMotionData\x12\x31\n\ntraj_state\x18\x01 \x01(\x0e\x32\x1d.Nrmk.IndyFramework.TrajState\x12\x15\n\rtraj_progress\x18\x02 \x01(\x05\x12\x14\n\x0cis_in_motion\x18\x03 \x01(\x08\x12\x19\n\x11is_target_reached\x18\x04 \x01(\x08\x12\x12\n\nis_pausing\x18\x05 \x01(\x08\x12\x13\n\x0bis_stopping\x18\x06 \x01(\x08\x12\x12\n\nhas_motion\x18\x07 \x01(\x08\x12\x13\n\x0bspeed_ratio\x18\x08 \x01(\x05\x12\x11\n\tmotion_id\x18\t \x01(\x05\x12\x17\n\x0fremain_distance\x18\n \x01(\x02\x12\x19\n\x11motion_queue_size\x18\x0b \x01(\r\x12\x19\n\x11\x63ur_traj_progress\x18\x0c \x01(\x05\x12.\n\x08response\x18\x64 \x01(\x0b\x32\x1c.Nrmk.IndyFramework.Response\"\x9a\x02\n\x0b\x43ontrolData\x12\x15\n\rrunning_hours\x18\x01 \x01(\r\x12\x14\n\x0crunning_mins\x18\x02 \x01(\r\x12\x14\n\x0crunning_secs\x18\x03 \x01(\r\x12-\n\x08op_state\x18\x04 \x01(\x0e\x32\x1b.Nrmk.IndyFramework.OpState\x12\x10\n\x08sim_mode\x18\x05 \x01(\x08\x12\t\n\x01q\x18\n \x03(\x02\x12\x0c\n\x04qdot\x18\x0b \x03(\x02\x12\t\n\x01p\x18\x0c \x03(\x02\x12\x0c\n\x04pdot\x18\r \x03(\x02\x12\x11\n\tref_frame\x18\x14 \x03(\x02\x12\x12\n\ntool_frame\x18\x15 \x03(\x02\x12.\n\x08response\x18\x64 \x01(\x0b\x32\x1c.Nrmk.IndyFramework.Response\"\x9f\x02\n\x0c\x43ontrolData2\x12\t\n\x01q\x18\x01 \x03(\x02\x12\x0c\n\x04qdot\x18\x02 \x03(\x02\x12\r\n\x05qddot\x18\x03 \x03(\x02\x12\x0c\n\x04qdes\x18\x04 \x03(\x02\x12\x0f\n\x07qdotdes\x18\x05 \x03(\x02\x12\x10\n\x08qddotdes\x18\x06 \x03(\x02\x12\t\n\x01p\x18\n \x03(\x02\x12\x0c\n\x04pdot\x18\x0b \x03(\x02\x12\r\n\x05pddot\x18\x0c \x03(\x02\x12\x0c\n\x04pdes\x18\r \x03(\x02\x12\x0f\n\x07pdotdes\x18\x0e \x03(\x02\x12\x10\n\x08pddotdes\x18\x0f \x03(\x02\x12\x0b\n\x03tau\x18\x14 \x03(\x02\x12\x0f\n\x07tau_act\x18\x15 \x03(\x02\x12\x0f\n\x07tau_ext\x18\x16 \x03(\x02\x12.\n\x08response\x18\x64 \x01(\x0b\x32\x1c.Nrmk.IndyFramework.Response\"\xbc\x03\n\x06IOData\x12-\n\x02\x64i\x18\x01 \x03(\x0b\x32!.Nrmk.IndyFramework.DigitalSignal\x12-\n\x02\x64o\x18\x02 \x03(\x0b\x32!.Nrmk.IndyFramework.DigitalSignal\x12,\n\x02\x61i\x18\x03 \x03(\x0b\x32 .Nrmk.IndyFramework.AnalogSignal\x12,\n\x02\x61o\x18\x04 \x03(\x0b\x32 .Nrmk.IndyFramework.AnalogSignal\x12\x31\n\x06\x65nd_di\x18\x05 \x03(\x0b\x32!.Nrmk.IndyFramework.EndtoolSignal\x12\x31\n\x06\x65nd_do\x18\x06 \x03(\x0b\x32!.Nrmk.IndyFramework.EndtoolSignal\x12\x30\n\x06\x65nd_ai\x18\x07 \x03(\x0b\x32 .Nrmk.IndyFramework.AnalogSignal\x12\x30\n\x06\x65nd_ao\x18\x08 \x03(\x0b\x32 .Nrmk.IndyFramework.AnalogSignal\x12.\n\x08response\x18\x64 \x01(\x0b\x32\x1c.Nrmk.IndyFramework.Response\"\x9f\x01\n\rViolationData\x12\x16\n\x0eviolation_code\x18\x01 \x01(\x04\x12\x0f\n\x07j_index\x18\x02 \x01(\r\x12\x0e\n\x06i_args\x18\x03 \x03(\x05\x12\x0e\n\x06\x66_args\x18\x04 \x03(\x02\x12\x15\n\rviolation_str\x18\x05 \x01(\t\x12.\n\x08response\x18\x64 \x01(\x0b\x32\x1c.Nrmk.IndyFramework.Response\"\xb9\x01\n\tServoData\x12\x14\n\x0cstatus_codes\x18\x01 \x03(\t\x12\x14\n\x0ctemperatures\x18\x02 \x03(\x02\x12\x10\n\x08voltages\x18\x03 \x03(\x02\x12\x10\n\x08\x63urrents\x18\x04 \x03(\x02\x12\x15\n\rservo_actives\x18\n \x03(\x08\x12\x15\n\rbrake_actives\x18\x0b \x03(\x08\x12.\n\x08response\x18\x64 \x01(\x0b\x32\x1c.Nrmk.IndyFramework.Response\"\xa6\x02\n\x0bProgramData\x12\x37\n\rprogram_state\x18\x01 \x01(\x0e\x32 .Nrmk.IndyFramework.ProgramState\x12\x0e\n\x06\x63md_id\x18\x02 \x01(\x05\x12\x12\n\nsub_cmd_id\x18\x03 \x01(\x05\x12\x15\n\rrunning_hours\x18\x04 \x01(\r\x12\x14\n\x0crunning_mins\x18\x05 \x01(\r\x12\x14\n\x0crunning_secs\x18\x06 \x01(\r\x12\x14\n\x0cprogram_name\x18\x07 \x01(\t\x12\x15\n\rprogram_alarm\x18\x08 \x01(\t\x12\x1a\n\x12program_annotation\x18\t \x01(\t\x12.\n\x08response\x18\x64 \x01(\x0b\x32\x1c.Nrmk.IndyFramework.Responseb\x06proto3'
+  serialized_pb=b'\n\x0frtde_msgs.proto\x12\x12Nrmk.IndyFramework\x1a\x11\x64\x65vice_msgs.proto\x1a\x11\x63ommon_msgs.proto\"-\n\x0bTestRequest\x12\x0e\n\x06intVal\x18\x01 \x01(\x05\x12\x0e\n\x06strVal\x18\x02 \x01(\t\")\n\x0cTestResponse\x12\x0c\n\x04\x63ode\x18\x01 \x01(\x03\x12\x0b\n\x03msg\x18\x02 \x01(\t\"\xeb\x02\n\nMotionData\x12\x31\n\ntraj_state\x18\x01 \x01(\x0e\x32\x1d.Nrmk.IndyFramework.TrajState\x12\x15\n\rtraj_progress\x18\x02 \x01(\x05\x12\x14\n\x0cis_in_motion\x18\x03 \x01(\x08\x12\x19\n\x11is_target_reached\x18\x04 \x01(\x08\x12\x12\n\nis_pausing\x18\x05 \x01(\x08\x12\x13\n\x0bis_stopping\x18\x06 \x01(\x08\x12\x12\n\nhas_motion\x18\x07 \x01(\x08\x12\x13\n\x0bspeed_ratio\x18\x08 \x01(\x05\x12\x11\n\tmotion_id\x18\t \x01(\x05\x12\x17\n\x0fremain_distance\x18\n \x01(\x02\x12\x19\n\x11motion_queue_size\x18\x0b \x01(\r\x12\x19\n\x11\x63ur_traj_progress\x18\x0c \x01(\x05\x12.\n\x08response\x18\x64 \x01(\x0b\x32\x1c.Nrmk.IndyFramework.Response\"\x9a\x02\n\x0b\x43ontrolData\x12\x15\n\rrunning_hours\x18\x01 \x01(\r\x12\x14\n\x0crunning_mins\x18\x02 \x01(\r\x12\x14\n\x0crunning_secs\x18\x03 \x01(\r\x12-\n\x08op_state\x18\x04 \x01(\x0e\x32\x1b.Nrmk.IndyFramework.OpState\x12\x10\n\x08sim_mode\x18\x05 \x01(\x08\x12\t\n\x01q\x18\n \x03(\x02\x12\x0c\n\x04qdot\x18\x0b \x03(\x02\x12\t\n\x01p\x18\x0c \x03(\x02\x12\x0c\n\x04pdot\x18\r \x03(\x02\x12\x11\n\tref_frame\x18\x14 \x03(\x02\x12\x12\n\ntool_frame\x18\x15 \x03(\x02\x12.\n\x08response\x18\x64 \x01(\x0b\x32\x1c.Nrmk.IndyFramework.Response\"\x9f\x02\n\x0c\x43ontrolData2\x12\t\n\x01q\x18\x01 \x03(\x02\x12\x0c\n\x04qdot\x18\x02 \x03(\x02\x12\r\n\x05qddot\x18\x03 \x03(\x02\x12\x0c\n\x04qdes\x18\x04 \x03(\x02\x12\x0f\n\x07qdotdes\x18\x05 \x03(\x02\x12\x10\n\x08qddotdes\x18\x06 \x03(\x02\x12\t\n\x01p\x18\n \x03(\x02\x12\x0c\n\x04pdot\x18\x0b \x03(\x02\x12\r\n\x05pddot\x18\x0c \x03(\x02\x12\x0c\n\x04pdes\x18\r \x03(\x02\x12\x0f\n\x07pdotdes\x18\x0e \x03(\x02\x12\x10\n\x08pddotdes\x18\x0f \x03(\x02\x12\x0b\n\x03tau\x18\x14 \x03(\x02\x12\x0f\n\x07tau_act\x18\x15 \x03(\x02\x12\x0f\n\x07tau_ext\x18\x16 \x03(\x02\x12.\n\x08response\x18\x64 \x01(\x0b\x32\x1c.Nrmk.IndyFramework.Response\"\xbc\x03\n\x06IOData\x12-\n\x02\x64i\x18\x01 \x03(\x0b\x32!.Nrmk.IndyFramework.DigitalSignal\x12-\n\x02\x64o\x18\x02 \x03(\x0b\x32!.Nrmk.IndyFramework.DigitalSignal\x12,\n\x02\x61i\x18\x03 \x03(\x0b\x32 .Nrmk.IndyFramework.AnalogSignal\x12,\n\x02\x61o\x18\x04 \x03(\x0b\x32 .Nrmk.IndyFramework.AnalogSignal\x12\x31\n\x06\x65nd_di\x18\x05 \x03(\x0b\x32!.Nrmk.IndyFramework.EndtoolSignal\x12\x31\n\x06\x65nd_do\x18\x06 \x03(\x0b\x32!.Nrmk.IndyFramework.EndtoolSignal\x12\x30\n\x06\x65nd_ai\x18\x07 \x03(\x0b\x32 .Nrmk.IndyFramework.AnalogSignal\x12\x30\n\x06\x65nd_ao\x18\x08 \x03(\x0b\x32 .Nrmk.IndyFramework.AnalogSignal\x12.\n\x08response\x18\x64 \x01(\x0b\x32\x1c.Nrmk.IndyFramework.Response\"\x9f\x01\n\rViolationData\x12\x16\n\x0eviolation_code\x18\x01 \x01(\x04\x12\x0f\n\x07j_index\x18\x02 \x01(\r\x12\x0e\n\x06i_args\x18\x03 \x03(\x05\x12\x0e\n\x06\x66_args\x18\x04 \x03(\x02\x12\x15\n\rviolation_str\x18\x05 \x01(\t\x12.\n\x08response\x18\x64 \x01(\x0b\x32\x1c.Nrmk.IndyFramework.Response\"\x83\x01\n\x15ViolationMessageQueue\x12:\n\x0fviolation_queue\x18\x01 \x03(\x0b\x32!.Nrmk.IndyFramework.ViolationData\x12.\n\x08response\x18\x64 \x01(\x0b\x32\x1c.Nrmk.IndyFramework.Response\"\xb9\x01\n\tServoData\x12\x14\n\x0cstatus_codes\x18\x01 \x03(\t\x12\x14\n\x0ctemperatures\x18\x02 \x03(\x02\x12\x10\n\x08voltages\x18\x03 \x03(\x02\x12\x10\n\x08\x63urrents\x18\x04 \x03(\x02\x12\x15\n\rservo_actives\x18\n \x03(\x08\x12\x15\n\rbrake_actives\x18\x0b \x03(\x08\x12.\n\x08response\x18\x64 \x01(\x0b\x32\x1c.Nrmk.IndyFramework.Response\"\xbb\x02\n\x0bProgramData\x12\x37\n\rprogram_state\x18\x01 \x01(\x0e\x32 .Nrmk.IndyFramework.ProgramState\x12\x0e\n\x06\x63md_id\x18\x02 \x01(\x05\x12\x12\n\nsub_cmd_id\x18\x03 \x01(\x05\x12\x15\n\rrunning_hours\x18\x04 \x01(\r\x12\x14\n\x0crunning_mins\x18\x05 \x01(\r\x12\x14\n\x0crunning_secs\x18\x06 \x01(\r\x12\x14\n\x0cprogram_name\x18\x07 \x01(\t\x12\x15\n\rprogram_alarm\x18\x08 \x01(\t\x12\x1a\n\x12program_annotation\x18\t \x01(\t\x12\x13\n\x0bspeed_ratio\x18\n \x01(\x05\x12.\n\x08response\x18\x64 \x01(\x0b\x32\x1c.Nrmk.IndyFramework.Response\"\xd5\x01\n\tStopState\x12<\n\x08\x63\x61tegory\x18\x01 \x01(\x0e\x32*.Nrmk.IndyFramework.StopState.StopCategory\x12.\n\x08response\x18\x64 \x01(\x0b\x32\x1c.Nrmk.IndyFramework.Response\"Z\n\x0cStopCategory\x12\x0e\n\nSTOP_CAT_0\x10\x00\x12\x0e\n\nSTOP_CAT_1\x10\x01\x12\x0e\n\nSTOP_CAT_2\x10\x02\x12\x1a\n\rSTOP_CAT_NONE\x10\xff\xff\xff\xff\xff\xff\xff\xff\xff\x01\x62\x06proto3'
   ,
   dependencies=[device__msgs__pb2.DESCRIPTOR,common__msgs__pb2.DESCRIPTOR,])
 
 
+
+_STOPSTATE_STOPCATEGORY = _descriptor.EnumDescriptor(
+  name='StopCategory',
+  full_name='Nrmk.IndyFramework.StopState.StopCategory',
+  filename=None,
+  file=DESCRIPTOR,
+  create_key=_descriptor._internal_create_key,
+  values=[
+    _descriptor.EnumValueDescriptor(
+      name='STOP_CAT_0', index=0, number=0,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+    _descriptor.EnumValueDescriptor(
+      name='STOP_CAT_1', index=1, number=1,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+    _descriptor.EnumValueDescriptor(
+      name='STOP_CAT_2', index=2, number=2,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+    _descriptor.EnumValueDescriptor(
+      name='STOP_CAT_NONE', index=3, number=-1,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+  ],
+  containing_type=None,
+  serialized_options=None,
+  serialized_start=2481,
+  serialized_end=2571,
+)
+_sym_db.RegisterEnumDescriptor(_STOPSTATE_STOPCATEGORY)
 
 
 _TESTREQUEST = _descriptor.Descriptor(
@@ -623,6 +658,45 @@ _VIOLATIONDATA = _descriptor.Descriptor(
 )
 
 
+_VIOLATIONMESSAGEQUEUE = _descriptor.Descriptor(
+  name='ViolationMessageQueue',
+  full_name='Nrmk.IndyFramework.ViolationMessageQueue',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='violation_queue', full_name='Nrmk.IndyFramework.ViolationMessageQueue.violation_queue', index=0,
+      number=1, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='response', full_name='Nrmk.IndyFramework.ViolationMessageQueue.response', index=1,
+      number=100, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1718,
+  serialized_end=1849,
+)
+
+
 _SERVODATA = _descriptor.Descriptor(
   name='ServoData',
   full_name='Nrmk.IndyFramework.ServoData',
@@ -692,8 +766,8 @@ _SERVODATA = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1718,
-  serialized_end=1903,
+  serialized_start=1852,
+  serialized_end=2037,
 )
 
 
@@ -769,7 +843,14 @@ _PROGRAMDATA = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='response', full_name='Nrmk.IndyFramework.ProgramData.response', index=9,
+      name='speed_ratio', full_name='Nrmk.IndyFramework.ProgramData.speed_ratio', index=9,
+      number=10, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='response', full_name='Nrmk.IndyFramework.ProgramData.response', index=10,
       number=100, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -787,8 +868,48 @@ _PROGRAMDATA = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1906,
-  serialized_end=2200,
+  serialized_start=2040,
+  serialized_end=2355,
+)
+
+
+_STOPSTATE = _descriptor.Descriptor(
+  name='StopState',
+  full_name='Nrmk.IndyFramework.StopState',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='category', full_name='Nrmk.IndyFramework.StopState.category', index=0,
+      number=1, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='response', full_name='Nrmk.IndyFramework.StopState.response', index=1,
+      number=100, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+    _STOPSTATE_STOPCATEGORY,
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=2358,
+  serialized_end=2571,
 )
 
 _MOTIONDATA.fields_by_name['traj_state'].enum_type = common__msgs__pb2._TRAJSTATE
@@ -806,9 +927,14 @@ _IODATA.fields_by_name['end_ai'].message_type = device__msgs__pb2._ANALOGSIGNAL
 _IODATA.fields_by_name['end_ao'].message_type = device__msgs__pb2._ANALOGSIGNAL
 _IODATA.fields_by_name['response'].message_type = common__msgs__pb2._RESPONSE
 _VIOLATIONDATA.fields_by_name['response'].message_type = common__msgs__pb2._RESPONSE
+_VIOLATIONMESSAGEQUEUE.fields_by_name['violation_queue'].message_type = _VIOLATIONDATA
+_VIOLATIONMESSAGEQUEUE.fields_by_name['response'].message_type = common__msgs__pb2._RESPONSE
 _SERVODATA.fields_by_name['response'].message_type = common__msgs__pb2._RESPONSE
 _PROGRAMDATA.fields_by_name['program_state'].enum_type = common__msgs__pb2._PROGRAMSTATE
 _PROGRAMDATA.fields_by_name['response'].message_type = common__msgs__pb2._RESPONSE
+_STOPSTATE.fields_by_name['category'].enum_type = _STOPSTATE_STOPCATEGORY
+_STOPSTATE.fields_by_name['response'].message_type = common__msgs__pb2._RESPONSE
+_STOPSTATE_STOPCATEGORY.containing_type = _STOPSTATE
 DESCRIPTOR.message_types_by_name['TestRequest'] = _TESTREQUEST
 DESCRIPTOR.message_types_by_name['TestResponse'] = _TESTRESPONSE
 DESCRIPTOR.message_types_by_name['MotionData'] = _MOTIONDATA
@@ -816,8 +942,10 @@ DESCRIPTOR.message_types_by_name['ControlData'] = _CONTROLDATA
 DESCRIPTOR.message_types_by_name['ControlData2'] = _CONTROLDATA2
 DESCRIPTOR.message_types_by_name['IOData'] = _IODATA
 DESCRIPTOR.message_types_by_name['ViolationData'] = _VIOLATIONDATA
+DESCRIPTOR.message_types_by_name['ViolationMessageQueue'] = _VIOLATIONMESSAGEQUEUE
 DESCRIPTOR.message_types_by_name['ServoData'] = _SERVODATA
 DESCRIPTOR.message_types_by_name['ProgramData'] = _PROGRAMDATA
+DESCRIPTOR.message_types_by_name['StopState'] = _STOPSTATE
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 TestRequest = _reflection.GeneratedProtocolMessageType('TestRequest', (_message.Message,), {
@@ -869,6 +997,13 @@ ViolationData = _reflection.GeneratedProtocolMessageType('ViolationData', (_mess
   })
 _sym_db.RegisterMessage(ViolationData)
 
+ViolationMessageQueue = _reflection.GeneratedProtocolMessageType('ViolationMessageQueue', (_message.Message,), {
+  'DESCRIPTOR' : _VIOLATIONMESSAGEQUEUE,
+  '__module__' : 'rtde_msgs_pb2'
+  # @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.ViolationMessageQueue)
+  })
+_sym_db.RegisterMessage(ViolationMessageQueue)
+
 ServoData = _reflection.GeneratedProtocolMessageType('ServoData', (_message.Message,), {
   'DESCRIPTOR' : _SERVODATA,
   '__module__' : 'rtde_msgs_pb2'
@@ -882,6 +1017,13 @@ ProgramData = _reflection.GeneratedProtocolMessageType('ProgramData', (_message.
   # @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.ProgramData)
   })
 _sym_db.RegisterMessage(ProgramData)
+
+StopState = _reflection.GeneratedProtocolMessageType('StopState', (_message.Message,), {
+  'DESCRIPTOR' : _STOPSTATE,
+  '__module__' : 'rtde_msgs_pb2'
+  # @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.StopState)
+  })
+_sym_db.RegisterMessage(StopState)
 
 
 # @@protoc_insertion_point(module_scope)

@@ -281,6 +281,9 @@ class IndyDCP3
         bool get_tool_property(Nrmk::IndyFramework::ToolProperties& tool_properties);
         bool set_tool_property(const Nrmk::IndyFramework::ToolProperties& tool_properties);
 
+        bool set_mount_pos(float rot_y=0.0, float rot_z=0.0);
+        bool get_mount_pos(float &rot_y, float &rot_z);
+
         bool get_coll_sens_level(unsigned int &level);
         bool set_coll_sens_level(unsigned int level);
 

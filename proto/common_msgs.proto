@@ -4,9 +4,19 @@ package Nrmk.IndyFramework;
 //////////////////////////Empty/////////////////////////
 message Empty {}
 
+//////////////////////////Name/////////////////////////
+message Name {
+  string name = 1;
+}
+
 //////////////////////////State/////////////////////////
 message State {
   bool enable = 1;
+}
+
+//////////////////////////Float/////////////////////////
+message Float {
+  float value = 1;
 }
 
 //////////////////////////IntMode/////////////////////////
@@ -33,6 +43,32 @@ message Response {
 //////////////////////////Message/////////////////////////
 message Message {
   string content = 1;
+}
+
+//////////////////////////Vector/////////////////////////
+message Vector {
+  repeated double values = 1;
+}
+
+message PosePair {
+  repeated float q = 1;
+  repeated float p = 2;
+}
+
+//////////////////////////EndtoolRS485/////////////////////////
+message EndtoolRS485Tx {
+  uint32 word1 = 1;
+  uint32 word2 = 2;
+}
+
+message EndtoolRS485Rx {
+  uint32 word1 = 1;
+  uint32 word2 = 2;
+}
+
+message TactTime {
+  string type = 1;
+  float tact_time = 2;
 }
 
 //////////////////////////OpState/////////////////////////
@@ -73,6 +109,7 @@ enum OpState {
   OP_VIOLATE_HARD = 15;
   OP_MANUAL_RECOVER = 16;
   TELE_OP = 17;
+  TRAJ_MOVING = 18;
 }
 
 enum TrajState {

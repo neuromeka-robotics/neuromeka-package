@@ -21,7 +21,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x11\x63onfig_msgs.proto\x12\x12Nrmk.IndyFramework\x1a\x11\x63ommon_msgs.proto\x1a\x11\x64\x65vice_msgs.proto\"\x15\n\x05\x46rame\x12\x0c\n\x04\x66pos\x18\x01 \x03(\x02\"6\n\rFTsensorFrame\x12\x13\n\x0btranslation\x18\x01 \x01(\x02\x12\x10\n\x08rotation\x18\x02 \x01(\x02\"\x18\n\x08JointPos\x12\x0c\n\x04jpos\x18\x01 \x03(\x02\":\n\x0bPlanarFrame\x12\r\n\x05\x66pos0\x18\x01 \x03(\x02\x12\r\n\x05\x66pos1\x18\x02 \x03(\x02\x12\r\n\x05\x66pos2\x18\x03 \x03(\x02\"K\n\x0b\x46rameResult\x12\x0c\n\x04\x66pos\x18\x01 \x03(\x02\x12.\n\x08response\x18\x02 \x01(\x0b\x32\x1c.Nrmk.IndyFramework.Response\"\x16\n\x05Ratio\x12\r\n\x05ratio\x18\x01 \x01(\r\"2\n\x12\x41utoServoOffConfig\x12\x0e\n\x06\x65nable\x18\x01 \x01(\x08\x12\x0c\n\x04time\x18\x02 \x01(\x02\"\xc4\x02\n\x10\x43ollTuningConfig\x12G\n\tprecision\x18\x01 \x01(\x0e\x32\x34.Nrmk.IndyFramework.CollTuningConfig.TuningPrecision\x12\x46\n\x0ctuning_space\x18\x02 \x01(\x0e\x32\x30.Nrmk.IndyFramework.CollTuningConfig.TuningSpace\x12\x15\n\rvel_level_max\x18\x03 \x01(\x05\"?\n\x0fTuningPrecision\x12\x0c\n\x08LOW_TUNE\x10\x00\x12\x0f\n\x0bMIDDLE_TUNE\x10\x01\x12\r\n\tHIGH_TUNE\x10\x02\"G\n\x0bTuningSpace\x12\x0b\n\x07NO_TUNE\x10\x00\x12\x0e\n\nJOINT_TUNE\x10\x01\x12\r\n\tTASK_TUNE\x10\x02\x12\x0c\n\x08\x41LL_TUNE\x10\x03\"3\n\x0cJointGainSet\x12\n\n\x02kp\x18\x01 \x03(\x02\x12\n\n\x02kv\x18\x02 \x03(\x02\x12\x0b\n\x03kl2\x18\x03 \x03(\x02\"2\n\x0bTaskGainSet\x12\n\n\x02kp\x18\x01 \x03(\x02\x12\n\n\x02kv\x18\x02 \x03(\x02\x12\x0b\n\x03kl2\x18\x03 \x03(\x02\"Q\n\x10ImpedanceGainSet\x12\x0c\n\x04mass\x18\x01 \x03(\x02\x12\x0f\n\x07\x64\x61mping\x18\x02 \x03(\x02\x12\x11\n\tstiffness\x18\x03 \x03(\x02\x12\x0b\n\x03kl2\x18\x04 \x03(\x02\"\x7f\n\x0c\x46orceGainSet\x12\n\n\x02kp\x18\x01 \x03(\x02\x12\n\n\x02kv\x18\x02 \x03(\x02\x12\x0b\n\x03kl2\x18\x03 \x03(\x02\x12\x0c\n\x04mass\x18\x04 \x03(\x02\x12\x0f\n\x07\x64\x61mping\x18\x05 \x03(\x02\x12\x11\n\tstiffness\x18\x06 \x03(\x02\x12\x0b\n\x03kpf\x18\x07 \x03(\x02\x12\x0b\n\x03kif\x18\x08 \x03(\x02\"i\n\x0bTestGainSet\x12\r\n\x05kpctc\x18\x01 \x03(\x02\x12\r\n\x05kvctc\x18\x02 \x03(\x02\x12\r\n\x05kictc\x18\x03 \x03(\x02\x12\r\n\x05knric\x18\x04 \x03(\x02\x12\x0e\n\x06kpnric\x18\x05 \x03(\x02\x12\x0e\n\x06kinric\x18\x06 \x03(\x02\"\xa5\x01\n\rCustomGainSet\x12\r\n\x05gain0\x18\x01 \x03(\x02\x12\r\n\x05gain1\x18\x02 \x03(\x02\x12\r\n\x05gain2\x18\x03 \x03(\x02\x12\r\n\x05gain3\x18\x04 \x03(\x02\x12\r\n\x05gain4\x18\x05 \x03(\x02\x12\r\n\x05gain5\x18\x06 \x03(\x02\x12\r\n\x05gain6\x18\x07 \x03(\x02\x12\r\n\x05gain7\x18\x08 \x03(\x02\x12\r\n\x05gain8\x18\t \x03(\x02\x12\r\n\x05gain9\x18\n \x03(\x02\":\n\x16NewControllerTestState\x12\x0f\n\x07Jenable\x18\x01 \x01(\x08\x12\x0f\n\x07Tenable\x18\x02 \x01(\x08\"\x87\x01\n\x0f\x46rictionCompSet\x12\x1b\n\x13\x63ontrol_comp_enable\x18\x01 \x01(\x08\x12\x1b\n\x13\x63ontrol_comp_levels\x18\x02 \x03(\x05\x12\x1c\n\x14teaching_comp_enable\x18\x03 \x01(\x08\x12\x1c\n\x14teaching_comp_levels\x18\x04 \x03(\x05\"(\n\x0eMountingAngles\x12\n\n\x02ry\x18\x01 \x01(\x02\x12\n\n\x02rz\x18\x02 \x01(\x02\"G\n\x0eToolProperties\x12\x0c\n\x04mass\x18\x01 \x01(\x02\x12\x16\n\x0e\x63\x65nter_of_mass\x18\x02 \x03(\x02\x12\x0f\n\x07inertia\x18\x03 \x03(\x02\"#\n\x12\x43ollisionSensLevel\x12\r\n\x05level\x18\x01 \x01(\r\"\xb2\x02\n\x13\x43ollisionThresholds\x12\x16\n\x0ej_torque_bases\x18\x01 \x03(\x02\x12\x19\n\x11j_torque_tangents\x18\x02 \x03(\x02\x12\x16\n\x0et_torque_bases\x18\x03 \x03(\x02\x12\x19\n\x11t_torque_tangents\x18\x04 \x03(\x02\x12\x13\n\x0b\x65rror_bases\x18\x05 \x03(\x02\x12\x16\n\x0e\x65rror_tangents\x18\x06 \x03(\x02\x12\x1f\n\x17t_constvel_torque_bases\x18\x07 \x03(\x02\x12\"\n\x1at_constvel_torque_tangents\x18\x08 \x03(\x02\x12\x1f\n\x17t_conveyor_torque_bases\x18\t \x03(\x02\x12\"\n\x1at_conveyor_torque_tangents\x18\n \x03(\x02\"t\n\x0f\x43ollisionPolicy\x12\x37\n\x06policy\x18\x01 \x01(\x0e\x32\'.Nrmk.IndyFramework.CollisionPolicyType\x12\x12\n\nsleep_time\x18\x02 \x01(\x02\x12\x14\n\x0cgravity_time\x18\x03 \x01(\x02\"\xc4\x01\n\x0cSafetyLimits\x12\x13\n\x0bpower_limit\x18\x01 \x01(\x02\x12\x19\n\x11power_limit_ratio\x18\x02 \x01(\x02\x12\x17\n\x0ftcp_force_limit\x18\x03 \x01(\x02\x12\x1d\n\x15tcp_force_limit_ratio\x18\x04 \x01(\x02\x12\x17\n\x0ftcp_speed_limit\x18\x05 \x01(\x02\x12\x1d\n\x15tcp_speed_limit_ratio\x18\x06 \x01(\x02\x12\x14\n\x0cjoint_limits\x18\x07 \x03(\x02\"\xb0\x03\n\x10SafetyStopConfig\x12G\n\x1djoint_position_limit_stop_cat\x18\x01 \x01(\x0e\x32 .Nrmk.IndyFramework.StopCategory\x12\x44\n\x1ajoint_speed_limit_stop_cat\x18\x02 \x01(\x0e\x32 .Nrmk.IndyFramework.StopCategory\x12\x45\n\x1bjoint_torque_limit_stop_cat\x18\x03 \x01(\x0e\x32 .Nrmk.IndyFramework.StopCategory\x12\x42\n\x18tcp_speed_limit_stop_cat\x18\x04 \x01(\x0e\x32 .Nrmk.IndyFramework.StopCategory\x12\x42\n\x18tcp_force_limit_stop_cat\x18\x05 \x01(\x0e\x32 .Nrmk.IndyFramework.StopCategory\x12>\n\x14power_limit_stop_cat\x18\x06 \x01(\x0e\x32 .Nrmk.IndyFramework.StopCategory\"\xe9\x01\n\x08\x44IConfig\x12\x15\n\rfunction_code\x18\x01 \x01(\x05\x12\x15\n\rfunction_name\x18\x02 \x01(\t\x12\x39\n\x0etriggerSignals\x18\x03 \x03(\x0b\x32!.Nrmk.IndyFramework.DigitalSignal\x12\x39\n\x0esuccessSignals\x18\x04 \x03(\x0b\x32!.Nrmk.IndyFramework.DigitalSignal\x12\x39\n\x0e\x66\x61ilureSignals\x18\x05 \x03(\x0b\x32!.Nrmk.IndyFramework.DigitalSignal\"@\n\x0c\x44IConfigList\x12\x30\n\ndi_configs\x18\x01 \x03(\x0b\x32\x1c.Nrmk.IndyFramework.DIConfig\"\x9f\x01\n\x08\x44OConfig\x12\x12\n\nstate_code\x18\x01 \x01(\x05\x12\x12\n\nstate_name\x18\x02 \x01(\t\x12\x34\n\tonSignals\x18\x03 \x03(\x0b\x32!.Nrmk.IndyFramework.DigitalSignal\x12\x35\n\noffSignals\x18\x04 \x03(\x0b\x32!.Nrmk.IndyFramework.DigitalSignal\"@\n\x0c\x44OConfigList\x12\x30\n\ndo_configs\x18\x01 \x03(\x0b\x32\x1c.Nrmk.IndyFramework.DOConfigb\x06proto3'
+  serialized_pb=b'\n\x11\x63onfig_msgs.proto\x12\x12Nrmk.IndyFramework\x1a\x11\x63ommon_msgs.proto\x1a\x11\x64\x65vice_msgs.proto\"\x15\n\x05\x46rame\x12\x0c\n\x04\x66pos\x18\x01 \x03(\x02\"\x18\n\x08JointPos\x12\x0c\n\x04jpos\x18\x01 \x03(\x02\":\n\x0bPlanarFrame\x12\r\n\x05\x66pos0\x18\x01 \x03(\x02\x12\r\n\x05\x66pos1\x18\x02 \x03(\x02\x12\r\n\x05\x66pos2\x18\x03 \x03(\x02\"K\n\x0b\x46rameResult\x12\x0c\n\x04\x66pos\x18\x01 \x03(\x02\x12.\n\x08response\x18\x02 \x01(\x0b\x32\x1c.Nrmk.IndyFramework.Response\"\x16\n\x05Ratio\x12\r\n\x05ratio\x18\x01 \x01(\r\"2\n\x12\x41utoServoOffConfig\x12\x0e\n\x06\x65nable\x18\x01 \x01(\x08\x12\x0c\n\x04time\x18\x02 \x01(\x02\"\xc4\x02\n\x10\x43ollTuningConfig\x12G\n\tprecision\x18\x01 \x01(\x0e\x32\x34.Nrmk.IndyFramework.CollTuningConfig.TuningPrecision\x12\x46\n\x0ctuning_space\x18\x02 \x01(\x0e\x32\x30.Nrmk.IndyFramework.CollTuningConfig.TuningSpace\x12\x15\n\rvel_level_max\x18\x03 \x01(\x05\"?\n\x0fTuningPrecision\x12\x0c\n\x08LOW_TUNE\x10\x00\x12\x0f\n\x0bMIDDLE_TUNE\x10\x01\x12\r\n\tHIGH_TUNE\x10\x02\"G\n\x0bTuningSpace\x12\x0b\n\x07NO_TUNE\x10\x00\x12\x0e\n\nJOINT_TUNE\x10\x01\x12\r\n\tTASK_TUNE\x10\x02\x12\x0c\n\x08\x41LL_TUNE\x10\x03\"3\n\x0cJointGainSet\x12\n\n\x02kp\x18\x01 \x03(\x02\x12\n\n\x02kv\x18\x02 \x03(\x02\x12\x0b\n\x03kl2\x18\x03 \x03(\x02\"2\n\x0bTaskGainSet\x12\n\n\x02kp\x18\x01 \x03(\x02\x12\n\n\x02kv\x18\x02 \x03(\x02\x12\x0b\n\x03kl2\x18\x03 \x03(\x02\"Q\n\x10ImpedanceGainSet\x12\x0c\n\x04mass\x18\x01 \x03(\x02\x12\x0f\n\x07\x64\x61mping\x18\x02 \x03(\x02\x12\x11\n\tstiffness\x18\x03 \x03(\x02\x12\x0b\n\x03kl2\x18\x04 \x03(\x02\"\x7f\n\x0c\x46orceGainSet\x12\n\n\x02kp\x18\x01 \x03(\x02\x12\n\n\x02kv\x18\x02 \x03(\x02\x12\x0b\n\x03kl2\x18\x03 \x03(\x02\x12\x0c\n\x04mass\x18\x04 \x03(\x02\x12\x0f\n\x07\x64\x61mping\x18\x05 \x03(\x02\x12\x11\n\tstiffness\x18\x06 \x03(\x02\x12\x0b\n\x03kpf\x18\x07 \x03(\x02\x12\x0b\n\x03kif\x18\x08 \x03(\x02\"i\n\x0bTestGainSet\x12\r\n\x05kpctc\x18\x01 \x03(\x02\x12\r\n\x05kvctc\x18\x02 \x03(\x02\x12\r\n\x05kictc\x18\x03 \x03(\x02\x12\r\n\x05knric\x18\x04 \x03(\x02\x12\x0e\n\x06kpnric\x18\x05 \x03(\x02\x12\x0e\n\x06kinric\x18\x06 \x03(\x02\"\xa5\x01\n\rCustomGainSet\x12\r\n\x05gain0\x18\x01 \x03(\x02\x12\r\n\x05gain1\x18\x02 \x03(\x02\x12\r\n\x05gain2\x18\x03 \x03(\x02\x12\r\n\x05gain3\x18\x04 \x03(\x02\x12\r\n\x05gain4\x18\x05 \x03(\x02\x12\r\n\x05gain5\x18\x06 \x03(\x02\x12\r\n\x05gain6\x18\x07 \x03(\x02\x12\r\n\x05gain7\x18\x08 \x03(\x02\x12\r\n\x05gain8\x18\t \x03(\x02\x12\r\n\x05gain9\x18\n \x03(\x02\":\n\x16NewControllerTestState\x12\x0f\n\x07Jenable\x18\x01 \x01(\x08\x12\x0f\n\x07Tenable\x18\x02 \x01(\x08\"\x87\x01\n\x0f\x46rictionCompSet\x12\x1b\n\x13\x63ontrol_comp_enable\x18\x01 \x01(\x08\x12\x1b\n\x13\x63ontrol_comp_levels\x18\x02 \x03(\x05\x12\x1c\n\x14teaching_comp_enable\x18\x03 \x01(\x08\x12\x1c\n\x14teaching_comp_levels\x18\x04 \x03(\x05\"(\n\x0eMountingAngles\x12\n\n\x02ry\x18\x01 \x01(\x02\x12\n\n\x02rz\x18\x02 \x01(\x02\"G\n\x0eToolProperties\x12\x0c\n\x04mass\x18\x01 \x01(\x02\x12\x16\n\x0e\x63\x65nter_of_mass\x18\x02 \x03(\x02\x12\x0f\n\x07inertia\x18\x03 \x03(\x02\"#\n\x12\x43ollisionSensLevel\x12\r\n\x05level\x18\x01 \x01(\r\"\xb2\x02\n\x13\x43ollisionThresholds\x12\x16\n\x0ej_torque_bases\x18\x01 \x03(\x02\x12\x19\n\x11j_torque_tangents\x18\x02 \x03(\x02\x12\x16\n\x0et_torque_bases\x18\x03 \x03(\x02\x12\x19\n\x11t_torque_tangents\x18\x04 \x03(\x02\x12\x13\n\x0b\x65rror_bases\x18\x05 \x03(\x02\x12\x16\n\x0e\x65rror_tangents\x18\x06 \x03(\x02\x12\x1f\n\x17t_constvel_torque_bases\x18\x07 \x03(\x02\x12\"\n\x1at_constvel_torque_tangents\x18\x08 \x03(\x02\x12\x1f\n\x17t_conveyor_torque_bases\x18\t \x03(\x02\x12\"\n\x1at_conveyor_torque_tangents\x18\n \x03(\x02\"t\n\x0f\x43ollisionPolicy\x12\x37\n\x06policy\x18\x01 \x01(\x0e\x32\'.Nrmk.IndyFramework.CollisionPolicyType\x12\x12\n\nsleep_time\x18\x02 \x01(\x02\x12\x14\n\x0cgravity_time\x18\x03 \x01(\x02\"\xe6\x01\n\x0cSafetyLimits\x12\x13\n\x0bpower_limit\x18\x01 \x01(\x02\x12\x19\n\x11power_limit_ratio\x18\x02 \x01(\x02\x12\x17\n\x0ftcp_force_limit\x18\x03 \x01(\x02\x12\x1d\n\x15tcp_force_limit_ratio\x18\x04 \x01(\x02\x12\x17\n\x0ftcp_speed_limit\x18\x05 \x01(\x02\x12\x1d\n\x15tcp_speed_limit_ratio\x18\x06 \x01(\x02\x12\x1a\n\x12joint_upper_limits\x18\x07 \x03(\x02\x12\x1a\n\x12joint_lower_limits\x18\x08 \x03(\x02\"\xb0\x03\n\x10SafetyStopConfig\x12G\n\x1djoint_position_limit_stop_cat\x18\x01 \x01(\x0e\x32 .Nrmk.IndyFramework.StopCategory\x12\x44\n\x1ajoint_speed_limit_stop_cat\x18\x02 \x01(\x0e\x32 .Nrmk.IndyFramework.StopCategory\x12\x45\n\x1bjoint_torque_limit_stop_cat\x18\x03 \x01(\x0e\x32 .Nrmk.IndyFramework.StopCategory\x12\x42\n\x18tcp_speed_limit_stop_cat\x18\x04 \x01(\x0e\x32 .Nrmk.IndyFramework.StopCategory\x12\x42\n\x18tcp_force_limit_stop_cat\x18\x05 \x01(\x0e\x32 .Nrmk.IndyFramework.StopCategory\x12>\n\x14power_limit_stop_cat\x18\x06 \x01(\x0e\x32 .Nrmk.IndyFramework.StopCategory\"\xe9\x01\n\x08\x44IConfig\x12\x15\n\rfunction_code\x18\x01 \x01(\x05\x12\x15\n\rfunction_name\x18\x02 \x01(\t\x12\x39\n\x0etriggerSignals\x18\x03 \x03(\x0b\x32!.Nrmk.IndyFramework.DigitalSignal\x12\x39\n\x0esuccessSignals\x18\x04 \x03(\x0b\x32!.Nrmk.IndyFramework.DigitalSignal\x12\x39\n\x0e\x66\x61ilureSignals\x18\x05 \x03(\x0b\x32!.Nrmk.IndyFramework.DigitalSignal\"@\n\x0c\x44IConfigList\x12\x30\n\ndi_configs\x18\x01 \x03(\x0b\x32\x1c.Nrmk.IndyFramework.DIConfig\"\x9f\x01\n\x08\x44OConfig\x12\x12\n\nstate_code\x18\x01 \x01(\x05\x12\x12\n\nstate_name\x18\x02 \x01(\t\x12\x34\n\tonSignals\x18\x03 \x03(\x0b\x32!.Nrmk.IndyFramework.DigitalSignal\x12\x35\n\noffSignals\x18\x04 \x03(\x0b\x32!.Nrmk.IndyFramework.DigitalSignal\"@\n\x0c\x44OConfigList\x12\x30\n\ndo_configs\x18\x01 \x03(\x0b\x32\x1c.Nrmk.IndyFramework.DOConfig\"0\n\x12GetReducedRatioRes\x12\r\n\x05ratio\x18\x01 \x01(\x02\x12\x0b\n\x03msg\x18\x64 \x01(\t\"0\n\x12GetReducedSpeedRes\x12\r\n\x05speed\x18\x01 \x01(\x02\x12\x0b\n\x03msg\x18\x64 \x01(\t\"#\n\x12SetReducedSpeedReq\x12\r\n\x05speed\x18\x01 \x01(\x02\"\xe1\x04\n\x0e\x46TSensorDevice\x12G\n\x08\x64\x65v_type\x18\x01 \x01(\x0e\x32\x35.Nrmk.IndyFramework.FTSensorDevice.FTSensorDeviceType\x12J\n\x08\x63om_type\x18\x02 \x01(\x0e\x32\x38.Nrmk.IndyFramework.FTSensorDevice.FTSensorDeviceComType\x12\x12\n\nip_address\x18\x03 \x01(\t\x12%\n\x1d\x66t_frame_translation_offset_x\x18\x0b \x01(\x02\x12%\n\x1d\x66t_frame_translation_offset_y\x18\x0c \x01(\x02\x12%\n\x1d\x66t_frame_translation_offset_z\x18\r \x01(\x02\x12\"\n\x1a\x66t_frame_rotation_offset_r\x18\x0e \x01(\x02\x12\"\n\x1a\x66t_frame_rotation_offset_p\x18\x0f \x01(\x02\x12\"\n\x1a\x66t_frame_rotation_offset_y\x18\x10 \x01(\x02\"q\n\x12\x46TSensorDeviceType\x12\x08\n\x04NONE\x10\x00\x12\x0e\n\nAFT200_D80\x10\x01\x12\x11\n\rAFT200_D80_EC\x10\x02\x12\x0e\n\nRFT80_6A01\x10\x03\x12\x0e\n\nRFT60_HA01\x10\x04\x12\x0e\n\nHEX_E_H_QC\x10\x05\"R\n\x15\x46TSensorDeviceComType\x12\x0e\n\nENDTOOLCAN\x10\x00\x12\t\n\x05\x43\x42\x43\x41N\x10\x01\x12\x10\n\x0cMODBUSCLIENT\x10\x02\x12\x0c\n\x08\x45THERCAT\x10\x03\" \n\x11\x46TSensorDeviceRes\x12\x0b\n\x03msg\x18\x64 \x01(\t\"N\n\x0cTeleOpParams\x12\x15\n\rsmooth_factor\x18\x01 \x01(\x02\x12\x13\n\x0b\x63utoff_freq\x18\x02 \x01(\x02\x12\x12\n\nerror_gain\x18\x03 \x01(\x02\"\x8e\x02\n\x10KinematicsParams\x12\x35\n\x03mdh\x18\x01 \x03(\x0b\x32(.Nrmk.IndyFramework.KinematicsParams.MDH\x1a\x98\x01\n\x03MDH\x12\t\n\x01\x61\x18\x01 \x01(\x02\x12\r\n\x05\x61lpha\x18\x02 \x01(\x02\x12\n\n\x02\x64\x30\x18\x03 \x01(\x02\x12\x0e\n\x06theta0\x18\x04 \x01(\x02\x12<\n\x04type\x18\x05 \x01(\x0e\x32..Nrmk.IndyFramework.KinematicsParams.JointType\x12\r\n\x05index\x18\n \x01(\x05\x12\x0e\n\x06parent\x18\x0b \x01(\x05\"(\n\tJointType\x12\x0c\n\x08REVOLUTE\x10\x00\x12\r\n\tPRISMATIC\x10\x01\x62\x06proto3'
   ,
   dependencies=[common__msgs__pb2.DESCRIPTOR,device__msgs__pb2.DESCRIPTOR,])
 
@@ -52,8 +52,8 @@ _COLLTUNINGCONFIG_TUNINGPRECISION = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=586,
-  serialized_end=649,
+  serialized_start=530,
+  serialized_end=593,
 )
 _sym_db.RegisterEnumDescriptor(_COLLTUNINGCONFIG_TUNINGPRECISION)
 
@@ -87,10 +87,115 @@ _COLLTUNINGCONFIG_TUNINGSPACE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=651,
-  serialized_end=722,
+  serialized_start=595,
+  serialized_end=666,
 )
 _sym_db.RegisterEnumDescriptor(_COLLTUNINGCONFIG_TUNINGSPACE)
+
+_FTSENSORDEVICE_FTSENSORDEVICETYPE = _descriptor.EnumDescriptor(
+  name='FTSensorDeviceType',
+  full_name='Nrmk.IndyFramework.FTSensorDevice.FTSensorDeviceType',
+  filename=None,
+  file=DESCRIPTOR,
+  create_key=_descriptor._internal_create_key,
+  values=[
+    _descriptor.EnumValueDescriptor(
+      name='NONE', index=0, number=0,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+    _descriptor.EnumValueDescriptor(
+      name='AFT200_D80', index=1, number=1,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+    _descriptor.EnumValueDescriptor(
+      name='AFT200_D80_EC', index=2, number=2,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+    _descriptor.EnumValueDescriptor(
+      name='RFT80_6A01', index=3, number=3,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+    _descriptor.EnumValueDescriptor(
+      name='RFT60_HA01', index=4, number=4,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+    _descriptor.EnumValueDescriptor(
+      name='HEX_E_H_QC', index=5, number=5,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+  ],
+  containing_type=None,
+  serialized_options=None,
+  serialized_start=3785,
+  serialized_end=3898,
+)
+_sym_db.RegisterEnumDescriptor(_FTSENSORDEVICE_FTSENSORDEVICETYPE)
+
+_FTSENSORDEVICE_FTSENSORDEVICECOMTYPE = _descriptor.EnumDescriptor(
+  name='FTSensorDeviceComType',
+  full_name='Nrmk.IndyFramework.FTSensorDevice.FTSensorDeviceComType',
+  filename=None,
+  file=DESCRIPTOR,
+  create_key=_descriptor._internal_create_key,
+  values=[
+    _descriptor.EnumValueDescriptor(
+      name='ENDTOOLCAN', index=0, number=0,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+    _descriptor.EnumValueDescriptor(
+      name='CBCAN', index=1, number=1,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+    _descriptor.EnumValueDescriptor(
+      name='MODBUSCLIENT', index=2, number=2,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+    _descriptor.EnumValueDescriptor(
+      name='ETHERCAT', index=3, number=3,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+  ],
+  containing_type=None,
+  serialized_options=None,
+  serialized_start=3900,
+  serialized_end=3982,
+)
+_sym_db.RegisterEnumDescriptor(_FTSENSORDEVICE_FTSENSORDEVICECOMTYPE)
+
+_KINEMATICSPARAMS_JOINTTYPE = _descriptor.EnumDescriptor(
+  name='JointType',
+  full_name='Nrmk.IndyFramework.KinematicsParams.JointType',
+  filename=None,
+  file=DESCRIPTOR,
+  create_key=_descriptor._internal_create_key,
+  values=[
+    _descriptor.EnumValueDescriptor(
+      name='REVOLUTE', index=0, number=0,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+    _descriptor.EnumValueDescriptor(
+      name='PRISMATIC', index=1, number=1,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+  ],
+  containing_type=None,
+  serialized_options=None,
+  serialized_start=4329,
+  serialized_end=4369,
+)
+_sym_db.RegisterEnumDescriptor(_KINEMATICSPARAMS_JOINTTYPE)
 
 
 _FRAME = _descriptor.Descriptor(
@@ -125,45 +230,6 @@ _FRAME = _descriptor.Descriptor(
 )
 
 
-_FTSENSORFRAME = _descriptor.Descriptor(
-  name='FTsensorFrame',
-  full_name='Nrmk.IndyFramework.FTsensorFrame',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='translation', full_name='Nrmk.IndyFramework.FTsensorFrame.translation', index=0,
-      number=1, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='rotation', full_name='Nrmk.IndyFramework.FTsensorFrame.rotation', index=1,
-      number=2, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=102,
-  serialized_end=156,
-)
-
-
 _JOINTPOS = _descriptor.Descriptor(
   name='JointPos',
   full_name='Nrmk.IndyFramework.JointPos',
@@ -191,8 +257,8 @@ _JOINTPOS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=158,
-  serialized_end=182,
+  serialized_start=102,
+  serialized_end=126,
 )
 
 
@@ -237,8 +303,8 @@ _PLANARFRAME = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=184,
-  serialized_end=242,
+  serialized_start=128,
+  serialized_end=186,
 )
 
 
@@ -276,8 +342,8 @@ _FRAMERESULT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=244,
-  serialized_end=319,
+  serialized_start=188,
+  serialized_end=263,
 )
 
 
@@ -308,8 +374,8 @@ _RATIO = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=321,
-  serialized_end=343,
+  serialized_start=265,
+  serialized_end=287,
 )
 
 
@@ -347,8 +413,8 @@ _AUTOSERVOOFFCONFIG = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=345,
-  serialized_end=395,
+  serialized_start=289,
+  serialized_end=339,
 )
 
 
@@ -395,8 +461,8 @@ _COLLTUNINGCONFIG = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=398,
-  serialized_end=722,
+  serialized_start=342,
+  serialized_end=666,
 )
 
 
@@ -441,8 +507,8 @@ _JOINTGAINSET = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=724,
-  serialized_end=775,
+  serialized_start=668,
+  serialized_end=719,
 )
 
 
@@ -487,8 +553,8 @@ _TASKGAINSET = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=777,
-  serialized_end=827,
+  serialized_start=721,
+  serialized_end=771,
 )
 
 
@@ -540,8 +606,8 @@ _IMPEDANCEGAINSET = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=829,
-  serialized_end=910,
+  serialized_start=773,
+  serialized_end=854,
 )
 
 
@@ -621,8 +687,8 @@ _FORCEGAINSET = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=912,
-  serialized_end=1039,
+  serialized_start=856,
+  serialized_end=983,
 )
 
 
@@ -688,8 +754,8 @@ _TESTGAINSET = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1041,
-  serialized_end=1146,
+  serialized_start=985,
+  serialized_end=1090,
 )
 
 
@@ -783,8 +849,8 @@ _CUSTOMGAINSET = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1149,
-  serialized_end=1314,
+  serialized_start=1093,
+  serialized_end=1258,
 )
 
 
@@ -822,8 +888,8 @@ _NEWCONTROLLERTESTSTATE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1316,
-  serialized_end=1374,
+  serialized_start=1260,
+  serialized_end=1318,
 )
 
 
@@ -875,8 +941,8 @@ _FRICTIONCOMPSET = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1377,
-  serialized_end=1512,
+  serialized_start=1321,
+  serialized_end=1456,
 )
 
 
@@ -914,8 +980,8 @@ _MOUNTINGANGLES = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1514,
-  serialized_end=1554,
+  serialized_start=1458,
+  serialized_end=1498,
 )
 
 
@@ -960,8 +1026,8 @@ _TOOLPROPERTIES = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1556,
-  serialized_end=1627,
+  serialized_start=1500,
+  serialized_end=1571,
 )
 
 
@@ -992,8 +1058,8 @@ _COLLISIONSENSLEVEL = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1629,
-  serialized_end=1664,
+  serialized_start=1573,
+  serialized_end=1608,
 )
 
 
@@ -1087,8 +1153,8 @@ _COLLISIONTHRESHOLDS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1667,
-  serialized_end=1973,
+  serialized_start=1611,
+  serialized_end=1917,
 )
 
 
@@ -1133,8 +1199,8 @@ _COLLISIONPOLICY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1975,
-  serialized_end=2091,
+  serialized_start=1919,
+  serialized_end=2035,
 )
 
 
@@ -1189,8 +1255,15 @@ _SAFETYLIMITS = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='joint_limits', full_name='Nrmk.IndyFramework.SafetyLimits.joint_limits', index=6,
+      name='joint_upper_limits', full_name='Nrmk.IndyFramework.SafetyLimits.joint_upper_limits', index=6,
       number=7, type=2, cpp_type=6, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='joint_lower_limits', full_name='Nrmk.IndyFramework.SafetyLimits.joint_lower_limits', index=7,
+      number=8, type=2, cpp_type=6, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -1207,8 +1280,8 @@ _SAFETYLIMITS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2094,
-  serialized_end=2290,
+  serialized_start=2038,
+  serialized_end=2268,
 )
 
 
@@ -1274,8 +1347,8 @@ _SAFETYSTOPCONFIG = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2293,
-  serialized_end=2725,
+  serialized_start=2271,
+  serialized_end=2703,
 )
 
 
@@ -1334,8 +1407,8 @@ _DICONFIG = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2728,
-  serialized_end=2961,
+  serialized_start=2706,
+  serialized_end=2939,
 )
 
 
@@ -1366,8 +1439,8 @@ _DICONFIGLIST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2963,
-  serialized_end=3027,
+  serialized_start=2941,
+  serialized_end=3005,
 )
 
 
@@ -1419,8 +1492,8 @@ _DOCONFIG = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3030,
-  serialized_end=3189,
+  serialized_start=3008,
+  serialized_end=3167,
 )
 
 
@@ -1451,8 +1524,392 @@ _DOCONFIGLIST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3191,
-  serialized_end=3255,
+  serialized_start=3169,
+  serialized_end=3233,
+)
+
+
+_GETREDUCEDRATIORES = _descriptor.Descriptor(
+  name='GetReducedRatioRes',
+  full_name='Nrmk.IndyFramework.GetReducedRatioRes',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='ratio', full_name='Nrmk.IndyFramework.GetReducedRatioRes.ratio', index=0,
+      number=1, type=2, cpp_type=6, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='msg', full_name='Nrmk.IndyFramework.GetReducedRatioRes.msg', index=1,
+      number=100, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=3235,
+  serialized_end=3283,
+)
+
+
+_GETREDUCEDSPEEDRES = _descriptor.Descriptor(
+  name='GetReducedSpeedRes',
+  full_name='Nrmk.IndyFramework.GetReducedSpeedRes',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='speed', full_name='Nrmk.IndyFramework.GetReducedSpeedRes.speed', index=0,
+      number=1, type=2, cpp_type=6, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='msg', full_name='Nrmk.IndyFramework.GetReducedSpeedRes.msg', index=1,
+      number=100, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=3285,
+  serialized_end=3333,
+)
+
+
+_SETREDUCEDSPEEDREQ = _descriptor.Descriptor(
+  name='SetReducedSpeedReq',
+  full_name='Nrmk.IndyFramework.SetReducedSpeedReq',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='speed', full_name='Nrmk.IndyFramework.SetReducedSpeedReq.speed', index=0,
+      number=1, type=2, cpp_type=6, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=3335,
+  serialized_end=3370,
+)
+
+
+_FTSENSORDEVICE = _descriptor.Descriptor(
+  name='FTSensorDevice',
+  full_name='Nrmk.IndyFramework.FTSensorDevice',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='dev_type', full_name='Nrmk.IndyFramework.FTSensorDevice.dev_type', index=0,
+      number=1, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='com_type', full_name='Nrmk.IndyFramework.FTSensorDevice.com_type', index=1,
+      number=2, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='ip_address', full_name='Nrmk.IndyFramework.FTSensorDevice.ip_address', index=2,
+      number=3, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='ft_frame_translation_offset_x', full_name='Nrmk.IndyFramework.FTSensorDevice.ft_frame_translation_offset_x', index=3,
+      number=11, type=2, cpp_type=6, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='ft_frame_translation_offset_y', full_name='Nrmk.IndyFramework.FTSensorDevice.ft_frame_translation_offset_y', index=4,
+      number=12, type=2, cpp_type=6, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='ft_frame_translation_offset_z', full_name='Nrmk.IndyFramework.FTSensorDevice.ft_frame_translation_offset_z', index=5,
+      number=13, type=2, cpp_type=6, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='ft_frame_rotation_offset_r', full_name='Nrmk.IndyFramework.FTSensorDevice.ft_frame_rotation_offset_r', index=6,
+      number=14, type=2, cpp_type=6, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='ft_frame_rotation_offset_p', full_name='Nrmk.IndyFramework.FTSensorDevice.ft_frame_rotation_offset_p', index=7,
+      number=15, type=2, cpp_type=6, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='ft_frame_rotation_offset_y', full_name='Nrmk.IndyFramework.FTSensorDevice.ft_frame_rotation_offset_y', index=8,
+      number=16, type=2, cpp_type=6, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+    _FTSENSORDEVICE_FTSENSORDEVICETYPE,
+    _FTSENSORDEVICE_FTSENSORDEVICECOMTYPE,
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=3373,
+  serialized_end=3982,
+)
+
+
+_FTSENSORDEVICERES = _descriptor.Descriptor(
+  name='FTSensorDeviceRes',
+  full_name='Nrmk.IndyFramework.FTSensorDeviceRes',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='msg', full_name='Nrmk.IndyFramework.FTSensorDeviceRes.msg', index=0,
+      number=100, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=3984,
+  serialized_end=4016,
+)
+
+
+_TELEOPPARAMS = _descriptor.Descriptor(
+  name='TeleOpParams',
+  full_name='Nrmk.IndyFramework.TeleOpParams',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='smooth_factor', full_name='Nrmk.IndyFramework.TeleOpParams.smooth_factor', index=0,
+      number=1, type=2, cpp_type=6, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='cutoff_freq', full_name='Nrmk.IndyFramework.TeleOpParams.cutoff_freq', index=1,
+      number=2, type=2, cpp_type=6, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='error_gain', full_name='Nrmk.IndyFramework.TeleOpParams.error_gain', index=2,
+      number=3, type=2, cpp_type=6, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=4018,
+  serialized_end=4096,
+)
+
+
+_KINEMATICSPARAMS_MDH = _descriptor.Descriptor(
+  name='MDH',
+  full_name='Nrmk.IndyFramework.KinematicsParams.MDH',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='a', full_name='Nrmk.IndyFramework.KinematicsParams.MDH.a', index=0,
+      number=1, type=2, cpp_type=6, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='alpha', full_name='Nrmk.IndyFramework.KinematicsParams.MDH.alpha', index=1,
+      number=2, type=2, cpp_type=6, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='d0', full_name='Nrmk.IndyFramework.KinematicsParams.MDH.d0', index=2,
+      number=3, type=2, cpp_type=6, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='theta0', full_name='Nrmk.IndyFramework.KinematicsParams.MDH.theta0', index=3,
+      number=4, type=2, cpp_type=6, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='type', full_name='Nrmk.IndyFramework.KinematicsParams.MDH.type', index=4,
+      number=5, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='index', full_name='Nrmk.IndyFramework.KinematicsParams.MDH.index', index=5,
+      number=10, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='parent', full_name='Nrmk.IndyFramework.KinematicsParams.MDH.parent', index=6,
+      number=11, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=4175,
+  serialized_end=4327,
+)
+
+_KINEMATICSPARAMS = _descriptor.Descriptor(
+  name='KinematicsParams',
+  full_name='Nrmk.IndyFramework.KinematicsParams',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='mdh', full_name='Nrmk.IndyFramework.KinematicsParams.mdh', index=0,
+      number=1, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[_KINEMATICSPARAMS_MDH, ],
+  enum_types=[
+    _KINEMATICSPARAMS_JOINTTYPE,
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=4099,
+  serialized_end=4369,
 )
 
 _FRAMERESULT.fields_by_name['response'].message_type = common__msgs__pb2._RESPONSE
@@ -1474,8 +1931,15 @@ _DICONFIGLIST.fields_by_name['di_configs'].message_type = _DICONFIG
 _DOCONFIG.fields_by_name['onSignals'].message_type = device__msgs__pb2._DIGITALSIGNAL
 _DOCONFIG.fields_by_name['offSignals'].message_type = device__msgs__pb2._DIGITALSIGNAL
 _DOCONFIGLIST.fields_by_name['do_configs'].message_type = _DOCONFIG
+_FTSENSORDEVICE.fields_by_name['dev_type'].enum_type = _FTSENSORDEVICE_FTSENSORDEVICETYPE
+_FTSENSORDEVICE.fields_by_name['com_type'].enum_type = _FTSENSORDEVICE_FTSENSORDEVICECOMTYPE
+_FTSENSORDEVICE_FTSENSORDEVICETYPE.containing_type = _FTSENSORDEVICE
+_FTSENSORDEVICE_FTSENSORDEVICECOMTYPE.containing_type = _FTSENSORDEVICE
+_KINEMATICSPARAMS_MDH.fields_by_name['type'].enum_type = _KINEMATICSPARAMS_JOINTTYPE
+_KINEMATICSPARAMS_MDH.containing_type = _KINEMATICSPARAMS
+_KINEMATICSPARAMS.fields_by_name['mdh'].message_type = _KINEMATICSPARAMS_MDH
+_KINEMATICSPARAMS_JOINTTYPE.containing_type = _KINEMATICSPARAMS
 DESCRIPTOR.message_types_by_name['Frame'] = _FRAME
-DESCRIPTOR.message_types_by_name['FTsensorFrame'] = _FTSENSORFRAME
 DESCRIPTOR.message_types_by_name['JointPos'] = _JOINTPOS
 DESCRIPTOR.message_types_by_name['PlanarFrame'] = _PLANARFRAME
 DESCRIPTOR.message_types_by_name['FrameResult'] = _FRAMERESULT
@@ -1501,6 +1965,13 @@ DESCRIPTOR.message_types_by_name['DIConfig'] = _DICONFIG
 DESCRIPTOR.message_types_by_name['DIConfigList'] = _DICONFIGLIST
 DESCRIPTOR.message_types_by_name['DOConfig'] = _DOCONFIG
 DESCRIPTOR.message_types_by_name['DOConfigList'] = _DOCONFIGLIST
+DESCRIPTOR.message_types_by_name['GetReducedRatioRes'] = _GETREDUCEDRATIORES
+DESCRIPTOR.message_types_by_name['GetReducedSpeedRes'] = _GETREDUCEDSPEEDRES
+DESCRIPTOR.message_types_by_name['SetReducedSpeedReq'] = _SETREDUCEDSPEEDREQ
+DESCRIPTOR.message_types_by_name['FTSensorDevice'] = _FTSENSORDEVICE
+DESCRIPTOR.message_types_by_name['FTSensorDeviceRes'] = _FTSENSORDEVICERES
+DESCRIPTOR.message_types_by_name['TeleOpParams'] = _TELEOPPARAMS
+DESCRIPTOR.message_types_by_name['KinematicsParams'] = _KINEMATICSPARAMS
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 Frame = _reflection.GeneratedProtocolMessageType('Frame', (_message.Message,), {
@@ -1509,13 +1980,6 @@ Frame = _reflection.GeneratedProtocolMessageType('Frame', (_message.Message,), {
   # @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.Frame)
   })
 _sym_db.RegisterMessage(Frame)
-
-FTsensorFrame = _reflection.GeneratedProtocolMessageType('FTsensorFrame', (_message.Message,), {
-  'DESCRIPTOR' : _FTSENSORFRAME,
-  '__module__' : 'config_msgs_pb2'
-  # @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.FTsensorFrame)
-  })
-_sym_db.RegisterMessage(FTsensorFrame)
 
 JointPos = _reflection.GeneratedProtocolMessageType('JointPos', (_message.Message,), {
   'DESCRIPTOR' : _JOINTPOS,
@@ -1691,6 +2155,63 @@ DOConfigList = _reflection.GeneratedProtocolMessageType('DOConfigList', (_messag
   # @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.DOConfigList)
   })
 _sym_db.RegisterMessage(DOConfigList)
+
+GetReducedRatioRes = _reflection.GeneratedProtocolMessageType('GetReducedRatioRes', (_message.Message,), {
+  'DESCRIPTOR' : _GETREDUCEDRATIORES,
+  '__module__' : 'config_msgs_pb2'
+  # @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.GetReducedRatioRes)
+  })
+_sym_db.RegisterMessage(GetReducedRatioRes)
+
+GetReducedSpeedRes = _reflection.GeneratedProtocolMessageType('GetReducedSpeedRes', (_message.Message,), {
+  'DESCRIPTOR' : _GETREDUCEDSPEEDRES,
+  '__module__' : 'config_msgs_pb2'
+  # @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.GetReducedSpeedRes)
+  })
+_sym_db.RegisterMessage(GetReducedSpeedRes)
+
+SetReducedSpeedReq = _reflection.GeneratedProtocolMessageType('SetReducedSpeedReq', (_message.Message,), {
+  'DESCRIPTOR' : _SETREDUCEDSPEEDREQ,
+  '__module__' : 'config_msgs_pb2'
+  # @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.SetReducedSpeedReq)
+  })
+_sym_db.RegisterMessage(SetReducedSpeedReq)
+
+FTSensorDevice = _reflection.GeneratedProtocolMessageType('FTSensorDevice', (_message.Message,), {
+  'DESCRIPTOR' : _FTSENSORDEVICE,
+  '__module__' : 'config_msgs_pb2'
+  # @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.FTSensorDevice)
+  })
+_sym_db.RegisterMessage(FTSensorDevice)
+
+FTSensorDeviceRes = _reflection.GeneratedProtocolMessageType('FTSensorDeviceRes', (_message.Message,), {
+  'DESCRIPTOR' : _FTSENSORDEVICERES,
+  '__module__' : 'config_msgs_pb2'
+  # @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.FTSensorDeviceRes)
+  })
+_sym_db.RegisterMessage(FTSensorDeviceRes)
+
+TeleOpParams = _reflection.GeneratedProtocolMessageType('TeleOpParams', (_message.Message,), {
+  'DESCRIPTOR' : _TELEOPPARAMS,
+  '__module__' : 'config_msgs_pb2'
+  # @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.TeleOpParams)
+  })
+_sym_db.RegisterMessage(TeleOpParams)
+
+KinematicsParams = _reflection.GeneratedProtocolMessageType('KinematicsParams', (_message.Message,), {
+
+  'MDH' : _reflection.GeneratedProtocolMessageType('MDH', (_message.Message,), {
+    'DESCRIPTOR' : _KINEMATICSPARAMS_MDH,
+    '__module__' : 'config_msgs_pb2'
+    # @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.KinematicsParams.MDH)
+    })
+  ,
+  'DESCRIPTOR' : _KINEMATICSPARAMS,
+  '__module__' : 'config_msgs_pb2'
+  # @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.KinematicsParams)
+  })
+_sym_db.RegisterMessage(KinematicsParams)
+_sym_db.RegisterMessage(KinematicsParams.MDH)
 
 
 # @@protoc_insertion_point(module_scope)

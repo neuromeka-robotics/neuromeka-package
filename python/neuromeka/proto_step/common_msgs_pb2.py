@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x11\x63ommon_msgs.proto\x12\x12Nrmk.IndyFramework\"\x07\n\x05\x45mpty\"\x17\n\x05State\x12\x0e\n\x06\x65nable\x18\x01 \x01(\x08\"\x17\n\x07IntMode\x12\x0c\n\x04mode\x18\x01 \x01(\x04\"=\n\x07StopCat\x12\x32\n\x08\x63\x61tegory\x18\x01 \x01(\x0e\x32 .Nrmk.IndyFramework.StopCategory\"?\n\x08PauseCat\x12\x33\n\x08\x63\x61tegory\x18\x01 \x01(\x0e\x32!.Nrmk.IndyFramework.PauseCategory\"%\n\x08Response\x12\x0c\n\x04\x63ode\x18\x01 \x01(\x03\x12\x0b\n\x03msg\x18\x02 \x01(\t\"\x1a\n\x07Message\x12\x0f\n\x07\x63ontent\x18\x01 \x01(\t*\xc9\x02\n\x07OpState\x12\x11\n\rOP_SYSTEM_OFF\x10\x00\x12\x10\n\x0cOP_SYSTEM_ON\x10\x01\x12\x0e\n\nOP_VIOLATE\x10\x02\x12\x13\n\x0fOP_RECOVER_HARD\x10\x03\x12\x13\n\x0fOP_RECOVER_SOFT\x10\x04\x12\x0b\n\x07OP_IDLE\x10\x05\x12\r\n\tOP_MOVING\x10\x06\x12\x0f\n\x0bOP_TEACHING\x10\x07\x12\x10\n\x0cOP_COLLISION\x10\x08\x12\x13\n\x0fOP_STOP_AND_OFF\x10\t\x12\x11\n\rOP_COMPLIANCE\x10\n\x12\x14\n\x10OP_BRAKE_CONTROL\x10\x0b\x12\x13\n\x0fOP_SYSTEM_RESET\x10\x0c\x12\x14\n\x10OP_SYSTEM_SWITCH\x10\r\x12\x13\n\x0fOP_VIOLATE_HARD\x10\x0f\x12\x15\n\x11OP_MANUAL_RECOVER\x10\x10\x12\x0b\n\x07TELE_OP\x10\x11*\xb0\x01\n\tTrajState\x12\r\n\tTRAJ_NONE\x10\x00\x12\r\n\tTRAJ_INIT\x10\x01\x12\r\n\tTRAJ_CALC\x10\x02\x12\x11\n\rTRAJ_STAND_BY\x10\x03\x12\x0c\n\x08TRAJ_ACC\x10\x04\x12\x0f\n\x0bTRAJ_CRUISE\x10\x05\x12\x0c\n\x08TRAJ_DEC\x10\x06\x12\x13\n\x0fTRAJ_CANCELLING\x10\x07\x12\x11\n\rTRAJ_FINISHED\x10\x08\x12\x0e\n\nTRAJ_ERROR\x10\t*Z\n\rTrajCondition\x12\x10\n\x0cTRAJ_STARTED\x10\x00\x12\x11\n\rTRAJ_ACC_DONE\x10\x01\x12\x11\n\rTRAJ_CRZ_DONE\x10\x02\x12\x11\n\rTRAJ_DEC_DONE\x10\x03*F\n\x0cStopCategory\x12\x13\n\x0fIMMEDIATE_BRAKE\x10\x00\x12\x10\n\x0cSMOOTH_BRAKE\x10\x01\x12\x0f\n\x0bSMOOTH_ONLY\x10\x02*6\n\rPauseCategory\x12\x10\n\x0cSMOOTH_PAUSE\x10\x00\x12\x13\n\x0fIMMEDIATE_PAUSE\x10\x01*T\n\x0cProgramState\x12\r\n\tPROG_IDLE\x10\x00\x12\x10\n\x0cPROG_RUNNING\x10\x01\x12\x10\n\x0cPROG_PAUSING\x10\x02\x12\x11\n\rPROG_STOPPING\x10\x03*e\n\x13\x43ollisionPolicyType\x12\x12\n\x0e\x43OLL_NO_DETECT\x10\x00\x12\x0e\n\nCOLL_PAUSE\x10\x01\x12\x1b\n\x17\x43OLL_RESUME_AFTER_SLEEP\x10\x02\x12\r\n\tCOLL_STOP\x10\x03*:\n\x0bTuningSpace\x12\x0c\n\x08TUNE_ALL\x10\x00\x12\x0e\n\nTUNE_JOINT\x10\x01\x12\r\n\tTUNE_TASK\x10\x02*N\n\x0fTuningPrecision\x12\x11\n\rLOW_PRECISION\x10\x00\x12\x14\n\x10MIDDLE_PRECISION\x10\x01\x12\x12\n\x0eHIGH_PRECISION\x10\x02\x62\x06proto3'
+  serialized_pb=b'\n\x11\x63ommon_msgs.proto\x12\x12Nrmk.IndyFramework\"\x07\n\x05\x45mpty\"\x14\n\x04Name\x12\x0c\n\x04name\x18\x01 \x01(\t\"\x17\n\x05State\x12\x0e\n\x06\x65nable\x18\x01 \x01(\x08\"\x16\n\x05\x46loat\x12\r\n\x05value\x18\x01 \x01(\x02\"\x17\n\x07IntMode\x12\x0c\n\x04mode\x18\x01 \x01(\x04\"=\n\x07StopCat\x12\x32\n\x08\x63\x61tegory\x18\x01 \x01(\x0e\x32 .Nrmk.IndyFramework.StopCategory\"?\n\x08PauseCat\x12\x33\n\x08\x63\x61tegory\x18\x01 \x01(\x0e\x32!.Nrmk.IndyFramework.PauseCategory\"%\n\x08Response\x12\x0c\n\x04\x63ode\x18\x01 \x01(\x03\x12\x0b\n\x03msg\x18\x02 \x01(\t\"\x1a\n\x07Message\x12\x0f\n\x07\x63ontent\x18\x01 \x01(\t\"\x18\n\x06Vector\x12\x0e\n\x06values\x18\x01 \x03(\x01\" \n\x08PosePair\x12\t\n\x01q\x18\x01 \x03(\x02\x12\t\n\x01p\x18\x02 \x03(\x02\".\n\x0e\x45ndtoolRS485Tx\x12\r\n\x05word1\x18\x01 \x01(\r\x12\r\n\x05word2\x18\x02 \x01(\r\".\n\x0e\x45ndtoolRS485Rx\x12\r\n\x05word1\x18\x01 \x01(\r\x12\r\n\x05word2\x18\x02 \x01(\r\"+\n\x08TactTime\x12\x0c\n\x04type\x18\x01 \x01(\t\x12\x11\n\ttact_time\x18\x02 \x01(\x02*\xda\x02\n\x07OpState\x12\x11\n\rOP_SYSTEM_OFF\x10\x00\x12\x10\n\x0cOP_SYSTEM_ON\x10\x01\x12\x0e\n\nOP_VIOLATE\x10\x02\x12\x13\n\x0fOP_RECOVER_HARD\x10\x03\x12\x13\n\x0fOP_RECOVER_SOFT\x10\x04\x12\x0b\n\x07OP_IDLE\x10\x05\x12\r\n\tOP_MOVING\x10\x06\x12\x0f\n\x0bOP_TEACHING\x10\x07\x12\x10\n\x0cOP_COLLISION\x10\x08\x12\x13\n\x0fOP_STOP_AND_OFF\x10\t\x12\x11\n\rOP_COMPLIANCE\x10\n\x12\x14\n\x10OP_BRAKE_CONTROL\x10\x0b\x12\x13\n\x0fOP_SYSTEM_RESET\x10\x0c\x12\x14\n\x10OP_SYSTEM_SWITCH\x10\r\x12\x13\n\x0fOP_VIOLATE_HARD\x10\x0f\x12\x15\n\x11OP_MANUAL_RECOVER\x10\x10\x12\x0b\n\x07TELE_OP\x10\x11\x12\x0f\n\x0bTRAJ_MOVING\x10\x12*\xb0\x01\n\tTrajState\x12\r\n\tTRAJ_NONE\x10\x00\x12\r\n\tTRAJ_INIT\x10\x01\x12\r\n\tTRAJ_CALC\x10\x02\x12\x11\n\rTRAJ_STAND_BY\x10\x03\x12\x0c\n\x08TRAJ_ACC\x10\x04\x12\x0f\n\x0bTRAJ_CRUISE\x10\x05\x12\x0c\n\x08TRAJ_DEC\x10\x06\x12\x13\n\x0fTRAJ_CANCELLING\x10\x07\x12\x11\n\rTRAJ_FINISHED\x10\x08\x12\x0e\n\nTRAJ_ERROR\x10\t*Z\n\rTrajCondition\x12\x10\n\x0cTRAJ_STARTED\x10\x00\x12\x11\n\rTRAJ_ACC_DONE\x10\x01\x12\x11\n\rTRAJ_CRZ_DONE\x10\x02\x12\x11\n\rTRAJ_DEC_DONE\x10\x03*F\n\x0cStopCategory\x12\x13\n\x0fIMMEDIATE_BRAKE\x10\x00\x12\x10\n\x0cSMOOTH_BRAKE\x10\x01\x12\x0f\n\x0bSMOOTH_ONLY\x10\x02*6\n\rPauseCategory\x12\x10\n\x0cSMOOTH_PAUSE\x10\x00\x12\x13\n\x0fIMMEDIATE_PAUSE\x10\x01*T\n\x0cProgramState\x12\r\n\tPROG_IDLE\x10\x00\x12\x10\n\x0cPROG_RUNNING\x10\x01\x12\x10\n\x0cPROG_PAUSING\x10\x02\x12\x11\n\rPROG_STOPPING\x10\x03*e\n\x13\x43ollisionPolicyType\x12\x12\n\x0e\x43OLL_NO_DETECT\x10\x00\x12\x0e\n\nCOLL_PAUSE\x10\x01\x12\x1b\n\x17\x43OLL_RESUME_AFTER_SLEEP\x10\x02\x12\r\n\tCOLL_STOP\x10\x03*:\n\x0bTuningSpace\x12\x0c\n\x08TUNE_ALL\x10\x00\x12\x0e\n\nTUNE_JOINT\x10\x01\x12\r\n\tTUNE_TASK\x10\x02*N\n\x0fTuningPrecision\x12\x11\n\rLOW_PRECISION\x10\x00\x12\x14\n\x10MIDDLE_PRECISION\x10\x01\x12\x12\n\x0eHIGH_PRECISION\x10\x02\x62\x06proto3'
 )
 
 _OPSTATE = _descriptor.EnumDescriptor(
@@ -115,11 +115,16 @@ _OPSTATE = _descriptor.EnumDescriptor(
       serialized_options=None,
       type=None,
       create_key=_descriptor._internal_create_key),
+    _descriptor.EnumValueDescriptor(
+      name='TRAJ_MOVING', index=17, number=18,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=296,
-  serialized_end=625,
+  serialized_start=543,
+  serialized_end=889,
 )
 _sym_db.RegisterEnumDescriptor(_OPSTATE)
 
@@ -184,8 +189,8 @@ _TRAJSTATE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=628,
-  serialized_end=804,
+  serialized_start=892,
+  serialized_end=1068,
 )
 _sym_db.RegisterEnumDescriptor(_TRAJSTATE)
 
@@ -220,8 +225,8 @@ _TRAJCONDITION = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=806,
-  serialized_end=896,
+  serialized_start=1070,
+  serialized_end=1160,
 )
 _sym_db.RegisterEnumDescriptor(_TRAJCONDITION)
 
@@ -251,8 +256,8 @@ _STOPCATEGORY = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=898,
-  serialized_end=968,
+  serialized_start=1162,
+  serialized_end=1232,
 )
 _sym_db.RegisterEnumDescriptor(_STOPCATEGORY)
 
@@ -277,8 +282,8 @@ _PAUSECATEGORY = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=970,
-  serialized_end=1024,
+  serialized_start=1234,
+  serialized_end=1288,
 )
 _sym_db.RegisterEnumDescriptor(_PAUSECATEGORY)
 
@@ -313,8 +318,8 @@ _PROGRAMSTATE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=1026,
-  serialized_end=1110,
+  serialized_start=1290,
+  serialized_end=1374,
 )
 _sym_db.RegisterEnumDescriptor(_PROGRAMSTATE)
 
@@ -349,8 +354,8 @@ _COLLISIONPOLICYTYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=1112,
-  serialized_end=1213,
+  serialized_start=1376,
+  serialized_end=1477,
 )
 _sym_db.RegisterEnumDescriptor(_COLLISIONPOLICYTYPE)
 
@@ -380,8 +385,8 @@ _TUNINGSPACE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=1215,
-  serialized_end=1273,
+  serialized_start=1479,
+  serialized_end=1537,
 )
 _sym_db.RegisterEnumDescriptor(_TUNINGSPACE)
 
@@ -411,8 +416,8 @@ _TUNINGPRECISION = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=1275,
-  serialized_end=1353,
+  serialized_start=1539,
+  serialized_end=1617,
 )
 _sym_db.RegisterEnumDescriptor(_TUNINGPRECISION)
 
@@ -434,6 +439,7 @@ OP_SYSTEM_SWITCH = 13
 OP_VIOLATE_HARD = 15
 OP_MANUAL_RECOVER = 16
 TELE_OP = 17
+TRAJ_MOVING = 18
 TRAJ_NONE = 0
 TRAJ_INIT = 1
 TRAJ_CALC = 2
@@ -495,6 +501,38 @@ _EMPTY = _descriptor.Descriptor(
 )
 
 
+_NAME = _descriptor.Descriptor(
+  name='Name',
+  full_name='Nrmk.IndyFramework.Name',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='name', full_name='Nrmk.IndyFramework.Name.name', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=50,
+  serialized_end=70,
+)
+
+
 _STATE = _descriptor.Descriptor(
   name='State',
   full_name='Nrmk.IndyFramework.State',
@@ -522,8 +560,40 @@ _STATE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=50,
-  serialized_end=73,
+  serialized_start=72,
+  serialized_end=95,
+)
+
+
+_FLOAT = _descriptor.Descriptor(
+  name='Float',
+  full_name='Nrmk.IndyFramework.Float',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='value', full_name='Nrmk.IndyFramework.Float.value', index=0,
+      number=1, type=2, cpp_type=6, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=97,
+  serialized_end=119,
 )
 
 
@@ -554,8 +624,8 @@ _INTMODE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=75,
-  serialized_end=98,
+  serialized_start=121,
+  serialized_end=144,
 )
 
 
@@ -586,8 +656,8 @@ _STOPCAT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=100,
-  serialized_end=161,
+  serialized_start=146,
+  serialized_end=207,
 )
 
 
@@ -618,8 +688,8 @@ _PAUSECAT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=163,
-  serialized_end=226,
+  serialized_start=209,
+  serialized_end=272,
 )
 
 
@@ -657,8 +727,8 @@ _RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=228,
-  serialized_end=265,
+  serialized_start=274,
+  serialized_end=311,
 )
 
 
@@ -689,19 +759,214 @@ _MESSAGE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=267,
-  serialized_end=293,
+  serialized_start=313,
+  serialized_end=339,
+)
+
+
+_VECTOR = _descriptor.Descriptor(
+  name='Vector',
+  full_name='Nrmk.IndyFramework.Vector',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='values', full_name='Nrmk.IndyFramework.Vector.values', index=0,
+      number=1, type=1, cpp_type=5, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=341,
+  serialized_end=365,
+)
+
+
+_POSEPAIR = _descriptor.Descriptor(
+  name='PosePair',
+  full_name='Nrmk.IndyFramework.PosePair',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='q', full_name='Nrmk.IndyFramework.PosePair.q', index=0,
+      number=1, type=2, cpp_type=6, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='p', full_name='Nrmk.IndyFramework.PosePair.p', index=1,
+      number=2, type=2, cpp_type=6, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=367,
+  serialized_end=399,
+)
+
+
+_ENDTOOLRS485TX = _descriptor.Descriptor(
+  name='EndtoolRS485Tx',
+  full_name='Nrmk.IndyFramework.EndtoolRS485Tx',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='word1', full_name='Nrmk.IndyFramework.EndtoolRS485Tx.word1', index=0,
+      number=1, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='word2', full_name='Nrmk.IndyFramework.EndtoolRS485Tx.word2', index=1,
+      number=2, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=401,
+  serialized_end=447,
+)
+
+
+_ENDTOOLRS485RX = _descriptor.Descriptor(
+  name='EndtoolRS485Rx',
+  full_name='Nrmk.IndyFramework.EndtoolRS485Rx',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='word1', full_name='Nrmk.IndyFramework.EndtoolRS485Rx.word1', index=0,
+      number=1, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='word2', full_name='Nrmk.IndyFramework.EndtoolRS485Rx.word2', index=1,
+      number=2, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=449,
+  serialized_end=495,
+)
+
+
+_TACTTIME = _descriptor.Descriptor(
+  name='TactTime',
+  full_name='Nrmk.IndyFramework.TactTime',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='type', full_name='Nrmk.IndyFramework.TactTime.type', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='tact_time', full_name='Nrmk.IndyFramework.TactTime.tact_time', index=1,
+      number=2, type=2, cpp_type=6, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=497,
+  serialized_end=540,
 )
 
 _STOPCAT.fields_by_name['category'].enum_type = _STOPCATEGORY
 _PAUSECAT.fields_by_name['category'].enum_type = _PAUSECATEGORY
 DESCRIPTOR.message_types_by_name['Empty'] = _EMPTY
+DESCRIPTOR.message_types_by_name['Name'] = _NAME
 DESCRIPTOR.message_types_by_name['State'] = _STATE
+DESCRIPTOR.message_types_by_name['Float'] = _FLOAT
 DESCRIPTOR.message_types_by_name['IntMode'] = _INTMODE
 DESCRIPTOR.message_types_by_name['StopCat'] = _STOPCAT
 DESCRIPTOR.message_types_by_name['PauseCat'] = _PAUSECAT
 DESCRIPTOR.message_types_by_name['Response'] = _RESPONSE
 DESCRIPTOR.message_types_by_name['Message'] = _MESSAGE
+DESCRIPTOR.message_types_by_name['Vector'] = _VECTOR
+DESCRIPTOR.message_types_by_name['PosePair'] = _POSEPAIR
+DESCRIPTOR.message_types_by_name['EndtoolRS485Tx'] = _ENDTOOLRS485TX
+DESCRIPTOR.message_types_by_name['EndtoolRS485Rx'] = _ENDTOOLRS485RX
+DESCRIPTOR.message_types_by_name['TactTime'] = _TACTTIME
 DESCRIPTOR.enum_types_by_name['OpState'] = _OPSTATE
 DESCRIPTOR.enum_types_by_name['TrajState'] = _TRAJSTATE
 DESCRIPTOR.enum_types_by_name['TrajCondition'] = _TRAJCONDITION
@@ -720,12 +985,26 @@ Empty = _reflection.GeneratedProtocolMessageType('Empty', (_message.Message,), {
   })
 _sym_db.RegisterMessage(Empty)
 
+Name = _reflection.GeneratedProtocolMessageType('Name', (_message.Message,), {
+  'DESCRIPTOR' : _NAME,
+  '__module__' : 'common_msgs_pb2'
+  # @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.Name)
+  })
+_sym_db.RegisterMessage(Name)
+
 State = _reflection.GeneratedProtocolMessageType('State', (_message.Message,), {
   'DESCRIPTOR' : _STATE,
   '__module__' : 'common_msgs_pb2'
   # @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.State)
   })
 _sym_db.RegisterMessage(State)
+
+Float = _reflection.GeneratedProtocolMessageType('Float', (_message.Message,), {
+  'DESCRIPTOR' : _FLOAT,
+  '__module__' : 'common_msgs_pb2'
+  # @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.Float)
+  })
+_sym_db.RegisterMessage(Float)
 
 IntMode = _reflection.GeneratedProtocolMessageType('IntMode', (_message.Message,), {
   'DESCRIPTOR' : _INTMODE,
@@ -761,6 +1040,41 @@ Message = _reflection.GeneratedProtocolMessageType('Message', (_message.Message,
   # @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.Message)
   })
 _sym_db.RegisterMessage(Message)
+
+Vector = _reflection.GeneratedProtocolMessageType('Vector', (_message.Message,), {
+  'DESCRIPTOR' : _VECTOR,
+  '__module__' : 'common_msgs_pb2'
+  # @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.Vector)
+  })
+_sym_db.RegisterMessage(Vector)
+
+PosePair = _reflection.GeneratedProtocolMessageType('PosePair', (_message.Message,), {
+  'DESCRIPTOR' : _POSEPAIR,
+  '__module__' : 'common_msgs_pb2'
+  # @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.PosePair)
+  })
+_sym_db.RegisterMessage(PosePair)
+
+EndtoolRS485Tx = _reflection.GeneratedProtocolMessageType('EndtoolRS485Tx', (_message.Message,), {
+  'DESCRIPTOR' : _ENDTOOLRS485TX,
+  '__module__' : 'common_msgs_pb2'
+  # @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.EndtoolRS485Tx)
+  })
+_sym_db.RegisterMessage(EndtoolRS485Tx)
+
+EndtoolRS485Rx = _reflection.GeneratedProtocolMessageType('EndtoolRS485Rx', (_message.Message,), {
+  'DESCRIPTOR' : _ENDTOOLRS485RX,
+  '__module__' : 'common_msgs_pb2'
+  # @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.EndtoolRS485Rx)
+  })
+_sym_db.RegisterMessage(EndtoolRS485Rx)
+
+TactTime = _reflection.GeneratedProtocolMessageType('TactTime', (_message.Message,), {
+  'DESCRIPTOR' : _TACTTIME,
+  '__module__' : 'common_msgs_pb2'
+  # @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.TactTime)
+  })
+_sym_db.RegisterMessage(TactTime)
 
 
 # @@protoc_insertion_point(module_scope)

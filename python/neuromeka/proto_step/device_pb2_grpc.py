@@ -70,6 +70,26 @@ class DeviceStub(object):
                 request_serializer=device__msgs__pb2.AnalogList.SerializeToString,
                 response_deserializer=common__msgs__pb2.Response.FromString,
                 )
+        self.SetEndRS485Rx = channel.unary_unary(
+                '/Nrmk.IndyFramework.Device/SetEndRS485Rx',
+                request_serializer=common__msgs__pb2.EndtoolRS485Rx.SerializeToString,
+                response_deserializer=common__msgs__pb2.Response.FromString,
+                )
+        self.GetEndRS485Rx = channel.unary_unary(
+                '/Nrmk.IndyFramework.Device/GetEndRS485Rx',
+                request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=common__msgs__pb2.EndtoolRS485Rx.FromString,
+                )
+        self.GetEndRS485Tx = channel.unary_unary(
+                '/Nrmk.IndyFramework.Device/GetEndRS485Tx',
+                request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=common__msgs__pb2.EndtoolRS485Tx.FromString,
+                )
+        self.SetEndLedDim = channel.unary_unary(
+                '/Nrmk.IndyFramework.Device/SetEndLedDim',
+                request_serializer=device__msgs__pb2.EndLedDim.SerializeToString,
+                response_deserializer=common__msgs__pb2.Empty.FromString,
+                )
         self.GetDI = channel.unary_unary(
                 '/Nrmk.IndyFramework.Device/GetDI',
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
@@ -130,20 +150,110 @@ class DeviceStub(object):
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
                 response_deserializer=device__msgs__pb2.BrakeControlStyle.FromString,
                 )
-        self.SetFTSensorType = channel.unary_unary(
-                '/Nrmk.IndyFramework.Device/SetFTSensorType',
-                request_serializer=device__msgs__pb2.FTSensorType.SerializeToString,
+        self.SetSanderCommand = channel.unary_unary(
+                '/Nrmk.IndyFramework.Device/SetSanderCommand',
+                request_serializer=device__msgs__pb2.SanderCommand.SerializeToString,
                 response_deserializer=common__msgs__pb2.Response.FromString,
                 )
-        self.GetFTSensorType = channel.unary_unary(
-                '/Nrmk.IndyFramework.Device/GetFTSensorType',
+        self.GetSanderCommand = channel.unary_unary(
+                '/Nrmk.IndyFramework.Device/GetSanderCommand',
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
-                response_deserializer=device__msgs__pb2.FTSensorType.FromString,
+                response_deserializer=device__msgs__pb2.SanderCommand.FromString,
                 )
         self.GetFTSensorData = channel.unary_unary(
                 '/Nrmk.IndyFramework.Device/GetFTSensorData',
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
                 response_deserializer=device__msgs__pb2.FTSensorData.FromString,
+                )
+        self.GetConveyor = channel.unary_unary(
+                '/Nrmk.IndyFramework.Device/GetConveyor',
+                request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=device__msgs__pb2.Conveyor.FromString,
+                )
+        self.SetConveyorName = channel.unary_unary(
+                '/Nrmk.IndyFramework.Device/SetConveyorName',
+                request_serializer=common__msgs__pb2.Name.SerializeToString,
+                response_deserializer=common__msgs__pb2.Response.FromString,
+                )
+        self.SetConveyorByName = channel.unary_unary(
+                '/Nrmk.IndyFramework.Device/SetConveyorByName',
+                request_serializer=common__msgs__pb2.Name.SerializeToString,
+                response_deserializer=common__msgs__pb2.Response.FromString,
+                )
+        self.SetConveyorEncoder = channel.unary_unary(
+                '/Nrmk.IndyFramework.Device/SetConveyorEncoder',
+                request_serializer=device__msgs__pb2.Encoder.SerializeToString,
+                response_deserializer=common__msgs__pb2.Response.FromString,
+                )
+        self.SetConveyorTrigger = channel.unary_unary(
+                '/Nrmk.IndyFramework.Device/SetConveyorTrigger',
+                request_serializer=device__msgs__pb2.Trigger.SerializeToString,
+                response_deserializer=common__msgs__pb2.Response.FromString,
+                )
+        self.SetConveyorOffset = channel.unary_unary(
+                '/Nrmk.IndyFramework.Device/SetConveyorOffset',
+                request_serializer=common__msgs__pb2.Float.SerializeToString,
+                response_deserializer=common__msgs__pb2.Response.FromString,
+                )
+        self.SetConveyorStartingPose = channel.unary_unary(
+                '/Nrmk.IndyFramework.Device/SetConveyorStartingPose',
+                request_serializer=common__msgs__pb2.PosePair.SerializeToString,
+                response_deserializer=common__msgs__pb2.Response.FromString,
+                )
+        self.SetConveyorTerminalPose = channel.unary_unary(
+                '/Nrmk.IndyFramework.Device/SetConveyorTerminalPose',
+                request_serializer=common__msgs__pb2.PosePair.SerializeToString,
+                response_deserializer=common__msgs__pb2.Response.FromString,
+                )
+        self.GetConveyorState = channel.unary_unary(
+                '/Nrmk.IndyFramework.Device/GetConveyorState',
+                request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=device__msgs__pb2.ConveyorState.FromString,
+                )
+        self.GetLoadFactors = channel.unary_unary(
+                '/Nrmk.IndyFramework.Device/GetLoadFactors',
+                request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=device__msgs__pb2.GetLoadFactorsRes.FromString,
+                )
+        self.SetAutoMode = channel.unary_unary(
+                '/Nrmk.IndyFramework.Device/SetAutoMode',
+                request_serializer=device__msgs__pb2.SetAutoModeReq.SerializeToString,
+                response_deserializer=device__msgs__pb2.SetAutoModeRes.FromString,
+                )
+        self.CheckAutoMode = channel.unary_unary(
+                '/Nrmk.IndyFramework.Device/CheckAutoMode',
+                request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=device__msgs__pb2.CheckAutoModeRes.FromString,
+                )
+        self.CheckReducedMode = channel.unary_unary(
+                '/Nrmk.IndyFramework.Device/CheckReducedMode',
+                request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=device__msgs__pb2.CheckReducedModeRes.FromString,
+                )
+        self.GetSafetyFunctionState = channel.unary_unary(
+                '/Nrmk.IndyFramework.Device/GetSafetyFunctionState',
+                request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=device__msgs__pb2.SafetyFunctionState.FromString,
+                )
+        self.RequestSafetyFunction = channel.unary_unary(
+                '/Nrmk.IndyFramework.Device/RequestSafetyFunction',
+                request_serializer=device__msgs__pb2.SafetyFunctionState.SerializeToString,
+                response_deserializer=common__msgs__pb2.Response.FromString,
+                )
+        self.GetSafetyControlData = channel.unary_unary(
+                '/Nrmk.IndyFramework.Device/GetSafetyControlData',
+                request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=device__msgs__pb2.SafetyControlData.FromString,
+                )
+        self.GetGripperData = channel.unary_unary(
+                '/Nrmk.IndyFramework.Device/GetGripperData',
+                request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=device__msgs__pb2.GripperData.FromString,
+                )
+        self.SetGripperCommand = channel.unary_unary(
+                '/Nrmk.IndyFramework.Device/SetGripperCommand',
+                request_serializer=device__msgs__pb2.GripperCommand.SerializeToString,
+                response_deserializer=common__msgs__pb2.Empty.FromString,
                 )
 
 
@@ -211,6 +321,30 @@ class DeviceServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def SetEndAO(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SetEndRS485Rx(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetEndRS485Rx(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetEndRS485Tx(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SetEndLedDim(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -289,19 +423,131 @@ class DeviceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def SetFTSensorType(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+    def SetSanderCommand(self, request, context):
+        """///////////// Sander ////////////////
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def GetFTSensorType(self, request, context):
+    def GetSanderCommand(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def GetFTSensorData(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetConveyor(self, request, context):
+        """///////////// Conveyor ///////////////
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SetConveyorName(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SetConveyorByName(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SetConveyorEncoder(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SetConveyorTrigger(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SetConveyorOffset(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SetConveyorStartingPose(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SetConveyorTerminalPose(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetConveyorState(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetLoadFactors(self, request, context):
+        """///////////// Safety ////////////////
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SetAutoMode(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def CheckAutoMode(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def CheckReducedMode(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetSafetyFunctionState(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def RequestSafetyFunction(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetSafetyControlData(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetGripperData(self, request, context):
+        """/////////////485Gripper//////////////////////
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SetGripperCommand(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -365,6 +611,26 @@ def add_DeviceServicer_to_server(servicer, server):
                     request_deserializer=device__msgs__pb2.AnalogList.FromString,
                     response_serializer=common__msgs__pb2.Response.SerializeToString,
             ),
+            'SetEndRS485Rx': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetEndRS485Rx,
+                    request_deserializer=common__msgs__pb2.EndtoolRS485Rx.FromString,
+                    response_serializer=common__msgs__pb2.Response.SerializeToString,
+            ),
+            'GetEndRS485Rx': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetEndRS485Rx,
+                    request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=common__msgs__pb2.EndtoolRS485Rx.SerializeToString,
+            ),
+            'GetEndRS485Tx': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetEndRS485Tx,
+                    request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=common__msgs__pb2.EndtoolRS485Tx.SerializeToString,
+            ),
+            'SetEndLedDim': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetEndLedDim,
+                    request_deserializer=device__msgs__pb2.EndLedDim.FromString,
+                    response_serializer=common__msgs__pb2.Empty.SerializeToString,
+            ),
             'GetDI': grpc.unary_unary_rpc_method_handler(
                     servicer.GetDI,
                     request_deserializer=common__msgs__pb2.Empty.FromString,
@@ -425,20 +691,110 @@ def add_DeviceServicer_to_server(servicer, server):
                     request_deserializer=common__msgs__pb2.Empty.FromString,
                     response_serializer=device__msgs__pb2.BrakeControlStyle.SerializeToString,
             ),
-            'SetFTSensorType': grpc.unary_unary_rpc_method_handler(
-                    servicer.SetFTSensorType,
-                    request_deserializer=device__msgs__pb2.FTSensorType.FromString,
+            'SetSanderCommand': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetSanderCommand,
+                    request_deserializer=device__msgs__pb2.SanderCommand.FromString,
                     response_serializer=common__msgs__pb2.Response.SerializeToString,
             ),
-            'GetFTSensorType': grpc.unary_unary_rpc_method_handler(
-                    servicer.GetFTSensorType,
+            'GetSanderCommand': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetSanderCommand,
                     request_deserializer=common__msgs__pb2.Empty.FromString,
-                    response_serializer=device__msgs__pb2.FTSensorType.SerializeToString,
+                    response_serializer=device__msgs__pb2.SanderCommand.SerializeToString,
             ),
             'GetFTSensorData': grpc.unary_unary_rpc_method_handler(
                     servicer.GetFTSensorData,
                     request_deserializer=common__msgs__pb2.Empty.FromString,
                     response_serializer=device__msgs__pb2.FTSensorData.SerializeToString,
+            ),
+            'GetConveyor': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetConveyor,
+                    request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=device__msgs__pb2.Conveyor.SerializeToString,
+            ),
+            'SetConveyorName': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetConveyorName,
+                    request_deserializer=common__msgs__pb2.Name.FromString,
+                    response_serializer=common__msgs__pb2.Response.SerializeToString,
+            ),
+            'SetConveyorByName': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetConveyorByName,
+                    request_deserializer=common__msgs__pb2.Name.FromString,
+                    response_serializer=common__msgs__pb2.Response.SerializeToString,
+            ),
+            'SetConveyorEncoder': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetConveyorEncoder,
+                    request_deserializer=device__msgs__pb2.Encoder.FromString,
+                    response_serializer=common__msgs__pb2.Response.SerializeToString,
+            ),
+            'SetConveyorTrigger': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetConveyorTrigger,
+                    request_deserializer=device__msgs__pb2.Trigger.FromString,
+                    response_serializer=common__msgs__pb2.Response.SerializeToString,
+            ),
+            'SetConveyorOffset': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetConveyorOffset,
+                    request_deserializer=common__msgs__pb2.Float.FromString,
+                    response_serializer=common__msgs__pb2.Response.SerializeToString,
+            ),
+            'SetConveyorStartingPose': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetConveyorStartingPose,
+                    request_deserializer=common__msgs__pb2.PosePair.FromString,
+                    response_serializer=common__msgs__pb2.Response.SerializeToString,
+            ),
+            'SetConveyorTerminalPose': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetConveyorTerminalPose,
+                    request_deserializer=common__msgs__pb2.PosePair.FromString,
+                    response_serializer=common__msgs__pb2.Response.SerializeToString,
+            ),
+            'GetConveyorState': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetConveyorState,
+                    request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=device__msgs__pb2.ConveyorState.SerializeToString,
+            ),
+            'GetLoadFactors': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetLoadFactors,
+                    request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=device__msgs__pb2.GetLoadFactorsRes.SerializeToString,
+            ),
+            'SetAutoMode': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetAutoMode,
+                    request_deserializer=device__msgs__pb2.SetAutoModeReq.FromString,
+                    response_serializer=device__msgs__pb2.SetAutoModeRes.SerializeToString,
+            ),
+            'CheckAutoMode': grpc.unary_unary_rpc_method_handler(
+                    servicer.CheckAutoMode,
+                    request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=device__msgs__pb2.CheckAutoModeRes.SerializeToString,
+            ),
+            'CheckReducedMode': grpc.unary_unary_rpc_method_handler(
+                    servicer.CheckReducedMode,
+                    request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=device__msgs__pb2.CheckReducedModeRes.SerializeToString,
+            ),
+            'GetSafetyFunctionState': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetSafetyFunctionState,
+                    request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=device__msgs__pb2.SafetyFunctionState.SerializeToString,
+            ),
+            'RequestSafetyFunction': grpc.unary_unary_rpc_method_handler(
+                    servicer.RequestSafetyFunction,
+                    request_deserializer=device__msgs__pb2.SafetyFunctionState.FromString,
+                    response_serializer=common__msgs__pb2.Response.SerializeToString,
+            ),
+            'GetSafetyControlData': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetSafetyControlData,
+                    request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=device__msgs__pb2.SafetyControlData.SerializeToString,
+            ),
+            'GetGripperData': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetGripperData,
+                    request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=device__msgs__pb2.GripperData.SerializeToString,
+            ),
+            'SetGripperCommand': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetGripperCommand,
+                    request_deserializer=device__msgs__pb2.GripperCommand.FromString,
+                    response_serializer=common__msgs__pb2.Empty.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -634,6 +990,74 @@ class Device(object):
         return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/SetEndAO',
             device__msgs__pb2.AnalogList.SerializeToString,
             common__msgs__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SetEndRS485Rx(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/SetEndRS485Rx',
+            common__msgs__pb2.EndtoolRS485Rx.SerializeToString,
+            common__msgs__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetEndRS485Rx(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/GetEndRS485Rx',
+            common__msgs__pb2.Empty.SerializeToString,
+            common__msgs__pb2.EndtoolRS485Rx.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetEndRS485Tx(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/GetEndRS485Tx',
+            common__msgs__pb2.Empty.SerializeToString,
+            common__msgs__pb2.EndtoolRS485Tx.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SetEndLedDim(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/SetEndLedDim',
+            device__msgs__pb2.EndLedDim.SerializeToString,
+            common__msgs__pb2.Empty.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -842,7 +1266,7 @@ class Device(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def SetFTSensorType(request,
+    def SetSanderCommand(request,
             target,
             options=(),
             channel_credentials=None,
@@ -852,14 +1276,14 @@ class Device(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/SetFTSensorType',
-            device__msgs__pb2.FTSensorType.SerializeToString,
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/SetSanderCommand',
+            device__msgs__pb2.SanderCommand.SerializeToString,
             common__msgs__pb2.Response.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def GetFTSensorType(request,
+    def GetSanderCommand(request,
             target,
             options=(),
             channel_credentials=None,
@@ -869,9 +1293,9 @@ class Device(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/GetFTSensorType',
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/GetSanderCommand',
             common__msgs__pb2.Empty.SerializeToString,
-            device__msgs__pb2.FTSensorType.FromString,
+            device__msgs__pb2.SanderCommand.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -889,5 +1313,311 @@ class Device(object):
         return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/GetFTSensorData',
             common__msgs__pb2.Empty.SerializeToString,
             device__msgs__pb2.FTSensorData.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetConveyor(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/GetConveyor',
+            common__msgs__pb2.Empty.SerializeToString,
+            device__msgs__pb2.Conveyor.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SetConveyorName(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/SetConveyorName',
+            common__msgs__pb2.Name.SerializeToString,
+            common__msgs__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SetConveyorByName(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/SetConveyorByName',
+            common__msgs__pb2.Name.SerializeToString,
+            common__msgs__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SetConveyorEncoder(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/SetConveyorEncoder',
+            device__msgs__pb2.Encoder.SerializeToString,
+            common__msgs__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SetConveyorTrigger(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/SetConveyorTrigger',
+            device__msgs__pb2.Trigger.SerializeToString,
+            common__msgs__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SetConveyorOffset(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/SetConveyorOffset',
+            common__msgs__pb2.Float.SerializeToString,
+            common__msgs__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SetConveyorStartingPose(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/SetConveyorStartingPose',
+            common__msgs__pb2.PosePair.SerializeToString,
+            common__msgs__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SetConveyorTerminalPose(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/SetConveyorTerminalPose',
+            common__msgs__pb2.PosePair.SerializeToString,
+            common__msgs__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetConveyorState(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/GetConveyorState',
+            common__msgs__pb2.Empty.SerializeToString,
+            device__msgs__pb2.ConveyorState.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetLoadFactors(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/GetLoadFactors',
+            common__msgs__pb2.Empty.SerializeToString,
+            device__msgs__pb2.GetLoadFactorsRes.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SetAutoMode(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/SetAutoMode',
+            device__msgs__pb2.SetAutoModeReq.SerializeToString,
+            device__msgs__pb2.SetAutoModeRes.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def CheckAutoMode(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/CheckAutoMode',
+            common__msgs__pb2.Empty.SerializeToString,
+            device__msgs__pb2.CheckAutoModeRes.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def CheckReducedMode(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/CheckReducedMode',
+            common__msgs__pb2.Empty.SerializeToString,
+            device__msgs__pb2.CheckReducedModeRes.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetSafetyFunctionState(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/GetSafetyFunctionState',
+            common__msgs__pb2.Empty.SerializeToString,
+            device__msgs__pb2.SafetyFunctionState.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def RequestSafetyFunction(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/RequestSafetyFunction',
+            device__msgs__pb2.SafetyFunctionState.SerializeToString,
+            common__msgs__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetSafetyControlData(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/GetSafetyControlData',
+            common__msgs__pb2.Empty.SerializeToString,
+            device__msgs__pb2.SafetyControlData.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetGripperData(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/GetGripperData',
+            common__msgs__pb2.Empty.SerializeToString,
+            device__msgs__pb2.GripperData.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SetGripperCommand(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/SetGripperCommand',
+            device__msgs__pb2.GripperCommand.SerializeToString,
+            common__msgs__pb2.Empty.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
