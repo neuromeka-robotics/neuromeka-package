@@ -16,6 +16,7 @@ else:
         "numpy>=1.19.4, <=1.21.6",
         "pyModbusTCP==0.2.1",
         "netifaces==0.11.0",
+        "numpyencoder",
     ]
     common_requires = [
         "grpcio==1.59.0",
@@ -27,11 +28,12 @@ else:
         "numpy>=1.21.6, <=1.26.4",
         "pyModbusTCP==0.2.1",
         "netifaces2",
+        "numpyencoder",
     ]
     
     setup(
         name="neuromeka",
-        version="3.2.1.1",
+        version="3.3.0.0",
         author="Neuromeka",
         author_email="technical-suuport@neuromeka.com",
         description="Neuromeka client protocols for IndyDCP3, IndyEye, Moby, Ecat, and Motor",

@@ -2,7 +2,7 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-from . import eyetask_pb2 as eyetask__pb2
+import eyetask_pb2 as eyetask__pb2
 
 
 class EyeTaskStub(object):

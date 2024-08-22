@@ -6,16 +6,19 @@
 #include "moby.grpc.pb.h"
 
 #include <functional>
-#include <grpcpp/impl/codegen/async_stream.h>
-#include <grpcpp/impl/codegen/async_unary_call.h>
-#include <grpcpp/impl/codegen/channel_interface.h>
-#include <grpcpp/impl/codegen/client_unary_call.h>
-#include <grpcpp/impl/codegen/client_callback.h>
-#include <grpcpp/impl/codegen/method_handler_impl.h>
-#include <grpcpp/impl/codegen/rpc_service_method.h>
-#include <grpcpp/impl/codegen/server_callback.h>
-#include <grpcpp/impl/codegen/service_type.h>
-#include <grpcpp/impl/codegen/sync_stream.h>
+#include <grpcpp/support/async_stream.h>
+#include <grpcpp/support/async_unary_call.h>
+#include <grpcpp/impl/channel_interface.h>
+#include <grpcpp/impl/client_unary_call.h>
+#include <grpcpp/support/client_callback.h>
+#include <grpcpp/support/message_allocator.h>
+#include <grpcpp/support/method_handler.h>
+#include <grpcpp/impl/rpc_service_method.h>
+#include <grpcpp/support/server_callback.h>
+#include <grpcpp/impl/server_callback_handlers.h>
+#include <grpcpp/server_context.h>
+#include <grpcpp/impl/service_type.h>
+#include <grpcpp/support/sync_stream.h>
 namespace Nrmk {
 namespace IndyFramework {
 
@@ -61,1272 +64,1272 @@ static const char* Moby_method_names[] = {
 
 std::unique_ptr< Moby::Stub> Moby::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
   (void)options;
-  std::unique_ptr< Moby::Stub> stub(new Moby::Stub(channel));
+  std::unique_ptr< Moby::Stub> stub(new Moby::Stub(channel, options));
   return stub;
 }
 
-Moby::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel)
-  : channel_(channel), rpcmethod_GetMobyState_(Moby_method_names[0], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetMobyErrorState_(Moby_method_names[1], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_Recover_(Moby_method_names[2], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetMobyPose_(Moby_method_names[3], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetMobyVel_(Moby_method_names[4], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ResetMobyPose_(Moby_method_names[5], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetRotationAngleDeg_(Moby_method_names[6], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetDriveSpeed_(Moby_method_names[7], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetTargetVel_(Moby_method_names[8], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetRotationZeroCount_(Moby_method_names[9], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetGyroData_(Moby_method_names[10], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ResetGyroSensor_(Moby_method_names[11], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_UseGyroForOdom_(Moby_method_names[12], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetGyroFullData_(Moby_method_names[13], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetIRSensorData_(Moby_method_names[14], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetUSSensorData_(Moby_method_names[15], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetBMSData_(Moby_method_names[16], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetStepControl_(Moby_method_names[17], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_StopMotion_(Moby_method_names[18], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetRotationAngleDeg_(Moby_method_names[19], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DriveWheel_(Moby_method_names[20], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetZeroPosAsCurrentPos_(Moby_method_names[21], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetRotationVelAcc_(Moby_method_names[22], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetRotationInterpolator_(Moby_method_names[23], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetDriveAccDec_(Moby_method_names[24], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetDriveInterpolatorOnOff_(Moby_method_names[25], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetRotationControllerType_(Moby_method_names[26], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetForceKinematics_(Moby_method_names[27], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetForceKinematics_(Moby_method_names[28], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PauseBumper_(Moby_method_names[29], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_TurnLightOnOff_(Moby_method_names[30], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_TurnBuzzOnOff_(Moby_method_names[31], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetExtraDO_(Moby_method_names[32], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetControlParam_(Moby_method_names[33], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetControlParam_(Moby_method_names[34], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_StartRTLogging_(Moby_method_names[35], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_EndRTLogging_(Moby_method_names[36], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+Moby::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
+  : channel_(channel), rpcmethod_GetMobyState_(Moby_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetMobyErrorState_(Moby_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Recover_(Moby_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetMobyPose_(Moby_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetMobyVel_(Moby_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ResetMobyPose_(Moby_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetRotationAngleDeg_(Moby_method_names[6], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetDriveSpeed_(Moby_method_names[7], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetTargetVel_(Moby_method_names[8], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetRotationZeroCount_(Moby_method_names[9], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetGyroData_(Moby_method_names[10], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ResetGyroSensor_(Moby_method_names[11], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_UseGyroForOdom_(Moby_method_names[12], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetGyroFullData_(Moby_method_names[13], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetIRSensorData_(Moby_method_names[14], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetUSSensorData_(Moby_method_names[15], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetBMSData_(Moby_method_names[16], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetStepControl_(Moby_method_names[17], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_StopMotion_(Moby_method_names[18], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetRotationAngleDeg_(Moby_method_names[19], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DriveWheel_(Moby_method_names[20], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetZeroPosAsCurrentPos_(Moby_method_names[21], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetRotationVelAcc_(Moby_method_names[22], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetRotationInterpolator_(Moby_method_names[23], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetDriveAccDec_(Moby_method_names[24], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetDriveInterpolatorOnOff_(Moby_method_names[25], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetRotationControllerType_(Moby_method_names[26], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetForceKinematics_(Moby_method_names[27], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetForceKinematics_(Moby_method_names[28], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PauseBumper_(Moby_method_names[29], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_TurnLightOnOff_(Moby_method_names[30], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_TurnBuzzOnOff_(Moby_method_names[31], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetExtraDO_(Moby_method_names[32], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetControlParam_(Moby_method_names[33], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetControlParam_(Moby_method_names[34], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_StartRTLogging_(Moby_method_names[35], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_EndRTLogging_(Moby_method_names[36], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status Moby::Stub::GetMobyState(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::MobyState* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetMobyState_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::MobyState, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetMobyState_, context, request, response);
 }
 
-void Moby::Stub::experimental_async::GetMobyState(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::MobyState* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetMobyState_, context, request, response, std::move(f));
+void Moby::Stub::async::GetMobyState(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::MobyState* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::MobyState, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetMobyState_, context, request, response, std::move(f));
 }
 
-void Moby::Stub::experimental_async::GetMobyState(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::MobyState* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetMobyState_, context, request, response, std::move(f));
-}
-
-void Moby::Stub::experimental_async::GetMobyState(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::MobyState* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetMobyState_, context, request, response, reactor);
-}
-
-void Moby::Stub::experimental_async::GetMobyState(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::MobyState* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetMobyState_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::MobyState>* Moby::Stub::AsyncGetMobyStateRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::MobyState>::Create(channel_.get(), cq, rpcmethod_GetMobyState_, context, request, true);
+void Moby::Stub::async::GetMobyState(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::MobyState* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetMobyState_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::MobyState>* Moby::Stub::PrepareAsyncGetMobyStateRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::MobyState>::Create(channel_.get(), cq, rpcmethod_GetMobyState_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::MobyState, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetMobyState_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::MobyState>* Moby::Stub::AsyncGetMobyStateRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetMobyStateRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Moby::Stub::GetMobyErrorState(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::MobyErrorState* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetMobyErrorState_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::MobyErrorState, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetMobyErrorState_, context, request, response);
 }
 
-void Moby::Stub::experimental_async::GetMobyErrorState(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::MobyErrorState* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetMobyErrorState_, context, request, response, std::move(f));
+void Moby::Stub::async::GetMobyErrorState(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::MobyErrorState* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::MobyErrorState, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetMobyErrorState_, context, request, response, std::move(f));
 }
 
-void Moby::Stub::experimental_async::GetMobyErrorState(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::MobyErrorState* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetMobyErrorState_, context, request, response, std::move(f));
-}
-
-void Moby::Stub::experimental_async::GetMobyErrorState(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::MobyErrorState* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetMobyErrorState_, context, request, response, reactor);
-}
-
-void Moby::Stub::experimental_async::GetMobyErrorState(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::MobyErrorState* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetMobyErrorState_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::MobyErrorState>* Moby::Stub::AsyncGetMobyErrorStateRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::MobyErrorState>::Create(channel_.get(), cq, rpcmethod_GetMobyErrorState_, context, request, true);
+void Moby::Stub::async::GetMobyErrorState(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::MobyErrorState* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetMobyErrorState_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::MobyErrorState>* Moby::Stub::PrepareAsyncGetMobyErrorStateRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::MobyErrorState>::Create(channel_.get(), cq, rpcmethod_GetMobyErrorState_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::MobyErrorState, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetMobyErrorState_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::MobyErrorState>* Moby::Stub::AsyncGetMobyErrorStateRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetMobyErrorStateRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Moby::Stub::Recover(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::Empty* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_Recover_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Recover_, context, request, response);
 }
 
-void Moby::Stub::experimental_async::Recover(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_Recover_, context, request, response, std::move(f));
+void Moby::Stub::async::Recover(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Recover_, context, request, response, std::move(f));
 }
 
-void Moby::Stub::experimental_async::Recover(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_Recover_, context, request, response, std::move(f));
-}
-
-void Moby::Stub::experimental_async::Recover(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_Recover_, context, request, response, reactor);
-}
-
-void Moby::Stub::experimental_async::Recover(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_Recover_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Moby::Stub::AsyncRecoverRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_Recover_, context, request, true);
+void Moby::Stub::async::Recover(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Recover_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Moby::Stub::PrepareAsyncRecoverRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_Recover_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Recover_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Moby::Stub::AsyncRecoverRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncRecoverRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Moby::Stub::GetMobyPose(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::MobyPose* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetMobyPose_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::MobyPose, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetMobyPose_, context, request, response);
 }
 
-void Moby::Stub::experimental_async::GetMobyPose(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::MobyPose* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetMobyPose_, context, request, response, std::move(f));
+void Moby::Stub::async::GetMobyPose(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::MobyPose* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::MobyPose, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetMobyPose_, context, request, response, std::move(f));
 }
 
-void Moby::Stub::experimental_async::GetMobyPose(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::MobyPose* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetMobyPose_, context, request, response, std::move(f));
-}
-
-void Moby::Stub::experimental_async::GetMobyPose(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::MobyPose* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetMobyPose_, context, request, response, reactor);
-}
-
-void Moby::Stub::experimental_async::GetMobyPose(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::MobyPose* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetMobyPose_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::MobyPose>* Moby::Stub::AsyncGetMobyPoseRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::MobyPose>::Create(channel_.get(), cq, rpcmethod_GetMobyPose_, context, request, true);
+void Moby::Stub::async::GetMobyPose(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::MobyPose* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetMobyPose_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::MobyPose>* Moby::Stub::PrepareAsyncGetMobyPoseRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::MobyPose>::Create(channel_.get(), cq, rpcmethod_GetMobyPose_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::MobyPose, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetMobyPose_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::MobyPose>* Moby::Stub::AsyncGetMobyPoseRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetMobyPoseRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Moby::Stub::GetMobyVel(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::MobyVel* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetMobyVel_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::MobyVel, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetMobyVel_, context, request, response);
 }
 
-void Moby::Stub::experimental_async::GetMobyVel(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::MobyVel* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetMobyVel_, context, request, response, std::move(f));
+void Moby::Stub::async::GetMobyVel(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::MobyVel* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::MobyVel, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetMobyVel_, context, request, response, std::move(f));
 }
 
-void Moby::Stub::experimental_async::GetMobyVel(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::MobyVel* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetMobyVel_, context, request, response, std::move(f));
-}
-
-void Moby::Stub::experimental_async::GetMobyVel(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::MobyVel* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetMobyVel_, context, request, response, reactor);
-}
-
-void Moby::Stub::experimental_async::GetMobyVel(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::MobyVel* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetMobyVel_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::MobyVel>* Moby::Stub::AsyncGetMobyVelRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::MobyVel>::Create(channel_.get(), cq, rpcmethod_GetMobyVel_, context, request, true);
+void Moby::Stub::async::GetMobyVel(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::MobyVel* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetMobyVel_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::MobyVel>* Moby::Stub::PrepareAsyncGetMobyVelRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::MobyVel>::Create(channel_.get(), cq, rpcmethod_GetMobyVel_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::MobyVel, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetMobyVel_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::MobyVel>* Moby::Stub::AsyncGetMobyVelRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetMobyVelRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Moby::Stub::ResetMobyPose(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::Empty* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_ResetMobyPose_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ResetMobyPose_, context, request, response);
 }
 
-void Moby::Stub::experimental_async::ResetMobyPose(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ResetMobyPose_, context, request, response, std::move(f));
+void Moby::Stub::async::ResetMobyPose(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ResetMobyPose_, context, request, response, std::move(f));
 }
 
-void Moby::Stub::experimental_async::ResetMobyPose(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ResetMobyPose_, context, request, response, std::move(f));
-}
-
-void Moby::Stub::experimental_async::ResetMobyPose(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ResetMobyPose_, context, request, response, reactor);
-}
-
-void Moby::Stub::experimental_async::ResetMobyPose(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ResetMobyPose_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Moby::Stub::AsyncResetMobyPoseRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_ResetMobyPose_, context, request, true);
+void Moby::Stub::async::ResetMobyPose(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ResetMobyPose_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Moby::Stub::PrepareAsyncResetMobyPoseRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_ResetMobyPose_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ResetMobyPose_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Moby::Stub::AsyncResetMobyPoseRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncResetMobyPoseRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Moby::Stub::GetRotationAngleDeg(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::SwerveDoubles* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetRotationAngleDeg_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::SwerveDoubles, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetRotationAngleDeg_, context, request, response);
 }
 
-void Moby::Stub::experimental_async::GetRotationAngleDeg(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::SwerveDoubles* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetRotationAngleDeg_, context, request, response, std::move(f));
+void Moby::Stub::async::GetRotationAngleDeg(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::SwerveDoubles* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::SwerveDoubles, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetRotationAngleDeg_, context, request, response, std::move(f));
 }
 
-void Moby::Stub::experimental_async::GetRotationAngleDeg(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::SwerveDoubles* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetRotationAngleDeg_, context, request, response, std::move(f));
-}
-
-void Moby::Stub::experimental_async::GetRotationAngleDeg(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::SwerveDoubles* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetRotationAngleDeg_, context, request, response, reactor);
-}
-
-void Moby::Stub::experimental_async::GetRotationAngleDeg(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::SwerveDoubles* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetRotationAngleDeg_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::SwerveDoubles>* Moby::Stub::AsyncGetRotationAngleDegRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::SwerveDoubles>::Create(channel_.get(), cq, rpcmethod_GetRotationAngleDeg_, context, request, true);
+void Moby::Stub::async::GetRotationAngleDeg(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::SwerveDoubles* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetRotationAngleDeg_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::SwerveDoubles>* Moby::Stub::PrepareAsyncGetRotationAngleDegRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::SwerveDoubles>::Create(channel_.get(), cq, rpcmethod_GetRotationAngleDeg_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::SwerveDoubles, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetRotationAngleDeg_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::SwerveDoubles>* Moby::Stub::AsyncGetRotationAngleDegRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetRotationAngleDegRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Moby::Stub::GetDriveSpeed(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::SwerveDoubles* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetDriveSpeed_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::SwerveDoubles, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetDriveSpeed_, context, request, response);
 }
 
-void Moby::Stub::experimental_async::GetDriveSpeed(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::SwerveDoubles* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetDriveSpeed_, context, request, response, std::move(f));
+void Moby::Stub::async::GetDriveSpeed(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::SwerveDoubles* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::SwerveDoubles, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetDriveSpeed_, context, request, response, std::move(f));
 }
 
-void Moby::Stub::experimental_async::GetDriveSpeed(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::SwerveDoubles* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetDriveSpeed_, context, request, response, std::move(f));
-}
-
-void Moby::Stub::experimental_async::GetDriveSpeed(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::SwerveDoubles* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetDriveSpeed_, context, request, response, reactor);
-}
-
-void Moby::Stub::experimental_async::GetDriveSpeed(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::SwerveDoubles* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetDriveSpeed_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::SwerveDoubles>* Moby::Stub::AsyncGetDriveSpeedRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::SwerveDoubles>::Create(channel_.get(), cq, rpcmethod_GetDriveSpeed_, context, request, true);
+void Moby::Stub::async::GetDriveSpeed(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::SwerveDoubles* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetDriveSpeed_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::SwerveDoubles>* Moby::Stub::PrepareAsyncGetDriveSpeedRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::SwerveDoubles>::Create(channel_.get(), cq, rpcmethod_GetDriveSpeed_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::SwerveDoubles, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetDriveSpeed_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::SwerveDoubles>* Moby::Stub::AsyncGetDriveSpeedRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetDriveSpeedRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Moby::Stub::GetTargetVel(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::TargetVel* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetTargetVel_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::TargetVel, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetTargetVel_, context, request, response);
 }
 
-void Moby::Stub::experimental_async::GetTargetVel(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::TargetVel* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetTargetVel_, context, request, response, std::move(f));
+void Moby::Stub::async::GetTargetVel(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::TargetVel* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::TargetVel, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetTargetVel_, context, request, response, std::move(f));
 }
 
-void Moby::Stub::experimental_async::GetTargetVel(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::TargetVel* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetTargetVel_, context, request, response, std::move(f));
-}
-
-void Moby::Stub::experimental_async::GetTargetVel(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::TargetVel* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetTargetVel_, context, request, response, reactor);
-}
-
-void Moby::Stub::experimental_async::GetTargetVel(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::TargetVel* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetTargetVel_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::TargetVel>* Moby::Stub::AsyncGetTargetVelRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::TargetVel>::Create(channel_.get(), cq, rpcmethod_GetTargetVel_, context, request, true);
+void Moby::Stub::async::GetTargetVel(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::TargetVel* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetTargetVel_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::TargetVel>* Moby::Stub::PrepareAsyncGetTargetVelRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::TargetVel>::Create(channel_.get(), cq, rpcmethod_GetTargetVel_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::TargetVel, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetTargetVel_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::TargetVel>* Moby::Stub::AsyncGetTargetVelRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetTargetVelRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Moby::Stub::GetRotationZeroCount(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::ZeroCount* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetRotationZeroCount_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ZeroCount, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetRotationZeroCount_, context, request, response);
 }
 
-void Moby::Stub::experimental_async::GetRotationZeroCount(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ZeroCount* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetRotationZeroCount_, context, request, response, std::move(f));
+void Moby::Stub::async::GetRotationZeroCount(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ZeroCount* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ZeroCount, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetRotationZeroCount_, context, request, response, std::move(f));
 }
 
-void Moby::Stub::experimental_async::GetRotationZeroCount(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::ZeroCount* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetRotationZeroCount_, context, request, response, std::move(f));
-}
-
-void Moby::Stub::experimental_async::GetRotationZeroCount(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ZeroCount* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetRotationZeroCount_, context, request, response, reactor);
-}
-
-void Moby::Stub::experimental_async::GetRotationZeroCount(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::ZeroCount* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetRotationZeroCount_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ZeroCount>* Moby::Stub::AsyncGetRotationZeroCountRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::ZeroCount>::Create(channel_.get(), cq, rpcmethod_GetRotationZeroCount_, context, request, true);
+void Moby::Stub::async::GetRotationZeroCount(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ZeroCount* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetRotationZeroCount_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ZeroCount>* Moby::Stub::PrepareAsyncGetRotationZeroCountRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::ZeroCount>::Create(channel_.get(), cq, rpcmethod_GetRotationZeroCount_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::ZeroCount, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetRotationZeroCount_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ZeroCount>* Moby::Stub::AsyncGetRotationZeroCountRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetRotationZeroCountRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Moby::Stub::GetGyroData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::DoubleVals* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetGyroData_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::DoubleVals, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetGyroData_, context, request, response);
 }
 
-void Moby::Stub::experimental_async::GetGyroData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::DoubleVals* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetGyroData_, context, request, response, std::move(f));
+void Moby::Stub::async::GetGyroData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::DoubleVals* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::DoubleVals, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetGyroData_, context, request, response, std::move(f));
 }
 
-void Moby::Stub::experimental_async::GetGyroData(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::DoubleVals* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetGyroData_, context, request, response, std::move(f));
-}
-
-void Moby::Stub::experimental_async::GetGyroData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::DoubleVals* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetGyroData_, context, request, response, reactor);
-}
-
-void Moby::Stub::experimental_async::GetGyroData(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::DoubleVals* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetGyroData_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::DoubleVals>* Moby::Stub::AsyncGetGyroDataRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::DoubleVals>::Create(channel_.get(), cq, rpcmethod_GetGyroData_, context, request, true);
+void Moby::Stub::async::GetGyroData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::DoubleVals* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetGyroData_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::DoubleVals>* Moby::Stub::PrepareAsyncGetGyroDataRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::DoubleVals>::Create(channel_.get(), cq, rpcmethod_GetGyroData_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::DoubleVals, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetGyroData_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::DoubleVals>* Moby::Stub::AsyncGetGyroDataRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetGyroDataRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Moby::Stub::ResetGyroSensor(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::Empty* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_ResetGyroSensor_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ResetGyroSensor_, context, request, response);
 }
 
-void Moby::Stub::experimental_async::ResetGyroSensor(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ResetGyroSensor_, context, request, response, std::move(f));
+void Moby::Stub::async::ResetGyroSensor(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ResetGyroSensor_, context, request, response, std::move(f));
 }
 
-void Moby::Stub::experimental_async::ResetGyroSensor(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ResetGyroSensor_, context, request, response, std::move(f));
-}
-
-void Moby::Stub::experimental_async::ResetGyroSensor(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ResetGyroSensor_, context, request, response, reactor);
-}
-
-void Moby::Stub::experimental_async::ResetGyroSensor(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ResetGyroSensor_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Moby::Stub::AsyncResetGyroSensorRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_ResetGyroSensor_, context, request, true);
+void Moby::Stub::async::ResetGyroSensor(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ResetGyroSensor_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Moby::Stub::PrepareAsyncResetGyroSensorRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_ResetGyroSensor_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ResetGyroSensor_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Moby::Stub::AsyncResetGyroSensorRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncResetGyroSensorRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Moby::Stub::UseGyroForOdom(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal& request, ::Nrmk::IndyFramework::Empty* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_UseGyroForOdom_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::BoolVal, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_UseGyroForOdom_, context, request, response);
 }
 
-void Moby::Stub::experimental_async::UseGyroForOdom(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_UseGyroForOdom_, context, request, response, std::move(f));
+void Moby::Stub::async::UseGyroForOdom(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::BoolVal, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_UseGyroForOdom_, context, request, response, std::move(f));
 }
 
-void Moby::Stub::experimental_async::UseGyroForOdom(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_UseGyroForOdom_, context, request, response, std::move(f));
-}
-
-void Moby::Stub::experimental_async::UseGyroForOdom(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_UseGyroForOdom_, context, request, response, reactor);
-}
-
-void Moby::Stub::experimental_async::UseGyroForOdom(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_UseGyroForOdom_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Moby::Stub::AsyncUseGyroForOdomRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_UseGyroForOdom_, context, request, true);
+void Moby::Stub::async::UseGyroForOdom(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_UseGyroForOdom_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Moby::Stub::PrepareAsyncUseGyroForOdomRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_UseGyroForOdom_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::BoolVal, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_UseGyroForOdom_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Moby::Stub::AsyncUseGyroForOdomRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncUseGyroForOdomRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Moby::Stub::GetGyroFullData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::IMUData* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetGyroFullData_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::IMUData, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetGyroFullData_, context, request, response);
 }
 
-void Moby::Stub::experimental_async::GetGyroFullData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::IMUData* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetGyroFullData_, context, request, response, std::move(f));
+void Moby::Stub::async::GetGyroFullData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::IMUData* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::IMUData, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetGyroFullData_, context, request, response, std::move(f));
 }
 
-void Moby::Stub::experimental_async::GetGyroFullData(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::IMUData* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetGyroFullData_, context, request, response, std::move(f));
-}
-
-void Moby::Stub::experimental_async::GetGyroFullData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::IMUData* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetGyroFullData_, context, request, response, reactor);
-}
-
-void Moby::Stub::experimental_async::GetGyroFullData(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::IMUData* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetGyroFullData_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::IMUData>* Moby::Stub::AsyncGetGyroFullDataRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::IMUData>::Create(channel_.get(), cq, rpcmethod_GetGyroFullData_, context, request, true);
+void Moby::Stub::async::GetGyroFullData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::IMUData* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetGyroFullData_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::IMUData>* Moby::Stub::PrepareAsyncGetGyroFullDataRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::IMUData>::Create(channel_.get(), cq, rpcmethod_GetGyroFullData_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::IMUData, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetGyroFullData_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::IMUData>* Moby::Stub::AsyncGetGyroFullDataRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetGyroFullDataRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Moby::Stub::GetIRSensorData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::IRData* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetIRSensorData_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::IRData, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetIRSensorData_, context, request, response);
 }
 
-void Moby::Stub::experimental_async::GetIRSensorData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::IRData* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetIRSensorData_, context, request, response, std::move(f));
+void Moby::Stub::async::GetIRSensorData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::IRData* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::IRData, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetIRSensorData_, context, request, response, std::move(f));
 }
 
-void Moby::Stub::experimental_async::GetIRSensorData(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::IRData* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetIRSensorData_, context, request, response, std::move(f));
-}
-
-void Moby::Stub::experimental_async::GetIRSensorData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::IRData* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetIRSensorData_, context, request, response, reactor);
-}
-
-void Moby::Stub::experimental_async::GetIRSensorData(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::IRData* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetIRSensorData_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::IRData>* Moby::Stub::AsyncGetIRSensorDataRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::IRData>::Create(channel_.get(), cq, rpcmethod_GetIRSensorData_, context, request, true);
+void Moby::Stub::async::GetIRSensorData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::IRData* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetIRSensorData_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::IRData>* Moby::Stub::PrepareAsyncGetIRSensorDataRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::IRData>::Create(channel_.get(), cq, rpcmethod_GetIRSensorData_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::IRData, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetIRSensorData_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::IRData>* Moby::Stub::AsyncGetIRSensorDataRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetIRSensorDataRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Moby::Stub::GetUSSensorData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::USData* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetUSSensorData_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::USData, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetUSSensorData_, context, request, response);
 }
 
-void Moby::Stub::experimental_async::GetUSSensorData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::USData* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetUSSensorData_, context, request, response, std::move(f));
+void Moby::Stub::async::GetUSSensorData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::USData* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::USData, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetUSSensorData_, context, request, response, std::move(f));
 }
 
-void Moby::Stub::experimental_async::GetUSSensorData(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::USData* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetUSSensorData_, context, request, response, std::move(f));
-}
-
-void Moby::Stub::experimental_async::GetUSSensorData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::USData* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetUSSensorData_, context, request, response, reactor);
-}
-
-void Moby::Stub::experimental_async::GetUSSensorData(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::USData* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetUSSensorData_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::USData>* Moby::Stub::AsyncGetUSSensorDataRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::USData>::Create(channel_.get(), cq, rpcmethod_GetUSSensorData_, context, request, true);
+void Moby::Stub::async::GetUSSensorData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::USData* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetUSSensorData_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::USData>* Moby::Stub::PrepareAsyncGetUSSensorDataRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::USData>::Create(channel_.get(), cq, rpcmethod_GetUSSensorData_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::USData, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetUSSensorData_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::USData>* Moby::Stub::AsyncGetUSSensorDataRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetUSSensorDataRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Moby::Stub::GetBMSData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::BMSData* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetBMSData_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::BMSData, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetBMSData_, context, request, response);
 }
 
-void Moby::Stub::experimental_async::GetBMSData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::BMSData* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetBMSData_, context, request, response, std::move(f));
+void Moby::Stub::async::GetBMSData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::BMSData* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::BMSData, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetBMSData_, context, request, response, std::move(f));
 }
 
-void Moby::Stub::experimental_async::GetBMSData(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::BMSData* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetBMSData_, context, request, response, std::move(f));
-}
-
-void Moby::Stub::experimental_async::GetBMSData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::BMSData* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetBMSData_, context, request, response, reactor);
-}
-
-void Moby::Stub::experimental_async::GetBMSData(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::BMSData* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetBMSData_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::BMSData>* Moby::Stub::AsyncGetBMSDataRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::BMSData>::Create(channel_.get(), cq, rpcmethod_GetBMSData_, context, request, true);
+void Moby::Stub::async::GetBMSData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::BMSData* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetBMSData_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::BMSData>* Moby::Stub::PrepareAsyncGetBMSDataRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::BMSData>::Create(channel_.get(), cq, rpcmethod_GetBMSData_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::BMSData, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetBMSData_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::BMSData>* Moby::Stub::AsyncGetBMSDataRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetBMSDataRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Moby::Stub::SetStepControl(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TargetVel& request, ::Nrmk::IndyFramework::Empty* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetStepControl_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::TargetVel, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetStepControl_, context, request, response);
 }
 
-void Moby::Stub::experimental_async::SetStepControl(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TargetVel* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetStepControl_, context, request, response, std::move(f));
+void Moby::Stub::async::SetStepControl(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TargetVel* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::TargetVel, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetStepControl_, context, request, response, std::move(f));
 }
 
-void Moby::Stub::experimental_async::SetStepControl(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetStepControl_, context, request, response, std::move(f));
-}
-
-void Moby::Stub::experimental_async::SetStepControl(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TargetVel* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetStepControl_, context, request, response, reactor);
-}
-
-void Moby::Stub::experimental_async::SetStepControl(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetStepControl_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Moby::Stub::AsyncSetStepControlRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TargetVel& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_SetStepControl_, context, request, true);
+void Moby::Stub::async::SetStepControl(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TargetVel* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetStepControl_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Moby::Stub::PrepareAsyncSetStepControlRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TargetVel& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_SetStepControl_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::TargetVel, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetStepControl_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Moby::Stub::AsyncSetStepControlRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TargetVel& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetStepControlRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Moby::Stub::StopMotion(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::Empty* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_StopMotion_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_StopMotion_, context, request, response);
 }
 
-void Moby::Stub::experimental_async::StopMotion(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_StopMotion_, context, request, response, std::move(f));
+void Moby::Stub::async::StopMotion(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_StopMotion_, context, request, response, std::move(f));
 }
 
-void Moby::Stub::experimental_async::StopMotion(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_StopMotion_, context, request, response, std::move(f));
-}
-
-void Moby::Stub::experimental_async::StopMotion(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_StopMotion_, context, request, response, reactor);
-}
-
-void Moby::Stub::experimental_async::StopMotion(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_StopMotion_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Moby::Stub::AsyncStopMotionRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_StopMotion_, context, request, true);
+void Moby::Stub::async::StopMotion(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_StopMotion_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Moby::Stub::PrepareAsyncStopMotionRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_StopMotion_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_StopMotion_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Moby::Stub::AsyncStopMotionRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncStopMotionRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Moby::Stub::SetRotationAngleDeg(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SwerveDoubles& request, ::Nrmk::IndyFramework::Empty* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetRotationAngleDeg_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::SwerveDoubles, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetRotationAngleDeg_, context, request, response);
 }
 
-void Moby::Stub::experimental_async::SetRotationAngleDeg(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SwerveDoubles* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetRotationAngleDeg_, context, request, response, std::move(f));
+void Moby::Stub::async::SetRotationAngleDeg(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SwerveDoubles* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::SwerveDoubles, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetRotationAngleDeg_, context, request, response, std::move(f));
 }
 
-void Moby::Stub::experimental_async::SetRotationAngleDeg(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetRotationAngleDeg_, context, request, response, std::move(f));
-}
-
-void Moby::Stub::experimental_async::SetRotationAngleDeg(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SwerveDoubles* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetRotationAngleDeg_, context, request, response, reactor);
-}
-
-void Moby::Stub::experimental_async::SetRotationAngleDeg(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetRotationAngleDeg_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Moby::Stub::AsyncSetRotationAngleDegRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SwerveDoubles& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_SetRotationAngleDeg_, context, request, true);
+void Moby::Stub::async::SetRotationAngleDeg(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SwerveDoubles* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetRotationAngleDeg_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Moby::Stub::PrepareAsyncSetRotationAngleDegRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SwerveDoubles& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_SetRotationAngleDeg_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::SwerveDoubles, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetRotationAngleDeg_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Moby::Stub::AsyncSetRotationAngleDegRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SwerveDoubles& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetRotationAngleDegRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Moby::Stub::DriveWheel(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SwerveDoubles& request, ::Nrmk::IndyFramework::Empty* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_DriveWheel_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::SwerveDoubles, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_DriveWheel_, context, request, response);
 }
 
-void Moby::Stub::experimental_async::DriveWheel(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SwerveDoubles* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DriveWheel_, context, request, response, std::move(f));
+void Moby::Stub::async::DriveWheel(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SwerveDoubles* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::SwerveDoubles, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DriveWheel_, context, request, response, std::move(f));
 }
 
-void Moby::Stub::experimental_async::DriveWheel(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DriveWheel_, context, request, response, std::move(f));
-}
-
-void Moby::Stub::experimental_async::DriveWheel(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SwerveDoubles* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DriveWheel_, context, request, response, reactor);
-}
-
-void Moby::Stub::experimental_async::DriveWheel(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DriveWheel_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Moby::Stub::AsyncDriveWheelRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SwerveDoubles& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_DriveWheel_, context, request, true);
+void Moby::Stub::async::DriveWheel(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SwerveDoubles* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DriveWheel_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Moby::Stub::PrepareAsyncDriveWheelRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SwerveDoubles& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_DriveWheel_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::SwerveDoubles, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_DriveWheel_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Moby::Stub::AsyncDriveWheelRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SwerveDoubles& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncDriveWheelRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Moby::Stub::SetZeroPosAsCurrentPos(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::Empty* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetZeroPosAsCurrentPos_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetZeroPosAsCurrentPos_, context, request, response);
 }
 
-void Moby::Stub::experimental_async::SetZeroPosAsCurrentPos(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetZeroPosAsCurrentPos_, context, request, response, std::move(f));
+void Moby::Stub::async::SetZeroPosAsCurrentPos(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetZeroPosAsCurrentPos_, context, request, response, std::move(f));
 }
 
-void Moby::Stub::experimental_async::SetZeroPosAsCurrentPos(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetZeroPosAsCurrentPos_, context, request, response, std::move(f));
-}
-
-void Moby::Stub::experimental_async::SetZeroPosAsCurrentPos(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetZeroPosAsCurrentPos_, context, request, response, reactor);
-}
-
-void Moby::Stub::experimental_async::SetZeroPosAsCurrentPos(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetZeroPosAsCurrentPos_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Moby::Stub::AsyncSetZeroPosAsCurrentPosRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_SetZeroPosAsCurrentPos_, context, request, true);
+void Moby::Stub::async::SetZeroPosAsCurrentPos(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetZeroPosAsCurrentPos_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Moby::Stub::PrepareAsyncSetZeroPosAsCurrentPosRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_SetZeroPosAsCurrentPos_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetZeroPosAsCurrentPos_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Moby::Stub::AsyncSetZeroPosAsCurrentPosRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetZeroPosAsCurrentPosRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Moby::Stub::SetRotationVelAcc(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DoubleVals& request, ::Nrmk::IndyFramework::Empty* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetRotationVelAcc_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::DoubleVals, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetRotationVelAcc_, context, request, response);
 }
 
-void Moby::Stub::experimental_async::SetRotationVelAcc(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DoubleVals* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetRotationVelAcc_, context, request, response, std::move(f));
+void Moby::Stub::async::SetRotationVelAcc(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DoubleVals* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::DoubleVals, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetRotationVelAcc_, context, request, response, std::move(f));
 }
 
-void Moby::Stub::experimental_async::SetRotationVelAcc(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetRotationVelAcc_, context, request, response, std::move(f));
-}
-
-void Moby::Stub::experimental_async::SetRotationVelAcc(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DoubleVals* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetRotationVelAcc_, context, request, response, reactor);
-}
-
-void Moby::Stub::experimental_async::SetRotationVelAcc(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetRotationVelAcc_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Moby::Stub::AsyncSetRotationVelAccRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DoubleVals& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_SetRotationVelAcc_, context, request, true);
+void Moby::Stub::async::SetRotationVelAcc(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DoubleVals* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetRotationVelAcc_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Moby::Stub::PrepareAsyncSetRotationVelAccRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DoubleVals& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_SetRotationVelAcc_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::DoubleVals, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetRotationVelAcc_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Moby::Stub::AsyncSetRotationVelAccRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DoubleVals& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetRotationVelAccRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Moby::Stub::SetRotationInterpolator(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::IntVal& request, ::Nrmk::IndyFramework::Empty* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetRotationInterpolator_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::IntVal, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetRotationInterpolator_, context, request, response);
 }
 
-void Moby::Stub::experimental_async::SetRotationInterpolator(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::IntVal* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetRotationInterpolator_, context, request, response, std::move(f));
+void Moby::Stub::async::SetRotationInterpolator(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::IntVal* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::IntVal, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetRotationInterpolator_, context, request, response, std::move(f));
 }
 
-void Moby::Stub::experimental_async::SetRotationInterpolator(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetRotationInterpolator_, context, request, response, std::move(f));
-}
-
-void Moby::Stub::experimental_async::SetRotationInterpolator(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::IntVal* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetRotationInterpolator_, context, request, response, reactor);
-}
-
-void Moby::Stub::experimental_async::SetRotationInterpolator(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetRotationInterpolator_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Moby::Stub::AsyncSetRotationInterpolatorRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::IntVal& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_SetRotationInterpolator_, context, request, true);
+void Moby::Stub::async::SetRotationInterpolator(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::IntVal* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetRotationInterpolator_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Moby::Stub::PrepareAsyncSetRotationInterpolatorRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::IntVal& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_SetRotationInterpolator_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::IntVal, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetRotationInterpolator_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Moby::Stub::AsyncSetRotationInterpolatorRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::IntVal& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetRotationInterpolatorRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Moby::Stub::SetDriveAccDec(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DoubleVals& request, ::Nrmk::IndyFramework::Empty* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetDriveAccDec_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::DoubleVals, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetDriveAccDec_, context, request, response);
 }
 
-void Moby::Stub::experimental_async::SetDriveAccDec(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DoubleVals* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetDriveAccDec_, context, request, response, std::move(f));
+void Moby::Stub::async::SetDriveAccDec(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DoubleVals* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::DoubleVals, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetDriveAccDec_, context, request, response, std::move(f));
 }
 
-void Moby::Stub::experimental_async::SetDriveAccDec(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetDriveAccDec_, context, request, response, std::move(f));
-}
-
-void Moby::Stub::experimental_async::SetDriveAccDec(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DoubleVals* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetDriveAccDec_, context, request, response, reactor);
-}
-
-void Moby::Stub::experimental_async::SetDriveAccDec(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetDriveAccDec_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Moby::Stub::AsyncSetDriveAccDecRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DoubleVals& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_SetDriveAccDec_, context, request, true);
+void Moby::Stub::async::SetDriveAccDec(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DoubleVals* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetDriveAccDec_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Moby::Stub::PrepareAsyncSetDriveAccDecRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DoubleVals& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_SetDriveAccDec_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::DoubleVals, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetDriveAccDec_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Moby::Stub::AsyncSetDriveAccDecRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DoubleVals& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetDriveAccDecRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Moby::Stub::SetDriveInterpolatorOnOff(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal& request, ::Nrmk::IndyFramework::Empty* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetDriveInterpolatorOnOff_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::BoolVal, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetDriveInterpolatorOnOff_, context, request, response);
 }
 
-void Moby::Stub::experimental_async::SetDriveInterpolatorOnOff(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetDriveInterpolatorOnOff_, context, request, response, std::move(f));
+void Moby::Stub::async::SetDriveInterpolatorOnOff(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::BoolVal, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetDriveInterpolatorOnOff_, context, request, response, std::move(f));
 }
 
-void Moby::Stub::experimental_async::SetDriveInterpolatorOnOff(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetDriveInterpolatorOnOff_, context, request, response, std::move(f));
-}
-
-void Moby::Stub::experimental_async::SetDriveInterpolatorOnOff(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetDriveInterpolatorOnOff_, context, request, response, reactor);
-}
-
-void Moby::Stub::experimental_async::SetDriveInterpolatorOnOff(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetDriveInterpolatorOnOff_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Moby::Stub::AsyncSetDriveInterpolatorOnOffRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_SetDriveInterpolatorOnOff_, context, request, true);
+void Moby::Stub::async::SetDriveInterpolatorOnOff(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetDriveInterpolatorOnOff_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Moby::Stub::PrepareAsyncSetDriveInterpolatorOnOffRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_SetDriveInterpolatorOnOff_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::BoolVal, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetDriveInterpolatorOnOff_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Moby::Stub::AsyncSetDriveInterpolatorOnOffRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetDriveInterpolatorOnOffRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Moby::Stub::SetRotationControllerType(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::IntVal& request, ::Nrmk::IndyFramework::Empty* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetRotationControllerType_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::IntVal, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetRotationControllerType_, context, request, response);
 }
 
-void Moby::Stub::experimental_async::SetRotationControllerType(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::IntVal* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetRotationControllerType_, context, request, response, std::move(f));
+void Moby::Stub::async::SetRotationControllerType(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::IntVal* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::IntVal, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetRotationControllerType_, context, request, response, std::move(f));
 }
 
-void Moby::Stub::experimental_async::SetRotationControllerType(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetRotationControllerType_, context, request, response, std::move(f));
-}
-
-void Moby::Stub::experimental_async::SetRotationControllerType(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::IntVal* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetRotationControllerType_, context, request, response, reactor);
-}
-
-void Moby::Stub::experimental_async::SetRotationControllerType(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetRotationControllerType_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Moby::Stub::AsyncSetRotationControllerTypeRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::IntVal& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_SetRotationControllerType_, context, request, true);
+void Moby::Stub::async::SetRotationControllerType(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::IntVal* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetRotationControllerType_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Moby::Stub::PrepareAsyncSetRotationControllerTypeRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::IntVal& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_SetRotationControllerType_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::IntVal, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetRotationControllerType_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Moby::Stub::AsyncSetRotationControllerTypeRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::IntVal& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetRotationControllerTypeRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Moby::Stub::SetForceKinematics(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ForcedKinematicsData& request, ::Nrmk::IndyFramework::Empty* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetForceKinematics_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::ForcedKinematicsData, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetForceKinematics_, context, request, response);
 }
 
-void Moby::Stub::experimental_async::SetForceKinematics(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ForcedKinematicsData* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetForceKinematics_, context, request, response, std::move(f));
+void Moby::Stub::async::SetForceKinematics(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ForcedKinematicsData* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::ForcedKinematicsData, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetForceKinematics_, context, request, response, std::move(f));
 }
 
-void Moby::Stub::experimental_async::SetForceKinematics(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetForceKinematics_, context, request, response, std::move(f));
-}
-
-void Moby::Stub::experimental_async::SetForceKinematics(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ForcedKinematicsData* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetForceKinematics_, context, request, response, reactor);
-}
-
-void Moby::Stub::experimental_async::SetForceKinematics(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetForceKinematics_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Moby::Stub::AsyncSetForceKinematicsRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ForcedKinematicsData& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_SetForceKinematics_, context, request, true);
+void Moby::Stub::async::SetForceKinematics(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ForcedKinematicsData* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetForceKinematics_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Moby::Stub::PrepareAsyncSetForceKinematicsRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ForcedKinematicsData& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_SetForceKinematics_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ForcedKinematicsData, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetForceKinematics_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Moby::Stub::AsyncSetForceKinematicsRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ForcedKinematicsData& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetForceKinematicsRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Moby::Stub::GetForceKinematics(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::ForcedKinematicsData* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetForceKinematics_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ForcedKinematicsData, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetForceKinematics_, context, request, response);
 }
 
-void Moby::Stub::experimental_async::GetForceKinematics(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ForcedKinematicsData* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetForceKinematics_, context, request, response, std::move(f));
+void Moby::Stub::async::GetForceKinematics(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ForcedKinematicsData* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ForcedKinematicsData, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetForceKinematics_, context, request, response, std::move(f));
 }
 
-void Moby::Stub::experimental_async::GetForceKinematics(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::ForcedKinematicsData* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetForceKinematics_, context, request, response, std::move(f));
-}
-
-void Moby::Stub::experimental_async::GetForceKinematics(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ForcedKinematicsData* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetForceKinematics_, context, request, response, reactor);
-}
-
-void Moby::Stub::experimental_async::GetForceKinematics(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::ForcedKinematicsData* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetForceKinematics_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ForcedKinematicsData>* Moby::Stub::AsyncGetForceKinematicsRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::ForcedKinematicsData>::Create(channel_.get(), cq, rpcmethod_GetForceKinematics_, context, request, true);
+void Moby::Stub::async::GetForceKinematics(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ForcedKinematicsData* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetForceKinematics_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ForcedKinematicsData>* Moby::Stub::PrepareAsyncGetForceKinematicsRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::ForcedKinematicsData>::Create(channel_.get(), cq, rpcmethod_GetForceKinematics_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::ForcedKinematicsData, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetForceKinematics_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ForcedKinematicsData>* Moby::Stub::AsyncGetForceKinematicsRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetForceKinematicsRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Moby::Stub::PauseBumper(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal& request, ::Nrmk::IndyFramework::Empty* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_PauseBumper_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::BoolVal, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PauseBumper_, context, request, response);
 }
 
-void Moby::Stub::experimental_async::PauseBumper(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PauseBumper_, context, request, response, std::move(f));
+void Moby::Stub::async::PauseBumper(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::BoolVal, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PauseBumper_, context, request, response, std::move(f));
 }
 
-void Moby::Stub::experimental_async::PauseBumper(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_PauseBumper_, context, request, response, std::move(f));
-}
-
-void Moby::Stub::experimental_async::PauseBumper(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PauseBumper_, context, request, response, reactor);
-}
-
-void Moby::Stub::experimental_async::PauseBumper(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_PauseBumper_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Moby::Stub::AsyncPauseBumperRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_PauseBumper_, context, request, true);
+void Moby::Stub::async::PauseBumper(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PauseBumper_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Moby::Stub::PrepareAsyncPauseBumperRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_PauseBumper_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::BoolVal, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PauseBumper_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Moby::Stub::AsyncPauseBumperRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPauseBumperRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Moby::Stub::TurnLightOnOff(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal& request, ::Nrmk::IndyFramework::Empty* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_TurnLightOnOff_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::BoolVal, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_TurnLightOnOff_, context, request, response);
 }
 
-void Moby::Stub::experimental_async::TurnLightOnOff(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_TurnLightOnOff_, context, request, response, std::move(f));
+void Moby::Stub::async::TurnLightOnOff(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::BoolVal, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_TurnLightOnOff_, context, request, response, std::move(f));
 }
 
-void Moby::Stub::experimental_async::TurnLightOnOff(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_TurnLightOnOff_, context, request, response, std::move(f));
-}
-
-void Moby::Stub::experimental_async::TurnLightOnOff(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_TurnLightOnOff_, context, request, response, reactor);
-}
-
-void Moby::Stub::experimental_async::TurnLightOnOff(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_TurnLightOnOff_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Moby::Stub::AsyncTurnLightOnOffRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_TurnLightOnOff_, context, request, true);
+void Moby::Stub::async::TurnLightOnOff(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_TurnLightOnOff_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Moby::Stub::PrepareAsyncTurnLightOnOffRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_TurnLightOnOff_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::BoolVal, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_TurnLightOnOff_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Moby::Stub::AsyncTurnLightOnOffRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncTurnLightOnOffRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Moby::Stub::TurnBuzzOnOff(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal& request, ::Nrmk::IndyFramework::Empty* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_TurnBuzzOnOff_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::BoolVal, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_TurnBuzzOnOff_, context, request, response);
 }
 
-void Moby::Stub::experimental_async::TurnBuzzOnOff(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_TurnBuzzOnOff_, context, request, response, std::move(f));
+void Moby::Stub::async::TurnBuzzOnOff(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::BoolVal, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_TurnBuzzOnOff_, context, request, response, std::move(f));
 }
 
-void Moby::Stub::experimental_async::TurnBuzzOnOff(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_TurnBuzzOnOff_, context, request, response, std::move(f));
-}
-
-void Moby::Stub::experimental_async::TurnBuzzOnOff(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_TurnBuzzOnOff_, context, request, response, reactor);
-}
-
-void Moby::Stub::experimental_async::TurnBuzzOnOff(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_TurnBuzzOnOff_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Moby::Stub::AsyncTurnBuzzOnOffRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_TurnBuzzOnOff_, context, request, true);
+void Moby::Stub::async::TurnBuzzOnOff(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_TurnBuzzOnOff_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Moby::Stub::PrepareAsyncTurnBuzzOnOffRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_TurnBuzzOnOff_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::BoolVal, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_TurnBuzzOnOff_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Moby::Stub::AsyncTurnBuzzOnOffRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncTurnBuzzOnOffRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Moby::Stub::SetExtraDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVals& request, ::Nrmk::IndyFramework::Empty* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetExtraDO_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::BoolVals, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetExtraDO_, context, request, response);
 }
 
-void Moby::Stub::experimental_async::SetExtraDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVals* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetExtraDO_, context, request, response, std::move(f));
+void Moby::Stub::async::SetExtraDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVals* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::BoolVals, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetExtraDO_, context, request, response, std::move(f));
 }
 
-void Moby::Stub::experimental_async::SetExtraDO(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetExtraDO_, context, request, response, std::move(f));
-}
-
-void Moby::Stub::experimental_async::SetExtraDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVals* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetExtraDO_, context, request, response, reactor);
-}
-
-void Moby::Stub::experimental_async::SetExtraDO(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetExtraDO_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Moby::Stub::AsyncSetExtraDORaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVals& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_SetExtraDO_, context, request, true);
+void Moby::Stub::async::SetExtraDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVals* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetExtraDO_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Moby::Stub::PrepareAsyncSetExtraDORaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVals& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_SetExtraDO_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::BoolVals, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetExtraDO_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Moby::Stub::AsyncSetExtraDORaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVals& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetExtraDORaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Moby::Stub::SetControlParam(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::RotationGain& request, ::Nrmk::IndyFramework::Empty* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetControlParam_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::RotationGain, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetControlParam_, context, request, response);
 }
 
-void Moby::Stub::experimental_async::SetControlParam(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::RotationGain* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetControlParam_, context, request, response, std::move(f));
+void Moby::Stub::async::SetControlParam(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::RotationGain* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::RotationGain, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetControlParam_, context, request, response, std::move(f));
 }
 
-void Moby::Stub::experimental_async::SetControlParam(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetControlParam_, context, request, response, std::move(f));
-}
-
-void Moby::Stub::experimental_async::SetControlParam(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::RotationGain* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetControlParam_, context, request, response, reactor);
-}
-
-void Moby::Stub::experimental_async::SetControlParam(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetControlParam_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Moby::Stub::AsyncSetControlParamRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::RotationGain& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_SetControlParam_, context, request, true);
+void Moby::Stub::async::SetControlParam(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::RotationGain* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetControlParam_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Moby::Stub::PrepareAsyncSetControlParamRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::RotationGain& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_SetControlParam_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::RotationGain, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetControlParam_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Moby::Stub::AsyncSetControlParamRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::RotationGain& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetControlParamRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Moby::Stub::GetControlParam(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::IntVal& request, ::Nrmk::IndyFramework::RotationGain* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetControlParam_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::IntVal, ::Nrmk::IndyFramework::RotationGain, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetControlParam_, context, request, response);
 }
 
-void Moby::Stub::experimental_async::GetControlParam(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::IntVal* request, ::Nrmk::IndyFramework::RotationGain* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetControlParam_, context, request, response, std::move(f));
+void Moby::Stub::async::GetControlParam(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::IntVal* request, ::Nrmk::IndyFramework::RotationGain* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::IntVal, ::Nrmk::IndyFramework::RotationGain, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetControlParam_, context, request, response, std::move(f));
 }
 
-void Moby::Stub::experimental_async::GetControlParam(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::RotationGain* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetControlParam_, context, request, response, std::move(f));
-}
-
-void Moby::Stub::experimental_async::GetControlParam(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::IntVal* request, ::Nrmk::IndyFramework::RotationGain* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetControlParam_, context, request, response, reactor);
-}
-
-void Moby::Stub::experimental_async::GetControlParam(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::RotationGain* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetControlParam_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::RotationGain>* Moby::Stub::AsyncGetControlParamRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::IntVal& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::RotationGain>::Create(channel_.get(), cq, rpcmethod_GetControlParam_, context, request, true);
+void Moby::Stub::async::GetControlParam(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::IntVal* request, ::Nrmk::IndyFramework::RotationGain* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetControlParam_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::RotationGain>* Moby::Stub::PrepareAsyncGetControlParamRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::IntVal& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::RotationGain>::Create(channel_.get(), cq, rpcmethod_GetControlParam_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::RotationGain, ::Nrmk::IndyFramework::IntVal, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetControlParam_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::RotationGain>* Moby::Stub::AsyncGetControlParamRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::IntVal& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetControlParamRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Moby::Stub::StartRTLogging(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::Empty* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_StartRTLogging_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_StartRTLogging_, context, request, response);
 }
 
-void Moby::Stub::experimental_async::StartRTLogging(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_StartRTLogging_, context, request, response, std::move(f));
+void Moby::Stub::async::StartRTLogging(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_StartRTLogging_, context, request, response, std::move(f));
 }
 
-void Moby::Stub::experimental_async::StartRTLogging(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_StartRTLogging_, context, request, response, std::move(f));
-}
-
-void Moby::Stub::experimental_async::StartRTLogging(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_StartRTLogging_, context, request, response, reactor);
-}
-
-void Moby::Stub::experimental_async::StartRTLogging(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_StartRTLogging_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Moby::Stub::AsyncStartRTLoggingRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_StartRTLogging_, context, request, true);
+void Moby::Stub::async::StartRTLogging(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_StartRTLogging_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Moby::Stub::PrepareAsyncStartRTLoggingRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_StartRTLogging_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_StartRTLogging_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Moby::Stub::AsyncStartRTLoggingRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncStartRTLoggingRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Moby::Stub::EndRTLogging(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::Empty* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_EndRTLogging_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_EndRTLogging_, context, request, response);
 }
 
-void Moby::Stub::experimental_async::EndRTLogging(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_EndRTLogging_, context, request, response, std::move(f));
+void Moby::Stub::async::EndRTLogging(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_EndRTLogging_, context, request, response, std::move(f));
 }
 
-void Moby::Stub::experimental_async::EndRTLogging(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_EndRTLogging_, context, request, response, std::move(f));
-}
-
-void Moby::Stub::experimental_async::EndRTLogging(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_EndRTLogging_, context, request, response, reactor);
-}
-
-void Moby::Stub::experimental_async::EndRTLogging(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_EndRTLogging_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Moby::Stub::AsyncEndRTLoggingRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_EndRTLogging_, context, request, true);
+void Moby::Stub::async::EndRTLogging(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_EndRTLogging_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Moby::Stub::PrepareAsyncEndRTLoggingRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Empty>::Create(channel_.get(), cq, rpcmethod_EndRTLogging_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_EndRTLogging_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Moby::Stub::AsyncEndRTLoggingRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncEndRTLoggingRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 Moby::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Moby_method_names[0],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::MobyState>(
-          std::mem_fn(&Moby::Service::GetMobyState), this)));
+      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::MobyState, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Moby::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::Empty* req,
+             ::Nrmk::IndyFramework::MobyState* resp) {
+               return service->GetMobyState(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Moby_method_names[1],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::MobyErrorState>(
-          std::mem_fn(&Moby::Service::GetMobyErrorState), this)));
+      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::MobyErrorState, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Moby::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::Empty* req,
+             ::Nrmk::IndyFramework::MobyErrorState* resp) {
+               return service->GetMobyErrorState(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Moby_method_names[2],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Empty>(
-          std::mem_fn(&Moby::Service::Recover), this)));
+      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Moby::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::Empty* req,
+             ::Nrmk::IndyFramework::Empty* resp) {
+               return service->Recover(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Moby_method_names[3],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::MobyPose>(
-          std::mem_fn(&Moby::Service::GetMobyPose), this)));
+      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::MobyPose, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Moby::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::Empty* req,
+             ::Nrmk::IndyFramework::MobyPose* resp) {
+               return service->GetMobyPose(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Moby_method_names[4],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::MobyVel>(
-          std::mem_fn(&Moby::Service::GetMobyVel), this)));
+      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::MobyVel, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Moby::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::Empty* req,
+             ::Nrmk::IndyFramework::MobyVel* resp) {
+               return service->GetMobyVel(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Moby_method_names[5],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Empty>(
-          std::mem_fn(&Moby::Service::ResetMobyPose), this)));
+      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Moby::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::Empty* req,
+             ::Nrmk::IndyFramework::Empty* resp) {
+               return service->ResetMobyPose(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Moby_method_names[6],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::SwerveDoubles>(
-          std::mem_fn(&Moby::Service::GetRotationAngleDeg), this)));
+      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::SwerveDoubles, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Moby::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::Empty* req,
+             ::Nrmk::IndyFramework::SwerveDoubles* resp) {
+               return service->GetRotationAngleDeg(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Moby_method_names[7],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::SwerveDoubles>(
-          std::mem_fn(&Moby::Service::GetDriveSpeed), this)));
+      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::SwerveDoubles, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Moby::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::Empty* req,
+             ::Nrmk::IndyFramework::SwerveDoubles* resp) {
+               return service->GetDriveSpeed(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Moby_method_names[8],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::TargetVel>(
-          std::mem_fn(&Moby::Service::GetTargetVel), this)));
+      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::TargetVel, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Moby::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::Empty* req,
+             ::Nrmk::IndyFramework::TargetVel* resp) {
+               return service->GetTargetVel(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Moby_method_names[9],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ZeroCount>(
-          std::mem_fn(&Moby::Service::GetRotationZeroCount), this)));
+      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ZeroCount, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Moby::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::Empty* req,
+             ::Nrmk::IndyFramework::ZeroCount* resp) {
+               return service->GetRotationZeroCount(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Moby_method_names[10],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::DoubleVals>(
-          std::mem_fn(&Moby::Service::GetGyroData), this)));
+      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::DoubleVals, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Moby::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::Empty* req,
+             ::Nrmk::IndyFramework::DoubleVals* resp) {
+               return service->GetGyroData(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Moby_method_names[11],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Empty>(
-          std::mem_fn(&Moby::Service::ResetGyroSensor), this)));
+      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Moby::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::Empty* req,
+             ::Nrmk::IndyFramework::Empty* resp) {
+               return service->ResetGyroSensor(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Moby_method_names[12],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::BoolVal, ::Nrmk::IndyFramework::Empty>(
-          std::mem_fn(&Moby::Service::UseGyroForOdom), this)));
+      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::BoolVal, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Moby::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::BoolVal* req,
+             ::Nrmk::IndyFramework::Empty* resp) {
+               return service->UseGyroForOdom(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Moby_method_names[13],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::IMUData>(
-          std::mem_fn(&Moby::Service::GetGyroFullData), this)));
+      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::IMUData, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Moby::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::Empty* req,
+             ::Nrmk::IndyFramework::IMUData* resp) {
+               return service->GetGyroFullData(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Moby_method_names[14],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::IRData>(
-          std::mem_fn(&Moby::Service::GetIRSensorData), this)));
+      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::IRData, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Moby::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::Empty* req,
+             ::Nrmk::IndyFramework::IRData* resp) {
+               return service->GetIRSensorData(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Moby_method_names[15],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::USData>(
-          std::mem_fn(&Moby::Service::GetUSSensorData), this)));
+      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::USData, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Moby::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::Empty* req,
+             ::Nrmk::IndyFramework::USData* resp) {
+               return service->GetUSSensorData(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Moby_method_names[16],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::BMSData>(
-          std::mem_fn(&Moby::Service::GetBMSData), this)));
+      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::BMSData, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Moby::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::Empty* req,
+             ::Nrmk::IndyFramework::BMSData* resp) {
+               return service->GetBMSData(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Moby_method_names[17],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::TargetVel, ::Nrmk::IndyFramework::Empty>(
-          std::mem_fn(&Moby::Service::SetStepControl), this)));
+      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::TargetVel, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Moby::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::TargetVel* req,
+             ::Nrmk::IndyFramework::Empty* resp) {
+               return service->SetStepControl(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Moby_method_names[18],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Empty>(
-          std::mem_fn(&Moby::Service::StopMotion), this)));
+      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Moby::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::Empty* req,
+             ::Nrmk::IndyFramework::Empty* resp) {
+               return service->StopMotion(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Moby_method_names[19],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::SwerveDoubles, ::Nrmk::IndyFramework::Empty>(
-          std::mem_fn(&Moby::Service::SetRotationAngleDeg), this)));
+      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::SwerveDoubles, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Moby::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::SwerveDoubles* req,
+             ::Nrmk::IndyFramework::Empty* resp) {
+               return service->SetRotationAngleDeg(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Moby_method_names[20],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::SwerveDoubles, ::Nrmk::IndyFramework::Empty>(
-          std::mem_fn(&Moby::Service::DriveWheel), this)));
+      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::SwerveDoubles, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Moby::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::SwerveDoubles* req,
+             ::Nrmk::IndyFramework::Empty* resp) {
+               return service->DriveWheel(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Moby_method_names[21],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Empty>(
-          std::mem_fn(&Moby::Service::SetZeroPosAsCurrentPos), this)));
+      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Moby::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::Empty* req,
+             ::Nrmk::IndyFramework::Empty* resp) {
+               return service->SetZeroPosAsCurrentPos(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Moby_method_names[22],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::DoubleVals, ::Nrmk::IndyFramework::Empty>(
-          std::mem_fn(&Moby::Service::SetRotationVelAcc), this)));
+      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::DoubleVals, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Moby::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::DoubleVals* req,
+             ::Nrmk::IndyFramework::Empty* resp) {
+               return service->SetRotationVelAcc(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Moby_method_names[23],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::IntVal, ::Nrmk::IndyFramework::Empty>(
-          std::mem_fn(&Moby::Service::SetRotationInterpolator), this)));
+      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::IntVal, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Moby::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::IntVal* req,
+             ::Nrmk::IndyFramework::Empty* resp) {
+               return service->SetRotationInterpolator(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Moby_method_names[24],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::DoubleVals, ::Nrmk::IndyFramework::Empty>(
-          std::mem_fn(&Moby::Service::SetDriveAccDec), this)));
+      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::DoubleVals, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Moby::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::DoubleVals* req,
+             ::Nrmk::IndyFramework::Empty* resp) {
+               return service->SetDriveAccDec(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Moby_method_names[25],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::BoolVal, ::Nrmk::IndyFramework::Empty>(
-          std::mem_fn(&Moby::Service::SetDriveInterpolatorOnOff), this)));
+      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::BoolVal, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Moby::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::BoolVal* req,
+             ::Nrmk::IndyFramework::Empty* resp) {
+               return service->SetDriveInterpolatorOnOff(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Moby_method_names[26],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::IntVal, ::Nrmk::IndyFramework::Empty>(
-          std::mem_fn(&Moby::Service::SetRotationControllerType), this)));
+      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::IntVal, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Moby::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::IntVal* req,
+             ::Nrmk::IndyFramework::Empty* resp) {
+               return service->SetRotationControllerType(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Moby_method_names[27],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::ForcedKinematicsData, ::Nrmk::IndyFramework::Empty>(
-          std::mem_fn(&Moby::Service::SetForceKinematics), this)));
+      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::ForcedKinematicsData, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Moby::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::ForcedKinematicsData* req,
+             ::Nrmk::IndyFramework::Empty* resp) {
+               return service->SetForceKinematics(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Moby_method_names[28],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ForcedKinematicsData>(
-          std::mem_fn(&Moby::Service::GetForceKinematics), this)));
+      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ForcedKinematicsData, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Moby::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::Empty* req,
+             ::Nrmk::IndyFramework::ForcedKinematicsData* resp) {
+               return service->GetForceKinematics(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Moby_method_names[29],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::BoolVal, ::Nrmk::IndyFramework::Empty>(
-          std::mem_fn(&Moby::Service::PauseBumper), this)));
+      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::BoolVal, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Moby::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::BoolVal* req,
+             ::Nrmk::IndyFramework::Empty* resp) {
+               return service->PauseBumper(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Moby_method_names[30],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::BoolVal, ::Nrmk::IndyFramework::Empty>(
-          std::mem_fn(&Moby::Service::TurnLightOnOff), this)));
+      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::BoolVal, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Moby::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::BoolVal* req,
+             ::Nrmk::IndyFramework::Empty* resp) {
+               return service->TurnLightOnOff(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Moby_method_names[31],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::BoolVal, ::Nrmk::IndyFramework::Empty>(
-          std::mem_fn(&Moby::Service::TurnBuzzOnOff), this)));
+      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::BoolVal, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Moby::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::BoolVal* req,
+             ::Nrmk::IndyFramework::Empty* resp) {
+               return service->TurnBuzzOnOff(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Moby_method_names[32],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::BoolVals, ::Nrmk::IndyFramework::Empty>(
-          std::mem_fn(&Moby::Service::SetExtraDO), this)));
+      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::BoolVals, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Moby::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::BoolVals* req,
+             ::Nrmk::IndyFramework::Empty* resp) {
+               return service->SetExtraDO(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Moby_method_names[33],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::RotationGain, ::Nrmk::IndyFramework::Empty>(
-          std::mem_fn(&Moby::Service::SetControlParam), this)));
+      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::RotationGain, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Moby::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::RotationGain* req,
+             ::Nrmk::IndyFramework::Empty* resp) {
+               return service->SetControlParam(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Moby_method_names[34],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::IntVal, ::Nrmk::IndyFramework::RotationGain>(
-          std::mem_fn(&Moby::Service::GetControlParam), this)));
+      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::IntVal, ::Nrmk::IndyFramework::RotationGain, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Moby::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::IntVal* req,
+             ::Nrmk::IndyFramework::RotationGain* resp) {
+               return service->GetControlParam(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Moby_method_names[35],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Empty>(
-          std::mem_fn(&Moby::Service::StartRTLogging), this)));
+      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Moby::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::Empty* req,
+             ::Nrmk::IndyFramework::Empty* resp) {
+               return service->StartRTLogging(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Moby_method_names[36],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Empty>(
-          std::mem_fn(&Moby::Service::EndRTLogging), this)));
+      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Moby::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::Empty* req,
+             ::Nrmk::IndyFramework::Empty* resp) {
+               return service->EndRTLogging(ctx, req, resp);
+             }, this)));
 }
 
 Moby::Service::~Service() {

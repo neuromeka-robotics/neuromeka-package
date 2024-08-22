@@ -7,34 +7,23 @@
 #include "eyetask.pb.h"
 
 #include <functional>
-#include <grpcpp/impl/codegen/async_generic_service.h>
-#include <grpcpp/impl/codegen/async_stream.h>
-#include <grpcpp/impl/codegen/async_unary_call.h>
-#include <grpcpp/impl/codegen/client_callback.h>
-#include <grpcpp/impl/codegen/client_context.h>
-#include <grpcpp/impl/codegen/completion_queue.h>
-#include <grpcpp/impl/codegen/method_handler_impl.h>
-#include <grpcpp/impl/codegen/proto_utils.h>
-#include <grpcpp/impl/codegen/rpc_method.h>
-#include <grpcpp/impl/codegen/server_callback.h>
-#include <grpcpp/impl/codegen/server_context.h>
-#include <grpcpp/impl/codegen/service_type.h>
-#include <grpcpp/impl/codegen/status.h>
-#include <grpcpp/impl/codegen/stub_options.h>
-#include <grpcpp/impl/codegen/sync_stream.h>
-
-namespace grpc_impl {
-class CompletionQueue;
-class ServerCompletionQueue;
-class ServerContext;
-}  // namespace grpc_impl
-
-namespace grpc {
-namespace experimental {
-template <typename RequestT, typename ResponseT>
-class MessageAllocator;
-}  // namespace experimental
-}  // namespace grpc
+#include <grpcpp/generic/async_generic_service.h>
+#include <grpcpp/support/async_stream.h>
+#include <grpcpp/support/async_unary_call.h>
+#include <grpcpp/support/client_callback.h>
+#include <grpcpp/client_context.h>
+#include <grpcpp/completion_queue.h>
+#include <grpcpp/support/message_allocator.h>
+#include <grpcpp/support/method_handler.h>
+#include <grpcpp/impl/proto_utils.h>
+#include <grpcpp/impl/rpc_method.h>
+#include <grpcpp/support/server_callback.h>
+#include <grpcpp/impl/server_callback_handlers.h>
+#include <grpcpp/server_context.h>
+#include <grpcpp/impl/service_type.h>
+#include <grpcpp/support/status.h>
+#include <grpcpp/support/stub_options.h>
+#include <grpcpp/support/sync_stream.h>
 
 namespace EyeTask {
 
@@ -74,28 +63,22 @@ class EyeTask final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::EyeTask::DetectResponse>> PrepareAsyncRetrieve(::grpc::ClientContext* context, const ::EyeTask::RetrieveRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::EyeTask::DetectResponse>>(PrepareAsyncRetrieveRaw(context, request, cq));
     }
-    class experimental_async_interface {
+    class async_interface {
      public:
-      virtual ~experimental_async_interface() {}
+      virtual ~async_interface() {}
       virtual void GetImage(::grpc::ClientContext* context, const ::EyeTask::ImageRequest* request, ::EyeTask::ImageResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void GetImage(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::EyeTask::ImageResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void GetImage(::grpc::ClientContext* context, const ::EyeTask::ImageRequest* request, ::EyeTask::ImageResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      virtual void GetImage(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::EyeTask::ImageResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      virtual void GetImage(::grpc::ClientContext* context, const ::EyeTask::ImageRequest* request, ::EyeTask::ImageResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void GetClassList(::grpc::ClientContext* context, const ::EyeTask::Request* request, ::EyeTask::ClassList* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void GetClassList(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::EyeTask::ClassList* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void GetClassList(::grpc::ClientContext* context, const ::EyeTask::Request* request, ::EyeTask::ClassList* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      virtual void GetClassList(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::EyeTask::ClassList* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      virtual void GetClassList(::grpc::ClientContext* context, const ::EyeTask::Request* request, ::EyeTask::ClassList* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void Detect(::grpc::ClientContext* context, const ::EyeTask::DetectRequest* request, ::EyeTask::DetectResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void Detect(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::EyeTask::DetectResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void Detect(::grpc::ClientContext* context, const ::EyeTask::DetectRequest* request, ::EyeTask::DetectResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      virtual void Detect(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::EyeTask::DetectResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      virtual void Detect(::grpc::ClientContext* context, const ::EyeTask::DetectRequest* request, ::EyeTask::DetectResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void Retrieve(::grpc::ClientContext* context, const ::EyeTask::RetrieveRequest* request, ::EyeTask::DetectResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void Retrieve(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::EyeTask::DetectResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void Retrieve(::grpc::ClientContext* context, const ::EyeTask::RetrieveRequest* request, ::EyeTask::DetectResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      virtual void Retrieve(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::EyeTask::DetectResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      virtual void Retrieve(::grpc::ClientContext* context, const ::EyeTask::RetrieveRequest* request, ::EyeTask::DetectResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
-    virtual class experimental_async_interface* experimental_async() { return nullptr; }
-  private:
+    typedef class async_interface experimental_async_interface;
+    virtual class async_interface* async() { return nullptr; }
+    class async_interface* experimental_async() { return async(); }
+   private:
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::EyeTask::ImageResponse>* AsyncGetImageRaw(::grpc::ClientContext* context, const ::EyeTask::ImageRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::EyeTask::ImageResponse>* PrepareAsyncGetImageRaw(::grpc::ClientContext* context, const ::EyeTask::ImageRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::EyeTask::ClassList>* AsyncGetClassListRaw(::grpc::ClientContext* context, const ::EyeTask::Request& request, ::grpc::CompletionQueue* cq) = 0;
@@ -107,7 +90,7 @@ class EyeTask final {
   };
   class Stub final : public StubInterface {
    public:
-    Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel);
+    Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
     ::grpc::Status GetImage(::grpc::ClientContext* context, const ::EyeTask::ImageRequest& request, ::EyeTask::ImageResponse* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::EyeTask::ImageResponse>> AsyncGetImage(::grpc::ClientContext* context, const ::EyeTask::ImageRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::EyeTask::ImageResponse>>(AsyncGetImageRaw(context, request, cq));
@@ -136,36 +119,28 @@ class EyeTask final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::EyeTask::DetectResponse>> PrepareAsyncRetrieve(::grpc::ClientContext* context, const ::EyeTask::RetrieveRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::EyeTask::DetectResponse>>(PrepareAsyncRetrieveRaw(context, request, cq));
     }
-    class experimental_async final :
-      public StubInterface::experimental_async_interface {
+    class async final :
+      public StubInterface::async_interface {
      public:
       void GetImage(::grpc::ClientContext* context, const ::EyeTask::ImageRequest* request, ::EyeTask::ImageResponse* response, std::function<void(::grpc::Status)>) override;
-      void GetImage(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::EyeTask::ImageResponse* response, std::function<void(::grpc::Status)>) override;
-      void GetImage(::grpc::ClientContext* context, const ::EyeTask::ImageRequest* request, ::EyeTask::ImageResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      void GetImage(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::EyeTask::ImageResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      void GetImage(::grpc::ClientContext* context, const ::EyeTask::ImageRequest* request, ::EyeTask::ImageResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void GetClassList(::grpc::ClientContext* context, const ::EyeTask::Request* request, ::EyeTask::ClassList* response, std::function<void(::grpc::Status)>) override;
-      void GetClassList(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::EyeTask::ClassList* response, std::function<void(::grpc::Status)>) override;
-      void GetClassList(::grpc::ClientContext* context, const ::EyeTask::Request* request, ::EyeTask::ClassList* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      void GetClassList(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::EyeTask::ClassList* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      void GetClassList(::grpc::ClientContext* context, const ::EyeTask::Request* request, ::EyeTask::ClassList* response, ::grpc::ClientUnaryReactor* reactor) override;
       void Detect(::grpc::ClientContext* context, const ::EyeTask::DetectRequest* request, ::EyeTask::DetectResponse* response, std::function<void(::grpc::Status)>) override;
-      void Detect(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::EyeTask::DetectResponse* response, std::function<void(::grpc::Status)>) override;
-      void Detect(::grpc::ClientContext* context, const ::EyeTask::DetectRequest* request, ::EyeTask::DetectResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      void Detect(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::EyeTask::DetectResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      void Detect(::grpc::ClientContext* context, const ::EyeTask::DetectRequest* request, ::EyeTask::DetectResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void Retrieve(::grpc::ClientContext* context, const ::EyeTask::RetrieveRequest* request, ::EyeTask::DetectResponse* response, std::function<void(::grpc::Status)>) override;
-      void Retrieve(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::EyeTask::DetectResponse* response, std::function<void(::grpc::Status)>) override;
-      void Retrieve(::grpc::ClientContext* context, const ::EyeTask::RetrieveRequest* request, ::EyeTask::DetectResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      void Retrieve(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::EyeTask::DetectResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      void Retrieve(::grpc::ClientContext* context, const ::EyeTask::RetrieveRequest* request, ::EyeTask::DetectResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
-      explicit experimental_async(Stub* stub): stub_(stub) { }
+      explicit async(Stub* stub): stub_(stub) { }
       Stub* stub() { return stub_; }
       Stub* stub_;
     };
-    class experimental_async_interface* experimental_async() override { return &async_stub_; }
+    class async* async() override { return &async_stub_; }
 
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
-    class experimental_async async_stub_{this};
+    class async async_stub_{this};
     ::grpc::ClientAsyncResponseReader< ::EyeTask::ImageResponse>* AsyncGetImageRaw(::grpc::ClientContext* context, const ::EyeTask::ImageRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::EyeTask::ImageResponse>* PrepareAsyncGetImageRaw(::grpc::ClientContext* context, const ::EyeTask::ImageRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::EyeTask::ClassList>* AsyncGetClassListRaw(::grpc::ClientContext* context, const ::EyeTask::Request& request, ::grpc::CompletionQueue* cq) override;
@@ -272,27 +247,22 @@ class EyeTask final {
   };
   typedef WithAsyncMethod_GetImage<WithAsyncMethod_GetClassList<WithAsyncMethod_Detect<WithAsyncMethod_Retrieve<Service > > > > AsyncService;
   template <class BaseClass>
-  class ExperimentalWithCallbackMethod_GetImage : public BaseClass {
+  class WithCallbackMethod_GetImage : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithCallbackMethod_GetImage() {
-      ::grpc::Service::experimental().MarkMethodCallback(0,
-        new ::grpc_impl::internal::CallbackUnaryHandler< ::EyeTask::ImageRequest, ::EyeTask::ImageResponse>(
-          [this](::grpc::ServerContext* context,
-                 const ::EyeTask::ImageRequest* request,
-                 ::EyeTask::ImageResponse* response,
-                 ::grpc::experimental::ServerCallbackRpcController* controller) {
-                   return this->GetImage(context, request, response, controller);
-                 }));
-    }
+    WithCallbackMethod_GetImage() {
+      ::grpc::Service::MarkMethodCallback(0,
+          new ::grpc::internal::CallbackUnaryHandler< ::EyeTask::ImageRequest, ::EyeTask::ImageResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::EyeTask::ImageRequest* request, ::EyeTask::ImageResponse* response) { return this->GetImage(context, request, response); }));}
     void SetMessageAllocatorFor_GetImage(
-        ::grpc::experimental::MessageAllocator< ::EyeTask::ImageRequest, ::EyeTask::ImageResponse>* allocator) {
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::EyeTask::ImageRequest, ::EyeTask::ImageResponse>*>(
-          ::grpc::Service::experimental().GetHandler(0))
+        ::grpc::MessageAllocator< ::EyeTask::ImageRequest, ::EyeTask::ImageResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::EyeTask::ImageRequest, ::EyeTask::ImageResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~ExperimentalWithCallbackMethod_GetImage() override {
+    ~WithCallbackMethod_GetImage() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -300,30 +270,26 @@ class EyeTask final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual void GetImage(::grpc::ServerContext* /*context*/, const ::EyeTask::ImageRequest* /*request*/, ::EyeTask::ImageResponse* /*response*/, ::grpc::experimental::ServerCallbackRpcController* controller) { controller->Finish(::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "")); }
+    virtual ::grpc::ServerUnaryReactor* GetImage(
+      ::grpc::CallbackServerContext* /*context*/, const ::EyeTask::ImageRequest* /*request*/, ::EyeTask::ImageResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithCallbackMethod_GetClassList : public BaseClass {
+  class WithCallbackMethod_GetClassList : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithCallbackMethod_GetClassList() {
-      ::grpc::Service::experimental().MarkMethodCallback(1,
-        new ::grpc_impl::internal::CallbackUnaryHandler< ::EyeTask::Request, ::EyeTask::ClassList>(
-          [this](::grpc::ServerContext* context,
-                 const ::EyeTask::Request* request,
-                 ::EyeTask::ClassList* response,
-                 ::grpc::experimental::ServerCallbackRpcController* controller) {
-                   return this->GetClassList(context, request, response, controller);
-                 }));
-    }
+    WithCallbackMethod_GetClassList() {
+      ::grpc::Service::MarkMethodCallback(1,
+          new ::grpc::internal::CallbackUnaryHandler< ::EyeTask::Request, ::EyeTask::ClassList>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::EyeTask::Request* request, ::EyeTask::ClassList* response) { return this->GetClassList(context, request, response); }));}
     void SetMessageAllocatorFor_GetClassList(
-        ::grpc::experimental::MessageAllocator< ::EyeTask::Request, ::EyeTask::ClassList>* allocator) {
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::EyeTask::Request, ::EyeTask::ClassList>*>(
-          ::grpc::Service::experimental().GetHandler(1))
+        ::grpc::MessageAllocator< ::EyeTask::Request, ::EyeTask::ClassList>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::EyeTask::Request, ::EyeTask::ClassList>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~ExperimentalWithCallbackMethod_GetClassList() override {
+    ~WithCallbackMethod_GetClassList() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -331,30 +297,26 @@ class EyeTask final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual void GetClassList(::grpc::ServerContext* /*context*/, const ::EyeTask::Request* /*request*/, ::EyeTask::ClassList* /*response*/, ::grpc::experimental::ServerCallbackRpcController* controller) { controller->Finish(::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "")); }
+    virtual ::grpc::ServerUnaryReactor* GetClassList(
+      ::grpc::CallbackServerContext* /*context*/, const ::EyeTask::Request* /*request*/, ::EyeTask::ClassList* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithCallbackMethod_Detect : public BaseClass {
+  class WithCallbackMethod_Detect : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithCallbackMethod_Detect() {
-      ::grpc::Service::experimental().MarkMethodCallback(2,
-        new ::grpc_impl::internal::CallbackUnaryHandler< ::EyeTask::DetectRequest, ::EyeTask::DetectResponse>(
-          [this](::grpc::ServerContext* context,
-                 const ::EyeTask::DetectRequest* request,
-                 ::EyeTask::DetectResponse* response,
-                 ::grpc::experimental::ServerCallbackRpcController* controller) {
-                   return this->Detect(context, request, response, controller);
-                 }));
-    }
+    WithCallbackMethod_Detect() {
+      ::grpc::Service::MarkMethodCallback(2,
+          new ::grpc::internal::CallbackUnaryHandler< ::EyeTask::DetectRequest, ::EyeTask::DetectResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::EyeTask::DetectRequest* request, ::EyeTask::DetectResponse* response) { return this->Detect(context, request, response); }));}
     void SetMessageAllocatorFor_Detect(
-        ::grpc::experimental::MessageAllocator< ::EyeTask::DetectRequest, ::EyeTask::DetectResponse>* allocator) {
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::EyeTask::DetectRequest, ::EyeTask::DetectResponse>*>(
-          ::grpc::Service::experimental().GetHandler(2))
+        ::grpc::MessageAllocator< ::EyeTask::DetectRequest, ::EyeTask::DetectResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::EyeTask::DetectRequest, ::EyeTask::DetectResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~ExperimentalWithCallbackMethod_Detect() override {
+    ~WithCallbackMethod_Detect() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -362,30 +324,26 @@ class EyeTask final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual void Detect(::grpc::ServerContext* /*context*/, const ::EyeTask::DetectRequest* /*request*/, ::EyeTask::DetectResponse* /*response*/, ::grpc::experimental::ServerCallbackRpcController* controller) { controller->Finish(::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "")); }
+    virtual ::grpc::ServerUnaryReactor* Detect(
+      ::grpc::CallbackServerContext* /*context*/, const ::EyeTask::DetectRequest* /*request*/, ::EyeTask::DetectResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithCallbackMethod_Retrieve : public BaseClass {
+  class WithCallbackMethod_Retrieve : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithCallbackMethod_Retrieve() {
-      ::grpc::Service::experimental().MarkMethodCallback(3,
-        new ::grpc_impl::internal::CallbackUnaryHandler< ::EyeTask::RetrieveRequest, ::EyeTask::DetectResponse>(
-          [this](::grpc::ServerContext* context,
-                 const ::EyeTask::RetrieveRequest* request,
-                 ::EyeTask::DetectResponse* response,
-                 ::grpc::experimental::ServerCallbackRpcController* controller) {
-                   return this->Retrieve(context, request, response, controller);
-                 }));
-    }
+    WithCallbackMethod_Retrieve() {
+      ::grpc::Service::MarkMethodCallback(3,
+          new ::grpc::internal::CallbackUnaryHandler< ::EyeTask::RetrieveRequest, ::EyeTask::DetectResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::EyeTask::RetrieveRequest* request, ::EyeTask::DetectResponse* response) { return this->Retrieve(context, request, response); }));}
     void SetMessageAllocatorFor_Retrieve(
-        ::grpc::experimental::MessageAllocator< ::EyeTask::RetrieveRequest, ::EyeTask::DetectResponse>* allocator) {
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::EyeTask::RetrieveRequest, ::EyeTask::DetectResponse>*>(
-          ::grpc::Service::experimental().GetHandler(3))
+        ::grpc::MessageAllocator< ::EyeTask::RetrieveRequest, ::EyeTask::DetectResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(3);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::EyeTask::RetrieveRequest, ::EyeTask::DetectResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~ExperimentalWithCallbackMethod_Retrieve() override {
+    ~WithCallbackMethod_Retrieve() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -393,9 +351,11 @@ class EyeTask final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual void Retrieve(::grpc::ServerContext* /*context*/, const ::EyeTask::RetrieveRequest* /*request*/, ::EyeTask::DetectResponse* /*response*/, ::grpc::experimental::ServerCallbackRpcController* controller) { controller->Finish(::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "")); }
+    virtual ::grpc::ServerUnaryReactor* Retrieve(
+      ::grpc::CallbackServerContext* /*context*/, const ::EyeTask::RetrieveRequest* /*request*/, ::EyeTask::DetectResponse* /*response*/)  { return nullptr; }
   };
-  typedef ExperimentalWithCallbackMethod_GetImage<ExperimentalWithCallbackMethod_GetClassList<ExperimentalWithCallbackMethod_Detect<ExperimentalWithCallbackMethod_Retrieve<Service > > > > ExperimentalCallbackService;
+  typedef WithCallbackMethod_GetImage<WithCallbackMethod_GetClassList<WithCallbackMethod_Detect<WithCallbackMethod_Retrieve<Service > > > > CallbackService;
+  typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_GetImage : public BaseClass {
    private:
@@ -545,21 +505,17 @@ class EyeTask final {
     }
   };
   template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_GetImage : public BaseClass {
+  class WithRawCallbackMethod_GetImage : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithRawCallbackMethod_GetImage() {
-      ::grpc::Service::experimental().MarkMethodRawCallback(0,
-        new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-          [this](::grpc::ServerContext* context,
-                 const ::grpc::ByteBuffer* request,
-                 ::grpc::ByteBuffer* response,
-                 ::grpc::experimental::ServerCallbackRpcController* controller) {
-                   this->GetImage(context, request, response, controller);
-                 }));
+    WithRawCallbackMethod_GetImage() {
+      ::grpc::Service::MarkMethodRawCallback(0,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetImage(context, request, response); }));
     }
-    ~ExperimentalWithRawCallbackMethod_GetImage() override {
+    ~WithRawCallbackMethod_GetImage() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -567,24 +523,21 @@ class EyeTask final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual void GetImage(::grpc::ServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/, ::grpc::experimental::ServerCallbackRpcController* controller) { controller->Finish(::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "")); }
+    virtual ::grpc::ServerUnaryReactor* GetImage(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_GetClassList : public BaseClass {
+  class WithRawCallbackMethod_GetClassList : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithRawCallbackMethod_GetClassList() {
-      ::grpc::Service::experimental().MarkMethodRawCallback(1,
-        new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-          [this](::grpc::ServerContext* context,
-                 const ::grpc::ByteBuffer* request,
-                 ::grpc::ByteBuffer* response,
-                 ::grpc::experimental::ServerCallbackRpcController* controller) {
-                   this->GetClassList(context, request, response, controller);
-                 }));
+    WithRawCallbackMethod_GetClassList() {
+      ::grpc::Service::MarkMethodRawCallback(1,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetClassList(context, request, response); }));
     }
-    ~ExperimentalWithRawCallbackMethod_GetClassList() override {
+    ~WithRawCallbackMethod_GetClassList() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -592,24 +545,21 @@ class EyeTask final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual void GetClassList(::grpc::ServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/, ::grpc::experimental::ServerCallbackRpcController* controller) { controller->Finish(::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "")); }
+    virtual ::grpc::ServerUnaryReactor* GetClassList(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_Detect : public BaseClass {
+  class WithRawCallbackMethod_Detect : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithRawCallbackMethod_Detect() {
-      ::grpc::Service::experimental().MarkMethodRawCallback(2,
-        new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-          [this](::grpc::ServerContext* context,
-                 const ::grpc::ByteBuffer* request,
-                 ::grpc::ByteBuffer* response,
-                 ::grpc::experimental::ServerCallbackRpcController* controller) {
-                   this->Detect(context, request, response, controller);
-                 }));
+    WithRawCallbackMethod_Detect() {
+      ::grpc::Service::MarkMethodRawCallback(2,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Detect(context, request, response); }));
     }
-    ~ExperimentalWithRawCallbackMethod_Detect() override {
+    ~WithRawCallbackMethod_Detect() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -617,24 +567,21 @@ class EyeTask final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual void Detect(::grpc::ServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/, ::grpc::experimental::ServerCallbackRpcController* controller) { controller->Finish(::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "")); }
+    virtual ::grpc::ServerUnaryReactor* Detect(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_Retrieve : public BaseClass {
+  class WithRawCallbackMethod_Retrieve : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithRawCallbackMethod_Retrieve() {
-      ::grpc::Service::experimental().MarkMethodRawCallback(3,
-        new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-          [this](::grpc::ServerContext* context,
-                 const ::grpc::ByteBuffer* request,
-                 ::grpc::ByteBuffer* response,
-                 ::grpc::experimental::ServerCallbackRpcController* controller) {
-                   this->Retrieve(context, request, response, controller);
-                 }));
+    WithRawCallbackMethod_Retrieve() {
+      ::grpc::Service::MarkMethodRawCallback(3,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Retrieve(context, request, response); }));
     }
-    ~ExperimentalWithRawCallbackMethod_Retrieve() override {
+    ~WithRawCallbackMethod_Retrieve() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -642,7 +589,8 @@ class EyeTask final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual void Retrieve(::grpc::ServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/, ::grpc::experimental::ServerCallbackRpcController* controller) { controller->Finish(::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "")); }
+    virtual ::grpc::ServerUnaryReactor* Retrieve(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
   class WithStreamedUnaryMethod_GetImage : public BaseClass {
@@ -651,7 +599,14 @@ class EyeTask final {
    public:
     WithStreamedUnaryMethod_GetImage() {
       ::grpc::Service::MarkMethodStreamed(0,
-        new ::grpc::internal::StreamedUnaryHandler< ::EyeTask::ImageRequest, ::EyeTask::ImageResponse>(std::bind(&WithStreamedUnaryMethod_GetImage<BaseClass>::StreamedGetImage, this, std::placeholders::_1, std::placeholders::_2)));
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::EyeTask::ImageRequest, ::EyeTask::ImageResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::EyeTask::ImageRequest, ::EyeTask::ImageResponse>* streamer) {
+                       return this->StreamedGetImage(context,
+                         streamer);
+                  }));
     }
     ~WithStreamedUnaryMethod_GetImage() override {
       BaseClassMustBeDerivedFromService(this);
@@ -671,7 +626,14 @@ class EyeTask final {
    public:
     WithStreamedUnaryMethod_GetClassList() {
       ::grpc::Service::MarkMethodStreamed(1,
-        new ::grpc::internal::StreamedUnaryHandler< ::EyeTask::Request, ::EyeTask::ClassList>(std::bind(&WithStreamedUnaryMethod_GetClassList<BaseClass>::StreamedGetClassList, this, std::placeholders::_1, std::placeholders::_2)));
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::EyeTask::Request, ::EyeTask::ClassList>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::EyeTask::Request, ::EyeTask::ClassList>* streamer) {
+                       return this->StreamedGetClassList(context,
+                         streamer);
+                  }));
     }
     ~WithStreamedUnaryMethod_GetClassList() override {
       BaseClassMustBeDerivedFromService(this);
@@ -691,7 +653,14 @@ class EyeTask final {
    public:
     WithStreamedUnaryMethod_Detect() {
       ::grpc::Service::MarkMethodStreamed(2,
-        new ::grpc::internal::StreamedUnaryHandler< ::EyeTask::DetectRequest, ::EyeTask::DetectResponse>(std::bind(&WithStreamedUnaryMethod_Detect<BaseClass>::StreamedDetect, this, std::placeholders::_1, std::placeholders::_2)));
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::EyeTask::DetectRequest, ::EyeTask::DetectResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::EyeTask::DetectRequest, ::EyeTask::DetectResponse>* streamer) {
+                       return this->StreamedDetect(context,
+                         streamer);
+                  }));
     }
     ~WithStreamedUnaryMethod_Detect() override {
       BaseClassMustBeDerivedFromService(this);
@@ -711,7 +680,14 @@ class EyeTask final {
    public:
     WithStreamedUnaryMethod_Retrieve() {
       ::grpc::Service::MarkMethodStreamed(3,
-        new ::grpc::internal::StreamedUnaryHandler< ::EyeTask::RetrieveRequest, ::EyeTask::DetectResponse>(std::bind(&WithStreamedUnaryMethod_Retrieve<BaseClass>::StreamedRetrieve, this, std::placeholders::_1, std::placeholders::_2)));
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::EyeTask::RetrieveRequest, ::EyeTask::DetectResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::EyeTask::RetrieveRequest, ::EyeTask::DetectResponse>* streamer) {
+                       return this->StreamedRetrieve(context,
+                         streamer);
+                  }));
     }
     ~WithStreamedUnaryMethod_Retrieve() override {
       BaseClassMustBeDerivedFromService(this);

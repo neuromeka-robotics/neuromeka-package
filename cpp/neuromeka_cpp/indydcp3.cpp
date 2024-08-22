@@ -9,15 +9,17 @@ IndyDCP3::IndyDCP3(const std::string& robot_ip, int index)
 
     if (!_isConnected) {
 
-        device_channel = grpc::CreateChannel(robot_ip + ":" + std::to_string(DEVICE_SOCKET_PORT[index]), grpc::InsecureChannelCredentials());
+        device_channel  = grpc::CreateChannel(robot_ip + ":" + std::to_string(DEVICE_SOCKET_PORT[index]), grpc::InsecureChannelCredentials());
         control_channel = grpc::CreateChannel(robot_ip + ":" + std::to_string(CONTROL_SOCKET_PORT[index]), grpc::InsecureChannelCredentials());
-        config_channel = grpc::CreateChannel(robot_ip + ":" + std::to_string(CONFIG_SOCKET_PORT[index]), grpc::InsecureChannelCredentials());
-        rtde_channel = grpc::CreateChannel(robot_ip + ":" + std::to_string(RTDE_SOCKET_PORT[index]), grpc::InsecureChannelCredentials());
+        config_channel  = grpc::CreateChannel(robot_ip + ":" + std::to_string(CONFIG_SOCKET_PORT[index]), grpc::InsecureChannelCredentials());
+        rtde_channel    = grpc::CreateChannel(robot_ip + ":" + std::to_string(RTDE_SOCKET_PORT[index]), grpc::InsecureChannelCredentials());
+        cri_channel     = grpc::CreateChannel(robot_ip + ":" + std::to_string(CRI_SOCKET_PORT[index]), grpc::InsecureChannelCredentials());
 
-        device_stub  = Nrmk::IndyFramework::Device::NewStub(device_channel);
-        control_stub = Nrmk::IndyFramework::Control::NewStub(control_channel);
-        config_stub  = Nrmk::IndyFramework::Config::NewStub(config_channel);
-        rtde_stub    = Nrmk::IndyFramework::RTDataExchange::NewStub(rtde_channel);
+        device_stub     = Nrmk::IndyFramework::Device::NewStub(device_channel);
+        control_stub    = Nrmk::IndyFramework::Control::NewStub(control_channel);
+        config_stub     = Nrmk::IndyFramework::Config::NewStub(config_channel);
+        rtde_stub       = Nrmk::IndyFramework::RTDataExchange::NewStub(rtde_channel);
+        cri_stub        = Nrmk::IndyFramework::CRI::NewStub(cri_channel);
 
         Nrmk::IndyFramework::Empty request;
         Nrmk::IndyFramework::DeviceInfo response;
@@ -281,6 +283,7 @@ bool IndyDCP3::get_program_data(Nrmk::IndyFramework::ProgramData &program_data) 
         program_name  -> string
         program_alarm  -> string
         program_annotation  -> string
+        speed_ratio -> int32
     */
     Nrmk::IndyFramework::Empty request;
     Nrmk::IndyFramework::ProgramData response;
@@ -301,6 +304,7 @@ bool IndyDCP3::get_program_data(Nrmk::IndyFramework::ProgramData &program_data) 
     program_data.set_program_name(response.program_name());
     program_data.set_program_alarm(response.program_alarm());
     program_data.set_program_annotation(response.program_annotation());
+    program_data.set_speed_ratio(response.speed_ratio());
 
     return true;
 }
@@ -525,15 +529,17 @@ bool IndyDCP3::set_endtool_ao(const Nrmk::IndyFramework::AnalogList& end_ao_sign
 bool IndyDCP3::get_device_info(Nrmk::IndyFramework::DeviceInfo& device_info) {
     /*
         Device Info:
-            num_joints   -> uint32
-            robot_serial   -> string
-            payload        -> float
-            io_board_fw_ver  -> string
+            num_joints          -> uint32
+            robot_serial        -> string
+            payload             -> float
+            io_board_fw_ver     -> string
             core_board_fw_vers  -> string[]
-            endtool_board_fw_ver  -> string
+            endtool_board_fw_ver-> string
             controller_ver      -> string
             controller_detail   -> string
             controller_date     -> string
+            teleop_loaded       -> bool
+            calibrated          -> bool
             response            -> Response
     */
     Nrmk::IndyFramework::Empty request;
@@ -618,7 +624,7 @@ bool IndyDCP3::get_home_pos(Nrmk::IndyFramework::JointPos &home_jpos)
     return true;
 }
 
-bool IndyDCP3::movej(const std::vector<float> jtarget,
+bool IndyDCP3::movej(const std::vector<float>& jtarget,
                      const int base_type,
                      const int blending_type,
                      const float blending_radius,
@@ -649,8 +655,6 @@ bool IndyDCP3::movej(const std::vector<float> jtarget,
     Nrmk::IndyFramework::Response response;
     grpc::ClientContext context;
 
-    // int size;
-    size_t size;
     try
     {
         // tarJ.set_j_start();
@@ -659,15 +663,17 @@ bool IndyDCP3::movej(const std::vector<float> jtarget,
         }
 
         // set target
-        for (std::size_t i=0;i<jtarget.size();i++){
-            request.mutable_target()->add_j_target(jtarget[i]);
+        // for (std::size_t i=0;i<jtarget.size();i++){
+        //     request.mutable_target()->add_j_target(jtarget[i]);
+        // }
+        for (const auto& pos : jtarget){
+            request.mutable_target()->add_j_target(pos);
         }
 
         // set base type
-        if(base_type == 1)
-            request.mutable_target()->set_base_type(JointBaseType::RELATIVE_JOINT);
-        else
-            request.mutable_target()->set_base_type(JointBaseType::ABSOLUTE_JOINT);
+        // request.mutable_target()->set_base_type(static_cast<JointBaseType>(base_type));
+        request.mutable_target()->set_base_type(
+            base_type == 1 ? JointBaseType::RELATIVE_JOINT : JointBaseType::ABSOLUTE_JOINT);
 
         // set blending
         request.mutable_blending()->set_type(static_cast<BlendingType_Type>(blending_type));
@@ -690,124 +696,68 @@ bool IndyDCP3::movej(const std::vector<float> jtarget,
         //    STOP_COND  = 1;
         //    PAUSE_COND = 2;
 
-        // set post_condition - io condition
-        if(!di_condition.di.empty())
+        for (const auto& [address, state] : di_condition.di)
         {
-            std::map<unsigned int, int>::iterator iter;
-
-            size = di_condition.di.size();
-            for(iter = di_condition.di.begin(); iter != di_condition.di.end(); iter++)
-            {
-                Nrmk::IndyFramework::DigitalSignal *di_buff;
-                di_buff = request.mutable_post_condition()->mutable_io_cond()->add_di();
-                di_buff->set_address(iter->first);
-                di_buff->set_state(static_cast<DigitalState>(iter->second));
-            }
+            Nrmk::IndyFramework::DigitalSignal* di_buff = request.mutable_post_condition()->mutable_io_cond()->add_di();
+            di_buff->set_address(address);
+            di_buff->set_state(static_cast<DigitalState>(state));
         }
 
-        if(!di_condition.end_di.empty())
+        for (const auto& [address, state] : di_condition.end_di)
         {
-            std::map<unsigned int, int>::iterator iter;
-
-            size = di_condition.end_di.size();
-            for(iter = di_condition.end_di.begin(); iter != di_condition.end_di.end(); iter++)
-            {
-                Nrmk::IndyFramework::DigitalSignal *enddi_buff;
-                enddi_buff = request.mutable_post_condition()->mutable_io_cond()->add_end_di();
-                enddi_buff->set_address(iter->first);
-                enddi_buff->set_state(static_cast<DigitalState>(iter->second));
-            }
+            Nrmk::IndyFramework::DigitalSignal* enddi_buff = request.mutable_post_condition()->mutable_io_cond()->add_end_di();
+            enddi_buff->set_address(address);
+            enddi_buff->set_state(static_cast<DigitalState>(state));
         }
 
-        // set post_condition - variable condition
-        if(!var_condition.bool_vars.empty())
+        // Set post_condition - Variable condition
+        for (const auto& [addr, value] : var_condition.bool_vars)
         {
-            std::map<unsigned int, bool>::iterator iter;
-
-            size = var_condition.bool_vars.size();
-            for(iter = var_condition.bool_vars.begin(); iter != var_condition.bool_vars.end(); iter++)
-            {
-                Nrmk::IndyFramework::BoolVariable *bool_buff;
-                bool_buff = request.mutable_post_condition()->mutable_var_cond()->add_b_vars();
-                bool_buff->set_addr(iter->first);
-                bool_buff->set_value(iter->second);
-            }
+            Nrmk::IndyFramework::BoolVariable* bool_buff = request.mutable_post_condition()->mutable_var_cond()->add_b_vars();
+            bool_buff->set_addr(addr);
+            bool_buff->set_value(value);
         }
 
-        if(!var_condition.int_vars.empty())
+        for (const auto& [addr, value] : var_condition.int_vars)
         {
-            std::map<unsigned int, int>::iterator iter;
-
-            size = var_condition.int_vars.size();
-            for(iter = var_condition.int_vars.begin(); iter != var_condition.int_vars.end(); iter++)
-            {
-                Nrmk::IndyFramework::IntVariable *int_buff;
-                int_buff = request.mutable_post_condition()->mutable_var_cond()->add_i_vars();
-                int_buff->set_addr(iter->first);
-                int_buff->set_value(iter->second);
-            }
+            Nrmk::IndyFramework::IntVariable* int_buff = request.mutable_post_condition()->mutable_var_cond()->add_i_vars();
+            int_buff->set_addr(addr);
+            int_buff->set_value(value);
         }
 
-        if(!var_condition.float_vars.empty())
+        for (const auto& [addr, value] : var_condition.float_vars)
         {
-            std::map<unsigned int, float>::iterator iter;
-
-            size = var_condition.float_vars.size();
-            for(iter = var_condition.float_vars.begin(); iter != var_condition.float_vars.end(); iter++)
-            {
-                Nrmk::IndyFramework::FloatVariable *float_buff;
-                float_buff = request.mutable_post_condition()->mutable_var_cond()->add_f_vars();
-                float_buff->set_addr(iter->first);
-                float_buff->set_value(iter->second);
-            }
+            Nrmk::IndyFramework::FloatVariable* float_buff = request.mutable_post_condition()->mutable_var_cond()->add_f_vars();
+            float_buff->set_addr(addr);
+            float_buff->set_value(value);
         }
 
-        if(!var_condition.joint_vars.empty())
+        for (const auto& [addr, values] : var_condition.joint_vars)
         {
-            std::map<unsigned int, std::vector<float>>::iterator iter;
+            Nrmk::IndyFramework::JPosVariable* jpos_buff = request.mutable_post_condition()->mutable_var_cond()->add_j_vars();
+            jpos_buff->set_addr(addr);
 
-            size = var_condition.joint_vars.size();
-            for(iter = var_condition.joint_vars.begin(); iter != var_condition.joint_vars.end(); iter++)
-            {
-                Nrmk::IndyFramework::JPosVariable *jpos_buff;
-                jpos_buff = request.mutable_post_condition()->mutable_var_cond()->add_j_vars();
-                jpos_buff->set_addr(iter->first);
+            if (_cobotDOF != values.size())
+                return false;
 
-                if(_cobotDOF!=iter->second.size())
-                    return  false;
-
-                for(unsigned int i=0;i<_cobotDOF;i++)
-                    jpos_buff->set_jpos(i, iter->second[i]);
-            }
+            for (unsigned int i = 0; i < _cobotDOF; i++)
+                jpos_buff->set_jpos(i, values[i]);
         }
 
-        if(!var_condition.task_vars.empty())
+        for (const auto& [addr, values] : var_condition.task_vars)
         {
-            std::map<unsigned int, std::array<float, 6>>::iterator iter;
+            Nrmk::IndyFramework::TPosVariable* tpos_buff = request.mutable_post_condition()->mutable_var_cond()->add_t_vars();
+            tpos_buff->set_addr(addr);
 
-            size = var_condition.task_vars.size();
-            for(iter = var_condition.task_vars.begin(); iter != var_condition.task_vars.end(); iter++)
-            {
-                Nrmk::IndyFramework::TPosVariable *tpos_buff;
-                tpos_buff = request.mutable_post_condition()->mutable_var_cond()->add_t_vars();
-                tpos_buff->set_addr(iter->first);
-                for(int i=0;i<6;i++)
-                    tpos_buff->set_tpos(i, iter->second[i]);
-            }
+            for (int i = 0; i < 6; i++)
+                tpos_buff->set_tpos(i, values[i]);
         }
 
-        if(!var_condition.modbus_vars.empty())
+        for (const auto& [addr, value] : var_condition.modbus_vars)
         {
-            std::map<unsigned int, int>::iterator iter;
-
-            size = var_condition.modbus_vars.size();
-            for(iter = var_condition.modbus_vars.begin(); iter != var_condition.modbus_vars.end(); iter++)
-            {
-                Nrmk::IndyFramework::ModbusVariable *modbus_buff;
-                modbus_buff = request.mutable_post_condition()->mutable_var_cond()->add_m_vars();
-                modbus_buff->set_addr(iter->first);
-                modbus_buff->set_value(iter->second);
-            }
+            Nrmk::IndyFramework::ModbusVariable* modbus_buff = request.mutable_post_condition()->mutable_var_cond()->add_m_vars();
+            modbus_buff->set_addr(addr);
+            modbus_buff->set_value(value);
         }
 
         request.set_vel_ratio(vel_ratio);
@@ -828,7 +778,7 @@ bool IndyDCP3::movej(const std::vector<float> jtarget,
     }
 }
 
-bool IndyDCP3::movej_time(const std::vector<float> jtarget,
+bool IndyDCP3::movej_time(const std::vector<float>& jtarget,
                      const int base_type,
                      const int blending_type,
                      const float blending_radius,
@@ -855,8 +805,6 @@ bool IndyDCP3::movej_time(const std::vector<float> jtarget,
     Nrmk::IndyFramework::Response response;
     grpc::ClientContext context;
 
-    // int size;
-    size_t size;
     try
     {
         // tarJ.set_j_start();
@@ -865,15 +813,13 @@ bool IndyDCP3::movej_time(const std::vector<float> jtarget,
         }
 
         // set target
-        for (std::size_t i=0;i<jtarget.size();i++){
-            request.mutable_target()->add_j_target(jtarget[i]);
+        for (const auto& pos : jtarget){
+            request.mutable_target()->add_j_target(pos);
         }
 
         // set base type
-        if(base_type == 1)
-            request.mutable_target()->set_base_type(JointBaseType::RELATIVE_JOINT);
-        else
-            request.mutable_target()->set_base_type(JointBaseType::ABSOLUTE_JOINT);
+        request.mutable_target()->set_base_type(
+            base_type == 1 ? JointBaseType::RELATIVE_JOINT : JointBaseType::ABSOLUTE_JOINT);
 
         // set blending
         request.mutable_blending()->set_type(static_cast<BlendingType_Type>(blending_type));
@@ -897,123 +843,68 @@ bool IndyDCP3::movej_time(const std::vector<float> jtarget,
         //    PAUSE_COND = 2;
 
         // set post_condition - io condition
-        if(!di_condition.di.empty())
+        for (const auto& [address, state] : di_condition.di)
         {
-            std::map<unsigned int, int>::iterator iter;
-
-            size = di_condition.di.size();
-            for(iter = di_condition.di.begin(); iter != di_condition.di.end(); iter++)
-            {
-                Nrmk::IndyFramework::DigitalSignal *di_buff;
-                di_buff = request.mutable_post_condition()->mutable_io_cond()->add_di();
-                di_buff->set_address(iter->first);
-                di_buff->set_state(static_cast<DigitalState>(iter->second));
-            }
+            Nrmk::IndyFramework::DigitalSignal* di_buff = request.mutable_post_condition()->mutable_io_cond()->add_di();
+            di_buff->set_address(address);
+            di_buff->set_state(static_cast<DigitalState>(state));
         }
 
-        if(!di_condition.end_di.empty())
+        for (const auto& [address, state] : di_condition.end_di)
         {
-            std::map<unsigned int, int>::iterator iter;
-
-            size = di_condition.end_di.size();
-            for(iter = di_condition.end_di.begin(); iter != di_condition.end_di.end(); iter++)
-            {
-                Nrmk::IndyFramework::DigitalSignal *enddi_buff;
-                enddi_buff = request.mutable_post_condition()->mutable_io_cond()->add_end_di();
-                enddi_buff->set_address(iter->first);
-                enddi_buff->set_state(static_cast<DigitalState>(iter->second));
-            }
+            Nrmk::IndyFramework::DigitalSignal* enddi_buff = request.mutable_post_condition()->mutable_io_cond()->add_end_di();
+            enddi_buff->set_address(address);
+            enddi_buff->set_state(static_cast<DigitalState>(state));
         }
 
-        // set post_condition - variable condition
-        if(!var_condition.bool_vars.empty())
+        // Set post_condition - Variable condition
+        for (const auto& [addr, value] : var_condition.bool_vars)
         {
-            std::map<unsigned int, bool>::iterator iter;
-
-            size = var_condition.bool_vars.size();
-            for(iter = var_condition.bool_vars.begin(); iter != var_condition.bool_vars.end(); iter++)
-            {
-                Nrmk::IndyFramework::BoolVariable *bool_buff;
-                bool_buff = request.mutable_post_condition()->mutable_var_cond()->add_b_vars();
-                bool_buff->set_addr(iter->first);
-                bool_buff->set_value(iter->second);
-            }
+            Nrmk::IndyFramework::BoolVariable* bool_buff = request.mutable_post_condition()->mutable_var_cond()->add_b_vars();
+            bool_buff->set_addr(addr);
+            bool_buff->set_value(value);
         }
 
-        if(!var_condition.int_vars.empty())
+        for (const auto& [addr, value] : var_condition.int_vars)
         {
-            std::map<unsigned int, int>::iterator iter;
-
-            size = var_condition.int_vars.size();
-            for(iter = var_condition.int_vars.begin(); iter != var_condition.int_vars.end(); iter++)
-            {
-                Nrmk::IndyFramework::IntVariable *int_buff;
-                int_buff = request.mutable_post_condition()->mutable_var_cond()->add_i_vars();
-                int_buff->set_addr(iter->first);
-                int_buff->set_value(iter->second);
-            }
+            Nrmk::IndyFramework::IntVariable* int_buff = request.mutable_post_condition()->mutable_var_cond()->add_i_vars();
+            int_buff->set_addr(addr);
+            int_buff->set_value(value);
         }
 
-        if(!var_condition.float_vars.empty())
+        for (const auto& [addr, value] : var_condition.float_vars)
         {
-            std::map<unsigned int, float>::iterator iter;
-
-            size = var_condition.float_vars.size();
-            for(iter = var_condition.float_vars.begin(); iter != var_condition.float_vars.end(); iter++)
-            {
-                Nrmk::IndyFramework::FloatVariable *float_buff;
-                float_buff = request.mutable_post_condition()->mutable_var_cond()->add_f_vars();
-                float_buff->set_addr(iter->first);
-                float_buff->set_value(iter->second);
-            }
+            Nrmk::IndyFramework::FloatVariable* float_buff = request.mutable_post_condition()->mutable_var_cond()->add_f_vars();
+            float_buff->set_addr(addr);
+            float_buff->set_value(value);
         }
 
-        if(!var_condition.joint_vars.empty())
+        for (const auto& [addr, values] : var_condition.joint_vars)
         {
-            std::map<unsigned int, std::vector<float>>::iterator iter;
+            Nrmk::IndyFramework::JPosVariable* jpos_buff = request.mutable_post_condition()->mutable_var_cond()->add_j_vars();
+            jpos_buff->set_addr(addr);
 
-            size = var_condition.joint_vars.size();
-            for(iter = var_condition.joint_vars.begin(); iter != var_condition.joint_vars.end(); iter++)
-            {
-                Nrmk::IndyFramework::JPosVariable *jpos_buff;
-                jpos_buff = request.mutable_post_condition()->mutable_var_cond()->add_j_vars();
-                jpos_buff->set_addr(iter->first);
+            if (_cobotDOF != values.size())
+                return false;
 
-                if(_cobotDOF!=iter->second.size())
-                    return  false;
-
-                for(unsigned int i=0;i<_cobotDOF;i++)
-                    jpos_buff->set_jpos(i, iter->second[i]);
-            }
+            for (unsigned int i = 0; i < _cobotDOF; i++)
+                jpos_buff->set_jpos(i, values[i]);
         }
 
-        if(!var_condition.task_vars.empty())
+        for (const auto& [addr, values] : var_condition.task_vars)
         {
-            std::map<unsigned int, std::array<float, 6>>::iterator iter;
+            Nrmk::IndyFramework::TPosVariable* tpos_buff = request.mutable_post_condition()->mutable_var_cond()->add_t_vars();
+            tpos_buff->set_addr(addr);
 
-            size = var_condition.task_vars.size();
-            for(iter = var_condition.task_vars.begin(); iter != var_condition.task_vars.end(); iter++)
-            {
-                Nrmk::IndyFramework::TPosVariable *tpos_buff;
-                tpos_buff = request.mutable_post_condition()->mutable_var_cond()->add_t_vars();
-                tpos_buff->set_addr(iter->first);
-                for(int i=0;i<6;i++)
-                    tpos_buff->set_tpos(i, iter->second[i]);
-            }
+            for (int i = 0; i < 6; i++)
+                tpos_buff->set_tpos(i, values[i]);
         }
 
-        if(!var_condition.modbus_vars.empty())
+        for (const auto& [addr, value] : var_condition.modbus_vars)
         {
-            std::map<unsigned int, int>::iterator iter;
-
-            size = var_condition.modbus_vars.size();
-            for(iter = var_condition.modbus_vars.begin(); iter != var_condition.modbus_vars.end(); iter++)
-            {
-                Nrmk::IndyFramework::ModbusVariable *modbus_buff;
-                modbus_buff = request.mutable_post_condition()->mutable_var_cond()->add_m_vars();
-                modbus_buff->set_addr(iter->first);
-                modbus_buff->set_value(iter->second);
-            }
+            Nrmk::IndyFramework::ModbusVariable* modbus_buff = request.mutable_post_condition()->mutable_var_cond()->add_m_vars();
+            modbus_buff->set_addr(addr);
+            modbus_buff->set_value(value);
         }
 
         request.set_time(move_time);
@@ -1033,7 +924,7 @@ bool IndyDCP3::movej_time(const std::vector<float> jtarget,
 }
 
 
-bool IndyDCP3::movel(const std::array<float, 6> ttarget,
+bool IndyDCP3::movel(const std::array<float, 6>& ttarget,
                      const int base_type,
                      const int blending_type,
                      const float blending_radius,
@@ -1044,7 +935,8 @@ bool IndyDCP3::movel(const std::array<float, 6> ttarget,
                      const int react_type,
                      DCPDICond di_condition,
                      DCPVarCond var_condition,
-                     const bool teaching_mode)
+                     const bool teaching_mode,
+                     const bool bypass_singular)
 {
     /*
         ttarget = [mm, mm, mm, deg, deg, deg]
@@ -1061,12 +953,17 @@ bool IndyDCP3::movel(const std::array<float, 6> ttarget,
     try
     {
         // Set target
-        for (std::size_t i = 0; i < ttarget.size(); i++){
-            request.mutable_target()->add_t_target(ttarget[i]);
+        // for (std::size_t i = 0; i < ttarget.size(); i++){
+        //     request.mutable_target()->add_t_target(ttarget[i]);
+        // }
+        for (const auto& pos : ttarget){
+            request.mutable_target()->add_t_target(pos);
         }
 
         // Set base type
-        request.mutable_target()->set_base_type(static_cast<TaskBaseType>(base_type));
+        // request.mutable_target()->set_base_type(static_cast<TaskBaseType>(base_type));
+        request.mutable_target()->set_base_type(
+            base_type == 1 ? TaskBaseType::RELATIVE_TASK : TaskBaseType::ABSOLUTE_TASK);
 
         // Set blending
         request.mutable_blending()->set_type(static_cast<BlendingType_Type>(blending_type));
@@ -1145,6 +1042,7 @@ bool IndyDCP3::movel(const std::array<float, 6> ttarget,
         request.set_vel_ratio(vel_ratio);
         request.set_acc_ratio(acc_ratio);
         request.set_teaching_mode(teaching_mode);
+        request.set_bypass_singular(bypass_singular);
 
         grpc::Status status = control_stub->MoveL(&context, request, &response);
         if (!status.ok()){
@@ -1161,7 +1059,7 @@ bool IndyDCP3::movel(const std::array<float, 6> ttarget,
 }
 
 
-bool IndyDCP3::movel_time(const std::array<float, 6> ttarget,
+bool IndyDCP3::movel_time(const std::array<float, 6>& ttarget,
                      const int base_type,
                      const int blending_type,
                      const float blending_radius,
@@ -1187,12 +1085,14 @@ bool IndyDCP3::movel_time(const std::array<float, 6> ttarget,
     try
     {
         // Set target
-        for (std::size_t i = 0; i < ttarget.size(); i++){
-            request.mutable_target()->add_t_target(ttarget[i]);
+        for (const auto& pos : ttarget){
+            request.mutable_target()->add_t_target(pos);
         }
 
         // Set base type
-        request.mutable_target()->set_base_type(static_cast<TaskBaseType>(base_type));
+        // request.mutable_target()->set_base_type(static_cast<TaskBaseType>(base_type));
+        request.mutable_target()->set_base_type(
+            base_type == 1 ? TaskBaseType::RELATIVE_TASK : TaskBaseType::ABSOLUTE_TASK);
 
         // Set blending
         request.mutable_blending()->set_type(static_cast<BlendingType_Type>(blending_type));
@@ -1284,8 +1184,8 @@ bool IndyDCP3::movel_time(const std::array<float, 6> ttarget,
     }
 }                  
 
-bool IndyDCP3::movec(const std::array<float, 6> tpos1,
-                     const std::array<float, 6> tpos2,
+bool IndyDCP3::movec(const std::array<float, 6>& tpos1,
+                     const std::array<float, 6>& tpos2,
                      const float angle,
                      const int setting_type,
                      const int move_type,
@@ -1299,7 +1199,8 @@ bool IndyDCP3::movec(const std::array<float, 6> tpos1,
                      const int react_type,
                      DCPDICond di_condition,
                      DCPVarCond var_condition,
-                     const bool teaching_mode)
+                     const bool teaching_mode,
+                     const bool bypass_singular)
 {
     /*
         tstart = [mm, mm, mm, deg, deg, deg]
@@ -1312,10 +1213,16 @@ bool IndyDCP3::movec(const std::array<float, 6> tpos1,
     try
     {
         // Set target positions
-        for (int i = 0; i < 6; i++)
-        {
-            request.mutable_target()->add_t_pos0(tpos1[i]);
-            request.mutable_target()->add_t_pos1(tpos2[i]);
+        // for (int i = 0; i < 6; i++)
+        // {
+        //     request.mutable_target()->add_t_pos0(tpos1[i]);
+        //     request.mutable_target()->add_t_pos1(tpos2[i]);
+        // }
+        for (const auto& pos : tpos1){
+            request.mutable_target()->add_t_pos0(pos);
+        }
+        for (const auto& pos : tpos2){
+            request.mutable_target()->add_t_pos1(pos);
         }
 
         // Set base type
@@ -1394,6 +1301,7 @@ bool IndyDCP3::movec(const std::array<float, 6> tpos1,
         request.set_teaching_mode(teaching_mode);
         request.set_setting_type(static_cast<CircularSettingType>(setting_type));
         request.set_move_type(static_cast<CircularMovingType>(move_type));
+        request.set_bypass_singular(bypass_singular);
 
         // Execute the gRPC call
         grpc::Status status = control_stub->MoveC(&context, request, &response);
@@ -1410,8 +1318,8 @@ bool IndyDCP3::movec(const std::array<float, 6> tpos1,
     }
 }
 
-bool IndyDCP3::movec_time(const std::array<float, 6> tpos1,
-                     const std::array<float, 6> tpos2,
+bool IndyDCP3::movec_time(const std::array<float, 6>& tpos1,
+                     const std::array<float, 6>& tpos2,
                      const float angle,
                      const int setting_type,
                      const int move_type,
@@ -1436,10 +1344,11 @@ bool IndyDCP3::movec_time(const std::array<float, 6> tpos1,
     try
     {
         // Set target positions
-        for (int i = 0; i < 6; i++)
-        {
-            request.mutable_target()->add_t_pos0(tpos1[i]);
-            request.mutable_target()->add_t_pos1(tpos2[i]);
+        for (const auto& pos : tpos1){
+            request.mutable_target()->add_t_pos0(pos);
+        }
+        for (const auto& pos : tpos2){
+            request.mutable_target()->add_t_pos1(pos);
         }
 
         // Set base type
@@ -1667,7 +1576,7 @@ bool IndyDCP3::stop_teleop()
     return true;
 }
 
-bool IndyDCP3::movetelej(const std::vector<float> jpos, 
+bool IndyDCP3::movetelej(const std::vector<float>& jpos, 
                         const float vel_ratio, 
                         const float acc_ratio, 
                         const TeleMethod method)
@@ -1686,9 +1595,12 @@ bool IndyDCP3::movetelej(const std::vector<float> jpos,
     }
 
     request.clear_jpos();
-    for (unsigned int i=0; i<_cobotDOF; i++) {
-        request.add_jpos(jpos[i]);
-        std::cout << "Joint " << jpos[i] << std::endl;
+    // for (unsigned int i=0; i<_cobotDOF; i++) {
+    //    request.add_jpos(jpos[i]);
+    //     // std::cout << "Joint " << jpos[i] << std::endl;
+    // }
+    for (const auto& pos : jpos){
+        request.add_jpos(pos);
     }
 
     request.set_vel_ratio(vel_ratio);
@@ -1703,7 +1615,7 @@ bool IndyDCP3::movetelej(const std::vector<float> jpos,
     return true;
 }
 
-bool IndyDCP3::movetelel(const std::array<float, 6> tpos, 
+bool IndyDCP3::movetelel(const std::array<float, 6>& tpos, 
                         const float vel_ratio, 
                         const float acc_ratio, 
                         const TeleMethod method)
@@ -1718,8 +1630,11 @@ bool IndyDCP3::movetelel(const std::array<float, 6> tpos,
     grpc::ClientContext context;
 
     request.clear_tpos();
-    for(int i=0; i<6;i++){
-        request.add_tpos(tpos[i]);
+    // for(int i=0; i<6;i++){
+    //     request.add_tpos(tpos[i]);
+    // }
+    for (const auto& pos : tpos){
+        request.add_tpos(pos);
     }
     
     request.set_vel_ratio(vel_ratio);
@@ -1773,6 +1688,30 @@ bool IndyDCP3::inverse_kin(const std::array<float, 6>& tpos,
 
     return true;
 }
+
+bool IndyDCP3::inverse_kin(const Nrmk::IndyFramework::InverseKinematicsReq& request,
+                           Nrmk::IndyFramework::InverseKinematicsRes& response) 
+{
+    /*
+        Inverse Kinematics
+        request  -> InverseKinematicsReq
+        response -> InverseKinematicsRes
+    */
+    grpc::ClientContext context;
+
+    if (_cobotDOF != request.init_jpos_size()) {
+        return false;
+    }
+
+    grpc::Status status = control_stub->InverseKinematics(&context, request, &response);
+    if (!status.ok()) {
+        std::cerr << "InverseKinematics RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+
+    return true;
+}
+
 
 bool IndyDCP3::set_direct_teaching(bool enable)
 {
@@ -2499,11 +2438,27 @@ bool IndyDCP3::set_mount_pos(float rot_y, float rot_z)
     request.set_ry(rot_y);
     request.set_rz(rot_z);
 
-    grpc::Status status = config_stub_->SetMountPos(&context, request, &response);
+    grpc::Status status = config_stub->SetMountPos(&context, request, &response);
 
-    if(status.ok())
-        return true;
-    return false;
+    if (!status.ok()) {
+        std::cerr << "SetMountPos RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::set_mount_pos(const Nrmk::IndyFramework::MountingAngles& mounting_angles)
+{
+    Nrmk::IndyFramework::Response response;
+    grpc::ClientContext context;
+
+    grpc::Status status = config_stub->SetMountPos(&context, mounting_angles, &response);
+
+    if (!status.ok()) {
+        std::cerr << "SetMountPos RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
 }
 
 bool IndyDCP3::get_mount_pos(float &rot_y, float &rot_z)
@@ -2512,14 +2467,30 @@ bool IndyDCP3::get_mount_pos(float &rot_y, float &rot_z)
     Nrmk::IndyFramework::MountingAngles response;
     grpc::ClientContext context;
 
-    grpc::Status status = config_stub_->GetMountPos(&context, request, &response);
+    grpc::Status status = config_stub->GetMountPos(&context, request, &response);
 
     rot_y = response.ry();
     rot_z = response.rz();
 
-    if(status.ok())
-        return true;
-    return false;
+    if (!status.ok()) {
+        std::cerr << "GetMountPos RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::get_mount_pos(Nrmk::IndyFramework::MountingAngles& mounting_angles)
+{
+    Nrmk::IndyFramework::Empty request;
+    grpc::ClientContext context;
+
+    grpc::Status status = config_stub->GetMountPos(&context, request, &mounting_angles);
+
+    if (!status.ok()) {
+        std::cerr << "GetMountPos RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
 }
 
 
@@ -2679,7 +2650,8 @@ bool IndyDCP3::get_safety_limits(Nrmk::IndyFramework::SafetyLimits& safety_limit
         tcp_force_limit_ratio   -> float
         tcp_speed_limit         -> float
         tcp_speed_limit_ratio   -> float
-        joint_limits            -> float[]
+        joint_upper_limits      -> float[]
+        joint_lower_limits      -> float[]
     */
 
     Nrmk::IndyFramework::Empty request;
@@ -2706,7 +2678,8 @@ bool IndyDCP3::set_safety_limits(const Nrmk::IndyFramework::SafetyLimits& safety
         tcp_force_limit_ratio   -> float
         tcp_speed_limit         -> float
         tcp_speed_limit_ratio   -> float
-        joint_limits            -> float[]
+        joint_upper_limits      -> float[]
+        joint_lower_limits      -> float[]
     */
 
     Nrmk::IndyFramework::Response response;
@@ -3032,7 +3005,6 @@ bool IndyDCP3::wait_for_motion_state(const std::string& wait_motion_state) {
     return true;
 }
 
-
 bool IndyDCP3::start_log() {
     /*
         Start realtime data logging
@@ -3061,3 +3033,1262 @@ bool IndyDCP3::end_log() {
     return set_int_variable(int_vars_to_set);
 }
 
+//------------- fw3.3 -------------
+
+bool IndyDCP3::get_violation_message_queue(Nrmk::IndyFramework::ViolationMessageQueue& violation_queue) {
+    /*
+    Violation Data:
+        violation_queue   -> ViolationData[]
+    */
+    grpc::ClientContext context;
+
+    grpc::Status status = rtde_stub->GetViolationMessageQueue(&context, Nrmk::IndyFramework::Empty(), &violation_queue);
+    if (!status.ok()) {
+        std::cerr << "Get Violation Message RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::get_stop_state(Nrmk::IndyFramework::StopState& stop_state) {
+    /*
+    Program Data:
+        category   -> StopCategory
+    */
+    grpc::ClientContext context;
+
+    grpc::Status status = rtde_stub->GetStopState(&context, Nrmk::IndyFramework::Empty(), &stop_state);
+    if (!status.ok()) {
+        std::cerr << "Get Stop State RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+// bool IndyDCP3::set_endtool_rs485_rx(const uint32_t word1, const uint32_t word2) {
+//     Nrmk::IndyFramework::EndtoolRS485Rx request;
+//     request.set_word1(word1);
+//     request.set_word2(word2);
+
+//     Nrmk::IndyFramework::Response response;
+//     grpc::ClientContext context;
+
+//     grpc::Status status = device_stub->SetEndRS485Rx(&context, request, &response);
+//     if (!status.ok()) {
+//         std::cerr << "Set Endtool RS485 RX RPC failed: " << status.error_message() << std::endl;
+//         return false;
+//     }
+//     return true;
+// }
+
+bool IndyDCP3::set_endtool_rs485_rx(const Nrmk::IndyFramework::EndtoolRS485Rx& request) {
+    Nrmk::IndyFramework::Response response;
+    grpc::ClientContext context;
+
+    grpc::Status status = device_stub->SetEndRS485Rx(&context, request, &response);
+    if (!status.ok()) {
+        std::cerr << "Set Endtool RS485 RX RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+
+bool IndyDCP3::get_endtool_rs485_rx(Nrmk::IndyFramework::EndtoolRS485Rx& rx_data) {
+    grpc::ClientContext context;
+
+    grpc::Status status = device_stub->GetEndRS485Rx(&context, Nrmk::IndyFramework::Empty(), &rx_data);
+    if (!status.ok()) {
+        std::cerr << "Get Endtool RS485 RX RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::get_endtool_rs485_tx(Nrmk::IndyFramework::EndtoolRS485Tx& tx_data) {
+    grpc::ClientContext context;
+
+    grpc::Status status = device_stub->GetEndRS485Tx(&context, Nrmk::IndyFramework::Empty(), &tx_data);
+    if (!status.ok()) {
+        std::cerr << "Get Endtool RS485 TX RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+// bool IndyDCP3::set_end_led_dim(const uint32_t led_dim) {
+//     Nrmk::IndyFramework::EndLedDim request;
+//     request.set_led_dim(led_dim);
+
+//     Nrmk::IndyFramework::Empty response;
+//     grpc::ClientContext context;
+
+//     grpc::Status status = device_stub->SetEndLedDim(&context, request, &response);
+//     if (!status.ok()) {
+//         std::cerr << "Set End LED Dim RPC failed: " << status.error_message() << std::endl;
+//         return false;
+//     }
+//     return true;
+// }
+
+bool IndyDCP3::set_end_led_dim(const Nrmk::IndyFramework::EndLedDim& request) {
+    Nrmk::IndyFramework::Empty response;
+    grpc::ClientContext context;
+
+    grpc::Status status = device_stub->SetEndLedDim(&context, request, &response);
+    if (!status.ok()) {
+        std::cerr << "Set End LED Dim RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+
+bool IndyDCP3::get_conveyor(Nrmk::IndyFramework::Conveyor& conveyor_data) {
+    grpc::ClientContext context;
+
+    grpc::Status status = device_stub->GetConveyor(&context, Nrmk::IndyFramework::Empty(), &conveyor_data);
+    if (!status.ok()) {
+        std::cerr << "Get Conveyor RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+// bool IndyDCP3::set_conveyor_by_name(const std::string& name) {
+//     Nrmk::IndyFramework::Name request;
+//     request.set_name(name);
+
+//     Nrmk::IndyFramework::Response response;
+//     grpc::ClientContext context;
+
+//     grpc::Status status = device_stub->SetConveyorByName(&context, request, &response);
+//     if (!status.ok()) {
+//         std::cerr << "Set Conveyor By Name RPC failed: " << status.error_message() << std::endl;
+//         return false;
+//     }
+//     return true;
+// }
+
+bool IndyDCP3::set_conveyor_by_name(const Nrmk::IndyFramework::Name& request) {
+    Nrmk::IndyFramework::Response response;
+    grpc::ClientContext context;
+
+    grpc::Status status = device_stub->SetConveyorByName(&context, request, &response);
+    if (!status.ok()) {
+        std::cerr << "Set Conveyor By Name RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+
+bool IndyDCP3::get_conveyor_state(Nrmk::IndyFramework::ConveyorState& conveyor_state) {
+    grpc::ClientContext context;
+
+    grpc::Status status = device_stub->GetConveyorState(&context, Nrmk::IndyFramework::Empty(), &conveyor_state);
+    if (!status.ok()) {
+        std::cerr << "Get Conveyor State RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::set_sander_command(const Nrmk::IndyFramework::SanderCommand::SanderType& sander_type, 
+                                  const std::string& ip, 
+                                  const float speed, 
+                                  const bool state) {
+    Nrmk::IndyFramework::SanderCommand request;
+    request.set_type(sander_type);
+    request.set_ip(ip);
+    request.set_speed(speed);
+    request.set_state(state);
+
+    Nrmk::IndyFramework::Response response;
+    grpc::ClientContext context;
+
+    grpc::Status status = device_stub->SetSanderCommand(&context, request, &response);
+    if (!status.ok()) {
+        std::cerr << "Set Sander Command RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::get_sander_command(Nrmk::IndyFramework::SanderCommand& sander_command) {
+    grpc::ClientContext context;
+
+    grpc::Status status = device_stub->GetSanderCommand(&context, Nrmk::IndyFramework::Empty(), &sander_command);
+    if (!status.ok()) {
+        std::cerr << "Get Sander Command RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::get_load_factors(Nrmk::IndyFramework::GetLoadFactorsRes& load_factors_res) {
+    Nrmk::IndyFramework::Empty request;
+    grpc::ClientContext context;
+
+    grpc::Status status = device_stub->GetLoadFactors(&context, request, &load_factors_res);
+    if (!status.ok()) {
+        std::cerr << "Get Load Factors RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::set_auto_mode(const bool on) {
+    Nrmk::IndyFramework::SetAutoModeReq request;
+    request.set_on(on);
+
+    Nrmk::IndyFramework::SetAutoModeRes response;
+    grpc::ClientContext context;
+
+    grpc::Status status = device_stub->SetAutoMode(&context, request, &response);
+    if (!status.ok()) {
+        std::cerr << "Set Auto Mode RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::check_auto_mode(Nrmk::IndyFramework::CheckAutoModeRes& check_auto_mode_res) {
+    Nrmk::IndyFramework::Empty request;
+    grpc::ClientContext context;
+
+    grpc::Status status = device_stub->CheckAutoMode(&context, request, &check_auto_mode_res);
+    if (!status.ok()) {
+        std::cerr << "Check Auto Mode RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::check_reduced_mode(Nrmk::IndyFramework::CheckReducedModeRes& reduced_mode_res) {
+    Nrmk::IndyFramework::Empty request;
+    grpc::ClientContext context;
+
+    grpc::Status status = device_stub->CheckReducedMode(&context, request, &reduced_mode_res);
+    if (!status.ok()) {
+        std::cerr << "Check Reduced Mode RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::get_safety_function_state(Nrmk::IndyFramework::SafetyFunctionState& safety_function_state) {
+    Nrmk::IndyFramework::Empty request;
+    grpc::ClientContext context;
+
+    grpc::Status status = device_stub->GetSafetyFunctionState(&context, request, &safety_function_state);
+    if (!status.ok()) {
+        std::cerr << "Get Safety Function State RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::request_safety_function(const Nrmk::IndyFramework::SafetyFunctionState& request) {
+    Nrmk::IndyFramework::Response response;
+    grpc::ClientContext context;
+
+    grpc::Status status = device_stub->RequestSafetyFunction(&context, request, &response);
+    if (!status.ok()) {
+        std::cerr << "Request Safety Function RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::get_safety_control_data(Nrmk::IndyFramework::SafetyControlData& safety_control_data) {
+    Nrmk::IndyFramework::Empty request;
+    grpc::ClientContext context;
+
+    grpc::Status status = device_stub->GetSafetyControlData(&context, request, &safety_control_data);
+    if (!status.ok()) {
+        std::cerr << "Get Safety Control Data RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::get_gripper_data(Nrmk::IndyFramework::GripperData& gripper_data) {
+    Nrmk::IndyFramework::Empty request;
+    grpc::ClientContext context;
+
+    grpc::Status status = device_stub->GetGripperData(&context, request, &gripper_data);
+    if (!status.ok()) {
+        std::cerr << "Get Gripper Data RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::set_gripper_command(const Nrmk::IndyFramework::GripperCommand& gripper_command) {
+    Nrmk::IndyFramework::Empty response;
+    grpc::ClientContext context;
+
+    grpc::Status status = device_stub->SetGripperCommand(&context, gripper_command, &response);
+    if (!status.ok()) {
+        std::cerr << "Set Gripper Command RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::activate_cri(const bool on) {
+    Nrmk::IndyFramework::State request;
+    request.set_enable(on);
+
+    Nrmk::IndyFramework::Response response;
+    grpc::ClientContext context;
+
+    grpc::Status status = cri_stub->SetActivate(&context, request, &response);
+    if (!status.ok()) {
+        std::cerr << "SetActivate RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::is_cri_active(bool& is_active) {
+    Nrmk::IndyFramework::Empty request;
+    Nrmk::IndyFramework::State response;
+    grpc::ClientContext context;
+
+    grpc::Status status = cri_stub->IsActivate(&context, request, &response);
+    if (!status.ok()) {
+        std::cerr << "IsActivate RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+
+    is_active = response.enable();
+    return true;
+}
+
+bool IndyDCP3::login_cri_server(const Nrmk::IndyFramework::Account& account) {
+    Nrmk::IndyFramework::Response response;
+    grpc::ClientContext context;
+
+    grpc::Status status = cri_stub->Login(&context, account, &response);
+    if (!status.ok()) {
+        std::cerr << "Login CRI Server RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::is_cri_login(bool& is_logged_in) {
+    Nrmk::IndyFramework::Empty request;
+    Nrmk::IndyFramework::State response;
+    grpc::ClientContext context;
+
+    grpc::Status status = cri_stub->IsLogin(&context, request, &response);
+    if (!status.ok()) {
+        std::cerr << "IsLogin RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+
+    is_logged_in = response.enable();
+    return true;
+}
+
+bool IndyDCP3::set_cri_target(const Nrmk::IndyFramework::CriTarget& target) {
+    Nrmk::IndyFramework::Response response;
+    grpc::ClientContext context;
+
+    grpc::Status status = cri_stub->SetTarget(&context, target, &response);
+    if (!status.ok()) {
+        std::cerr << "Set CRI Target RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::set_cri_option(const Nrmk::IndyFramework::State& option) {
+    Nrmk::IndyFramework::Response response;
+    grpc::ClientContext context;
+
+    grpc::Status status = cri_stub->SetOption(&context, option, &response);
+    if (!status.ok()) {
+        std::cerr << "Set CRI Option RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::get_cri_proj_list(Nrmk::IndyFramework::ProjectList& project_list) {
+    Nrmk::IndyFramework::Empty request;
+    grpc::ClientContext context;
+
+    grpc::Status status = cri_stub->GetProjList(&context, request, &project_list);
+    if (!status.ok()) {
+        std::cerr << "Get CRI Project List RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::get_cri(Nrmk::IndyFramework::CriData& cri_data) {
+    Nrmk::IndyFramework::Empty request;
+    grpc::ClientContext context;
+
+    grpc::Status status = cri_stub->GetCRI(&context, request, &cri_data);
+    if (!status.ok()) {
+        std::cerr << "Get CRI RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::movelf(const std::array<float, 6>& ttarget,
+                      const std::vector<bool>& enabledaxis,
+                      const std::vector<float>& desforce,
+                      const int base_type,
+                      const int blending_type,
+                      const float blending_radius,
+                      const float vel_ratio,
+                      const float acc_ratio,
+                      const bool const_cond,
+                      const int cond_type,
+                      const int react_type,
+                      DCPDICond di_condition,
+                      DCPVarCond var_condition,
+                      const bool teaching_mode)
+{
+    Nrmk::IndyFramework::MoveLFReq request;
+    Nrmk::IndyFramework::Response response;
+    grpc::ClientContext context;
+
+    try
+    {
+        // Set target
+        for (const auto& pos : ttarget){
+            request.mutable_target()->add_t_target(pos);
+        }
+
+        // Set base type
+        // request.mutable_target()->set_base_type(static_cast<TaskBaseType>(base_type));
+        request.mutable_target()->set_base_type(
+            base_type == 1 ? TaskBaseType::RELATIVE_TASK : TaskBaseType::ABSOLUTE_TASK);
+
+        // Set blending type and radius
+        request.mutable_blending()->set_type(static_cast<Nrmk::IndyFramework::BlendingType::Type>(blending_type));
+        request.mutable_blending()->set_blending_radius(blending_radius);
+
+        // Set desforce and enabledaxis
+        for (const auto& force : desforce){
+            request.add_des_force(force);
+        }
+        for (const auto& axis : enabledaxis){
+            request.add_enabled_force(axis);
+        }
+
+        // Set post condition
+        request.mutable_post_condition()->set_const_cond(const_cond);
+        request.mutable_post_condition()->set_type_cond(static_cast<MotionCondition_ConditionType>(cond_type));
+        request.mutable_post_condition()->set_type_react(static_cast<MotionCondition_ReactionType>(react_type));
+
+        // Set post_condition - IO condition
+        for (const auto& [address, state] : di_condition.di)
+        {
+            Nrmk::IndyFramework::DigitalSignal* di_buff = request.mutable_post_condition()->mutable_io_cond()->add_di();
+            di_buff->set_address(address);
+            di_buff->set_state(static_cast<DigitalState>(state));
+        }
+
+        for (const auto& [address, state] : di_condition.end_di)
+        {
+            Nrmk::IndyFramework::DigitalSignal* enddi_buff = request.mutable_post_condition()->mutable_io_cond()->add_end_di();
+            enddi_buff->set_address(address);
+            enddi_buff->set_state(static_cast<DigitalState>(state));
+        }
+
+        // Set post_condition - Variable condition
+        for (const auto& [addr, value] : var_condition.bool_vars)
+        {
+            Nrmk::IndyFramework::BoolVariable* bool_buff = request.mutable_post_condition()->mutable_var_cond()->add_b_vars();
+            bool_buff->set_addr(addr);
+            bool_buff->set_value(value);
+        }
+
+        for (const auto& [addr, value] : var_condition.int_vars)
+        {
+            Nrmk::IndyFramework::IntVariable* int_buff = request.mutable_post_condition()->mutable_var_cond()->add_i_vars();
+            int_buff->set_addr(addr);
+            int_buff->set_value(value);
+        }
+
+        for (const auto& [addr, value] : var_condition.float_vars)
+        {
+            Nrmk::IndyFramework::FloatVariable* float_buff = request.mutable_post_condition()->mutable_var_cond()->add_f_vars();
+            float_buff->set_addr(addr);
+            float_buff->set_value(value);
+        }
+
+        for (const auto& [addr, values] : var_condition.joint_vars)
+        {
+            Nrmk::IndyFramework::JPosVariable* jpos_buff = request.mutable_post_condition()->mutable_var_cond()->add_j_vars();
+            jpos_buff->set_addr(addr);
+
+            if (_cobotDOF != values.size())
+                return false;
+
+            for (unsigned int i = 0; i < _cobotDOF; i++)
+                jpos_buff->set_jpos(i, values[i]);
+        }
+
+        for (const auto& [addr, values] : var_condition.task_vars)
+        {
+            Nrmk::IndyFramework::TPosVariable* tpos_buff = request.mutable_post_condition()->mutable_var_cond()->add_t_vars();
+            tpos_buff->set_addr(addr);
+
+            for (int i = 0; i < 6; i++)
+                tpos_buff->set_tpos(i, values[i]);
+        }
+
+        for (const auto& [addr, value] : var_condition.modbus_vars)
+        {
+            Nrmk::IndyFramework::ModbusVariable* modbus_buff = request.mutable_post_condition()->mutable_var_cond()->add_m_vars();
+            modbus_buff->set_addr(addr);
+            modbus_buff->set_value(value);
+        }
+
+        request.set_vel_ratio(vel_ratio);
+        request.set_acc_ratio(acc_ratio);
+        request.set_teaching_mode(teaching_mode);
+
+        // Call the gRPC method
+        grpc::Status status = control_stub->MoveLF(&context, request, &response);
+        if (!status.ok()){
+            std::cerr << "MoveLF RPC failed: " << status.error_message() << std::endl;
+            return false;
+        }
+        return true;
+    }
+    catch (const std::string& err)
+    {
+        std::cerr << "Error occurred: " << err << std::endl;
+        return false;
+    }
+}
+
+bool IndyDCP3::get_transformed_ft_sensor_data(Nrmk::IndyFramework::TransformedFTSensorData& ft_sensor_data) {
+    /*
+    Transformed Force/Torque Sensor Data:
+        ft_Fx -> float N
+        ft_Fy -> float N
+        ft_Fz -> float N
+        ft_Tx -> float N*m
+        ft_Ty -> float N*m
+        ft_Tz -> float N*m
+    */
+    Nrmk::IndyFramework::Empty request;
+    grpc::ClientContext context;
+
+    grpc::Status status = control_stub->GetTransformedFTSensorData(&context, request, &ft_sensor_data);
+    if (!status.ok()) {
+        std::cerr << "Get Transformed FT Sensor Data RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::move_joint_traj(const std::vector<std::vector<float>>& q_list, 
+                               const std::vector<std::vector<float>>& qdot_list, 
+                               const std::vector<std::vector<float>>& qddot_list) {
+    Nrmk::IndyFramework::MoveJointTrajReq request;
+    Nrmk::IndyFramework::Response response;
+    grpc::ClientContext context;
+
+    try {
+        // q_list
+        for (const auto& q : q_list) {
+            Nrmk::IndyFramework::Vector* q_vector = request.add_q_list();
+            for (const auto& value : q) {
+                q_vector->add_values(value);
+            }
+        }
+
+        // qdot_list
+        for (const auto& qdot : qdot_list) {
+            Nrmk::IndyFramework::Vector* qdot_vector = request.add_qdot_list();
+            for (const auto& value : qdot) {
+                qdot_vector->add_values(value);
+            }
+        }
+
+        // qddot_list
+        for (const auto& qddot : qddot_list) {
+            Nrmk::IndyFramework::Vector* qddot_vector = request.add_qddot_list();
+            for (const auto& value : qddot) {
+                qddot_vector->add_values(value);
+            }
+        }
+
+        grpc::Status status = control_stub->MoveJointTraj(&context, request, &response);
+        if (!status.ok()) {
+            std::cerr << "MoveJointTraj RPC failed: " << status.error_message() << std::endl;
+            return false;
+        }
+        return true;
+    } catch (const std::string& err) {
+        std::cerr << "Error occurred: " << err << std::endl;
+        return false;
+    }
+}
+
+bool IndyDCP3::move_task_traj(const std::vector<std::vector<float>>& p_list, 
+                              const std::vector<std::vector<float>>& pdot_list, 
+                              const std::vector<std::vector<float>>& pddot_list) {
+    Nrmk::IndyFramework::MoveTaskTrajReq request;
+    Nrmk::IndyFramework::Response response;
+    grpc::ClientContext context;
+
+    try {
+        // p_list
+        for (const auto& p : p_list) {
+            Nrmk::IndyFramework::Vector* p_vector = request.add_p_list();
+            for (const auto& value : p) {
+                p_vector->add_values(value);
+            }
+        }
+
+        // pdot_list
+        for (const auto& pdot : pdot_list) {
+            Nrmk::IndyFramework::Vector* pdot_vector = request.add_pdot_list();
+            for (const auto& value : pdot) {
+                pdot_vector->add_values(value);
+            }
+        }
+
+        // pddot_list
+        for (const auto& pddot : pddot_list) {
+            Nrmk::IndyFramework::Vector* pddot_vector = request.add_pddot_list();
+            for (const auto& value : pddot) {
+                pddot_vector->add_values(value);
+            }
+        }
+
+        grpc::Status status = control_stub->MoveTaskTraj(&context, request, &response);
+        if (!status.ok()) {
+            std::cerr << "MoveTaskTraj RPC failed: " << status.error_message() << std::endl;
+            return false;
+        }
+        return true;
+    } catch (const std::string& err) {
+        std::cerr << "Error occurred: " << err << std::endl;
+        return false;
+    }
+}
+
+bool IndyDCP3::move_conveyor(const bool teaching_mode, 
+                             const bool bypass_singular, 
+                             const float acc_ratio,
+                             const bool const_cond,
+                             const int cond_type,
+                             const int react_type,
+                             DCPDICond di_condition,
+                             DCPVarCond var_condition) 
+{
+    Nrmk::IndyFramework::MoveConveyorReq request;
+    Nrmk::IndyFramework::Response response;
+    grpc::ClientContext context;
+
+    request.set_teaching_mode(teaching_mode);
+    request.set_bypass_singular(bypass_singular);
+    request.set_acc_ratio(acc_ratio);
+
+    // Set post condition
+    request.mutable_post_condition()->set_const_cond(const_cond);
+    request.mutable_post_condition()->set_type_cond(static_cast<MotionCondition_ConditionType>(cond_type));
+    request.mutable_post_condition()->set_type_react(static_cast<MotionCondition_ReactionType>(react_type));
+
+    // Set post_condition - IO condition
+    for (const auto& [address, state] : di_condition.di)
+    {
+        Nrmk::IndyFramework::DigitalSignal* di_buff = request.mutable_post_condition()->mutable_io_cond()->add_di();
+        di_buff->set_address(address);
+        di_buff->set_state(static_cast<DigitalState>(state));
+    }
+
+    for (const auto& [address, state] : di_condition.end_di)
+    {
+        Nrmk::IndyFramework::DigitalSignal* enddi_buff = request.mutable_post_condition()->mutable_io_cond()->add_end_di();
+        enddi_buff->set_address(address);
+        enddi_buff->set_state(static_cast<DigitalState>(state));
+    }
+
+    // Set post_condition - Variable condition
+    for (const auto& [addr, value] : var_condition.bool_vars)
+    {
+        Nrmk::IndyFramework::BoolVariable* bool_buff = request.mutable_post_condition()->mutable_var_cond()->add_b_vars();
+        bool_buff->set_addr(addr);
+        bool_buff->set_value(value);
+    }
+
+    for (const auto& [addr, value] : var_condition.int_vars)
+    {
+        Nrmk::IndyFramework::IntVariable* int_buff = request.mutable_post_condition()->mutable_var_cond()->add_i_vars();
+        int_buff->set_addr(addr);
+        int_buff->set_value(value);
+    }
+
+    for (const auto& [addr, value] : var_condition.float_vars)
+    {
+        Nrmk::IndyFramework::FloatVariable* float_buff = request.mutable_post_condition()->mutable_var_cond()->add_f_vars();
+        float_buff->set_addr(addr);
+        float_buff->set_value(value);
+    }
+
+    for (const auto& [addr, values] : var_condition.joint_vars)
+    {
+        Nrmk::IndyFramework::JPosVariable* jpos_buff = request.mutable_post_condition()->mutable_var_cond()->add_j_vars();
+        jpos_buff->set_addr(addr);
+
+        if (_cobotDOF != values.size())
+            return false;
+
+        for (unsigned int i = 0; i < _cobotDOF; i++)
+            jpos_buff->set_jpos(i, values[i]);
+    }
+
+    for (const auto& [addr, values] : var_condition.task_vars)
+    {
+        Nrmk::IndyFramework::TPosVariable* tpos_buff = request.mutable_post_condition()->mutable_var_cond()->add_t_vars();
+        tpos_buff->set_addr(addr);
+
+        for (int i = 0; i < 6; i++)
+            tpos_buff->set_tpos(i, values[i]);
+    }
+
+    for (const auto& [addr, value] : var_condition.modbus_vars)
+    {
+        Nrmk::IndyFramework::ModbusVariable* modbus_buff = request.mutable_post_condition()->mutable_var_cond()->add_m_vars();
+        modbus_buff->set_addr(addr);
+        modbus_buff->set_value(value);
+    }
+
+    grpc::Status status = control_stub->MoveConveyor(&context, request, &response);
+    if (!status.ok()) {
+        std::cerr << "MoveConveyor RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+
+bool IndyDCP3::move_axis(const std::array<float, 3>& start_mm,
+                         const std::array<float, 3>& target_mm,
+                         const bool is_absolute,
+                         const float vel_ratio,
+                         const float acc_ratio,
+                         const bool teaching_mode) 
+{
+    Nrmk::IndyFramework::MoveAxisReq request;
+    Nrmk::IndyFramework::Response response;
+    grpc::ClientContext context;
+
+    // start and target positions
+    for (const auto& pos : start_mm) {
+        request.add_start_mm(pos);
+    }
+    for (const auto& pos : target_mm) {
+        request.add_target_mm(pos);
+    }
+
+    // velocity and acceleration ratios
+    request.set_vel_percentage(vel_ratio);
+    request.set_acc_percentage(acc_ratio);
+
+    // movement type and teaching mode
+    request.set_is_absolute(is_absolute);
+    request.set_teaching_mode(teaching_mode);
+
+    grpc::Status status = control_stub->MoveLinearAxis(&context, request, &response);
+    if (!status.ok()) {
+        std::cerr << "MoveLinearAxis RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::forward_kin(const Nrmk::IndyFramework::ForwardKinematicsReq& request, 
+                           Nrmk::IndyFramework::ForwardKinematicsRes& response) 
+{
+    grpc::ClientContext context;
+
+    grpc::Status status = control_stub->ForwardKinematics(&context, request, &response);
+    if (!status.ok()) {
+        std::cerr << "ForwardKinematics RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+
+    return true;
+}
+
+bool IndyDCP3::set_tact_time(const Nrmk::IndyFramework::TactTime& tact_time) {
+    Nrmk::IndyFramework::Response response;
+    grpc::ClientContext context;
+
+    grpc::Status status = control_stub->SetTactTime(&context, tact_time, &response);
+    if (!status.ok()) {
+        std::cerr << "SetTactTime RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::get_tact_time(Nrmk::IndyFramework::TactTime& tact_time) {
+    Nrmk::IndyFramework::Empty request;
+    grpc::ClientContext context;
+
+    grpc::Status status = control_stub->GetTactTime(&context, request, &tact_time);
+    if (!status.ok()) {
+        std::cerr << "GetTactTime RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::set_ft_sensor_config(const Nrmk::IndyFramework::FTSensorDevice& sensor_config) {
+    Nrmk::IndyFramework::Response response;
+    grpc::ClientContext context;
+
+    grpc::Status status = config_stub->SetFTSensorConfig(&context, sensor_config, &response);
+    if (!status.ok()) {
+        std::cerr << "SetFTSensorConfig RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::get_ft_sensor_config(Nrmk::IndyFramework::FTSensorDevice& sensor_config) {
+    Nrmk::IndyFramework::Empty request;
+    grpc::ClientContext context;
+
+    grpc::Status status = config_stub->GetFTSensorConfig(&context, request, &sensor_config);
+    if (!status.ok()) {
+        std::cerr << "GetFTSensorConfig RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::set_do_config_list(const Nrmk::IndyFramework::DOConfigList& do_config_list) {
+    /*
+        DO Configuration List
+        {
+            'do_configs': [
+                {
+                    'state_code': 2,
+                    'state_name': "name",
+                    'onSignals': [{'address': 1, 'state': 1}, {'address': 2, 'state': 0}],
+                    'offSignals': [{'address': 1, 'state': 1}, {'address': 2, 'state': 0}]
+                }
+            ]
+        }
+    */
+    
+    Nrmk::IndyFramework::Response response;
+    grpc::ClientContext context;
+
+    grpc::Status status = config_stub->SetDOConfigList(&context, do_config_list, &response);
+    if (!status.ok()) {
+        std::cerr << "SetDOConfigList RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::get_do_config_list(Nrmk::IndyFramework::DOConfigList& do_config_list) {
+    /*
+        DO Configuration List
+        {
+            'do_configs': [
+                {
+                    'state_code': 2,
+                    'state_name': "name",
+                    'onSignals': [{'address': 1, 'state': 1}, {'address': 2, 'state': 0}],
+                    'offSignals': [{'address': 1, 'state': 1}, {'address': 2, 'state': 0}]
+                }
+            ]
+        }
+    */
+    Nrmk::IndyFramework::Empty request;
+    grpc::ClientContext context;
+
+    grpc::Status status = config_stub->GetDOConfigList(&context, request, &do_config_list);
+    if (!status.ok()) {
+        std::cerr << "GetDOConfigList RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::move_recover_joint(const std::vector<float>& jtarget, 
+                                const int base_type) {
+    /*
+        Move recover joint
+        jtarget = [deg, deg, deg, deg, deg, deg]    
+    */
+
+    Nrmk::IndyFramework::TargetJ request;
+    Nrmk::IndyFramework::Response response;
+    grpc::ClientContext context;
+
+    for (const auto& joint_pos : jtarget) {
+        request.add_j_target(joint_pos);
+    }
+
+    request.set_base_type(base_type == 1 ? JointBaseType::RELATIVE_JOINT : JointBaseType::ABSOLUTE_JOINT);
+
+    grpc::Status status = control_stub->MoveRecoverJoint(&context, request, &response);
+    if (!status.ok()) {
+        std::cerr << "MoveRecoverJoint RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::get_control_info(Nrmk::IndyFramework::ControlInfo& control_info) {
+    Nrmk::IndyFramework::Empty request;
+    grpc::ClientContext context;
+
+    grpc::Status status = control_stub->GetControlInfo(&context, request, &control_info);
+    if (!status.ok()) {
+        std::cerr << "GetControlInfo RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::check_aproach_retract_valid(const std::array<float, 6>& tpos, 
+                                           const std::vector<float>& init_jpos, 
+                                           const std::array<float, 6>& pre_tpos, 
+                                           const std::array<float, 6>& post_tpos, 
+                                           Nrmk::IndyFramework::CheckAproachRetractValidRes& response)
+{
+    Nrmk::IndyFramework::CheckAproachRetractValidReq request;
+    grpc::ClientContext context;
+
+    for (const auto& pos : tpos) {
+        request.add_tpos(pos);
+    }
+    for (const auto& jpos : init_jpos) {
+        request.add_init_jpos(jpos);
+    }
+    for (const auto& pos : pre_tpos) {
+        request.add_pre_tpos(pos);
+    }
+    for (const auto& pos : post_tpos) {
+        request.add_post_tpos(pos);
+    }
+
+    grpc::Status status = control_stub->CheckAproachRetractValid(&context, request, &response);
+    if (!status.ok()) {
+        std::cerr << "Check Aproach Retract Valid RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return response.is_valid();
+}
+
+bool IndyDCP3::get_pallet_point_list(const std::array<float, 6>& tpos, 
+                                     const std::vector<float>& jpos, 
+                                     const std::array<float, 6>& pre_tpos, 
+                                     const std::array<float, 6>& post_tpos, 
+                                     const int pallet_pattern, 
+                                     const int width, 
+                                     const int height, 
+                                     Nrmk::IndyFramework::GetPalletPointListRes& response)
+{
+    Nrmk::IndyFramework::GetPalletPointListReq request;
+    grpc::ClientContext context;
+
+    for (const auto& pos : tpos) {
+        request.add_tpos(pos);
+    }
+    for (const auto& joint_pos : jpos) {
+        request.add_jpos(joint_pos);
+    }
+    for (const auto& pos : pre_tpos) {
+        request.add_pre_tpos(pos);
+    }
+    for (const auto& pos : post_tpos) {
+        request.add_post_tpos(pos);
+    }
+    request.set_pallet_pattern(pallet_pattern);
+    request.set_width(width);
+    request.set_height(height);
+
+    grpc::Status status = control_stub->GetPalletPointList(&context, request, &response);
+    if (!status.ok()) {
+        std::cerr << "Get Pallet Point List RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::play_tuning_program(const std::string& prog_name, 
+                                   const int prog_idx, 
+                                   const Nrmk::IndyFramework::TuningSpace tuning_space, 
+                                   const Nrmk::IndyFramework::TuningPrecision precision, 
+                                   const uint32_t vel_level_max, 
+                                   Nrmk::IndyFramework::CollisionThresholds& response)
+{
+    Nrmk::IndyFramework::TuningProgram request;
+    grpc::ClientContext context;
+
+    request.mutable_program()->set_prog_name(prog_name);
+    request.mutable_program()->set_prog_idx(prog_idx);
+    request.set_tuning_space(tuning_space);
+    request.set_precision(precision);
+    request.set_vel_level_max(vel_level_max);
+
+    grpc::Status status = control_stub->PlayTuningProgram(&context, request, &response);
+    if (!status.ok()) {
+        std::cerr << "Play Tuning Program RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::set_di_config_list(const Nrmk::IndyFramework::DIConfigList& di_config_list) {
+    /*
+        DI Configuration List
+        {
+            'di_configs': [
+                {
+                    'function_code': 2,
+                    'function_name': "name",
+                    'triggerSignals': [{'address': 1, 'state': 1}, {'address': 2, 'state': 0}]
+                    'successSignals': [{'address': 1, 'state': 1}, {'address': 2, 'state': 0}]
+                    'failureSignals': [{'address': 1, 'state': 1}, {'address': 2, 'state': 0}]
+                }
+            ]
+        }
+    */
+    Nrmk::IndyFramework::Response response;
+    grpc::ClientContext context;
+
+    grpc::Status status = config_stub->SetDIConfigList(&context, di_config_list, &response);
+    if (!status.ok()) {
+        std::cerr << "Set DI Config List RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::get_di_config_list(Nrmk::IndyFramework::DIConfigList& di_config_list) {
+    /*
+        DI Configuration List
+        {
+            'di_configs': [
+                {
+                    'function_code': 2,
+                    'function_name': "name",
+                    'triggerSignals': [{'address': 1, 'state': 1}, {'address': 2, 'state': 0}],
+                    'successSignals': [{'address': 1, 'state': 1}, {'address': 2, 'state': 0}],
+                    'failureSignals': [{'address': 1, 'state': 1}, {'address': 2, 'state': 0}]
+                }
+            ]
+        }
+    */
+    
+    Nrmk::IndyFramework::Empty request;
+    grpc::ClientContext context;
+
+    grpc::Status status = config_stub->GetDIConfigList(&context, request, &di_config_list);
+    if (!status.ok()) {
+        std::cerr << "Get DI Config List RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::set_auto_servo_off(const Nrmk::IndyFramework::AutoServoOffConfig& config) {
+    /*
+        Auto Servo-Off Config
+        enable -> bool
+        time -> float
+    */
+    Nrmk::IndyFramework::Response response;
+    grpc::ClientContext context;
+
+    grpc::Status status = config_stub->SetAutoServoOff(&context, config, &response);
+    if (!status.ok()) {
+        std::cerr << "Set Auto Servo Off Config RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::get_auto_servo_off(Nrmk::IndyFramework::AutoServoOffConfig& config) {
+    /*
+        Auto Servo-Off Config
+        enable -> bool
+        time -> float
+    */
+    Nrmk::IndyFramework::Empty request;
+    grpc::ClientContext context;
+
+    grpc::Status status = config_stub->GetAutoServoOff(&context, request, &config);
+    if (!status.ok()) {
+        std::cerr << "Get Auto Servo Off Config RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::set_safety_stop_config(const Nrmk::IndyFramework::SafetyStopConfig& config) {
+    /*
+        Safety Stop Category:
+        jpos_limit_stop_cat = IMMEDIATE_BRAKE(0) | SMOOTH_BRAKE(1) | SMOOTH_ONLY(2)
+        jvel_limit_stop_cat = IMMEDIATE_BRAKE(0) | SMOOTH_BRAKE(1) | SMOOTH_ONLY(2)
+        jtau_limit_stop_cat = IMMEDIATE_BRAKE(0) | SMOOTH_BRAKE(1) | SMOOTH_ONLY(2)
+        tvel_limit_stop_cat = IMMEDIATE_BRAKE(0) | SMOOTH_BRAKE(1) | SMOOTH_ONLY(2)
+        tforce_limit_stop_cat = IMMEDIATE_BRAKE(0) | SMOOTH_BRAKE(1) | SMOOTH_ONLY(2)
+        power_limit_stop_cat = IMMEDIATE_BRAKE(0) | SMOOTH_BRAKE(1) | SMOOTH_ONLY(2)
+    */
+    Nrmk::IndyFramework::Response response;
+    grpc::ClientContext context;
+
+    grpc::Status status = config_stub->SetSafetyStopConfig(&context, config, &response);
+    if (!status.ok()) {
+        std::cerr << "Set Safety Stop Config RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::get_safety_stop_config(Nrmk::IndyFramework::SafetyStopConfig& config) {
+    /*
+        Safety Stop Category:
+        joint_position_limit_stop_cat = IMMEDIATE_BRAKE(0) | SMOOTH_BRAKE(1) | SMOOTH_ONLY(2)
+        joint_speed_limit_stop_cat = IMMEDIATE_BRAKE(0) | SMOOTH_BRAKE(1) | SMOOTH_ONLY(2)
+        joint_torque_limit_stop_cat = IMMEDIATE_BRAKE(0) | SMOOTH_BRAKE(1) | SMOOTH_ONLY(2)
+        tcp_speed_limit_stop_cat = IMMEDIATE_BRAKE(0) | SMOOTH_BRAKE(1) | SMOOTH_ONLY(2)
+        tcp_force_limit_stop_cat = IMMEDIATE_BRAKE(0) | SMOOTH_BRAKE(1) | SMOOTH_ONLY(2)
+        power_limit_stop_cat = IMMEDIATE_BRAKE(0) | SMOOTH_BRAKE(1) | SMOOTH_ONLY(2)
+    */
+    
+    Nrmk::IndyFramework::Empty request;
+    grpc::ClientContext context;
+
+    grpc::Status status = config_stub->GetSafetyStopConfig(&context, request, &config);
+    if (!status.ok()) {
+        std::cerr << "Get Safety Stop Config RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::get_reduced_ratio(float& ratio) {
+    Nrmk::IndyFramework::GetReducedRatioRes response;
+    Nrmk::IndyFramework::Empty request;
+    grpc::ClientContext context;
+
+    grpc::Status status = config_stub->GetReducedRatio(&context, request, &response);
+    if (!status.ok()) {
+        std::cerr << "Get Reduced Ratio RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    ratio = response.ratio();
+    return true;
+}
+
+bool IndyDCP3::get_reduced_speed(float& speed) {
+    Nrmk::IndyFramework::GetReducedSpeedRes response;
+    Nrmk::IndyFramework::Empty request;
+    grpc::ClientContext context;
+
+    grpc::Status status = config_stub->GetReducedSpeed(&context, request, &response);
+    if (!status.ok()) {
+        std::cerr << "Get Reduced Speed RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    speed = response.speed();
+    return true;
+}
+
+bool IndyDCP3::set_reduced_speed(const float speed) {
+    Nrmk::IndyFramework::SetReducedSpeedReq request;
+    Nrmk::IndyFramework::Response response;
+    grpc::ClientContext context;
+
+    request.set_speed(speed);
+
+    grpc::Status status = config_stub->SetReducedSpeed(&context, request, &response);
+    if (!status.ok()) {
+        std::cerr << "Set Reduced Speed RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::set_teleop_params(const Nrmk::IndyFramework::TeleOpParams& request) {
+    Nrmk::IndyFramework::Response response;
+    grpc::ClientContext context;
+
+    grpc::Status status = config_stub->SetTeleOpParams(&context, request, &response);
+    if (!status.ok()) {
+        std::cerr << "Set TeleOp Params RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::get_teleop_params(Nrmk::IndyFramework::TeleOpParams& response) {
+    /*
+        IO Data:
+        smooth_factor   -> float
+        cutoff_freq   -> float
+        error_gain  -> float
+    */
+    Nrmk::IndyFramework::Empty request;
+    grpc::ClientContext context;
+
+    grpc::Status status = config_stub->GetTeleOpParams(&context, request, &response);
+    if (!status.ok()) {
+        std::cerr << "Get TeleOp Params RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::get_kinematics_params(Nrmk::IndyFramework::KinematicsParams& response) {
+    Nrmk::IndyFramework::Empty request;
+    grpc::ClientContext context;
+
+    grpc::Status status = config_stub->GetKinematicsParams(&context, request, &response);
+    if (!status.ok()) {
+        std::cerr << "Get Kinematics Params RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::get_io_data(Nrmk::IndyFramework::IOData& response) {
+    /*
+        IO Data:
+        di   -> DigitalSignal[]
+        do   -> DigitalSignal[]
+        ai  -> AnalogSignal[]
+        ao  -> AnalogSignal[]
+        end_di  -> EndtoolSignal[]
+        end_do  -> EndtoolSignal[]
+        end_ai  -> AnalogSignal[]
+        end_ao  -> AnalogSignal[]
+        response  -> Response
+    */
+    Nrmk::IndyFramework::Empty request;
+    grpc::ClientContext context;
+
+    grpc::Status status = rtde_stub->GetIOData(&context, request, &response);
+    if (!status.ok()) {
+        std::cerr << "Get IO Data RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}

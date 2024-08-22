@@ -783,8 +783,8 @@ class IndyDCP3:
                                          use_integers_for_enums=True)
 
     def movelf(self, ttarget, enabledaxis, desforce,
-               blending_type=NO_BLENDING,
-               base_type=ABSOLUTE_TASK,
+               blending_type=BlendingType.NONE,
+               base_type=TaskBaseType.ABSOLUTE,
                blending_radius=0.0,
                vel_ratio=Limits.JogVelRatioDefault,
                acc_ratio=Limits.JogAccRatioDefault,

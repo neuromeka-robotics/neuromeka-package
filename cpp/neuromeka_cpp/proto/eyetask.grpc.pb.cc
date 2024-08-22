@@ -6,16 +6,19 @@
 #include "eyetask.grpc.pb.h"
 
 #include <functional>
-#include <grpcpp/impl/codegen/async_stream.h>
-#include <grpcpp/impl/codegen/async_unary_call.h>
-#include <grpcpp/impl/codegen/channel_interface.h>
-#include <grpcpp/impl/codegen/client_unary_call.h>
-#include <grpcpp/impl/codegen/client_callback.h>
-#include <grpcpp/impl/codegen/method_handler_impl.h>
-#include <grpcpp/impl/codegen/rpc_service_method.h>
-#include <grpcpp/impl/codegen/server_callback.h>
-#include <grpcpp/impl/codegen/service_type.h>
-#include <grpcpp/impl/codegen/sync_stream.h>
+#include <grpcpp/support/async_stream.h>
+#include <grpcpp/support/async_unary_call.h>
+#include <grpcpp/impl/channel_interface.h>
+#include <grpcpp/impl/client_unary_call.h>
+#include <grpcpp/support/client_callback.h>
+#include <grpcpp/support/message_allocator.h>
+#include <grpcpp/support/method_handler.h>
+#include <grpcpp/impl/rpc_service_method.h>
+#include <grpcpp/support/server_callback.h>
+#include <grpcpp/impl/server_callback_handlers.h>
+#include <grpcpp/server_context.h>
+#include <grpcpp/impl/service_type.h>
+#include <grpcpp/support/sync_stream.h>
 namespace EyeTask {
 
 static const char* EyeTask_method_names[] = {
@@ -27,150 +30,150 @@ static const char* EyeTask_method_names[] = {
 
 std::unique_ptr< EyeTask::Stub> EyeTask::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
   (void)options;
-  std::unique_ptr< EyeTask::Stub> stub(new EyeTask::Stub(channel));
+  std::unique_ptr< EyeTask::Stub> stub(new EyeTask::Stub(channel, options));
   return stub;
 }
 
-EyeTask::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel)
-  : channel_(channel), rpcmethod_GetImage_(EyeTask_method_names[0], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetClassList_(EyeTask_method_names[1], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_Detect_(EyeTask_method_names[2], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_Retrieve_(EyeTask_method_names[3], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+EyeTask::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
+  : channel_(channel), rpcmethod_GetImage_(EyeTask_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetClassList_(EyeTask_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Detect_(EyeTask_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Retrieve_(EyeTask_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status EyeTask::Stub::GetImage(::grpc::ClientContext* context, const ::EyeTask::ImageRequest& request, ::EyeTask::ImageResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetImage_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::EyeTask::ImageRequest, ::EyeTask::ImageResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetImage_, context, request, response);
 }
 
-void EyeTask::Stub::experimental_async::GetImage(::grpc::ClientContext* context, const ::EyeTask::ImageRequest* request, ::EyeTask::ImageResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetImage_, context, request, response, std::move(f));
+void EyeTask::Stub::async::GetImage(::grpc::ClientContext* context, const ::EyeTask::ImageRequest* request, ::EyeTask::ImageResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::EyeTask::ImageRequest, ::EyeTask::ImageResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetImage_, context, request, response, std::move(f));
 }
 
-void EyeTask::Stub::experimental_async::GetImage(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::EyeTask::ImageResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetImage_, context, request, response, std::move(f));
-}
-
-void EyeTask::Stub::experimental_async::GetImage(::grpc::ClientContext* context, const ::EyeTask::ImageRequest* request, ::EyeTask::ImageResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetImage_, context, request, response, reactor);
-}
-
-void EyeTask::Stub::experimental_async::GetImage(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::EyeTask::ImageResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetImage_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::EyeTask::ImageResponse>* EyeTask::Stub::AsyncGetImageRaw(::grpc::ClientContext* context, const ::EyeTask::ImageRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::EyeTask::ImageResponse>::Create(channel_.get(), cq, rpcmethod_GetImage_, context, request, true);
+void EyeTask::Stub::async::GetImage(::grpc::ClientContext* context, const ::EyeTask::ImageRequest* request, ::EyeTask::ImageResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetImage_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::EyeTask::ImageResponse>* EyeTask::Stub::PrepareAsyncGetImageRaw(::grpc::ClientContext* context, const ::EyeTask::ImageRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::EyeTask::ImageResponse>::Create(channel_.get(), cq, rpcmethod_GetImage_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::EyeTask::ImageResponse, ::EyeTask::ImageRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetImage_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::EyeTask::ImageResponse>* EyeTask::Stub::AsyncGetImageRaw(::grpc::ClientContext* context, const ::EyeTask::ImageRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetImageRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status EyeTask::Stub::GetClassList(::grpc::ClientContext* context, const ::EyeTask::Request& request, ::EyeTask::ClassList* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetClassList_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::EyeTask::Request, ::EyeTask::ClassList, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetClassList_, context, request, response);
 }
 
-void EyeTask::Stub::experimental_async::GetClassList(::grpc::ClientContext* context, const ::EyeTask::Request* request, ::EyeTask::ClassList* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetClassList_, context, request, response, std::move(f));
+void EyeTask::Stub::async::GetClassList(::grpc::ClientContext* context, const ::EyeTask::Request* request, ::EyeTask::ClassList* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::EyeTask::Request, ::EyeTask::ClassList, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetClassList_, context, request, response, std::move(f));
 }
 
-void EyeTask::Stub::experimental_async::GetClassList(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::EyeTask::ClassList* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetClassList_, context, request, response, std::move(f));
-}
-
-void EyeTask::Stub::experimental_async::GetClassList(::grpc::ClientContext* context, const ::EyeTask::Request* request, ::EyeTask::ClassList* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetClassList_, context, request, response, reactor);
-}
-
-void EyeTask::Stub::experimental_async::GetClassList(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::EyeTask::ClassList* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetClassList_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::EyeTask::ClassList>* EyeTask::Stub::AsyncGetClassListRaw(::grpc::ClientContext* context, const ::EyeTask::Request& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::EyeTask::ClassList>::Create(channel_.get(), cq, rpcmethod_GetClassList_, context, request, true);
+void EyeTask::Stub::async::GetClassList(::grpc::ClientContext* context, const ::EyeTask::Request* request, ::EyeTask::ClassList* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetClassList_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::EyeTask::ClassList>* EyeTask::Stub::PrepareAsyncGetClassListRaw(::grpc::ClientContext* context, const ::EyeTask::Request& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::EyeTask::ClassList>::Create(channel_.get(), cq, rpcmethod_GetClassList_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::EyeTask::ClassList, ::EyeTask::Request, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetClassList_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::EyeTask::ClassList>* EyeTask::Stub::AsyncGetClassListRaw(::grpc::ClientContext* context, const ::EyeTask::Request& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetClassListRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status EyeTask::Stub::Detect(::grpc::ClientContext* context, const ::EyeTask::DetectRequest& request, ::EyeTask::DetectResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_Detect_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::EyeTask::DetectRequest, ::EyeTask::DetectResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Detect_, context, request, response);
 }
 
-void EyeTask::Stub::experimental_async::Detect(::grpc::ClientContext* context, const ::EyeTask::DetectRequest* request, ::EyeTask::DetectResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_Detect_, context, request, response, std::move(f));
+void EyeTask::Stub::async::Detect(::grpc::ClientContext* context, const ::EyeTask::DetectRequest* request, ::EyeTask::DetectResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::EyeTask::DetectRequest, ::EyeTask::DetectResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Detect_, context, request, response, std::move(f));
 }
 
-void EyeTask::Stub::experimental_async::Detect(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::EyeTask::DetectResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_Detect_, context, request, response, std::move(f));
-}
-
-void EyeTask::Stub::experimental_async::Detect(::grpc::ClientContext* context, const ::EyeTask::DetectRequest* request, ::EyeTask::DetectResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_Detect_, context, request, response, reactor);
-}
-
-void EyeTask::Stub::experimental_async::Detect(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::EyeTask::DetectResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_Detect_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::EyeTask::DetectResponse>* EyeTask::Stub::AsyncDetectRaw(::grpc::ClientContext* context, const ::EyeTask::DetectRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::EyeTask::DetectResponse>::Create(channel_.get(), cq, rpcmethod_Detect_, context, request, true);
+void EyeTask::Stub::async::Detect(::grpc::ClientContext* context, const ::EyeTask::DetectRequest* request, ::EyeTask::DetectResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Detect_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::EyeTask::DetectResponse>* EyeTask::Stub::PrepareAsyncDetectRaw(::grpc::ClientContext* context, const ::EyeTask::DetectRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::EyeTask::DetectResponse>::Create(channel_.get(), cq, rpcmethod_Detect_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::EyeTask::DetectResponse, ::EyeTask::DetectRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Detect_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::EyeTask::DetectResponse>* EyeTask::Stub::AsyncDetectRaw(::grpc::ClientContext* context, const ::EyeTask::DetectRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncDetectRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status EyeTask::Stub::Retrieve(::grpc::ClientContext* context, const ::EyeTask::RetrieveRequest& request, ::EyeTask::DetectResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_Retrieve_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::EyeTask::RetrieveRequest, ::EyeTask::DetectResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Retrieve_, context, request, response);
 }
 
-void EyeTask::Stub::experimental_async::Retrieve(::grpc::ClientContext* context, const ::EyeTask::RetrieveRequest* request, ::EyeTask::DetectResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_Retrieve_, context, request, response, std::move(f));
+void EyeTask::Stub::async::Retrieve(::grpc::ClientContext* context, const ::EyeTask::RetrieveRequest* request, ::EyeTask::DetectResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::EyeTask::RetrieveRequest, ::EyeTask::DetectResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Retrieve_, context, request, response, std::move(f));
 }
 
-void EyeTask::Stub::experimental_async::Retrieve(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::EyeTask::DetectResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_Retrieve_, context, request, response, std::move(f));
-}
-
-void EyeTask::Stub::experimental_async::Retrieve(::grpc::ClientContext* context, const ::EyeTask::RetrieveRequest* request, ::EyeTask::DetectResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_Retrieve_, context, request, response, reactor);
-}
-
-void EyeTask::Stub::experimental_async::Retrieve(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::EyeTask::DetectResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_Retrieve_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::EyeTask::DetectResponse>* EyeTask::Stub::AsyncRetrieveRaw(::grpc::ClientContext* context, const ::EyeTask::RetrieveRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::EyeTask::DetectResponse>::Create(channel_.get(), cq, rpcmethod_Retrieve_, context, request, true);
+void EyeTask::Stub::async::Retrieve(::grpc::ClientContext* context, const ::EyeTask::RetrieveRequest* request, ::EyeTask::DetectResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Retrieve_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::EyeTask::DetectResponse>* EyeTask::Stub::PrepareAsyncRetrieveRaw(::grpc::ClientContext* context, const ::EyeTask::RetrieveRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::EyeTask::DetectResponse>::Create(channel_.get(), cq, rpcmethod_Retrieve_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::EyeTask::DetectResponse, ::EyeTask::RetrieveRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Retrieve_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::EyeTask::DetectResponse>* EyeTask::Stub::AsyncRetrieveRaw(::grpc::ClientContext* context, const ::EyeTask::RetrieveRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncRetrieveRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 EyeTask::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       EyeTask_method_names[0],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< EyeTask::Service, ::EyeTask::ImageRequest, ::EyeTask::ImageResponse>(
-          std::mem_fn(&EyeTask::Service::GetImage), this)));
+      new ::grpc::internal::RpcMethodHandler< EyeTask::Service, ::EyeTask::ImageRequest, ::EyeTask::ImageResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](EyeTask::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::EyeTask::ImageRequest* req,
+             ::EyeTask::ImageResponse* resp) {
+               return service->GetImage(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       EyeTask_method_names[1],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< EyeTask::Service, ::EyeTask::Request, ::EyeTask::ClassList>(
-          std::mem_fn(&EyeTask::Service::GetClassList), this)));
+      new ::grpc::internal::RpcMethodHandler< EyeTask::Service, ::EyeTask::Request, ::EyeTask::ClassList, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](EyeTask::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::EyeTask::Request* req,
+             ::EyeTask::ClassList* resp) {
+               return service->GetClassList(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       EyeTask_method_names[2],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< EyeTask::Service, ::EyeTask::DetectRequest, ::EyeTask::DetectResponse>(
-          std::mem_fn(&EyeTask::Service::Detect), this)));
+      new ::grpc::internal::RpcMethodHandler< EyeTask::Service, ::EyeTask::DetectRequest, ::EyeTask::DetectResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](EyeTask::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::EyeTask::DetectRequest* req,
+             ::EyeTask::DetectResponse* resp) {
+               return service->Detect(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       EyeTask_method_names[3],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< EyeTask::Service, ::EyeTask::RetrieveRequest, ::EyeTask::DetectResponse>(
-          std::mem_fn(&EyeTask::Service::Retrieve), this)));
+      new ::grpc::internal::RpcMethodHandler< EyeTask::Service, ::EyeTask::RetrieveRequest, ::EyeTask::DetectResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](EyeTask::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::EyeTask::RetrieveRequest* req,
+             ::EyeTask::DetectResponse* resp) {
+               return service->Retrieve(ctx, req, resp);
+             }, this)));
 }
 
 EyeTask::Service::~Service() {

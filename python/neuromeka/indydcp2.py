@@ -289,9 +289,8 @@ CMD_READ_DIRECT_VARIABLES                   = 461
 CMD_WRITE_DIRECT_VARIABLE                   = 462
 CMD_WRITE_DIRECT_VARIABLES                  = 463
 
-
-CMD_START_TELE                              = 500
-CMD_STOP_TELE                               = 501
+CMD_START_TELEOP                            = 500
+CMD_STOP_TELEOP                             = 501
 CMD_TELE_MOVEJ                              = 502
 CMD_TELE_MOVEL                              = 503
 
@@ -321,11 +320,25 @@ CMD_ACTIVE_SDK                              = 670
 CMD_SET_CUSTOM_CONTROL_MOD                  = 671
 CMD_GET_CUSTOM_CONTROL_MOD                  = 672
 
-
 CMD_SEND_KEYCOMMAND			                = 9996
 CMD_READ_MEMORY				                = 9997
 CMD_WRITE_MEMORY			                = 9998
 CMD_ERROR					                = 9999
+
+CMD_FOR_EXTENDED                            = 800
+CMD_SET_REDUCED_MODE                        = 130
+CMD_GET_REDUCED_MODE                        = 230
+CMD_SET_SYNC_MODE                           = 700
+
+#########################################################################
+# Extended DCP command                                                  #
+#########################################################################
+EXT_CMD_MOVE_TRAJ_BY_DATA                   = 1
+EXT_CMD_MOVE_TRAJ_BY_TXT_DATA               = 2
+EXT_CMD_MOVE_TRAJ_BY_FILE                   = 3
+EXT_CMD_MOVE_TRAJ_BY_TXT_FILE               = 4
+EXT_CMD_SET_JSON_PROG_START                 = 22
+
 
 #########################################################################
 # Error code                                                            #
@@ -473,7 +486,7 @@ def tcp_command(cmd, response_type=None):
 ###############################################################################
 # Indy Client Class                                                           #
 ###############################################################################
-class IndyDCPClient:
+class IndyDCP2:
     def __init__(self, server_ip, robot_name, robot_version=""):
         global JOINT_DOF
 
@@ -1239,9 +1252,6 @@ class IndyDCPClient:
         data.char74dArr = (ctypes.c_ubyte * 74)(*(key+date).encode('ascii'))
         return (data, data_size)
     
-
-
-
     @tcp_command(CMD_GET_INDY7_TX, 'int30dArr')
     def get_indy7_servo_tx(self, idx):
         pass
@@ -1569,6 +1579,14 @@ class IndyDCPClient:
         data.boolVal = isSyncMode
         return (data, data_size)
 
+    @tcp_command(CMD_GET_TPOS_VAL)
+    def get_tpos_variable(self):
+        pass
+
+    @tcp_command(CMD_GET_JPOS_VAL)
+    def get_jpos_variable(self):
+        pass
+
     ############################################################################
     ## Extended IndyDCP command (Check all)                                    #
     ############################################################################
@@ -1632,6 +1650,37 @@ class IndyDCPClient:
 
     def task_move_to_wp_set(self):
         pass
+
+    ############################################################################
+    ## TELEOP
+    ############################################################################
+
+    @tcp_command(CMD_START_TELEOP)
+    def start_tele_op(self, method):
+        data = Data()
+        data_size = 4
+        data.intVal = method
+        return (data, data_size)
+        
+    @tcp_command(CMD_STOP_TELEOP)
+    def stop_tele_op(self):
+        pass
+    
+    @tcp_command(CMD_TELE_MOVEJ)
+    def movetelej(self, q):
+        data = Data()
+        data_size = JOINT_DOF * 8
+        for i in range(JOINT_DOF):
+            data.doubleArr[i] = q[i]
+        return (data, data_size)
+    
+    @tcp_command(CMD_TELE_MOVEL)
+    def movetelel(self, p):
+        data = Data()
+        data_size = 6 * 8
+        for i in range(6):
+            data.double6dArr[i] = p[i]
+        return (data, data_size)
 
     ############################################################################
     ## JSON program
@@ -1718,7 +1767,7 @@ if __name__ == '__main__':
     _name = sys.argv[2]
 
     # Connect
-    indy= IndyDCPClient(_server_ip, _name)
+    indy= IndyDCP2(_server_ip, _name)
     indy.connect()
 
 

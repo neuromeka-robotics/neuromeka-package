@@ -21,6 +21,13 @@ else:
     from neuromeka.proto_step.eyetask_pb2_grpc import EyeTaskStub
     from neuromeka.proto_step import eyetask_pb2 as EyeTask_pb2
 
+import numpy as np
+class NumpyEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, np.ndarray):
+            return obj.tolist()
+        return json.JSONEncoder.default(self, obj)
+
 ConnectUI = '/main/connect'
 GetVersion = '/main/version'
 GetApp = '/main/app'

@@ -4,226 +4,255 @@
 #include "control.pb.h"
 
 #include <algorithm>
-
-#include <google/protobuf/stubs/common.h>
-#include <google/protobuf/io/coded_stream.h>
-#include <google/protobuf/extension_set.h>
-#include <google/protobuf/wire_format_lite.h>
-#include <google/protobuf/descriptor.h>
-#include <google/protobuf/generated_message_reflection.h>
-#include <google/protobuf/reflection_ops.h>
-#include <google/protobuf/wire_format.h>
+#include "google/protobuf/io/coded_stream.h"
+#include "google/protobuf/extension_set.h"
+#include "google/protobuf/wire_format_lite.h"
+#include "google/protobuf/descriptor.h"
+#include "google/protobuf/generated_message_reflection.h"
+#include "google/protobuf/reflection_ops.h"
+#include "google/protobuf/wire_format.h"
+#include "google/protobuf/generated_message_tctable_impl.h"
 // @@protoc_insertion_point(includes)
-#include <google/protobuf/port_def.inc>
+
+// Must be included last.
+#include "google/protobuf/port_def.inc"
+PROTOBUF_PRAGMA_INIT_SEG
+namespace _pb = ::google::protobuf;
+namespace _pbi = ::google::protobuf::internal;
+namespace _fl = ::google::protobuf::internal::field_layout;
 namespace Nrmk {
 namespace IndyFramework {
 }  // namespace IndyFramework
 }  // namespace Nrmk
-static constexpr ::PROTOBUF_NAMESPACE_ID::Metadata* file_level_metadata_control_2eproto = nullptr;
-static constexpr ::PROTOBUF_NAMESPACE_ID::EnumDescriptor const** file_level_enum_descriptors_control_2eproto = nullptr;
-static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_control_2eproto = nullptr;
-const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_control_2eproto::offsets[1] = {};
-static constexpr ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema* schemas = nullptr;
-static constexpr ::PROTOBUF_NAMESPACE_ID::Message* const* file_default_instances = nullptr;
+static constexpr const ::_pb::EnumDescriptor**
+    file_level_enum_descriptors_control_2eproto = nullptr;
+static constexpr const ::_pb::ServiceDescriptor**
+    file_level_service_descriptors_control_2eproto = nullptr;
+const ::uint32_t TableStruct_control_2eproto::offsets[1] = {};
+static constexpr ::_pbi::MigrationSchema* schemas = nullptr;
+static constexpr ::_pb::Message* const* file_default_instances = nullptr;
+const char descriptor_table_protodef_control_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
+    "\n\rcontrol.proto\022\022Nrmk.IndyFramework\032\022con"
+    "trol_msgs.proto\032\021config_msgs.proto\032\021comm"
+    "on_msgs.proto2\2304\n\007Control\022N\n\016GetControlI"
+    "nfo\022\031.Nrmk.IndyFramework.Empty\032\037.Nrmk.In"
+    "dyFramework.ControlInfo\"\000\022[\n\017ActivateInd"
+    "ySDK\022\".Nrmk.IndyFramework.SDKLicenseInfo"
+    "\032\".Nrmk.IndyFramework.SDKLicenseResp\"\000\022E"
+    "\n\005MoveJ\022\034.Nrmk.IndyFramework.MoveJReq\032\034."
+    "Nrmk.IndyFramework.Response\"\000\022G\n\006MoveJT\022"
+    "\035.Nrmk.IndyFramework.MoveJTReq\032\034.Nrmk.In"
+    "dyFramework.Response\"\000\022E\n\005MoveL\022\034.Nrmk.I"
+    "ndyFramework.MoveLReq\032\034.Nrmk.IndyFramewo"
+    "rk.Response\"\000\022G\n\006MoveLT\022\035.Nrmk.IndyFrame"
+    "work.MoveLTReq\032\034.Nrmk.IndyFramework.Resp"
+    "onse\"\000\022E\n\005MoveC\022\034.Nrmk.IndyFramework.Mov"
+    "eCReq\032\034.Nrmk.IndyFramework.Response\"\000\022G\n"
+    "\006MoveCT\022\035.Nrmk.IndyFramework.MoveCTReq\032\034"
+    ".Nrmk.IndyFramework.Response\"\000\022U\n\rMoveJo"
+    "intTraj\022$.Nrmk.IndyFramework.MoveJointTr"
+    "ajReq\032\034.Nrmk.IndyFramework.Response\"\000\022S\n"
+    "\014MoveTaskTraj\022#.Nrmk.IndyFramework.MoveT"
+    "askTrajReq\032\034.Nrmk.IndyFramework.Response"
+    "\"\000\022S\n\014MoveConveyor\022#.Nrmk.IndyFramework."
+    "MoveConveyorReq\032\034.Nrmk.IndyFramework.Res"
+    "ponse\"\000\022G\n\006WaitIO\022\035.Nrmk.IndyFramework.W"
+    "aitIOReq\032\034.Nrmk.IndyFramework.Response\"\000"
+    "\022K\n\010WaitTime\022\037.Nrmk.IndyFramework.WaitTi"
+    "meReq\032\034.Nrmk.IndyFramework.Response\"\000\022S\n"
+    "\014WaitProgress\022#.Nrmk.IndyFramework.WaitP"
+    "rogressReq\032\034.Nrmk.IndyFramework.Response"
+    "\"\000\022K\n\010WaitTraj\022\037.Nrmk.IndyFramework.Wait"
+    "TrajReq\032\034.Nrmk.IndyFramework.Response\"\000\022"
+    "O\n\nWaitRadius\022!.Nrmk.IndyFramework.WaitR"
+    "adiusReq\032\034.Nrmk.IndyFramework.Response\"\000"
+    "\022M\n\tMoveJCond\022 .Nrmk.IndyFramework.MoveJ"
+    "CondReq\032\034.Nrmk.IndyFramework.Response\"\000\022"
+    "Q\n\016MoveLinearAxis\022\037.Nrmk.IndyFramework.M"
+    "oveAxisReq\032\034.Nrmk.IndyFramework.Response"
+    "\"\000\022I\n\nStopMotion\022\033.Nrmk.IndyFramework.St"
+    "opCat\032\034.Nrmk.IndyFramework.Response\"\000\022K\n"
+    "\013PauseMotion\022\034.Nrmk.IndyFramework.PauseC"
+    "at\032\034.Nrmk.IndyFramework.Response\"\000\022N\n\021Se"
+    "tDirectTeaching\022\031.Nrmk.IndyFramework.Sta"
+    "te\032\034.Nrmk.IndyFramework.Response\"\000\022N\n\021Se"
+    "tSimulationMode\022\031.Nrmk.IndyFramework.Sta"
+    "te\032\034.Nrmk.IndyFramework.Response\"\000\022S\n\024Se"
+    "tCustomControlMode\022\033.Nrmk.IndyFramework."
+    "IntMode\032\034.Nrmk.IndyFramework.Response\"\000\022"
+    "P\n\024GetCustomControlMode\022\031.Nrmk.IndyFrame"
+    "work.Empty\032\033.Nrmk.IndyFramework.IntMode\""
+    "\000\022T\n\027SetFrictionCompensation\022\031.Nrmk.Indy"
+    "Framework.State\032\034.Nrmk.IndyFramework.Res"
+    "ponse\"\000\022V\n\034GetFrictionCompensationState\022"
+    "\031.Nrmk.IndyFramework.Empty\032\031.Nrmk.IndyFr"
+    "amework.State\"\000\022K\n\013SetTactTime\022\034.Nrmk.In"
+    "dyFramework.TactTime\032\034.Nrmk.IndyFramewor"
+    "k.Response\"\000\022H\n\013GetTactTime\022\031.Nrmk.IndyF"
+    "ramework.Empty\032\034.Nrmk.IndyFramework.Tact"
+    "Time\"\000\022D\n\007Recover\022\031.Nrmk.IndyFramework.E"
+    "mpty\032\034.Nrmk.IndyFramework.Response\"\000\022C\n\006"
+    "Reboot\022\031.Nrmk.IndyFramework.Empty\032\034.Nrmk"
+    ".IndyFramework.Response\"\000\022N\n\021SetManualRe"
+    "covery\022\031.Nrmk.IndyFramework.State\032\034.Nrmk"
+    ".IndyFramework.Response\"\000\022O\n\020MoveRecover"
+    "Joint\022\033.Nrmk.IndyFramework.TargetJ\032\034.Nrm"
+    "k.IndyFramework.Response\"\000\022O\n\rSearchProg"
+    "ram\022\033.Nrmk.IndyFramework.Program\032\037.Nrmk."
+    "IndyFramework.ProgramInfo\"\000\022J\n\013PlayProgr"
+    "am\022\033.Nrmk.IndyFramework.Program\032\034.Nrmk.I"
+    "ndyFramework.Response\"\000\022I\n\014PauseProgram\022"
+    "\031.Nrmk.IndyFramework.Empty\032\034.Nrmk.IndyFr"
+    "amework.Response\"\000\022J\n\rResumeProgram\022\031.Nr"
+    "mk.IndyFramework.Empty\032\034.Nrmk.IndyFramew"
+    "ork.Response\"\000\022H\n\013StopProgram\022\031.Nrmk.Ind"
+    "yFramework.Empty\032\034.Nrmk.IndyFramework.Re"
+    "sponse\"\000\022E\n\tSendAlarm\022\033.Nrmk.IndyFramewo"
+    "rk.Message\032\031.Nrmk.IndyFramework.Empty\"\000\022"
+    "J\n\016SendAnnotation\022\033.Nrmk.IndyFramework.M"
+    "essage\032\031.Nrmk.IndyFramework.Empty\"\000\022a\n\021P"
+    "layTuningProgram\022!.Nrmk.IndyFramework.Tu"
+    "ningProgram\032\'.Nrmk.IndyFramework.Collisi"
+    "onThresholds\"\000\022N\n\017PlayProgramLine\022\033.Nrmk"
+    ".IndyFramework.Program\032\034.Nrmk.IndyFramew"
+    "ork.Response\"\000\022`\n\031SetModbusVariableNameL"
+    "ist\022&.Nrmk.IndyFramework.ModbusVariableL"
+    "ist\032\031.Nrmk.IndyFramework.Empty\"\000\022O\n\023SetV"
+    "ariableNameList\022\033.Nrmk.IndyFramework.All"
+    "Vars\032\031.Nrmk.IndyFramework.Empty\"\000\022O\n\023Get"
+    "VariableNameList\022\031.Nrmk.IndyFramework.Em"
+    "pty\032\033.Nrmk.IndyFramework.AllVars\"\000\022J\n\016Se"
+    "tIntVariable\022\033.Nrmk.IndyFramework.IntVar"
+    "s\032\031.Nrmk.IndyFramework.Empty\"\000\022J\n\016GetInt"
+    "Variable\022\031.Nrmk.IndyFramework.Empty\032\033.Nr"
+    "mk.IndyFramework.IntVars\"\000\022P\n\021SetModbusV"
+    "ariable\022\036.Nrmk.IndyFramework.ModbusVars\032"
+    "\031.Nrmk.IndyFramework.Empty\"\000\022P\n\021GetModbu"
+    "sVariable\022\031.Nrmk.IndyFramework.Empty\032\036.N"
+    "rmk.IndyFramework.ModbusVars\"\000\022L\n\017SetBoo"
+    "lVariable\022\034.Nrmk.IndyFramework.BoolVars\032"
+    "\031.Nrmk.IndyFramework.Empty\"\000\022L\n\017GetBoolV"
+    "ariable\022\031.Nrmk.IndyFramework.Empty\032\034.Nrm"
+    "k.IndyFramework.BoolVars\"\000\022N\n\020SetFloatVa"
+    "riable\022\035.Nrmk.IndyFramework.FloatVars\032\031."
+    "Nrmk.IndyFramework.Empty\"\000\022N\n\020GetFloatVa"
+    "riable\022\031.Nrmk.IndyFramework.Empty\032\035.Nrmk"
+    ".IndyFramework.FloatVars\"\000\022L\n\017SetJPosVar"
+    "iable\022\034.Nrmk.IndyFramework.JPosVars\032\031.Nr"
+    "mk.IndyFramework.Empty\"\000\022L\n\017GetJPosVaria"
+    "ble\022\031.Nrmk.IndyFramework.Empty\032\034.Nrmk.In"
+    "dyFramework.JPosVars\"\000\022L\n\017SetTPosVariabl"
+    "e\022\034.Nrmk.IndyFramework.TPosVars\032\031.Nrmk.I"
+    "ndyFramework.Empty\"\000\022L\n\017GetTPosVariable\022"
+    "\031.Nrmk.IndyFramework.Empty\032\034.Nrmk.IndyFr"
+    "amework.TPosVars\"\000\022i\n\021InverseKinematics\022"
+    "(.Nrmk.IndyFramework.InverseKinematicsRe"
+    "q\032(.Nrmk.IndyFramework.InverseKinematics"
+    "Res\"\000\022i\n\021ForwardKinematics\022(.Nrmk.IndyFr"
+    "amework.ForwardKinematicsReq\032(.Nrmk.Indy"
+    "Framework.ForwardKinematicsRes\"\000\022~\n\030Chec"
+    "kAproachRetractValid\022/.Nrmk.IndyFramewor"
+    "k.CheckAproachRetractValidReq\032/.Nrmk.Ind"
+    "yFramework.CheckAproachRetractValidRes\"\000"
+    "\022l\n\022GetPalletPointList\022).Nrmk.IndyFramew"
+    "ork.GetPalletPointListReq\032).Nrmk.IndyFra"
+    "mework.GetPalletPointListRes\"\000\022u\n\025Calcul"
+    "ateRelativePose\022,.Nrmk.IndyFramework.Cal"
+    "culateRelativePoseReq\032,.Nrmk.IndyFramewo"
+    "rk.CalculateRelativePoseRes\"\000\022{\n\027Calcula"
+    "teCurrentPoseRel\022..Nrmk.IndyFramework.Ca"
+    "lculateCurrentPoseRelReq\032..Nrmk.IndyFram"
+    "ework.CalculateCurrentPoseRelRes\"\000\022G\n\rPi"
+    "ngFromConty\022\031.Nrmk.IndyFramework.Empty\032\031"
+    ".Nrmk.IndyFramework.Empty\"\000\022P\n\017GetTeleOp"
+    "Device\022\031.Nrmk.IndyFramework.Empty\032 .Nrmk"
+    ".IndyFramework.TeleOpDevice\"\000\022N\n\016GetTele"
+    "OpState\022\031.Nrmk.IndyFramework.Empty\032\037.Nrm"
+    "k.IndyFramework.TeleOpState\"\000\022W\n\023Connect"
+    "TeleOpDevice\022 .Nrmk.IndyFramework.TeleOp"
+    "Device\032\034.Nrmk.IndyFramework.Response\"\000\022S"
+    "\n\026DisConnectTeleOpDevice\022\031.Nrmk.IndyFram"
+    "ework.Empty\032\034.Nrmk.IndyFramework.Respons"
+    "e\"\000\022I\n\017ReadTeleOpInput\022\031.Nrmk.IndyFramew"
+    "ork.Empty\032\031.Nrmk.IndyFramework.TeleP\"\000\022N"
+    "\n\013StartTeleOp\022\037.Nrmk.IndyFramework.TeleO"
+    "pState\032\034.Nrmk.IndyFramework.Response\"\000\022G"
+    "\n\nStopTeleOp\022\031.Nrmk.IndyFramework.Empty\032"
+    "\034.Nrmk.IndyFramework.Response\"\000\022O\n\013SetPl"
+    "ayRate\022 .Nrmk.IndyFramework.TelePlayRate"
+    "\032\034.Nrmk.IndyFramework.Response\"\000\022L\n\013GetP"
+    "layRate\022\031.Nrmk.IndyFramework.Empty\032 .Nrm"
+    "k.IndyFramework.TelePlayRate\"\000\022R\n\017GetTel"
+    "eFileList\022\031.Nrmk.IndyFramework.Empty\032\".N"
+    "rmk.IndyFramework.TeleOpFileList\"\000\022Q\n\016Sa"
+    "veTeleMotion\022\037.Nrmk.IndyFramework.TeleFi"
+    "leReq\032\034.Nrmk.IndyFramework.Response\"\000\022Q\n"
+    "\016LoadTeleMotion\022\037.Nrmk.IndyFramework.Tel"
+    "eFileReq\032\034.Nrmk.IndyFramework.Response\"\000"
+    "\022S\n\020DeleteTeleMotion\022\037.Nrmk.IndyFramewor"
+    "k.TeleFileReq\032\034.Nrmk.IndyFramework.Respo"
+    "nse\"\000\022J\n\rEnableTeleKey\022\031.Nrmk.IndyFramew"
+    "ork.State\032\034.Nrmk.IndyFramework.Response\""
+    "\000\022M\n\tMoveTeleJ\022 .Nrmk.IndyFramework.Move"
+    "TeleJReq\032\034.Nrmk.IndyFramework.Response\"\000"
+    "\022M\n\tMoveTeleL\022 .Nrmk.IndyFramework.MoveT"
+    "eleLReq\032\034.Nrmk.IndyFramework.Response\"\000\022"
+    "G\n\006MoveLF\022\035.Nrmk.IndyFramework.MoveLFReq"
+    "\032\034.Nrmk.IndyFramework.Response\"\000\022f\n\032GetT"
+    "ransformedFTSensorData\022\031.Nrmk.IndyFramew"
+    "ork.Empty\032+.Nrmk.IndyFramework.Transform"
+    "edFTSensorData\"\000b\006proto3"
+};
+static const ::_pbi::DescriptorTable* const descriptor_table_control_2eproto_deps[3] =
+    {
+        &::descriptor_table_common_5fmsgs_2eproto,
+        &::descriptor_table_config_5fmsgs_2eproto,
+        &::descriptor_table_control_5fmsgs_2eproto,
+};
+static ::absl::once_flag descriptor_table_control_2eproto_once;
+const ::_pbi::DescriptorTable descriptor_table_control_2eproto = {
+    false,
+    false,
+    6784,
+    descriptor_table_protodef_control_2eproto,
+    "control.proto",
+    &descriptor_table_control_2eproto_once,
+    descriptor_table_control_2eproto_deps,
+    3,
+    0,
+    schemas,
+    file_default_instances,
+    TableStruct_control_2eproto::offsets,
+    nullptr,
+    file_level_enum_descriptors_control_2eproto,
+    file_level_service_descriptors_control_2eproto,
+};
 
-const char descriptor_table_protodef_control_2eproto[] =
-  "\n\rcontrol.proto\022\022Nrmk.IndyFramework\032\022con"
-  "trol_msgs.proto\032\021config_msgs.proto\032\021comm"
-  "on_msgs.proto2\2304\n\007Control\022N\n\016GetControlI"
-  "nfo\022\031.Nrmk.IndyFramework.Empty\032\037.Nrmk.In"
-  "dyFramework.ControlInfo\"\000\022[\n\017ActivateInd"
-  "ySDK\022\".Nrmk.IndyFramework.SDKLicenseInfo"
-  "\032\".Nrmk.IndyFramework.SDKLicenseResp\"\000\022E"
-  "\n\005MoveJ\022\034.Nrmk.IndyFramework.MoveJReq\032\034."
-  "Nrmk.IndyFramework.Response\"\000\022G\n\006MoveJT\022"
-  "\035.Nrmk.IndyFramework.MoveJTReq\032\034.Nrmk.In"
-  "dyFramework.Response\"\000\022E\n\005MoveL\022\034.Nrmk.I"
-  "ndyFramework.MoveLReq\032\034.Nrmk.IndyFramewo"
-  "rk.Response\"\000\022G\n\006MoveLT\022\035.Nrmk.IndyFrame"
-  "work.MoveLTReq\032\034.Nrmk.IndyFramework.Resp"
-  "onse\"\000\022E\n\005MoveC\022\034.Nrmk.IndyFramework.Mov"
-  "eCReq\032\034.Nrmk.IndyFramework.Response\"\000\022G\n"
-  "\006MoveCT\022\035.Nrmk.IndyFramework.MoveCTReq\032\034"
-  ".Nrmk.IndyFramework.Response\"\000\022U\n\rMoveJo"
-  "intTraj\022$.Nrmk.IndyFramework.MoveJointTr"
-  "ajReq\032\034.Nrmk.IndyFramework.Response\"\000\022S\n"
-  "\014MoveTaskTraj\022#.Nrmk.IndyFramework.MoveT"
-  "askTrajReq\032\034.Nrmk.IndyFramework.Response"
-  "\"\000\022S\n\014MoveConveyor\022#.Nrmk.IndyFramework."
-  "MoveConveyorReq\032\034.Nrmk.IndyFramework.Res"
-  "ponse\"\000\022G\n\006WaitIO\022\035.Nrmk.IndyFramework.W"
-  "aitIOReq\032\034.Nrmk.IndyFramework.Response\"\000"
-  "\022K\n\010WaitTime\022\037.Nrmk.IndyFramework.WaitTi"
-  "meReq\032\034.Nrmk.IndyFramework.Response\"\000\022S\n"
-  "\014WaitProgress\022#.Nrmk.IndyFramework.WaitP"
-  "rogressReq\032\034.Nrmk.IndyFramework.Response"
-  "\"\000\022K\n\010WaitTraj\022\037.Nrmk.IndyFramework.Wait"
-  "TrajReq\032\034.Nrmk.IndyFramework.Response\"\000\022"
-  "O\n\nWaitRadius\022!.Nrmk.IndyFramework.WaitR"
-  "adiusReq\032\034.Nrmk.IndyFramework.Response\"\000"
-  "\022M\n\tMoveJCond\022 .Nrmk.IndyFramework.MoveJ"
-  "CondReq\032\034.Nrmk.IndyFramework.Response\"\000\022"
-  "Q\n\016MoveLinearAxis\022\037.Nrmk.IndyFramework.M"
-  "oveAxisReq\032\034.Nrmk.IndyFramework.Response"
-  "\"\000\022I\n\nStopMotion\022\033.Nrmk.IndyFramework.St"
-  "opCat\032\034.Nrmk.IndyFramework.Response\"\000\022K\n"
-  "\013PauseMotion\022\034.Nrmk.IndyFramework.PauseC"
-  "at\032\034.Nrmk.IndyFramework.Response\"\000\022N\n\021Se"
-  "tDirectTeaching\022\031.Nrmk.IndyFramework.Sta"
-  "te\032\034.Nrmk.IndyFramework.Response\"\000\022N\n\021Se"
-  "tSimulationMode\022\031.Nrmk.IndyFramework.Sta"
-  "te\032\034.Nrmk.IndyFramework.Response\"\000\022S\n\024Se"
-  "tCustomControlMode\022\033.Nrmk.IndyFramework."
-  "IntMode\032\034.Nrmk.IndyFramework.Response\"\000\022"
-  "P\n\024GetCustomControlMode\022\031.Nrmk.IndyFrame"
-  "work.Empty\032\033.Nrmk.IndyFramework.IntMode\""
-  "\000\022T\n\027SetFrictionCompensation\022\031.Nrmk.Indy"
-  "Framework.State\032\034.Nrmk.IndyFramework.Res"
-  "ponse\"\000\022V\n\034GetFrictionCompensationState\022"
-  "\031.Nrmk.IndyFramework.Empty\032\031.Nrmk.IndyFr"
-  "amework.State\"\000\022K\n\013SetTactTime\022\034.Nrmk.In"
-  "dyFramework.TactTime\032\034.Nrmk.IndyFramewor"
-  "k.Response\"\000\022H\n\013GetTactTime\022\031.Nrmk.IndyF"
-  "ramework.Empty\032\034.Nrmk.IndyFramework.Tact"
-  "Time\"\000\022D\n\007Recover\022\031.Nrmk.IndyFramework.E"
-  "mpty\032\034.Nrmk.IndyFramework.Response\"\000\022C\n\006"
-  "Reboot\022\031.Nrmk.IndyFramework.Empty\032\034.Nrmk"
-  ".IndyFramework.Response\"\000\022N\n\021SetManualRe"
-  "covery\022\031.Nrmk.IndyFramework.State\032\034.Nrmk"
-  ".IndyFramework.Response\"\000\022O\n\020MoveRecover"
-  "Joint\022\033.Nrmk.IndyFramework.TargetJ\032\034.Nrm"
-  "k.IndyFramework.Response\"\000\022O\n\rSearchProg"
-  "ram\022\033.Nrmk.IndyFramework.Program\032\037.Nrmk."
-  "IndyFramework.ProgramInfo\"\000\022J\n\013PlayProgr"
-  "am\022\033.Nrmk.IndyFramework.Program\032\034.Nrmk.I"
-  "ndyFramework.Response\"\000\022I\n\014PauseProgram\022"
-  "\031.Nrmk.IndyFramework.Empty\032\034.Nrmk.IndyFr"
-  "amework.Response\"\000\022J\n\rResumeProgram\022\031.Nr"
-  "mk.IndyFramework.Empty\032\034.Nrmk.IndyFramew"
-  "ork.Response\"\000\022H\n\013StopProgram\022\031.Nrmk.Ind"
-  "yFramework.Empty\032\034.Nrmk.IndyFramework.Re"
-  "sponse\"\000\022E\n\tSendAlarm\022\033.Nrmk.IndyFramewo"
-  "rk.Message\032\031.Nrmk.IndyFramework.Empty\"\000\022"
-  "J\n\016SendAnnotation\022\033.Nrmk.IndyFramework.M"
-  "essage\032\031.Nrmk.IndyFramework.Empty\"\000\022a\n\021P"
-  "layTuningProgram\022!.Nrmk.IndyFramework.Tu"
-  "ningProgram\032\'.Nrmk.IndyFramework.Collisi"
-  "onThresholds\"\000\022N\n\017PlayProgramLine\022\033.Nrmk"
-  ".IndyFramework.Program\032\034.Nrmk.IndyFramew"
-  "ork.Response\"\000\022`\n\031SetModbusVariableNameL"
-  "ist\022&.Nrmk.IndyFramework.ModbusVariableL"
-  "ist\032\031.Nrmk.IndyFramework.Empty\"\000\022O\n\023SetV"
-  "ariableNameList\022\033.Nrmk.IndyFramework.All"
-  "Vars\032\031.Nrmk.IndyFramework.Empty\"\000\022O\n\023Get"
-  "VariableNameList\022\031.Nrmk.IndyFramework.Em"
-  "pty\032\033.Nrmk.IndyFramework.AllVars\"\000\022J\n\016Se"
-  "tIntVariable\022\033.Nrmk.IndyFramework.IntVar"
-  "s\032\031.Nrmk.IndyFramework.Empty\"\000\022J\n\016GetInt"
-  "Variable\022\031.Nrmk.IndyFramework.Empty\032\033.Nr"
-  "mk.IndyFramework.IntVars\"\000\022P\n\021SetModbusV"
-  "ariable\022\036.Nrmk.IndyFramework.ModbusVars\032"
-  "\031.Nrmk.IndyFramework.Empty\"\000\022P\n\021GetModbu"
-  "sVariable\022\031.Nrmk.IndyFramework.Empty\032\036.N"
-  "rmk.IndyFramework.ModbusVars\"\000\022L\n\017SetBoo"
-  "lVariable\022\034.Nrmk.IndyFramework.BoolVars\032"
-  "\031.Nrmk.IndyFramework.Empty\"\000\022L\n\017GetBoolV"
-  "ariable\022\031.Nrmk.IndyFramework.Empty\032\034.Nrm"
-  "k.IndyFramework.BoolVars\"\000\022N\n\020SetFloatVa"
-  "riable\022\035.Nrmk.IndyFramework.FloatVars\032\031."
-  "Nrmk.IndyFramework.Empty\"\000\022N\n\020GetFloatVa"
-  "riable\022\031.Nrmk.IndyFramework.Empty\032\035.Nrmk"
-  ".IndyFramework.FloatVars\"\000\022L\n\017SetJPosVar"
-  "iable\022\034.Nrmk.IndyFramework.JPosVars\032\031.Nr"
-  "mk.IndyFramework.Empty\"\000\022L\n\017GetJPosVaria"
-  "ble\022\031.Nrmk.IndyFramework.Empty\032\034.Nrmk.In"
-  "dyFramework.JPosVars\"\000\022L\n\017SetTPosVariabl"
-  "e\022\034.Nrmk.IndyFramework.TPosVars\032\031.Nrmk.I"
-  "ndyFramework.Empty\"\000\022L\n\017GetTPosVariable\022"
-  "\031.Nrmk.IndyFramework.Empty\032\034.Nrmk.IndyFr"
-  "amework.TPosVars\"\000\022i\n\021InverseKinematics\022"
-  "(.Nrmk.IndyFramework.InverseKinematicsRe"
-  "q\032(.Nrmk.IndyFramework.InverseKinematics"
-  "Res\"\000\022i\n\021ForwardKinematics\022(.Nrmk.IndyFr"
-  "amework.ForwardKinematicsReq\032(.Nrmk.Indy"
-  "Framework.ForwardKinematicsRes\"\000\022~\n\030Chec"
-  "kAproachRetractValid\022/.Nrmk.IndyFramewor"
-  "k.CheckAproachRetractValidReq\032/.Nrmk.Ind"
-  "yFramework.CheckAproachRetractValidRes\"\000"
-  "\022l\n\022GetPalletPointList\022).Nrmk.IndyFramew"
-  "ork.GetPalletPointListReq\032).Nrmk.IndyFra"
-  "mework.GetPalletPointListRes\"\000\022u\n\025Calcul"
-  "ateRelativePose\022,.Nrmk.IndyFramework.Cal"
-  "culateRelativePoseReq\032,.Nrmk.IndyFramewo"
-  "rk.CalculateRelativePoseRes\"\000\022{\n\027Calcula"
-  "teCurrentPoseRel\022..Nrmk.IndyFramework.Ca"
-  "lculateCurrentPoseRelReq\032..Nrmk.IndyFram"
-  "ework.CalculateCurrentPoseRelRes\"\000\022G\n\rPi"
-  "ngFromConty\022\031.Nrmk.IndyFramework.Empty\032\031"
-  ".Nrmk.IndyFramework.Empty\"\000\022P\n\017GetTeleOp"
-  "Device\022\031.Nrmk.IndyFramework.Empty\032 .Nrmk"
-  ".IndyFramework.TeleOpDevice\"\000\022N\n\016GetTele"
-  "OpState\022\031.Nrmk.IndyFramework.Empty\032\037.Nrm"
-  "k.IndyFramework.TeleOpState\"\000\022W\n\023Connect"
-  "TeleOpDevice\022 .Nrmk.IndyFramework.TeleOp"
-  "Device\032\034.Nrmk.IndyFramework.Response\"\000\022S"
-  "\n\026DisConnectTeleOpDevice\022\031.Nrmk.IndyFram"
-  "ework.Empty\032\034.Nrmk.IndyFramework.Respons"
-  "e\"\000\022I\n\017ReadTeleOpInput\022\031.Nrmk.IndyFramew"
-  "ork.Empty\032\031.Nrmk.IndyFramework.TeleP\"\000\022N"
-  "\n\013StartTeleOp\022\037.Nrmk.IndyFramework.TeleO"
-  "pState\032\034.Nrmk.IndyFramework.Response\"\000\022G"
-  "\n\nStopTeleOp\022\031.Nrmk.IndyFramework.Empty\032"
-  "\034.Nrmk.IndyFramework.Response\"\000\022O\n\013SetPl"
-  "ayRate\022 .Nrmk.IndyFramework.TelePlayRate"
-  "\032\034.Nrmk.IndyFramework.Response\"\000\022L\n\013GetP"
-  "layRate\022\031.Nrmk.IndyFramework.Empty\032 .Nrm"
-  "k.IndyFramework.TelePlayRate\"\000\022R\n\017GetTel"
-  "eFileList\022\031.Nrmk.IndyFramework.Empty\032\".N"
-  "rmk.IndyFramework.TeleOpFileList\"\000\022Q\n\016Sa"
-  "veTeleMotion\022\037.Nrmk.IndyFramework.TeleFi"
-  "leReq\032\034.Nrmk.IndyFramework.Response\"\000\022Q\n"
-  "\016LoadTeleMotion\022\037.Nrmk.IndyFramework.Tel"
-  "eFileReq\032\034.Nrmk.IndyFramework.Response\"\000"
-  "\022S\n\020DeleteTeleMotion\022\037.Nrmk.IndyFramewor"
-  "k.TeleFileReq\032\034.Nrmk.IndyFramework.Respo"
-  "nse\"\000\022J\n\rEnableTeleKey\022\031.Nrmk.IndyFramew"
-  "ork.State\032\034.Nrmk.IndyFramework.Response\""
-  "\000\022M\n\tMoveTeleJ\022 .Nrmk.IndyFramework.Move"
-  "TeleJReq\032\034.Nrmk.IndyFramework.Response\"\000"
-  "\022M\n\tMoveTeleL\022 .Nrmk.IndyFramework.MoveT"
-  "eleLReq\032\034.Nrmk.IndyFramework.Response\"\000\022"
-  "G\n\006MoveLF\022\035.Nrmk.IndyFramework.MoveLFReq"
-  "\032\034.Nrmk.IndyFramework.Response\"\000\022f\n\032GetT"
-  "ransformedFTSensorData\022\031.Nrmk.IndyFramew"
-  "ork.Empty\032+.Nrmk.IndyFramework.Transform"
-  "edFTSensorData\"\000b\006proto3"
-  ;
-static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_control_2eproto_deps[3] = {
-  &::descriptor_table_common_5fmsgs_2eproto,
-  &::descriptor_table_config_5fmsgs_2eproto,
-  &::descriptor_table_control_5fmsgs_2eproto,
-};
-static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_control_2eproto_sccs[1] = {
-};
-static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_control_2eproto_once;
-static bool descriptor_table_control_2eproto_initialized = false;
-const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_control_2eproto = {
-  &descriptor_table_control_2eproto_initialized, descriptor_table_protodef_control_2eproto, "control.proto", 6784,
-  &descriptor_table_control_2eproto_once, descriptor_table_control_2eproto_sccs, descriptor_table_control_2eproto_deps, 0, 3,
-  schemas, file_default_instances, TableStruct_control_2eproto::offsets,
-  file_level_metadata_control_2eproto, 0, file_level_enum_descriptors_control_2eproto, file_level_service_descriptors_control_2eproto,
-};
-
+// This function exists to be marked as weak.
+// It can significantly speed up compilation by breaking up LLVM's SCC
+// in the .pb.cc translation units. Large translation units see a
+// reduction of more than 35% of walltime for optimized builds. Without
+// the weak attribute all the messages in the file, including all the
+// vtables and everything they use become part of the same SCC through
+// a cycle like:
+// GetMetadata -> descriptor table -> default instances ->
+//   vtables -> GetMetadata
+// By adding a weak function here we break the connection from the
+// individual vtables back into the descriptor table.
+PROTOBUF_ATTRIBUTE_WEAK const ::_pbi::DescriptorTable* descriptor_table_control_2eproto_getter() {
+  return &descriptor_table_control_2eproto;
+}
 // Force running AddDescriptors() at dynamic initialization time.
-static bool dynamic_init_dummy_control_2eproto = (  ::PROTOBUF_NAMESPACE_ID::internal::AddDescriptors(&descriptor_table_control_2eproto), true);
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY2
+static ::_pbi::AddDescriptorsRunner dynamic_init_dummy_control_2eproto(&descriptor_table_control_2eproto);
 namespace Nrmk {
 namespace IndyFramework {
-
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace IndyFramework
 }  // namespace Nrmk
-PROTOBUF_NAMESPACE_OPEN
-PROTOBUF_NAMESPACE_CLOSE
-
+namespace google {
+namespace protobuf {
+}  // namespace protobuf
+}  // namespace google
 // @@protoc_insertion_point(global_scope)
-#include <google/protobuf/port_undef.inc>
+#include "google/protobuf/port_undef.inc"

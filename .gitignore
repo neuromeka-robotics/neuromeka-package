@@ -1,7 +1,8 @@
 **/.idea/
-**/.venv/
+**/.venv*/
 **/.ipynb_checkpoints/
 **/__pycache__/
 **/build/
+.vscode/
 *.bak
 *.bk

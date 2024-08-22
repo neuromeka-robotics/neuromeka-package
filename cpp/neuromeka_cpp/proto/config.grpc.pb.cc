@@ -6,16 +6,19 @@
 #include "config.grpc.pb.h"
 
 #include <functional>
-#include <grpcpp/impl/codegen/async_stream.h>
-#include <grpcpp/impl/codegen/async_unary_call.h>
-#include <grpcpp/impl/codegen/channel_interface.h>
-#include <grpcpp/impl/codegen/client_unary_call.h>
-#include <grpcpp/impl/codegen/client_callback.h>
-#include <grpcpp/impl/codegen/method_handler_impl.h>
-#include <grpcpp/impl/codegen/rpc_service_method.h>
-#include <grpcpp/impl/codegen/server_callback.h>
-#include <grpcpp/impl/codegen/service_type.h>
-#include <grpcpp/impl/codegen/sync_stream.h>
+#include <grpcpp/support/async_stream.h>
+#include <grpcpp/support/async_unary_call.h>
+#include <grpcpp/impl/channel_interface.h>
+#include <grpcpp/impl/client_unary_call.h>
+#include <grpcpp/support/client_callback.h>
+#include <grpcpp/support/message_allocator.h>
+#include <grpcpp/support/method_handler.h>
+#include <grpcpp/impl/rpc_service_method.h>
+#include <grpcpp/support/server_callback.h>
+#include <grpcpp/impl/server_callback_handlers.h>
+#include <grpcpp/server_context.h>
+#include <grpcpp/impl/service_type.h>
+#include <grpcpp/support/sync_stream.h>
 namespace Nrmk {
 namespace IndyFramework {
 
@@ -76,1782 +79,1782 @@ static const char* Config_method_names[] = {
 
 std::unique_ptr< Config::Stub> Config::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
   (void)options;
-  std::unique_ptr< Config::Stub> stub(new Config::Stub(channel));
+  std::unique_ptr< Config::Stub> stub(new Config::Stub(channel, options));
   return stub;
 }
 
-Config::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel)
-  : channel_(channel), rpcmethod_GetRefFrame_(Config_method_names[0], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetRefFrame_(Config_method_names[1], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetRefFramePlanar_(Config_method_names[2], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetToolFrame_(Config_method_names[3], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetSpeedRatio_(Config_method_names[4], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetDIConfigList_(Config_method_names[5], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetDIConfigList_(Config_method_names[6], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetDOConfigList_(Config_method_names[7], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetDOConfigList_(Config_method_names[8], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetHomePosition_(Config_method_names[9], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetHomePosition_(Config_method_names[10], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetPackPosition_(Config_method_names[11], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetAutoServoOff_(Config_method_names[12], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetAutoServoOff_(Config_method_names[13], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetJointControlGain_(Config_method_names[14], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetJointControlGain_(Config_method_names[15], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetTaskControlGain_(Config_method_names[16], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetTaskControlGain_(Config_method_names[17], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetImpedanceControlGain_(Config_method_names[18], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetImpedanceControlGain_(Config_method_names[19], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetForceControlGain_(Config_method_names[20], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetForceControlGain_(Config_method_names[21], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetTestControlGain_(Config_method_names[22], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetTestControlGain_(Config_method_names[23], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetCustomControlGain_(Config_method_names[24], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetCustomControlGain_(Config_method_names[25], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetNewControllerTestOnOff_(Config_method_names[26], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetNewControllerTestOnOffState_(Config_method_names[27], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetFrictionComp_(Config_method_names[28], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetFrictionComp_(Config_method_names[29], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetMountPos_(Config_method_names[30], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetMountPos_(Config_method_names[31], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetToolProperty_(Config_method_names[32], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetToolProperty_(Config_method_names[33], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetCollSensLevel_(Config_method_names[34], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetCollSensLevel_(Config_method_names[35], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetCollSensParam_(Config_method_names[36], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetCollSensParam_(Config_method_names[37], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetCollPolicy_(Config_method_names[38], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetCollPolicy_(Config_method_names[39], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetSafetyLimits_(Config_method_names[40], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetSafetyLimits_(Config_method_names[41], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetSafetyStopConfig_(Config_method_names[42], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetSafetyStopConfig_(Config_method_names[43], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetReducedRatio_(Config_method_names[44], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetReducedSpeed_(Config_method_names[45], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetReducedSpeed_(Config_method_names[46], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetFTSensorConfig_(Config_method_names[47], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetFTSensorConfig_(Config_method_names[48], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetTeleOpParams_(Config_method_names[49], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetTeleOpParams_(Config_method_names[50], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetKinematicsParams_(Config_method_names[51], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+Config::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
+  : channel_(channel), rpcmethod_GetRefFrame_(Config_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetRefFrame_(Config_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetRefFramePlanar_(Config_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetToolFrame_(Config_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetSpeedRatio_(Config_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetDIConfigList_(Config_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetDIConfigList_(Config_method_names[6], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetDOConfigList_(Config_method_names[7], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetDOConfigList_(Config_method_names[8], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetHomePosition_(Config_method_names[9], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetHomePosition_(Config_method_names[10], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetPackPosition_(Config_method_names[11], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetAutoServoOff_(Config_method_names[12], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetAutoServoOff_(Config_method_names[13], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetJointControlGain_(Config_method_names[14], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetJointControlGain_(Config_method_names[15], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetTaskControlGain_(Config_method_names[16], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetTaskControlGain_(Config_method_names[17], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetImpedanceControlGain_(Config_method_names[18], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetImpedanceControlGain_(Config_method_names[19], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetForceControlGain_(Config_method_names[20], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetForceControlGain_(Config_method_names[21], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetTestControlGain_(Config_method_names[22], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetTestControlGain_(Config_method_names[23], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetCustomControlGain_(Config_method_names[24], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetCustomControlGain_(Config_method_names[25], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetNewControllerTestOnOff_(Config_method_names[26], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetNewControllerTestOnOffState_(Config_method_names[27], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetFrictionComp_(Config_method_names[28], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetFrictionComp_(Config_method_names[29], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetMountPos_(Config_method_names[30], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetMountPos_(Config_method_names[31], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetToolProperty_(Config_method_names[32], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetToolProperty_(Config_method_names[33], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetCollSensLevel_(Config_method_names[34], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetCollSensLevel_(Config_method_names[35], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetCollSensParam_(Config_method_names[36], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetCollSensParam_(Config_method_names[37], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetCollPolicy_(Config_method_names[38], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetCollPolicy_(Config_method_names[39], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetSafetyLimits_(Config_method_names[40], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetSafetyLimits_(Config_method_names[41], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetSafetyStopConfig_(Config_method_names[42], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetSafetyStopConfig_(Config_method_names[43], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetReducedRatio_(Config_method_names[44], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetReducedSpeed_(Config_method_names[45], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetReducedSpeed_(Config_method_names[46], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetFTSensorConfig_(Config_method_names[47], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetFTSensorConfig_(Config_method_names[48], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetTeleOpParams_(Config_method_names[49], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetTeleOpParams_(Config_method_names[50], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetKinematicsParams_(Config_method_names[51], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status Config::Stub::GetRefFrame(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::Frame* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetRefFrame_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Frame, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetRefFrame_, context, request, response);
 }
 
-void Config::Stub::experimental_async::GetRefFrame(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::Frame* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetRefFrame_, context, request, response, std::move(f));
+void Config::Stub::async::GetRefFrame(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::Frame* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Frame, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetRefFrame_, context, request, response, std::move(f));
 }
 
-void Config::Stub::experimental_async::GetRefFrame(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Frame* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetRefFrame_, context, request, response, std::move(f));
-}
-
-void Config::Stub::experimental_async::GetRefFrame(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::Frame* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetRefFrame_, context, request, response, reactor);
-}
-
-void Config::Stub::experimental_async::GetRefFrame(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Frame* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetRefFrame_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Frame>* Config::Stub::AsyncGetRefFrameRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Frame>::Create(channel_.get(), cq, rpcmethod_GetRefFrame_, context, request, true);
+void Config::Stub::async::GetRefFrame(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::Frame* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetRefFrame_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Frame>* Config::Stub::PrepareAsyncGetRefFrameRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Frame>::Create(channel_.get(), cq, rpcmethod_GetRefFrame_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Frame, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetRefFrame_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Frame>* Config::Stub::AsyncGetRefFrameRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetRefFrameRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Config::Stub::SetRefFrame(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Frame& request, ::Nrmk::IndyFramework::Response* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetRefFrame_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Frame, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetRefFrame_, context, request, response);
 }
 
-void Config::Stub::experimental_async::SetRefFrame(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Frame* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetRefFrame_, context, request, response, std::move(f));
+void Config::Stub::async::SetRefFrame(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Frame* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Frame, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetRefFrame_, context, request, response, std::move(f));
 }
 
-void Config::Stub::experimental_async::SetRefFrame(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetRefFrame_, context, request, response, std::move(f));
-}
-
-void Config::Stub::experimental_async::SetRefFrame(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Frame* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetRefFrame_, context, request, response, reactor);
-}
-
-void Config::Stub::experimental_async::SetRefFrame(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetRefFrame_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::AsyncSetRefFrameRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Frame& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetRefFrame_, context, request, true);
+void Config::Stub::async::SetRefFrame(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Frame* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetRefFrame_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::PrepareAsyncSetRefFrameRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Frame& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetRefFrame_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Response, ::Nrmk::IndyFramework::Frame, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetRefFrame_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::AsyncSetRefFrameRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Frame& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetRefFrameRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Config::Stub::SetRefFramePlanar(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::PlanarFrame& request, ::Nrmk::IndyFramework::FrameResult* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetRefFramePlanar_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::PlanarFrame, ::Nrmk::IndyFramework::FrameResult, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetRefFramePlanar_, context, request, response);
 }
 
-void Config::Stub::experimental_async::SetRefFramePlanar(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::PlanarFrame* request, ::Nrmk::IndyFramework::FrameResult* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetRefFramePlanar_, context, request, response, std::move(f));
+void Config::Stub::async::SetRefFramePlanar(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::PlanarFrame* request, ::Nrmk::IndyFramework::FrameResult* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::PlanarFrame, ::Nrmk::IndyFramework::FrameResult, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetRefFramePlanar_, context, request, response, std::move(f));
 }
 
-void Config::Stub::experimental_async::SetRefFramePlanar(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::FrameResult* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetRefFramePlanar_, context, request, response, std::move(f));
-}
-
-void Config::Stub::experimental_async::SetRefFramePlanar(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::PlanarFrame* request, ::Nrmk::IndyFramework::FrameResult* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetRefFramePlanar_, context, request, response, reactor);
-}
-
-void Config::Stub::experimental_async::SetRefFramePlanar(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::FrameResult* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetRefFramePlanar_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::FrameResult>* Config::Stub::AsyncSetRefFramePlanarRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::PlanarFrame& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::FrameResult>::Create(channel_.get(), cq, rpcmethod_SetRefFramePlanar_, context, request, true);
+void Config::Stub::async::SetRefFramePlanar(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::PlanarFrame* request, ::Nrmk::IndyFramework::FrameResult* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetRefFramePlanar_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::FrameResult>* Config::Stub::PrepareAsyncSetRefFramePlanarRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::PlanarFrame& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::FrameResult>::Create(channel_.get(), cq, rpcmethod_SetRefFramePlanar_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::FrameResult, ::Nrmk::IndyFramework::PlanarFrame, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetRefFramePlanar_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::FrameResult>* Config::Stub::AsyncSetRefFramePlanarRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::PlanarFrame& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetRefFramePlanarRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Config::Stub::SetToolFrame(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Frame& request, ::Nrmk::IndyFramework::Response* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetToolFrame_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Frame, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetToolFrame_, context, request, response);
 }
 
-void Config::Stub::experimental_async::SetToolFrame(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Frame* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetToolFrame_, context, request, response, std::move(f));
+void Config::Stub::async::SetToolFrame(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Frame* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Frame, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetToolFrame_, context, request, response, std::move(f));
 }
 
-void Config::Stub::experimental_async::SetToolFrame(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetToolFrame_, context, request, response, std::move(f));
-}
-
-void Config::Stub::experimental_async::SetToolFrame(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Frame* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetToolFrame_, context, request, response, reactor);
-}
-
-void Config::Stub::experimental_async::SetToolFrame(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetToolFrame_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::AsyncSetToolFrameRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Frame& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetToolFrame_, context, request, true);
+void Config::Stub::async::SetToolFrame(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Frame* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetToolFrame_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::PrepareAsyncSetToolFrameRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Frame& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetToolFrame_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Response, ::Nrmk::IndyFramework::Frame, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetToolFrame_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::AsyncSetToolFrameRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Frame& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetToolFrameRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Config::Stub::SetSpeedRatio(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Ratio& request, ::Nrmk::IndyFramework::Response* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetSpeedRatio_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Ratio, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetSpeedRatio_, context, request, response);
 }
 
-void Config::Stub::experimental_async::SetSpeedRatio(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Ratio* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetSpeedRatio_, context, request, response, std::move(f));
+void Config::Stub::async::SetSpeedRatio(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Ratio* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Ratio, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetSpeedRatio_, context, request, response, std::move(f));
 }
 
-void Config::Stub::experimental_async::SetSpeedRatio(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetSpeedRatio_, context, request, response, std::move(f));
-}
-
-void Config::Stub::experimental_async::SetSpeedRatio(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Ratio* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetSpeedRatio_, context, request, response, reactor);
-}
-
-void Config::Stub::experimental_async::SetSpeedRatio(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetSpeedRatio_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::AsyncSetSpeedRatioRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Ratio& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetSpeedRatio_, context, request, true);
+void Config::Stub::async::SetSpeedRatio(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Ratio* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetSpeedRatio_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::PrepareAsyncSetSpeedRatioRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Ratio& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetSpeedRatio_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Response, ::Nrmk::IndyFramework::Ratio, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetSpeedRatio_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::AsyncSetSpeedRatioRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Ratio& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetSpeedRatioRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Config::Stub::SetDIConfigList(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DIConfigList& request, ::Nrmk::IndyFramework::Response* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetDIConfigList_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::DIConfigList, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetDIConfigList_, context, request, response);
 }
 
-void Config::Stub::experimental_async::SetDIConfigList(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DIConfigList* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetDIConfigList_, context, request, response, std::move(f));
+void Config::Stub::async::SetDIConfigList(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DIConfigList* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::DIConfigList, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetDIConfigList_, context, request, response, std::move(f));
 }
 
-void Config::Stub::experimental_async::SetDIConfigList(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetDIConfigList_, context, request, response, std::move(f));
-}
-
-void Config::Stub::experimental_async::SetDIConfigList(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DIConfigList* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetDIConfigList_, context, request, response, reactor);
-}
-
-void Config::Stub::experimental_async::SetDIConfigList(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetDIConfigList_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::AsyncSetDIConfigListRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DIConfigList& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetDIConfigList_, context, request, true);
+void Config::Stub::async::SetDIConfigList(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DIConfigList* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetDIConfigList_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::PrepareAsyncSetDIConfigListRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DIConfigList& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetDIConfigList_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Response, ::Nrmk::IndyFramework::DIConfigList, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetDIConfigList_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::AsyncSetDIConfigListRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DIConfigList& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetDIConfigListRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Config::Stub::GetDIConfigList(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::DIConfigList* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetDIConfigList_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::DIConfigList, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetDIConfigList_, context, request, response);
 }
 
-void Config::Stub::experimental_async::GetDIConfigList(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::DIConfigList* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetDIConfigList_, context, request, response, std::move(f));
+void Config::Stub::async::GetDIConfigList(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::DIConfigList* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::DIConfigList, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetDIConfigList_, context, request, response, std::move(f));
 }
 
-void Config::Stub::experimental_async::GetDIConfigList(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::DIConfigList* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetDIConfigList_, context, request, response, std::move(f));
-}
-
-void Config::Stub::experimental_async::GetDIConfigList(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::DIConfigList* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetDIConfigList_, context, request, response, reactor);
-}
-
-void Config::Stub::experimental_async::GetDIConfigList(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::DIConfigList* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetDIConfigList_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::DIConfigList>* Config::Stub::AsyncGetDIConfigListRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::DIConfigList>::Create(channel_.get(), cq, rpcmethod_GetDIConfigList_, context, request, true);
+void Config::Stub::async::GetDIConfigList(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::DIConfigList* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetDIConfigList_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::DIConfigList>* Config::Stub::PrepareAsyncGetDIConfigListRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::DIConfigList>::Create(channel_.get(), cq, rpcmethod_GetDIConfigList_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::DIConfigList, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetDIConfigList_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::DIConfigList>* Config::Stub::AsyncGetDIConfigListRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetDIConfigListRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Config::Stub::SetDOConfigList(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DOConfigList& request, ::Nrmk::IndyFramework::Response* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetDOConfigList_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::DOConfigList, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetDOConfigList_, context, request, response);
 }
 
-void Config::Stub::experimental_async::SetDOConfigList(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DOConfigList* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetDOConfigList_, context, request, response, std::move(f));
+void Config::Stub::async::SetDOConfigList(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DOConfigList* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::DOConfigList, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetDOConfigList_, context, request, response, std::move(f));
 }
 
-void Config::Stub::experimental_async::SetDOConfigList(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetDOConfigList_, context, request, response, std::move(f));
-}
-
-void Config::Stub::experimental_async::SetDOConfigList(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DOConfigList* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetDOConfigList_, context, request, response, reactor);
-}
-
-void Config::Stub::experimental_async::SetDOConfigList(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetDOConfigList_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::AsyncSetDOConfigListRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DOConfigList& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetDOConfigList_, context, request, true);
+void Config::Stub::async::SetDOConfigList(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DOConfigList* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetDOConfigList_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::PrepareAsyncSetDOConfigListRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DOConfigList& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetDOConfigList_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Response, ::Nrmk::IndyFramework::DOConfigList, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetDOConfigList_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::AsyncSetDOConfigListRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DOConfigList& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetDOConfigListRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Config::Stub::GetDOConfigList(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::DOConfigList* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetDOConfigList_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::DOConfigList, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetDOConfigList_, context, request, response);
 }
 
-void Config::Stub::experimental_async::GetDOConfigList(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::DOConfigList* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetDOConfigList_, context, request, response, std::move(f));
+void Config::Stub::async::GetDOConfigList(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::DOConfigList* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::DOConfigList, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetDOConfigList_, context, request, response, std::move(f));
 }
 
-void Config::Stub::experimental_async::GetDOConfigList(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::DOConfigList* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetDOConfigList_, context, request, response, std::move(f));
-}
-
-void Config::Stub::experimental_async::GetDOConfigList(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::DOConfigList* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetDOConfigList_, context, request, response, reactor);
-}
-
-void Config::Stub::experimental_async::GetDOConfigList(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::DOConfigList* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetDOConfigList_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::DOConfigList>* Config::Stub::AsyncGetDOConfigListRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::DOConfigList>::Create(channel_.get(), cq, rpcmethod_GetDOConfigList_, context, request, true);
+void Config::Stub::async::GetDOConfigList(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::DOConfigList* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetDOConfigList_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::DOConfigList>* Config::Stub::PrepareAsyncGetDOConfigListRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::DOConfigList>::Create(channel_.get(), cq, rpcmethod_GetDOConfigList_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::DOConfigList, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetDOConfigList_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::DOConfigList>* Config::Stub::AsyncGetDOConfigListRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetDOConfigListRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Config::Stub::SetHomePosition(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::JointPos& request, ::Nrmk::IndyFramework::Response* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetHomePosition_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::JointPos, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetHomePosition_, context, request, response);
 }
 
-void Config::Stub::experimental_async::SetHomePosition(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::JointPos* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetHomePosition_, context, request, response, std::move(f));
+void Config::Stub::async::SetHomePosition(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::JointPos* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::JointPos, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetHomePosition_, context, request, response, std::move(f));
 }
 
-void Config::Stub::experimental_async::SetHomePosition(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetHomePosition_, context, request, response, std::move(f));
-}
-
-void Config::Stub::experimental_async::SetHomePosition(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::JointPos* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetHomePosition_, context, request, response, reactor);
-}
-
-void Config::Stub::experimental_async::SetHomePosition(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetHomePosition_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::AsyncSetHomePositionRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::JointPos& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetHomePosition_, context, request, true);
+void Config::Stub::async::SetHomePosition(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::JointPos* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetHomePosition_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::PrepareAsyncSetHomePositionRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::JointPos& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetHomePosition_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Response, ::Nrmk::IndyFramework::JointPos, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetHomePosition_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::AsyncSetHomePositionRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::JointPos& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetHomePositionRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Config::Stub::GetHomePosition(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::JointPos* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetHomePosition_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::JointPos, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetHomePosition_, context, request, response);
 }
 
-void Config::Stub::experimental_async::GetHomePosition(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::JointPos* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetHomePosition_, context, request, response, std::move(f));
+void Config::Stub::async::GetHomePosition(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::JointPos* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::JointPos, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetHomePosition_, context, request, response, std::move(f));
 }
 
-void Config::Stub::experimental_async::GetHomePosition(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::JointPos* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetHomePosition_, context, request, response, std::move(f));
-}
-
-void Config::Stub::experimental_async::GetHomePosition(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::JointPos* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetHomePosition_, context, request, response, reactor);
-}
-
-void Config::Stub::experimental_async::GetHomePosition(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::JointPos* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetHomePosition_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::JointPos>* Config::Stub::AsyncGetHomePositionRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::JointPos>::Create(channel_.get(), cq, rpcmethod_GetHomePosition_, context, request, true);
+void Config::Stub::async::GetHomePosition(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::JointPos* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetHomePosition_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::JointPos>* Config::Stub::PrepareAsyncGetHomePositionRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::JointPos>::Create(channel_.get(), cq, rpcmethod_GetHomePosition_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::JointPos, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetHomePosition_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::JointPos>* Config::Stub::AsyncGetHomePositionRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetHomePositionRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Config::Stub::GetPackPosition(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::JointPos* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetPackPosition_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::JointPos, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetPackPosition_, context, request, response);
 }
 
-void Config::Stub::experimental_async::GetPackPosition(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::JointPos* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetPackPosition_, context, request, response, std::move(f));
+void Config::Stub::async::GetPackPosition(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::JointPos* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::JointPos, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetPackPosition_, context, request, response, std::move(f));
 }
 
-void Config::Stub::experimental_async::GetPackPosition(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::JointPos* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetPackPosition_, context, request, response, std::move(f));
-}
-
-void Config::Stub::experimental_async::GetPackPosition(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::JointPos* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetPackPosition_, context, request, response, reactor);
-}
-
-void Config::Stub::experimental_async::GetPackPosition(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::JointPos* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetPackPosition_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::JointPos>* Config::Stub::AsyncGetPackPositionRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::JointPos>::Create(channel_.get(), cq, rpcmethod_GetPackPosition_, context, request, true);
+void Config::Stub::async::GetPackPosition(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::JointPos* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetPackPosition_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::JointPos>* Config::Stub::PrepareAsyncGetPackPositionRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::JointPos>::Create(channel_.get(), cq, rpcmethod_GetPackPosition_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::JointPos, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetPackPosition_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::JointPos>* Config::Stub::AsyncGetPackPositionRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetPackPositionRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Config::Stub::SetAutoServoOff(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::AutoServoOffConfig& request, ::Nrmk::IndyFramework::Response* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetAutoServoOff_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::AutoServoOffConfig, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetAutoServoOff_, context, request, response);
 }
 
-void Config::Stub::experimental_async::SetAutoServoOff(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::AutoServoOffConfig* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetAutoServoOff_, context, request, response, std::move(f));
+void Config::Stub::async::SetAutoServoOff(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::AutoServoOffConfig* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::AutoServoOffConfig, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetAutoServoOff_, context, request, response, std::move(f));
 }
 
-void Config::Stub::experimental_async::SetAutoServoOff(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetAutoServoOff_, context, request, response, std::move(f));
-}
-
-void Config::Stub::experimental_async::SetAutoServoOff(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::AutoServoOffConfig* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetAutoServoOff_, context, request, response, reactor);
-}
-
-void Config::Stub::experimental_async::SetAutoServoOff(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetAutoServoOff_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::AsyncSetAutoServoOffRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::AutoServoOffConfig& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetAutoServoOff_, context, request, true);
+void Config::Stub::async::SetAutoServoOff(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::AutoServoOffConfig* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetAutoServoOff_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::PrepareAsyncSetAutoServoOffRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::AutoServoOffConfig& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetAutoServoOff_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Response, ::Nrmk::IndyFramework::AutoServoOffConfig, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetAutoServoOff_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::AsyncSetAutoServoOffRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::AutoServoOffConfig& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetAutoServoOffRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Config::Stub::GetAutoServoOff(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::AutoServoOffConfig* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetAutoServoOff_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::AutoServoOffConfig, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetAutoServoOff_, context, request, response);
 }
 
-void Config::Stub::experimental_async::GetAutoServoOff(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::AutoServoOffConfig* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetAutoServoOff_, context, request, response, std::move(f));
+void Config::Stub::async::GetAutoServoOff(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::AutoServoOffConfig* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::AutoServoOffConfig, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetAutoServoOff_, context, request, response, std::move(f));
 }
 
-void Config::Stub::experimental_async::GetAutoServoOff(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::AutoServoOffConfig* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetAutoServoOff_, context, request, response, std::move(f));
-}
-
-void Config::Stub::experimental_async::GetAutoServoOff(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::AutoServoOffConfig* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetAutoServoOff_, context, request, response, reactor);
-}
-
-void Config::Stub::experimental_async::GetAutoServoOff(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::AutoServoOffConfig* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetAutoServoOff_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::AutoServoOffConfig>* Config::Stub::AsyncGetAutoServoOffRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::AutoServoOffConfig>::Create(channel_.get(), cq, rpcmethod_GetAutoServoOff_, context, request, true);
+void Config::Stub::async::GetAutoServoOff(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::AutoServoOffConfig* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetAutoServoOff_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::AutoServoOffConfig>* Config::Stub::PrepareAsyncGetAutoServoOffRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::AutoServoOffConfig>::Create(channel_.get(), cq, rpcmethod_GetAutoServoOff_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::AutoServoOffConfig, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetAutoServoOff_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::AutoServoOffConfig>* Config::Stub::AsyncGetAutoServoOffRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetAutoServoOffRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Config::Stub::SetJointControlGain(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::JointGainSet& request, ::Nrmk::IndyFramework::Response* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetJointControlGain_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::JointGainSet, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetJointControlGain_, context, request, response);
 }
 
-void Config::Stub::experimental_async::SetJointControlGain(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::JointGainSet* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetJointControlGain_, context, request, response, std::move(f));
+void Config::Stub::async::SetJointControlGain(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::JointGainSet* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::JointGainSet, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetJointControlGain_, context, request, response, std::move(f));
 }
 
-void Config::Stub::experimental_async::SetJointControlGain(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetJointControlGain_, context, request, response, std::move(f));
-}
-
-void Config::Stub::experimental_async::SetJointControlGain(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::JointGainSet* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetJointControlGain_, context, request, response, reactor);
-}
-
-void Config::Stub::experimental_async::SetJointControlGain(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetJointControlGain_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::AsyncSetJointControlGainRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::JointGainSet& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetJointControlGain_, context, request, true);
+void Config::Stub::async::SetJointControlGain(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::JointGainSet* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetJointControlGain_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::PrepareAsyncSetJointControlGainRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::JointGainSet& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetJointControlGain_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Response, ::Nrmk::IndyFramework::JointGainSet, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetJointControlGain_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::AsyncSetJointControlGainRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::JointGainSet& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetJointControlGainRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Config::Stub::GetJointControlGain(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::JointGainSet* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetJointControlGain_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::JointGainSet, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetJointControlGain_, context, request, response);
 }
 
-void Config::Stub::experimental_async::GetJointControlGain(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::JointGainSet* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetJointControlGain_, context, request, response, std::move(f));
+void Config::Stub::async::GetJointControlGain(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::JointGainSet* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::JointGainSet, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetJointControlGain_, context, request, response, std::move(f));
 }
 
-void Config::Stub::experimental_async::GetJointControlGain(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::JointGainSet* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetJointControlGain_, context, request, response, std::move(f));
-}
-
-void Config::Stub::experimental_async::GetJointControlGain(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::JointGainSet* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetJointControlGain_, context, request, response, reactor);
-}
-
-void Config::Stub::experimental_async::GetJointControlGain(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::JointGainSet* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetJointControlGain_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::JointGainSet>* Config::Stub::AsyncGetJointControlGainRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::JointGainSet>::Create(channel_.get(), cq, rpcmethod_GetJointControlGain_, context, request, true);
+void Config::Stub::async::GetJointControlGain(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::JointGainSet* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetJointControlGain_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::JointGainSet>* Config::Stub::PrepareAsyncGetJointControlGainRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::JointGainSet>::Create(channel_.get(), cq, rpcmethod_GetJointControlGain_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::JointGainSet, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetJointControlGain_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::JointGainSet>* Config::Stub::AsyncGetJointControlGainRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetJointControlGainRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Config::Stub::SetTaskControlGain(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TaskGainSet& request, ::Nrmk::IndyFramework::Response* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetTaskControlGain_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::TaskGainSet, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetTaskControlGain_, context, request, response);
 }
 
-void Config::Stub::experimental_async::SetTaskControlGain(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TaskGainSet* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetTaskControlGain_, context, request, response, std::move(f));
+void Config::Stub::async::SetTaskControlGain(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TaskGainSet* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::TaskGainSet, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetTaskControlGain_, context, request, response, std::move(f));
 }
 
-void Config::Stub::experimental_async::SetTaskControlGain(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetTaskControlGain_, context, request, response, std::move(f));
-}
-
-void Config::Stub::experimental_async::SetTaskControlGain(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TaskGainSet* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetTaskControlGain_, context, request, response, reactor);
-}
-
-void Config::Stub::experimental_async::SetTaskControlGain(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetTaskControlGain_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::AsyncSetTaskControlGainRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TaskGainSet& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetTaskControlGain_, context, request, true);
+void Config::Stub::async::SetTaskControlGain(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TaskGainSet* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetTaskControlGain_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::PrepareAsyncSetTaskControlGainRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TaskGainSet& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetTaskControlGain_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Response, ::Nrmk::IndyFramework::TaskGainSet, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetTaskControlGain_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::AsyncSetTaskControlGainRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TaskGainSet& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetTaskControlGainRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Config::Stub::GetTaskControlGain(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::TaskGainSet* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetTaskControlGain_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::TaskGainSet, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetTaskControlGain_, context, request, response);
 }
 
-void Config::Stub::experimental_async::GetTaskControlGain(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::TaskGainSet* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetTaskControlGain_, context, request, response, std::move(f));
+void Config::Stub::async::GetTaskControlGain(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::TaskGainSet* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::TaskGainSet, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetTaskControlGain_, context, request, response, std::move(f));
 }
 
-void Config::Stub::experimental_async::GetTaskControlGain(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::TaskGainSet* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetTaskControlGain_, context, request, response, std::move(f));
-}
-
-void Config::Stub::experimental_async::GetTaskControlGain(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::TaskGainSet* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetTaskControlGain_, context, request, response, reactor);
-}
-
-void Config::Stub::experimental_async::GetTaskControlGain(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::TaskGainSet* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetTaskControlGain_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::TaskGainSet>* Config::Stub::AsyncGetTaskControlGainRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::TaskGainSet>::Create(channel_.get(), cq, rpcmethod_GetTaskControlGain_, context, request, true);
+void Config::Stub::async::GetTaskControlGain(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::TaskGainSet* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetTaskControlGain_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::TaskGainSet>* Config::Stub::PrepareAsyncGetTaskControlGainRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::TaskGainSet>::Create(channel_.get(), cq, rpcmethod_GetTaskControlGain_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::TaskGainSet, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetTaskControlGain_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::TaskGainSet>* Config::Stub::AsyncGetTaskControlGainRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetTaskControlGainRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Config::Stub::SetImpedanceControlGain(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ImpedanceGainSet& request, ::Nrmk::IndyFramework::Response* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetImpedanceControlGain_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::ImpedanceGainSet, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetImpedanceControlGain_, context, request, response);
 }
 
-void Config::Stub::experimental_async::SetImpedanceControlGain(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ImpedanceGainSet* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetImpedanceControlGain_, context, request, response, std::move(f));
+void Config::Stub::async::SetImpedanceControlGain(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ImpedanceGainSet* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::ImpedanceGainSet, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetImpedanceControlGain_, context, request, response, std::move(f));
 }
 
-void Config::Stub::experimental_async::SetImpedanceControlGain(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetImpedanceControlGain_, context, request, response, std::move(f));
-}
-
-void Config::Stub::experimental_async::SetImpedanceControlGain(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ImpedanceGainSet* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetImpedanceControlGain_, context, request, response, reactor);
-}
-
-void Config::Stub::experimental_async::SetImpedanceControlGain(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetImpedanceControlGain_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::AsyncSetImpedanceControlGainRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ImpedanceGainSet& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetImpedanceControlGain_, context, request, true);
+void Config::Stub::async::SetImpedanceControlGain(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ImpedanceGainSet* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetImpedanceControlGain_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::PrepareAsyncSetImpedanceControlGainRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ImpedanceGainSet& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetImpedanceControlGain_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Response, ::Nrmk::IndyFramework::ImpedanceGainSet, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetImpedanceControlGain_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::AsyncSetImpedanceControlGainRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ImpedanceGainSet& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetImpedanceControlGainRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Config::Stub::GetImpedanceControlGain(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::ImpedanceGainSet* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetImpedanceControlGain_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ImpedanceGainSet, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetImpedanceControlGain_, context, request, response);
 }
 
-void Config::Stub::experimental_async::GetImpedanceControlGain(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ImpedanceGainSet* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetImpedanceControlGain_, context, request, response, std::move(f));
+void Config::Stub::async::GetImpedanceControlGain(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ImpedanceGainSet* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ImpedanceGainSet, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetImpedanceControlGain_, context, request, response, std::move(f));
 }
 
-void Config::Stub::experimental_async::GetImpedanceControlGain(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::ImpedanceGainSet* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetImpedanceControlGain_, context, request, response, std::move(f));
-}
-
-void Config::Stub::experimental_async::GetImpedanceControlGain(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ImpedanceGainSet* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetImpedanceControlGain_, context, request, response, reactor);
-}
-
-void Config::Stub::experimental_async::GetImpedanceControlGain(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::ImpedanceGainSet* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetImpedanceControlGain_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ImpedanceGainSet>* Config::Stub::AsyncGetImpedanceControlGainRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::ImpedanceGainSet>::Create(channel_.get(), cq, rpcmethod_GetImpedanceControlGain_, context, request, true);
+void Config::Stub::async::GetImpedanceControlGain(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ImpedanceGainSet* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetImpedanceControlGain_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ImpedanceGainSet>* Config::Stub::PrepareAsyncGetImpedanceControlGainRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::ImpedanceGainSet>::Create(channel_.get(), cq, rpcmethod_GetImpedanceControlGain_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::ImpedanceGainSet, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetImpedanceControlGain_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ImpedanceGainSet>* Config::Stub::AsyncGetImpedanceControlGainRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetImpedanceControlGainRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Config::Stub::SetForceControlGain(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ForceGainSet& request, ::Nrmk::IndyFramework::Response* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetForceControlGain_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::ForceGainSet, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetForceControlGain_, context, request, response);
 }
 
-void Config::Stub::experimental_async::SetForceControlGain(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ForceGainSet* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetForceControlGain_, context, request, response, std::move(f));
+void Config::Stub::async::SetForceControlGain(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ForceGainSet* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::ForceGainSet, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetForceControlGain_, context, request, response, std::move(f));
 }
 
-void Config::Stub::experimental_async::SetForceControlGain(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetForceControlGain_, context, request, response, std::move(f));
-}
-
-void Config::Stub::experimental_async::SetForceControlGain(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ForceGainSet* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetForceControlGain_, context, request, response, reactor);
-}
-
-void Config::Stub::experimental_async::SetForceControlGain(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetForceControlGain_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::AsyncSetForceControlGainRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ForceGainSet& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetForceControlGain_, context, request, true);
+void Config::Stub::async::SetForceControlGain(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ForceGainSet* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetForceControlGain_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::PrepareAsyncSetForceControlGainRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ForceGainSet& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetForceControlGain_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Response, ::Nrmk::IndyFramework::ForceGainSet, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetForceControlGain_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::AsyncSetForceControlGainRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ForceGainSet& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetForceControlGainRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Config::Stub::GetForceControlGain(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::ForceGainSet* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetForceControlGain_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ForceGainSet, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetForceControlGain_, context, request, response);
 }
 
-void Config::Stub::experimental_async::GetForceControlGain(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ForceGainSet* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetForceControlGain_, context, request, response, std::move(f));
+void Config::Stub::async::GetForceControlGain(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ForceGainSet* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ForceGainSet, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetForceControlGain_, context, request, response, std::move(f));
 }
 
-void Config::Stub::experimental_async::GetForceControlGain(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::ForceGainSet* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetForceControlGain_, context, request, response, std::move(f));
-}
-
-void Config::Stub::experimental_async::GetForceControlGain(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ForceGainSet* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetForceControlGain_, context, request, response, reactor);
-}
-
-void Config::Stub::experimental_async::GetForceControlGain(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::ForceGainSet* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetForceControlGain_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ForceGainSet>* Config::Stub::AsyncGetForceControlGainRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::ForceGainSet>::Create(channel_.get(), cq, rpcmethod_GetForceControlGain_, context, request, true);
+void Config::Stub::async::GetForceControlGain(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ForceGainSet* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetForceControlGain_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ForceGainSet>* Config::Stub::PrepareAsyncGetForceControlGainRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::ForceGainSet>::Create(channel_.get(), cq, rpcmethod_GetForceControlGain_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::ForceGainSet, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetForceControlGain_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ForceGainSet>* Config::Stub::AsyncGetForceControlGainRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetForceControlGainRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Config::Stub::SetTestControlGain(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TestGainSet& request, ::Nrmk::IndyFramework::Response* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetTestControlGain_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::TestGainSet, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetTestControlGain_, context, request, response);
 }
 
-void Config::Stub::experimental_async::SetTestControlGain(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TestGainSet* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetTestControlGain_, context, request, response, std::move(f));
+void Config::Stub::async::SetTestControlGain(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TestGainSet* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::TestGainSet, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetTestControlGain_, context, request, response, std::move(f));
 }
 
-void Config::Stub::experimental_async::SetTestControlGain(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetTestControlGain_, context, request, response, std::move(f));
-}
-
-void Config::Stub::experimental_async::SetTestControlGain(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TestGainSet* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetTestControlGain_, context, request, response, reactor);
-}
-
-void Config::Stub::experimental_async::SetTestControlGain(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetTestControlGain_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::AsyncSetTestControlGainRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TestGainSet& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetTestControlGain_, context, request, true);
+void Config::Stub::async::SetTestControlGain(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TestGainSet* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetTestControlGain_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::PrepareAsyncSetTestControlGainRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TestGainSet& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetTestControlGain_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Response, ::Nrmk::IndyFramework::TestGainSet, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetTestControlGain_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::AsyncSetTestControlGainRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TestGainSet& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetTestControlGainRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Config::Stub::GetTestControlGain(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::TestGainSet* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetTestControlGain_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::TestGainSet, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetTestControlGain_, context, request, response);
 }
 
-void Config::Stub::experimental_async::GetTestControlGain(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::TestGainSet* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetTestControlGain_, context, request, response, std::move(f));
+void Config::Stub::async::GetTestControlGain(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::TestGainSet* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::TestGainSet, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetTestControlGain_, context, request, response, std::move(f));
 }
 
-void Config::Stub::experimental_async::GetTestControlGain(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::TestGainSet* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetTestControlGain_, context, request, response, std::move(f));
-}
-
-void Config::Stub::experimental_async::GetTestControlGain(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::TestGainSet* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetTestControlGain_, context, request, response, reactor);
-}
-
-void Config::Stub::experimental_async::GetTestControlGain(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::TestGainSet* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetTestControlGain_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::TestGainSet>* Config::Stub::AsyncGetTestControlGainRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::TestGainSet>::Create(channel_.get(), cq, rpcmethod_GetTestControlGain_, context, request, true);
+void Config::Stub::async::GetTestControlGain(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::TestGainSet* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetTestControlGain_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::TestGainSet>* Config::Stub::PrepareAsyncGetTestControlGainRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::TestGainSet>::Create(channel_.get(), cq, rpcmethod_GetTestControlGain_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::TestGainSet, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetTestControlGain_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::TestGainSet>* Config::Stub::AsyncGetTestControlGainRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetTestControlGainRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Config::Stub::SetCustomControlGain(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::CustomGainSet& request, ::Nrmk::IndyFramework::Response* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetCustomControlGain_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::CustomGainSet, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetCustomControlGain_, context, request, response);
 }
 
-void Config::Stub::experimental_async::SetCustomControlGain(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::CustomGainSet* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetCustomControlGain_, context, request, response, std::move(f));
+void Config::Stub::async::SetCustomControlGain(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::CustomGainSet* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::CustomGainSet, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetCustomControlGain_, context, request, response, std::move(f));
 }
 
-void Config::Stub::experimental_async::SetCustomControlGain(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetCustomControlGain_, context, request, response, std::move(f));
-}
-
-void Config::Stub::experimental_async::SetCustomControlGain(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::CustomGainSet* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetCustomControlGain_, context, request, response, reactor);
-}
-
-void Config::Stub::experimental_async::SetCustomControlGain(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetCustomControlGain_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::AsyncSetCustomControlGainRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::CustomGainSet& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetCustomControlGain_, context, request, true);
+void Config::Stub::async::SetCustomControlGain(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::CustomGainSet* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetCustomControlGain_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::PrepareAsyncSetCustomControlGainRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::CustomGainSet& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetCustomControlGain_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Response, ::Nrmk::IndyFramework::CustomGainSet, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetCustomControlGain_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::AsyncSetCustomControlGainRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::CustomGainSet& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetCustomControlGainRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Config::Stub::GetCustomControlGain(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::CustomGainSet* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetCustomControlGain_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::CustomGainSet, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetCustomControlGain_, context, request, response);
 }
 
-void Config::Stub::experimental_async::GetCustomControlGain(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::CustomGainSet* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetCustomControlGain_, context, request, response, std::move(f));
+void Config::Stub::async::GetCustomControlGain(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::CustomGainSet* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::CustomGainSet, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetCustomControlGain_, context, request, response, std::move(f));
 }
 
-void Config::Stub::experimental_async::GetCustomControlGain(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::CustomGainSet* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetCustomControlGain_, context, request, response, std::move(f));
-}
-
-void Config::Stub::experimental_async::GetCustomControlGain(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::CustomGainSet* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetCustomControlGain_, context, request, response, reactor);
-}
-
-void Config::Stub::experimental_async::GetCustomControlGain(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::CustomGainSet* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetCustomControlGain_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::CustomGainSet>* Config::Stub::AsyncGetCustomControlGainRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::CustomGainSet>::Create(channel_.get(), cq, rpcmethod_GetCustomControlGain_, context, request, true);
+void Config::Stub::async::GetCustomControlGain(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::CustomGainSet* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetCustomControlGain_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::CustomGainSet>* Config::Stub::PrepareAsyncGetCustomControlGainRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::CustomGainSet>::Create(channel_.get(), cq, rpcmethod_GetCustomControlGain_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::CustomGainSet, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetCustomControlGain_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::CustomGainSet>* Config::Stub::AsyncGetCustomControlGainRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetCustomControlGainRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Config::Stub::SetNewControllerTestOnOff(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::NewControllerTestState& request, ::Nrmk::IndyFramework::Response* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetNewControllerTestOnOff_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::NewControllerTestState, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetNewControllerTestOnOff_, context, request, response);
 }
 
-void Config::Stub::experimental_async::SetNewControllerTestOnOff(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::NewControllerTestState* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetNewControllerTestOnOff_, context, request, response, std::move(f));
+void Config::Stub::async::SetNewControllerTestOnOff(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::NewControllerTestState* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::NewControllerTestState, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetNewControllerTestOnOff_, context, request, response, std::move(f));
 }
 
-void Config::Stub::experimental_async::SetNewControllerTestOnOff(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetNewControllerTestOnOff_, context, request, response, std::move(f));
-}
-
-void Config::Stub::experimental_async::SetNewControllerTestOnOff(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::NewControllerTestState* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetNewControllerTestOnOff_, context, request, response, reactor);
-}
-
-void Config::Stub::experimental_async::SetNewControllerTestOnOff(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetNewControllerTestOnOff_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::AsyncSetNewControllerTestOnOffRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::NewControllerTestState& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetNewControllerTestOnOff_, context, request, true);
+void Config::Stub::async::SetNewControllerTestOnOff(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::NewControllerTestState* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetNewControllerTestOnOff_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::PrepareAsyncSetNewControllerTestOnOffRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::NewControllerTestState& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetNewControllerTestOnOff_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Response, ::Nrmk::IndyFramework::NewControllerTestState, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetNewControllerTestOnOff_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::AsyncSetNewControllerTestOnOffRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::NewControllerTestState& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetNewControllerTestOnOffRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Config::Stub::GetNewControllerTestOnOffState(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::NewControllerTestState* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetNewControllerTestOnOffState_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::NewControllerTestState, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetNewControllerTestOnOffState_, context, request, response);
 }
 
-void Config::Stub::experimental_async::GetNewControllerTestOnOffState(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::NewControllerTestState* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetNewControllerTestOnOffState_, context, request, response, std::move(f));
+void Config::Stub::async::GetNewControllerTestOnOffState(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::NewControllerTestState* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::NewControllerTestState, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetNewControllerTestOnOffState_, context, request, response, std::move(f));
 }
 
-void Config::Stub::experimental_async::GetNewControllerTestOnOffState(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::NewControllerTestState* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetNewControllerTestOnOffState_, context, request, response, std::move(f));
-}
-
-void Config::Stub::experimental_async::GetNewControllerTestOnOffState(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::NewControllerTestState* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetNewControllerTestOnOffState_, context, request, response, reactor);
-}
-
-void Config::Stub::experimental_async::GetNewControllerTestOnOffState(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::NewControllerTestState* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetNewControllerTestOnOffState_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::NewControllerTestState>* Config::Stub::AsyncGetNewControllerTestOnOffStateRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::NewControllerTestState>::Create(channel_.get(), cq, rpcmethod_GetNewControllerTestOnOffState_, context, request, true);
+void Config::Stub::async::GetNewControllerTestOnOffState(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::NewControllerTestState* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetNewControllerTestOnOffState_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::NewControllerTestState>* Config::Stub::PrepareAsyncGetNewControllerTestOnOffStateRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::NewControllerTestState>::Create(channel_.get(), cq, rpcmethod_GetNewControllerTestOnOffState_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::NewControllerTestState, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetNewControllerTestOnOffState_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::NewControllerTestState>* Config::Stub::AsyncGetNewControllerTestOnOffStateRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetNewControllerTestOnOffStateRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Config::Stub::SetFrictionComp(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::FrictionCompSet& request, ::Nrmk::IndyFramework::Response* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetFrictionComp_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::FrictionCompSet, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetFrictionComp_, context, request, response);
 }
 
-void Config::Stub::experimental_async::SetFrictionComp(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::FrictionCompSet* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetFrictionComp_, context, request, response, std::move(f));
+void Config::Stub::async::SetFrictionComp(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::FrictionCompSet* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::FrictionCompSet, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetFrictionComp_, context, request, response, std::move(f));
 }
 
-void Config::Stub::experimental_async::SetFrictionComp(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetFrictionComp_, context, request, response, std::move(f));
-}
-
-void Config::Stub::experimental_async::SetFrictionComp(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::FrictionCompSet* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetFrictionComp_, context, request, response, reactor);
-}
-
-void Config::Stub::experimental_async::SetFrictionComp(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetFrictionComp_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::AsyncSetFrictionCompRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::FrictionCompSet& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetFrictionComp_, context, request, true);
+void Config::Stub::async::SetFrictionComp(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::FrictionCompSet* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetFrictionComp_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::PrepareAsyncSetFrictionCompRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::FrictionCompSet& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetFrictionComp_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Response, ::Nrmk::IndyFramework::FrictionCompSet, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetFrictionComp_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::AsyncSetFrictionCompRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::FrictionCompSet& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetFrictionCompRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Config::Stub::GetFrictionComp(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::FrictionCompSet* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetFrictionComp_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::FrictionCompSet, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetFrictionComp_, context, request, response);
 }
 
-void Config::Stub::experimental_async::GetFrictionComp(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::FrictionCompSet* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetFrictionComp_, context, request, response, std::move(f));
+void Config::Stub::async::GetFrictionComp(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::FrictionCompSet* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::FrictionCompSet, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetFrictionComp_, context, request, response, std::move(f));
 }
 
-void Config::Stub::experimental_async::GetFrictionComp(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::FrictionCompSet* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetFrictionComp_, context, request, response, std::move(f));
-}
-
-void Config::Stub::experimental_async::GetFrictionComp(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::FrictionCompSet* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetFrictionComp_, context, request, response, reactor);
-}
-
-void Config::Stub::experimental_async::GetFrictionComp(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::FrictionCompSet* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetFrictionComp_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::FrictionCompSet>* Config::Stub::AsyncGetFrictionCompRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::FrictionCompSet>::Create(channel_.get(), cq, rpcmethod_GetFrictionComp_, context, request, true);
+void Config::Stub::async::GetFrictionComp(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::FrictionCompSet* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetFrictionComp_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::FrictionCompSet>* Config::Stub::PrepareAsyncGetFrictionCompRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::FrictionCompSet>::Create(channel_.get(), cq, rpcmethod_GetFrictionComp_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::FrictionCompSet, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetFrictionComp_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::FrictionCompSet>* Config::Stub::AsyncGetFrictionCompRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetFrictionCompRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Config::Stub::SetMountPos(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::MountingAngles& request, ::Nrmk::IndyFramework::Response* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetMountPos_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::MountingAngles, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetMountPos_, context, request, response);
 }
 
-void Config::Stub::experimental_async::SetMountPos(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::MountingAngles* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetMountPos_, context, request, response, std::move(f));
+void Config::Stub::async::SetMountPos(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::MountingAngles* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::MountingAngles, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetMountPos_, context, request, response, std::move(f));
 }
 
-void Config::Stub::experimental_async::SetMountPos(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetMountPos_, context, request, response, std::move(f));
-}
-
-void Config::Stub::experimental_async::SetMountPos(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::MountingAngles* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetMountPos_, context, request, response, reactor);
-}
-
-void Config::Stub::experimental_async::SetMountPos(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetMountPos_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::AsyncSetMountPosRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::MountingAngles& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetMountPos_, context, request, true);
+void Config::Stub::async::SetMountPos(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::MountingAngles* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetMountPos_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::PrepareAsyncSetMountPosRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::MountingAngles& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetMountPos_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Response, ::Nrmk::IndyFramework::MountingAngles, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetMountPos_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::AsyncSetMountPosRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::MountingAngles& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetMountPosRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Config::Stub::GetMountPos(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::MountingAngles* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetMountPos_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::MountingAngles, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetMountPos_, context, request, response);
 }
 
-void Config::Stub::experimental_async::GetMountPos(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::MountingAngles* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetMountPos_, context, request, response, std::move(f));
+void Config::Stub::async::GetMountPos(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::MountingAngles* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::MountingAngles, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetMountPos_, context, request, response, std::move(f));
 }
 
-void Config::Stub::experimental_async::GetMountPos(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::MountingAngles* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetMountPos_, context, request, response, std::move(f));
-}
-
-void Config::Stub::experimental_async::GetMountPos(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::MountingAngles* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetMountPos_, context, request, response, reactor);
-}
-
-void Config::Stub::experimental_async::GetMountPos(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::MountingAngles* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetMountPos_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::MountingAngles>* Config::Stub::AsyncGetMountPosRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::MountingAngles>::Create(channel_.get(), cq, rpcmethod_GetMountPos_, context, request, true);
+void Config::Stub::async::GetMountPos(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::MountingAngles* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetMountPos_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::MountingAngles>* Config::Stub::PrepareAsyncGetMountPosRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::MountingAngles>::Create(channel_.get(), cq, rpcmethod_GetMountPos_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::MountingAngles, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetMountPos_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::MountingAngles>* Config::Stub::AsyncGetMountPosRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetMountPosRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Config::Stub::SetToolProperty(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ToolProperties& request, ::Nrmk::IndyFramework::Response* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetToolProperty_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::ToolProperties, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetToolProperty_, context, request, response);
 }
 
-void Config::Stub::experimental_async::SetToolProperty(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ToolProperties* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetToolProperty_, context, request, response, std::move(f));
+void Config::Stub::async::SetToolProperty(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ToolProperties* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::ToolProperties, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetToolProperty_, context, request, response, std::move(f));
 }
 
-void Config::Stub::experimental_async::SetToolProperty(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetToolProperty_, context, request, response, std::move(f));
-}
-
-void Config::Stub::experimental_async::SetToolProperty(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ToolProperties* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetToolProperty_, context, request, response, reactor);
-}
-
-void Config::Stub::experimental_async::SetToolProperty(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetToolProperty_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::AsyncSetToolPropertyRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ToolProperties& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetToolProperty_, context, request, true);
+void Config::Stub::async::SetToolProperty(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ToolProperties* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetToolProperty_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::PrepareAsyncSetToolPropertyRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ToolProperties& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetToolProperty_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Response, ::Nrmk::IndyFramework::ToolProperties, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetToolProperty_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::AsyncSetToolPropertyRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ToolProperties& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetToolPropertyRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Config::Stub::GetToolProperty(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::ToolProperties* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetToolProperty_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ToolProperties, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetToolProperty_, context, request, response);
 }
 
-void Config::Stub::experimental_async::GetToolProperty(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ToolProperties* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetToolProperty_, context, request, response, std::move(f));
+void Config::Stub::async::GetToolProperty(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ToolProperties* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ToolProperties, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetToolProperty_, context, request, response, std::move(f));
 }
 
-void Config::Stub::experimental_async::GetToolProperty(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::ToolProperties* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetToolProperty_, context, request, response, std::move(f));
-}
-
-void Config::Stub::experimental_async::GetToolProperty(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ToolProperties* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetToolProperty_, context, request, response, reactor);
-}
-
-void Config::Stub::experimental_async::GetToolProperty(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::ToolProperties* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetToolProperty_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ToolProperties>* Config::Stub::AsyncGetToolPropertyRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::ToolProperties>::Create(channel_.get(), cq, rpcmethod_GetToolProperty_, context, request, true);
+void Config::Stub::async::GetToolProperty(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ToolProperties* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetToolProperty_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ToolProperties>* Config::Stub::PrepareAsyncGetToolPropertyRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::ToolProperties>::Create(channel_.get(), cq, rpcmethod_GetToolProperty_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::ToolProperties, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetToolProperty_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ToolProperties>* Config::Stub::AsyncGetToolPropertyRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetToolPropertyRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Config::Stub::SetCollSensLevel(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::CollisionSensLevel& request, ::Nrmk::IndyFramework::Response* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetCollSensLevel_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::CollisionSensLevel, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetCollSensLevel_, context, request, response);
 }
 
-void Config::Stub::experimental_async::SetCollSensLevel(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::CollisionSensLevel* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetCollSensLevel_, context, request, response, std::move(f));
+void Config::Stub::async::SetCollSensLevel(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::CollisionSensLevel* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::CollisionSensLevel, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetCollSensLevel_, context, request, response, std::move(f));
 }
 
-void Config::Stub::experimental_async::SetCollSensLevel(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetCollSensLevel_, context, request, response, std::move(f));
-}
-
-void Config::Stub::experimental_async::SetCollSensLevel(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::CollisionSensLevel* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetCollSensLevel_, context, request, response, reactor);
-}
-
-void Config::Stub::experimental_async::SetCollSensLevel(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetCollSensLevel_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::AsyncSetCollSensLevelRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::CollisionSensLevel& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetCollSensLevel_, context, request, true);
+void Config::Stub::async::SetCollSensLevel(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::CollisionSensLevel* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetCollSensLevel_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::PrepareAsyncSetCollSensLevelRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::CollisionSensLevel& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetCollSensLevel_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Response, ::Nrmk::IndyFramework::CollisionSensLevel, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetCollSensLevel_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::AsyncSetCollSensLevelRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::CollisionSensLevel& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetCollSensLevelRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Config::Stub::GetCollSensLevel(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::CollisionSensLevel* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetCollSensLevel_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::CollisionSensLevel, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetCollSensLevel_, context, request, response);
 }
 
-void Config::Stub::experimental_async::GetCollSensLevel(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::CollisionSensLevel* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetCollSensLevel_, context, request, response, std::move(f));
+void Config::Stub::async::GetCollSensLevel(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::CollisionSensLevel* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::CollisionSensLevel, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetCollSensLevel_, context, request, response, std::move(f));
 }
 
-void Config::Stub::experimental_async::GetCollSensLevel(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::CollisionSensLevel* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetCollSensLevel_, context, request, response, std::move(f));
-}
-
-void Config::Stub::experimental_async::GetCollSensLevel(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::CollisionSensLevel* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetCollSensLevel_, context, request, response, reactor);
-}
-
-void Config::Stub::experimental_async::GetCollSensLevel(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::CollisionSensLevel* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetCollSensLevel_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::CollisionSensLevel>* Config::Stub::AsyncGetCollSensLevelRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::CollisionSensLevel>::Create(channel_.get(), cq, rpcmethod_GetCollSensLevel_, context, request, true);
+void Config::Stub::async::GetCollSensLevel(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::CollisionSensLevel* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetCollSensLevel_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::CollisionSensLevel>* Config::Stub::PrepareAsyncGetCollSensLevelRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::CollisionSensLevel>::Create(channel_.get(), cq, rpcmethod_GetCollSensLevel_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::CollisionSensLevel, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetCollSensLevel_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::CollisionSensLevel>* Config::Stub::AsyncGetCollSensLevelRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetCollSensLevelRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Config::Stub::SetCollSensParam(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::CollisionThresholds& request, ::Nrmk::IndyFramework::Response* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetCollSensParam_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::CollisionThresholds, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetCollSensParam_, context, request, response);
 }
 
-void Config::Stub::experimental_async::SetCollSensParam(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::CollisionThresholds* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetCollSensParam_, context, request, response, std::move(f));
+void Config::Stub::async::SetCollSensParam(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::CollisionThresholds* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::CollisionThresholds, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetCollSensParam_, context, request, response, std::move(f));
 }
 
-void Config::Stub::experimental_async::SetCollSensParam(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetCollSensParam_, context, request, response, std::move(f));
-}
-
-void Config::Stub::experimental_async::SetCollSensParam(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::CollisionThresholds* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetCollSensParam_, context, request, response, reactor);
-}
-
-void Config::Stub::experimental_async::SetCollSensParam(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetCollSensParam_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::AsyncSetCollSensParamRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::CollisionThresholds& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetCollSensParam_, context, request, true);
+void Config::Stub::async::SetCollSensParam(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::CollisionThresholds* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetCollSensParam_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::PrepareAsyncSetCollSensParamRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::CollisionThresholds& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetCollSensParam_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Response, ::Nrmk::IndyFramework::CollisionThresholds, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetCollSensParam_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::AsyncSetCollSensParamRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::CollisionThresholds& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetCollSensParamRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Config::Stub::GetCollSensParam(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::CollisionThresholds* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetCollSensParam_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::CollisionThresholds, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetCollSensParam_, context, request, response);
 }
 
-void Config::Stub::experimental_async::GetCollSensParam(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::CollisionThresholds* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetCollSensParam_, context, request, response, std::move(f));
+void Config::Stub::async::GetCollSensParam(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::CollisionThresholds* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::CollisionThresholds, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetCollSensParam_, context, request, response, std::move(f));
 }
 
-void Config::Stub::experimental_async::GetCollSensParam(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::CollisionThresholds* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetCollSensParam_, context, request, response, std::move(f));
-}
-
-void Config::Stub::experimental_async::GetCollSensParam(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::CollisionThresholds* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetCollSensParam_, context, request, response, reactor);
-}
-
-void Config::Stub::experimental_async::GetCollSensParam(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::CollisionThresholds* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetCollSensParam_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::CollisionThresholds>* Config::Stub::AsyncGetCollSensParamRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::CollisionThresholds>::Create(channel_.get(), cq, rpcmethod_GetCollSensParam_, context, request, true);
+void Config::Stub::async::GetCollSensParam(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::CollisionThresholds* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetCollSensParam_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::CollisionThresholds>* Config::Stub::PrepareAsyncGetCollSensParamRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::CollisionThresholds>::Create(channel_.get(), cq, rpcmethod_GetCollSensParam_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::CollisionThresholds, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetCollSensParam_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::CollisionThresholds>* Config::Stub::AsyncGetCollSensParamRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetCollSensParamRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Config::Stub::SetCollPolicy(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::CollisionPolicy& request, ::Nrmk::IndyFramework::Response* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetCollPolicy_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::CollisionPolicy, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetCollPolicy_, context, request, response);
 }
 
-void Config::Stub::experimental_async::SetCollPolicy(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::CollisionPolicy* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetCollPolicy_, context, request, response, std::move(f));
+void Config::Stub::async::SetCollPolicy(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::CollisionPolicy* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::CollisionPolicy, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetCollPolicy_, context, request, response, std::move(f));
 }
 
-void Config::Stub::experimental_async::SetCollPolicy(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetCollPolicy_, context, request, response, std::move(f));
-}
-
-void Config::Stub::experimental_async::SetCollPolicy(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::CollisionPolicy* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetCollPolicy_, context, request, response, reactor);
-}
-
-void Config::Stub::experimental_async::SetCollPolicy(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetCollPolicy_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::AsyncSetCollPolicyRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::CollisionPolicy& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetCollPolicy_, context, request, true);
+void Config::Stub::async::SetCollPolicy(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::CollisionPolicy* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetCollPolicy_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::PrepareAsyncSetCollPolicyRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::CollisionPolicy& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetCollPolicy_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Response, ::Nrmk::IndyFramework::CollisionPolicy, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetCollPolicy_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::AsyncSetCollPolicyRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::CollisionPolicy& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetCollPolicyRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Config::Stub::GetCollPolicy(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::CollisionPolicy* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetCollPolicy_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::CollisionPolicy, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetCollPolicy_, context, request, response);
 }
 
-void Config::Stub::experimental_async::GetCollPolicy(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::CollisionPolicy* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetCollPolicy_, context, request, response, std::move(f));
+void Config::Stub::async::GetCollPolicy(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::CollisionPolicy* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::CollisionPolicy, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetCollPolicy_, context, request, response, std::move(f));
 }
 
-void Config::Stub::experimental_async::GetCollPolicy(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::CollisionPolicy* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetCollPolicy_, context, request, response, std::move(f));
-}
-
-void Config::Stub::experimental_async::GetCollPolicy(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::CollisionPolicy* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetCollPolicy_, context, request, response, reactor);
-}
-
-void Config::Stub::experimental_async::GetCollPolicy(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::CollisionPolicy* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetCollPolicy_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::CollisionPolicy>* Config::Stub::AsyncGetCollPolicyRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::CollisionPolicy>::Create(channel_.get(), cq, rpcmethod_GetCollPolicy_, context, request, true);
+void Config::Stub::async::GetCollPolicy(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::CollisionPolicy* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetCollPolicy_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::CollisionPolicy>* Config::Stub::PrepareAsyncGetCollPolicyRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::CollisionPolicy>::Create(channel_.get(), cq, rpcmethod_GetCollPolicy_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::CollisionPolicy, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetCollPolicy_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::CollisionPolicy>* Config::Stub::AsyncGetCollPolicyRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetCollPolicyRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Config::Stub::SetSafetyLimits(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SafetyLimits& request, ::Nrmk::IndyFramework::Response* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetSafetyLimits_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::SafetyLimits, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetSafetyLimits_, context, request, response);
 }
 
-void Config::Stub::experimental_async::SetSafetyLimits(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SafetyLimits* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetSafetyLimits_, context, request, response, std::move(f));
+void Config::Stub::async::SetSafetyLimits(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SafetyLimits* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::SafetyLimits, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetSafetyLimits_, context, request, response, std::move(f));
 }
 
-void Config::Stub::experimental_async::SetSafetyLimits(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetSafetyLimits_, context, request, response, std::move(f));
-}
-
-void Config::Stub::experimental_async::SetSafetyLimits(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SafetyLimits* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetSafetyLimits_, context, request, response, reactor);
-}
-
-void Config::Stub::experimental_async::SetSafetyLimits(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetSafetyLimits_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::AsyncSetSafetyLimitsRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SafetyLimits& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetSafetyLimits_, context, request, true);
+void Config::Stub::async::SetSafetyLimits(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SafetyLimits* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetSafetyLimits_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::PrepareAsyncSetSafetyLimitsRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SafetyLimits& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetSafetyLimits_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Response, ::Nrmk::IndyFramework::SafetyLimits, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetSafetyLimits_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::AsyncSetSafetyLimitsRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SafetyLimits& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetSafetyLimitsRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Config::Stub::GetSafetyLimits(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::SafetyLimits* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetSafetyLimits_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::SafetyLimits, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetSafetyLimits_, context, request, response);
 }
 
-void Config::Stub::experimental_async::GetSafetyLimits(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::SafetyLimits* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetSafetyLimits_, context, request, response, std::move(f));
+void Config::Stub::async::GetSafetyLimits(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::SafetyLimits* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::SafetyLimits, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetSafetyLimits_, context, request, response, std::move(f));
 }
 
-void Config::Stub::experimental_async::GetSafetyLimits(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::SafetyLimits* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetSafetyLimits_, context, request, response, std::move(f));
-}
-
-void Config::Stub::experimental_async::GetSafetyLimits(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::SafetyLimits* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetSafetyLimits_, context, request, response, reactor);
-}
-
-void Config::Stub::experimental_async::GetSafetyLimits(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::SafetyLimits* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetSafetyLimits_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::SafetyLimits>* Config::Stub::AsyncGetSafetyLimitsRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::SafetyLimits>::Create(channel_.get(), cq, rpcmethod_GetSafetyLimits_, context, request, true);
+void Config::Stub::async::GetSafetyLimits(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::SafetyLimits* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetSafetyLimits_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::SafetyLimits>* Config::Stub::PrepareAsyncGetSafetyLimitsRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::SafetyLimits>::Create(channel_.get(), cq, rpcmethod_GetSafetyLimits_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::SafetyLimits, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetSafetyLimits_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::SafetyLimits>* Config::Stub::AsyncGetSafetyLimitsRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetSafetyLimitsRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Config::Stub::SetSafetyStopConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SafetyStopConfig& request, ::Nrmk::IndyFramework::Response* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetSafetyStopConfig_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::SafetyStopConfig, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetSafetyStopConfig_, context, request, response);
 }
 
-void Config::Stub::experimental_async::SetSafetyStopConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SafetyStopConfig* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetSafetyStopConfig_, context, request, response, std::move(f));
+void Config::Stub::async::SetSafetyStopConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SafetyStopConfig* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::SafetyStopConfig, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetSafetyStopConfig_, context, request, response, std::move(f));
 }
 
-void Config::Stub::experimental_async::SetSafetyStopConfig(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetSafetyStopConfig_, context, request, response, std::move(f));
-}
-
-void Config::Stub::experimental_async::SetSafetyStopConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SafetyStopConfig* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetSafetyStopConfig_, context, request, response, reactor);
-}
-
-void Config::Stub::experimental_async::SetSafetyStopConfig(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetSafetyStopConfig_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::AsyncSetSafetyStopConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SafetyStopConfig& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetSafetyStopConfig_, context, request, true);
+void Config::Stub::async::SetSafetyStopConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SafetyStopConfig* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetSafetyStopConfig_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::PrepareAsyncSetSafetyStopConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SafetyStopConfig& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetSafetyStopConfig_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Response, ::Nrmk::IndyFramework::SafetyStopConfig, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetSafetyStopConfig_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::AsyncSetSafetyStopConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SafetyStopConfig& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetSafetyStopConfigRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Config::Stub::GetSafetyStopConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::SafetyStopConfig* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetSafetyStopConfig_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::SafetyStopConfig, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetSafetyStopConfig_, context, request, response);
 }
 
-void Config::Stub::experimental_async::GetSafetyStopConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::SafetyStopConfig* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetSafetyStopConfig_, context, request, response, std::move(f));
+void Config::Stub::async::GetSafetyStopConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::SafetyStopConfig* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::SafetyStopConfig, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetSafetyStopConfig_, context, request, response, std::move(f));
 }
 
-void Config::Stub::experimental_async::GetSafetyStopConfig(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::SafetyStopConfig* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetSafetyStopConfig_, context, request, response, std::move(f));
-}
-
-void Config::Stub::experimental_async::GetSafetyStopConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::SafetyStopConfig* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetSafetyStopConfig_, context, request, response, reactor);
-}
-
-void Config::Stub::experimental_async::GetSafetyStopConfig(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::SafetyStopConfig* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetSafetyStopConfig_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::SafetyStopConfig>* Config::Stub::AsyncGetSafetyStopConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::SafetyStopConfig>::Create(channel_.get(), cq, rpcmethod_GetSafetyStopConfig_, context, request, true);
+void Config::Stub::async::GetSafetyStopConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::SafetyStopConfig* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetSafetyStopConfig_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::SafetyStopConfig>* Config::Stub::PrepareAsyncGetSafetyStopConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::SafetyStopConfig>::Create(channel_.get(), cq, rpcmethod_GetSafetyStopConfig_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::SafetyStopConfig, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetSafetyStopConfig_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::SafetyStopConfig>* Config::Stub::AsyncGetSafetyStopConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetSafetyStopConfigRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Config::Stub::GetReducedRatio(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::GetReducedRatioRes* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetReducedRatio_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::GetReducedRatioRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetReducedRatio_, context, request, response);
 }
 
-void Config::Stub::experimental_async::GetReducedRatio(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::GetReducedRatioRes* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetReducedRatio_, context, request, response, std::move(f));
+void Config::Stub::async::GetReducedRatio(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::GetReducedRatioRes* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::GetReducedRatioRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetReducedRatio_, context, request, response, std::move(f));
 }
 
-void Config::Stub::experimental_async::GetReducedRatio(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::GetReducedRatioRes* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetReducedRatio_, context, request, response, std::move(f));
-}
-
-void Config::Stub::experimental_async::GetReducedRatio(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::GetReducedRatioRes* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetReducedRatio_, context, request, response, reactor);
-}
-
-void Config::Stub::experimental_async::GetReducedRatio(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::GetReducedRatioRes* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetReducedRatio_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::GetReducedRatioRes>* Config::Stub::AsyncGetReducedRatioRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::GetReducedRatioRes>::Create(channel_.get(), cq, rpcmethod_GetReducedRatio_, context, request, true);
+void Config::Stub::async::GetReducedRatio(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::GetReducedRatioRes* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetReducedRatio_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::GetReducedRatioRes>* Config::Stub::PrepareAsyncGetReducedRatioRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::GetReducedRatioRes>::Create(channel_.get(), cq, rpcmethod_GetReducedRatio_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::GetReducedRatioRes, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetReducedRatio_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::GetReducedRatioRes>* Config::Stub::AsyncGetReducedRatioRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetReducedRatioRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Config::Stub::GetReducedSpeed(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::GetReducedSpeedRes* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetReducedSpeed_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::GetReducedSpeedRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetReducedSpeed_, context, request, response);
 }
 
-void Config::Stub::experimental_async::GetReducedSpeed(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::GetReducedSpeedRes* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetReducedSpeed_, context, request, response, std::move(f));
+void Config::Stub::async::GetReducedSpeed(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::GetReducedSpeedRes* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::GetReducedSpeedRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetReducedSpeed_, context, request, response, std::move(f));
 }
 
-void Config::Stub::experimental_async::GetReducedSpeed(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::GetReducedSpeedRes* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetReducedSpeed_, context, request, response, std::move(f));
-}
-
-void Config::Stub::experimental_async::GetReducedSpeed(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::GetReducedSpeedRes* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetReducedSpeed_, context, request, response, reactor);
-}
-
-void Config::Stub::experimental_async::GetReducedSpeed(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::GetReducedSpeedRes* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetReducedSpeed_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::GetReducedSpeedRes>* Config::Stub::AsyncGetReducedSpeedRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::GetReducedSpeedRes>::Create(channel_.get(), cq, rpcmethod_GetReducedSpeed_, context, request, true);
+void Config::Stub::async::GetReducedSpeed(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::GetReducedSpeedRes* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetReducedSpeed_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::GetReducedSpeedRes>* Config::Stub::PrepareAsyncGetReducedSpeedRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::GetReducedSpeedRes>::Create(channel_.get(), cq, rpcmethod_GetReducedSpeed_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::GetReducedSpeedRes, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetReducedSpeed_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::GetReducedSpeedRes>* Config::Stub::AsyncGetReducedSpeedRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetReducedSpeedRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Config::Stub::SetReducedSpeed(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SetReducedSpeedReq& request, ::Nrmk::IndyFramework::Response* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetReducedSpeed_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::SetReducedSpeedReq, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetReducedSpeed_, context, request, response);
 }
 
-void Config::Stub::experimental_async::SetReducedSpeed(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SetReducedSpeedReq* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetReducedSpeed_, context, request, response, std::move(f));
+void Config::Stub::async::SetReducedSpeed(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SetReducedSpeedReq* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::SetReducedSpeedReq, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetReducedSpeed_, context, request, response, std::move(f));
 }
 
-void Config::Stub::experimental_async::SetReducedSpeed(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetReducedSpeed_, context, request, response, std::move(f));
-}
-
-void Config::Stub::experimental_async::SetReducedSpeed(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SetReducedSpeedReq* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetReducedSpeed_, context, request, response, reactor);
-}
-
-void Config::Stub::experimental_async::SetReducedSpeed(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetReducedSpeed_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::AsyncSetReducedSpeedRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SetReducedSpeedReq& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetReducedSpeed_, context, request, true);
+void Config::Stub::async::SetReducedSpeed(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SetReducedSpeedReq* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetReducedSpeed_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::PrepareAsyncSetReducedSpeedRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SetReducedSpeedReq& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetReducedSpeed_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Response, ::Nrmk::IndyFramework::SetReducedSpeedReq, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetReducedSpeed_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::AsyncSetReducedSpeedRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SetReducedSpeedReq& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetReducedSpeedRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Config::Stub::SetFTSensorConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::FTSensorDevice& request, ::Nrmk::IndyFramework::Response* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetFTSensorConfig_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::FTSensorDevice, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetFTSensorConfig_, context, request, response);
 }
 
-void Config::Stub::experimental_async::SetFTSensorConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::FTSensorDevice* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetFTSensorConfig_, context, request, response, std::move(f));
+void Config::Stub::async::SetFTSensorConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::FTSensorDevice* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::FTSensorDevice, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetFTSensorConfig_, context, request, response, std::move(f));
 }
 
-void Config::Stub::experimental_async::SetFTSensorConfig(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetFTSensorConfig_, context, request, response, std::move(f));
-}
-
-void Config::Stub::experimental_async::SetFTSensorConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::FTSensorDevice* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetFTSensorConfig_, context, request, response, reactor);
-}
-
-void Config::Stub::experimental_async::SetFTSensorConfig(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetFTSensorConfig_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::AsyncSetFTSensorConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::FTSensorDevice& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetFTSensorConfig_, context, request, true);
+void Config::Stub::async::SetFTSensorConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::FTSensorDevice* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetFTSensorConfig_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::PrepareAsyncSetFTSensorConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::FTSensorDevice& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetFTSensorConfig_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Response, ::Nrmk::IndyFramework::FTSensorDevice, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetFTSensorConfig_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::AsyncSetFTSensorConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::FTSensorDevice& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetFTSensorConfigRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Config::Stub::GetFTSensorConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::FTSensorDevice* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetFTSensorConfig_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::FTSensorDevice, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetFTSensorConfig_, context, request, response);
 }
 
-void Config::Stub::experimental_async::GetFTSensorConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::FTSensorDevice* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetFTSensorConfig_, context, request, response, std::move(f));
+void Config::Stub::async::GetFTSensorConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::FTSensorDevice* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::FTSensorDevice, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetFTSensorConfig_, context, request, response, std::move(f));
 }
 
-void Config::Stub::experimental_async::GetFTSensorConfig(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::FTSensorDevice* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetFTSensorConfig_, context, request, response, std::move(f));
-}
-
-void Config::Stub::experimental_async::GetFTSensorConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::FTSensorDevice* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetFTSensorConfig_, context, request, response, reactor);
-}
-
-void Config::Stub::experimental_async::GetFTSensorConfig(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::FTSensorDevice* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetFTSensorConfig_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::FTSensorDevice>* Config::Stub::AsyncGetFTSensorConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::FTSensorDevice>::Create(channel_.get(), cq, rpcmethod_GetFTSensorConfig_, context, request, true);
+void Config::Stub::async::GetFTSensorConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::FTSensorDevice* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetFTSensorConfig_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::FTSensorDevice>* Config::Stub::PrepareAsyncGetFTSensorConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::FTSensorDevice>::Create(channel_.get(), cq, rpcmethod_GetFTSensorConfig_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::FTSensorDevice, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetFTSensorConfig_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::FTSensorDevice>* Config::Stub::AsyncGetFTSensorConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetFTSensorConfigRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Config::Stub::SetTeleOpParams(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TeleOpParams& request, ::Nrmk::IndyFramework::Response* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetTeleOpParams_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::TeleOpParams, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetTeleOpParams_, context, request, response);
 }
 
-void Config::Stub::experimental_async::SetTeleOpParams(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TeleOpParams* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetTeleOpParams_, context, request, response, std::move(f));
+void Config::Stub::async::SetTeleOpParams(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TeleOpParams* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::TeleOpParams, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetTeleOpParams_, context, request, response, std::move(f));
 }
 
-void Config::Stub::experimental_async::SetTeleOpParams(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetTeleOpParams_, context, request, response, std::move(f));
-}
-
-void Config::Stub::experimental_async::SetTeleOpParams(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TeleOpParams* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetTeleOpParams_, context, request, response, reactor);
-}
-
-void Config::Stub::experimental_async::SetTeleOpParams(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::Response* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetTeleOpParams_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::AsyncSetTeleOpParamsRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TeleOpParams& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetTeleOpParams_, context, request, true);
+void Config::Stub::async::SetTeleOpParams(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TeleOpParams* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetTeleOpParams_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::PrepareAsyncSetTeleOpParamsRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TeleOpParams& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::Response>::Create(channel_.get(), cq, rpcmethod_SetTeleOpParams_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Response, ::Nrmk::IndyFramework::TeleOpParams, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetTeleOpParams_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::AsyncSetTeleOpParamsRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TeleOpParams& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetTeleOpParamsRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Config::Stub::GetTeleOpParams(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::TeleOpParams* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetTeleOpParams_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::TeleOpParams, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetTeleOpParams_, context, request, response);
 }
 
-void Config::Stub::experimental_async::GetTeleOpParams(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::TeleOpParams* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetTeleOpParams_, context, request, response, std::move(f));
+void Config::Stub::async::GetTeleOpParams(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::TeleOpParams* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::TeleOpParams, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetTeleOpParams_, context, request, response, std::move(f));
 }
 
-void Config::Stub::experimental_async::GetTeleOpParams(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::TeleOpParams* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetTeleOpParams_, context, request, response, std::move(f));
-}
-
-void Config::Stub::experimental_async::GetTeleOpParams(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::TeleOpParams* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetTeleOpParams_, context, request, response, reactor);
-}
-
-void Config::Stub::experimental_async::GetTeleOpParams(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::TeleOpParams* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetTeleOpParams_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::TeleOpParams>* Config::Stub::AsyncGetTeleOpParamsRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::TeleOpParams>::Create(channel_.get(), cq, rpcmethod_GetTeleOpParams_, context, request, true);
+void Config::Stub::async::GetTeleOpParams(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::TeleOpParams* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetTeleOpParams_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::TeleOpParams>* Config::Stub::PrepareAsyncGetTeleOpParamsRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::TeleOpParams>::Create(channel_.get(), cq, rpcmethod_GetTeleOpParams_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::TeleOpParams, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetTeleOpParams_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::TeleOpParams>* Config::Stub::AsyncGetTeleOpParamsRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetTeleOpParamsRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status Config::Stub::GetKinematicsParams(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::KinematicsParams* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetKinematicsParams_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::KinematicsParams, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetKinematicsParams_, context, request, response);
 }
 
-void Config::Stub::experimental_async::GetKinematicsParams(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::KinematicsParams* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetKinematicsParams_, context, request, response, std::move(f));
+void Config::Stub::async::GetKinematicsParams(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::KinematicsParams* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::KinematicsParams, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetKinematicsParams_, context, request, response, std::move(f));
 }
 
-void Config::Stub::experimental_async::GetKinematicsParams(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::KinematicsParams* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetKinematicsParams_, context, request, response, std::move(f));
-}
-
-void Config::Stub::experimental_async::GetKinematicsParams(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::KinematicsParams* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetKinematicsParams_, context, request, response, reactor);
-}
-
-void Config::Stub::experimental_async::GetKinematicsParams(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Nrmk::IndyFramework::KinematicsParams* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetKinematicsParams_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::KinematicsParams>* Config::Stub::AsyncGetKinematicsParamsRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::KinematicsParams>::Create(channel_.get(), cq, rpcmethod_GetKinematicsParams_, context, request, true);
+void Config::Stub::async::GetKinematicsParams(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::KinematicsParams* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetKinematicsParams_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::KinematicsParams>* Config::Stub::PrepareAsyncGetKinematicsParamsRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Nrmk::IndyFramework::KinematicsParams>::Create(channel_.get(), cq, rpcmethod_GetKinematicsParams_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::KinematicsParams, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetKinematicsParams_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::KinematicsParams>* Config::Stub::AsyncGetKinematicsParamsRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetKinematicsParamsRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 Config::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Config_method_names[0],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Frame>(
-          std::mem_fn(&Config::Service::GetRefFrame), this)));
+      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Frame, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Config::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::Empty* req,
+             ::Nrmk::IndyFramework::Frame* resp) {
+               return service->GetRefFrame(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Config_method_names[1],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::Frame, ::Nrmk::IndyFramework::Response>(
-          std::mem_fn(&Config::Service::SetRefFrame), this)));
+      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::Frame, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Config::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::Frame* req,
+             ::Nrmk::IndyFramework::Response* resp) {
+               return service->SetRefFrame(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Config_method_names[2],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::PlanarFrame, ::Nrmk::IndyFramework::FrameResult>(
-          std::mem_fn(&Config::Service::SetRefFramePlanar), this)));
+      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::PlanarFrame, ::Nrmk::IndyFramework::FrameResult, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Config::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::PlanarFrame* req,
+             ::Nrmk::IndyFramework::FrameResult* resp) {
+               return service->SetRefFramePlanar(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Config_method_names[3],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::Frame, ::Nrmk::IndyFramework::Response>(
-          std::mem_fn(&Config::Service::SetToolFrame), this)));
+      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::Frame, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Config::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::Frame* req,
+             ::Nrmk::IndyFramework::Response* resp) {
+               return service->SetToolFrame(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Config_method_names[4],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::Ratio, ::Nrmk::IndyFramework::Response>(
-          std::mem_fn(&Config::Service::SetSpeedRatio), this)));
+      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::Ratio, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Config::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::Ratio* req,
+             ::Nrmk::IndyFramework::Response* resp) {
+               return service->SetSpeedRatio(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Config_method_names[5],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::DIConfigList, ::Nrmk::IndyFramework::Response>(
-          std::mem_fn(&Config::Service::SetDIConfigList), this)));
+      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::DIConfigList, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Config::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::DIConfigList* req,
+             ::Nrmk::IndyFramework::Response* resp) {
+               return service->SetDIConfigList(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Config_method_names[6],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::DIConfigList>(
-          std::mem_fn(&Config::Service::GetDIConfigList), this)));
+      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::DIConfigList, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Config::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::Empty* req,
+             ::Nrmk::IndyFramework::DIConfigList* resp) {
+               return service->GetDIConfigList(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Config_method_names[7],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::DOConfigList, ::Nrmk::IndyFramework::Response>(
-          std::mem_fn(&Config::Service::SetDOConfigList), this)));
+      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::DOConfigList, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Config::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::DOConfigList* req,
+             ::Nrmk::IndyFramework::Response* resp) {
+               return service->SetDOConfigList(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Config_method_names[8],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::DOConfigList>(
-          std::mem_fn(&Config::Service::GetDOConfigList), this)));
+      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::DOConfigList, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Config::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::Empty* req,
+             ::Nrmk::IndyFramework::DOConfigList* resp) {
+               return service->GetDOConfigList(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Config_method_names[9],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::JointPos, ::Nrmk::IndyFramework::Response>(
-          std::mem_fn(&Config::Service::SetHomePosition), this)));
+      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::JointPos, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Config::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::JointPos* req,
+             ::Nrmk::IndyFramework::Response* resp) {
+               return service->SetHomePosition(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Config_method_names[10],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::JointPos>(
-          std::mem_fn(&Config::Service::GetHomePosition), this)));
+      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::JointPos, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Config::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::Empty* req,
+             ::Nrmk::IndyFramework::JointPos* resp) {
+               return service->GetHomePosition(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Config_method_names[11],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::JointPos>(
-          std::mem_fn(&Config::Service::GetPackPosition), this)));
+      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::JointPos, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Config::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::Empty* req,
+             ::Nrmk::IndyFramework::JointPos* resp) {
+               return service->GetPackPosition(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Config_method_names[12],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::AutoServoOffConfig, ::Nrmk::IndyFramework::Response>(
-          std::mem_fn(&Config::Service::SetAutoServoOff), this)));
+      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::AutoServoOffConfig, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Config::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::AutoServoOffConfig* req,
+             ::Nrmk::IndyFramework::Response* resp) {
+               return service->SetAutoServoOff(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Config_method_names[13],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::AutoServoOffConfig>(
-          std::mem_fn(&Config::Service::GetAutoServoOff), this)));
+      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::AutoServoOffConfig, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Config::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::Empty* req,
+             ::Nrmk::IndyFramework::AutoServoOffConfig* resp) {
+               return service->GetAutoServoOff(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Config_method_names[14],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::JointGainSet, ::Nrmk::IndyFramework::Response>(
-          std::mem_fn(&Config::Service::SetJointControlGain), this)));
+      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::JointGainSet, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Config::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::JointGainSet* req,
+             ::Nrmk::IndyFramework::Response* resp) {
+               return service->SetJointControlGain(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Config_method_names[15],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::JointGainSet>(
-          std::mem_fn(&Config::Service::GetJointControlGain), this)));
+      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::JointGainSet, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Config::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::Empty* req,
+             ::Nrmk::IndyFramework::JointGainSet* resp) {
+               return service->GetJointControlGain(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Config_method_names[16],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::TaskGainSet, ::Nrmk::IndyFramework::Response>(
-          std::mem_fn(&Config::Service::SetTaskControlGain), this)));
+      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::TaskGainSet, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Config::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::TaskGainSet* req,
+             ::Nrmk::IndyFramework::Response* resp) {
+               return service->SetTaskControlGain(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Config_method_names[17],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::TaskGainSet>(
-          std::mem_fn(&Config::Service::GetTaskControlGain), this)));
+      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::TaskGainSet, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Config::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::Empty* req,
+             ::Nrmk::IndyFramework::TaskGainSet* resp) {
+               return service->GetTaskControlGain(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Config_method_names[18],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::ImpedanceGainSet, ::Nrmk::IndyFramework::Response>(
-          std::mem_fn(&Config::Service::SetImpedanceControlGain), this)));
+      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::ImpedanceGainSet, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Config::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::ImpedanceGainSet* req,
+             ::Nrmk::IndyFramework::Response* resp) {
+               return service->SetImpedanceControlGain(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Config_method_names[19],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ImpedanceGainSet>(
-          std::mem_fn(&Config::Service::GetImpedanceControlGain), this)));
+      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ImpedanceGainSet, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Config::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::Empty* req,
+             ::Nrmk::IndyFramework::ImpedanceGainSet* resp) {
+               return service->GetImpedanceControlGain(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Config_method_names[20],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::ForceGainSet, ::Nrmk::IndyFramework::Response>(
-          std::mem_fn(&Config::Service::SetForceControlGain), this)));
+      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::ForceGainSet, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Config::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::ForceGainSet* req,
+             ::Nrmk::IndyFramework::Response* resp) {
+               return service->SetForceControlGain(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Config_method_names[21],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ForceGainSet>(
-          std::mem_fn(&Config::Service::GetForceControlGain), this)));
+      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ForceGainSet, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Config::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::Empty* req,
+             ::Nrmk::IndyFramework::ForceGainSet* resp) {
+               return service->GetForceControlGain(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Config_method_names[22],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::TestGainSet, ::Nrmk::IndyFramework::Response>(
-          std::mem_fn(&Config::Service::SetTestControlGain), this)));
+      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::TestGainSet, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Config::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::TestGainSet* req,
+             ::Nrmk::IndyFramework::Response* resp) {
+               return service->SetTestControlGain(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Config_method_names[23],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::TestGainSet>(
-          std::mem_fn(&Config::Service::GetTestControlGain), this)));
+      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::TestGainSet, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Config::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::Empty* req,
+             ::Nrmk::IndyFramework::TestGainSet* resp) {
+               return service->GetTestControlGain(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Config_method_names[24],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::CustomGainSet, ::Nrmk::IndyFramework::Response>(
-          std::mem_fn(&Config::Service::SetCustomControlGain), this)));
+      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::CustomGainSet, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Config::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::CustomGainSet* req,
+             ::Nrmk::IndyFramework::Response* resp) {
+               return service->SetCustomControlGain(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Config_method_names[25],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::CustomGainSet>(
-          std::mem_fn(&Config::Service::GetCustomControlGain), this)));
+      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::CustomGainSet, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Config::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::Empty* req,
+             ::Nrmk::IndyFramework::CustomGainSet* resp) {
+               return service->GetCustomControlGain(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Config_method_names[26],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::NewControllerTestState, ::Nrmk::IndyFramework::Response>(
-          std::mem_fn(&Config::Service::SetNewControllerTestOnOff), this)));
+      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::NewControllerTestState, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Config::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::NewControllerTestState* req,
+             ::Nrmk::IndyFramework::Response* resp) {
+               return service->SetNewControllerTestOnOff(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Config_method_names[27],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::NewControllerTestState>(
-          std::mem_fn(&Config::Service::GetNewControllerTestOnOffState), this)));
+      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::NewControllerTestState, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Config::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::Empty* req,
+             ::Nrmk::IndyFramework::NewControllerTestState* resp) {
+               return service->GetNewControllerTestOnOffState(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Config_method_names[28],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::FrictionCompSet, ::Nrmk::IndyFramework::Response>(
-          std::mem_fn(&Config::Service::SetFrictionComp), this)));
+      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::FrictionCompSet, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Config::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::FrictionCompSet* req,
+             ::Nrmk::IndyFramework::Response* resp) {
+               return service->SetFrictionComp(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Config_method_names[29],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::FrictionCompSet>(
-          std::mem_fn(&Config::Service::GetFrictionComp), this)));
+      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::FrictionCompSet, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Config::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::Empty* req,
+             ::Nrmk::IndyFramework::FrictionCompSet* resp) {
+               return service->GetFrictionComp(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Config_method_names[30],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::MountingAngles, ::Nrmk::IndyFramework::Response>(
-          std::mem_fn(&Config::Service::SetMountPos), this)));
+      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::MountingAngles, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Config::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::MountingAngles* req,
+             ::Nrmk::IndyFramework::Response* resp) {
+               return service->SetMountPos(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Config_method_names[31],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::MountingAngles>(
-          std::mem_fn(&Config::Service::GetMountPos), this)));
+      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::MountingAngles, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Config::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::Empty* req,
+             ::Nrmk::IndyFramework::MountingAngles* resp) {
+               return service->GetMountPos(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Config_method_names[32],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::ToolProperties, ::Nrmk::IndyFramework::Response>(
-          std::mem_fn(&Config::Service::SetToolProperty), this)));
+      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::ToolProperties, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Config::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::ToolProperties* req,
+             ::Nrmk::IndyFramework::Response* resp) {
+               return service->SetToolProperty(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Config_method_names[33],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ToolProperties>(
-          std::mem_fn(&Config::Service::GetToolProperty), this)));
+      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ToolProperties, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Config::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::Empty* req,
+             ::Nrmk::IndyFramework::ToolProperties* resp) {
+               return service->GetToolProperty(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Config_method_names[34],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::CollisionSensLevel, ::Nrmk::IndyFramework::Response>(
-          std::mem_fn(&Config::Service::SetCollSensLevel), this)));
+      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::CollisionSensLevel, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Config::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::CollisionSensLevel* req,
+             ::Nrmk::IndyFramework::Response* resp) {
+               return service->SetCollSensLevel(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Config_method_names[35],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::CollisionSensLevel>(
-          std::mem_fn(&Config::Service::GetCollSensLevel), this)));
+      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::CollisionSensLevel, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Config::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::Empty* req,
+             ::Nrmk::IndyFramework::CollisionSensLevel* resp) {
+               return service->GetCollSensLevel(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Config_method_names[36],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::CollisionThresholds, ::Nrmk::IndyFramework::Response>(
-          std::mem_fn(&Config::Service::SetCollSensParam), this)));
+      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::CollisionThresholds, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Config::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::CollisionThresholds* req,
+             ::Nrmk::IndyFramework::Response* resp) {
+               return service->SetCollSensParam(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Config_method_names[37],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::CollisionThresholds>(
-          std::mem_fn(&Config::Service::GetCollSensParam), this)));
+      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::CollisionThresholds, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Config::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::Empty* req,
+             ::Nrmk::IndyFramework::CollisionThresholds* resp) {
+               return service->GetCollSensParam(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Config_method_names[38],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::CollisionPolicy, ::Nrmk::IndyFramework::Response>(
-          std::mem_fn(&Config::Service::SetCollPolicy), this)));
+      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::CollisionPolicy, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Config::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::CollisionPolicy* req,
+             ::Nrmk::IndyFramework::Response* resp) {
+               return service->SetCollPolicy(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Config_method_names[39],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::CollisionPolicy>(
-          std::mem_fn(&Config::Service::GetCollPolicy), this)));
+      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::CollisionPolicy, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Config::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::Empty* req,
+             ::Nrmk::IndyFramework::CollisionPolicy* resp) {
+               return service->GetCollPolicy(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Config_method_names[40],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::SafetyLimits, ::Nrmk::IndyFramework::Response>(
-          std::mem_fn(&Config::Service::SetSafetyLimits), this)));
+      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::SafetyLimits, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Config::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::SafetyLimits* req,
+             ::Nrmk::IndyFramework::Response* resp) {
+               return service->SetSafetyLimits(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Config_method_names[41],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::SafetyLimits>(
-          std::mem_fn(&Config::Service::GetSafetyLimits), this)));
+      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::SafetyLimits, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Config::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::Empty* req,
+             ::Nrmk::IndyFramework::SafetyLimits* resp) {
+               return service->GetSafetyLimits(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Config_method_names[42],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::SafetyStopConfig, ::Nrmk::IndyFramework::Response>(
-          std::mem_fn(&Config::Service::SetSafetyStopConfig), this)));
+      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::SafetyStopConfig, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Config::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::SafetyStopConfig* req,
+             ::Nrmk::IndyFramework::Response* resp) {
+               return service->SetSafetyStopConfig(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Config_method_names[43],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::SafetyStopConfig>(
-          std::mem_fn(&Config::Service::GetSafetyStopConfig), this)));
+      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::SafetyStopConfig, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Config::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::Empty* req,
+             ::Nrmk::IndyFramework::SafetyStopConfig* resp) {
+               return service->GetSafetyStopConfig(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Config_method_names[44],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::GetReducedRatioRes>(
-          std::mem_fn(&Config::Service::GetReducedRatio), this)));
+      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::GetReducedRatioRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Config::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::Empty* req,
+             ::Nrmk::IndyFramework::GetReducedRatioRes* resp) {
+               return service->GetReducedRatio(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Config_method_names[45],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::GetReducedSpeedRes>(
-          std::mem_fn(&Config::Service::GetReducedSpeed), this)));
+      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::GetReducedSpeedRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Config::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::Empty* req,
+             ::Nrmk::IndyFramework::GetReducedSpeedRes* resp) {
+               return service->GetReducedSpeed(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Config_method_names[46],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::SetReducedSpeedReq, ::Nrmk::IndyFramework::Response>(
-          std::mem_fn(&Config::Service::SetReducedSpeed), this)));
+      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::SetReducedSpeedReq, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Config::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::SetReducedSpeedReq* req,
+             ::Nrmk::IndyFramework::Response* resp) {
+               return service->SetReducedSpeed(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Config_method_names[47],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::FTSensorDevice, ::Nrmk::IndyFramework::Response>(
-          std::mem_fn(&Config::Service::SetFTSensorConfig), this)));
+      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::FTSensorDevice, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Config::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::FTSensorDevice* req,
+             ::Nrmk::IndyFramework::Response* resp) {
+               return service->SetFTSensorConfig(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Config_method_names[48],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::FTSensorDevice>(
-          std::mem_fn(&Config::Service::GetFTSensorConfig), this)));
+      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::FTSensorDevice, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Config::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::Empty* req,
+             ::Nrmk::IndyFramework::FTSensorDevice* resp) {
+               return service->GetFTSensorConfig(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Config_method_names[49],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::TeleOpParams, ::Nrmk::IndyFramework::Response>(
-          std::mem_fn(&Config::Service::SetTeleOpParams), this)));
+      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::TeleOpParams, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Config::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::TeleOpParams* req,
+             ::Nrmk::IndyFramework::Response* resp) {
+               return service->SetTeleOpParams(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Config_method_names[50],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::TeleOpParams>(
-          std::mem_fn(&Config::Service::GetTeleOpParams), this)));
+      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::TeleOpParams, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Config::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::Empty* req,
+             ::Nrmk::IndyFramework::TeleOpParams* resp) {
+               return service->GetTeleOpParams(ctx, req, resp);
+             }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Config_method_names[51],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::KinematicsParams>(
-          std::mem_fn(&Config::Service::GetKinematicsParams), this)));
+      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::KinematicsParams, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Config::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::Empty* req,
+             ::Nrmk::IndyFramework::KinematicsParams* resp) {
+               return service->GetKinematicsParams(ctx, req, resp);
+             }, this)));
 }
 
 Config::Service::~Service() {

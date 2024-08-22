@@ -15,6 +15,7 @@
 #include "proto/control.grpc.pb.h"
 #include "proto/device.grpc.pb.h"
 #include "proto/rtde.grpc.pb.h"
+#include "proto/cri.grpc.pb.h"
 
 using google::protobuf::util::MessageToJsonString;
 using google::protobuf::util::JsonStringToMessage;
@@ -114,7 +115,7 @@ class IndyDCP3
         bool get_home_pos(Nrmk::IndyFramework::JointPos &home_jpos);
 
         //----------------------------------
-        bool movej(const std::vector<float> jtarget,
+        bool movej(const std::vector<float>& jtarget,
                     const int base_type=JointBaseType::ABSOLUTE_JOINT,
                     const int blending_type=BlendingType_Type::BlendingType_Type_NONE,
                     const float blending_radius=0.0,
@@ -127,7 +128,7 @@ class IndyDCP3
                     const DCPVarCond var_condition={},
                     const bool teaching_mode=false);
         
-        bool movej_time(const std::vector<float> jtarget,
+        bool movej_time(const std::vector<float>& jtarget,
                     const int base_type=JointBaseType::ABSOLUTE_JOINT,
                     const int blending_type=BlendingType_Type::BlendingType_Type_NONE,
                     const float blending_radius=0.0,
@@ -138,7 +139,7 @@ class IndyDCP3
                     const DCPDICond di_condition={},
                     const DCPVarCond var_condition={});
         
-        bool movel(const std::array<float, 6> ttarget,
+        bool movel(const std::array<float, 6>& ttarget,
                     const int base_type=TaskBaseType::ABSOLUTE_TASK,
                     const int blending_type=BlendingType_Type::BlendingType_Type_NONE,
                     const float blending_radius=0.0,
@@ -149,9 +150,10 @@ class IndyDCP3
                     const int react_type=MotionCondition_ReactionType::MotionCondition_ReactionType_NONE_COND,
                     const DCPDICond di_condition={},
                     const DCPVarCond var_condition={},
-                    const bool teaching_mode=false);
+                    const bool teaching_mode=false,
+                    const bool bypass_singular=false);
 
-        bool movel_time(const std::array<float, 6> ttarget,
+        bool movel_time(const std::array<float, 6>& ttarget,
                     const int base_type=TaskBaseType::ABSOLUTE_TASK,
                     const int blending_type=BlendingType_Type::BlendingType_Type_NONE,
                     const float blending_radius=0.0,
@@ -162,8 +164,8 @@ class IndyDCP3
                     const DCPDICond di_condition={},
                     const DCPVarCond var_condition={});
 
-        bool movec(const std::array<float, 6> tpos1,
-                    const std::array<float, 6> tpos2,
+        bool movec(const std::array<float, 6>& tpos1,
+                    const std::array<float, 6>& tpos2,
                     const float angle=0.0,
                     const int setting_type=CircularSettingType::POINT_SET,
                     const int move_type=CircularMovingType::CONSTANT,
@@ -177,10 +179,11 @@ class IndyDCP3
                     const int react_type=MotionCondition_ReactionType::MotionCondition_ReactionType_NONE_COND,
                     const DCPDICond di_condition={},
                     const DCPVarCond var_condition={},
-                    const bool teaching_mode=false);
+                    const bool teaching_mode=false,
+                    const bool bypass_singular=false);
 
-        bool movec_time(const std::array<float, 6> tpos1,
-                    const std::array<float, 6> tpos2,
+        bool movec_time(const std::array<float, 6>& tpos1,
+                    const std::array<float, 6>& tpos2,
                     const float angle=0.0,
                     const int setting_type=CircularSettingType::POINT_SET,
                     const int move_type=CircularMovingType::CONSTANT,
@@ -210,13 +213,12 @@ class IndyDCP3
         bool start_teleop(const TeleMethod method);
         bool stop_teleop();
 
-        //----------------------------------
-        bool movetelej(const std::vector<float> jpos, 
+        bool movetelej(const std::vector<float>& jpos, 
                         const float vel_ratio=1.0, 
                         const float acc_ratio=1.0,
                         const TeleMethod method=TeleMethod::TELE_JOINT_ABSOLUTE);
 
-        bool movetelel(const std::array<float, 6> tpos, 
+        bool movetelel(const std::array<float, 6>& tpos, 
                         const float vel_ratio=1.0, 
                         const float acc_ratio=1.0,
                         const TeleMethod method=TeleMethod::TELE_TASK_ABSOLUTE);
@@ -225,6 +227,9 @@ class IndyDCP3
         bool inverse_kin(const std::array<float, 6>& tpos, 
                         const std::vector<float>& init_jpos, 
                         std::vector<float>& jpos);
+
+        bool inverse_kin(const Nrmk::IndyFramework::InverseKinematicsReq& request,
+                                Nrmk::IndyFramework::InverseKinematicsRes& response);
 
         bool set_direct_teaching(bool enable);
         bool set_simulation_mode(bool enable);
@@ -282,7 +287,10 @@ class IndyDCP3
         bool set_tool_property(const Nrmk::IndyFramework::ToolProperties& tool_properties);
 
         bool set_mount_pos(float rot_y=0.0, float rot_z=0.0);
+        bool set_mount_pos(const Nrmk::IndyFramework::MountingAngles& mounting_angles);
+
         bool get_mount_pos(float &rot_y, float &rot_z);
+        bool get_mount_pos(Nrmk::IndyFramework::MountingAngles& mounting_angles);
 
         bool get_coll_sens_level(unsigned int &level);
         bool set_coll_sens_level(unsigned int level);
@@ -338,6 +346,150 @@ class IndyDCP3
         bool start_log();
         bool end_log();
 
+        //------------- fw3.3 -------------
+        bool get_violation_message_queue(Nrmk::IndyFramework::ViolationMessageQueue& violation_queue);
+        bool get_stop_state(Nrmk::IndyFramework::StopState& stop_state);
+
+        bool set_endtool_rs485_rx(const Nrmk::IndyFramework::EndtoolRS485Rx& request);
+        // bool set_endtool_rs485_rx(const uint32_t word1, const uint32_t word2);
+
+        bool get_endtool_rs485_rx(Nrmk::IndyFramework::EndtoolRS485Rx& rx_data);
+        bool get_endtool_rs485_tx(Nrmk::IndyFramework::EndtoolRS485Tx& tx_data);
+        
+        // bool set_end_led_dim(const uint32_t led_dim);
+        bool set_end_led_dim(const Nrmk::IndyFramework::EndLedDim& request);
+
+        bool get_conveyor(Nrmk::IndyFramework::Conveyor& conveyor_data);
+
+        // bool set_conveyor_by_name(const std::string& name);
+        bool set_conveyor_by_name(const Nrmk::IndyFramework::Name& request);
+
+        bool get_conveyor_state(Nrmk::IndyFramework::ConveyorState& conveyor_state);
+        bool set_sander_command(const Nrmk::IndyFramework::SanderCommand::SanderType& sander_type, 
+                                  const std::string& ip, 
+                                  const float speed, 
+                                  const bool state);
+        bool get_sander_command(Nrmk::IndyFramework::SanderCommand& sander_command);
+
+        bool get_load_factors(Nrmk::IndyFramework::GetLoadFactorsRes& load_factors_res);
+        bool set_auto_mode(const bool on);
+        bool check_auto_mode(Nrmk::IndyFramework::CheckAutoModeRes& check_auto_mode_res);
+
+        bool check_reduced_mode(Nrmk::IndyFramework::CheckReducedModeRes& reduced_mode_res);
+        bool get_safety_function_state(Nrmk::IndyFramework::SafetyFunctionState& safety_function_state);
+        bool request_safety_function(const Nrmk::IndyFramework::SafetyFunctionState& request);
+        bool get_safety_control_data(Nrmk::IndyFramework::SafetyControlData& safety_control_data);
+
+        bool get_gripper_data(Nrmk::IndyFramework::GripperData& gripper_data);
+        bool set_gripper_command(const Nrmk::IndyFramework::GripperCommand& gripper_command);
+
+        bool activate_cri(const bool on);
+        bool is_cri_active(bool& is_active);
+        bool login_cri_server(const Nrmk::IndyFramework::Account& account);
+        bool is_cri_login(bool& is_logged_in);
+
+        bool set_cri_target(const Nrmk::IndyFramework::CriTarget& target);
+        bool set_cri_option(const Nrmk::IndyFramework::State& option);
+        bool get_cri_proj_list(Nrmk::IndyFramework::ProjectList& project_list);
+        bool get_cri(Nrmk::IndyFramework::CriData& cri_data);
+
+        bool movelf(const std::array<float, 6>& ttarget,
+                    const std::vector<bool>& enabledaxis,
+                    const std::vector<float>& desforce,
+                    const int base_type=TaskBaseType::ABSOLUTE_TASK,
+                    const int blending_type=BlendingType_Type::BlendingType_Type_NONE,
+                    const float blending_radius=0.0,
+                    const float vel_ratio=LIMIT_JOG_VEL_RATIO_DEFAULT,
+                    const float acc_ratio=LIMIT_JOG_ACC_RATIO_DEFAULT,
+                    const bool const_cond=true,
+                    const int cond_type=MotionCondition_ConditionType::MotionCondition_ConditionType_CONST_COND,
+                    const int react_type=MotionCondition_ReactionType::MotionCondition_ReactionType_NONE_COND,
+                    const DCPDICond di_condition={},
+                    const DCPVarCond var_condition={},
+                    const bool teaching_mode=false);
+
+        bool get_transformed_ft_sensor_data(Nrmk::IndyFramework::TransformedFTSensorData& ft_sensor_data);
+
+        bool move_joint_traj(const std::vector<std::vector<float>>& q_list, 
+                            const std::vector<std::vector<float>>& qdot_list, 
+                            const std::vector<std::vector<float>>& qddot_list);
+        bool move_task_traj(const std::vector<std::vector<float>>& p_list, 
+                              const std::vector<std::vector<float>>& pdot_list, 
+                              const std::vector<std::vector<float>>& pddot_list);
+
+        bool move_conveyor(const bool teaching_mode, 
+                            const bool bypass_singular, 
+                            const float acc_ratio,
+                            const bool const_cond=true,
+                            const int cond_type=MotionCondition_ConditionType::MotionCondition_ConditionType_CONST_COND,
+                            const int react_type=MotionCondition_ReactionType::MotionCondition_ReactionType_NONE_COND,
+                            const DCPDICond di_condition={},
+                            const DCPVarCond var_condition={});
+
+        bool move_axis(const std::array<float, 3>& start_mm,
+                         const std::array<float, 3>& target_mm,
+                         const bool is_absolute=true,
+                         const float vel_ratio=5.0f,
+                         const float acc_ratio=100.0f,
+                         const bool teaching_mode=false);
+        
+        bool forward_kin(const Nrmk::IndyFramework::ForwardKinematicsReq& request, 
+                           Nrmk::IndyFramework::ForwardKinematicsRes& response);
+
+        bool set_tact_time(const Nrmk::IndyFramework::TactTime& tact_time);
+        bool get_tact_time(Nrmk::IndyFramework::TactTime& tact_time);
+
+        bool set_ft_sensor_config(const Nrmk::IndyFramework::FTSensorDevice& sensor_config);
+        bool get_ft_sensor_config(Nrmk::IndyFramework::FTSensorDevice& sensor_config);
+
+        bool set_do_config_list(const Nrmk::IndyFramework::DOConfigList& do_config_list);
+        bool get_do_config_list(Nrmk::IndyFramework::DOConfigList& do_config_list);
+
+        bool move_recover_joint(const std::vector<float>& jtarget, 
+                                const int base_type=JointBaseType::ABSOLUTE_JOINT);
+        bool get_control_info(Nrmk::IndyFramework::ControlInfo& control_info);
+
+        bool check_aproach_retract_valid(const std::array<float, 6>& tpos, 
+                                           const std::vector<float>& init_jpos, 
+                                           const std::array<float, 6>& pre_tpos, 
+                                           const std::array<float, 6>& post_tpos, 
+                                           Nrmk::IndyFramework::CheckAproachRetractValidRes& response);
+
+        bool get_pallet_point_list(const std::array<float, 6>& tpos, 
+                                     const std::vector<float>& jpos, 
+                                     const std::array<float, 6>& pre_tpos, 
+                                     const std::array<float, 6>& post_tpos, 
+                                     const int pallet_pattern, 
+                                     const int width, 
+                                     const int height, 
+                                     Nrmk::IndyFramework::GetPalletPointListRes& response);
+
+        bool play_tuning_program(const std::string& prog_name, 
+                                   const int prog_idx,
+                                   const Nrmk::IndyFramework::TuningSpace tuning_space, 
+                                   const Nrmk::IndyFramework::TuningPrecision precision, 
+                                   const uint32_t vel_level_max, 
+                                   Nrmk::IndyFramework::CollisionThresholds& response);
+
+        bool set_di_config_list(const Nrmk::IndyFramework::DIConfigList& di_config_list) ;
+        bool get_di_config_list(Nrmk::IndyFramework::DIConfigList& di_config_list);
+
+        bool set_auto_servo_off(const Nrmk::IndyFramework::AutoServoOffConfig& config);
+        bool get_auto_servo_off(Nrmk::IndyFramework::AutoServoOffConfig& config);
+
+        bool set_safety_stop_config(const Nrmk::IndyFramework::SafetyStopConfig& config);
+        bool get_safety_stop_config(Nrmk::IndyFramework::SafetyStopConfig& config);
+
+        bool get_reduced_ratio(float& ratio);
+        bool get_reduced_speed(float& speed);
+        bool set_reduced_speed(const float speed);
+
+        bool set_teleop_params(const Nrmk::IndyFramework::TeleOpParams& request);
+        bool get_teleop_params(Nrmk::IndyFramework::TeleOpParams& response);
+
+        bool get_kinematics_params(Nrmk::IndyFramework::KinematicsParams& response);
+        bool get_io_data(Nrmk::IndyFramework::IOData& response);
+
     private:
         bool _isConnected;
         unsigned int _cobotDOF;
@@ -349,16 +501,19 @@ class IndyDCP3
         std::shared_ptr<grpc::Channel> device_channel;
         std::shared_ptr<grpc::Channel> config_channel;
         std::shared_ptr<grpc::Channel> rtde_channel;
+        std::shared_ptr<grpc::Channel> cri_channel;
 
         std::unique_ptr<Nrmk::IndyFramework::Control::Stub> control_stub;
         std::unique_ptr<Nrmk::IndyFramework::Device::Stub> device_stub;
         std::unique_ptr<Nrmk::IndyFramework::Config::Stub> config_stub;
         std::unique_ptr<Nrmk::IndyFramework::RTDataExchange::Stub> rtde_stub;
+        std::unique_ptr<Nrmk::IndyFramework::CRI::Stub> cri_stub;
 
         const std::vector<int> CONTROL_SOCKET_PORT  = {20001, 30001};
         const std::vector<int> DEVICE_SOCKET_PORT   = {20002, 30002};
         const std::vector<int> CONFIG_SOCKET_PORT   = {20003, 30003};
         const std::vector<int> RTDE_SOCKET_PORT     = {20004, 30004};
+        const std::vector<int> CRI_SOCKET_PORT      = {20181, 30181};
 };
 
 #endif
