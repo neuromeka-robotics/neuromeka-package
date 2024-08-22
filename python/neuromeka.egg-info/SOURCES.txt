@@ -29,6 +29,8 @@ neuromeka/proto/control_msgs_pb2.py
 neuromeka/proto/control_msgs_pb2_grpc.py
 neuromeka/proto/control_pb2.py
 neuromeka/proto/control_pb2_grpc.py
+neuromeka/proto/cri_pb2.py
+neuromeka/proto/cri_pb2_grpc.py
 neuromeka/proto/device_msgs_pb2.py
 neuromeka/proto/device_msgs_pb2_grpc.py
 neuromeka/proto/device_pb2.py
@@ -60,6 +62,8 @@ neuromeka/proto_step/control_msgs_pb2.py
 neuromeka/proto_step/control_msgs_pb2_grpc.py
 neuromeka/proto_step/control_pb2.py
 neuromeka/proto_step/control_pb2_grpc.py
+neuromeka/proto_step/cri_pb2.py
+neuromeka/proto_step/cri_pb2_grpc.py
 neuromeka/proto_step/device_msgs_pb2.py
 neuromeka/proto_step/device_msgs_pb2_grpc.py
 neuromeka/proto_step/device_pb2.py

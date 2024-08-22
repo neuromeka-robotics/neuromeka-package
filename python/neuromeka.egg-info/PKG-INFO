@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: neuromeka
-Version: 3.2.1.1
+Version: 3.3.0.0
 Summary: Neuromeka client protocols for IndyDCP3, IndyEye, Moby, Ecat, and Motor
 Home-page: https://github.com/neuromeka-robotics/neuromeka-package
 Author: Neuromeka
@@ -25,6 +25,7 @@ Requires-Dist: Pillow<=9.5.0,>=8.4.0; python_version < "3.8"
 Requires-Dist: numpy<=1.21.6,>=1.19.4; python_version < "3.8"
 Requires-Dist: pyModbusTCP==0.2.1; python_version < "3.8"
 Requires-Dist: netifaces==0.11.0; python_version < "3.8"
+Requires-Dist: numpyencoder; python_version < "3.8"
 Requires-Dist: grpcio==1.59.0; python_version >= "3.8"
 Requires-Dist: grpcio-tools==1.59.0; python_version >= "3.8"
 Requires-Dist: protobuf<=4.25.4,>=4.24.4; python_version >= "3.8"
@@ -34,6 +35,7 @@ Requires-Dist: Pillow==9.5.0; python_version >= "3.8"
 Requires-Dist: numpy<=1.26.4,>=1.21.6; python_version >= "3.8"
 Requires-Dist: pyModbusTCP==0.2.1; python_version >= "3.8"
 Requires-Dist: netifaces2; python_version >= "3.8"
+Requires-Dist: numpyencoder; python_version >= "3.8"
 
 # Neuromeka Robot API
 ![PyPI](https://img.shields.io/pypi/v/neuromeka)
