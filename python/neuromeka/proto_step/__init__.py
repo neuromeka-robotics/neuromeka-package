@@ -15,6 +15,7 @@ from .device_pb2_grpc import *
 from .config_pb2_grpc import *
 from .rtde_pb2_grpc import *
 from .moby_pb2_grpc import *
+from .cri_pb2_grpc import *
 
 from . import ethercat_msgs_pb2 as ethercat_msgs
 from . import common_msgs_pb2 as common_msgs
@@ -23,4 +24,4 @@ from . import config_msgs_pb2 as config_msgs
 from . import device_msgs_pb2 as device_msgs
 from . import rtde_msgs_pb2 as rtde_msgs
 from . import moby_msgs_pb2 as moby_msgs
-
+from . import cri_pb2 as cri_msgs
