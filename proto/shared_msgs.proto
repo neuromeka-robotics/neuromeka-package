@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package IndyFramework.Protobuf.Shared;
+
+////////////////////////////////////////////////////////////////////////////////
+// shared messages
+////////////////////////////////////////////////////////////////////////////////
+
+message NamedReferencePosition {
+  string name = 1;
+  repeated float tpos = 2;
+  repeated float tpos0 = 3;
+  repeated float tpos1 = 4;
+  repeated float tpos2 = 5;
+  repeated float jpos0 = 6;
+  repeated float jpos1 = 7;
+  repeated float jpos2 = 8;
+}

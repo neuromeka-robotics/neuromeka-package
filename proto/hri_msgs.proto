@@ -1,0 +1,29 @@
+// Created by Gwanwoo Kim on 2021-05-28.
+// Copyright 2021 Neuromeka Inc. All rights reserved.
+
+syntax = "proto3";
+package IndyFramework.Protobuf.HRI;
+
+import "shared_msgs.proto";
+//import "common_msgs.proto";
+//import "device_msgs.proto";
+
+//////////////////////////GetRefFrameList/////////////////////////
+message GetRefFrameListReq {}
+
+message GetRefFrameListRes {
+  repeated IndyFramework.Protobuf.Shared.NamedReferencePosition ref_frames = 1;
+  string default_name = 2;
+  string msg = 100;
+}
+
+//////////////////////////SetRefFrameList/////////////////////////
+message SetRefFrameListReq {
+  repeated IndyFramework.Protobuf.Shared.NamedReferencePosition ref_frames = 1;
+  string default_name = 2;
+}
+
+message SetRefFrameListRes {
+  string msg = 100;
+}
+

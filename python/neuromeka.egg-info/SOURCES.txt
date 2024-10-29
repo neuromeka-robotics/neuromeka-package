@@ -41,6 +41,10 @@ neuromeka/proto/ethercat_pb2.py
 neuromeka/proto/ethercat_pb2_grpc.py
 neuromeka/proto/eyetask_pb2.py
 neuromeka/proto/eyetask_pb2_grpc.py
+neuromeka/proto/hri_msgs_pb2.py
+neuromeka/proto/hri_msgs_pb2_grpc.py
+neuromeka/proto/hri_pb2.py
+neuromeka/proto/hri_pb2_grpc.py
 neuromeka/proto/indyeye_pb2.py
 neuromeka/proto/indyeye_pb2_grpc.py
 neuromeka/proto/moby_msgs_pb2.py
@@ -51,6 +55,8 @@ neuromeka/proto/rtde_msgs_pb2.py
 neuromeka/proto/rtde_msgs_pb2_grpc.py
 neuromeka/proto/rtde_pb2.py
 neuromeka/proto/rtde_pb2_grpc.py
+neuromeka/proto/shared_msgs_pb2.py
+neuromeka/proto/shared_msgs_pb2_grpc.py
 neuromeka/proto_step/__init__.py
 neuromeka/proto_step/common_msgs_pb2.py
 neuromeka/proto_step/common_msgs_pb2_grpc.py
@@ -74,6 +80,10 @@ neuromeka/proto_step/ethercat_pb2.py
 neuromeka/proto_step/ethercat_pb2_grpc.py
 neuromeka/proto_step/eyetask_pb2.py
 neuromeka/proto_step/eyetask_pb2_grpc.py
+neuromeka/proto_step/hri_msgs_pb2.py
+neuromeka/proto_step/hri_msgs_pb2_grpc.py
+neuromeka/proto_step/hri_pb2.py
+neuromeka/proto_step/hri_pb2_grpc.py
 neuromeka/proto_step/indyeye_pb2.py
 neuromeka/proto_step/indyeye_pb2_grpc.py
 neuromeka/proto_step/moby_msgs_pb2.py
@@ -84,3 +94,5 @@ neuromeka/proto_step/rtde_msgs_pb2.py
 neuromeka/proto_step/rtde_msgs_pb2_grpc.py
 neuromeka/proto_step/rtde_pb2.py
 neuromeka/proto_step/rtde_pb2_grpc.py
+neuromeka/proto_step/shared_msgs_pb2.py
+neuromeka/proto_step/shared_msgs_pb2_grpc.py

@@ -1,0 +1,16 @@
+// Created by Gwanwoo Kim on 2021-05-28.
+// Copyright 2021 Neuromeka Inc. All rights reserved.
+
+syntax = "proto3";
+package IndyFramework.Protobuf.HRI;
+
+import "hri_msgs.proto";
+
+service HRI {
+  // ---------------------------------------------------------------- //
+  // Conty
+  // ---------------------------------------------------------------- //
+
+  rpc GetRefFrameList(GetRefFrameListReq) returns (GetRefFrameListRes) {}
+  rpc SetRefFrameList(SetRefFrameListReq) returns (SetRefFrameListRes) {}
+}
