@@ -24,6 +24,8 @@ service Control {
   rpc MoveJointTraj(MoveJointTrajReq) returns (Response) {}
   rpc MoveTaskTraj(MoveTaskTrajReq) returns (Response) {}
 
+  rpc MoveGcode(MoveGcodeReq) returns (Response) {}
+
   rpc MoveConveyor(MoveConveyorReq) returns (Response) {}
 
   rpc WaitIO(WaitIOReq) returns (Response) {}
@@ -139,4 +141,5 @@ service Control {
   // ---------------------------------------------------------------- //
   rpc MoveLF(MoveLFReq) returns (Response) {}
   rpc GetTransformedFTSensorData(Empty) returns (TransformedFTSensorData) {}
+  rpc FTZero(Empty) returns (Response) {}
 }

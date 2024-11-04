@@ -71,6 +71,15 @@ message TactTime {
   float tact_time = 2;
 }
 
+message DateTime {
+  uint32 year = 1;
+  uint32 month = 2;
+  uint32 day = 3;
+  uint32 hour = 4;
+  uint32 minute = 5;
+  uint32 second = 6;
+}
+
 //////////////////////////OpState/////////////////////////
 //enum OpState {
 //  OP_SYSTEM_OFF = 0;

@@ -66,6 +66,11 @@ class ControlStub(object):
                 request_serializer=control__msgs__pb2.MoveTaskTrajReq.SerializeToString,
                 response_deserializer=common__msgs__pb2.Response.FromString,
                 )
+        self.MoveGcode = channel.unary_unary(
+                '/Nrmk.IndyFramework.Control/MoveGcode',
+                request_serializer=control__msgs__pb2.MoveGcodeReq.SerializeToString,
+                response_deserializer=common__msgs__pb2.Response.FromString,
+                )
         self.MoveConveyor = channel.unary_unary(
                 '/Nrmk.IndyFramework.Control/MoveConveyor',
                 request_serializer=control__msgs__pb2.MoveConveyorReq.SerializeToString,
@@ -421,6 +426,11 @@ class ControlStub(object):
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
                 response_deserializer=control__msgs__pb2.TransformedFTSensorData.FromString,
                 )
+        self.FTZero = channel.unary_unary(
+                '/Nrmk.IndyFramework.Control/FTZero',
+                request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=common__msgs__pb2.Response.FromString,
+                )
 
 
 class ControlServicer(object):
@@ -484,6 +494,12 @@ class ControlServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def MoveTaskTraj(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def MoveGcode(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -936,6 +952,12 @@ class ControlServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def FTZero(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_ControlServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -987,6 +1009,11 @@ def add_ControlServicer_to_server(servicer, server):
             'MoveTaskTraj': grpc.unary_unary_rpc_method_handler(
                     servicer.MoveTaskTraj,
                     request_deserializer=control__msgs__pb2.MoveTaskTrajReq.FromString,
+                    response_serializer=common__msgs__pb2.Response.SerializeToString,
+            ),
+            'MoveGcode': grpc.unary_unary_rpc_method_handler(
+                    servicer.MoveGcode,
+                    request_deserializer=control__msgs__pb2.MoveGcodeReq.FromString,
                     response_serializer=common__msgs__pb2.Response.SerializeToString,
             ),
             'MoveConveyor': grpc.unary_unary_rpc_method_handler(
@@ -1344,6 +1371,11 @@ def add_ControlServicer_to_server(servicer, server):
                     request_deserializer=common__msgs__pb2.Empty.FromString,
                     response_serializer=control__msgs__pb2.TransformedFTSensorData.SerializeToString,
             ),
+            'FTZero': grpc.unary_unary_rpc_method_handler(
+                    servicer.FTZero,
+                    request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=common__msgs__pb2.Response.SerializeToString,
+            ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
             'Nrmk.IndyFramework.Control', rpc_method_handlers)
@@ -1520,6 +1552,23 @@ class Control(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Control/MoveTaskTraj',
             control__msgs__pb2.MoveTaskTrajReq.SerializeToString,
+            common__msgs__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def MoveGcode(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Control/MoveGcode',
+            control__msgs__pb2.MoveGcodeReq.SerializeToString,
             common__msgs__pb2.Response.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
@@ -2728,5 +2777,22 @@ class Control(object):
         return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Control/GetTransformedFTSensorData',
             common__msgs__pb2.Empty.SerializeToString,
             control__msgs__pb2.TransformedFTSensorData.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def FTZero(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Control/FTZero',
+            common__msgs__pb2.Empty.SerializeToString,
+            common__msgs__pb2.Response.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

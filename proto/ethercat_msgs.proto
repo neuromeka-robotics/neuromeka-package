@@ -157,6 +157,25 @@ message EndtoolDockingTx {
 message LedDim {
     uint32 led_dim = 1;
 }
+
+message SRKeyEndtoolRx {
+  uint32 dout = 1;
+  uint32 tool_Id = 2;
+  uint32 set_Tool = 3;
+  uint32 tool_Closing_Force = 4;
+  uint32 tool_Opening_Force = 5;
+  uint32 tool_Force_Location = 6;
+}
+
+message SRKeyEndtoolTx {
+  uint32 din = 1;
+  uint32 tool_Status = 2;
+  uint32 tool_Location = 3;
+  uint32 analog0 = 4;
+  uint32 analog1 = 5;
+  uint32 version = 6;
+}
+
 //////////////////////////IOBoard/////////////////////////
 message IOBoardTx {
     uint32 di5v = 1; // 8ch

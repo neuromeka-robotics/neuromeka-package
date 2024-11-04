@@ -2356,4 +2356,10 @@ class IndyDCP3:
                                     preserving_proto_field_name=True,
                                     use_integers_for_enums=True)
 
-    
+    def get_ft_zero(self):
+        response = self.control.FTZero(common_msgs.Empty())
+        return json_format.MessageToDict(response,
+                                         including_default_value_fields=True,
+                                         preserving_proto_field_name=True,
+                                         use_integers_for_enums=True)
+        

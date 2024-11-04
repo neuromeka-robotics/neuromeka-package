@@ -29,6 +29,7 @@ message CriTarget {
   string pn = 1;
   string fn = 2;
   string rn = 3;
+  bool iso = 4;
 }
 
 //////////////////////////CriData/////////////////////////

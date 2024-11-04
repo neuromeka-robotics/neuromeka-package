@@ -31,7 +31,7 @@ else:
     
     setup(
         name="neuromeka",
-        version="3.3.0.2",
+        version="3.3.0.3",
         author="Neuromeka",
         author_email="technical-suuport@neuromeka.com",
         description="Neuromeka client protocols for IndyDCP3, IndyEye, Moby, Ecat, and Motor",

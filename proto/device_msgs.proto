@@ -261,3 +261,47 @@ message ConveyorState {
   float velocity = 1;
   float triggered = 2;
 }
+
+  ///////////////Photoneo Calibration//////////////////////
+message AddPhotoneoCalibPointReq{
+    string vision_name = 1;
+    double px = 2;
+    double py = 3;
+    double pz = 4;
+}
+
+//////////////////////////Vision/////////////////////////
+/// even duplicated, not to import hri_msgs.proto in device_msgs.proto ///
+message VisionServer {
+  enum VisionServerType {
+    INDYEYE = 0;
+    PHOTONEO = 1;
+    HELIOS = 2;
+  }
+  string name = 1;
+  VisionServerType vision_server_type = 2;
+  string ip = 3;
+  uint32 port = 4;
+}
+
+enum VisionFrameType {
+  OBJECT = 0;
+  END_EFFECTOR = 1;
+}
+
+message VisionRequest {
+  VisionServer vision_server = 1;
+  string object = 2;
+  VisionFrameType frame_type = 3;
+}
+
+message VisionResult {
+  repeated float frame = 1;
+  VisionFrameType frame_type = 2;
+  string object = 3;
+  bool detected = 4;
+  bool passed = 5;
+  string msg = 100;
+} // ouput dims: mm, deg
+
+

@@ -18,6 +18,8 @@ service Device {
   rpc SetEndAI(AnalogList) returns (Response) {}
   rpc SetEndAO(AnalogList) returns (Response) {}
 
+  rpc ExecuteTool(Name) returns (Empty) {}
+
   rpc SetEndRS485Rx(EndtoolRS485Rx) returns (Response) {}
   rpc GetEndRS485Rx(Empty) returns (EndtoolRS485Rx) {}
   rpc GetEndRS485Tx(Empty) returns (EndtoolRS485Tx) {}
@@ -70,4 +72,11 @@ service Device {
   ///////////////485Gripper//////////////////////
   rpc GetGripperData(Empty) returns(GripperData) {}
   rpc SetGripperCommand(GripperCommand) returns(Empty) {}
+
+  ///////////////Photoneo Calibration//////////////////////
+  rpc AddPhotoneoCalibPoint(AddPhotoneoCalibPointReq) returns(Response){}
+
+  ///////////////Photoneo Get Detection Retrieval//////////////////////
+  rpc GetPhotoneoDetection(VisionRequest) returns(VisionResult){}
+  rpc GetPhotoneoRetrieval(VisionRequest) returns(VisionResult){}
 }

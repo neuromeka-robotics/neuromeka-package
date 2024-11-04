@@ -226,6 +226,14 @@ message MoveTaskTrajReq {
   repeated Vector pddot_list = 3;
 }
 
+message MoveGcodeReq {
+  string gcode_file = 1;
+  bool is_smooth_mode = 2;
+  float smooth_radius = 3;  // mm
+  float vel_ratio = 4;  // percent
+  float acc_ratio = 5;  // percent
+}
+
 //////////////////////////MoveConveyor/////////////////////////
 message MoveConveyorReq {
   bool teaching_mode = 1;

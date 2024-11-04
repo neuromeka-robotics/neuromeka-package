@@ -262,6 +262,7 @@ message KinematicsParams {
   enum JointType{
     REVOLUTE = 0;
     PRISMATIC = 1;
+    FIXED = 2;
   }
   message MDH {
     float a = 1;

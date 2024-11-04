@@ -49,6 +49,9 @@ service EtherCAT {
     rpc GetEndtoolRS485Rx(Empty) returns (EndtoolRS485Rx) {}
     rpc GetEndtoolRS485Tx(Empty) returns (EndtoolRS485Tx) {}
     rpc SetEndtoolLedDim(LedDim) returns (Empty) {}
+    rpc SetSRKeyEndtoolRx(SRKeyEndtoolRx) returns (Empty) {}
+    rpc GetSRKeyEndtoolRx(Empty) returns (SRKeyEndtoolRx) {}
+    rpc GetSRKeyEndtoolTx(Empty) returns (SRKeyEndtoolTx) {}
 
     // IOBoard PDO
     rpc SetIOBoardRx(IOBoardRx) returns (Empty) {}

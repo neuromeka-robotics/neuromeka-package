@@ -160,6 +160,21 @@ class EtherCATStub(object):
                 request_serializer=ethercat__msgs__pb2.LedDim.SerializeToString,
                 response_deserializer=common__msgs__pb2.Empty.FromString,
                 )
+        self.SetSRKeyEndtoolRx = channel.unary_unary(
+                '/Nrmk.IndyFramework.EtherCAT/SetSRKeyEndtoolRx',
+                request_serializer=ethercat__msgs__pb2.SRKeyEndtoolRx.SerializeToString,
+                response_deserializer=common__msgs__pb2.Empty.FromString,
+                )
+        self.GetSRKeyEndtoolRx = channel.unary_unary(
+                '/Nrmk.IndyFramework.EtherCAT/GetSRKeyEndtoolRx',
+                request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=ethercat__msgs__pb2.SRKeyEndtoolRx.FromString,
+                )
+        self.GetSRKeyEndtoolTx = channel.unary_unary(
+                '/Nrmk.IndyFramework.EtherCAT/GetSRKeyEndtoolTx',
+                request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=ethercat__msgs__pb2.SRKeyEndtoolTx.FromString,
+                )
         self.SetIOBoardRx = channel.unary_unary(
                 '/Nrmk.IndyFramework.EtherCAT/SetIOBoardRx',
                 request_serializer=ethercat__msgs__pb2.IOBoardRx.SerializeToString,
@@ -428,6 +443,24 @@ class EtherCATServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def SetSRKeyEndtoolRx(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetSRKeyEndtoolRx(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetSRKeyEndtoolTx(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def SetIOBoardRx(self, request, context):
         """IOBoard PDO
         """
@@ -685,6 +718,21 @@ def add_EtherCATServicer_to_server(servicer, server):
                     servicer.SetEndtoolLedDim,
                     request_deserializer=ethercat__msgs__pb2.LedDim.FromString,
                     response_serializer=common__msgs__pb2.Empty.SerializeToString,
+            ),
+            'SetSRKeyEndtoolRx': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetSRKeyEndtoolRx,
+                    request_deserializer=ethercat__msgs__pb2.SRKeyEndtoolRx.FromString,
+                    response_serializer=common__msgs__pb2.Empty.SerializeToString,
+            ),
+            'GetSRKeyEndtoolRx': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetSRKeyEndtoolRx,
+                    request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=ethercat__msgs__pb2.SRKeyEndtoolRx.SerializeToString,
+            ),
+            'GetSRKeyEndtoolTx': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetSRKeyEndtoolTx,
+                    request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=ethercat__msgs__pb2.SRKeyEndtoolTx.SerializeToString,
             ),
             'SetIOBoardRx': grpc.unary_unary_rpc_method_handler(
                     servicer.SetIOBoardRx,
@@ -1266,6 +1314,57 @@ class EtherCAT(object):
         return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.EtherCAT/SetEndtoolLedDim',
             ethercat__msgs__pb2.LedDim.SerializeToString,
             common__msgs__pb2.Empty.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SetSRKeyEndtoolRx(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.EtherCAT/SetSRKeyEndtoolRx',
+            ethercat__msgs__pb2.SRKeyEndtoolRx.SerializeToString,
+            common__msgs__pb2.Empty.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetSRKeyEndtoolRx(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.EtherCAT/GetSRKeyEndtoolRx',
+            common__msgs__pb2.Empty.SerializeToString,
+            ethercat__msgs__pb2.SRKeyEndtoolRx.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetSRKeyEndtoolTx(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.EtherCAT/GetSRKeyEndtoolTx',
+            common__msgs__pb2.Empty.SerializeToString,
+            ethercat__msgs__pb2.SRKeyEndtoolTx.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

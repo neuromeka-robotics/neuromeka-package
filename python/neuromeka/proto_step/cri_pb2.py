@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\tcri.proto\x12\x12Nrmk.IndyFramework\x1a\x11\x63ommon_msgs.proto\"\'\n\x07\x41\x63\x63ount\x12\r\n\x05\x65mail\x18\x01 \x01(\t\x12\r\n\x05token\x18\x02 \x01(\t\"/\n\tCriTarget\x12\n\n\x02pn\x18\x01 \x01(\t\x12\n\n\x02\x66n\x18\x02 \x01(\t\x12\n\n\x02rn\x18\x03 \x01(\t\"$\n\x07\x43riData\x12\x0c\n\x04time\x18\x01 \x01(\x01\x12\x0b\n\x03\x63ri\x18\x02 \x01(\x01\"\x1b\n\x0bProjectList\x12\x0c\n\x04list\x18\x01 \x01(\t2\xc3\x04\n\x03\x43RI\x12H\n\x0bSetActivate\x12\x19.Nrmk.IndyFramework.State\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12\x44\n\nIsActivate\x12\x19.Nrmk.IndyFramework.Empty\x1a\x19.Nrmk.IndyFramework.State\"\x00\x12\x44\n\x05Login\x12\x1b.Nrmk.IndyFramework.Account\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12\x41\n\x07IsLogin\x12\x19.Nrmk.IndyFramework.Empty\x1a\x19.Nrmk.IndyFramework.State\"\x00\x12J\n\tSetTarget\x12\x1d.Nrmk.IndyFramework.CriTarget\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12\x46\n\tSetOption\x12\x19.Nrmk.IndyFramework.State\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12K\n\x0bGetProjList\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1f.Nrmk.IndyFramework.ProjectList\"\x00\x12\x42\n\x06GetCRI\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1b.Nrmk.IndyFramework.CriData\"\x00\x62\x06proto3'
+  serialized_pb=b'\n\tcri.proto\x12\x12Nrmk.IndyFramework\x1a\x11\x63ommon_msgs.proto\"\'\n\x07\x41\x63\x63ount\x12\r\n\x05\x65mail\x18\x01 \x01(\t\x12\r\n\x05token\x18\x02 \x01(\t\"<\n\tCriTarget\x12\n\n\x02pn\x18\x01 \x01(\t\x12\n\n\x02\x66n\x18\x02 \x01(\t\x12\n\n\x02rn\x18\x03 \x01(\t\x12\x0b\n\x03iso\x18\x04 \x01(\x08\"$\n\x07\x43riData\x12\x0c\n\x04time\x18\x01 \x01(\x01\x12\x0b\n\x03\x63ri\x18\x02 \x01(\x01\"\x1b\n\x0bProjectList\x12\x0c\n\x04list\x18\x01 \x01(\t2\xc3\x04\n\x03\x43RI\x12H\n\x0bSetActivate\x12\x19.Nrmk.IndyFramework.State\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12\x44\n\nIsActivate\x12\x19.Nrmk.IndyFramework.Empty\x1a\x19.Nrmk.IndyFramework.State\"\x00\x12\x44\n\x05Login\x12\x1b.Nrmk.IndyFramework.Account\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12\x41\n\x07IsLogin\x12\x19.Nrmk.IndyFramework.Empty\x1a\x19.Nrmk.IndyFramework.State\"\x00\x12J\n\tSetTarget\x12\x1d.Nrmk.IndyFramework.CriTarget\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12\x46\n\tSetOption\x12\x19.Nrmk.IndyFramework.State\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12K\n\x0bGetProjList\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1f.Nrmk.IndyFramework.ProjectList\"\x00\x12\x42\n\x06GetCRI\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1b.Nrmk.IndyFramework.CriData\"\x00\x62\x06proto3'
   ,
   dependencies=[common__msgs__pb2.DESCRIPTOR,])
 
@@ -95,6 +95,13 @@ _CRITARGET = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='iso', full_name='Nrmk.IndyFramework.CriTarget.iso', index=3,
+      number=4, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -108,7 +115,7 @@ _CRITARGET = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=93,
-  serialized_end=140,
+  serialized_end=153,
 )
 
 
@@ -146,8 +153,8 @@ _CRIDATA = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=142,
-  serialized_end=178,
+  serialized_start=155,
+  serialized_end=191,
 )
 
 
@@ -178,8 +185,8 @@ _PROJECTLIST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=180,
-  serialized_end=207,
+  serialized_start=193,
+  serialized_end=220,
 )
 
 DESCRIPTOR.message_types_by_name['Account'] = _ACCOUNT
@@ -225,8 +232,8 @@ _CRI = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=210,
-  serialized_end=789,
+  serialized_start=223,
+  serialized_end=802,
   methods=[
   _descriptor.MethodDescriptor(
     name='SetActivate',

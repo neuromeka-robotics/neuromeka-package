@@ -70,6 +70,11 @@ class DeviceStub(object):
                 request_serializer=device__msgs__pb2.AnalogList.SerializeToString,
                 response_deserializer=common__msgs__pb2.Response.FromString,
                 )
+        self.ExecuteTool = channel.unary_unary(
+                '/Nrmk.IndyFramework.Device/ExecuteTool',
+                request_serializer=common__msgs__pb2.Name.SerializeToString,
+                response_deserializer=common__msgs__pb2.Empty.FromString,
+                )
         self.SetEndRS485Rx = channel.unary_unary(
                 '/Nrmk.IndyFramework.Device/SetEndRS485Rx',
                 request_serializer=common__msgs__pb2.EndtoolRS485Rx.SerializeToString,
@@ -255,6 +260,21 @@ class DeviceStub(object):
                 request_serializer=device__msgs__pb2.GripperCommand.SerializeToString,
                 response_deserializer=common__msgs__pb2.Empty.FromString,
                 )
+        self.AddPhotoneoCalibPoint = channel.unary_unary(
+                '/Nrmk.IndyFramework.Device/AddPhotoneoCalibPoint',
+                request_serializer=device__msgs__pb2.AddPhotoneoCalibPointReq.SerializeToString,
+                response_deserializer=common__msgs__pb2.Response.FromString,
+                )
+        self.GetPhotoneoDetection = channel.unary_unary(
+                '/Nrmk.IndyFramework.Device/GetPhotoneoDetection',
+                request_serializer=device__msgs__pb2.VisionRequest.SerializeToString,
+                response_deserializer=device__msgs__pb2.VisionResult.FromString,
+                )
+        self.GetPhotoneoRetrieval = channel.unary_unary(
+                '/Nrmk.IndyFramework.Device/GetPhotoneoRetrieval',
+                request_serializer=device__msgs__pb2.VisionRequest.SerializeToString,
+                response_deserializer=device__msgs__pb2.VisionResult.FromString,
+                )
 
 
 class DeviceServicer(object):
@@ -321,6 +341,12 @@ class DeviceServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def SetEndAO(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def ExecuteTool(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -553,6 +579,26 @@ class DeviceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def AddPhotoneoCalibPoint(self, request, context):
+        """/////////////Photoneo Calibration//////////////////////
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetPhotoneoDetection(self, request, context):
+        """/////////////Photoneo Get Detection Retrieval//////////////////////
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetPhotoneoRetrieval(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_DeviceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -610,6 +656,11 @@ def add_DeviceServicer_to_server(servicer, server):
                     servicer.SetEndAO,
                     request_deserializer=device__msgs__pb2.AnalogList.FromString,
                     response_serializer=common__msgs__pb2.Response.SerializeToString,
+            ),
+            'ExecuteTool': grpc.unary_unary_rpc_method_handler(
+                    servicer.ExecuteTool,
+                    request_deserializer=common__msgs__pb2.Name.FromString,
+                    response_serializer=common__msgs__pb2.Empty.SerializeToString,
             ),
             'SetEndRS485Rx': grpc.unary_unary_rpc_method_handler(
                     servicer.SetEndRS485Rx,
@@ -795,6 +846,21 @@ def add_DeviceServicer_to_server(servicer, server):
                     servicer.SetGripperCommand,
                     request_deserializer=device__msgs__pb2.GripperCommand.FromString,
                     response_serializer=common__msgs__pb2.Empty.SerializeToString,
+            ),
+            'AddPhotoneoCalibPoint': grpc.unary_unary_rpc_method_handler(
+                    servicer.AddPhotoneoCalibPoint,
+                    request_deserializer=device__msgs__pb2.AddPhotoneoCalibPointReq.FromString,
+                    response_serializer=common__msgs__pb2.Response.SerializeToString,
+            ),
+            'GetPhotoneoDetection': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetPhotoneoDetection,
+                    request_deserializer=device__msgs__pb2.VisionRequest.FromString,
+                    response_serializer=device__msgs__pb2.VisionResult.SerializeToString,
+            ),
+            'GetPhotoneoRetrieval': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetPhotoneoRetrieval,
+                    request_deserializer=device__msgs__pb2.VisionRequest.FromString,
+                    response_serializer=device__msgs__pb2.VisionResult.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -990,6 +1056,23 @@ class Device(object):
         return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/SetEndAO',
             device__msgs__pb2.AnalogList.SerializeToString,
             common__msgs__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def ExecuteTool(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/ExecuteTool',
+            common__msgs__pb2.Name.SerializeToString,
+            common__msgs__pb2.Empty.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -1619,5 +1702,56 @@ class Device(object):
         return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/SetGripperCommand',
             device__msgs__pb2.GripperCommand.SerializeToString,
             common__msgs__pb2.Empty.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def AddPhotoneoCalibPoint(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/AddPhotoneoCalibPoint',
+            device__msgs__pb2.AddPhotoneoCalibPointReq.SerializeToString,
+            common__msgs__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetPhotoneoDetection(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/GetPhotoneoDetection',
+            device__msgs__pb2.VisionRequest.SerializeToString,
+            device__msgs__pb2.VisionResult.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetPhotoneoRetrieval(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/GetPhotoneoRetrieval',
+            device__msgs__pb2.VisionRequest.SerializeToString,
+            device__msgs__pb2.VisionResult.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
