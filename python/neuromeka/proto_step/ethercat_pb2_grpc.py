@@ -95,11 +95,6 @@ class EtherCATStub(object):
                 request_serializer=ethercat__msgs__pb2.ServoIndex.SerializeToString,
                 response_deserializer=common__msgs__pb2.Empty.FromString,
                 )
-        self.SetServoMaxMotorSpeed = channel.unary_unary(
-                '/Nrmk.IndyFramework.EtherCAT/SetServoMaxMotorSpeed',
-                request_serializer=ethercat__msgs__pb2.ServoParam.SerializeToString,
-                response_deserializer=common__msgs__pb2.Empty.FromString,
-                )
         self.GetServoTemperature = channel.unary_unary(
                 '/Nrmk.IndyFramework.EtherCAT/GetServoTemperature',
                 request_serializer=ethercat__msgs__pb2.ServoIndex.SerializeToString,
@@ -354,17 +349,6 @@ class EtherCATServicer(object):
 
     def SetServoOff(self, request, context):
         """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def SetServoMaxMotorSpeed(self, request, context):
-        """rpc GetServoDI(IntVal) returns (IntVal) {}
-        rpc GetServoErrorCode(ServoIndex) returns (IntVal) {}
-        rpc GetServoMaxTorque(ServoIndex) returns (IntVal) {}
-        rpc SetServoMaxTorque(ServoParam) returns (Empty) {}
-        rpc GetServoMaxMotorSpeed(ServoIndex) returns (ServoIndex) {}
-        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
@@ -652,11 +636,6 @@ def add_EtherCATServicer_to_server(servicer, server):
             'SetServoOff': grpc.unary_unary_rpc_method_handler(
                     servicer.SetServoOff,
                     request_deserializer=ethercat__msgs__pb2.ServoIndex.FromString,
-                    response_serializer=common__msgs__pb2.Empty.SerializeToString,
-            ),
-            'SetServoMaxMotorSpeed': grpc.unary_unary_rpc_method_handler(
-                    servicer.SetServoMaxMotorSpeed,
-                    request_deserializer=ethercat__msgs__pb2.ServoParam.FromString,
                     response_serializer=common__msgs__pb2.Empty.SerializeToString,
             ),
             'GetServoTemperature': grpc.unary_unary_rpc_method_handler(
@@ -1092,23 +1071,6 @@ class EtherCAT(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.EtherCAT/SetServoOff',
             ethercat__msgs__pb2.ServoIndex.SerializeToString,
-            common__msgs__pb2.Empty.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def SetServoMaxMotorSpeed(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.EtherCAT/SetServoMaxMotorSpeed',
-            ethercat__msgs__pb2.ServoParam.SerializeToString,
             common__msgs__pb2.Empty.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
