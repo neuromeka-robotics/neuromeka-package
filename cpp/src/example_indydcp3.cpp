@@ -320,7 +320,7 @@ void example_task_move(IndyDCP3& indy, const std::array<float, 6>& t_pos, int ba
     }
 }
 
-void example_move_along_circular_path(IndyDCP3& indy, const std::array<float, 6>& t_pos1, const std::array<float, 6>& t_pos2, float angle) {
+void example_movec(IndyDCP3& indy, const std::array<float, 6>& t_pos1, const std::array<float, 6>& t_pos2, float angle) {
     bool is_success = indy.movec(t_pos1, t_pos2, angle);
     if (is_success) {
         std::cout << "MoveC command executed successfully." << std::endl;
@@ -2304,6 +2304,575 @@ void example_get_io_data(IndyDCP3& indy) {
     }
 }
 
+void example_move_gcode(IndyDCP3& indy) {
+    std::string gcode_file = "path/to/your/gcode_file.gcode";
+    bool is_smooth_mode = true;
+    float smooth_radius = 5.0f;  // in mm
+    float vel_ratio = 15.0f;     // percent
+    float acc_ratio = 100.0f;    // percent
+
+    bool is_success = indy.move_gcode(gcode_file, is_smooth_mode, smooth_radius, vel_ratio, acc_ratio);
+
+    if (is_success) {
+        std::cout << "G-code move operation succeeded." << std::endl;
+    } else {
+        std::cerr << "G-code move operation failed." << std::endl;
+    }
+}
+
+void example_wait_io(IndyDCP3& indy) {
+    // Initialize DigitalSignal objects individually
+    Nrmk::IndyFramework::DigitalSignal di_signal_1;
+    di_signal_1.set_address(1);
+    di_signal_1.set_state(Nrmk::IndyFramework::DigitalState::ON_STATE);
+
+    Nrmk::IndyFramework::DigitalSignal di_signal_2;
+    di_signal_2.set_address(2);
+    di_signal_2.set_state(Nrmk::IndyFramework::DigitalState::OFF_STATE);
+
+    std::vector<Nrmk::IndyFramework::DigitalSignal> di_signals = {di_signal_1, di_signal_2};
+
+    Nrmk::IndyFramework::DigitalSignal do_signal_1;
+    do_signal_1.set_address(3);
+    do_signal_1.set_state(Nrmk::IndyFramework::DigitalState::ON_STATE);
+
+    std::vector<Nrmk::IndyFramework::DigitalSignal> do_signals = {do_signal_1};
+
+    Nrmk::IndyFramework::DigitalSignal end_di_signal_1;
+    end_di_signal_1.set_address(4);
+    end_di_signal_1.set_state(Nrmk::IndyFramework::DigitalState::ON_STATE);
+
+    std::vector<Nrmk::IndyFramework::DigitalSignal> end_di_signals = {end_di_signal_1};
+
+    Nrmk::IndyFramework::DigitalSignal end_do_signal_1;
+    end_do_signal_1.set_address(5);
+    end_do_signal_1.set_state(Nrmk::IndyFramework::DigitalState::OFF_STATE);
+
+    std::vector<Nrmk::IndyFramework::DigitalSignal> end_do_signals = {end_do_signal_1};
+
+    // Optional signals
+    Nrmk::IndyFramework::DigitalSignal set_do_signal_1;
+    set_do_signal_1.set_address(6);
+    set_do_signal_1.set_state(Nrmk::IndyFramework::DigitalState::ON_STATE);
+
+    std::vector<Nrmk::IndyFramework::DigitalSignal> set_do_signals = {set_do_signal_1};
+
+    Nrmk::IndyFramework::AnalogSignal set_ao_signal_1;
+    set_ao_signal_1.set_address(7);
+    set_ao_signal_1.set_voltage(5000);
+
+    std::vector<Nrmk::IndyFramework::AnalogSignal> set_ao_signals = {set_ao_signal_1};
+
+    bool is_success = indy.wait_io(
+        di_signals,
+        do_signals,
+        end_di_signals,
+        end_do_signals,
+        0,   // conjunction
+        set_do_signals,
+        std::nullopt,   // no set_end_do_list
+        set_ao_signals,
+        std::nullopt    // no set_end_ao_list
+    );
+
+    if (is_success) {
+        std::cout << "WaitIO operation succeeded." << std::endl;
+    } else {
+        std::cerr << "WaitIO operation failed." << std::endl;
+    }
+}
+
+
+void example_set_friction_comp_state(IndyDCP3& indy) {
+    bool enable = true;  // Enable friction compensation
+    bool set_success = indy.set_friction_comp_state(enable);
+
+    if (set_success) {
+        std::cout << "Friction compensation enabled successfully." << std::endl;
+    } else {
+        std::cerr << "Failed to enable friction compensation." << std::endl;
+    }
+}
+
+void example_get_friction_comp_state(IndyDCP3& indy) {
+    bool is_enabled = indy.get_friction_comp_state();
+    std::cout << "Friction compensation state: " << (is_enabled ? "Enabled" : "Disabled") << std::endl;
+}
+
+void example_get_teleop_device(IndyDCP3& indy) {
+    Nrmk::IndyFramework::TeleOpDevice device;
+    if (indy.get_teleop_device(device)) {
+        std::cout << "TeleOp Device: " << device.name() << ", Type: " << device.type() 
+                  << ", IP: " << device.ip() << ", Port: " << device.port() 
+                  << ", Connected: " << (device.connected() ? "Yes" : "No") << std::endl;
+    } else {
+        std::cerr << "Failed to get TeleOp device information." << std::endl;
+    }
+}
+
+void example_get_teleop_state(IndyDCP3& indy) {
+    Nrmk::IndyFramework::TeleOpState state;
+    if (indy.get_teleop_state(state)) {
+        std::cout << "TeleOp state retrieved successfully." << std::endl;
+    } else {
+        std::cerr << "Failed to get TeleOp state." << std::endl;
+    }
+}
+
+void example_connect_teleop_device(IndyDCP3& indy) {
+    if (indy.connect_teleop_device("Device1", 
+                                    Nrmk::IndyFramework::TeleOpDevice_TeleOpDeviceType::TeleOpDevice_TeleOpDeviceType_VIVE, 
+                                    "192.168.1.10", 
+                                    1234)) {
+        std::cout << "TeleOp device connected successfully." << std::endl;
+    } else {
+        std::cerr << "Failed to connect TeleOp device." << std::endl;
+    }
+}
+
+void example_disconnect_teleop_device(IndyDCP3& indy) {
+    if (indy.disconnect_teleop_device()) {
+        std::cout << "TeleOp device disconnected successfully." << std::endl;
+    } else {
+        std::cerr << "Failed to disconnect TeleOp device." << std::endl;
+    }
+}
+
+void example_read_teleop_input(IndyDCP3& indy) {
+    Nrmk::IndyFramework::TeleP teleop_input;
+    if (indy.read_teleop_input(teleop_input)) {
+        std::cout << "TeleOp Input TPos: ";
+        for (const auto& pos : teleop_input.tpos()) {
+            std::cout << pos << " ";
+        }
+        std::cout << std::endl;
+    } else {
+        std::cerr << "Failed to read TeleOp input." << std::endl;
+    }
+}
+
+void example_set_play_rate(IndyDCP3& indy) {
+    float rate = 0.75f;  // Set play rate to 75%
+    if (indy.set_play_rate(rate)) {
+        std::cout << "Play rate set to " << rate << "." << std::endl;
+    } else {
+        std::cerr << "Failed to set play rate." << std::endl;
+    }
+}
+
+void example_get_play_rate(IndyDCP3& indy) {
+    float rate;
+    if (indy.get_play_rate(rate)) {
+        std::cout << "Current play rate: " << rate << std::endl;
+    } else {
+        std::cerr << "Failed to get play rate." << std::endl;
+    }
+}
+
+void example_get_tele_file_list(IndyDCP3& indy) {
+    std::vector<std::string> files;
+    if (indy.get_tele_file_list(files)) {
+        std::cout << "TeleOp file list retrieved:" << std::endl;
+        for (const auto& file : files) {
+            std::cout << "- " << file << std::endl;
+        }
+    } else {
+        std::cerr << "Failed to retrieve TeleOp file list." << std::endl;
+    }
+}
+
+void example_save_tele_motion(IndyDCP3& indy) {
+    std::string name = "example_motion";
+    if (indy.save_tele_motion(name)) {
+        std::cout << "TeleOp motion saved as " << name << "." << std::endl;
+    } else {
+        std::cerr << "Failed to save TeleOp motion." << std::endl;
+    }
+}
+
+void example_load_tele_motion(IndyDCP3& indy) {
+    std::string name = "example_motion";
+    if (indy.load_tele_motion(name)) {
+        std::cout << "TeleOp motion loaded: " << name << "." << std::endl;
+    } else {
+        std::cerr << "Failed to load TeleOp motion." << std::endl;
+    }
+}
+
+void example_delete_tele_motion(IndyDCP3& indy) {
+    std::string name = "example_motion";
+    if (indy.delete_tele_motion(name)) {
+        std::cout << "TeleOp motion deleted: " << name << "." << std::endl;
+    } else {
+        std::cerr << "Failed to delete TeleOp motion." << std::endl;
+    }
+}
+
+void example_enable_tele_key(IndyDCP3& indy) {
+    bool enable = true;
+    if (indy.enable_tele_key(enable)) {
+        std::cout << "TeleKey enabled successfully." << std::endl;
+    } else {
+        std::cerr << "Failed to enable TeleKey." << std::endl;
+    }
+}
+
+void example_get_pack_pos(IndyDCP3& indy) {
+    std::vector<float> jpos;
+
+    if (indy.get_pack_pos(jpos)) {
+        std::cout << "Pack position retrieved successfully." << std::endl;
+        std::cout << "Joint positions: ";
+        for (const auto& position : jpos) {
+            std::cout << position << " ";
+        }
+        std::cout << std::endl;
+    } else {
+        std::cerr << "Failed to retrieve pack position." << std::endl;
+    }
+}
+
+void example_set_joint_control_gain(IndyDCP3& indy) {
+    std::vector<float> kp = {100.0, 100.0, 100.0, 100.0, 100.0, 100.0};
+    std::vector<float> kv = {10.0, 10.0, 10.0, 10.0, 10.0, 10.0};
+    std::vector<float> kl2 = {1.0, 1.0, 1.0, 1.0, 1.0, 1.0};
+
+    if (indy.set_joint_control_gain(kp, kv, kl2)) {
+        std::cout << "Joint control gains set successfully." << std::endl;
+    } else {
+        std::cerr << "Failed to set joint control gains." << std::endl;
+    }
+}
+
+void example_get_joint_control_gain(IndyDCP3& indy) {
+    std::vector<float> kp, kv, kl2;
+
+    if (indy.get_joint_control_gain(kp, kv, kl2)) {
+        std::cout << "Joint control gains retrieved successfully." << std::endl;
+        std::cout << "KP: ";
+        for (const auto& value : kp) std::cout << value << " ";
+        std::cout << "\nKV: ";
+        for (const auto& value : kv) std::cout << value << " ";
+        std::cout << "\nKL2: ";
+        for (const auto& value : kl2) std::cout << value << " ";
+        std::cout << std::endl;
+    } else {
+        std::cerr << "Failed to retrieve joint control gains." << std::endl;
+    }
+}
+
+void example_set_task_control_gain(IndyDCP3& indy) {
+    std::vector<float> kp = {200.0, 200.0, 200.0, 200.0, 200.0, 200.0};
+    std::vector<float> kv = {20.0, 20.0, 20.0, 20.0, 20.0, 20.0};
+    std::vector<float> kl2 = {2.0, 2.0, 2.0, 2.0, 2.0, 2.0};
+
+    if (indy.set_task_control_gain(kp, kv, kl2)) {
+        std::cout << "Task control gains set successfully." << std::endl;
+    } else {
+        std::cerr << "Failed to set task control gains." << std::endl;
+    }
+}
+
+void example_get_task_control_gain(IndyDCP3& indy) {
+    std::vector<float> kp, kv, kl2;
+
+    if (indy.get_task_control_gain(kp, kv, kl2)) {
+        std::cout << "Task control gains retrieved successfully." << std::endl;
+        std::cout << "KP: ";
+        for (const auto& value : kp) std::cout << value << " ";
+        std::cout << "\nKV: ";
+        for (const auto& value : kv) std::cout << value << " ";
+        std::cout << "\nKL2: ";
+        for (const auto& value : kl2) std::cout << value << " ";
+        std::cout << std::endl;
+    } else {
+        std::cerr << "Failed to retrieve task control gains." << std::endl;
+    }
+}
+
+void example_set_impedance_control_gain(IndyDCP3& indy) {
+    std::vector<float> mass = {10.0, 10.0, 10.0, 10.0, 10.0, 10.0};
+    std::vector<float> damping = {5.0, 5.0, 5.0, 5.0, 5.0, 5.0};
+    std::vector<float> stiffness = {100.0, 100.0, 100.0, 100.0, 100.0, 100.0};
+    std::vector<float> kl2 = {1.0, 1.0, 1.0, 1.0, 1.0, 1.0};
+
+    if (indy.set_impedance_control_gain(mass, damping, stiffness, kl2)) {
+        std::cout << "Impedance control gains set successfully." << std::endl;
+    } else {
+        std::cerr << "Failed to set impedance control gains." << std::endl;
+    }
+}
+
+void example_get_impedance_control_gain(IndyDCP3& indy) {
+    std::vector<float> mass, damping, stiffness, kl2;
+
+    if (indy.get_impedance_control_gain(mass, damping, stiffness, kl2)) {
+        std::cout << "Impedance control gains retrieved successfully." << std::endl;
+        std::cout << "Mass: ";
+        for (const auto& value : mass) std::cout << value << " ";
+        std::cout << "\nDamping: ";
+        for (const auto& value : damping) std::cout << value << " ";
+        std::cout << "\nStiffness: ";
+        for (const auto& value : stiffness) std::cout << value << " ";
+        std::cout << "\nKL2: ";
+        for (const auto& value : kl2) std::cout << value << " ";
+        std::cout << std::endl;
+    } else {
+        std::cerr << "Failed to retrieve impedance control gains." << std::endl;
+    }
+}
+
+void example_set_force_control_gain(IndyDCP3& indy) {
+    // std::vector<float> kp = {10.0, 10.0, 10.0, 10.0, 10.0, 10.0};
+    // std::vector<float> kv = {5.0, 5.0, 5.0, 5.0, 5.0, 5.0};
+    // std::vector<float> kl2 = {1.0, 1.0, 1.0, 1.0, 1.0, 1.0};
+    // std::vector<float> mass = {10.0, 10.0, 10.0, 10.0, 10.0, 10.0};
+    // std::vector<float> damping = {5.0, 5.0, 5.0, 5.0, 5.0, 5.0};
+    // std::vector<float> stiffness = {100.0, 100.0, 100.0, 100.0, 100.0, 100.0};
+    // std::vector<float> kpf = {0.5, 0.5, 0.5, 0.5, 0.5, 0.5};
+    // std::vector<float> kif = {0.1, 0.1, 0.1, 0.1, 0.1, 0.1};
+
+    std::vector<float> kp = {10.0f, 10.0f, 10.0f, 10.0f, 10.0f, 10.0f};
+    std::vector<float> kv = {5.0f, 5.0f, 5.0f, 5.0f, 5.0f, 5.0f};
+    std::vector<float> kl2 = {1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f};
+    std::vector<float> mass = {10.0f, 10.0f, 10.0f, 10.0f, 10.0f, 10.0f};
+    std::vector<float> damping = {5.0f, 5.0f, 5.0f, 5.0f, 5.0f, 5.0f};
+    std::vector<float> stiffness = {100.0f, 100.0f, 100.0f, 100.0f, 100.0f, 100.0f};
+    std::vector<float> kpf = {0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f};
+    std::vector<float> kif = {0.1f, 0.1f, 0.1f, 0.1f, 0.1f, 0.1f};
+
+    if (indy.set_force_control_gain(kp, kv, kl2, mass, damping, stiffness, kpf, kif)) {
+        std::cout << "Force control gains set successfully." << std::endl;
+    } else {
+        std::cerr << "Failed to set force control gains." << std::endl;
+    }
+}
+
+void example_get_force_control_gain(IndyDCP3& indy) {
+    std::vector<float> kp, kv, kl2, mass, damping, stiffness, kpf, kif;
+
+    if (indy.get_force_control_gain(kp, kv, kl2, mass, damping, stiffness, kpf, kif)) {
+        std::cout << "Force control gains retrieved successfully." << std::endl;
+        std::cout << "KP: ";
+        for (const auto& value : kp) std::cout << value << " ";
+        std::cout << "\nKV: ";
+        for (const auto& value : kv) std::cout << value << " ";
+        std::cout << "\nKL2: ";
+        for (const auto& value : kl2) std::cout << value << " ";
+        std::cout << "\nMass: ";
+        for (const auto& value : mass) std::cout << value << " ";
+        std::cout << "\nDamping: ";
+        for (const auto& value : damping) std::cout << value << " ";
+        std::cout << "\nStiffness: ";
+        for (const auto& value : stiffness) std::cout << value << " ";
+        std::cout << "\nKPF: ";
+        for (const auto& value : kpf) std::cout << value << " ";
+        std::cout << "\nKIF: ";
+        for (const auto& value : kif) std::cout << value << " ";
+        std::cout << std::endl;
+    } else {
+        std::cerr << "Failed to retrieve force control gains." << std::endl;
+    }
+}
+
+void example_set_brakes(IndyDCP3& indy) {
+    std::vector<bool> brake_states = {true, false, true, false, true, false};
+
+    if (indy.set_brakes(brake_states)) {
+        std::cout << "Brakes set successfully." << std::endl;
+    } else {
+        std::cerr << "Failed to set brakes." << std::endl;
+    }
+}
+
+void example_set_servo_all(IndyDCP3& indy) {
+    bool enable = true;
+
+    if (indy.set_servo_all(enable)) {
+        std::cout << "All servos enabled successfully." << std::endl;
+    } else {
+        std::cerr << "Failed to enable all servos." << std::endl;
+    }
+}
+
+void example_set_servo(IndyDCP3& indy) {
+    uint32_t servo_index = 2;
+    bool enable = true;
+
+    if (indy.set_servo(servo_index, enable)) {
+        std::cout << "Servo " << servo_index << " enabled successfully." << std::endl;
+    } else {
+        std::cerr << "Failed to enable servo " << servo_index << "." << std::endl;
+    }
+}
+
+void example_set_endtool_led_dim(IndyDCP3& indy) {
+    uint32_t led_dim = 100;
+    if (indy.set_endtool_led_dim(led_dim)) {
+        std::cout << "LED brightness set successfully." << std::endl;
+    } else {
+        std::cerr << "Failed to set LED brightness." << std::endl;
+    }
+}
+
+void example_execute_tool(IndyDCP3& indy) {
+    std::string tool_name = "WeldingTool";
+    if (indy.execute_tool(tool_name)) {
+        std::cout << "Tool executed successfully." << std::endl;
+    } else {
+        std::cerr << "Failed to execute tool." << std::endl;
+    }
+}
+
+void example_get_el5001(IndyDCP3& indy) {
+    int status, value, delta;
+    float average;
+
+    if (indy.get_el5001(status, value, delta, average)) {
+        std::cout << "EL5001 Status: " << status << std::endl;
+        std::cout << "EL5001 Value: " << value << std::endl;
+        std::cout << "EL5001 Delta: " << delta << std::endl;
+        std::cout << "EL5001 Average: " << average << std::endl;
+    } else {
+        std::cerr << "Failed to retrieve EL5001 data." << std::endl;
+    }
+}
+
+void example_get_el5101(IndyDCP3& indy) {
+    int status, value, latch, delta;
+    float average;
+
+    if (indy.get_el5101(status, value, latch, delta, average)) {
+        std::cout << "EL5101 Status: " << status << std::endl;
+        std::cout << "EL5101 Value: " << value << std::endl;
+        std::cout << "EL5101 Latch: " << latch << std::endl;
+        std::cout << "EL5101 Delta: " << delta << std::endl;
+        std::cout << "EL5101 Average: " << average << std::endl;
+    } else {
+        std::cerr << "Failed to retrieve EL5101 data." << std::endl;
+    }
+}
+
+void example_get_brake_control_style(IndyDCP3& indy) {
+    int style;
+
+    if (indy.get_brake_control_style(style)) {
+        std::cout << "Brake Control Style: " << style << std::endl;
+    } else {
+        std::cerr << "Failed to retrieve brake control style." << std::endl;
+    }
+}
+
+void example_set_conveyor_name(IndyDCP3& indy) {
+    std::string conveyor_name = "Conveyor1";
+
+    if (indy.set_conveyor_name(conveyor_name)) {
+        std::cout << "Conveyor name set successfully." << std::endl;
+    } else {
+        std::cerr << "Failed to set conveyor name." << std::endl;
+    }
+}
+
+void example_set_conveyor_starting_pose(IndyDCP3& indy) {
+    std::vector<float> jpos = {0.0f, 1.0f, 2.0f, 3.0f, 4.0f, 5.0f};
+    std::vector<float> tpos = {};
+
+    if (indy.set_conveyor_starting_pose(jpos, tpos)) {
+        std::cout << "Conveyor starting pose set successfully." << std::endl;
+    } else {
+        std::cerr << "Failed to set conveyor starting pose." << std::endl;
+    }
+}
+
+void example_set_conveyor_terminal_pose(IndyDCP3& indy) {
+    std::vector<float> jpos = {6.0f, 7.0f, 8.0f, 9.0f, 10.0f, 11.0f};
+    std::vector<float> tpos = {60.0f, 70.0f, 80.0f, 90.0f, 100.0f, 110.0f};
+
+    if (indy.set_conveyor_terminal_pose(jpos, tpos)) {
+        std::cout << "Conveyor terminal pose set successfully." << std::endl;
+    } else {
+        std::cerr << "Failed to set conveyor terminal pose." << std::endl;
+    }
+}
+
+void example_set_conveyor_encoder(IndyDCP3& indy) {
+    int encoder_type = Nrmk::IndyFramework::Encoder::QUADRATURE;
+    int64_t channel1 = 1;
+    int64_t channel2 = 2;
+    int64_t sample_num = 1;
+    float mm_per_tick = 0.01f;
+    float vel_const_mmps = 5.0f;
+    bool reversed = false;
+
+    if (indy.set_conveyor_encoder(encoder_type, channel1, channel2, sample_num, mm_per_tick, vel_const_mmps, reversed)) {
+        std::cout << "Conveyor encoder set successfully." << std::endl;
+    } else {
+        std::cerr << "Failed to set conveyor encoder." << std::endl;
+    }
+}
+
+void example_set_conveyor_trigger(IndyDCP3& indy) {
+    int trigger_type = Nrmk::IndyFramework::Trigger::DIGITAL;
+    int64_t channel = 1;
+    bool detect_rise = true;
+
+    if (indy.set_conveyor_trigger(trigger_type, channel, detect_rise)) {
+        std::cout << "Conveyor trigger set successfully." << std::endl;
+    } else {
+        std::cerr << "Failed to set conveyor trigger." << std::endl;
+    }
+}
+
+void example_add_photoneo_calib_point(IndyDCP3& indy) {
+    if (indy.add_photoneo_calib_point("PhotoneoVision", 10.0, 20.0, 30.0)) {
+        std::cout << "Photoneo calibration point added successfully." << std::endl;
+    } else {
+        std::cerr << "Failed to add Photoneo calibration point." << std::endl;
+    }
+}
+
+void example_get_photoneo_detection(IndyDCP3& indy) {
+    Nrmk::IndyFramework::VisionServer vision_server;
+    vision_server.set_name("PhotoneoVision");
+    vision_server.set_vision_server_type(Nrmk::IndyFramework::VisionServer::PHOTONEO);
+    vision_server.set_ip("192.168.0.1");
+    vision_server.set_port(5000);
+
+    Nrmk::IndyFramework::VisionResult result;
+
+    if (indy.get_photoneo_detection(vision_server, "Object1", Nrmk::IndyFramework::VisionFrameType::OBJECT, result)) {
+        std::cout << "Detection successful: " << result.object() << std::endl;
+    } else {
+        std::cerr << "Detection failed." << std::endl;
+    }
+}
+
+void example_set_conveyor_offset(IndyDCP3& indy) {
+    float offset_mm = 0.0f;
+
+    if (indy.set_conveyor_offset(offset_mm)) {
+        std::cout << "Conveyor offset set successfully." << std::endl;
+    } else {
+        std::cerr << "Failed to set conveyor offset." << std::endl;
+    }
+}
+
+void example_get_photoneo_retrieval(IndyDCP3& indy) {
+    Nrmk::IndyFramework::VisionServer vision_server;
+    vision_server.set_name("PhotoneoVision");
+    vision_server.set_vision_server_type(Nrmk::IndyFramework::VisionServer::PHOTONEO);
+    vision_server.set_ip("192.168.0.1");
+    vision_server.set_port(5000);
+
+    Nrmk::IndyFramework::VisionResult result;
+
+    if (indy.get_photoneo_retrieval(vision_server, "Object2", Nrmk::IndyFramework::VisionFrameType::END_EFFECTOR, result)) {
+        std::cout << "Retrieval successful: " << result.object() << std::endl;
+    } else {
+        std::cerr << "Retrieval failed." << std::endl;
+    }
+}
+
 
 int main() {
     IndyDCP3 indy("192.168.1.24");
@@ -2343,7 +2912,7 @@ int main() {
     // std::array<float, 6> t_pos1 = {241.66f, -51.11f, 644.20f, 0.0f, 180.0f, 23.3f};
     // std::array<float, 6> t_pos2 = {401.53f, -47.74f, 647.50f, 0.0f, 180.0f, 23.37f};
     // float angle = 720;
-    // example_move_along_circular_path(indy, t_pos1, t_pos2, angle);
+    // example_movec(indy, t_pos1, t_pos2, angle);
 
     // example_move_robot_to_home(indy);
 

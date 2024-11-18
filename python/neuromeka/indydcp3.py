@@ -367,8 +367,45 @@ class IndyDCP3:
                                          preserving_proto_field_name=True,
                                          use_integers_for_enums=True)
 
-    def set_end_led_dim(self, led_dim: int):
-        response = self.device.SetEndRS485Rx(device_msgs.EndLedDim(led_dim=led_dim))
+    def set_endtool_rs485_rx(self, word1: int, word2: int):
+        response = self.device.SetEndRS485Rx(common_msgs.EndtoolRS485Rx(
+            word1=word1, word2=word2
+        ))
+        return json_format.MessageToDict(response,
+                                         including_default_value_fields=True,
+                                         preserving_proto_field_name=True,
+                                         use_integers_for_enums=True)
+
+    def set_endtool_led_dim(self, led_dim):
+        response = self.device.SetEndLedDim(device_msgs.EndLedDim(led_dim=led_dim))
+        return json_format.MessageToDict(response,
+                                         including_default_value_fields=True,
+                                         preserving_proto_field_name=True,
+                                         use_integers_for_enums=True)
+    
+    def execute_tool(self, name: str):
+        response = self.device.ExecuteTool(common_msgs.Name(name=name))
+        return json_format.MessageToDict(response,
+                                         including_default_value_fields=True,
+                                         preserving_proto_field_name=True,
+                                         use_integers_for_enums=True)
+
+    def get_el5001(self):
+        response = self.device.GetEL5001(common_msgs.Empty())
+        return json_format.MessageToDict(response,
+                                         including_default_value_fields=True,
+                                         preserving_proto_field_name=True,
+                                         use_integers_for_enums=True)
+
+    def get_el5101(self):
+        response = self.device.GetEL5101(common_msgs.Empty())
+        return json_format.MessageToDict(response,
+                                         including_default_value_fields=True,
+                                         preserving_proto_field_name=True,
+                                         use_integers_for_enums=True)
+
+    def get_brake_control_style(self):
+        response = self.device.GetBrakeControlStyle(common_msgs.Empty())
         return json_format.MessageToDict(response,
                                          including_default_value_fields=True,
                                          preserving_proto_field_name=True,
@@ -399,8 +436,62 @@ class IndyDCP3:
                                          preserving_proto_field_name=True,
                                          use_integers_for_enums=True)
 
+    def set_conveyor_name(self, name: str):
+        response = self.device.SetConveyorName(common_msgs.Name(name=name))
+        return json_format.MessageToDict(response,
+                                         including_default_value_fields=True,
+                                         preserving_proto_field_name=True,
+                                         use_integers_for_enums=True)
+
     def set_conveyor_by_name(self, name: str):
         response = self.device.SetConveyorByName(common_msgs.Name(name=name))
+        return json_format.MessageToDict(response,
+                                         including_default_value_fields=True,
+                                         preserving_proto_field_name=True,
+                                         use_integers_for_enums=True)
+
+    def set_conveyor_encoder(self, encoder_type, channel1: int, channel2: int, sample_num: int,
+                           mm_per_tick: float, vel_const_mmps: float, reversed: bool):
+        response = self.device.SetConveyorEncoder(
+            device_msgs.Encoder(type=encoder_type,
+                                channel1=channel1, channel2=channel2, sample_num=sample_num,
+                                mm_per_tick=mm_per_tick, vel_const_mmps=vel_const_mmps,
+                                reversed=reversed)
+        )
+        return json_format.MessageToDict(response,
+                                         including_default_value_fields=True,
+                                         preserving_proto_field_name=True,
+                                         use_integers_for_enums=True)
+
+    def set_conveyor_trigger(self, trigger_type, channel: int, detect_rise: bool):
+        response = self.device.SetConveyorTrigger(
+            device_msgs.Trigger(type=trigger_type, channel=channel, detect_rise=detect_rise)
+        )
+        return json_format.MessageToDict(response,
+                                         including_default_value_fields=True,
+                                         preserving_proto_field_name=True,
+                                         use_integers_for_enums=True)
+
+    def set_conveyor_offset(self, offset_mm):
+        response = self.device.SetConveyorOffset(common_msgs.Float(value=offset_mm))
+        return json_format.MessageToDict(response,
+                                         including_default_value_fields=True,
+                                         preserving_proto_field_name=True,
+                                         use_integers_for_enums=True)
+
+    def set_conveyor_starting_pose(self, jpos, tpos):
+        response = self.device.SetConveyorStartingPose(
+            common_msgs.PosePair(q=jpos, p=tpos)
+        )
+        return json_format.MessageToDict(response,
+                                         including_default_value_fields=True,
+                                         preserving_proto_field_name=True,
+                                         use_integers_for_enums=True)
+
+    def set_conveyor_terminal_pose(self, jpos, tpos):
+        response = self.device.SetConveyorTerminalPose(
+            common_msgs.PosePair(q=jpos, p=tpos)
+        )
         return json_format.MessageToDict(response,
                                          including_default_value_fields=True,
                                          preserving_proto_field_name=True,
@@ -430,6 +521,30 @@ class IndyDCP3:
             state  -> bool
         """
         response = self.device.GetSanderCommand(common_msgs.Empty())
+        return json_format.MessageToDict(response,
+                                         including_default_value_fields=True,
+                                         preserving_proto_field_name=True,
+                                         use_integers_for_enums=True)
+
+    def add_photoneo_calib_point(self, vision_name, px, py, pz):
+        response = self.device.AddPhotoneoCalibPoint(
+            device_msgs.AddPhotoneoCalibPointReq(vision_name=vision_name, px=px, py=py, pz=pz))
+        return json_format.MessageToDict(response,
+                                         including_default_value_fields=True,
+                                         preserving_proto_field_name=True,
+                                         use_integers_for_enums=True)
+
+    def get_photoneo_detection(self, vision_server, object, frame_type):
+        response = self.device.GetPhotoneoDetection(
+            device_msgs.VisionRequest(vision_server=vision_server, object=object, frame_type=frame_type))
+        return json_format.MessageToDict(response,
+                                         including_default_value_fields=True,
+                                         preserving_proto_field_name=True,
+                                         use_integers_for_enums=True)
+
+    def get_photoneo_retrieval(self, vision_server, object, frame_type):
+        response = self.device.GetPhotoneoRetrieval(
+            device_msgs.VisionRequest(vision_server=vision_server, object=object, frame_type=frame_type))
         return json_format.MessageToDict(response,
                                          including_default_value_fields=True,
                                          preserving_proto_field_name=True,
@@ -520,9 +635,6 @@ class IndyDCP3:
                                          use_integers_for_enums=True)
 
     def set_gripper_command(self, command, gripper_type, pvt_data):
-        """
-        brake_state_list -> bool[6]
-        """
         response = self.device.SetGripperCommand(device_msgs.GripperCommand(gripper_command=command,
                                                                             gripper_type=gripper_type,
                                                                             gripper_pvt_data=pvt_data))
@@ -531,6 +643,44 @@ class IndyDCP3:
                                          preserving_proto_field_name=True,
                                          use_integers_for_enums=True)
 
+    def set_brakes(self, brake_state_list: list):
+        """
+        brake_state_list -> bool[6]
+        """
+        motor_list = []
+        motor_idx = 0
+        for brake_state in brake_state_list:
+            motor_list.append(device_msgs.Motor(index=motor_idx, enable=brake_state))
+            motor_idx += 1
+
+        response = self.device.SetBrakes(device_msgs.MotorList(
+            motors=list(motor_list)
+        ))
+        return json_format.MessageToDict(response,
+                                         including_default_value_fields=True,
+                                         preserving_proto_field_name=True,
+                                         use_integers_for_enums=True)
+    def set_servo_all(self, enable=True):
+        """
+        enable -> bool
+        """
+        response = self.device.SetServoAll(common_msgs.State(enable=enable))
+        return json_format.MessageToDict(response,
+                                         including_default_value_fields=True,
+                                         preserving_proto_field_name=True,
+                                         use_integers_for_enums=True)
+
+    def set_servo(self, index, enable=True):
+        """
+        index -> int
+        enable -> bool
+        """
+        response = self.device.SetServo(device_msgs.Servo(index=index, enable=enable))
+        return json_format.MessageToDict(response,
+                                         including_default_value_fields=True,
+                                         preserving_proto_field_name=True,
+                                         use_integers_for_enums=True)
+        
     ############################
     # CRI Funtions (CRI)
     ############################
@@ -630,6 +780,11 @@ class IndyDCP3:
             teaching_mode -> bool
 
         """
+        if teaching_mode and base_type!=JointBaseType.ABSOLUTE:
+            if self.get_robot_data()['op_state'] == 6:
+                print("Robot is moving. Cannot execute movej with teaching_mode=True and base_type!=ABSOLUTE.")
+                return {"error": "Robot is in motion, command aborted."}
+            
         jtarget = control_msgs.TargetJ(j_start=[], j_target=list(jtarget), base_type=base_type)
         blending = control_msgs.BlendingType(type=blending_type, blending_radius=blending_radius)
         post_cond = control_msgs.MotionCondition()
@@ -713,6 +868,11 @@ class IndyDCP3:
                 RELATIVE
                 TCP
         """
+        if teaching_mode and base_type!=TaskBaseType.ABSOLUTE:
+            if self.get_robot_data()['op_state'] == 6:
+                print("Robot is moving. Cannot execute movel with teaching_mode=True and base_type!=ABSOLUTE.")
+                return {"error": "Robot is in motion, command aborted."}
+        
         ptarget = control_msgs.TargetP(t_start=[], t_target=list(ttarget), base_type=base_type)
         blending = control_msgs.BlendingType(type=blending_type, blending_radius=blending_radius)
         post_cond = control_msgs.MotionCondition()
@@ -892,6 +1052,66 @@ class IndyDCP3:
                                          preserving_proto_field_name=True,
                                          use_integers_for_enums=True)
 
+    def movec_time(self, tpos0, tpos1,
+               blending_type=BlendingType.NONE,
+               base_type=TaskBaseType.ABSOLUTE,
+               angle=90.0,
+               setting_type=CircularSettingType.POINT_SET,
+               move_type=control_msgs.CONSTANT,
+               blending_radius=0.0,
+               move_time=5.0,
+               post_condition=PostCondition()) -> dict:
+        
+        ctarget = control_msgs.TargetC(t_start=[], t_pos0=list(tpos0), t_pos1=list(tpos1),
+                                       base_type=base_type)
+        
+        blending = control_msgs.BlendingType(type=blending_type, blending_radius=blending_radius)
+        post_cond = control_msgs.MotionCondition()
+        if post_condition is not None:
+            post_cond = control_msgs.MotionCondition(
+                type_cond=post_condition.condition_type,
+                type_react=post_condition.reaction_type,
+                const_cond=post_condition.const_cond,
+                io_cond=control_msgs.IOCondition(
+                    di=self.__to_digital_request_list__(
+                        [{'address': di[0], 'state': di[1]} for di in post_condition.digital_inputs]),
+                    # di=self.__to_digital_request_list__(post_condition.digital_inputs),
+                    # end_di=self.__to_digital_request_list__(post_condition['enddi_condition']),
+                ),
+            )
+
+        response = self.control.MoveCT(control_msgs.MoveCTReq(
+            target=ctarget,
+            blending=blending,
+            angle=angle,
+            setting_type=setting_type,
+            move_type=move_type,
+            time=move_time,
+            post_condition=post_cond
+        ))
+        return json_format.MessageToDict(response,
+                                         including_default_value_fields=True,
+                                         preserving_proto_field_name=True,
+                                         use_integers_for_enums=True)
+
+    def move_gcode(self, gcode_file,
+                   is_smooth_mode=False,
+                   smooth_radius=0.0,
+                   vel_ratio=Limits.JogVelRatioDefault,
+                   acc_ratio=Limits.JogAccRatioDefault) -> dict:
+        
+        gcode_req = control_msgs.MoveGcodeReq(gcode_file=gcode_file,
+                                              is_smooth_mode=is_smooth_mode,
+                                              smooth_radius=smooth_radius,
+                                              vel_ratio=vel_ratio,
+                                              acc_ratio=acc_ratio)
+        
+        response = self.control.MoveGcode(gcode_req)
+        return json_format.MessageToDict(response,
+                                         including_default_value_fields=True,
+                                         preserving_proto_field_name=True,
+                                         use_integers_for_enums=True)
+
     ############################
     # Move Trajectory
     ############################
@@ -1022,6 +1242,43 @@ class IndyDCP3:
     ############################
     # Motion Control (Teleoperation)
     ############################
+    def get_teleop_device(self):
+        response = self.control.GetTeleOpDevice(common_msgs.Empty())
+        return json_format.MessageToDict(response,
+                                         including_default_value_fields=True,
+                                         preserving_proto_field_name=True,
+                                         use_integers_for_enums=True)
+
+    def get_teleop_state(self):
+        response = self.control.GetTeleOpState(common_msgs.Empty())
+        return json_format.MessageToDict(response,
+                                         including_default_value_fields=True,
+                                         preserving_proto_field_name=True,
+                                         use_integers_for_enums=True)
+
+    def connect_teleop_device(self, name: str, type: control_msgs.TeleOpDevice, ip: str, port: int):
+        response = self.control.ConnectTeleOpDevice(
+            control_msgs.TeleOpDevice(name=name,type=type,ip=ip,port=port)
+        )
+        return json_format.MessageToDict(response,
+                                         including_default_value_fields=True,
+                                         preserving_proto_field_name=True,
+                                         use_integers_for_enums=True)
+
+    def disconnect_teleop_device(self):
+        response = self.control.DisConnectTeleOpDevice(common_msgs.Empty())
+        return json_format.MessageToDict(response,
+                                         including_default_value_fields=True,
+                                         preserving_proto_field_name=True,
+                                         use_integers_for_enums=True)
+
+    def read_teleop_input(self):
+        response = self.control.ReadTeleOpInput(common_msgs.Empty())
+        return json_format.MessageToDict(response,
+                                         including_default_value_fields=True,
+                                         preserving_proto_field_name=True,
+                                         use_integers_for_enums=True)
+    
     def start_teleop(self, method):
         """
         Start tele op
@@ -1043,6 +1300,55 @@ class IndyDCP3:
         Stop tele op
         """
         response = self.control.StopTeleOp(common_msgs.Empty())
+        return json_format.MessageToDict(response,
+                                         including_default_value_fields=True,
+                                         preserving_proto_field_name=True,
+                                         use_integers_for_enums=True)
+
+    def set_play_rate(self, rate: float):
+        response = self.control.SetPlayRate(control_msgs.TelePlayRate(rate=rate))
+        return json_format.MessageToDict(response,
+                                         including_default_value_fields=True,
+                                         preserving_proto_field_name=True,
+                                         use_integers_for_enums=True)
+
+    def get_play_rate(self):
+        response = self.control.GetPlayRate(common_msgs.Empty())
+        return json_format.MessageToDict(response,
+                                         including_default_value_fields=True,
+                                         preserving_proto_field_name=True,
+                                         use_integers_for_enums=True)
+
+    def get_tele_file_list(self):
+        response = self.control.GetTeleFileList(common_msgs.Empty())
+        return json_format.MessageToDict(response,
+                                         including_default_value_fields=True,
+                                         preserving_proto_field_name=True,
+                                         use_integers_for_enums=True)
+
+    def save_tele_motion(self, name: str):
+        response = self.control.SaveTeleMotion(control_msgs.TeleFileReq(name=name))
+        return json_format.MessageToDict(response,
+                                         including_default_value_fields=True,
+                                         preserving_proto_field_name=True,
+                                         use_integers_for_enums=True)
+
+    def load_tele_motion(self, name: str):
+        response = self.control.LoadTeleMotion(control_msgs.TeleFileReq(name=name))
+        return json_format.MessageToDict(response,
+                                         including_default_value_fields=True,
+                                         preserving_proto_field_name=True,
+                                         use_integers_for_enums=True)
+
+    def delete_tele_motion(self, name: str):
+        response = self.control.DeleteTeleMotion(control_msgs.TeleFileReq(name=name))
+        return json_format.MessageToDict(response,
+                                         including_default_value_fields=True,
+                                         preserving_proto_field_name=True,
+                                         use_integers_for_enums=True)
+
+    def enable_tele_key(self, enable):
+        response = self.control.EnableTeleKey(common_msgs.State(enable=enable))
         return json_format.MessageToDict(response,
                                          including_default_value_fields=True,
                                          preserving_proto_field_name=True,
@@ -1318,6 +1624,22 @@ class IndyDCP3:
     ############################
     # Variables
     ############################
+
+    # def get_modbus_variable(self):
+    #     """
+    #     Modbus Variables:
+    #         [
+    #             name -> string
+    #             addr -> int32
+    #             value -> int32
+    #         ]
+    #     """
+    #     response = self.control.GetModbusVariable(common_msgs.Empty())
+    #     return json_format.MessageToDict(response,
+    #                                      including_default_value_fields=True,
+    #                                      preserving_proto_field_name=True,
+    #                                      use_integers_for_enums=True)['variables']
+    
     def get_bool_variable(self):
         """
         Bool Variables:
@@ -1387,6 +1709,28 @@ class IndyDCP3:
                                          including_default_value_fields=True,
                                          preserving_proto_field_name=True,
                                          use_integers_for_enums=True)
+
+    # def set_modbus_variable(self, modbus_variables: list):
+    #     """
+    #     Modbus Variables:
+    #         [
+    #             name -> string
+    #             addr -> int32
+    #             value -> int32
+    #         ]
+    #     """
+    #     variable_list = []
+    #     for modbus_var in modbus_variables:
+    #         variable_list.append(control_msgs.ModbusVariable(name=modbus_var['name'], addr=modbus_var['addr'],
+    #                                                          value=modbus_var['value'],
+    #                                                          signal_type=modbus_var['signal_type']))
+    #     response = self.control.SetModbusVariable(
+    #         control_msgs.ModbusVars(variables=variable_list)
+    #     )
+    #     return json_format.MessageToDict(response,
+    #                                      including_default_value_fields=True,
+    #                                      preserving_proto_field_name=True,
+    #                                      use_integers_for_enums=True)
 
     def set_bool_variable(self, bool_variables: list):
         """
@@ -1491,6 +1835,17 @@ class IndyDCP3:
     ############################
     # Config
     ############################
+    def get_pack_pos(self):
+        """
+        Joint Pack Position
+            jpos -> double[]
+        """
+        response = self.config.GetPackPosition(common_msgs.Empty())
+        return json_format.MessageToDict(response,
+                                         including_default_value_fields=True,
+                                         preserving_proto_field_name=True,
+                                         use_integers_for_enums=True)
+        
     def get_home_pos(self):
         """
         Joint Home Position
@@ -1596,6 +1951,46 @@ class IndyDCP3:
             teaching_comp_enable=dt_comp, teaching_comp_levels=list(dt_comp_levels)
         ))
 
+        return json_format.MessageToDict(response,
+                                         including_default_value_fields=True,
+                                         preserving_proto_field_name=True,
+                                         use_integers_for_enums=True)
+
+    def set_friction_comp_state(self, enable=False) -> dict:
+        response = self.control.SetFrictionCompensation(common_msgs.State(enable=enable))
+        return json_format.MessageToDict(response,
+                                         including_default_value_fields=True,
+                                         preserving_proto_field_name=True,
+                                         use_integers_for_enums=True)
+
+    def get_friction_comp_state(self) -> dict:
+        response = self.control.GetFrictionCompensationState(common_msgs.Empty())
+        return json_format.MessageToDict(response,
+                                         including_default_value_fields=True,
+                                         preserving_proto_field_name=True,
+                                         use_integers_for_enums=True)
+
+    def set_mount_pos(self, rot_y=0.0, rot_z=0.0):
+        """
+        Mounting Angles:
+            rot_y   -> float
+            rot_z   -> float
+        """
+        response = self.config.SetMountPos(config_msgs.MountingAngles(
+            ry=rot_y, rz=rot_z
+        ))
+        return json_format.MessageToDict(response,
+                                         including_default_value_fields=True,
+                                         preserving_proto_field_name=True,
+                                         use_integers_for_enums=True)
+
+    def get_mount_pos(self):
+        """
+        Mounting Angles:
+            rot_y   -> float
+            rot_z   -> float
+        """
+        response = self.config.GetMountPos(common_msgs.Empty())
         return json_format.MessageToDict(response,
                                          including_default_value_fields=True,
                                          preserving_proto_field_name=True,
@@ -1862,6 +2257,122 @@ class IndyDCP3:
                                         preserving_proto_field_name=True,
                                         use_integers_for_enums=True)
 
+    def set_joint_control_gain(self, kp: list, kv: list, kl2: list):
+        """
+        Joint Control Gains:
+            kp   -> float[6]
+            kv   -> float[6]
+            kl2  -> float[6]
+        """
+        response = self.config.SetJointControlGain(config_msgs.JointGainSet(
+            kp=list(kp), kv=list(kv), kl2=list(kl2)
+        ))
+        return json_format.MessageToDict(response,
+                                         including_default_value_fields=True,
+                                         preserving_proto_field_name=True,
+                                         use_integers_for_enums=True)
+
+    def get_joint_control_gain(self):
+        """
+        Joint Control Gains:
+            kp   -> float[6]
+            kv   -> float[6]
+            kl2  -> float[6]
+        """
+        response = self.config.GetJointControlGain(common_msgs.Empty())
+        return json_format.MessageToDict(response,
+                                         including_default_value_fields=True,
+                                         preserving_proto_field_name=True,
+                                         use_integers_for_enums=True)
+
+    def set_task_control_gain(self, kp, kv, kl2):
+        """
+        Task Control Gains:
+            kp   -> float[6]
+            kv   -> float[6]
+            kl2  -> float[6]
+        """
+        response = self.config.SetTaskControlGain(config_msgs.TaskGainSet(
+            kp=list(kp), kv=list(kv), kl2=list(kl2)
+        ))
+        return json_format.MessageToDict(response,
+                                         including_default_value_fields=True,
+                                         preserving_proto_field_name=True,
+                                         use_integers_for_enums=True)
+
+    def get_task_control_gain(self):
+        """
+        Task Control Gains:
+            kp   -> float[6]
+            kv   -> float[6]
+            kl2  -> float[6]
+        """
+        response = self.config.GetTaskControlGain(common_msgs.Empty())
+        return json_format.MessageToDict(response,
+                                         including_default_value_fields=True,
+                                         preserving_proto_field_name=True,
+                                         use_integers_for_enums=True)
+
+    def set_impedance_control_gain(self, mass, damping, stiffness, kl2):
+        """
+        Impedance Control Gains:
+            mass   -> float[6]
+            damping   -> float[6]
+            stiffness   -> float[6]
+            kl2  -> float[6]
+        """
+        response = self.config.SetImpedanceControlGain(config_msgs.ImpedanceGainSet(
+            mass=list(mass), damping=list(damping), stiffness=list(stiffness), kl2=list(kl2)
+        ))
+        return json_format.MessageToDict(response,
+                                         including_default_value_fields=True,
+                                         preserving_proto_field_name=True,
+                                         use_integers_for_enums=True)
+
+    def get_impedance_control_gain(self):
+        """
+        Impedance Control Gains:
+            mass   -> float[6]
+            damping   -> float[6]
+            stiffness   -> float[6]
+            kl2  -> float[6]
+        """
+        response = self.config.GetImpedanceControlGain(common_msgs.Empty())
+        return json_format.MessageToDict(response,
+                                         including_default_value_fields=True,
+                                         preserving_proto_field_name=True,
+                                         use_integers_for_enums=True)
+
+    def set_force_control_gain(self, kp, kv, kl2, mass, damping, stiffness, kpf, kif):
+        """
+        Impedance Control Gains:
+            mass   -> float[6]
+            damping   -> float[6]
+            stiffness   -> float[6]
+            kl2  -> float[6]
+        """
+        response = self.config.SetForceControlGain(config_msgs.ForceGainSet(
+            kp=list(kp), kv=list(kv), kl2=list(kl2), mass=list(mass), damping=list(damping), stiffness=list(stiffness),
+            kpf=list(kpf), kif=list(kif)
+        ))
+        return json_format.MessageToDict(response,
+                                         including_default_value_fields=True,
+                                         preserving_proto_field_name=True,
+                                         use_integers_for_enums=True)
+
+    def get_force_control_gain(self):
+        """
+        Impedance Control Gains:
+            mass   -> float[6]
+            damping   -> float[6]
+            stiffness   -> float[6]
+            kl2  -> float[6]
+        """
+        response = self.config.GetForceControlGain(common_msgs.Empty())
+        return json_format.MessageToDict(response,
+                                         including_default_value_fields=True,
+                                         preserving_proto_field_name=True,
+                                         use_integers_for_enums=True)
 
     ############################
     # Utility functions
@@ -1894,6 +2405,32 @@ class IndyDCP3:
                 time.sleep(0.01)
 
     ############################
+    def wait_io(self, 
+                di_signal_list, 
+                do_signal_list, 
+                end_di_signal_list, 
+                end_do_signal_list, 
+                conjunction=0, 
+                set_do_signal_list=None, set_end_do_signal_list=None,
+                set_ao_signal_list=None, set_end_ao_signal_list=None):
+
+        response = self.control.WaitIO(control_msgs.WaitIOReq(
+            di_list=self.__to_digital_request_list__(di_signal_list),
+            do_list=self.__to_digital_request_list__(do_signal_list),
+            end_di_list=self.__to_digital_request_list__(end_di_signal_list),
+            end_do_list=self.__to_digital_request_list__(end_do_signal_list),
+            conjunction=conjunction,
+            set_do_list=self.__to_digital_request_list__(set_do_signal_list),
+            set_end_do_list=self.__to_digital_request_list__(set_end_do_signal_list),
+            set_ao_list=self.__to_analog_request_list__(set_ao_signal_list),
+            set_end_ao_list=self.__to_analog_request_list__(set_end_ao_signal_list)
+        ))
+        return json_format.MessageToDict(response,
+                                         including_default_value_fields=True,
+                                         preserving_proto_field_name=True,
+                                         use_integers_for_enums=True)
+    
+    
     def wait_time(self, time: float,
                   set_do_signal_list=None, set_end_do_signal_list=None,
                   set_ao_signal_list=None, set_end_ao_signal_list=None):
@@ -2066,6 +2603,16 @@ class IndyDCP3:
                                          preserving_proto_field_name=True,
                                          use_integers_for_enums=True)
 
+    # def play_program_line(self, prog_name: str = '', prog_idx: int = -1):
+    #     response = self.control.PlayProgramLine(control_msgs.Program(
+    #         prog_name=prog_name,
+    #         prog_idx=prog_idx
+    #     ))
+    #     return json_format.MessageToDict(response,
+    #                                      including_default_value_fields=True,
+    #                                      preserving_proto_field_name=True,
+    #                                      use_integers_for_enums=True)
+
     def play_tuning_program(self, prog_name: str = '', prog_idx: int = -1,
                             tuning_space=common_msgs.TUNE_ALL, precision=common_msgs.HIGH_PRECISION,
                             vel_level_max=9):
@@ -2164,7 +2711,7 @@ class IndyDCP3:
                                          preserving_proto_field_name=True,
                                          use_integers_for_enums=True)
 
-    def set_auto_servo_Off(self, enable: bool, time: float):
+    def set_auto_servo_off(self, enable: bool, time: float):
         """
         Auto Servo-Off Config
             enable -> bool

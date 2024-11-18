@@ -277,6 +277,49 @@ class EtherCAT:
         return self.__ethercat_stub.GetEndtoolRS485Tx(common_msgs.Empty())
 
     @Utils.exception_handler
+    def set_endtool_srkey_rx(self, srkey_endtool_rx):
+        """
+        Set endtool SRKey Rx data
+        """
+        dout = srkey_endtool_rx["dout"]
+        tool_Id = srkey_endtool_rx["tool_Id"]
+        set_Tool = srkey_endtool_rx["set_Tool"]
+        tool_Closing_Force = srkey_endtool_rx["tool_Closing_Force"]
+        tool_Opening_Force = srkey_endtool_rx["tool_Opening_Force"]
+        tool_Force_Location = srkey_endtool_rx["tool_Force_Location"]
+        return self.__ethercat_stub.SetSRKeyEndtoolRx(ethercat_msgs.SRKeyEndtoolRx(dout = dout, tool_Id = tool_Id, set_Tool = set_Tool, tool_Closing_Force = tool_Closing_Force, tool_Opening_Force = tool_Opening_Force, tool_Force_Location = tool_Force_Location))
+
+    @Utils.exception_handler
+    def get_endtool_srkey_rx(self):
+        """
+        Get endtool SRKey Rx data
+        """
+        endtool_srkey_rx = {}
+        data = self.__ethercat_stub.GetSRKeyEndtoolRx(common_msgs.Empty())
+        endtool_srkey_rx["dout"] = data.dout
+        endtool_srkey_rx["tool_Id"] = data.tool_Id
+        endtool_srkey_rx["set_Tool"] = data.set_Tool
+        endtool_srkey_rx["tool_Closing_Force"] = data.tool_Closing_Force
+        endtool_srkey_rx["tool_Opening_Force"] = data.tool_Opening_Force
+        endtool_srkey_rx["tool_Force_Location"] = data.tool_Force_Location
+        return endtool_srkey_rx
+
+    @Utils.exception_handler
+    def get_endtool_srkey_tx(self):
+        """
+        Get endtool SRKey Tx data
+        """
+        endtool_srkey_tx = {}
+        data = self.__ethercat_stub.GetSRKeyEndtoolTx(common_msgs.Empty())
+        endtool_srkey_tx["din"] = data.din
+        endtool_srkey_tx["tool_Status"] = data.tool_Status
+        endtool_srkey_tx["tool_Location"] = data.tool_Location
+        endtool_srkey_tx["analog0"] = data.analog0
+        endtool_srkey_tx["analog1"] = data.analog1
+        endtool_srkey_tx["version"] = data.version
+        return endtool_srkey_tx
+
+    @Utils.exception_handler
     def set_endtool_led_dim(self, led_dim):
         return self.__ethercat_stub.SetEndtoolLedDim(ethercat_msgs.LedDim(led_dim=led_dim))
 

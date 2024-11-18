@@ -16,6 +16,7 @@
 #include "proto/device.grpc.pb.h"
 #include "proto/rtde.grpc.pb.h"
 #include "proto/cri.grpc.pb.h"
+#include "proto/hri.grpc.pb.h"
 
 using google::protobuf::util::MessageToJsonString;
 using google::protobuf::util::JsonStringToMessage;
@@ -48,7 +49,6 @@ using Nrmk::IndyFramework::TrajCondition;
 #define LIMIT_VEL_RATIO_MIN 1  // %
 #define LIMIT_ACC_RATIO_MAX 900  // %
 #define LIMIT_ACC_RATIO_MIN 1  // %
-
 
 #define LIMIT_JOG_VEL_RATIO_MIN 5  // %
 #define LIMIT_JOG_VEL_RATIO_MAX 25  // %
@@ -196,6 +196,12 @@ class IndyDCP3
                     const int react_type=MotionCondition_ReactionType::MotionCondition_ReactionType_NONE_COND,
                     const DCPDICond di_condition={},
                     const DCPVarCond var_condition={});
+
+        bool move_gcode(const std::string& gcode_file, 
+                          const bool is_smooth_mode=false, 
+                          const float smooth_radius=0.0, 
+                          const float vel_ratio=LIMIT_JOG_VEL_RATIO_DEFAULT, 
+                          const float acc_ratio=LIMIT_JOG_ACC_RATIO_DEFAULT);
 
         //----------------------------------
         bool add_joint_waypoint(const std::vector<float>& waypoint);
@@ -346,7 +352,6 @@ class IndyDCP3
         bool start_log();
         bool end_log();
 
-        //------------- fw3.3 -------------
         bool get_violation_message_queue(Nrmk::IndyFramework::ViolationMessageQueue& violation_queue);
         bool get_stop_state(Nrmk::IndyFramework::StopState& stop_state);
 
@@ -490,6 +495,105 @@ class IndyDCP3
         bool get_kinematics_params(Nrmk::IndyFramework::KinematicsParams& response);
         bool get_io_data(Nrmk::IndyFramework::IOData& response);
 
+        bool wait_io(const std::vector<Nrmk::IndyFramework::DigitalSignal>& di_signal_list,
+                    const std::vector<Nrmk::IndyFramework::DigitalSignal>& do_signal_list,
+                    const std::vector<Nrmk::IndyFramework::DigitalSignal>& end_di_signal_list,
+                    const std::vector<Nrmk::IndyFramework::DigitalSignal>& end_do_signal_list,
+                    const int conjunction,
+                    const std::optional<std::vector<Nrmk::IndyFramework::DigitalSignal>>& set_do_signal_list,
+                    const std::optional<std::vector<Nrmk::IndyFramework::DigitalSignal>>& set_end_do_signal_list,
+                    const std::optional<std::vector<Nrmk::IndyFramework::AnalogSignal>>& set_ao_signal_list,
+                    const std::optional<std::vector<Nrmk::IndyFramework::AnalogSignal>>& set_end_ao_signal_list);
+
+        bool set_friction_comp_state(const bool enable);
+        bool get_friction_comp_state();
+
+        bool get_teleop_device(Nrmk::IndyFramework::TeleOpDevice& device);
+        bool get_teleop_state(Nrmk::IndyFramework::TeleOpState& state);
+        bool connect_teleop_device(const std::string& name, 
+                                    const Nrmk::IndyFramework::TeleOpDevice_TeleOpDeviceType type, 
+                                    const std::string& ip, 
+                                    const uint32_t port);
+        bool disconnect_teleop_device();
+        bool read_teleop_input(Nrmk::IndyFramework::TeleP& teleop_input);
+
+        bool set_play_rate(const float rate);
+        bool get_play_rate(float& rate);
+
+        bool get_tele_file_list(std::vector<std::string>& files);
+        bool save_tele_motion(const std::string& name);
+        bool load_tele_motion(const std::string& name);
+        bool delete_tele_motion(const std::string& name);
+
+        bool enable_tele_key(const bool enable);
+        bool get_pack_pos(std::vector<float>& jpos);
+
+        bool set_joint_control_gain(const std::vector<float>& kp, const std::vector<float>& kv, const std::vector<float>& kl2);
+        bool get_joint_control_gain(std::vector<float>& kp, std::vector<float>& kv, std::vector<float>& kl2);
+        bool set_task_control_gain(const std::vector<float>& kp, const std::vector<float>& kv, const std::vector<float>& kl2);
+        bool get_task_control_gain(std::vector<float>& kp, std::vector<float>& kv, std::vector<float>& kl2);
+
+        bool set_impedance_control_gain(const std::vector<float>& mass, 
+                                          const std::vector<float>& damping, 
+                                          const std::vector<float>& stiffness, 
+                                          const std::vector<float>& kl2);
+
+        bool get_impedance_control_gain(std::vector<float>& mass, 
+                                        std::vector<float>& damping, 
+                                        std::vector<float>& stiffness, 
+                                        std::vector<float>& kl2);
+
+        bool set_force_control_gain(const std::vector<float>& kp, 
+                                    const std::vector<float>& kv, 
+                                    const std::vector<float>& kl2, 
+                                    const std::vector<float>& mass, 
+                                    const std::vector<float>& damping, 
+                                    const std::vector<float>& stiffness, 
+                                    const std::vector<float>& kpf, 
+                                    const std::vector<float>& kif);
+
+        bool get_force_control_gain(std::vector<float>& kp, 
+                                    std::vector<float>& kv, 
+                                    std::vector<float>& kl2, 
+                                    std::vector<float>& mass, 
+                                    std::vector<float>& damping, 
+                                    std::vector<float>& stiffness, 
+                                    std::vector<float>& kpf, 
+                                    std::vector<float>& kif);
+
+        // bool set_mount_pos(const float rot_y, const float rot_z);
+        // bool get_mount_pos(float& rot_y, float& rot_z);
+
+        bool set_brakes(const std::vector<bool>& brake_state_list);
+        bool set_servo_all(const bool enable);
+        bool set_servo(const uint32_t index, const bool enable);
+
+        bool set_endtool_led_dim(const uint32_t led_dim);
+        bool execute_tool(const std::string& name);
+        bool get_el5001(int& status, int& value, int& delta, float& average);
+        bool get_el5101(int& status, int& value, int& latch, int& delta, float& average);
+
+        bool get_brake_control_style(int& style);
+
+        bool set_conveyor_name(const std::string& name);
+        bool set_conveyor_encoder(int encoder_type, int64_t channel1, int64_t channel2, int64_t sample_num,
+                                float mm_per_tick, float vel_const_mmps, bool reversed);
+        bool set_conveyor_trigger(int trigger_type, int64_t channel, bool detect_rise);
+        bool set_conveyor_offset(float offset_mm);
+
+        bool set_conveyor_starting_pose(const std::vector<float>& jpos, const std::vector<float>& tpos);
+        bool set_conveyor_terminal_pose(const std::vector<float>& jpos, const std::vector<float>& tpos);
+
+        bool add_photoneo_calib_point(const std::string& vision_name, double px, double py, double pz);
+        bool get_photoneo_detection(const Nrmk::IndyFramework::VisionServer& vision_server, 
+                                    const std::string& object, 
+                                    const Nrmk::IndyFramework::VisionFrameType frame_type, 
+                                    Nrmk::IndyFramework::VisionResult& result);
+        bool get_photoneo_retrieval(const Nrmk::IndyFramework::VisionServer& vision_server, 
+                                    const std::string& object, 
+                                    const Nrmk::IndyFramework::VisionFrameType frame_type, 
+                                    Nrmk::IndyFramework::VisionResult& result);
+
     private:
         bool _isConnected;
         unsigned int _cobotDOF;
@@ -502,18 +606,21 @@ class IndyDCP3
         std::shared_ptr<grpc::Channel> config_channel;
         std::shared_ptr<grpc::Channel> rtde_channel;
         std::shared_ptr<grpc::Channel> cri_channel;
+        std::shared_ptr<grpc::Channel> hri_channel;
 
         std::unique_ptr<Nrmk::IndyFramework::Control::Stub> control_stub;
         std::unique_ptr<Nrmk::IndyFramework::Device::Stub> device_stub;
         std::unique_ptr<Nrmk::IndyFramework::Config::Stub> config_stub;
         std::unique_ptr<Nrmk::IndyFramework::RTDataExchange::Stub> rtde_stub;
         std::unique_ptr<Nrmk::IndyFramework::CRI::Stub> cri_stub;
+        std::unique_ptr<IndyFramework::Protobuf::HRI::HRI::Stub> hri_stub;
 
         const std::vector<int> CONTROL_SOCKET_PORT  = {20001, 30001};
         const std::vector<int> DEVICE_SOCKET_PORT   = {20002, 30002};
         const std::vector<int> CONFIG_SOCKET_PORT   = {20003, 30003};
         const std::vector<int> RTDE_SOCKET_PORT     = {20004, 30004};
         const std::vector<int> CRI_SOCKET_PORT      = {20181, 30181};
+        const std::vector<int> HRI_SOCKET_PORT      = {20131, 30131};
 };
 
 #endif

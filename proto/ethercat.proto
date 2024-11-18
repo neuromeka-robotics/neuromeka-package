@@ -30,7 +30,7 @@ service EtherCAT {
     //rpc GetServoMaxTorque(ServoIndex) returns (IntVal) {}
     //rpc SetServoMaxTorque(ServoParam) returns (Empty) {}
     //rpc GetServoMaxMotorSpeed(ServoIndex) returns (ServoIndex) {}
-    rpc SetServoMaxMotorSpeed(ServoParam) returns (Empty) {}
+    //rpc SetServoMaxMotorSpeed(ServoParam) returns (Empty) {}
     //rpc GetExtendedPosition(Empty) returns (ExtendedPosition) {}
     //rpc SetExtendedPositionZero(Empty) returns (Empty) {}
 
