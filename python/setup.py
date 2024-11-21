@@ -33,7 +33,7 @@ else:
         name="neuromeka",
         version="3.3.2",
         author="Neuromeka",
-        author_email="technical-suuport@neuromeka.com",
+        author_email="technical-support@neuromeka.com",
         description="Neuromeka client protocols for IndyDCP3, IndyEye, Moby, Ecat, and Motor",
         long_description=long_description,
         long_description_content_type="text/markdown",

@@ -8,6 +8,12 @@
 #include <string>
 #include <vector>
 
+#ifdef _WIN32
+#else
+    #include <thread>
+    #include <chrono>
+#endif
+
 #include <grpcpp/grpcpp.h>
 #include "google/protobuf/util/json_util.h"
 
