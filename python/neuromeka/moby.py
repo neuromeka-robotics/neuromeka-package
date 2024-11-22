@@ -1,5 +1,5 @@
 import sys
-if sys.version_info >= (3, 8):
+if sys.version_info >= (3, 9):
     from neuromeka.proto import *
 else:
     from neuromeka.proto_step import *

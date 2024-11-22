@@ -8,3 +8,4 @@
 .vscode/
 *.bak
 *.bk
+**/neuromeka.egg-info/

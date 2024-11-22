@@ -1,7 +1,7 @@
 from enum import IntEnum
 
 import sys
-if sys.version_info >= (3, 8):
+if sys.version_info >= (3, 9):
     import neuromeka.proto.common_msgs_pb2 as common_msgs
     import neuromeka.proto.control_msgs_pb2 as control_msgs
     import neuromeka.proto.device_msgs_pb2 as device_msgs

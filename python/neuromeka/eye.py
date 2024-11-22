@@ -14,7 +14,7 @@ import time
 import grpc
 
 import sys
-if sys.version_info >= (3, 8):
+if sys.version_info >= (3, 9):
     from neuromeka.proto.eyetask_pb2_grpc import EyeTaskStub
     from neuromeka.proto import eyetask_pb2 as EyeTask_pb2
 else:
