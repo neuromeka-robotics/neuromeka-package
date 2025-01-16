@@ -14,5 +14,3 @@ from .moby import MobyClient
 
 from .enums import *
 __all__ = ['IndyDCP3', 'StopCategory', 'JointBaseType', 'TaskBaseType']
-
-

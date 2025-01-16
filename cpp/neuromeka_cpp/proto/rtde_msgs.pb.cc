@@ -139,6 +139,9 @@ PROTOBUF_CONSTEXPR ControlData2::ControlData2(::_pbi::ConstantInitialized)
       /*decltype(_impl_.tau_)*/ {},
       /*decltype(_impl_.tau_act_)*/ {},
       /*decltype(_impl_.tau_ext_)*/ {},
+      /*decltype(_impl_.tau_jts_)*/ {},
+      /*decltype(_impl_.tau_jts_sensor1_)*/ {},
+      /*decltype(_impl_.tau_jts_sensor2_)*/ {},
       /*decltype(_impl_.response_)*/ nullptr,
     } {}
 struct ControlData2DefaultTypeInternal {
@@ -414,7 +417,13 @@ const ::uint32_t TableStruct_rtde_5fmsgs_2eproto::offsets[] PROTOBUF_SECTION_VAR
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ControlData2, _impl_.tau_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ControlData2, _impl_.tau_act_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ControlData2, _impl_.tau_ext_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ControlData2, _impl_.tau_jts_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ControlData2, _impl_.tau_jts_sensor1_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ControlData2, _impl_.tau_jts_sensor2_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ControlData2, _impl_.response_),
+    ~0u,
+    ~0u,
+    ~0u,
     ~0u,
     ~0u,
     ~0u,
@@ -561,13 +570,13 @@ static const ::_pbi::MigrationSchema
         {10, -1, -1, sizeof(::Nrmk::IndyFramework::TestResponse)},
         {20, 41, -1, sizeof(::Nrmk::IndyFramework::MotionData)},
         {54, 74, -1, sizeof(::Nrmk::IndyFramework::ControlData)},
-        {86, 110, -1, sizeof(::Nrmk::IndyFramework::ControlData2)},
-        {126, 143, -1, sizeof(::Nrmk::IndyFramework::IOData)},
-        {152, 166, -1, sizeof(::Nrmk::IndyFramework::ViolationData)},
-        {172, 182, -1, sizeof(::Nrmk::IndyFramework::ViolationMessageQueue)},
-        {184, 199, -1, sizeof(::Nrmk::IndyFramework::ServoData)},
-        {206, 225, -1, sizeof(::Nrmk::IndyFramework::ProgramData)},
-        {236, 246, -1, sizeof(::Nrmk::IndyFramework::StopState)},
+        {86, 113, -1, sizeof(::Nrmk::IndyFramework::ControlData2)},
+        {132, 149, -1, sizeof(::Nrmk::IndyFramework::IOData)},
+        {158, 172, -1, sizeof(::Nrmk::IndyFramework::ViolationData)},
+        {178, 188, -1, sizeof(::Nrmk::IndyFramework::ViolationMessageQueue)},
+        {190, 205, -1, sizeof(::Nrmk::IndyFramework::ServoData)},
+        {212, 231, -1, sizeof(::Nrmk::IndyFramework::ProgramData)},
+        {242, 252, -1, sizeof(::Nrmk::IndyFramework::StopState)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -604,51 +613,53 @@ const char descriptor_table_protodef_rtde_5fmsgs_2eproto[] PROTOBUF_SECTION_VARI
     "\t\n\001q\030\n \003(\002\022\014\n\004qdot\030\013 \003(\002\022\t\n\001p\030\014 \003(\002\022\014\n\004p"
     "dot\030\r \003(\002\022\021\n\tref_frame\030\024 \003(\002\022\022\n\ntool_fra"
     "me\030\025 \003(\002\022.\n\010response\030d \001(\0132\034.Nrmk.IndyFr"
-    "amework.Response\"\237\002\n\014ControlData2\022\t\n\001q\030\001"
+    "amework.Response\"\342\002\n\014ControlData2\022\t\n\001q\030\001"
     " \003(\002\022\014\n\004qdot\030\002 \003(\002\022\r\n\005qddot\030\003 \003(\002\022\014\n\004qde"
     "s\030\004 \003(\002\022\017\n\007qdotdes\030\005 \003(\002\022\020\n\010qddotdes\030\006 \003"
     "(\002\022\t\n\001p\030\n \003(\002\022\014\n\004pdot\030\013 \003(\002\022\r\n\005pddot\030\014 \003"
     "(\002\022\014\n\004pdes\030\r \003(\002\022\017\n\007pdotdes\030\016 \003(\002\022\020\n\010pdd"
     "otdes\030\017 \003(\002\022\013\n\003tau\030\024 \003(\002\022\017\n\007tau_act\030\025 \003("
-    "\002\022\017\n\007tau_ext\030\026 \003(\002\022.\n\010response\030d \001(\0132\034.N"
-    "rmk.IndyFramework.Response\"\274\003\n\006IOData\022-\n"
-    "\002di\030\001 \003(\0132!.Nrmk.IndyFramework.DigitalSi"
-    "gnal\022-\n\002do\030\002 \003(\0132!.Nrmk.IndyFramework.Di"
-    "gitalSignal\022,\n\002ai\030\003 \003(\0132 .Nrmk.IndyFrame"
-    "work.AnalogSignal\022,\n\002ao\030\004 \003(\0132 .Nrmk.Ind"
-    "yFramework.AnalogSignal\0221\n\006end_di\030\005 \003(\0132"
-    "!.Nrmk.IndyFramework.EndtoolSignal\0221\n\006en"
-    "d_do\030\006 \003(\0132!.Nrmk.IndyFramework.EndtoolS"
-    "ignal\0220\n\006end_ai\030\007 \003(\0132 .Nrmk.IndyFramewo"
-    "rk.AnalogSignal\0220\n\006end_ao\030\010 \003(\0132 .Nrmk.I"
-    "ndyFramework.AnalogSignal\022.\n\010response\030d "
-    "\001(\0132\034.Nrmk.IndyFramework.Response\"\237\001\n\rVi"
-    "olationData\022\026\n\016violation_code\030\001 \001(\004\022\017\n\007j"
-    "_index\030\002 \001(\r\022\016\n\006i_args\030\003 \003(\005\022\016\n\006f_args\030\004"
-    " \003(\002\022\025\n\rviolation_str\030\005 \001(\t\022.\n\010response\030"
-    "d \001(\0132\034.Nrmk.IndyFramework.Response\"\203\001\n\025"
-    "ViolationMessageQueue\022:\n\017violation_queue"
-    "\030\001 \003(\0132!.Nrmk.IndyFramework.ViolationDat"
-    "a\022.\n\010response\030d \001(\0132\034.Nrmk.IndyFramework"
-    ".Response\"\271\001\n\tServoData\022\024\n\014status_codes\030"
-    "\001 \003(\t\022\024\n\014temperatures\030\002 \003(\002\022\020\n\010voltages\030"
-    "\003 \003(\002\022\020\n\010currents\030\004 \003(\002\022\025\n\rservo_actives"
-    "\030\n \003(\010\022\025\n\rbrake_actives\030\013 \003(\010\022.\n\010respons"
-    "e\030d \001(\0132\034.Nrmk.IndyFramework.Response\"\273\002"
-    "\n\013ProgramData\0227\n\rprogram_state\030\001 \001(\0162 .N"
-    "rmk.IndyFramework.ProgramState\022\016\n\006cmd_id"
-    "\030\002 \001(\005\022\022\n\nsub_cmd_id\030\003 \001(\005\022\025\n\rrunning_ho"
-    "urs\030\004 \001(\r\022\024\n\014running_mins\030\005 \001(\r\022\024\n\014runni"
-    "ng_secs\030\006 \001(\r\022\024\n\014program_name\030\007 \001(\t\022\025\n\rp"
-    "rogram_alarm\030\010 \001(\t\022\032\n\022program_annotation"
-    "\030\t \001(\t\022\023\n\013speed_ratio\030\n \001(\005\022.\n\010response\030"
-    "d \001(\0132\034.Nrmk.IndyFramework.Response\"\325\001\n\t"
-    "StopState\022<\n\010category\030\001 \001(\0162*.Nrmk.IndyF"
-    "ramework.StopState.StopCategory\022.\n\010respo"
-    "nse\030d \001(\0132\034.Nrmk.IndyFramework.Response\""
-    "Z\n\014StopCategory\022\016\n\nSTOP_CAT_0\020\000\022\016\n\nSTOP_"
-    "CAT_1\020\001\022\016\n\nSTOP_CAT_2\020\002\022\032\n\rSTOP_CAT_NONE"
-    "\020\377\377\377\377\377\377\377\377\377\001b\006proto3"
+    "\002\022\017\n\007tau_ext\030\026 \003(\002\022\017\n\007tau_jts\030\027 \003(\002\022\027\n\017t"
+    "au_jts_sensor1\030\030 \003(\002\022\027\n\017tau_jts_sensor2\030"
+    "\031 \003(\002\022.\n\010response\030d \001(\0132\034.Nrmk.IndyFrame"
+    "work.Response\"\274\003\n\006IOData\022-\n\002di\030\001 \003(\0132!.N"
+    "rmk.IndyFramework.DigitalSignal\022-\n\002do\030\002 "
+    "\003(\0132!.Nrmk.IndyFramework.DigitalSignal\022,"
+    "\n\002ai\030\003 \003(\0132 .Nrmk.IndyFramework.AnalogSi"
+    "gnal\022,\n\002ao\030\004 \003(\0132 .Nrmk.IndyFramework.An"
+    "alogSignal\0221\n\006end_di\030\005 \003(\0132!.Nrmk.IndyFr"
+    "amework.EndtoolSignal\0221\n\006end_do\030\006 \003(\0132!."
+    "Nrmk.IndyFramework.EndtoolSignal\0220\n\006end_"
+    "ai\030\007 \003(\0132 .Nrmk.IndyFramework.AnalogSign"
+    "al\0220\n\006end_ao\030\010 \003(\0132 .Nrmk.IndyFramework."
+    "AnalogSignal\022.\n\010response\030d \001(\0132\034.Nrmk.In"
+    "dyFramework.Response\"\237\001\n\rViolationData\022\026"
+    "\n\016violation_code\030\001 \001(\004\022\017\n\007j_index\030\002 \001(\r\022"
+    "\016\n\006i_args\030\003 \003(\005\022\016\n\006f_args\030\004 \003(\002\022\025\n\rviola"
+    "tion_str\030\005 \001(\t\022.\n\010response\030d \001(\0132\034.Nrmk."
+    "IndyFramework.Response\"\203\001\n\025ViolationMess"
+    "ageQueue\022:\n\017violation_queue\030\001 \003(\0132!.Nrmk"
+    ".IndyFramework.ViolationData\022.\n\010response"
+    "\030d \001(\0132\034.Nrmk.IndyFramework.Response\"\271\001\n"
+    "\tServoData\022\024\n\014status_codes\030\001 \003(\t\022\024\n\014temp"
+    "eratures\030\002 \003(\002\022\020\n\010voltages\030\003 \003(\002\022\020\n\010curr"
+    "ents\030\004 \003(\002\022\025\n\rservo_actives\030\n \003(\010\022\025\n\rbra"
+    "ke_actives\030\013 \003(\010\022.\n\010response\030d \001(\0132\034.Nrm"
+    "k.IndyFramework.Response\"\273\002\n\013ProgramData"
+    "\0227\n\rprogram_state\030\001 \001(\0162 .Nrmk.IndyFrame"
+    "work.ProgramState\022\016\n\006cmd_id\030\002 \001(\005\022\022\n\nsub"
+    "_cmd_id\030\003 \001(\005\022\025\n\rrunning_hours\030\004 \001(\r\022\024\n\014"
+    "running_mins\030\005 \001(\r\022\024\n\014running_secs\030\006 \001(\r"
+    "\022\024\n\014program_name\030\007 \001(\t\022\025\n\rprogram_alarm\030"
+    "\010 \001(\t\022\032\n\022program_annotation\030\t \001(\t\022\023\n\013spe"
+    "ed_ratio\030\n \001(\005\022.\n\010response\030d \001(\0132\034.Nrmk."
+    "IndyFramework.Response\"\325\001\n\tStopState\022<\n\010"
+    "category\030\001 \001(\0162*.Nrmk.IndyFramework.Stop"
+    "State.StopCategory\022.\n\010response\030d \001(\0132\034.N"
+    "rmk.IndyFramework.Response\"Z\n\014StopCatego"
+    "ry\022\016\n\nSTOP_CAT_0\020\000\022\016\n\nSTOP_CAT_1\020\001\022\016\n\nST"
+    "OP_CAT_2\020\002\022\032\n\rSTOP_CAT_NONE\020\377\377\377\377\377\377\377\377\377\001b\006"
+    "proto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_rtde_5fmsgs_2eproto_deps[2] =
     {
@@ -659,7 +670,7 @@ static ::absl::once_flag descriptor_table_rtde_5fmsgs_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_rtde_5fmsgs_2eproto = {
     false,
     false,
-    2579,
+    2646,
     descriptor_table_protodef_rtde_5fmsgs_2eproto,
     "rtde_msgs.proto",
     &descriptor_table_rtde_5fmsgs_2eproto_once,
@@ -2222,6 +2233,9 @@ ControlData2::ControlData2(const ControlData2& from) : ::google::protobuf::Messa
       decltype(_impl_.tau_){from._impl_.tau_},
       decltype(_impl_.tau_act_){from._impl_.tau_act_},
       decltype(_impl_.tau_ext_){from._impl_.tau_ext_},
+      decltype(_impl_.tau_jts_){from._impl_.tau_jts_},
+      decltype(_impl_.tau_jts_sensor1_){from._impl_.tau_jts_sensor1_},
+      decltype(_impl_.tau_jts_sensor2_){from._impl_.tau_jts_sensor2_},
       decltype(_impl_.response_){nullptr},
   };
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
@@ -2252,6 +2266,9 @@ inline void ControlData2::SharedCtor(::_pb::Arena* arena) {
       decltype(_impl_.tau_){arena},
       decltype(_impl_.tau_act_){arena},
       decltype(_impl_.tau_ext_){arena},
+      decltype(_impl_.tau_jts_){arena},
+      decltype(_impl_.tau_jts_sensor1_){arena},
+      decltype(_impl_.tau_jts_sensor2_){arena},
       decltype(_impl_.response_){nullptr},
   };
 }
@@ -2277,6 +2294,9 @@ inline void ControlData2::SharedDtor() {
   _impl_.tau_.~RepeatedField();
   _impl_.tau_act_.~RepeatedField();
   _impl_.tau_ext_.~RepeatedField();
+  _impl_.tau_jts_.~RepeatedField();
+  _impl_.tau_jts_sensor1_.~RepeatedField();
+  _impl_.tau_jts_sensor2_.~RepeatedField();
   if (this != internal_default_instance()) delete _impl_.response_;
 }
 void ControlData2::SetCachedSize(int size) const {
@@ -2304,6 +2324,9 @@ PROTOBUF_NOINLINE void ControlData2::Clear() {
   _internal_mutable_tau()->Clear();
   _internal_mutable_tau_act()->Clear();
   _internal_mutable_tau_ext()->Clear();
+  _internal_mutable_tau_jts()->Clear();
+  _internal_mutable_tau_jts_sensor1()->Clear();
+  _internal_mutable_tau_jts_sensor2()->Clear();
   cached_has_bits = _impl_._has_bits_[0];
   if (cached_has_bits & 0x00000001u) {
     ABSL_DCHECK(_impl_.response_ != nullptr);
@@ -2321,15 +2344,15 @@ const char* ControlData2::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<5, 16, 1, 0, 7> ControlData2::_table_ = {
+const ::_pbi::TcParseTable<5, 19, 1, 0, 7> ControlData2::_table_ = {
   {
     PROTOBUF_FIELD_OFFSET(ControlData2, _impl_._has_bits_),
     0, // no _extensions_
     100, 248,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4291264960,  // skipmap
+    4261904832,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    16,  // num_field_entries
+    19,  // num_field_entries
     1,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     &_ControlData2_default_instance_._instance,
@@ -2388,9 +2411,15 @@ const ::_pbi::TcParseTable<5, 16, 1, 0, 7> ControlData2::_table_ = {
     // repeated float tau_ext = 22;
     {::_pbi::TcParser::FastF32P2,
      {434, 63, 0, PROTOBUF_FIELD_OFFSET(ControlData2, _impl_.tau_ext_)}},
-    {::_pbi::TcParser::MiniParse, {}},
-    {::_pbi::TcParser::MiniParse, {}},
-    {::_pbi::TcParser::MiniParse, {}},
+    // repeated float tau_jts = 23;
+    {::_pbi::TcParser::FastF32P2,
+     {442, 63, 0, PROTOBUF_FIELD_OFFSET(ControlData2, _impl_.tau_jts_)}},
+    // repeated float tau_jts_sensor1 = 24;
+    {::_pbi::TcParser::FastF32P2,
+     {450, 63, 0, PROTOBUF_FIELD_OFFSET(ControlData2, _impl_.tau_jts_sensor1_)}},
+    // repeated float tau_jts_sensor2 = 25;
+    {::_pbi::TcParser::FastF32P2,
+     {458, 63, 0, PROTOBUF_FIELD_OFFSET(ControlData2, _impl_.tau_jts_sensor2_)}},
     {::_pbi::TcParser::MiniParse, {}},
     {::_pbi::TcParser::MiniParse, {}},
     {::_pbi::TcParser::MiniParse, {}},
@@ -2399,7 +2428,7 @@ const ::_pbi::TcParseTable<5, 16, 1, 0, 7> ControlData2::_table_ = {
     {::_pbi::TcParser::MiniParse, {}},
   }}, {{
     100, 0, 1,
-    65534, 15,
+    65534, 18,
     65535, 65535
   }}, {{
     // repeated float q = 1;
@@ -2446,6 +2475,15 @@ const ::_pbi::TcParseTable<5, 16, 1, 0, 7> ControlData2::_table_ = {
     (0 | ::_fl::kFcRepeated | ::_fl::kPackedFloat)},
     // repeated float tau_ext = 22;
     {PROTOBUF_FIELD_OFFSET(ControlData2, _impl_.tau_ext_), -1, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedFloat)},
+    // repeated float tau_jts = 23;
+    {PROTOBUF_FIELD_OFFSET(ControlData2, _impl_.tau_jts_), -1, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedFloat)},
+    // repeated float tau_jts_sensor1 = 24;
+    {PROTOBUF_FIELD_OFFSET(ControlData2, _impl_.tau_jts_sensor1_), -1, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedFloat)},
+    // repeated float tau_jts_sensor2 = 25;
+    {PROTOBUF_FIELD_OFFSET(ControlData2, _impl_.tau_jts_sensor2_), -1, 0,
     (0 | ::_fl::kFcRepeated | ::_fl::kPackedFloat)},
     // .Nrmk.IndyFramework.Response response = 100;
     {PROTOBUF_FIELD_OFFSET(ControlData2, _impl_.response_), _Internal::kHasBitsOffset + 0, 0,
@@ -2536,6 +2574,21 @@ const ::_pbi::TcParseTable<5, 16, 1, 0, 7> ControlData2::_table_ = {
   // repeated float tau_ext = 22;
   if (this->_internal_tau_ext_size() > 0) {
     target = stream->WriteFixedPacked(22, _internal_tau_ext(), target);
+  }
+
+  // repeated float tau_jts = 23;
+  if (this->_internal_tau_jts_size() > 0) {
+    target = stream->WriteFixedPacked(23, _internal_tau_jts(), target);
+  }
+
+  // repeated float tau_jts_sensor1 = 24;
+  if (this->_internal_tau_jts_sensor1_size() > 0) {
+    target = stream->WriteFixedPacked(24, _internal_tau_jts_sensor1(), target);
+  }
+
+  // repeated float tau_jts_sensor2 = 25;
+  if (this->_internal_tau_jts_sensor2_size() > 0) {
+    target = stream->WriteFixedPacked(25, _internal_tau_jts_sensor2(), target);
   }
 
   cached_has_bits = _impl_._has_bits_[0];
@@ -2743,6 +2796,42 @@ const ::_pbi::TcParseTable<5, 16, 1, 0, 7> ControlData2::_table_ = {
     ;
     total_size += tag_size + data_size;
   }
+  // repeated float tau_jts = 23;
+  {
+    std::size_t data_size = std::size_t{4} *
+        ::_pbi::FromIntSize(this->_internal_tau_jts_size())
+    ;
+    std::size_t tag_size = data_size == 0
+        ? 0
+        : 2 + ::_pbi::WireFormatLite::Int32Size(
+                            static_cast<int32_t>(data_size))
+    ;
+    total_size += tag_size + data_size;
+  }
+  // repeated float tau_jts_sensor1 = 24;
+  {
+    std::size_t data_size = std::size_t{4} *
+        ::_pbi::FromIntSize(this->_internal_tau_jts_sensor1_size())
+    ;
+    std::size_t tag_size = data_size == 0
+        ? 0
+        : 2 + ::_pbi::WireFormatLite::Int32Size(
+                            static_cast<int32_t>(data_size))
+    ;
+    total_size += tag_size + data_size;
+  }
+  // repeated float tau_jts_sensor2 = 25;
+  {
+    std::size_t data_size = std::size_t{4} *
+        ::_pbi::FromIntSize(this->_internal_tau_jts_sensor2_size())
+    ;
+    std::size_t tag_size = data_size == 0
+        ? 0
+        : 2 + ::_pbi::WireFormatLite::Int32Size(
+                            static_cast<int32_t>(data_size))
+    ;
+    total_size += tag_size + data_size;
+  }
   // .Nrmk.IndyFramework.Response response = 100;
   cached_has_bits = _impl_._has_bits_[0];
   if (cached_has_bits & 0x00000001u) {
@@ -2784,6 +2873,9 @@ void ControlData2::MergeImpl(::google::protobuf::Message& to_msg, const ::google
   _this->_internal_mutable_tau()->MergeFrom(from._internal_tau());
   _this->_internal_mutable_tau_act()->MergeFrom(from._internal_tau_act());
   _this->_internal_mutable_tau_ext()->MergeFrom(from._internal_tau_ext());
+  _this->_internal_mutable_tau_jts()->MergeFrom(from._internal_tau_jts());
+  _this->_internal_mutable_tau_jts_sensor1()->MergeFrom(from._internal_tau_jts_sensor1());
+  _this->_internal_mutable_tau_jts_sensor2()->MergeFrom(from._internal_tau_jts_sensor2());
   if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
     _this->_internal_mutable_response()->::Nrmk::IndyFramework::Response::MergeFrom(
         from._internal_response());
@@ -2821,6 +2913,9 @@ void ControlData2::InternalSwap(ControlData2* other) {
   _impl_.tau_.InternalSwap(&other->_impl_.tau_);
   _impl_.tau_act_.InternalSwap(&other->_impl_.tau_act_);
   _impl_.tau_ext_.InternalSwap(&other->_impl_.tau_ext_);
+  _impl_.tau_jts_.InternalSwap(&other->_impl_.tau_jts_);
+  _impl_.tau_jts_sensor1_.InternalSwap(&other->_impl_.tau_jts_sensor1_);
+  _impl_.tau_jts_sensor2_.InternalSwap(&other->_impl_.tau_jts_sensor2_);
   swap(_impl_.response_, other->_impl_.response_);
 }
 

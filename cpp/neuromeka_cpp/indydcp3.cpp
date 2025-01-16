@@ -109,6 +109,7 @@ bool IndyDCP3::get_control_state(Nrmk::IndyFramework::ControlData2 &control_stat
         tau  -> float[]
         tau_act  -> float[]
         tau_ext  -> float[]
+        tau_jts  -> float[]
     */
     Nrmk::IndyFramework::Empty request;
     Nrmk::IndyFramework::ControlData2 response;
@@ -129,6 +130,7 @@ bool IndyDCP3::get_control_state(Nrmk::IndyFramework::ControlData2 &control_stat
     control_state.clear_tau();
     control_state.clear_tau_act();
     control_state.clear_tau_ext();
+    control_state.clear_tau_jts();
     for(unsigned int i=0; i<_cobotDOF; i++){
         control_state.add_q(response.q(i));
         control_state.add_qdot(response.qdot(i));
@@ -139,6 +141,7 @@ bool IndyDCP3::get_control_state(Nrmk::IndyFramework::ControlData2 &control_stat
         control_state.add_tau(response.tau(i));
         control_state.add_tau_act(response.tau_act(i));
         control_state.add_tau_ext(response.tau_ext(i));
+        control_state.add_tau_jts(response.tau_jts(i));
     }
 
     for(int i=0; i<6; i++){

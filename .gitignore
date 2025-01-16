@@ -3,9 +3,12 @@
 **/.ipynb_checkpoints/
 **/__pycache__/
 **/build/
+**/dist/
+**/proto/
 **/cpp_generated/
 **/python_generated/
 .vscode/
-*.bak
-*.bk
-**/neuromeka.egg-info/
+**/*.bak
+**/*.bk
+**/*.egg-info/
+**/build_proto.*

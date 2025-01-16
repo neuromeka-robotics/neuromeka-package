@@ -261,6 +261,9 @@ CMD_GET_TASK_POSITION                       = 322
 CMD_GET_TASK_VELOCITY                       = 323
 CMD_GET_TORQUE                              = 324
 CMD_GET_INV_KIN                             = 325
+CMD_GET_TORQUE_JTS                          = 326
+CMD_GET_TORQUE_JTS_SENSOR1                  = 327
+CMD_GET_TORQUE_JTS_SENSOR2                  = 328
 
 CMD_GET_LAST_EMG_INFO                       = 380
 
@@ -1023,6 +1026,18 @@ class IndyDCP2:
 
     @tcp_command(CMD_GET_TORQUE, 'jointArr')
     def get_control_torque(self):
+        pass
+
+    @tcp_command(CMD_GET_TORQUE_JTS, 'jointArr')
+    def get_control_torque_jts(self):
+        pass
+
+    @tcp_command(CMD_GET_TORQUE_JTS_SENSOR1, 'jointArr')
+    def get_control_torque_jts_sensor1(self):
+        pass
+    
+    @tcp_command(CMD_GET_TORQUE_JTS_SENSOR2, 'jointArr')
+    def get_control_torque_jts_sensor2(self):
         pass
 
     def get_last_emergency_info(self):

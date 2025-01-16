@@ -6747,6 +6747,8 @@ class VisionRequest final :
     kObjectFieldNumber = 2,
     kVisionServerFieldNumber = 1,
     kFrameTypeFieldNumber = 3,
+    kSolutionIdFieldNumber = 4,
+    kVisionIdFieldNumber = 5,
   };
   // string object = 2;
   void clear_object() ;
@@ -6789,12 +6791,32 @@ class VisionRequest final :
   void _internal_set_frame_type(::Nrmk::IndyFramework::VisionFrameType value);
 
   public:
+  // uint32 solution_id = 4;
+  void clear_solution_id() ;
+  ::uint32_t solution_id() const;
+  void set_solution_id(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_solution_id() const;
+  void _internal_set_solution_id(::uint32_t value);
+
+  public:
+  // uint32 vision_id = 5;
+  void clear_vision_id() ;
+  ::uint32_t vision_id() const;
+  void set_vision_id(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_vision_id() const;
+  void _internal_set_vision_id(::uint32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.VisionRequest)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<2, 3, 1, 47, 2> _table_;
+  static const ::google::protobuf::internal::TcParseTable<3, 5, 1, 47, 2> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
@@ -6804,6 +6826,8 @@ class VisionRequest final :
     ::google::protobuf::internal::ArenaStringPtr object_;
     ::Nrmk::IndyFramework::VisionServer* vision_server_;
     int frame_type_;
+    ::uint32_t solution_id_;
+    ::uint32_t vision_id_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -11183,6 +11207,50 @@ inline void VisionRequest::_internal_set_frame_type(::Nrmk::IndyFramework::Visio
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.frame_type_ = value;
+}
+
+// uint32 solution_id = 4;
+inline void VisionRequest::clear_solution_id() {
+  _impl_.solution_id_ = 0u;
+}
+inline ::uint32_t VisionRequest::solution_id() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.VisionRequest.solution_id)
+  return _internal_solution_id();
+}
+inline void VisionRequest::set_solution_id(::uint32_t value) {
+  _internal_set_solution_id(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.VisionRequest.solution_id)
+}
+inline ::uint32_t VisionRequest::_internal_solution_id() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.solution_id_;
+}
+inline void VisionRequest::_internal_set_solution_id(::uint32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.solution_id_ = value;
+}
+
+// uint32 vision_id = 5;
+inline void VisionRequest::clear_vision_id() {
+  _impl_.vision_id_ = 0u;
+}
+inline ::uint32_t VisionRequest::vision_id() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.VisionRequest.vision_id)
+  return _internal_vision_id();
+}
+inline void VisionRequest::set_vision_id(::uint32_t value) {
+  _internal_set_vision_id(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.VisionRequest.vision_id)
+}
+inline ::uint32_t VisionRequest::_internal_vision_id() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.vision_id_;
+}
+inline void VisionRequest::_internal_set_vision_id(::uint32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.vision_id_ = value;
 }
 
 // -------------------------------------------------------------------

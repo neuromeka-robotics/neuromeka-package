@@ -656,6 +656,8 @@ PROTOBUF_CONSTEXPR VisionRequest::VisionRequest(::_pbi::ConstantInitialized)
       },
       /*decltype(_impl_.vision_server_)*/ nullptr,
       /*decltype(_impl_.frame_type_)*/ 0,
+      /*decltype(_impl_.solution_id_)*/ 0u,
+      /*decltype(_impl_.vision_id_)*/ 0u,
     } {}
 struct VisionRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR VisionRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
@@ -1112,7 +1114,11 @@ const ::uint32_t TableStruct_device_5fmsgs_2eproto::offsets[] PROTOBUF_SECTION_V
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::VisionRequest, _impl_.vision_server_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::VisionRequest, _impl_.object_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::VisionRequest, _impl_.frame_type_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::VisionRequest, _impl_.solution_id_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::VisionRequest, _impl_.vision_id_),
     0,
+    ~0u,
+    ~0u,
     ~0u,
     ~0u,
     ~0u,  // no _has_bits_
@@ -1164,8 +1170,8 @@ static const ::_pbi::MigrationSchema
         {365, -1, -1, sizeof(::Nrmk::IndyFramework::ConveyorState)},
         {375, -1, -1, sizeof(::Nrmk::IndyFramework::AddPhotoneoCalibPointReq)},
         {387, -1, -1, sizeof(::Nrmk::IndyFramework::VisionServer)},
-        {399, 410, -1, sizeof(::Nrmk::IndyFramework::VisionRequest)},
-        {413, -1, -1, sizeof(::Nrmk::IndyFramework::VisionResult)},
+        {399, 412, -1, sizeof(::Nrmk::IndyFramework::VisionRequest)},
+        {417, -1, -1, sizeof(::Nrmk::IndyFramework::VisionResult)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -1296,11 +1302,12 @@ const char descriptor_table_protodef_device_5fmsgs_2eproto[] PROTOBUF_SECTION_VA
     "\002 \001(\01621.Nrmk.IndyFramework.VisionServer."
     "VisionServerType\022\n\n\002ip\030\003 \001(\t\022\014\n\004port\030\004 \001"
     "(\r\"9\n\020VisionServerType\022\013\n\007INDYEYE\020\000\022\014\n\010P"
-    "HOTONEO\020\001\022\n\n\006HELIOS\020\002\"\221\001\n\rVisionRequest\022"
+    "HOTONEO\020\001\022\n\n\006HELIOS\020\002\"\271\001\n\rVisionRequest\022"
     "7\n\rvision_server\030\001 \001(\0132 .Nrmk.IndyFramew"
     "ork.VisionServer\022\016\n\006object\030\002 \001(\t\0227\n\nfram"
     "e_type\030\003 \001(\0162#.Nrmk.IndyFramework.Vision"
-    "FrameType\"\225\001\n\014VisionResult\022\r\n\005frame\030\001 \003("
+    "FrameType\022\023\n\013solution_id\030\004 \001(\r\022\021\n\tvision"
+    "_id\030\005 \001(\r\"\225\001\n\014VisionResult\022\r\n\005frame\030\001 \003("
     "\002\0227\n\nframe_type\030\002 \001(\0162#.Nrmk.IndyFramewo"
     "rk.VisionFrameType\022\016\n\006object\030\003 \001(\t\022\020\n\010de"
     "tected\030\004 \001(\010\022\016\n\006passed\030\005 \001(\010\022\013\n\003msg\030d \001("
@@ -1321,7 +1328,7 @@ static ::absl::once_flag descriptor_table_device_5fmsgs_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_device_5fmsgs_2eproto = {
     false,
     false,
-    4283,
+    4323,
     descriptor_table_protodef_device_5fmsgs_2eproto,
     "device_msgs.proto",
     &descriptor_table_device_5fmsgs_2eproto_once,
@@ -9692,6 +9699,8 @@ VisionRequest::VisionRequest(const VisionRequest& from) : ::google::protobuf::Me
       decltype(_impl_.object_){},
       decltype(_impl_.vision_server_){nullptr},
       decltype(_impl_.frame_type_){},
+      decltype(_impl_.solution_id_){},
+      decltype(_impl_.vision_id_){},
   };
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
@@ -9705,7 +9714,9 @@ VisionRequest::VisionRequest(const VisionRequest& from) : ::google::protobuf::Me
   if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
     _this->_impl_.vision_server_ = new ::Nrmk::IndyFramework::VisionServer(*from._impl_.vision_server_);
   }
-  _this->_impl_.frame_type_ = from._impl_.frame_type_;
+  ::memcpy(&_impl_.frame_type_, &from._impl_.frame_type_,
+    static_cast<::size_t>(reinterpret_cast<char*>(&_impl_.vision_id_) -
+    reinterpret_cast<char*>(&_impl_.frame_type_)) + sizeof(_impl_.vision_id_));
 
   // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.VisionRequest)
 }
@@ -9717,6 +9728,8 @@ inline void VisionRequest::SharedCtor(::_pb::Arena* arena) {
       decltype(_impl_.object_){},
       decltype(_impl_.vision_server_){nullptr},
       decltype(_impl_.frame_type_){0},
+      decltype(_impl_.solution_id_){0u},
+      decltype(_impl_.vision_id_){0u},
   };
   _impl_.object_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -9749,7 +9762,9 @@ PROTOBUF_NOINLINE void VisionRequest::Clear() {
     ABSL_DCHECK(_impl_.vision_server_ != nullptr);
     _impl_.vision_server_->Clear();
   }
-  _impl_.frame_type_ = 0;
+  ::memset(&_impl_.frame_type_, 0, static_cast<::size_t>(
+      reinterpret_cast<char*>(&_impl_.vision_id_) -
+      reinterpret_cast<char*>(&_impl_.frame_type_)) + sizeof(_impl_.vision_id_));
   _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
@@ -9762,15 +9777,15 @@ const char* VisionRequest::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<2, 3, 1, 47, 2> VisionRequest::_table_ = {
+const ::_pbi::TcParseTable<3, 5, 1, 47, 2> VisionRequest::_table_ = {
   {
     PROTOBUF_FIELD_OFFSET(VisionRequest, _impl_._has_bits_),
     0, // no _extensions_
-    3, 24,  // max_field_number, fast_idx_mask
+    5, 56,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967288,  // skipmap
+    4294967264,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    3,  // num_field_entries
+    5,  // num_field_entries
     1,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     &_VisionRequest_default_instance_._instance,
@@ -9786,6 +9801,14 @@ const ::_pbi::TcParseTable<2, 3, 1, 47, 2> VisionRequest::_table_ = {
     // .Nrmk.IndyFramework.VisionFrameType frame_type = 3;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(VisionRequest, _impl_.frame_type_), 63>(),
      {24, 63, 0, PROTOBUF_FIELD_OFFSET(VisionRequest, _impl_.frame_type_)}},
+    // uint32 solution_id = 4;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(VisionRequest, _impl_.solution_id_), 63>(),
+     {32, 63, 0, PROTOBUF_FIELD_OFFSET(VisionRequest, _impl_.solution_id_)}},
+    // uint32 vision_id = 5;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(VisionRequest, _impl_.vision_id_), 63>(),
+     {40, 63, 0, PROTOBUF_FIELD_OFFSET(VisionRequest, _impl_.vision_id_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
   }}, {{
     65535, 65535
   }}, {{
@@ -9798,6 +9821,12 @@ const ::_pbi::TcParseTable<2, 3, 1, 47, 2> VisionRequest::_table_ = {
     // .Nrmk.IndyFramework.VisionFrameType frame_type = 3;
     {PROTOBUF_FIELD_OFFSET(VisionRequest, _impl_.frame_type_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
+    // uint32 solution_id = 4;
+    {PROTOBUF_FIELD_OFFSET(VisionRequest, _impl_.solution_id_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
+    // uint32 vision_id = 5;
+    {PROTOBUF_FIELD_OFFSET(VisionRequest, _impl_.vision_id_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
   }}, {{
     {::_pbi::TcParser::GetTable<::Nrmk::IndyFramework::VisionServer>()},
   }}, {{
@@ -9837,6 +9866,20 @@ const ::_pbi::TcParseTable<2, 3, 1, 47, 2> VisionRequest::_table_ = {
         3, this->_internal_frame_type(), target);
   }
 
+  // uint32 solution_id = 4;
+  if (this->_internal_solution_id() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+        4, this->_internal_solution_id(), target);
+  }
+
+  // uint32 vision_id = 5;
+  if (this->_internal_vision_id() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+        5, this->_internal_vision_id(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target =
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
@@ -9874,6 +9917,18 @@ const ::_pbi::TcParseTable<2, 3, 1, 47, 2> VisionRequest::_table_ = {
                   ::_pbi::WireFormatLite::EnumSize(this->_internal_frame_type());
   }
 
+  // uint32 solution_id = 4;
+  if (this->_internal_solution_id() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+        this->_internal_solution_id());
+  }
+
+  // uint32 vision_id = 5;
+  if (this->_internal_vision_id() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+        this->_internal_vision_id());
+  }
+
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
@@ -9902,6 +9957,12 @@ void VisionRequest::MergeImpl(::google::protobuf::Message& to_msg, const ::googl
   if (from._internal_frame_type() != 0) {
     _this->_internal_set_frame_type(from._internal_frame_type());
   }
+  if (from._internal_solution_id() != 0) {
+    _this->_internal_set_solution_id(from._internal_solution_id());
+  }
+  if (from._internal_vision_id() != 0) {
+    _this->_internal_set_vision_id(from._internal_vision_id());
+  }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -9925,8 +9986,8 @@ void VisionRequest::InternalSwap(VisionRequest* other) {
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.object_, lhs_arena,
                                        &other->_impl_.object_, rhs_arena);
   ::google::protobuf::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(VisionRequest, _impl_.frame_type_)
-      + sizeof(VisionRequest::_impl_.frame_type_)
+      PROTOBUF_FIELD_OFFSET(VisionRequest, _impl_.vision_id_)
+      + sizeof(VisionRequest::_impl_.vision_id_)
       - PROTOBUF_FIELD_OFFSET(VisionRequest, _impl_.vision_server_)>(
           reinterpret_cast<char*>(&_impl_.vision_server_),
           reinterpret_cast<char*>(&other->_impl_.vision_server_));

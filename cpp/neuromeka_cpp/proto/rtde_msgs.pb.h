@@ -1287,6 +1287,9 @@ class ControlData2 final :
     kTauFieldNumber = 20,
     kTauActFieldNumber = 21,
     kTauExtFieldNumber = 22,
+    kTauJtsFieldNumber = 23,
+    kTauJtsSensor1FieldNumber = 24,
+    kTauJtsSensor2FieldNumber = 25,
     kResponseFieldNumber = 100,
   };
   // repeated float q = 1;
@@ -1559,6 +1562,60 @@ class ControlData2 final :
   ::google::protobuf::RepeatedField<float>* _internal_mutable_tau_ext();
 
   public:
+  // repeated float tau_jts = 23;
+  int tau_jts_size() const;
+  private:
+  int _internal_tau_jts_size() const;
+
+  public:
+  void clear_tau_jts() ;
+  float tau_jts(int index) const;
+  void set_tau_jts(int index, float value);
+  void add_tau_jts(float value);
+  const ::google::protobuf::RepeatedField<float>& tau_jts() const;
+  ::google::protobuf::RepeatedField<float>* mutable_tau_jts();
+
+  private:
+  const ::google::protobuf::RepeatedField<float>& _internal_tau_jts() const;
+  ::google::protobuf::RepeatedField<float>* _internal_mutable_tau_jts();
+
+  public:
+  // repeated float tau_jts_sensor1 = 24;
+  int tau_jts_sensor1_size() const;
+  private:
+  int _internal_tau_jts_sensor1_size() const;
+
+  public:
+  void clear_tau_jts_sensor1() ;
+  float tau_jts_sensor1(int index) const;
+  void set_tau_jts_sensor1(int index, float value);
+  void add_tau_jts_sensor1(float value);
+  const ::google::protobuf::RepeatedField<float>& tau_jts_sensor1() const;
+  ::google::protobuf::RepeatedField<float>* mutable_tau_jts_sensor1();
+
+  private:
+  const ::google::protobuf::RepeatedField<float>& _internal_tau_jts_sensor1() const;
+  ::google::protobuf::RepeatedField<float>* _internal_mutable_tau_jts_sensor1();
+
+  public:
+  // repeated float tau_jts_sensor2 = 25;
+  int tau_jts_sensor2_size() const;
+  private:
+  int _internal_tau_jts_sensor2_size() const;
+
+  public:
+  void clear_tau_jts_sensor2() ;
+  float tau_jts_sensor2(int index) const;
+  void set_tau_jts_sensor2(int index, float value);
+  void add_tau_jts_sensor2(float value);
+  const ::google::protobuf::RepeatedField<float>& tau_jts_sensor2() const;
+  ::google::protobuf::RepeatedField<float>* mutable_tau_jts_sensor2();
+
+  private:
+  const ::google::protobuf::RepeatedField<float>& _internal_tau_jts_sensor2() const;
+  ::google::protobuf::RepeatedField<float>* _internal_mutable_tau_jts_sensor2();
+
+  public:
   // .Nrmk.IndyFramework.Response response = 100;
   bool has_response() const;
   void clear_response() ;
@@ -1579,7 +1636,7 @@ class ControlData2 final :
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<5, 16, 1, 0, 7> _table_;
+  static const ::google::protobuf::internal::TcParseTable<5, 19, 1, 0, 7> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
@@ -1601,6 +1658,9 @@ class ControlData2 final :
     ::google::protobuf::RepeatedField<float> tau_;
     ::google::protobuf::RepeatedField<float> tau_act_;
     ::google::protobuf::RepeatedField<float> tau_ext_;
+    ::google::protobuf::RepeatedField<float> tau_jts_;
+    ::google::protobuf::RepeatedField<float> tau_jts_sensor1_;
+    ::google::protobuf::RepeatedField<float> tau_jts_sensor2_;
     ::Nrmk::IndyFramework::Response* response_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -4773,6 +4833,132 @@ inline const ::google::protobuf::RepeatedField<float>& ControlData2::_internal_t
 inline ::google::protobuf::RepeatedField<float>* ControlData2::_internal_mutable_tau_ext() {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return &_impl_.tau_ext_;
+}
+
+// repeated float tau_jts = 23;
+inline int ControlData2::_internal_tau_jts_size() const {
+  return _internal_tau_jts().size();
+}
+inline int ControlData2::tau_jts_size() const {
+  return _internal_tau_jts_size();
+}
+inline void ControlData2::clear_tau_jts() {
+  _internal_mutable_tau_jts()->Clear();
+}
+inline float ControlData2::tau_jts(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.ControlData2.tau_jts)
+  return _internal_tau_jts().Get(index);
+}
+inline void ControlData2::set_tau_jts(int index, float value) {
+  _internal_mutable_tau_jts()->Set(index, value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.ControlData2.tau_jts)
+}
+inline void ControlData2::add_tau_jts(float value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_tau_jts()->Add(value);
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.ControlData2.tau_jts)
+}
+inline const ::google::protobuf::RepeatedField<float>& ControlData2::tau_jts() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.ControlData2.tau_jts)
+  return _internal_tau_jts();
+}
+inline ::google::protobuf::RepeatedField<float>* ControlData2::mutable_tau_jts() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.ControlData2.tau_jts)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_tau_jts();
+}
+
+inline const ::google::protobuf::RepeatedField<float>& ControlData2::_internal_tau_jts() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.tau_jts_;
+}
+inline ::google::protobuf::RepeatedField<float>* ControlData2::_internal_mutable_tau_jts() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.tau_jts_;
+}
+
+// repeated float tau_jts_sensor1 = 24;
+inline int ControlData2::_internal_tau_jts_sensor1_size() const {
+  return _internal_tau_jts_sensor1().size();
+}
+inline int ControlData2::tau_jts_sensor1_size() const {
+  return _internal_tau_jts_sensor1_size();
+}
+inline void ControlData2::clear_tau_jts_sensor1() {
+  _internal_mutable_tau_jts_sensor1()->Clear();
+}
+inline float ControlData2::tau_jts_sensor1(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.ControlData2.tau_jts_sensor1)
+  return _internal_tau_jts_sensor1().Get(index);
+}
+inline void ControlData2::set_tau_jts_sensor1(int index, float value) {
+  _internal_mutable_tau_jts_sensor1()->Set(index, value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.ControlData2.tau_jts_sensor1)
+}
+inline void ControlData2::add_tau_jts_sensor1(float value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_tau_jts_sensor1()->Add(value);
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.ControlData2.tau_jts_sensor1)
+}
+inline const ::google::protobuf::RepeatedField<float>& ControlData2::tau_jts_sensor1() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.ControlData2.tau_jts_sensor1)
+  return _internal_tau_jts_sensor1();
+}
+inline ::google::protobuf::RepeatedField<float>* ControlData2::mutable_tau_jts_sensor1() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.ControlData2.tau_jts_sensor1)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_tau_jts_sensor1();
+}
+
+inline const ::google::protobuf::RepeatedField<float>& ControlData2::_internal_tau_jts_sensor1() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.tau_jts_sensor1_;
+}
+inline ::google::protobuf::RepeatedField<float>* ControlData2::_internal_mutable_tau_jts_sensor1() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.tau_jts_sensor1_;
+}
+
+// repeated float tau_jts_sensor2 = 25;
+inline int ControlData2::_internal_tau_jts_sensor2_size() const {
+  return _internal_tau_jts_sensor2().size();
+}
+inline int ControlData2::tau_jts_sensor2_size() const {
+  return _internal_tau_jts_sensor2_size();
+}
+inline void ControlData2::clear_tau_jts_sensor2() {
+  _internal_mutable_tau_jts_sensor2()->Clear();
+}
+inline float ControlData2::tau_jts_sensor2(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.ControlData2.tau_jts_sensor2)
+  return _internal_tau_jts_sensor2().Get(index);
+}
+inline void ControlData2::set_tau_jts_sensor2(int index, float value) {
+  _internal_mutable_tau_jts_sensor2()->Set(index, value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.ControlData2.tau_jts_sensor2)
+}
+inline void ControlData2::add_tau_jts_sensor2(float value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_tau_jts_sensor2()->Add(value);
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.ControlData2.tau_jts_sensor2)
+}
+inline const ::google::protobuf::RepeatedField<float>& ControlData2::tau_jts_sensor2() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.ControlData2.tau_jts_sensor2)
+  return _internal_tau_jts_sensor2();
+}
+inline ::google::protobuf::RepeatedField<float>* ControlData2::mutable_tau_jts_sensor2() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.ControlData2.tau_jts_sensor2)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_tau_jts_sensor2();
+}
+
+inline const ::google::protobuf::RepeatedField<float>& ControlData2::_internal_tau_jts_sensor2() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.tau_jts_sensor2_;
+}
+inline ::google::protobuf::RepeatedField<float>* ControlData2::_internal_mutable_tau_jts_sensor2() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.tau_jts_sensor2_;
 }
 
 // .Nrmk.IndyFramework.Response response = 100;

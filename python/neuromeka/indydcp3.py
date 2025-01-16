@@ -113,6 +113,7 @@ class IndyDCP3:
             tau  -> float[]
             tau_act  -> float[]
             tau_ext  -> float[]
+            tau_jts  -> float[]
         """
         response = self.rtde.GetControlState(common_msgs.Empty())
         return json_format.MessageToDict(response,
@@ -552,14 +553,7 @@ class IndyDCP3:
 
     def get_ft_sensor_data(self):
         """
-        Device Info:
-            num_joints   -> uint32
-            robot_serial   -> string
-            io_board_fw_ver  -> string
-            core_board_fw_vers  -> string[6]
-            endtool_board_fw_ver  -> string
-            endtool_port_type  -> EndToolPortType
-            response  -> {code: int64, msg: string}
+        FT Sensor Data:
         """
         response = self.device.GetFTSensorData(common_msgs.Empty())
         return json_format.MessageToDict(response,
