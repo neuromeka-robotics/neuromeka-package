@@ -125,7 +125,7 @@ Run CMake Configuration and Build the Example
 cmake -DBUILD_PROTO=OFF ..
 cmake --build .
 ```
-If you need to rebuild the **.proto** files, set **-DBUILD_PROTO=ON**. The build_proto executable file will be generated. After running this file, the generated proto files will be located in the proto/cpp_generated folder.
+<!-- If you need to rebuild the **.proto** files, set **-DBUILD_PROTO=ON**. The build_proto executable file will be generated. After running this file, the generated proto files will be located in the proto/cpp_generated folder. -->
 
 ### C++ (On Windows)
 It is recommended to use Visual Studio Code for this setup.
