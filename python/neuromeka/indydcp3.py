@@ -2904,3 +2904,50 @@ class IndyDCP3:
                                          preserving_proto_field_name=True,
                                          use_integers_for_enums=True)
         
+    def get_inference_data(self):
+        response = self.control.GetControlInferenceData(common_msgs.Empty())
+        return json_format.MessageToDict(response,
+                                         including_default_value_fields=True,
+                                         preserving_proto_field_name=True,
+                                         use_integers_for_enums=True)
+
+    def set_inference_data(self, infdata0, infdata1, infdata2, infdata3, infdata4, infdata5):
+
+        response = self.control.SetControlInferenceData(control_msgs.ControlInferenceDataSet(
+            infdata0=infdata0,
+            infdata1=infdata1,
+            infdata2=infdata2,
+            infdata3=infdata3,
+            infdata4=infdata4,
+            infdata5=infdata5
+        ))
+        return json_format.MessageToDict(response,
+                                         including_default_value_fields=True,
+                                         preserving_proto_field_name=True,
+                                         use_integers_for_enums=True)
+
+    def set_inference_data(self, *args):        
+
+        infdata = [[0.0] * 6 for _ in range(6)]
+
+        for i, value in enumerate(args):
+            if i < 6:
+                if isinstance(value, list) and len(value) == 6:
+                    infdata[i] = value
+                else:
+                    print(f"Debug 2: Argument {i} ignored - Expected a list of size 6 but got {value}.")
+            else:
+                print(f"Debug 2: Argument {i} = {value} ignored (index exceeds 5).")
+
+        response = self.control.SetControlInferenceData(control_msgs.ControlInferenceDataSet(
+            infdata0=infdata[0],
+            infdata1=infdata[1],
+            infdata2=infdata[2],
+            infdata3=infdata[3],
+            infdata4=infdata[4],
+            infdata5=infdata[5]
+        ))
+        return json_format.MessageToDict(response,
+                                         including_default_value_fields=True,
+                                         preserving_proto_field_name=True,
+                                         use_integers_for_enums=True)
