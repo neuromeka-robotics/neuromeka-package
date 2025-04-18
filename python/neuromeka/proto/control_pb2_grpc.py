@@ -431,6 +431,16 @@ class ControlStub(object):
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
                 response_deserializer=common__msgs__pb2.Response.FromString,
                 )
+        self.SetControlInferenceData = channel.unary_unary(
+                '/Nrmk.IndyFramework.Control/SetControlInferenceData',
+                request_serializer=control__msgs__pb2.ControlInferenceDataSet.SerializeToString,
+                response_deserializer=common__msgs__pb2.Response.FromString,
+                )
+        self.GetControlInferenceData = channel.unary_unary(
+                '/Nrmk.IndyFramework.Control/GetControlInferenceData',
+                request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=control__msgs__pb2.ControlInferenceDataSet.FromString,
+                )
 
 
 class ControlServicer(object):
@@ -958,6 +968,21 @@ class ControlServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def SetControlInferenceData(self, request, context):
+        """---------------------------------------------------------------- //
+        Inference Data
+        ---------------------------------------------------------------- //
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetControlInferenceData(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_ControlServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -1375,6 +1400,16 @@ def add_ControlServicer_to_server(servicer, server):
                     servicer.FTZero,
                     request_deserializer=common__msgs__pb2.Empty.FromString,
                     response_serializer=common__msgs__pb2.Response.SerializeToString,
+            ),
+            'SetControlInferenceData': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetControlInferenceData,
+                    request_deserializer=control__msgs__pb2.ControlInferenceDataSet.FromString,
+                    response_serializer=common__msgs__pb2.Response.SerializeToString,
+            ),
+            'GetControlInferenceData': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetControlInferenceData,
+                    request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=control__msgs__pb2.ControlInferenceDataSet.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -2794,5 +2829,39 @@ class Control(object):
         return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Control/FTZero',
             common__msgs__pb2.Empty.SerializeToString,
             common__msgs__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SetControlInferenceData(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Control/SetControlInferenceData',
+            control__msgs__pb2.ControlInferenceDataSet.SerializeToString,
+            common__msgs__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetControlInferenceData(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Control/GetControlInferenceData',
+            common__msgs__pb2.Empty.SerializeToString,
+            control__msgs__pb2.ControlInferenceDataSet.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
