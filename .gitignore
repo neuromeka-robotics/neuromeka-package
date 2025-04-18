@@ -3,8 +3,9 @@
 **/.ipynb_checkpoints/
 **/__pycache__/
 **/build/
-**/dist/
+# **/dist/
 **/proto/
+**/proto_origin/
 **/cpp_generated/
 **/python_generated/
 .vscode/
