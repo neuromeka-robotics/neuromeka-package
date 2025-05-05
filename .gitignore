@@ -1,14 +1,13 @@
 **/.idea/
 **/.venv*/
+**/.vscode/
 **/.ipynb_checkpoints/
 **/__pycache__/
 **/build/
 **/dist/
 **/proto/
-**/proto_origin/
 **/cpp_generated/
 **/python_generated/
-.vscode/
 **/*.bak
 **/*.bk
 **/*.egg-info/
