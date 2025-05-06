@@ -5,10 +5,8 @@
 **/__pycache__/
 **/build/
 **/dist/
-**/proto/
 **/cpp_generated/
 **/python_generated/
 **/*.bak
 **/*.bk
 **/*.egg-info/
-**/build_proto.*

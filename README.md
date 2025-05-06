@@ -170,7 +170,7 @@ Clone the Example Repository
 git clone https://github.com/neuromeka-robotics/neuromeka-package.git
 ```
 Open Visual Studio Code and open **neuromeka-package/cpp/** folder
-Config your build with settings.json in .vscode folder. If you need to rebuild the **.proto** files, set **-DBUILD_PROTO=ON**. The build_proto executable file will be generated.
+<!-- Config your build with settings.json in .vscode folder. If you need to rebuild the **.proto** files, set **-DBUILD_PROTO=ON**. The build_proto executable file will be generated. -->
 
 Then, modify the CMakeList.txt. Change following lines to point to your grpc installation directory.
 ```cmake

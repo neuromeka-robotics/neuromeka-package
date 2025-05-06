@@ -139,6 +139,9 @@ extern PlanarFrameDefaultTypeInternal _PlanarFrame_default_instance_;
 class Ratio;
 struct RatioDefaultTypeInternal;
 extern RatioDefaultTypeInternal _Ratio_default_instance_;
+class RefFrameList;
+struct RefFrameListDefaultTypeInternal;
+extern RefFrameListDefaultTypeInternal _RefFrameList_default_instance_;
 class SafetyLimits;
 struct SafetyLimitsDefaultTypeInternal;
 extern SafetyLimitsDefaultTypeInternal _SafetyLimits_default_instance_;
@@ -345,6 +348,190 @@ inline bool KinematicsParams_JointType_Parse(absl::string_view name, KinematicsP
 
 // -------------------------------------------------------------------
 
+class RefFrameList final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.RefFrameList) */ {
+ public:
+  inline RefFrameList() : RefFrameList(nullptr) {}
+  ~RefFrameList() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR RefFrameList(::google::protobuf::internal::ConstantInitialized);
+
+  RefFrameList(const RefFrameList& from);
+  RefFrameList(RefFrameList&& from) noexcept
+    : RefFrameList() {
+    *this = ::std::move(from);
+  }
+
+  inline RefFrameList& operator=(const RefFrameList& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline RefFrameList& operator=(RefFrameList&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const RefFrameList& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const RefFrameList* internal_default_instance() {
+    return reinterpret_cast<const RefFrameList*>(
+               &_RefFrameList_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    0;
+
+  friend void swap(RefFrameList& a, RefFrameList& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(RefFrameList* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(RefFrameList* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  RefFrameList* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<RefFrameList>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const RefFrameList& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const RefFrameList& from) {
+    RefFrameList::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(RefFrameList* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "Nrmk.IndyFramework.RefFrameList";
+  }
+  protected:
+  explicit RefFrameList(::google::protobuf::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kRefFramesFieldNumber = 1,
+    kDefaultNameFieldNumber = 2,
+  };
+  // repeated .Nrmk.IndyFramework.NamedReferencePosition ref_frames = 1;
+  int ref_frames_size() const;
+  private:
+  int _internal_ref_frames_size() const;
+
+  public:
+  void clear_ref_frames() ;
+  ::Nrmk::IndyFramework::NamedReferencePosition* mutable_ref_frames(int index);
+  ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::NamedReferencePosition >*
+      mutable_ref_frames();
+  private:
+  const ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::NamedReferencePosition>& _internal_ref_frames() const;
+  ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::NamedReferencePosition>* _internal_mutable_ref_frames();
+  public:
+  const ::Nrmk::IndyFramework::NamedReferencePosition& ref_frames(int index) const;
+  ::Nrmk::IndyFramework::NamedReferencePosition* add_ref_frames();
+  const ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::NamedReferencePosition >&
+      ref_frames() const;
+  // string default_name = 2;
+  void clear_default_name() ;
+  const std::string& default_name() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_default_name(Arg_&& arg, Args_... args);
+  std::string* mutable_default_name();
+  PROTOBUF_NODISCARD std::string* release_default_name();
+  void set_allocated_default_name(std::string* ptr);
+
+  private:
+  const std::string& _internal_default_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_default_name(
+      const std::string& value);
+  std::string* _internal_mutable_default_name();
+
+  public:
+  // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.RefFrameList)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<1, 2, 1, 52, 2> _table_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::NamedReferencePosition > ref_frames_;
+    ::google::protobuf::internal::ArenaStringPtr default_name_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_config_5fmsgs_2eproto;
+};// -------------------------------------------------------------------
+
 class Frame final :
     public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.Frame) */ {
  public:
@@ -401,7 +588,7 @@ class Frame final :
                &_Frame_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    0;
+    1;
 
   friend void swap(Frame& a, Frame& b) {
     a.Swap(&b);
@@ -567,7 +754,7 @@ class JointPos final :
                &_JointPos_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    1;
+    2;
 
   friend void swap(JointPos& a, JointPos& b) {
     a.Swap(&b);
@@ -733,7 +920,7 @@ class PlanarFrame final :
                &_PlanarFrame_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    2;
+    3;
 
   friend void swap(PlanarFrame& a, PlanarFrame& b) {
     a.Swap(&b);
@@ -939,7 +1126,7 @@ class FrameResult final :
                &_FrameResult_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    3;
+    4;
 
   friend void swap(FrameResult& a, FrameResult& b) {
     a.Swap(&b);
@@ -1123,7 +1310,7 @@ class Ratio final :
                &_Ratio_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    4;
+    5;
 
   friend void swap(Ratio& a, Ratio& b) {
     a.Swap(&b);
@@ -1281,7 +1468,7 @@ class AutoServoOffConfig final :
                &_AutoServoOffConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    5;
+    6;
 
   friend void swap(AutoServoOffConfig& a, AutoServoOffConfig& b) {
     a.Swap(&b);
@@ -1451,7 +1638,7 @@ class CollTuningConfig final :
                &_CollTuningConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    6;
+    7;
 
   friend void swap(CollTuningConfig& a, CollTuningConfig& b) {
     a.Swap(&b);
@@ -1676,7 +1863,7 @@ class JointGainSet final :
                &_JointGainSet_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    7;
+    8;
 
   friend void swap(JointGainSet& a, JointGainSet& b) {
     a.Swap(&b);
@@ -1882,7 +2069,7 @@ class TaskGainSet final :
                &_TaskGainSet_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    8;
+    9;
 
   friend void swap(TaskGainSet& a, TaskGainSet& b) {
     a.Swap(&b);
@@ -2088,7 +2275,7 @@ class ImpedanceGainSet final :
                &_ImpedanceGainSet_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    9;
+    10;
 
   friend void swap(ImpedanceGainSet& a, ImpedanceGainSet& b) {
     a.Swap(&b);
@@ -2314,7 +2501,7 @@ class ForceGainSet final :
                &_ForceGainSet_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    10;
+    11;
 
   friend void swap(ForceGainSet& a, ForceGainSet& b) {
     a.Swap(&b);
@@ -2620,7 +2807,7 @@ class TestGainSet final :
                &_TestGainSet_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    11;
+    12;
 
   friend void swap(TestGainSet& a, TestGainSet& b) {
     a.Swap(&b);
@@ -2886,7 +3073,7 @@ class CustomGainSet final :
                &_CustomGainSet_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    12;
+    13;
 
   friend void swap(CustomGainSet& a, CustomGainSet& b) {
     a.Swap(&b);
@@ -3232,7 +3419,7 @@ class NewControllerTestState final :
                &_NewControllerTestState_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    13;
+    14;
 
   friend void swap(NewControllerTestState& a, NewControllerTestState& b) {
     a.Swap(&b);
@@ -3402,7 +3589,7 @@ class FrictionCompSet final :
                &_FrictionCompSet_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    14;
+    15;
 
   friend void swap(FrictionCompSet& a, FrictionCompSet& b) {
     a.Swap(&b);
@@ -3614,7 +3801,7 @@ class MountingAngles final :
                &_MountingAngles_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    15;
+    16;
 
   friend void swap(MountingAngles& a, MountingAngles& b) {
     a.Swap(&b);
@@ -3784,7 +3971,7 @@ class ToolProperties final :
                &_ToolProperties_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    16;
+    17;
 
   friend void swap(ToolProperties& a, ToolProperties& b) {
     a.Swap(&b);
@@ -3982,7 +4169,7 @@ class CollisionSensLevel final :
                &_CollisionSensLevel_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    17;
+    18;
 
   friend void swap(CollisionSensLevel& a, CollisionSensLevel& b) {
     a.Swap(&b);
@@ -4140,7 +4327,7 @@ class CollisionThresholds final :
                &_CollisionThresholds_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    18;
+    19;
 
   friend void swap(CollisionThresholds& a, CollisionThresholds& b) {
     a.Swap(&b);
@@ -4486,7 +4673,7 @@ class CollisionPolicy final :
                &_CollisionPolicy_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    19;
+    20;
 
   friend void swap(CollisionPolicy& a, CollisionPolicy& b) {
     a.Swap(&b);
@@ -4668,7 +4855,7 @@ class SafetyLimits final :
                &_SafetyLimits_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    20;
+    21;
 
   friend void swap(SafetyLimits& a, SafetyLimits& b) {
     a.Swap(&b);
@@ -4926,7 +5113,7 @@ class SafetyStopConfig final :
                &_SafetyStopConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    21;
+    22;
 
   friend void swap(SafetyStopConfig& a, SafetyStopConfig& b) {
     a.Swap(&b);
@@ -5144,7 +5331,7 @@ class DIConfig final :
                &_DIConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    22;
+    23;
 
   friend void swap(DIConfig& a, DIConfig& b) {
     a.Swap(&b);
@@ -5380,7 +5567,7 @@ class DIConfigList final :
                &_DIConfigList_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    23;
+    24;
 
   friend void swap(DIConfigList& a, DIConfigList& b) {
     a.Swap(&b);
@@ -5546,7 +5733,7 @@ class DOConfig final :
                &_DOConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    24;
+    25;
 
   friend void swap(DOConfig& a, DOConfig& b) {
     a.Swap(&b);
@@ -5762,7 +5949,7 @@ class DOConfigList final :
                &_DOConfigList_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    25;
+    26;
 
   friend void swap(DOConfigList& a, DOConfigList& b) {
     a.Swap(&b);
@@ -5928,7 +6115,7 @@ class GetReducedRatioRes final :
                &_GetReducedRatioRes_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    26;
+    27;
 
   friend void swap(GetReducedRatioRes& a, GetReducedRatioRes& b) {
     a.Swap(&b);
@@ -6104,7 +6291,7 @@ class GetReducedSpeedRes final :
                &_GetReducedSpeedRes_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    27;
+    28;
 
   friend void swap(GetReducedSpeedRes& a, GetReducedSpeedRes& b) {
     a.Swap(&b);
@@ -6280,7 +6467,7 @@ class SetReducedSpeedReq final :
                &_SetReducedSpeedReq_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    28;
+    29;
 
   friend void swap(SetReducedSpeedReq& a, SetReducedSpeedReq& b) {
     a.Swap(&b);
@@ -6438,7 +6625,7 @@ class FTSensorDevice final :
                &_FTSensorDevice_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    29;
+    30;
 
   friend void swap(FTSensorDevice& a, FTSensorDevice& b) {
     a.Swap(&b);
@@ -6744,7 +6931,7 @@ class FTSensorDeviceRes final :
                &_FTSensorDeviceRes_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    30;
+    31;
 
   friend void swap(FTSensorDeviceRes& a, FTSensorDeviceRes& b) {
     a.Swap(&b);
@@ -6908,7 +7095,7 @@ class TeleOpParams final :
                &_TeleOpParams_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    31;
+    32;
 
   friend void swap(TeleOpParams& a, TeleOpParams& b) {
     a.Swap(&b);
@@ -7090,7 +7277,7 @@ class KinematicsParams_MDH final :
                &_KinematicsParams_MDH_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    32;
+    33;
 
   friend void swap(KinematicsParams_MDH& a, KinematicsParams_MDH& b) {
     a.Swap(&b);
@@ -7320,7 +7507,7 @@ class KinematicsParams final :
                &_KinematicsParams_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    33;
+    34;
 
   friend void swap(KinematicsParams& a, KinematicsParams& b) {
     a.Swap(&b);
@@ -7465,6 +7652,104 @@ class KinematicsParams final :
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// RefFrameList
+
+// repeated .Nrmk.IndyFramework.NamedReferencePosition ref_frames = 1;
+inline int RefFrameList::_internal_ref_frames_size() const {
+  return _internal_ref_frames().size();
+}
+inline int RefFrameList::ref_frames_size() const {
+  return _internal_ref_frames_size();
+}
+inline ::Nrmk::IndyFramework::NamedReferencePosition* RefFrameList::mutable_ref_frames(int index) {
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.RefFrameList.ref_frames)
+  return _internal_mutable_ref_frames()->Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::NamedReferencePosition >*
+RefFrameList::mutable_ref_frames() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.RefFrameList.ref_frames)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_ref_frames();
+}
+inline const ::Nrmk::IndyFramework::NamedReferencePosition& RefFrameList::ref_frames(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.RefFrameList.ref_frames)
+    return _internal_ref_frames().Get(index);
+}
+inline ::Nrmk::IndyFramework::NamedReferencePosition* RefFrameList::add_ref_frames() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::Nrmk::IndyFramework::NamedReferencePosition* _add = _internal_mutable_ref_frames()->Add();
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.RefFrameList.ref_frames)
+  return _add;
+}
+inline const ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::NamedReferencePosition >&
+RefFrameList::ref_frames() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.RefFrameList.ref_frames)
+  return _internal_ref_frames();
+}
+inline const ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::NamedReferencePosition>&
+RefFrameList::_internal_ref_frames() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.ref_frames_;
+}
+inline ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::NamedReferencePosition>*
+RefFrameList::_internal_mutable_ref_frames() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.ref_frames_;
+}
+
+// string default_name = 2;
+inline void RefFrameList::clear_default_name() {
+  _impl_.default_name_.ClearToEmpty();
+}
+inline const std::string& RefFrameList::default_name() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.RefFrameList.default_name)
+  return _internal_default_name();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void RefFrameList::set_default_name(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.default_name_.Set(static_cast<Arg_&&>(arg), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.RefFrameList.default_name)
+}
+inline std::string* RefFrameList::mutable_default_name() {
+  std::string* _s = _internal_mutable_default_name();
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.RefFrameList.default_name)
+  return _s;
+}
+inline const std::string& RefFrameList::_internal_default_name() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.default_name_.Get();
+}
+inline void RefFrameList::_internal_set_default_name(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.default_name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* RefFrameList::_internal_mutable_default_name() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.default_name_.Mutable( GetArenaForAllocation());
+}
+inline std::string* RefFrameList::release_default_name() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:Nrmk.IndyFramework.RefFrameList.default_name)
+  return _impl_.default_name_.Release();
+}
+inline void RefFrameList::set_allocated_default_name(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.default_name_.SetAllocated(value, GetArenaForAllocation());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.default_name_.IsDefault()) {
+          _impl_.default_name_.Set("", GetArenaForAllocation());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.RefFrameList.default_name)
+}
+
 // -------------------------------------------------------------------
 
 // Frame

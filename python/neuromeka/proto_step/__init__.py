@@ -16,7 +16,6 @@ from .control_pb2_grpc      import *
 from .cri_pb2_grpc          import *
 from .device_pb2_grpc       import *
 from .ethercat_pb2_grpc     import *
-from .hri_pb2_grpc          import *
 from .linear_pb2_grpc       import *
 from .moby_pb2_grpc         import *
 from .rtde_pb2_grpc         import *
@@ -28,9 +27,7 @@ from . import config_msgs_pb2   as config_msgs
 from . import control_msgs_pb2  as control_msgs
 from . import device_msgs_pb2   as device_msgs
 from . import ethercat_msgs_pb2 as ethercat_msgs
-from . import hri_msgs_pb2      as hri_msgs
 from . import moby_msgs_pb2     as moby_msgs
 from . import rtde_msgs_pb2     as rtde_msgs
-from . import shared_msgs_pb2   as shared_msgs
 from . import cri_pb2           as cri_msgs
 from . import teleop_dev_pb2    as teleop_data

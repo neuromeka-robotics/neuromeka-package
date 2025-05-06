@@ -274,6 +274,20 @@ class Config final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::ToolProperties>> PrepareAsyncGetToolProperty(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::ToolProperties>>(PrepareAsyncGetToolPropertyRaw(context, request, cq));
     }
+    virtual ::grpc::Status GetRefFrameList(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::RefFrameList* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::RefFrameList>> AsyncGetRefFrameList(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::RefFrameList>>(AsyncGetRefFrameListRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::RefFrameList>> PrepareAsyncGetRefFrameList(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::RefFrameList>>(PrepareAsyncGetRefFrameListRaw(context, request, cq));
+    }
+    virtual ::grpc::Status SetRefFrameList(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::RefFrameList& request, ::Nrmk::IndyFramework::Response* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>> AsyncSetRefFrameList(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::RefFrameList& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>>(AsyncSetRefFrameListRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>> PrepareAsyncSetRefFrameList(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::RefFrameList& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>>(PrepareAsyncSetRefFrameListRaw(context, request, cq));
+    }
     virtual ::grpc::Status SetCollSensLevel(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::CollisionSensLevel& request, ::Nrmk::IndyFramework::Response* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>> AsyncSetCollSensLevel(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::CollisionSensLevel& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>>(AsyncSetCollSensLevelRaw(context, request, cq));
@@ -471,6 +485,10 @@ class Config final {
       virtual void SetToolProperty(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ToolProperties* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void GetToolProperty(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ToolProperties* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetToolProperty(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ToolProperties* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void GetRefFrameList(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::RefFrameList* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetRefFrameList(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::RefFrameList* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void SetRefFrameList(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::RefFrameList* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void SetRefFrameList(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::RefFrameList* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void SetCollSensLevel(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::CollisionSensLevel* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)>) = 0;
       virtual void SetCollSensLevel(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::CollisionSensLevel* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void GetCollSensLevel(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::CollisionSensLevel* response, std::function<void(::grpc::Status)>) = 0;
@@ -580,6 +598,10 @@ class Config final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>* PrepareAsyncSetToolPropertyRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ToolProperties& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::ToolProperties>* AsyncGetToolPropertyRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::ToolProperties>* PrepareAsyncGetToolPropertyRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::RefFrameList>* AsyncGetRefFrameListRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::RefFrameList>* PrepareAsyncGetRefFrameListRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>* AsyncSetRefFrameListRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::RefFrameList& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>* PrepareAsyncSetRefFrameListRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::RefFrameList& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>* AsyncSetCollSensLevelRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::CollisionSensLevel& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>* PrepareAsyncSetCollSensLevelRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::CollisionSensLevel& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::CollisionSensLevel>* AsyncGetCollSensLevelRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
@@ -858,6 +880,20 @@ class Config final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ToolProperties>> PrepareAsyncGetToolProperty(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ToolProperties>>(PrepareAsyncGetToolPropertyRaw(context, request, cq));
     }
+    ::grpc::Status GetRefFrameList(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::RefFrameList* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::RefFrameList>> AsyncGetRefFrameList(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::RefFrameList>>(AsyncGetRefFrameListRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::RefFrameList>> PrepareAsyncGetRefFrameList(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::RefFrameList>>(PrepareAsyncGetRefFrameListRaw(context, request, cq));
+    }
+    ::grpc::Status SetRefFrameList(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::RefFrameList& request, ::Nrmk::IndyFramework::Response* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>> AsyncSetRefFrameList(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::RefFrameList& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>>(AsyncSetRefFrameListRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>> PrepareAsyncSetRefFrameList(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::RefFrameList& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>>(PrepareAsyncSetRefFrameListRaw(context, request, cq));
+    }
     ::grpc::Status SetCollSensLevel(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::CollisionSensLevel& request, ::Nrmk::IndyFramework::Response* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>> AsyncSetCollSensLevel(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::CollisionSensLevel& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>>(AsyncSetCollSensLevelRaw(context, request, cq));
@@ -1055,6 +1091,10 @@ class Config final {
       void SetToolProperty(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ToolProperties* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) override;
       void GetToolProperty(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ToolProperties* response, std::function<void(::grpc::Status)>) override;
       void GetToolProperty(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ToolProperties* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void GetRefFrameList(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::RefFrameList* response, std::function<void(::grpc::Status)>) override;
+      void GetRefFrameList(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::RefFrameList* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void SetRefFrameList(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::RefFrameList* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)>) override;
+      void SetRefFrameList(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::RefFrameList* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) override;
       void SetCollSensLevel(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::CollisionSensLevel* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)>) override;
       void SetCollSensLevel(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::CollisionSensLevel* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) override;
       void GetCollSensLevel(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::CollisionSensLevel* response, std::function<void(::grpc::Status)>) override;
@@ -1170,6 +1210,10 @@ class Config final {
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* PrepareAsyncSetToolPropertyRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ToolProperties& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ToolProperties>* AsyncGetToolPropertyRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ToolProperties>* PrepareAsyncGetToolPropertyRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::RefFrameList>* AsyncGetRefFrameListRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::RefFrameList>* PrepareAsyncGetRefFrameListRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* AsyncSetRefFrameListRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::RefFrameList& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* PrepareAsyncSetRefFrameListRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::RefFrameList& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* AsyncSetCollSensLevelRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::CollisionSensLevel& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* PrepareAsyncSetCollSensLevelRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::CollisionSensLevel& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::CollisionSensLevel>* AsyncGetCollSensLevelRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
@@ -1240,6 +1284,8 @@ class Config final {
     const ::grpc::internal::RpcMethod rpcmethod_GetMountPos_;
     const ::grpc::internal::RpcMethod rpcmethod_SetToolProperty_;
     const ::grpc::internal::RpcMethod rpcmethod_GetToolProperty_;
+    const ::grpc::internal::RpcMethod rpcmethod_GetRefFrameList_;
+    const ::grpc::internal::RpcMethod rpcmethod_SetRefFrameList_;
     const ::grpc::internal::RpcMethod rpcmethod_SetCollSensLevel_;
     const ::grpc::internal::RpcMethod rpcmethod_GetCollSensLevel_;
     const ::grpc::internal::RpcMethod rpcmethod_SetCollSensParam_;
@@ -1299,6 +1345,8 @@ class Config final {
     virtual ::grpc::Status GetMountPos(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::MountingAngles* response);
     virtual ::grpc::Status SetToolProperty(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::ToolProperties* request, ::Nrmk::IndyFramework::Response* response);
     virtual ::grpc::Status GetToolProperty(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ToolProperties* response);
+    virtual ::grpc::Status GetRefFrameList(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::RefFrameList* response);
+    virtual ::grpc::Status SetRefFrameList(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::RefFrameList* request, ::Nrmk::IndyFramework::Response* response);
     virtual ::grpc::Status SetCollSensLevel(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::CollisionSensLevel* request, ::Nrmk::IndyFramework::Response* response);
     virtual ::grpc::Status GetCollSensLevel(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::CollisionSensLevel* response);
     virtual ::grpc::Status SetCollSensParam(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::CollisionThresholds* request, ::Nrmk::IndyFramework::Response* response);
@@ -1999,12 +2047,52 @@ class Config final {
     }
   };
   template <class BaseClass>
+  class WithAsyncMethod_GetRefFrameList : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_GetRefFrameList() {
+      ::grpc::Service::MarkMethodAsync(34);
+    }
+    ~WithAsyncMethod_GetRefFrameList() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetRefFrameList(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::RefFrameList* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetRefFrameList(::grpc::ServerContext* context, ::Nrmk::IndyFramework::Empty* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::RefFrameList>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(34, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_SetRefFrameList : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_SetRefFrameList() {
+      ::grpc::Service::MarkMethodAsync(35);
+    }
+    ~WithAsyncMethod_SetRefFrameList() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetRefFrameList(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::RefFrameList* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSetRefFrameList(::grpc::ServerContext* context, ::Nrmk::IndyFramework::RefFrameList* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::Response>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(35, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithAsyncMethod_SetCollSensLevel : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_SetCollSensLevel() {
-      ::grpc::Service::MarkMethodAsync(34);
+      ::grpc::Service::MarkMethodAsync(36);
     }
     ~WithAsyncMethod_SetCollSensLevel() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2015,7 +2103,7 @@ class Config final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestSetCollSensLevel(::grpc::ServerContext* context, ::Nrmk::IndyFramework::CollisionSensLevel* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::Response>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(34, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(36, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -2024,7 +2112,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetCollSensLevel() {
-      ::grpc::Service::MarkMethodAsync(35);
+      ::grpc::Service::MarkMethodAsync(37);
     }
     ~WithAsyncMethod_GetCollSensLevel() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2035,7 +2123,7 @@ class Config final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetCollSensLevel(::grpc::ServerContext* context, ::Nrmk::IndyFramework::Empty* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::CollisionSensLevel>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(35, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(37, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -2044,7 +2132,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_SetCollSensParam() {
-      ::grpc::Service::MarkMethodAsync(36);
+      ::grpc::Service::MarkMethodAsync(38);
     }
     ~WithAsyncMethod_SetCollSensParam() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2055,7 +2143,7 @@ class Config final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestSetCollSensParam(::grpc::ServerContext* context, ::Nrmk::IndyFramework::CollisionThresholds* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::Response>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(36, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(38, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -2064,7 +2152,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetCollSensParam() {
-      ::grpc::Service::MarkMethodAsync(37);
+      ::grpc::Service::MarkMethodAsync(39);
     }
     ~WithAsyncMethod_GetCollSensParam() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2075,7 +2163,7 @@ class Config final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetCollSensParam(::grpc::ServerContext* context, ::Nrmk::IndyFramework::Empty* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::CollisionThresholds>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(37, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(39, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -2084,7 +2172,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_SetCollPolicy() {
-      ::grpc::Service::MarkMethodAsync(38);
+      ::grpc::Service::MarkMethodAsync(40);
     }
     ~WithAsyncMethod_SetCollPolicy() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2095,7 +2183,7 @@ class Config final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestSetCollPolicy(::grpc::ServerContext* context, ::Nrmk::IndyFramework::CollisionPolicy* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::Response>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(38, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(40, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -2104,7 +2192,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetCollPolicy() {
-      ::grpc::Service::MarkMethodAsync(39);
+      ::grpc::Service::MarkMethodAsync(41);
     }
     ~WithAsyncMethod_GetCollPolicy() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2115,7 +2203,7 @@ class Config final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetCollPolicy(::grpc::ServerContext* context, ::Nrmk::IndyFramework::Empty* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::CollisionPolicy>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(39, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(41, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -2124,7 +2212,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_SetSafetyLimits() {
-      ::grpc::Service::MarkMethodAsync(40);
+      ::grpc::Service::MarkMethodAsync(42);
     }
     ~WithAsyncMethod_SetSafetyLimits() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2135,7 +2223,7 @@ class Config final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestSetSafetyLimits(::grpc::ServerContext* context, ::Nrmk::IndyFramework::SafetyLimits* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::Response>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(40, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(42, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -2144,7 +2232,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetSafetyLimits() {
-      ::grpc::Service::MarkMethodAsync(41);
+      ::grpc::Service::MarkMethodAsync(43);
     }
     ~WithAsyncMethod_GetSafetyLimits() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2155,7 +2243,7 @@ class Config final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetSafetyLimits(::grpc::ServerContext* context, ::Nrmk::IndyFramework::Empty* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::SafetyLimits>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(41, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(43, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -2164,7 +2252,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_SetSafetyStopConfig() {
-      ::grpc::Service::MarkMethodAsync(42);
+      ::grpc::Service::MarkMethodAsync(44);
     }
     ~WithAsyncMethod_SetSafetyStopConfig() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2175,7 +2263,7 @@ class Config final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestSetSafetyStopConfig(::grpc::ServerContext* context, ::Nrmk::IndyFramework::SafetyStopConfig* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::Response>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(42, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(44, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -2184,7 +2272,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetSafetyStopConfig() {
-      ::grpc::Service::MarkMethodAsync(43);
+      ::grpc::Service::MarkMethodAsync(45);
     }
     ~WithAsyncMethod_GetSafetyStopConfig() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2195,7 +2283,7 @@ class Config final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetSafetyStopConfig(::grpc::ServerContext* context, ::Nrmk::IndyFramework::Empty* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::SafetyStopConfig>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(43, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(45, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -2204,7 +2292,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetReducedRatio() {
-      ::grpc::Service::MarkMethodAsync(44);
+      ::grpc::Service::MarkMethodAsync(46);
     }
     ~WithAsyncMethod_GetReducedRatio() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2215,7 +2303,7 @@ class Config final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetReducedRatio(::grpc::ServerContext* context, ::Nrmk::IndyFramework::Empty* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::GetReducedRatioRes>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(44, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(46, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -2224,7 +2312,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetReducedSpeed() {
-      ::grpc::Service::MarkMethodAsync(45);
+      ::grpc::Service::MarkMethodAsync(47);
     }
     ~WithAsyncMethod_GetReducedSpeed() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2235,7 +2323,7 @@ class Config final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetReducedSpeed(::grpc::ServerContext* context, ::Nrmk::IndyFramework::Empty* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::GetReducedSpeedRes>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(45, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(47, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -2244,7 +2332,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_SetReducedSpeed() {
-      ::grpc::Service::MarkMethodAsync(46);
+      ::grpc::Service::MarkMethodAsync(48);
     }
     ~WithAsyncMethod_SetReducedSpeed() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2255,7 +2343,7 @@ class Config final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestSetReducedSpeed(::grpc::ServerContext* context, ::Nrmk::IndyFramework::SetReducedSpeedReq* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::Response>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(46, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(48, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -2264,7 +2352,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_SetFTSensorConfig() {
-      ::grpc::Service::MarkMethodAsync(47);
+      ::grpc::Service::MarkMethodAsync(49);
     }
     ~WithAsyncMethod_SetFTSensorConfig() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2275,7 +2363,7 @@ class Config final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestSetFTSensorConfig(::grpc::ServerContext* context, ::Nrmk::IndyFramework::FTSensorDevice* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::Response>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(47, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(49, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -2284,7 +2372,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetFTSensorConfig() {
-      ::grpc::Service::MarkMethodAsync(48);
+      ::grpc::Service::MarkMethodAsync(50);
     }
     ~WithAsyncMethod_GetFTSensorConfig() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2295,7 +2383,7 @@ class Config final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetFTSensorConfig(::grpc::ServerContext* context, ::Nrmk::IndyFramework::Empty* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::FTSensorDevice>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(48, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(50, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -2304,7 +2392,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_SetTeleOpParams() {
-      ::grpc::Service::MarkMethodAsync(49);
+      ::grpc::Service::MarkMethodAsync(51);
     }
     ~WithAsyncMethod_SetTeleOpParams() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2315,7 +2403,7 @@ class Config final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestSetTeleOpParams(::grpc::ServerContext* context, ::Nrmk::IndyFramework::TeleOpParams* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::Response>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(49, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(51, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -2324,7 +2412,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetTeleOpParams() {
-      ::grpc::Service::MarkMethodAsync(50);
+      ::grpc::Service::MarkMethodAsync(52);
     }
     ~WithAsyncMethod_GetTeleOpParams() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2335,7 +2423,7 @@ class Config final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetTeleOpParams(::grpc::ServerContext* context, ::Nrmk::IndyFramework::Empty* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::TeleOpParams>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(50, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(52, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -2344,7 +2432,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetKinematicsParams() {
-      ::grpc::Service::MarkMethodAsync(51);
+      ::grpc::Service::MarkMethodAsync(53);
     }
     ~WithAsyncMethod_GetKinematicsParams() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2355,10 +2443,10 @@ class Config final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetKinematicsParams(::grpc::ServerContext* context, ::Nrmk::IndyFramework::Empty* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::KinematicsParams>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(51, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(53, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_GetRefFrame<WithAsyncMethod_SetRefFrame<WithAsyncMethod_SetRefFramePlanar<WithAsyncMethod_SetToolFrame<WithAsyncMethod_SetSpeedRatio<WithAsyncMethod_SetDIConfigList<WithAsyncMethod_GetDIConfigList<WithAsyncMethod_SetDOConfigList<WithAsyncMethod_GetDOConfigList<WithAsyncMethod_SetHomePosition<WithAsyncMethod_GetHomePosition<WithAsyncMethod_GetPackPosition<WithAsyncMethod_SetAutoServoOff<WithAsyncMethod_GetAutoServoOff<WithAsyncMethod_SetJointControlGain<WithAsyncMethod_GetJointControlGain<WithAsyncMethod_SetTaskControlGain<WithAsyncMethod_GetTaskControlGain<WithAsyncMethod_SetImpedanceControlGain<WithAsyncMethod_GetImpedanceControlGain<WithAsyncMethod_SetForceControlGain<WithAsyncMethod_GetForceControlGain<WithAsyncMethod_SetTestControlGain<WithAsyncMethod_GetTestControlGain<WithAsyncMethod_SetCustomControlGain<WithAsyncMethod_GetCustomControlGain<WithAsyncMethod_SetNewControllerTestOnOff<WithAsyncMethod_GetNewControllerTestOnOffState<WithAsyncMethod_SetFrictionComp<WithAsyncMethod_GetFrictionComp<WithAsyncMethod_SetMountPos<WithAsyncMethod_GetMountPos<WithAsyncMethod_SetToolProperty<WithAsyncMethod_GetToolProperty<WithAsyncMethod_SetCollSensLevel<WithAsyncMethod_GetCollSensLevel<WithAsyncMethod_SetCollSensParam<WithAsyncMethod_GetCollSensParam<WithAsyncMethod_SetCollPolicy<WithAsyncMethod_GetCollPolicy<WithAsyncMethod_SetSafetyLimits<WithAsyncMethod_GetSafetyLimits<WithAsyncMethod_SetSafetyStopConfig<WithAsyncMethod_GetSafetyStopConfig<WithAsyncMethod_GetReducedRatio<WithAsyncMethod_GetReducedSpeed<WithAsyncMethod_SetReducedSpeed<WithAsyncMethod_SetFTSensorConfig<WithAsyncMethod_GetFTSensorConfig<WithAsyncMethod_SetTeleOpParams<WithAsyncMethod_GetTeleOpParams<WithAsyncMethod_GetKinematicsParams<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > AsyncService;
+  typedef WithAsyncMethod_GetRefFrame<WithAsyncMethod_SetRefFrame<WithAsyncMethod_SetRefFramePlanar<WithAsyncMethod_SetToolFrame<WithAsyncMethod_SetSpeedRatio<WithAsyncMethod_SetDIConfigList<WithAsyncMethod_GetDIConfigList<WithAsyncMethod_SetDOConfigList<WithAsyncMethod_GetDOConfigList<WithAsyncMethod_SetHomePosition<WithAsyncMethod_GetHomePosition<WithAsyncMethod_GetPackPosition<WithAsyncMethod_SetAutoServoOff<WithAsyncMethod_GetAutoServoOff<WithAsyncMethod_SetJointControlGain<WithAsyncMethod_GetJointControlGain<WithAsyncMethod_SetTaskControlGain<WithAsyncMethod_GetTaskControlGain<WithAsyncMethod_SetImpedanceControlGain<WithAsyncMethod_GetImpedanceControlGain<WithAsyncMethod_SetForceControlGain<WithAsyncMethod_GetForceControlGain<WithAsyncMethod_SetTestControlGain<WithAsyncMethod_GetTestControlGain<WithAsyncMethod_SetCustomControlGain<WithAsyncMethod_GetCustomControlGain<WithAsyncMethod_SetNewControllerTestOnOff<WithAsyncMethod_GetNewControllerTestOnOffState<WithAsyncMethod_SetFrictionComp<WithAsyncMethod_GetFrictionComp<WithAsyncMethod_SetMountPos<WithAsyncMethod_GetMountPos<WithAsyncMethod_SetToolProperty<WithAsyncMethod_GetToolProperty<WithAsyncMethod_GetRefFrameList<WithAsyncMethod_SetRefFrameList<WithAsyncMethod_SetCollSensLevel<WithAsyncMethod_GetCollSensLevel<WithAsyncMethod_SetCollSensParam<WithAsyncMethod_GetCollSensParam<WithAsyncMethod_SetCollPolicy<WithAsyncMethod_GetCollPolicy<WithAsyncMethod_SetSafetyLimits<WithAsyncMethod_GetSafetyLimits<WithAsyncMethod_SetSafetyStopConfig<WithAsyncMethod_GetSafetyStopConfig<WithAsyncMethod_GetReducedRatio<WithAsyncMethod_GetReducedSpeed<WithAsyncMethod_SetReducedSpeed<WithAsyncMethod_SetFTSensorConfig<WithAsyncMethod_GetFTSensorConfig<WithAsyncMethod_SetTeleOpParams<WithAsyncMethod_GetTeleOpParams<WithAsyncMethod_GetKinematicsParams<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_GetRefFrame : public BaseClass {
    private:
@@ -3278,18 +3366,72 @@ class Config final {
       ::grpc::CallbackServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::ToolProperties* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
+  class WithCallbackMethod_GetRefFrameList : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_GetRefFrameList() {
+      ::grpc::Service::MarkMethodCallback(34,
+          new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::RefFrameList>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::RefFrameList* response) { return this->GetRefFrameList(context, request, response); }));}
+    void SetMessageAllocatorFor_GetRefFrameList(
+        ::grpc::MessageAllocator< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::RefFrameList>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(34);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::RefFrameList>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_GetRefFrameList() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetRefFrameList(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::RefFrameList* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GetRefFrameList(
+      ::grpc::CallbackServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::RefFrameList* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_SetRefFrameList : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_SetRefFrameList() {
+      ::grpc::Service::MarkMethodCallback(35,
+          new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::RefFrameList, ::Nrmk::IndyFramework::Response>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::RefFrameList* request, ::Nrmk::IndyFramework::Response* response) { return this->SetRefFrameList(context, request, response); }));}
+    void SetMessageAllocatorFor_SetRefFrameList(
+        ::grpc::MessageAllocator< ::Nrmk::IndyFramework::RefFrameList, ::Nrmk::IndyFramework::Response>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(35);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::RefFrameList, ::Nrmk::IndyFramework::Response>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_SetRefFrameList() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetRefFrameList(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::RefFrameList* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* SetRefFrameList(
+      ::grpc::CallbackServerContext* /*context*/, const ::Nrmk::IndyFramework::RefFrameList* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
   class WithCallbackMethod_SetCollSensLevel : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_SetCollSensLevel() {
-      ::grpc::Service::MarkMethodCallback(34,
+      ::grpc::Service::MarkMethodCallback(36,
           new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::CollisionSensLevel, ::Nrmk::IndyFramework::Response>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::CollisionSensLevel* request, ::Nrmk::IndyFramework::Response* response) { return this->SetCollSensLevel(context, request, response); }));}
     void SetMessageAllocatorFor_SetCollSensLevel(
         ::grpc::MessageAllocator< ::Nrmk::IndyFramework::CollisionSensLevel, ::Nrmk::IndyFramework::Response>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(34);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(36);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::CollisionSensLevel, ::Nrmk::IndyFramework::Response>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -3310,13 +3452,13 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetCollSensLevel() {
-      ::grpc::Service::MarkMethodCallback(35,
+      ::grpc::Service::MarkMethodCallback(37,
           new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::CollisionSensLevel>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::CollisionSensLevel* response) { return this->GetCollSensLevel(context, request, response); }));}
     void SetMessageAllocatorFor_GetCollSensLevel(
         ::grpc::MessageAllocator< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::CollisionSensLevel>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(35);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(37);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::CollisionSensLevel>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -3337,13 +3479,13 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_SetCollSensParam() {
-      ::grpc::Service::MarkMethodCallback(36,
+      ::grpc::Service::MarkMethodCallback(38,
           new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::CollisionThresholds, ::Nrmk::IndyFramework::Response>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::CollisionThresholds* request, ::Nrmk::IndyFramework::Response* response) { return this->SetCollSensParam(context, request, response); }));}
     void SetMessageAllocatorFor_SetCollSensParam(
         ::grpc::MessageAllocator< ::Nrmk::IndyFramework::CollisionThresholds, ::Nrmk::IndyFramework::Response>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(36);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(38);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::CollisionThresholds, ::Nrmk::IndyFramework::Response>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -3364,13 +3506,13 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetCollSensParam() {
-      ::grpc::Service::MarkMethodCallback(37,
+      ::grpc::Service::MarkMethodCallback(39,
           new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::CollisionThresholds>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::CollisionThresholds* response) { return this->GetCollSensParam(context, request, response); }));}
     void SetMessageAllocatorFor_GetCollSensParam(
         ::grpc::MessageAllocator< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::CollisionThresholds>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(37);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(39);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::CollisionThresholds>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -3391,13 +3533,13 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_SetCollPolicy() {
-      ::grpc::Service::MarkMethodCallback(38,
+      ::grpc::Service::MarkMethodCallback(40,
           new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::CollisionPolicy, ::Nrmk::IndyFramework::Response>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::CollisionPolicy* request, ::Nrmk::IndyFramework::Response* response) { return this->SetCollPolicy(context, request, response); }));}
     void SetMessageAllocatorFor_SetCollPolicy(
         ::grpc::MessageAllocator< ::Nrmk::IndyFramework::CollisionPolicy, ::Nrmk::IndyFramework::Response>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(38);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(40);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::CollisionPolicy, ::Nrmk::IndyFramework::Response>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -3418,13 +3560,13 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetCollPolicy() {
-      ::grpc::Service::MarkMethodCallback(39,
+      ::grpc::Service::MarkMethodCallback(41,
           new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::CollisionPolicy>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::CollisionPolicy* response) { return this->GetCollPolicy(context, request, response); }));}
     void SetMessageAllocatorFor_GetCollPolicy(
         ::grpc::MessageAllocator< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::CollisionPolicy>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(39);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(41);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::CollisionPolicy>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -3445,13 +3587,13 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_SetSafetyLimits() {
-      ::grpc::Service::MarkMethodCallback(40,
+      ::grpc::Service::MarkMethodCallback(42,
           new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::SafetyLimits, ::Nrmk::IndyFramework::Response>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::SafetyLimits* request, ::Nrmk::IndyFramework::Response* response) { return this->SetSafetyLimits(context, request, response); }));}
     void SetMessageAllocatorFor_SetSafetyLimits(
         ::grpc::MessageAllocator< ::Nrmk::IndyFramework::SafetyLimits, ::Nrmk::IndyFramework::Response>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(40);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(42);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::SafetyLimits, ::Nrmk::IndyFramework::Response>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -3472,13 +3614,13 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetSafetyLimits() {
-      ::grpc::Service::MarkMethodCallback(41,
+      ::grpc::Service::MarkMethodCallback(43,
           new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::SafetyLimits>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::SafetyLimits* response) { return this->GetSafetyLimits(context, request, response); }));}
     void SetMessageAllocatorFor_GetSafetyLimits(
         ::grpc::MessageAllocator< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::SafetyLimits>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(41);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(43);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::SafetyLimits>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -3499,13 +3641,13 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_SetSafetyStopConfig() {
-      ::grpc::Service::MarkMethodCallback(42,
+      ::grpc::Service::MarkMethodCallback(44,
           new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::SafetyStopConfig, ::Nrmk::IndyFramework::Response>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::SafetyStopConfig* request, ::Nrmk::IndyFramework::Response* response) { return this->SetSafetyStopConfig(context, request, response); }));}
     void SetMessageAllocatorFor_SetSafetyStopConfig(
         ::grpc::MessageAllocator< ::Nrmk::IndyFramework::SafetyStopConfig, ::Nrmk::IndyFramework::Response>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(42);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(44);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::SafetyStopConfig, ::Nrmk::IndyFramework::Response>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -3526,13 +3668,13 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetSafetyStopConfig() {
-      ::grpc::Service::MarkMethodCallback(43,
+      ::grpc::Service::MarkMethodCallback(45,
           new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::SafetyStopConfig>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::SafetyStopConfig* response) { return this->GetSafetyStopConfig(context, request, response); }));}
     void SetMessageAllocatorFor_GetSafetyStopConfig(
         ::grpc::MessageAllocator< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::SafetyStopConfig>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(43);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(45);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::SafetyStopConfig>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -3553,13 +3695,13 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetReducedRatio() {
-      ::grpc::Service::MarkMethodCallback(44,
+      ::grpc::Service::MarkMethodCallback(46,
           new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::GetReducedRatioRes>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::GetReducedRatioRes* response) { return this->GetReducedRatio(context, request, response); }));}
     void SetMessageAllocatorFor_GetReducedRatio(
         ::grpc::MessageAllocator< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::GetReducedRatioRes>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(44);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(46);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::GetReducedRatioRes>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -3580,13 +3722,13 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetReducedSpeed() {
-      ::grpc::Service::MarkMethodCallback(45,
+      ::grpc::Service::MarkMethodCallback(47,
           new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::GetReducedSpeedRes>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::GetReducedSpeedRes* response) { return this->GetReducedSpeed(context, request, response); }));}
     void SetMessageAllocatorFor_GetReducedSpeed(
         ::grpc::MessageAllocator< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::GetReducedSpeedRes>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(45);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(47);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::GetReducedSpeedRes>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -3607,13 +3749,13 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_SetReducedSpeed() {
-      ::grpc::Service::MarkMethodCallback(46,
+      ::grpc::Service::MarkMethodCallback(48,
           new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::SetReducedSpeedReq, ::Nrmk::IndyFramework::Response>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::SetReducedSpeedReq* request, ::Nrmk::IndyFramework::Response* response) { return this->SetReducedSpeed(context, request, response); }));}
     void SetMessageAllocatorFor_SetReducedSpeed(
         ::grpc::MessageAllocator< ::Nrmk::IndyFramework::SetReducedSpeedReq, ::Nrmk::IndyFramework::Response>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(46);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(48);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::SetReducedSpeedReq, ::Nrmk::IndyFramework::Response>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -3634,13 +3776,13 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_SetFTSensorConfig() {
-      ::grpc::Service::MarkMethodCallback(47,
+      ::grpc::Service::MarkMethodCallback(49,
           new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::FTSensorDevice, ::Nrmk::IndyFramework::Response>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::FTSensorDevice* request, ::Nrmk::IndyFramework::Response* response) { return this->SetFTSensorConfig(context, request, response); }));}
     void SetMessageAllocatorFor_SetFTSensorConfig(
         ::grpc::MessageAllocator< ::Nrmk::IndyFramework::FTSensorDevice, ::Nrmk::IndyFramework::Response>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(47);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(49);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::FTSensorDevice, ::Nrmk::IndyFramework::Response>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -3661,13 +3803,13 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetFTSensorConfig() {
-      ::grpc::Service::MarkMethodCallback(48,
+      ::grpc::Service::MarkMethodCallback(50,
           new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::FTSensorDevice>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::FTSensorDevice* response) { return this->GetFTSensorConfig(context, request, response); }));}
     void SetMessageAllocatorFor_GetFTSensorConfig(
         ::grpc::MessageAllocator< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::FTSensorDevice>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(48);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(50);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::FTSensorDevice>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -3688,13 +3830,13 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_SetTeleOpParams() {
-      ::grpc::Service::MarkMethodCallback(49,
+      ::grpc::Service::MarkMethodCallback(51,
           new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::TeleOpParams, ::Nrmk::IndyFramework::Response>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::TeleOpParams* request, ::Nrmk::IndyFramework::Response* response) { return this->SetTeleOpParams(context, request, response); }));}
     void SetMessageAllocatorFor_SetTeleOpParams(
         ::grpc::MessageAllocator< ::Nrmk::IndyFramework::TeleOpParams, ::Nrmk::IndyFramework::Response>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(49);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(51);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::TeleOpParams, ::Nrmk::IndyFramework::Response>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -3715,13 +3857,13 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetTeleOpParams() {
-      ::grpc::Service::MarkMethodCallback(50,
+      ::grpc::Service::MarkMethodCallback(52,
           new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::TeleOpParams>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::TeleOpParams* response) { return this->GetTeleOpParams(context, request, response); }));}
     void SetMessageAllocatorFor_GetTeleOpParams(
         ::grpc::MessageAllocator< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::TeleOpParams>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(50);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(52);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::TeleOpParams>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -3742,13 +3884,13 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetKinematicsParams() {
-      ::grpc::Service::MarkMethodCallback(51,
+      ::grpc::Service::MarkMethodCallback(53,
           new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::KinematicsParams>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::KinematicsParams* response) { return this->GetKinematicsParams(context, request, response); }));}
     void SetMessageAllocatorFor_GetKinematicsParams(
         ::grpc::MessageAllocator< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::KinematicsParams>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(51);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(53);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::KinematicsParams>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -3763,7 +3905,7 @@ class Config final {
     virtual ::grpc::ServerUnaryReactor* GetKinematicsParams(
       ::grpc::CallbackServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::KinematicsParams* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_GetRefFrame<WithCallbackMethod_SetRefFrame<WithCallbackMethod_SetRefFramePlanar<WithCallbackMethod_SetToolFrame<WithCallbackMethod_SetSpeedRatio<WithCallbackMethod_SetDIConfigList<WithCallbackMethod_GetDIConfigList<WithCallbackMethod_SetDOConfigList<WithCallbackMethod_GetDOConfigList<WithCallbackMethod_SetHomePosition<WithCallbackMethod_GetHomePosition<WithCallbackMethod_GetPackPosition<WithCallbackMethod_SetAutoServoOff<WithCallbackMethod_GetAutoServoOff<WithCallbackMethod_SetJointControlGain<WithCallbackMethod_GetJointControlGain<WithCallbackMethod_SetTaskControlGain<WithCallbackMethod_GetTaskControlGain<WithCallbackMethod_SetImpedanceControlGain<WithCallbackMethod_GetImpedanceControlGain<WithCallbackMethod_SetForceControlGain<WithCallbackMethod_GetForceControlGain<WithCallbackMethod_SetTestControlGain<WithCallbackMethod_GetTestControlGain<WithCallbackMethod_SetCustomControlGain<WithCallbackMethod_GetCustomControlGain<WithCallbackMethod_SetNewControllerTestOnOff<WithCallbackMethod_GetNewControllerTestOnOffState<WithCallbackMethod_SetFrictionComp<WithCallbackMethod_GetFrictionComp<WithCallbackMethod_SetMountPos<WithCallbackMethod_GetMountPos<WithCallbackMethod_SetToolProperty<WithCallbackMethod_GetToolProperty<WithCallbackMethod_SetCollSensLevel<WithCallbackMethod_GetCollSensLevel<WithCallbackMethod_SetCollSensParam<WithCallbackMethod_GetCollSensParam<WithCallbackMethod_SetCollPolicy<WithCallbackMethod_GetCollPolicy<WithCallbackMethod_SetSafetyLimits<WithCallbackMethod_GetSafetyLimits<WithCallbackMethod_SetSafetyStopConfig<WithCallbackMethod_GetSafetyStopConfig<WithCallbackMethod_GetReducedRatio<WithCallbackMethod_GetReducedSpeed<WithCallbackMethod_SetReducedSpeed<WithCallbackMethod_SetFTSensorConfig<WithCallbackMethod_GetFTSensorConfig<WithCallbackMethod_SetTeleOpParams<WithCallbackMethod_GetTeleOpParams<WithCallbackMethod_GetKinematicsParams<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > CallbackService;
+  typedef WithCallbackMethod_GetRefFrame<WithCallbackMethod_SetRefFrame<WithCallbackMethod_SetRefFramePlanar<WithCallbackMethod_SetToolFrame<WithCallbackMethod_SetSpeedRatio<WithCallbackMethod_SetDIConfigList<WithCallbackMethod_GetDIConfigList<WithCallbackMethod_SetDOConfigList<WithCallbackMethod_GetDOConfigList<WithCallbackMethod_SetHomePosition<WithCallbackMethod_GetHomePosition<WithCallbackMethod_GetPackPosition<WithCallbackMethod_SetAutoServoOff<WithCallbackMethod_GetAutoServoOff<WithCallbackMethod_SetJointControlGain<WithCallbackMethod_GetJointControlGain<WithCallbackMethod_SetTaskControlGain<WithCallbackMethod_GetTaskControlGain<WithCallbackMethod_SetImpedanceControlGain<WithCallbackMethod_GetImpedanceControlGain<WithCallbackMethod_SetForceControlGain<WithCallbackMethod_GetForceControlGain<WithCallbackMethod_SetTestControlGain<WithCallbackMethod_GetTestControlGain<WithCallbackMethod_SetCustomControlGain<WithCallbackMethod_GetCustomControlGain<WithCallbackMethod_SetNewControllerTestOnOff<WithCallbackMethod_GetNewControllerTestOnOffState<WithCallbackMethod_SetFrictionComp<WithCallbackMethod_GetFrictionComp<WithCallbackMethod_SetMountPos<WithCallbackMethod_GetMountPos<WithCallbackMethod_SetToolProperty<WithCallbackMethod_GetToolProperty<WithCallbackMethod_GetRefFrameList<WithCallbackMethod_SetRefFrameList<WithCallbackMethod_SetCollSensLevel<WithCallbackMethod_GetCollSensLevel<WithCallbackMethod_SetCollSensParam<WithCallbackMethod_GetCollSensParam<WithCallbackMethod_SetCollPolicy<WithCallbackMethod_GetCollPolicy<WithCallbackMethod_SetSafetyLimits<WithCallbackMethod_GetSafetyLimits<WithCallbackMethod_SetSafetyStopConfig<WithCallbackMethod_GetSafetyStopConfig<WithCallbackMethod_GetReducedRatio<WithCallbackMethod_GetReducedSpeed<WithCallbackMethod_SetReducedSpeed<WithCallbackMethod_SetFTSensorConfig<WithCallbackMethod_GetFTSensorConfig<WithCallbackMethod_SetTeleOpParams<WithCallbackMethod_GetTeleOpParams<WithCallbackMethod_GetKinematicsParams<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_GetRefFrame : public BaseClass {
@@ -4344,12 +4486,46 @@ class Config final {
     }
   };
   template <class BaseClass>
+  class WithGenericMethod_GetRefFrameList : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_GetRefFrameList() {
+      ::grpc::Service::MarkMethodGeneric(34);
+    }
+    ~WithGenericMethod_GetRefFrameList() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetRefFrameList(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::RefFrameList* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_SetRefFrameList : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_SetRefFrameList() {
+      ::grpc::Service::MarkMethodGeneric(35);
+    }
+    ~WithGenericMethod_SetRefFrameList() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetRefFrameList(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::RefFrameList* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
   class WithGenericMethod_SetCollSensLevel : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_SetCollSensLevel() {
-      ::grpc::Service::MarkMethodGeneric(34);
+      ::grpc::Service::MarkMethodGeneric(36);
     }
     ~WithGenericMethod_SetCollSensLevel() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4366,7 +4542,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetCollSensLevel() {
-      ::grpc::Service::MarkMethodGeneric(35);
+      ::grpc::Service::MarkMethodGeneric(37);
     }
     ~WithGenericMethod_GetCollSensLevel() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4383,7 +4559,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_SetCollSensParam() {
-      ::grpc::Service::MarkMethodGeneric(36);
+      ::grpc::Service::MarkMethodGeneric(38);
     }
     ~WithGenericMethod_SetCollSensParam() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4400,7 +4576,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetCollSensParam() {
-      ::grpc::Service::MarkMethodGeneric(37);
+      ::grpc::Service::MarkMethodGeneric(39);
     }
     ~WithGenericMethod_GetCollSensParam() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4417,7 +4593,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_SetCollPolicy() {
-      ::grpc::Service::MarkMethodGeneric(38);
+      ::grpc::Service::MarkMethodGeneric(40);
     }
     ~WithGenericMethod_SetCollPolicy() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4434,7 +4610,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetCollPolicy() {
-      ::grpc::Service::MarkMethodGeneric(39);
+      ::grpc::Service::MarkMethodGeneric(41);
     }
     ~WithGenericMethod_GetCollPolicy() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4451,7 +4627,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_SetSafetyLimits() {
-      ::grpc::Service::MarkMethodGeneric(40);
+      ::grpc::Service::MarkMethodGeneric(42);
     }
     ~WithGenericMethod_SetSafetyLimits() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4468,7 +4644,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetSafetyLimits() {
-      ::grpc::Service::MarkMethodGeneric(41);
+      ::grpc::Service::MarkMethodGeneric(43);
     }
     ~WithGenericMethod_GetSafetyLimits() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4485,7 +4661,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_SetSafetyStopConfig() {
-      ::grpc::Service::MarkMethodGeneric(42);
+      ::grpc::Service::MarkMethodGeneric(44);
     }
     ~WithGenericMethod_SetSafetyStopConfig() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4502,7 +4678,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetSafetyStopConfig() {
-      ::grpc::Service::MarkMethodGeneric(43);
+      ::grpc::Service::MarkMethodGeneric(45);
     }
     ~WithGenericMethod_GetSafetyStopConfig() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4519,7 +4695,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetReducedRatio() {
-      ::grpc::Service::MarkMethodGeneric(44);
+      ::grpc::Service::MarkMethodGeneric(46);
     }
     ~WithGenericMethod_GetReducedRatio() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4536,7 +4712,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetReducedSpeed() {
-      ::grpc::Service::MarkMethodGeneric(45);
+      ::grpc::Service::MarkMethodGeneric(47);
     }
     ~WithGenericMethod_GetReducedSpeed() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4553,7 +4729,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_SetReducedSpeed() {
-      ::grpc::Service::MarkMethodGeneric(46);
+      ::grpc::Service::MarkMethodGeneric(48);
     }
     ~WithGenericMethod_SetReducedSpeed() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4570,7 +4746,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_SetFTSensorConfig() {
-      ::grpc::Service::MarkMethodGeneric(47);
+      ::grpc::Service::MarkMethodGeneric(49);
     }
     ~WithGenericMethod_SetFTSensorConfig() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4587,7 +4763,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetFTSensorConfig() {
-      ::grpc::Service::MarkMethodGeneric(48);
+      ::grpc::Service::MarkMethodGeneric(50);
     }
     ~WithGenericMethod_GetFTSensorConfig() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4604,7 +4780,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_SetTeleOpParams() {
-      ::grpc::Service::MarkMethodGeneric(49);
+      ::grpc::Service::MarkMethodGeneric(51);
     }
     ~WithGenericMethod_SetTeleOpParams() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4621,7 +4797,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetTeleOpParams() {
-      ::grpc::Service::MarkMethodGeneric(50);
+      ::grpc::Service::MarkMethodGeneric(52);
     }
     ~WithGenericMethod_GetTeleOpParams() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4638,7 +4814,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetKinematicsParams() {
-      ::grpc::Service::MarkMethodGeneric(51);
+      ::grpc::Service::MarkMethodGeneric(53);
     }
     ~WithGenericMethod_GetKinematicsParams() override {
       BaseClassMustBeDerivedFromService(this);
@@ -5330,12 +5506,52 @@ class Config final {
     }
   };
   template <class BaseClass>
+  class WithRawMethod_GetRefFrameList : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_GetRefFrameList() {
+      ::grpc::Service::MarkMethodRaw(34);
+    }
+    ~WithRawMethod_GetRefFrameList() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetRefFrameList(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::RefFrameList* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetRefFrameList(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(34, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_SetRefFrameList : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_SetRefFrameList() {
+      ::grpc::Service::MarkMethodRaw(35);
+    }
+    ~WithRawMethod_SetRefFrameList() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetRefFrameList(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::RefFrameList* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSetRefFrameList(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(35, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithRawMethod_SetCollSensLevel : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_SetCollSensLevel() {
-      ::grpc::Service::MarkMethodRaw(34);
+      ::grpc::Service::MarkMethodRaw(36);
     }
     ~WithRawMethod_SetCollSensLevel() override {
       BaseClassMustBeDerivedFromService(this);
@@ -5346,7 +5562,7 @@ class Config final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestSetCollSensLevel(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(34, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(36, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -5355,7 +5571,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetCollSensLevel() {
-      ::grpc::Service::MarkMethodRaw(35);
+      ::grpc::Service::MarkMethodRaw(37);
     }
     ~WithRawMethod_GetCollSensLevel() override {
       BaseClassMustBeDerivedFromService(this);
@@ -5366,7 +5582,7 @@ class Config final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetCollSensLevel(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(35, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(37, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -5375,7 +5591,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_SetCollSensParam() {
-      ::grpc::Service::MarkMethodRaw(36);
+      ::grpc::Service::MarkMethodRaw(38);
     }
     ~WithRawMethod_SetCollSensParam() override {
       BaseClassMustBeDerivedFromService(this);
@@ -5386,7 +5602,7 @@ class Config final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestSetCollSensParam(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(36, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(38, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -5395,7 +5611,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetCollSensParam() {
-      ::grpc::Service::MarkMethodRaw(37);
+      ::grpc::Service::MarkMethodRaw(39);
     }
     ~WithRawMethod_GetCollSensParam() override {
       BaseClassMustBeDerivedFromService(this);
@@ -5406,7 +5622,7 @@ class Config final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetCollSensParam(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(37, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(39, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -5415,7 +5631,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_SetCollPolicy() {
-      ::grpc::Service::MarkMethodRaw(38);
+      ::grpc::Service::MarkMethodRaw(40);
     }
     ~WithRawMethod_SetCollPolicy() override {
       BaseClassMustBeDerivedFromService(this);
@@ -5426,7 +5642,7 @@ class Config final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestSetCollPolicy(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(38, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(40, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -5435,7 +5651,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetCollPolicy() {
-      ::grpc::Service::MarkMethodRaw(39);
+      ::grpc::Service::MarkMethodRaw(41);
     }
     ~WithRawMethod_GetCollPolicy() override {
       BaseClassMustBeDerivedFromService(this);
@@ -5446,7 +5662,7 @@ class Config final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetCollPolicy(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(39, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(41, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -5455,7 +5671,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_SetSafetyLimits() {
-      ::grpc::Service::MarkMethodRaw(40);
+      ::grpc::Service::MarkMethodRaw(42);
     }
     ~WithRawMethod_SetSafetyLimits() override {
       BaseClassMustBeDerivedFromService(this);
@@ -5466,7 +5682,7 @@ class Config final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestSetSafetyLimits(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(40, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(42, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -5475,7 +5691,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetSafetyLimits() {
-      ::grpc::Service::MarkMethodRaw(41);
+      ::grpc::Service::MarkMethodRaw(43);
     }
     ~WithRawMethod_GetSafetyLimits() override {
       BaseClassMustBeDerivedFromService(this);
@@ -5486,7 +5702,7 @@ class Config final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetSafetyLimits(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(41, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(43, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -5495,7 +5711,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_SetSafetyStopConfig() {
-      ::grpc::Service::MarkMethodRaw(42);
+      ::grpc::Service::MarkMethodRaw(44);
     }
     ~WithRawMethod_SetSafetyStopConfig() override {
       BaseClassMustBeDerivedFromService(this);
@@ -5506,7 +5722,7 @@ class Config final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestSetSafetyStopConfig(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(42, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(44, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -5515,7 +5731,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetSafetyStopConfig() {
-      ::grpc::Service::MarkMethodRaw(43);
+      ::grpc::Service::MarkMethodRaw(45);
     }
     ~WithRawMethod_GetSafetyStopConfig() override {
       BaseClassMustBeDerivedFromService(this);
@@ -5526,7 +5742,7 @@ class Config final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetSafetyStopConfig(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(43, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(45, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -5535,7 +5751,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetReducedRatio() {
-      ::grpc::Service::MarkMethodRaw(44);
+      ::grpc::Service::MarkMethodRaw(46);
     }
     ~WithRawMethod_GetReducedRatio() override {
       BaseClassMustBeDerivedFromService(this);
@@ -5546,7 +5762,7 @@ class Config final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetReducedRatio(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(44, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(46, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -5555,7 +5771,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetReducedSpeed() {
-      ::grpc::Service::MarkMethodRaw(45);
+      ::grpc::Service::MarkMethodRaw(47);
     }
     ~WithRawMethod_GetReducedSpeed() override {
       BaseClassMustBeDerivedFromService(this);
@@ -5566,7 +5782,7 @@ class Config final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetReducedSpeed(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(45, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(47, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -5575,7 +5791,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_SetReducedSpeed() {
-      ::grpc::Service::MarkMethodRaw(46);
+      ::grpc::Service::MarkMethodRaw(48);
     }
     ~WithRawMethod_SetReducedSpeed() override {
       BaseClassMustBeDerivedFromService(this);
@@ -5586,7 +5802,7 @@ class Config final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestSetReducedSpeed(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(46, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(48, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -5595,7 +5811,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_SetFTSensorConfig() {
-      ::grpc::Service::MarkMethodRaw(47);
+      ::grpc::Service::MarkMethodRaw(49);
     }
     ~WithRawMethod_SetFTSensorConfig() override {
       BaseClassMustBeDerivedFromService(this);
@@ -5606,7 +5822,7 @@ class Config final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestSetFTSensorConfig(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(47, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(49, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -5615,7 +5831,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetFTSensorConfig() {
-      ::grpc::Service::MarkMethodRaw(48);
+      ::grpc::Service::MarkMethodRaw(50);
     }
     ~WithRawMethod_GetFTSensorConfig() override {
       BaseClassMustBeDerivedFromService(this);
@@ -5626,7 +5842,7 @@ class Config final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetFTSensorConfig(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(48, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(50, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -5635,7 +5851,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_SetTeleOpParams() {
-      ::grpc::Service::MarkMethodRaw(49);
+      ::grpc::Service::MarkMethodRaw(51);
     }
     ~WithRawMethod_SetTeleOpParams() override {
       BaseClassMustBeDerivedFromService(this);
@@ -5646,7 +5862,7 @@ class Config final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestSetTeleOpParams(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(49, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(51, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -5655,7 +5871,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetTeleOpParams() {
-      ::grpc::Service::MarkMethodRaw(50);
+      ::grpc::Service::MarkMethodRaw(52);
     }
     ~WithRawMethod_GetTeleOpParams() override {
       BaseClassMustBeDerivedFromService(this);
@@ -5666,7 +5882,7 @@ class Config final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetTeleOpParams(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(50, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(52, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -5675,7 +5891,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetKinematicsParams() {
-      ::grpc::Service::MarkMethodRaw(51);
+      ::grpc::Service::MarkMethodRaw(53);
     }
     ~WithRawMethod_GetKinematicsParams() override {
       BaseClassMustBeDerivedFromService(this);
@@ -5686,7 +5902,7 @@ class Config final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetKinematicsParams(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(51, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(53, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -6438,12 +6654,56 @@ class Config final {
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
+  class WithRawCallbackMethod_GetRefFrameList : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_GetRefFrameList() {
+      ::grpc::Service::MarkMethodRawCallback(34,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetRefFrameList(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_GetRefFrameList() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetRefFrameList(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::RefFrameList* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GetRefFrameList(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_SetRefFrameList : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_SetRefFrameList() {
+      ::grpc::Service::MarkMethodRawCallback(35,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SetRefFrameList(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_SetRefFrameList() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetRefFrameList(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::RefFrameList* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* SetRefFrameList(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
   class WithRawCallbackMethod_SetCollSensLevel : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_SetCollSensLevel() {
-      ::grpc::Service::MarkMethodRawCallback(34,
+      ::grpc::Service::MarkMethodRawCallback(36,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SetCollSensLevel(context, request, response); }));
@@ -6465,7 +6725,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetCollSensLevel() {
-      ::grpc::Service::MarkMethodRawCallback(35,
+      ::grpc::Service::MarkMethodRawCallback(37,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetCollSensLevel(context, request, response); }));
@@ -6487,7 +6747,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_SetCollSensParam() {
-      ::grpc::Service::MarkMethodRawCallback(36,
+      ::grpc::Service::MarkMethodRawCallback(38,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SetCollSensParam(context, request, response); }));
@@ -6509,7 +6769,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetCollSensParam() {
-      ::grpc::Service::MarkMethodRawCallback(37,
+      ::grpc::Service::MarkMethodRawCallback(39,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetCollSensParam(context, request, response); }));
@@ -6531,7 +6791,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_SetCollPolicy() {
-      ::grpc::Service::MarkMethodRawCallback(38,
+      ::grpc::Service::MarkMethodRawCallback(40,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SetCollPolicy(context, request, response); }));
@@ -6553,7 +6813,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetCollPolicy() {
-      ::grpc::Service::MarkMethodRawCallback(39,
+      ::grpc::Service::MarkMethodRawCallback(41,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetCollPolicy(context, request, response); }));
@@ -6575,7 +6835,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_SetSafetyLimits() {
-      ::grpc::Service::MarkMethodRawCallback(40,
+      ::grpc::Service::MarkMethodRawCallback(42,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SetSafetyLimits(context, request, response); }));
@@ -6597,7 +6857,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetSafetyLimits() {
-      ::grpc::Service::MarkMethodRawCallback(41,
+      ::grpc::Service::MarkMethodRawCallback(43,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetSafetyLimits(context, request, response); }));
@@ -6619,7 +6879,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_SetSafetyStopConfig() {
-      ::grpc::Service::MarkMethodRawCallback(42,
+      ::grpc::Service::MarkMethodRawCallback(44,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SetSafetyStopConfig(context, request, response); }));
@@ -6641,7 +6901,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetSafetyStopConfig() {
-      ::grpc::Service::MarkMethodRawCallback(43,
+      ::grpc::Service::MarkMethodRawCallback(45,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetSafetyStopConfig(context, request, response); }));
@@ -6663,7 +6923,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetReducedRatio() {
-      ::grpc::Service::MarkMethodRawCallback(44,
+      ::grpc::Service::MarkMethodRawCallback(46,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetReducedRatio(context, request, response); }));
@@ -6685,7 +6945,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetReducedSpeed() {
-      ::grpc::Service::MarkMethodRawCallback(45,
+      ::grpc::Service::MarkMethodRawCallback(47,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetReducedSpeed(context, request, response); }));
@@ -6707,7 +6967,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_SetReducedSpeed() {
-      ::grpc::Service::MarkMethodRawCallback(46,
+      ::grpc::Service::MarkMethodRawCallback(48,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SetReducedSpeed(context, request, response); }));
@@ -6729,7 +6989,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_SetFTSensorConfig() {
-      ::grpc::Service::MarkMethodRawCallback(47,
+      ::grpc::Service::MarkMethodRawCallback(49,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SetFTSensorConfig(context, request, response); }));
@@ -6751,7 +7011,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetFTSensorConfig() {
-      ::grpc::Service::MarkMethodRawCallback(48,
+      ::grpc::Service::MarkMethodRawCallback(50,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetFTSensorConfig(context, request, response); }));
@@ -6773,7 +7033,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_SetTeleOpParams() {
-      ::grpc::Service::MarkMethodRawCallback(49,
+      ::grpc::Service::MarkMethodRawCallback(51,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SetTeleOpParams(context, request, response); }));
@@ -6795,7 +7055,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetTeleOpParams() {
-      ::grpc::Service::MarkMethodRawCallback(50,
+      ::grpc::Service::MarkMethodRawCallback(52,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetTeleOpParams(context, request, response); }));
@@ -6817,7 +7077,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetKinematicsParams() {
-      ::grpc::Service::MarkMethodRawCallback(51,
+      ::grpc::Service::MarkMethodRawCallback(53,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetKinematicsParams(context, request, response); }));
@@ -7752,12 +8012,66 @@ class Config final {
     virtual ::grpc::Status StreamedGetToolProperty(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Nrmk::IndyFramework::Empty,::Nrmk::IndyFramework::ToolProperties>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
+  class WithStreamedUnaryMethod_GetRefFrameList : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_GetRefFrameList() {
+      ::grpc::Service::MarkMethodStreamed(34,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::RefFrameList>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::RefFrameList>* streamer) {
+                       return this->StreamedGetRefFrameList(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_GetRefFrameList() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status GetRefFrameList(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::RefFrameList* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedGetRefFrameList(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Nrmk::IndyFramework::Empty,::Nrmk::IndyFramework::RefFrameList>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_SetRefFrameList : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_SetRefFrameList() {
+      ::grpc::Service::MarkMethodStreamed(35,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::Nrmk::IndyFramework::RefFrameList, ::Nrmk::IndyFramework::Response>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::Nrmk::IndyFramework::RefFrameList, ::Nrmk::IndyFramework::Response>* streamer) {
+                       return this->StreamedSetRefFrameList(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_SetRefFrameList() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status SetRefFrameList(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::RefFrameList* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedSetRefFrameList(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Nrmk::IndyFramework::RefFrameList,::Nrmk::IndyFramework::Response>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
   class WithStreamedUnaryMethod_SetCollSensLevel : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_SetCollSensLevel() {
-      ::grpc::Service::MarkMethodStreamed(34,
+      ::grpc::Service::MarkMethodStreamed(36,
         new ::grpc::internal::StreamedUnaryHandler<
           ::Nrmk::IndyFramework::CollisionSensLevel, ::Nrmk::IndyFramework::Response>(
             [this](::grpc::ServerContext* context,
@@ -7784,7 +8098,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetCollSensLevel() {
-      ::grpc::Service::MarkMethodStreamed(35,
+      ::grpc::Service::MarkMethodStreamed(37,
         new ::grpc::internal::StreamedUnaryHandler<
           ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::CollisionSensLevel>(
             [this](::grpc::ServerContext* context,
@@ -7811,7 +8125,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_SetCollSensParam() {
-      ::grpc::Service::MarkMethodStreamed(36,
+      ::grpc::Service::MarkMethodStreamed(38,
         new ::grpc::internal::StreamedUnaryHandler<
           ::Nrmk::IndyFramework::CollisionThresholds, ::Nrmk::IndyFramework::Response>(
             [this](::grpc::ServerContext* context,
@@ -7838,7 +8152,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetCollSensParam() {
-      ::grpc::Service::MarkMethodStreamed(37,
+      ::grpc::Service::MarkMethodStreamed(39,
         new ::grpc::internal::StreamedUnaryHandler<
           ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::CollisionThresholds>(
             [this](::grpc::ServerContext* context,
@@ -7865,7 +8179,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_SetCollPolicy() {
-      ::grpc::Service::MarkMethodStreamed(38,
+      ::grpc::Service::MarkMethodStreamed(40,
         new ::grpc::internal::StreamedUnaryHandler<
           ::Nrmk::IndyFramework::CollisionPolicy, ::Nrmk::IndyFramework::Response>(
             [this](::grpc::ServerContext* context,
@@ -7892,7 +8206,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetCollPolicy() {
-      ::grpc::Service::MarkMethodStreamed(39,
+      ::grpc::Service::MarkMethodStreamed(41,
         new ::grpc::internal::StreamedUnaryHandler<
           ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::CollisionPolicy>(
             [this](::grpc::ServerContext* context,
@@ -7919,7 +8233,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_SetSafetyLimits() {
-      ::grpc::Service::MarkMethodStreamed(40,
+      ::grpc::Service::MarkMethodStreamed(42,
         new ::grpc::internal::StreamedUnaryHandler<
           ::Nrmk::IndyFramework::SafetyLimits, ::Nrmk::IndyFramework::Response>(
             [this](::grpc::ServerContext* context,
@@ -7946,7 +8260,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetSafetyLimits() {
-      ::grpc::Service::MarkMethodStreamed(41,
+      ::grpc::Service::MarkMethodStreamed(43,
         new ::grpc::internal::StreamedUnaryHandler<
           ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::SafetyLimits>(
             [this](::grpc::ServerContext* context,
@@ -7973,7 +8287,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_SetSafetyStopConfig() {
-      ::grpc::Service::MarkMethodStreamed(42,
+      ::grpc::Service::MarkMethodStreamed(44,
         new ::grpc::internal::StreamedUnaryHandler<
           ::Nrmk::IndyFramework::SafetyStopConfig, ::Nrmk::IndyFramework::Response>(
             [this](::grpc::ServerContext* context,
@@ -8000,7 +8314,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetSafetyStopConfig() {
-      ::grpc::Service::MarkMethodStreamed(43,
+      ::grpc::Service::MarkMethodStreamed(45,
         new ::grpc::internal::StreamedUnaryHandler<
           ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::SafetyStopConfig>(
             [this](::grpc::ServerContext* context,
@@ -8027,7 +8341,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetReducedRatio() {
-      ::grpc::Service::MarkMethodStreamed(44,
+      ::grpc::Service::MarkMethodStreamed(46,
         new ::grpc::internal::StreamedUnaryHandler<
           ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::GetReducedRatioRes>(
             [this](::grpc::ServerContext* context,
@@ -8054,7 +8368,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetReducedSpeed() {
-      ::grpc::Service::MarkMethodStreamed(45,
+      ::grpc::Service::MarkMethodStreamed(47,
         new ::grpc::internal::StreamedUnaryHandler<
           ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::GetReducedSpeedRes>(
             [this](::grpc::ServerContext* context,
@@ -8081,7 +8395,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_SetReducedSpeed() {
-      ::grpc::Service::MarkMethodStreamed(46,
+      ::grpc::Service::MarkMethodStreamed(48,
         new ::grpc::internal::StreamedUnaryHandler<
           ::Nrmk::IndyFramework::SetReducedSpeedReq, ::Nrmk::IndyFramework::Response>(
             [this](::grpc::ServerContext* context,
@@ -8108,7 +8422,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_SetFTSensorConfig() {
-      ::grpc::Service::MarkMethodStreamed(47,
+      ::grpc::Service::MarkMethodStreamed(49,
         new ::grpc::internal::StreamedUnaryHandler<
           ::Nrmk::IndyFramework::FTSensorDevice, ::Nrmk::IndyFramework::Response>(
             [this](::grpc::ServerContext* context,
@@ -8135,7 +8449,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetFTSensorConfig() {
-      ::grpc::Service::MarkMethodStreamed(48,
+      ::grpc::Service::MarkMethodStreamed(50,
         new ::grpc::internal::StreamedUnaryHandler<
           ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::FTSensorDevice>(
             [this](::grpc::ServerContext* context,
@@ -8162,7 +8476,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_SetTeleOpParams() {
-      ::grpc::Service::MarkMethodStreamed(49,
+      ::grpc::Service::MarkMethodStreamed(51,
         new ::grpc::internal::StreamedUnaryHandler<
           ::Nrmk::IndyFramework::TeleOpParams, ::Nrmk::IndyFramework::Response>(
             [this](::grpc::ServerContext* context,
@@ -8189,7 +8503,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetTeleOpParams() {
-      ::grpc::Service::MarkMethodStreamed(50,
+      ::grpc::Service::MarkMethodStreamed(52,
         new ::grpc::internal::StreamedUnaryHandler<
           ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::TeleOpParams>(
             [this](::grpc::ServerContext* context,
@@ -8216,7 +8530,7 @@ class Config final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetKinematicsParams() {
-      ::grpc::Service::MarkMethodStreamed(51,
+      ::grpc::Service::MarkMethodStreamed(53,
         new ::grpc::internal::StreamedUnaryHandler<
           ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::KinematicsParams>(
             [this](::grpc::ServerContext* context,
@@ -8237,9 +8551,9 @@ class Config final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedGetKinematicsParams(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Nrmk::IndyFramework::Empty,::Nrmk::IndyFramework::KinematicsParams>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_GetRefFrame<WithStreamedUnaryMethod_SetRefFrame<WithStreamedUnaryMethod_SetRefFramePlanar<WithStreamedUnaryMethod_SetToolFrame<WithStreamedUnaryMethod_SetSpeedRatio<WithStreamedUnaryMethod_SetDIConfigList<WithStreamedUnaryMethod_GetDIConfigList<WithStreamedUnaryMethod_SetDOConfigList<WithStreamedUnaryMethod_GetDOConfigList<WithStreamedUnaryMethod_SetHomePosition<WithStreamedUnaryMethod_GetHomePosition<WithStreamedUnaryMethod_GetPackPosition<WithStreamedUnaryMethod_SetAutoServoOff<WithStreamedUnaryMethod_GetAutoServoOff<WithStreamedUnaryMethod_SetJointControlGain<WithStreamedUnaryMethod_GetJointControlGain<WithStreamedUnaryMethod_SetTaskControlGain<WithStreamedUnaryMethod_GetTaskControlGain<WithStreamedUnaryMethod_SetImpedanceControlGain<WithStreamedUnaryMethod_GetImpedanceControlGain<WithStreamedUnaryMethod_SetForceControlGain<WithStreamedUnaryMethod_GetForceControlGain<WithStreamedUnaryMethod_SetTestControlGain<WithStreamedUnaryMethod_GetTestControlGain<WithStreamedUnaryMethod_SetCustomControlGain<WithStreamedUnaryMethod_GetCustomControlGain<WithStreamedUnaryMethod_SetNewControllerTestOnOff<WithStreamedUnaryMethod_GetNewControllerTestOnOffState<WithStreamedUnaryMethod_SetFrictionComp<WithStreamedUnaryMethod_GetFrictionComp<WithStreamedUnaryMethod_SetMountPos<WithStreamedUnaryMethod_GetMountPos<WithStreamedUnaryMethod_SetToolProperty<WithStreamedUnaryMethod_GetToolProperty<WithStreamedUnaryMethod_SetCollSensLevel<WithStreamedUnaryMethod_GetCollSensLevel<WithStreamedUnaryMethod_SetCollSensParam<WithStreamedUnaryMethod_GetCollSensParam<WithStreamedUnaryMethod_SetCollPolicy<WithStreamedUnaryMethod_GetCollPolicy<WithStreamedUnaryMethod_SetSafetyLimits<WithStreamedUnaryMethod_GetSafetyLimits<WithStreamedUnaryMethod_SetSafetyStopConfig<WithStreamedUnaryMethod_GetSafetyStopConfig<WithStreamedUnaryMethod_GetReducedRatio<WithStreamedUnaryMethod_GetReducedSpeed<WithStreamedUnaryMethod_SetReducedSpeed<WithStreamedUnaryMethod_SetFTSensorConfig<WithStreamedUnaryMethod_GetFTSensorConfig<WithStreamedUnaryMethod_SetTeleOpParams<WithStreamedUnaryMethod_GetTeleOpParams<WithStreamedUnaryMethod_GetKinematicsParams<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > StreamedUnaryService;
+  typedef WithStreamedUnaryMethod_GetRefFrame<WithStreamedUnaryMethod_SetRefFrame<WithStreamedUnaryMethod_SetRefFramePlanar<WithStreamedUnaryMethod_SetToolFrame<WithStreamedUnaryMethod_SetSpeedRatio<WithStreamedUnaryMethod_SetDIConfigList<WithStreamedUnaryMethod_GetDIConfigList<WithStreamedUnaryMethod_SetDOConfigList<WithStreamedUnaryMethod_GetDOConfigList<WithStreamedUnaryMethod_SetHomePosition<WithStreamedUnaryMethod_GetHomePosition<WithStreamedUnaryMethod_GetPackPosition<WithStreamedUnaryMethod_SetAutoServoOff<WithStreamedUnaryMethod_GetAutoServoOff<WithStreamedUnaryMethod_SetJointControlGain<WithStreamedUnaryMethod_GetJointControlGain<WithStreamedUnaryMethod_SetTaskControlGain<WithStreamedUnaryMethod_GetTaskControlGain<WithStreamedUnaryMethod_SetImpedanceControlGain<WithStreamedUnaryMethod_GetImpedanceControlGain<WithStreamedUnaryMethod_SetForceControlGain<WithStreamedUnaryMethod_GetForceControlGain<WithStreamedUnaryMethod_SetTestControlGain<WithStreamedUnaryMethod_GetTestControlGain<WithStreamedUnaryMethod_SetCustomControlGain<WithStreamedUnaryMethod_GetCustomControlGain<WithStreamedUnaryMethod_SetNewControllerTestOnOff<WithStreamedUnaryMethod_GetNewControllerTestOnOffState<WithStreamedUnaryMethod_SetFrictionComp<WithStreamedUnaryMethod_GetFrictionComp<WithStreamedUnaryMethod_SetMountPos<WithStreamedUnaryMethod_GetMountPos<WithStreamedUnaryMethod_SetToolProperty<WithStreamedUnaryMethod_GetToolProperty<WithStreamedUnaryMethod_GetRefFrameList<WithStreamedUnaryMethod_SetRefFrameList<WithStreamedUnaryMethod_SetCollSensLevel<WithStreamedUnaryMethod_GetCollSensLevel<WithStreamedUnaryMethod_SetCollSensParam<WithStreamedUnaryMethod_GetCollSensParam<WithStreamedUnaryMethod_SetCollPolicy<WithStreamedUnaryMethod_GetCollPolicy<WithStreamedUnaryMethod_SetSafetyLimits<WithStreamedUnaryMethod_GetSafetyLimits<WithStreamedUnaryMethod_SetSafetyStopConfig<WithStreamedUnaryMethod_GetSafetyStopConfig<WithStreamedUnaryMethod_GetReducedRatio<WithStreamedUnaryMethod_GetReducedSpeed<WithStreamedUnaryMethod_SetReducedSpeed<WithStreamedUnaryMethod_SetFTSensorConfig<WithStreamedUnaryMethod_GetFTSensorConfig<WithStreamedUnaryMethod_SetTeleOpParams<WithStreamedUnaryMethod_GetTeleOpParams<WithStreamedUnaryMethod_GetKinematicsParams<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_GetRefFrame<WithStreamedUnaryMethod_SetRefFrame<WithStreamedUnaryMethod_SetRefFramePlanar<WithStreamedUnaryMethod_SetToolFrame<WithStreamedUnaryMethod_SetSpeedRatio<WithStreamedUnaryMethod_SetDIConfigList<WithStreamedUnaryMethod_GetDIConfigList<WithStreamedUnaryMethod_SetDOConfigList<WithStreamedUnaryMethod_GetDOConfigList<WithStreamedUnaryMethod_SetHomePosition<WithStreamedUnaryMethod_GetHomePosition<WithStreamedUnaryMethod_GetPackPosition<WithStreamedUnaryMethod_SetAutoServoOff<WithStreamedUnaryMethod_GetAutoServoOff<WithStreamedUnaryMethod_SetJointControlGain<WithStreamedUnaryMethod_GetJointControlGain<WithStreamedUnaryMethod_SetTaskControlGain<WithStreamedUnaryMethod_GetTaskControlGain<WithStreamedUnaryMethod_SetImpedanceControlGain<WithStreamedUnaryMethod_GetImpedanceControlGain<WithStreamedUnaryMethod_SetForceControlGain<WithStreamedUnaryMethod_GetForceControlGain<WithStreamedUnaryMethod_SetTestControlGain<WithStreamedUnaryMethod_GetTestControlGain<WithStreamedUnaryMethod_SetCustomControlGain<WithStreamedUnaryMethod_GetCustomControlGain<WithStreamedUnaryMethod_SetNewControllerTestOnOff<WithStreamedUnaryMethod_GetNewControllerTestOnOffState<WithStreamedUnaryMethod_SetFrictionComp<WithStreamedUnaryMethod_GetFrictionComp<WithStreamedUnaryMethod_SetMountPos<WithStreamedUnaryMethod_GetMountPos<WithStreamedUnaryMethod_SetToolProperty<WithStreamedUnaryMethod_GetToolProperty<WithStreamedUnaryMethod_SetCollSensLevel<WithStreamedUnaryMethod_GetCollSensLevel<WithStreamedUnaryMethod_SetCollSensParam<WithStreamedUnaryMethod_GetCollSensParam<WithStreamedUnaryMethod_SetCollPolicy<WithStreamedUnaryMethod_GetCollPolicy<WithStreamedUnaryMethod_SetSafetyLimits<WithStreamedUnaryMethod_GetSafetyLimits<WithStreamedUnaryMethod_SetSafetyStopConfig<WithStreamedUnaryMethod_GetSafetyStopConfig<WithStreamedUnaryMethod_GetReducedRatio<WithStreamedUnaryMethod_GetReducedSpeed<WithStreamedUnaryMethod_SetReducedSpeed<WithStreamedUnaryMethod_SetFTSensorConfig<WithStreamedUnaryMethod_GetFTSensorConfig<WithStreamedUnaryMethod_SetTeleOpParams<WithStreamedUnaryMethod_GetTeleOpParams<WithStreamedUnaryMethod_GetKinematicsParams<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_GetRefFrame<WithStreamedUnaryMethod_SetRefFrame<WithStreamedUnaryMethod_SetRefFramePlanar<WithStreamedUnaryMethod_SetToolFrame<WithStreamedUnaryMethod_SetSpeedRatio<WithStreamedUnaryMethod_SetDIConfigList<WithStreamedUnaryMethod_GetDIConfigList<WithStreamedUnaryMethod_SetDOConfigList<WithStreamedUnaryMethod_GetDOConfigList<WithStreamedUnaryMethod_SetHomePosition<WithStreamedUnaryMethod_GetHomePosition<WithStreamedUnaryMethod_GetPackPosition<WithStreamedUnaryMethod_SetAutoServoOff<WithStreamedUnaryMethod_GetAutoServoOff<WithStreamedUnaryMethod_SetJointControlGain<WithStreamedUnaryMethod_GetJointControlGain<WithStreamedUnaryMethod_SetTaskControlGain<WithStreamedUnaryMethod_GetTaskControlGain<WithStreamedUnaryMethod_SetImpedanceControlGain<WithStreamedUnaryMethod_GetImpedanceControlGain<WithStreamedUnaryMethod_SetForceControlGain<WithStreamedUnaryMethod_GetForceControlGain<WithStreamedUnaryMethod_SetTestControlGain<WithStreamedUnaryMethod_GetTestControlGain<WithStreamedUnaryMethod_SetCustomControlGain<WithStreamedUnaryMethod_GetCustomControlGain<WithStreamedUnaryMethod_SetNewControllerTestOnOff<WithStreamedUnaryMethod_GetNewControllerTestOnOffState<WithStreamedUnaryMethod_SetFrictionComp<WithStreamedUnaryMethod_GetFrictionComp<WithStreamedUnaryMethod_SetMountPos<WithStreamedUnaryMethod_GetMountPos<WithStreamedUnaryMethod_SetToolProperty<WithStreamedUnaryMethod_GetToolProperty<WithStreamedUnaryMethod_GetRefFrameList<WithStreamedUnaryMethod_SetRefFrameList<WithStreamedUnaryMethod_SetCollSensLevel<WithStreamedUnaryMethod_GetCollSensLevel<WithStreamedUnaryMethod_SetCollSensParam<WithStreamedUnaryMethod_GetCollSensParam<WithStreamedUnaryMethod_SetCollPolicy<WithStreamedUnaryMethod_GetCollPolicy<WithStreamedUnaryMethod_SetSafetyLimits<WithStreamedUnaryMethod_GetSafetyLimits<WithStreamedUnaryMethod_SetSafetyStopConfig<WithStreamedUnaryMethod_GetSafetyStopConfig<WithStreamedUnaryMethod_GetReducedRatio<WithStreamedUnaryMethod_GetReducedSpeed<WithStreamedUnaryMethod_SetReducedSpeed<WithStreamedUnaryMethod_SetFTSensorConfig<WithStreamedUnaryMethod_GetFTSensorConfig<WithStreamedUnaryMethod_SetTeleOpParams<WithStreamedUnaryMethod_GetTeleOpParams<WithStreamedUnaryMethod_GetKinematicsParams<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > StreamedService;
 };
 
 }  // namespace IndyFramework

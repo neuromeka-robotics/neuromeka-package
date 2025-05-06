@@ -17,7 +17,6 @@ DEVICE_SOCKET_PORT = [20002, 30002]
 CONFIG_SOCKET_PORT = [20003, 30003]
 RTDE_SOCKET_PORT = [20004, 30004]
 CRI_SOCKET_PORT = [20181, 30181]
-CONTY_SOCKET_PORT = [20131, 30131]
 
 class IndyDCP3:
     def __init__(self, robot_ip='127.0.0.1', index=0):
@@ -29,14 +28,12 @@ class IndyDCP3:
         self.config_channel = grpc.insecure_channel('{}:{}'.format(robot_ip, CONFIG_SOCKET_PORT[index]))
         self.rtde_channel = grpc.insecure_channel('{}:{}'.format(robot_ip, RTDE_SOCKET_PORT[index]))
         self.cri_channel = grpc.insecure_channel('{}:{}'.format(robot_ip, CRI_SOCKET_PORT[index]))
-        self.hri_channel = grpc.insecure_channel('{}:{}'.format(robot_ip, CONTY_SOCKET_PORT[index]))
 
         self.control = ControlStub(self.control_channel)
         self.device = DeviceStub(self.device_channel)
         self.config = ConfigStub(self.config_channel)
         self.rtde = RTDataExchangeStub(self.rtde_channel)
         self.cri = CRIStub(self.cri_channel)
-        self.hri = HRIStub(self.hri_channel)
 
         self._joint_waypoint = []
         self._task_waypoint = []
@@ -2853,7 +2850,7 @@ class IndyDCP3:
                                     use_integers_for_enums=True)
 
     def load_reference_frame(self):
-        response = self.hri.GetRefFrameList(hri_msgs.GetRefFrameListReq())
+        response = self.config.GetRefFrameList(common_msgs.Empty())
         return json_format.MessageToDict(response,
                                     including_default_value_fields=True,
                                     preserving_proto_field_name=True,
@@ -2875,9 +2872,9 @@ class IndyDCP3:
         ]
         default_name = "default_frame"
         """
-        request = hri_msgs.SetRefFrameListReq(
+        request = config_msgs.RefFrameList(
             ref_frames=[
-                shared_msgs.NamedReferencePosition(
+                common_msgs.NamedReferencePosition(
                     name=frame['name'],
                     tpos=frame.get('tpos', []),
                     tpos0=frame.get('tpos0', []),
@@ -2891,7 +2888,7 @@ class IndyDCP3:
             default_name=default_name
         )
 
-        response = self.hri.SetRefFrameList(request)
+        response = self.config.SetRefFrameList(request)
         return json_format.MessageToDict(response,
                                     including_default_value_fields=True,
                                     preserving_proto_field_name=True,

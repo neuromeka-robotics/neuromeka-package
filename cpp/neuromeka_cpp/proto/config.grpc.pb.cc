@@ -57,6 +57,8 @@ static const char* Config_method_names[] = {
   "/Nrmk.IndyFramework.Config/GetMountPos",
   "/Nrmk.IndyFramework.Config/SetToolProperty",
   "/Nrmk.IndyFramework.Config/GetToolProperty",
+  "/Nrmk.IndyFramework.Config/GetRefFrameList",
+  "/Nrmk.IndyFramework.Config/SetRefFrameList",
   "/Nrmk.IndyFramework.Config/SetCollSensLevel",
   "/Nrmk.IndyFramework.Config/GetCollSensLevel",
   "/Nrmk.IndyFramework.Config/SetCollSensParam",
@@ -118,24 +120,26 @@ Config::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, co
   , rpcmethod_GetMountPos_(Config_method_names[31], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_SetToolProperty_(Config_method_names[32], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_GetToolProperty_(Config_method_names[33], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetCollSensLevel_(Config_method_names[34], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetCollSensLevel_(Config_method_names[35], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetCollSensParam_(Config_method_names[36], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetCollSensParam_(Config_method_names[37], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetCollPolicy_(Config_method_names[38], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetCollPolicy_(Config_method_names[39], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetSafetyLimits_(Config_method_names[40], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetSafetyLimits_(Config_method_names[41], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetSafetyStopConfig_(Config_method_names[42], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetSafetyStopConfig_(Config_method_names[43], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetReducedRatio_(Config_method_names[44], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetReducedSpeed_(Config_method_names[45], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetReducedSpeed_(Config_method_names[46], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetFTSensorConfig_(Config_method_names[47], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetFTSensorConfig_(Config_method_names[48], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetTeleOpParams_(Config_method_names[49], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetTeleOpParams_(Config_method_names[50], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetKinematicsParams_(Config_method_names[51], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetRefFrameList_(Config_method_names[34], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetRefFrameList_(Config_method_names[35], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetCollSensLevel_(Config_method_names[36], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetCollSensLevel_(Config_method_names[37], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetCollSensParam_(Config_method_names[38], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetCollSensParam_(Config_method_names[39], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetCollPolicy_(Config_method_names[40], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetCollPolicy_(Config_method_names[41], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetSafetyLimits_(Config_method_names[42], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetSafetyLimits_(Config_method_names[43], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetSafetyStopConfig_(Config_method_names[44], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetSafetyStopConfig_(Config_method_names[45], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetReducedRatio_(Config_method_names[46], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetReducedSpeed_(Config_method_names[47], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetReducedSpeed_(Config_method_names[48], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetFTSensorConfig_(Config_method_names[49], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetFTSensorConfig_(Config_method_names[50], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetTeleOpParams_(Config_method_names[51], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetTeleOpParams_(Config_method_names[52], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetKinematicsParams_(Config_method_names[53], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status Config::Stub::GetRefFrame(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::Frame* response) {
@@ -920,6 +924,52 @@ void Config::Stub::async::GetToolProperty(::grpc::ClientContext* context, const 
   return result;
 }
 
+::grpc::Status Config::Stub::GetRefFrameList(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::RefFrameList* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::RefFrameList, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetRefFrameList_, context, request, response);
+}
+
+void Config::Stub::async::GetRefFrameList(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::RefFrameList* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::RefFrameList, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetRefFrameList_, context, request, response, std::move(f));
+}
+
+void Config::Stub::async::GetRefFrameList(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::RefFrameList* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetRefFrameList_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::RefFrameList>* Config::Stub::PrepareAsyncGetRefFrameListRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::RefFrameList, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetRefFrameList_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::RefFrameList>* Config::Stub::AsyncGetRefFrameListRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetRefFrameListRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Config::Stub::SetRefFrameList(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::RefFrameList& request, ::Nrmk::IndyFramework::Response* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::RefFrameList, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetRefFrameList_, context, request, response);
+}
+
+void Config::Stub::async::SetRefFrameList(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::RefFrameList* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::RefFrameList, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetRefFrameList_, context, request, response, std::move(f));
+}
+
+void Config::Stub::async::SetRefFrameList(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::RefFrameList* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetRefFrameList_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::PrepareAsyncSetRefFrameListRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::RefFrameList& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Response, ::Nrmk::IndyFramework::RefFrameList, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetRefFrameList_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::AsyncSetRefFrameListRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::RefFrameList& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetRefFrameListRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 ::grpc::Status Config::Stub::SetCollSensLevel(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::CollisionSensLevel& request, ::Nrmk::IndyFramework::Response* response) {
   return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::CollisionSensLevel, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetCollSensLevel_, context, request, response);
 }
@@ -1678,6 +1728,26 @@ Config::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Config_method_names[34],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::RefFrameList, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Config::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::Empty* req,
+             ::Nrmk::IndyFramework::RefFrameList* resp) {
+               return service->GetRefFrameList(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Config_method_names[35],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::RefFrameList, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Config::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::RefFrameList* req,
+             ::Nrmk::IndyFramework::Response* resp) {
+               return service->SetRefFrameList(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Config_method_names[36],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::CollisionSensLevel, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Config::Service* service,
              ::grpc::ServerContext* ctx,
@@ -1686,7 +1756,7 @@ Config::Service::Service() {
                return service->SetCollSensLevel(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Config_method_names[35],
+      Config_method_names[37],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::CollisionSensLevel, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Config::Service* service,
@@ -1696,7 +1766,7 @@ Config::Service::Service() {
                return service->GetCollSensLevel(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Config_method_names[36],
+      Config_method_names[38],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::CollisionThresholds, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Config::Service* service,
@@ -1706,7 +1776,7 @@ Config::Service::Service() {
                return service->SetCollSensParam(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Config_method_names[37],
+      Config_method_names[39],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::CollisionThresholds, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Config::Service* service,
@@ -1716,7 +1786,7 @@ Config::Service::Service() {
                return service->GetCollSensParam(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Config_method_names[38],
+      Config_method_names[40],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::CollisionPolicy, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Config::Service* service,
@@ -1726,7 +1796,7 @@ Config::Service::Service() {
                return service->SetCollPolicy(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Config_method_names[39],
+      Config_method_names[41],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::CollisionPolicy, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Config::Service* service,
@@ -1736,7 +1806,7 @@ Config::Service::Service() {
                return service->GetCollPolicy(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Config_method_names[40],
+      Config_method_names[42],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::SafetyLimits, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Config::Service* service,
@@ -1746,7 +1816,7 @@ Config::Service::Service() {
                return service->SetSafetyLimits(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Config_method_names[41],
+      Config_method_names[43],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::SafetyLimits, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Config::Service* service,
@@ -1756,7 +1826,7 @@ Config::Service::Service() {
                return service->GetSafetyLimits(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Config_method_names[42],
+      Config_method_names[44],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::SafetyStopConfig, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Config::Service* service,
@@ -1766,7 +1836,7 @@ Config::Service::Service() {
                return service->SetSafetyStopConfig(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Config_method_names[43],
+      Config_method_names[45],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::SafetyStopConfig, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Config::Service* service,
@@ -1776,7 +1846,7 @@ Config::Service::Service() {
                return service->GetSafetyStopConfig(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Config_method_names[44],
+      Config_method_names[46],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::GetReducedRatioRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Config::Service* service,
@@ -1786,7 +1856,7 @@ Config::Service::Service() {
                return service->GetReducedRatio(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Config_method_names[45],
+      Config_method_names[47],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::GetReducedSpeedRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Config::Service* service,
@@ -1796,7 +1866,7 @@ Config::Service::Service() {
                return service->GetReducedSpeed(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Config_method_names[46],
+      Config_method_names[48],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::SetReducedSpeedReq, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Config::Service* service,
@@ -1806,7 +1876,7 @@ Config::Service::Service() {
                return service->SetReducedSpeed(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Config_method_names[47],
+      Config_method_names[49],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::FTSensorDevice, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Config::Service* service,
@@ -1816,7 +1886,7 @@ Config::Service::Service() {
                return service->SetFTSensorConfig(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Config_method_names[48],
+      Config_method_names[50],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::FTSensorDevice, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Config::Service* service,
@@ -1826,7 +1896,7 @@ Config::Service::Service() {
                return service->GetFTSensorConfig(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Config_method_names[49],
+      Config_method_names[51],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::TeleOpParams, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Config::Service* service,
@@ -1836,7 +1906,7 @@ Config::Service::Service() {
                return service->SetTeleOpParams(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Config_method_names[50],
+      Config_method_names[52],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::TeleOpParams, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Config::Service* service,
@@ -1846,7 +1916,7 @@ Config::Service::Service() {
                return service->GetTeleOpParams(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Config_method_names[51],
+      Config_method_names[53],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::KinematicsParams, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Config::Service* service,
@@ -2092,6 +2162,20 @@ Config::Service::~Service() {
 }
 
 ::grpc::Status Config::Service::GetToolProperty(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ToolProperties* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Config::Service::GetRefFrameList(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::RefFrameList* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Config::Service::SetRefFrameList(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::RefFrameList* request, ::Nrmk::IndyFramework::Response* response) {
   (void) context;
   (void) request;
   (void) response;

@@ -22,7 +22,7 @@
 #include "proto/device.grpc.pb.h"
 #include "proto/rtde.grpc.pb.h"
 #include "proto/cri.grpc.pb.h"
-#include "proto/hri.grpc.pb.h"
+// #include "proto/hri.grpc.pb.h"
 
 using google::protobuf::util::MessageToJsonString;
 using google::protobuf::util::JsonStringToMessage;
@@ -612,21 +612,21 @@ class IndyDCP3
         std::shared_ptr<grpc::Channel> config_channel;
         std::shared_ptr<grpc::Channel> rtde_channel;
         std::shared_ptr<grpc::Channel> cri_channel;
-        std::shared_ptr<grpc::Channel> hri_channel;
+        // std::shared_ptr<grpc::Channel> hri_channel;
 
         std::unique_ptr<Nrmk::IndyFramework::Control::Stub> control_stub;
         std::unique_ptr<Nrmk::IndyFramework::Device::Stub> device_stub;
         std::unique_ptr<Nrmk::IndyFramework::Config::Stub> config_stub;
         std::unique_ptr<Nrmk::IndyFramework::RTDataExchange::Stub> rtde_stub;
         std::unique_ptr<Nrmk::IndyFramework::CRI::Stub> cri_stub;
-        std::unique_ptr<IndyFramework::Protobuf::HRI::HRI::Stub> hri_stub;
+        // std::unique_ptr<IndyFramework::Protobuf::HRI::HRI::Stub> hri_stub;
 
         const std::vector<int> CONTROL_SOCKET_PORT  = {20001, 30001};
         const std::vector<int> DEVICE_SOCKET_PORT   = {20002, 30002};
         const std::vector<int> CONFIG_SOCKET_PORT   = {20003, 30003};
         const std::vector<int> RTDE_SOCKET_PORT     = {20004, 30004};
         const std::vector<int> CRI_SOCKET_PORT      = {20181, 30181};
-        const std::vector<int> HRI_SOCKET_PORT      = {20131, 30131};
+        // const std::vector<int> HRI_SOCKET_PORT      = {20131, 30131};
 };
 
 #endif

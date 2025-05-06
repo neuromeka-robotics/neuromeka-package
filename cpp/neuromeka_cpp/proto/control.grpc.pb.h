@@ -641,6 +641,23 @@ class Control final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>> PrepareAsyncFTZero(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>>(PrepareAsyncFTZeroRaw(context, request, cq));
     }
+    // ---------------------------------------------------------------- //
+    // Inference Data
+    // ---------------------------------------------------------------- //
+    virtual ::grpc::Status SetControlInferenceData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ControlInferenceDataSet& request, ::Nrmk::IndyFramework::Response* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>> AsyncSetControlInferenceData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ControlInferenceDataSet& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>>(AsyncSetControlInferenceDataRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>> PrepareAsyncSetControlInferenceData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ControlInferenceDataSet& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>>(PrepareAsyncSetControlInferenceDataRaw(context, request, cq));
+    }
+    virtual ::grpc::Status GetControlInferenceData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::ControlInferenceDataSet* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::ControlInferenceDataSet>> AsyncGetControlInferenceData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::ControlInferenceDataSet>>(AsyncGetControlInferenceDataRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::ControlInferenceDataSet>> PrepareAsyncGetControlInferenceData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::ControlInferenceDataSet>>(PrepareAsyncGetControlInferenceDataRaw(context, request, cq));
+    }
     class async_interface {
      public:
       virtual ~async_interface() {}
@@ -834,6 +851,13 @@ class Control final {
       virtual void GetTransformedFTSensorData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::TransformedFTSensorData* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void FTZero(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)>) = 0;
       virtual void FTZero(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // ---------------------------------------------------------------- //
+      // Inference Data
+      // ---------------------------------------------------------------- //
+      virtual void SetControlInferenceData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ControlInferenceDataSet* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void SetControlInferenceData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ControlInferenceDataSet* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void GetControlInferenceData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ControlInferenceDataSet* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetControlInferenceData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ControlInferenceDataSet* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
@@ -1005,6 +1029,10 @@ class Control final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::TransformedFTSensorData>* PrepareAsyncGetTransformedFTSensorDataRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>* AsyncFTZeroRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>* PrepareAsyncFTZeroRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>* AsyncSetControlInferenceDataRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ControlInferenceDataSet& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>* PrepareAsyncSetControlInferenceDataRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ControlInferenceDataSet& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::ControlInferenceDataSet>* AsyncGetControlInferenceDataRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::ControlInferenceDataSet>* PrepareAsyncGetControlInferenceDataRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -1590,6 +1618,20 @@ class Control final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>> PrepareAsyncFTZero(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>>(PrepareAsyncFTZeroRaw(context, request, cq));
     }
+    ::grpc::Status SetControlInferenceData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ControlInferenceDataSet& request, ::Nrmk::IndyFramework::Response* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>> AsyncSetControlInferenceData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ControlInferenceDataSet& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>>(AsyncSetControlInferenceDataRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>> PrepareAsyncSetControlInferenceData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ControlInferenceDataSet& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>>(PrepareAsyncSetControlInferenceDataRaw(context, request, cq));
+    }
+    ::grpc::Status GetControlInferenceData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::ControlInferenceDataSet* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ControlInferenceDataSet>> AsyncGetControlInferenceData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ControlInferenceDataSet>>(AsyncGetControlInferenceDataRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ControlInferenceDataSet>> PrepareAsyncGetControlInferenceData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ControlInferenceDataSet>>(PrepareAsyncGetControlInferenceDataRaw(context, request, cq));
+    }
     class async final :
       public StubInterface::async_interface {
      public:
@@ -1759,6 +1801,10 @@ class Control final {
       void GetTransformedFTSensorData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::TransformedFTSensorData* response, ::grpc::ClientUnaryReactor* reactor) override;
       void FTZero(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)>) override;
       void FTZero(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void SetControlInferenceData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ControlInferenceDataSet* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)>) override;
+      void SetControlInferenceData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ControlInferenceDataSet* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void GetControlInferenceData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ControlInferenceDataSet* response, std::function<void(::grpc::Status)>) override;
+      void GetControlInferenceData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ControlInferenceDataSet* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -1936,6 +1982,10 @@ class Control final {
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::TransformedFTSensorData>* PrepareAsyncGetTransformedFTSensorDataRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* AsyncFTZeroRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* PrepareAsyncFTZeroRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* AsyncSetControlInferenceDataRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ControlInferenceDataSet& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* PrepareAsyncSetControlInferenceDataRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ControlInferenceDataSet& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ControlInferenceDataSet>* AsyncGetControlInferenceDataRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ControlInferenceDataSet>* PrepareAsyncGetControlInferenceDataRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_GetControlInfo_;
     const ::grpc::internal::RpcMethod rpcmethod_ActivateIndySDK_;
     const ::grpc::internal::RpcMethod rpcmethod_MoveJ_;
@@ -2019,6 +2069,8 @@ class Control final {
     const ::grpc::internal::RpcMethod rpcmethod_MoveLF_;
     const ::grpc::internal::RpcMethod rpcmethod_GetTransformedFTSensorData_;
     const ::grpc::internal::RpcMethod rpcmethod_FTZero_;
+    const ::grpc::internal::RpcMethod rpcmethod_SetControlInferenceData_;
+    const ::grpc::internal::RpcMethod rpcmethod_GetControlInferenceData_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -2133,6 +2185,11 @@ class Control final {
     virtual ::grpc::Status MoveLF(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::MoveLFReq* request, ::Nrmk::IndyFramework::Response* response);
     virtual ::grpc::Status GetTransformedFTSensorData(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::TransformedFTSensorData* response);
     virtual ::grpc::Status FTZero(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::Response* response);
+    // ---------------------------------------------------------------- //
+    // Inference Data
+    // ---------------------------------------------------------------- //
+    virtual ::grpc::Status SetControlInferenceData(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::ControlInferenceDataSet* request, ::Nrmk::IndyFramework::Response* response);
+    virtual ::grpc::Status GetControlInferenceData(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ControlInferenceDataSet* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_GetControlInfo : public BaseClass {
@@ -3794,7 +3851,47 @@ class Control final {
       ::grpc::Service::RequestAsyncUnary(82, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_GetControlInfo<WithAsyncMethod_ActivateIndySDK<WithAsyncMethod_MoveJ<WithAsyncMethod_MoveJT<WithAsyncMethod_MoveL<WithAsyncMethod_MoveLT<WithAsyncMethod_MoveC<WithAsyncMethod_MoveCT<WithAsyncMethod_MoveJointTraj<WithAsyncMethod_MoveTaskTraj<WithAsyncMethod_MoveGcode<WithAsyncMethod_MoveConveyor<WithAsyncMethod_WaitIO<WithAsyncMethod_WaitTime<WithAsyncMethod_WaitProgress<WithAsyncMethod_WaitTraj<WithAsyncMethod_WaitRadius<WithAsyncMethod_MoveJCond<WithAsyncMethod_MoveLinearAxis<WithAsyncMethod_StopMotion<WithAsyncMethod_PauseMotion<WithAsyncMethod_SetDirectTeaching<WithAsyncMethod_SetSimulationMode<WithAsyncMethod_SetCustomControlMode<WithAsyncMethod_GetCustomControlMode<WithAsyncMethod_SetFrictionCompensation<WithAsyncMethod_GetFrictionCompensationState<WithAsyncMethod_SetTactTime<WithAsyncMethod_GetTactTime<WithAsyncMethod_Recover<WithAsyncMethod_Reboot<WithAsyncMethod_SetManualRecovery<WithAsyncMethod_MoveRecoverJoint<WithAsyncMethod_SearchProgram<WithAsyncMethod_PlayProgram<WithAsyncMethod_PauseProgram<WithAsyncMethod_ResumeProgram<WithAsyncMethod_StopProgram<WithAsyncMethod_SendAlarm<WithAsyncMethod_SendAnnotation<WithAsyncMethod_PlayTuningProgram<WithAsyncMethod_PlayProgramLine<WithAsyncMethod_SetModbusVariableNameList<WithAsyncMethod_SetVariableNameList<WithAsyncMethod_GetVariableNameList<WithAsyncMethod_SetIntVariable<WithAsyncMethod_GetIntVariable<WithAsyncMethod_SetModbusVariable<WithAsyncMethod_GetModbusVariable<WithAsyncMethod_SetBoolVariable<WithAsyncMethod_GetBoolVariable<WithAsyncMethod_SetFloatVariable<WithAsyncMethod_GetFloatVariable<WithAsyncMethod_SetJPosVariable<WithAsyncMethod_GetJPosVariable<WithAsyncMethod_SetTPosVariable<WithAsyncMethod_GetTPosVariable<WithAsyncMethod_InverseKinematics<WithAsyncMethod_ForwardKinematics<WithAsyncMethod_CheckAproachRetractValid<WithAsyncMethod_GetPalletPointList<WithAsyncMethod_CalculateRelativePose<WithAsyncMethod_CalculateCurrentPoseRel<WithAsyncMethod_PingFromConty<WithAsyncMethod_GetTeleOpDevice<WithAsyncMethod_GetTeleOpState<WithAsyncMethod_ConnectTeleOpDevice<WithAsyncMethod_DisConnectTeleOpDevice<WithAsyncMethod_ReadTeleOpInput<WithAsyncMethod_StartTeleOp<WithAsyncMethod_StopTeleOp<WithAsyncMethod_SetPlayRate<WithAsyncMethod_GetPlayRate<WithAsyncMethod_GetTeleFileList<WithAsyncMethod_SaveTeleMotion<WithAsyncMethod_LoadTeleMotion<WithAsyncMethod_DeleteTeleMotion<WithAsyncMethod_EnableTeleKey<WithAsyncMethod_MoveTeleJ<WithAsyncMethod_MoveTeleL<WithAsyncMethod_MoveLF<WithAsyncMethod_GetTransformedFTSensorData<WithAsyncMethod_FTZero<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_SetControlInferenceData : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_SetControlInferenceData() {
+      ::grpc::Service::MarkMethodAsync(83);
+    }
+    ~WithAsyncMethod_SetControlInferenceData() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetControlInferenceData(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::ControlInferenceDataSet* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSetControlInferenceData(::grpc::ServerContext* context, ::Nrmk::IndyFramework::ControlInferenceDataSet* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::Response>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(83, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_GetControlInferenceData : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_GetControlInferenceData() {
+      ::grpc::Service::MarkMethodAsync(84);
+    }
+    ~WithAsyncMethod_GetControlInferenceData() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetControlInferenceData(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::ControlInferenceDataSet* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetControlInferenceData(::grpc::ServerContext* context, ::Nrmk::IndyFramework::Empty* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::ControlInferenceDataSet>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(84, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_GetControlInfo<WithAsyncMethod_ActivateIndySDK<WithAsyncMethod_MoveJ<WithAsyncMethod_MoveJT<WithAsyncMethod_MoveL<WithAsyncMethod_MoveLT<WithAsyncMethod_MoveC<WithAsyncMethod_MoveCT<WithAsyncMethod_MoveJointTraj<WithAsyncMethod_MoveTaskTraj<WithAsyncMethod_MoveGcode<WithAsyncMethod_MoveConveyor<WithAsyncMethod_WaitIO<WithAsyncMethod_WaitTime<WithAsyncMethod_WaitProgress<WithAsyncMethod_WaitTraj<WithAsyncMethod_WaitRadius<WithAsyncMethod_MoveJCond<WithAsyncMethod_MoveLinearAxis<WithAsyncMethod_StopMotion<WithAsyncMethod_PauseMotion<WithAsyncMethod_SetDirectTeaching<WithAsyncMethod_SetSimulationMode<WithAsyncMethod_SetCustomControlMode<WithAsyncMethod_GetCustomControlMode<WithAsyncMethod_SetFrictionCompensation<WithAsyncMethod_GetFrictionCompensationState<WithAsyncMethod_SetTactTime<WithAsyncMethod_GetTactTime<WithAsyncMethod_Recover<WithAsyncMethod_Reboot<WithAsyncMethod_SetManualRecovery<WithAsyncMethod_MoveRecoverJoint<WithAsyncMethod_SearchProgram<WithAsyncMethod_PlayProgram<WithAsyncMethod_PauseProgram<WithAsyncMethod_ResumeProgram<WithAsyncMethod_StopProgram<WithAsyncMethod_SendAlarm<WithAsyncMethod_SendAnnotation<WithAsyncMethod_PlayTuningProgram<WithAsyncMethod_PlayProgramLine<WithAsyncMethod_SetModbusVariableNameList<WithAsyncMethod_SetVariableNameList<WithAsyncMethod_GetVariableNameList<WithAsyncMethod_SetIntVariable<WithAsyncMethod_GetIntVariable<WithAsyncMethod_SetModbusVariable<WithAsyncMethod_GetModbusVariable<WithAsyncMethod_SetBoolVariable<WithAsyncMethod_GetBoolVariable<WithAsyncMethod_SetFloatVariable<WithAsyncMethod_GetFloatVariable<WithAsyncMethod_SetJPosVariable<WithAsyncMethod_GetJPosVariable<WithAsyncMethod_SetTPosVariable<WithAsyncMethod_GetTPosVariable<WithAsyncMethod_InverseKinematics<WithAsyncMethod_ForwardKinematics<WithAsyncMethod_CheckAproachRetractValid<WithAsyncMethod_GetPalletPointList<WithAsyncMethod_CalculateRelativePose<WithAsyncMethod_CalculateCurrentPoseRel<WithAsyncMethod_PingFromConty<WithAsyncMethod_GetTeleOpDevice<WithAsyncMethod_GetTeleOpState<WithAsyncMethod_ConnectTeleOpDevice<WithAsyncMethod_DisConnectTeleOpDevice<WithAsyncMethod_ReadTeleOpInput<WithAsyncMethod_StartTeleOp<WithAsyncMethod_StopTeleOp<WithAsyncMethod_SetPlayRate<WithAsyncMethod_GetPlayRate<WithAsyncMethod_GetTeleFileList<WithAsyncMethod_SaveTeleMotion<WithAsyncMethod_LoadTeleMotion<WithAsyncMethod_DeleteTeleMotion<WithAsyncMethod_EnableTeleKey<WithAsyncMethod_MoveTeleJ<WithAsyncMethod_MoveTeleL<WithAsyncMethod_MoveLF<WithAsyncMethod_GetTransformedFTSensorData<WithAsyncMethod_FTZero<WithAsyncMethod_SetControlInferenceData<WithAsyncMethod_GetControlInferenceData<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_GetControlInfo : public BaseClass {
    private:
@@ -6036,7 +6133,61 @@ class Control final {
     virtual ::grpc::ServerUnaryReactor* FTZero(
       ::grpc::CallbackServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_GetControlInfo<WithCallbackMethod_ActivateIndySDK<WithCallbackMethod_MoveJ<WithCallbackMethod_MoveJT<WithCallbackMethod_MoveL<WithCallbackMethod_MoveLT<WithCallbackMethod_MoveC<WithCallbackMethod_MoveCT<WithCallbackMethod_MoveJointTraj<WithCallbackMethod_MoveTaskTraj<WithCallbackMethod_MoveGcode<WithCallbackMethod_MoveConveyor<WithCallbackMethod_WaitIO<WithCallbackMethod_WaitTime<WithCallbackMethod_WaitProgress<WithCallbackMethod_WaitTraj<WithCallbackMethod_WaitRadius<WithCallbackMethod_MoveJCond<WithCallbackMethod_MoveLinearAxis<WithCallbackMethod_StopMotion<WithCallbackMethod_PauseMotion<WithCallbackMethod_SetDirectTeaching<WithCallbackMethod_SetSimulationMode<WithCallbackMethod_SetCustomControlMode<WithCallbackMethod_GetCustomControlMode<WithCallbackMethod_SetFrictionCompensation<WithCallbackMethod_GetFrictionCompensationState<WithCallbackMethod_SetTactTime<WithCallbackMethod_GetTactTime<WithCallbackMethod_Recover<WithCallbackMethod_Reboot<WithCallbackMethod_SetManualRecovery<WithCallbackMethod_MoveRecoverJoint<WithCallbackMethod_SearchProgram<WithCallbackMethod_PlayProgram<WithCallbackMethod_PauseProgram<WithCallbackMethod_ResumeProgram<WithCallbackMethod_StopProgram<WithCallbackMethod_SendAlarm<WithCallbackMethod_SendAnnotation<WithCallbackMethod_PlayTuningProgram<WithCallbackMethod_PlayProgramLine<WithCallbackMethod_SetModbusVariableNameList<WithCallbackMethod_SetVariableNameList<WithCallbackMethod_GetVariableNameList<WithCallbackMethod_SetIntVariable<WithCallbackMethod_GetIntVariable<WithCallbackMethod_SetModbusVariable<WithCallbackMethod_GetModbusVariable<WithCallbackMethod_SetBoolVariable<WithCallbackMethod_GetBoolVariable<WithCallbackMethod_SetFloatVariable<WithCallbackMethod_GetFloatVariable<WithCallbackMethod_SetJPosVariable<WithCallbackMethod_GetJPosVariable<WithCallbackMethod_SetTPosVariable<WithCallbackMethod_GetTPosVariable<WithCallbackMethod_InverseKinematics<WithCallbackMethod_ForwardKinematics<WithCallbackMethod_CheckAproachRetractValid<WithCallbackMethod_GetPalletPointList<WithCallbackMethod_CalculateRelativePose<WithCallbackMethod_CalculateCurrentPoseRel<WithCallbackMethod_PingFromConty<WithCallbackMethod_GetTeleOpDevice<WithCallbackMethod_GetTeleOpState<WithCallbackMethod_ConnectTeleOpDevice<WithCallbackMethod_DisConnectTeleOpDevice<WithCallbackMethod_ReadTeleOpInput<WithCallbackMethod_StartTeleOp<WithCallbackMethod_StopTeleOp<WithCallbackMethod_SetPlayRate<WithCallbackMethod_GetPlayRate<WithCallbackMethod_GetTeleFileList<WithCallbackMethod_SaveTeleMotion<WithCallbackMethod_LoadTeleMotion<WithCallbackMethod_DeleteTeleMotion<WithCallbackMethod_EnableTeleKey<WithCallbackMethod_MoveTeleJ<WithCallbackMethod_MoveTeleL<WithCallbackMethod_MoveLF<WithCallbackMethod_GetTransformedFTSensorData<WithCallbackMethod_FTZero<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > CallbackService;
+  template <class BaseClass>
+  class WithCallbackMethod_SetControlInferenceData : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_SetControlInferenceData() {
+      ::grpc::Service::MarkMethodCallback(83,
+          new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::ControlInferenceDataSet, ::Nrmk::IndyFramework::Response>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::ControlInferenceDataSet* request, ::Nrmk::IndyFramework::Response* response) { return this->SetControlInferenceData(context, request, response); }));}
+    void SetMessageAllocatorFor_SetControlInferenceData(
+        ::grpc::MessageAllocator< ::Nrmk::IndyFramework::ControlInferenceDataSet, ::Nrmk::IndyFramework::Response>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(83);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::ControlInferenceDataSet, ::Nrmk::IndyFramework::Response>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_SetControlInferenceData() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetControlInferenceData(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::ControlInferenceDataSet* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* SetControlInferenceData(
+      ::grpc::CallbackServerContext* /*context*/, const ::Nrmk::IndyFramework::ControlInferenceDataSet* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_GetControlInferenceData : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_GetControlInferenceData() {
+      ::grpc::Service::MarkMethodCallback(84,
+          new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ControlInferenceDataSet>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ControlInferenceDataSet* response) { return this->GetControlInferenceData(context, request, response); }));}
+    void SetMessageAllocatorFor_GetControlInferenceData(
+        ::grpc::MessageAllocator< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ControlInferenceDataSet>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(84);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ControlInferenceDataSet>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_GetControlInferenceData() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetControlInferenceData(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::ControlInferenceDataSet* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GetControlInferenceData(
+      ::grpc::CallbackServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::ControlInferenceDataSet* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_GetControlInfo<WithCallbackMethod_ActivateIndySDK<WithCallbackMethod_MoveJ<WithCallbackMethod_MoveJT<WithCallbackMethod_MoveL<WithCallbackMethod_MoveLT<WithCallbackMethod_MoveC<WithCallbackMethod_MoveCT<WithCallbackMethod_MoveJointTraj<WithCallbackMethod_MoveTaskTraj<WithCallbackMethod_MoveGcode<WithCallbackMethod_MoveConveyor<WithCallbackMethod_WaitIO<WithCallbackMethod_WaitTime<WithCallbackMethod_WaitProgress<WithCallbackMethod_WaitTraj<WithCallbackMethod_WaitRadius<WithCallbackMethod_MoveJCond<WithCallbackMethod_MoveLinearAxis<WithCallbackMethod_StopMotion<WithCallbackMethod_PauseMotion<WithCallbackMethod_SetDirectTeaching<WithCallbackMethod_SetSimulationMode<WithCallbackMethod_SetCustomControlMode<WithCallbackMethod_GetCustomControlMode<WithCallbackMethod_SetFrictionCompensation<WithCallbackMethod_GetFrictionCompensationState<WithCallbackMethod_SetTactTime<WithCallbackMethod_GetTactTime<WithCallbackMethod_Recover<WithCallbackMethod_Reboot<WithCallbackMethod_SetManualRecovery<WithCallbackMethod_MoveRecoverJoint<WithCallbackMethod_SearchProgram<WithCallbackMethod_PlayProgram<WithCallbackMethod_PauseProgram<WithCallbackMethod_ResumeProgram<WithCallbackMethod_StopProgram<WithCallbackMethod_SendAlarm<WithCallbackMethod_SendAnnotation<WithCallbackMethod_PlayTuningProgram<WithCallbackMethod_PlayProgramLine<WithCallbackMethod_SetModbusVariableNameList<WithCallbackMethod_SetVariableNameList<WithCallbackMethod_GetVariableNameList<WithCallbackMethod_SetIntVariable<WithCallbackMethod_GetIntVariable<WithCallbackMethod_SetModbusVariable<WithCallbackMethod_GetModbusVariable<WithCallbackMethod_SetBoolVariable<WithCallbackMethod_GetBoolVariable<WithCallbackMethod_SetFloatVariable<WithCallbackMethod_GetFloatVariable<WithCallbackMethod_SetJPosVariable<WithCallbackMethod_GetJPosVariable<WithCallbackMethod_SetTPosVariable<WithCallbackMethod_GetTPosVariable<WithCallbackMethod_InverseKinematics<WithCallbackMethod_ForwardKinematics<WithCallbackMethod_CheckAproachRetractValid<WithCallbackMethod_GetPalletPointList<WithCallbackMethod_CalculateRelativePose<WithCallbackMethod_CalculateCurrentPoseRel<WithCallbackMethod_PingFromConty<WithCallbackMethod_GetTeleOpDevice<WithCallbackMethod_GetTeleOpState<WithCallbackMethod_ConnectTeleOpDevice<WithCallbackMethod_DisConnectTeleOpDevice<WithCallbackMethod_ReadTeleOpInput<WithCallbackMethod_StartTeleOp<WithCallbackMethod_StopTeleOp<WithCallbackMethod_SetPlayRate<WithCallbackMethod_GetPlayRate<WithCallbackMethod_GetTeleFileList<WithCallbackMethod_SaveTeleMotion<WithCallbackMethod_LoadTeleMotion<WithCallbackMethod_DeleteTeleMotion<WithCallbackMethod_EnableTeleKey<WithCallbackMethod_MoveTeleJ<WithCallbackMethod_MoveTeleL<WithCallbackMethod_MoveLF<WithCallbackMethod_GetTransformedFTSensorData<WithCallbackMethod_FTZero<WithCallbackMethod_SetControlInferenceData<WithCallbackMethod_GetControlInferenceData<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_GetControlInfo : public BaseClass {
@@ -7445,6 +7596,40 @@ class Control final {
     }
     // disable synchronous version of this method
     ::grpc::Status FTZero(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_SetControlInferenceData : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_SetControlInferenceData() {
+      ::grpc::Service::MarkMethodGeneric(83);
+    }
+    ~WithGenericMethod_SetControlInferenceData() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetControlInferenceData(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::ControlInferenceDataSet* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_GetControlInferenceData : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_GetControlInferenceData() {
+      ::grpc::Service::MarkMethodGeneric(84);
+    }
+    ~WithGenericMethod_GetControlInferenceData() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetControlInferenceData(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::ControlInferenceDataSet* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -9107,6 +9292,46 @@ class Control final {
     }
     void RequestFTZero(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(82, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_SetControlInferenceData : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_SetControlInferenceData() {
+      ::grpc::Service::MarkMethodRaw(83);
+    }
+    ~WithRawMethod_SetControlInferenceData() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetControlInferenceData(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::ControlInferenceDataSet* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSetControlInferenceData(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(83, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_GetControlInferenceData : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_GetControlInferenceData() {
+      ::grpc::Service::MarkMethodRaw(84);
+    }
+    ~WithRawMethod_GetControlInferenceData() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetControlInferenceData(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::ControlInferenceDataSet* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetControlInferenceData(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(84, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -10933,6 +11158,50 @@ class Control final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* FTZero(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_SetControlInferenceData : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_SetControlInferenceData() {
+      ::grpc::Service::MarkMethodRawCallback(83,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SetControlInferenceData(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_SetControlInferenceData() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetControlInferenceData(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::ControlInferenceDataSet* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* SetControlInferenceData(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_GetControlInferenceData : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_GetControlInferenceData() {
+      ::grpc::Service::MarkMethodRawCallback(84,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetControlInferenceData(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_GetControlInferenceData() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetControlInferenceData(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::ControlInferenceDataSet* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GetControlInferenceData(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
@@ -13176,9 +13445,63 @@ class Control final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedFTZero(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Nrmk::IndyFramework::Empty,::Nrmk::IndyFramework::Response>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_GetControlInfo<WithStreamedUnaryMethod_ActivateIndySDK<WithStreamedUnaryMethod_MoveJ<WithStreamedUnaryMethod_MoveJT<WithStreamedUnaryMethod_MoveL<WithStreamedUnaryMethod_MoveLT<WithStreamedUnaryMethod_MoveC<WithStreamedUnaryMethod_MoveCT<WithStreamedUnaryMethod_MoveJointTraj<WithStreamedUnaryMethod_MoveTaskTraj<WithStreamedUnaryMethod_MoveGcode<WithStreamedUnaryMethod_MoveConveyor<WithStreamedUnaryMethod_WaitIO<WithStreamedUnaryMethod_WaitTime<WithStreamedUnaryMethod_WaitProgress<WithStreamedUnaryMethod_WaitTraj<WithStreamedUnaryMethod_WaitRadius<WithStreamedUnaryMethod_MoveJCond<WithStreamedUnaryMethod_MoveLinearAxis<WithStreamedUnaryMethod_StopMotion<WithStreamedUnaryMethod_PauseMotion<WithStreamedUnaryMethod_SetDirectTeaching<WithStreamedUnaryMethod_SetSimulationMode<WithStreamedUnaryMethod_SetCustomControlMode<WithStreamedUnaryMethod_GetCustomControlMode<WithStreamedUnaryMethod_SetFrictionCompensation<WithStreamedUnaryMethod_GetFrictionCompensationState<WithStreamedUnaryMethod_SetTactTime<WithStreamedUnaryMethod_GetTactTime<WithStreamedUnaryMethod_Recover<WithStreamedUnaryMethod_Reboot<WithStreamedUnaryMethod_SetManualRecovery<WithStreamedUnaryMethod_MoveRecoverJoint<WithStreamedUnaryMethod_SearchProgram<WithStreamedUnaryMethod_PlayProgram<WithStreamedUnaryMethod_PauseProgram<WithStreamedUnaryMethod_ResumeProgram<WithStreamedUnaryMethod_StopProgram<WithStreamedUnaryMethod_SendAlarm<WithStreamedUnaryMethod_SendAnnotation<WithStreamedUnaryMethod_PlayTuningProgram<WithStreamedUnaryMethod_PlayProgramLine<WithStreamedUnaryMethod_SetModbusVariableNameList<WithStreamedUnaryMethod_SetVariableNameList<WithStreamedUnaryMethod_GetVariableNameList<WithStreamedUnaryMethod_SetIntVariable<WithStreamedUnaryMethod_GetIntVariable<WithStreamedUnaryMethod_SetModbusVariable<WithStreamedUnaryMethod_GetModbusVariable<WithStreamedUnaryMethod_SetBoolVariable<WithStreamedUnaryMethod_GetBoolVariable<WithStreamedUnaryMethod_SetFloatVariable<WithStreamedUnaryMethod_GetFloatVariable<WithStreamedUnaryMethod_SetJPosVariable<WithStreamedUnaryMethod_GetJPosVariable<WithStreamedUnaryMethod_SetTPosVariable<WithStreamedUnaryMethod_GetTPosVariable<WithStreamedUnaryMethod_InverseKinematics<WithStreamedUnaryMethod_ForwardKinematics<WithStreamedUnaryMethod_CheckAproachRetractValid<WithStreamedUnaryMethod_GetPalletPointList<WithStreamedUnaryMethod_CalculateRelativePose<WithStreamedUnaryMethod_CalculateCurrentPoseRel<WithStreamedUnaryMethod_PingFromConty<WithStreamedUnaryMethod_GetTeleOpDevice<WithStreamedUnaryMethod_GetTeleOpState<WithStreamedUnaryMethod_ConnectTeleOpDevice<WithStreamedUnaryMethod_DisConnectTeleOpDevice<WithStreamedUnaryMethod_ReadTeleOpInput<WithStreamedUnaryMethod_StartTeleOp<WithStreamedUnaryMethod_StopTeleOp<WithStreamedUnaryMethod_SetPlayRate<WithStreamedUnaryMethod_GetPlayRate<WithStreamedUnaryMethod_GetTeleFileList<WithStreamedUnaryMethod_SaveTeleMotion<WithStreamedUnaryMethod_LoadTeleMotion<WithStreamedUnaryMethod_DeleteTeleMotion<WithStreamedUnaryMethod_EnableTeleKey<WithStreamedUnaryMethod_MoveTeleJ<WithStreamedUnaryMethod_MoveTeleL<WithStreamedUnaryMethod_MoveLF<WithStreamedUnaryMethod_GetTransformedFTSensorData<WithStreamedUnaryMethod_FTZero<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_SetControlInferenceData : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_SetControlInferenceData() {
+      ::grpc::Service::MarkMethodStreamed(83,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::Nrmk::IndyFramework::ControlInferenceDataSet, ::Nrmk::IndyFramework::Response>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::Nrmk::IndyFramework::ControlInferenceDataSet, ::Nrmk::IndyFramework::Response>* streamer) {
+                       return this->StreamedSetControlInferenceData(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_SetControlInferenceData() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status SetControlInferenceData(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::ControlInferenceDataSet* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedSetControlInferenceData(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Nrmk::IndyFramework::ControlInferenceDataSet,::Nrmk::IndyFramework::Response>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_GetControlInferenceData : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_GetControlInferenceData() {
+      ::grpc::Service::MarkMethodStreamed(84,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ControlInferenceDataSet>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ControlInferenceDataSet>* streamer) {
+                       return this->StreamedGetControlInferenceData(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_GetControlInferenceData() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status GetControlInferenceData(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::ControlInferenceDataSet* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedGetControlInferenceData(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Nrmk::IndyFramework::Empty,::Nrmk::IndyFramework::ControlInferenceDataSet>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_GetControlInfo<WithStreamedUnaryMethod_ActivateIndySDK<WithStreamedUnaryMethod_MoveJ<WithStreamedUnaryMethod_MoveJT<WithStreamedUnaryMethod_MoveL<WithStreamedUnaryMethod_MoveLT<WithStreamedUnaryMethod_MoveC<WithStreamedUnaryMethod_MoveCT<WithStreamedUnaryMethod_MoveJointTraj<WithStreamedUnaryMethod_MoveTaskTraj<WithStreamedUnaryMethod_MoveGcode<WithStreamedUnaryMethod_MoveConveyor<WithStreamedUnaryMethod_WaitIO<WithStreamedUnaryMethod_WaitTime<WithStreamedUnaryMethod_WaitProgress<WithStreamedUnaryMethod_WaitTraj<WithStreamedUnaryMethod_WaitRadius<WithStreamedUnaryMethod_MoveJCond<WithStreamedUnaryMethod_MoveLinearAxis<WithStreamedUnaryMethod_StopMotion<WithStreamedUnaryMethod_PauseMotion<WithStreamedUnaryMethod_SetDirectTeaching<WithStreamedUnaryMethod_SetSimulationMode<WithStreamedUnaryMethod_SetCustomControlMode<WithStreamedUnaryMethod_GetCustomControlMode<WithStreamedUnaryMethod_SetFrictionCompensation<WithStreamedUnaryMethod_GetFrictionCompensationState<WithStreamedUnaryMethod_SetTactTime<WithStreamedUnaryMethod_GetTactTime<WithStreamedUnaryMethod_Recover<WithStreamedUnaryMethod_Reboot<WithStreamedUnaryMethod_SetManualRecovery<WithStreamedUnaryMethod_MoveRecoverJoint<WithStreamedUnaryMethod_SearchProgram<WithStreamedUnaryMethod_PlayProgram<WithStreamedUnaryMethod_PauseProgram<WithStreamedUnaryMethod_ResumeProgram<WithStreamedUnaryMethod_StopProgram<WithStreamedUnaryMethod_SendAlarm<WithStreamedUnaryMethod_SendAnnotation<WithStreamedUnaryMethod_PlayTuningProgram<WithStreamedUnaryMethod_PlayProgramLine<WithStreamedUnaryMethod_SetModbusVariableNameList<WithStreamedUnaryMethod_SetVariableNameList<WithStreamedUnaryMethod_GetVariableNameList<WithStreamedUnaryMethod_SetIntVariable<WithStreamedUnaryMethod_GetIntVariable<WithStreamedUnaryMethod_SetModbusVariable<WithStreamedUnaryMethod_GetModbusVariable<WithStreamedUnaryMethod_SetBoolVariable<WithStreamedUnaryMethod_GetBoolVariable<WithStreamedUnaryMethod_SetFloatVariable<WithStreamedUnaryMethod_GetFloatVariable<WithStreamedUnaryMethod_SetJPosVariable<WithStreamedUnaryMethod_GetJPosVariable<WithStreamedUnaryMethod_SetTPosVariable<WithStreamedUnaryMethod_GetTPosVariable<WithStreamedUnaryMethod_InverseKinematics<WithStreamedUnaryMethod_ForwardKinematics<WithStreamedUnaryMethod_CheckAproachRetractValid<WithStreamedUnaryMethod_GetPalletPointList<WithStreamedUnaryMethod_CalculateRelativePose<WithStreamedUnaryMethod_CalculateCurrentPoseRel<WithStreamedUnaryMethod_PingFromConty<WithStreamedUnaryMethod_GetTeleOpDevice<WithStreamedUnaryMethod_GetTeleOpState<WithStreamedUnaryMethod_ConnectTeleOpDevice<WithStreamedUnaryMethod_DisConnectTeleOpDevice<WithStreamedUnaryMethod_ReadTeleOpInput<WithStreamedUnaryMethod_StartTeleOp<WithStreamedUnaryMethod_StopTeleOp<WithStreamedUnaryMethod_SetPlayRate<WithStreamedUnaryMethod_GetPlayRate<WithStreamedUnaryMethod_GetTeleFileList<WithStreamedUnaryMethod_SaveTeleMotion<WithStreamedUnaryMethod_LoadTeleMotion<WithStreamedUnaryMethod_DeleteTeleMotion<WithStreamedUnaryMethod_EnableTeleKey<WithStreamedUnaryMethod_MoveTeleJ<WithStreamedUnaryMethod_MoveTeleL<WithStreamedUnaryMethod_MoveLF<WithStreamedUnaryMethod_GetTransformedFTSensorData<WithStreamedUnaryMethod_FTZero<WithStreamedUnaryMethod_SetControlInferenceData<WithStreamedUnaryMethod_GetControlInferenceData<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_GetControlInfo<WithStreamedUnaryMethod_ActivateIndySDK<WithStreamedUnaryMethod_MoveJ<WithStreamedUnaryMethod_MoveJT<WithStreamedUnaryMethod_MoveL<WithStreamedUnaryMethod_MoveLT<WithStreamedUnaryMethod_MoveC<WithStreamedUnaryMethod_MoveCT<WithStreamedUnaryMethod_MoveJointTraj<WithStreamedUnaryMethod_MoveTaskTraj<WithStreamedUnaryMethod_MoveGcode<WithStreamedUnaryMethod_MoveConveyor<WithStreamedUnaryMethod_WaitIO<WithStreamedUnaryMethod_WaitTime<WithStreamedUnaryMethod_WaitProgress<WithStreamedUnaryMethod_WaitTraj<WithStreamedUnaryMethod_WaitRadius<WithStreamedUnaryMethod_MoveJCond<WithStreamedUnaryMethod_MoveLinearAxis<WithStreamedUnaryMethod_StopMotion<WithStreamedUnaryMethod_PauseMotion<WithStreamedUnaryMethod_SetDirectTeaching<WithStreamedUnaryMethod_SetSimulationMode<WithStreamedUnaryMethod_SetCustomControlMode<WithStreamedUnaryMethod_GetCustomControlMode<WithStreamedUnaryMethod_SetFrictionCompensation<WithStreamedUnaryMethod_GetFrictionCompensationState<WithStreamedUnaryMethod_SetTactTime<WithStreamedUnaryMethod_GetTactTime<WithStreamedUnaryMethod_Recover<WithStreamedUnaryMethod_Reboot<WithStreamedUnaryMethod_SetManualRecovery<WithStreamedUnaryMethod_MoveRecoverJoint<WithStreamedUnaryMethod_SearchProgram<WithStreamedUnaryMethod_PlayProgram<WithStreamedUnaryMethod_PauseProgram<WithStreamedUnaryMethod_ResumeProgram<WithStreamedUnaryMethod_StopProgram<WithStreamedUnaryMethod_SendAlarm<WithStreamedUnaryMethod_SendAnnotation<WithStreamedUnaryMethod_PlayTuningProgram<WithStreamedUnaryMethod_PlayProgramLine<WithStreamedUnaryMethod_SetModbusVariableNameList<WithStreamedUnaryMethod_SetVariableNameList<WithStreamedUnaryMethod_GetVariableNameList<WithStreamedUnaryMethod_SetIntVariable<WithStreamedUnaryMethod_GetIntVariable<WithStreamedUnaryMethod_SetModbusVariable<WithStreamedUnaryMethod_GetModbusVariable<WithStreamedUnaryMethod_SetBoolVariable<WithStreamedUnaryMethod_GetBoolVariable<WithStreamedUnaryMethod_SetFloatVariable<WithStreamedUnaryMethod_GetFloatVariable<WithStreamedUnaryMethod_SetJPosVariable<WithStreamedUnaryMethod_GetJPosVariable<WithStreamedUnaryMethod_SetTPosVariable<WithStreamedUnaryMethod_GetTPosVariable<WithStreamedUnaryMethod_InverseKinematics<WithStreamedUnaryMethod_ForwardKinematics<WithStreamedUnaryMethod_CheckAproachRetractValid<WithStreamedUnaryMethod_GetPalletPointList<WithStreamedUnaryMethod_CalculateRelativePose<WithStreamedUnaryMethod_CalculateCurrentPoseRel<WithStreamedUnaryMethod_PingFromConty<WithStreamedUnaryMethod_GetTeleOpDevice<WithStreamedUnaryMethod_GetTeleOpState<WithStreamedUnaryMethod_ConnectTeleOpDevice<WithStreamedUnaryMethod_DisConnectTeleOpDevice<WithStreamedUnaryMethod_ReadTeleOpInput<WithStreamedUnaryMethod_StartTeleOp<WithStreamedUnaryMethod_StopTeleOp<WithStreamedUnaryMethod_SetPlayRate<WithStreamedUnaryMethod_GetPlayRate<WithStreamedUnaryMethod_GetTeleFileList<WithStreamedUnaryMethod_SaveTeleMotion<WithStreamedUnaryMethod_LoadTeleMotion<WithStreamedUnaryMethod_DeleteTeleMotion<WithStreamedUnaryMethod_EnableTeleKey<WithStreamedUnaryMethod_MoveTeleJ<WithStreamedUnaryMethod_MoveTeleL<WithStreamedUnaryMethod_MoveLF<WithStreamedUnaryMethod_GetTransformedFTSensorData<WithStreamedUnaryMethod_FTZero<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_GetControlInfo<WithStreamedUnaryMethod_ActivateIndySDK<WithStreamedUnaryMethod_MoveJ<WithStreamedUnaryMethod_MoveJT<WithStreamedUnaryMethod_MoveL<WithStreamedUnaryMethod_MoveLT<WithStreamedUnaryMethod_MoveC<WithStreamedUnaryMethod_MoveCT<WithStreamedUnaryMethod_MoveJointTraj<WithStreamedUnaryMethod_MoveTaskTraj<WithStreamedUnaryMethod_MoveGcode<WithStreamedUnaryMethod_MoveConveyor<WithStreamedUnaryMethod_WaitIO<WithStreamedUnaryMethod_WaitTime<WithStreamedUnaryMethod_WaitProgress<WithStreamedUnaryMethod_WaitTraj<WithStreamedUnaryMethod_WaitRadius<WithStreamedUnaryMethod_MoveJCond<WithStreamedUnaryMethod_MoveLinearAxis<WithStreamedUnaryMethod_StopMotion<WithStreamedUnaryMethod_PauseMotion<WithStreamedUnaryMethod_SetDirectTeaching<WithStreamedUnaryMethod_SetSimulationMode<WithStreamedUnaryMethod_SetCustomControlMode<WithStreamedUnaryMethod_GetCustomControlMode<WithStreamedUnaryMethod_SetFrictionCompensation<WithStreamedUnaryMethod_GetFrictionCompensationState<WithStreamedUnaryMethod_SetTactTime<WithStreamedUnaryMethod_GetTactTime<WithStreamedUnaryMethod_Recover<WithStreamedUnaryMethod_Reboot<WithStreamedUnaryMethod_SetManualRecovery<WithStreamedUnaryMethod_MoveRecoverJoint<WithStreamedUnaryMethod_SearchProgram<WithStreamedUnaryMethod_PlayProgram<WithStreamedUnaryMethod_PauseProgram<WithStreamedUnaryMethod_ResumeProgram<WithStreamedUnaryMethod_StopProgram<WithStreamedUnaryMethod_SendAlarm<WithStreamedUnaryMethod_SendAnnotation<WithStreamedUnaryMethod_PlayTuningProgram<WithStreamedUnaryMethod_PlayProgramLine<WithStreamedUnaryMethod_SetModbusVariableNameList<WithStreamedUnaryMethod_SetVariableNameList<WithStreamedUnaryMethod_GetVariableNameList<WithStreamedUnaryMethod_SetIntVariable<WithStreamedUnaryMethod_GetIntVariable<WithStreamedUnaryMethod_SetModbusVariable<WithStreamedUnaryMethod_GetModbusVariable<WithStreamedUnaryMethod_SetBoolVariable<WithStreamedUnaryMethod_GetBoolVariable<WithStreamedUnaryMethod_SetFloatVariable<WithStreamedUnaryMethod_GetFloatVariable<WithStreamedUnaryMethod_SetJPosVariable<WithStreamedUnaryMethod_GetJPosVariable<WithStreamedUnaryMethod_SetTPosVariable<WithStreamedUnaryMethod_GetTPosVariable<WithStreamedUnaryMethod_InverseKinematics<WithStreamedUnaryMethod_ForwardKinematics<WithStreamedUnaryMethod_CheckAproachRetractValid<WithStreamedUnaryMethod_GetPalletPointList<WithStreamedUnaryMethod_CalculateRelativePose<WithStreamedUnaryMethod_CalculateCurrentPoseRel<WithStreamedUnaryMethod_PingFromConty<WithStreamedUnaryMethod_GetTeleOpDevice<WithStreamedUnaryMethod_GetTeleOpState<WithStreamedUnaryMethod_ConnectTeleOpDevice<WithStreamedUnaryMethod_DisConnectTeleOpDevice<WithStreamedUnaryMethod_ReadTeleOpInput<WithStreamedUnaryMethod_StartTeleOp<WithStreamedUnaryMethod_StopTeleOp<WithStreamedUnaryMethod_SetPlayRate<WithStreamedUnaryMethod_GetPlayRate<WithStreamedUnaryMethod_GetTeleFileList<WithStreamedUnaryMethod_SaveTeleMotion<WithStreamedUnaryMethod_LoadTeleMotion<WithStreamedUnaryMethod_DeleteTeleMotion<WithStreamedUnaryMethod_EnableTeleKey<WithStreamedUnaryMethod_MoveTeleJ<WithStreamedUnaryMethod_MoveTeleL<WithStreamedUnaryMethod_MoveLF<WithStreamedUnaryMethod_GetTransformedFTSensorData<WithStreamedUnaryMethod_FTZero<WithStreamedUnaryMethod_SetControlInferenceData<WithStreamedUnaryMethod_GetControlInferenceData<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > StreamedService;
 };
 
 }  // namespace IndyFramework

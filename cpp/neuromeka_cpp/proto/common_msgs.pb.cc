@@ -70,6 +70,22 @@ struct StateDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 StateDefaultTypeInternal _State_default_instance_;
         template <typename>
+PROTOBUF_CONSTEXPR Int::Int(::_pbi::ConstantInitialized)
+    : _impl_{
+      /*decltype(_impl_.value_)*/ ::int64_t{0},
+      /*decltype(_impl_._cached_size_)*/ {},
+    } {}
+struct IntDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR IntDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~IntDefaultTypeInternal() {}
+  union {
+    Int _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 IntDefaultTypeInternal _Int_default_instance_;
+        template <typename>
 PROTOBUF_CONSTEXPR Float::Float(::_pbi::ConstantInitialized)
     : _impl_{
       /*decltype(_impl_.value_)*/ 0,
@@ -280,9 +296,35 @@ struct DateTimeDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 DateTimeDefaultTypeInternal _DateTime_default_instance_;
+        template <typename>
+PROTOBUF_CONSTEXPR NamedReferencePosition::NamedReferencePosition(::_pbi::ConstantInitialized)
+    : _impl_{
+      /*decltype(_impl_.tpos_)*/ {},
+      /*decltype(_impl_.tpos0_)*/ {},
+      /*decltype(_impl_.tpos1_)*/ {},
+      /*decltype(_impl_.tpos2_)*/ {},
+      /*decltype(_impl_.jpos0_)*/ {},
+      /*decltype(_impl_.jpos1_)*/ {},
+      /*decltype(_impl_.jpos2_)*/ {},
+      /*decltype(_impl_.name_)*/ {
+          &::_pbi::fixed_address_empty_string,
+          ::_pbi::ConstantInitialized{},
+      },
+      /*decltype(_impl_._cached_size_)*/ {},
+    } {}
+struct NamedReferencePositionDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR NamedReferencePositionDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~NamedReferencePositionDefaultTypeInternal() {}
+  union {
+    NamedReferencePosition _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 NamedReferencePositionDefaultTypeInternal _NamedReferencePosition_default_instance_;
 }  // namespace IndyFramework
 }  // namespace Nrmk
-static ::_pb::Metadata file_level_metadata_common_5fmsgs_2eproto[15];
+static ::_pb::Metadata file_level_metadata_common_5fmsgs_2eproto[17];
 static const ::_pb::EnumDescriptor* file_level_enum_descriptors_common_5fmsgs_2eproto[9];
 static constexpr const ::_pb::ServiceDescriptor**
     file_level_service_descriptors_common_5fmsgs_2eproto = nullptr;
@@ -314,6 +356,15 @@ const ::uint32_t TableStruct_common_5fmsgs_2eproto::offsets[] PROTOBUF_SECTION_V
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::State, _impl_.enable_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::Int, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::Int, _impl_.value_),
     ~0u,  // no _has_bits_
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::Float, _internal_metadata_),
     ~0u,  // no _extensions_
@@ -432,6 +483,22 @@ const ::uint32_t TableStruct_common_5fmsgs_2eproto::offsets[] PROTOBUF_SECTION_V
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::DateTime, _impl_.hour_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::DateTime, _impl_.minute_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::DateTime, _impl_.second_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::NamedReferencePosition, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::NamedReferencePosition, _impl_.name_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::NamedReferencePosition, _impl_.tpos_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::NamedReferencePosition, _impl_.tpos0_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::NamedReferencePosition, _impl_.tpos1_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::NamedReferencePosition, _impl_.tpos2_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::NamedReferencePosition, _impl_.jpos0_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::NamedReferencePosition, _impl_.jpos1_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::NamedReferencePosition, _impl_.jpos2_),
 };
 
 static const ::_pbi::MigrationSchema
@@ -439,24 +506,27 @@ static const ::_pbi::MigrationSchema
         {0, -1, -1, sizeof(::Nrmk::IndyFramework::Empty)},
         {8, -1, -1, sizeof(::Nrmk::IndyFramework::Name)},
         {17, -1, -1, sizeof(::Nrmk::IndyFramework::State)},
-        {26, -1, -1, sizeof(::Nrmk::IndyFramework::Float)},
-        {35, -1, -1, sizeof(::Nrmk::IndyFramework::IntMode)},
-        {44, -1, -1, sizeof(::Nrmk::IndyFramework::StopCat)},
-        {53, -1, -1, sizeof(::Nrmk::IndyFramework::PauseCat)},
-        {62, -1, -1, sizeof(::Nrmk::IndyFramework::Response)},
-        {72, -1, -1, sizeof(::Nrmk::IndyFramework::Message)},
-        {81, -1, -1, sizeof(::Nrmk::IndyFramework::Vector)},
-        {90, -1, -1, sizeof(::Nrmk::IndyFramework::PosePair)},
-        {100, -1, -1, sizeof(::Nrmk::IndyFramework::EndtoolRS485Tx)},
-        {110, -1, -1, sizeof(::Nrmk::IndyFramework::EndtoolRS485Rx)},
-        {120, -1, -1, sizeof(::Nrmk::IndyFramework::TactTime)},
-        {130, -1, -1, sizeof(::Nrmk::IndyFramework::DateTime)},
+        {26, -1, -1, sizeof(::Nrmk::IndyFramework::Int)},
+        {35, -1, -1, sizeof(::Nrmk::IndyFramework::Float)},
+        {44, -1, -1, sizeof(::Nrmk::IndyFramework::IntMode)},
+        {53, -1, -1, sizeof(::Nrmk::IndyFramework::StopCat)},
+        {62, -1, -1, sizeof(::Nrmk::IndyFramework::PauseCat)},
+        {71, -1, -1, sizeof(::Nrmk::IndyFramework::Response)},
+        {81, -1, -1, sizeof(::Nrmk::IndyFramework::Message)},
+        {90, -1, -1, sizeof(::Nrmk::IndyFramework::Vector)},
+        {99, -1, -1, sizeof(::Nrmk::IndyFramework::PosePair)},
+        {109, -1, -1, sizeof(::Nrmk::IndyFramework::EndtoolRS485Tx)},
+        {119, -1, -1, sizeof(::Nrmk::IndyFramework::EndtoolRS485Rx)},
+        {129, -1, -1, sizeof(::Nrmk::IndyFramework::TactTime)},
+        {139, -1, -1, sizeof(::Nrmk::IndyFramework::DateTime)},
+        {153, -1, -1, sizeof(::Nrmk::IndyFramework::NamedReferencePosition)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
     &::Nrmk::IndyFramework::_Empty_default_instance_._instance,
     &::Nrmk::IndyFramework::_Name_default_instance_._instance,
     &::Nrmk::IndyFramework::_State_default_instance_._instance,
+    &::Nrmk::IndyFramework::_Int_default_instance_._instance,
     &::Nrmk::IndyFramework::_Float_default_instance_._instance,
     &::Nrmk::IndyFramework::_IntMode_default_instance_._instance,
     &::Nrmk::IndyFramework::_StopCat_default_instance_._instance,
@@ -469,64 +539,69 @@ static const ::_pb::Message* const file_default_instances[] = {
     &::Nrmk::IndyFramework::_EndtoolRS485Rx_default_instance_._instance,
     &::Nrmk::IndyFramework::_TactTime_default_instance_._instance,
     &::Nrmk::IndyFramework::_DateTime_default_instance_._instance,
+    &::Nrmk::IndyFramework::_NamedReferencePosition_default_instance_._instance,
 };
 const char descriptor_table_protodef_common_5fmsgs_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
     "\n\021common_msgs.proto\022\022Nrmk.IndyFramework\""
     "\007\n\005Empty\"\024\n\004Name\022\014\n\004name\030\001 \001(\t\"\027\n\005State\022"
-    "\016\n\006enable\030\001 \001(\010\"\026\n\005Float\022\r\n\005value\030\001 \001(\002\""
-    "\027\n\007IntMode\022\014\n\004mode\030\001 \001(\004\"=\n\007StopCat\0222\n\010c"
-    "ategory\030\001 \001(\0162 .Nrmk.IndyFramework.StopC"
-    "ategory\"\?\n\010PauseCat\0223\n\010category\030\001 \001(\0162!."
-    "Nrmk.IndyFramework.PauseCategory\"%\n\010Resp"
-    "onse\022\014\n\004code\030\001 \001(\003\022\013\n\003msg\030\002 \001(\t\"\032\n\007Messa"
-    "ge\022\017\n\007content\030\001 \001(\t\"\030\n\006Vector\022\016\n\006values\030"
-    "\001 \003(\001\" \n\010PosePair\022\t\n\001q\030\001 \003(\002\022\t\n\001p\030\002 \003(\002\""
-    ".\n\016EndtoolRS485Tx\022\r\n\005word1\030\001 \001(\r\022\r\n\005word"
-    "2\030\002 \001(\r\".\n\016EndtoolRS485Rx\022\r\n\005word1\030\001 \001(\r"
-    "\022\r\n\005word2\030\002 \001(\r\"+\n\010TactTime\022\014\n\004type\030\001 \001("
-    "\t\022\021\n\ttact_time\030\002 \001(\002\"b\n\010DateTime\022\014\n\004year"
-    "\030\001 \001(\r\022\r\n\005month\030\002 \001(\r\022\013\n\003day\030\003 \001(\r\022\014\n\004ho"
-    "ur\030\004 \001(\r\022\016\n\006minute\030\005 \001(\r\022\016\n\006second\030\006 \001(\r"
-    "*\332\002\n\007OpState\022\021\n\rOP_SYSTEM_OFF\020\000\022\020\n\014OP_SY"
-    "STEM_ON\020\001\022\016\n\nOP_VIOLATE\020\002\022\023\n\017OP_RECOVER_"
-    "HARD\020\003\022\023\n\017OP_RECOVER_SOFT\020\004\022\013\n\007OP_IDLE\020\005"
-    "\022\r\n\tOP_MOVING\020\006\022\017\n\013OP_TEACHING\020\007\022\020\n\014OP_C"
-    "OLLISION\020\010\022\023\n\017OP_STOP_AND_OFF\020\t\022\021\n\rOP_CO"
-    "MPLIANCE\020\n\022\024\n\020OP_BRAKE_CONTROL\020\013\022\023\n\017OP_S"
-    "YSTEM_RESET\020\014\022\024\n\020OP_SYSTEM_SWITCH\020\r\022\023\n\017O"
-    "P_VIOLATE_HARD\020\017\022\025\n\021OP_MANUAL_RECOVER\020\020\022"
-    "\013\n\007TELE_OP\020\021\022\017\n\013TRAJ_MOVING\020\022*\260\001\n\tTrajSt"
-    "ate\022\r\n\tTRAJ_NONE\020\000\022\r\n\tTRAJ_INIT\020\001\022\r\n\tTRA"
-    "J_CALC\020\002\022\021\n\rTRAJ_STAND_BY\020\003\022\014\n\010TRAJ_ACC\020"
-    "\004\022\017\n\013TRAJ_CRUISE\020\005\022\014\n\010TRAJ_DEC\020\006\022\023\n\017TRAJ"
-    "_CANCELLING\020\007\022\021\n\rTRAJ_FINISHED\020\010\022\016\n\nTRAJ"
-    "_ERROR\020\t*Z\n\rTrajCondition\022\020\n\014TRAJ_STARTE"
-    "D\020\000\022\021\n\rTRAJ_ACC_DONE\020\001\022\021\n\rTRAJ_CRZ_DONE\020"
-    "\002\022\021\n\rTRAJ_DEC_DONE\020\003*F\n\014StopCategory\022\023\n\017"
-    "IMMEDIATE_BRAKE\020\000\022\020\n\014SMOOTH_BRAKE\020\001\022\017\n\013S"
-    "MOOTH_ONLY\020\002*6\n\rPauseCategory\022\020\n\014SMOOTH_"
-    "PAUSE\020\000\022\023\n\017IMMEDIATE_PAUSE\020\001*T\n\014ProgramS"
-    "tate\022\r\n\tPROG_IDLE\020\000\022\020\n\014PROG_RUNNING\020\001\022\020\n"
-    "\014PROG_PAUSING\020\002\022\021\n\rPROG_STOPPING\020\003*e\n\023Co"
-    "llisionPolicyType\022\022\n\016COLL_NO_DETECT\020\000\022\016\n"
-    "\nCOLL_PAUSE\020\001\022\033\n\027COLL_RESUME_AFTER_SLEEP"
-    "\020\002\022\r\n\tCOLL_STOP\020\003*:\n\013TuningSpace\022\014\n\010TUNE"
-    "_ALL\020\000\022\016\n\nTUNE_JOINT\020\001\022\r\n\tTUNE_TASK\020\002*N\n"
-    "\017TuningPrecision\022\021\n\rLOW_PRECISION\020\000\022\024\n\020M"
-    "IDDLE_PRECISION\020\001\022\022\n\016HIGH_PRECISION\020\002b\006p"
-    "roto3"
+    "\016\n\006enable\030\001 \001(\010\"\024\n\003Int\022\r\n\005value\030\001 \001(\003\"\026\n"
+    "\005Float\022\r\n\005value\030\001 \001(\002\"\027\n\007IntMode\022\014\n\004mode"
+    "\030\001 \001(\004\"=\n\007StopCat\0222\n\010category\030\001 \001(\0162 .Nr"
+    "mk.IndyFramework.StopCategory\"\?\n\010PauseCa"
+    "t\0223\n\010category\030\001 \001(\0162!.Nrmk.IndyFramework"
+    ".PauseCategory\"%\n\010Response\022\014\n\004code\030\001 \001(\003"
+    "\022\013\n\003msg\030\002 \001(\t\"\032\n\007Message\022\017\n\007content\030\001 \001("
+    "\t\"\030\n\006Vector\022\016\n\006values\030\001 \003(\001\" \n\010PosePair\022"
+    "\t\n\001q\030\001 \003(\002\022\t\n\001p\030\002 \003(\002\".\n\016EndtoolRS485Tx\022"
+    "\r\n\005word1\030\001 \001(\r\022\r\n\005word2\030\002 \001(\r\".\n\016Endtool"
+    "RS485Rx\022\r\n\005word1\030\001 \001(\r\022\r\n\005word2\030\002 \001(\r\"+\n"
+    "\010TactTime\022\014\n\004type\030\001 \001(\t\022\021\n\ttact_time\030\002 \001"
+    "(\002\"b\n\010DateTime\022\014\n\004year\030\001 \001(\r\022\r\n\005month\030\002 "
+    "\001(\r\022\013\n\003day\030\003 \001(\r\022\014\n\004hour\030\004 \001(\r\022\016\n\006minute"
+    "\030\005 \001(\r\022\016\n\006second\030\006 \001(\r\"\216\001\n\026NamedReferenc"
+    "ePosition\022\014\n\004name\030\001 \001(\t\022\014\n\004tpos\030\002 \003(\002\022\r\n"
+    "\005tpos0\030\003 \003(\002\022\r\n\005tpos1\030\004 \003(\002\022\r\n\005tpos2\030\005 \003"
+    "(\002\022\r\n\005jpos0\030\006 \003(\002\022\r\n\005jpos1\030\007 \003(\002\022\r\n\005jpos"
+    "2\030\010 \003(\002*\332\002\n\007OpState\022\021\n\rOP_SYSTEM_OFF\020\000\022\020"
+    "\n\014OP_SYSTEM_ON\020\001\022\016\n\nOP_VIOLATE\020\002\022\023\n\017OP_R"
+    "ECOVER_HARD\020\003\022\023\n\017OP_RECOVER_SOFT\020\004\022\013\n\007OP"
+    "_IDLE\020\005\022\r\n\tOP_MOVING\020\006\022\017\n\013OP_TEACHING\020\007\022"
+    "\020\n\014OP_COLLISION\020\010\022\023\n\017OP_STOP_AND_OFF\020\t\022\021"
+    "\n\rOP_COMPLIANCE\020\n\022\024\n\020OP_BRAKE_CONTROL\020\013\022"
+    "\023\n\017OP_SYSTEM_RESET\020\014\022\024\n\020OP_SYSTEM_SWITCH"
+    "\020\r\022\023\n\017OP_VIOLATE_HARD\020\017\022\025\n\021OP_MANUAL_REC"
+    "OVER\020\020\022\013\n\007TELE_OP\020\021\022\017\n\013TRAJ_MOVING\020\022*\260\001\n"
+    "\tTrajState\022\r\n\tTRAJ_NONE\020\000\022\r\n\tTRAJ_INIT\020\001"
+    "\022\r\n\tTRAJ_CALC\020\002\022\021\n\rTRAJ_STAND_BY\020\003\022\014\n\010TR"
+    "AJ_ACC\020\004\022\017\n\013TRAJ_CRUISE\020\005\022\014\n\010TRAJ_DEC\020\006\022"
+    "\023\n\017TRAJ_CANCELLING\020\007\022\021\n\rTRAJ_FINISHED\020\010\022"
+    "\016\n\nTRAJ_ERROR\020\t*Z\n\rTrajCondition\022\020\n\014TRAJ"
+    "_STARTED\020\000\022\021\n\rTRAJ_ACC_DONE\020\001\022\021\n\rTRAJ_CR"
+    "Z_DONE\020\002\022\021\n\rTRAJ_DEC_DONE\020\003*F\n\014StopCateg"
+    "ory\022\023\n\017IMMEDIATE_BRAKE\020\000\022\020\n\014SMOOTH_BRAKE"
+    "\020\001\022\017\n\013SMOOTH_ONLY\020\002*6\n\rPauseCategory\022\020\n\014"
+    "SMOOTH_PAUSE\020\000\022\023\n\017IMMEDIATE_PAUSE\020\001*T\n\014P"
+    "rogramState\022\r\n\tPROG_IDLE\020\000\022\020\n\014PROG_RUNNI"
+    "NG\020\001\022\020\n\014PROG_PAUSING\020\002\022\021\n\rPROG_STOPPING\020"
+    "\003*e\n\023CollisionPolicyType\022\022\n\016COLL_NO_DETE"
+    "CT\020\000\022\016\n\nCOLL_PAUSE\020\001\022\033\n\027COLL_RESUME_AFTE"
+    "R_SLEEP\020\002\022\r\n\tCOLL_STOP\020\003*:\n\013TuningSpace\022"
+    "\014\n\010TUNE_ALL\020\000\022\016\n\nTUNE_JOINT\020\001\022\r\n\tTUNE_TA"
+    "SK\020\002*N\n\017TuningPrecision\022\021\n\rLOW_PRECISION"
+    "\020\000\022\024\n\020MIDDLE_PRECISION\020\001\022\022\n\016HIGH_PRECISI"
+    "ON\020\002b\006proto3"
 };
 static ::absl::once_flag descriptor_table_common_5fmsgs_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_common_5fmsgs_2eproto = {
     false,
     false,
-    1725,
+    1892,
     descriptor_table_protodef_common_5fmsgs_2eproto,
     "common_msgs.proto",
     &descriptor_table_common_5fmsgs_2eproto_once,
     nullptr,
     0,
-    15,
+    17,
     schemas,
     file_default_instances,
     TableStruct_common_5fmsgs_2eproto::offsets,
@@ -1101,6 +1176,172 @@ void State::InternalSwap(State* other) {
 }
 // ===================================================================
 
+class Int::_Internal {
+ public:
+};
+
+Int::Int(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Nrmk.IndyFramework.Int)
+}
+Int::Int(const Int& from)
+    : ::google::protobuf::Message(), _impl_(from._impl_) {
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.Int)
+}
+inline void Int::SharedCtor(::_pb::Arena* arena) {
+  (void)arena;
+  new (&_impl_) Impl_{
+      decltype(_impl_.value_){::int64_t{0}},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+}
+Int::~Int() {
+  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.Int)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void Int::SharedDtor() {
+  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
+}
+void Int::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+PROTOBUF_NOINLINE void Int::Clear() {
+// @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.Int)
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.value_ = ::int64_t{0};
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* Int::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 1, 0, 0, 2> Int::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    1, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    1,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_Int_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // int64 value = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(Int, _impl_.value_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(Int, _impl_.value_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // int64 value = 1;
+    {PROTOBUF_FIELD_OFFSET(Int, _impl_.value_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt64)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+
+::uint8_t* Int::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.Int)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // int64 value = 1;
+  if (this->_internal_value() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt64ToArrayWithField<1>(
+            stream, this->_internal_value(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.Int)
+  return target;
+}
+
+::size_t Int::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.Int)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // int64 value = 1;
+  if (this->_internal_value() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(
+        this->_internal_value());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData Int::_class_data_ = {
+    ::google::protobuf::Message::CopyWithSourceCheck,
+    Int::MergeImpl
+};
+const ::google::protobuf::Message::ClassData*Int::GetClassData() const { return &_class_data_; }
+
+
+void Int::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<Int*>(&to_msg);
+  auto& from = static_cast<const Int&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.Int)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from._internal_value() != 0) {
+    _this->_internal_set_value(from._internal_value());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void Int::CopyFrom(const Int& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Nrmk.IndyFramework.Int)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool Int::IsInitialized() const {
+  return true;
+}
+
+void Int::InternalSwap(Int* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+        swap(_impl_.value_, other->_impl_.value_);
+}
+
+::google::protobuf::Metadata Int::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_common_5fmsgs_2eproto_getter, &descriptor_table_common_5fmsgs_2eproto_once,
+      file_level_metadata_common_5fmsgs_2eproto[3]);
+}
+// ===================================================================
+
 class Float::_Internal {
  public:
 };
@@ -1277,7 +1518,7 @@ void Float::InternalSwap(Float* other) {
 ::google::protobuf::Metadata Float::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_5fmsgs_2eproto_getter, &descriptor_table_common_5fmsgs_2eproto_once,
-      file_level_metadata_common_5fmsgs_2eproto[3]);
+      file_level_metadata_common_5fmsgs_2eproto[4]);
 }
 // ===================================================================
 
@@ -1443,7 +1684,7 @@ void IntMode::InternalSwap(IntMode* other) {
 ::google::protobuf::Metadata IntMode::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_5fmsgs_2eproto_getter, &descriptor_table_common_5fmsgs_2eproto_once,
-      file_level_metadata_common_5fmsgs_2eproto[4]);
+      file_level_metadata_common_5fmsgs_2eproto[5]);
 }
 // ===================================================================
 
@@ -1609,7 +1850,7 @@ void StopCat::InternalSwap(StopCat* other) {
 ::google::protobuf::Metadata StopCat::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_5fmsgs_2eproto_getter, &descriptor_table_common_5fmsgs_2eproto_once,
-      file_level_metadata_common_5fmsgs_2eproto[5]);
+      file_level_metadata_common_5fmsgs_2eproto[6]);
 }
 // ===================================================================
 
@@ -1775,7 +2016,7 @@ void PauseCat::InternalSwap(PauseCat* other) {
 ::google::protobuf::Metadata PauseCat::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_5fmsgs_2eproto_getter, &descriptor_table_common_5fmsgs_2eproto_once,
-      file_level_metadata_common_5fmsgs_2eproto[6]);
+      file_level_metadata_common_5fmsgs_2eproto[7]);
 }
 // ===================================================================
 
@@ -1993,7 +2234,7 @@ void Response::InternalSwap(Response* other) {
 ::google::protobuf::Metadata Response::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_5fmsgs_2eproto_getter, &descriptor_table_common_5fmsgs_2eproto_once,
-      file_level_metadata_common_5fmsgs_2eproto[7]);
+      file_level_metadata_common_5fmsgs_2eproto[8]);
 }
 // ===================================================================
 
@@ -2184,7 +2425,7 @@ void Message::InternalSwap(Message* other) {
 ::google::protobuf::Metadata Message::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_5fmsgs_2eproto_getter, &descriptor_table_common_5fmsgs_2eproto_once,
-      file_level_metadata_common_5fmsgs_2eproto[8]);
+      file_level_metadata_common_5fmsgs_2eproto[9]);
 }
 // ===================================================================
 
@@ -2359,7 +2600,7 @@ void Vector::InternalSwap(Vector* other) {
 ::google::protobuf::Metadata Vector::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_5fmsgs_2eproto_getter, &descriptor_table_common_5fmsgs_2eproto_once,
-      file_level_metadata_common_5fmsgs_2eproto[9]);
+      file_level_metadata_common_5fmsgs_2eproto[10]);
 }
 // ===================================================================
 
@@ -2563,7 +2804,7 @@ void PosePair::InternalSwap(PosePair* other) {
 ::google::protobuf::Metadata PosePair::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_5fmsgs_2eproto_getter, &descriptor_table_common_5fmsgs_2eproto_once,
-      file_level_metadata_common_5fmsgs_2eproto[10]);
+      file_level_metadata_common_5fmsgs_2eproto[11]);
 }
 // ===================================================================
 
@@ -2759,7 +3000,7 @@ void EndtoolRS485Tx::InternalSwap(EndtoolRS485Tx* other) {
 ::google::protobuf::Metadata EndtoolRS485Tx::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_5fmsgs_2eproto_getter, &descriptor_table_common_5fmsgs_2eproto_once,
-      file_level_metadata_common_5fmsgs_2eproto[11]);
+      file_level_metadata_common_5fmsgs_2eproto[12]);
 }
 // ===================================================================
 
@@ -2955,7 +3196,7 @@ void EndtoolRS485Rx::InternalSwap(EndtoolRS485Rx* other) {
 ::google::protobuf::Metadata EndtoolRS485Rx::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_5fmsgs_2eproto_getter, &descriptor_table_common_5fmsgs_2eproto_once,
-      file_level_metadata_common_5fmsgs_2eproto[12]);
+      file_level_metadata_common_5fmsgs_2eproto[13]);
 }
 // ===================================================================
 
@@ -3187,7 +3428,7 @@ void TactTime::InternalSwap(TactTime* other) {
 ::google::protobuf::Metadata TactTime::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_5fmsgs_2eproto_getter, &descriptor_table_common_5fmsgs_2eproto_once,
-      file_level_metadata_common_5fmsgs_2eproto[13]);
+      file_level_metadata_common_5fmsgs_2eproto[14]);
 }
 // ===================================================================
 
@@ -3477,7 +3718,401 @@ void DateTime::InternalSwap(DateTime* other) {
 ::google::protobuf::Metadata DateTime::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_5fmsgs_2eproto_getter, &descriptor_table_common_5fmsgs_2eproto_once,
-      file_level_metadata_common_5fmsgs_2eproto[14]);
+      file_level_metadata_common_5fmsgs_2eproto[15]);
+}
+// ===================================================================
+
+class NamedReferencePosition::_Internal {
+ public:
+};
+
+NamedReferencePosition::NamedReferencePosition(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Nrmk.IndyFramework.NamedReferencePosition)
+}
+NamedReferencePosition::NamedReferencePosition(const NamedReferencePosition& from) : ::google::protobuf::Message() {
+  NamedReferencePosition* const _this = this;
+  (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.tpos_){from._impl_.tpos_},
+      decltype(_impl_.tpos0_){from._impl_.tpos0_},
+      decltype(_impl_.tpos1_){from._impl_.tpos1_},
+      decltype(_impl_.tpos2_){from._impl_.tpos2_},
+      decltype(_impl_.jpos0_){from._impl_.jpos0_},
+      decltype(_impl_.jpos1_){from._impl_.jpos1_},
+      decltype(_impl_.jpos2_){from._impl_.jpos2_},
+      decltype(_impl_.name_){},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  _impl_.name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        _impl_.name_.Set("", GetArenaForAllocation());
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_name().empty()) {
+    _this->_impl_.name_.Set(from._internal_name(), _this->GetArenaForAllocation());
+  }
+
+  // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.NamedReferencePosition)
+}
+inline void NamedReferencePosition::SharedCtor(::_pb::Arena* arena) {
+  (void)arena;
+  new (&_impl_) Impl_{
+      decltype(_impl_.tpos_){arena},
+      decltype(_impl_.tpos0_){arena},
+      decltype(_impl_.tpos1_){arena},
+      decltype(_impl_.tpos2_){arena},
+      decltype(_impl_.jpos0_){arena},
+      decltype(_impl_.jpos1_){arena},
+      decltype(_impl_.jpos2_){arena},
+      decltype(_impl_.name_){},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+  _impl_.name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        _impl_.name_.Set("", GetArenaForAllocation());
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+NamedReferencePosition::~NamedReferencePosition() {
+  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.NamedReferencePosition)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void NamedReferencePosition::SharedDtor() {
+  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.tpos_.~RepeatedField();
+  _impl_.tpos0_.~RepeatedField();
+  _impl_.tpos1_.~RepeatedField();
+  _impl_.tpos2_.~RepeatedField();
+  _impl_.jpos0_.~RepeatedField();
+  _impl_.jpos1_.~RepeatedField();
+  _impl_.jpos2_.~RepeatedField();
+  _impl_.name_.Destroy();
+}
+void NamedReferencePosition::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+PROTOBUF_NOINLINE void NamedReferencePosition::Clear() {
+// @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.NamedReferencePosition)
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _internal_mutable_tpos()->Clear();
+  _internal_mutable_tpos0()->Clear();
+  _internal_mutable_tpos1()->Clear();
+  _internal_mutable_tpos2()->Clear();
+  _internal_mutable_jpos0()->Clear();
+  _internal_mutable_jpos1()->Clear();
+  _internal_mutable_jpos2()->Clear();
+  _impl_.name_.ClearToEmpty();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* NamedReferencePosition::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<3, 8, 0, 62, 2> NamedReferencePosition::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    8, 56,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967040,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    8,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_NamedReferencePosition_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // repeated float jpos2 = 8;
+    {::_pbi::TcParser::FastF32P1,
+     {66, 63, 0, PROTOBUF_FIELD_OFFSET(NamedReferencePosition, _impl_.jpos2_)}},
+    // string name = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(NamedReferencePosition, _impl_.name_)}},
+    // repeated float tpos = 2;
+    {::_pbi::TcParser::FastF32P1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(NamedReferencePosition, _impl_.tpos_)}},
+    // repeated float tpos0 = 3;
+    {::_pbi::TcParser::FastF32P1,
+     {26, 63, 0, PROTOBUF_FIELD_OFFSET(NamedReferencePosition, _impl_.tpos0_)}},
+    // repeated float tpos1 = 4;
+    {::_pbi::TcParser::FastF32P1,
+     {34, 63, 0, PROTOBUF_FIELD_OFFSET(NamedReferencePosition, _impl_.tpos1_)}},
+    // repeated float tpos2 = 5;
+    {::_pbi::TcParser::FastF32P1,
+     {42, 63, 0, PROTOBUF_FIELD_OFFSET(NamedReferencePosition, _impl_.tpos2_)}},
+    // repeated float jpos0 = 6;
+    {::_pbi::TcParser::FastF32P1,
+     {50, 63, 0, PROTOBUF_FIELD_OFFSET(NamedReferencePosition, _impl_.jpos0_)}},
+    // repeated float jpos1 = 7;
+    {::_pbi::TcParser::FastF32P1,
+     {58, 63, 0, PROTOBUF_FIELD_OFFSET(NamedReferencePosition, _impl_.jpos1_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string name = 1;
+    {PROTOBUF_FIELD_OFFSET(NamedReferencePosition, _impl_.name_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // repeated float tpos = 2;
+    {PROTOBUF_FIELD_OFFSET(NamedReferencePosition, _impl_.tpos_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedFloat)},
+    // repeated float tpos0 = 3;
+    {PROTOBUF_FIELD_OFFSET(NamedReferencePosition, _impl_.tpos0_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedFloat)},
+    // repeated float tpos1 = 4;
+    {PROTOBUF_FIELD_OFFSET(NamedReferencePosition, _impl_.tpos1_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedFloat)},
+    // repeated float tpos2 = 5;
+    {PROTOBUF_FIELD_OFFSET(NamedReferencePosition, _impl_.tpos2_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedFloat)},
+    // repeated float jpos0 = 6;
+    {PROTOBUF_FIELD_OFFSET(NamedReferencePosition, _impl_.jpos0_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedFloat)},
+    // repeated float jpos1 = 7;
+    {PROTOBUF_FIELD_OFFSET(NamedReferencePosition, _impl_.jpos1_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedFloat)},
+    // repeated float jpos2 = 8;
+    {PROTOBUF_FIELD_OFFSET(NamedReferencePosition, _impl_.jpos2_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedFloat)},
+  }},
+  // no aux_entries
+  {{
+    "\51\4\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
+    "Nrmk.IndyFramework.NamedReferencePosition"
+    "name"
+  }},
+};
+
+::uint8_t* NamedReferencePosition::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.NamedReferencePosition)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // string name = 1;
+  if (!this->_internal_name().empty()) {
+    const std::string& _s = this->_internal_name();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "Nrmk.IndyFramework.NamedReferencePosition.name");
+    target = stream->WriteStringMaybeAliased(1, _s, target);
+  }
+
+  // repeated float tpos = 2;
+  if (this->_internal_tpos_size() > 0) {
+    target = stream->WriteFixedPacked(2, _internal_tpos(), target);
+  }
+
+  // repeated float tpos0 = 3;
+  if (this->_internal_tpos0_size() > 0) {
+    target = stream->WriteFixedPacked(3, _internal_tpos0(), target);
+  }
+
+  // repeated float tpos1 = 4;
+  if (this->_internal_tpos1_size() > 0) {
+    target = stream->WriteFixedPacked(4, _internal_tpos1(), target);
+  }
+
+  // repeated float tpos2 = 5;
+  if (this->_internal_tpos2_size() > 0) {
+    target = stream->WriteFixedPacked(5, _internal_tpos2(), target);
+  }
+
+  // repeated float jpos0 = 6;
+  if (this->_internal_jpos0_size() > 0) {
+    target = stream->WriteFixedPacked(6, _internal_jpos0(), target);
+  }
+
+  // repeated float jpos1 = 7;
+  if (this->_internal_jpos1_size() > 0) {
+    target = stream->WriteFixedPacked(7, _internal_jpos1(), target);
+  }
+
+  // repeated float jpos2 = 8;
+  if (this->_internal_jpos2_size() > 0) {
+    target = stream->WriteFixedPacked(8, _internal_jpos2(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.NamedReferencePosition)
+  return target;
+}
+
+::size_t NamedReferencePosition::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.NamedReferencePosition)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated float tpos = 2;
+  {
+    std::size_t data_size = std::size_t{4} *
+        ::_pbi::FromIntSize(this->_internal_tpos_size())
+    ;
+    std::size_t tag_size = data_size == 0
+        ? 0
+        : 1 + ::_pbi::WireFormatLite::Int32Size(
+                            static_cast<int32_t>(data_size))
+    ;
+    total_size += tag_size + data_size;
+  }
+  // repeated float tpos0 = 3;
+  {
+    std::size_t data_size = std::size_t{4} *
+        ::_pbi::FromIntSize(this->_internal_tpos0_size())
+    ;
+    std::size_t tag_size = data_size == 0
+        ? 0
+        : 1 + ::_pbi::WireFormatLite::Int32Size(
+                            static_cast<int32_t>(data_size))
+    ;
+    total_size += tag_size + data_size;
+  }
+  // repeated float tpos1 = 4;
+  {
+    std::size_t data_size = std::size_t{4} *
+        ::_pbi::FromIntSize(this->_internal_tpos1_size())
+    ;
+    std::size_t tag_size = data_size == 0
+        ? 0
+        : 1 + ::_pbi::WireFormatLite::Int32Size(
+                            static_cast<int32_t>(data_size))
+    ;
+    total_size += tag_size + data_size;
+  }
+  // repeated float tpos2 = 5;
+  {
+    std::size_t data_size = std::size_t{4} *
+        ::_pbi::FromIntSize(this->_internal_tpos2_size())
+    ;
+    std::size_t tag_size = data_size == 0
+        ? 0
+        : 1 + ::_pbi::WireFormatLite::Int32Size(
+                            static_cast<int32_t>(data_size))
+    ;
+    total_size += tag_size + data_size;
+  }
+  // repeated float jpos0 = 6;
+  {
+    std::size_t data_size = std::size_t{4} *
+        ::_pbi::FromIntSize(this->_internal_jpos0_size())
+    ;
+    std::size_t tag_size = data_size == 0
+        ? 0
+        : 1 + ::_pbi::WireFormatLite::Int32Size(
+                            static_cast<int32_t>(data_size))
+    ;
+    total_size += tag_size + data_size;
+  }
+  // repeated float jpos1 = 7;
+  {
+    std::size_t data_size = std::size_t{4} *
+        ::_pbi::FromIntSize(this->_internal_jpos1_size())
+    ;
+    std::size_t tag_size = data_size == 0
+        ? 0
+        : 1 + ::_pbi::WireFormatLite::Int32Size(
+                            static_cast<int32_t>(data_size))
+    ;
+    total_size += tag_size + data_size;
+  }
+  // repeated float jpos2 = 8;
+  {
+    std::size_t data_size = std::size_t{4} *
+        ::_pbi::FromIntSize(this->_internal_jpos2_size())
+    ;
+    std::size_t tag_size = data_size == 0
+        ? 0
+        : 1 + ::_pbi::WireFormatLite::Int32Size(
+                            static_cast<int32_t>(data_size))
+    ;
+    total_size += tag_size + data_size;
+  }
+  // string name = 1;
+  if (!this->_internal_name().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_name());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData NamedReferencePosition::_class_data_ = {
+    ::google::protobuf::Message::CopyWithSourceCheck,
+    NamedReferencePosition::MergeImpl
+};
+const ::google::protobuf::Message::ClassData*NamedReferencePosition::GetClassData() const { return &_class_data_; }
+
+
+void NamedReferencePosition::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<NamedReferencePosition*>(&to_msg);
+  auto& from = static_cast<const NamedReferencePosition&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.NamedReferencePosition)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_internal_mutable_tpos()->MergeFrom(from._internal_tpos());
+  _this->_internal_mutable_tpos0()->MergeFrom(from._internal_tpos0());
+  _this->_internal_mutable_tpos1()->MergeFrom(from._internal_tpos1());
+  _this->_internal_mutable_tpos2()->MergeFrom(from._internal_tpos2());
+  _this->_internal_mutable_jpos0()->MergeFrom(from._internal_jpos0());
+  _this->_internal_mutable_jpos1()->MergeFrom(from._internal_jpos1());
+  _this->_internal_mutable_jpos2()->MergeFrom(from._internal_jpos2());
+  if (!from._internal_name().empty()) {
+    _this->_internal_set_name(from._internal_name());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void NamedReferencePosition::CopyFrom(const NamedReferencePosition& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Nrmk.IndyFramework.NamedReferencePosition)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool NamedReferencePosition::IsInitialized() const {
+  return true;
+}
+
+void NamedReferencePosition::InternalSwap(NamedReferencePosition* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.tpos_.InternalSwap(&other->_impl_.tpos_);
+  _impl_.tpos0_.InternalSwap(&other->_impl_.tpos0_);
+  _impl_.tpos1_.InternalSwap(&other->_impl_.tpos1_);
+  _impl_.tpos2_.InternalSwap(&other->_impl_.tpos2_);
+  _impl_.jpos0_.InternalSwap(&other->_impl_.jpos0_);
+  _impl_.jpos1_.InternalSwap(&other->_impl_.jpos1_);
+  _impl_.jpos2_.InternalSwap(&other->_impl_.jpos2_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.name_, lhs_arena,
+                                       &other->_impl_.name_, rhs_arena);
+}
+
+::google::protobuf::Metadata NamedReferencePosition::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_common_5fmsgs_2eproto_getter, &descriptor_table_common_5fmsgs_2eproto_once,
+      file_level_metadata_common_5fmsgs_2eproto[16]);
 }
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace IndyFramework

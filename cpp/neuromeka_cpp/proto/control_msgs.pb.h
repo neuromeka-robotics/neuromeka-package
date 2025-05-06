@@ -88,6 +88,9 @@ extern CheckAproachRetractValidReqDefaultTypeInternal _CheckAproachRetractValidR
 class CheckAproachRetractValidRes;
 struct CheckAproachRetractValidResDefaultTypeInternal;
 extern CheckAproachRetractValidResDefaultTypeInternal _CheckAproachRetractValidRes_default_instance_;
+class ControlInferenceDataSet;
+struct ControlInferenceDataSetDefaultTypeInternal;
+extern ControlInferenceDataSetDefaultTypeInternal _ControlInferenceDataSet_default_instance_;
 class ControlInfo;
 struct ControlInfoDefaultTypeInternal;
 extern ControlInfoDefaultTypeInternal _ControlInfo_default_instance_;
@@ -14979,6 +14982,272 @@ class TransformedFTSensorData final :
   };
   union { Impl_ _impl_; };
   friend struct ::TableStruct_control_5fmsgs_2eproto;
+};// -------------------------------------------------------------------
+
+class ControlInferenceDataSet final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.ControlInferenceDataSet) */ {
+ public:
+  inline ControlInferenceDataSet() : ControlInferenceDataSet(nullptr) {}
+  ~ControlInferenceDataSet() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR ControlInferenceDataSet(::google::protobuf::internal::ConstantInitialized);
+
+  ControlInferenceDataSet(const ControlInferenceDataSet& from);
+  ControlInferenceDataSet(ControlInferenceDataSet&& from) noexcept
+    : ControlInferenceDataSet() {
+    *this = ::std::move(from);
+  }
+
+  inline ControlInferenceDataSet& operator=(const ControlInferenceDataSet& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ControlInferenceDataSet& operator=(ControlInferenceDataSet&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ControlInferenceDataSet& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ControlInferenceDataSet* internal_default_instance() {
+    return reinterpret_cast<const ControlInferenceDataSet*>(
+               &_ControlInferenceDataSet_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    70;
+
+  friend void swap(ControlInferenceDataSet& a, ControlInferenceDataSet& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ControlInferenceDataSet* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ControlInferenceDataSet* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ControlInferenceDataSet* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ControlInferenceDataSet>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const ControlInferenceDataSet& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const ControlInferenceDataSet& from) {
+    ControlInferenceDataSet::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ControlInferenceDataSet* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "Nrmk.IndyFramework.ControlInferenceDataSet";
+  }
+  protected:
+  explicit ControlInferenceDataSet(::google::protobuf::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kInfdata0FieldNumber = 1,
+    kInfdata1FieldNumber = 2,
+    kInfdata2FieldNumber = 3,
+    kInfdata3FieldNumber = 4,
+    kInfdata4FieldNumber = 5,
+    kInfdata5FieldNumber = 6,
+  };
+  // repeated float infdata0 = 1;
+  int infdata0_size() const;
+  private:
+  int _internal_infdata0_size() const;
+
+  public:
+  void clear_infdata0() ;
+  float infdata0(int index) const;
+  void set_infdata0(int index, float value);
+  void add_infdata0(float value);
+  const ::google::protobuf::RepeatedField<float>& infdata0() const;
+  ::google::protobuf::RepeatedField<float>* mutable_infdata0();
+
+  private:
+  const ::google::protobuf::RepeatedField<float>& _internal_infdata0() const;
+  ::google::protobuf::RepeatedField<float>* _internal_mutable_infdata0();
+
+  public:
+  // repeated float infdata1 = 2;
+  int infdata1_size() const;
+  private:
+  int _internal_infdata1_size() const;
+
+  public:
+  void clear_infdata1() ;
+  float infdata1(int index) const;
+  void set_infdata1(int index, float value);
+  void add_infdata1(float value);
+  const ::google::protobuf::RepeatedField<float>& infdata1() const;
+  ::google::protobuf::RepeatedField<float>* mutable_infdata1();
+
+  private:
+  const ::google::protobuf::RepeatedField<float>& _internal_infdata1() const;
+  ::google::protobuf::RepeatedField<float>* _internal_mutable_infdata1();
+
+  public:
+  // repeated float infdata2 = 3;
+  int infdata2_size() const;
+  private:
+  int _internal_infdata2_size() const;
+
+  public:
+  void clear_infdata2() ;
+  float infdata2(int index) const;
+  void set_infdata2(int index, float value);
+  void add_infdata2(float value);
+  const ::google::protobuf::RepeatedField<float>& infdata2() const;
+  ::google::protobuf::RepeatedField<float>* mutable_infdata2();
+
+  private:
+  const ::google::protobuf::RepeatedField<float>& _internal_infdata2() const;
+  ::google::protobuf::RepeatedField<float>* _internal_mutable_infdata2();
+
+  public:
+  // repeated float infdata3 = 4;
+  int infdata3_size() const;
+  private:
+  int _internal_infdata3_size() const;
+
+  public:
+  void clear_infdata3() ;
+  float infdata3(int index) const;
+  void set_infdata3(int index, float value);
+  void add_infdata3(float value);
+  const ::google::protobuf::RepeatedField<float>& infdata3() const;
+  ::google::protobuf::RepeatedField<float>* mutable_infdata3();
+
+  private:
+  const ::google::protobuf::RepeatedField<float>& _internal_infdata3() const;
+  ::google::protobuf::RepeatedField<float>* _internal_mutable_infdata3();
+
+  public:
+  // repeated float infdata4 = 5;
+  int infdata4_size() const;
+  private:
+  int _internal_infdata4_size() const;
+
+  public:
+  void clear_infdata4() ;
+  float infdata4(int index) const;
+  void set_infdata4(int index, float value);
+  void add_infdata4(float value);
+  const ::google::protobuf::RepeatedField<float>& infdata4() const;
+  ::google::protobuf::RepeatedField<float>* mutable_infdata4();
+
+  private:
+  const ::google::protobuf::RepeatedField<float>& _internal_infdata4() const;
+  ::google::protobuf::RepeatedField<float>* _internal_mutable_infdata4();
+
+  public:
+  // repeated float infdata5 = 6;
+  int infdata5_size() const;
+  private:
+  int _internal_infdata5_size() const;
+
+  public:
+  void clear_infdata5() ;
+  float infdata5(int index) const;
+  void set_infdata5(int index, float value);
+  void add_infdata5(float value);
+  const ::google::protobuf::RepeatedField<float>& infdata5() const;
+  ::google::protobuf::RepeatedField<float>* mutable_infdata5();
+
+  private:
+  const ::google::protobuf::RepeatedField<float>& _internal_infdata5() const;
+  ::google::protobuf::RepeatedField<float>* _internal_mutable_infdata5();
+
+  public:
+  // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.ControlInferenceDataSet)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<3, 6, 0, 0, 2> _table_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::google::protobuf::RepeatedField<float> infdata0_;
+    ::google::protobuf::RepeatedField<float> infdata1_;
+    ::google::protobuf::RepeatedField<float> infdata2_;
+    ::google::protobuf::RepeatedField<float> infdata3_;
+    ::google::protobuf::RepeatedField<float> infdata4_;
+    ::google::protobuf::RepeatedField<float> infdata5_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_control_5fmsgs_2eproto;
 };
 
 // ===================================================================
@@ -25944,6 +26213,262 @@ inline void TransformedFTSensorData::set_allocated_response(::Nrmk::IndyFramewor
 
   _impl_.response_ = reinterpret_cast<::Nrmk::IndyFramework::Response*>(value);
   // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.TransformedFTSensorData.response)
+}
+
+// -------------------------------------------------------------------
+
+// ControlInferenceDataSet
+
+// repeated float infdata0 = 1;
+inline int ControlInferenceDataSet::_internal_infdata0_size() const {
+  return _internal_infdata0().size();
+}
+inline int ControlInferenceDataSet::infdata0_size() const {
+  return _internal_infdata0_size();
+}
+inline void ControlInferenceDataSet::clear_infdata0() {
+  _internal_mutable_infdata0()->Clear();
+}
+inline float ControlInferenceDataSet::infdata0(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.ControlInferenceDataSet.infdata0)
+  return _internal_infdata0().Get(index);
+}
+inline void ControlInferenceDataSet::set_infdata0(int index, float value) {
+  _internal_mutable_infdata0()->Set(index, value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.ControlInferenceDataSet.infdata0)
+}
+inline void ControlInferenceDataSet::add_infdata0(float value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_infdata0()->Add(value);
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.ControlInferenceDataSet.infdata0)
+}
+inline const ::google::protobuf::RepeatedField<float>& ControlInferenceDataSet::infdata0() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.ControlInferenceDataSet.infdata0)
+  return _internal_infdata0();
+}
+inline ::google::protobuf::RepeatedField<float>* ControlInferenceDataSet::mutable_infdata0() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.ControlInferenceDataSet.infdata0)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_infdata0();
+}
+
+inline const ::google::protobuf::RepeatedField<float>& ControlInferenceDataSet::_internal_infdata0() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.infdata0_;
+}
+inline ::google::protobuf::RepeatedField<float>* ControlInferenceDataSet::_internal_mutable_infdata0() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.infdata0_;
+}
+
+// repeated float infdata1 = 2;
+inline int ControlInferenceDataSet::_internal_infdata1_size() const {
+  return _internal_infdata1().size();
+}
+inline int ControlInferenceDataSet::infdata1_size() const {
+  return _internal_infdata1_size();
+}
+inline void ControlInferenceDataSet::clear_infdata1() {
+  _internal_mutable_infdata1()->Clear();
+}
+inline float ControlInferenceDataSet::infdata1(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.ControlInferenceDataSet.infdata1)
+  return _internal_infdata1().Get(index);
+}
+inline void ControlInferenceDataSet::set_infdata1(int index, float value) {
+  _internal_mutable_infdata1()->Set(index, value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.ControlInferenceDataSet.infdata1)
+}
+inline void ControlInferenceDataSet::add_infdata1(float value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_infdata1()->Add(value);
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.ControlInferenceDataSet.infdata1)
+}
+inline const ::google::protobuf::RepeatedField<float>& ControlInferenceDataSet::infdata1() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.ControlInferenceDataSet.infdata1)
+  return _internal_infdata1();
+}
+inline ::google::protobuf::RepeatedField<float>* ControlInferenceDataSet::mutable_infdata1() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.ControlInferenceDataSet.infdata1)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_infdata1();
+}
+
+inline const ::google::protobuf::RepeatedField<float>& ControlInferenceDataSet::_internal_infdata1() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.infdata1_;
+}
+inline ::google::protobuf::RepeatedField<float>* ControlInferenceDataSet::_internal_mutable_infdata1() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.infdata1_;
+}
+
+// repeated float infdata2 = 3;
+inline int ControlInferenceDataSet::_internal_infdata2_size() const {
+  return _internal_infdata2().size();
+}
+inline int ControlInferenceDataSet::infdata2_size() const {
+  return _internal_infdata2_size();
+}
+inline void ControlInferenceDataSet::clear_infdata2() {
+  _internal_mutable_infdata2()->Clear();
+}
+inline float ControlInferenceDataSet::infdata2(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.ControlInferenceDataSet.infdata2)
+  return _internal_infdata2().Get(index);
+}
+inline void ControlInferenceDataSet::set_infdata2(int index, float value) {
+  _internal_mutable_infdata2()->Set(index, value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.ControlInferenceDataSet.infdata2)
+}
+inline void ControlInferenceDataSet::add_infdata2(float value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_infdata2()->Add(value);
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.ControlInferenceDataSet.infdata2)
+}
+inline const ::google::protobuf::RepeatedField<float>& ControlInferenceDataSet::infdata2() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.ControlInferenceDataSet.infdata2)
+  return _internal_infdata2();
+}
+inline ::google::protobuf::RepeatedField<float>* ControlInferenceDataSet::mutable_infdata2() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.ControlInferenceDataSet.infdata2)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_infdata2();
+}
+
+inline const ::google::protobuf::RepeatedField<float>& ControlInferenceDataSet::_internal_infdata2() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.infdata2_;
+}
+inline ::google::protobuf::RepeatedField<float>* ControlInferenceDataSet::_internal_mutable_infdata2() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.infdata2_;
+}
+
+// repeated float infdata3 = 4;
+inline int ControlInferenceDataSet::_internal_infdata3_size() const {
+  return _internal_infdata3().size();
+}
+inline int ControlInferenceDataSet::infdata3_size() const {
+  return _internal_infdata3_size();
+}
+inline void ControlInferenceDataSet::clear_infdata3() {
+  _internal_mutable_infdata3()->Clear();
+}
+inline float ControlInferenceDataSet::infdata3(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.ControlInferenceDataSet.infdata3)
+  return _internal_infdata3().Get(index);
+}
+inline void ControlInferenceDataSet::set_infdata3(int index, float value) {
+  _internal_mutable_infdata3()->Set(index, value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.ControlInferenceDataSet.infdata3)
+}
+inline void ControlInferenceDataSet::add_infdata3(float value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_infdata3()->Add(value);
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.ControlInferenceDataSet.infdata3)
+}
+inline const ::google::protobuf::RepeatedField<float>& ControlInferenceDataSet::infdata3() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.ControlInferenceDataSet.infdata3)
+  return _internal_infdata3();
+}
+inline ::google::protobuf::RepeatedField<float>* ControlInferenceDataSet::mutable_infdata3() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.ControlInferenceDataSet.infdata3)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_infdata3();
+}
+
+inline const ::google::protobuf::RepeatedField<float>& ControlInferenceDataSet::_internal_infdata3() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.infdata3_;
+}
+inline ::google::protobuf::RepeatedField<float>* ControlInferenceDataSet::_internal_mutable_infdata3() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.infdata3_;
+}
+
+// repeated float infdata4 = 5;
+inline int ControlInferenceDataSet::_internal_infdata4_size() const {
+  return _internal_infdata4().size();
+}
+inline int ControlInferenceDataSet::infdata4_size() const {
+  return _internal_infdata4_size();
+}
+inline void ControlInferenceDataSet::clear_infdata4() {
+  _internal_mutable_infdata4()->Clear();
+}
+inline float ControlInferenceDataSet::infdata4(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.ControlInferenceDataSet.infdata4)
+  return _internal_infdata4().Get(index);
+}
+inline void ControlInferenceDataSet::set_infdata4(int index, float value) {
+  _internal_mutable_infdata4()->Set(index, value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.ControlInferenceDataSet.infdata4)
+}
+inline void ControlInferenceDataSet::add_infdata4(float value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_infdata4()->Add(value);
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.ControlInferenceDataSet.infdata4)
+}
+inline const ::google::protobuf::RepeatedField<float>& ControlInferenceDataSet::infdata4() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.ControlInferenceDataSet.infdata4)
+  return _internal_infdata4();
+}
+inline ::google::protobuf::RepeatedField<float>* ControlInferenceDataSet::mutable_infdata4() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.ControlInferenceDataSet.infdata4)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_infdata4();
+}
+
+inline const ::google::protobuf::RepeatedField<float>& ControlInferenceDataSet::_internal_infdata4() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.infdata4_;
+}
+inline ::google::protobuf::RepeatedField<float>* ControlInferenceDataSet::_internal_mutable_infdata4() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.infdata4_;
+}
+
+// repeated float infdata5 = 6;
+inline int ControlInferenceDataSet::_internal_infdata5_size() const {
+  return _internal_infdata5().size();
+}
+inline int ControlInferenceDataSet::infdata5_size() const {
+  return _internal_infdata5_size();
+}
+inline void ControlInferenceDataSet::clear_infdata5() {
+  _internal_mutable_infdata5()->Clear();
+}
+inline float ControlInferenceDataSet::infdata5(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.ControlInferenceDataSet.infdata5)
+  return _internal_infdata5().Get(index);
+}
+inline void ControlInferenceDataSet::set_infdata5(int index, float value) {
+  _internal_mutable_infdata5()->Set(index, value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.ControlInferenceDataSet.infdata5)
+}
+inline void ControlInferenceDataSet::add_infdata5(float value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_infdata5()->Add(value);
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.ControlInferenceDataSet.infdata5)
+}
+inline const ::google::protobuf::RepeatedField<float>& ControlInferenceDataSet::infdata5() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.ControlInferenceDataSet.infdata5)
+  return _internal_infdata5();
+}
+inline ::google::protobuf::RepeatedField<float>* ControlInferenceDataSet::mutable_infdata5() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.ControlInferenceDataSet.infdata5)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_infdata5();
+}
+
+inline const ::google::protobuf::RepeatedField<float>& ControlInferenceDataSet::_internal_infdata5() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.infdata5_;
+}
+inline ::google::protobuf::RepeatedField<float>* ControlInferenceDataSet::_internal_mutable_infdata5() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.infdata5_;
 }
 
 #ifdef __GNUC__

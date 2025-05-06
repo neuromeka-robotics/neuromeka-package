@@ -106,6 +106,8 @@ static const char* Control_method_names[] = {
   "/Nrmk.IndyFramework.Control/MoveLF",
   "/Nrmk.IndyFramework.Control/GetTransformedFTSensorData",
   "/Nrmk.IndyFramework.Control/FTZero",
+  "/Nrmk.IndyFramework.Control/SetControlInferenceData",
+  "/Nrmk.IndyFramework.Control/GetControlInferenceData",
 };
 
 std::unique_ptr< Control::Stub> Control::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -198,6 +200,8 @@ Control::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, c
   , rpcmethod_MoveLF_(Control_method_names[80], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_GetTransformedFTSensorData_(Control_method_names[81], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_FTZero_(Control_method_names[82], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetControlInferenceData_(Control_method_names[83], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetControlInferenceData_(Control_method_names[84], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status Control::Stub::GetControlInfo(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::ControlInfo* response) {
@@ -2109,6 +2113,52 @@ void Control::Stub::async::FTZero(::grpc::ClientContext* context, const ::Nrmk::
   return result;
 }
 
+::grpc::Status Control::Stub::SetControlInferenceData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ControlInferenceDataSet& request, ::Nrmk::IndyFramework::Response* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::ControlInferenceDataSet, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetControlInferenceData_, context, request, response);
+}
+
+void Control::Stub::async::SetControlInferenceData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ControlInferenceDataSet* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::ControlInferenceDataSet, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetControlInferenceData_, context, request, response, std::move(f));
+}
+
+void Control::Stub::async::SetControlInferenceData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ControlInferenceDataSet* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetControlInferenceData_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Control::Stub::PrepareAsyncSetControlInferenceDataRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ControlInferenceDataSet& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Response, ::Nrmk::IndyFramework::ControlInferenceDataSet, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetControlInferenceData_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Control::Stub::AsyncSetControlInferenceDataRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ControlInferenceDataSet& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetControlInferenceDataRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Control::Stub::GetControlInferenceData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::ControlInferenceDataSet* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ControlInferenceDataSet, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetControlInferenceData_, context, request, response);
+}
+
+void Control::Stub::async::GetControlInferenceData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ControlInferenceDataSet* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ControlInferenceDataSet, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetControlInferenceData_, context, request, response, std::move(f));
+}
+
+void Control::Stub::async::GetControlInferenceData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ControlInferenceDataSet* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetControlInferenceData_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ControlInferenceDataSet>* Control::Stub::PrepareAsyncGetControlInferenceDataRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::ControlInferenceDataSet, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetControlInferenceData_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ControlInferenceDataSet>* Control::Stub::AsyncGetControlInferenceDataRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetControlInferenceDataRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 Control::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Control_method_names[0],
@@ -2940,6 +2990,26 @@ Control::Service::Service() {
              ::Nrmk::IndyFramework::Response* resp) {
                return service->FTZero(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Control_method_names[83],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::ControlInferenceDataSet, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Control::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::ControlInferenceDataSet* req,
+             ::Nrmk::IndyFramework::Response* resp) {
+               return service->SetControlInferenceData(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Control_method_names[84],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ControlInferenceDataSet, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Control::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::Empty* req,
+             ::Nrmk::IndyFramework::ControlInferenceDataSet* resp) {
+               return service->GetControlInferenceData(ctx, req, resp);
+             }, this)));
 }
 
 Control::Service::~Service() {
@@ -3520,6 +3590,20 @@ Control::Service::~Service() {
 }
 
 ::grpc::Status Control::Service::FTZero(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::Response* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Control::Service::SetControlInferenceData(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::ControlInferenceDataSet* request, ::Nrmk::IndyFramework::Response* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Control::Service::GetControlInferenceData(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ControlInferenceDataSet* response) {
   (void) context;
   (void) request;
   (void) response;

@@ -1389,9 +1389,30 @@ struct TransformedFTSensorDataDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 TransformedFTSensorDataDefaultTypeInternal _TransformedFTSensorData_default_instance_;
+        template <typename>
+PROTOBUF_CONSTEXPR ControlInferenceDataSet::ControlInferenceDataSet(::_pbi::ConstantInitialized)
+    : _impl_{
+      /*decltype(_impl_.infdata0_)*/ {},
+      /*decltype(_impl_.infdata1_)*/ {},
+      /*decltype(_impl_.infdata2_)*/ {},
+      /*decltype(_impl_.infdata3_)*/ {},
+      /*decltype(_impl_.infdata4_)*/ {},
+      /*decltype(_impl_.infdata5_)*/ {},
+      /*decltype(_impl_._cached_size_)*/ {},
+    } {}
+struct ControlInferenceDataSetDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR ControlInferenceDataSetDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~ControlInferenceDataSetDefaultTypeInternal() {}
+  union {
+    ControlInferenceDataSet _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ControlInferenceDataSetDefaultTypeInternal _ControlInferenceDataSet_default_instance_;
 }  // namespace IndyFramework
 }  // namespace Nrmk
-static ::_pb::Metadata file_level_metadata_control_5fmsgs_2eproto[70];
+static ::_pb::Metadata file_level_metadata_control_5fmsgs_2eproto[71];
 static const ::_pb::EnumDescriptor* file_level_enum_descriptors_control_5fmsgs_2eproto[12];
 static constexpr const ::_pb::ServiceDescriptor**
     file_level_service_descriptors_control_5fmsgs_2eproto = nullptr;
@@ -2300,6 +2321,20 @@ const ::uint32_t TableStruct_control_5fmsgs_2eproto::offsets[] PROTOBUF_SECTION_
     ~0u,
     ~0u,
     0,
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ControlInferenceDataSet, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ControlInferenceDataSet, _impl_.infdata0_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ControlInferenceDataSet, _impl_.infdata1_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ControlInferenceDataSet, _impl_.infdata2_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ControlInferenceDataSet, _impl_.infdata3_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ControlInferenceDataSet, _impl_.infdata4_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ControlInferenceDataSet, _impl_.infdata5_),
 };
 
 static const ::_pbi::MigrationSchema
@@ -2374,6 +2409,7 @@ static const ::_pbi::MigrationSchema
         {846, 863, -1, sizeof(::Nrmk::IndyFramework::MoveLFReq)},
         {872, -1, -1, sizeof(::Nrmk::IndyFramework::MoveFLRes)},
         {881, 896, -1, sizeof(::Nrmk::IndyFramework::TransformedFTSensorData)},
+        {903, -1, -1, sizeof(::Nrmk::IndyFramework::ControlInferenceDataSet)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -2447,6 +2483,7 @@ static const ::_pb::Message* const file_default_instances[] = {
     &::Nrmk::IndyFramework::_MoveLFReq_default_instance_._instance,
     &::Nrmk::IndyFramework::_MoveFLRes_default_instance_._instance,
     &::Nrmk::IndyFramework::_TransformedFTSensorData_default_instance_._instance,
+    &::Nrmk::IndyFramework::_ControlInferenceDataSet_default_instance_._instance,
 };
 const char descriptor_table_protodef_control_5fmsgs_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
     "\n\022control_msgs.proto\022\022Nrmk.IndyFramework"
@@ -2697,22 +2734,25 @@ const char descriptor_table_protodef_control_5fmsgs_2eproto[] PROTOBUF_SECTION_V
     "ft_Fx\030\001 \001(\002\022\r\n\005ft_Fy\030\002 \001(\002\022\r\n\005ft_Fz\030\003 \001("
     "\002\022\r\n\005ft_Tx\030\004 \001(\002\022\r\n\005ft_Ty\030\005 \001(\002\022\r\n\005ft_Tz"
     "\030\006 \001(\002\022.\n\010response\030d \001(\0132\034.Nrmk.IndyFram"
-    "ework.Response*7\n\rJointBaseType\022\022\n\016ABSOL"
-    "UTE_JOINT\020\000\022\022\n\016RELATIVE_JOINT\020\001*B\n\014TaskB"
-    "aseType\022\021\n\rABSOLUTE_TASK\020\000\022\021\n\rRELATIVE_T"
-    "ASK\020\001\022\014\n\010TCP_TASK\020\002*J\n\020VelocityModeType\022"
-    "\021\n\rTIME_ORIENTED\020\000\022\021\n\rDISP_ORIENTED\020\001\022\020\n"
-    "\014ROT_ORIENTED\020\002*5\n\023CircularSettingType\022\r"
-    "\n\tPOINT_SET\020\000\022\017\n\013CENTER_AXIS\020\001*:\n\022Circul"
-    "arMovingType\022\014\n\010CONSTANT\020\000\022\n\n\006RADIAL\020\001\022\n"
-    "\n\006SMOOTH\020\002*j\n\010TeleMode\022\021\n\rTELE_INACTIVE\020"
-    "\000\022\016\n\nTELE_CALIB\020\001\022\017\n\013TELE_RECORD\020\002\022\r\n\tTE"
-    "LE_PLAY\020\003\022\014\n\010TELE_RAW\020\n\022\r\n\tTELE_MOVE\020\024*\233"
-    "\001\n\nTeleMethod\022\026\n\022TELE_TASK_ABSOLUTE\020\000\022\026\n"
-    "\022TELE_TASK_RELATIVE\020\001\022\021\n\rTELE_TASK_TCP\020\002"
-    "\022\027\n\023TELE_JOINT_ABSOLUTE\020\n\022\027\n\023TELE_JOINT_"
-    "RELATIVE\020\013\022\030\n\024TELE_RECORD_ABSOLUTE\020\024b\006pr"
-    "oto3"
+    "ework.Response\"\205\001\n\027ControlInferenceDataS"
+    "et\022\020\n\010infdata0\030\001 \003(\002\022\020\n\010infdata1\030\002 \003(\002\022\020"
+    "\n\010infdata2\030\003 \003(\002\022\020\n\010infdata3\030\004 \003(\002\022\020\n\010in"
+    "fdata4\030\005 \003(\002\022\020\n\010infdata5\030\006 \003(\002*7\n\rJointB"
+    "aseType\022\022\n\016ABSOLUTE_JOINT\020\000\022\022\n\016RELATIVE_"
+    "JOINT\020\001*B\n\014TaskBaseType\022\021\n\rABSOLUTE_TASK"
+    "\020\000\022\021\n\rRELATIVE_TASK\020\001\022\014\n\010TCP_TASK\020\002*J\n\020V"
+    "elocityModeType\022\021\n\rTIME_ORIENTED\020\000\022\021\n\rDI"
+    "SP_ORIENTED\020\001\022\020\n\014ROT_ORIENTED\020\002*5\n\023Circu"
+    "larSettingType\022\r\n\tPOINT_SET\020\000\022\017\n\013CENTER_"
+    "AXIS\020\001*:\n\022CircularMovingType\022\014\n\010CONSTANT"
+    "\020\000\022\n\n\006RADIAL\020\001\022\n\n\006SMOOTH\020\002*j\n\010TeleMode\022\021"
+    "\n\rTELE_INACTIVE\020\000\022\016\n\nTELE_CALIB\020\001\022\017\n\013TEL"
+    "E_RECORD\020\002\022\r\n\tTELE_PLAY\020\003\022\014\n\010TELE_RAW\020\n\022"
+    "\r\n\tTELE_MOVE\020\024*\233\001\n\nTeleMethod\022\026\n\022TELE_TA"
+    "SK_ABSOLUTE\020\000\022\026\n\022TELE_TASK_RELATIVE\020\001\022\021\n"
+    "\rTELE_TASK_TCP\020\002\022\027\n\023TELE_JOINT_ABSOLUTE\020"
+    "\n\022\027\n\023TELE_JOINT_RELATIVE\020\013\022\030\n\024TELE_RECOR"
+    "D_ABSOLUTE\020\024b\006proto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_control_5fmsgs_2eproto_deps[2] =
     {
@@ -2723,13 +2763,13 @@ static ::absl::once_flag descriptor_table_control_5fmsgs_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_control_5fmsgs_2eproto = {
     false,
     false,
-    10524,
+    10660,
     descriptor_table_protodef_control_5fmsgs_2eproto,
     "control_msgs.proto",
     &descriptor_table_control_5fmsgs_2eproto_once,
     descriptor_table_control_5fmsgs_2eproto_deps,
     2,
-    70,
+    71,
     schemas,
     file_default_instances,
     TableStruct_control_5fmsgs_2eproto::offsets,
@@ -21676,6 +21716,328 @@ void TransformedFTSensorData::InternalSwap(TransformedFTSensorData* other) {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_control_5fmsgs_2eproto_getter, &descriptor_table_control_5fmsgs_2eproto_once,
       file_level_metadata_control_5fmsgs_2eproto[69]);
+}
+// ===================================================================
+
+class ControlInferenceDataSet::_Internal {
+ public:
+};
+
+ControlInferenceDataSet::ControlInferenceDataSet(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Nrmk.IndyFramework.ControlInferenceDataSet)
+}
+ControlInferenceDataSet::ControlInferenceDataSet(const ControlInferenceDataSet& from) : ::google::protobuf::Message() {
+  ControlInferenceDataSet* const _this = this;
+  (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.infdata0_){from._impl_.infdata0_},
+      decltype(_impl_.infdata1_){from._impl_.infdata1_},
+      decltype(_impl_.infdata2_){from._impl_.infdata2_},
+      decltype(_impl_.infdata3_){from._impl_.infdata3_},
+      decltype(_impl_.infdata4_){from._impl_.infdata4_},
+      decltype(_impl_.infdata5_){from._impl_.infdata5_},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+
+  // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.ControlInferenceDataSet)
+}
+inline void ControlInferenceDataSet::SharedCtor(::_pb::Arena* arena) {
+  (void)arena;
+  new (&_impl_) Impl_{
+      decltype(_impl_.infdata0_){arena},
+      decltype(_impl_.infdata1_){arena},
+      decltype(_impl_.infdata2_){arena},
+      decltype(_impl_.infdata3_){arena},
+      decltype(_impl_.infdata4_){arena},
+      decltype(_impl_.infdata5_){arena},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+}
+ControlInferenceDataSet::~ControlInferenceDataSet() {
+  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.ControlInferenceDataSet)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void ControlInferenceDataSet::SharedDtor() {
+  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.infdata0_.~RepeatedField();
+  _impl_.infdata1_.~RepeatedField();
+  _impl_.infdata2_.~RepeatedField();
+  _impl_.infdata3_.~RepeatedField();
+  _impl_.infdata4_.~RepeatedField();
+  _impl_.infdata5_.~RepeatedField();
+}
+void ControlInferenceDataSet::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+PROTOBUF_NOINLINE void ControlInferenceDataSet::Clear() {
+// @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.ControlInferenceDataSet)
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _internal_mutable_infdata0()->Clear();
+  _internal_mutable_infdata1()->Clear();
+  _internal_mutable_infdata2()->Clear();
+  _internal_mutable_infdata3()->Clear();
+  _internal_mutable_infdata4()->Clear();
+  _internal_mutable_infdata5()->Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* ControlInferenceDataSet::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<3, 6, 0, 0, 2> ControlInferenceDataSet::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    6, 56,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967232,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    6,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_ControlInferenceDataSet_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // repeated float infdata0 = 1;
+    {::_pbi::TcParser::FastF32P1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(ControlInferenceDataSet, _impl_.infdata0_)}},
+    // repeated float infdata1 = 2;
+    {::_pbi::TcParser::FastF32P1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(ControlInferenceDataSet, _impl_.infdata1_)}},
+    // repeated float infdata2 = 3;
+    {::_pbi::TcParser::FastF32P1,
+     {26, 63, 0, PROTOBUF_FIELD_OFFSET(ControlInferenceDataSet, _impl_.infdata2_)}},
+    // repeated float infdata3 = 4;
+    {::_pbi::TcParser::FastF32P1,
+     {34, 63, 0, PROTOBUF_FIELD_OFFSET(ControlInferenceDataSet, _impl_.infdata3_)}},
+    // repeated float infdata4 = 5;
+    {::_pbi::TcParser::FastF32P1,
+     {42, 63, 0, PROTOBUF_FIELD_OFFSET(ControlInferenceDataSet, _impl_.infdata4_)}},
+    // repeated float infdata5 = 6;
+    {::_pbi::TcParser::FastF32P1,
+     {50, 63, 0, PROTOBUF_FIELD_OFFSET(ControlInferenceDataSet, _impl_.infdata5_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // repeated float infdata0 = 1;
+    {PROTOBUF_FIELD_OFFSET(ControlInferenceDataSet, _impl_.infdata0_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedFloat)},
+    // repeated float infdata1 = 2;
+    {PROTOBUF_FIELD_OFFSET(ControlInferenceDataSet, _impl_.infdata1_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedFloat)},
+    // repeated float infdata2 = 3;
+    {PROTOBUF_FIELD_OFFSET(ControlInferenceDataSet, _impl_.infdata2_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedFloat)},
+    // repeated float infdata3 = 4;
+    {PROTOBUF_FIELD_OFFSET(ControlInferenceDataSet, _impl_.infdata3_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedFloat)},
+    // repeated float infdata4 = 5;
+    {PROTOBUF_FIELD_OFFSET(ControlInferenceDataSet, _impl_.infdata4_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedFloat)},
+    // repeated float infdata5 = 6;
+    {PROTOBUF_FIELD_OFFSET(ControlInferenceDataSet, _impl_.infdata5_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedFloat)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+
+::uint8_t* ControlInferenceDataSet::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.ControlInferenceDataSet)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // repeated float infdata0 = 1;
+  if (this->_internal_infdata0_size() > 0) {
+    target = stream->WriteFixedPacked(1, _internal_infdata0(), target);
+  }
+
+  // repeated float infdata1 = 2;
+  if (this->_internal_infdata1_size() > 0) {
+    target = stream->WriteFixedPacked(2, _internal_infdata1(), target);
+  }
+
+  // repeated float infdata2 = 3;
+  if (this->_internal_infdata2_size() > 0) {
+    target = stream->WriteFixedPacked(3, _internal_infdata2(), target);
+  }
+
+  // repeated float infdata3 = 4;
+  if (this->_internal_infdata3_size() > 0) {
+    target = stream->WriteFixedPacked(4, _internal_infdata3(), target);
+  }
+
+  // repeated float infdata4 = 5;
+  if (this->_internal_infdata4_size() > 0) {
+    target = stream->WriteFixedPacked(5, _internal_infdata4(), target);
+  }
+
+  // repeated float infdata5 = 6;
+  if (this->_internal_infdata5_size() > 0) {
+    target = stream->WriteFixedPacked(6, _internal_infdata5(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.ControlInferenceDataSet)
+  return target;
+}
+
+::size_t ControlInferenceDataSet::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.ControlInferenceDataSet)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated float infdata0 = 1;
+  {
+    std::size_t data_size = std::size_t{4} *
+        ::_pbi::FromIntSize(this->_internal_infdata0_size())
+    ;
+    std::size_t tag_size = data_size == 0
+        ? 0
+        : 1 + ::_pbi::WireFormatLite::Int32Size(
+                            static_cast<int32_t>(data_size))
+    ;
+    total_size += tag_size + data_size;
+  }
+  // repeated float infdata1 = 2;
+  {
+    std::size_t data_size = std::size_t{4} *
+        ::_pbi::FromIntSize(this->_internal_infdata1_size())
+    ;
+    std::size_t tag_size = data_size == 0
+        ? 0
+        : 1 + ::_pbi::WireFormatLite::Int32Size(
+                            static_cast<int32_t>(data_size))
+    ;
+    total_size += tag_size + data_size;
+  }
+  // repeated float infdata2 = 3;
+  {
+    std::size_t data_size = std::size_t{4} *
+        ::_pbi::FromIntSize(this->_internal_infdata2_size())
+    ;
+    std::size_t tag_size = data_size == 0
+        ? 0
+        : 1 + ::_pbi::WireFormatLite::Int32Size(
+                            static_cast<int32_t>(data_size))
+    ;
+    total_size += tag_size + data_size;
+  }
+  // repeated float infdata3 = 4;
+  {
+    std::size_t data_size = std::size_t{4} *
+        ::_pbi::FromIntSize(this->_internal_infdata3_size())
+    ;
+    std::size_t tag_size = data_size == 0
+        ? 0
+        : 1 + ::_pbi::WireFormatLite::Int32Size(
+                            static_cast<int32_t>(data_size))
+    ;
+    total_size += tag_size + data_size;
+  }
+  // repeated float infdata4 = 5;
+  {
+    std::size_t data_size = std::size_t{4} *
+        ::_pbi::FromIntSize(this->_internal_infdata4_size())
+    ;
+    std::size_t tag_size = data_size == 0
+        ? 0
+        : 1 + ::_pbi::WireFormatLite::Int32Size(
+                            static_cast<int32_t>(data_size))
+    ;
+    total_size += tag_size + data_size;
+  }
+  // repeated float infdata5 = 6;
+  {
+    std::size_t data_size = std::size_t{4} *
+        ::_pbi::FromIntSize(this->_internal_infdata5_size())
+    ;
+    std::size_t tag_size = data_size == 0
+        ? 0
+        : 1 + ::_pbi::WireFormatLite::Int32Size(
+                            static_cast<int32_t>(data_size))
+    ;
+    total_size += tag_size + data_size;
+  }
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData ControlInferenceDataSet::_class_data_ = {
+    ::google::protobuf::Message::CopyWithSourceCheck,
+    ControlInferenceDataSet::MergeImpl
+};
+const ::google::protobuf::Message::ClassData*ControlInferenceDataSet::GetClassData() const { return &_class_data_; }
+
+
+void ControlInferenceDataSet::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<ControlInferenceDataSet*>(&to_msg);
+  auto& from = static_cast<const ControlInferenceDataSet&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.ControlInferenceDataSet)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_internal_mutable_infdata0()->MergeFrom(from._internal_infdata0());
+  _this->_internal_mutable_infdata1()->MergeFrom(from._internal_infdata1());
+  _this->_internal_mutable_infdata2()->MergeFrom(from._internal_infdata2());
+  _this->_internal_mutable_infdata3()->MergeFrom(from._internal_infdata3());
+  _this->_internal_mutable_infdata4()->MergeFrom(from._internal_infdata4());
+  _this->_internal_mutable_infdata5()->MergeFrom(from._internal_infdata5());
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void ControlInferenceDataSet::CopyFrom(const ControlInferenceDataSet& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Nrmk.IndyFramework.ControlInferenceDataSet)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool ControlInferenceDataSet::IsInitialized() const {
+  return true;
+}
+
+void ControlInferenceDataSet::InternalSwap(ControlInferenceDataSet* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.infdata0_.InternalSwap(&other->_impl_.infdata0_);
+  _impl_.infdata1_.InternalSwap(&other->_impl_.infdata1_);
+  _impl_.infdata2_.InternalSwap(&other->_impl_.infdata2_);
+  _impl_.infdata3_.InternalSwap(&other->_impl_.infdata3_);
+  _impl_.infdata4_.InternalSwap(&other->_impl_.infdata4_);
+  _impl_.infdata5_.InternalSwap(&other->_impl_.infdata5_);
+}
+
+::google::protobuf::Metadata ControlInferenceDataSet::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_control_5fmsgs_2eproto_getter, &descriptor_table_control_5fmsgs_2eproto_once,
+      file_level_metadata_control_5fmsgs_2eproto[70]);
 }
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace IndyFramework

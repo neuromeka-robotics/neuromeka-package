@@ -62,8 +62,6 @@ else()
         neuromeka_cpp/proto/ethercat_msgs.pb.cc
         neuromeka_cpp/proto/moby_msgs.pb.cc
         neuromeka_cpp/proto/rtde_msgs.pb.cc
-        neuromeka_cpp/proto/hri_msgs.pb.cc
-        neuromeka_cpp/proto/shared_msgs.pb.cc
 
         neuromeka_cpp/proto/common_msgs.grpc.pb.cc
         neuromeka_cpp/proto/config_msgs.grpc.pb.cc
@@ -72,8 +70,6 @@ else()
         neuromeka_cpp/proto/ethercat_msgs.grpc.pb.cc
         neuromeka_cpp/proto/moby_msgs.grpc.pb.cc
         neuromeka_cpp/proto/rtde_msgs.grpc.pb.cc
-        neuromeka_cpp/proto/hri_msgs.grpc.pb.cc
-        neuromeka_cpp/proto/shared_msgs.grpc.pb.cc
 
         neuromeka_cpp/proto/config.pb.cc
         neuromeka_cpp/proto/control.pb.cc
@@ -84,7 +80,6 @@ else()
         neuromeka_cpp/proto/moby.pb.cc
         neuromeka_cpp/proto/rtde.pb.cc
         neuromeka_cpp/proto/cri.pb.cc
-        neuromeka_cpp/proto/hri.pb.cc
 
         neuromeka_cpp/proto/config.grpc.pb.cc
         neuromeka_cpp/proto/control.grpc.pb.cc
@@ -95,7 +90,6 @@ else()
         neuromeka_cpp/proto/moby.grpc.pb.cc
         neuromeka_cpp/proto/rtde.grpc.pb.cc
         neuromeka_cpp/proto/cri.grpc.pb.cc
-        neuromeka_cpp/proto/hri.grpc.pb.cc
     )
 
     add_executable(example_indydcp3 src/example_indydcp3.cpp ${INDY_SOURCES})

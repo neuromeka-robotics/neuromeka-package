@@ -185,6 +185,16 @@ class ConfigStub(object):
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
                 response_deserializer=config__msgs__pb2.ToolProperties.FromString,
                 )
+        self.GetRefFrameList = channel.unary_unary(
+                '/Nrmk.IndyFramework.Config/GetRefFrameList',
+                request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=config__msgs__pb2.RefFrameList.FromString,
+                )
+        self.SetRefFrameList = channel.unary_unary(
+                '/Nrmk.IndyFramework.Config/SetRefFrameList',
+                request_serializer=config__msgs__pb2.RefFrameList.SerializeToString,
+                response_deserializer=common__msgs__pb2.Response.FromString,
+                )
         self.SetCollSensLevel = channel.unary_unary(
                 '/Nrmk.IndyFramework.Config/SetCollSensLevel',
                 request_serializer=config__msgs__pb2.CollisionSensLevel.SerializeToString,
@@ -484,6 +494,18 @@ class ConfigServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetRefFrameList(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SetRefFrameList(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def SetCollSensLevel(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -764,6 +786,16 @@ def add_ConfigServicer_to_server(servicer, server):
                     servicer.GetToolProperty,
                     request_deserializer=common__msgs__pb2.Empty.FromString,
                     response_serializer=config__msgs__pb2.ToolProperties.SerializeToString,
+            ),
+            'GetRefFrameList': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetRefFrameList,
+                    request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=config__msgs__pb2.RefFrameList.SerializeToString,
+            ),
+            'SetRefFrameList': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetRefFrameList,
+                    request_deserializer=config__msgs__pb2.RefFrameList.FromString,
+                    response_serializer=common__msgs__pb2.Response.SerializeToString,
             ),
             'SetCollSensLevel': grpc.unary_unary_rpc_method_handler(
                     servicer.SetCollSensLevel,
@@ -1440,6 +1472,40 @@ class Config(object):
         return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Config/GetToolProperty',
             common__msgs__pb2.Empty.SerializeToString,
             config__msgs__pb2.ToolProperties.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetRefFrameList(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Config/GetRefFrameList',
+            common__msgs__pb2.Empty.SerializeToString,
+            config__msgs__pb2.RefFrameList.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SetRefFrameList(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Config/SetRefFrameList',
+            config__msgs__pb2.RefFrameList.SerializeToString,
+            common__msgs__pb2.Response.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

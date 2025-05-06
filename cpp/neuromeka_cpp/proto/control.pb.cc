@@ -34,7 +34,7 @@ static constexpr ::_pb::Message* const* file_default_instances = nullptr;
 const char descriptor_table_protodef_control_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
     "\n\rcontrol.proto\022\022Nrmk.IndyFramework\032\022con"
     "trol_msgs.proto\032\021config_msgs.proto\032\021comm"
-    "on_msgs.proto2\2545\n\007Control\022N\n\016GetControlI"
+    "on_msgs.proto2\3716\n\007Control\022N\n\016GetControlI"
     "nfo\022\031.Nrmk.IndyFramework.Empty\032\037.Nrmk.In"
     "dyFramework.ControlInfo\"\000\022[\n\017ActivateInd"
     "ySDK\022\".Nrmk.IndyFramework.SDKLicenseInfo"
@@ -205,7 +205,12 @@ const char descriptor_table_protodef_control_2eproto[] PROTOBUF_SECTION_VARIABLE
     "rk.Empty\032+.Nrmk.IndyFramework.Transforme"
     "dFTSensorData\"\000\022C\n\006FTZero\022\031.Nrmk.IndyFra"
     "mework.Empty\032\034.Nrmk.IndyFramework.Respon"
-    "se\"\000b\006proto3"
+    "se\"\000\022f\n\027SetControlInferenceData\022+.Nrmk.I"
+    "ndyFramework.ControlInferenceDataSet\032\034.N"
+    "rmk.IndyFramework.Response\"\000\022c\n\027GetContr"
+    "olInferenceData\022\031.Nrmk.IndyFramework.Emp"
+    "ty\032+.Nrmk.IndyFramework.ControlInference"
+    "DataSet\"\000b\006proto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_control_2eproto_deps[3] =
     {
@@ -217,7 +222,7 @@ static ::absl::once_flag descriptor_table_control_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_control_2eproto = {
     false,
     false,
-    6932,
+    7137,
     descriptor_table_protodef_control_2eproto,
     "control.proto",
     &descriptor_table_control_2eproto_once,

@@ -21,7 +21,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x11\x63onfig_msgs.proto\x12\x12Nrmk.IndyFramework\x1a\x11\x63ommon_msgs.proto\x1a\x11\x64\x65vice_msgs.proto\"\x15\n\x05\x46rame\x12\x0c\n\x04\x66pos\x18\x01 \x03(\x02\"\x18\n\x08JointPos\x12\x0c\n\x04jpos\x18\x01 \x03(\x02\":\n\x0bPlanarFrame\x12\r\n\x05\x66pos0\x18\x01 \x03(\x02\x12\r\n\x05\x66pos1\x18\x02 \x03(\x02\x12\r\n\x05\x66pos2\x18\x03 \x03(\x02\"K\n\x0b\x46rameResult\x12\x0c\n\x04\x66pos\x18\x01 \x03(\x02\x12.\n\x08response\x18\x02 \x01(\x0b\x32\x1c.Nrmk.IndyFramework.Response\"\x16\n\x05Ratio\x12\r\n\x05ratio\x18\x01 \x01(\r\"2\n\x12\x41utoServoOffConfig\x12\x0e\n\x06\x65nable\x18\x01 \x01(\x08\x12\x0c\n\x04time\x18\x02 \x01(\x02\"\xc4\x02\n\x10\x43ollTuningConfig\x12G\n\tprecision\x18\x01 \x01(\x0e\x32\x34.Nrmk.IndyFramework.CollTuningConfig.TuningPrecision\x12\x46\n\x0ctuning_space\x18\x02 \x01(\x0e\x32\x30.Nrmk.IndyFramework.CollTuningConfig.TuningSpace\x12\x15\n\rvel_level_max\x18\x03 \x01(\x05\"?\n\x0fTuningPrecision\x12\x0c\n\x08LOW_TUNE\x10\x00\x12\x0f\n\x0bMIDDLE_TUNE\x10\x01\x12\r\n\tHIGH_TUNE\x10\x02\"G\n\x0bTuningSpace\x12\x0b\n\x07NO_TUNE\x10\x00\x12\x0e\n\nJOINT_TUNE\x10\x01\x12\r\n\tTASK_TUNE\x10\x02\x12\x0c\n\x08\x41LL_TUNE\x10\x03\"3\n\x0cJointGainSet\x12\n\n\x02kp\x18\x01 \x03(\x02\x12\n\n\x02kv\x18\x02 \x03(\x02\x12\x0b\n\x03kl2\x18\x03 \x03(\x02\"2\n\x0bTaskGainSet\x12\n\n\x02kp\x18\x01 \x03(\x02\x12\n\n\x02kv\x18\x02 \x03(\x02\x12\x0b\n\x03kl2\x18\x03 \x03(\x02\"Q\n\x10ImpedanceGainSet\x12\x0c\n\x04mass\x18\x01 \x03(\x02\x12\x0f\n\x07\x64\x61mping\x18\x02 \x03(\x02\x12\x11\n\tstiffness\x18\x03 \x03(\x02\x12\x0b\n\x03kl2\x18\x04 \x03(\x02\"\x7f\n\x0c\x46orceGainSet\x12\n\n\x02kp\x18\x01 \x03(\x02\x12\n\n\x02kv\x18\x02 \x03(\x02\x12\x0b\n\x03kl2\x18\x03 \x03(\x02\x12\x0c\n\x04mass\x18\x04 \x03(\x02\x12\x0f\n\x07\x64\x61mping\x18\x05 \x03(\x02\x12\x11\n\tstiffness\x18\x06 \x03(\x02\x12\x0b\n\x03kpf\x18\x07 \x03(\x02\x12\x0b\n\x03kif\x18\x08 \x03(\x02\"i\n\x0bTestGainSet\x12\r\n\x05kpctc\x18\x01 \x03(\x02\x12\r\n\x05kvctc\x18\x02 \x03(\x02\x12\r\n\x05kictc\x18\x03 \x03(\x02\x12\r\n\x05knric\x18\x04 \x03(\x02\x12\x0e\n\x06kpnric\x18\x05 \x03(\x02\x12\x0e\n\x06kinric\x18\x06 \x03(\x02\"\xa5\x01\n\rCustomGainSet\x12\r\n\x05gain0\x18\x01 \x03(\x02\x12\r\n\x05gain1\x18\x02 \x03(\x02\x12\r\n\x05gain2\x18\x03 \x03(\x02\x12\r\n\x05gain3\x18\x04 \x03(\x02\x12\r\n\x05gain4\x18\x05 \x03(\x02\x12\r\n\x05gain5\x18\x06 \x03(\x02\x12\r\n\x05gain6\x18\x07 \x03(\x02\x12\r\n\x05gain7\x18\x08 \x03(\x02\x12\r\n\x05gain8\x18\t \x03(\x02\x12\r\n\x05gain9\x18\n \x03(\x02\":\n\x16NewControllerTestState\x12\x0f\n\x07Jenable\x18\x01 \x01(\x08\x12\x0f\n\x07Tenable\x18\x02 \x01(\x08\"\x87\x01\n\x0f\x46rictionCompSet\x12\x1b\n\x13\x63ontrol_comp_enable\x18\x01 \x01(\x08\x12\x1b\n\x13\x63ontrol_comp_levels\x18\x02 \x03(\x05\x12\x1c\n\x14teaching_comp_enable\x18\x03 \x01(\x08\x12\x1c\n\x14teaching_comp_levels\x18\x04 \x03(\x05\"(\n\x0eMountingAngles\x12\n\n\x02ry\x18\x01 \x01(\x02\x12\n\n\x02rz\x18\x02 \x01(\x02\"G\n\x0eToolProperties\x12\x0c\n\x04mass\x18\x01 \x01(\x02\x12\x16\n\x0e\x63\x65nter_of_mass\x18\x02 \x03(\x02\x12\x0f\n\x07inertia\x18\x03 \x03(\x02\"#\n\x12\x43ollisionSensLevel\x12\r\n\x05level\x18\x01 \x01(\r\"\xb2\x02\n\x13\x43ollisionThresholds\x12\x16\n\x0ej_torque_bases\x18\x01 \x03(\x02\x12\x19\n\x11j_torque_tangents\x18\x02 \x03(\x02\x12\x16\n\x0et_torque_bases\x18\x03 \x03(\x02\x12\x19\n\x11t_torque_tangents\x18\x04 \x03(\x02\x12\x13\n\x0b\x65rror_bases\x18\x05 \x03(\x02\x12\x16\n\x0e\x65rror_tangents\x18\x06 \x03(\x02\x12\x1f\n\x17t_constvel_torque_bases\x18\x07 \x03(\x02\x12\"\n\x1at_constvel_torque_tangents\x18\x08 \x03(\x02\x12\x1f\n\x17t_conveyor_torque_bases\x18\t \x03(\x02\x12\"\n\x1at_conveyor_torque_tangents\x18\n \x03(\x02\"t\n\x0f\x43ollisionPolicy\x12\x37\n\x06policy\x18\x01 \x01(\x0e\x32\'.Nrmk.IndyFramework.CollisionPolicyType\x12\x12\n\nsleep_time\x18\x02 \x01(\x02\x12\x14\n\x0cgravity_time\x18\x03 \x01(\x02\"\xe6\x01\n\x0cSafetyLimits\x12\x13\n\x0bpower_limit\x18\x01 \x01(\x02\x12\x19\n\x11power_limit_ratio\x18\x02 \x01(\x02\x12\x17\n\x0ftcp_force_limit\x18\x03 \x01(\x02\x12\x1d\n\x15tcp_force_limit_ratio\x18\x04 \x01(\x02\x12\x17\n\x0ftcp_speed_limit\x18\x05 \x01(\x02\x12\x1d\n\x15tcp_speed_limit_ratio\x18\x06 \x01(\x02\x12\x1a\n\x12joint_upper_limits\x18\x07 \x03(\x02\x12\x1a\n\x12joint_lower_limits\x18\x08 \x03(\x02\"\xb0\x03\n\x10SafetyStopConfig\x12G\n\x1djoint_position_limit_stop_cat\x18\x01 \x01(\x0e\x32 .Nrmk.IndyFramework.StopCategory\x12\x44\n\x1ajoint_speed_limit_stop_cat\x18\x02 \x01(\x0e\x32 .Nrmk.IndyFramework.StopCategory\x12\x45\n\x1bjoint_torque_limit_stop_cat\x18\x03 \x01(\x0e\x32 .Nrmk.IndyFramework.StopCategory\x12\x42\n\x18tcp_speed_limit_stop_cat\x18\x04 \x01(\x0e\x32 .Nrmk.IndyFramework.StopCategory\x12\x42\n\x18tcp_force_limit_stop_cat\x18\x05 \x01(\x0e\x32 .Nrmk.IndyFramework.StopCategory\x12>\n\x14power_limit_stop_cat\x18\x06 \x01(\x0e\x32 .Nrmk.IndyFramework.StopCategory\"\xe9\x01\n\x08\x44IConfig\x12\x15\n\rfunction_code\x18\x01 \x01(\x05\x12\x15\n\rfunction_name\x18\x02 \x01(\t\x12\x39\n\x0etriggerSignals\x18\x03 \x03(\x0b\x32!.Nrmk.IndyFramework.DigitalSignal\x12\x39\n\x0esuccessSignals\x18\x04 \x03(\x0b\x32!.Nrmk.IndyFramework.DigitalSignal\x12\x39\n\x0e\x66\x61ilureSignals\x18\x05 \x03(\x0b\x32!.Nrmk.IndyFramework.DigitalSignal\"@\n\x0c\x44IConfigList\x12\x30\n\ndi_configs\x18\x01 \x03(\x0b\x32\x1c.Nrmk.IndyFramework.DIConfig\"\x9f\x01\n\x08\x44OConfig\x12\x12\n\nstate_code\x18\x01 \x01(\x05\x12\x12\n\nstate_name\x18\x02 \x01(\t\x12\x34\n\tonSignals\x18\x03 \x03(\x0b\x32!.Nrmk.IndyFramework.DigitalSignal\x12\x35\n\noffSignals\x18\x04 \x03(\x0b\x32!.Nrmk.IndyFramework.DigitalSignal\"@\n\x0c\x44OConfigList\x12\x30\n\ndo_configs\x18\x01 \x03(\x0b\x32\x1c.Nrmk.IndyFramework.DOConfig\"0\n\x12GetReducedRatioRes\x12\r\n\x05ratio\x18\x01 \x01(\x02\x12\x0b\n\x03msg\x18\x64 \x01(\t\"0\n\x12GetReducedSpeedRes\x12\r\n\x05speed\x18\x01 \x01(\x02\x12\x0b\n\x03msg\x18\x64 \x01(\t\"#\n\x12SetReducedSpeedReq\x12\r\n\x05speed\x18\x01 \x01(\x02\"\xe1\x04\n\x0e\x46TSensorDevice\x12G\n\x08\x64\x65v_type\x18\x01 \x01(\x0e\x32\x35.Nrmk.IndyFramework.FTSensorDevice.FTSensorDeviceType\x12J\n\x08\x63om_type\x18\x02 \x01(\x0e\x32\x38.Nrmk.IndyFramework.FTSensorDevice.FTSensorDeviceComType\x12\x12\n\nip_address\x18\x03 \x01(\t\x12%\n\x1d\x66t_frame_translation_offset_x\x18\x0b \x01(\x02\x12%\n\x1d\x66t_frame_translation_offset_y\x18\x0c \x01(\x02\x12%\n\x1d\x66t_frame_translation_offset_z\x18\r \x01(\x02\x12\"\n\x1a\x66t_frame_rotation_offset_r\x18\x0e \x01(\x02\x12\"\n\x1a\x66t_frame_rotation_offset_p\x18\x0f \x01(\x02\x12\"\n\x1a\x66t_frame_rotation_offset_y\x18\x10 \x01(\x02\"q\n\x12\x46TSensorDeviceType\x12\x08\n\x04NONE\x10\x00\x12\x0e\n\nAFT200_D80\x10\x01\x12\x11\n\rAFT200_D80_EC\x10\x02\x12\x0e\n\nRFT80_6A01\x10\x03\x12\x0e\n\nRFT60_HA01\x10\x04\x12\x0e\n\nHEX_E_H_QC\x10\x05\"R\n\x15\x46TSensorDeviceComType\x12\x0e\n\nENDTOOLCAN\x10\x00\x12\t\n\x05\x43\x42\x43\x41N\x10\x01\x12\x10\n\x0cMODBUSCLIENT\x10\x02\x12\x0c\n\x08\x45THERCAT\x10\x03\" \n\x11\x46TSensorDeviceRes\x12\x0b\n\x03msg\x18\x64 \x01(\t\"N\n\x0cTeleOpParams\x12\x15\n\rsmooth_factor\x18\x01 \x01(\x02\x12\x13\n\x0b\x63utoff_freq\x18\x02 \x01(\x02\x12\x12\n\nerror_gain\x18\x03 \x01(\x02\"\x99\x02\n\x10KinematicsParams\x12\x35\n\x03mdh\x18\x01 \x03(\x0b\x32(.Nrmk.IndyFramework.KinematicsParams.MDH\x1a\x98\x01\n\x03MDH\x12\t\n\x01\x61\x18\x01 \x01(\x02\x12\r\n\x05\x61lpha\x18\x02 \x01(\x02\x12\n\n\x02\x64\x30\x18\x03 \x01(\x02\x12\x0e\n\x06theta0\x18\x04 \x01(\x02\x12<\n\x04type\x18\x05 \x01(\x0e\x32..Nrmk.IndyFramework.KinematicsParams.JointType\x12\r\n\x05index\x18\n \x01(\x05\x12\x0e\n\x06parent\x18\x0b \x01(\x05\"3\n\tJointType\x12\x0c\n\x08REVOLUTE\x10\x00\x12\r\n\tPRISMATIC\x10\x01\x12\t\n\x05\x46IXED\x10\x02\x62\x06proto3'
+  serialized_pb=b'\n\x11\x63onfig_msgs.proto\x12\x12Nrmk.IndyFramework\x1a\x11\x63ommon_msgs.proto\x1a\x11\x64\x65vice_msgs.proto\"d\n\x0cRefFrameList\x12>\n\nref_frames\x18\x01 \x03(\x0b\x32*.Nrmk.IndyFramework.NamedReferencePosition\x12\x14\n\x0c\x64\x65\x66\x61ult_name\x18\x02 \x01(\t\"\x15\n\x05\x46rame\x12\x0c\n\x04\x66pos\x18\x01 \x03(\x02\"\x18\n\x08JointPos\x12\x0c\n\x04jpos\x18\x01 \x03(\x02\":\n\x0bPlanarFrame\x12\r\n\x05\x66pos0\x18\x01 \x03(\x02\x12\r\n\x05\x66pos1\x18\x02 \x03(\x02\x12\r\n\x05\x66pos2\x18\x03 \x03(\x02\"K\n\x0b\x46rameResult\x12\x0c\n\x04\x66pos\x18\x01 \x03(\x02\x12.\n\x08response\x18\x02 \x01(\x0b\x32\x1c.Nrmk.IndyFramework.Response\"\x16\n\x05Ratio\x12\r\n\x05ratio\x18\x01 \x01(\r\"2\n\x12\x41utoServoOffConfig\x12\x0e\n\x06\x65nable\x18\x01 \x01(\x08\x12\x0c\n\x04time\x18\x02 \x01(\x02\"\xc4\x02\n\x10\x43ollTuningConfig\x12G\n\tprecision\x18\x01 \x01(\x0e\x32\x34.Nrmk.IndyFramework.CollTuningConfig.TuningPrecision\x12\x46\n\x0ctuning_space\x18\x02 \x01(\x0e\x32\x30.Nrmk.IndyFramework.CollTuningConfig.TuningSpace\x12\x15\n\rvel_level_max\x18\x03 \x01(\x05\"?\n\x0fTuningPrecision\x12\x0c\n\x08LOW_TUNE\x10\x00\x12\x0f\n\x0bMIDDLE_TUNE\x10\x01\x12\r\n\tHIGH_TUNE\x10\x02\"G\n\x0bTuningSpace\x12\x0b\n\x07NO_TUNE\x10\x00\x12\x0e\n\nJOINT_TUNE\x10\x01\x12\r\n\tTASK_TUNE\x10\x02\x12\x0c\n\x08\x41LL_TUNE\x10\x03\"3\n\x0cJointGainSet\x12\n\n\x02kp\x18\x01 \x03(\x02\x12\n\n\x02kv\x18\x02 \x03(\x02\x12\x0b\n\x03kl2\x18\x03 \x03(\x02\"2\n\x0bTaskGainSet\x12\n\n\x02kp\x18\x01 \x03(\x02\x12\n\n\x02kv\x18\x02 \x03(\x02\x12\x0b\n\x03kl2\x18\x03 \x03(\x02\"Q\n\x10ImpedanceGainSet\x12\x0c\n\x04mass\x18\x01 \x03(\x02\x12\x0f\n\x07\x64\x61mping\x18\x02 \x03(\x02\x12\x11\n\tstiffness\x18\x03 \x03(\x02\x12\x0b\n\x03kl2\x18\x04 \x03(\x02\"\x7f\n\x0c\x46orceGainSet\x12\n\n\x02kp\x18\x01 \x03(\x02\x12\n\n\x02kv\x18\x02 \x03(\x02\x12\x0b\n\x03kl2\x18\x03 \x03(\x02\x12\x0c\n\x04mass\x18\x04 \x03(\x02\x12\x0f\n\x07\x64\x61mping\x18\x05 \x03(\x02\x12\x11\n\tstiffness\x18\x06 \x03(\x02\x12\x0b\n\x03kpf\x18\x07 \x03(\x02\x12\x0b\n\x03kif\x18\x08 \x03(\x02\"i\n\x0bTestGainSet\x12\r\n\x05kpctc\x18\x01 \x03(\x02\x12\r\n\x05kvctc\x18\x02 \x03(\x02\x12\r\n\x05kictc\x18\x03 \x03(\x02\x12\r\n\x05knric\x18\x04 \x03(\x02\x12\x0e\n\x06kpnric\x18\x05 \x03(\x02\x12\x0e\n\x06kinric\x18\x06 \x03(\x02\"\xa5\x01\n\rCustomGainSet\x12\r\n\x05gain0\x18\x01 \x03(\x02\x12\r\n\x05gain1\x18\x02 \x03(\x02\x12\r\n\x05gain2\x18\x03 \x03(\x02\x12\r\n\x05gain3\x18\x04 \x03(\x02\x12\r\n\x05gain4\x18\x05 \x03(\x02\x12\r\n\x05gain5\x18\x06 \x03(\x02\x12\r\n\x05gain6\x18\x07 \x03(\x02\x12\r\n\x05gain7\x18\x08 \x03(\x02\x12\r\n\x05gain8\x18\t \x03(\x02\x12\r\n\x05gain9\x18\n \x03(\x02\":\n\x16NewControllerTestState\x12\x0f\n\x07Jenable\x18\x01 \x01(\x08\x12\x0f\n\x07Tenable\x18\x02 \x01(\x08\"\x87\x01\n\x0f\x46rictionCompSet\x12\x1b\n\x13\x63ontrol_comp_enable\x18\x01 \x01(\x08\x12\x1b\n\x13\x63ontrol_comp_levels\x18\x02 \x03(\x05\x12\x1c\n\x14teaching_comp_enable\x18\x03 \x01(\x08\x12\x1c\n\x14teaching_comp_levels\x18\x04 \x03(\x05\"(\n\x0eMountingAngles\x12\n\n\x02ry\x18\x01 \x01(\x02\x12\n\n\x02rz\x18\x02 \x01(\x02\"G\n\x0eToolProperties\x12\x0c\n\x04mass\x18\x01 \x01(\x02\x12\x16\n\x0e\x63\x65nter_of_mass\x18\x02 \x03(\x02\x12\x0f\n\x07inertia\x18\x03 \x03(\x02\"#\n\x12\x43ollisionSensLevel\x12\r\n\x05level\x18\x01 \x01(\r\"\xb2\x02\n\x13\x43ollisionThresholds\x12\x16\n\x0ej_torque_bases\x18\x01 \x03(\x02\x12\x19\n\x11j_torque_tangents\x18\x02 \x03(\x02\x12\x16\n\x0et_torque_bases\x18\x03 \x03(\x02\x12\x19\n\x11t_torque_tangents\x18\x04 \x03(\x02\x12\x13\n\x0b\x65rror_bases\x18\x05 \x03(\x02\x12\x16\n\x0e\x65rror_tangents\x18\x06 \x03(\x02\x12\x1f\n\x17t_constvel_torque_bases\x18\x07 \x03(\x02\x12\"\n\x1at_constvel_torque_tangents\x18\x08 \x03(\x02\x12\x1f\n\x17t_conveyor_torque_bases\x18\t \x03(\x02\x12\"\n\x1at_conveyor_torque_tangents\x18\n \x03(\x02\"t\n\x0f\x43ollisionPolicy\x12\x37\n\x06policy\x18\x01 \x01(\x0e\x32\'.Nrmk.IndyFramework.CollisionPolicyType\x12\x12\n\nsleep_time\x18\x02 \x01(\x02\x12\x14\n\x0cgravity_time\x18\x03 \x01(\x02\"\xe6\x01\n\x0cSafetyLimits\x12\x13\n\x0bpower_limit\x18\x01 \x01(\x02\x12\x19\n\x11power_limit_ratio\x18\x02 \x01(\x02\x12\x17\n\x0ftcp_force_limit\x18\x03 \x01(\x02\x12\x1d\n\x15tcp_force_limit_ratio\x18\x04 \x01(\x02\x12\x17\n\x0ftcp_speed_limit\x18\x05 \x01(\x02\x12\x1d\n\x15tcp_speed_limit_ratio\x18\x06 \x01(\x02\x12\x1a\n\x12joint_upper_limits\x18\x07 \x03(\x02\x12\x1a\n\x12joint_lower_limits\x18\x08 \x03(\x02\"\xb0\x03\n\x10SafetyStopConfig\x12G\n\x1djoint_position_limit_stop_cat\x18\x01 \x01(\x0e\x32 .Nrmk.IndyFramework.StopCategory\x12\x44\n\x1ajoint_speed_limit_stop_cat\x18\x02 \x01(\x0e\x32 .Nrmk.IndyFramework.StopCategory\x12\x45\n\x1bjoint_torque_limit_stop_cat\x18\x03 \x01(\x0e\x32 .Nrmk.IndyFramework.StopCategory\x12\x42\n\x18tcp_speed_limit_stop_cat\x18\x04 \x01(\x0e\x32 .Nrmk.IndyFramework.StopCategory\x12\x42\n\x18tcp_force_limit_stop_cat\x18\x05 \x01(\x0e\x32 .Nrmk.IndyFramework.StopCategory\x12>\n\x14power_limit_stop_cat\x18\x06 \x01(\x0e\x32 .Nrmk.IndyFramework.StopCategory\"\xe9\x01\n\x08\x44IConfig\x12\x15\n\rfunction_code\x18\x01 \x01(\x05\x12\x15\n\rfunction_name\x18\x02 \x01(\t\x12\x39\n\x0etriggerSignals\x18\x03 \x03(\x0b\x32!.Nrmk.IndyFramework.DigitalSignal\x12\x39\n\x0esuccessSignals\x18\x04 \x03(\x0b\x32!.Nrmk.IndyFramework.DigitalSignal\x12\x39\n\x0e\x66\x61ilureSignals\x18\x05 \x03(\x0b\x32!.Nrmk.IndyFramework.DigitalSignal\"@\n\x0c\x44IConfigList\x12\x30\n\ndi_configs\x18\x01 \x03(\x0b\x32\x1c.Nrmk.IndyFramework.DIConfig\"\x9f\x01\n\x08\x44OConfig\x12\x12\n\nstate_code\x18\x01 \x01(\x05\x12\x12\n\nstate_name\x18\x02 \x01(\t\x12\x34\n\tonSignals\x18\x03 \x03(\x0b\x32!.Nrmk.IndyFramework.DigitalSignal\x12\x35\n\noffSignals\x18\x04 \x03(\x0b\x32!.Nrmk.IndyFramework.DigitalSignal\"@\n\x0c\x44OConfigList\x12\x30\n\ndo_configs\x18\x01 \x03(\x0b\x32\x1c.Nrmk.IndyFramework.DOConfig\"0\n\x12GetReducedRatioRes\x12\r\n\x05ratio\x18\x01 \x01(\x02\x12\x0b\n\x03msg\x18\x64 \x01(\t\"0\n\x12GetReducedSpeedRes\x12\r\n\x05speed\x18\x01 \x01(\x02\x12\x0b\n\x03msg\x18\x64 \x01(\t\"#\n\x12SetReducedSpeedReq\x12\r\n\x05speed\x18\x01 \x01(\x02\"\xe1\x04\n\x0e\x46TSensorDevice\x12G\n\x08\x64\x65v_type\x18\x01 \x01(\x0e\x32\x35.Nrmk.IndyFramework.FTSensorDevice.FTSensorDeviceType\x12J\n\x08\x63om_type\x18\x02 \x01(\x0e\x32\x38.Nrmk.IndyFramework.FTSensorDevice.FTSensorDeviceComType\x12\x12\n\nip_address\x18\x03 \x01(\t\x12%\n\x1d\x66t_frame_translation_offset_x\x18\x0b \x01(\x02\x12%\n\x1d\x66t_frame_translation_offset_y\x18\x0c \x01(\x02\x12%\n\x1d\x66t_frame_translation_offset_z\x18\r \x01(\x02\x12\"\n\x1a\x66t_frame_rotation_offset_r\x18\x0e \x01(\x02\x12\"\n\x1a\x66t_frame_rotation_offset_p\x18\x0f \x01(\x02\x12\"\n\x1a\x66t_frame_rotation_offset_y\x18\x10 \x01(\x02\"q\n\x12\x46TSensorDeviceType\x12\x08\n\x04NONE\x10\x00\x12\x0e\n\nAFT200_D80\x10\x01\x12\x11\n\rAFT200_D80_EC\x10\x02\x12\x0e\n\nRFT80_6A01\x10\x03\x12\x0e\n\nRFT60_HA01\x10\x04\x12\x0e\n\nHEX_E_H_QC\x10\x05\"R\n\x15\x46TSensorDeviceComType\x12\x0e\n\nENDTOOLCAN\x10\x00\x12\t\n\x05\x43\x42\x43\x41N\x10\x01\x12\x10\n\x0cMODBUSCLIENT\x10\x02\x12\x0c\n\x08\x45THERCAT\x10\x03\" \n\x11\x46TSensorDeviceRes\x12\x0b\n\x03msg\x18\x64 \x01(\t\"N\n\x0cTeleOpParams\x12\x15\n\rsmooth_factor\x18\x01 \x01(\x02\x12\x13\n\x0b\x63utoff_freq\x18\x02 \x01(\x02\x12\x12\n\nerror_gain\x18\x03 \x01(\x02\"\x99\x02\n\x10KinematicsParams\x12\x35\n\x03mdh\x18\x01 \x03(\x0b\x32(.Nrmk.IndyFramework.KinematicsParams.MDH\x1a\x98\x01\n\x03MDH\x12\t\n\x01\x61\x18\x01 \x01(\x02\x12\r\n\x05\x61lpha\x18\x02 \x01(\x02\x12\n\n\x02\x64\x30\x18\x03 \x01(\x02\x12\x0e\n\x06theta0\x18\x04 \x01(\x02\x12<\n\x04type\x18\x05 \x01(\x0e\x32..Nrmk.IndyFramework.KinematicsParams.JointType\x12\r\n\x05index\x18\n \x01(\x05\x12\x0e\n\x06parent\x18\x0b \x01(\x05\"3\n\tJointType\x12\x0c\n\x08REVOLUTE\x10\x00\x12\r\n\tPRISMATIC\x10\x01\x12\t\n\x05\x46IXED\x10\x02\x62\x06proto3'
   ,
   dependencies=[common__msgs__pb2.DESCRIPTOR,device__msgs__pb2.DESCRIPTOR,])
 
@@ -52,8 +52,8 @@ _COLLTUNINGCONFIG_TUNINGPRECISION = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=530,
-  serialized_end=593,
+  serialized_start=632,
+  serialized_end=695,
 )
 _sym_db.RegisterEnumDescriptor(_COLLTUNINGCONFIG_TUNINGPRECISION)
 
@@ -87,8 +87,8 @@ _COLLTUNINGCONFIG_TUNINGSPACE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=595,
-  serialized_end=666,
+  serialized_start=697,
+  serialized_end=768,
 )
 _sym_db.RegisterEnumDescriptor(_COLLTUNINGCONFIG_TUNINGSPACE)
 
@@ -132,8 +132,8 @@ _FTSENSORDEVICE_FTSENSORDEVICETYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=3785,
-  serialized_end=3898,
+  serialized_start=3887,
+  serialized_end=4000,
 )
 _sym_db.RegisterEnumDescriptor(_FTSENSORDEVICE_FTSENSORDEVICETYPE)
 
@@ -167,8 +167,8 @@ _FTSENSORDEVICE_FTSENSORDEVICECOMTYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=3900,
-  serialized_end=3982,
+  serialized_start=4002,
+  serialized_end=4084,
 )
 _sym_db.RegisterEnumDescriptor(_FTSENSORDEVICE_FTSENSORDEVICECOMTYPE)
 
@@ -197,10 +197,49 @@ _KINEMATICSPARAMS_JOINTTYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=4329,
-  serialized_end=4380,
+  serialized_start=4431,
+  serialized_end=4482,
 )
 _sym_db.RegisterEnumDescriptor(_KINEMATICSPARAMS_JOINTTYPE)
+
+
+_REFFRAMELIST = _descriptor.Descriptor(
+  name='RefFrameList',
+  full_name='Nrmk.IndyFramework.RefFrameList',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='ref_frames', full_name='Nrmk.IndyFramework.RefFrameList.ref_frames', index=0,
+      number=1, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='default_name', full_name='Nrmk.IndyFramework.RefFrameList.default_name', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=79,
+  serialized_end=179,
+)
 
 
 _FRAME = _descriptor.Descriptor(
@@ -230,8 +269,8 @@ _FRAME = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=79,
-  serialized_end=100,
+  serialized_start=181,
+  serialized_end=202,
 )
 
 
@@ -262,8 +301,8 @@ _JOINTPOS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=102,
-  serialized_end=126,
+  serialized_start=204,
+  serialized_end=228,
 )
 
 
@@ -308,8 +347,8 @@ _PLANARFRAME = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=128,
-  serialized_end=186,
+  serialized_start=230,
+  serialized_end=288,
 )
 
 
@@ -347,8 +386,8 @@ _FRAMERESULT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=188,
-  serialized_end=263,
+  serialized_start=290,
+  serialized_end=365,
 )
 
 
@@ -379,8 +418,8 @@ _RATIO = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=265,
-  serialized_end=287,
+  serialized_start=367,
+  serialized_end=389,
 )
 
 
@@ -418,8 +457,8 @@ _AUTOSERVOOFFCONFIG = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=289,
-  serialized_end=339,
+  serialized_start=391,
+  serialized_end=441,
 )
 
 
@@ -466,8 +505,8 @@ _COLLTUNINGCONFIG = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=342,
-  serialized_end=666,
+  serialized_start=444,
+  serialized_end=768,
 )
 
 
@@ -512,8 +551,8 @@ _JOINTGAINSET = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=668,
-  serialized_end=719,
+  serialized_start=770,
+  serialized_end=821,
 )
 
 
@@ -558,8 +597,8 @@ _TASKGAINSET = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=721,
-  serialized_end=771,
+  serialized_start=823,
+  serialized_end=873,
 )
 
 
@@ -611,8 +650,8 @@ _IMPEDANCEGAINSET = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=773,
-  serialized_end=854,
+  serialized_start=875,
+  serialized_end=956,
 )
 
 
@@ -692,8 +731,8 @@ _FORCEGAINSET = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=856,
-  serialized_end=983,
+  serialized_start=958,
+  serialized_end=1085,
 )
 
 
@@ -759,8 +798,8 @@ _TESTGAINSET = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=985,
-  serialized_end=1090,
+  serialized_start=1087,
+  serialized_end=1192,
 )
 
 
@@ -854,8 +893,8 @@ _CUSTOMGAINSET = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1093,
-  serialized_end=1258,
+  serialized_start=1195,
+  serialized_end=1360,
 )
 
 
@@ -893,8 +932,8 @@ _NEWCONTROLLERTESTSTATE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1260,
-  serialized_end=1318,
+  serialized_start=1362,
+  serialized_end=1420,
 )
 
 
@@ -946,8 +985,8 @@ _FRICTIONCOMPSET = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1321,
-  serialized_end=1456,
+  serialized_start=1423,
+  serialized_end=1558,
 )
 
 
@@ -985,8 +1024,8 @@ _MOUNTINGANGLES = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1458,
-  serialized_end=1498,
+  serialized_start=1560,
+  serialized_end=1600,
 )
 
 
@@ -1031,8 +1070,8 @@ _TOOLPROPERTIES = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1500,
-  serialized_end=1571,
+  serialized_start=1602,
+  serialized_end=1673,
 )
 
 
@@ -1063,8 +1102,8 @@ _COLLISIONSENSLEVEL = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1573,
-  serialized_end=1608,
+  serialized_start=1675,
+  serialized_end=1710,
 )
 
 
@@ -1158,8 +1197,8 @@ _COLLISIONTHRESHOLDS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1611,
-  serialized_end=1917,
+  serialized_start=1713,
+  serialized_end=2019,
 )
 
 
@@ -1204,8 +1243,8 @@ _COLLISIONPOLICY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1919,
-  serialized_end=2035,
+  serialized_start=2021,
+  serialized_end=2137,
 )
 
 
@@ -1285,8 +1324,8 @@ _SAFETYLIMITS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2038,
-  serialized_end=2268,
+  serialized_start=2140,
+  serialized_end=2370,
 )
 
 
@@ -1352,8 +1391,8 @@ _SAFETYSTOPCONFIG = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2271,
-  serialized_end=2703,
+  serialized_start=2373,
+  serialized_end=2805,
 )
 
 
@@ -1412,8 +1451,8 @@ _DICONFIG = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2706,
-  serialized_end=2939,
+  serialized_start=2808,
+  serialized_end=3041,
 )
 
 
@@ -1444,8 +1483,8 @@ _DICONFIGLIST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2941,
-  serialized_end=3005,
+  serialized_start=3043,
+  serialized_end=3107,
 )
 
 
@@ -1497,8 +1536,8 @@ _DOCONFIG = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3008,
-  serialized_end=3167,
+  serialized_start=3110,
+  serialized_end=3269,
 )
 
 
@@ -1529,8 +1568,8 @@ _DOCONFIGLIST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3169,
-  serialized_end=3233,
+  serialized_start=3271,
+  serialized_end=3335,
 )
 
 
@@ -1568,8 +1607,8 @@ _GETREDUCEDRATIORES = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3235,
-  serialized_end=3283,
+  serialized_start=3337,
+  serialized_end=3385,
 )
 
 
@@ -1607,8 +1646,8 @@ _GETREDUCEDSPEEDRES = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3285,
-  serialized_end=3333,
+  serialized_start=3387,
+  serialized_end=3435,
 )
 
 
@@ -1639,8 +1678,8 @@ _SETREDUCEDSPEEDREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3335,
-  serialized_end=3370,
+  serialized_start=3437,
+  serialized_end=3472,
 )
 
 
@@ -1729,8 +1768,8 @@ _FTSENSORDEVICE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3373,
-  serialized_end=3982,
+  serialized_start=3475,
+  serialized_end=4084,
 )
 
 
@@ -1761,8 +1800,8 @@ _FTSENSORDEVICERES = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3984,
-  serialized_end=4016,
+  serialized_start=4086,
+  serialized_end=4118,
 )
 
 
@@ -1807,8 +1846,8 @@ _TELEOPPARAMS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4018,
-  serialized_end=4096,
+  serialized_start=4120,
+  serialized_end=4198,
 )
 
 
@@ -1881,8 +1920,8 @@ _KINEMATICSPARAMS_MDH = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4175,
-  serialized_end=4327,
+  serialized_start=4277,
+  serialized_end=4429,
 )
 
 _KINEMATICSPARAMS = _descriptor.Descriptor(
@@ -1913,10 +1952,11 @@ _KINEMATICSPARAMS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4099,
-  serialized_end=4380,
+  serialized_start=4201,
+  serialized_end=4482,
 )
 
+_REFFRAMELIST.fields_by_name['ref_frames'].message_type = common__msgs__pb2._NAMEDREFERENCEPOSITION
 _FRAMERESULT.fields_by_name['response'].message_type = common__msgs__pb2._RESPONSE
 _COLLTUNINGCONFIG.fields_by_name['precision'].enum_type = _COLLTUNINGCONFIG_TUNINGPRECISION
 _COLLTUNINGCONFIG.fields_by_name['tuning_space'].enum_type = _COLLTUNINGCONFIG_TUNINGSPACE
@@ -1944,6 +1984,7 @@ _KINEMATICSPARAMS_MDH.fields_by_name['type'].enum_type = _KINEMATICSPARAMS_JOINT
 _KINEMATICSPARAMS_MDH.containing_type = _KINEMATICSPARAMS
 _KINEMATICSPARAMS.fields_by_name['mdh'].message_type = _KINEMATICSPARAMS_MDH
 _KINEMATICSPARAMS_JOINTTYPE.containing_type = _KINEMATICSPARAMS
+DESCRIPTOR.message_types_by_name['RefFrameList'] = _REFFRAMELIST
 DESCRIPTOR.message_types_by_name['Frame'] = _FRAME
 DESCRIPTOR.message_types_by_name['JointPos'] = _JOINTPOS
 DESCRIPTOR.message_types_by_name['PlanarFrame'] = _PLANARFRAME
@@ -1978,6 +2019,13 @@ DESCRIPTOR.message_types_by_name['FTSensorDeviceRes'] = _FTSENSORDEVICERES
 DESCRIPTOR.message_types_by_name['TeleOpParams'] = _TELEOPPARAMS
 DESCRIPTOR.message_types_by_name['KinematicsParams'] = _KINEMATICSPARAMS
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
+
+RefFrameList = _reflection.GeneratedProtocolMessageType('RefFrameList', (_message.Message,), {
+  'DESCRIPTOR' : _REFFRAMELIST,
+  '__module__' : 'config_msgs_pb2'
+  # @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.RefFrameList)
+  })
+_sym_db.RegisterMessage(RefFrameList)
 
 Frame = _reflection.GeneratedProtocolMessageType('Frame', (_message.Message,), {
   'DESCRIPTOR' : _FRAME,
