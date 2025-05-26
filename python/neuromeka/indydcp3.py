@@ -2875,9 +2875,11 @@ class IndyDCP3:
         ]
         default_name = "default_frame"
         """
+        NamedReferencePosition = hri_msgs.SetRefFrameListReq().ref_frames.add().__class__
+        
         request = hri_msgs.SetRefFrameListReq(
             ref_frames=[
-                shared_msgs.NamedReferencePosition(
+                NamedReferencePosition(
                     name=frame['name'],
                     tpos=frame.get('tpos', []),
                     tpos0=frame.get('tpos0', []),
