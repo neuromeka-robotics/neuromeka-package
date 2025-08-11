@@ -120,10 +120,13 @@ PROTOBUF_CONSTEXPR AxesInfo::AxesInfo(::_pbi::ConstantInitialized)
       /*decltype(_impl_.despos_mm_)*/ {},
       /*decltype(_impl_.desvel_mm_)*/ {},
       /*decltype(_impl_.desacc_mm_)*/ {},
+      /*decltype(_impl_.axis_type_)*/ {},
+      /*decltype(_impl_._axis_type_cached_byte_size_)*/ {0},
       /*decltype(_impl_.num_axes_)*/ 0u,
       /*decltype(_impl_.op_state_)*/ 0,
       /*decltype(_impl_.traj_state_)*/ 0,
       /*decltype(_impl_.recover_time_)*/ 0,
+      /*decltype(_impl_.is_target_reached_)*/ false,
       /*decltype(_impl_._cached_size_)*/ {},
     } {}
 struct AxesInfoDefaultTypeInternal {
@@ -216,6 +219,8 @@ const ::uint32_t TableStruct_linear_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::AxesInfo, _impl_.op_state_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::AxesInfo, _impl_.traj_state_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::AxesInfo, _impl_.recover_time_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::AxesInfo, _impl_.axis_type_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::AxesInfo, _impl_.is_target_reached_),
 };
 
 static const ::_pbi::MigrationSchema
@@ -246,44 +251,46 @@ const char descriptor_table_protodef_linear_2eproto[] PROTOBUF_SECTION_VARIABLE(
     "ex\030\001 \001(\r\022\n\n\002kp\030\002 \001(\002\022\n\n\002kv\030\003 \001(\002\022\n\n\002ki\030\004"
     " \001(\002\"\026\n\005Index\022\r\n\005index\030\001 \001(\r\"6\n\023LinearAx"
     "isServoData\022\r\n\005index\030\001 \001(\r\022\020\n\010zero_pos\030\002"
-    " \001(\002\"\326\004\n\010AxesInfo\022\016\n\006active\030\001 \003(\010\022\016\n\006pos"
+    " \001(\002\"\242\005\n\010AxesInfo\022\016\n\006active\030\001 \003(\010\022\016\n\006pos"
     "_mm\030\002 \003(\002\022\016\n\006vel_mm\030\003 \003(\002\022\021\n\tdespos_mm\030\004"
     " \003(\002\022\021\n\tdesvel_mm\030\005 \003(\002\022\021\n\tdesacc_mm\030\006 \003"
     "(\002\022\020\n\010num_axes\030\n \001(\r\0226\n\010op_state\030\013 \001(\0162$"
     ".Nrmk.IndyFramework.AxesInfo.OpState\022:\n\n"
     "traj_state\030\014 \001(\0162&.Nrmk.IndyFramework.Ax"
-    "esInfo.TrajState\022\024\n\014recover_time\030\r \001(\002\"\245"
-    "\001\n\007OpState\022\016\n\nSYSTEM_OFF\020\000\022\r\n\tSYSTEM_ON\020"
-    "\001\022\013\n\007VIOLATE\020\002\022\020\n\014RECOVER_HARD\020\003\022\020\n\014RECO"
-    "VER_SOFT\020\004\022\010\n\004IDLE\020\005\022\n\n\006MOVING\020\006\022\013\n\007PAUS"
-    "ING\020\007\022\023\n\017COLLISION_PAUSE\020\010\022\022\n\016COLLISION_"
-    "STOP\020\t\"\234\001\n\tTrajState\022\r\n\tTRAJ_NONE\020\000\022\r\n\tT"
-    "RAJ_INIT\020\001\022\r\n\tTRAJ_CALC\020\002\022\r\n\tTRAJ_STBY\020\003"
-    "\022\014\n\010TRAJ_ACC\020\004\022\014\n\010TRAJ_CRZ\020\005\022\014\n\010TRAJ_DEC"
-    "\020\006\022\r\n\tTRAJ_CANC\020\007\022\014\n\010TRAJ_FIN\020\010\022\014\n\010TRAJ_"
-    "ERR\020\t2\207\007\n\rLinearControl\022H\n\013SetServoAll\022\031"
-    ".Nrmk.IndyFramework.State\032\034.Nrmk.IndyFra"
-    "mework.Response\"\000\022N\n\nMoveLinear\022 .Nrmk.I"
-    "ndyFramework.LinearTarget\032\034.Nrmk.IndyFra"
-    "mework.Response\"\000\022I\n\nStopMotion\022\033.Nrmk.I"
-    "ndyFramework.StopCat\032\034.Nrmk.IndyFramewor"
-    "k.Response\"\000\022K\n\013PauseMotion\022\034.Nrmk.IndyF"
-    "ramework.PauseCat\032\034.Nrmk.IndyFramework.R"
-    "esponse\"\000\022I\n\014ResumeMotion\022\031.Nrmk.IndyFra"
-    "mework.Empty\032\034.Nrmk.IndyFramework.Respon"
-    "se\"\000\022H\n\013GetAxesInfo\022\031.Nrmk.IndyFramework"
-    ".Empty\032\034.Nrmk.IndyFramework.AxesInfo\"\000\022S"
-    "\n\017SetTargetTorque\022 .Nrmk.IndyFramework.T"
-    "argetTorque\032\034.Nrmk.IndyFramework.Respons"
-    "e\"\000\022S\n\017SetControlGains\022 .Nrmk.IndyFramew"
-    "ork.ControlGains\032\034.Nrmk.IndyFramework.Re"
-    "sponse\"\000\022P\n\017GetControlGains\022\031.Nrmk.IndyF"
-    "ramework.Index\032 .Nrmk.IndyFramework.Cont"
-    "rolGains\"\000\022Z\n\017SetZeroPosition\022\'.Nrmk.Ind"
-    "yFramework.LinearAxisServoData\032\034.Nrmk.In"
-    "dyFramework.Response\"\000\022W\n\017GetZeroPositio"
-    "n\022\031.Nrmk.IndyFramework.Empty\032\'.Nrmk.Indy"
-    "Framework.LinearAxisServoData\"\000b\006proto3"
+    "esInfo.TrajState\022\024\n\014recover_time\030\r \001(\002\022/"
+    "\n\taxis_type\030\020 \003(\0162\034.Nrmk.IndyFramework.A"
+    "xisType\022\031\n\021is_target_reached\030\024 \001(\010\"\245\001\n\007O"
+    "pState\022\016\n\nSYSTEM_OFF\020\000\022\r\n\tSYSTEM_ON\020\001\022\013\n"
+    "\007VIOLATE\020\002\022\020\n\014RECOVER_HARD\020\003\022\020\n\014RECOVER_"
+    "SOFT\020\004\022\010\n\004IDLE\020\005\022\n\n\006MOVING\020\006\022\013\n\007PAUSING\020"
+    "\007\022\023\n\017COLLISION_PAUSE\020\010\022\022\n\016COLLISION_STOP"
+    "\020\t\"\234\001\n\tTrajState\022\r\n\tTRAJ_NONE\020\000\022\r\n\tTRAJ_"
+    "INIT\020\001\022\r\n\tTRAJ_CALC\020\002\022\r\n\tTRAJ_STBY\020\003\022\014\n\010"
+    "TRAJ_ACC\020\004\022\014\n\010TRAJ_CRZ\020\005\022\014\n\010TRAJ_DEC\020\006\022\r"
+    "\n\tTRAJ_CANC\020\007\022\014\n\010TRAJ_FIN\020\010\022\014\n\010TRAJ_ERR\020"
+    "\t2\207\007\n\rLinearControl\022H\n\013SetServoAll\022\031.Nrm"
+    "k.IndyFramework.State\032\034.Nrmk.IndyFramewo"
+    "rk.Response\"\000\022N\n\nMoveLinear\022 .Nrmk.IndyF"
+    "ramework.LinearTarget\032\034.Nrmk.IndyFramewo"
+    "rk.Response\"\000\022I\n\nStopMotion\022\033.Nrmk.IndyF"
+    "ramework.StopCat\032\034.Nrmk.IndyFramework.Re"
+    "sponse\"\000\022K\n\013PauseMotion\022\034.Nrmk.IndyFrame"
+    "work.PauseCat\032\034.Nrmk.IndyFramework.Respo"
+    "nse\"\000\022I\n\014ResumeMotion\022\031.Nrmk.IndyFramewo"
+    "rk.Empty\032\034.Nrmk.IndyFramework.Response\"\000"
+    "\022H\n\013GetAxesInfo\022\031.Nrmk.IndyFramework.Emp"
+    "ty\032\034.Nrmk.IndyFramework.AxesInfo\"\000\022S\n\017Se"
+    "tTargetTorque\022 .Nrmk.IndyFramework.Targe"
+    "tTorque\032\034.Nrmk.IndyFramework.Response\"\000\022"
+    "S\n\017SetControlGains\022 .Nrmk.IndyFramework."
+    "ControlGains\032\034.Nrmk.IndyFramework.Respon"
+    "se\"\000\022P\n\017GetControlGains\022\031.Nrmk.IndyFrame"
+    "work.Index\032 .Nrmk.IndyFramework.ControlG"
+    "ains\"\000\022Z\n\017SetZeroPosition\022\'.Nrmk.IndyFra"
+    "mework.LinearAxisServoData\032\034.Nrmk.IndyFr"
+    "amework.Response\"\000\022W\n\017GetZeroPosition\022\031."
+    "Nrmk.IndyFramework.Empty\032\'.Nrmk.IndyFram"
+    "ework.LinearAxisServoData\"\000b\006proto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_linear_2eproto_deps[1] =
     {
@@ -293,7 +300,7 @@ static ::absl::once_flag descriptor_table_linear_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_linear_2eproto = {
     false,
     false,
-    1879,
+    1955,
     descriptor_table_protodef_linear_2eproto,
     "linear.proto",
     &descriptor_table_linear_2eproto_once,
@@ -1606,17 +1613,20 @@ AxesInfo::AxesInfo(const AxesInfo& from) : ::google::protobuf::Message() {
       decltype(_impl_.despos_mm_){from._impl_.despos_mm_},
       decltype(_impl_.desvel_mm_){from._impl_.desvel_mm_},
       decltype(_impl_.desacc_mm_){from._impl_.desacc_mm_},
+      decltype(_impl_.axis_type_){from._internal_axis_type()},
+      /*decltype(_impl_._axis_type_cached_byte_size_)*/ {0},
       decltype(_impl_.num_axes_){},
       decltype(_impl_.op_state_){},
       decltype(_impl_.traj_state_){},
       decltype(_impl_.recover_time_){},
+      decltype(_impl_.is_target_reached_){},
       /*decltype(_impl_._cached_size_)*/ {},
   };
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   ::memcpy(&_impl_.num_axes_, &from._impl_.num_axes_,
-    static_cast<::size_t>(reinterpret_cast<char*>(&_impl_.recover_time_) -
-    reinterpret_cast<char*>(&_impl_.num_axes_)) + sizeof(_impl_.recover_time_));
+    static_cast<::size_t>(reinterpret_cast<char*>(&_impl_.is_target_reached_) -
+    reinterpret_cast<char*>(&_impl_.num_axes_)) + sizeof(_impl_.is_target_reached_));
 
   // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.AxesInfo)
 }
@@ -1629,10 +1639,13 @@ inline void AxesInfo::SharedCtor(::_pb::Arena* arena) {
       decltype(_impl_.despos_mm_){arena},
       decltype(_impl_.desvel_mm_){arena},
       decltype(_impl_.desacc_mm_){arena},
+      decltype(_impl_.axis_type_){arena},
+      /*decltype(_impl_._axis_type_cached_byte_size_)*/ {0},
       decltype(_impl_.num_axes_){0u},
       decltype(_impl_.op_state_){0},
       decltype(_impl_.traj_state_){0},
       decltype(_impl_.recover_time_){0},
+      decltype(_impl_.is_target_reached_){false},
       /*decltype(_impl_._cached_size_)*/ {},
   };
 }
@@ -1649,6 +1662,7 @@ inline void AxesInfo::SharedDtor() {
   _impl_.despos_mm_.~RepeatedField();
   _impl_.desvel_mm_.~RepeatedField();
   _impl_.desacc_mm_.~RepeatedField();
+  _internal_mutable_axis_type()->~RepeatedField();
 }
 void AxesInfo::SetCachedSize(int size) const {
   _impl_._cached_size_.Set(size);
@@ -1666,9 +1680,10 @@ PROTOBUF_NOINLINE void AxesInfo::Clear() {
   _internal_mutable_despos_mm()->Clear();
   _internal_mutable_desvel_mm()->Clear();
   _internal_mutable_desacc_mm()->Clear();
+  _internal_mutable_axis_type()->Clear();
   ::memset(&_impl_.num_axes_, 0, static_cast<::size_t>(
-      reinterpret_cast<char*>(&_impl_.recover_time_) -
-      reinterpret_cast<char*>(&_impl_.num_axes_)) + sizeof(_impl_.recover_time_));
+      reinterpret_cast<char*>(&_impl_.is_target_reached_) -
+      reinterpret_cast<char*>(&_impl_.num_axes_)) + sizeof(_impl_.is_target_reached_));
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -1680,21 +1695,23 @@ const char* AxesInfo::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<4, 10, 0, 0, 2> AxesInfo::_table_ = {
+const ::_pbi::TcParseTable<4, 12, 0, 0, 2> AxesInfo::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
-    13, 120,  // max_field_number, fast_idx_mask
+    20, 120,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294959552,  // skipmap
+    4294402496,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    10,  // num_field_entries
+    12,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
     &_AxesInfo_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
-    {::_pbi::TcParser::MiniParse, {}},
+    // repeated .Nrmk.IndyFramework.AxisType axis_type = 16;
+    {::_pbi::TcParser::FastV32P2,
+     {386, 63, 0, PROTOBUF_FIELD_OFFSET(AxesInfo, _impl_.axis_type_)}},
     // repeated bool active = 1;
     {::_pbi::TcParser::FastV8P1,
      {10, 63, 0, PROTOBUF_FIELD_OFFSET(AxesInfo, _impl_.active_)}},
@@ -1763,6 +1780,12 @@ const ::_pbi::TcParseTable<4, 10, 0, 0, 2> AxesInfo::_table_ = {
     // float recover_time = 13;
     {PROTOBUF_FIELD_OFFSET(AxesInfo, _impl_.recover_time_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kFloat)},
+    // repeated .Nrmk.IndyFramework.AxisType axis_type = 16;
+    {PROTOBUF_FIELD_OFFSET(AxesInfo, _impl_.axis_type_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedOpenEnum)},
+    // bool is_target_reached = 20;
+    {PROTOBUF_FIELD_OFFSET(AxesInfo, _impl_.is_target_reached_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
   }},
   // no aux_entries
   {{
@@ -1837,6 +1860,22 @@ const ::_pbi::TcParseTable<4, 10, 0, 0, 2> AxesInfo::_table_ = {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteFloatToArray(
         13, this->_internal_recover_time(), target);
+  }
+
+  // repeated .Nrmk.IndyFramework.AxisType axis_type = 16;
+  {
+    int byte_size = _impl_._axis_type_cached_byte_size_.Get();
+    if (byte_size > 0) {
+      target = stream->WriteEnumPacked(16, _internal_axis_type(),
+                                       byte_size, target);
+    }
+  }
+
+  // bool is_target_reached = 20;
+  if (this->_internal_is_target_reached() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(
+        20, this->_internal_is_target_reached(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -1928,6 +1967,23 @@ const ::_pbi::TcParseTable<4, 10, 0, 0, 2> AxesInfo::_table_ = {
     ;
     total_size += tag_size + data_size;
   }
+  // repeated .Nrmk.IndyFramework.AxisType axis_type = 16;
+  {
+    std::size_t data_size = 0;
+    auto count = static_cast<std::size_t>(this->_internal_axis_type_size());
+
+    for (std::size_t i = 0; i < count; ++i) {
+      data_size += ::_pbi::WireFormatLite::EnumSize(
+          this->_internal_axis_type().Get(static_cast<int>(i)));
+    }
+    total_size += data_size;
+    if (data_size > 0) {
+      total_size += 2;
+      total_size += ::_pbi::WireFormatLite::Int32Size(
+          static_cast<int32_t>(data_size));
+    }
+    _impl_._axis_type_cached_byte_size_.Set(::_pbi::ToCachedSize(data_size));
+  }
   // uint32 num_axes = 10;
   if (this->_internal_num_axes() != 0) {
     total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
@@ -1956,6 +2012,11 @@ const ::_pbi::TcParseTable<4, 10, 0, 0, 2> AxesInfo::_table_ = {
     total_size += 5;
   }
 
+  // bool is_target_reached = 20;
+  if (this->_internal_is_target_reached() != 0) {
+    total_size += 3;
+  }
+
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
@@ -1980,6 +2041,7 @@ void AxesInfo::MergeImpl(::google::protobuf::Message& to_msg, const ::google::pr
   _this->_internal_mutable_despos_mm()->MergeFrom(from._internal_despos_mm());
   _this->_internal_mutable_desvel_mm()->MergeFrom(from._internal_desvel_mm());
   _this->_internal_mutable_desacc_mm()->MergeFrom(from._internal_desacc_mm());
+  _this->_internal_mutable_axis_type()->MergeFrom(from._internal_axis_type());
   if (from._internal_num_axes() != 0) {
     _this->_internal_set_num_axes(from._internal_num_axes());
   }
@@ -1996,6 +2058,9 @@ void AxesInfo::MergeImpl(::google::protobuf::Message& to_msg, const ::google::pr
   memcpy(&raw_recover_time, &tmp_recover_time, sizeof(tmp_recover_time));
   if (raw_recover_time != 0) {
     _this->_internal_set_recover_time(from._internal_recover_time());
+  }
+  if (from._internal_is_target_reached() != 0) {
+    _this->_internal_set_is_target_reached(from._internal_is_target_reached());
   }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
@@ -2020,9 +2085,10 @@ void AxesInfo::InternalSwap(AxesInfo* other) {
   _impl_.despos_mm_.InternalSwap(&other->_impl_.despos_mm_);
   _impl_.desvel_mm_.InternalSwap(&other->_impl_.desvel_mm_);
   _impl_.desacc_mm_.InternalSwap(&other->_impl_.desacc_mm_);
+  _impl_.axis_type_.InternalSwap(&other->_impl_.axis_type_);
   ::google::protobuf::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(AxesInfo, _impl_.recover_time_)
-      + sizeof(AxesInfo::_impl_.recover_time_)
+      PROTOBUF_FIELD_OFFSET(AxesInfo, _impl_.is_target_reached_)
+      + sizeof(AxesInfo::_impl_.is_target_reached_)
       - PROTOBUF_FIELD_OFFSET(AxesInfo, _impl_.num_axes_)>(
           reinterpret_cast<char*>(&_impl_.num_axes_),
           reinterpret_cast<char*>(&other->_impl_.num_axes_));

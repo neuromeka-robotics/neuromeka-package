@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x11\x63ommon_msgs.proto\x12\x12Nrmk.IndyFramework\"\x07\n\x05\x45mpty\"\x14\n\x04Name\x12\x0c\n\x04name\x18\x01 \x01(\t\"\x17\n\x05State\x12\x0e\n\x06\x65nable\x18\x01 \x01(\x08\"\x14\n\x03Int\x12\r\n\x05value\x18\x01 \x01(\x03\"\x16\n\x05\x46loat\x12\r\n\x05value\x18\x01 \x01(\x02\"\x17\n\x07IntMode\x12\x0c\n\x04mode\x18\x01 \x01(\x04\"=\n\x07StopCat\x12\x32\n\x08\x63\x61tegory\x18\x01 \x01(\x0e\x32 .Nrmk.IndyFramework.StopCategory\"?\n\x08PauseCat\x12\x33\n\x08\x63\x61tegory\x18\x01 \x01(\x0e\x32!.Nrmk.IndyFramework.PauseCategory\"%\n\x08Response\x12\x0c\n\x04\x63ode\x18\x01 \x01(\x03\x12\x0b\n\x03msg\x18\x02 \x01(\t\"\x1a\n\x07Message\x12\x0f\n\x07\x63ontent\x18\x01 \x01(\t\"\x18\n\x06Vector\x12\x0e\n\x06values\x18\x01 \x03(\x01\" \n\x08PosePair\x12\t\n\x01q\x18\x01 \x03(\x02\x12\t\n\x01p\x18\x02 \x03(\x02\".\n\x0e\x45ndtoolRS485Tx\x12\r\n\x05word1\x18\x01 \x01(\r\x12\r\n\x05word2\x18\x02 \x01(\r\".\n\x0e\x45ndtoolRS485Rx\x12\r\n\x05word1\x18\x01 \x01(\r\x12\r\n\x05word2\x18\x02 \x01(\r\"+\n\x08TactTime\x12\x0c\n\x04type\x18\x01 \x01(\t\x12\x11\n\ttact_time\x18\x02 \x01(\x02\"b\n\x08\x44\x61teTime\x12\x0c\n\x04year\x18\x01 \x01(\r\x12\r\n\x05month\x18\x02 \x01(\r\x12\x0b\n\x03\x64\x61y\x18\x03 \x01(\r\x12\x0c\n\x04hour\x18\x04 \x01(\r\x12\x0e\n\x06minute\x18\x05 \x01(\r\x12\x0e\n\x06second\x18\x06 \x01(\r\"\x8e\x01\n\x16NamedReferencePosition\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0c\n\x04tpos\x18\x02 \x03(\x02\x12\r\n\x05tpos0\x18\x03 \x03(\x02\x12\r\n\x05tpos1\x18\x04 \x03(\x02\x12\r\n\x05tpos2\x18\x05 \x03(\x02\x12\r\n\x05jpos0\x18\x06 \x03(\x02\x12\r\n\x05jpos1\x18\x07 \x03(\x02\x12\r\n\x05jpos2\x18\x08 \x03(\x02*\xda\x02\n\x07OpState\x12\x11\n\rOP_SYSTEM_OFF\x10\x00\x12\x10\n\x0cOP_SYSTEM_ON\x10\x01\x12\x0e\n\nOP_VIOLATE\x10\x02\x12\x13\n\x0fOP_RECOVER_HARD\x10\x03\x12\x13\n\x0fOP_RECOVER_SOFT\x10\x04\x12\x0b\n\x07OP_IDLE\x10\x05\x12\r\n\tOP_MOVING\x10\x06\x12\x0f\n\x0bOP_TEACHING\x10\x07\x12\x10\n\x0cOP_COLLISION\x10\x08\x12\x13\n\x0fOP_STOP_AND_OFF\x10\t\x12\x11\n\rOP_COMPLIANCE\x10\n\x12\x14\n\x10OP_BRAKE_CONTROL\x10\x0b\x12\x13\n\x0fOP_SYSTEM_RESET\x10\x0c\x12\x14\n\x10OP_SYSTEM_SWITCH\x10\r\x12\x13\n\x0fOP_VIOLATE_HARD\x10\x0f\x12\x15\n\x11OP_MANUAL_RECOVER\x10\x10\x12\x0b\n\x07TELE_OP\x10\x11\x12\x0f\n\x0bTRAJ_MOVING\x10\x12*\xb0\x01\n\tTrajState\x12\r\n\tTRAJ_NONE\x10\x00\x12\r\n\tTRAJ_INIT\x10\x01\x12\r\n\tTRAJ_CALC\x10\x02\x12\x11\n\rTRAJ_STAND_BY\x10\x03\x12\x0c\n\x08TRAJ_ACC\x10\x04\x12\x0f\n\x0bTRAJ_CRUISE\x10\x05\x12\x0c\n\x08TRAJ_DEC\x10\x06\x12\x13\n\x0fTRAJ_CANCELLING\x10\x07\x12\x11\n\rTRAJ_FINISHED\x10\x08\x12\x0e\n\nTRAJ_ERROR\x10\t*Z\n\rTrajCondition\x12\x10\n\x0cTRAJ_STARTED\x10\x00\x12\x11\n\rTRAJ_ACC_DONE\x10\x01\x12\x11\n\rTRAJ_CRZ_DONE\x10\x02\x12\x11\n\rTRAJ_DEC_DONE\x10\x03*F\n\x0cStopCategory\x12\x13\n\x0fIMMEDIATE_BRAKE\x10\x00\x12\x10\n\x0cSMOOTH_BRAKE\x10\x01\x12\x0f\n\x0bSMOOTH_ONLY\x10\x02*6\n\rPauseCategory\x12\x10\n\x0cSMOOTH_PAUSE\x10\x00\x12\x13\n\x0fIMMEDIATE_PAUSE\x10\x01*T\n\x0cProgramState\x12\r\n\tPROG_IDLE\x10\x00\x12\x10\n\x0cPROG_RUNNING\x10\x01\x12\x10\n\x0cPROG_PAUSING\x10\x02\x12\x11\n\rPROG_STOPPING\x10\x03*e\n\x13\x43ollisionPolicyType\x12\x12\n\x0e\x43OLL_NO_DETECT\x10\x00\x12\x0e\n\nCOLL_PAUSE\x10\x01\x12\x1b\n\x17\x43OLL_RESUME_AFTER_SLEEP\x10\x02\x12\r\n\tCOLL_STOP\x10\x03*:\n\x0bTuningSpace\x12\x0c\n\x08TUNE_ALL\x10\x00\x12\x0e\n\nTUNE_JOINT\x10\x01\x12\r\n\tTUNE_TASK\x10\x02*N\n\x0fTuningPrecision\x12\x11\n\rLOW_PRECISION\x10\x00\x12\x14\n\x10MIDDLE_PRECISION\x10\x01\x12\x12\n\x0eHIGH_PRECISION\x10\x02\x62\x06proto3'
+  serialized_pb=b'\n\x11\x63ommon_msgs.proto\x12\x12Nrmk.IndyFramework\"\x07\n\x05\x45mpty\"\x14\n\x04Name\x12\x0c\n\x04name\x18\x01 \x01(\t\"\x17\n\x05State\x12\x0e\n\x06\x65nable\x18\x01 \x01(\x08\"\x14\n\x03Int\x12\r\n\x05value\x18\x01 \x01(\x03\"\x16\n\x05\x46loat\x12\r\n\x05value\x18\x01 \x01(\x02\"\x17\n\x07IntMode\x12\x0c\n\x04mode\x18\x01 \x01(\x04\"=\n\x07StopCat\x12\x32\n\x08\x63\x61tegory\x18\x01 \x01(\x0e\x32 .Nrmk.IndyFramework.StopCategory\"?\n\x08PauseCat\x12\x33\n\x08\x63\x61tegory\x18\x01 \x01(\x0e\x32!.Nrmk.IndyFramework.PauseCategory\"%\n\x08Response\x12\x0c\n\x04\x63ode\x18\x01 \x01(\x03\x12\x0b\n\x03msg\x18\x02 \x01(\t\"\x1a\n\x07Message\x12\x0f\n\x07\x63ontent\x18\x01 \x01(\t\"\x18\n\x06Vector\x12\x0e\n\x06values\x18\x01 \x03(\x01\" \n\x08PosePair\x12\t\n\x01q\x18\x01 \x03(\x02\x12\t\n\x01p\x18\x02 \x03(\x02\".\n\x0e\x45ndtoolRS485Tx\x12\r\n\x05word1\x18\x01 \x01(\r\x12\r\n\x05word2\x18\x02 \x01(\r\".\n\x0e\x45ndtoolRS485Rx\x12\r\n\x05word1\x18\x01 \x01(\r\x12\r\n\x05word2\x18\x02 \x01(\r\"+\n\x08TactTime\x12\x0c\n\x04type\x18\x01 \x01(\t\x12\x11\n\ttact_time\x18\x02 \x01(\x02\"b\n\x08\x44\x61teTime\x12\x0c\n\x04year\x18\x01 \x01(\r\x12\r\n\x05month\x18\x02 \x01(\r\x12\x0b\n\x03\x64\x61y\x18\x03 \x01(\r\x12\x0c\n\x04hour\x18\x04 \x01(\r\x12\x0e\n\x06minute\x18\x05 \x01(\r\x12\x0e\n\x06second\x18\x06 \x01(\r\"(\n\tNamedBool\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x08\"\'\n\x08NamedInt\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x03\")\n\nNamedFloat\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x02\"/\n\x11NamedTaskPosition\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0c\n\x04tpos\x18\x02 \x03(\x02\"0\n\x12NamedJointPosition\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0c\n\x04jpos\x18\x02 \x03(\x02\"\x8e\x01\n\x16NamedReferencePosition\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0c\n\x04tpos\x18\x02 \x03(\x02\x12\r\n\x05tpos0\x18\x03 \x03(\x02\x12\r\n\x05tpos1\x18\x04 \x03(\x02\x12\r\n\x05tpos2\x18\x05 \x03(\x02\x12\r\n\x05jpos0\x18\x06 \x03(\x02\x12\r\n\x05jpos1\x18\x07 \x03(\x02\x12\r\n\x05jpos2\x18\x08 \x03(\x02\"J\n\x0fModbusServerDef\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\n\n\x02ip\x18\x02 \x01(\t\x12\x0c\n\x04port\x18\x03 \x01(\x05\x12\x0f\n\x07unit_id\x18\x04 \x01(\x05*\xda\x02\n\x07OpState\x12\x11\n\rOP_SYSTEM_OFF\x10\x00\x12\x10\n\x0cOP_SYSTEM_ON\x10\x01\x12\x0e\n\nOP_VIOLATE\x10\x02\x12\x13\n\x0fOP_RECOVER_HARD\x10\x03\x12\x13\n\x0fOP_RECOVER_SOFT\x10\x04\x12\x0b\n\x07OP_IDLE\x10\x05\x12\r\n\tOP_MOVING\x10\x06\x12\x0f\n\x0bOP_TEACHING\x10\x07\x12\x10\n\x0cOP_COLLISION\x10\x08\x12\x13\n\x0fOP_STOP_AND_OFF\x10\t\x12\x11\n\rOP_COMPLIANCE\x10\n\x12\x14\n\x10OP_BRAKE_CONTROL\x10\x0b\x12\x13\n\x0fOP_SYSTEM_RESET\x10\x0c\x12\x14\n\x10OP_SYSTEM_SWITCH\x10\r\x12\x13\n\x0fOP_VIOLATE_HARD\x10\x0f\x12\x15\n\x11OP_MANUAL_RECOVER\x10\x10\x12\x0b\n\x07TELE_OP\x10\x11\x12\x0f\n\x0bTRAJ_MOVING\x10\x12*\xb0\x01\n\tTrajState\x12\r\n\tTRAJ_NONE\x10\x00\x12\r\n\tTRAJ_INIT\x10\x01\x12\r\n\tTRAJ_CALC\x10\x02\x12\x11\n\rTRAJ_STAND_BY\x10\x03\x12\x0c\n\x08TRAJ_ACC\x10\x04\x12\x0f\n\x0bTRAJ_CRUISE\x10\x05\x12\x0c\n\x08TRAJ_DEC\x10\x06\x12\x13\n\x0fTRAJ_CANCELLING\x10\x07\x12\x11\n\rTRAJ_FINISHED\x10\x08\x12\x0e\n\nTRAJ_ERROR\x10\t*Z\n\rTrajCondition\x12\x10\n\x0cTRAJ_STARTED\x10\x00\x12\x11\n\rTRAJ_ACC_DONE\x10\x01\x12\x11\n\rTRAJ_CRZ_DONE\x10\x02\x12\x11\n\rTRAJ_DEC_DONE\x10\x03*F\n\x0cStopCategory\x12\x13\n\x0fIMMEDIATE_BRAKE\x10\x00\x12\x10\n\x0cSMOOTH_BRAKE\x10\x01\x12\x0f\n\x0bSMOOTH_ONLY\x10\x02*g\n\nSafeGdType\x12\x0e\n\nGUARD_NONE\x10\x00\x12\x0e\n\nGUARD_STOP\x10\x01\x12\x0f\n\x0bGUARD_PAUSE\x10\x02\x12\x16\n\x12GUARD_PAUSE_RESUME\x10\x03\x12\x10\n\x0cREDUCED_MODE\x10\x04*6\n\rPauseCategory\x12\x10\n\x0cSMOOTH_PAUSE\x10\x00\x12\x13\n\x0fIMMEDIATE_PAUSE\x10\x01*T\n\x0cProgramState\x12\r\n\tPROG_IDLE\x10\x00\x12\x10\n\x0cPROG_RUNNING\x10\x01\x12\x10\n\x0cPROG_PAUSING\x10\x02\x12\x11\n\rPROG_STOPPING\x10\x03*e\n\x13\x43ollisionPolicyType\x12\x12\n\x0e\x43OLL_NO_DETECT\x10\x00\x12\x0e\n\nCOLL_PAUSE\x10\x01\x12\x1b\n\x17\x43OLL_RESUME_AFTER_SLEEP\x10\x02\x12\r\n\tCOLL_STOP\x10\x03*:\n\x0bTuningSpace\x12\x0c\n\x08TUNE_ALL\x10\x00\x12\x0e\n\nTUNE_JOINT\x10\x01\x12\r\n\tTUNE_TASK\x10\x02*N\n\x0fTuningPrecision\x12\x11\n\rLOW_PRECISION\x10\x00\x12\x14\n\x10MIDDLE_PRECISION\x10\x01\x12\x12\n\x0eHIGH_PRECISION\x10\x02*:\n\x08\x41xisType\x12\x10\n\x0cMDH_REVOLUTE\x10\x00\x12\x11\n\rMDH_PRISMATIC\x10\x01\x12\t\n\x05RIGID\x10\x02*W\n\x0b\x43ontactRule\x12\r\n\tVIOLATION\x10\x00\x12\x13\n\x0f\x43OLLISION_LEVEL\x10\x01\x12\x0f\n\x0bSPEED_LIMIT\x10\x02\x12\x13\n\x0f\x44IRECTION_LIMIT\x10\x03\x62\x06proto3'
 )
 
 _OPSTATE = _descriptor.EnumDescriptor(
@@ -123,8 +123,8 @@ _OPSTATE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=810,
-  serialized_end=1156,
+  serialized_start=1111,
+  serialized_end=1457,
 )
 _sym_db.RegisterEnumDescriptor(_OPSTATE)
 
@@ -189,8 +189,8 @@ _TRAJSTATE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=1159,
-  serialized_end=1335,
+  serialized_start=1460,
+  serialized_end=1636,
 )
 _sym_db.RegisterEnumDescriptor(_TRAJSTATE)
 
@@ -225,8 +225,8 @@ _TRAJCONDITION = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=1337,
-  serialized_end=1427,
+  serialized_start=1638,
+  serialized_end=1728,
 )
 _sym_db.RegisterEnumDescriptor(_TRAJCONDITION)
 
@@ -256,12 +256,53 @@ _STOPCATEGORY = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=1429,
-  serialized_end=1499,
+  serialized_start=1730,
+  serialized_end=1800,
 )
 _sym_db.RegisterEnumDescriptor(_STOPCATEGORY)
 
 StopCategory = enum_type_wrapper.EnumTypeWrapper(_STOPCATEGORY)
+_SAFEGDTYPE = _descriptor.EnumDescriptor(
+  name='SafeGdType',
+  full_name='Nrmk.IndyFramework.SafeGdType',
+  filename=None,
+  file=DESCRIPTOR,
+  create_key=_descriptor._internal_create_key,
+  values=[
+    _descriptor.EnumValueDescriptor(
+      name='GUARD_NONE', index=0, number=0,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+    _descriptor.EnumValueDescriptor(
+      name='GUARD_STOP', index=1, number=1,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+    _descriptor.EnumValueDescriptor(
+      name='GUARD_PAUSE', index=2, number=2,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+    _descriptor.EnumValueDescriptor(
+      name='GUARD_PAUSE_RESUME', index=3, number=3,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+    _descriptor.EnumValueDescriptor(
+      name='REDUCED_MODE', index=4, number=4,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+  ],
+  containing_type=None,
+  serialized_options=None,
+  serialized_start=1802,
+  serialized_end=1905,
+)
+_sym_db.RegisterEnumDescriptor(_SAFEGDTYPE)
+
+SafeGdType = enum_type_wrapper.EnumTypeWrapper(_SAFEGDTYPE)
 _PAUSECATEGORY = _descriptor.EnumDescriptor(
   name='PauseCategory',
   full_name='Nrmk.IndyFramework.PauseCategory',
@@ -282,8 +323,8 @@ _PAUSECATEGORY = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=1501,
-  serialized_end=1555,
+  serialized_start=1907,
+  serialized_end=1961,
 )
 _sym_db.RegisterEnumDescriptor(_PAUSECATEGORY)
 
@@ -318,8 +359,8 @@ _PROGRAMSTATE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=1557,
-  serialized_end=1641,
+  serialized_start=1963,
+  serialized_end=2047,
 )
 _sym_db.RegisterEnumDescriptor(_PROGRAMSTATE)
 
@@ -354,8 +395,8 @@ _COLLISIONPOLICYTYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=1643,
-  serialized_end=1744,
+  serialized_start=2049,
+  serialized_end=2150,
 )
 _sym_db.RegisterEnumDescriptor(_COLLISIONPOLICYTYPE)
 
@@ -385,8 +426,8 @@ _TUNINGSPACE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=1746,
-  serialized_end=1804,
+  serialized_start=2152,
+  serialized_end=2210,
 )
 _sym_db.RegisterEnumDescriptor(_TUNINGSPACE)
 
@@ -416,12 +457,79 @@ _TUNINGPRECISION = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=1806,
-  serialized_end=1884,
+  serialized_start=2212,
+  serialized_end=2290,
 )
 _sym_db.RegisterEnumDescriptor(_TUNINGPRECISION)
 
 TuningPrecision = enum_type_wrapper.EnumTypeWrapper(_TUNINGPRECISION)
+_AXISTYPE = _descriptor.EnumDescriptor(
+  name='AxisType',
+  full_name='Nrmk.IndyFramework.AxisType',
+  filename=None,
+  file=DESCRIPTOR,
+  create_key=_descriptor._internal_create_key,
+  values=[
+    _descriptor.EnumValueDescriptor(
+      name='MDH_REVOLUTE', index=0, number=0,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+    _descriptor.EnumValueDescriptor(
+      name='MDH_PRISMATIC', index=1, number=1,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+    _descriptor.EnumValueDescriptor(
+      name='RIGID', index=2, number=2,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+  ],
+  containing_type=None,
+  serialized_options=None,
+  serialized_start=2292,
+  serialized_end=2350,
+)
+_sym_db.RegisterEnumDescriptor(_AXISTYPE)
+
+AxisType = enum_type_wrapper.EnumTypeWrapper(_AXISTYPE)
+_CONTACTRULE = _descriptor.EnumDescriptor(
+  name='ContactRule',
+  full_name='Nrmk.IndyFramework.ContactRule',
+  filename=None,
+  file=DESCRIPTOR,
+  create_key=_descriptor._internal_create_key,
+  values=[
+    _descriptor.EnumValueDescriptor(
+      name='VIOLATION', index=0, number=0,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+    _descriptor.EnumValueDescriptor(
+      name='COLLISION_LEVEL', index=1, number=1,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+    _descriptor.EnumValueDescriptor(
+      name='SPEED_LIMIT', index=2, number=2,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+    _descriptor.EnumValueDescriptor(
+      name='DIRECTION_LIMIT', index=3, number=3,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+  ],
+  containing_type=None,
+  serialized_options=None,
+  serialized_start=2352,
+  serialized_end=2439,
+)
+_sym_db.RegisterEnumDescriptor(_CONTACTRULE)
+
+ContactRule = enum_type_wrapper.EnumTypeWrapper(_CONTACTRULE)
 OP_SYSTEM_OFF = 0
 OP_SYSTEM_ON = 1
 OP_VIOLATE = 2
@@ -457,6 +565,11 @@ TRAJ_DEC_DONE = 3
 IMMEDIATE_BRAKE = 0
 SMOOTH_BRAKE = 1
 SMOOTH_ONLY = 2
+GUARD_NONE = 0
+GUARD_STOP = 1
+GUARD_PAUSE = 2
+GUARD_PAUSE_RESUME = 3
+REDUCED_MODE = 4
 SMOOTH_PAUSE = 0
 IMMEDIATE_PAUSE = 1
 PROG_IDLE = 0
@@ -473,6 +586,13 @@ TUNE_TASK = 2
 LOW_PRECISION = 0
 MIDDLE_PRECISION = 1
 HIGH_PRECISION = 2
+MDH_REVOLUTE = 0
+MDH_PRISMATIC = 1
+RIGID = 2
+VIOLATION = 0
+COLLISION_LEVEL = 1
+SPEED_LIMIT = 2
+DIRECTION_LIMIT = 3
 
 
 
@@ -1051,6 +1171,201 @@ _DATETIME = _descriptor.Descriptor(
 )
 
 
+_NAMEDBOOL = _descriptor.Descriptor(
+  name='NamedBool',
+  full_name='Nrmk.IndyFramework.NamedBool',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='name', full_name='Nrmk.IndyFramework.NamedBool.name', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='value', full_name='Nrmk.IndyFramework.NamedBool.value', index=1,
+      number=2, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=664,
+  serialized_end=704,
+)
+
+
+_NAMEDINT = _descriptor.Descriptor(
+  name='NamedInt',
+  full_name='Nrmk.IndyFramework.NamedInt',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='name', full_name='Nrmk.IndyFramework.NamedInt.name', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='value', full_name='Nrmk.IndyFramework.NamedInt.value', index=1,
+      number=2, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=706,
+  serialized_end=745,
+)
+
+
+_NAMEDFLOAT = _descriptor.Descriptor(
+  name='NamedFloat',
+  full_name='Nrmk.IndyFramework.NamedFloat',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='name', full_name='Nrmk.IndyFramework.NamedFloat.name', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='value', full_name='Nrmk.IndyFramework.NamedFloat.value', index=1,
+      number=2, type=2, cpp_type=6, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=747,
+  serialized_end=788,
+)
+
+
+_NAMEDTASKPOSITION = _descriptor.Descriptor(
+  name='NamedTaskPosition',
+  full_name='Nrmk.IndyFramework.NamedTaskPosition',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='name', full_name='Nrmk.IndyFramework.NamedTaskPosition.name', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='tpos', full_name='Nrmk.IndyFramework.NamedTaskPosition.tpos', index=1,
+      number=2, type=2, cpp_type=6, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=790,
+  serialized_end=837,
+)
+
+
+_NAMEDJOINTPOSITION = _descriptor.Descriptor(
+  name='NamedJointPosition',
+  full_name='Nrmk.IndyFramework.NamedJointPosition',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='name', full_name='Nrmk.IndyFramework.NamedJointPosition.name', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='jpos', full_name='Nrmk.IndyFramework.NamedJointPosition.jpos', index=1,
+      number=2, type=2, cpp_type=6, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=839,
+  serialized_end=887,
+)
+
+
 _NAMEDREFERENCEPOSITION = _descriptor.Descriptor(
   name='NamedReferencePosition',
   full_name='Nrmk.IndyFramework.NamedReferencePosition',
@@ -1127,8 +1442,61 @@ _NAMEDREFERENCEPOSITION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=665,
-  serialized_end=807,
+  serialized_start=890,
+  serialized_end=1032,
+)
+
+
+_MODBUSSERVERDEF = _descriptor.Descriptor(
+  name='ModbusServerDef',
+  full_name='Nrmk.IndyFramework.ModbusServerDef',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='name', full_name='Nrmk.IndyFramework.ModbusServerDef.name', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='ip', full_name='Nrmk.IndyFramework.ModbusServerDef.ip', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='port', full_name='Nrmk.IndyFramework.ModbusServerDef.port', index=2,
+      number=3, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='unit_id', full_name='Nrmk.IndyFramework.ModbusServerDef.unit_id', index=3,
+      number=4, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1034,
+  serialized_end=1108,
 )
 
 _STOPCAT.fields_by_name['category'].enum_type = _STOPCATEGORY
@@ -1149,16 +1517,25 @@ DESCRIPTOR.message_types_by_name['EndtoolRS485Tx'] = _ENDTOOLRS485TX
 DESCRIPTOR.message_types_by_name['EndtoolRS485Rx'] = _ENDTOOLRS485RX
 DESCRIPTOR.message_types_by_name['TactTime'] = _TACTTIME
 DESCRIPTOR.message_types_by_name['DateTime'] = _DATETIME
+DESCRIPTOR.message_types_by_name['NamedBool'] = _NAMEDBOOL
+DESCRIPTOR.message_types_by_name['NamedInt'] = _NAMEDINT
+DESCRIPTOR.message_types_by_name['NamedFloat'] = _NAMEDFLOAT
+DESCRIPTOR.message_types_by_name['NamedTaskPosition'] = _NAMEDTASKPOSITION
+DESCRIPTOR.message_types_by_name['NamedJointPosition'] = _NAMEDJOINTPOSITION
 DESCRIPTOR.message_types_by_name['NamedReferencePosition'] = _NAMEDREFERENCEPOSITION
+DESCRIPTOR.message_types_by_name['ModbusServerDef'] = _MODBUSSERVERDEF
 DESCRIPTOR.enum_types_by_name['OpState'] = _OPSTATE
 DESCRIPTOR.enum_types_by_name['TrajState'] = _TRAJSTATE
 DESCRIPTOR.enum_types_by_name['TrajCondition'] = _TRAJCONDITION
 DESCRIPTOR.enum_types_by_name['StopCategory'] = _STOPCATEGORY
+DESCRIPTOR.enum_types_by_name['SafeGdType'] = _SAFEGDTYPE
 DESCRIPTOR.enum_types_by_name['PauseCategory'] = _PAUSECATEGORY
 DESCRIPTOR.enum_types_by_name['ProgramState'] = _PROGRAMSTATE
 DESCRIPTOR.enum_types_by_name['CollisionPolicyType'] = _COLLISIONPOLICYTYPE
 DESCRIPTOR.enum_types_by_name['TuningSpace'] = _TUNINGSPACE
 DESCRIPTOR.enum_types_by_name['TuningPrecision'] = _TUNINGPRECISION
+DESCRIPTOR.enum_types_by_name['AxisType'] = _AXISTYPE
+DESCRIPTOR.enum_types_by_name['ContactRule'] = _CONTACTRULE
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 Empty = _reflection.GeneratedProtocolMessageType('Empty', (_message.Message,), {
@@ -1273,12 +1650,54 @@ DateTime = _reflection.GeneratedProtocolMessageType('DateTime', (_message.Messag
   })
 _sym_db.RegisterMessage(DateTime)
 
+NamedBool = _reflection.GeneratedProtocolMessageType('NamedBool', (_message.Message,), {
+  'DESCRIPTOR' : _NAMEDBOOL,
+  '__module__' : 'common_msgs_pb2'
+  # @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.NamedBool)
+  })
+_sym_db.RegisterMessage(NamedBool)
+
+NamedInt = _reflection.GeneratedProtocolMessageType('NamedInt', (_message.Message,), {
+  'DESCRIPTOR' : _NAMEDINT,
+  '__module__' : 'common_msgs_pb2'
+  # @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.NamedInt)
+  })
+_sym_db.RegisterMessage(NamedInt)
+
+NamedFloat = _reflection.GeneratedProtocolMessageType('NamedFloat', (_message.Message,), {
+  'DESCRIPTOR' : _NAMEDFLOAT,
+  '__module__' : 'common_msgs_pb2'
+  # @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.NamedFloat)
+  })
+_sym_db.RegisterMessage(NamedFloat)
+
+NamedTaskPosition = _reflection.GeneratedProtocolMessageType('NamedTaskPosition', (_message.Message,), {
+  'DESCRIPTOR' : _NAMEDTASKPOSITION,
+  '__module__' : 'common_msgs_pb2'
+  # @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.NamedTaskPosition)
+  })
+_sym_db.RegisterMessage(NamedTaskPosition)
+
+NamedJointPosition = _reflection.GeneratedProtocolMessageType('NamedJointPosition', (_message.Message,), {
+  'DESCRIPTOR' : _NAMEDJOINTPOSITION,
+  '__module__' : 'common_msgs_pb2'
+  # @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.NamedJointPosition)
+  })
+_sym_db.RegisterMessage(NamedJointPosition)
+
 NamedReferencePosition = _reflection.GeneratedProtocolMessageType('NamedReferencePosition', (_message.Message,), {
   'DESCRIPTOR' : _NAMEDREFERENCEPOSITION,
   '__module__' : 'common_msgs_pb2'
   # @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.NamedReferencePosition)
   })
 _sym_db.RegisterMessage(NamedReferencePosition)
+
+ModbusServerDef = _reflection.GeneratedProtocolMessageType('ModbusServerDef', (_message.Message,), {
+  'DESCRIPTOR' : _MODBUSSERVERDEF,
+  '__module__' : 'common_msgs_pb2'
+  # @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.ModbusServerDef)
+  })
+_sym_db.RegisterMessage(ModbusServerDef)
 
 
 # @@protoc_insertion_point(module_scope)

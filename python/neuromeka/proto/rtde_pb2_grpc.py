@@ -60,10 +60,20 @@ class RTDataExchangeStub(object):
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
                 response_deserializer=rtde__msgs__pb2.StopState.FromString,
                 )
+        self.GetCollisionModelState = channel.unary_unary(
+                '/Nrmk.IndyFramework.RTDataExchange/GetCollisionModelState',
+                request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=rtde__msgs__pb2.CollisionModelState.FromString,
+                )
         self.TestFunction = channel.unary_unary(
                 '/Nrmk.IndyFramework.RTDataExchange/TestFunction',
                 request_serializer=rtde__msgs__pb2.TestRequest.SerializeToString,
                 response_deserializer=rtde__msgs__pb2.TestResponse.FromString,
+                )
+        self.GetReservedData = channel.unary_unary(
+                '/Nrmk.IndyFramework.RTDataExchange/GetReservedData',
+                request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=rtde__msgs__pb2.ReservedData.FromString,
                 )
 
 
@@ -124,7 +134,19 @@ class RTDataExchangeServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetCollisionModelState(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def TestFunction(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetReservedData(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -178,10 +200,20 @@ def add_RTDataExchangeServicer_to_server(servicer, server):
                     request_deserializer=common__msgs__pb2.Empty.FromString,
                     response_serializer=rtde__msgs__pb2.StopState.SerializeToString,
             ),
+            'GetCollisionModelState': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetCollisionModelState,
+                    request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=rtde__msgs__pb2.CollisionModelState.SerializeToString,
+            ),
             'TestFunction': grpc.unary_unary_rpc_method_handler(
                     servicer.TestFunction,
                     request_deserializer=rtde__msgs__pb2.TestRequest.FromString,
                     response_serializer=rtde__msgs__pb2.TestResponse.SerializeToString,
+            ),
+            'GetReservedData': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetReservedData,
+                    request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=rtde__msgs__pb2.ReservedData.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -347,6 +379,23 @@ class RTDataExchange(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
+    def GetCollisionModelState(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.RTDataExchange/GetCollisionModelState',
+            common__msgs__pb2.Empty.SerializeToString,
+            rtde__msgs__pb2.CollisionModelState.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
     def TestFunction(request,
             target,
             options=(),
@@ -360,5 +409,22 @@ class RTDataExchange(object):
         return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.RTDataExchange/TestFunction',
             rtde__msgs__pb2.TestRequest.SerializeToString,
             rtde__msgs__pb2.TestResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetReservedData(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.RTDataExchange/GetReservedData',
+            common__msgs__pb2.Empty.SerializeToString,
+            rtde__msgs__pb2.ReservedData.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

@@ -1,4 +1,5 @@
 #include "indydcp3.h"
+#include <vector>
 
 IndyDCP3::IndyDCP3(const std::string& robot_ip, int index) 
 :_isConnected(false)
@@ -14,12 +15,14 @@ IndyDCP3::IndyDCP3(const std::string& robot_ip, int index)
         config_channel  = grpc::CreateChannel(robot_ip + ":" + std::to_string(CONFIG_SOCKET_PORT[index]), grpc::InsecureChannelCredentials());
         rtde_channel    = grpc::CreateChannel(robot_ip + ":" + std::to_string(RTDE_SOCKET_PORT[index]), grpc::InsecureChannelCredentials());
         cri_channel     = grpc::CreateChannel(robot_ip + ":" + std::to_string(CRI_SOCKET_PORT[index]), grpc::InsecureChannelCredentials());
+        boot_channel    = grpc::CreateChannel(robot_ip + ":" + std::to_string(BOOT_SOCKET_PORT[index]), grpc::InsecureChannelCredentials());
 
         device_stub     = Nrmk::IndyFramework::Device::NewStub(device_channel);
         control_stub    = Nrmk::IndyFramework::Control::NewStub(control_channel);
         config_stub     = Nrmk::IndyFramework::Config::NewStub(config_channel);
         rtde_stub       = Nrmk::IndyFramework::RTDataExchange::NewStub(rtde_channel);
         cri_stub        = Nrmk::IndyFramework::CRI::NewStub(cri_channel);
+        boot_stub       = Nrmk::IndyFramework::Boot::NewStub(boot_channel);
 
         Nrmk::IndyFramework::Empty request;
         Nrmk::IndyFramework::DeviceInfo response;
@@ -84,6 +87,29 @@ bool IndyDCP3::get_robot_data(Nrmk::IndyFramework::ControlData &control_data) {
         control_data.add_tool_frame(response.tool_frame(i));
     }
 
+    return true;
+}
+
+// Environment list
+bool IndyDCP3::set_environment_list(const Nrmk::IndyFramework::EnvironmentList& environment_list) {
+    Nrmk::IndyFramework::Response response;
+    grpc::ClientContext context;
+    grpc::Status status = config_stub->SetEnvironmentList(&context, environment_list, &response);
+    if (!status.ok()) {
+        std::cerr << "SetEnvironmentList RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return response.code() == 0;
+}
+
+bool IndyDCP3::get_environment_list(Nrmk::IndyFramework::EnvironmentList& environment_list) {
+    Nrmk::IndyFramework::Empty request;
+    grpc::ClientContext context;
+    grpc::Status status = config_stub->GetEnvironmentList(&context, request, &environment_list);
+    if (!status.ok()) {
+        std::cerr << "GetEnvironmentList RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
     return true;
 }
 
@@ -309,6 +335,28 @@ bool IndyDCP3::get_program_data(Nrmk::IndyFramework::ProgramData &program_data) 
     program_data.set_program_annotation(response.program_annotation());
     program_data.set_speed_ratio(response.speed_ratio());
 
+    return true;
+}
+
+bool IndyDCP3::get_collision_model_state(Nrmk::IndyFramework::CollisionModelState& state) {
+    Nrmk::IndyFramework::Empty request;
+    grpc::ClientContext context;
+    grpc::Status status = rtde_stub->GetCollisionModelState(&context, request, &state);
+    if (!status.ok()) {
+        std::cerr << "GetCollisionModelState RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::get_reserved_data(Nrmk::IndyFramework::ReservedData& data) {
+    Nrmk::IndyFramework::Empty request;
+    grpc::ClientContext context;
+    grpc::Status status = rtde_stub->GetReservedData(&context, request, &data);
+    if (!status.ok()) {
+        std::cerr << "GetReservedData RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
     return true;
 }
 
@@ -624,6 +672,80 @@ bool IndyDCP3::get_home_pos(Nrmk::IndyFramework::JointPos &home_jpos)
     }
 
     home_jpos = response;
+    return true;
+}
+
+bool IndyDCP3::commit_violation(const Nrmk::IndyFramework::ViolationRequest& request) {
+    Nrmk::IndyFramework::Response response;
+    grpc::ClientContext context;
+    grpc::Status status = device_stub->CommitViolation(&context, request, &response);
+    if (!status.ok()) {
+        std::cerr << "CommitViolation RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::get_rt_task_times(Nrmk::IndyFramework::TaskTimes& task_times) {
+    Nrmk::IndyFramework::Empty request;
+    grpc::ClientContext context;
+    grpc::Status status = device_stub->GetRTTaskTimes(&context, request, &task_times);
+    if (!status.ok()) {
+        std::cerr << "GetRTTaskTimes RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::set_conveyor_locked_joint(int index) {
+    Nrmk::IndyFramework::Int request;
+    request.set_value(index);
+    Nrmk::IndyFramework::Response response;
+    grpc::ClientContext context;
+    grpc::Status status = device_stub->SetConveyorLockedJoint(&context, request, &response);
+    if (!status.ok()) {
+        std::cerr << "SetConveyorLockedJoint RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::set_conveyor_tool_link(int index) {
+    Nrmk::IndyFramework::Int request;
+    request.set_value(index);
+    Nrmk::IndyFramework::Response response;
+    grpc::ClientContext context;
+    grpc::Status status = device_stub->SetConveyorToolLink(&context, request, &response);
+    if (!status.ok()) {
+        std::cerr << "SetConveyorToolLink RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::set_locked_joint(int index) {
+    Nrmk::IndyFramework::Int request;
+    request.set_value(index);
+    Nrmk::IndyFramework::Response response;
+    grpc::ClientContext context;
+    grpc::Status status = config_stub->SetLockedJoint(&context, request, &response);
+    if (!status.ok()) {
+        std::cerr << "SetLockedJoint RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::set_tool_link(int index) {
+    Nrmk::IndyFramework::Int request;
+    request.set_value(index);
+    Nrmk::IndyFramework::Response response;
+    grpc::ClientContext context;
+    grpc::Status status = config_stub->SetToolLink(&context, request, &response);
+    if (!status.ok()) {
+        std::cerr << "SetToolLink RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
     return true;
 }
 
@@ -1983,6 +2105,17 @@ bool IndyDCP3::stop_program()
     return true;
 }
 
+bool IndyDCP3::get_boot_status(Nrmk::IndyFramework::BootStatus& status) {
+    Nrmk::IndyFramework::Empty request;
+    grpc::ClientContext context;
+    grpc::Status rpc = boot_stub->GetBootStatus(&context, request, &status);
+    if (!rpc.ok()) {
+        std::cerr << "GetBootStatus RPC failed: " << rpc.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
 bool IndyDCP3::set_speed_ratio(unsigned int speed_ratio)
 {
     /*
@@ -2002,6 +2135,22 @@ bool IndyDCP3::set_speed_ratio(unsigned int speed_ratio)
         return false;
     }
 
+    return true;
+}
+
+bool IndyDCP3::get_speed_ratio(unsigned int& speed_ratio)
+{
+    Nrmk::IndyFramework::Empty request;
+    Nrmk::IndyFramework::Ratio response;
+    grpc::ClientContext context;
+
+    grpc::Status status = config_stub->GetSpeedRatio(&context, request, &response);
+    if (!status.ok()) {
+        std::cerr << "GetSpeedRatio RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+
+    speed_ratio = static_cast<unsigned int>(response.ratio());
     return true;
 }
 
@@ -2230,6 +2379,171 @@ bool IndyDCP3::set_tpos_variable(const std::vector<Nrmk::IndyFramework::TPosVari
     return true;
 }
 
+bool IndyDCP3::set_plugin_bool_variable(const std::string& name, bool value)
+{
+    Nrmk::IndyFramework::NamedBool request;
+    Nrmk::IndyFramework::Empty response;
+    grpc::ClientContext context;
+
+    request.set_name(name);
+    request.set_value(value);
+
+    grpc::Status status = control_stub->SetPluginBoolVariable(&context, request, &response);
+    if (!status.ok()) {
+        std::cerr << "SetPluginBoolVariable RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::get_plugin_bool_variable(const std::string& name, bool& value)
+{
+    Nrmk::IndyFramework::Name request;
+    Nrmk::IndyFramework::NamedBool response;
+    grpc::ClientContext context;
+
+    request.set_name(name);
+    grpc::Status status = control_stub->GetPluginBoolVariable(&context, request, &response);
+    if (!status.ok()) {
+        std::cerr << "GetPluginBoolVariable RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    value = response.value();
+    return true;
+}
+
+bool IndyDCP3::set_plugin_int_variable(const std::string& name, int64_t value)
+{
+    Nrmk::IndyFramework::NamedInt request;
+    Nrmk::IndyFramework::Empty response;
+    grpc::ClientContext context;
+
+    request.set_name(name);
+    request.set_value(value);
+
+    grpc::Status status = control_stub->SetPluginIntVariable(&context, request, &response);
+    if (!status.ok()) {
+        std::cerr << "SetPluginIntVariable RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::get_plugin_int_variable(const std::string& name, int64_t& value)
+{
+    Nrmk::IndyFramework::Name request;
+    Nrmk::IndyFramework::NamedInt response;
+    grpc::ClientContext context;
+
+    request.set_name(name);
+    grpc::Status status = control_stub->GetPluginIntVariable(&context, request, &response);
+    if (!status.ok()) {
+        std::cerr << "GetPluginIntVariable RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    value = response.value();
+    return true;
+}
+
+bool IndyDCP3::set_plugin_float_variable(const std::string& name, float value)
+{
+    Nrmk::IndyFramework::NamedFloat request;
+    Nrmk::IndyFramework::Empty response;
+    grpc::ClientContext context;
+
+    request.set_name(name);
+    request.set_value(value);
+
+    grpc::Status status = control_stub->SetPluginFloatVariable(&context, request, &response);
+    if (!status.ok()) {
+        std::cerr << "SetPluginFloatVariable RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::get_plugin_float_variable(const std::string& name, float& value)
+{
+    Nrmk::IndyFramework::Name request;
+    Nrmk::IndyFramework::NamedFloat response;
+    grpc::ClientContext context;
+
+    request.set_name(name);
+    grpc::Status status = control_stub->GetPluginFloatVariable(&context, request, &response);
+    if (!status.ok()) {
+        std::cerr << "GetPluginFloatVariable RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    value = response.value();
+    return true;
+}
+
+bool IndyDCP3::set_plugin_jpos_variable(const std::string& name, const std::vector<float>& jpos)
+{
+    Nrmk::IndyFramework::NamedJointPosition request;
+    Nrmk::IndyFramework::Empty response;
+    grpc::ClientContext context;
+
+    request.set_name(name);
+    for (float v : jpos) request.add_jpos(v);
+
+    grpc::Status status = control_stub->SetPluginJPosVariable(&context, request, &response);
+    if (!status.ok()) {
+        std::cerr << "SetPluginJPosVariable RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::get_plugin_jpos_variable(const std::string& name, std::vector<float>& jpos)
+{
+    Nrmk::IndyFramework::Name request;
+    Nrmk::IndyFramework::NamedJointPosition response;
+    grpc::ClientContext context;
+
+    request.set_name(name);
+    grpc::Status status = control_stub->GetPluginJPosVariable(&context, request, &response);
+    if (!status.ok()) {
+        std::cerr << "GetPluginJPosVariable RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    jpos.assign(response.jpos().begin(), response.jpos().end());
+    return true;
+}
+
+bool IndyDCP3::set_plugin_tpos_variable(const std::string& name, const std::vector<float>& tpos)
+{
+    Nrmk::IndyFramework::NamedTaskPosition request;
+    Nrmk::IndyFramework::Empty response;
+    grpc::ClientContext context;
+
+    request.set_name(name);
+    for (float v : tpos) request.add_tpos(v);
+
+    grpc::Status status = control_stub->SetPluginTPosVariable(&context, request, &response);
+    if (!status.ok()) {
+        std::cerr << "SetPluginTPosVariable RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::get_plugin_tpos_variable(const std::string& name, std::vector<float>& tpos)
+{
+    Nrmk::IndyFramework::Name request;
+    Nrmk::IndyFramework::NamedTaskPosition response;
+    grpc::ClientContext context;
+
+    request.set_name(name);
+    grpc::Status status = control_stub->GetPluginTPosVariable(&context, request, &response);
+    if (!status.ok()) {
+        std::cerr << "GetPluginTPosVariable RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    tpos.assign(response.tpos().begin(), response.tpos().end());
+    return true;
+}
+
 bool IndyDCP3::set_home_pos(const Nrmk::IndyFramework::JointPos& home_jpos) 
 {
     /*
@@ -2298,6 +2612,28 @@ bool IndyDCP3::set_ref_frame(const std::array<float, 6>& fpos)
     return true;
 }
 
+bool IndyDCP3::load_reference_frame(Nrmk::IndyFramework::RefFrameList& list) {
+    Nrmk::IndyFramework::Empty request;
+    grpc::ClientContext context;
+    grpc::Status status = config_stub->GetRefFrameList(&context, request, &list);
+    if (!status.ok()) {
+        std::cerr << "GetRefFrameList RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::save_reference_frame(const Nrmk::IndyFramework::RefFrameList& list) {
+    Nrmk::IndyFramework::Response response;
+    grpc::ClientContext context;
+    grpc::Status status = config_stub->SetRefFrameList(&context, list, &response);
+    if (!status.ok()) {
+        std::cerr << "SetRefFrameList RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return response.code() == 0;
+}
+
 bool IndyDCP3::set_ref_frame_planar(std::array<float, 6>& fpos_out, const std::array<float, 6>& fpos0,
                                     const std::array<float, 6>& fpos1, const std::array<float, 6>& fpos2) 
 {
@@ -2355,6 +2691,18 @@ bool IndyDCP3::set_tool_frame(const std::array<float, 6>& fpos)
         return false;
     }
 
+    return true;
+}
+
+bool IndyDCP3::get_path_config(Nrmk::IndyFramework::PathConfig& path_config) {
+    Nrmk::IndyFramework::Empty request;
+    grpc::ClientContext context;
+
+    grpc::Status status = config_stub->GetPathConfig(&context, request, &path_config);
+    if (!status.ok()) {
+        std::cerr << "GetPathConfig RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
     return true;
 }
 
@@ -2426,6 +2774,210 @@ bool IndyDCP3::get_tool_property(Nrmk::IndyFramework::ToolProperties& tool_prope
         return false;
     }
 
+    return true;
+}
+
+bool IndyDCP3::set_tool_list(const Nrmk::IndyFramework::ToolList& tool_list) {
+    Nrmk::IndyFramework::Response response;
+    grpc::ClientContext context;
+
+    grpc::Status status = config_stub->SetToolList(&context, tool_list, &response);
+    if (!status.ok()) {
+        std::cerr << "SetToolList RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::get_tool_list(Nrmk::IndyFramework::ToolList& tool_list) {
+    Nrmk::IndyFramework::Empty request;
+    grpc::ClientContext context;
+
+    grpc::Status status = config_stub->GetToolList(&context, request, &tool_list);
+    if (!status.ok()) {
+        std::cerr << "GetToolList RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::set_vision_server_list(const Nrmk::IndyFramework::VisionServerList& vision_server_list) {
+    Nrmk::IndyFramework::Response response;
+    grpc::ClientContext context;
+
+    grpc::Status status = config_stub->SetVisionServerList(&context, vision_server_list, &response);
+    if (!status.ok()) {
+        std::cerr << "SetVisionServerList RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::get_vision_server_list(Nrmk::IndyFramework::VisionServerList& vision_server_list) {
+    Nrmk::IndyFramework::Empty request;
+    grpc::ClientContext context;
+
+    grpc::Status status = config_stub->GetVisionServerList(&context, request, &vision_server_list);
+    if (!status.ok()) {
+        std::cerr << "GetVisionServerList RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::set_modbus_server_list(const Nrmk::IndyFramework::ModbusServerList& modbus_server_list) {
+    Nrmk::IndyFramework::Response response;
+    grpc::ClientContext context;
+
+    grpc::Status status = config_stub->SetModbusServerList(&context, modbus_server_list, &response);
+    if (!status.ok()) {
+        std::cerr << "SetModbusServerList RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::get_modbus_server_list(Nrmk::IndyFramework::ModbusServerList& modbus_server_list) {
+    Nrmk::IndyFramework::Empty request;
+    grpc::ClientContext context;
+
+    grpc::Status status = config_stub->GetModbusServerList(&context, request, &modbus_server_list);
+    if (!status.ok()) {
+        std::cerr << "GetModbusServerList RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::get_conveyor_list(Nrmk::IndyFramework::ConveyorList& conveyor_list) {
+    Nrmk::IndyFramework::Empty request;
+    grpc::ClientContext context;
+    grpc::Status status = config_stub->GetConveyorList(&context, request, &conveyor_list);
+    if (!status.ok()) {
+        std::cerr << "GetConveyorList RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::set_conveyor_list(const Nrmk::IndyFramework::ConveyorList& conveyor_list) {
+    Nrmk::IndyFramework::Response response;
+    grpc::ClientContext context;
+    grpc::Status status = config_stub->SetConveyorList(&context, conveyor_list, &response);
+    if (!status.ok()) {
+        std::cerr << "SetConveyorList RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::set_compliance_control_joint_gain(const Nrmk::IndyFramework::ComplianceGainSet& gains) {
+    Nrmk::IndyFramework::Response response;
+    grpc::ClientContext context;
+    grpc::Status status = config_stub->SetComplianceControlJointGain(&context, gains, &response);
+    if (!status.ok()) {
+        std::cerr << "SetComplianceControlJointGain RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::get_compliance_control_joint_gain(Nrmk::IndyFramework::ComplianceGainSet& gains) {
+    Nrmk::IndyFramework::Empty request;
+    grpc::ClientContext context;
+    grpc::Status status = config_stub->GetComplianceControlJointGain(&context, request, &gains);
+    if (!status.ok()) {
+        std::cerr << "GetComplianceControlJointGain RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::get_tool_frame_list(Nrmk::IndyFramework::ToolFrameList& list) {
+    Nrmk::IndyFramework::Empty request;
+    grpc::ClientContext context;
+    grpc::Status status = config_stub->GetToolFrameList(&context, request, &list);
+    if (!status.ok()) {
+        std::cerr << "GetToolFrameList RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::set_tool_frame_list(const Nrmk::IndyFramework::ToolFrameList& list) {
+    Nrmk::IndyFramework::Response response;
+    grpc::ClientContext context;
+    grpc::Status status = config_stub->SetToolFrameList(&context, list, &response);
+    if (!status.ok()) {
+        std::cerr << "SetToolFrameList RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::get_ref_frame_list(Nrmk::IndyFramework::RefFrameList& list) {
+    Nrmk::IndyFramework::Empty request;
+    grpc::ClientContext context;
+    grpc::Status status = config_stub->GetRefFrameList(&context, request, &list);
+    if (!status.ok()) {
+        std::cerr << "GetRefFrameList RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::set_ref_frame_list(const Nrmk::IndyFramework::RefFrameList& list) {
+    Nrmk::IndyFramework::Response response;
+    grpc::ClientContext context;
+    grpc::Status status = config_stub->SetRefFrameList(&context, list, &response);
+    if (!status.ok()) {
+        std::cerr << "SetRefFrameList RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::get_custom_pos_list(Nrmk::IndyFramework::CustomPosList& list) {
+    Nrmk::IndyFramework::Empty request;
+    grpc::ClientContext context;
+    grpc::Status status = config_stub->GetCustomPosList(&context, request, &list);
+    if (!status.ok()) {
+        std::cerr << "GetCustomPosList RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::set_custom_pos_list(const Nrmk::IndyFramework::CustomPosList& list) {
+    Nrmk::IndyFramework::Response response;
+    grpc::ClientContext context;
+    grpc::Status status = config_stub->SetCustomPosList(&context, list, &response);
+    if (!status.ok()) {
+        std::cerr << "SetCustomPosList RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::set_tool_shape_list(const Nrmk::IndyFramework::ToolShapeList& list) {
+    Nrmk::IndyFramework::Response response;
+    grpc::ClientContext context;
+    grpc::Status status = config_stub->SetToolShapeList(&context, list, &response);
+    if (!status.ok()) {
+        std::cerr << "SetToolShapeList RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::get_tool_shape_list(Nrmk::IndyFramework::ToolShapeList& list) {
+    Nrmk::IndyFramework::Empty request;
+    grpc::ClientContext context;
+    grpc::Status status = config_stub->GetToolShapeList(&context, request, &list);
+    if (!status.ok()) {
+        std::cerr << "GetToolShapeList RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
     return true;
 }
 
@@ -2619,6 +3171,17 @@ bool IndyDCP3::set_coll_sens_param(const Nrmk::IndyFramework::CollisionThreshold
     return true;
 }
 
+bool IndyDCP3::get_default_coll_sens_param(Nrmk::IndyFramework::CollisionThresholds& coll_sens_param) {
+    Nrmk::IndyFramework::Empty request;
+    grpc::ClientContext context;
+    grpc::Status status = config_stub->GetDefaultCollSensParam(&context, request, &coll_sens_param);
+    if (!status.ok()) {
+        std::cerr << "GetDefaultCollSensParam RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
 bool IndyDCP3::get_coll_policy(Nrmk::IndyFramework::CollisionPolicy& coll_policy) 
 {
     /*
@@ -2660,6 +3223,84 @@ bool IndyDCP3::set_coll_policy(const Nrmk::IndyFramework::CollisionPolicy& coll_
         return false;
     }
 
+    return true;
+}
+
+bool IndyDCP3::set_simple_coll_threshold() {
+    Nrmk::IndyFramework::Empty request;
+    Nrmk::IndyFramework::Response response;
+    grpc::ClientContext context;
+    grpc::Status status = config_stub->SetSimpleCollThreshold(&context, request, &response);
+    if (!status.ok()) {
+        std::cerr << "SetSimpleCollThreshold RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return response.code() == 0;
+}
+
+bool IndyDCP3::get_collison_model_margin(Nrmk::IndyFramework::CollisionModelMargin& margin) {
+    Nrmk::IndyFramework::Empty request;
+    grpc::ClientContext context;
+    grpc::Status status = config_stub->GetCollisonModelMargin(&context, request, &margin);
+    if (!status.ok()) {
+        std::cerr << "GetCollisonModelMargin RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::set_collison_model_margin(const Nrmk::IndyFramework::CollisionModelMargin& margin) {
+    Nrmk::IndyFramework::Response response;
+    grpc::ClientContext context;
+    grpc::Status status = config_stub->SetCollisonModelMargin(&context, margin, &response);
+    if (!status.ok()) {
+        std::cerr << "SetCollisonModelMargin RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return response.code() == 0;
+}
+
+bool IndyDCP3::set_sensorless_params(const Nrmk::IndyFramework::SensorlessParams& params) {
+    Nrmk::IndyFramework::Response response;
+    grpc::ClientContext context;
+    grpc::Status status = config_stub->SetSensorlessParams(&context, params, &response);
+    if (!status.ok()) {
+        std::cerr << "SetSensorlessParams RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return response.code() == 0;
+}
+
+bool IndyDCP3::get_sensorless_params(Nrmk::IndyFramework::SensorlessParams& params) {
+    Nrmk::IndyFramework::Empty request;
+    grpc::ClientContext context;
+    grpc::Status status = config_stub->GetSensorlessParams(&context, request, &params);
+    if (!status.ok()) {
+        std::cerr << "GetSensorlessParams RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::set_on_start_program_config(const Nrmk::IndyFramework::OnStartProgramConfig& config) {
+    Nrmk::IndyFramework::Response response;
+    grpc::ClientContext context;
+    grpc::Status status = config_stub->SetOnStartProgramConfig(&context, config, &response);
+    if (!status.ok()) {
+        std::cerr << "SetOnStartProgramConfig RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return response.code() == 0;
+}
+
+bool IndyDCP3::get_on_start_program_config(Nrmk::IndyFramework::OnStartProgramConfig& config) {
+    Nrmk::IndyFramework::Empty request;
+    grpc::ClientContext context;
+    grpc::Status status = config_stub->GetOnStartProgramConfig(&context, request, &config);
+    if (!status.ok()) {
+        std::cerr << "GetOnStartProgramConfig RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
     return true;
 }
 
@@ -2821,11 +3462,7 @@ bool IndyDCP3::set_custom_control_gain(const Nrmk::IndyFramework::CustomGainSet&
     return true;
 }
 
-bool IndyDCP3::wait_time(float time,
-                         const std::vector<Nrmk::IndyFramework::DigitalSignal>& set_do_signal_list,
-                         const std::vector<Nrmk::IndyFramework::DigitalSignal>& set_end_do_signal_list,
-                         const std::vector<Nrmk::IndyFramework::AnalogSignal>& set_ao_signal_list,
-                         const std::vector<Nrmk::IndyFramework::AnalogSignal>& set_end_ao_signal_list)
+bool IndyDCP3::wait_time(float time)
 {
     Nrmk::IndyFramework::WaitTimeReq request;
     Nrmk::IndyFramework::Response response;
@@ -2833,21 +3470,7 @@ bool IndyDCP3::wait_time(float time,
 
     request.set_time(time);
 
-    for (const auto& signal : set_do_signal_list) {
-        *request.add_set_do_list() = signal;
-    }
-
-    for (const auto& signal : set_end_do_signal_list) {
-        *request.add_set_end_do_list() = signal;
-    }
-
-    for (const auto& signal : set_ao_signal_list) {
-        *request.add_set_ao_list() = signal;
-    }
-
-    for (const auto& signal : set_end_ao_signal_list) {
-        *request.add_set_end_ao_list() = signal;
-    }
+    // Note: set_* signal lists have been removed from WaitTimeReq in latest API.
 
     grpc::Status status = control_stub->WaitTime(&context, request, &response);
     if (!status.ok()) {
@@ -2858,11 +3481,7 @@ bool IndyDCP3::wait_time(float time,
 }
 
 
-bool IndyDCP3::wait_progress(int progress,
-                             const std::vector<Nrmk::IndyFramework::DigitalSignal>& set_do_signal_list,
-                             const std::vector<Nrmk::IndyFramework::DigitalSignal>& set_end_do_signal_list,
-                             const std::vector<Nrmk::IndyFramework::AnalogSignal>& set_ao_signal_list,
-                             const std::vector<Nrmk::IndyFramework::AnalogSignal>& set_end_ao_signal_list)
+bool IndyDCP3::wait_progress(int progress)
 {
     Nrmk::IndyFramework::WaitProgressReq request;
     Nrmk::IndyFramework::Response response;
@@ -2870,21 +3489,7 @@ bool IndyDCP3::wait_progress(int progress,
 
     request.set_progress(progress);
 
-    for (const auto& signal : set_do_signal_list) {
-        *request.add_set_do_list() = signal;
-    }
-
-    for (const auto& signal : set_end_do_signal_list) {
-        *request.add_set_end_do_list() = signal;
-    }
-
-    for (const auto& signal : set_ao_signal_list) {
-        *request.add_set_ao_list() = signal;
-    }
-
-    for (const auto& signal : set_end_ao_signal_list) {
-        *request.add_set_end_ao_list() = signal;
-    }
+    // Note: set_* signal lists have been removed from WaitProgressReq in latest API.
 
     grpc::Status status = control_stub->WaitProgress(&context, request, &response);
     if (!status.ok()) {
@@ -2894,11 +3499,7 @@ bool IndyDCP3::wait_progress(int progress,
     return true;
 }
 
-bool IndyDCP3::wait_traj(const Nrmk::IndyFramework::TrajCondition& traj_condition,
-                         const std::vector<Nrmk::IndyFramework::DigitalSignal>& set_do_signal_list,
-                         const std::vector<Nrmk::IndyFramework::DigitalSignal>& set_end_do_signal_list,
-                         const std::vector<Nrmk::IndyFramework::AnalogSignal>& set_ao_signal_list,
-                         const std::vector<Nrmk::IndyFramework::AnalogSignal>& set_end_ao_signal_list)
+bool IndyDCP3::wait_traj(const Nrmk::IndyFramework::TrajCondition& traj_condition)
 {
     Nrmk::IndyFramework::WaitTrajReq request;
     Nrmk::IndyFramework::Response response;
@@ -2906,21 +3507,7 @@ bool IndyDCP3::wait_traj(const Nrmk::IndyFramework::TrajCondition& traj_conditio
 
     request.set_traj_condition(traj_condition);
 
-    for (const auto& signal : set_do_signal_list) {
-        *request.add_set_do_list() = signal;
-    }
-
-    for (const auto& signal : set_end_do_signal_list) {
-        *request.add_set_end_do_list() = signal;
-    }
-
-    for (const auto& signal : set_ao_signal_list) {
-        *request.add_set_ao_list() = signal;
-    }
-
-    for (const auto& signal : set_end_ao_signal_list) {
-        *request.add_set_end_ao_list() = signal;
-    }
+    // Note: set_* signal lists have been removed from WaitTrajReq in latest API.
 
     grpc::Status status = control_stub->WaitTraj(&context, request, &response);
     if (!status.ok()) {
@@ -2930,11 +3517,7 @@ bool IndyDCP3::wait_traj(const Nrmk::IndyFramework::TrajCondition& traj_conditio
     return true;
 }
 
-bool IndyDCP3::wait_radius(int radius,
-                           const std::vector<Nrmk::IndyFramework::DigitalSignal>& set_do_signal_list,
-                           const std::vector<Nrmk::IndyFramework::DigitalSignal>& set_end_do_signal_list,
-                           const std::vector<Nrmk::IndyFramework::AnalogSignal>& set_ao_signal_list,
-                           const std::vector<Nrmk::IndyFramework::AnalogSignal>& set_end_ao_signal_list)
+bool IndyDCP3::wait_radius(int radius)
 {
     Nrmk::IndyFramework::WaitRadiusReq request;
     Nrmk::IndyFramework::Response response;
@@ -2942,21 +3525,7 @@ bool IndyDCP3::wait_radius(int radius,
 
     request.set_radius(radius);
 
-    for (const auto& signal : set_do_signal_list) {
-        *request.add_set_do_list() = signal;
-    }
-
-    for (const auto& signal : set_end_do_signal_list) {
-        *request.add_set_end_do_list() = signal;
-    }
-
-    for (const auto& signal : set_ao_signal_list) {
-        *request.add_set_ao_list() = signal;
-    }
-
-    for (const auto& signal : set_end_ao_signal_list) {
-        *request.add_set_end_ao_list() = signal;
-    }
+    // Note: set_* signal lists have been removed from WaitRadiusReq in latest API.
 
     grpc::Status status = control_stub->WaitRadius(&context, request, &response);
     if (!status.ok()) {
@@ -3363,91 +3932,81 @@ bool IndyDCP3::set_gripper_command(const Nrmk::IndyFramework::GripperCommand& gr
 bool IndyDCP3::activate_cri(const bool on) {
     Nrmk::IndyFramework::State request;
     request.set_enable(on);
-
     Nrmk::IndyFramework::Response response;
     grpc::ClientContext context;
-
-    grpc::Status status = cri_stub->SetActivate(&context, request, &response);
+    grpc::Status status = cri_stub->ActiveCRIVel(&context, request, &response);
     if (!status.ok()) {
-        std::cerr << "SetActivate RPC failed: " << status.error_message() << std::endl;
+        std::cerr << "ActiveCRIVel RPC failed: " << status.error_message() << std::endl;
         return false;
     }
-    return true;
+    return response.code() == 0;
 }
 
 bool IndyDCP3::is_cri_active(bool& is_active) {
     Nrmk::IndyFramework::Empty request;
     Nrmk::IndyFramework::State response;
     grpc::ClientContext context;
-
-    grpc::Status status = cri_stub->IsActivate(&context, request, &response);
+    grpc::Status status = cri_stub->IsSFDLogin(&context, request, &response);
     if (!status.ok()) {
-        std::cerr << "IsActivate RPC failed: " << status.error_message() << std::endl;
+        std::cerr << "IsSFDLogin RPC failed: " << status.error_message() << std::endl;
         return false;
     }
-
     is_active = response.enable();
     return true;
 }
 
-bool IndyDCP3::login_cri_server(const Nrmk::IndyFramework::Account& account) {
+bool IndyDCP3::login_cri_server(const Nrmk::IndyFramework::SFDAccount& account) {
     Nrmk::IndyFramework::Response response;
     grpc::ClientContext context;
-
-    grpc::Status status = cri_stub->Login(&context, account, &response);
+    grpc::Status status = cri_stub->LoginSFD(&context, account, &response);
     if (!status.ok()) {
-        std::cerr << "Login CRI Server RPC failed: " << status.error_message() << std::endl;
+        std::cerr << "LoginSFD RPC failed: " << status.error_message() << std::endl;
         return false;
     }
-    return true;
+    return response.code() == 0;
 }
 
 bool IndyDCP3::is_cri_login(bool& is_logged_in) {
     Nrmk::IndyFramework::Empty request;
     Nrmk::IndyFramework::State response;
     grpc::ClientContext context;
-
-    grpc::Status status = cri_stub->IsLogin(&context, request, &response);
+    grpc::Status status = cri_stub->IsSFDLogin(&context, request, &response);
     if (!status.ok()) {
-        std::cerr << "IsLogin RPC failed: " << status.error_message() << std::endl;
+        std::cerr << "IsSFDLogin RPC failed: " << status.error_message() << std::endl;
         return false;
     }
-
     is_logged_in = response.enable();
     return true;
 }
 
-bool IndyDCP3::set_cri_target(const Nrmk::IndyFramework::CriTarget& target) {
+bool IndyDCP3::set_cri_target(const Nrmk::IndyFramework::SFDTarget& target) {
     Nrmk::IndyFramework::Response response;
     grpc::ClientContext context;
-
-    grpc::Status status = cri_stub->SetTarget(&context, target, &response);
+    grpc::Status status = cri_stub->SelectSFDTarget(&context, target, &response);
     if (!status.ok()) {
-        std::cerr << "Set CRI Target RPC failed: " << status.error_message() << std::endl;
+        std::cerr << "SelectSFDTarget RPC failed: " << status.error_message() << std::endl;
         return false;
     }
-    return true;
+    return response.code() == 0;
 }
 
 bool IndyDCP3::set_cri_option(const Nrmk::IndyFramework::State& option) {
     Nrmk::IndyFramework::Response response;
     grpc::ClientContext context;
-
-    grpc::Status status = cri_stub->SetOption(&context, option, &response);
+    grpc::Status status = cri_stub->ActiveCRIVel(&context, option, &response);
     if (!status.ok()) {
-        std::cerr << "Set CRI Option RPC failed: " << status.error_message() << std::endl;
+        std::cerr << "ActiveCRIVel RPC failed: " << status.error_message() << std::endl;
         return false;
     }
-    return true;
+    return response.code() == 0;
 }
 
-bool IndyDCP3::get_cri_proj_list(Nrmk::IndyFramework::ProjectList& project_list) {
+bool IndyDCP3::get_cri_proj_list(Nrmk::IndyFramework::SFDProjectList& project_list) {
     Nrmk::IndyFramework::Empty request;
     grpc::ClientContext context;
-
-    grpc::Status status = cri_stub->GetProjList(&context, request, &project_list);
+    grpc::Status status = cri_stub->GetSFDProjList(&context, request, &project_list);
     if (!status.ok()) {
-        std::cerr << "Get CRI Project List RPC failed: " << status.error_message() << std::endl;
+        std::cerr << "GetSFDProjList RPC failed: " << status.error_message() << std::endl;
         return false;
     }
     return true;
@@ -3987,6 +4546,118 @@ bool IndyDCP3::get_control_info(Nrmk::IndyFramework::ControlInfo& control_info) 
     return true;
 }
 
+bool IndyDCP3::set_compliance_mode(const Nrmk::IndyFramework::ComplianceMode& mode) {
+    Nrmk::IndyFramework::Response response;
+    grpc::ClientContext context;
+    grpc::Status status = control_stub->SetComplianceMode(&context, mode, &response);
+    if (!status.ok()) {
+        std::cerr << "SetComplianceMode RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::get_compliance_mode(Nrmk::IndyFramework::ComplianceMode& mode) {
+    Nrmk::IndyFramework::Empty request;
+    grpc::ClientContext context;
+    grpc::Status status = control_stub->GetComplianceMode(&context, request, &mode);
+    if (!status.ok()) {
+        std::cerr << "GetComplianceMode RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::push_bus_event(const Nrmk::IndyFramework::BusEvent& event) {
+    Nrmk::IndyFramework::State response;
+    grpc::ClientContext context;
+    grpc::Status status = control_stub->PushBusEvent(&context, event, &response);
+    if (!status.ok()) {
+        std::cerr << "PushBusEvent RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return response.enable();
+}
+
+bool IndyDCP3::catch_bus_event(const Nrmk::IndyFramework::CatchBusEventReq& request,
+                               Nrmk::IndyFramework::BusEvent& event) {
+    grpc::ClientContext context;
+    grpc::Status status = control_stub->CatchBusEvent(&context, request, &event);
+    if (!status.ok()) {
+        std::cerr << "CatchBusEvent RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::set_force_mode(const Nrmk::IndyFramework::ForceModeReq& request) {
+    Nrmk::IndyFramework::Response response;
+    grpc::ClientContext context;
+    grpc::Status status = control_stub->SetForceMode(&context, request, &response);
+    if (!status.ok()) {
+        std::cerr << "SetForceMode RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::get_force_mode(Nrmk::IndyFramework::ForceModeReq& response) {
+    Nrmk::IndyFramework::Empty request;
+    grpc::ClientContext context;
+    grpc::Status status = control_stub->GetForceMode(&context, request, &response);
+    if (!status.ok()) {
+        std::cerr << "GetForceMode RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::ping_from_conty() {
+    Nrmk::IndyFramework::Empty request;
+    Nrmk::IndyFramework::Empty response;
+    grpc::ClientContext context;
+    grpc::Status status = control_stub->PingFromConty(&context, request, &response);
+    if (!status.ok()) {
+        std::cerr << "PingFromConty RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::get_ft_zero() {
+    Nrmk::IndyFramework::Empty request;
+    Nrmk::IndyFramework::Response response;
+    grpc::ClientContext context;
+    grpc::Status status = control_stub->FTZero(&context, request, &response);
+    if (!status.ok()) {
+        std::cerr << "FTZero RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::set_inference_data(const Nrmk::IndyFramework::ControlInferenceDataSet& data) {
+    Nrmk::IndyFramework::Response response;
+    grpc::ClientContext context;
+    grpc::Status status = control_stub->SetControlInferenceData(&context, data, &response);
+    if (!status.ok()) {
+        std::cerr << "SetControlInferenceData RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return response.code() == 0;
+}
+
+bool IndyDCP3::get_inference_data(Nrmk::IndyFramework::ControlInferenceDataSet& data) {
+    Nrmk::IndyFramework::Empty request;
+    grpc::ClientContext context;
+    grpc::Status status = control_stub->GetControlInferenceData(&context, request, &data);
+    if (!status.ok()) {
+        std::cerr << "GetControlInferenceData RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
 bool IndyDCP3::check_aproach_retract_valid(const std::array<float, 6>& tpos, 
                                            const std::vector<float>& init_jpos, 
                                            const std::array<float, 6>& pre_tpos, 
@@ -4316,19 +4987,12 @@ bool IndyDCP3::get_io_data(Nrmk::IndyFramework::IOData& response) {
     return true;
 }
 
-#include <vector>
-#include <optional>
-
 bool IndyDCP3::wait_io(
     const std::vector<Nrmk::IndyFramework::DigitalSignal>& di_signal_list,
     const std::vector<Nrmk::IndyFramework::DigitalSignal>& do_signal_list,
     const std::vector<Nrmk::IndyFramework::DigitalSignal>& end_di_signal_list,
     const std::vector<Nrmk::IndyFramework::DigitalSignal>& end_do_signal_list,
-    const int conjunction,
-    const std::optional<std::vector<Nrmk::IndyFramework::DigitalSignal>>& set_do_signal_list = std::nullopt,
-    const std::optional<std::vector<Nrmk::IndyFramework::DigitalSignal>>& set_end_do_signal_list = std::nullopt,
-    const std::optional<std::vector<Nrmk::IndyFramework::AnalogSignal>>& set_ao_signal_list = std::nullopt,
-    const std::optional<std::vector<Nrmk::IndyFramework::AnalogSignal>>& set_end_ao_signal_list = std::nullopt)
+    const int conjunction)
 {
     Nrmk::IndyFramework::WaitIOReq request;
     Nrmk::IndyFramework::Response response;
@@ -4360,37 +5024,7 @@ bool IndyDCP3::wait_io(
 
     request.set_conjunction(conjunction);
 
-    if (set_do_signal_list) {
-        for (const auto& signal : *set_do_signal_list) {
-            auto* set_do = request.add_set_do_list();
-            set_do->set_address(signal.address());
-            set_do->set_state(static_cast<Nrmk::IndyFramework::DigitalState>(signal.state()));
-        }
-    }
-
-    if (set_end_do_signal_list) {
-        for (const auto& signal : *set_end_do_signal_list) {
-            auto* set_end_do = request.add_set_end_do_list();
-            set_end_do->set_address(signal.address());
-            set_end_do->set_state(static_cast<Nrmk::IndyFramework::DigitalState>(signal.state()));
-        }
-    }
-
-    if (set_ao_signal_list) {
-        for (const auto& signal : *set_ao_signal_list) {
-            auto* set_ao = request.add_set_ao_list();
-            set_ao->set_address(signal.address());
-            set_ao->set_voltage(signal.voltage());
-        }
-    }
-
-    if (set_end_ao_signal_list) {
-        for (const auto& signal : *set_end_ao_signal_list) {
-            auto* set_end_ao = request.add_set_end_ao_list();
-            set_end_ao->set_address(signal.address());
-            set_end_ao->set_voltage(signal.voltage());
-        }
-    }
+    // Note: set_* lists have been removed from WaitIOReq in latest API.
 
     grpc::Status status = control_stub->WaitIO(&context, request, &response);
     if (!status.ok()) {
@@ -4904,42 +5538,42 @@ bool IndyDCP3::execute_tool(const std::string& name) {
     return true;
 }
 
-bool IndyDCP3::get_el5001(int& status, int& value, int& delta, float& average) {
-    Nrmk::IndyFramework::Empty request;
-    Nrmk::IndyFramework::GetEL5001Data response;
-    grpc::ClientContext context;
+// bool IndyDCP3::get_el5001(int& status, int& value, int& delta, float& average) {
+//     Nrmk::IndyFramework::Empty request;
+//     Nrmk::IndyFramework::GetEL5001Data response;
+//     grpc::ClientContext context;
 
-    grpc::Status status_result = device_stub->GetEL5001(&context, request, &response);
-    if (!status_result.ok()) {
-        std::cerr << "GetEL5001 RPC failed: " << status_result.error_message() << std::endl;
-        return false;
-    }
+//     grpc::Status status_result = device_stub->GetEL5001(&context, request, &response);
+//     if (!status_result.ok()) {
+//         std::cerr << "GetEL5001 RPC failed: " << status_result.error_message() << std::endl;
+//         return false;
+//     }
 
-    status = response.status();
-    value = response.value();
-    delta = response.delta();
-    average = response.average();
-    return true;
-}
+//     status = response.status();
+//     value = response.value();
+//     delta = response.delta();
+//     average = response.average();
+//     return true;
+// }
 
-bool IndyDCP3::get_el5101(int& status, int& value, int& latch, int& delta, float& average) {
-    Nrmk::IndyFramework::Empty request;
-    Nrmk::IndyFramework::GetEL5101Data response;
-    grpc::ClientContext context;
+// bool IndyDCP3::get_el5101(int& status, int& value, int& latch, int& delta, float& average) {
+//     Nrmk::IndyFramework::Empty request;
+//     Nrmk::IndyFramework::GetEL5101Data response;
+//     grpc::ClientContext context;
 
-    grpc::Status status_result = device_stub->GetEL5101(&context, request, &response);
-    if (!status_result.ok()) {
-        std::cerr << "GetEL5101 RPC failed: " << status_result.error_message() << std::endl;
-        return false;
-    }
+//     grpc::Status status_result = device_stub->GetEL5101(&context, request, &response);
+//     if (!status_result.ok()) {
+//         std::cerr << "GetEL5101 RPC failed: " << status_result.error_message() << std::endl;
+//         return false;
+//     }
 
-    status = response.status();
-    value = response.value();
-    latch = response.latch();
-    delta = response.delta();
-    average = response.average();
-    return true;
-}
+//     status = response.status();
+//     value = response.value();
+//     latch = response.latch();
+//     delta = response.delta();
+//     average = response.average();
+//     return true;
+// }
 
 bool IndyDCP3::get_brake_control_style(int& style) {
     Nrmk::IndyFramework::Empty request;

@@ -19,6 +19,79 @@ void example_get_robot_data(IndyDCP3& indy) {
     }
 }
 
+void example_environment_list(IndyDCP3& indy) {
+    Nrmk::IndyFramework::EnvironmentList env_list;
+    bool ok = indy.get_environment_list(env_list);
+    std::cout << (ok ? "Got" : "Failed to get") << " EnvironmentList\n";
+    if (env_list.environments_size() > 0) {
+        // round-trip set with the same list
+        ok = indy.set_environment_list(env_list);
+        std::cout << (ok ? "Set" : "Failed to set") << " EnvironmentList\n";
+    }
+}
+
+void example_default_collision_params(IndyDCP3& indy) {
+    Nrmk::IndyFramework::CollisionThresholds defaults;
+    bool ok = indy.get_default_coll_sens_param(defaults);
+    std::cout << (ok ? "Got" : "Failed to get") << " default CollisionThresholds\n";
+}
+
+void example_sensorless_params(IndyDCP3& indy) {
+    Nrmk::IndyFramework::SensorlessParams params;
+    bool ok = indy.get_sensorless_params(params);
+    std::cout << (ok ? "Got" : "Failed to get") << " SensorlessParams\n";
+    // no-op set back if obtained
+    if (ok) {
+        ok = indy.set_sensorless_params(params);
+        std::cout << (ok ? "Set" : "Failed to set") << " SensorlessParams\n";
+    }
+}
+
+void example_on_start_program_config(IndyDCP3& indy) {
+    Nrmk::IndyFramework::OnStartProgramConfig cfg;
+    bool ok = indy.get_on_start_program_config(cfg);
+    std::cout << (ok ? "Got" : "Failed to get") << " OnStartProgramConfig\n";
+    if (ok) {
+        ok = indy.set_on_start_program_config(cfg);
+        std::cout << (ok ? "Set" : "Failed to set") << " OnStartProgramConfig\n";
+    }
+}
+
+void example_simple_collision_threshold(IndyDCP3& indy) {
+    bool ok = indy.set_simple_coll_threshold();
+    std::cout << (ok ? "Applied" : "Failed to apply") << " simple collision threshold\n";
+}
+
+void example_collision_model_margin(IndyDCP3& indy) {
+    Nrmk::IndyFramework::CollisionModelMargin margin;
+    bool ok = indy.get_collison_model_margin(margin);
+    std::cout << (ok ? "Got" : "Failed to get") << " CollisionModelMargin\n";
+    if (ok) {
+        ok = indy.set_collison_model_margin(margin);
+        std::cout << (ok ? "Set" : "Failed to set") << " CollisionModelMargin\n";
+    }
+}
+
+void example_reference_frame_io(IndyDCP3& indy) {
+    Nrmk::IndyFramework::RefFrameList list;
+    bool ok = indy.load_reference_frame(list);
+    std::cout << (ok ? "Loaded" : "Failed to load") << " RefFrameList\n";
+    if (ok) {
+        ok = indy.save_reference_frame(list);
+        std::cout << (ok ? "Saved" : "Failed to save") << " RefFrameList\n";
+    }
+}
+
+void example_control_inference_data(IndyDCP3& indy) {
+    Nrmk::IndyFramework::ControlInferenceDataSet data;
+    bool ok = indy.get_inference_data(data);
+    std::cout << (ok ? "Got" : "Failed to get") << " ControlInferenceDataSet\n";
+    if (ok) {
+        ok = indy.set_inference_data(data);
+        std::cout << (ok ? "Set" : "Failed to set") << " ControlInferenceDataSet\n";
+    }
+}
+
 void example_get_robot_control_data(IndyDCP3& indy) {
     bool is_success;
     Nrmk::IndyFramework::ControlData control_data;
@@ -1680,15 +1753,15 @@ void example_is_cri_active(IndyDCP3& indy) {
 }
 
 void example_login_cri_server(IndyDCP3& indy) {
-    Nrmk::IndyFramework::Account account;
+    Nrmk::IndyFramework::SFDAccount account;
     account.set_email("user@example.com");
     account.set_token("example_token");
 
     bool is_success = indy.login_cri_server(account);
     if (is_success) {
-        std::cout << "Logged in to CRI server successfully." << std::endl;
+    std::cout << "Logged in to SFD server successfully." << std::endl;
     } else {
-        std::cerr << "Failed to log in to CRI server." << std::endl;
+    std::cerr << "Failed to log in to SFD server." << std::endl;
     }
 }
 
@@ -1703,7 +1776,7 @@ void example_is_cri_login(IndyDCP3& indy) {
 }
 
 void example_set_cri_target(IndyDCP3& indy) {
-    Nrmk::IndyFramework::CriTarget target;
+    Nrmk::IndyFramework::SFDTarget target;
     target.set_pn("ProjectName");
     target.set_fn("FunctionName");
     target.set_rn("ResourceName");
@@ -1729,13 +1802,13 @@ void example_set_cri_option(IndyDCP3& indy) {
 }
 
 void example_get_cri_proj_list(IndyDCP3& indy) {
-    Nrmk::IndyFramework::ProjectList project_list;
+    Nrmk::IndyFramework::SFDProjectList project_list;
     bool is_success = indy.get_cri_proj_list(project_list);
     if (is_success) {
-        std::cout << "CRI Project List retrieved successfully." << std::endl;
+        std::cout << "SFD Project List retrieved successfully." << std::endl;
         std::cout << "Project List: " << project_list.list() << std::endl;
     } else {
-        std::cerr << "Failed to retrieve CRI Project List." << std::endl;
+        std::cerr << "Failed to retrieve SFD Project List." << std::endl;
     }
 }
 
@@ -2151,6 +2224,8 @@ void example_set_safety_stop_config(IndyDCP3& indy) {
     config.set_tcp_speed_limit_stop_cat(Nrmk::IndyFramework::StopCategory::IMMEDIATE_BRAKE);
     config.set_tcp_force_limit_stop_cat(Nrmk::IndyFramework::StopCategory::SMOOTH_BRAKE);
     config.set_power_limit_stop_cat(Nrmk::IndyFramework::StopCategory::SMOOTH_ONLY);
+    // config.set_safegd_stop_category(Nrmk::IndyFramework::StopCategory::SMOOTH_BRAKE);
+    // config.set_safegd_type(Nrmk::IndyFramework::SafeGdType::GUARD_NONE);
 
     bool is_success = indy.set_safety_stop_config(config);
     
@@ -2350,29 +2425,12 @@ void example_wait_io(IndyDCP3& indy) {
 
     std::vector<Nrmk::IndyFramework::DigitalSignal> end_do_signals = {end_do_signal_1};
 
-    // Optional signals
-    Nrmk::IndyFramework::DigitalSignal set_do_signal_1;
-    set_do_signal_1.set_address(6);
-    set_do_signal_1.set_state(Nrmk::IndyFramework::DigitalState::ON_STATE);
-
-    std::vector<Nrmk::IndyFramework::DigitalSignal> set_do_signals = {set_do_signal_1};
-
-    Nrmk::IndyFramework::AnalogSignal set_ao_signal_1;
-    set_ao_signal_1.set_address(7);
-    set_ao_signal_1.set_voltage(5000);
-
-    std::vector<Nrmk::IndyFramework::AnalogSignal> set_ao_signals = {set_ao_signal_1};
-
     bool is_success = indy.wait_io(
         di_signals,
         do_signals,
         end_di_signals,
         end_do_signals,
-        0,   // conjunction
-        set_do_signals,
-        std::nullopt,   // no set_end_do_list
-        set_ao_signals,
-        std::nullopt    // no set_end_ao_list
+        0   // conjunction
     );
 
     if (is_success) {
@@ -2724,34 +2782,34 @@ void example_execute_tool(IndyDCP3& indy) {
     }
 }
 
-void example_get_el5001(IndyDCP3& indy) {
-    int status, value, delta;
-    float average;
+// void example_get_el5001(IndyDCP3& indy) {
+//     int status, value, delta;
+//     float average;
 
-    if (indy.get_el5001(status, value, delta, average)) {
-        std::cout << "EL5001 Status: " << status << std::endl;
-        std::cout << "EL5001 Value: " << value << std::endl;
-        std::cout << "EL5001 Delta: " << delta << std::endl;
-        std::cout << "EL5001 Average: " << average << std::endl;
-    } else {
-        std::cerr << "Failed to retrieve EL5001 data." << std::endl;
-    }
-}
+//     if (indy.get_el5001(status, value, delta, average)) {
+//         std::cout << "EL5001 Status: " << status << std::endl;
+//         std::cout << "EL5001 Value: " << value << std::endl;
+//         std::cout << "EL5001 Delta: " << delta << std::endl;
+//         std::cout << "EL5001 Average: " << average << std::endl;
+//     } else {
+//         std::cerr << "Failed to retrieve EL5001 data." << std::endl;
+//     }
+// }
 
-void example_get_el5101(IndyDCP3& indy) {
-    int status, value, latch, delta;
-    float average;
+// void example_get_el5101(IndyDCP3& indy) {
+//     int status, value, latch, delta;
+//     float average;
 
-    if (indy.get_el5101(status, value, latch, delta, average)) {
-        std::cout << "EL5101 Status: " << status << std::endl;
-        std::cout << "EL5101 Value: " << value << std::endl;
-        std::cout << "EL5101 Latch: " << latch << std::endl;
-        std::cout << "EL5101 Delta: " << delta << std::endl;
-        std::cout << "EL5101 Average: " << average << std::endl;
-    } else {
-        std::cerr << "Failed to retrieve EL5101 data." << std::endl;
-    }
-}
+//     if (indy.get_el5101(status, value, latch, delta, average)) {
+//         std::cout << "EL5101 Status: " << status << std::endl;
+//         std::cout << "EL5101 Value: " << value << std::endl;
+//         std::cout << "EL5101 Latch: " << latch << std::endl;
+//         std::cout << "EL5101 Delta: " << delta << std::endl;
+//         std::cout << "EL5101 Average: " << average << std::endl;
+//     } else {
+//         std::cerr << "Failed to retrieve EL5101 data." << std::endl;
+//     }
+// }
 
 void example_get_brake_control_style(IndyDCP3& indy) {
     int style;
@@ -2871,6 +2929,207 @@ void example_get_photoneo_retrieval(IndyDCP3& indy) {
     } else {
         std::cerr << "Retrieval failed." << std::endl;
     }
+}
+
+void example_set_plugin_bool(IndyDCP3& indy) {
+    bool ok = indy.set_plugin_bool_variable("bool_1", true);
+    std::cout << "set_plugin_bool_variable: " << (ok ? "OK" : "FAIL") << std::endl;
+}
+
+void example_get_plugin_bool(IndyDCP3& indy) {
+    bool val = false;
+    bool ok = indy.get_plugin_bool_variable("bool_1", val);
+    std::cout << "get_plugin_bool_variable: " << (ok ? "OK" : "FAIL") << ", value=" << val << std::endl;
+}
+
+void example_set_plugin_int(IndyDCP3& indy) {
+    bool ok = indy.set_plugin_int_variable("int_1", 42);
+    std::cout << "set_plugin_int_variable: " << (ok ? "OK" : "FAIL") << std::endl;
+}
+
+void example_get_plugin_int(IndyDCP3& indy) {
+    int64_t val = 0;
+    bool ok = indy.get_plugin_int_variable("int_1", val);
+    std::cout << "get_plugin_int_variable: " << (ok ? "OK" : "FAIL") << ", value=" << val << std::endl;
+}
+
+void example_set_plugin_float(IndyDCP3& indy) {
+    bool ok = indy.set_plugin_float_variable("float_1", 0.5f);
+    std::cout << "set_plugin_float_variable: " << (ok ? "OK" : "FAIL") << std::endl;
+}
+
+void example_get_plugin_float(IndyDCP3& indy) {
+    float val = 0.0f;
+    bool ok = indy.get_plugin_float_variable("float_1", val);
+    std::cout << "get_plugin_float_variable: " << (ok ? "OK" : "FAIL") << ", value=" << val << std::endl;
+}
+
+void example_set_plugin_jpos(IndyDCP3& indy) {
+    std::vector<float> jpos = {0, 10, 20, 30, 40, 50};
+    bool ok = indy.set_plugin_jpos_variable("ex_home_pose", jpos);
+    std::cout << "set_plugin_jpos_variable: " << (ok ? "OK" : "FAIL") << std::endl;
+}
+
+void example_get_plugin_jpos(IndyDCP3& indy) {
+    std::vector<float> jpos;
+    bool ok = indy.get_plugin_jpos_variable("ex_home_pose", jpos);
+    std::cout << "get_plugin_jpos_variable: " << (ok ? "OK" : "FAIL") << ", size=" << jpos.size() << std::endl;
+}
+
+void example_set_plugin_tpos(IndyDCP3& indy) {
+    std::vector<float> tpos = {100, 200, 300, 0, 90, 180};
+    bool ok = indy.set_plugin_tpos_variable("ex_t_pose", tpos);
+    std::cout << "set_plugin_tpos_variable: " << (ok ? "OK" : "FAIL") << std::endl;
+}
+
+void example_get_plugin_tpos(IndyDCP3& indy) {
+    std::vector<float> tpos;
+    bool ok = indy.get_plugin_tpos_variable("ex_t_pose", tpos);
+    std::cout << "get_plugin_tpos_variable: " << (ok ? "OK" : "FAIL") << ", size=" << tpos.size() << std::endl;
+}
+
+void example_get_path_config(IndyDCP3& indy) {
+    Nrmk::IndyFramework::PathConfig pc;
+    bool ok = indy.get_path_config(pc);
+    std::cout << "get_path_config: " << (ok ? "OK" : "FAIL")
+              << (ok ? ", config_path=" + pc.config_path() : "") << std::endl;
+}
+
+void example_set_locked_joint(IndyDCP3& indy, int index) {
+    bool ok = indy.set_locked_joint(index);
+    std::cout << "set_locked_joint(" << index << "): " << (ok ? "OK" : "FAIL") << std::endl;
+}
+
+void example_set_tool_link(IndyDCP3& indy, int index) {
+    bool ok = indy.set_tool_link(index);
+    std::cout << "set_tool_link(" << index << "): " << (ok ? "OK" : "FAIL") << std::endl;
+}
+
+void example_get_speed_ratio(IndyDCP3& indy) {
+    unsigned int ratio = 0;
+    bool ok = indy.get_speed_ratio(ratio);
+    std::cout << "get_speed_ratio: " << (ok ? "OK" : "FAIL")
+              << (ok ? ", ratio=" + std::to_string(ratio) : "") << std::endl;
+}
+
+void example_set_tool_list(IndyDCP3& indy) {
+    Nrmk::IndyFramework::ToolList list;
+    auto* tool = list.add_tools();
+    tool->set_name("example_tool");
+    tool->set_execute_time(0.0f);
+    bool ok = indy.set_tool_list(list);
+    std::cout << "set_tool_list: " << (ok ? "OK" : "FAIL") << std::endl;
+}
+
+void example_get_tool_list(IndyDCP3& indy) {
+    Nrmk::IndyFramework::ToolList list;
+    bool ok = indy.get_tool_list(list);
+    std::cout << "get_tool_list: " << (ok ? "OK" : "FAIL")
+              << (ok ? ", size=" + std::to_string(list.tools_size()) : "") << std::endl;
+}
+
+void example_get_vision_server_list(IndyDCP3& indy) {
+    Nrmk::IndyFramework::VisionServerList vlist;
+    bool ok = indy.get_vision_server_list(vlist);
+    std::cout << "get_vision_server_list: " << (ok ? "OK" : "FAIL")
+              << (ok ? ", size=" + std::to_string(vlist.vision_servers_size()) : "") << std::endl;
+}
+
+void example_set_vision_server_list(IndyDCP3& indy) {
+    Nrmk::IndyFramework::VisionServerList vlist; 
+    bool ok = indy.set_vision_server_list(vlist);
+    std::cout << "set_vision_server_list: " << (ok ? "OK" : "FAIL") << std::endl;
+}
+
+void example_get_modbus_server_list(IndyDCP3& indy) {
+    Nrmk::IndyFramework::ModbusServerList mlist;
+    bool ok = indy.get_modbus_server_list(mlist);
+    std::cout << "get_modbus_server_list: " << (ok ? "OK" : "FAIL")
+              << (ok ? ", size=" + std::to_string(mlist.modbus_servers_size()) : "") << std::endl;
+}
+
+void example_set_modbus_server_list(IndyDCP3& indy) {
+    Nrmk::IndyFramework::ModbusServerList mlist; 
+    bool ok = indy.set_modbus_server_list(mlist);
+    std::cout << "set_modbus_server_list: " << (ok ? "OK" : "FAIL") << std::endl;
+}
+
+void example_get_conveyor_list(IndyDCP3& indy) {
+    Nrmk::IndyFramework::ConveyorList clist;
+    bool ok = indy.get_conveyor_list(clist);
+    std::cout << "get_conveyor_list: " << (ok ? "OK" : "FAIL")
+              << (ok ? ", size=" + std::to_string(clist.conveyor_list_size()) : "") << std::endl;
+}
+
+void example_set_conveyor_list(IndyDCP3& indy) {
+    Nrmk::IndyFramework::ConveyorList clist; 
+    bool ok = indy.set_conveyor_list(clist);
+    std::cout << "set_conveyor_list: " << (ok ? "OK" : "FAIL") << std::endl;
+}
+
+void example_set_compliance_control_joint_gain(IndyDCP3& indy) {
+    Nrmk::IndyFramework::ComplianceGainSet gains;
+    bool ok = indy.set_compliance_control_joint_gain(gains);
+    std::cout << "set_compliance_control_joint_gain: " << (ok ? "OK" : "FAIL") << std::endl;
+}
+
+void example_get_compliance_control_joint_gain(IndyDCP3& indy) {
+    Nrmk::IndyFramework::ComplianceGainSet gains;
+    bool ok = indy.get_compliance_control_joint_gain(gains);
+    std::cout << "get_compliance_control_joint_gain: " << (ok ? "OK" : "FAIL")
+              << (ok ? ", kp_size=" + std::to_string(gains.kp_size()) : "") << std::endl;
+}
+
+void example_get_tool_frame_list(IndyDCP3& indy) {
+    Nrmk::IndyFramework::ToolFrameList list;
+    bool ok = indy.get_tool_frame_list(list);
+    std::cout << "get_tool_frame_list: " << (ok ? "OK" : "FAIL")
+              << (ok ? ", size=" + std::to_string(list.tool_frames_size()) : "") << std::endl;
+}
+
+void example_set_tool_frame_list(IndyDCP3& indy) {
+    Nrmk::IndyFramework::ToolFrameList list; 
+    bool ok = indy.set_tool_frame_list(list);
+    std::cout << "set_tool_frame_list: " << (ok ? "OK" : "FAIL") << std::endl;
+}
+
+void example_get_ref_frame_list(IndyDCP3& indy) {
+    Nrmk::IndyFramework::RefFrameList list;
+    bool ok = indy.get_ref_frame_list(list);
+    std::cout << "get_ref_frame_list: " << (ok ? "OK" : "FAIL")
+              << (ok ? ", size=" + std::to_string(list.ref_frames_size()) : "") << std::endl;
+}
+
+void example_set_ref_frame_list(IndyDCP3& indy) {
+    Nrmk::IndyFramework::RefFrameList list; 
+    bool ok = indy.set_ref_frame_list(list);
+    std::cout << "set_ref_frame_list: " << (ok ? "OK" : "FAIL") << std::endl;
+}
+
+void example_get_custom_pos_list(IndyDCP3& indy) {
+    Nrmk::IndyFramework::CustomPosList list;
+    bool ok = indy.get_custom_pos_list(list);
+    std::cout << "get_custom_pos_list: " << (ok ? "OK" : "FAIL")
+              << (ok ? ", size=" + std::to_string(list.custom_pos_size()) : "") << std::endl;
+}
+
+void example_set_custom_pos_list(IndyDCP3& indy) {
+    Nrmk::IndyFramework::CustomPosList list; 
+    bool ok = indy.set_custom_pos_list(list);
+    std::cout << "set_custom_pos_list: " << (ok ? "OK" : "FAIL") << std::endl;
+}
+
+void example_set_tool_shape_list(IndyDCP3& indy) {
+    Nrmk::IndyFramework::ToolShapeList list; 
+    bool ok = indy.set_tool_shape_list(list);
+    std::cout << "set_tool_shape_list: " << (ok ? "OK" : "FAIL") << std::endl;
+}
+
+void example_get_tool_shape_list(IndyDCP3& indy) {
+    Nrmk::IndyFramework::ToolShapeList list;
+    bool ok = indy.get_tool_shape_list(list);
+    std::cout << "get_tool_shape_list: " << (ok ? "OK" : "FAIL")
+              << (ok ? ", size=" + std::to_string(list.geometries_size()) : "") << std::endl;
 }
 
 

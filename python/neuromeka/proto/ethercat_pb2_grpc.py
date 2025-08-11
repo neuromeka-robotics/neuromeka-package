@@ -15,6 +15,11 @@ class EtherCATStub(object):
         Args:
             channel: A grpc.Channel.
         """
+        self.SetMasterStatus = channel.unary_unary(
+                '/Nrmk.IndyFramework.EtherCAT/SetMasterStatus',
+                request_serializer=ethercat__msgs__pb2.MasterStatus.SerializeToString,
+                response_deserializer=common__msgs__pb2.Empty.FromString,
+                )
         self.GetMasterStatus = channel.unary_unary(
                 '/Nrmk.IndyFramework.EtherCAT/GetMasterStatus',
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
@@ -255,9 +260,15 @@ class EtherCATStub(object):
 class EtherCATServicer(object):
     """Missing associated documentation comment in .proto file."""
 
-    def GetMasterStatus(self, request, context):
+    def SetMasterStatus(self, request, context):
         """Master and slave status
         """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetMasterStatus(self, request, context):
+        """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
@@ -484,16 +495,7 @@ class EtherCATServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def GetMaxTorqueSDO(self, request, context):
-        """FT PDO
-
-        Servo SDO
-
-        rpc GetCOREErrorCodeSDO(EcatIndex) returns (SDOIntVal) {}
-        rpc GetCORETemperature1SDO(EcatIndex) returns (SDOFloatVal) {}
-        rpc GetCORETemperature2SDO(EcatIndex) returns (SDOFloatVal) {}
-        rpc GetCORETemperature3SDO(EcatIndex) returns (SDOStrVal) {}
-
-        """
+        """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
@@ -541,9 +543,7 @@ class EtherCATServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def GetRobotZeroCount(self, request, context):
-        """rpc ResetWelconDriver(EcatIndex) returns (Empty) {}
-
-        Agri CamRobot
+        """Agri CamRobot
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -558,6 +558,11 @@ class EtherCATServicer(object):
 
 def add_EtherCATServicer_to_server(servicer, server):
     rpc_method_handlers = {
+            'SetMasterStatus': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetMasterStatus,
+                    request_deserializer=ethercat__msgs__pb2.MasterStatus.FromString,
+                    response_serializer=common__msgs__pb2.Empty.SerializeToString,
+            ),
             'GetMasterStatus': grpc.unary_unary_rpc_method_handler(
                     servicer.GetMasterStatus,
                     request_deserializer=common__msgs__pb2.Empty.FromString,
@@ -802,6 +807,23 @@ def add_EtherCATServicer_to_server(servicer, server):
  # This class is part of an EXPERIMENTAL API.
 class EtherCAT(object):
     """Missing associated documentation comment in .proto file."""
+
+    @staticmethod
+    def SetMasterStatus(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.EtherCAT/SetMasterStatus',
+            ethercat__msgs__pb2.MasterStatus.SerializeToString,
+            common__msgs__pb2.Empty.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def GetMasterStatus(request,

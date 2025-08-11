@@ -12,6 +12,7 @@ _sym_db = _symbol_database.Default()
 
 
 import common_msgs_pb2 as common__msgs__pb2
+import cri_msgs_pb2 as cri__msgs__pb2
 
 
 DESCRIPTOR = _descriptor.FileDescriptor(
@@ -20,208 +21,13 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\tcri.proto\x12\x12Nrmk.IndyFramework\x1a\x11\x63ommon_msgs.proto\"\'\n\x07\x41\x63\x63ount\x12\r\n\x05\x65mail\x18\x01 \x01(\t\x12\r\n\x05token\x18\x02 \x01(\t\"<\n\tCriTarget\x12\n\n\x02pn\x18\x01 \x01(\t\x12\n\n\x02\x66n\x18\x02 \x01(\t\x12\n\n\x02rn\x18\x03 \x01(\t\x12\x0b\n\x03iso\x18\x04 \x01(\x08\"$\n\x07\x43riData\x12\x0c\n\x04time\x18\x01 \x01(\x01\x12\x0b\n\x03\x63ri\x18\x02 \x01(\x01\"\x1b\n\x0bProjectList\x12\x0c\n\x04list\x18\x01 \x01(\t2\xc3\x04\n\x03\x43RI\x12H\n\x0bSetActivate\x12\x19.Nrmk.IndyFramework.State\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12\x44\n\nIsActivate\x12\x19.Nrmk.IndyFramework.Empty\x1a\x19.Nrmk.IndyFramework.State\"\x00\x12\x44\n\x05Login\x12\x1b.Nrmk.IndyFramework.Account\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12\x41\n\x07IsLogin\x12\x19.Nrmk.IndyFramework.Empty\x1a\x19.Nrmk.IndyFramework.State\"\x00\x12J\n\tSetTarget\x12\x1d.Nrmk.IndyFramework.CriTarget\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12\x46\n\tSetOption\x12\x19.Nrmk.IndyFramework.State\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12K\n\x0bGetProjList\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1f.Nrmk.IndyFramework.ProjectList\"\x00\x12\x42\n\x06GetCRI\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1b.Nrmk.IndyFramework.CriData\"\x00\x62\x06proto3'
+  serialized_pb=b'\n\tcri.proto\x12\x12Nrmk.IndyFramework\x1a\x11\x63ommon_msgs.proto\x1a\x0e\x63ri_msgs.proto2\xe1\t\n\x03\x43RI\x12J\n\x08LoginSFD\x12\x1e.Nrmk.IndyFramework.SFDAccount\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12\x46\n\tLogoutSFD\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12\x44\n\nIsSFDLogin\x12\x19.Nrmk.IndyFramework.Empty\x1a\x19.Nrmk.IndyFramework.State\"\x00\x12R\n\x10GenerateSFDToken\x12\x1e.Nrmk.IndyFramework.SFDAccount\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12R\n\x10SaveSFDLoginInfo\x12\x1e.Nrmk.IndyFramework.SFDAccount\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12O\n\x10LoadSFDLoginInfo\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1e.Nrmk.IndyFramework.SFDAccount\"\x00\x12N\n\x0fGetSFDLoginInfo\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1e.Nrmk.IndyFramework.SFDAccount\"\x00\x12P\n\x0fSelectSFDTarget\x12\x1d.Nrmk.IndyFramework.SFDTarget\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12J\n\x10IsSFDTargetValid\x12\x19.Nrmk.IndyFramework.Empty\x1a\x19.Nrmk.IndyFramework.State\"\x00\x12J\n\x10ReleaseSFDTarget\x12\x19.Nrmk.IndyFramework.Empty\x1a\x19.Nrmk.IndyFramework.State\"\x00\x12J\n\x0cGetSFDTarget\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1d.Nrmk.IndyFramework.SFDTarget\"\x00\x12I\n\x0c\x41\x63tiveCRIVel\x12\x19.Nrmk.IndyFramework.State\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12Q\n\x0eGetSFDProjList\x12\x19.Nrmk.IndyFramework.Empty\x1a\".Nrmk.IndyFramework.SFDProjectList\"\x00\x12\x42\n\x06GetCRI\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1b.Nrmk.IndyFramework.CriData\"\x00\x12P\n\x0eSaveSFDAutoSet\x12\x1e.Nrmk.IndyFramework.SFDAutoSet\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12M\n\x0eLoadSFDAutoSet\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1e.Nrmk.IndyFramework.SFDAutoSet\"\x00\x62\x06proto3'
   ,
-  dependencies=[common__msgs__pb2.DESCRIPTOR,])
+  dependencies=[common__msgs__pb2.DESCRIPTOR,cri__msgs__pb2.DESCRIPTOR,])
 
 
 
-
-_ACCOUNT = _descriptor.Descriptor(
-  name='Account',
-  full_name='Nrmk.IndyFramework.Account',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='email', full_name='Nrmk.IndyFramework.Account.email', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='token', full_name='Nrmk.IndyFramework.Account.token', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=52,
-  serialized_end=91,
-)
-
-
-_CRITARGET = _descriptor.Descriptor(
-  name='CriTarget',
-  full_name='Nrmk.IndyFramework.CriTarget',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='pn', full_name='Nrmk.IndyFramework.CriTarget.pn', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='fn', full_name='Nrmk.IndyFramework.CriTarget.fn', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='rn', full_name='Nrmk.IndyFramework.CriTarget.rn', index=2,
-      number=3, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='iso', full_name='Nrmk.IndyFramework.CriTarget.iso', index=3,
-      number=4, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=93,
-  serialized_end=153,
-)
-
-
-_CRIDATA = _descriptor.Descriptor(
-  name='CriData',
-  full_name='Nrmk.IndyFramework.CriData',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='time', full_name='Nrmk.IndyFramework.CriData.time', index=0,
-      number=1, type=1, cpp_type=5, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='cri', full_name='Nrmk.IndyFramework.CriData.cri', index=1,
-      number=2, type=1, cpp_type=5, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=155,
-  serialized_end=191,
-)
-
-
-_PROJECTLIST = _descriptor.Descriptor(
-  name='ProjectList',
-  full_name='Nrmk.IndyFramework.ProjectList',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='list', full_name='Nrmk.IndyFramework.ProjectList.list', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=193,
-  serialized_end=220,
-)
-
-DESCRIPTOR.message_types_by_name['Account'] = _ACCOUNT
-DESCRIPTOR.message_types_by_name['CriTarget'] = _CRITARGET
-DESCRIPTOR.message_types_by_name['CriData'] = _CRIDATA
-DESCRIPTOR.message_types_by_name['ProjectList'] = _PROJECTLIST
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
-
-Account = _reflection.GeneratedProtocolMessageType('Account', (_message.Message,), {
-  'DESCRIPTOR' : _ACCOUNT,
-  '__module__' : 'cri_pb2'
-  # @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.Account)
-  })
-_sym_db.RegisterMessage(Account)
-
-CriTarget = _reflection.GeneratedProtocolMessageType('CriTarget', (_message.Message,), {
-  'DESCRIPTOR' : _CRITARGET,
-  '__module__' : 'cri_pb2'
-  # @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.CriTarget)
-  })
-_sym_db.RegisterMessage(CriTarget)
-
-CriData = _reflection.GeneratedProtocolMessageType('CriData', (_message.Message,), {
-  'DESCRIPTOR' : _CRIDATA,
-  '__module__' : 'cri_pb2'
-  # @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.CriData)
-  })
-_sym_db.RegisterMessage(CriData)
-
-ProjectList = _reflection.GeneratedProtocolMessageType('ProjectList', (_message.Message,), {
-  'DESCRIPTOR' : _PROJECTLIST,
-  '__module__' : 'cri_pb2'
-  # @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.ProjectList)
-  })
-_sym_db.RegisterMessage(ProjectList)
 
 
 
@@ -232,43 +38,33 @@ _CRI = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=223,
-  serialized_end=802,
+  serialized_start=69,
+  serialized_end=1318,
   methods=[
   _descriptor.MethodDescriptor(
-    name='SetActivate',
-    full_name='Nrmk.IndyFramework.CRI.SetActivate',
+    name='LoginSFD',
+    full_name='Nrmk.IndyFramework.CRI.LoginSFD',
     index=0,
     containing_service=None,
-    input_type=common__msgs__pb2._STATE,
+    input_type=cri__msgs__pb2._SFDACCOUNT,
     output_type=common__msgs__pb2._RESPONSE,
     serialized_options=None,
     create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
-    name='IsActivate',
-    full_name='Nrmk.IndyFramework.CRI.IsActivate',
+    name='LogoutSFD',
+    full_name='Nrmk.IndyFramework.CRI.LogoutSFD',
     index=1,
     containing_service=None,
     input_type=common__msgs__pb2._EMPTY,
-    output_type=common__msgs__pb2._STATE,
-    serialized_options=None,
-    create_key=_descriptor._internal_create_key,
-  ),
-  _descriptor.MethodDescriptor(
-    name='Login',
-    full_name='Nrmk.IndyFramework.CRI.Login',
-    index=2,
-    containing_service=None,
-    input_type=_ACCOUNT,
     output_type=common__msgs__pb2._RESPONSE,
     serialized_options=None,
     create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
-    name='IsLogin',
-    full_name='Nrmk.IndyFramework.CRI.IsLogin',
-    index=3,
+    name='IsSFDLogin',
+    full_name='Nrmk.IndyFramework.CRI.IsSFDLogin',
+    index=2,
     containing_service=None,
     input_type=common__msgs__pb2._EMPTY,
     output_type=common__msgs__pb2._STATE,
@@ -276,19 +72,89 @@ _CRI = _descriptor.ServiceDescriptor(
     create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
-    name='SetTarget',
-    full_name='Nrmk.IndyFramework.CRI.SetTarget',
-    index=4,
+    name='GenerateSFDToken',
+    full_name='Nrmk.IndyFramework.CRI.GenerateSFDToken',
+    index=3,
     containing_service=None,
-    input_type=_CRITARGET,
+    input_type=cri__msgs__pb2._SFDACCOUNT,
     output_type=common__msgs__pb2._RESPONSE,
     serialized_options=None,
     create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
-    name='SetOption',
-    full_name='Nrmk.IndyFramework.CRI.SetOption',
+    name='SaveSFDLoginInfo',
+    full_name='Nrmk.IndyFramework.CRI.SaveSFDLoginInfo',
+    index=4,
+    containing_service=None,
+    input_type=cri__msgs__pb2._SFDACCOUNT,
+    output_type=common__msgs__pb2._RESPONSE,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='LoadSFDLoginInfo',
+    full_name='Nrmk.IndyFramework.CRI.LoadSFDLoginInfo',
     index=5,
+    containing_service=None,
+    input_type=common__msgs__pb2._EMPTY,
+    output_type=cri__msgs__pb2._SFDACCOUNT,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='GetSFDLoginInfo',
+    full_name='Nrmk.IndyFramework.CRI.GetSFDLoginInfo',
+    index=6,
+    containing_service=None,
+    input_type=common__msgs__pb2._EMPTY,
+    output_type=cri__msgs__pb2._SFDACCOUNT,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='SelectSFDTarget',
+    full_name='Nrmk.IndyFramework.CRI.SelectSFDTarget',
+    index=7,
+    containing_service=None,
+    input_type=cri__msgs__pb2._SFDTARGET,
+    output_type=common__msgs__pb2._RESPONSE,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='IsSFDTargetValid',
+    full_name='Nrmk.IndyFramework.CRI.IsSFDTargetValid',
+    index=8,
+    containing_service=None,
+    input_type=common__msgs__pb2._EMPTY,
+    output_type=common__msgs__pb2._STATE,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='ReleaseSFDTarget',
+    full_name='Nrmk.IndyFramework.CRI.ReleaseSFDTarget',
+    index=9,
+    containing_service=None,
+    input_type=common__msgs__pb2._EMPTY,
+    output_type=common__msgs__pb2._STATE,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='GetSFDTarget',
+    full_name='Nrmk.IndyFramework.CRI.GetSFDTarget',
+    index=10,
+    containing_service=None,
+    input_type=common__msgs__pb2._EMPTY,
+    output_type=cri__msgs__pb2._SFDTARGET,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='ActiveCRIVel',
+    full_name='Nrmk.IndyFramework.CRI.ActiveCRIVel',
+    index=11,
     containing_service=None,
     input_type=common__msgs__pb2._STATE,
     output_type=common__msgs__pb2._RESPONSE,
@@ -296,22 +162,42 @@ _CRI = _descriptor.ServiceDescriptor(
     create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
-    name='GetProjList',
-    full_name='Nrmk.IndyFramework.CRI.GetProjList',
-    index=6,
+    name='GetSFDProjList',
+    full_name='Nrmk.IndyFramework.CRI.GetSFDProjList',
+    index=12,
     containing_service=None,
     input_type=common__msgs__pb2._EMPTY,
-    output_type=_PROJECTLIST,
+    output_type=cri__msgs__pb2._SFDPROJECTLIST,
     serialized_options=None,
     create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='GetCRI',
     full_name='Nrmk.IndyFramework.CRI.GetCRI',
-    index=7,
+    index=13,
     containing_service=None,
     input_type=common__msgs__pb2._EMPTY,
-    output_type=_CRIDATA,
+    output_type=cri__msgs__pb2._CRIDATA,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='SaveSFDAutoSet',
+    full_name='Nrmk.IndyFramework.CRI.SaveSFDAutoSet',
+    index=14,
+    containing_service=None,
+    input_type=cri__msgs__pb2._SFDAUTOSET,
+    output_type=common__msgs__pb2._RESPONSE,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='LoadSFDAutoSet',
+    full_name='Nrmk.IndyFramework.CRI.LoadSFDAutoSet',
+    index=15,
+    containing_service=None,
+    input_type=common__msgs__pb2._EMPTY,
+    output_type=cri__msgs__pb2._SFDAUTOSET,
     serialized_options=None,
     create_key=_descriptor._internal_create_key,
   ),

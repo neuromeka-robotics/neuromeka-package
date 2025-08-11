@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x0clinear.proto\x12\x12Nrmk.IndyFramework\x1a\x11\x63ommon_msgs.proto\"\x7f\n\x0cLinearTarget\x12\x10\n\x08start_mm\x18\x01 \x03(\x02\x12\x11\n\ttarget_mm\x18\x02 \x03(\x02\x12\x0e\n\x06vel_mm\x18\x03 \x01(\x02\x12\x0e\n\x06\x61\x63\x63_mm\x18\x04 \x01(\x02\x12\x13\n\x0bis_absolute\x18\x05 \x01(\x08\x12\x15\n\rteaching_mode\x18\n \x01(\x08\"!\n\x0cTargetTorque\x12\x11\n\ttarget_nm\x18\x01 \x01(\x02\"A\n\x0c\x43ontrolGains\x12\r\n\x05index\x18\x01 \x01(\r\x12\n\n\x02kp\x18\x02 \x01(\x02\x12\n\n\x02kv\x18\x03 \x01(\x02\x12\n\n\x02ki\x18\x04 \x01(\x02\"\x16\n\x05Index\x12\r\n\x05index\x18\x01 \x01(\r\"6\n\x13LinearAxisServoData\x12\r\n\x05index\x18\x01 \x01(\r\x12\x10\n\x08zero_pos\x18\x02 \x01(\x02\"\xd6\x04\n\x08\x41xesInfo\x12\x0e\n\x06\x61\x63tive\x18\x01 \x03(\x08\x12\x0e\n\x06pos_mm\x18\x02 \x03(\x02\x12\x0e\n\x06vel_mm\x18\x03 \x03(\x02\x12\x11\n\tdespos_mm\x18\x04 \x03(\x02\x12\x11\n\tdesvel_mm\x18\x05 \x03(\x02\x12\x11\n\tdesacc_mm\x18\x06 \x03(\x02\x12\x10\n\x08num_axes\x18\n \x01(\r\x12\x36\n\x08op_state\x18\x0b \x01(\x0e\x32$.Nrmk.IndyFramework.AxesInfo.OpState\x12:\n\ntraj_state\x18\x0c \x01(\x0e\x32&.Nrmk.IndyFramework.AxesInfo.TrajState\x12\x14\n\x0crecover_time\x18\r \x01(\x02\"\xa5\x01\n\x07OpState\x12\x0e\n\nSYSTEM_OFF\x10\x00\x12\r\n\tSYSTEM_ON\x10\x01\x12\x0b\n\x07VIOLATE\x10\x02\x12\x10\n\x0cRECOVER_HARD\x10\x03\x12\x10\n\x0cRECOVER_SOFT\x10\x04\x12\x08\n\x04IDLE\x10\x05\x12\n\n\x06MOVING\x10\x06\x12\x0b\n\x07PAUSING\x10\x07\x12\x13\n\x0f\x43OLLISION_PAUSE\x10\x08\x12\x12\n\x0e\x43OLLISION_STOP\x10\t\"\x9c\x01\n\tTrajState\x12\r\n\tTRAJ_NONE\x10\x00\x12\r\n\tTRAJ_INIT\x10\x01\x12\r\n\tTRAJ_CALC\x10\x02\x12\r\n\tTRAJ_STBY\x10\x03\x12\x0c\n\x08TRAJ_ACC\x10\x04\x12\x0c\n\x08TRAJ_CRZ\x10\x05\x12\x0c\n\x08TRAJ_DEC\x10\x06\x12\r\n\tTRAJ_CANC\x10\x07\x12\x0c\n\x08TRAJ_FIN\x10\x08\x12\x0c\n\x08TRAJ_ERR\x10\t2\x87\x07\n\rLinearControl\x12H\n\x0bSetServoAll\x12\x19.Nrmk.IndyFramework.State\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12N\n\nMoveLinear\x12 .Nrmk.IndyFramework.LinearTarget\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12I\n\nStopMotion\x12\x1b.Nrmk.IndyFramework.StopCat\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12K\n\x0bPauseMotion\x12\x1c.Nrmk.IndyFramework.PauseCat\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12I\n\x0cResumeMotion\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12H\n\x0bGetAxesInfo\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1c.Nrmk.IndyFramework.AxesInfo\"\x00\x12S\n\x0fSetTargetTorque\x12 .Nrmk.IndyFramework.TargetTorque\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12S\n\x0fSetControlGains\x12 .Nrmk.IndyFramework.ControlGains\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12P\n\x0fGetControlGains\x12\x19.Nrmk.IndyFramework.Index\x1a .Nrmk.IndyFramework.ControlGains\"\x00\x12Z\n\x0fSetZeroPosition\x12\'.Nrmk.IndyFramework.LinearAxisServoData\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12W\n\x0fGetZeroPosition\x12\x19.Nrmk.IndyFramework.Empty\x1a\'.Nrmk.IndyFramework.LinearAxisServoData\"\x00\x62\x06proto3'
+  serialized_pb=b'\n\x0clinear.proto\x12\x12Nrmk.IndyFramework\x1a\x11\x63ommon_msgs.proto\"\x7f\n\x0cLinearTarget\x12\x10\n\x08start_mm\x18\x01 \x03(\x02\x12\x11\n\ttarget_mm\x18\x02 \x03(\x02\x12\x0e\n\x06vel_mm\x18\x03 \x01(\x02\x12\x0e\n\x06\x61\x63\x63_mm\x18\x04 \x01(\x02\x12\x13\n\x0bis_absolute\x18\x05 \x01(\x08\x12\x15\n\rteaching_mode\x18\n \x01(\x08\"!\n\x0cTargetTorque\x12\x11\n\ttarget_nm\x18\x01 \x01(\x02\"A\n\x0c\x43ontrolGains\x12\r\n\x05index\x18\x01 \x01(\r\x12\n\n\x02kp\x18\x02 \x01(\x02\x12\n\n\x02kv\x18\x03 \x01(\x02\x12\n\n\x02ki\x18\x04 \x01(\x02\"\x16\n\x05Index\x12\r\n\x05index\x18\x01 \x01(\r\"6\n\x13LinearAxisServoData\x12\r\n\x05index\x18\x01 \x01(\r\x12\x10\n\x08zero_pos\x18\x02 \x01(\x02\"\xa2\x05\n\x08\x41xesInfo\x12\x0e\n\x06\x61\x63tive\x18\x01 \x03(\x08\x12\x0e\n\x06pos_mm\x18\x02 \x03(\x02\x12\x0e\n\x06vel_mm\x18\x03 \x03(\x02\x12\x11\n\tdespos_mm\x18\x04 \x03(\x02\x12\x11\n\tdesvel_mm\x18\x05 \x03(\x02\x12\x11\n\tdesacc_mm\x18\x06 \x03(\x02\x12\x10\n\x08num_axes\x18\n \x01(\r\x12\x36\n\x08op_state\x18\x0b \x01(\x0e\x32$.Nrmk.IndyFramework.AxesInfo.OpState\x12:\n\ntraj_state\x18\x0c \x01(\x0e\x32&.Nrmk.IndyFramework.AxesInfo.TrajState\x12\x14\n\x0crecover_time\x18\r \x01(\x02\x12/\n\taxis_type\x18\x10 \x03(\x0e\x32\x1c.Nrmk.IndyFramework.AxisType\x12\x19\n\x11is_target_reached\x18\x14 \x01(\x08\"\xa5\x01\n\x07OpState\x12\x0e\n\nSYSTEM_OFF\x10\x00\x12\r\n\tSYSTEM_ON\x10\x01\x12\x0b\n\x07VIOLATE\x10\x02\x12\x10\n\x0cRECOVER_HARD\x10\x03\x12\x10\n\x0cRECOVER_SOFT\x10\x04\x12\x08\n\x04IDLE\x10\x05\x12\n\n\x06MOVING\x10\x06\x12\x0b\n\x07PAUSING\x10\x07\x12\x13\n\x0f\x43OLLISION_PAUSE\x10\x08\x12\x12\n\x0e\x43OLLISION_STOP\x10\t\"\x9c\x01\n\tTrajState\x12\r\n\tTRAJ_NONE\x10\x00\x12\r\n\tTRAJ_INIT\x10\x01\x12\r\n\tTRAJ_CALC\x10\x02\x12\r\n\tTRAJ_STBY\x10\x03\x12\x0c\n\x08TRAJ_ACC\x10\x04\x12\x0c\n\x08TRAJ_CRZ\x10\x05\x12\x0c\n\x08TRAJ_DEC\x10\x06\x12\r\n\tTRAJ_CANC\x10\x07\x12\x0c\n\x08TRAJ_FIN\x10\x08\x12\x0c\n\x08TRAJ_ERR\x10\t2\x87\x07\n\rLinearControl\x12H\n\x0bSetServoAll\x12\x19.Nrmk.IndyFramework.State\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12N\n\nMoveLinear\x12 .Nrmk.IndyFramework.LinearTarget\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12I\n\nStopMotion\x12\x1b.Nrmk.IndyFramework.StopCat\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12K\n\x0bPauseMotion\x12\x1c.Nrmk.IndyFramework.PauseCat\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12I\n\x0cResumeMotion\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12H\n\x0bGetAxesInfo\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1c.Nrmk.IndyFramework.AxesInfo\"\x00\x12S\n\x0fSetTargetTorque\x12 .Nrmk.IndyFramework.TargetTorque\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12S\n\x0fSetControlGains\x12 .Nrmk.IndyFramework.ControlGains\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12P\n\x0fGetControlGains\x12\x19.Nrmk.IndyFramework.Index\x1a .Nrmk.IndyFramework.ControlGains\"\x00\x12Z\n\x0fSetZeroPosition\x12\'.Nrmk.IndyFramework.LinearAxisServoData\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12W\n\x0fGetZeroPosition\x12\x19.Nrmk.IndyFramework.Empty\x1a\'.Nrmk.IndyFramework.LinearAxisServoData\"\x00\x62\x06proto3'
   ,
   dependencies=[common__msgs__pb2.DESCRIPTOR,])
 
@@ -86,8 +86,8 @@ _AXESINFO_OPSTATE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=641,
-  serialized_end=806,
+  serialized_start=717,
+  serialized_end=882,
 )
 _sym_db.RegisterEnumDescriptor(_AXESINFO_OPSTATE)
 
@@ -151,8 +151,8 @@ _AXESINFO_TRAJSTATE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=809,
-  serialized_end=965,
+  serialized_start=885,
+  serialized_end=1041,
 )
 _sym_db.RegisterEnumDescriptor(_AXESINFO_TRAJSTATE)
 
@@ -458,6 +458,20 @@ _AXESINFO = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='axis_type', full_name='Nrmk.IndyFramework.AxesInfo.axis_type', index=10,
+      number=16, type=14, cpp_type=8, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='is_target_reached', full_name='Nrmk.IndyFramework.AxesInfo.is_target_reached', index=11,
+      number=20, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -473,11 +487,12 @@ _AXESINFO = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=367,
-  serialized_end=965,
+  serialized_end=1041,
 )
 
 _AXESINFO.fields_by_name['op_state'].enum_type = _AXESINFO_OPSTATE
 _AXESINFO.fields_by_name['traj_state'].enum_type = _AXESINFO_TRAJSTATE
+_AXESINFO.fields_by_name['axis_type'].enum_type = common__msgs__pb2._AXISTYPE
 _AXESINFO_OPSTATE.containing_type = _AXESINFO
 _AXESINFO_TRAJSTATE.containing_type = _AXESINFO
 DESCRIPTOR.message_types_by_name['LinearTarget'] = _LINEARTARGET
@@ -539,8 +554,8 @@ _LINEARCONTROL = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=968,
-  serialized_end=1871,
+  serialized_start=1044,
+  serialized_end=1947,
   methods=[
   _descriptor.MethodDescriptor(
     name='SetServoAll',

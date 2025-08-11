@@ -12,23 +12,16 @@ _sym_db = _symbol_database.Default()
 
 
 import common_msgs_pb2 as common__msgs__pb2
+import cri_msgs_pb2 as cri__msgs__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\tcri.proto\x12\x12Nrmk.IndyFramework\x1a\x11\x63ommon_msgs.proto\"\'\n\x07\x41\x63\x63ount\x12\r\n\x05\x65mail\x18\x01 \x01(\t\x12\r\n\x05token\x18\x02 \x01(\t\"<\n\tCriTarget\x12\n\n\x02pn\x18\x01 \x01(\t\x12\n\n\x02\x66n\x18\x02 \x01(\t\x12\n\n\x02rn\x18\x03 \x01(\t\x12\x0b\n\x03iso\x18\x04 \x01(\x08\"$\n\x07\x43riData\x12\x0c\n\x04time\x18\x01 \x01(\x01\x12\x0b\n\x03\x63ri\x18\x02 \x01(\x01\"\x1b\n\x0bProjectList\x12\x0c\n\x04list\x18\x01 \x01(\t2\xc3\x04\n\x03\x43RI\x12H\n\x0bSetActivate\x12\x19.Nrmk.IndyFramework.State\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12\x44\n\nIsActivate\x12\x19.Nrmk.IndyFramework.Empty\x1a\x19.Nrmk.IndyFramework.State\"\x00\x12\x44\n\x05Login\x12\x1b.Nrmk.IndyFramework.Account\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12\x41\n\x07IsLogin\x12\x19.Nrmk.IndyFramework.Empty\x1a\x19.Nrmk.IndyFramework.State\"\x00\x12J\n\tSetTarget\x12\x1d.Nrmk.IndyFramework.CriTarget\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12\x46\n\tSetOption\x12\x19.Nrmk.IndyFramework.State\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12K\n\x0bGetProjList\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1f.Nrmk.IndyFramework.ProjectList\"\x00\x12\x42\n\x06GetCRI\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1b.Nrmk.IndyFramework.CriData\"\x00\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\tcri.proto\x12\x12Nrmk.IndyFramework\x1a\x11\x63ommon_msgs.proto\x1a\x0e\x63ri_msgs.proto2\xe1\t\n\x03\x43RI\x12J\n\x08LoginSFD\x12\x1e.Nrmk.IndyFramework.SFDAccount\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12\x46\n\tLogoutSFD\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12\x44\n\nIsSFDLogin\x12\x19.Nrmk.IndyFramework.Empty\x1a\x19.Nrmk.IndyFramework.State\"\x00\x12R\n\x10GenerateSFDToken\x12\x1e.Nrmk.IndyFramework.SFDAccount\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12R\n\x10SaveSFDLoginInfo\x12\x1e.Nrmk.IndyFramework.SFDAccount\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12O\n\x10LoadSFDLoginInfo\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1e.Nrmk.IndyFramework.SFDAccount\"\x00\x12N\n\x0fGetSFDLoginInfo\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1e.Nrmk.IndyFramework.SFDAccount\"\x00\x12P\n\x0fSelectSFDTarget\x12\x1d.Nrmk.IndyFramework.SFDTarget\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12J\n\x10IsSFDTargetValid\x12\x19.Nrmk.IndyFramework.Empty\x1a\x19.Nrmk.IndyFramework.State\"\x00\x12J\n\x10ReleaseSFDTarget\x12\x19.Nrmk.IndyFramework.Empty\x1a\x19.Nrmk.IndyFramework.State\"\x00\x12J\n\x0cGetSFDTarget\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1d.Nrmk.IndyFramework.SFDTarget\"\x00\x12I\n\x0c\x41\x63tiveCRIVel\x12\x19.Nrmk.IndyFramework.State\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12Q\n\x0eGetSFDProjList\x12\x19.Nrmk.IndyFramework.Empty\x1a\".Nrmk.IndyFramework.SFDProjectList\"\x00\x12\x42\n\x06GetCRI\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1b.Nrmk.IndyFramework.CriData\"\x00\x12P\n\x0eSaveSFDAutoSet\x12\x1e.Nrmk.IndyFramework.SFDAutoSet\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12M\n\x0eLoadSFDAutoSet\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1e.Nrmk.IndyFramework.SFDAutoSet\"\x00\x62\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'cri_pb2', _globals)
 if _descriptor._USE_C_DESCRIPTORS == False:
   DESCRIPTOR._options = None
-  _globals['_ACCOUNT']._serialized_start=52
-  _globals['_ACCOUNT']._serialized_end=91
-  _globals['_CRITARGET']._serialized_start=93
-  _globals['_CRITARGET']._serialized_end=153
-  _globals['_CRIDATA']._serialized_start=155
-  _globals['_CRIDATA']._serialized_end=191
-  _globals['_PROJECTLIST']._serialized_start=193
-  _globals['_PROJECTLIST']._serialized_end=220
-  _globals['_CRI']._serialized_start=223
-  _globals['_CRI']._serialized_end=802
+  _globals['_CRI']._serialized_start=69
+  _globals['_CRI']._serialized_end=1318
 # @@protoc_insertion_point(module_scope)

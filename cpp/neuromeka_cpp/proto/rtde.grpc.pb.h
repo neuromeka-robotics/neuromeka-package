@@ -99,12 +99,26 @@ class RTDataExchange final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::StopState>> PrepareAsyncGetStopState(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::StopState>>(PrepareAsyncGetStopStateRaw(context, request, cq));
     }
+    virtual ::grpc::Status GetCollisionModelState(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::CollisionModelState* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::CollisionModelState>> AsyncGetCollisionModelState(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::CollisionModelState>>(AsyncGetCollisionModelStateRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::CollisionModelState>> PrepareAsyncGetCollisionModelState(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::CollisionModelState>>(PrepareAsyncGetCollisionModelStateRaw(context, request, cq));
+    }
     virtual ::grpc::Status TestFunction(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TestRequest& request, ::Nrmk::IndyFramework::TestResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::TestResponse>> AsyncTestFunction(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TestRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::TestResponse>>(AsyncTestFunctionRaw(context, request, cq));
     }
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::TestResponse>> PrepareAsyncTestFunction(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TestRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::TestResponse>>(PrepareAsyncTestFunctionRaw(context, request, cq));
+    }
+    virtual ::grpc::Status GetReservedData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::ReservedData* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::ReservedData>> AsyncGetReservedData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::ReservedData>>(AsyncGetReservedDataRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::ReservedData>> PrepareAsyncGetReservedData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::ReservedData>>(PrepareAsyncGetReservedDataRaw(context, request, cq));
     }
     class async_interface {
      public:
@@ -127,8 +141,12 @@ class RTDataExchange final {
       virtual void GetProgramData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ProgramData* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void GetStopState(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::StopState* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetStopState(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::StopState* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void GetCollisionModelState(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::CollisionModelState* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetCollisionModelState(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::CollisionModelState* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void TestFunction(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TestRequest* request, ::Nrmk::IndyFramework::TestResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void TestFunction(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TestRequest* request, ::Nrmk::IndyFramework::TestResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void GetReservedData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ReservedData* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetReservedData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ReservedData* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
@@ -152,8 +170,12 @@ class RTDataExchange final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::ProgramData>* PrepareAsyncGetProgramDataRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::StopState>* AsyncGetStopStateRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::StopState>* PrepareAsyncGetStopStateRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::CollisionModelState>* AsyncGetCollisionModelStateRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::CollisionModelState>* PrepareAsyncGetCollisionModelStateRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::TestResponse>* AsyncTestFunctionRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TestRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::TestResponse>* PrepareAsyncTestFunctionRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TestRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::ReservedData>* AsyncGetReservedDataRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::ReservedData>* PrepareAsyncGetReservedDataRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -221,12 +243,26 @@ class RTDataExchange final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::StopState>> PrepareAsyncGetStopState(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::StopState>>(PrepareAsyncGetStopStateRaw(context, request, cq));
     }
+    ::grpc::Status GetCollisionModelState(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::CollisionModelState* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::CollisionModelState>> AsyncGetCollisionModelState(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::CollisionModelState>>(AsyncGetCollisionModelStateRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::CollisionModelState>> PrepareAsyncGetCollisionModelState(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::CollisionModelState>>(PrepareAsyncGetCollisionModelStateRaw(context, request, cq));
+    }
     ::grpc::Status TestFunction(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TestRequest& request, ::Nrmk::IndyFramework::TestResponse* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::TestResponse>> AsyncTestFunction(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TestRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::TestResponse>>(AsyncTestFunctionRaw(context, request, cq));
     }
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::TestResponse>> PrepareAsyncTestFunction(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TestRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::TestResponse>>(PrepareAsyncTestFunctionRaw(context, request, cq));
+    }
+    ::grpc::Status GetReservedData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::ReservedData* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ReservedData>> AsyncGetReservedData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ReservedData>>(AsyncGetReservedDataRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ReservedData>> PrepareAsyncGetReservedData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ReservedData>>(PrepareAsyncGetReservedDataRaw(context, request, cq));
     }
     class async final :
       public StubInterface::async_interface {
@@ -249,8 +285,12 @@ class RTDataExchange final {
       void GetProgramData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ProgramData* response, ::grpc::ClientUnaryReactor* reactor) override;
       void GetStopState(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::StopState* response, std::function<void(::grpc::Status)>) override;
       void GetStopState(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::StopState* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void GetCollisionModelState(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::CollisionModelState* response, std::function<void(::grpc::Status)>) override;
+      void GetCollisionModelState(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::CollisionModelState* response, ::grpc::ClientUnaryReactor* reactor) override;
       void TestFunction(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TestRequest* request, ::Nrmk::IndyFramework::TestResponse* response, std::function<void(::grpc::Status)>) override;
       void TestFunction(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TestRequest* request, ::Nrmk::IndyFramework::TestResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void GetReservedData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ReservedData* response, std::function<void(::grpc::Status)>) override;
+      void GetReservedData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ReservedData* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -280,8 +320,12 @@ class RTDataExchange final {
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ProgramData>* PrepareAsyncGetProgramDataRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::StopState>* AsyncGetStopStateRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::StopState>* PrepareAsyncGetStopStateRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::CollisionModelState>* AsyncGetCollisionModelStateRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::CollisionModelState>* PrepareAsyncGetCollisionModelStateRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::TestResponse>* AsyncTestFunctionRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TestRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::TestResponse>* PrepareAsyncTestFunctionRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TestRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ReservedData>* AsyncGetReservedDataRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ReservedData>* PrepareAsyncGetReservedDataRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_GetMotionData_;
     const ::grpc::internal::RpcMethod rpcmethod_GetControlData_;
     const ::grpc::internal::RpcMethod rpcmethod_GetControlState_;
@@ -291,7 +335,9 @@ class RTDataExchange final {
     const ::grpc::internal::RpcMethod rpcmethod_GetViolationMessageQueue_;
     const ::grpc::internal::RpcMethod rpcmethod_GetProgramData_;
     const ::grpc::internal::RpcMethod rpcmethod_GetStopState_;
+    const ::grpc::internal::RpcMethod rpcmethod_GetCollisionModelState_;
     const ::grpc::internal::RpcMethod rpcmethod_TestFunction_;
+    const ::grpc::internal::RpcMethod rpcmethod_GetReservedData_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -308,7 +354,9 @@ class RTDataExchange final {
     virtual ::grpc::Status GetViolationMessageQueue(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ViolationMessageQueue* response);
     virtual ::grpc::Status GetProgramData(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ProgramData* response);
     virtual ::grpc::Status GetStopState(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::StopState* response);
+    virtual ::grpc::Status GetCollisionModelState(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::CollisionModelState* response);
     virtual ::grpc::Status TestFunction(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::TestRequest* request, ::Nrmk::IndyFramework::TestResponse* response);
+    virtual ::grpc::Status GetReservedData(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ReservedData* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_GetMotionData : public BaseClass {
@@ -491,12 +539,32 @@ class RTDataExchange final {
     }
   };
   template <class BaseClass>
+  class WithAsyncMethod_GetCollisionModelState : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_GetCollisionModelState() {
+      ::grpc::Service::MarkMethodAsync(9);
+    }
+    ~WithAsyncMethod_GetCollisionModelState() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetCollisionModelState(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::CollisionModelState* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetCollisionModelState(::grpc::ServerContext* context, ::Nrmk::IndyFramework::Empty* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::CollisionModelState>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(9, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithAsyncMethod_TestFunction : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_TestFunction() {
-      ::grpc::Service::MarkMethodAsync(9);
+      ::grpc::Service::MarkMethodAsync(10);
     }
     ~WithAsyncMethod_TestFunction() override {
       BaseClassMustBeDerivedFromService(this);
@@ -507,10 +575,30 @@ class RTDataExchange final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestTestFunction(::grpc::ServerContext* context, ::Nrmk::IndyFramework::TestRequest* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::TestResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(9, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(10, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_GetMotionData<WithAsyncMethod_GetControlData<WithAsyncMethod_GetControlState<WithAsyncMethod_GetIOData<WithAsyncMethod_GetServoData<WithAsyncMethod_GetViolationData<WithAsyncMethod_GetViolationMessageQueue<WithAsyncMethod_GetProgramData<WithAsyncMethod_GetStopState<WithAsyncMethod_TestFunction<Service > > > > > > > > > > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_GetReservedData : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_GetReservedData() {
+      ::grpc::Service::MarkMethodAsync(11);
+    }
+    ~WithAsyncMethod_GetReservedData() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetReservedData(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::ReservedData* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetReservedData(::grpc::ServerContext* context, ::Nrmk::IndyFramework::Empty* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::ReservedData>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(11, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_GetMotionData<WithAsyncMethod_GetControlData<WithAsyncMethod_GetControlState<WithAsyncMethod_GetIOData<WithAsyncMethod_GetServoData<WithAsyncMethod_GetViolationData<WithAsyncMethod_GetViolationMessageQueue<WithAsyncMethod_GetProgramData<WithAsyncMethod_GetStopState<WithAsyncMethod_GetCollisionModelState<WithAsyncMethod_TestFunction<WithAsyncMethod_GetReservedData<Service > > > > > > > > > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_GetMotionData : public BaseClass {
    private:
@@ -755,18 +843,45 @@ class RTDataExchange final {
       ::grpc::CallbackServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::StopState* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
+  class WithCallbackMethod_GetCollisionModelState : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_GetCollisionModelState() {
+      ::grpc::Service::MarkMethodCallback(9,
+          new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::CollisionModelState>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::CollisionModelState* response) { return this->GetCollisionModelState(context, request, response); }));}
+    void SetMessageAllocatorFor_GetCollisionModelState(
+        ::grpc::MessageAllocator< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::CollisionModelState>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(9);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::CollisionModelState>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_GetCollisionModelState() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetCollisionModelState(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::CollisionModelState* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GetCollisionModelState(
+      ::grpc::CallbackServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::CollisionModelState* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
   class WithCallbackMethod_TestFunction : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_TestFunction() {
-      ::grpc::Service::MarkMethodCallback(9,
+      ::grpc::Service::MarkMethodCallback(10,
           new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::TestRequest, ::Nrmk::IndyFramework::TestResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::TestRequest* request, ::Nrmk::IndyFramework::TestResponse* response) { return this->TestFunction(context, request, response); }));}
     void SetMessageAllocatorFor_TestFunction(
         ::grpc::MessageAllocator< ::Nrmk::IndyFramework::TestRequest, ::Nrmk::IndyFramework::TestResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(9);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(10);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::TestRequest, ::Nrmk::IndyFramework::TestResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -781,7 +896,34 @@ class RTDataExchange final {
     virtual ::grpc::ServerUnaryReactor* TestFunction(
       ::grpc::CallbackServerContext* /*context*/, const ::Nrmk::IndyFramework::TestRequest* /*request*/, ::Nrmk::IndyFramework::TestResponse* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_GetMotionData<WithCallbackMethod_GetControlData<WithCallbackMethod_GetControlState<WithCallbackMethod_GetIOData<WithCallbackMethod_GetServoData<WithCallbackMethod_GetViolationData<WithCallbackMethod_GetViolationMessageQueue<WithCallbackMethod_GetProgramData<WithCallbackMethod_GetStopState<WithCallbackMethod_TestFunction<Service > > > > > > > > > > CallbackService;
+  template <class BaseClass>
+  class WithCallbackMethod_GetReservedData : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_GetReservedData() {
+      ::grpc::Service::MarkMethodCallback(11,
+          new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ReservedData>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ReservedData* response) { return this->GetReservedData(context, request, response); }));}
+    void SetMessageAllocatorFor_GetReservedData(
+        ::grpc::MessageAllocator< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ReservedData>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(11);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ReservedData>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_GetReservedData() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetReservedData(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::ReservedData* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GetReservedData(
+      ::grpc::CallbackServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::ReservedData* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_GetMotionData<WithCallbackMethod_GetControlData<WithCallbackMethod_GetControlState<WithCallbackMethod_GetIOData<WithCallbackMethod_GetServoData<WithCallbackMethod_GetViolationData<WithCallbackMethod_GetViolationMessageQueue<WithCallbackMethod_GetProgramData<WithCallbackMethod_GetStopState<WithCallbackMethod_GetCollisionModelState<WithCallbackMethod_TestFunction<WithCallbackMethod_GetReservedData<Service > > > > > > > > > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_GetMotionData : public BaseClass {
@@ -937,18 +1079,52 @@ class RTDataExchange final {
     }
   };
   template <class BaseClass>
+  class WithGenericMethod_GetCollisionModelState : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_GetCollisionModelState() {
+      ::grpc::Service::MarkMethodGeneric(9);
+    }
+    ~WithGenericMethod_GetCollisionModelState() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetCollisionModelState(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::CollisionModelState* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
   class WithGenericMethod_TestFunction : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_TestFunction() {
-      ::grpc::Service::MarkMethodGeneric(9);
+      ::grpc::Service::MarkMethodGeneric(10);
     }
     ~WithGenericMethod_TestFunction() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
     ::grpc::Status TestFunction(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::TestRequest* /*request*/, ::Nrmk::IndyFramework::TestResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_GetReservedData : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_GetReservedData() {
+      ::grpc::Service::MarkMethodGeneric(11);
+    }
+    ~WithGenericMethod_GetReservedData() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetReservedData(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::ReservedData* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -1134,12 +1310,32 @@ class RTDataExchange final {
     }
   };
   template <class BaseClass>
+  class WithRawMethod_GetCollisionModelState : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_GetCollisionModelState() {
+      ::grpc::Service::MarkMethodRaw(9);
+    }
+    ~WithRawMethod_GetCollisionModelState() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetCollisionModelState(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::CollisionModelState* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetCollisionModelState(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(9, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithRawMethod_TestFunction : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_TestFunction() {
-      ::grpc::Service::MarkMethodRaw(9);
+      ::grpc::Service::MarkMethodRaw(10);
     }
     ~WithRawMethod_TestFunction() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1150,7 +1346,27 @@ class RTDataExchange final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestTestFunction(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(9, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(10, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_GetReservedData : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_GetReservedData() {
+      ::grpc::Service::MarkMethodRaw(11);
+    }
+    ~WithRawMethod_GetReservedData() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetReservedData(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::ReservedData* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetReservedData(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(11, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1352,12 +1568,34 @@ class RTDataExchange final {
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
+  class WithRawCallbackMethod_GetCollisionModelState : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_GetCollisionModelState() {
+      ::grpc::Service::MarkMethodRawCallback(9,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetCollisionModelState(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_GetCollisionModelState() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetCollisionModelState(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::CollisionModelState* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GetCollisionModelState(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
   class WithRawCallbackMethod_TestFunction : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_TestFunction() {
-      ::grpc::Service::MarkMethodRawCallback(9,
+      ::grpc::Service::MarkMethodRawCallback(10,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->TestFunction(context, request, response); }));
@@ -1371,6 +1609,28 @@ class RTDataExchange final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* TestFunction(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_GetReservedData : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_GetReservedData() {
+      ::grpc::Service::MarkMethodRawCallback(11,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetReservedData(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_GetReservedData() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetReservedData(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::ReservedData* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GetReservedData(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
@@ -1617,12 +1877,39 @@ class RTDataExchange final {
     virtual ::grpc::Status StreamedGetStopState(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Nrmk::IndyFramework::Empty,::Nrmk::IndyFramework::StopState>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
+  class WithStreamedUnaryMethod_GetCollisionModelState : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_GetCollisionModelState() {
+      ::grpc::Service::MarkMethodStreamed(9,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::CollisionModelState>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::CollisionModelState>* streamer) {
+                       return this->StreamedGetCollisionModelState(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_GetCollisionModelState() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status GetCollisionModelState(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::CollisionModelState* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedGetCollisionModelState(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Nrmk::IndyFramework::Empty,::Nrmk::IndyFramework::CollisionModelState>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
   class WithStreamedUnaryMethod_TestFunction : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_TestFunction() {
-      ::grpc::Service::MarkMethodStreamed(9,
+      ::grpc::Service::MarkMethodStreamed(10,
         new ::grpc::internal::StreamedUnaryHandler<
           ::Nrmk::IndyFramework::TestRequest, ::Nrmk::IndyFramework::TestResponse>(
             [this](::grpc::ServerContext* context,
@@ -1643,9 +1930,36 @@ class RTDataExchange final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedTestFunction(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Nrmk::IndyFramework::TestRequest,::Nrmk::IndyFramework::TestResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_GetMotionData<WithStreamedUnaryMethod_GetControlData<WithStreamedUnaryMethod_GetControlState<WithStreamedUnaryMethod_GetIOData<WithStreamedUnaryMethod_GetServoData<WithStreamedUnaryMethod_GetViolationData<WithStreamedUnaryMethod_GetViolationMessageQueue<WithStreamedUnaryMethod_GetProgramData<WithStreamedUnaryMethod_GetStopState<WithStreamedUnaryMethod_TestFunction<Service > > > > > > > > > > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_GetReservedData : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_GetReservedData() {
+      ::grpc::Service::MarkMethodStreamed(11,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ReservedData>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ReservedData>* streamer) {
+                       return this->StreamedGetReservedData(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_GetReservedData() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status GetReservedData(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::ReservedData* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedGetReservedData(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Nrmk::IndyFramework::Empty,::Nrmk::IndyFramework::ReservedData>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_GetMotionData<WithStreamedUnaryMethod_GetControlData<WithStreamedUnaryMethod_GetControlState<WithStreamedUnaryMethod_GetIOData<WithStreamedUnaryMethod_GetServoData<WithStreamedUnaryMethod_GetViolationData<WithStreamedUnaryMethod_GetViolationMessageQueue<WithStreamedUnaryMethod_GetProgramData<WithStreamedUnaryMethod_GetStopState<WithStreamedUnaryMethod_GetCollisionModelState<WithStreamedUnaryMethod_TestFunction<WithStreamedUnaryMethod_GetReservedData<Service > > > > > > > > > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_GetMotionData<WithStreamedUnaryMethod_GetControlData<WithStreamedUnaryMethod_GetControlState<WithStreamedUnaryMethod_GetIOData<WithStreamedUnaryMethod_GetServoData<WithStreamedUnaryMethod_GetViolationData<WithStreamedUnaryMethod_GetViolationMessageQueue<WithStreamedUnaryMethod_GetProgramData<WithStreamedUnaryMethod_GetStopState<WithStreamedUnaryMethod_TestFunction<Service > > > > > > > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_GetMotionData<WithStreamedUnaryMethod_GetControlData<WithStreamedUnaryMethod_GetControlState<WithStreamedUnaryMethod_GetIOData<WithStreamedUnaryMethod_GetServoData<WithStreamedUnaryMethod_GetViolationData<WithStreamedUnaryMethod_GetViolationMessageQueue<WithStreamedUnaryMethod_GetProgramData<WithStreamedUnaryMethod_GetStopState<WithStreamedUnaryMethod_GetCollisionModelState<WithStreamedUnaryMethod_TestFunction<WithStreamedUnaryMethod_GetReservedData<Service > > > > > > > > > > > > StreamedService;
 };
 
 }  // namespace IndyFramework

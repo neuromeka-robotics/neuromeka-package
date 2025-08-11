@@ -1274,10 +1274,12 @@ class AxesInfo final :
     kDesposMmFieldNumber = 4,
     kDesvelMmFieldNumber = 5,
     kDesaccMmFieldNumber = 6,
+    kAxisTypeFieldNumber = 16,
     kNumAxesFieldNumber = 10,
     kOpStateFieldNumber = 11,
     kTrajStateFieldNumber = 12,
     kRecoverTimeFieldNumber = 13,
+    kIsTargetReachedFieldNumber = 20,
   };
   // repeated bool active = 1;
   int active_size() const;
@@ -1387,6 +1389,25 @@ class AxesInfo final :
   ::google::protobuf::RepeatedField<float>* _internal_mutable_desacc_mm();
 
   public:
+  // repeated .Nrmk.IndyFramework.AxisType axis_type = 16;
+  int axis_type_size() const;
+  private:
+  int _internal_axis_type_size() const;
+
+  public:
+  void clear_axis_type() ;
+  public:
+  ::Nrmk::IndyFramework::AxisType axis_type(int index) const;
+  void set_axis_type(int index, ::Nrmk::IndyFramework::AxisType value);
+  void add_axis_type(::Nrmk::IndyFramework::AxisType value);
+  const ::google::protobuf::RepeatedField<int>& axis_type() const;
+  ::google::protobuf::RepeatedField<int>* mutable_axis_type();
+
+  private:
+  const ::google::protobuf::RepeatedField<int>& _internal_axis_type() const;
+  ::google::protobuf::RepeatedField<int>* _internal_mutable_axis_type();
+
+  public:
   // uint32 num_axes = 10;
   void clear_num_axes() ;
   ::uint32_t num_axes() const;
@@ -1427,12 +1448,22 @@ class AxesInfo final :
   void _internal_set_recover_time(float value);
 
   public:
+  // bool is_target_reached = 20;
+  void clear_is_target_reached() ;
+  bool is_target_reached() const;
+  void set_is_target_reached(bool value);
+
+  private:
+  bool _internal_is_target_reached() const;
+  void _internal_set_is_target_reached(bool value);
+
+  public:
   // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.AxesInfo)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<4, 10, 0, 0, 2> _table_;
+  static const ::google::protobuf::internal::TcParseTable<4, 12, 0, 0, 2> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
@@ -1443,10 +1474,13 @@ class AxesInfo final :
     ::google::protobuf::RepeatedField<float> despos_mm_;
     ::google::protobuf::RepeatedField<float> desvel_mm_;
     ::google::protobuf::RepeatedField<float> desacc_mm_;
+    ::google::protobuf::RepeatedField<int> axis_type_;
+    mutable ::google::protobuf::internal::CachedSize _axis_type_cached_byte_size_;
     ::uint32_t num_axes_;
     int op_state_;
     int traj_state_;
     float recover_time_;
+    bool is_target_reached_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -2176,6 +2210,69 @@ inline void AxesInfo::_internal_set_recover_time(float value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.recover_time_ = value;
+}
+
+// repeated .Nrmk.IndyFramework.AxisType axis_type = 16;
+inline int AxesInfo::_internal_axis_type_size() const {
+  return _internal_axis_type().size();
+}
+inline int AxesInfo::axis_type_size() const {
+  return _internal_axis_type_size();
+}
+inline void AxesInfo::clear_axis_type() {
+  _internal_mutable_axis_type()->Clear();
+}
+inline ::Nrmk::IndyFramework::AxisType AxesInfo::axis_type(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.AxesInfo.axis_type)
+  return static_cast<::Nrmk::IndyFramework::AxisType>(_internal_axis_type().Get(index));
+}
+inline void AxesInfo::set_axis_type(int index, ::Nrmk::IndyFramework::AxisType value) {
+  _internal_mutable_axis_type()->Set(index, value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.AxesInfo.axis_type)
+}
+inline void AxesInfo::add_axis_type(::Nrmk::IndyFramework::AxisType value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_axis_type()->Add(value);
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.AxesInfo.axis_type)
+}
+inline const ::google::protobuf::RepeatedField<int>& AxesInfo::axis_type() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.AxesInfo.axis_type)
+  return _internal_axis_type();
+}
+inline ::google::protobuf::RepeatedField<int>* AxesInfo::mutable_axis_type() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.AxesInfo.axis_type)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_axis_type();
+}
+inline const ::google::protobuf::RepeatedField<int>& AxesInfo::_internal_axis_type() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.axis_type_;
+}
+inline ::google::protobuf::RepeatedField<int>* AxesInfo::_internal_mutable_axis_type() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.axis_type_;
+}
+
+// bool is_target_reached = 20;
+inline void AxesInfo::clear_is_target_reached() {
+  _impl_.is_target_reached_ = false;
+}
+inline bool AxesInfo::is_target_reached() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.AxesInfo.is_target_reached)
+  return _internal_is_target_reached();
+}
+inline void AxesInfo::set_is_target_reached(bool value) {
+  _internal_set_is_target_reached(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.AxesInfo.is_target_reached)
+}
+inline bool AxesInfo::_internal_is_target_reached() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.is_target_reached_;
+}
+inline void AxesInfo::_internal_set_is_target_reached(bool value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.is_target_reached_ = value;
 }
 
 #ifdef __GNUC__

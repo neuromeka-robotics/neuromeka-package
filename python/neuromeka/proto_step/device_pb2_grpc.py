@@ -135,16 +135,6 @@ class DeviceStub(object):
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
                 response_deserializer=device__msgs__pb2.AnalogList.FromString,
                 )
-        self.GetEL5001 = channel.unary_unary(
-                '/Nrmk.IndyFramework.Device/GetEL5001',
-                request_serializer=common__msgs__pb2.Empty.SerializeToString,
-                response_deserializer=device__msgs__pb2.GetEL5001Data.FromString,
-                )
-        self.GetEL5101 = channel.unary_unary(
-                '/Nrmk.IndyFramework.Device/GetEL5101',
-                request_serializer=common__msgs__pb2.Empty.SerializeToString,
-                response_deserializer=device__msgs__pb2.GetEL5101Data.FromString,
-                )
         self.GetDeviceInfo = channel.unary_unary(
                 '/Nrmk.IndyFramework.Device/GetDeviceInfo',
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
@@ -200,6 +190,16 @@ class DeviceStub(object):
                 request_serializer=common__msgs__pb2.Float.SerializeToString,
                 response_deserializer=common__msgs__pb2.Response.FromString,
                 )
+        self.SetConveyorLockedJoint = channel.unary_unary(
+                '/Nrmk.IndyFramework.Device/SetConveyorLockedJoint',
+                request_serializer=common__msgs__pb2.Int.SerializeToString,
+                response_deserializer=common__msgs__pb2.Response.FromString,
+                )
+        self.SetConveyorToolLink = channel.unary_unary(
+                '/Nrmk.IndyFramework.Device/SetConveyorToolLink',
+                request_serializer=common__msgs__pb2.Int.SerializeToString,
+                response_deserializer=common__msgs__pb2.Response.FromString,
+                )
         self.SetConveyorStartingPose = channel.unary_unary(
                 '/Nrmk.IndyFramework.Device/SetConveyorStartingPose',
                 request_serializer=common__msgs__pb2.PosePair.SerializeToString,
@@ -214,6 +214,11 @@ class DeviceStub(object):
                 '/Nrmk.IndyFramework.Device/GetConveyorState',
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
                 response_deserializer=device__msgs__pb2.ConveyorState.FromString,
+                )
+        self.GetConveyorObjectDistances = channel.unary_unary(
+                '/Nrmk.IndyFramework.Device/GetConveyorObjectDistances',
+                request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=device__msgs__pb2.ConveyorObjectDistances.FromString,
                 )
         self.GetLoadFactors = channel.unary_unary(
                 '/Nrmk.IndyFramework.Device/GetLoadFactors',
@@ -250,6 +255,11 @@ class DeviceStub(object):
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
                 response_deserializer=device__msgs__pb2.SafetyControlData.FromString,
                 )
+        self.CommitViolation = channel.unary_unary(
+                '/Nrmk.IndyFramework.Device/CommitViolation',
+                request_serializer=device__msgs__pb2.ViolationRequest.SerializeToString,
+                response_deserializer=common__msgs__pb2.Response.FromString,
+                )
         self.GetGripperData = channel.unary_unary(
                 '/Nrmk.IndyFramework.Device/GetGripperData',
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
@@ -274,6 +284,11 @@ class DeviceStub(object):
                 '/Nrmk.IndyFramework.Device/GetPhotoneoRetrieval',
                 request_serializer=device__msgs__pb2.VisionRequest.SerializeToString,
                 response_deserializer=device__msgs__pb2.VisionResult.FromString,
+                )
+        self.GetRTTaskTimes = channel.unary_unary(
+                '/Nrmk.IndyFramework.Device/GetRTTaskTimes',
+                request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=device__msgs__pb2.TaskTimes.FromString,
                 )
 
 
@@ -424,19 +439,6 @@ class DeviceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def GetEL5001(self, request, context):
-        """beckhoff_conv
-        """
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def GetEL5101(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
     def GetDeviceInfo(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -505,6 +507,18 @@ class DeviceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def SetConveyorLockedJoint(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SetConveyorToolLink(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def SetConveyorStartingPose(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -518,6 +532,12 @@ class DeviceServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def GetConveyorState(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetConveyorObjectDistances(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -566,6 +586,12 @@ class DeviceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def CommitViolation(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def GetGripperData(self, request, context):
         """/////////////485Gripper//////////////////////
         """
@@ -595,6 +621,13 @@ class DeviceServicer(object):
 
     def GetPhotoneoRetrieval(self, request, context):
         """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetRTTaskTimes(self, request, context):
+        """/////////////System Status//////////////////////
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
@@ -722,16 +755,6 @@ def add_DeviceServicer_to_server(servicer, server):
                     request_deserializer=common__msgs__pb2.Empty.FromString,
                     response_serializer=device__msgs__pb2.AnalogList.SerializeToString,
             ),
-            'GetEL5001': grpc.unary_unary_rpc_method_handler(
-                    servicer.GetEL5001,
-                    request_deserializer=common__msgs__pb2.Empty.FromString,
-                    response_serializer=device__msgs__pb2.GetEL5001Data.SerializeToString,
-            ),
-            'GetEL5101': grpc.unary_unary_rpc_method_handler(
-                    servicer.GetEL5101,
-                    request_deserializer=common__msgs__pb2.Empty.FromString,
-                    response_serializer=device__msgs__pb2.GetEL5101Data.SerializeToString,
-            ),
             'GetDeviceInfo': grpc.unary_unary_rpc_method_handler(
                     servicer.GetDeviceInfo,
                     request_deserializer=common__msgs__pb2.Empty.FromString,
@@ -787,6 +810,16 @@ def add_DeviceServicer_to_server(servicer, server):
                     request_deserializer=common__msgs__pb2.Float.FromString,
                     response_serializer=common__msgs__pb2.Response.SerializeToString,
             ),
+            'SetConveyorLockedJoint': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetConveyorLockedJoint,
+                    request_deserializer=common__msgs__pb2.Int.FromString,
+                    response_serializer=common__msgs__pb2.Response.SerializeToString,
+            ),
+            'SetConveyorToolLink': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetConveyorToolLink,
+                    request_deserializer=common__msgs__pb2.Int.FromString,
+                    response_serializer=common__msgs__pb2.Response.SerializeToString,
+            ),
             'SetConveyorStartingPose': grpc.unary_unary_rpc_method_handler(
                     servicer.SetConveyorStartingPose,
                     request_deserializer=common__msgs__pb2.PosePair.FromString,
@@ -801,6 +834,11 @@ def add_DeviceServicer_to_server(servicer, server):
                     servicer.GetConveyorState,
                     request_deserializer=common__msgs__pb2.Empty.FromString,
                     response_serializer=device__msgs__pb2.ConveyorState.SerializeToString,
+            ),
+            'GetConveyorObjectDistances': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetConveyorObjectDistances,
+                    request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=device__msgs__pb2.ConveyorObjectDistances.SerializeToString,
             ),
             'GetLoadFactors': grpc.unary_unary_rpc_method_handler(
                     servicer.GetLoadFactors,
@@ -837,6 +875,11 @@ def add_DeviceServicer_to_server(servicer, server):
                     request_deserializer=common__msgs__pb2.Empty.FromString,
                     response_serializer=device__msgs__pb2.SafetyControlData.SerializeToString,
             ),
+            'CommitViolation': grpc.unary_unary_rpc_method_handler(
+                    servicer.CommitViolation,
+                    request_deserializer=device__msgs__pb2.ViolationRequest.FromString,
+                    response_serializer=common__msgs__pb2.Response.SerializeToString,
+            ),
             'GetGripperData': grpc.unary_unary_rpc_method_handler(
                     servicer.GetGripperData,
                     request_deserializer=common__msgs__pb2.Empty.FromString,
@@ -861,6 +904,11 @@ def add_DeviceServicer_to_server(servicer, server):
                     servicer.GetPhotoneoRetrieval,
                     request_deserializer=device__msgs__pb2.VisionRequest.FromString,
                     response_serializer=device__msgs__pb2.VisionResult.SerializeToString,
+            ),
+            'GetRTTaskTimes': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetRTTaskTimes,
+                    request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=device__msgs__pb2.TaskTimes.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -1281,40 +1329,6 @@ class Device(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def GetEL5001(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/GetEL5001',
-            common__msgs__pb2.Empty.SerializeToString,
-            device__msgs__pb2.GetEL5001Data.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def GetEL5101(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/GetEL5101',
-            common__msgs__pb2.Empty.SerializeToString,
-            device__msgs__pb2.GetEL5101Data.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
     def GetDeviceInfo(request,
             target,
             options=(),
@@ -1502,6 +1516,40 @@ class Device(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
+    def SetConveyorLockedJoint(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/SetConveyorLockedJoint',
+            common__msgs__pb2.Int.SerializeToString,
+            common__msgs__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SetConveyorToolLink(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/SetConveyorToolLink',
+            common__msgs__pb2.Int.SerializeToString,
+            common__msgs__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
     def SetConveyorStartingPose(request,
             target,
             options=(),
@@ -1549,6 +1597,23 @@ class Device(object):
         return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/GetConveyorState',
             common__msgs__pb2.Empty.SerializeToString,
             device__msgs__pb2.ConveyorState.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetConveyorObjectDistances(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/GetConveyorObjectDistances',
+            common__msgs__pb2.Empty.SerializeToString,
+            device__msgs__pb2.ConveyorObjectDistances.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -1672,6 +1737,23 @@ class Device(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
+    def CommitViolation(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/CommitViolation',
+            device__msgs__pb2.ViolationRequest.SerializeToString,
+            common__msgs__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
     def GetGripperData(request,
             target,
             options=(),
@@ -1753,5 +1835,22 @@ class Device(object):
         return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/GetPhotoneoRetrieval',
             device__msgs__pb2.VisionRequest.SerializeToString,
             device__msgs__pb2.VisionResult.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetRTTaskTimes(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/GetRTTaskTimes',
+            common__msgs__pb2.Empty.SerializeToString,
+            device__msgs__pb2.TaskTimes.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

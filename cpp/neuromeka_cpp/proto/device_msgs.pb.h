@@ -78,6 +78,9 @@ extern CheckReducedModeResDefaultTypeInternal _CheckReducedModeRes_default_insta
 class Conveyor;
 struct ConveyorDefaultTypeInternal;
 extern ConveyorDefaultTypeInternal _Conveyor_default_instance_;
+class ConveyorObjectDistances;
+struct ConveyorObjectDistancesDefaultTypeInternal;
+extern ConveyorObjectDistancesDefaultTypeInternal _ConveyorObjectDistances_default_instance_;
 class ConveyorState;
 struct ConveyorStateDefaultTypeInternal;
 extern ConveyorStateDefaultTypeInternal _ConveyorState_default_instance_;
@@ -105,12 +108,6 @@ extern EndtoolSignalListDefaultTypeInternal _EndtoolSignalList_default_instance_
 class FTSensorData;
 struct FTSensorDataDefaultTypeInternal;
 extern FTSensorDataDefaultTypeInternal _FTSensorData_default_instance_;
-class GetEL5001Data;
-struct GetEL5001DataDefaultTypeInternal;
-extern GetEL5001DataDefaultTypeInternal _GetEL5001Data_default_instance_;
-class GetEL5101Data;
-struct GetEL5101DataDefaultTypeInternal;
-extern GetEL5101DataDefaultTypeInternal _GetEL5101Data_default_instance_;
 class GetLoadFactorsRes;
 struct GetLoadFactorsResDefaultTypeInternal;
 extern GetLoadFactorsResDefaultTypeInternal _GetLoadFactorsRes_default_instance_;
@@ -120,6 +117,12 @@ extern GripperCommandDefaultTypeInternal _GripperCommand_default_instance_;
 class GripperData;
 struct GripperDataDefaultTypeInternal;
 extern GripperDataDefaultTypeInternal _GripperData_default_instance_;
+class ModbusCommand;
+struct ModbusCommandDefaultTypeInternal;
+extern ModbusCommandDefaultTypeInternal _ModbusCommand_default_instance_;
+class ModbusSignal;
+struct ModbusSignalDefaultTypeInternal;
+extern ModbusSignalDefaultTypeInternal _ModbusSignal_default_instance_;
 class Motor;
 struct MotorDefaultTypeInternal;
 extern MotorDefaultTypeInternal _Motor_default_instance_;
@@ -144,9 +147,18 @@ extern SetAutoModeReqDefaultTypeInternal _SetAutoModeReq_default_instance_;
 class SetAutoModeRes;
 struct SetAutoModeResDefaultTypeInternal;
 extern SetAutoModeResDefaultTypeInternal _SetAutoModeRes_default_instance_;
+class TaskTimes;
+struct TaskTimesDefaultTypeInternal;
+extern TaskTimesDefaultTypeInternal _TaskTimes_default_instance_;
+class Tool;
+struct ToolDefaultTypeInternal;
+extern ToolDefaultTypeInternal _Tool_default_instance_;
 class Trigger;
 struct TriggerDefaultTypeInternal;
 extern TriggerDefaultTypeInternal _Trigger_default_instance_;
+class ViolationRequest;
+struct ViolationRequestDefaultTypeInternal;
+extern ViolationRequestDefaultTypeInternal _ViolationRequest_default_instance_;
 class VisionRequest;
 struct VisionRequestDefaultTypeInternal;
 extern VisionRequestDefaultTypeInternal _VisionRequest_default_instance_;
@@ -367,6 +379,7 @@ enum GripperType : int {
   NONE = 0,
   ROBOTIQ_GRIPPER = 1,
   DH_GRIPPER = 2,
+  APICOO_SUSGRIP = 3,
   GripperType_INT_MIN_SENTINEL_DO_NOT_USE_ =
       std::numeric_limits<::int32_t>::min(),
   GripperType_INT_MAX_SENTINEL_DO_NOT_USE_ =
@@ -375,8 +388,8 @@ enum GripperType : int {
 
 bool GripperType_IsValid(int value);
 constexpr GripperType GripperType_MIN = static_cast<GripperType>(0);
-constexpr GripperType GripperType_MAX = static_cast<GripperType>(2);
-constexpr int GripperType_ARRAYSIZE = 2 + 1;
+constexpr GripperType GripperType_MAX = static_cast<GripperType>(3);
+constexpr int GripperType_ARRAYSIZE = 3 + 1;
 const ::google::protobuf::EnumDescriptor*
 GripperType_descriptor();
 template <typename T>
@@ -389,7 +402,7 @@ const std::string& GripperType_Name(T value) {
 template <>
 inline const std::string& GripperType_Name(GripperType value) {
   return ::google::protobuf::internal::NameOfDenseEnum<GripperType_descriptor,
-                                                 0, 2>(
+                                                 0, 3>(
       static_cast<int>(value));
 }
 inline bool GripperType_Parse(absl::string_view name, GripperType* value) {
@@ -2715,16 +2728,25 @@ class DeviceInfo final :
   enum : int {
     kCoreBoardFwVersFieldNumber = 11,
     kRobotSerialFieldNumber = 2,
+    kRobotNameFieldNumber = 5,
+    kCbSerialFieldNumber = 6,
     kIoBoardFwVerFieldNumber = 10,
     kEndtoolBoardFwVerFieldNumber = 12,
     kControllerVerFieldNumber = 20,
     kControllerDetailFieldNumber = 21,
     kControllerDateFieldNumber = 22,
+    kControllerTypeFieldNumber = 23,
+    kControllerPlatformFieldNumber = 24,
     kResponseFieldNumber = 100,
     kNumJointsFieldNumber = 1,
     kPayloadFieldNumber = 3,
+    kRobotDofFieldNumber = 4,
     kTeleopLoadedFieldNumber = 30,
     kCalibratedFieldNumber = 31,
+    kUseSafetyIoFieldNumber = 40,
+    kUseNpadFieldNumber = 41,
+    kUseIndykeyFieldNumber = 42,
+    kUseAutoModeFieldNumber = 43,
   };
   // repeated string core_board_fw_vers = 11;
   int core_board_fw_vers_size() const;
@@ -2768,6 +2790,38 @@ class DeviceInfo final :
   inline PROTOBUF_ALWAYS_INLINE void _internal_set_robot_serial(
       const std::string& value);
   std::string* _internal_mutable_robot_serial();
+
+  public:
+  // string robot_name = 5;
+  void clear_robot_name() ;
+  const std::string& robot_name() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_robot_name(Arg_&& arg, Args_... args);
+  std::string* mutable_robot_name();
+  PROTOBUF_NODISCARD std::string* release_robot_name();
+  void set_allocated_robot_name(std::string* ptr);
+
+  private:
+  const std::string& _internal_robot_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_robot_name(
+      const std::string& value);
+  std::string* _internal_mutable_robot_name();
+
+  public:
+  // string cb_serial = 6;
+  void clear_cb_serial() ;
+  const std::string& cb_serial() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_cb_serial(Arg_&& arg, Args_... args);
+  std::string* mutable_cb_serial();
+  PROTOBUF_NODISCARD std::string* release_cb_serial();
+  void set_allocated_cb_serial(std::string* ptr);
+
+  private:
+  const std::string& _internal_cb_serial() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_cb_serial(
+      const std::string& value);
+  std::string* _internal_mutable_cb_serial();
 
   public:
   // string io_board_fw_ver = 10;
@@ -2850,6 +2904,38 @@ class DeviceInfo final :
   std::string* _internal_mutable_controller_date();
 
   public:
+  // string controller_type = 23;
+  void clear_controller_type() ;
+  const std::string& controller_type() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_controller_type(Arg_&& arg, Args_... args);
+  std::string* mutable_controller_type();
+  PROTOBUF_NODISCARD std::string* release_controller_type();
+  void set_allocated_controller_type(std::string* ptr);
+
+  private:
+  const std::string& _internal_controller_type() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_controller_type(
+      const std::string& value);
+  std::string* _internal_mutable_controller_type();
+
+  public:
+  // string controller_platform = 24;
+  void clear_controller_platform() ;
+  const std::string& controller_platform() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_controller_platform(Arg_&& arg, Args_... args);
+  std::string* mutable_controller_platform();
+  PROTOBUF_NODISCARD std::string* release_controller_platform();
+  void set_allocated_controller_platform(std::string* ptr);
+
+  private:
+  const std::string& _internal_controller_platform() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_controller_platform(
+      const std::string& value);
+  std::string* _internal_mutable_controller_platform();
+
+  public:
   // .Nrmk.IndyFramework.Response response = 100;
   bool has_response() const;
   void clear_response() ;
@@ -2885,6 +2971,16 @@ class DeviceInfo final :
   void _internal_set_payload(float value);
 
   public:
+  // uint32 robot_dof = 4;
+  void clear_robot_dof() ;
+  ::uint32_t robot_dof() const;
+  void set_robot_dof(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_robot_dof() const;
+  void _internal_set_robot_dof(::uint32_t value);
+
+  public:
   // bool teleop_loaded = 30;
   void clear_teleop_loaded() ;
   bool teleop_loaded() const;
@@ -2905,12 +3001,52 @@ class DeviceInfo final :
   void _internal_set_calibrated(bool value);
 
   public:
+  // bool use_safety_io = 40;
+  void clear_use_safety_io() ;
+  bool use_safety_io() const;
+  void set_use_safety_io(bool value);
+
+  private:
+  bool _internal_use_safety_io() const;
+  void _internal_set_use_safety_io(bool value);
+
+  public:
+  // bool use_npad = 41;
+  void clear_use_npad() ;
+  bool use_npad() const;
+  void set_use_npad(bool value);
+
+  private:
+  bool _internal_use_npad() const;
+  void _internal_set_use_npad(bool value);
+
+  public:
+  // bool use_indykey = 42;
+  void clear_use_indykey() ;
+  bool use_indykey() const;
+  void set_use_indykey(bool value);
+
+  private:
+  bool _internal_use_indykey() const;
+  void _internal_set_use_indykey(bool value);
+
+  public:
+  // bool use_auto_mode = 43;
+  void clear_use_auto_mode() ;
+  bool use_auto_mode() const;
+  void set_use_auto_mode(bool value);
+
+  private:
+  bool _internal_use_auto_mode() const;
+  void _internal_set_use_auto_mode(bool value);
+
+  public:
   // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.DeviceInfo)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<4, 12, 1, 157, 7> _table_;
+  static const ::google::protobuf::internal::TcParseTable<5, 21, 1, 218, 13> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
@@ -2919,16 +3055,25 @@ class DeviceInfo final :
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::RepeatedPtrField<std::string> core_board_fw_vers_;
     ::google::protobuf::internal::ArenaStringPtr robot_serial_;
+    ::google::protobuf::internal::ArenaStringPtr robot_name_;
+    ::google::protobuf::internal::ArenaStringPtr cb_serial_;
     ::google::protobuf::internal::ArenaStringPtr io_board_fw_ver_;
     ::google::protobuf::internal::ArenaStringPtr endtool_board_fw_ver_;
     ::google::protobuf::internal::ArenaStringPtr controller_ver_;
     ::google::protobuf::internal::ArenaStringPtr controller_detail_;
     ::google::protobuf::internal::ArenaStringPtr controller_date_;
+    ::google::protobuf::internal::ArenaStringPtr controller_type_;
+    ::google::protobuf::internal::ArenaStringPtr controller_platform_;
     ::Nrmk::IndyFramework::Response* response_;
     ::uint32_t num_joints_;
     float payload_;
+    ::uint32_t robot_dof_;
     bool teleop_loaded_;
     bool calibrated_;
+    bool use_safety_io_;
+    bool use_npad_;
+    bool use_indykey_;
+    bool use_auto_mode_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -3132,442 +3277,6 @@ class BrakeControlStyle final :
   friend struct ::TableStruct_device_5fmsgs_2eproto;
 };// -------------------------------------------------------------------
 
-class GetEL5001Data final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.GetEL5001Data) */ {
- public:
-  inline GetEL5001Data() : GetEL5001Data(nullptr) {}
-  ~GetEL5001Data() override;
-  template<typename = void>
-  explicit PROTOBUF_CONSTEXPR GetEL5001Data(::google::protobuf::internal::ConstantInitialized);
-
-  GetEL5001Data(const GetEL5001Data& from);
-  GetEL5001Data(GetEL5001Data&& from) noexcept
-    : GetEL5001Data() {
-    *this = ::std::move(from);
-  }
-
-  inline GetEL5001Data& operator=(const GetEL5001Data& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline GetEL5001Data& operator=(GetEL5001Data&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetOwningArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const GetEL5001Data& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const GetEL5001Data* internal_default_instance() {
-    return reinterpret_cast<const GetEL5001Data*>(
-               &_GetEL5001Data_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    14;
-
-  friend void swap(GetEL5001Data& a, GetEL5001Data& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(GetEL5001Data* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() != nullptr &&
-        GetOwningArena() == other->GetOwningArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() == other->GetOwningArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(GetEL5001Data* other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  GetEL5001Data* New(::google::protobuf::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<GetEL5001Data>(arena);
-  }
-  using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const GetEL5001Data& from);
-  using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom( const GetEL5001Data& from) {
-    GetEL5001Data::MergeImpl(*this, from);
-  }
-  private:
-  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  ::size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::google::protobuf::Arena* arena);
-  void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(GetEL5001Data* other);
-
-  private:
-  friend class ::google::protobuf::internal::AnyMetadata;
-  static ::absl::string_view FullMessageName() {
-    return "Nrmk.IndyFramework.GetEL5001Data";
-  }
-  protected:
-  explicit GetEL5001Data(::google::protobuf::Arena* arena);
-  public:
-
-  static const ClassData _class_data_;
-  const ::google::protobuf::Message::ClassData*GetClassData() const final;
-
-  ::google::protobuf::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kResponseFieldNumber = 100,
-    kStatusFieldNumber = 1,
-    kValueFieldNumber = 2,
-    kDeltaFieldNumber = 3,
-    kAverageFieldNumber = 4,
-  };
-  // .Nrmk.IndyFramework.Response response = 100;
-  bool has_response() const;
-  void clear_response() ;
-  const ::Nrmk::IndyFramework::Response& response() const;
-  PROTOBUF_NODISCARD ::Nrmk::IndyFramework::Response* release_response();
-  ::Nrmk::IndyFramework::Response* mutable_response();
-  void set_allocated_response(::Nrmk::IndyFramework::Response* value);
-  void unsafe_arena_set_allocated_response(::Nrmk::IndyFramework::Response* value);
-  ::Nrmk::IndyFramework::Response* unsafe_arena_release_response();
-
-  private:
-  const ::Nrmk::IndyFramework::Response& _internal_response() const;
-  ::Nrmk::IndyFramework::Response* _internal_mutable_response();
-
-  public:
-  // int32 status = 1;
-  void clear_status() ;
-  ::int32_t status() const;
-  void set_status(::int32_t value);
-
-  private:
-  ::int32_t _internal_status() const;
-  void _internal_set_status(::int32_t value);
-
-  public:
-  // int32 value = 2;
-  void clear_value() ;
-  ::int32_t value() const;
-  void set_value(::int32_t value);
-
-  private:
-  ::int32_t _internal_value() const;
-  void _internal_set_value(::int32_t value);
-
-  public:
-  // int32 delta = 3;
-  void clear_delta() ;
-  ::int32_t delta() const;
-  void set_delta(::int32_t value);
-
-  private:
-  ::int32_t _internal_delta() const;
-  void _internal_set_delta(::int32_t value);
-
-  public:
-  // float average = 4;
-  void clear_average() ;
-  float average() const;
-  void set_average(float value);
-
-  private:
-  float _internal_average() const;
-  void _internal_set_average(float value);
-
-  public:
-  // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.GetEL5001Data)
- private:
-  class _Internal;
-
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<2, 5, 1, 0, 7> _table_;
-  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  struct Impl_ {
-    ::google::protobuf::internal::HasBits<1> _has_bits_;
-    mutable ::google::protobuf::internal::CachedSize _cached_size_;
-    ::Nrmk::IndyFramework::Response* response_;
-    ::int32_t status_;
-    ::int32_t value_;
-    ::int32_t delta_;
-    float average_;
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_device_5fmsgs_2eproto;
-};// -------------------------------------------------------------------
-
-class GetEL5101Data final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.GetEL5101Data) */ {
- public:
-  inline GetEL5101Data() : GetEL5101Data(nullptr) {}
-  ~GetEL5101Data() override;
-  template<typename = void>
-  explicit PROTOBUF_CONSTEXPR GetEL5101Data(::google::protobuf::internal::ConstantInitialized);
-
-  GetEL5101Data(const GetEL5101Data& from);
-  GetEL5101Data(GetEL5101Data&& from) noexcept
-    : GetEL5101Data() {
-    *this = ::std::move(from);
-  }
-
-  inline GetEL5101Data& operator=(const GetEL5101Data& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline GetEL5101Data& operator=(GetEL5101Data&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetOwningArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const GetEL5101Data& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const GetEL5101Data* internal_default_instance() {
-    return reinterpret_cast<const GetEL5101Data*>(
-               &_GetEL5101Data_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    15;
-
-  friend void swap(GetEL5101Data& a, GetEL5101Data& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(GetEL5101Data* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() != nullptr &&
-        GetOwningArena() == other->GetOwningArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() == other->GetOwningArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(GetEL5101Data* other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  GetEL5101Data* New(::google::protobuf::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<GetEL5101Data>(arena);
-  }
-  using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const GetEL5101Data& from);
-  using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom( const GetEL5101Data& from) {
-    GetEL5101Data::MergeImpl(*this, from);
-  }
-  private:
-  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  ::size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::google::protobuf::Arena* arena);
-  void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(GetEL5101Data* other);
-
-  private:
-  friend class ::google::protobuf::internal::AnyMetadata;
-  static ::absl::string_view FullMessageName() {
-    return "Nrmk.IndyFramework.GetEL5101Data";
-  }
-  protected:
-  explicit GetEL5101Data(::google::protobuf::Arena* arena);
-  public:
-
-  static const ClassData _class_data_;
-  const ::google::protobuf::Message::ClassData*GetClassData() const final;
-
-  ::google::protobuf::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kResponseFieldNumber = 100,
-    kStatusFieldNumber = 1,
-    kValueFieldNumber = 2,
-    kLatchFieldNumber = 3,
-    kDeltaFieldNumber = 4,
-    kAverageFieldNumber = 5,
-  };
-  // .Nrmk.IndyFramework.Response response = 100;
-  bool has_response() const;
-  void clear_response() ;
-  const ::Nrmk::IndyFramework::Response& response() const;
-  PROTOBUF_NODISCARD ::Nrmk::IndyFramework::Response* release_response();
-  ::Nrmk::IndyFramework::Response* mutable_response();
-  void set_allocated_response(::Nrmk::IndyFramework::Response* value);
-  void unsafe_arena_set_allocated_response(::Nrmk::IndyFramework::Response* value);
-  ::Nrmk::IndyFramework::Response* unsafe_arena_release_response();
-
-  private:
-  const ::Nrmk::IndyFramework::Response& _internal_response() const;
-  ::Nrmk::IndyFramework::Response* _internal_mutable_response();
-
-  public:
-  // int32 status = 1;
-  void clear_status() ;
-  ::int32_t status() const;
-  void set_status(::int32_t value);
-
-  private:
-  ::int32_t _internal_status() const;
-  void _internal_set_status(::int32_t value);
-
-  public:
-  // int32 value = 2;
-  void clear_value() ;
-  ::int32_t value() const;
-  void set_value(::int32_t value);
-
-  private:
-  ::int32_t _internal_value() const;
-  void _internal_set_value(::int32_t value);
-
-  public:
-  // int32 latch = 3;
-  void clear_latch() ;
-  ::int32_t latch() const;
-  void set_latch(::int32_t value);
-
-  private:
-  ::int32_t _internal_latch() const;
-  void _internal_set_latch(::int32_t value);
-
-  public:
-  // int32 delta = 4;
-  void clear_delta() ;
-  ::int32_t delta() const;
-  void set_delta(::int32_t value);
-
-  private:
-  ::int32_t _internal_delta() const;
-  void _internal_set_delta(::int32_t value);
-
-  public:
-  // float average = 5;
-  void clear_average() ;
-  float average() const;
-  void set_average(float value);
-
-  private:
-  float _internal_average() const;
-  void _internal_set_average(float value);
-
-  public:
-  // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.GetEL5101Data)
- private:
-  class _Internal;
-
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<3, 6, 1, 0, 7> _table_;
-  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  struct Impl_ {
-    ::google::protobuf::internal::HasBits<1> _has_bits_;
-    mutable ::google::protobuf::internal::CachedSize _cached_size_;
-    ::Nrmk::IndyFramework::Response* response_;
-    ::int32_t status_;
-    ::int32_t value_;
-    ::int32_t latch_;
-    ::int32_t delta_;
-    float average_;
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_device_5fmsgs_2eproto;
-};// -------------------------------------------------------------------
-
 class FTSensorData final :
     public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.FTSensorData) */ {
  public:
@@ -3624,7 +3333,7 @@ class FTSensorData final :
                &_FTSensorData_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    16;
+    14;
 
   friend void swap(FTSensorData& a, FTSensorData& b) {
     a.Swap(&b);
@@ -3860,7 +3569,7 @@ class GetLoadFactorsRes final :
                &_GetLoadFactorsRes_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    17;
+    15;
 
   friend void swap(GetLoadFactorsRes& a, GetLoadFactorsRes& b) {
     a.Swap(&b);
@@ -4065,7 +3774,7 @@ class SetAutoModeReq final :
                &_SetAutoModeReq_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    18;
+    16;
 
   friend void swap(SetAutoModeReq& a, SetAutoModeReq& b) {
     a.Swap(&b);
@@ -4223,7 +3932,7 @@ class SetAutoModeRes final :
                &_SetAutoModeRes_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    19;
+    17;
 
   friend void swap(SetAutoModeRes& a, SetAutoModeRes& b) {
     a.Swap(&b);
@@ -4387,7 +4096,7 @@ class CheckAutoModeRes final :
                &_CheckAutoModeRes_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    20;
+    18;
 
   friend void swap(CheckAutoModeRes& a, CheckAutoModeRes& b) {
     a.Swap(&b);
@@ -4563,7 +4272,7 @@ class CheckReducedModeRes final :
                &_CheckReducedModeRes_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    21;
+    19;
 
   friend void swap(CheckReducedModeRes& a, CheckReducedModeRes& b) {
     a.Swap(&b);
@@ -4739,7 +4448,7 @@ class SafetyFunctionState final :
                &_SafetyFunctionState_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    22;
+    20;
 
   friend void swap(SafetyFunctionState& a, SafetyFunctionState& b) {
     a.Swap(&b);
@@ -4927,7 +4636,7 @@ class SafetyControlData final :
                &_SafetyControlData_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    23;
+    21;
 
   friend void swap(SafetyControlData& a, SafetyControlData& b) {
     a.Swap(&b);
@@ -5071,6 +4780,266 @@ class SafetyControlData final :
   friend struct ::TableStruct_device_5fmsgs_2eproto;
 };// -------------------------------------------------------------------
 
+class ViolationRequest final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.ViolationRequest) */ {
+ public:
+  inline ViolationRequest() : ViolationRequest(nullptr) {}
+  ~ViolationRequest() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR ViolationRequest(::google::protobuf::internal::ConstantInitialized);
+
+  ViolationRequest(const ViolationRequest& from);
+  ViolationRequest(ViolationRequest&& from) noexcept
+    : ViolationRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline ViolationRequest& operator=(const ViolationRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ViolationRequest& operator=(ViolationRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ViolationRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ViolationRequest* internal_default_instance() {
+    return reinterpret_cast<const ViolationRequest*>(
+               &_ViolationRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    22;
+
+  friend void swap(ViolationRequest& a, ViolationRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ViolationRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ViolationRequest* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ViolationRequest* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ViolationRequest>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const ViolationRequest& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const ViolationRequest& from) {
+    ViolationRequest::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ViolationRequest* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "Nrmk.IndyFramework.ViolationRequest";
+  }
+  protected:
+  explicit ViolationRequest(::google::protobuf::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kMiscTextFieldNumber = 16,
+    kViolationTypeFieldNumber = 1,
+    kStopCategoryFieldNumber = 2,
+    kSourceFieldNumber = 3,
+    kMiscFvalueFieldNumber = 12,
+    kMiscIvalueFieldNumber = 13,
+    kMiscMinFieldNumber = 14,
+    kMiscMaxFieldNumber = 15,
+    kAxisIdxFieldNumber = 11,
+  };
+  // string misc_text = 16;
+  void clear_misc_text() ;
+  const std::string& misc_text() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_misc_text(Arg_&& arg, Args_... args);
+  std::string* mutable_misc_text();
+  PROTOBUF_NODISCARD std::string* release_misc_text();
+  void set_allocated_misc_text(std::string* ptr);
+
+  private:
+  const std::string& _internal_misc_text() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_misc_text(
+      const std::string& value);
+  std::string* _internal_mutable_misc_text();
+
+  public:
+  // uint64 violation_type = 1;
+  void clear_violation_type() ;
+  ::uint64_t violation_type() const;
+  void set_violation_type(::uint64_t value);
+
+  private:
+  ::uint64_t _internal_violation_type() const;
+  void _internal_set_violation_type(::uint64_t value);
+
+  public:
+  // .Nrmk.IndyFramework.StopCategory stop_category = 2;
+  void clear_stop_category() ;
+  ::Nrmk::IndyFramework::StopCategory stop_category() const;
+  void set_stop_category(::Nrmk::IndyFramework::StopCategory value);
+
+  private:
+  ::Nrmk::IndyFramework::StopCategory _internal_stop_category() const;
+  void _internal_set_stop_category(::Nrmk::IndyFramework::StopCategory value);
+
+  public:
+  // int32 source = 3;
+  void clear_source() ;
+  ::int32_t source() const;
+  void set_source(::int32_t value);
+
+  private:
+  ::int32_t _internal_source() const;
+  void _internal_set_source(::int32_t value);
+
+  public:
+  // double misc_fvalue = 12;
+  void clear_misc_fvalue() ;
+  double misc_fvalue() const;
+  void set_misc_fvalue(double value);
+
+  private:
+  double _internal_misc_fvalue() const;
+  void _internal_set_misc_fvalue(double value);
+
+  public:
+  // int64 misc_ivalue = 13;
+  void clear_misc_ivalue() ;
+  ::int64_t misc_ivalue() const;
+  void set_misc_ivalue(::int64_t value);
+
+  private:
+  ::int64_t _internal_misc_ivalue() const;
+  void _internal_set_misc_ivalue(::int64_t value);
+
+  public:
+  // double misc_min = 14;
+  void clear_misc_min() ;
+  double misc_min() const;
+  void set_misc_min(double value);
+
+  private:
+  double _internal_misc_min() const;
+  void _internal_set_misc_min(double value);
+
+  public:
+  // double misc_max = 15;
+  void clear_misc_max() ;
+  double misc_max() const;
+  void set_misc_max(double value);
+
+  private:
+  double _internal_misc_max() const;
+  void _internal_set_misc_max(double value);
+
+  public:
+  // int32 axis_idx = 11;
+  void clear_axis_idx() ;
+  ::int32_t axis_idx() const;
+  void set_axis_idx(::int32_t value);
+
+  private:
+  ::int32_t _internal_axis_idx() const;
+  void _internal_set_axis_idx(::int32_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.ViolationRequest)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<4, 9, 0, 61, 2> _table_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::google::protobuf::internal::ArenaStringPtr misc_text_;
+    ::uint64_t violation_type_;
+    int stop_category_;
+    ::int32_t source_;
+    double misc_fvalue_;
+    ::int64_t misc_ivalue_;
+    double misc_min_;
+    double misc_max_;
+    ::int32_t axis_idx_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_device_5fmsgs_2eproto;
+};// -------------------------------------------------------------------
+
 class SanderCommand final :
     public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.SanderCommand) */ {
  public:
@@ -5127,7 +5096,7 @@ class SanderCommand final :
                &_SanderCommand_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    24;
+    23;
 
   friend void swap(SanderCommand& a, SanderCommand& b) {
     a.Swap(&b);
@@ -5346,7 +5315,7 @@ class Encoder final :
                &_Encoder_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    25;
+    24;
 
   friend void swap(Encoder& a, Encoder& b) {
     a.Swap(&b);
@@ -5599,7 +5568,7 @@ class Trigger final :
                &_Trigger_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    26;
+    25;
 
   friend void swap(Trigger& a, Trigger& b) {
     a.Swap(&b);
@@ -5801,7 +5770,7 @@ class Conveyor final :
                &_Conveyor_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    27;
+    26;
 
   friend void swap(Conveyor& a, Conveyor& b) {
     a.Swap(&b);
@@ -5881,6 +5850,7 @@ class Conveyor final :
     kTerminalPoseFieldNumber = 11,
     kOffsetDistFieldNumber = 4,
     kWorkingDistFieldNumber = 5,
+    kToolLinkFieldNumber = 31,
   };
   // string name = 1;
   void clear_name() ;
@@ -5993,12 +5963,22 @@ class Conveyor final :
   void _internal_set_working_dist(float value);
 
   public:
+  // int32 tool_link = 31;
+  void clear_tool_link() ;
+  ::int32_t tool_link() const;
+  void set_tool_link(::int32_t value);
+
+  private:
+  ::int32_t _internal_tool_link() const;
+  void _internal_set_tool_link(::int32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.Conveyor)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<4, 8, 5, 48, 2> _table_;
+  static const ::google::protobuf::internal::TcParseTable<4, 9, 5, 48, 2> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
@@ -6013,6 +5993,7 @@ class Conveyor final :
     ::Nrmk::IndyFramework::PosePair* terminal_pose_;
     float offset_dist_;
     float working_dist_;
+    ::int32_t tool_link_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -6075,7 +6056,7 @@ class ConveyorState final :
                &_ConveyorState_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    28;
+    27;
 
   friend void swap(ConveyorState& a, ConveyorState& b) {
     a.Swap(&b);
@@ -6182,6 +6163,172 @@ class ConveyorState final :
   struct Impl_ {
     float velocity_;
     float triggered_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_device_5fmsgs_2eproto;
+};// -------------------------------------------------------------------
+
+class ConveyorObjectDistances final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.ConveyorObjectDistances) */ {
+ public:
+  inline ConveyorObjectDistances() : ConveyorObjectDistances(nullptr) {}
+  ~ConveyorObjectDistances() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR ConveyorObjectDistances(::google::protobuf::internal::ConstantInitialized);
+
+  ConveyorObjectDistances(const ConveyorObjectDistances& from);
+  ConveyorObjectDistances(ConveyorObjectDistances&& from) noexcept
+    : ConveyorObjectDistances() {
+    *this = ::std::move(from);
+  }
+
+  inline ConveyorObjectDistances& operator=(const ConveyorObjectDistances& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ConveyorObjectDistances& operator=(ConveyorObjectDistances&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ConveyorObjectDistances& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ConveyorObjectDistances* internal_default_instance() {
+    return reinterpret_cast<const ConveyorObjectDistances*>(
+               &_ConveyorObjectDistances_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    28;
+
+  friend void swap(ConveyorObjectDistances& a, ConveyorObjectDistances& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ConveyorObjectDistances* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ConveyorObjectDistances* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ConveyorObjectDistances* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ConveyorObjectDistances>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const ConveyorObjectDistances& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const ConveyorObjectDistances& from) {
+    ConveyorObjectDistances::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ConveyorObjectDistances* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "Nrmk.IndyFramework.ConveyorObjectDistances";
+  }
+  protected:
+  explicit ConveyorObjectDistances(::google::protobuf::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kDistsFieldNumber = 1,
+  };
+  // repeated float dists = 1;
+  int dists_size() const;
+  private:
+  int _internal_dists_size() const;
+
+  public:
+  void clear_dists() ;
+  float dists(int index) const;
+  void set_dists(int index, float value);
+  void add_dists(float value);
+  const ::google::protobuf::RepeatedField<float>& dists() const;
+  ::google::protobuf::RepeatedField<float>* mutable_dists();
+
+  private:
+  const ::google::protobuf::RepeatedField<float>& _internal_dists() const;
+  ::google::protobuf::RepeatedField<float>* _internal_mutable_dists();
+
+  public:
+  // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.ConveyorObjectDistances)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<0, 1, 0, 0, 2> _table_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::google::protobuf::RepeatedField<float> dists_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -7070,6 +7217,852 @@ class VisionResult final :
   };
   union { Impl_ _impl_; };
   friend struct ::TableStruct_device_5fmsgs_2eproto;
+};// -------------------------------------------------------------------
+
+class Tool final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.Tool) */ {
+ public:
+  inline Tool() : Tool(nullptr) {}
+  ~Tool() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR Tool(::google::protobuf::internal::ConstantInitialized);
+
+  Tool(const Tool& from);
+  Tool(Tool&& from) noexcept
+    : Tool() {
+    *this = ::std::move(from);
+  }
+
+  inline Tool& operator=(const Tool& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Tool& operator=(Tool&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Tool& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const Tool* internal_default_instance() {
+    return reinterpret_cast<const Tool*>(
+               &_Tool_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    33;
+
+  friend void swap(Tool& a, Tool& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(Tool* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Tool* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  Tool* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<Tool>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const Tool& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const Tool& from) {
+    Tool::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(Tool* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "Nrmk.IndyFramework.Tool";
+  }
+  protected:
+  explicit Tool(::google::protobuf::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kDoSignalsFieldNumber = 3,
+    kEnddoSignalsFieldNumber = 4,
+    kAoSignalsFieldNumber = 5,
+    kEndaoSignalsFieldNumber = 6,
+    kExpressionFieldNumber = 7,
+    kGripperSignalsFieldNumber = 8,
+    kModbusSignalsFieldNumber = 9,
+    kNameFieldNumber = 1,
+    kExecuteTimeFieldNumber = 2,
+  };
+  // repeated .Nrmk.IndyFramework.DigitalSignal do_signals = 3;
+  int do_signals_size() const;
+  private:
+  int _internal_do_signals_size() const;
+
+  public:
+  void clear_do_signals() ;
+  ::Nrmk::IndyFramework::DigitalSignal* mutable_do_signals(int index);
+  ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::DigitalSignal >*
+      mutable_do_signals();
+  private:
+  const ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::DigitalSignal>& _internal_do_signals() const;
+  ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::DigitalSignal>* _internal_mutable_do_signals();
+  public:
+  const ::Nrmk::IndyFramework::DigitalSignal& do_signals(int index) const;
+  ::Nrmk::IndyFramework::DigitalSignal* add_do_signals();
+  const ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::DigitalSignal >&
+      do_signals() const;
+  // repeated .Nrmk.IndyFramework.EndtoolSignal enddo_signals = 4;
+  int enddo_signals_size() const;
+  private:
+  int _internal_enddo_signals_size() const;
+
+  public:
+  void clear_enddo_signals() ;
+  ::Nrmk::IndyFramework::EndtoolSignal* mutable_enddo_signals(int index);
+  ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::EndtoolSignal >*
+      mutable_enddo_signals();
+  private:
+  const ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::EndtoolSignal>& _internal_enddo_signals() const;
+  ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::EndtoolSignal>* _internal_mutable_enddo_signals();
+  public:
+  const ::Nrmk::IndyFramework::EndtoolSignal& enddo_signals(int index) const;
+  ::Nrmk::IndyFramework::EndtoolSignal* add_enddo_signals();
+  const ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::EndtoolSignal >&
+      enddo_signals() const;
+  // repeated .Nrmk.IndyFramework.AnalogSignal ao_signals = 5;
+  int ao_signals_size() const;
+  private:
+  int _internal_ao_signals_size() const;
+
+  public:
+  void clear_ao_signals() ;
+  ::Nrmk::IndyFramework::AnalogSignal* mutable_ao_signals(int index);
+  ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::AnalogSignal >*
+      mutable_ao_signals();
+  private:
+  const ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::AnalogSignal>& _internal_ao_signals() const;
+  ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::AnalogSignal>* _internal_mutable_ao_signals();
+  public:
+  const ::Nrmk::IndyFramework::AnalogSignal& ao_signals(int index) const;
+  ::Nrmk::IndyFramework::AnalogSignal* add_ao_signals();
+  const ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::AnalogSignal >&
+      ao_signals() const;
+  // repeated .Nrmk.IndyFramework.AnalogSignal endao_signals = 6;
+  int endao_signals_size() const;
+  private:
+  int _internal_endao_signals_size() const;
+
+  public:
+  void clear_endao_signals() ;
+  ::Nrmk::IndyFramework::AnalogSignal* mutable_endao_signals(int index);
+  ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::AnalogSignal >*
+      mutable_endao_signals();
+  private:
+  const ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::AnalogSignal>& _internal_endao_signals() const;
+  ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::AnalogSignal>* _internal_mutable_endao_signals();
+  public:
+  const ::Nrmk::IndyFramework::AnalogSignal& endao_signals(int index) const;
+  ::Nrmk::IndyFramework::AnalogSignal* add_endao_signals();
+  const ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::AnalogSignal >&
+      endao_signals() const;
+  // repeated string expression = 7;
+  int expression_size() const;
+  private:
+  int _internal_expression_size() const;
+
+  public:
+  void clear_expression() ;
+  const std::string& expression(int index) const;
+  std::string* mutable_expression(int index);
+  void set_expression(int index, const std::string& value);
+  void set_expression(int index, std::string&& value);
+  void set_expression(int index, const char* value);
+  void set_expression(int index, const char* value, std::size_t size);
+  void set_expression(int index, absl::string_view value);
+  std::string* add_expression();
+  void add_expression(const std::string& value);
+  void add_expression(std::string&& value);
+  void add_expression(const char* value);
+  void add_expression(const char* value, std::size_t size);
+  void add_expression(absl::string_view value);
+  const ::google::protobuf::RepeatedPtrField<std::string>& expression() const;
+  ::google::protobuf::RepeatedPtrField<std::string>* mutable_expression();
+
+  private:
+  const ::google::protobuf::RepeatedPtrField<std::string>& _internal_expression() const;
+  ::google::protobuf::RepeatedPtrField<std::string>* _internal_mutable_expression();
+
+  public:
+  // repeated .Nrmk.IndyFramework.GripperCommand gripper_signals = 8;
+  int gripper_signals_size() const;
+  private:
+  int _internal_gripper_signals_size() const;
+
+  public:
+  void clear_gripper_signals() ;
+  ::Nrmk::IndyFramework::GripperCommand* mutable_gripper_signals(int index);
+  ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::GripperCommand >*
+      mutable_gripper_signals();
+  private:
+  const ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::GripperCommand>& _internal_gripper_signals() const;
+  ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::GripperCommand>* _internal_mutable_gripper_signals();
+  public:
+  const ::Nrmk::IndyFramework::GripperCommand& gripper_signals(int index) const;
+  ::Nrmk::IndyFramework::GripperCommand* add_gripper_signals();
+  const ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::GripperCommand >&
+      gripper_signals() const;
+  // repeated .Nrmk.IndyFramework.ModbusCommand modbus_signals = 9;
+  int modbus_signals_size() const;
+  private:
+  int _internal_modbus_signals_size() const;
+
+  public:
+  void clear_modbus_signals() ;
+  ::Nrmk::IndyFramework::ModbusCommand* mutable_modbus_signals(int index);
+  ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::ModbusCommand >*
+      mutable_modbus_signals();
+  private:
+  const ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::ModbusCommand>& _internal_modbus_signals() const;
+  ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::ModbusCommand>* _internal_mutable_modbus_signals();
+  public:
+  const ::Nrmk::IndyFramework::ModbusCommand& modbus_signals(int index) const;
+  ::Nrmk::IndyFramework::ModbusCommand* add_modbus_signals();
+  const ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::ModbusCommand >&
+      modbus_signals() const;
+  // string name = 1;
+  void clear_name() ;
+  const std::string& name() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_name(Arg_&& arg, Args_... args);
+  std::string* mutable_name();
+  PROTOBUF_NODISCARD std::string* release_name();
+  void set_allocated_name(std::string* ptr);
+
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(
+      const std::string& value);
+  std::string* _internal_mutable_name();
+
+  public:
+  // float execute_time = 2;
+  void clear_execute_time() ;
+  float execute_time() const;
+  void set_execute_time(float value);
+
+  private:
+  float _internal_execute_time() const;
+  void _internal_set_execute_time(float value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.Tool)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<4, 9, 6, 54, 2> _table_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::DigitalSignal > do_signals_;
+    ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::EndtoolSignal > enddo_signals_;
+    ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::AnalogSignal > ao_signals_;
+    ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::AnalogSignal > endao_signals_;
+    ::google::protobuf::RepeatedPtrField<std::string> expression_;
+    ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::GripperCommand > gripper_signals_;
+    ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::ModbusCommand > modbus_signals_;
+    ::google::protobuf::internal::ArenaStringPtr name_;
+    float execute_time_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_device_5fmsgs_2eproto;
+};// -------------------------------------------------------------------
+
+class ModbusCommand final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.ModbusCommand) */ {
+ public:
+  inline ModbusCommand() : ModbusCommand(nullptr) {}
+  ~ModbusCommand() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR ModbusCommand(::google::protobuf::internal::ConstantInitialized);
+
+  ModbusCommand(const ModbusCommand& from);
+  ModbusCommand(ModbusCommand&& from) noexcept
+    : ModbusCommand() {
+    *this = ::std::move(from);
+  }
+
+  inline ModbusCommand& operator=(const ModbusCommand& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ModbusCommand& operator=(ModbusCommand&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ModbusCommand& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ModbusCommand* internal_default_instance() {
+    return reinterpret_cast<const ModbusCommand*>(
+               &_ModbusCommand_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    34;
+
+  friend void swap(ModbusCommand& a, ModbusCommand& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ModbusCommand* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ModbusCommand* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ModbusCommand* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ModbusCommand>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const ModbusCommand& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const ModbusCommand& from) {
+    ModbusCommand::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ModbusCommand* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "Nrmk.IndyFramework.ModbusCommand";
+  }
+  protected:
+  explicit ModbusCommand(::google::protobuf::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kSignalsFieldNumber = 2,
+    kServerFieldNumber = 1,
+  };
+  // repeated .Nrmk.IndyFramework.ModbusSignal signals = 2;
+  int signals_size() const;
+  private:
+  int _internal_signals_size() const;
+
+  public:
+  void clear_signals() ;
+  ::Nrmk::IndyFramework::ModbusSignal* mutable_signals(int index);
+  ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::ModbusSignal >*
+      mutable_signals();
+  private:
+  const ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::ModbusSignal>& _internal_signals() const;
+  ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::ModbusSignal>* _internal_mutable_signals();
+  public:
+  const ::Nrmk::IndyFramework::ModbusSignal& signals(int index) const;
+  ::Nrmk::IndyFramework::ModbusSignal* add_signals();
+  const ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::ModbusSignal >&
+      signals() const;
+  // string server = 1;
+  void clear_server() ;
+  const std::string& server() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_server(Arg_&& arg, Args_... args);
+  std::string* mutable_server();
+  PROTOBUF_NODISCARD std::string* release_server();
+  void set_allocated_server(std::string* ptr);
+
+  private:
+  const std::string& _internal_server() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_server(
+      const std::string& value);
+  std::string* _internal_mutable_server();
+
+  public:
+  // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.ModbusCommand)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<1, 2, 1, 47, 2> _table_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::ModbusSignal > signals_;
+    ::google::protobuf::internal::ArenaStringPtr server_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_device_5fmsgs_2eproto;
+};// -------------------------------------------------------------------
+
+class ModbusSignal final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.ModbusSignal) */ {
+ public:
+  inline ModbusSignal() : ModbusSignal(nullptr) {}
+  ~ModbusSignal() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR ModbusSignal(::google::protobuf::internal::ConstantInitialized);
+
+  ModbusSignal(const ModbusSignal& from);
+  ModbusSignal(ModbusSignal&& from) noexcept
+    : ModbusSignal() {
+    *this = ::std::move(from);
+  }
+
+  inline ModbusSignal& operator=(const ModbusSignal& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ModbusSignal& operator=(ModbusSignal&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ModbusSignal& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ModbusSignal* internal_default_instance() {
+    return reinterpret_cast<const ModbusSignal*>(
+               &_ModbusSignal_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    35;
+
+  friend void swap(ModbusSignal& a, ModbusSignal& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ModbusSignal* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ModbusSignal* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ModbusSignal* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ModbusSignal>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const ModbusSignal& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const ModbusSignal& from) {
+    ModbusSignal::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ModbusSignal* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "Nrmk.IndyFramework.ModbusSignal";
+  }
+  protected:
+  explicit ModbusSignal(::google::protobuf::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kAddrFieldNumber = 1,
+    kValueFieldNumber = 2,
+  };
+  // int32 addr = 1;
+  void clear_addr() ;
+  ::int32_t addr() const;
+  void set_addr(::int32_t value);
+
+  private:
+  ::int32_t _internal_addr() const;
+  void _internal_set_addr(::int32_t value);
+
+  public:
+  // int32 value = 2;
+  void clear_value() ;
+  ::int32_t value() const;
+  void set_value(::int32_t value);
+
+  private:
+  ::int32_t _internal_value() const;
+  void _internal_set_value(::int32_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.ModbusSignal)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<1, 2, 0, 0, 2> _table_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::int32_t addr_;
+    ::int32_t value_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_device_5fmsgs_2eproto;
+};// -------------------------------------------------------------------
+
+class TaskTimes final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.TaskTimes) */ {
+ public:
+  inline TaskTimes() : TaskTimes(nullptr) {}
+  ~TaskTimes() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR TaskTimes(::google::protobuf::internal::ConstantInitialized);
+
+  TaskTimes(const TaskTimes& from);
+  TaskTimes(TaskTimes&& from) noexcept
+    : TaskTimes() {
+    *this = ::std::move(from);
+  }
+
+  inline TaskTimes& operator=(const TaskTimes& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline TaskTimes& operator=(TaskTimes&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const TaskTimes& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const TaskTimes* internal_default_instance() {
+    return reinterpret_cast<const TaskTimes*>(
+               &_TaskTimes_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    36;
+
+  friend void swap(TaskTimes& a, TaskTimes& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(TaskTimes* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(TaskTimes* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  TaskTimes* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<TaskTimes>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const TaskTimes& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const TaskTimes& from) {
+    TaskTimes::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(TaskTimes* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "Nrmk.IndyFramework.TaskTimes";
+  }
+  protected:
+  explicit TaskTimes(::google::protobuf::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kTaskTimesFieldNumber = 1,
+  };
+  // repeated .Nrmk.IndyFramework.NamedFloat task_times = 1;
+  int task_times_size() const;
+  private:
+  int _internal_task_times_size() const;
+
+  public:
+  void clear_task_times() ;
+  ::Nrmk::IndyFramework::NamedFloat* mutable_task_times(int index);
+  ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::NamedFloat >*
+      mutable_task_times();
+  private:
+  const ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::NamedFloat>& _internal_task_times() const;
+  ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::NamedFloat>* _internal_mutable_task_times();
+  public:
+  const ::Nrmk::IndyFramework::NamedFloat& task_times(int index) const;
+  ::Nrmk::IndyFramework::NamedFloat* add_task_times();
+  const ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::NamedFloat >&
+      task_times() const;
+  // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.TaskTimes)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<0, 1, 1, 0, 2> _table_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::NamedFloat > task_times_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_device_5fmsgs_2eproto;
 };
 
 // ===================================================================
@@ -7857,6 +8850,130 @@ inline void DeviceInfo::_internal_set_payload(float value) {
   _impl_.payload_ = value;
 }
 
+// uint32 robot_dof = 4;
+inline void DeviceInfo::clear_robot_dof() {
+  _impl_.robot_dof_ = 0u;
+}
+inline ::uint32_t DeviceInfo::robot_dof() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.DeviceInfo.robot_dof)
+  return _internal_robot_dof();
+}
+inline void DeviceInfo::set_robot_dof(::uint32_t value) {
+  _internal_set_robot_dof(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.DeviceInfo.robot_dof)
+}
+inline ::uint32_t DeviceInfo::_internal_robot_dof() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.robot_dof_;
+}
+inline void DeviceInfo::_internal_set_robot_dof(::uint32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.robot_dof_ = value;
+}
+
+// string robot_name = 5;
+inline void DeviceInfo::clear_robot_name() {
+  _impl_.robot_name_.ClearToEmpty();
+}
+inline const std::string& DeviceInfo::robot_name() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.DeviceInfo.robot_name)
+  return _internal_robot_name();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void DeviceInfo::set_robot_name(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.robot_name_.Set(static_cast<Arg_&&>(arg), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.DeviceInfo.robot_name)
+}
+inline std::string* DeviceInfo::mutable_robot_name() {
+  std::string* _s = _internal_mutable_robot_name();
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.DeviceInfo.robot_name)
+  return _s;
+}
+inline const std::string& DeviceInfo::_internal_robot_name() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.robot_name_.Get();
+}
+inline void DeviceInfo::_internal_set_robot_name(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.robot_name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* DeviceInfo::_internal_mutable_robot_name() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.robot_name_.Mutable( GetArenaForAllocation());
+}
+inline std::string* DeviceInfo::release_robot_name() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:Nrmk.IndyFramework.DeviceInfo.robot_name)
+  return _impl_.robot_name_.Release();
+}
+inline void DeviceInfo::set_allocated_robot_name(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.robot_name_.SetAllocated(value, GetArenaForAllocation());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.robot_name_.IsDefault()) {
+          _impl_.robot_name_.Set("", GetArenaForAllocation());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.DeviceInfo.robot_name)
+}
+
+// string cb_serial = 6;
+inline void DeviceInfo::clear_cb_serial() {
+  _impl_.cb_serial_.ClearToEmpty();
+}
+inline const std::string& DeviceInfo::cb_serial() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.DeviceInfo.cb_serial)
+  return _internal_cb_serial();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void DeviceInfo::set_cb_serial(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.cb_serial_.Set(static_cast<Arg_&&>(arg), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.DeviceInfo.cb_serial)
+}
+inline std::string* DeviceInfo::mutable_cb_serial() {
+  std::string* _s = _internal_mutable_cb_serial();
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.DeviceInfo.cb_serial)
+  return _s;
+}
+inline const std::string& DeviceInfo::_internal_cb_serial() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.cb_serial_.Get();
+}
+inline void DeviceInfo::_internal_set_cb_serial(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.cb_serial_.Set(value, GetArenaForAllocation());
+}
+inline std::string* DeviceInfo::_internal_mutable_cb_serial() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.cb_serial_.Mutable( GetArenaForAllocation());
+}
+inline std::string* DeviceInfo::release_cb_serial() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:Nrmk.IndyFramework.DeviceInfo.cb_serial)
+  return _impl_.cb_serial_.Release();
+}
+inline void DeviceInfo::set_allocated_cb_serial(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.cb_serial_.SetAllocated(value, GetArenaForAllocation());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.cb_serial_.IsDefault()) {
+          _impl_.cb_serial_.Set("", GetArenaForAllocation());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.DeviceInfo.cb_serial)
+}
+
 // string io_board_fw_ver = 10;
 inline void DeviceInfo::clear_io_board_fw_ver() {
   _impl_.io_board_fw_ver_.ClearToEmpty();
@@ -8208,6 +9325,108 @@ inline void DeviceInfo::set_allocated_controller_date(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.DeviceInfo.controller_date)
 }
 
+// string controller_type = 23;
+inline void DeviceInfo::clear_controller_type() {
+  _impl_.controller_type_.ClearToEmpty();
+}
+inline const std::string& DeviceInfo::controller_type() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.DeviceInfo.controller_type)
+  return _internal_controller_type();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void DeviceInfo::set_controller_type(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.controller_type_.Set(static_cast<Arg_&&>(arg), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.DeviceInfo.controller_type)
+}
+inline std::string* DeviceInfo::mutable_controller_type() {
+  std::string* _s = _internal_mutable_controller_type();
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.DeviceInfo.controller_type)
+  return _s;
+}
+inline const std::string& DeviceInfo::_internal_controller_type() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.controller_type_.Get();
+}
+inline void DeviceInfo::_internal_set_controller_type(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.controller_type_.Set(value, GetArenaForAllocation());
+}
+inline std::string* DeviceInfo::_internal_mutable_controller_type() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.controller_type_.Mutable( GetArenaForAllocation());
+}
+inline std::string* DeviceInfo::release_controller_type() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:Nrmk.IndyFramework.DeviceInfo.controller_type)
+  return _impl_.controller_type_.Release();
+}
+inline void DeviceInfo::set_allocated_controller_type(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.controller_type_.SetAllocated(value, GetArenaForAllocation());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.controller_type_.IsDefault()) {
+          _impl_.controller_type_.Set("", GetArenaForAllocation());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.DeviceInfo.controller_type)
+}
+
+// string controller_platform = 24;
+inline void DeviceInfo::clear_controller_platform() {
+  _impl_.controller_platform_.ClearToEmpty();
+}
+inline const std::string& DeviceInfo::controller_platform() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.DeviceInfo.controller_platform)
+  return _internal_controller_platform();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void DeviceInfo::set_controller_platform(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.controller_platform_.Set(static_cast<Arg_&&>(arg), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.DeviceInfo.controller_platform)
+}
+inline std::string* DeviceInfo::mutable_controller_platform() {
+  std::string* _s = _internal_mutable_controller_platform();
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.DeviceInfo.controller_platform)
+  return _s;
+}
+inline const std::string& DeviceInfo::_internal_controller_platform() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.controller_platform_.Get();
+}
+inline void DeviceInfo::_internal_set_controller_platform(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.controller_platform_.Set(value, GetArenaForAllocation());
+}
+inline std::string* DeviceInfo::_internal_mutable_controller_platform() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.controller_platform_.Mutable( GetArenaForAllocation());
+}
+inline std::string* DeviceInfo::release_controller_platform() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:Nrmk.IndyFramework.DeviceInfo.controller_platform)
+  return _impl_.controller_platform_.Release();
+}
+inline void DeviceInfo::set_allocated_controller_platform(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.controller_platform_.SetAllocated(value, GetArenaForAllocation());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.controller_platform_.IsDefault()) {
+          _impl_.controller_platform_.Set("", GetArenaForAllocation());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.DeviceInfo.controller_platform)
+}
+
 // bool teleop_loaded = 30;
 inline void DeviceInfo::clear_teleop_loaded() {
   _impl_.teleop_loaded_ = false;
@@ -8250,6 +9469,94 @@ inline void DeviceInfo::_internal_set_calibrated(bool value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.calibrated_ = value;
+}
+
+// bool use_safety_io = 40;
+inline void DeviceInfo::clear_use_safety_io() {
+  _impl_.use_safety_io_ = false;
+}
+inline bool DeviceInfo::use_safety_io() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.DeviceInfo.use_safety_io)
+  return _internal_use_safety_io();
+}
+inline void DeviceInfo::set_use_safety_io(bool value) {
+  _internal_set_use_safety_io(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.DeviceInfo.use_safety_io)
+}
+inline bool DeviceInfo::_internal_use_safety_io() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.use_safety_io_;
+}
+inline void DeviceInfo::_internal_set_use_safety_io(bool value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.use_safety_io_ = value;
+}
+
+// bool use_npad = 41;
+inline void DeviceInfo::clear_use_npad() {
+  _impl_.use_npad_ = false;
+}
+inline bool DeviceInfo::use_npad() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.DeviceInfo.use_npad)
+  return _internal_use_npad();
+}
+inline void DeviceInfo::set_use_npad(bool value) {
+  _internal_set_use_npad(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.DeviceInfo.use_npad)
+}
+inline bool DeviceInfo::_internal_use_npad() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.use_npad_;
+}
+inline void DeviceInfo::_internal_set_use_npad(bool value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.use_npad_ = value;
+}
+
+// bool use_indykey = 42;
+inline void DeviceInfo::clear_use_indykey() {
+  _impl_.use_indykey_ = false;
+}
+inline bool DeviceInfo::use_indykey() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.DeviceInfo.use_indykey)
+  return _internal_use_indykey();
+}
+inline void DeviceInfo::set_use_indykey(bool value) {
+  _internal_set_use_indykey(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.DeviceInfo.use_indykey)
+}
+inline bool DeviceInfo::_internal_use_indykey() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.use_indykey_;
+}
+inline void DeviceInfo::_internal_set_use_indykey(bool value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.use_indykey_ = value;
+}
+
+// bool use_auto_mode = 43;
+inline void DeviceInfo::clear_use_auto_mode() {
+  _impl_.use_auto_mode_ = false;
+}
+inline bool DeviceInfo::use_auto_mode() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.DeviceInfo.use_auto_mode)
+  return _internal_use_auto_mode();
+}
+inline void DeviceInfo::set_use_auto_mode(bool value) {
+  _internal_set_use_auto_mode(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.DeviceInfo.use_auto_mode)
+}
+inline bool DeviceInfo::_internal_use_auto_mode() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.use_auto_mode_;
+}
+inline void DeviceInfo::_internal_set_use_auto_mode(bool value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.use_auto_mode_ = value;
 }
 
 // .Nrmk.IndyFramework.Response response = 100;
@@ -8460,396 +9767,6 @@ inline void BrakeControlStyle::set_allocated_response(::Nrmk::IndyFramework::Res
 
   _impl_.response_ = reinterpret_cast<::Nrmk::IndyFramework::Response*>(value);
   // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.BrakeControlStyle.response)
-}
-
-// -------------------------------------------------------------------
-
-// GetEL5001Data
-
-// int32 status = 1;
-inline void GetEL5001Data::clear_status() {
-  _impl_.status_ = 0;
-}
-inline ::int32_t GetEL5001Data::status() const {
-  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.GetEL5001Data.status)
-  return _internal_status();
-}
-inline void GetEL5001Data::set_status(::int32_t value) {
-  _internal_set_status(value);
-  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.GetEL5001Data.status)
-}
-inline ::int32_t GetEL5001Data::_internal_status() const {
-  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.status_;
-}
-inline void GetEL5001Data::_internal_set_status(::int32_t value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  _impl_.status_ = value;
-}
-
-// int32 value = 2;
-inline void GetEL5001Data::clear_value() {
-  _impl_.value_ = 0;
-}
-inline ::int32_t GetEL5001Data::value() const {
-  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.GetEL5001Data.value)
-  return _internal_value();
-}
-inline void GetEL5001Data::set_value(::int32_t value) {
-  _internal_set_value(value);
-  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.GetEL5001Data.value)
-}
-inline ::int32_t GetEL5001Data::_internal_value() const {
-  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.value_;
-}
-inline void GetEL5001Data::_internal_set_value(::int32_t value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  _impl_.value_ = value;
-}
-
-// int32 delta = 3;
-inline void GetEL5001Data::clear_delta() {
-  _impl_.delta_ = 0;
-}
-inline ::int32_t GetEL5001Data::delta() const {
-  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.GetEL5001Data.delta)
-  return _internal_delta();
-}
-inline void GetEL5001Data::set_delta(::int32_t value) {
-  _internal_set_delta(value);
-  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.GetEL5001Data.delta)
-}
-inline ::int32_t GetEL5001Data::_internal_delta() const {
-  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.delta_;
-}
-inline void GetEL5001Data::_internal_set_delta(::int32_t value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  _impl_.delta_ = value;
-}
-
-// float average = 4;
-inline void GetEL5001Data::clear_average() {
-  _impl_.average_ = 0;
-}
-inline float GetEL5001Data::average() const {
-  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.GetEL5001Data.average)
-  return _internal_average();
-}
-inline void GetEL5001Data::set_average(float value) {
-  _internal_set_average(value);
-  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.GetEL5001Data.average)
-}
-inline float GetEL5001Data::_internal_average() const {
-  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.average_;
-}
-inline void GetEL5001Data::_internal_set_average(float value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  _impl_.average_ = value;
-}
-
-// .Nrmk.IndyFramework.Response response = 100;
-inline bool GetEL5001Data::has_response() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
-  PROTOBUF_ASSUME(!value || _impl_.response_ != nullptr);
-  return value;
-}
-inline const ::Nrmk::IndyFramework::Response& GetEL5001Data::_internal_response() const {
-  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  const ::Nrmk::IndyFramework::Response* p = _impl_.response_;
-  return p != nullptr ? *p : reinterpret_cast<const ::Nrmk::IndyFramework::Response&>(::Nrmk::IndyFramework::_Response_default_instance_);
-}
-inline const ::Nrmk::IndyFramework::Response& GetEL5001Data::response() const {
-  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.GetEL5001Data.response)
-  return _internal_response();
-}
-inline void GetEL5001Data::unsafe_arena_set_allocated_response(::Nrmk::IndyFramework::Response* value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  if (GetArenaForAllocation() == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.response_);
-  }
-  _impl_.response_ = reinterpret_cast<::Nrmk::IndyFramework::Response*>(value);
-  if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000001u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000001u;
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Nrmk.IndyFramework.GetEL5001Data.response)
-}
-inline ::Nrmk::IndyFramework::Response* GetEL5001Data::release_response() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-
-  _impl_._has_bits_[0] &= ~0x00000001u;
-  ::Nrmk::IndyFramework::Response* released = _impl_.response_;
-  _impl_.response_ = nullptr;
-#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
-  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
-  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
-  if (GetArenaForAllocation() == nullptr) {
-    delete old;
-  }
-#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
-  if (GetArenaForAllocation() != nullptr) {
-    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
-  }
-#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
-  return released;
-}
-inline ::Nrmk::IndyFramework::Response* GetEL5001Data::unsafe_arena_release_response() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:Nrmk.IndyFramework.GetEL5001Data.response)
-
-  _impl_._has_bits_[0] &= ~0x00000001u;
-  ::Nrmk::IndyFramework::Response* temp = _impl_.response_;
-  _impl_.response_ = nullptr;
-  return temp;
-}
-inline ::Nrmk::IndyFramework::Response* GetEL5001Data::_internal_mutable_response() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_._has_bits_[0] |= 0x00000001u;
-  if (_impl_.response_ == nullptr) {
-    auto* p = CreateMaybeMessage<::Nrmk::IndyFramework::Response>(GetArenaForAllocation());
-    _impl_.response_ = reinterpret_cast<::Nrmk::IndyFramework::Response*>(p);
-  }
-  return _impl_.response_;
-}
-inline ::Nrmk::IndyFramework::Response* GetEL5001Data::mutable_response() {
-  ::Nrmk::IndyFramework::Response* _msg = _internal_mutable_response();
-  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.GetEL5001Data.response)
-  return _msg;
-}
-inline void GetEL5001Data::set_allocated_response(::Nrmk::IndyFramework::Response* value) {
-  ::google::protobuf::Arena* message_arena = GetArenaForAllocation();
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  if (message_arena == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.response_);
-  }
-
-  if (value != nullptr) {
-    ::google::protobuf::Arena* submessage_arena =
-        ::google::protobuf::Arena::InternalGetOwningArena(reinterpret_cast<::google::protobuf::MessageLite*>(value));
-    if (message_arena != submessage_arena) {
-      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
-    }
-    _impl_._has_bits_[0] |= 0x00000001u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000001u;
-  }
-
-  _impl_.response_ = reinterpret_cast<::Nrmk::IndyFramework::Response*>(value);
-  // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.GetEL5001Data.response)
-}
-
-// -------------------------------------------------------------------
-
-// GetEL5101Data
-
-// int32 status = 1;
-inline void GetEL5101Data::clear_status() {
-  _impl_.status_ = 0;
-}
-inline ::int32_t GetEL5101Data::status() const {
-  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.GetEL5101Data.status)
-  return _internal_status();
-}
-inline void GetEL5101Data::set_status(::int32_t value) {
-  _internal_set_status(value);
-  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.GetEL5101Data.status)
-}
-inline ::int32_t GetEL5101Data::_internal_status() const {
-  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.status_;
-}
-inline void GetEL5101Data::_internal_set_status(::int32_t value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  _impl_.status_ = value;
-}
-
-// int32 value = 2;
-inline void GetEL5101Data::clear_value() {
-  _impl_.value_ = 0;
-}
-inline ::int32_t GetEL5101Data::value() const {
-  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.GetEL5101Data.value)
-  return _internal_value();
-}
-inline void GetEL5101Data::set_value(::int32_t value) {
-  _internal_set_value(value);
-  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.GetEL5101Data.value)
-}
-inline ::int32_t GetEL5101Data::_internal_value() const {
-  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.value_;
-}
-inline void GetEL5101Data::_internal_set_value(::int32_t value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  _impl_.value_ = value;
-}
-
-// int32 latch = 3;
-inline void GetEL5101Data::clear_latch() {
-  _impl_.latch_ = 0;
-}
-inline ::int32_t GetEL5101Data::latch() const {
-  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.GetEL5101Data.latch)
-  return _internal_latch();
-}
-inline void GetEL5101Data::set_latch(::int32_t value) {
-  _internal_set_latch(value);
-  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.GetEL5101Data.latch)
-}
-inline ::int32_t GetEL5101Data::_internal_latch() const {
-  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.latch_;
-}
-inline void GetEL5101Data::_internal_set_latch(::int32_t value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  _impl_.latch_ = value;
-}
-
-// int32 delta = 4;
-inline void GetEL5101Data::clear_delta() {
-  _impl_.delta_ = 0;
-}
-inline ::int32_t GetEL5101Data::delta() const {
-  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.GetEL5101Data.delta)
-  return _internal_delta();
-}
-inline void GetEL5101Data::set_delta(::int32_t value) {
-  _internal_set_delta(value);
-  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.GetEL5101Data.delta)
-}
-inline ::int32_t GetEL5101Data::_internal_delta() const {
-  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.delta_;
-}
-inline void GetEL5101Data::_internal_set_delta(::int32_t value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  _impl_.delta_ = value;
-}
-
-// float average = 5;
-inline void GetEL5101Data::clear_average() {
-  _impl_.average_ = 0;
-}
-inline float GetEL5101Data::average() const {
-  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.GetEL5101Data.average)
-  return _internal_average();
-}
-inline void GetEL5101Data::set_average(float value) {
-  _internal_set_average(value);
-  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.GetEL5101Data.average)
-}
-inline float GetEL5101Data::_internal_average() const {
-  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.average_;
-}
-inline void GetEL5101Data::_internal_set_average(float value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  _impl_.average_ = value;
-}
-
-// .Nrmk.IndyFramework.Response response = 100;
-inline bool GetEL5101Data::has_response() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
-  PROTOBUF_ASSUME(!value || _impl_.response_ != nullptr);
-  return value;
-}
-inline const ::Nrmk::IndyFramework::Response& GetEL5101Data::_internal_response() const {
-  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  const ::Nrmk::IndyFramework::Response* p = _impl_.response_;
-  return p != nullptr ? *p : reinterpret_cast<const ::Nrmk::IndyFramework::Response&>(::Nrmk::IndyFramework::_Response_default_instance_);
-}
-inline const ::Nrmk::IndyFramework::Response& GetEL5101Data::response() const {
-  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.GetEL5101Data.response)
-  return _internal_response();
-}
-inline void GetEL5101Data::unsafe_arena_set_allocated_response(::Nrmk::IndyFramework::Response* value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  if (GetArenaForAllocation() == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.response_);
-  }
-  _impl_.response_ = reinterpret_cast<::Nrmk::IndyFramework::Response*>(value);
-  if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000001u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000001u;
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Nrmk.IndyFramework.GetEL5101Data.response)
-}
-inline ::Nrmk::IndyFramework::Response* GetEL5101Data::release_response() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-
-  _impl_._has_bits_[0] &= ~0x00000001u;
-  ::Nrmk::IndyFramework::Response* released = _impl_.response_;
-  _impl_.response_ = nullptr;
-#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
-  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
-  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
-  if (GetArenaForAllocation() == nullptr) {
-    delete old;
-  }
-#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
-  if (GetArenaForAllocation() != nullptr) {
-    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
-  }
-#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
-  return released;
-}
-inline ::Nrmk::IndyFramework::Response* GetEL5101Data::unsafe_arena_release_response() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:Nrmk.IndyFramework.GetEL5101Data.response)
-
-  _impl_._has_bits_[0] &= ~0x00000001u;
-  ::Nrmk::IndyFramework::Response* temp = _impl_.response_;
-  _impl_.response_ = nullptr;
-  return temp;
-}
-inline ::Nrmk::IndyFramework::Response* GetEL5101Data::_internal_mutable_response() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_._has_bits_[0] |= 0x00000001u;
-  if (_impl_.response_ == nullptr) {
-    auto* p = CreateMaybeMessage<::Nrmk::IndyFramework::Response>(GetArenaForAllocation());
-    _impl_.response_ = reinterpret_cast<::Nrmk::IndyFramework::Response*>(p);
-  }
-  return _impl_.response_;
-}
-inline ::Nrmk::IndyFramework::Response* GetEL5101Data::mutable_response() {
-  ::Nrmk::IndyFramework::Response* _msg = _internal_mutable_response();
-  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.GetEL5101Data.response)
-  return _msg;
-}
-inline void GetEL5101Data::set_allocated_response(::Nrmk::IndyFramework::Response* value) {
-  ::google::protobuf::Arena* message_arena = GetArenaForAllocation();
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  if (message_arena == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.response_);
-  }
-
-  if (value != nullptr) {
-    ::google::protobuf::Arena* submessage_arena =
-        ::google::protobuf::Arena::InternalGetOwningArena(reinterpret_cast<::google::protobuf::MessageLite*>(value));
-    if (message_arena != submessage_arena) {
-      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
-    }
-    _impl_._has_bits_[0] |= 0x00000001u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000001u;
-  }
-
-  _impl_.response_ = reinterpret_cast<::Nrmk::IndyFramework::Response*>(value);
-  // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.GetEL5101Data.response)
 }
 
 // -------------------------------------------------------------------
@@ -9803,6 +10720,237 @@ inline void SafetyControlData::set_allocated_safety_state(::Nrmk::IndyFramework:
 
 // -------------------------------------------------------------------
 
+// ViolationRequest
+
+// uint64 violation_type = 1;
+inline void ViolationRequest::clear_violation_type() {
+  _impl_.violation_type_ = ::uint64_t{0u};
+}
+inline ::uint64_t ViolationRequest::violation_type() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.ViolationRequest.violation_type)
+  return _internal_violation_type();
+}
+inline void ViolationRequest::set_violation_type(::uint64_t value) {
+  _internal_set_violation_type(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.ViolationRequest.violation_type)
+}
+inline ::uint64_t ViolationRequest::_internal_violation_type() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.violation_type_;
+}
+inline void ViolationRequest::_internal_set_violation_type(::uint64_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.violation_type_ = value;
+}
+
+// .Nrmk.IndyFramework.StopCategory stop_category = 2;
+inline void ViolationRequest::clear_stop_category() {
+  _impl_.stop_category_ = 0;
+}
+inline ::Nrmk::IndyFramework::StopCategory ViolationRequest::stop_category() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.ViolationRequest.stop_category)
+  return _internal_stop_category();
+}
+inline void ViolationRequest::set_stop_category(::Nrmk::IndyFramework::StopCategory value) {
+  _internal_set_stop_category(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.ViolationRequest.stop_category)
+}
+inline ::Nrmk::IndyFramework::StopCategory ViolationRequest::_internal_stop_category() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return static_cast<::Nrmk::IndyFramework::StopCategory>(_impl_.stop_category_);
+}
+inline void ViolationRequest::_internal_set_stop_category(::Nrmk::IndyFramework::StopCategory value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.stop_category_ = value;
+}
+
+// int32 source = 3;
+inline void ViolationRequest::clear_source() {
+  _impl_.source_ = 0;
+}
+inline ::int32_t ViolationRequest::source() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.ViolationRequest.source)
+  return _internal_source();
+}
+inline void ViolationRequest::set_source(::int32_t value) {
+  _internal_set_source(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.ViolationRequest.source)
+}
+inline ::int32_t ViolationRequest::_internal_source() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.source_;
+}
+inline void ViolationRequest::_internal_set_source(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.source_ = value;
+}
+
+// int32 axis_idx = 11;
+inline void ViolationRequest::clear_axis_idx() {
+  _impl_.axis_idx_ = 0;
+}
+inline ::int32_t ViolationRequest::axis_idx() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.ViolationRequest.axis_idx)
+  return _internal_axis_idx();
+}
+inline void ViolationRequest::set_axis_idx(::int32_t value) {
+  _internal_set_axis_idx(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.ViolationRequest.axis_idx)
+}
+inline ::int32_t ViolationRequest::_internal_axis_idx() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.axis_idx_;
+}
+inline void ViolationRequest::_internal_set_axis_idx(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.axis_idx_ = value;
+}
+
+// double misc_fvalue = 12;
+inline void ViolationRequest::clear_misc_fvalue() {
+  _impl_.misc_fvalue_ = 0;
+}
+inline double ViolationRequest::misc_fvalue() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.ViolationRequest.misc_fvalue)
+  return _internal_misc_fvalue();
+}
+inline void ViolationRequest::set_misc_fvalue(double value) {
+  _internal_set_misc_fvalue(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.ViolationRequest.misc_fvalue)
+}
+inline double ViolationRequest::_internal_misc_fvalue() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.misc_fvalue_;
+}
+inline void ViolationRequest::_internal_set_misc_fvalue(double value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.misc_fvalue_ = value;
+}
+
+// int64 misc_ivalue = 13;
+inline void ViolationRequest::clear_misc_ivalue() {
+  _impl_.misc_ivalue_ = ::int64_t{0};
+}
+inline ::int64_t ViolationRequest::misc_ivalue() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.ViolationRequest.misc_ivalue)
+  return _internal_misc_ivalue();
+}
+inline void ViolationRequest::set_misc_ivalue(::int64_t value) {
+  _internal_set_misc_ivalue(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.ViolationRequest.misc_ivalue)
+}
+inline ::int64_t ViolationRequest::_internal_misc_ivalue() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.misc_ivalue_;
+}
+inline void ViolationRequest::_internal_set_misc_ivalue(::int64_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.misc_ivalue_ = value;
+}
+
+// double misc_min = 14;
+inline void ViolationRequest::clear_misc_min() {
+  _impl_.misc_min_ = 0;
+}
+inline double ViolationRequest::misc_min() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.ViolationRequest.misc_min)
+  return _internal_misc_min();
+}
+inline void ViolationRequest::set_misc_min(double value) {
+  _internal_set_misc_min(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.ViolationRequest.misc_min)
+}
+inline double ViolationRequest::_internal_misc_min() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.misc_min_;
+}
+inline void ViolationRequest::_internal_set_misc_min(double value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.misc_min_ = value;
+}
+
+// double misc_max = 15;
+inline void ViolationRequest::clear_misc_max() {
+  _impl_.misc_max_ = 0;
+}
+inline double ViolationRequest::misc_max() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.ViolationRequest.misc_max)
+  return _internal_misc_max();
+}
+inline void ViolationRequest::set_misc_max(double value) {
+  _internal_set_misc_max(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.ViolationRequest.misc_max)
+}
+inline double ViolationRequest::_internal_misc_max() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.misc_max_;
+}
+inline void ViolationRequest::_internal_set_misc_max(double value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.misc_max_ = value;
+}
+
+// string misc_text = 16;
+inline void ViolationRequest::clear_misc_text() {
+  _impl_.misc_text_.ClearToEmpty();
+}
+inline const std::string& ViolationRequest::misc_text() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.ViolationRequest.misc_text)
+  return _internal_misc_text();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void ViolationRequest::set_misc_text(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.misc_text_.Set(static_cast<Arg_&&>(arg), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.ViolationRequest.misc_text)
+}
+inline std::string* ViolationRequest::mutable_misc_text() {
+  std::string* _s = _internal_mutable_misc_text();
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.ViolationRequest.misc_text)
+  return _s;
+}
+inline const std::string& ViolationRequest::_internal_misc_text() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.misc_text_.Get();
+}
+inline void ViolationRequest::_internal_set_misc_text(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.misc_text_.Set(value, GetArenaForAllocation());
+}
+inline std::string* ViolationRequest::_internal_mutable_misc_text() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.misc_text_.Mutable( GetArenaForAllocation());
+}
+inline std::string* ViolationRequest::release_misc_text() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:Nrmk.IndyFramework.ViolationRequest.misc_text)
+  return _impl_.misc_text_.Release();
+}
+inline void ViolationRequest::set_allocated_misc_text(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.misc_text_.SetAllocated(value, GetArenaForAllocation());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.misc_text_.IsDefault()) {
+          _impl_.misc_text_.Set("", GetArenaForAllocation());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.ViolationRequest.misc_text)
+}
+
+// -------------------------------------------------------------------
+
 // SanderCommand
 
 // .Nrmk.IndyFramework.SanderCommand.SanderType type = 1;
@@ -10717,6 +11865,28 @@ inline void Conveyor::set_allocated_terminal_pose(::Nrmk::IndyFramework::PosePai
   // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.Conveyor.terminal_pose)
 }
 
+// int32 tool_link = 31;
+inline void Conveyor::clear_tool_link() {
+  _impl_.tool_link_ = 0;
+}
+inline ::int32_t Conveyor::tool_link() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.Conveyor.tool_link)
+  return _internal_tool_link();
+}
+inline void Conveyor::set_tool_link(::int32_t value) {
+  _internal_set_tool_link(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.Conveyor.tool_link)
+}
+inline ::int32_t Conveyor::_internal_tool_link() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.tool_link_;
+}
+inline void Conveyor::_internal_set_tool_link(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.tool_link_ = value;
+}
+
 // -------------------------------------------------------------------
 
 // ConveyorState
@@ -10763,6 +11933,52 @@ inline void ConveyorState::_internal_set_triggered(float value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.triggered_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// ConveyorObjectDistances
+
+// repeated float dists = 1;
+inline int ConveyorObjectDistances::_internal_dists_size() const {
+  return _internal_dists().size();
+}
+inline int ConveyorObjectDistances::dists_size() const {
+  return _internal_dists_size();
+}
+inline void ConveyorObjectDistances::clear_dists() {
+  _internal_mutable_dists()->Clear();
+}
+inline float ConveyorObjectDistances::dists(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.ConveyorObjectDistances.dists)
+  return _internal_dists().Get(index);
+}
+inline void ConveyorObjectDistances::set_dists(int index, float value) {
+  _internal_mutable_dists()->Set(index, value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.ConveyorObjectDistances.dists)
+}
+inline void ConveyorObjectDistances::add_dists(float value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_dists()->Add(value);
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.ConveyorObjectDistances.dists)
+}
+inline const ::google::protobuf::RepeatedField<float>& ConveyorObjectDistances::dists() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.ConveyorObjectDistances.dists)
+  return _internal_dists();
+}
+inline ::google::protobuf::RepeatedField<float>* ConveyorObjectDistances::mutable_dists() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.ConveyorObjectDistances.dists)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_dists();
+}
+
+inline const ::google::protobuf::RepeatedField<float>& ConveyorObjectDistances::_internal_dists() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.dists_;
+}
+inline ::google::protobuf::RepeatedField<float>* ConveyorObjectDistances::_internal_mutable_dists() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.dists_;
 }
 
 // -------------------------------------------------------------------
@@ -11465,6 +12681,651 @@ inline void VisionResult::set_allocated_msg(std::string* value) {
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.VisionResult.msg)
+}
+
+// -------------------------------------------------------------------
+
+// Tool
+
+// string name = 1;
+inline void Tool::clear_name() {
+  _impl_.name_.ClearToEmpty();
+}
+inline const std::string& Tool::name() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.Tool.name)
+  return _internal_name();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void Tool::set_name(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.name_.Set(static_cast<Arg_&&>(arg), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.Tool.name)
+}
+inline std::string* Tool::mutable_name() {
+  std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.Tool.name)
+  return _s;
+}
+inline const std::string& Tool::_internal_name() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.name_.Get();
+}
+inline void Tool::_internal_set_name(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* Tool::_internal_mutable_name() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.name_.Mutable( GetArenaForAllocation());
+}
+inline std::string* Tool::release_name() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:Nrmk.IndyFramework.Tool.name)
+  return _impl_.name_.Release();
+}
+inline void Tool::set_allocated_name(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.name_.SetAllocated(value, GetArenaForAllocation());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.name_.IsDefault()) {
+          _impl_.name_.Set("", GetArenaForAllocation());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.Tool.name)
+}
+
+// float execute_time = 2;
+inline void Tool::clear_execute_time() {
+  _impl_.execute_time_ = 0;
+}
+inline float Tool::execute_time() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.Tool.execute_time)
+  return _internal_execute_time();
+}
+inline void Tool::set_execute_time(float value) {
+  _internal_set_execute_time(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.Tool.execute_time)
+}
+inline float Tool::_internal_execute_time() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.execute_time_;
+}
+inline void Tool::_internal_set_execute_time(float value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.execute_time_ = value;
+}
+
+// repeated .Nrmk.IndyFramework.DigitalSignal do_signals = 3;
+inline int Tool::_internal_do_signals_size() const {
+  return _internal_do_signals().size();
+}
+inline int Tool::do_signals_size() const {
+  return _internal_do_signals_size();
+}
+inline void Tool::clear_do_signals() {
+  _internal_mutable_do_signals()->Clear();
+}
+inline ::Nrmk::IndyFramework::DigitalSignal* Tool::mutable_do_signals(int index) {
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.Tool.do_signals)
+  return _internal_mutable_do_signals()->Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::DigitalSignal >*
+Tool::mutable_do_signals() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.Tool.do_signals)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_do_signals();
+}
+inline const ::Nrmk::IndyFramework::DigitalSignal& Tool::do_signals(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.Tool.do_signals)
+    return _internal_do_signals().Get(index);
+}
+inline ::Nrmk::IndyFramework::DigitalSignal* Tool::add_do_signals() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::Nrmk::IndyFramework::DigitalSignal* _add = _internal_mutable_do_signals()->Add();
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.Tool.do_signals)
+  return _add;
+}
+inline const ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::DigitalSignal >&
+Tool::do_signals() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.Tool.do_signals)
+  return _internal_do_signals();
+}
+inline const ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::DigitalSignal>&
+Tool::_internal_do_signals() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.do_signals_;
+}
+inline ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::DigitalSignal>*
+Tool::_internal_mutable_do_signals() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.do_signals_;
+}
+
+// repeated .Nrmk.IndyFramework.EndtoolSignal enddo_signals = 4;
+inline int Tool::_internal_enddo_signals_size() const {
+  return _internal_enddo_signals().size();
+}
+inline int Tool::enddo_signals_size() const {
+  return _internal_enddo_signals_size();
+}
+inline void Tool::clear_enddo_signals() {
+  _internal_mutable_enddo_signals()->Clear();
+}
+inline ::Nrmk::IndyFramework::EndtoolSignal* Tool::mutable_enddo_signals(int index) {
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.Tool.enddo_signals)
+  return _internal_mutable_enddo_signals()->Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::EndtoolSignal >*
+Tool::mutable_enddo_signals() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.Tool.enddo_signals)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_enddo_signals();
+}
+inline const ::Nrmk::IndyFramework::EndtoolSignal& Tool::enddo_signals(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.Tool.enddo_signals)
+    return _internal_enddo_signals().Get(index);
+}
+inline ::Nrmk::IndyFramework::EndtoolSignal* Tool::add_enddo_signals() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::Nrmk::IndyFramework::EndtoolSignal* _add = _internal_mutable_enddo_signals()->Add();
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.Tool.enddo_signals)
+  return _add;
+}
+inline const ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::EndtoolSignal >&
+Tool::enddo_signals() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.Tool.enddo_signals)
+  return _internal_enddo_signals();
+}
+inline const ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::EndtoolSignal>&
+Tool::_internal_enddo_signals() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.enddo_signals_;
+}
+inline ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::EndtoolSignal>*
+Tool::_internal_mutable_enddo_signals() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.enddo_signals_;
+}
+
+// repeated .Nrmk.IndyFramework.AnalogSignal ao_signals = 5;
+inline int Tool::_internal_ao_signals_size() const {
+  return _internal_ao_signals().size();
+}
+inline int Tool::ao_signals_size() const {
+  return _internal_ao_signals_size();
+}
+inline void Tool::clear_ao_signals() {
+  _internal_mutable_ao_signals()->Clear();
+}
+inline ::Nrmk::IndyFramework::AnalogSignal* Tool::mutable_ao_signals(int index) {
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.Tool.ao_signals)
+  return _internal_mutable_ao_signals()->Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::AnalogSignal >*
+Tool::mutable_ao_signals() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.Tool.ao_signals)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_ao_signals();
+}
+inline const ::Nrmk::IndyFramework::AnalogSignal& Tool::ao_signals(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.Tool.ao_signals)
+    return _internal_ao_signals().Get(index);
+}
+inline ::Nrmk::IndyFramework::AnalogSignal* Tool::add_ao_signals() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::Nrmk::IndyFramework::AnalogSignal* _add = _internal_mutable_ao_signals()->Add();
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.Tool.ao_signals)
+  return _add;
+}
+inline const ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::AnalogSignal >&
+Tool::ao_signals() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.Tool.ao_signals)
+  return _internal_ao_signals();
+}
+inline const ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::AnalogSignal>&
+Tool::_internal_ao_signals() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.ao_signals_;
+}
+inline ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::AnalogSignal>*
+Tool::_internal_mutable_ao_signals() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.ao_signals_;
+}
+
+// repeated .Nrmk.IndyFramework.AnalogSignal endao_signals = 6;
+inline int Tool::_internal_endao_signals_size() const {
+  return _internal_endao_signals().size();
+}
+inline int Tool::endao_signals_size() const {
+  return _internal_endao_signals_size();
+}
+inline void Tool::clear_endao_signals() {
+  _internal_mutable_endao_signals()->Clear();
+}
+inline ::Nrmk::IndyFramework::AnalogSignal* Tool::mutable_endao_signals(int index) {
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.Tool.endao_signals)
+  return _internal_mutable_endao_signals()->Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::AnalogSignal >*
+Tool::mutable_endao_signals() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.Tool.endao_signals)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_endao_signals();
+}
+inline const ::Nrmk::IndyFramework::AnalogSignal& Tool::endao_signals(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.Tool.endao_signals)
+    return _internal_endao_signals().Get(index);
+}
+inline ::Nrmk::IndyFramework::AnalogSignal* Tool::add_endao_signals() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::Nrmk::IndyFramework::AnalogSignal* _add = _internal_mutable_endao_signals()->Add();
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.Tool.endao_signals)
+  return _add;
+}
+inline const ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::AnalogSignal >&
+Tool::endao_signals() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.Tool.endao_signals)
+  return _internal_endao_signals();
+}
+inline const ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::AnalogSignal>&
+Tool::_internal_endao_signals() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.endao_signals_;
+}
+inline ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::AnalogSignal>*
+Tool::_internal_mutable_endao_signals() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.endao_signals_;
+}
+
+// repeated string expression = 7;
+inline int Tool::_internal_expression_size() const {
+  return _internal_expression().size();
+}
+inline int Tool::expression_size() const {
+  return _internal_expression_size();
+}
+inline void Tool::clear_expression() {
+  _internal_mutable_expression()->Clear();
+}
+inline std::string* Tool::add_expression() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  std::string* _s = _internal_mutable_expression()->Add();
+  // @@protoc_insertion_point(field_add_mutable:Nrmk.IndyFramework.Tool.expression)
+  return _s;
+}
+inline const std::string& Tool::expression(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.Tool.expression)
+  return _internal_expression().Get(index);
+}
+inline std::string* Tool::mutable_expression(int index) {
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.Tool.expression)
+  return _internal_mutable_expression()->Mutable(index);
+}
+inline void Tool::set_expression(int index, const std::string& value) {
+  _internal_mutable_expression()->Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.Tool.expression)
+}
+inline void Tool::set_expression(int index, std::string&& value) {
+  _internal_mutable_expression()->Mutable(index)->assign(std::move(value));
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.Tool.expression)
+}
+inline void Tool::set_expression(int index, const char* value) {
+  ABSL_DCHECK(value != nullptr);
+  _internal_mutable_expression()->Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:Nrmk.IndyFramework.Tool.expression)
+}
+inline void Tool::set_expression(int index, const char* value,
+                              std::size_t size) {
+  _internal_mutable_expression()->Mutable(index)->assign(
+      reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:Nrmk.IndyFramework.Tool.expression)
+}
+inline void Tool::set_expression(int index, absl::string_view value) {
+  _internal_mutable_expression()->Mutable(index)->assign(value.data(),
+                                                     value.size());
+  // @@protoc_insertion_point(field_set_string_piece:Nrmk.IndyFramework.Tool.expression)
+}
+inline void Tool::add_expression(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_expression()->Add()->assign(value);
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.Tool.expression)
+}
+inline void Tool::add_expression(std::string&& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_expression()->Add(std::move(value));
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.Tool.expression)
+}
+inline void Tool::add_expression(const char* value) {
+  ABSL_DCHECK(value != nullptr);
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_expression()->Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:Nrmk.IndyFramework.Tool.expression)
+}
+inline void Tool::add_expression(const char* value, std::size_t size) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_expression()->Add()->assign(
+      reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:Nrmk.IndyFramework.Tool.expression)
+}
+inline void Tool::add_expression(absl::string_view value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_expression()->Add()->assign(value.data(), value.size());
+  // @@protoc_insertion_point(field_add_string_piece:Nrmk.IndyFramework.Tool.expression)
+}
+inline const ::google::protobuf::RepeatedPtrField<std::string>&
+Tool::expression() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.Tool.expression)
+  return _internal_expression();
+}
+inline ::google::protobuf::RepeatedPtrField<std::string>* Tool::mutable_expression() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.Tool.expression)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_expression();
+}
+inline const ::google::protobuf::RepeatedPtrField<std::string>&
+Tool::_internal_expression() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.expression_;
+}
+inline ::google::protobuf::RepeatedPtrField<std::string>*
+Tool::_internal_mutable_expression() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.expression_;
+}
+
+// repeated .Nrmk.IndyFramework.GripperCommand gripper_signals = 8;
+inline int Tool::_internal_gripper_signals_size() const {
+  return _internal_gripper_signals().size();
+}
+inline int Tool::gripper_signals_size() const {
+  return _internal_gripper_signals_size();
+}
+inline void Tool::clear_gripper_signals() {
+  _internal_mutable_gripper_signals()->Clear();
+}
+inline ::Nrmk::IndyFramework::GripperCommand* Tool::mutable_gripper_signals(int index) {
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.Tool.gripper_signals)
+  return _internal_mutable_gripper_signals()->Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::GripperCommand >*
+Tool::mutable_gripper_signals() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.Tool.gripper_signals)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_gripper_signals();
+}
+inline const ::Nrmk::IndyFramework::GripperCommand& Tool::gripper_signals(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.Tool.gripper_signals)
+    return _internal_gripper_signals().Get(index);
+}
+inline ::Nrmk::IndyFramework::GripperCommand* Tool::add_gripper_signals() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::Nrmk::IndyFramework::GripperCommand* _add = _internal_mutable_gripper_signals()->Add();
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.Tool.gripper_signals)
+  return _add;
+}
+inline const ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::GripperCommand >&
+Tool::gripper_signals() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.Tool.gripper_signals)
+  return _internal_gripper_signals();
+}
+inline const ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::GripperCommand>&
+Tool::_internal_gripper_signals() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.gripper_signals_;
+}
+inline ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::GripperCommand>*
+Tool::_internal_mutable_gripper_signals() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.gripper_signals_;
+}
+
+// repeated .Nrmk.IndyFramework.ModbusCommand modbus_signals = 9;
+inline int Tool::_internal_modbus_signals_size() const {
+  return _internal_modbus_signals().size();
+}
+inline int Tool::modbus_signals_size() const {
+  return _internal_modbus_signals_size();
+}
+inline void Tool::clear_modbus_signals() {
+  _internal_mutable_modbus_signals()->Clear();
+}
+inline ::Nrmk::IndyFramework::ModbusCommand* Tool::mutable_modbus_signals(int index) {
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.Tool.modbus_signals)
+  return _internal_mutable_modbus_signals()->Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::ModbusCommand >*
+Tool::mutable_modbus_signals() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.Tool.modbus_signals)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_modbus_signals();
+}
+inline const ::Nrmk::IndyFramework::ModbusCommand& Tool::modbus_signals(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.Tool.modbus_signals)
+    return _internal_modbus_signals().Get(index);
+}
+inline ::Nrmk::IndyFramework::ModbusCommand* Tool::add_modbus_signals() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::Nrmk::IndyFramework::ModbusCommand* _add = _internal_mutable_modbus_signals()->Add();
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.Tool.modbus_signals)
+  return _add;
+}
+inline const ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::ModbusCommand >&
+Tool::modbus_signals() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.Tool.modbus_signals)
+  return _internal_modbus_signals();
+}
+inline const ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::ModbusCommand>&
+Tool::_internal_modbus_signals() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.modbus_signals_;
+}
+inline ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::ModbusCommand>*
+Tool::_internal_mutable_modbus_signals() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.modbus_signals_;
+}
+
+// -------------------------------------------------------------------
+
+// ModbusCommand
+
+// string server = 1;
+inline void ModbusCommand::clear_server() {
+  _impl_.server_.ClearToEmpty();
+}
+inline const std::string& ModbusCommand::server() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.ModbusCommand.server)
+  return _internal_server();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void ModbusCommand::set_server(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.server_.Set(static_cast<Arg_&&>(arg), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.ModbusCommand.server)
+}
+inline std::string* ModbusCommand::mutable_server() {
+  std::string* _s = _internal_mutable_server();
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.ModbusCommand.server)
+  return _s;
+}
+inline const std::string& ModbusCommand::_internal_server() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.server_.Get();
+}
+inline void ModbusCommand::_internal_set_server(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.server_.Set(value, GetArenaForAllocation());
+}
+inline std::string* ModbusCommand::_internal_mutable_server() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.server_.Mutable( GetArenaForAllocation());
+}
+inline std::string* ModbusCommand::release_server() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:Nrmk.IndyFramework.ModbusCommand.server)
+  return _impl_.server_.Release();
+}
+inline void ModbusCommand::set_allocated_server(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.server_.SetAllocated(value, GetArenaForAllocation());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.server_.IsDefault()) {
+          _impl_.server_.Set("", GetArenaForAllocation());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.ModbusCommand.server)
+}
+
+// repeated .Nrmk.IndyFramework.ModbusSignal signals = 2;
+inline int ModbusCommand::_internal_signals_size() const {
+  return _internal_signals().size();
+}
+inline int ModbusCommand::signals_size() const {
+  return _internal_signals_size();
+}
+inline void ModbusCommand::clear_signals() {
+  _internal_mutable_signals()->Clear();
+}
+inline ::Nrmk::IndyFramework::ModbusSignal* ModbusCommand::mutable_signals(int index) {
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.ModbusCommand.signals)
+  return _internal_mutable_signals()->Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::ModbusSignal >*
+ModbusCommand::mutable_signals() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.ModbusCommand.signals)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_signals();
+}
+inline const ::Nrmk::IndyFramework::ModbusSignal& ModbusCommand::signals(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.ModbusCommand.signals)
+    return _internal_signals().Get(index);
+}
+inline ::Nrmk::IndyFramework::ModbusSignal* ModbusCommand::add_signals() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::Nrmk::IndyFramework::ModbusSignal* _add = _internal_mutable_signals()->Add();
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.ModbusCommand.signals)
+  return _add;
+}
+inline const ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::ModbusSignal >&
+ModbusCommand::signals() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.ModbusCommand.signals)
+  return _internal_signals();
+}
+inline const ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::ModbusSignal>&
+ModbusCommand::_internal_signals() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.signals_;
+}
+inline ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::ModbusSignal>*
+ModbusCommand::_internal_mutable_signals() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.signals_;
+}
+
+// -------------------------------------------------------------------
+
+// ModbusSignal
+
+// int32 addr = 1;
+inline void ModbusSignal::clear_addr() {
+  _impl_.addr_ = 0;
+}
+inline ::int32_t ModbusSignal::addr() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.ModbusSignal.addr)
+  return _internal_addr();
+}
+inline void ModbusSignal::set_addr(::int32_t value) {
+  _internal_set_addr(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.ModbusSignal.addr)
+}
+inline ::int32_t ModbusSignal::_internal_addr() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.addr_;
+}
+inline void ModbusSignal::_internal_set_addr(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.addr_ = value;
+}
+
+// int32 value = 2;
+inline void ModbusSignal::clear_value() {
+  _impl_.value_ = 0;
+}
+inline ::int32_t ModbusSignal::value() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.ModbusSignal.value)
+  return _internal_value();
+}
+inline void ModbusSignal::set_value(::int32_t value) {
+  _internal_set_value(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.ModbusSignal.value)
+}
+inline ::int32_t ModbusSignal::_internal_value() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.value_;
+}
+inline void ModbusSignal::_internal_set_value(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.value_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// TaskTimes
+
+// repeated .Nrmk.IndyFramework.NamedFloat task_times = 1;
+inline int TaskTimes::_internal_task_times_size() const {
+  return _internal_task_times().size();
+}
+inline int TaskTimes::task_times_size() const {
+  return _internal_task_times_size();
+}
+inline ::Nrmk::IndyFramework::NamedFloat* TaskTimes::mutable_task_times(int index) {
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.TaskTimes.task_times)
+  return _internal_mutable_task_times()->Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::NamedFloat >*
+TaskTimes::mutable_task_times() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.TaskTimes.task_times)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_task_times();
+}
+inline const ::Nrmk::IndyFramework::NamedFloat& TaskTimes::task_times(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.TaskTimes.task_times)
+    return _internal_task_times().Get(index);
+}
+inline ::Nrmk::IndyFramework::NamedFloat* TaskTimes::add_task_times() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::Nrmk::IndyFramework::NamedFloat* _add = _internal_mutable_task_times()->Add();
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.TaskTimes.task_times)
+  return _add;
+}
+inline const ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::NamedFloat >&
+TaskTimes::task_times() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.TaskTimes.task_times)
+  return _internal_task_times();
+}
+inline const ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::NamedFloat>&
+TaskTimes::_internal_task_times() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.task_times_;
+}
+inline ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::NamedFloat>*
+TaskTimes::_internal_mutable_task_times() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.task_times_;
 }
 
 #ifdef __GNUC__

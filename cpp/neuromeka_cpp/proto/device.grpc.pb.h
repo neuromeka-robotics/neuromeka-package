@@ -204,21 +204,6 @@ class Device final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::AnalogList>> PrepareAsyncGetEndAO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::AnalogList>>(PrepareAsyncGetEndAORaw(context, request, cq));
     }
-    // beckhoff_conv
-    virtual ::grpc::Status GetEL5001(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::GetEL5001Data* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::GetEL5001Data>> AsyncGetEL5001(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::GetEL5001Data>>(AsyncGetEL5001Raw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::GetEL5001Data>> PrepareAsyncGetEL5001(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::GetEL5001Data>>(PrepareAsyncGetEL5001Raw(context, request, cq));
-    }
-    virtual ::grpc::Status GetEL5101(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::GetEL5101Data* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::GetEL5101Data>> AsyncGetEL5101(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::GetEL5101Data>>(AsyncGetEL5101Raw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::GetEL5101Data>> PrepareAsyncGetEL5101(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::GetEL5101Data>>(PrepareAsyncGetEL5101Raw(context, request, cq));
-    }
     virtual ::grpc::Status GetDeviceInfo(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::DeviceInfo* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::DeviceInfo>> AsyncGetDeviceInfo(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::DeviceInfo>>(AsyncGetDeviceInfoRaw(context, request, cq));
@@ -298,6 +283,20 @@ class Device final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>> PrepareAsyncSetConveyorOffset(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Float& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>>(PrepareAsyncSetConveyorOffsetRaw(context, request, cq));
     }
+    virtual ::grpc::Status SetConveyorLockedJoint(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Int& request, ::Nrmk::IndyFramework::Response* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>> AsyncSetConveyorLockedJoint(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Int& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>>(AsyncSetConveyorLockedJointRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>> PrepareAsyncSetConveyorLockedJoint(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Int& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>>(PrepareAsyncSetConveyorLockedJointRaw(context, request, cq));
+    }
+    virtual ::grpc::Status SetConveyorToolLink(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Int& request, ::Nrmk::IndyFramework::Response* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>> AsyncSetConveyorToolLink(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Int& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>>(AsyncSetConveyorToolLinkRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>> PrepareAsyncSetConveyorToolLink(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Int& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>>(PrepareAsyncSetConveyorToolLinkRaw(context, request, cq));
+    }
     virtual ::grpc::Status SetConveyorStartingPose(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::PosePair& request, ::Nrmk::IndyFramework::Response* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>> AsyncSetConveyorStartingPose(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::PosePair& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>>(AsyncSetConveyorStartingPoseRaw(context, request, cq));
@@ -318,6 +317,13 @@ class Device final {
     }
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::ConveyorState>> PrepareAsyncGetConveyorState(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::ConveyorState>>(PrepareAsyncGetConveyorStateRaw(context, request, cq));
+    }
+    virtual ::grpc::Status GetConveyorObjectDistances(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::ConveyorObjectDistances* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::ConveyorObjectDistances>> AsyncGetConveyorObjectDistances(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::ConveyorObjectDistances>>(AsyncGetConveyorObjectDistancesRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::ConveyorObjectDistances>> PrepareAsyncGetConveyorObjectDistances(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::ConveyorObjectDistances>>(PrepareAsyncGetConveyorObjectDistancesRaw(context, request, cq));
     }
     // ///////////// Safety ////////////////
     virtual ::grpc::Status GetLoadFactors(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::GetLoadFactorsRes* response) = 0;
@@ -369,6 +375,13 @@ class Device final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::SafetyControlData>> PrepareAsyncGetSafetyControlData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::SafetyControlData>>(PrepareAsyncGetSafetyControlDataRaw(context, request, cq));
     }
+    virtual ::grpc::Status CommitViolation(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ViolationRequest& request, ::Nrmk::IndyFramework::Response* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>> AsyncCommitViolation(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ViolationRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>>(AsyncCommitViolationRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>> PrepareAsyncCommitViolation(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ViolationRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>>(PrepareAsyncCommitViolationRaw(context, request, cq));
+    }
     // /////////////485Gripper//////////////////////
     virtual ::grpc::Status GetGripperData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::GripperData* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::GripperData>> AsyncGetGripperData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
@@ -406,6 +419,14 @@ class Device final {
     }
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::VisionResult>> PrepareAsyncGetPhotoneoRetrieval(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::VisionRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::VisionResult>>(PrepareAsyncGetPhotoneoRetrievalRaw(context, request, cq));
+    }
+    // /////////////System Status//////////////////////
+    virtual ::grpc::Status GetRTTaskTimes(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::TaskTimes* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::TaskTimes>> AsyncGetRTTaskTimes(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::TaskTimes>>(AsyncGetRTTaskTimesRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::TaskTimes>> PrepareAsyncGetRTTaskTimes(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::TaskTimes>>(PrepareAsyncGetRTTaskTimesRaw(context, request, cq));
     }
     class async_interface {
      public:
@@ -458,11 +479,6 @@ class Device final {
       virtual void GetEndAI(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::AnalogList* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void GetEndAO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::AnalogList* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetEndAO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::AnalogList* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      // beckhoff_conv
-      virtual void GetEL5001(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::GetEL5001Data* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void GetEL5001(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::GetEL5001Data* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      virtual void GetEL5101(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::GetEL5101Data* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void GetEL5101(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::GetEL5101Data* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void GetDeviceInfo(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::DeviceInfo* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetDeviceInfo(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::DeviceInfo* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void GetBrakeControlStyle(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::BrakeControlStyle* response, std::function<void(::grpc::Status)>) = 0;
@@ -487,12 +503,18 @@ class Device final {
       virtual void SetConveyorTrigger(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Trigger* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void SetConveyorOffset(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Float* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)>) = 0;
       virtual void SetConveyorOffset(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Float* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void SetConveyorLockedJoint(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Int* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void SetConveyorLockedJoint(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Int* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void SetConveyorToolLink(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Int* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void SetConveyorToolLink(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Int* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void SetConveyorStartingPose(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::PosePair* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)>) = 0;
       virtual void SetConveyorStartingPose(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::PosePair* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void SetConveyorTerminalPose(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::PosePair* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)>) = 0;
       virtual void SetConveyorTerminalPose(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::PosePair* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void GetConveyorState(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ConveyorState* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetConveyorState(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ConveyorState* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void GetConveyorObjectDistances(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ConveyorObjectDistances* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetConveyorObjectDistances(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ConveyorObjectDistances* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       // ///////////// Safety ////////////////
       virtual void GetLoadFactors(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::GetLoadFactorsRes* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetLoadFactors(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::GetLoadFactorsRes* response, ::grpc::ClientUnaryReactor* reactor) = 0;
@@ -508,6 +530,8 @@ class Device final {
       virtual void RequestSafetyFunction(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SafetyFunctionState* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void GetSafetyControlData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::SafetyControlData* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetSafetyControlData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::SafetyControlData* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void CommitViolation(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ViolationRequest* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void CommitViolation(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ViolationRequest* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       // /////////////485Gripper//////////////////////
       virtual void GetGripperData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::GripperData* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetGripperData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::GripperData* response, ::grpc::ClientUnaryReactor* reactor) = 0;
@@ -521,6 +545,9 @@ class Device final {
       virtual void GetPhotoneoDetection(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::VisionRequest* request, ::Nrmk::IndyFramework::VisionResult* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void GetPhotoneoRetrieval(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::VisionRequest* request, ::Nrmk::IndyFramework::VisionResult* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetPhotoneoRetrieval(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::VisionRequest* request, ::Nrmk::IndyFramework::VisionResult* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // /////////////System Status//////////////////////
+      virtual void GetRTTaskTimes(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::TaskTimes* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetRTTaskTimes(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::TaskTimes* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
@@ -574,10 +601,6 @@ class Device final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::AnalogList>* PrepareAsyncGetEndAIRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::AnalogList>* AsyncGetEndAORaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::AnalogList>* PrepareAsyncGetEndAORaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::GetEL5001Data>* AsyncGetEL5001Raw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::GetEL5001Data>* PrepareAsyncGetEL5001Raw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::GetEL5101Data>* AsyncGetEL5101Raw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::GetEL5101Data>* PrepareAsyncGetEL5101Raw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::DeviceInfo>* AsyncGetDeviceInfoRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::DeviceInfo>* PrepareAsyncGetDeviceInfoRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::BrakeControlStyle>* AsyncGetBrakeControlStyleRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
@@ -600,12 +623,18 @@ class Device final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>* PrepareAsyncSetConveyorTriggerRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Trigger& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>* AsyncSetConveyorOffsetRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Float& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>* PrepareAsyncSetConveyorOffsetRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Float& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>* AsyncSetConveyorLockedJointRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Int& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>* PrepareAsyncSetConveyorLockedJointRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Int& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>* AsyncSetConveyorToolLinkRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Int& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>* PrepareAsyncSetConveyorToolLinkRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Int& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>* AsyncSetConveyorStartingPoseRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::PosePair& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>* PrepareAsyncSetConveyorStartingPoseRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::PosePair& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>* AsyncSetConveyorTerminalPoseRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::PosePair& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>* PrepareAsyncSetConveyorTerminalPoseRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::PosePair& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::ConveyorState>* AsyncGetConveyorStateRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::ConveyorState>* PrepareAsyncGetConveyorStateRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::ConveyorObjectDistances>* AsyncGetConveyorObjectDistancesRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::ConveyorObjectDistances>* PrepareAsyncGetConveyorObjectDistancesRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::GetLoadFactorsRes>* AsyncGetLoadFactorsRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::GetLoadFactorsRes>* PrepareAsyncGetLoadFactorsRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::SetAutoModeRes>* AsyncSetAutoModeRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SetAutoModeReq& request, ::grpc::CompletionQueue* cq) = 0;
@@ -620,6 +649,8 @@ class Device final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>* PrepareAsyncRequestSafetyFunctionRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SafetyFunctionState& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::SafetyControlData>* AsyncGetSafetyControlDataRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::SafetyControlData>* PrepareAsyncGetSafetyControlDataRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>* AsyncCommitViolationRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ViolationRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>* PrepareAsyncCommitViolationRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ViolationRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::GripperData>* AsyncGetGripperDataRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::GripperData>* PrepareAsyncGetGripperDataRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Empty>* AsyncSetGripperCommandRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::GripperCommand& request, ::grpc::CompletionQueue* cq) = 0;
@@ -630,6 +661,8 @@ class Device final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::VisionResult>* PrepareAsyncGetPhotoneoDetectionRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::VisionRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::VisionResult>* AsyncGetPhotoneoRetrievalRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::VisionRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::VisionResult>* PrepareAsyncGetPhotoneoRetrievalRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::VisionRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::TaskTimes>* AsyncGetRTTaskTimesRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::TaskTimes>* PrepareAsyncGetRTTaskTimesRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -802,20 +835,6 @@ class Device final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::AnalogList>> PrepareAsyncGetEndAO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::AnalogList>>(PrepareAsyncGetEndAORaw(context, request, cq));
     }
-    ::grpc::Status GetEL5001(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::GetEL5001Data* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::GetEL5001Data>> AsyncGetEL5001(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::GetEL5001Data>>(AsyncGetEL5001Raw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::GetEL5001Data>> PrepareAsyncGetEL5001(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::GetEL5001Data>>(PrepareAsyncGetEL5001Raw(context, request, cq));
-    }
-    ::grpc::Status GetEL5101(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::GetEL5101Data* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::GetEL5101Data>> AsyncGetEL5101(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::GetEL5101Data>>(AsyncGetEL5101Raw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::GetEL5101Data>> PrepareAsyncGetEL5101(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::GetEL5101Data>>(PrepareAsyncGetEL5101Raw(context, request, cq));
-    }
     ::grpc::Status GetDeviceInfo(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::DeviceInfo* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::DeviceInfo>> AsyncGetDeviceInfo(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::DeviceInfo>>(AsyncGetDeviceInfoRaw(context, request, cq));
@@ -893,6 +912,20 @@ class Device final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>> PrepareAsyncSetConveyorOffset(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Float& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>>(PrepareAsyncSetConveyorOffsetRaw(context, request, cq));
     }
+    ::grpc::Status SetConveyorLockedJoint(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Int& request, ::Nrmk::IndyFramework::Response* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>> AsyncSetConveyorLockedJoint(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Int& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>>(AsyncSetConveyorLockedJointRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>> PrepareAsyncSetConveyorLockedJoint(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Int& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>>(PrepareAsyncSetConveyorLockedJointRaw(context, request, cq));
+    }
+    ::grpc::Status SetConveyorToolLink(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Int& request, ::Nrmk::IndyFramework::Response* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>> AsyncSetConveyorToolLink(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Int& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>>(AsyncSetConveyorToolLinkRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>> PrepareAsyncSetConveyorToolLink(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Int& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>>(PrepareAsyncSetConveyorToolLinkRaw(context, request, cq));
+    }
     ::grpc::Status SetConveyorStartingPose(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::PosePair& request, ::Nrmk::IndyFramework::Response* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>> AsyncSetConveyorStartingPose(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::PosePair& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>>(AsyncSetConveyorStartingPoseRaw(context, request, cq));
@@ -913,6 +946,13 @@ class Device final {
     }
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ConveyorState>> PrepareAsyncGetConveyorState(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ConveyorState>>(PrepareAsyncGetConveyorStateRaw(context, request, cq));
+    }
+    ::grpc::Status GetConveyorObjectDistances(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::ConveyorObjectDistances* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ConveyorObjectDistances>> AsyncGetConveyorObjectDistances(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ConveyorObjectDistances>>(AsyncGetConveyorObjectDistancesRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ConveyorObjectDistances>> PrepareAsyncGetConveyorObjectDistances(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ConveyorObjectDistances>>(PrepareAsyncGetConveyorObjectDistancesRaw(context, request, cq));
     }
     ::grpc::Status GetLoadFactors(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::GetLoadFactorsRes* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::GetLoadFactorsRes>> AsyncGetLoadFactors(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
@@ -963,6 +1003,13 @@ class Device final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::SafetyControlData>> PrepareAsyncGetSafetyControlData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::SafetyControlData>>(PrepareAsyncGetSafetyControlDataRaw(context, request, cq));
     }
+    ::grpc::Status CommitViolation(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ViolationRequest& request, ::Nrmk::IndyFramework::Response* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>> AsyncCommitViolation(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ViolationRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>>(AsyncCommitViolationRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>> PrepareAsyncCommitViolation(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ViolationRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>>(PrepareAsyncCommitViolationRaw(context, request, cq));
+    }
     ::grpc::Status GetGripperData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::GripperData* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::GripperData>> AsyncGetGripperData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::GripperData>>(AsyncGetGripperDataRaw(context, request, cq));
@@ -997,6 +1044,13 @@ class Device final {
     }
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::VisionResult>> PrepareAsyncGetPhotoneoRetrieval(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::VisionRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::VisionResult>>(PrepareAsyncGetPhotoneoRetrievalRaw(context, request, cq));
+    }
+    ::grpc::Status GetRTTaskTimes(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::TaskTimes* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::TaskTimes>> AsyncGetRTTaskTimes(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::TaskTimes>>(AsyncGetRTTaskTimesRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::TaskTimes>> PrepareAsyncGetRTTaskTimes(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::TaskTimes>>(PrepareAsyncGetRTTaskTimesRaw(context, request, cq));
     }
     class async final :
       public StubInterface::async_interface {
@@ -1049,10 +1103,6 @@ class Device final {
       void GetEndAI(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::AnalogList* response, ::grpc::ClientUnaryReactor* reactor) override;
       void GetEndAO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::AnalogList* response, std::function<void(::grpc::Status)>) override;
       void GetEndAO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::AnalogList* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void GetEL5001(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::GetEL5001Data* response, std::function<void(::grpc::Status)>) override;
-      void GetEL5001(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::GetEL5001Data* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void GetEL5101(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::GetEL5101Data* response, std::function<void(::grpc::Status)>) override;
-      void GetEL5101(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::GetEL5101Data* response, ::grpc::ClientUnaryReactor* reactor) override;
       void GetDeviceInfo(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::DeviceInfo* response, std::function<void(::grpc::Status)>) override;
       void GetDeviceInfo(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::DeviceInfo* response, ::grpc::ClientUnaryReactor* reactor) override;
       void GetBrakeControlStyle(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::BrakeControlStyle* response, std::function<void(::grpc::Status)>) override;
@@ -1075,12 +1125,18 @@ class Device final {
       void SetConveyorTrigger(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Trigger* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) override;
       void SetConveyorOffset(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Float* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)>) override;
       void SetConveyorOffset(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Float* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void SetConveyorLockedJoint(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Int* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)>) override;
+      void SetConveyorLockedJoint(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Int* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void SetConveyorToolLink(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Int* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)>) override;
+      void SetConveyorToolLink(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Int* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) override;
       void SetConveyorStartingPose(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::PosePair* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)>) override;
       void SetConveyorStartingPose(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::PosePair* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) override;
       void SetConveyorTerminalPose(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::PosePair* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)>) override;
       void SetConveyorTerminalPose(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::PosePair* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) override;
       void GetConveyorState(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ConveyorState* response, std::function<void(::grpc::Status)>) override;
       void GetConveyorState(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ConveyorState* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void GetConveyorObjectDistances(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ConveyorObjectDistances* response, std::function<void(::grpc::Status)>) override;
+      void GetConveyorObjectDistances(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ConveyorObjectDistances* response, ::grpc::ClientUnaryReactor* reactor) override;
       void GetLoadFactors(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::GetLoadFactorsRes* response, std::function<void(::grpc::Status)>) override;
       void GetLoadFactors(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::GetLoadFactorsRes* response, ::grpc::ClientUnaryReactor* reactor) override;
       void SetAutoMode(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SetAutoModeReq* request, ::Nrmk::IndyFramework::SetAutoModeRes* response, std::function<void(::grpc::Status)>) override;
@@ -1095,6 +1151,8 @@ class Device final {
       void RequestSafetyFunction(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SafetyFunctionState* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) override;
       void GetSafetyControlData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::SafetyControlData* response, std::function<void(::grpc::Status)>) override;
       void GetSafetyControlData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::SafetyControlData* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void CommitViolation(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ViolationRequest* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)>) override;
+      void CommitViolation(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ViolationRequest* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) override;
       void GetGripperData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::GripperData* response, std::function<void(::grpc::Status)>) override;
       void GetGripperData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::GripperData* response, ::grpc::ClientUnaryReactor* reactor) override;
       void SetGripperCommand(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::GripperCommand* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)>) override;
@@ -1105,6 +1163,8 @@ class Device final {
       void GetPhotoneoDetection(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::VisionRequest* request, ::Nrmk::IndyFramework::VisionResult* response, ::grpc::ClientUnaryReactor* reactor) override;
       void GetPhotoneoRetrieval(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::VisionRequest* request, ::Nrmk::IndyFramework::VisionResult* response, std::function<void(::grpc::Status)>) override;
       void GetPhotoneoRetrieval(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::VisionRequest* request, ::Nrmk::IndyFramework::VisionResult* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void GetRTTaskTimes(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::TaskTimes* response, std::function<void(::grpc::Status)>) override;
+      void GetRTTaskTimes(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::TaskTimes* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -1164,10 +1224,6 @@ class Device final {
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::AnalogList>* PrepareAsyncGetEndAIRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::AnalogList>* AsyncGetEndAORaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::AnalogList>* PrepareAsyncGetEndAORaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::GetEL5001Data>* AsyncGetEL5001Raw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::GetEL5001Data>* PrepareAsyncGetEL5001Raw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::GetEL5101Data>* AsyncGetEL5101Raw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::GetEL5101Data>* PrepareAsyncGetEL5101Raw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::DeviceInfo>* AsyncGetDeviceInfoRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::DeviceInfo>* PrepareAsyncGetDeviceInfoRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::BrakeControlStyle>* AsyncGetBrakeControlStyleRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
@@ -1190,12 +1246,18 @@ class Device final {
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* PrepareAsyncSetConveyorTriggerRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Trigger& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* AsyncSetConveyorOffsetRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Float& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* PrepareAsyncSetConveyorOffsetRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Float& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* AsyncSetConveyorLockedJointRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Int& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* PrepareAsyncSetConveyorLockedJointRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Int& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* AsyncSetConveyorToolLinkRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Int& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* PrepareAsyncSetConveyorToolLinkRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Int& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* AsyncSetConveyorStartingPoseRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::PosePair& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* PrepareAsyncSetConveyorStartingPoseRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::PosePair& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* AsyncSetConveyorTerminalPoseRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::PosePair& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* PrepareAsyncSetConveyorTerminalPoseRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::PosePair& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ConveyorState>* AsyncGetConveyorStateRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ConveyorState>* PrepareAsyncGetConveyorStateRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ConveyorObjectDistances>* AsyncGetConveyorObjectDistancesRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ConveyorObjectDistances>* PrepareAsyncGetConveyorObjectDistancesRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::GetLoadFactorsRes>* AsyncGetLoadFactorsRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::GetLoadFactorsRes>* PrepareAsyncGetLoadFactorsRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::SetAutoModeRes>* AsyncSetAutoModeRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SetAutoModeReq& request, ::grpc::CompletionQueue* cq) override;
@@ -1210,6 +1272,8 @@ class Device final {
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* PrepareAsyncRequestSafetyFunctionRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SafetyFunctionState& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::SafetyControlData>* AsyncGetSafetyControlDataRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::SafetyControlData>* PrepareAsyncGetSafetyControlDataRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* AsyncCommitViolationRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ViolationRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* PrepareAsyncCommitViolationRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ViolationRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::GripperData>* AsyncGetGripperDataRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::GripperData>* PrepareAsyncGetGripperDataRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* AsyncSetGripperCommandRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::GripperCommand& request, ::grpc::CompletionQueue* cq) override;
@@ -1220,6 +1284,8 @@ class Device final {
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::VisionResult>* PrepareAsyncGetPhotoneoDetectionRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::VisionRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::VisionResult>* AsyncGetPhotoneoRetrievalRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::VisionRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::VisionResult>* PrepareAsyncGetPhotoneoRetrievalRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::VisionRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::TaskTimes>* AsyncGetRTTaskTimesRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::TaskTimes>* PrepareAsyncGetRTTaskTimesRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_SetBrakes_;
     const ::grpc::internal::RpcMethod rpcmethod_SetServoAll_;
     const ::grpc::internal::RpcMethod rpcmethod_SetServo_;
@@ -1244,8 +1310,6 @@ class Device final {
     const ::grpc::internal::RpcMethod rpcmethod_GetAO_;
     const ::grpc::internal::RpcMethod rpcmethod_GetEndAI_;
     const ::grpc::internal::RpcMethod rpcmethod_GetEndAO_;
-    const ::grpc::internal::RpcMethod rpcmethod_GetEL5001_;
-    const ::grpc::internal::RpcMethod rpcmethod_GetEL5101_;
     const ::grpc::internal::RpcMethod rpcmethod_GetDeviceInfo_;
     const ::grpc::internal::RpcMethod rpcmethod_GetBrakeControlStyle_;
     const ::grpc::internal::RpcMethod rpcmethod_SetSanderCommand_;
@@ -1257,9 +1321,12 @@ class Device final {
     const ::grpc::internal::RpcMethod rpcmethod_SetConveyorEncoder_;
     const ::grpc::internal::RpcMethod rpcmethod_SetConveyorTrigger_;
     const ::grpc::internal::RpcMethod rpcmethod_SetConveyorOffset_;
+    const ::grpc::internal::RpcMethod rpcmethod_SetConveyorLockedJoint_;
+    const ::grpc::internal::RpcMethod rpcmethod_SetConveyorToolLink_;
     const ::grpc::internal::RpcMethod rpcmethod_SetConveyorStartingPose_;
     const ::grpc::internal::RpcMethod rpcmethod_SetConveyorTerminalPose_;
     const ::grpc::internal::RpcMethod rpcmethod_GetConveyorState_;
+    const ::grpc::internal::RpcMethod rpcmethod_GetConveyorObjectDistances_;
     const ::grpc::internal::RpcMethod rpcmethod_GetLoadFactors_;
     const ::grpc::internal::RpcMethod rpcmethod_SetAutoMode_;
     const ::grpc::internal::RpcMethod rpcmethod_CheckAutoMode_;
@@ -1267,11 +1334,13 @@ class Device final {
     const ::grpc::internal::RpcMethod rpcmethod_GetSafetyFunctionState_;
     const ::grpc::internal::RpcMethod rpcmethod_RequestSafetyFunction_;
     const ::grpc::internal::RpcMethod rpcmethod_GetSafetyControlData_;
+    const ::grpc::internal::RpcMethod rpcmethod_CommitViolation_;
     const ::grpc::internal::RpcMethod rpcmethod_GetGripperData_;
     const ::grpc::internal::RpcMethod rpcmethod_SetGripperCommand_;
     const ::grpc::internal::RpcMethod rpcmethod_AddPhotoneoCalibPoint_;
     const ::grpc::internal::RpcMethod rpcmethod_GetPhotoneoDetection_;
     const ::grpc::internal::RpcMethod rpcmethod_GetPhotoneoRetrieval_;
+    const ::grpc::internal::RpcMethod rpcmethod_GetRTTaskTimes_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -1303,9 +1372,6 @@ class Device final {
     virtual ::grpc::Status GetAO(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::AnalogList* response);
     virtual ::grpc::Status GetEndAI(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::AnalogList* response);
     virtual ::grpc::Status GetEndAO(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::AnalogList* response);
-    // beckhoff_conv
-    virtual ::grpc::Status GetEL5001(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::GetEL5001Data* response);
-    virtual ::grpc::Status GetEL5101(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::GetEL5101Data* response);
     virtual ::grpc::Status GetDeviceInfo(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::DeviceInfo* response);
     virtual ::grpc::Status GetBrakeControlStyle(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::BrakeControlStyle* response);
     // ///////////// Sander ////////////////
@@ -1319,9 +1385,12 @@ class Device final {
     virtual ::grpc::Status SetConveyorEncoder(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Encoder* request, ::Nrmk::IndyFramework::Response* response);
     virtual ::grpc::Status SetConveyorTrigger(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Trigger* request, ::Nrmk::IndyFramework::Response* response);
     virtual ::grpc::Status SetConveyorOffset(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Float* request, ::Nrmk::IndyFramework::Response* response);
+    virtual ::grpc::Status SetConveyorLockedJoint(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Int* request, ::Nrmk::IndyFramework::Response* response);
+    virtual ::grpc::Status SetConveyorToolLink(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Int* request, ::Nrmk::IndyFramework::Response* response);
     virtual ::grpc::Status SetConveyorStartingPose(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::PosePair* request, ::Nrmk::IndyFramework::Response* response);
     virtual ::grpc::Status SetConveyorTerminalPose(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::PosePair* request, ::Nrmk::IndyFramework::Response* response);
     virtual ::grpc::Status GetConveyorState(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ConveyorState* response);
+    virtual ::grpc::Status GetConveyorObjectDistances(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ConveyorObjectDistances* response);
     // ///////////// Safety ////////////////
     virtual ::grpc::Status GetLoadFactors(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::GetLoadFactorsRes* response);
     virtual ::grpc::Status SetAutoMode(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::SetAutoModeReq* request, ::Nrmk::IndyFramework::SetAutoModeRes* response);
@@ -1330,6 +1399,7 @@ class Device final {
     virtual ::grpc::Status GetSafetyFunctionState(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::SafetyFunctionState* response);
     virtual ::grpc::Status RequestSafetyFunction(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::SafetyFunctionState* request, ::Nrmk::IndyFramework::Response* response);
     virtual ::grpc::Status GetSafetyControlData(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::SafetyControlData* response);
+    virtual ::grpc::Status CommitViolation(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::ViolationRequest* request, ::Nrmk::IndyFramework::Response* response);
     // /////////////485Gripper//////////////////////
     virtual ::grpc::Status GetGripperData(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::GripperData* response);
     virtual ::grpc::Status SetGripperCommand(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::GripperCommand* request, ::Nrmk::IndyFramework::Empty* response);
@@ -1338,6 +1408,8 @@ class Device final {
     // /////////////Photoneo Get Detection Retrieval//////////////////////
     virtual ::grpc::Status GetPhotoneoDetection(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::VisionRequest* request, ::Nrmk::IndyFramework::VisionResult* response);
     virtual ::grpc::Status GetPhotoneoRetrieval(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::VisionRequest* request, ::Nrmk::IndyFramework::VisionResult* response);
+    // /////////////System Status//////////////////////
+    virtual ::grpc::Status GetRTTaskTimes(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::TaskTimes* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_SetBrakes : public BaseClass {
@@ -1820,52 +1892,12 @@ class Device final {
     }
   };
   template <class BaseClass>
-  class WithAsyncMethod_GetEL5001 : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithAsyncMethod_GetEL5001() {
-      ::grpc::Service::MarkMethodAsync(24);
-    }
-    ~WithAsyncMethod_GetEL5001() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetEL5001(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::GetEL5001Data* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestGetEL5001(::grpc::ServerContext* context, ::Nrmk::IndyFramework::Empty* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::GetEL5001Data>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(24, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithAsyncMethod_GetEL5101 : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithAsyncMethod_GetEL5101() {
-      ::grpc::Service::MarkMethodAsync(25);
-    }
-    ~WithAsyncMethod_GetEL5101() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetEL5101(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::GetEL5101Data* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestGetEL5101(::grpc::ServerContext* context, ::Nrmk::IndyFramework::Empty* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::GetEL5101Data>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(25, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
   class WithAsyncMethod_GetDeviceInfo : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetDeviceInfo() {
-      ::grpc::Service::MarkMethodAsync(26);
+      ::grpc::Service::MarkMethodAsync(24);
     }
     ~WithAsyncMethod_GetDeviceInfo() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1876,7 +1908,7 @@ class Device final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetDeviceInfo(::grpc::ServerContext* context, ::Nrmk::IndyFramework::Empty* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::DeviceInfo>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(26, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(24, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1885,7 +1917,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetBrakeControlStyle() {
-      ::grpc::Service::MarkMethodAsync(27);
+      ::grpc::Service::MarkMethodAsync(25);
     }
     ~WithAsyncMethod_GetBrakeControlStyle() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1896,7 +1928,7 @@ class Device final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetBrakeControlStyle(::grpc::ServerContext* context, ::Nrmk::IndyFramework::Empty* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::BrakeControlStyle>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(27, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(25, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1905,7 +1937,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_SetSanderCommand() {
-      ::grpc::Service::MarkMethodAsync(28);
+      ::grpc::Service::MarkMethodAsync(26);
     }
     ~WithAsyncMethod_SetSanderCommand() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1916,7 +1948,7 @@ class Device final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestSetSanderCommand(::grpc::ServerContext* context, ::Nrmk::IndyFramework::SanderCommand* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::Response>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(28, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(26, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1925,7 +1957,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetSanderCommand() {
-      ::grpc::Service::MarkMethodAsync(29);
+      ::grpc::Service::MarkMethodAsync(27);
     }
     ~WithAsyncMethod_GetSanderCommand() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1936,7 +1968,7 @@ class Device final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetSanderCommand(::grpc::ServerContext* context, ::Nrmk::IndyFramework::Empty* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::SanderCommand>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(29, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(27, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1945,7 +1977,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetFTSensorData() {
-      ::grpc::Service::MarkMethodAsync(30);
+      ::grpc::Service::MarkMethodAsync(28);
     }
     ~WithAsyncMethod_GetFTSensorData() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1956,7 +1988,7 @@ class Device final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetFTSensorData(::grpc::ServerContext* context, ::Nrmk::IndyFramework::Empty* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::FTSensorData>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(30, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(28, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1965,7 +1997,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetConveyor() {
-      ::grpc::Service::MarkMethodAsync(31);
+      ::grpc::Service::MarkMethodAsync(29);
     }
     ~WithAsyncMethod_GetConveyor() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1976,7 +2008,7 @@ class Device final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetConveyor(::grpc::ServerContext* context, ::Nrmk::IndyFramework::Empty* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::Conveyor>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(31, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(29, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1985,7 +2017,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_SetConveyorName() {
-      ::grpc::Service::MarkMethodAsync(32);
+      ::grpc::Service::MarkMethodAsync(30);
     }
     ~WithAsyncMethod_SetConveyorName() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1996,7 +2028,7 @@ class Device final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestSetConveyorName(::grpc::ServerContext* context, ::Nrmk::IndyFramework::Name* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::Response>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(32, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(30, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -2005,7 +2037,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_SetConveyorByName() {
-      ::grpc::Service::MarkMethodAsync(33);
+      ::grpc::Service::MarkMethodAsync(31);
     }
     ~WithAsyncMethod_SetConveyorByName() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2016,7 +2048,7 @@ class Device final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestSetConveyorByName(::grpc::ServerContext* context, ::Nrmk::IndyFramework::Name* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::Response>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(33, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(31, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -2025,7 +2057,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_SetConveyorEncoder() {
-      ::grpc::Service::MarkMethodAsync(34);
+      ::grpc::Service::MarkMethodAsync(32);
     }
     ~WithAsyncMethod_SetConveyorEncoder() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2036,7 +2068,7 @@ class Device final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestSetConveyorEncoder(::grpc::ServerContext* context, ::Nrmk::IndyFramework::Encoder* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::Response>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(34, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(32, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -2045,7 +2077,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_SetConveyorTrigger() {
-      ::grpc::Service::MarkMethodAsync(35);
+      ::grpc::Service::MarkMethodAsync(33);
     }
     ~WithAsyncMethod_SetConveyorTrigger() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2056,7 +2088,7 @@ class Device final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestSetConveyorTrigger(::grpc::ServerContext* context, ::Nrmk::IndyFramework::Trigger* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::Response>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(35, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(33, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -2065,7 +2097,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_SetConveyorOffset() {
-      ::grpc::Service::MarkMethodAsync(36);
+      ::grpc::Service::MarkMethodAsync(34);
     }
     ~WithAsyncMethod_SetConveyorOffset() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2076,6 +2108,46 @@ class Device final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestSetConveyorOffset(::grpc::ServerContext* context, ::Nrmk::IndyFramework::Float* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::Response>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(34, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_SetConveyorLockedJoint : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_SetConveyorLockedJoint() {
+      ::grpc::Service::MarkMethodAsync(35);
+    }
+    ~WithAsyncMethod_SetConveyorLockedJoint() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetConveyorLockedJoint(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Int* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSetConveyorLockedJoint(::grpc::ServerContext* context, ::Nrmk::IndyFramework::Int* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::Response>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(35, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_SetConveyorToolLink : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_SetConveyorToolLink() {
+      ::grpc::Service::MarkMethodAsync(36);
+    }
+    ~WithAsyncMethod_SetConveyorToolLink() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetConveyorToolLink(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Int* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSetConveyorToolLink(::grpc::ServerContext* context, ::Nrmk::IndyFramework::Int* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::Response>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(36, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
@@ -2140,12 +2212,32 @@ class Device final {
     }
   };
   template <class BaseClass>
+  class WithAsyncMethod_GetConveyorObjectDistances : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_GetConveyorObjectDistances() {
+      ::grpc::Service::MarkMethodAsync(40);
+    }
+    ~WithAsyncMethod_GetConveyorObjectDistances() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetConveyorObjectDistances(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::ConveyorObjectDistances* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetConveyorObjectDistances(::grpc::ServerContext* context, ::Nrmk::IndyFramework::Empty* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::ConveyorObjectDistances>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(40, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithAsyncMethod_GetLoadFactors : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetLoadFactors() {
-      ::grpc::Service::MarkMethodAsync(40);
+      ::grpc::Service::MarkMethodAsync(41);
     }
     ~WithAsyncMethod_GetLoadFactors() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2156,7 +2248,7 @@ class Device final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetLoadFactors(::grpc::ServerContext* context, ::Nrmk::IndyFramework::Empty* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::GetLoadFactorsRes>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(40, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(41, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -2165,7 +2257,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_SetAutoMode() {
-      ::grpc::Service::MarkMethodAsync(41);
+      ::grpc::Service::MarkMethodAsync(42);
     }
     ~WithAsyncMethod_SetAutoMode() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2176,7 +2268,7 @@ class Device final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestSetAutoMode(::grpc::ServerContext* context, ::Nrmk::IndyFramework::SetAutoModeReq* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::SetAutoModeRes>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(41, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(42, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -2185,7 +2277,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_CheckAutoMode() {
-      ::grpc::Service::MarkMethodAsync(42);
+      ::grpc::Service::MarkMethodAsync(43);
     }
     ~WithAsyncMethod_CheckAutoMode() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2196,7 +2288,7 @@ class Device final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestCheckAutoMode(::grpc::ServerContext* context, ::Nrmk::IndyFramework::Empty* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::CheckAutoModeRes>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(42, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(43, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -2205,7 +2297,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_CheckReducedMode() {
-      ::grpc::Service::MarkMethodAsync(43);
+      ::grpc::Service::MarkMethodAsync(44);
     }
     ~WithAsyncMethod_CheckReducedMode() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2216,7 +2308,7 @@ class Device final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestCheckReducedMode(::grpc::ServerContext* context, ::Nrmk::IndyFramework::Empty* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::CheckReducedModeRes>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(43, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(44, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -2225,7 +2317,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetSafetyFunctionState() {
-      ::grpc::Service::MarkMethodAsync(44);
+      ::grpc::Service::MarkMethodAsync(45);
     }
     ~WithAsyncMethod_GetSafetyFunctionState() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2236,7 +2328,7 @@ class Device final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetSafetyFunctionState(::grpc::ServerContext* context, ::Nrmk::IndyFramework::Empty* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::SafetyFunctionState>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(44, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(45, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -2245,7 +2337,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_RequestSafetyFunction() {
-      ::grpc::Service::MarkMethodAsync(45);
+      ::grpc::Service::MarkMethodAsync(46);
     }
     ~WithAsyncMethod_RequestSafetyFunction() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2256,7 +2348,7 @@ class Device final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestRequestSafetyFunction(::grpc::ServerContext* context, ::Nrmk::IndyFramework::SafetyFunctionState* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::Response>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(45, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(46, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -2265,7 +2357,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetSafetyControlData() {
-      ::grpc::Service::MarkMethodAsync(46);
+      ::grpc::Service::MarkMethodAsync(47);
     }
     ~WithAsyncMethod_GetSafetyControlData() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2276,7 +2368,27 @@ class Device final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetSafetyControlData(::grpc::ServerContext* context, ::Nrmk::IndyFramework::Empty* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::SafetyControlData>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(46, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(47, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_CommitViolation : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_CommitViolation() {
+      ::grpc::Service::MarkMethodAsync(48);
+    }
+    ~WithAsyncMethod_CommitViolation() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status CommitViolation(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::ViolationRequest* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestCommitViolation(::grpc::ServerContext* context, ::Nrmk::IndyFramework::ViolationRequest* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::Response>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(48, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -2285,7 +2397,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetGripperData() {
-      ::grpc::Service::MarkMethodAsync(47);
+      ::grpc::Service::MarkMethodAsync(49);
     }
     ~WithAsyncMethod_GetGripperData() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2296,7 +2408,7 @@ class Device final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetGripperData(::grpc::ServerContext* context, ::Nrmk::IndyFramework::Empty* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::GripperData>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(47, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(49, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -2305,7 +2417,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_SetGripperCommand() {
-      ::grpc::Service::MarkMethodAsync(48);
+      ::grpc::Service::MarkMethodAsync(50);
     }
     ~WithAsyncMethod_SetGripperCommand() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2316,7 +2428,7 @@ class Device final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestSetGripperCommand(::grpc::ServerContext* context, ::Nrmk::IndyFramework::GripperCommand* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(48, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(50, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -2325,7 +2437,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_AddPhotoneoCalibPoint() {
-      ::grpc::Service::MarkMethodAsync(49);
+      ::grpc::Service::MarkMethodAsync(51);
     }
     ~WithAsyncMethod_AddPhotoneoCalibPoint() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2336,7 +2448,7 @@ class Device final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestAddPhotoneoCalibPoint(::grpc::ServerContext* context, ::Nrmk::IndyFramework::AddPhotoneoCalibPointReq* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::Response>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(49, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(51, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -2345,7 +2457,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetPhotoneoDetection() {
-      ::grpc::Service::MarkMethodAsync(50);
+      ::grpc::Service::MarkMethodAsync(52);
     }
     ~WithAsyncMethod_GetPhotoneoDetection() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2356,7 +2468,7 @@ class Device final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetPhotoneoDetection(::grpc::ServerContext* context, ::Nrmk::IndyFramework::VisionRequest* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::VisionResult>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(50, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(52, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -2365,7 +2477,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetPhotoneoRetrieval() {
-      ::grpc::Service::MarkMethodAsync(51);
+      ::grpc::Service::MarkMethodAsync(53);
     }
     ~WithAsyncMethod_GetPhotoneoRetrieval() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2376,10 +2488,30 @@ class Device final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetPhotoneoRetrieval(::grpc::ServerContext* context, ::Nrmk::IndyFramework::VisionRequest* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::VisionResult>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(51, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(53, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_SetBrakes<WithAsyncMethod_SetServoAll<WithAsyncMethod_SetServo<WithAsyncMethod_SetDI<WithAsyncMethod_SetDO<WithAsyncMethod_SetEndDI<WithAsyncMethod_SetEndDO<WithAsyncMethod_SetAI<WithAsyncMethod_SetAO<WithAsyncMethod_SetEndAI<WithAsyncMethod_SetEndAO<WithAsyncMethod_ExecuteTool<WithAsyncMethod_SetEndRS485Rx<WithAsyncMethod_GetEndRS485Rx<WithAsyncMethod_GetEndRS485Tx<WithAsyncMethod_SetEndLedDim<WithAsyncMethod_GetDI<WithAsyncMethod_GetDO<WithAsyncMethod_GetEndDI<WithAsyncMethod_GetEndDO<WithAsyncMethod_GetAI<WithAsyncMethod_GetAO<WithAsyncMethod_GetEndAI<WithAsyncMethod_GetEndAO<WithAsyncMethod_GetEL5001<WithAsyncMethod_GetEL5101<WithAsyncMethod_GetDeviceInfo<WithAsyncMethod_GetBrakeControlStyle<WithAsyncMethod_SetSanderCommand<WithAsyncMethod_GetSanderCommand<WithAsyncMethod_GetFTSensorData<WithAsyncMethod_GetConveyor<WithAsyncMethod_SetConveyorName<WithAsyncMethod_SetConveyorByName<WithAsyncMethod_SetConveyorEncoder<WithAsyncMethod_SetConveyorTrigger<WithAsyncMethod_SetConveyorOffset<WithAsyncMethod_SetConveyorStartingPose<WithAsyncMethod_SetConveyorTerminalPose<WithAsyncMethod_GetConveyorState<WithAsyncMethod_GetLoadFactors<WithAsyncMethod_SetAutoMode<WithAsyncMethod_CheckAutoMode<WithAsyncMethod_CheckReducedMode<WithAsyncMethod_GetSafetyFunctionState<WithAsyncMethod_RequestSafetyFunction<WithAsyncMethod_GetSafetyControlData<WithAsyncMethod_GetGripperData<WithAsyncMethod_SetGripperCommand<WithAsyncMethod_AddPhotoneoCalibPoint<WithAsyncMethod_GetPhotoneoDetection<WithAsyncMethod_GetPhotoneoRetrieval<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_GetRTTaskTimes : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_GetRTTaskTimes() {
+      ::grpc::Service::MarkMethodAsync(54);
+    }
+    ~WithAsyncMethod_GetRTTaskTimes() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetRTTaskTimes(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::TaskTimes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetRTTaskTimes(::grpc::ServerContext* context, ::Nrmk::IndyFramework::Empty* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::TaskTimes>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(54, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_SetBrakes<WithAsyncMethod_SetServoAll<WithAsyncMethod_SetServo<WithAsyncMethod_SetDI<WithAsyncMethod_SetDO<WithAsyncMethod_SetEndDI<WithAsyncMethod_SetEndDO<WithAsyncMethod_SetAI<WithAsyncMethod_SetAO<WithAsyncMethod_SetEndAI<WithAsyncMethod_SetEndAO<WithAsyncMethod_ExecuteTool<WithAsyncMethod_SetEndRS485Rx<WithAsyncMethod_GetEndRS485Rx<WithAsyncMethod_GetEndRS485Tx<WithAsyncMethod_SetEndLedDim<WithAsyncMethod_GetDI<WithAsyncMethod_GetDO<WithAsyncMethod_GetEndDI<WithAsyncMethod_GetEndDO<WithAsyncMethod_GetAI<WithAsyncMethod_GetAO<WithAsyncMethod_GetEndAI<WithAsyncMethod_GetEndAO<WithAsyncMethod_GetDeviceInfo<WithAsyncMethod_GetBrakeControlStyle<WithAsyncMethod_SetSanderCommand<WithAsyncMethod_GetSanderCommand<WithAsyncMethod_GetFTSensorData<WithAsyncMethod_GetConveyor<WithAsyncMethod_SetConveyorName<WithAsyncMethod_SetConveyorByName<WithAsyncMethod_SetConveyorEncoder<WithAsyncMethod_SetConveyorTrigger<WithAsyncMethod_SetConveyorOffset<WithAsyncMethod_SetConveyorLockedJoint<WithAsyncMethod_SetConveyorToolLink<WithAsyncMethod_SetConveyorStartingPose<WithAsyncMethod_SetConveyorTerminalPose<WithAsyncMethod_GetConveyorState<WithAsyncMethod_GetConveyorObjectDistances<WithAsyncMethod_GetLoadFactors<WithAsyncMethod_SetAutoMode<WithAsyncMethod_CheckAutoMode<WithAsyncMethod_CheckReducedMode<WithAsyncMethod_GetSafetyFunctionState<WithAsyncMethod_RequestSafetyFunction<WithAsyncMethod_GetSafetyControlData<WithAsyncMethod_CommitViolation<WithAsyncMethod_GetGripperData<WithAsyncMethod_SetGripperCommand<WithAsyncMethod_AddPhotoneoCalibPoint<WithAsyncMethod_GetPhotoneoDetection<WithAsyncMethod_GetPhotoneoRetrieval<WithAsyncMethod_GetRTTaskTimes<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_SetBrakes : public BaseClass {
    private:
@@ -3029,72 +3161,18 @@ class Device final {
       ::grpc::CallbackServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::AnalogList* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_GetEL5001 : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithCallbackMethod_GetEL5001() {
-      ::grpc::Service::MarkMethodCallback(24,
-          new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::GetEL5001Data>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::GetEL5001Data* response) { return this->GetEL5001(context, request, response); }));}
-    void SetMessageAllocatorFor_GetEL5001(
-        ::grpc::MessageAllocator< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::GetEL5001Data>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(24);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::GetEL5001Data>*>(handler)
-              ->SetMessageAllocator(allocator);
-    }
-    ~WithCallbackMethod_GetEL5001() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetEL5001(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::GetEL5001Data* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* GetEL5001(
-      ::grpc::CallbackServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::GetEL5001Data* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
-  class WithCallbackMethod_GetEL5101 : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithCallbackMethod_GetEL5101() {
-      ::grpc::Service::MarkMethodCallback(25,
-          new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::GetEL5101Data>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::GetEL5101Data* response) { return this->GetEL5101(context, request, response); }));}
-    void SetMessageAllocatorFor_GetEL5101(
-        ::grpc::MessageAllocator< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::GetEL5101Data>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(25);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::GetEL5101Data>*>(handler)
-              ->SetMessageAllocator(allocator);
-    }
-    ~WithCallbackMethod_GetEL5101() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetEL5101(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::GetEL5101Data* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* GetEL5101(
-      ::grpc::CallbackServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::GetEL5101Data* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
   class WithCallbackMethod_GetDeviceInfo : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetDeviceInfo() {
-      ::grpc::Service::MarkMethodCallback(26,
+      ::grpc::Service::MarkMethodCallback(24,
           new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::DeviceInfo>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::DeviceInfo* response) { return this->GetDeviceInfo(context, request, response); }));}
     void SetMessageAllocatorFor_GetDeviceInfo(
         ::grpc::MessageAllocator< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::DeviceInfo>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(26);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(24);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::DeviceInfo>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -3115,13 +3193,13 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetBrakeControlStyle() {
-      ::grpc::Service::MarkMethodCallback(27,
+      ::grpc::Service::MarkMethodCallback(25,
           new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::BrakeControlStyle>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::BrakeControlStyle* response) { return this->GetBrakeControlStyle(context, request, response); }));}
     void SetMessageAllocatorFor_GetBrakeControlStyle(
         ::grpc::MessageAllocator< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::BrakeControlStyle>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(27);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(25);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::BrakeControlStyle>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -3142,13 +3220,13 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_SetSanderCommand() {
-      ::grpc::Service::MarkMethodCallback(28,
+      ::grpc::Service::MarkMethodCallback(26,
           new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::SanderCommand, ::Nrmk::IndyFramework::Response>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::SanderCommand* request, ::Nrmk::IndyFramework::Response* response) { return this->SetSanderCommand(context, request, response); }));}
     void SetMessageAllocatorFor_SetSanderCommand(
         ::grpc::MessageAllocator< ::Nrmk::IndyFramework::SanderCommand, ::Nrmk::IndyFramework::Response>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(28);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(26);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::SanderCommand, ::Nrmk::IndyFramework::Response>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -3169,13 +3247,13 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetSanderCommand() {
-      ::grpc::Service::MarkMethodCallback(29,
+      ::grpc::Service::MarkMethodCallback(27,
           new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::SanderCommand>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::SanderCommand* response) { return this->GetSanderCommand(context, request, response); }));}
     void SetMessageAllocatorFor_GetSanderCommand(
         ::grpc::MessageAllocator< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::SanderCommand>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(29);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(27);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::SanderCommand>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -3196,13 +3274,13 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetFTSensorData() {
-      ::grpc::Service::MarkMethodCallback(30,
+      ::grpc::Service::MarkMethodCallback(28,
           new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::FTSensorData>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::FTSensorData* response) { return this->GetFTSensorData(context, request, response); }));}
     void SetMessageAllocatorFor_GetFTSensorData(
         ::grpc::MessageAllocator< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::FTSensorData>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(30);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(28);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::FTSensorData>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -3223,13 +3301,13 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetConveyor() {
-      ::grpc::Service::MarkMethodCallback(31,
+      ::grpc::Service::MarkMethodCallback(29,
           new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Conveyor>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::Conveyor* response) { return this->GetConveyor(context, request, response); }));}
     void SetMessageAllocatorFor_GetConveyor(
         ::grpc::MessageAllocator< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Conveyor>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(31);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(29);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Conveyor>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -3250,13 +3328,13 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_SetConveyorName() {
-      ::grpc::Service::MarkMethodCallback(32,
+      ::grpc::Service::MarkMethodCallback(30,
           new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Name, ::Nrmk::IndyFramework::Response>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::Name* request, ::Nrmk::IndyFramework::Response* response) { return this->SetConveyorName(context, request, response); }));}
     void SetMessageAllocatorFor_SetConveyorName(
         ::grpc::MessageAllocator< ::Nrmk::IndyFramework::Name, ::Nrmk::IndyFramework::Response>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(32);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(30);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Name, ::Nrmk::IndyFramework::Response>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -3277,13 +3355,13 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_SetConveyorByName() {
-      ::grpc::Service::MarkMethodCallback(33,
+      ::grpc::Service::MarkMethodCallback(31,
           new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Name, ::Nrmk::IndyFramework::Response>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::Name* request, ::Nrmk::IndyFramework::Response* response) { return this->SetConveyorByName(context, request, response); }));}
     void SetMessageAllocatorFor_SetConveyorByName(
         ::grpc::MessageAllocator< ::Nrmk::IndyFramework::Name, ::Nrmk::IndyFramework::Response>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(33);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(31);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Name, ::Nrmk::IndyFramework::Response>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -3304,13 +3382,13 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_SetConveyorEncoder() {
-      ::grpc::Service::MarkMethodCallback(34,
+      ::grpc::Service::MarkMethodCallback(32,
           new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Encoder, ::Nrmk::IndyFramework::Response>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::Encoder* request, ::Nrmk::IndyFramework::Response* response) { return this->SetConveyorEncoder(context, request, response); }));}
     void SetMessageAllocatorFor_SetConveyorEncoder(
         ::grpc::MessageAllocator< ::Nrmk::IndyFramework::Encoder, ::Nrmk::IndyFramework::Response>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(34);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(32);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Encoder, ::Nrmk::IndyFramework::Response>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -3331,13 +3409,13 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_SetConveyorTrigger() {
-      ::grpc::Service::MarkMethodCallback(35,
+      ::grpc::Service::MarkMethodCallback(33,
           new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Trigger, ::Nrmk::IndyFramework::Response>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::Trigger* request, ::Nrmk::IndyFramework::Response* response) { return this->SetConveyorTrigger(context, request, response); }));}
     void SetMessageAllocatorFor_SetConveyorTrigger(
         ::grpc::MessageAllocator< ::Nrmk::IndyFramework::Trigger, ::Nrmk::IndyFramework::Response>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(35);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(33);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Trigger, ::Nrmk::IndyFramework::Response>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -3358,13 +3436,13 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_SetConveyorOffset() {
-      ::grpc::Service::MarkMethodCallback(36,
+      ::grpc::Service::MarkMethodCallback(34,
           new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Float, ::Nrmk::IndyFramework::Response>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::Float* request, ::Nrmk::IndyFramework::Response* response) { return this->SetConveyorOffset(context, request, response); }));}
     void SetMessageAllocatorFor_SetConveyorOffset(
         ::grpc::MessageAllocator< ::Nrmk::IndyFramework::Float, ::Nrmk::IndyFramework::Response>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(36);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(34);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Float, ::Nrmk::IndyFramework::Response>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -3378,6 +3456,60 @@ class Device final {
     }
     virtual ::grpc::ServerUnaryReactor* SetConveyorOffset(
       ::grpc::CallbackServerContext* /*context*/, const ::Nrmk::IndyFramework::Float* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_SetConveyorLockedJoint : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_SetConveyorLockedJoint() {
+      ::grpc::Service::MarkMethodCallback(35,
+          new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Int, ::Nrmk::IndyFramework::Response>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::Int* request, ::Nrmk::IndyFramework::Response* response) { return this->SetConveyorLockedJoint(context, request, response); }));}
+    void SetMessageAllocatorFor_SetConveyorLockedJoint(
+        ::grpc::MessageAllocator< ::Nrmk::IndyFramework::Int, ::Nrmk::IndyFramework::Response>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(35);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Int, ::Nrmk::IndyFramework::Response>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_SetConveyorLockedJoint() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetConveyorLockedJoint(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Int* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* SetConveyorLockedJoint(
+      ::grpc::CallbackServerContext* /*context*/, const ::Nrmk::IndyFramework::Int* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_SetConveyorToolLink : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_SetConveyorToolLink() {
+      ::grpc::Service::MarkMethodCallback(36,
+          new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Int, ::Nrmk::IndyFramework::Response>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::Int* request, ::Nrmk::IndyFramework::Response* response) { return this->SetConveyorToolLink(context, request, response); }));}
+    void SetMessageAllocatorFor_SetConveyorToolLink(
+        ::grpc::MessageAllocator< ::Nrmk::IndyFramework::Int, ::Nrmk::IndyFramework::Response>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(36);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Int, ::Nrmk::IndyFramework::Response>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_SetConveyorToolLink() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetConveyorToolLink(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Int* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* SetConveyorToolLink(
+      ::grpc::CallbackServerContext* /*context*/, const ::Nrmk::IndyFramework::Int* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
   class WithCallbackMethod_SetConveyorStartingPose : public BaseClass {
@@ -3461,18 +3593,45 @@ class Device final {
       ::grpc::CallbackServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::ConveyorState* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
+  class WithCallbackMethod_GetConveyorObjectDistances : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_GetConveyorObjectDistances() {
+      ::grpc::Service::MarkMethodCallback(40,
+          new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ConveyorObjectDistances>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ConveyorObjectDistances* response) { return this->GetConveyorObjectDistances(context, request, response); }));}
+    void SetMessageAllocatorFor_GetConveyorObjectDistances(
+        ::grpc::MessageAllocator< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ConveyorObjectDistances>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(40);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ConveyorObjectDistances>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_GetConveyorObjectDistances() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetConveyorObjectDistances(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::ConveyorObjectDistances* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GetConveyorObjectDistances(
+      ::grpc::CallbackServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::ConveyorObjectDistances* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
   class WithCallbackMethod_GetLoadFactors : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetLoadFactors() {
-      ::grpc::Service::MarkMethodCallback(40,
+      ::grpc::Service::MarkMethodCallback(41,
           new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::GetLoadFactorsRes>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::GetLoadFactorsRes* response) { return this->GetLoadFactors(context, request, response); }));}
     void SetMessageAllocatorFor_GetLoadFactors(
         ::grpc::MessageAllocator< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::GetLoadFactorsRes>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(40);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(41);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::GetLoadFactorsRes>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -3493,13 +3652,13 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_SetAutoMode() {
-      ::grpc::Service::MarkMethodCallback(41,
+      ::grpc::Service::MarkMethodCallback(42,
           new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::SetAutoModeReq, ::Nrmk::IndyFramework::SetAutoModeRes>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::SetAutoModeReq* request, ::Nrmk::IndyFramework::SetAutoModeRes* response) { return this->SetAutoMode(context, request, response); }));}
     void SetMessageAllocatorFor_SetAutoMode(
         ::grpc::MessageAllocator< ::Nrmk::IndyFramework::SetAutoModeReq, ::Nrmk::IndyFramework::SetAutoModeRes>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(41);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(42);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::SetAutoModeReq, ::Nrmk::IndyFramework::SetAutoModeRes>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -3520,13 +3679,13 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_CheckAutoMode() {
-      ::grpc::Service::MarkMethodCallback(42,
+      ::grpc::Service::MarkMethodCallback(43,
           new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::CheckAutoModeRes>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::CheckAutoModeRes* response) { return this->CheckAutoMode(context, request, response); }));}
     void SetMessageAllocatorFor_CheckAutoMode(
         ::grpc::MessageAllocator< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::CheckAutoModeRes>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(42);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(43);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::CheckAutoModeRes>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -3547,13 +3706,13 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_CheckReducedMode() {
-      ::grpc::Service::MarkMethodCallback(43,
+      ::grpc::Service::MarkMethodCallback(44,
           new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::CheckReducedModeRes>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::CheckReducedModeRes* response) { return this->CheckReducedMode(context, request, response); }));}
     void SetMessageAllocatorFor_CheckReducedMode(
         ::grpc::MessageAllocator< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::CheckReducedModeRes>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(43);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(44);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::CheckReducedModeRes>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -3574,13 +3733,13 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetSafetyFunctionState() {
-      ::grpc::Service::MarkMethodCallback(44,
+      ::grpc::Service::MarkMethodCallback(45,
           new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::SafetyFunctionState>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::SafetyFunctionState* response) { return this->GetSafetyFunctionState(context, request, response); }));}
     void SetMessageAllocatorFor_GetSafetyFunctionState(
         ::grpc::MessageAllocator< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::SafetyFunctionState>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(44);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(45);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::SafetyFunctionState>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -3601,13 +3760,13 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_RequestSafetyFunction() {
-      ::grpc::Service::MarkMethodCallback(45,
+      ::grpc::Service::MarkMethodCallback(46,
           new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::SafetyFunctionState, ::Nrmk::IndyFramework::Response>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::SafetyFunctionState* request, ::Nrmk::IndyFramework::Response* response) { return this->RequestSafetyFunction(context, request, response); }));}
     void SetMessageAllocatorFor_RequestSafetyFunction(
         ::grpc::MessageAllocator< ::Nrmk::IndyFramework::SafetyFunctionState, ::Nrmk::IndyFramework::Response>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(45);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(46);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::SafetyFunctionState, ::Nrmk::IndyFramework::Response>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -3628,13 +3787,13 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetSafetyControlData() {
-      ::grpc::Service::MarkMethodCallback(46,
+      ::grpc::Service::MarkMethodCallback(47,
           new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::SafetyControlData>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::SafetyControlData* response) { return this->GetSafetyControlData(context, request, response); }));}
     void SetMessageAllocatorFor_GetSafetyControlData(
         ::grpc::MessageAllocator< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::SafetyControlData>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(46);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(47);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::SafetyControlData>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -3650,18 +3809,45 @@ class Device final {
       ::grpc::CallbackServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::SafetyControlData* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
+  class WithCallbackMethod_CommitViolation : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_CommitViolation() {
+      ::grpc::Service::MarkMethodCallback(48,
+          new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::ViolationRequest, ::Nrmk::IndyFramework::Response>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::ViolationRequest* request, ::Nrmk::IndyFramework::Response* response) { return this->CommitViolation(context, request, response); }));}
+    void SetMessageAllocatorFor_CommitViolation(
+        ::grpc::MessageAllocator< ::Nrmk::IndyFramework::ViolationRequest, ::Nrmk::IndyFramework::Response>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(48);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::ViolationRequest, ::Nrmk::IndyFramework::Response>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_CommitViolation() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status CommitViolation(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::ViolationRequest* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* CommitViolation(
+      ::grpc::CallbackServerContext* /*context*/, const ::Nrmk::IndyFramework::ViolationRequest* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
   class WithCallbackMethod_GetGripperData : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetGripperData() {
-      ::grpc::Service::MarkMethodCallback(47,
+      ::grpc::Service::MarkMethodCallback(49,
           new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::GripperData>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::GripperData* response) { return this->GetGripperData(context, request, response); }));}
     void SetMessageAllocatorFor_GetGripperData(
         ::grpc::MessageAllocator< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::GripperData>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(47);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(49);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::GripperData>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -3682,13 +3868,13 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_SetGripperCommand() {
-      ::grpc::Service::MarkMethodCallback(48,
+      ::grpc::Service::MarkMethodCallback(50,
           new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::GripperCommand, ::Nrmk::IndyFramework::Empty>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::GripperCommand* request, ::Nrmk::IndyFramework::Empty* response) { return this->SetGripperCommand(context, request, response); }));}
     void SetMessageAllocatorFor_SetGripperCommand(
         ::grpc::MessageAllocator< ::Nrmk::IndyFramework::GripperCommand, ::Nrmk::IndyFramework::Empty>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(48);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(50);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::GripperCommand, ::Nrmk::IndyFramework::Empty>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -3709,13 +3895,13 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_AddPhotoneoCalibPoint() {
-      ::grpc::Service::MarkMethodCallback(49,
+      ::grpc::Service::MarkMethodCallback(51,
           new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::AddPhotoneoCalibPointReq, ::Nrmk::IndyFramework::Response>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::AddPhotoneoCalibPointReq* request, ::Nrmk::IndyFramework::Response* response) { return this->AddPhotoneoCalibPoint(context, request, response); }));}
     void SetMessageAllocatorFor_AddPhotoneoCalibPoint(
         ::grpc::MessageAllocator< ::Nrmk::IndyFramework::AddPhotoneoCalibPointReq, ::Nrmk::IndyFramework::Response>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(49);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(51);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::AddPhotoneoCalibPointReq, ::Nrmk::IndyFramework::Response>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -3736,13 +3922,13 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetPhotoneoDetection() {
-      ::grpc::Service::MarkMethodCallback(50,
+      ::grpc::Service::MarkMethodCallback(52,
           new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::VisionRequest, ::Nrmk::IndyFramework::VisionResult>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::VisionRequest* request, ::Nrmk::IndyFramework::VisionResult* response) { return this->GetPhotoneoDetection(context, request, response); }));}
     void SetMessageAllocatorFor_GetPhotoneoDetection(
         ::grpc::MessageAllocator< ::Nrmk::IndyFramework::VisionRequest, ::Nrmk::IndyFramework::VisionResult>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(50);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(52);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::VisionRequest, ::Nrmk::IndyFramework::VisionResult>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -3763,13 +3949,13 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetPhotoneoRetrieval() {
-      ::grpc::Service::MarkMethodCallback(51,
+      ::grpc::Service::MarkMethodCallback(53,
           new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::VisionRequest, ::Nrmk::IndyFramework::VisionResult>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::VisionRequest* request, ::Nrmk::IndyFramework::VisionResult* response) { return this->GetPhotoneoRetrieval(context, request, response); }));}
     void SetMessageAllocatorFor_GetPhotoneoRetrieval(
         ::grpc::MessageAllocator< ::Nrmk::IndyFramework::VisionRequest, ::Nrmk::IndyFramework::VisionResult>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(51);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(53);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::VisionRequest, ::Nrmk::IndyFramework::VisionResult>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -3784,7 +3970,34 @@ class Device final {
     virtual ::grpc::ServerUnaryReactor* GetPhotoneoRetrieval(
       ::grpc::CallbackServerContext* /*context*/, const ::Nrmk::IndyFramework::VisionRequest* /*request*/, ::Nrmk::IndyFramework::VisionResult* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_SetBrakes<WithCallbackMethod_SetServoAll<WithCallbackMethod_SetServo<WithCallbackMethod_SetDI<WithCallbackMethod_SetDO<WithCallbackMethod_SetEndDI<WithCallbackMethod_SetEndDO<WithCallbackMethod_SetAI<WithCallbackMethod_SetAO<WithCallbackMethod_SetEndAI<WithCallbackMethod_SetEndAO<WithCallbackMethod_ExecuteTool<WithCallbackMethod_SetEndRS485Rx<WithCallbackMethod_GetEndRS485Rx<WithCallbackMethod_GetEndRS485Tx<WithCallbackMethod_SetEndLedDim<WithCallbackMethod_GetDI<WithCallbackMethod_GetDO<WithCallbackMethod_GetEndDI<WithCallbackMethod_GetEndDO<WithCallbackMethod_GetAI<WithCallbackMethod_GetAO<WithCallbackMethod_GetEndAI<WithCallbackMethod_GetEndAO<WithCallbackMethod_GetEL5001<WithCallbackMethod_GetEL5101<WithCallbackMethod_GetDeviceInfo<WithCallbackMethod_GetBrakeControlStyle<WithCallbackMethod_SetSanderCommand<WithCallbackMethod_GetSanderCommand<WithCallbackMethod_GetFTSensorData<WithCallbackMethod_GetConveyor<WithCallbackMethod_SetConveyorName<WithCallbackMethod_SetConveyorByName<WithCallbackMethod_SetConveyorEncoder<WithCallbackMethod_SetConveyorTrigger<WithCallbackMethod_SetConveyorOffset<WithCallbackMethod_SetConveyorStartingPose<WithCallbackMethod_SetConveyorTerminalPose<WithCallbackMethod_GetConveyorState<WithCallbackMethod_GetLoadFactors<WithCallbackMethod_SetAutoMode<WithCallbackMethod_CheckAutoMode<WithCallbackMethod_CheckReducedMode<WithCallbackMethod_GetSafetyFunctionState<WithCallbackMethod_RequestSafetyFunction<WithCallbackMethod_GetSafetyControlData<WithCallbackMethod_GetGripperData<WithCallbackMethod_SetGripperCommand<WithCallbackMethod_AddPhotoneoCalibPoint<WithCallbackMethod_GetPhotoneoDetection<WithCallbackMethod_GetPhotoneoRetrieval<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > CallbackService;
+  template <class BaseClass>
+  class WithCallbackMethod_GetRTTaskTimes : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_GetRTTaskTimes() {
+      ::grpc::Service::MarkMethodCallback(54,
+          new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::TaskTimes>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::TaskTimes* response) { return this->GetRTTaskTimes(context, request, response); }));}
+    void SetMessageAllocatorFor_GetRTTaskTimes(
+        ::grpc::MessageAllocator< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::TaskTimes>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(54);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::TaskTimes>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_GetRTTaskTimes() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetRTTaskTimes(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::TaskTimes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GetRTTaskTimes(
+      ::grpc::CallbackServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::TaskTimes* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_SetBrakes<WithCallbackMethod_SetServoAll<WithCallbackMethod_SetServo<WithCallbackMethod_SetDI<WithCallbackMethod_SetDO<WithCallbackMethod_SetEndDI<WithCallbackMethod_SetEndDO<WithCallbackMethod_SetAI<WithCallbackMethod_SetAO<WithCallbackMethod_SetEndAI<WithCallbackMethod_SetEndAO<WithCallbackMethod_ExecuteTool<WithCallbackMethod_SetEndRS485Rx<WithCallbackMethod_GetEndRS485Rx<WithCallbackMethod_GetEndRS485Tx<WithCallbackMethod_SetEndLedDim<WithCallbackMethod_GetDI<WithCallbackMethod_GetDO<WithCallbackMethod_GetEndDI<WithCallbackMethod_GetEndDO<WithCallbackMethod_GetAI<WithCallbackMethod_GetAO<WithCallbackMethod_GetEndAI<WithCallbackMethod_GetEndAO<WithCallbackMethod_GetDeviceInfo<WithCallbackMethod_GetBrakeControlStyle<WithCallbackMethod_SetSanderCommand<WithCallbackMethod_GetSanderCommand<WithCallbackMethod_GetFTSensorData<WithCallbackMethod_GetConveyor<WithCallbackMethod_SetConveyorName<WithCallbackMethod_SetConveyorByName<WithCallbackMethod_SetConveyorEncoder<WithCallbackMethod_SetConveyorTrigger<WithCallbackMethod_SetConveyorOffset<WithCallbackMethod_SetConveyorLockedJoint<WithCallbackMethod_SetConveyorToolLink<WithCallbackMethod_SetConveyorStartingPose<WithCallbackMethod_SetConveyorTerminalPose<WithCallbackMethod_GetConveyorState<WithCallbackMethod_GetConveyorObjectDistances<WithCallbackMethod_GetLoadFactors<WithCallbackMethod_SetAutoMode<WithCallbackMethod_CheckAutoMode<WithCallbackMethod_CheckReducedMode<WithCallbackMethod_GetSafetyFunctionState<WithCallbackMethod_RequestSafetyFunction<WithCallbackMethod_GetSafetyControlData<WithCallbackMethod_CommitViolation<WithCallbackMethod_GetGripperData<WithCallbackMethod_SetGripperCommand<WithCallbackMethod_AddPhotoneoCalibPoint<WithCallbackMethod_GetPhotoneoDetection<WithCallbackMethod_GetPhotoneoRetrieval<WithCallbackMethod_GetRTTaskTimes<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_SetBrakes : public BaseClass {
@@ -4195,46 +4408,12 @@ class Device final {
     }
   };
   template <class BaseClass>
-  class WithGenericMethod_GetEL5001 : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithGenericMethod_GetEL5001() {
-      ::grpc::Service::MarkMethodGeneric(24);
-    }
-    ~WithGenericMethod_GetEL5001() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetEL5001(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::GetEL5001Data* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-  };
-  template <class BaseClass>
-  class WithGenericMethod_GetEL5101 : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithGenericMethod_GetEL5101() {
-      ::grpc::Service::MarkMethodGeneric(25);
-    }
-    ~WithGenericMethod_GetEL5101() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetEL5101(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::GetEL5101Data* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-  };
-  template <class BaseClass>
   class WithGenericMethod_GetDeviceInfo : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetDeviceInfo() {
-      ::grpc::Service::MarkMethodGeneric(26);
+      ::grpc::Service::MarkMethodGeneric(24);
     }
     ~WithGenericMethod_GetDeviceInfo() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4251,7 +4430,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetBrakeControlStyle() {
-      ::grpc::Service::MarkMethodGeneric(27);
+      ::grpc::Service::MarkMethodGeneric(25);
     }
     ~WithGenericMethod_GetBrakeControlStyle() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4268,7 +4447,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_SetSanderCommand() {
-      ::grpc::Service::MarkMethodGeneric(28);
+      ::grpc::Service::MarkMethodGeneric(26);
     }
     ~WithGenericMethod_SetSanderCommand() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4285,7 +4464,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetSanderCommand() {
-      ::grpc::Service::MarkMethodGeneric(29);
+      ::grpc::Service::MarkMethodGeneric(27);
     }
     ~WithGenericMethod_GetSanderCommand() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4302,7 +4481,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetFTSensorData() {
-      ::grpc::Service::MarkMethodGeneric(30);
+      ::grpc::Service::MarkMethodGeneric(28);
     }
     ~WithGenericMethod_GetFTSensorData() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4319,7 +4498,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetConveyor() {
-      ::grpc::Service::MarkMethodGeneric(31);
+      ::grpc::Service::MarkMethodGeneric(29);
     }
     ~WithGenericMethod_GetConveyor() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4336,7 +4515,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_SetConveyorName() {
-      ::grpc::Service::MarkMethodGeneric(32);
+      ::grpc::Service::MarkMethodGeneric(30);
     }
     ~WithGenericMethod_SetConveyorName() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4353,7 +4532,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_SetConveyorByName() {
-      ::grpc::Service::MarkMethodGeneric(33);
+      ::grpc::Service::MarkMethodGeneric(31);
     }
     ~WithGenericMethod_SetConveyorByName() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4370,7 +4549,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_SetConveyorEncoder() {
-      ::grpc::Service::MarkMethodGeneric(34);
+      ::grpc::Service::MarkMethodGeneric(32);
     }
     ~WithGenericMethod_SetConveyorEncoder() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4387,7 +4566,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_SetConveyorTrigger() {
-      ::grpc::Service::MarkMethodGeneric(35);
+      ::grpc::Service::MarkMethodGeneric(33);
     }
     ~WithGenericMethod_SetConveyorTrigger() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4404,13 +4583,47 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_SetConveyorOffset() {
-      ::grpc::Service::MarkMethodGeneric(36);
+      ::grpc::Service::MarkMethodGeneric(34);
     }
     ~WithGenericMethod_SetConveyorOffset() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
     ::grpc::Status SetConveyorOffset(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Float* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_SetConveyorLockedJoint : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_SetConveyorLockedJoint() {
+      ::grpc::Service::MarkMethodGeneric(35);
+    }
+    ~WithGenericMethod_SetConveyorLockedJoint() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetConveyorLockedJoint(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Int* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_SetConveyorToolLink : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_SetConveyorToolLink() {
+      ::grpc::Service::MarkMethodGeneric(36);
+    }
+    ~WithGenericMethod_SetConveyorToolLink() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetConveyorToolLink(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Int* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -4467,12 +4680,29 @@ class Device final {
     }
   };
   template <class BaseClass>
+  class WithGenericMethod_GetConveyorObjectDistances : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_GetConveyorObjectDistances() {
+      ::grpc::Service::MarkMethodGeneric(40);
+    }
+    ~WithGenericMethod_GetConveyorObjectDistances() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetConveyorObjectDistances(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::ConveyorObjectDistances* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
   class WithGenericMethod_GetLoadFactors : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetLoadFactors() {
-      ::grpc::Service::MarkMethodGeneric(40);
+      ::grpc::Service::MarkMethodGeneric(41);
     }
     ~WithGenericMethod_GetLoadFactors() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4489,7 +4719,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_SetAutoMode() {
-      ::grpc::Service::MarkMethodGeneric(41);
+      ::grpc::Service::MarkMethodGeneric(42);
     }
     ~WithGenericMethod_SetAutoMode() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4506,7 +4736,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_CheckAutoMode() {
-      ::grpc::Service::MarkMethodGeneric(42);
+      ::grpc::Service::MarkMethodGeneric(43);
     }
     ~WithGenericMethod_CheckAutoMode() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4523,7 +4753,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_CheckReducedMode() {
-      ::grpc::Service::MarkMethodGeneric(43);
+      ::grpc::Service::MarkMethodGeneric(44);
     }
     ~WithGenericMethod_CheckReducedMode() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4540,7 +4770,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetSafetyFunctionState() {
-      ::grpc::Service::MarkMethodGeneric(44);
+      ::grpc::Service::MarkMethodGeneric(45);
     }
     ~WithGenericMethod_GetSafetyFunctionState() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4557,7 +4787,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_RequestSafetyFunction() {
-      ::grpc::Service::MarkMethodGeneric(45);
+      ::grpc::Service::MarkMethodGeneric(46);
     }
     ~WithGenericMethod_RequestSafetyFunction() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4574,7 +4804,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetSafetyControlData() {
-      ::grpc::Service::MarkMethodGeneric(46);
+      ::grpc::Service::MarkMethodGeneric(47);
     }
     ~WithGenericMethod_GetSafetyControlData() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4586,12 +4816,29 @@ class Device final {
     }
   };
   template <class BaseClass>
+  class WithGenericMethod_CommitViolation : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_CommitViolation() {
+      ::grpc::Service::MarkMethodGeneric(48);
+    }
+    ~WithGenericMethod_CommitViolation() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status CommitViolation(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::ViolationRequest* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
   class WithGenericMethod_GetGripperData : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetGripperData() {
-      ::grpc::Service::MarkMethodGeneric(47);
+      ::grpc::Service::MarkMethodGeneric(49);
     }
     ~WithGenericMethod_GetGripperData() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4608,7 +4855,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_SetGripperCommand() {
-      ::grpc::Service::MarkMethodGeneric(48);
+      ::grpc::Service::MarkMethodGeneric(50);
     }
     ~WithGenericMethod_SetGripperCommand() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4625,7 +4872,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_AddPhotoneoCalibPoint() {
-      ::grpc::Service::MarkMethodGeneric(49);
+      ::grpc::Service::MarkMethodGeneric(51);
     }
     ~WithGenericMethod_AddPhotoneoCalibPoint() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4642,7 +4889,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetPhotoneoDetection() {
-      ::grpc::Service::MarkMethodGeneric(50);
+      ::grpc::Service::MarkMethodGeneric(52);
     }
     ~WithGenericMethod_GetPhotoneoDetection() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4659,13 +4906,30 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetPhotoneoRetrieval() {
-      ::grpc::Service::MarkMethodGeneric(51);
+      ::grpc::Service::MarkMethodGeneric(53);
     }
     ~WithGenericMethod_GetPhotoneoRetrieval() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
     ::grpc::Status GetPhotoneoRetrieval(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::VisionRequest* /*request*/, ::Nrmk::IndyFramework::VisionResult* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_GetRTTaskTimes : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_GetRTTaskTimes() {
+      ::grpc::Service::MarkMethodGeneric(54);
+    }
+    ~WithGenericMethod_GetRTTaskTimes() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetRTTaskTimes(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::TaskTimes* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -5151,52 +5415,12 @@ class Device final {
     }
   };
   template <class BaseClass>
-  class WithRawMethod_GetEL5001 : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawMethod_GetEL5001() {
-      ::grpc::Service::MarkMethodRaw(24);
-    }
-    ~WithRawMethod_GetEL5001() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetEL5001(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::GetEL5001Data* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestGetEL5001(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(24, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithRawMethod_GetEL5101 : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawMethod_GetEL5101() {
-      ::grpc::Service::MarkMethodRaw(25);
-    }
-    ~WithRawMethod_GetEL5101() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetEL5101(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::GetEL5101Data* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestGetEL5101(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(25, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
   class WithRawMethod_GetDeviceInfo : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetDeviceInfo() {
-      ::grpc::Service::MarkMethodRaw(26);
+      ::grpc::Service::MarkMethodRaw(24);
     }
     ~WithRawMethod_GetDeviceInfo() override {
       BaseClassMustBeDerivedFromService(this);
@@ -5207,7 +5431,7 @@ class Device final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetDeviceInfo(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(26, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(24, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -5216,7 +5440,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetBrakeControlStyle() {
-      ::grpc::Service::MarkMethodRaw(27);
+      ::grpc::Service::MarkMethodRaw(25);
     }
     ~WithRawMethod_GetBrakeControlStyle() override {
       BaseClassMustBeDerivedFromService(this);
@@ -5227,7 +5451,7 @@ class Device final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetBrakeControlStyle(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(27, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(25, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -5236,7 +5460,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_SetSanderCommand() {
-      ::grpc::Service::MarkMethodRaw(28);
+      ::grpc::Service::MarkMethodRaw(26);
     }
     ~WithRawMethod_SetSanderCommand() override {
       BaseClassMustBeDerivedFromService(this);
@@ -5247,7 +5471,7 @@ class Device final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestSetSanderCommand(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(28, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(26, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -5256,7 +5480,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetSanderCommand() {
-      ::grpc::Service::MarkMethodRaw(29);
+      ::grpc::Service::MarkMethodRaw(27);
     }
     ~WithRawMethod_GetSanderCommand() override {
       BaseClassMustBeDerivedFromService(this);
@@ -5267,7 +5491,7 @@ class Device final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetSanderCommand(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(29, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(27, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -5276,7 +5500,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetFTSensorData() {
-      ::grpc::Service::MarkMethodRaw(30);
+      ::grpc::Service::MarkMethodRaw(28);
     }
     ~WithRawMethod_GetFTSensorData() override {
       BaseClassMustBeDerivedFromService(this);
@@ -5287,7 +5511,7 @@ class Device final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetFTSensorData(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(30, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(28, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -5296,7 +5520,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetConveyor() {
-      ::grpc::Service::MarkMethodRaw(31);
+      ::grpc::Service::MarkMethodRaw(29);
     }
     ~WithRawMethod_GetConveyor() override {
       BaseClassMustBeDerivedFromService(this);
@@ -5307,7 +5531,7 @@ class Device final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetConveyor(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(31, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(29, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -5316,7 +5540,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_SetConveyorName() {
-      ::grpc::Service::MarkMethodRaw(32);
+      ::grpc::Service::MarkMethodRaw(30);
     }
     ~WithRawMethod_SetConveyorName() override {
       BaseClassMustBeDerivedFromService(this);
@@ -5327,7 +5551,7 @@ class Device final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestSetConveyorName(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(32, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(30, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -5336,7 +5560,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_SetConveyorByName() {
-      ::grpc::Service::MarkMethodRaw(33);
+      ::grpc::Service::MarkMethodRaw(31);
     }
     ~WithRawMethod_SetConveyorByName() override {
       BaseClassMustBeDerivedFromService(this);
@@ -5347,7 +5571,7 @@ class Device final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestSetConveyorByName(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(33, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(31, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -5356,7 +5580,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_SetConveyorEncoder() {
-      ::grpc::Service::MarkMethodRaw(34);
+      ::grpc::Service::MarkMethodRaw(32);
     }
     ~WithRawMethod_SetConveyorEncoder() override {
       BaseClassMustBeDerivedFromService(this);
@@ -5367,7 +5591,7 @@ class Device final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestSetConveyorEncoder(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(34, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(32, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -5376,7 +5600,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_SetConveyorTrigger() {
-      ::grpc::Service::MarkMethodRaw(35);
+      ::grpc::Service::MarkMethodRaw(33);
     }
     ~WithRawMethod_SetConveyorTrigger() override {
       BaseClassMustBeDerivedFromService(this);
@@ -5387,7 +5611,7 @@ class Device final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestSetConveyorTrigger(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(35, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(33, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -5396,7 +5620,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_SetConveyorOffset() {
-      ::grpc::Service::MarkMethodRaw(36);
+      ::grpc::Service::MarkMethodRaw(34);
     }
     ~WithRawMethod_SetConveyorOffset() override {
       BaseClassMustBeDerivedFromService(this);
@@ -5407,6 +5631,46 @@ class Device final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestSetConveyorOffset(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(34, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_SetConveyorLockedJoint : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_SetConveyorLockedJoint() {
+      ::grpc::Service::MarkMethodRaw(35);
+    }
+    ~WithRawMethod_SetConveyorLockedJoint() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetConveyorLockedJoint(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Int* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSetConveyorLockedJoint(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(35, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_SetConveyorToolLink : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_SetConveyorToolLink() {
+      ::grpc::Service::MarkMethodRaw(36);
+    }
+    ~WithRawMethod_SetConveyorToolLink() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetConveyorToolLink(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Int* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSetConveyorToolLink(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(36, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
@@ -5471,12 +5735,32 @@ class Device final {
     }
   };
   template <class BaseClass>
+  class WithRawMethod_GetConveyorObjectDistances : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_GetConveyorObjectDistances() {
+      ::grpc::Service::MarkMethodRaw(40);
+    }
+    ~WithRawMethod_GetConveyorObjectDistances() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetConveyorObjectDistances(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::ConveyorObjectDistances* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetConveyorObjectDistances(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(40, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithRawMethod_GetLoadFactors : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetLoadFactors() {
-      ::grpc::Service::MarkMethodRaw(40);
+      ::grpc::Service::MarkMethodRaw(41);
     }
     ~WithRawMethod_GetLoadFactors() override {
       BaseClassMustBeDerivedFromService(this);
@@ -5487,7 +5771,7 @@ class Device final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetLoadFactors(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(40, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(41, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -5496,7 +5780,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_SetAutoMode() {
-      ::grpc::Service::MarkMethodRaw(41);
+      ::grpc::Service::MarkMethodRaw(42);
     }
     ~WithRawMethod_SetAutoMode() override {
       BaseClassMustBeDerivedFromService(this);
@@ -5507,7 +5791,7 @@ class Device final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestSetAutoMode(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(41, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(42, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -5516,7 +5800,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_CheckAutoMode() {
-      ::grpc::Service::MarkMethodRaw(42);
+      ::grpc::Service::MarkMethodRaw(43);
     }
     ~WithRawMethod_CheckAutoMode() override {
       BaseClassMustBeDerivedFromService(this);
@@ -5527,7 +5811,7 @@ class Device final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestCheckAutoMode(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(42, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(43, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -5536,7 +5820,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_CheckReducedMode() {
-      ::grpc::Service::MarkMethodRaw(43);
+      ::grpc::Service::MarkMethodRaw(44);
     }
     ~WithRawMethod_CheckReducedMode() override {
       BaseClassMustBeDerivedFromService(this);
@@ -5547,7 +5831,7 @@ class Device final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestCheckReducedMode(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(43, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(44, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -5556,7 +5840,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetSafetyFunctionState() {
-      ::grpc::Service::MarkMethodRaw(44);
+      ::grpc::Service::MarkMethodRaw(45);
     }
     ~WithRawMethod_GetSafetyFunctionState() override {
       BaseClassMustBeDerivedFromService(this);
@@ -5567,7 +5851,7 @@ class Device final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetSafetyFunctionState(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(44, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(45, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -5576,7 +5860,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_RequestSafetyFunction() {
-      ::grpc::Service::MarkMethodRaw(45);
+      ::grpc::Service::MarkMethodRaw(46);
     }
     ~WithRawMethod_RequestSafetyFunction() override {
       BaseClassMustBeDerivedFromService(this);
@@ -5587,7 +5871,7 @@ class Device final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestRequestSafetyFunction(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(45, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(46, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -5596,7 +5880,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetSafetyControlData() {
-      ::grpc::Service::MarkMethodRaw(46);
+      ::grpc::Service::MarkMethodRaw(47);
     }
     ~WithRawMethod_GetSafetyControlData() override {
       BaseClassMustBeDerivedFromService(this);
@@ -5607,7 +5891,27 @@ class Device final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetSafetyControlData(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(46, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(47, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_CommitViolation : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_CommitViolation() {
+      ::grpc::Service::MarkMethodRaw(48);
+    }
+    ~WithRawMethod_CommitViolation() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status CommitViolation(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::ViolationRequest* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestCommitViolation(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(48, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -5616,7 +5920,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetGripperData() {
-      ::grpc::Service::MarkMethodRaw(47);
+      ::grpc::Service::MarkMethodRaw(49);
     }
     ~WithRawMethod_GetGripperData() override {
       BaseClassMustBeDerivedFromService(this);
@@ -5627,7 +5931,7 @@ class Device final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetGripperData(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(47, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(49, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -5636,7 +5940,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_SetGripperCommand() {
-      ::grpc::Service::MarkMethodRaw(48);
+      ::grpc::Service::MarkMethodRaw(50);
     }
     ~WithRawMethod_SetGripperCommand() override {
       BaseClassMustBeDerivedFromService(this);
@@ -5647,7 +5951,7 @@ class Device final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestSetGripperCommand(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(48, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(50, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -5656,7 +5960,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_AddPhotoneoCalibPoint() {
-      ::grpc::Service::MarkMethodRaw(49);
+      ::grpc::Service::MarkMethodRaw(51);
     }
     ~WithRawMethod_AddPhotoneoCalibPoint() override {
       BaseClassMustBeDerivedFromService(this);
@@ -5667,7 +5971,7 @@ class Device final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestAddPhotoneoCalibPoint(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(49, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(51, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -5676,7 +5980,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetPhotoneoDetection() {
-      ::grpc::Service::MarkMethodRaw(50);
+      ::grpc::Service::MarkMethodRaw(52);
     }
     ~WithRawMethod_GetPhotoneoDetection() override {
       BaseClassMustBeDerivedFromService(this);
@@ -5687,7 +5991,7 @@ class Device final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetPhotoneoDetection(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(50, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(52, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -5696,7 +6000,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetPhotoneoRetrieval() {
-      ::grpc::Service::MarkMethodRaw(51);
+      ::grpc::Service::MarkMethodRaw(53);
     }
     ~WithRawMethod_GetPhotoneoRetrieval() override {
       BaseClassMustBeDerivedFromService(this);
@@ -5707,7 +6011,27 @@ class Device final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetPhotoneoRetrieval(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(51, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(53, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_GetRTTaskTimes : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_GetRTTaskTimes() {
+      ::grpc::Service::MarkMethodRaw(54);
+    }
+    ~WithRawMethod_GetRTTaskTimes() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetRTTaskTimes(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::TaskTimes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetRTTaskTimes(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(54, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -6239,56 +6563,12 @@ class Device final {
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_GetEL5001 : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawCallbackMethod_GetEL5001() {
-      ::grpc::Service::MarkMethodRawCallback(24,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetEL5001(context, request, response); }));
-    }
-    ~WithRawCallbackMethod_GetEL5001() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetEL5001(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::GetEL5001Data* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* GetEL5001(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
-  class WithRawCallbackMethod_GetEL5101 : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawCallbackMethod_GetEL5101() {
-      ::grpc::Service::MarkMethodRawCallback(25,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetEL5101(context, request, response); }));
-    }
-    ~WithRawCallbackMethod_GetEL5101() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status GetEL5101(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::GetEL5101Data* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* GetEL5101(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
   class WithRawCallbackMethod_GetDeviceInfo : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetDeviceInfo() {
-      ::grpc::Service::MarkMethodRawCallback(26,
+      ::grpc::Service::MarkMethodRawCallback(24,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetDeviceInfo(context, request, response); }));
@@ -6310,7 +6590,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetBrakeControlStyle() {
-      ::grpc::Service::MarkMethodRawCallback(27,
+      ::grpc::Service::MarkMethodRawCallback(25,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetBrakeControlStyle(context, request, response); }));
@@ -6332,7 +6612,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_SetSanderCommand() {
-      ::grpc::Service::MarkMethodRawCallback(28,
+      ::grpc::Service::MarkMethodRawCallback(26,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SetSanderCommand(context, request, response); }));
@@ -6354,7 +6634,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetSanderCommand() {
-      ::grpc::Service::MarkMethodRawCallback(29,
+      ::grpc::Service::MarkMethodRawCallback(27,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetSanderCommand(context, request, response); }));
@@ -6376,7 +6656,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetFTSensorData() {
-      ::grpc::Service::MarkMethodRawCallback(30,
+      ::grpc::Service::MarkMethodRawCallback(28,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetFTSensorData(context, request, response); }));
@@ -6398,7 +6678,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetConveyor() {
-      ::grpc::Service::MarkMethodRawCallback(31,
+      ::grpc::Service::MarkMethodRawCallback(29,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetConveyor(context, request, response); }));
@@ -6420,7 +6700,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_SetConveyorName() {
-      ::grpc::Service::MarkMethodRawCallback(32,
+      ::grpc::Service::MarkMethodRawCallback(30,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SetConveyorName(context, request, response); }));
@@ -6442,7 +6722,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_SetConveyorByName() {
-      ::grpc::Service::MarkMethodRawCallback(33,
+      ::grpc::Service::MarkMethodRawCallback(31,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SetConveyorByName(context, request, response); }));
@@ -6464,7 +6744,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_SetConveyorEncoder() {
-      ::grpc::Service::MarkMethodRawCallback(34,
+      ::grpc::Service::MarkMethodRawCallback(32,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SetConveyorEncoder(context, request, response); }));
@@ -6486,7 +6766,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_SetConveyorTrigger() {
-      ::grpc::Service::MarkMethodRawCallback(35,
+      ::grpc::Service::MarkMethodRawCallback(33,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SetConveyorTrigger(context, request, response); }));
@@ -6508,7 +6788,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_SetConveyorOffset() {
-      ::grpc::Service::MarkMethodRawCallback(36,
+      ::grpc::Service::MarkMethodRawCallback(34,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SetConveyorOffset(context, request, response); }));
@@ -6522,6 +6802,50 @@ class Device final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* SetConveyorOffset(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_SetConveyorLockedJoint : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_SetConveyorLockedJoint() {
+      ::grpc::Service::MarkMethodRawCallback(35,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SetConveyorLockedJoint(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_SetConveyorLockedJoint() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetConveyorLockedJoint(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Int* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* SetConveyorLockedJoint(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_SetConveyorToolLink : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_SetConveyorToolLink() {
+      ::grpc::Service::MarkMethodRawCallback(36,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SetConveyorToolLink(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_SetConveyorToolLink() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetConveyorToolLink(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Int* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* SetConveyorToolLink(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
@@ -6591,12 +6915,34 @@ class Device final {
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
+  class WithRawCallbackMethod_GetConveyorObjectDistances : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_GetConveyorObjectDistances() {
+      ::grpc::Service::MarkMethodRawCallback(40,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetConveyorObjectDistances(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_GetConveyorObjectDistances() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetConveyorObjectDistances(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::ConveyorObjectDistances* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GetConveyorObjectDistances(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
   class WithRawCallbackMethod_GetLoadFactors : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetLoadFactors() {
-      ::grpc::Service::MarkMethodRawCallback(40,
+      ::grpc::Service::MarkMethodRawCallback(41,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetLoadFactors(context, request, response); }));
@@ -6618,7 +6964,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_SetAutoMode() {
-      ::grpc::Service::MarkMethodRawCallback(41,
+      ::grpc::Service::MarkMethodRawCallback(42,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SetAutoMode(context, request, response); }));
@@ -6640,7 +6986,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_CheckAutoMode() {
-      ::grpc::Service::MarkMethodRawCallback(42,
+      ::grpc::Service::MarkMethodRawCallback(43,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->CheckAutoMode(context, request, response); }));
@@ -6662,7 +7008,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_CheckReducedMode() {
-      ::grpc::Service::MarkMethodRawCallback(43,
+      ::grpc::Service::MarkMethodRawCallback(44,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->CheckReducedMode(context, request, response); }));
@@ -6684,7 +7030,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetSafetyFunctionState() {
-      ::grpc::Service::MarkMethodRawCallback(44,
+      ::grpc::Service::MarkMethodRawCallback(45,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetSafetyFunctionState(context, request, response); }));
@@ -6706,7 +7052,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_RequestSafetyFunction() {
-      ::grpc::Service::MarkMethodRawCallback(45,
+      ::grpc::Service::MarkMethodRawCallback(46,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->RequestSafetyFunction(context, request, response); }));
@@ -6728,7 +7074,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetSafetyControlData() {
-      ::grpc::Service::MarkMethodRawCallback(46,
+      ::grpc::Service::MarkMethodRawCallback(47,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetSafetyControlData(context, request, response); }));
@@ -6745,12 +7091,34 @@ class Device final {
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
+  class WithRawCallbackMethod_CommitViolation : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_CommitViolation() {
+      ::grpc::Service::MarkMethodRawCallback(48,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->CommitViolation(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_CommitViolation() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status CommitViolation(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::ViolationRequest* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* CommitViolation(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
   class WithRawCallbackMethod_GetGripperData : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetGripperData() {
-      ::grpc::Service::MarkMethodRawCallback(47,
+      ::grpc::Service::MarkMethodRawCallback(49,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetGripperData(context, request, response); }));
@@ -6772,7 +7140,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_SetGripperCommand() {
-      ::grpc::Service::MarkMethodRawCallback(48,
+      ::grpc::Service::MarkMethodRawCallback(50,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SetGripperCommand(context, request, response); }));
@@ -6794,7 +7162,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_AddPhotoneoCalibPoint() {
-      ::grpc::Service::MarkMethodRawCallback(49,
+      ::grpc::Service::MarkMethodRawCallback(51,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->AddPhotoneoCalibPoint(context, request, response); }));
@@ -6816,7 +7184,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetPhotoneoDetection() {
-      ::grpc::Service::MarkMethodRawCallback(50,
+      ::grpc::Service::MarkMethodRawCallback(52,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetPhotoneoDetection(context, request, response); }));
@@ -6838,7 +7206,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetPhotoneoRetrieval() {
-      ::grpc::Service::MarkMethodRawCallback(51,
+      ::grpc::Service::MarkMethodRawCallback(53,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetPhotoneoRetrieval(context, request, response); }));
@@ -6852,6 +7220,28 @@ class Device final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* GetPhotoneoRetrieval(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_GetRTTaskTimes : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_GetRTTaskTimes() {
+      ::grpc::Service::MarkMethodRawCallback(54,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetRTTaskTimes(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_GetRTTaskTimes() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetRTTaskTimes(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::TaskTimes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GetRTTaskTimes(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
@@ -7503,66 +7893,12 @@ class Device final {
     virtual ::grpc::Status StreamedGetEndAO(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Nrmk::IndyFramework::Empty,::Nrmk::IndyFramework::AnalogList>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
-  class WithStreamedUnaryMethod_GetEL5001 : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithStreamedUnaryMethod_GetEL5001() {
-      ::grpc::Service::MarkMethodStreamed(24,
-        new ::grpc::internal::StreamedUnaryHandler<
-          ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::GetEL5001Data>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
-                     ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::GetEL5001Data>* streamer) {
-                       return this->StreamedGetEL5001(context,
-                         streamer);
-                  }));
-    }
-    ~WithStreamedUnaryMethod_GetEL5001() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable regular version of this method
-    ::grpc::Status GetEL5001(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::GetEL5001Data* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedGetEL5001(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Nrmk::IndyFramework::Empty,::Nrmk::IndyFramework::GetEL5001Data>* server_unary_streamer) = 0;
-  };
-  template <class BaseClass>
-  class WithStreamedUnaryMethod_GetEL5101 : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithStreamedUnaryMethod_GetEL5101() {
-      ::grpc::Service::MarkMethodStreamed(25,
-        new ::grpc::internal::StreamedUnaryHandler<
-          ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::GetEL5101Data>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
-                     ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::GetEL5101Data>* streamer) {
-                       return this->StreamedGetEL5101(context,
-                         streamer);
-                  }));
-    }
-    ~WithStreamedUnaryMethod_GetEL5101() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable regular version of this method
-    ::grpc::Status GetEL5101(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::GetEL5101Data* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedGetEL5101(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Nrmk::IndyFramework::Empty,::Nrmk::IndyFramework::GetEL5101Data>* server_unary_streamer) = 0;
-  };
-  template <class BaseClass>
   class WithStreamedUnaryMethod_GetDeviceInfo : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetDeviceInfo() {
-      ::grpc::Service::MarkMethodStreamed(26,
+      ::grpc::Service::MarkMethodStreamed(24,
         new ::grpc::internal::StreamedUnaryHandler<
           ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::DeviceInfo>(
             [this](::grpc::ServerContext* context,
@@ -7589,7 +7925,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetBrakeControlStyle() {
-      ::grpc::Service::MarkMethodStreamed(27,
+      ::grpc::Service::MarkMethodStreamed(25,
         new ::grpc::internal::StreamedUnaryHandler<
           ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::BrakeControlStyle>(
             [this](::grpc::ServerContext* context,
@@ -7616,7 +7952,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_SetSanderCommand() {
-      ::grpc::Service::MarkMethodStreamed(28,
+      ::grpc::Service::MarkMethodStreamed(26,
         new ::grpc::internal::StreamedUnaryHandler<
           ::Nrmk::IndyFramework::SanderCommand, ::Nrmk::IndyFramework::Response>(
             [this](::grpc::ServerContext* context,
@@ -7643,7 +7979,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetSanderCommand() {
-      ::grpc::Service::MarkMethodStreamed(29,
+      ::grpc::Service::MarkMethodStreamed(27,
         new ::grpc::internal::StreamedUnaryHandler<
           ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::SanderCommand>(
             [this](::grpc::ServerContext* context,
@@ -7670,7 +8006,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetFTSensorData() {
-      ::grpc::Service::MarkMethodStreamed(30,
+      ::grpc::Service::MarkMethodStreamed(28,
         new ::grpc::internal::StreamedUnaryHandler<
           ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::FTSensorData>(
             [this](::grpc::ServerContext* context,
@@ -7697,7 +8033,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetConveyor() {
-      ::grpc::Service::MarkMethodStreamed(31,
+      ::grpc::Service::MarkMethodStreamed(29,
         new ::grpc::internal::StreamedUnaryHandler<
           ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Conveyor>(
             [this](::grpc::ServerContext* context,
@@ -7724,7 +8060,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_SetConveyorName() {
-      ::grpc::Service::MarkMethodStreamed(32,
+      ::grpc::Service::MarkMethodStreamed(30,
         new ::grpc::internal::StreamedUnaryHandler<
           ::Nrmk::IndyFramework::Name, ::Nrmk::IndyFramework::Response>(
             [this](::grpc::ServerContext* context,
@@ -7751,7 +8087,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_SetConveyorByName() {
-      ::grpc::Service::MarkMethodStreamed(33,
+      ::grpc::Service::MarkMethodStreamed(31,
         new ::grpc::internal::StreamedUnaryHandler<
           ::Nrmk::IndyFramework::Name, ::Nrmk::IndyFramework::Response>(
             [this](::grpc::ServerContext* context,
@@ -7778,7 +8114,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_SetConveyorEncoder() {
-      ::grpc::Service::MarkMethodStreamed(34,
+      ::grpc::Service::MarkMethodStreamed(32,
         new ::grpc::internal::StreamedUnaryHandler<
           ::Nrmk::IndyFramework::Encoder, ::Nrmk::IndyFramework::Response>(
             [this](::grpc::ServerContext* context,
@@ -7805,7 +8141,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_SetConveyorTrigger() {
-      ::grpc::Service::MarkMethodStreamed(35,
+      ::grpc::Service::MarkMethodStreamed(33,
         new ::grpc::internal::StreamedUnaryHandler<
           ::Nrmk::IndyFramework::Trigger, ::Nrmk::IndyFramework::Response>(
             [this](::grpc::ServerContext* context,
@@ -7832,7 +8168,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_SetConveyorOffset() {
-      ::grpc::Service::MarkMethodStreamed(36,
+      ::grpc::Service::MarkMethodStreamed(34,
         new ::grpc::internal::StreamedUnaryHandler<
           ::Nrmk::IndyFramework::Float, ::Nrmk::IndyFramework::Response>(
             [this](::grpc::ServerContext* context,
@@ -7852,6 +8188,60 @@ class Device final {
     }
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedSetConveyorOffset(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Nrmk::IndyFramework::Float,::Nrmk::IndyFramework::Response>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_SetConveyorLockedJoint : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_SetConveyorLockedJoint() {
+      ::grpc::Service::MarkMethodStreamed(35,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::Nrmk::IndyFramework::Int, ::Nrmk::IndyFramework::Response>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::Nrmk::IndyFramework::Int, ::Nrmk::IndyFramework::Response>* streamer) {
+                       return this->StreamedSetConveyorLockedJoint(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_SetConveyorLockedJoint() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status SetConveyorLockedJoint(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Int* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedSetConveyorLockedJoint(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Nrmk::IndyFramework::Int,::Nrmk::IndyFramework::Response>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_SetConveyorToolLink : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_SetConveyorToolLink() {
+      ::grpc::Service::MarkMethodStreamed(36,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::Nrmk::IndyFramework::Int, ::Nrmk::IndyFramework::Response>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::Nrmk::IndyFramework::Int, ::Nrmk::IndyFramework::Response>* streamer) {
+                       return this->StreamedSetConveyorToolLink(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_SetConveyorToolLink() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status SetConveyorToolLink(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Int* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedSetConveyorToolLink(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Nrmk::IndyFramework::Int,::Nrmk::IndyFramework::Response>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
   class WithStreamedUnaryMethod_SetConveyorStartingPose : public BaseClass {
@@ -7935,12 +8325,39 @@ class Device final {
     virtual ::grpc::Status StreamedGetConveyorState(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Nrmk::IndyFramework::Empty,::Nrmk::IndyFramework::ConveyorState>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
+  class WithStreamedUnaryMethod_GetConveyorObjectDistances : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_GetConveyorObjectDistances() {
+      ::grpc::Service::MarkMethodStreamed(40,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ConveyorObjectDistances>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ConveyorObjectDistances>* streamer) {
+                       return this->StreamedGetConveyorObjectDistances(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_GetConveyorObjectDistances() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status GetConveyorObjectDistances(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::ConveyorObjectDistances* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedGetConveyorObjectDistances(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Nrmk::IndyFramework::Empty,::Nrmk::IndyFramework::ConveyorObjectDistances>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
   class WithStreamedUnaryMethod_GetLoadFactors : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetLoadFactors() {
-      ::grpc::Service::MarkMethodStreamed(40,
+      ::grpc::Service::MarkMethodStreamed(41,
         new ::grpc::internal::StreamedUnaryHandler<
           ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::GetLoadFactorsRes>(
             [this](::grpc::ServerContext* context,
@@ -7967,7 +8384,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_SetAutoMode() {
-      ::grpc::Service::MarkMethodStreamed(41,
+      ::grpc::Service::MarkMethodStreamed(42,
         new ::grpc::internal::StreamedUnaryHandler<
           ::Nrmk::IndyFramework::SetAutoModeReq, ::Nrmk::IndyFramework::SetAutoModeRes>(
             [this](::grpc::ServerContext* context,
@@ -7994,7 +8411,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_CheckAutoMode() {
-      ::grpc::Service::MarkMethodStreamed(42,
+      ::grpc::Service::MarkMethodStreamed(43,
         new ::grpc::internal::StreamedUnaryHandler<
           ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::CheckAutoModeRes>(
             [this](::grpc::ServerContext* context,
@@ -8021,7 +8438,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_CheckReducedMode() {
-      ::grpc::Service::MarkMethodStreamed(43,
+      ::grpc::Service::MarkMethodStreamed(44,
         new ::grpc::internal::StreamedUnaryHandler<
           ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::CheckReducedModeRes>(
             [this](::grpc::ServerContext* context,
@@ -8048,7 +8465,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetSafetyFunctionState() {
-      ::grpc::Service::MarkMethodStreamed(44,
+      ::grpc::Service::MarkMethodStreamed(45,
         new ::grpc::internal::StreamedUnaryHandler<
           ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::SafetyFunctionState>(
             [this](::grpc::ServerContext* context,
@@ -8075,7 +8492,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_RequestSafetyFunction() {
-      ::grpc::Service::MarkMethodStreamed(45,
+      ::grpc::Service::MarkMethodStreamed(46,
         new ::grpc::internal::StreamedUnaryHandler<
           ::Nrmk::IndyFramework::SafetyFunctionState, ::Nrmk::IndyFramework::Response>(
             [this](::grpc::ServerContext* context,
@@ -8102,7 +8519,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetSafetyControlData() {
-      ::grpc::Service::MarkMethodStreamed(46,
+      ::grpc::Service::MarkMethodStreamed(47,
         new ::grpc::internal::StreamedUnaryHandler<
           ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::SafetyControlData>(
             [this](::grpc::ServerContext* context,
@@ -8124,12 +8541,39 @@ class Device final {
     virtual ::grpc::Status StreamedGetSafetyControlData(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Nrmk::IndyFramework::Empty,::Nrmk::IndyFramework::SafetyControlData>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
+  class WithStreamedUnaryMethod_CommitViolation : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_CommitViolation() {
+      ::grpc::Service::MarkMethodStreamed(48,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::Nrmk::IndyFramework::ViolationRequest, ::Nrmk::IndyFramework::Response>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::Nrmk::IndyFramework::ViolationRequest, ::Nrmk::IndyFramework::Response>* streamer) {
+                       return this->StreamedCommitViolation(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_CommitViolation() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status CommitViolation(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::ViolationRequest* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedCommitViolation(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Nrmk::IndyFramework::ViolationRequest,::Nrmk::IndyFramework::Response>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
   class WithStreamedUnaryMethod_GetGripperData : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetGripperData() {
-      ::grpc::Service::MarkMethodStreamed(47,
+      ::grpc::Service::MarkMethodStreamed(49,
         new ::grpc::internal::StreamedUnaryHandler<
           ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::GripperData>(
             [this](::grpc::ServerContext* context,
@@ -8156,7 +8600,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_SetGripperCommand() {
-      ::grpc::Service::MarkMethodStreamed(48,
+      ::grpc::Service::MarkMethodStreamed(50,
         new ::grpc::internal::StreamedUnaryHandler<
           ::Nrmk::IndyFramework::GripperCommand, ::Nrmk::IndyFramework::Empty>(
             [this](::grpc::ServerContext* context,
@@ -8183,7 +8627,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_AddPhotoneoCalibPoint() {
-      ::grpc::Service::MarkMethodStreamed(49,
+      ::grpc::Service::MarkMethodStreamed(51,
         new ::grpc::internal::StreamedUnaryHandler<
           ::Nrmk::IndyFramework::AddPhotoneoCalibPointReq, ::Nrmk::IndyFramework::Response>(
             [this](::grpc::ServerContext* context,
@@ -8210,7 +8654,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetPhotoneoDetection() {
-      ::grpc::Service::MarkMethodStreamed(50,
+      ::grpc::Service::MarkMethodStreamed(52,
         new ::grpc::internal::StreamedUnaryHandler<
           ::Nrmk::IndyFramework::VisionRequest, ::Nrmk::IndyFramework::VisionResult>(
             [this](::grpc::ServerContext* context,
@@ -8237,7 +8681,7 @@ class Device final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetPhotoneoRetrieval() {
-      ::grpc::Service::MarkMethodStreamed(51,
+      ::grpc::Service::MarkMethodStreamed(53,
         new ::grpc::internal::StreamedUnaryHandler<
           ::Nrmk::IndyFramework::VisionRequest, ::Nrmk::IndyFramework::VisionResult>(
             [this](::grpc::ServerContext* context,
@@ -8258,9 +8702,36 @@ class Device final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedGetPhotoneoRetrieval(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Nrmk::IndyFramework::VisionRequest,::Nrmk::IndyFramework::VisionResult>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_SetBrakes<WithStreamedUnaryMethod_SetServoAll<WithStreamedUnaryMethod_SetServo<WithStreamedUnaryMethod_SetDI<WithStreamedUnaryMethod_SetDO<WithStreamedUnaryMethod_SetEndDI<WithStreamedUnaryMethod_SetEndDO<WithStreamedUnaryMethod_SetAI<WithStreamedUnaryMethod_SetAO<WithStreamedUnaryMethod_SetEndAI<WithStreamedUnaryMethod_SetEndAO<WithStreamedUnaryMethod_ExecuteTool<WithStreamedUnaryMethod_SetEndRS485Rx<WithStreamedUnaryMethod_GetEndRS485Rx<WithStreamedUnaryMethod_GetEndRS485Tx<WithStreamedUnaryMethod_SetEndLedDim<WithStreamedUnaryMethod_GetDI<WithStreamedUnaryMethod_GetDO<WithStreamedUnaryMethod_GetEndDI<WithStreamedUnaryMethod_GetEndDO<WithStreamedUnaryMethod_GetAI<WithStreamedUnaryMethod_GetAO<WithStreamedUnaryMethod_GetEndAI<WithStreamedUnaryMethod_GetEndAO<WithStreamedUnaryMethod_GetEL5001<WithStreamedUnaryMethod_GetEL5101<WithStreamedUnaryMethod_GetDeviceInfo<WithStreamedUnaryMethod_GetBrakeControlStyle<WithStreamedUnaryMethod_SetSanderCommand<WithStreamedUnaryMethod_GetSanderCommand<WithStreamedUnaryMethod_GetFTSensorData<WithStreamedUnaryMethod_GetConveyor<WithStreamedUnaryMethod_SetConveyorName<WithStreamedUnaryMethod_SetConveyorByName<WithStreamedUnaryMethod_SetConveyorEncoder<WithStreamedUnaryMethod_SetConveyorTrigger<WithStreamedUnaryMethod_SetConveyorOffset<WithStreamedUnaryMethod_SetConveyorStartingPose<WithStreamedUnaryMethod_SetConveyorTerminalPose<WithStreamedUnaryMethod_GetConveyorState<WithStreamedUnaryMethod_GetLoadFactors<WithStreamedUnaryMethod_SetAutoMode<WithStreamedUnaryMethod_CheckAutoMode<WithStreamedUnaryMethod_CheckReducedMode<WithStreamedUnaryMethod_GetSafetyFunctionState<WithStreamedUnaryMethod_RequestSafetyFunction<WithStreamedUnaryMethod_GetSafetyControlData<WithStreamedUnaryMethod_GetGripperData<WithStreamedUnaryMethod_SetGripperCommand<WithStreamedUnaryMethod_AddPhotoneoCalibPoint<WithStreamedUnaryMethod_GetPhotoneoDetection<WithStreamedUnaryMethod_GetPhotoneoRetrieval<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_GetRTTaskTimes : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_GetRTTaskTimes() {
+      ::grpc::Service::MarkMethodStreamed(54,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::TaskTimes>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::TaskTimes>* streamer) {
+                       return this->StreamedGetRTTaskTimes(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_GetRTTaskTimes() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status GetRTTaskTimes(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::TaskTimes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedGetRTTaskTimes(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Nrmk::IndyFramework::Empty,::Nrmk::IndyFramework::TaskTimes>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_SetBrakes<WithStreamedUnaryMethod_SetServoAll<WithStreamedUnaryMethod_SetServo<WithStreamedUnaryMethod_SetDI<WithStreamedUnaryMethod_SetDO<WithStreamedUnaryMethod_SetEndDI<WithStreamedUnaryMethod_SetEndDO<WithStreamedUnaryMethod_SetAI<WithStreamedUnaryMethod_SetAO<WithStreamedUnaryMethod_SetEndAI<WithStreamedUnaryMethod_SetEndAO<WithStreamedUnaryMethod_ExecuteTool<WithStreamedUnaryMethod_SetEndRS485Rx<WithStreamedUnaryMethod_GetEndRS485Rx<WithStreamedUnaryMethod_GetEndRS485Tx<WithStreamedUnaryMethod_SetEndLedDim<WithStreamedUnaryMethod_GetDI<WithStreamedUnaryMethod_GetDO<WithStreamedUnaryMethod_GetEndDI<WithStreamedUnaryMethod_GetEndDO<WithStreamedUnaryMethod_GetAI<WithStreamedUnaryMethod_GetAO<WithStreamedUnaryMethod_GetEndAI<WithStreamedUnaryMethod_GetEndAO<WithStreamedUnaryMethod_GetDeviceInfo<WithStreamedUnaryMethod_GetBrakeControlStyle<WithStreamedUnaryMethod_SetSanderCommand<WithStreamedUnaryMethod_GetSanderCommand<WithStreamedUnaryMethod_GetFTSensorData<WithStreamedUnaryMethod_GetConveyor<WithStreamedUnaryMethod_SetConveyorName<WithStreamedUnaryMethod_SetConveyorByName<WithStreamedUnaryMethod_SetConveyorEncoder<WithStreamedUnaryMethod_SetConveyorTrigger<WithStreamedUnaryMethod_SetConveyorOffset<WithStreamedUnaryMethod_SetConveyorLockedJoint<WithStreamedUnaryMethod_SetConveyorToolLink<WithStreamedUnaryMethod_SetConveyorStartingPose<WithStreamedUnaryMethod_SetConveyorTerminalPose<WithStreamedUnaryMethod_GetConveyorState<WithStreamedUnaryMethod_GetConveyorObjectDistances<WithStreamedUnaryMethod_GetLoadFactors<WithStreamedUnaryMethod_SetAutoMode<WithStreamedUnaryMethod_CheckAutoMode<WithStreamedUnaryMethod_CheckReducedMode<WithStreamedUnaryMethod_GetSafetyFunctionState<WithStreamedUnaryMethod_RequestSafetyFunction<WithStreamedUnaryMethod_GetSafetyControlData<WithStreamedUnaryMethod_CommitViolation<WithStreamedUnaryMethod_GetGripperData<WithStreamedUnaryMethod_SetGripperCommand<WithStreamedUnaryMethod_AddPhotoneoCalibPoint<WithStreamedUnaryMethod_GetPhotoneoDetection<WithStreamedUnaryMethod_GetPhotoneoRetrieval<WithStreamedUnaryMethod_GetRTTaskTimes<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_SetBrakes<WithStreamedUnaryMethod_SetServoAll<WithStreamedUnaryMethod_SetServo<WithStreamedUnaryMethod_SetDI<WithStreamedUnaryMethod_SetDO<WithStreamedUnaryMethod_SetEndDI<WithStreamedUnaryMethod_SetEndDO<WithStreamedUnaryMethod_SetAI<WithStreamedUnaryMethod_SetAO<WithStreamedUnaryMethod_SetEndAI<WithStreamedUnaryMethod_SetEndAO<WithStreamedUnaryMethod_ExecuteTool<WithStreamedUnaryMethod_SetEndRS485Rx<WithStreamedUnaryMethod_GetEndRS485Rx<WithStreamedUnaryMethod_GetEndRS485Tx<WithStreamedUnaryMethod_SetEndLedDim<WithStreamedUnaryMethod_GetDI<WithStreamedUnaryMethod_GetDO<WithStreamedUnaryMethod_GetEndDI<WithStreamedUnaryMethod_GetEndDO<WithStreamedUnaryMethod_GetAI<WithStreamedUnaryMethod_GetAO<WithStreamedUnaryMethod_GetEndAI<WithStreamedUnaryMethod_GetEndAO<WithStreamedUnaryMethod_GetEL5001<WithStreamedUnaryMethod_GetEL5101<WithStreamedUnaryMethod_GetDeviceInfo<WithStreamedUnaryMethod_GetBrakeControlStyle<WithStreamedUnaryMethod_SetSanderCommand<WithStreamedUnaryMethod_GetSanderCommand<WithStreamedUnaryMethod_GetFTSensorData<WithStreamedUnaryMethod_GetConveyor<WithStreamedUnaryMethod_SetConveyorName<WithStreamedUnaryMethod_SetConveyorByName<WithStreamedUnaryMethod_SetConveyorEncoder<WithStreamedUnaryMethod_SetConveyorTrigger<WithStreamedUnaryMethod_SetConveyorOffset<WithStreamedUnaryMethod_SetConveyorStartingPose<WithStreamedUnaryMethod_SetConveyorTerminalPose<WithStreamedUnaryMethod_GetConveyorState<WithStreamedUnaryMethod_GetLoadFactors<WithStreamedUnaryMethod_SetAutoMode<WithStreamedUnaryMethod_CheckAutoMode<WithStreamedUnaryMethod_CheckReducedMode<WithStreamedUnaryMethod_GetSafetyFunctionState<WithStreamedUnaryMethod_RequestSafetyFunction<WithStreamedUnaryMethod_GetSafetyControlData<WithStreamedUnaryMethod_GetGripperData<WithStreamedUnaryMethod_SetGripperCommand<WithStreamedUnaryMethod_AddPhotoneoCalibPoint<WithStreamedUnaryMethod_GetPhotoneoDetection<WithStreamedUnaryMethod_GetPhotoneoRetrieval<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_SetBrakes<WithStreamedUnaryMethod_SetServoAll<WithStreamedUnaryMethod_SetServo<WithStreamedUnaryMethod_SetDI<WithStreamedUnaryMethod_SetDO<WithStreamedUnaryMethod_SetEndDI<WithStreamedUnaryMethod_SetEndDO<WithStreamedUnaryMethod_SetAI<WithStreamedUnaryMethod_SetAO<WithStreamedUnaryMethod_SetEndAI<WithStreamedUnaryMethod_SetEndAO<WithStreamedUnaryMethod_ExecuteTool<WithStreamedUnaryMethod_SetEndRS485Rx<WithStreamedUnaryMethod_GetEndRS485Rx<WithStreamedUnaryMethod_GetEndRS485Tx<WithStreamedUnaryMethod_SetEndLedDim<WithStreamedUnaryMethod_GetDI<WithStreamedUnaryMethod_GetDO<WithStreamedUnaryMethod_GetEndDI<WithStreamedUnaryMethod_GetEndDO<WithStreamedUnaryMethod_GetAI<WithStreamedUnaryMethod_GetAO<WithStreamedUnaryMethod_GetEndAI<WithStreamedUnaryMethod_GetEndAO<WithStreamedUnaryMethod_GetDeviceInfo<WithStreamedUnaryMethod_GetBrakeControlStyle<WithStreamedUnaryMethod_SetSanderCommand<WithStreamedUnaryMethod_GetSanderCommand<WithStreamedUnaryMethod_GetFTSensorData<WithStreamedUnaryMethod_GetConveyor<WithStreamedUnaryMethod_SetConveyorName<WithStreamedUnaryMethod_SetConveyorByName<WithStreamedUnaryMethod_SetConveyorEncoder<WithStreamedUnaryMethod_SetConveyorTrigger<WithStreamedUnaryMethod_SetConveyorOffset<WithStreamedUnaryMethod_SetConveyorLockedJoint<WithStreamedUnaryMethod_SetConveyorToolLink<WithStreamedUnaryMethod_SetConveyorStartingPose<WithStreamedUnaryMethod_SetConveyorTerminalPose<WithStreamedUnaryMethod_GetConveyorState<WithStreamedUnaryMethod_GetConveyorObjectDistances<WithStreamedUnaryMethod_GetLoadFactors<WithStreamedUnaryMethod_SetAutoMode<WithStreamedUnaryMethod_CheckAutoMode<WithStreamedUnaryMethod_CheckReducedMode<WithStreamedUnaryMethod_GetSafetyFunctionState<WithStreamedUnaryMethod_RequestSafetyFunction<WithStreamedUnaryMethod_GetSafetyControlData<WithStreamedUnaryMethod_CommitViolation<WithStreamedUnaryMethod_GetGripperData<WithStreamedUnaryMethod_SetGripperCommand<WithStreamedUnaryMethod_AddPhotoneoCalibPoint<WithStreamedUnaryMethod_GetPhotoneoDetection<WithStreamedUnaryMethod_GetPhotoneoRetrieval<WithStreamedUnaryMethod_GetRTTaskTimes<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > StreamedService;
 };
 
 }  // namespace IndyFramework

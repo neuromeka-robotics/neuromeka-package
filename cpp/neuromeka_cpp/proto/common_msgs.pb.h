@@ -81,12 +81,30 @@ extern IntModeDefaultTypeInternal _IntMode_default_instance_;
 class Message;
 struct MessageDefaultTypeInternal;
 extern MessageDefaultTypeInternal _Message_default_instance_;
+class ModbusServerDef;
+struct ModbusServerDefDefaultTypeInternal;
+extern ModbusServerDefDefaultTypeInternal _ModbusServerDef_default_instance_;
 class Name;
 struct NameDefaultTypeInternal;
 extern NameDefaultTypeInternal _Name_default_instance_;
+class NamedBool;
+struct NamedBoolDefaultTypeInternal;
+extern NamedBoolDefaultTypeInternal _NamedBool_default_instance_;
+class NamedFloat;
+struct NamedFloatDefaultTypeInternal;
+extern NamedFloatDefaultTypeInternal _NamedFloat_default_instance_;
+class NamedInt;
+struct NamedIntDefaultTypeInternal;
+extern NamedIntDefaultTypeInternal _NamedInt_default_instance_;
+class NamedJointPosition;
+struct NamedJointPositionDefaultTypeInternal;
+extern NamedJointPositionDefaultTypeInternal _NamedJointPosition_default_instance_;
 class NamedReferencePosition;
 struct NamedReferencePositionDefaultTypeInternal;
 extern NamedReferencePositionDefaultTypeInternal _NamedReferencePosition_default_instance_;
+class NamedTaskPosition;
+struct NamedTaskPositionDefaultTypeInternal;
+extern NamedTaskPositionDefaultTypeInternal _NamedTaskPosition_default_instance_;
 class PauseCat;
 struct PauseCatDefaultTypeInternal;
 extern PauseCatDefaultTypeInternal _PauseCat_default_instance_;
@@ -272,6 +290,41 @@ inline bool StopCategory_Parse(absl::string_view name, StopCategory* value) {
   return ::google::protobuf::internal::ParseNamedEnum<StopCategory>(
       StopCategory_descriptor(), name, value);
 }
+enum SafeGdType : int {
+  GUARD_NONE = 0,
+  GUARD_STOP = 1,
+  GUARD_PAUSE = 2,
+  GUARD_PAUSE_RESUME = 3,
+  REDUCED_MODE = 4,
+  SafeGdType_INT_MIN_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::min(),
+  SafeGdType_INT_MAX_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::max(),
+};
+
+bool SafeGdType_IsValid(int value);
+constexpr SafeGdType SafeGdType_MIN = static_cast<SafeGdType>(0);
+constexpr SafeGdType SafeGdType_MAX = static_cast<SafeGdType>(4);
+constexpr int SafeGdType_ARRAYSIZE = 4 + 1;
+const ::google::protobuf::EnumDescriptor*
+SafeGdType_descriptor();
+template <typename T>
+const std::string& SafeGdType_Name(T value) {
+  static_assert(std::is_same<T, SafeGdType>::value ||
+                    std::is_integral<T>::value,
+                "Incorrect type passed to SafeGdType_Name().");
+  return SafeGdType_Name(static_cast<SafeGdType>(value));
+}
+template <>
+inline const std::string& SafeGdType_Name(SafeGdType value) {
+  return ::google::protobuf::internal::NameOfDenseEnum<SafeGdType_descriptor,
+                                                 0, 4>(
+      static_cast<int>(value));
+}
+inline bool SafeGdType_Parse(absl::string_view name, SafeGdType* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<SafeGdType>(
+      SafeGdType_descriptor(), name, value);
+}
 enum PauseCategory : int {
   SMOOTH_PAUSE = 0,
   IMMEDIATE_PAUSE = 1,
@@ -437,6 +490,73 @@ inline const std::string& TuningPrecision_Name(TuningPrecision value) {
 inline bool TuningPrecision_Parse(absl::string_view name, TuningPrecision* value) {
   return ::google::protobuf::internal::ParseNamedEnum<TuningPrecision>(
       TuningPrecision_descriptor(), name, value);
+}
+enum AxisType : int {
+  MDH_REVOLUTE = 0,
+  MDH_PRISMATIC = 1,
+  RIGID = 2,
+  AxisType_INT_MIN_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::min(),
+  AxisType_INT_MAX_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::max(),
+};
+
+bool AxisType_IsValid(int value);
+constexpr AxisType AxisType_MIN = static_cast<AxisType>(0);
+constexpr AxisType AxisType_MAX = static_cast<AxisType>(2);
+constexpr int AxisType_ARRAYSIZE = 2 + 1;
+const ::google::protobuf::EnumDescriptor*
+AxisType_descriptor();
+template <typename T>
+const std::string& AxisType_Name(T value) {
+  static_assert(std::is_same<T, AxisType>::value ||
+                    std::is_integral<T>::value,
+                "Incorrect type passed to AxisType_Name().");
+  return AxisType_Name(static_cast<AxisType>(value));
+}
+template <>
+inline const std::string& AxisType_Name(AxisType value) {
+  return ::google::protobuf::internal::NameOfDenseEnum<AxisType_descriptor,
+                                                 0, 2>(
+      static_cast<int>(value));
+}
+inline bool AxisType_Parse(absl::string_view name, AxisType* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<AxisType>(
+      AxisType_descriptor(), name, value);
+}
+enum ContactRule : int {
+  VIOLATION = 0,
+  COLLISION_LEVEL = 1,
+  SPEED_LIMIT = 2,
+  DIRECTION_LIMIT = 3,
+  ContactRule_INT_MIN_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::min(),
+  ContactRule_INT_MAX_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::max(),
+};
+
+bool ContactRule_IsValid(int value);
+constexpr ContactRule ContactRule_MIN = static_cast<ContactRule>(0);
+constexpr ContactRule ContactRule_MAX = static_cast<ContactRule>(3);
+constexpr int ContactRule_ARRAYSIZE = 3 + 1;
+const ::google::protobuf::EnumDescriptor*
+ContactRule_descriptor();
+template <typename T>
+const std::string& ContactRule_Name(T value) {
+  static_assert(std::is_same<T, ContactRule>::value ||
+                    std::is_integral<T>::value,
+                "Incorrect type passed to ContactRule_Name().");
+  return ContactRule_Name(static_cast<ContactRule>(value));
+}
+template <>
+inline const std::string& ContactRule_Name(ContactRule value) {
+  return ::google::protobuf::internal::NameOfDenseEnum<ContactRule_descriptor,
+                                                 0, 3>(
+      static_cast<int>(value));
+}
+inline bool ContactRule_Parse(absl::string_view name, ContactRule* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<ContactRule>(
+      ContactRule_descriptor(), name, value);
 }
 
 // ===================================================================
@@ -3107,6 +3227,902 @@ class DateTime final :
   friend struct ::TableStruct_common_5fmsgs_2eproto;
 };// -------------------------------------------------------------------
 
+class NamedBool final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.NamedBool) */ {
+ public:
+  inline NamedBool() : NamedBool(nullptr) {}
+  ~NamedBool() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR NamedBool(::google::protobuf::internal::ConstantInitialized);
+
+  NamedBool(const NamedBool& from);
+  NamedBool(NamedBool&& from) noexcept
+    : NamedBool() {
+    *this = ::std::move(from);
+  }
+
+  inline NamedBool& operator=(const NamedBool& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline NamedBool& operator=(NamedBool&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const NamedBool& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const NamedBool* internal_default_instance() {
+    return reinterpret_cast<const NamedBool*>(
+               &_NamedBool_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    16;
+
+  friend void swap(NamedBool& a, NamedBool& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(NamedBool* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(NamedBool* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  NamedBool* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<NamedBool>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const NamedBool& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const NamedBool& from) {
+    NamedBool::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(NamedBool* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "Nrmk.IndyFramework.NamedBool";
+  }
+  protected:
+  explicit NamedBool(::google::protobuf::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kNameFieldNumber = 1,
+    kValueFieldNumber = 2,
+  };
+  // string name = 1;
+  void clear_name() ;
+  const std::string& name() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_name(Arg_&& arg, Args_... args);
+  std::string* mutable_name();
+  PROTOBUF_NODISCARD std::string* release_name();
+  void set_allocated_name(std::string* ptr);
+
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(
+      const std::string& value);
+  std::string* _internal_mutable_name();
+
+  public:
+  // bool value = 2;
+  void clear_value() ;
+  bool value() const;
+  void set_value(bool value);
+
+  private:
+  bool _internal_value() const;
+  void _internal_set_value(bool value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.NamedBool)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<1, 2, 0, 41, 2> _table_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::google::protobuf::internal::ArenaStringPtr name_;
+    bool value_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_common_5fmsgs_2eproto;
+};// -------------------------------------------------------------------
+
+class NamedInt final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.NamedInt) */ {
+ public:
+  inline NamedInt() : NamedInt(nullptr) {}
+  ~NamedInt() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR NamedInt(::google::protobuf::internal::ConstantInitialized);
+
+  NamedInt(const NamedInt& from);
+  NamedInt(NamedInt&& from) noexcept
+    : NamedInt() {
+    *this = ::std::move(from);
+  }
+
+  inline NamedInt& operator=(const NamedInt& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline NamedInt& operator=(NamedInt&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const NamedInt& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const NamedInt* internal_default_instance() {
+    return reinterpret_cast<const NamedInt*>(
+               &_NamedInt_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    17;
+
+  friend void swap(NamedInt& a, NamedInt& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(NamedInt* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(NamedInt* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  NamedInt* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<NamedInt>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const NamedInt& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const NamedInt& from) {
+    NamedInt::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(NamedInt* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "Nrmk.IndyFramework.NamedInt";
+  }
+  protected:
+  explicit NamedInt(::google::protobuf::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kNameFieldNumber = 1,
+    kValueFieldNumber = 2,
+  };
+  // string name = 1;
+  void clear_name() ;
+  const std::string& name() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_name(Arg_&& arg, Args_... args);
+  std::string* mutable_name();
+  PROTOBUF_NODISCARD std::string* release_name();
+  void set_allocated_name(std::string* ptr);
+
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(
+      const std::string& value);
+  std::string* _internal_mutable_name();
+
+  public:
+  // int64 value = 2;
+  void clear_value() ;
+  ::int64_t value() const;
+  void set_value(::int64_t value);
+
+  private:
+  ::int64_t _internal_value() const;
+  void _internal_set_value(::int64_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.NamedInt)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<1, 2, 0, 40, 2> _table_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::google::protobuf::internal::ArenaStringPtr name_;
+    ::int64_t value_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_common_5fmsgs_2eproto;
+};// -------------------------------------------------------------------
+
+class NamedFloat final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.NamedFloat) */ {
+ public:
+  inline NamedFloat() : NamedFloat(nullptr) {}
+  ~NamedFloat() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR NamedFloat(::google::protobuf::internal::ConstantInitialized);
+
+  NamedFloat(const NamedFloat& from);
+  NamedFloat(NamedFloat&& from) noexcept
+    : NamedFloat() {
+    *this = ::std::move(from);
+  }
+
+  inline NamedFloat& operator=(const NamedFloat& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline NamedFloat& operator=(NamedFloat&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const NamedFloat& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const NamedFloat* internal_default_instance() {
+    return reinterpret_cast<const NamedFloat*>(
+               &_NamedFloat_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    18;
+
+  friend void swap(NamedFloat& a, NamedFloat& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(NamedFloat* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(NamedFloat* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  NamedFloat* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<NamedFloat>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const NamedFloat& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const NamedFloat& from) {
+    NamedFloat::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(NamedFloat* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "Nrmk.IndyFramework.NamedFloat";
+  }
+  protected:
+  explicit NamedFloat(::google::protobuf::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kNameFieldNumber = 1,
+    kValueFieldNumber = 2,
+  };
+  // string name = 1;
+  void clear_name() ;
+  const std::string& name() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_name(Arg_&& arg, Args_... args);
+  std::string* mutable_name();
+  PROTOBUF_NODISCARD std::string* release_name();
+  void set_allocated_name(std::string* ptr);
+
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(
+      const std::string& value);
+  std::string* _internal_mutable_name();
+
+  public:
+  // float value = 2;
+  void clear_value() ;
+  float value() const;
+  void set_value(float value);
+
+  private:
+  float _internal_value() const;
+  void _internal_set_value(float value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.NamedFloat)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<1, 2, 0, 42, 2> _table_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::google::protobuf::internal::ArenaStringPtr name_;
+    float value_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_common_5fmsgs_2eproto;
+};// -------------------------------------------------------------------
+
+class NamedTaskPosition final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.NamedTaskPosition) */ {
+ public:
+  inline NamedTaskPosition() : NamedTaskPosition(nullptr) {}
+  ~NamedTaskPosition() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR NamedTaskPosition(::google::protobuf::internal::ConstantInitialized);
+
+  NamedTaskPosition(const NamedTaskPosition& from);
+  NamedTaskPosition(NamedTaskPosition&& from) noexcept
+    : NamedTaskPosition() {
+    *this = ::std::move(from);
+  }
+
+  inline NamedTaskPosition& operator=(const NamedTaskPosition& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline NamedTaskPosition& operator=(NamedTaskPosition&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const NamedTaskPosition& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const NamedTaskPosition* internal_default_instance() {
+    return reinterpret_cast<const NamedTaskPosition*>(
+               &_NamedTaskPosition_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    19;
+
+  friend void swap(NamedTaskPosition& a, NamedTaskPosition& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(NamedTaskPosition* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(NamedTaskPosition* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  NamedTaskPosition* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<NamedTaskPosition>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const NamedTaskPosition& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const NamedTaskPosition& from) {
+    NamedTaskPosition::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(NamedTaskPosition* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "Nrmk.IndyFramework.NamedTaskPosition";
+  }
+  protected:
+  explicit NamedTaskPosition(::google::protobuf::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kTposFieldNumber = 2,
+    kNameFieldNumber = 1,
+  };
+  // repeated float tpos = 2;
+  int tpos_size() const;
+  private:
+  int _internal_tpos_size() const;
+
+  public:
+  void clear_tpos() ;
+  float tpos(int index) const;
+  void set_tpos(int index, float value);
+  void add_tpos(float value);
+  const ::google::protobuf::RepeatedField<float>& tpos() const;
+  ::google::protobuf::RepeatedField<float>* mutable_tpos();
+
+  private:
+  const ::google::protobuf::RepeatedField<float>& _internal_tpos() const;
+  ::google::protobuf::RepeatedField<float>* _internal_mutable_tpos();
+
+  public:
+  // string name = 1;
+  void clear_name() ;
+  const std::string& name() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_name(Arg_&& arg, Args_... args);
+  std::string* mutable_name();
+  PROTOBUF_NODISCARD std::string* release_name();
+  void set_allocated_name(std::string* ptr);
+
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(
+      const std::string& value);
+  std::string* _internal_mutable_name();
+
+  public:
+  // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.NamedTaskPosition)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<1, 2, 0, 49, 2> _table_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::google::protobuf::RepeatedField<float> tpos_;
+    ::google::protobuf::internal::ArenaStringPtr name_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_common_5fmsgs_2eproto;
+};// -------------------------------------------------------------------
+
+class NamedJointPosition final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.NamedJointPosition) */ {
+ public:
+  inline NamedJointPosition() : NamedJointPosition(nullptr) {}
+  ~NamedJointPosition() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR NamedJointPosition(::google::protobuf::internal::ConstantInitialized);
+
+  NamedJointPosition(const NamedJointPosition& from);
+  NamedJointPosition(NamedJointPosition&& from) noexcept
+    : NamedJointPosition() {
+    *this = ::std::move(from);
+  }
+
+  inline NamedJointPosition& operator=(const NamedJointPosition& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline NamedJointPosition& operator=(NamedJointPosition&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const NamedJointPosition& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const NamedJointPosition* internal_default_instance() {
+    return reinterpret_cast<const NamedJointPosition*>(
+               &_NamedJointPosition_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    20;
+
+  friend void swap(NamedJointPosition& a, NamedJointPosition& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(NamedJointPosition* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(NamedJointPosition* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  NamedJointPosition* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<NamedJointPosition>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const NamedJointPosition& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const NamedJointPosition& from) {
+    NamedJointPosition::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(NamedJointPosition* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "Nrmk.IndyFramework.NamedJointPosition";
+  }
+  protected:
+  explicit NamedJointPosition(::google::protobuf::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kJposFieldNumber = 2,
+    kNameFieldNumber = 1,
+  };
+  // repeated float jpos = 2;
+  int jpos_size() const;
+  private:
+  int _internal_jpos_size() const;
+
+  public:
+  void clear_jpos() ;
+  float jpos(int index) const;
+  void set_jpos(int index, float value);
+  void add_jpos(float value);
+  const ::google::protobuf::RepeatedField<float>& jpos() const;
+  ::google::protobuf::RepeatedField<float>* mutable_jpos();
+
+  private:
+  const ::google::protobuf::RepeatedField<float>& _internal_jpos() const;
+  ::google::protobuf::RepeatedField<float>* _internal_mutable_jpos();
+
+  public:
+  // string name = 1;
+  void clear_name() ;
+  const std::string& name() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_name(Arg_&& arg, Args_... args);
+  std::string* mutable_name();
+  PROTOBUF_NODISCARD std::string* release_name();
+  void set_allocated_name(std::string* ptr);
+
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(
+      const std::string& value);
+  std::string* _internal_mutable_name();
+
+  public:
+  // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.NamedJointPosition)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<1, 2, 0, 50, 2> _table_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::google::protobuf::RepeatedField<float> jpos_;
+    ::google::protobuf::internal::ArenaStringPtr name_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_common_5fmsgs_2eproto;
+};// -------------------------------------------------------------------
+
 class NamedReferencePosition final :
     public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.NamedReferencePosition) */ {
  public:
@@ -3163,7 +4179,7 @@ class NamedReferencePosition final :
                &_NamedReferencePosition_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    16;
+    21;
 
   friend void swap(NamedReferencePosition& a, NamedReferencePosition& b) {
     a.Swap(&b);
@@ -3404,6 +4420,212 @@ class NamedReferencePosition final :
     ::google::protobuf::RepeatedField<float> jpos1_;
     ::google::protobuf::RepeatedField<float> jpos2_;
     ::google::protobuf::internal::ArenaStringPtr name_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_common_5fmsgs_2eproto;
+};// -------------------------------------------------------------------
+
+class ModbusServerDef final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.ModbusServerDef) */ {
+ public:
+  inline ModbusServerDef() : ModbusServerDef(nullptr) {}
+  ~ModbusServerDef() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR ModbusServerDef(::google::protobuf::internal::ConstantInitialized);
+
+  ModbusServerDef(const ModbusServerDef& from);
+  ModbusServerDef(ModbusServerDef&& from) noexcept
+    : ModbusServerDef() {
+    *this = ::std::move(from);
+  }
+
+  inline ModbusServerDef& operator=(const ModbusServerDef& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ModbusServerDef& operator=(ModbusServerDef&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ModbusServerDef& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ModbusServerDef* internal_default_instance() {
+    return reinterpret_cast<const ModbusServerDef*>(
+               &_ModbusServerDef_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    22;
+
+  friend void swap(ModbusServerDef& a, ModbusServerDef& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ModbusServerDef* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ModbusServerDef* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ModbusServerDef* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ModbusServerDef>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const ModbusServerDef& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const ModbusServerDef& from) {
+    ModbusServerDef::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ModbusServerDef* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "Nrmk.IndyFramework.ModbusServerDef";
+  }
+  protected:
+  explicit ModbusServerDef(::google::protobuf::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kNameFieldNumber = 1,
+    kIpFieldNumber = 2,
+    kPortFieldNumber = 3,
+    kUnitIdFieldNumber = 4,
+  };
+  // string name = 1;
+  void clear_name() ;
+  const std::string& name() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_name(Arg_&& arg, Args_... args);
+  std::string* mutable_name();
+  PROTOBUF_NODISCARD std::string* release_name();
+  void set_allocated_name(std::string* ptr);
+
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(
+      const std::string& value);
+  std::string* _internal_mutable_name();
+
+  public:
+  // string ip = 2;
+  void clear_ip() ;
+  const std::string& ip() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_ip(Arg_&& arg, Args_... args);
+  std::string* mutable_ip();
+  PROTOBUF_NODISCARD std::string* release_ip();
+  void set_allocated_ip(std::string* ptr);
+
+  private:
+  const std::string& _internal_ip() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_ip(
+      const std::string& value);
+  std::string* _internal_mutable_ip();
+
+  public:
+  // int32 port = 3;
+  void clear_port() ;
+  ::int32_t port() const;
+  void set_port(::int32_t value);
+
+  private:
+  ::int32_t _internal_port() const;
+  void _internal_set_port(::int32_t value);
+
+  public:
+  // int32 unit_id = 4;
+  void clear_unit_id() ;
+  ::int32_t unit_id() const;
+  void set_unit_id(::int32_t value);
+
+  private:
+  ::int32_t _internal_unit_id() const;
+  void _internal_set_unit_id(::int32_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.ModbusServerDef)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<2, 4, 0, 49, 2> _table_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::google::protobuf::internal::ArenaStringPtr name_;
+    ::google::protobuf::internal::ArenaStringPtr ip_;
+    ::int32_t port_;
+    ::int32_t unit_id_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -4215,6 +5437,431 @@ inline void DateTime::_internal_set_second(::uint32_t value) {
 
 // -------------------------------------------------------------------
 
+// NamedBool
+
+// string name = 1;
+inline void NamedBool::clear_name() {
+  _impl_.name_.ClearToEmpty();
+}
+inline const std::string& NamedBool::name() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.NamedBool.name)
+  return _internal_name();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void NamedBool::set_name(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.name_.Set(static_cast<Arg_&&>(arg), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.NamedBool.name)
+}
+inline std::string* NamedBool::mutable_name() {
+  std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.NamedBool.name)
+  return _s;
+}
+inline const std::string& NamedBool::_internal_name() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.name_.Get();
+}
+inline void NamedBool::_internal_set_name(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* NamedBool::_internal_mutable_name() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.name_.Mutable( GetArenaForAllocation());
+}
+inline std::string* NamedBool::release_name() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:Nrmk.IndyFramework.NamedBool.name)
+  return _impl_.name_.Release();
+}
+inline void NamedBool::set_allocated_name(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.name_.SetAllocated(value, GetArenaForAllocation());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.name_.IsDefault()) {
+          _impl_.name_.Set("", GetArenaForAllocation());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.NamedBool.name)
+}
+
+// bool value = 2;
+inline void NamedBool::clear_value() {
+  _impl_.value_ = false;
+}
+inline bool NamedBool::value() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.NamedBool.value)
+  return _internal_value();
+}
+inline void NamedBool::set_value(bool value) {
+  _internal_set_value(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.NamedBool.value)
+}
+inline bool NamedBool::_internal_value() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.value_;
+}
+inline void NamedBool::_internal_set_value(bool value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.value_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// NamedInt
+
+// string name = 1;
+inline void NamedInt::clear_name() {
+  _impl_.name_.ClearToEmpty();
+}
+inline const std::string& NamedInt::name() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.NamedInt.name)
+  return _internal_name();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void NamedInt::set_name(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.name_.Set(static_cast<Arg_&&>(arg), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.NamedInt.name)
+}
+inline std::string* NamedInt::mutable_name() {
+  std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.NamedInt.name)
+  return _s;
+}
+inline const std::string& NamedInt::_internal_name() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.name_.Get();
+}
+inline void NamedInt::_internal_set_name(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* NamedInt::_internal_mutable_name() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.name_.Mutable( GetArenaForAllocation());
+}
+inline std::string* NamedInt::release_name() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:Nrmk.IndyFramework.NamedInt.name)
+  return _impl_.name_.Release();
+}
+inline void NamedInt::set_allocated_name(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.name_.SetAllocated(value, GetArenaForAllocation());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.name_.IsDefault()) {
+          _impl_.name_.Set("", GetArenaForAllocation());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.NamedInt.name)
+}
+
+// int64 value = 2;
+inline void NamedInt::clear_value() {
+  _impl_.value_ = ::int64_t{0};
+}
+inline ::int64_t NamedInt::value() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.NamedInt.value)
+  return _internal_value();
+}
+inline void NamedInt::set_value(::int64_t value) {
+  _internal_set_value(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.NamedInt.value)
+}
+inline ::int64_t NamedInt::_internal_value() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.value_;
+}
+inline void NamedInt::_internal_set_value(::int64_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.value_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// NamedFloat
+
+// string name = 1;
+inline void NamedFloat::clear_name() {
+  _impl_.name_.ClearToEmpty();
+}
+inline const std::string& NamedFloat::name() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.NamedFloat.name)
+  return _internal_name();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void NamedFloat::set_name(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.name_.Set(static_cast<Arg_&&>(arg), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.NamedFloat.name)
+}
+inline std::string* NamedFloat::mutable_name() {
+  std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.NamedFloat.name)
+  return _s;
+}
+inline const std::string& NamedFloat::_internal_name() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.name_.Get();
+}
+inline void NamedFloat::_internal_set_name(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* NamedFloat::_internal_mutable_name() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.name_.Mutable( GetArenaForAllocation());
+}
+inline std::string* NamedFloat::release_name() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:Nrmk.IndyFramework.NamedFloat.name)
+  return _impl_.name_.Release();
+}
+inline void NamedFloat::set_allocated_name(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.name_.SetAllocated(value, GetArenaForAllocation());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.name_.IsDefault()) {
+          _impl_.name_.Set("", GetArenaForAllocation());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.NamedFloat.name)
+}
+
+// float value = 2;
+inline void NamedFloat::clear_value() {
+  _impl_.value_ = 0;
+}
+inline float NamedFloat::value() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.NamedFloat.value)
+  return _internal_value();
+}
+inline void NamedFloat::set_value(float value) {
+  _internal_set_value(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.NamedFloat.value)
+}
+inline float NamedFloat::_internal_value() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.value_;
+}
+inline void NamedFloat::_internal_set_value(float value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.value_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// NamedTaskPosition
+
+// string name = 1;
+inline void NamedTaskPosition::clear_name() {
+  _impl_.name_.ClearToEmpty();
+}
+inline const std::string& NamedTaskPosition::name() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.NamedTaskPosition.name)
+  return _internal_name();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void NamedTaskPosition::set_name(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.name_.Set(static_cast<Arg_&&>(arg), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.NamedTaskPosition.name)
+}
+inline std::string* NamedTaskPosition::mutable_name() {
+  std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.NamedTaskPosition.name)
+  return _s;
+}
+inline const std::string& NamedTaskPosition::_internal_name() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.name_.Get();
+}
+inline void NamedTaskPosition::_internal_set_name(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* NamedTaskPosition::_internal_mutable_name() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.name_.Mutable( GetArenaForAllocation());
+}
+inline std::string* NamedTaskPosition::release_name() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:Nrmk.IndyFramework.NamedTaskPosition.name)
+  return _impl_.name_.Release();
+}
+inline void NamedTaskPosition::set_allocated_name(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.name_.SetAllocated(value, GetArenaForAllocation());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.name_.IsDefault()) {
+          _impl_.name_.Set("", GetArenaForAllocation());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.NamedTaskPosition.name)
+}
+
+// repeated float tpos = 2;
+inline int NamedTaskPosition::_internal_tpos_size() const {
+  return _internal_tpos().size();
+}
+inline int NamedTaskPosition::tpos_size() const {
+  return _internal_tpos_size();
+}
+inline void NamedTaskPosition::clear_tpos() {
+  _internal_mutable_tpos()->Clear();
+}
+inline float NamedTaskPosition::tpos(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.NamedTaskPosition.tpos)
+  return _internal_tpos().Get(index);
+}
+inline void NamedTaskPosition::set_tpos(int index, float value) {
+  _internal_mutable_tpos()->Set(index, value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.NamedTaskPosition.tpos)
+}
+inline void NamedTaskPosition::add_tpos(float value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_tpos()->Add(value);
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.NamedTaskPosition.tpos)
+}
+inline const ::google::protobuf::RepeatedField<float>& NamedTaskPosition::tpos() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.NamedTaskPosition.tpos)
+  return _internal_tpos();
+}
+inline ::google::protobuf::RepeatedField<float>* NamedTaskPosition::mutable_tpos() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.NamedTaskPosition.tpos)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_tpos();
+}
+
+inline const ::google::protobuf::RepeatedField<float>& NamedTaskPosition::_internal_tpos() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.tpos_;
+}
+inline ::google::protobuf::RepeatedField<float>* NamedTaskPosition::_internal_mutable_tpos() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.tpos_;
+}
+
+// -------------------------------------------------------------------
+
+// NamedJointPosition
+
+// string name = 1;
+inline void NamedJointPosition::clear_name() {
+  _impl_.name_.ClearToEmpty();
+}
+inline const std::string& NamedJointPosition::name() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.NamedJointPosition.name)
+  return _internal_name();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void NamedJointPosition::set_name(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.name_.Set(static_cast<Arg_&&>(arg), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.NamedJointPosition.name)
+}
+inline std::string* NamedJointPosition::mutable_name() {
+  std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.NamedJointPosition.name)
+  return _s;
+}
+inline const std::string& NamedJointPosition::_internal_name() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.name_.Get();
+}
+inline void NamedJointPosition::_internal_set_name(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* NamedJointPosition::_internal_mutable_name() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.name_.Mutable( GetArenaForAllocation());
+}
+inline std::string* NamedJointPosition::release_name() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:Nrmk.IndyFramework.NamedJointPosition.name)
+  return _impl_.name_.Release();
+}
+inline void NamedJointPosition::set_allocated_name(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.name_.SetAllocated(value, GetArenaForAllocation());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.name_.IsDefault()) {
+          _impl_.name_.Set("", GetArenaForAllocation());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.NamedJointPosition.name)
+}
+
+// repeated float jpos = 2;
+inline int NamedJointPosition::_internal_jpos_size() const {
+  return _internal_jpos().size();
+}
+inline int NamedJointPosition::jpos_size() const {
+  return _internal_jpos_size();
+}
+inline void NamedJointPosition::clear_jpos() {
+  _internal_mutable_jpos()->Clear();
+}
+inline float NamedJointPosition::jpos(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.NamedJointPosition.jpos)
+  return _internal_jpos().Get(index);
+}
+inline void NamedJointPosition::set_jpos(int index, float value) {
+  _internal_mutable_jpos()->Set(index, value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.NamedJointPosition.jpos)
+}
+inline void NamedJointPosition::add_jpos(float value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_jpos()->Add(value);
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.NamedJointPosition.jpos)
+}
+inline const ::google::protobuf::RepeatedField<float>& NamedJointPosition::jpos() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.NamedJointPosition.jpos)
+  return _internal_jpos();
+}
+inline ::google::protobuf::RepeatedField<float>* NamedJointPosition::mutable_jpos() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.NamedJointPosition.jpos)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_jpos();
+}
+
+inline const ::google::protobuf::RepeatedField<float>& NamedJointPosition::_internal_jpos() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.jpos_;
+}
+inline ::google::protobuf::RepeatedField<float>* NamedJointPosition::_internal_mutable_jpos() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.jpos_;
+}
+
+// -------------------------------------------------------------------
+
 // NamedReferencePosition
 
 // string name = 1;
@@ -4562,6 +6209,156 @@ inline ::google::protobuf::RepeatedField<float>* NamedReferencePosition::_intern
   return &_impl_.jpos2_;
 }
 
+// -------------------------------------------------------------------
+
+// ModbusServerDef
+
+// string name = 1;
+inline void ModbusServerDef::clear_name() {
+  _impl_.name_.ClearToEmpty();
+}
+inline const std::string& ModbusServerDef::name() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.ModbusServerDef.name)
+  return _internal_name();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void ModbusServerDef::set_name(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.name_.Set(static_cast<Arg_&&>(arg), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.ModbusServerDef.name)
+}
+inline std::string* ModbusServerDef::mutable_name() {
+  std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.ModbusServerDef.name)
+  return _s;
+}
+inline const std::string& ModbusServerDef::_internal_name() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.name_.Get();
+}
+inline void ModbusServerDef::_internal_set_name(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* ModbusServerDef::_internal_mutable_name() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.name_.Mutable( GetArenaForAllocation());
+}
+inline std::string* ModbusServerDef::release_name() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:Nrmk.IndyFramework.ModbusServerDef.name)
+  return _impl_.name_.Release();
+}
+inline void ModbusServerDef::set_allocated_name(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.name_.SetAllocated(value, GetArenaForAllocation());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.name_.IsDefault()) {
+          _impl_.name_.Set("", GetArenaForAllocation());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.ModbusServerDef.name)
+}
+
+// string ip = 2;
+inline void ModbusServerDef::clear_ip() {
+  _impl_.ip_.ClearToEmpty();
+}
+inline const std::string& ModbusServerDef::ip() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.ModbusServerDef.ip)
+  return _internal_ip();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void ModbusServerDef::set_ip(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.ip_.Set(static_cast<Arg_&&>(arg), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.ModbusServerDef.ip)
+}
+inline std::string* ModbusServerDef::mutable_ip() {
+  std::string* _s = _internal_mutable_ip();
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.ModbusServerDef.ip)
+  return _s;
+}
+inline const std::string& ModbusServerDef::_internal_ip() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.ip_.Get();
+}
+inline void ModbusServerDef::_internal_set_ip(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.ip_.Set(value, GetArenaForAllocation());
+}
+inline std::string* ModbusServerDef::_internal_mutable_ip() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.ip_.Mutable( GetArenaForAllocation());
+}
+inline std::string* ModbusServerDef::release_ip() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:Nrmk.IndyFramework.ModbusServerDef.ip)
+  return _impl_.ip_.Release();
+}
+inline void ModbusServerDef::set_allocated_ip(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.ip_.SetAllocated(value, GetArenaForAllocation());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.ip_.IsDefault()) {
+          _impl_.ip_.Set("", GetArenaForAllocation());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.ModbusServerDef.ip)
+}
+
+// int32 port = 3;
+inline void ModbusServerDef::clear_port() {
+  _impl_.port_ = 0;
+}
+inline ::int32_t ModbusServerDef::port() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.ModbusServerDef.port)
+  return _internal_port();
+}
+inline void ModbusServerDef::set_port(::int32_t value) {
+  _internal_set_port(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.ModbusServerDef.port)
+}
+inline ::int32_t ModbusServerDef::_internal_port() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.port_;
+}
+inline void ModbusServerDef::_internal_set_port(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.port_ = value;
+}
+
+// int32 unit_id = 4;
+inline void ModbusServerDef::clear_unit_id() {
+  _impl_.unit_id_ = 0;
+}
+inline ::int32_t ModbusServerDef::unit_id() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.ModbusServerDef.unit_id)
+  return _internal_unit_id();
+}
+inline void ModbusServerDef::set_unit_id(::int32_t value) {
+  _internal_set_unit_id(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.ModbusServerDef.unit_id)
+}
+inline ::int32_t ModbusServerDef::_internal_unit_id() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.unit_id_;
+}
+inline void ModbusServerDef::_internal_set_unit_id(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.unit_id_ = value;
+}
+
 #ifdef __GNUC__
 #pragma GCC diagnostic pop
 #endif  // __GNUC__
@@ -4599,6 +6396,12 @@ inline const EnumDescriptor* GetEnumDescriptor<::Nrmk::IndyFramework::StopCatego
   return ::Nrmk::IndyFramework::StopCategory_descriptor();
 }
 template <>
+struct is_proto_enum<::Nrmk::IndyFramework::SafeGdType> : std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor<::Nrmk::IndyFramework::SafeGdType>() {
+  return ::Nrmk::IndyFramework::SafeGdType_descriptor();
+}
+template <>
 struct is_proto_enum<::Nrmk::IndyFramework::PauseCategory> : std::true_type {};
 template <>
 inline const EnumDescriptor* GetEnumDescriptor<::Nrmk::IndyFramework::PauseCategory>() {
@@ -4627,6 +6430,18 @@ struct is_proto_enum<::Nrmk::IndyFramework::TuningPrecision> : std::true_type {}
 template <>
 inline const EnumDescriptor* GetEnumDescriptor<::Nrmk::IndyFramework::TuningPrecision>() {
   return ::Nrmk::IndyFramework::TuningPrecision_descriptor();
+}
+template <>
+struct is_proto_enum<::Nrmk::IndyFramework::AxisType> : std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor<::Nrmk::IndyFramework::AxisType>() {
+  return ::Nrmk::IndyFramework::AxisType_descriptor();
+}
+template <>
+struct is_proto_enum<::Nrmk::IndyFramework::ContactRule> : std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor<::Nrmk::IndyFramework::ContactRule>() {
+  return ::Nrmk::IndyFramework::ContactRule_descriptor();
 }
 
 }  // namespace protobuf

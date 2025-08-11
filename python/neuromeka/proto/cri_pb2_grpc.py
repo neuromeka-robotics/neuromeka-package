@@ -3,7 +3,7 @@
 import grpc
 
 import common_msgs_pb2 as common__msgs__pb2
-import cri_pb2 as cri__pb2
+import cri_msgs_pb2 as cri__msgs__pb2
 
 
 class CRIStub(object):
@@ -16,45 +16,85 @@ class CRIStub(object):
         Args:
             channel: A grpc.Channel.
         """
-        self.SetActivate = channel.unary_unary(
-                '/Nrmk.IndyFramework.CRI/SetActivate',
-                request_serializer=common__msgs__pb2.State.SerializeToString,
+        self.LoginSFD = channel.unary_unary(
+                '/Nrmk.IndyFramework.CRI/LoginSFD',
+                request_serializer=cri__msgs__pb2.SFDAccount.SerializeToString,
                 response_deserializer=common__msgs__pb2.Response.FromString,
                 )
-        self.IsActivate = channel.unary_unary(
-                '/Nrmk.IndyFramework.CRI/IsActivate',
+        self.LogoutSFD = channel.unary_unary(
+                '/Nrmk.IndyFramework.CRI/LogoutSFD',
+                request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=common__msgs__pb2.Response.FromString,
+                )
+        self.IsSFDLogin = channel.unary_unary(
+                '/Nrmk.IndyFramework.CRI/IsSFDLogin',
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
                 response_deserializer=common__msgs__pb2.State.FromString,
                 )
-        self.Login = channel.unary_unary(
-                '/Nrmk.IndyFramework.CRI/Login',
-                request_serializer=cri__pb2.Account.SerializeToString,
+        self.GenerateSFDToken = channel.unary_unary(
+                '/Nrmk.IndyFramework.CRI/GenerateSFDToken',
+                request_serializer=cri__msgs__pb2.SFDAccount.SerializeToString,
                 response_deserializer=common__msgs__pb2.Response.FromString,
                 )
-        self.IsLogin = channel.unary_unary(
-                '/Nrmk.IndyFramework.CRI/IsLogin',
+        self.SaveSFDLoginInfo = channel.unary_unary(
+                '/Nrmk.IndyFramework.CRI/SaveSFDLoginInfo',
+                request_serializer=cri__msgs__pb2.SFDAccount.SerializeToString,
+                response_deserializer=common__msgs__pb2.Response.FromString,
+                )
+        self.LoadSFDLoginInfo = channel.unary_unary(
+                '/Nrmk.IndyFramework.CRI/LoadSFDLoginInfo',
+                request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=cri__msgs__pb2.SFDAccount.FromString,
+                )
+        self.GetSFDLoginInfo = channel.unary_unary(
+                '/Nrmk.IndyFramework.CRI/GetSFDLoginInfo',
+                request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=cri__msgs__pb2.SFDAccount.FromString,
+                )
+        self.SelectSFDTarget = channel.unary_unary(
+                '/Nrmk.IndyFramework.CRI/SelectSFDTarget',
+                request_serializer=cri__msgs__pb2.SFDTarget.SerializeToString,
+                response_deserializer=common__msgs__pb2.Response.FromString,
+                )
+        self.IsSFDTargetValid = channel.unary_unary(
+                '/Nrmk.IndyFramework.CRI/IsSFDTargetValid',
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
                 response_deserializer=common__msgs__pb2.State.FromString,
                 )
-        self.SetTarget = channel.unary_unary(
-                '/Nrmk.IndyFramework.CRI/SetTarget',
-                request_serializer=cri__pb2.CriTarget.SerializeToString,
-                response_deserializer=common__msgs__pb2.Response.FromString,
+        self.ReleaseSFDTarget = channel.unary_unary(
+                '/Nrmk.IndyFramework.CRI/ReleaseSFDTarget',
+                request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=common__msgs__pb2.State.FromString,
                 )
-        self.SetOption = channel.unary_unary(
-                '/Nrmk.IndyFramework.CRI/SetOption',
+        self.GetSFDTarget = channel.unary_unary(
+                '/Nrmk.IndyFramework.CRI/GetSFDTarget',
+                request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=cri__msgs__pb2.SFDTarget.FromString,
+                )
+        self.ActiveCRIVel = channel.unary_unary(
+                '/Nrmk.IndyFramework.CRI/ActiveCRIVel',
                 request_serializer=common__msgs__pb2.State.SerializeToString,
                 response_deserializer=common__msgs__pb2.Response.FromString,
                 )
-        self.GetProjList = channel.unary_unary(
-                '/Nrmk.IndyFramework.CRI/GetProjList',
+        self.GetSFDProjList = channel.unary_unary(
+                '/Nrmk.IndyFramework.CRI/GetSFDProjList',
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
-                response_deserializer=cri__pb2.ProjectList.FromString,
+                response_deserializer=cri__msgs__pb2.SFDProjectList.FromString,
                 )
         self.GetCRI = channel.unary_unary(
                 '/Nrmk.IndyFramework.CRI/GetCRI',
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
-                response_deserializer=cri__pb2.CriData.FromString,
+                response_deserializer=cri__msgs__pb2.CriData.FromString,
+                )
+        self.SaveSFDAutoSet = channel.unary_unary(
+                '/Nrmk.IndyFramework.CRI/SaveSFDAutoSet',
+                request_serializer=cri__msgs__pb2.SFDAutoSet.SerializeToString,
+                response_deserializer=common__msgs__pb2.Response.FromString,
+                )
+        self.LoadSFDAutoSet = channel.unary_unary(
+                '/Nrmk.IndyFramework.CRI/LoadSFDAutoSet',
+                request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=cri__msgs__pb2.SFDAutoSet.FromString,
                 )
 
 
@@ -62,43 +102,79 @@ class CRIServicer(object):
     """////////////////////////CRI/////////////////////////
     """
 
-    def SetActivate(self, request, context):
+    def LoginSFD(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def IsActivate(self, request, context):
+    def LogoutSFD(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def Login(self, request, context):
+    def IsSFDLogin(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def IsLogin(self, request, context):
+    def GenerateSFDToken(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def SetTarget(self, request, context):
+    def SaveSFDLoginInfo(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def SetOption(self, request, context):
+    def LoadSFDLoginInfo(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def GetProjList(self, request, context):
+    def GetSFDLoginInfo(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SelectSFDTarget(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def IsSFDTargetValid(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def ReleaseSFDTarget(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetSFDTarget(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def ActiveCRIVel(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetSFDProjList(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -110,48 +186,100 @@ class CRIServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def SaveSFDAutoSet(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def LoadSFDAutoSet(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_CRIServicer_to_server(servicer, server):
     rpc_method_handlers = {
-            'SetActivate': grpc.unary_unary_rpc_method_handler(
-                    servicer.SetActivate,
-                    request_deserializer=common__msgs__pb2.State.FromString,
+            'LoginSFD': grpc.unary_unary_rpc_method_handler(
+                    servicer.LoginSFD,
+                    request_deserializer=cri__msgs__pb2.SFDAccount.FromString,
                     response_serializer=common__msgs__pb2.Response.SerializeToString,
             ),
-            'IsActivate': grpc.unary_unary_rpc_method_handler(
-                    servicer.IsActivate,
+            'LogoutSFD': grpc.unary_unary_rpc_method_handler(
+                    servicer.LogoutSFD,
+                    request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=common__msgs__pb2.Response.SerializeToString,
+            ),
+            'IsSFDLogin': grpc.unary_unary_rpc_method_handler(
+                    servicer.IsSFDLogin,
                     request_deserializer=common__msgs__pb2.Empty.FromString,
                     response_serializer=common__msgs__pb2.State.SerializeToString,
             ),
-            'Login': grpc.unary_unary_rpc_method_handler(
-                    servicer.Login,
-                    request_deserializer=cri__pb2.Account.FromString,
+            'GenerateSFDToken': grpc.unary_unary_rpc_method_handler(
+                    servicer.GenerateSFDToken,
+                    request_deserializer=cri__msgs__pb2.SFDAccount.FromString,
                     response_serializer=common__msgs__pb2.Response.SerializeToString,
             ),
-            'IsLogin': grpc.unary_unary_rpc_method_handler(
-                    servicer.IsLogin,
+            'SaveSFDLoginInfo': grpc.unary_unary_rpc_method_handler(
+                    servicer.SaveSFDLoginInfo,
+                    request_deserializer=cri__msgs__pb2.SFDAccount.FromString,
+                    response_serializer=common__msgs__pb2.Response.SerializeToString,
+            ),
+            'LoadSFDLoginInfo': grpc.unary_unary_rpc_method_handler(
+                    servicer.LoadSFDLoginInfo,
+                    request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=cri__msgs__pb2.SFDAccount.SerializeToString,
+            ),
+            'GetSFDLoginInfo': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetSFDLoginInfo,
+                    request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=cri__msgs__pb2.SFDAccount.SerializeToString,
+            ),
+            'SelectSFDTarget': grpc.unary_unary_rpc_method_handler(
+                    servicer.SelectSFDTarget,
+                    request_deserializer=cri__msgs__pb2.SFDTarget.FromString,
+                    response_serializer=common__msgs__pb2.Response.SerializeToString,
+            ),
+            'IsSFDTargetValid': grpc.unary_unary_rpc_method_handler(
+                    servicer.IsSFDTargetValid,
                     request_deserializer=common__msgs__pb2.Empty.FromString,
                     response_serializer=common__msgs__pb2.State.SerializeToString,
             ),
-            'SetTarget': grpc.unary_unary_rpc_method_handler(
-                    servicer.SetTarget,
-                    request_deserializer=cri__pb2.CriTarget.FromString,
-                    response_serializer=common__msgs__pb2.Response.SerializeToString,
+            'ReleaseSFDTarget': grpc.unary_unary_rpc_method_handler(
+                    servicer.ReleaseSFDTarget,
+                    request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=common__msgs__pb2.State.SerializeToString,
             ),
-            'SetOption': grpc.unary_unary_rpc_method_handler(
-                    servicer.SetOption,
+            'GetSFDTarget': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetSFDTarget,
+                    request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=cri__msgs__pb2.SFDTarget.SerializeToString,
+            ),
+            'ActiveCRIVel': grpc.unary_unary_rpc_method_handler(
+                    servicer.ActiveCRIVel,
                     request_deserializer=common__msgs__pb2.State.FromString,
                     response_serializer=common__msgs__pb2.Response.SerializeToString,
             ),
-            'GetProjList': grpc.unary_unary_rpc_method_handler(
-                    servicer.GetProjList,
+            'GetSFDProjList': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetSFDProjList,
                     request_deserializer=common__msgs__pb2.Empty.FromString,
-                    response_serializer=cri__pb2.ProjectList.SerializeToString,
+                    response_serializer=cri__msgs__pb2.SFDProjectList.SerializeToString,
             ),
             'GetCRI': grpc.unary_unary_rpc_method_handler(
                     servicer.GetCRI,
                     request_deserializer=common__msgs__pb2.Empty.FromString,
-                    response_serializer=cri__pb2.CriData.SerializeToString,
+                    response_serializer=cri__msgs__pb2.CriData.SerializeToString,
+            ),
+            'SaveSFDAutoSet': grpc.unary_unary_rpc_method_handler(
+                    servicer.SaveSFDAutoSet,
+                    request_deserializer=cri__msgs__pb2.SFDAutoSet.FromString,
+                    response_serializer=common__msgs__pb2.Response.SerializeToString,
+            ),
+            'LoadSFDAutoSet': grpc.unary_unary_rpc_method_handler(
+                    servicer.LoadSFDAutoSet,
+                    request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=cri__msgs__pb2.SFDAutoSet.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -165,7 +293,7 @@ class CRI(object):
     """
 
     @staticmethod
-    def SetActivate(request,
+    def LoginSFD(request,
             target,
             options=(),
             channel_credentials=None,
@@ -175,14 +303,14 @@ class CRI(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.CRI/SetActivate',
-            common__msgs__pb2.State.SerializeToString,
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.CRI/LoginSFD',
+            cri__msgs__pb2.SFDAccount.SerializeToString,
             common__msgs__pb2.Response.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def IsActivate(request,
+    def LogoutSFD(request,
             target,
             options=(),
             channel_credentials=None,
@@ -192,14 +320,31 @@ class CRI(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.CRI/IsActivate',
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.CRI/LogoutSFD',
+            common__msgs__pb2.Empty.SerializeToString,
+            common__msgs__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def IsSFDLogin(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.CRI/IsSFDLogin',
             common__msgs__pb2.Empty.SerializeToString,
             common__msgs__pb2.State.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def Login(request,
+    def GenerateSFDToken(request,
             target,
             options=(),
             channel_credentials=None,
@@ -209,14 +354,14 @@ class CRI(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.CRI/Login',
-            cri__pb2.Account.SerializeToString,
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.CRI/GenerateSFDToken',
+            cri__msgs__pb2.SFDAccount.SerializeToString,
             common__msgs__pb2.Response.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def IsLogin(request,
+    def SaveSFDLoginInfo(request,
             target,
             options=(),
             channel_credentials=None,
@@ -226,14 +371,82 @@ class CRI(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.CRI/IsLogin',
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.CRI/SaveSFDLoginInfo',
+            cri__msgs__pb2.SFDAccount.SerializeToString,
+            common__msgs__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def LoadSFDLoginInfo(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.CRI/LoadSFDLoginInfo',
+            common__msgs__pb2.Empty.SerializeToString,
+            cri__msgs__pb2.SFDAccount.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetSFDLoginInfo(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.CRI/GetSFDLoginInfo',
+            common__msgs__pb2.Empty.SerializeToString,
+            cri__msgs__pb2.SFDAccount.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SelectSFDTarget(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.CRI/SelectSFDTarget',
+            cri__msgs__pb2.SFDTarget.SerializeToString,
+            common__msgs__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def IsSFDTargetValid(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.CRI/IsSFDTargetValid',
             common__msgs__pb2.Empty.SerializeToString,
             common__msgs__pb2.State.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def SetTarget(request,
+    def ReleaseSFDTarget(request,
             target,
             options=(),
             channel_credentials=None,
@@ -243,14 +456,14 @@ class CRI(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.CRI/SetTarget',
-            cri__pb2.CriTarget.SerializeToString,
-            common__msgs__pb2.Response.FromString,
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.CRI/ReleaseSFDTarget',
+            common__msgs__pb2.Empty.SerializeToString,
+            common__msgs__pb2.State.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def SetOption(request,
+    def GetSFDTarget(request,
             target,
             options=(),
             channel_credentials=None,
@@ -260,14 +473,31 @@ class CRI(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.CRI/SetOption',
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.CRI/GetSFDTarget',
+            common__msgs__pb2.Empty.SerializeToString,
+            cri__msgs__pb2.SFDTarget.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def ActiveCRIVel(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.CRI/ActiveCRIVel',
             common__msgs__pb2.State.SerializeToString,
             common__msgs__pb2.Response.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def GetProjList(request,
+    def GetSFDProjList(request,
             target,
             options=(),
             channel_credentials=None,
@@ -277,9 +507,9 @@ class CRI(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.CRI/GetProjList',
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.CRI/GetSFDProjList',
             common__msgs__pb2.Empty.SerializeToString,
-            cri__pb2.ProjectList.FromString,
+            cri__msgs__pb2.SFDProjectList.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -296,6 +526,40 @@ class CRI(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.CRI/GetCRI',
             common__msgs__pb2.Empty.SerializeToString,
-            cri__pb2.CriData.FromString,
+            cri__msgs__pb2.CriData.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SaveSFDAutoSet(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.CRI/SaveSFDAutoSet',
+            cri__msgs__pb2.SFDAutoSet.SerializeToString,
+            common__msgs__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def LoadSFDAutoSet(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.CRI/LoadSFDAutoSet',
+            common__msgs__pb2.Empty.SerializeToString,
+            cri__msgs__pb2.SFDAutoSet.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

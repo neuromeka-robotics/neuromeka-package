@@ -22,6 +22,7 @@
 #include "proto/device.grpc.pb.h"
 #include "proto/rtde.grpc.pb.h"
 #include "proto/cri.grpc.pb.h"
+#include "proto/boot.grpc.pb.h"
 // #include "proto/hri.grpc.pb.h"
 
 using google::protobuf::util::MessageToJsonString;
@@ -98,6 +99,9 @@ class IndyDCP3
         bool get_violation_data(Nrmk::IndyFramework::ViolationData &violation_data);
         bool get_program_data(Nrmk::IndyFramework::ProgramData &program_data);
 
+        bool get_collision_model_state(Nrmk::IndyFramework::CollisionModelState& state);
+        bool get_reserved_data(Nrmk::IndyFramework::ReservedData& data);
+
         bool get_di(Nrmk::IndyFramework::DigitalList &di_data);
         bool get_do(Nrmk::IndyFramework::DigitalList &do_data);
         bool set_do(const Nrmk::IndyFramework::DigitalList &do_signal_list);
@@ -119,6 +123,14 @@ class IndyDCP3
         bool stop_motion(const StopCategory stop_category);
 
         bool get_home_pos(Nrmk::IndyFramework::JointPos &home_jpos);
+
+        bool commit_violation(const Nrmk::IndyFramework::ViolationRequest& request);
+        bool get_rt_task_times(Nrmk::IndyFramework::TaskTimes& task_times);
+        bool set_conveyor_locked_joint(int index);
+        bool set_conveyor_tool_link(int index);
+
+        bool set_locked_joint(int index);
+        bool set_tool_link(int index);
 
         //----------------------------------
         bool movej(const std::vector<float>& jtarget,
@@ -264,6 +276,8 @@ class IndyDCP3
         bool resume_program();
         bool stop_program();
 
+        bool get_boot_status(Nrmk::IndyFramework::BootStatus& status);
+
         //----------------------------------        
         bool get_bool_variable(std::vector<Nrmk::IndyFramework::BoolVariable>& bool_variables);
         bool get_int_variable(std::vector<Nrmk::IndyFramework::IntVariable>& int_variables);
@@ -277,12 +291,65 @@ class IndyDCP3
         bool set_jpos_variable(const std::vector<Nrmk::IndyFramework::JPosVariable>& jpos_variables);
         bool set_tpos_variable(const std::vector<Nrmk::IndyFramework::TPosVariable>& tpos_variables);
 
+        // Plugin Variables
+        bool set_plugin_bool_variable(const std::string& name, bool value);
+        bool get_plugin_bool_variable(const std::string& name, bool& value);
+
+        bool set_plugin_int_variable(const std::string& name, int64_t value);
+        bool get_plugin_int_variable(const std::string& name, int64_t& value);
+
+        bool set_plugin_float_variable(const std::string& name, float value);
+        bool get_plugin_float_variable(const std::string& name, float& value);
+
+        bool set_plugin_jpos_variable(const std::string& name, const std::vector<float>& jpos);
+        bool get_plugin_jpos_variable(const std::string& name, std::vector<float>& jpos);
+
+        bool set_plugin_tpos_variable(const std::string& name, const std::vector<float>& tpos);
+        bool get_plugin_tpos_variable(const std::string& name, std::vector<float>& tpos);
+
         bool set_speed_ratio(unsigned int speed_ratio);
+        bool get_speed_ratio(unsigned int& speed_ratio);
         bool set_home_pos(const Nrmk::IndyFramework::JointPos& home_jpos);
+
+        // Path/Tool/Vision/Modbus Config APIs
+        bool get_path_config(Nrmk::IndyFramework::PathConfig& path_config);
+        bool set_tool_list(const Nrmk::IndyFramework::ToolList& tool_list);
+        bool get_tool_list(Nrmk::IndyFramework::ToolList& tool_list);
+        bool set_vision_server_list(const Nrmk::IndyFramework::VisionServerList& vision_server_list);
+        bool get_vision_server_list(Nrmk::IndyFramework::VisionServerList& vision_server_list);
+        bool set_modbus_server_list(const Nrmk::IndyFramework::ModbusServerList& modbus_server_list);
+        bool get_modbus_server_list(Nrmk::IndyFramework::ModbusServerList& modbus_server_list);
+
+        // Environment list
+        bool set_environment_list(const Nrmk::IndyFramework::EnvironmentList& environment_list);
+        bool get_environment_list(Nrmk::IndyFramework::EnvironmentList& environment_list);
+
+        // Conveyor list
+        bool get_conveyor_list(Nrmk::IndyFramework::ConveyorList& conveyor_list);
+        bool set_conveyor_list(const Nrmk::IndyFramework::ConveyorList& conveyor_list);
+
+        // Compliance control joint gain
+        bool set_compliance_control_joint_gain(const Nrmk::IndyFramework::ComplianceGainSet& gains);
+        bool get_compliance_control_joint_gain(Nrmk::IndyFramework::ComplianceGainSet& gains);
+
+        // Tool/Ref frame lists and custom positions
+        bool get_tool_frame_list(Nrmk::IndyFramework::ToolFrameList& list);
+        bool set_tool_frame_list(const Nrmk::IndyFramework::ToolFrameList& list);
+        bool get_ref_frame_list(Nrmk::IndyFramework::RefFrameList& list);
+        bool set_ref_frame_list(const Nrmk::IndyFramework::RefFrameList& list);
+        bool get_custom_pos_list(Nrmk::IndyFramework::CustomPosList& list);
+        bool set_custom_pos_list(const Nrmk::IndyFramework::CustomPosList& list);
+
+        // Tool shape list
+        bool set_tool_shape_list(const Nrmk::IndyFramework::ToolShapeList& list);
+        bool get_tool_shape_list(Nrmk::IndyFramework::ToolShapeList& list);
 
         //----------------------------------
         bool get_ref_frame(std::array<float, 6>& fpos);
         bool set_ref_frame(const std::array<float, 6>& fpos);
+
+        bool load_reference_frame(Nrmk::IndyFramework::RefFrameList& list);
+        bool save_reference_frame(const Nrmk::IndyFramework::RefFrameList& list);
 
         bool set_ref_frame_planar(std::array<float, 6>& fpos_out, 
                             const std::array<float, 6>& fpos0,
@@ -309,9 +376,22 @@ class IndyDCP3
 
         bool get_coll_sens_param(Nrmk::IndyFramework::CollisionThresholds& coll_sens_param);
         bool set_coll_sens_param(const Nrmk::IndyFramework::CollisionThresholds& coll_sens_param);
+        bool get_default_coll_sens_param(Nrmk::IndyFramework::CollisionThresholds& coll_sens_param);
 
         bool get_coll_policy(Nrmk::IndyFramework::CollisionPolicy& coll_policy);
         bool set_coll_policy(const Nrmk::IndyFramework::CollisionPolicy& coll_policy);
+
+        bool set_simple_coll_threshold();
+        bool get_collison_model_margin(Nrmk::IndyFramework::CollisionModelMargin& margin);
+        bool set_collison_model_margin(const Nrmk::IndyFramework::CollisionModelMargin& margin);
+
+        // Sensorless parameters
+        bool set_sensorless_params(const Nrmk::IndyFramework::SensorlessParams& params);
+        bool get_sensorless_params(Nrmk::IndyFramework::SensorlessParams& params);
+
+        // On-start program configuration
+        bool set_on_start_program_config(const Nrmk::IndyFramework::OnStartProgramConfig& config);
+        bool get_on_start_program_config(Nrmk::IndyFramework::OnStartProgramConfig& config);
 
         bool get_safety_limits(Nrmk::IndyFramework::SafetyLimits& safety_limits);
         bool set_safety_limits(const Nrmk::IndyFramework::SafetyLimits& safety_limits);
@@ -326,30 +406,10 @@ class IndyDCP3
         bool get_custom_control_gain(Nrmk::IndyFramework::CustomGainSet& custom_gains);
         bool set_custom_control_gain(const Nrmk::IndyFramework::CustomGainSet& custom_gains);
 
-        //----------------------------------
-        bool wait_time(float time,
-               const std::vector<Nrmk::IndyFramework::DigitalSignal>& set_do_signal_list = {},
-               const std::vector<Nrmk::IndyFramework::DigitalSignal>& set_end_do_signal_list = {},
-               const std::vector<Nrmk::IndyFramework::AnalogSignal>& set_ao_signal_list = {},
-               const std::vector<Nrmk::IndyFramework::AnalogSignal>& set_end_ao_signal_list = {});
-
-        bool wait_progress(int progress,
-                const std::vector<Nrmk::IndyFramework::DigitalSignal>& set_do_signal_list = {},
-                const std::vector<Nrmk::IndyFramework::DigitalSignal>& set_end_do_signal_list = {},
-                const std::vector<Nrmk::IndyFramework::AnalogSignal>& set_ao_signal_list = {},
-                const std::vector<Nrmk::IndyFramework::AnalogSignal>& set_end_ao_signal_list = {});
-
-        bool wait_traj(const Nrmk::IndyFramework::TrajCondition& traj_condition,
-               const std::vector<Nrmk::IndyFramework::DigitalSignal>& set_do_signal_list = {},
-               const std::vector<Nrmk::IndyFramework::DigitalSignal>& set_end_do_signal_list = {},
-               const std::vector<Nrmk::IndyFramework::AnalogSignal>& set_ao_signal_list = {},
-               const std::vector<Nrmk::IndyFramework::AnalogSignal>& set_end_ao_signal_list = {});
-
-        bool wait_radius(int radius,
-                 const std::vector<Nrmk::IndyFramework::DigitalSignal>& set_do_signal_list = {},
-                 const std::vector<Nrmk::IndyFramework::DigitalSignal>& set_end_do_signal_list = {},
-                 const std::vector<Nrmk::IndyFramework::AnalogSignal>& set_ao_signal_list = {},
-                 const std::vector<Nrmk::IndyFramework::AnalogSignal>& set_end_ao_signal_list = {});
+        bool wait_time(float time);
+        bool wait_progress(int progress);
+        bool wait_traj(const Nrmk::IndyFramework::TrajCondition& traj_condition);
+        bool wait_radius(int radius);
 
         // bool wait_for_time(float wait_time = -1.0);
         bool wait_for_operation_state(int wait_op_state = -1);
@@ -396,12 +456,12 @@ class IndyDCP3
 
         bool activate_cri(const bool on);
         bool is_cri_active(bool& is_active);
-        bool login_cri_server(const Nrmk::IndyFramework::Account& account);
+        bool login_cri_server(const Nrmk::IndyFramework::SFDAccount& account);
         bool is_cri_login(bool& is_logged_in);
 
-        bool set_cri_target(const Nrmk::IndyFramework::CriTarget& target);
+        bool set_cri_target(const Nrmk::IndyFramework::SFDTarget& target);
         bool set_cri_option(const Nrmk::IndyFramework::State& option);
-        bool get_cri_proj_list(Nrmk::IndyFramework::ProjectList& project_list);
+        bool get_cri_proj_list(Nrmk::IndyFramework::SFDProjectList& project_list);
         bool get_cri(Nrmk::IndyFramework::CriData& cri_data);
 
         bool movelf(const std::array<float, 6>& ttarget,
@@ -460,6 +520,21 @@ class IndyDCP3
                                 const int base_type=JointBaseType::ABSOLUTE_JOINT);
         bool get_control_info(Nrmk::IndyFramework::ControlInfo& control_info);
 
+        // Control: compliance, bus event, force mode, ping, FT zero
+        bool set_compliance_mode(const Nrmk::IndyFramework::ComplianceMode& mode);
+        bool get_compliance_mode(Nrmk::IndyFramework::ComplianceMode& mode);
+        bool push_bus_event(const Nrmk::IndyFramework::BusEvent& event);
+        bool catch_bus_event(const Nrmk::IndyFramework::CatchBusEventReq& request,
+                    Nrmk::IndyFramework::BusEvent& event);
+        bool set_force_mode(const Nrmk::IndyFramework::ForceModeReq& request);
+        bool get_force_mode(Nrmk::IndyFramework::ForceModeReq& response);
+        bool ping_from_conty();
+        bool get_ft_zero();
+
+        // Control inference data
+        bool set_inference_data(const Nrmk::IndyFramework::ControlInferenceDataSet& data);
+        bool get_inference_data(Nrmk::IndyFramework::ControlInferenceDataSet& data);
+
         bool check_aproach_retract_valid(const std::array<float, 6>& tpos, 
                                            const std::vector<float>& init_jpos, 
                                            const std::array<float, 6>& pre_tpos, 
@@ -502,14 +577,10 @@ class IndyDCP3
         bool get_io_data(Nrmk::IndyFramework::IOData& response);
 
         bool wait_io(const std::vector<Nrmk::IndyFramework::DigitalSignal>& di_signal_list,
-                    const std::vector<Nrmk::IndyFramework::DigitalSignal>& do_signal_list,
-                    const std::vector<Nrmk::IndyFramework::DigitalSignal>& end_di_signal_list,
-                    const std::vector<Nrmk::IndyFramework::DigitalSignal>& end_do_signal_list,
-                    const int conjunction,
-                    const std::optional<std::vector<Nrmk::IndyFramework::DigitalSignal>>& set_do_signal_list,
-                    const std::optional<std::vector<Nrmk::IndyFramework::DigitalSignal>>& set_end_do_signal_list,
-                    const std::optional<std::vector<Nrmk::IndyFramework::AnalogSignal>>& set_ao_signal_list,
-                    const std::optional<std::vector<Nrmk::IndyFramework::AnalogSignal>>& set_end_ao_signal_list);
+            const std::vector<Nrmk::IndyFramework::DigitalSignal>& do_signal_list,
+            const std::vector<Nrmk::IndyFramework::DigitalSignal>& end_di_signal_list,
+            const std::vector<Nrmk::IndyFramework::DigitalSignal>& end_do_signal_list,
+            const int conjunction);
 
         bool set_friction_comp_state(const bool enable);
         bool get_friction_comp_state();
@@ -576,8 +647,8 @@ class IndyDCP3
 
         bool set_endtool_led_dim(const uint32_t led_dim);
         bool execute_tool(const std::string& name);
-        bool get_el5001(int& status, int& value, int& delta, float& average);
-        bool get_el5101(int& status, int& value, int& latch, int& delta, float& average);
+        // bool get_el5001(int& status, int& value, int& delta, float& average);
+        // bool get_el5101(int& status, int& value, int& latch, int& delta, float& average);
 
         bool get_brake_control_style(int& style);
 
@@ -612,21 +683,21 @@ class IndyDCP3
         std::shared_ptr<grpc::Channel> config_channel;
         std::shared_ptr<grpc::Channel> rtde_channel;
         std::shared_ptr<grpc::Channel> cri_channel;
-        // std::shared_ptr<grpc::Channel> hri_channel;
+        std::shared_ptr<grpc::Channel> boot_channel;
 
         std::unique_ptr<Nrmk::IndyFramework::Control::Stub> control_stub;
         std::unique_ptr<Nrmk::IndyFramework::Device::Stub> device_stub;
         std::unique_ptr<Nrmk::IndyFramework::Config::Stub> config_stub;
         std::unique_ptr<Nrmk::IndyFramework::RTDataExchange::Stub> rtde_stub;
         std::unique_ptr<Nrmk::IndyFramework::CRI::Stub> cri_stub;
-        // std::unique_ptr<IndyFramework::Protobuf::HRI::HRI::Stub> hri_stub;
+        std::unique_ptr<Nrmk::IndyFramework::Boot::Stub> boot_stub;
 
         const std::vector<int> CONTROL_SOCKET_PORT  = {20001, 30001};
         const std::vector<int> DEVICE_SOCKET_PORT   = {20002, 30002};
         const std::vector<int> CONFIG_SOCKET_PORT   = {20003, 30003};
         const std::vector<int> RTDE_SOCKET_PORT     = {20004, 30004};
         const std::vector<int> CRI_SOCKET_PORT      = {20181, 30181};
-        // const std::vector<int> HRI_SOCKET_PORT      = {20131, 30131};
+        const std::vector<int> BOOT_SOCKET_PORT     = {20010, 30010};
 };
 
 #endif

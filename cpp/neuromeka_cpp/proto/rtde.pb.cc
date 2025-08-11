@@ -33,7 +33,7 @@ static constexpr ::_pbi::MigrationSchema* schemas = nullptr;
 static constexpr ::_pb::Message* const* file_default_instances = nullptr;
 const char descriptor_table_protodef_rtde_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
     "\n\nrtde.proto\022\022Nrmk.IndyFramework\032\017rtde_m"
-    "sgs.proto\032\021common_msgs.proto2\273\006\n\016RTDataE"
+    "sgs.proto\032\021common_msgs.proto2\355\007\n\016RTDataE"
     "xchange\022L\n\rGetMotionData\022\031.Nrmk.IndyFram"
     "ework.Empty\032\036.Nrmk.IndyFramework.MotionD"
     "ata\"\000\022N\n\016GetControlData\022\031.Nrmk.IndyFrame"
@@ -52,9 +52,14 @@ const char descriptor_table_protodef_rtde_2eproto[] PROTOBUF_SECTION_VARIABLE(pr
     "mk.IndyFramework.Empty\032\037.Nrmk.IndyFramew"
     "ork.ProgramData\"\000\022J\n\014GetStopState\022\031.Nrmk"
     ".IndyFramework.Empty\032\035.Nrmk.IndyFramewor"
-    "k.StopState\"\000\022S\n\014TestFunction\022\037.Nrmk.Ind"
-    "yFramework.TestRequest\032 .Nrmk.IndyFramew"
-    "ork.TestResponse\"\000b\006proto3"
+    "k.StopState\"\000\022^\n\026GetCollisionModelState\022"
+    "\031.Nrmk.IndyFramework.Empty\032\'.Nrmk.IndyFr"
+    "amework.CollisionModelState\"\000\022S\n\014TestFun"
+    "ction\022\037.Nrmk.IndyFramework.TestRequest\032 "
+    ".Nrmk.IndyFramework.TestResponse\"\000\022P\n\017Ge"
+    "tReservedData\022\031.Nrmk.IndyFramework.Empty"
+    "\032 .Nrmk.IndyFramework.ReservedData\"\000b\006pr"
+    "oto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_rtde_2eproto_deps[2] =
     {
@@ -65,7 +70,7 @@ static ::absl::once_flag descriptor_table_rtde_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_rtde_2eproto = {
     false,
     false,
-    906,
+    1084,
     descriptor_table_protodef_rtde_2eproto,
     "rtde.proto",
     &descriptor_table_rtde_2eproto_once,

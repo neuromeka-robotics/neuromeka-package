@@ -369,8 +369,7 @@ class MobyServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def SetRotationControllerType(self, request, context):
-        """rpc SetRotationInterpolatorParam(DoubleVals) returns (Empty) {}
-        """
+        """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
@@ -414,7 +413,6 @@ class MobyServicer(object):
 
     def SetControlParam(self, request, context):
         """Gain setting
-        rpc SetRotationTorqueMode(BoolVal) returns (Empty) {}
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')

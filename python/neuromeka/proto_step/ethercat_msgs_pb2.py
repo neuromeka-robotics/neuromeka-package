@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x13\x65thercat_msgs.proto\x12\x12Nrmk.IndyFramework\"\x1e\n\x0cMasterStatus\x12\x0e\n\x06status\x18\x01 \x01(\r\"\x1d\n\x0bSlaveStatus\x12\x0e\n\x06status\x18\x01 \x03(\r\"\"\n\x10\x45\x63\x61tDomainStatus\x12\x0e\n\x06status\x18\x01 \x01(\r\" \n\x0f\x45\x63\x61tSystemReady\x12\r\n\x05ready\x18\x01 \x03(\x08\"\x1c\n\x0b\x45\x63\x61tServoOn\x12\r\n\x05servo\x18\x01 \x03(\x08\"\\\n\x0cSlaveTypeNum\x12\x11\n\tnum_servo\x18\x01 \x01(\r\x12\x13\n\x0bnum_ioboard\x18\x02 \x01(\r\x12\x13\n\x0bnum_endtool\x18\x03 \x01(\r\x12\x0f\n\x07num_dio\x18\x04 \x01(\r\" \n\nServoIndex\x12\x12\n\nservoIndex\x18\x01 \x01(\r\"\x1e\n\tEcatIndex\x12\x11\n\tecatIndex\x18\x01 \x01(\r\"w\n\x07ServoTx\x12\x12\n\nstatusWord\x18\x01 \x01(\r\x12\x12\n\nmodeOpDisp\x18\x02 \x01(\x05\x12\x16\n\x0e\x61\x63tualPosition\x18\x03 \x01(\x05\x12\x16\n\x0e\x61\x63tualVelocity\x18\x04 \x01(\x05\x12\x14\n\x0c\x61\x63tualTorque\x18\x05 \x01(\x05\"t\n\x07ServoRx\x12\x13\n\x0b\x63ontrolWord\x18\x01 \x01(\r\x12\x0e\n\x06modeOp\x18\x02 \x01(\x05\x12\x16\n\x0etargetPosition\x18\x03 \x01(\x03\x12\x16\n\x0etargetVelocity\x18\x04 \x01(\x05\x12\x14\n\x0ctargetTorque\x18\x05 \x01(\x05\"K\n\x0cServoTxIndex\x12\x12\n\nservoIndex\x18\x01 \x01(\r\x12\'\n\x02tx\x18\x02 \x01(\x0b\x32\x1b.Nrmk.IndyFramework.ServoTx\"K\n\x0cServoRxIndex\x12\x12\n\nservoIndex\x18\x01 \x01(\r\x12\'\n\x02rx\x18\x02 \x01(\x0b\x32\x1b.Nrmk.IndyFramework.ServoRx\"\xdf\x01\n\x0bServoTxKeba\x12\x12\n\nstatusWord\x18\x01 \x01(\r\x12\x13\n\x0bstatusWord2\x18\x02 \x01(\r\x12\x13\n\x0bstatusWord3\x18\x03 \x01(\r\x12\x16\n\x0e\x61\x63tualPosition\x18\x04 \x01(\x05\x12\x17\n\x0f\x61\x63tualPosition2\x18\x05 \x01(\x05\x12\x17\n\x0f\x61\x63tualPosition3\x18\x06 \x01(\x05\x12\x16\n\x0e\x61\x63tualVelocity\x18\x07 \x01(\x05\x12\x17\n\x0f\x61\x63tualVelocity2\x18\x08 \x01(\x05\x12\x17\n\x0f\x61\x63tualVelocity3\x18\t \x01(\x05\"\xdc\x01\n\x0bServoRxKeba\x12\x13\n\x0b\x63ontrolWord\x18\x01 \x01(\r\x12\x14\n\x0c\x63ontrolWord2\x18\x02 \x01(\r\x12\x14\n\x0c\x63ontrolWord3\x18\x03 \x01(\r\x12\x16\n\x0etargetPosition\x18\x04 \x01(\x03\x12\x17\n\x0ftargetPosition2\x18\x05 \x01(\x03\x12\x17\n\x0ftargetPosition3\x18\x06 \x01(\x03\x12\x14\n\x0ctargetTorque\x18\x07 \x01(\x05\x12\x15\n\rtargetTorque2\x18\x08 \x01(\x05\x12\x15\n\rtargetTorque3\x18\t \x01(\x05\"S\n\x10ServoRxIndexKeba\x12\x12\n\nservoIndex\x18\x01 \x01(\r\x12+\n\x02rx\x18\x02 \x01(\x0b\x32\x1f.Nrmk.IndyFramework.ServoRxKeba\" \n\tServoTemp\x12\x13\n\x0btemperature\x18\x01 \x01(\x02\"\x1f\n\nServoError\x12\x11\n\terrorCode\x18\x01 \x01(\r\".\n\nServoBrake\x12\x11\n\tecatIndex\x18\x01 \x01(\r\x12\r\n\x05onoff\x18\x02 \x01(\x08\"R\n\x08\x46TSensor\x12\n\n\x02\x66x\x18\x01 \x01(\x05\x12\n\n\x02\x66y\x18\x02 \x01(\x05\x12\n\n\x02\x66z\x18\x03 \x01(\x05\x12\n\n\x02tx\x18\x04 \x01(\x05\x12\n\n\x02ty\x18\x05 \x01(\x05\x12\n\n\x02tz\x18\x06 \x01(\x05\"\x80\x01\n\tEndtoolTx\x12\x0e\n\x06status\x18\x01 \x01(\r\x12\x0e\n\x06\x62utton\x18\x02 \x01(\r\x12/\n\tft_sensor\x18\x03 \x01(\x0b\x32\x1c.Nrmk.IndyFramework.FTSensor\x12\x10\n\x08\x66t_state\x18\x04 \x01(\r\x12\x10\n\x08\x66t_error\x18\x05 \x01(\r\"z\n\tEndtoolRx\x12\x0b\n\x03\x65qc\x18\x01 \x01(\r\x12\x0f\n\x07gripper\x18\x02 \x01(\r\x12\x10\n\x08\x66t_param\x18\x03 \x01(\r\x12\x10\n\x08led_mode\x18\x04 \x01(\r\x12\r\n\x05led_g\x18\x05 \x01(\r\x12\r\n\x05led_r\x18\x06 \x01(\r\x12\r\n\x05led_b\x18\x07 \x01(\r\"\x8c\x03\n\x10\x45ndtoolDockingTx\x12\x16\n\x0e\x64ocking_status\x18\x01 \x01(\r\x12\x16\n\x0e\x64ocking_button\x18\x02 \x01(\r\x12\x15\n\rdocking_dist1\x18\x03 \x01(\r\x12\x15\n\rdocking_dist2\x18\x04 \x01(\r\x12\x15\n\rdocking_dist3\x18\x05 \x01(\r\x12\x15\n\rdocking_dist4\x18\x06 \x01(\r\x12\x15\n\rdocking_dist5\x18\x07 \x01(\r\x12\x15\n\rdocking_dist6\x18\x08 \x01(\r\x12\x15\n\rdocking_dist7\x18\t \x01(\r\x12\x15\n\rdocking_dist8\x18\n \x01(\r\x12\x15\n\rdirect_status\x18\x0b \x01(\r\x12\x15\n\rdirect_button\x18\x0c \x01(\r\x12\x16\n\x0e\x64irect_encoder\x18\r \x01(\r\x12\x11\n\tjoystic1x\x18\x0e \x01(\r\x12\x11\n\tjoystic1y\x18\x0f \x01(\r\x12\x11\n\tjoystic2x\x18\x10 \x01(\r\x12\x11\n\tjoystic2y\x18\x11 \x01(\r\"\x19\n\x06LedDim\x12\x0f\n\x07led_dim\x18\x01 \x01(\r\"\x96\x01\n\x0eSRKeyEndtoolRx\x12\x0c\n\x04\x64out\x18\x01 \x01(\r\x12\x0f\n\x07tool_Id\x18\x02 \x01(\r\x12\x10\n\x08set_Tool\x18\x03 \x01(\r\x12\x1a\n\x12tool_Closing_Force\x18\x04 \x01(\r\x12\x1a\n\x12tool_Opening_Force\x18\x05 \x01(\r\x12\x1b\n\x13tool_Force_Location\x18\x06 \x01(\r\"|\n\x0eSRKeyEndtoolTx\x12\x0b\n\x03\x64in\x18\x01 \x01(\r\x12\x13\n\x0btool_Status\x18\x02 \x01(\r\x12\x15\n\rtool_Location\x18\x03 \x01(\r\x12\x0f\n\x07\x61nalog0\x18\x04 \x01(\r\x12\x0f\n\x07\x61nalog1\x18\x05 \x01(\r\x12\x0f\n\x07version\x18\x06 \x01(\r\"\x84\x01\n\tIOBoardTx\x12\x0c\n\x04\x64i5v\x18\x01 \x01(\r\x12\x0e\n\x06\x64i24v1\x18\x02 \x01(\r\x12\x0e\n\x06\x64i24v2\x18\x03 \x01(\r\x12\x0b\n\x03\x61i1\x18\x04 \x01(\r\x12\x0b\n\x03\x61i2\x18\x05 \x01(\r\x12/\n\tft_sensor\x18\x06 \x01(\x0b\x32\x1c.Nrmk.IndyFramework.FTSensor\"e\n\tIOBoardRx\x12\x0c\n\x04\x64o5v\x18\x01 \x01(\r\x12\x0e\n\x06\x64o24v1\x18\x02 \x01(\r\x12\x0e\n\x06\x64o24v2\x18\x03 \x01(\r\x12\x0b\n\x03\x61o1\x18\x04 \x01(\r\x12\x0b\n\x03\x61o2\x18\x05 \x01(\r\x12\x10\n\x08\x66t_param\x18\x06 \x01(\r\"\x1c\n\x08\x44IOIndex\x12\x10\n\x08\x64ioIndex\x18\x01 \x01(\r\"4\n\x0f\x44IODigitalInput\x12\x10\n\x08\x64ioIndex\x18\x01 \x01(\r\x12\x0f\n\x07\x64i_list\x18\x02 \x03(\r\"5\n\x10\x44IODigitalOutput\x12\x10\n\x08\x64ioIndex\x18\x01 \x01(\r\x12\x0f\n\x07\x64o_list\x18\x02 \x03(\r\"+\n\nServoParam\x12\x10\n\x08slaveIdx\x18\x01 \x01(\r\x12\x0b\n\x03val\x18\x02 \x01(\x05\"\x18\n\tSDOIntVal\x12\x0b\n\x03val\x18\x01 \x01(\x05\"\x1a\n\x0bSDOFloatVal\x12\x0b\n\x03val\x18\x01 \x01(\x02\"\x18\n\tSDOStrVal\x12\x0b\n\x03val\x18\x01 \x01(\t\"\x0e\n\x0c\x45therCATInfo\"\x1f\n\x0eRobotZeroCount\x12\r\n\x05\x63ount\x18\x01 \x01(\x05\x62\x06proto3'
+  serialized_pb=b'\n\x13\x65thercat_msgs.proto\x12\x12Nrmk.IndyFramework\"\x1e\n\x0cMasterStatus\x12\x0e\n\x06status\x18\x01 \x01(\r\"\x1d\n\x0bSlaveStatus\x12\x0e\n\x06status\x18\x01 \x03(\r\"\"\n\x10\x45\x63\x61tDomainStatus\x12\x0e\n\x06status\x18\x01 \x01(\r\" \n\x0f\x45\x63\x61tSystemReady\x12\r\n\x05ready\x18\x01 \x03(\x08\"\x1c\n\x0b\x45\x63\x61tServoOn\x12\r\n\x05servo\x18\x01 \x03(\x08\"\\\n\x0cSlaveTypeNum\x12\x11\n\tnum_servo\x18\x01 \x01(\r\x12\x13\n\x0bnum_ioboard\x18\x02 \x01(\r\x12\x13\n\x0bnum_endtool\x18\x03 \x01(\r\x12\x0f\n\x07num_dio\x18\x04 \x01(\r\" \n\nServoIndex\x12\x12\n\nservoIndex\x18\x01 \x01(\r\"\x1e\n\tEcatIndex\x12\x11\n\tecatIndex\x18\x01 \x01(\r\"w\n\x07ServoTx\x12\x12\n\nstatusWord\x18\x01 \x01(\r\x12\x12\n\nmodeOpDisp\x18\x02 \x01(\x05\x12\x16\n\x0e\x61\x63tualPosition\x18\x03 \x01(\x05\x12\x16\n\x0e\x61\x63tualVelocity\x18\x04 \x01(\x05\x12\x14\n\x0c\x61\x63tualTorque\x18\x05 \x01(\x05\"t\n\x07ServoRx\x12\x13\n\x0b\x63ontrolWord\x18\x01 \x01(\r\x12\x0e\n\x06modeOp\x18\x02 \x01(\x05\x12\x16\n\x0etargetPosition\x18\x03 \x01(\x03\x12\x16\n\x0etargetVelocity\x18\x04 \x01(\x05\x12\x14\n\x0ctargetTorque\x18\x05 \x01(\x05\"K\n\x0cServoRxIndex\x12\x12\n\nservoIndex\x18\x01 \x01(\r\x12\'\n\x02rx\x18\x02 \x01(\x0b\x32\x1b.Nrmk.IndyFramework.ServoRx\"\xdf\x01\n\x0bServoTxKeba\x12\x12\n\nstatusWord\x18\x01 \x01(\r\x12\x13\n\x0bstatusWord2\x18\x02 \x01(\r\x12\x13\n\x0bstatusWord3\x18\x03 \x01(\r\x12\x16\n\x0e\x61\x63tualPosition\x18\x04 \x01(\x05\x12\x17\n\x0f\x61\x63tualPosition2\x18\x05 \x01(\x05\x12\x17\n\x0f\x61\x63tualPosition3\x18\x06 \x01(\x05\x12\x16\n\x0e\x61\x63tualVelocity\x18\x07 \x01(\x05\x12\x17\n\x0f\x61\x63tualVelocity2\x18\x08 \x01(\x05\x12\x17\n\x0f\x61\x63tualVelocity3\x18\t \x01(\x05\"\xdc\x01\n\x0bServoRxKeba\x12\x13\n\x0b\x63ontrolWord\x18\x01 \x01(\r\x12\x14\n\x0c\x63ontrolWord2\x18\x02 \x01(\r\x12\x14\n\x0c\x63ontrolWord3\x18\x03 \x01(\r\x12\x16\n\x0etargetPosition\x18\x04 \x01(\x03\x12\x17\n\x0ftargetPosition2\x18\x05 \x01(\x03\x12\x17\n\x0ftargetPosition3\x18\x06 \x01(\x03\x12\x14\n\x0ctargetTorque\x18\x07 \x01(\x05\x12\x15\n\rtargetTorque2\x18\x08 \x01(\x05\x12\x15\n\rtargetTorque3\x18\t \x01(\x05\"S\n\x10ServoRxIndexKeba\x12\x12\n\nservoIndex\x18\x01 \x01(\r\x12+\n\x02rx\x18\x02 \x01(\x0b\x32\x1f.Nrmk.IndyFramework.ServoRxKeba\" \n\tServoTemp\x12\x13\n\x0btemperature\x18\x01 \x01(\x02\"\x1f\n\nServoError\x12\x11\n\terrorCode\x18\x01 \x01(\r\".\n\nServoBrake\x12\x11\n\tecatIndex\x18\x01 \x01(\r\x12\r\n\x05onoff\x18\x02 \x01(\x08\"R\n\x08\x46TSensor\x12\n\n\x02\x66x\x18\x01 \x01(\x05\x12\n\n\x02\x66y\x18\x02 \x01(\x05\x12\n\n\x02\x66z\x18\x03 \x01(\x05\x12\n\n\x02tx\x18\x04 \x01(\x05\x12\n\n\x02ty\x18\x05 \x01(\x05\x12\n\n\x02tz\x18\x06 \x01(\x05\"\x80\x01\n\tEndtoolTx\x12\x0e\n\x06status\x18\x01 \x01(\r\x12\x0e\n\x06\x62utton\x18\x02 \x01(\r\x12/\n\tft_sensor\x18\x03 \x01(\x0b\x32\x1c.Nrmk.IndyFramework.FTSensor\x12\x10\n\x08\x66t_state\x18\x04 \x01(\r\x12\x10\n\x08\x66t_error\x18\x05 \x01(\r\"z\n\tEndtoolRx\x12\x0b\n\x03\x65qc\x18\x01 \x01(\r\x12\x0f\n\x07gripper\x18\x02 \x01(\r\x12\x10\n\x08\x66t_param\x18\x03 \x01(\r\x12\x10\n\x08led_mode\x18\x04 \x01(\r\x12\r\n\x05led_g\x18\x05 \x01(\r\x12\r\n\x05led_r\x18\x06 \x01(\r\x12\r\n\x05led_b\x18\x07 \x01(\r\"\x8c\x03\n\x10\x45ndtoolDockingTx\x12\x16\n\x0e\x64ocking_status\x18\x01 \x01(\r\x12\x16\n\x0e\x64ocking_button\x18\x02 \x01(\r\x12\x15\n\rdocking_dist1\x18\x03 \x01(\r\x12\x15\n\rdocking_dist2\x18\x04 \x01(\r\x12\x15\n\rdocking_dist3\x18\x05 \x01(\r\x12\x15\n\rdocking_dist4\x18\x06 \x01(\r\x12\x15\n\rdocking_dist5\x18\x07 \x01(\r\x12\x15\n\rdocking_dist6\x18\x08 \x01(\r\x12\x15\n\rdocking_dist7\x18\t \x01(\r\x12\x15\n\rdocking_dist8\x18\n \x01(\r\x12\x15\n\rdirect_status\x18\x0b \x01(\r\x12\x15\n\rdirect_button\x18\x0c \x01(\r\x12\x16\n\x0e\x64irect_encoder\x18\r \x01(\r\x12\x11\n\tjoystic1x\x18\x0e \x01(\r\x12\x11\n\tjoystic1y\x18\x0f \x01(\r\x12\x11\n\tjoystic2x\x18\x10 \x01(\r\x12\x11\n\tjoystic2y\x18\x11 \x01(\r\"\x19\n\x06LedDim\x12\x0f\n\x07led_dim\x18\x01 \x01(\r\"\x96\x01\n\x0eSRKeyEndtoolRx\x12\x0c\n\x04\x64out\x18\x01 \x01(\r\x12\x0f\n\x07tool_Id\x18\x02 \x01(\r\x12\x10\n\x08set_Tool\x18\x03 \x01(\r\x12\x1a\n\x12tool_Closing_Force\x18\x04 \x01(\r\x12\x1a\n\x12tool_Opening_Force\x18\x05 \x01(\r\x12\x1b\n\x13tool_Force_Location\x18\x06 \x01(\r\"|\n\x0eSRKeyEndtoolTx\x12\x0b\n\x03\x64in\x18\x01 \x01(\r\x12\x13\n\x0btool_Status\x18\x02 \x01(\r\x12\x15\n\rtool_Location\x18\x03 \x01(\r\x12\x0f\n\x07\x61nalog0\x18\x04 \x01(\r\x12\x0f\n\x07\x61nalog1\x18\x05 \x01(\r\x12\x0f\n\x07version\x18\x06 \x01(\r\"\x84\x01\n\tIOBoardTx\x12\x0c\n\x04\x64i5v\x18\x01 \x01(\r\x12\x0e\n\x06\x64i24v1\x18\x02 \x01(\r\x12\x0e\n\x06\x64i24v2\x18\x03 \x01(\r\x12\x0b\n\x03\x61i1\x18\x04 \x01(\r\x12\x0b\n\x03\x61i2\x18\x05 \x01(\r\x12/\n\tft_sensor\x18\x06 \x01(\x0b\x32\x1c.Nrmk.IndyFramework.FTSensor\"e\n\tIOBoardRx\x12\x0c\n\x04\x64o5v\x18\x01 \x01(\r\x12\x0e\n\x06\x64o24v1\x18\x02 \x01(\r\x12\x0e\n\x06\x64o24v2\x18\x03 \x01(\r\x12\x0b\n\x03\x61o1\x18\x04 \x01(\r\x12\x0b\n\x03\x61o2\x18\x05 \x01(\r\x12\x10\n\x08\x66t_param\x18\x06 \x01(\r\"\x1c\n\x08\x44IOIndex\x12\x10\n\x08\x64ioIndex\x18\x01 \x01(\r\"4\n\x0f\x44IODigitalInput\x12\x10\n\x08\x64ioIndex\x18\x01 \x01(\r\x12\x0f\n\x07\x64i_list\x18\x02 \x03(\r\"5\n\x10\x44IODigitalOutput\x12\x10\n\x08\x64ioIndex\x18\x01 \x01(\r\x12\x0f\n\x07\x64o_list\x18\x02 \x03(\r\"+\n\nServoParam\x12\x10\n\x08slaveIdx\x18\x01 \x01(\r\x12\x0b\n\x03val\x18\x02 \x01(\x05\"\x18\n\tSDOIntVal\x12\x0b\n\x03val\x18\x01 \x01(\x05\"\x1f\n\x0eRobotZeroCount\x12\r\n\x05\x63ount\x18\x01 \x01(\x05\x62\x06proto3'
 )
 
 
@@ -422,45 +422,6 @@ _SERVORX = _descriptor.Descriptor(
 )
 
 
-_SERVOTXINDEX = _descriptor.Descriptor(
-  name='ServoTxIndex',
-  full_name='Nrmk.IndyFramework.ServoTxIndex',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='servoIndex', full_name='Nrmk.IndyFramework.ServoTxIndex.servoIndex', index=0,
-      number=1, type=13, cpp_type=3, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='tx', full_name='Nrmk.IndyFramework.ServoTxIndex.tx', index=1,
-      number=2, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=605,
-  serialized_end=680,
-)
-
-
 _SERVORXINDEX = _descriptor.Descriptor(
   name='ServoRxIndex',
   full_name='Nrmk.IndyFramework.ServoRxIndex',
@@ -495,8 +456,8 @@ _SERVORXINDEX = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=682,
-  serialized_end=757,
+  serialized_start=605,
+  serialized_end=680,
 )
 
 
@@ -583,8 +544,8 @@ _SERVOTXKEBA = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=760,
-  serialized_end=983,
+  serialized_start=683,
+  serialized_end=906,
 )
 
 
@@ -671,8 +632,8 @@ _SERVORXKEBA = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=986,
-  serialized_end=1206,
+  serialized_start=909,
+  serialized_end=1129,
 )
 
 
@@ -710,8 +671,8 @@ _SERVORXINDEXKEBA = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1208,
-  serialized_end=1291,
+  serialized_start=1131,
+  serialized_end=1214,
 )
 
 
@@ -742,8 +703,8 @@ _SERVOTEMP = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1293,
-  serialized_end=1325,
+  serialized_start=1216,
+  serialized_end=1248,
 )
 
 
@@ -774,8 +735,8 @@ _SERVOERROR = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1327,
-  serialized_end=1358,
+  serialized_start=1250,
+  serialized_end=1281,
 )
 
 
@@ -813,8 +774,8 @@ _SERVOBRAKE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1360,
-  serialized_end=1406,
+  serialized_start=1283,
+  serialized_end=1329,
 )
 
 
@@ -880,8 +841,8 @@ _FTSENSOR = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1408,
-  serialized_end=1490,
+  serialized_start=1331,
+  serialized_end=1413,
 )
 
 
@@ -940,8 +901,8 @@ _ENDTOOLTX = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1493,
-  serialized_end=1621,
+  serialized_start=1416,
+  serialized_end=1544,
 )
 
 
@@ -1014,8 +975,8 @@ _ENDTOOLRX = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1623,
-  serialized_end=1745,
+  serialized_start=1546,
+  serialized_end=1668,
 )
 
 
@@ -1158,8 +1119,8 @@ _ENDTOOLDOCKINGTX = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1748,
-  serialized_end=2144,
+  serialized_start=1671,
+  serialized_end=2067,
 )
 
 
@@ -1190,8 +1151,8 @@ _LEDDIM = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2146,
-  serialized_end=2171,
+  serialized_start=2069,
+  serialized_end=2094,
 )
 
 
@@ -1257,8 +1218,8 @@ _SRKEYENDTOOLRX = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2174,
-  serialized_end=2324,
+  serialized_start=2097,
+  serialized_end=2247,
 )
 
 
@@ -1324,8 +1285,8 @@ _SRKEYENDTOOLTX = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2326,
-  serialized_end=2450,
+  serialized_start=2249,
+  serialized_end=2373,
 )
 
 
@@ -1391,8 +1352,8 @@ _IOBOARDTX = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2453,
-  serialized_end=2585,
+  serialized_start=2376,
+  serialized_end=2508,
 )
 
 
@@ -1458,8 +1419,8 @@ _IOBOARDRX = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2587,
-  serialized_end=2688,
+  serialized_start=2510,
+  serialized_end=2611,
 )
 
 
@@ -1490,8 +1451,8 @@ _DIOINDEX = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2690,
-  serialized_end=2718,
+  serialized_start=2613,
+  serialized_end=2641,
 )
 
 
@@ -1529,8 +1490,8 @@ _DIODIGITALINPUT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2720,
-  serialized_end=2772,
+  serialized_start=2643,
+  serialized_end=2695,
 )
 
 
@@ -1568,8 +1529,8 @@ _DIODIGITALOUTPUT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2774,
-  serialized_end=2827,
+  serialized_start=2697,
+  serialized_end=2750,
 )
 
 
@@ -1607,8 +1568,8 @@ _SERVOPARAM = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2829,
-  serialized_end=2872,
+  serialized_start=2752,
+  serialized_end=2795,
 )
 
 
@@ -1639,97 +1600,8 @@ _SDOINTVAL = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2874,
-  serialized_end=2898,
-)
-
-
-_SDOFLOATVAL = _descriptor.Descriptor(
-  name='SDOFloatVal',
-  full_name='Nrmk.IndyFramework.SDOFloatVal',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='val', full_name='Nrmk.IndyFramework.SDOFloatVal.val', index=0,
-      number=1, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=2900,
-  serialized_end=2926,
-)
-
-
-_SDOSTRVAL = _descriptor.Descriptor(
-  name='SDOStrVal',
-  full_name='Nrmk.IndyFramework.SDOStrVal',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='val', full_name='Nrmk.IndyFramework.SDOStrVal.val', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=2928,
-  serialized_end=2952,
-)
-
-
-_ETHERCATINFO = _descriptor.Descriptor(
-  name='EtherCATInfo',
-  full_name='Nrmk.IndyFramework.EtherCATInfo',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=2954,
-  serialized_end=2968,
+  serialized_start=2797,
+  serialized_end=2821,
 )
 
 
@@ -1760,11 +1632,10 @@ _ROBOTZEROCOUNT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2970,
-  serialized_end=3001,
+  serialized_start=2823,
+  serialized_end=2854,
 )
 
-_SERVOTXINDEX.fields_by_name['tx'].message_type = _SERVOTX
 _SERVORXINDEX.fields_by_name['rx'].message_type = _SERVORX
 _SERVORXINDEXKEBA.fields_by_name['rx'].message_type = _SERVORXKEBA
 _ENDTOOLTX.fields_by_name['ft_sensor'].message_type = _FTSENSOR
@@ -1779,7 +1650,6 @@ DESCRIPTOR.message_types_by_name['ServoIndex'] = _SERVOINDEX
 DESCRIPTOR.message_types_by_name['EcatIndex'] = _ECATINDEX
 DESCRIPTOR.message_types_by_name['ServoTx'] = _SERVOTX
 DESCRIPTOR.message_types_by_name['ServoRx'] = _SERVORX
-DESCRIPTOR.message_types_by_name['ServoTxIndex'] = _SERVOTXINDEX
 DESCRIPTOR.message_types_by_name['ServoRxIndex'] = _SERVORXINDEX
 DESCRIPTOR.message_types_by_name['ServoTxKeba'] = _SERVOTXKEBA
 DESCRIPTOR.message_types_by_name['ServoRxKeba'] = _SERVORXKEBA
@@ -1801,9 +1671,6 @@ DESCRIPTOR.message_types_by_name['DIODigitalInput'] = _DIODIGITALINPUT
 DESCRIPTOR.message_types_by_name['DIODigitalOutput'] = _DIODIGITALOUTPUT
 DESCRIPTOR.message_types_by_name['ServoParam'] = _SERVOPARAM
 DESCRIPTOR.message_types_by_name['SDOIntVal'] = _SDOINTVAL
-DESCRIPTOR.message_types_by_name['SDOFloatVal'] = _SDOFLOATVAL
-DESCRIPTOR.message_types_by_name['SDOStrVal'] = _SDOSTRVAL
-DESCRIPTOR.message_types_by_name['EtherCATInfo'] = _ETHERCATINFO
 DESCRIPTOR.message_types_by_name['RobotZeroCount'] = _ROBOTZEROCOUNT
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -1876,13 +1743,6 @@ ServoRx = _reflection.GeneratedProtocolMessageType('ServoRx', (_message.Message,
   # @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.ServoRx)
   })
 _sym_db.RegisterMessage(ServoRx)
-
-ServoTxIndex = _reflection.GeneratedProtocolMessageType('ServoTxIndex', (_message.Message,), {
-  'DESCRIPTOR' : _SERVOTXINDEX,
-  '__module__' : 'ethercat_msgs_pb2'
-  # @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.ServoTxIndex)
-  })
-_sym_db.RegisterMessage(ServoTxIndex)
 
 ServoRxIndex = _reflection.GeneratedProtocolMessageType('ServoRxIndex', (_message.Message,), {
   'DESCRIPTOR' : _SERVORXINDEX,
@@ -2030,27 +1890,6 @@ SDOIntVal = _reflection.GeneratedProtocolMessageType('SDOIntVal', (_message.Mess
   # @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.SDOIntVal)
   })
 _sym_db.RegisterMessage(SDOIntVal)
-
-SDOFloatVal = _reflection.GeneratedProtocolMessageType('SDOFloatVal', (_message.Message,), {
-  'DESCRIPTOR' : _SDOFLOATVAL,
-  '__module__' : 'ethercat_msgs_pb2'
-  # @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.SDOFloatVal)
-  })
-_sym_db.RegisterMessage(SDOFloatVal)
-
-SDOStrVal = _reflection.GeneratedProtocolMessageType('SDOStrVal', (_message.Message,), {
-  'DESCRIPTOR' : _SDOSTRVAL,
-  '__module__' : 'ethercat_msgs_pb2'
-  # @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.SDOStrVal)
-  })
-_sym_db.RegisterMessage(SDOStrVal)
-
-EtherCATInfo = _reflection.GeneratedProtocolMessageType('EtherCATInfo', (_message.Message,), {
-  'DESCRIPTOR' : _ETHERCATINFO,
-  '__module__' : 'ethercat_msgs_pb2'
-  # @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.EtherCATInfo)
-  })
-_sym_db.RegisterMessage(EtherCATInfo)
 
 RobotZeroCount = _reflection.GeneratedProtocolMessageType('RobotZeroCount', (_message.Message,), {
   'DESCRIPTOR' : _ROBOTZEROCOUNT,

@@ -161,6 +161,16 @@ class ControlStub(object):
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
                 response_deserializer=common__msgs__pb2.TactTime.FromString,
                 )
+        self.SetComplianceMode = channel.unary_unary(
+                '/Nrmk.IndyFramework.Control/SetComplianceMode',
+                request_serializer=control__msgs__pb2.ComplianceMode.SerializeToString,
+                response_deserializer=common__msgs__pb2.Response.FromString,
+                )
+        self.GetComplianceMode = channel.unary_unary(
+                '/Nrmk.IndyFramework.Control/GetComplianceMode',
+                request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=control__msgs__pb2.ComplianceMode.FromString,
+                )
         self.Recover = channel.unary_unary(
                 '/Nrmk.IndyFramework.Control/Recover',
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
@@ -301,6 +311,66 @@ class ControlStub(object):
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
                 response_deserializer=control__msgs__pb2.TPosVars.FromString,
                 )
+        self.SetPluginBoolVariable = channel.unary_unary(
+                '/Nrmk.IndyFramework.Control/SetPluginBoolVariable',
+                request_serializer=common__msgs__pb2.NamedBool.SerializeToString,
+                response_deserializer=common__msgs__pb2.Empty.FromString,
+                )
+        self.GetPluginBoolVariable = channel.unary_unary(
+                '/Nrmk.IndyFramework.Control/GetPluginBoolVariable',
+                request_serializer=common__msgs__pb2.Name.SerializeToString,
+                response_deserializer=common__msgs__pb2.NamedBool.FromString,
+                )
+        self.SetPluginIntVariable = channel.unary_unary(
+                '/Nrmk.IndyFramework.Control/SetPluginIntVariable',
+                request_serializer=common__msgs__pb2.NamedInt.SerializeToString,
+                response_deserializer=common__msgs__pb2.Empty.FromString,
+                )
+        self.GetPluginIntVariable = channel.unary_unary(
+                '/Nrmk.IndyFramework.Control/GetPluginIntVariable',
+                request_serializer=common__msgs__pb2.Name.SerializeToString,
+                response_deserializer=common__msgs__pb2.NamedInt.FromString,
+                )
+        self.SetPluginFloatVariable = channel.unary_unary(
+                '/Nrmk.IndyFramework.Control/SetPluginFloatVariable',
+                request_serializer=common__msgs__pb2.NamedFloat.SerializeToString,
+                response_deserializer=common__msgs__pb2.Empty.FromString,
+                )
+        self.GetPluginFloatVariable = channel.unary_unary(
+                '/Nrmk.IndyFramework.Control/GetPluginFloatVariable',
+                request_serializer=common__msgs__pb2.Name.SerializeToString,
+                response_deserializer=common__msgs__pb2.NamedFloat.FromString,
+                )
+        self.SetPluginJPosVariable = channel.unary_unary(
+                '/Nrmk.IndyFramework.Control/SetPluginJPosVariable',
+                request_serializer=common__msgs__pb2.NamedJointPosition.SerializeToString,
+                response_deserializer=common__msgs__pb2.Empty.FromString,
+                )
+        self.GetPluginJPosVariable = channel.unary_unary(
+                '/Nrmk.IndyFramework.Control/GetPluginJPosVariable',
+                request_serializer=common__msgs__pb2.Name.SerializeToString,
+                response_deserializer=common__msgs__pb2.NamedJointPosition.FromString,
+                )
+        self.SetPluginTPosVariable = channel.unary_unary(
+                '/Nrmk.IndyFramework.Control/SetPluginTPosVariable',
+                request_serializer=common__msgs__pb2.NamedTaskPosition.SerializeToString,
+                response_deserializer=common__msgs__pb2.Empty.FromString,
+                )
+        self.GetPluginTPosVariable = channel.unary_unary(
+                '/Nrmk.IndyFramework.Control/GetPluginTPosVariable',
+                request_serializer=common__msgs__pb2.Name.SerializeToString,
+                response_deserializer=common__msgs__pb2.NamedTaskPosition.FromString,
+                )
+        self.PushBusEvent = channel.unary_unary(
+                '/Nrmk.IndyFramework.Control/PushBusEvent',
+                request_serializer=control__msgs__pb2.BusEvent.SerializeToString,
+                response_deserializer=common__msgs__pb2.State.FromString,
+                )
+        self.CatchBusEvent = channel.unary_unary(
+                '/Nrmk.IndyFramework.Control/CatchBusEvent',
+                request_serializer=control__msgs__pb2.CatchBusEventReq.SerializeToString,
+                response_deserializer=control__msgs__pb2.BusEvent.FromString,
+                )
         self.InverseKinematics = channel.unary_unary(
                 '/Nrmk.IndyFramework.Control/InverseKinematics',
                 request_serializer=control__msgs__pb2.InverseKinematicsReq.SerializeToString,
@@ -416,10 +486,15 @@ class ControlStub(object):
                 request_serializer=control__msgs__pb2.MoveTeleLReq.SerializeToString,
                 response_deserializer=common__msgs__pb2.Response.FromString,
                 )
-        self.MoveLF = channel.unary_unary(
-                '/Nrmk.IndyFramework.Control/MoveLF',
-                request_serializer=control__msgs__pb2.MoveLFReq.SerializeToString,
+        self.SetForceMode = channel.unary_unary(
+                '/Nrmk.IndyFramework.Control/SetForceMode',
+                request_serializer=control__msgs__pb2.ForceModeReq.SerializeToString,
                 response_deserializer=common__msgs__pb2.Response.FromString,
+                )
+        self.GetForceMode = channel.unary_unary(
+                '/Nrmk.IndyFramework.Control/GetForceMode',
+                request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=control__msgs__pb2.ForceModeReq.FromString,
                 )
         self.GetTransformedFTSensorData = channel.unary_unary(
                 '/Nrmk.IndyFramework.Control/GetTransformedFTSensorData',
@@ -429,6 +504,11 @@ class ControlStub(object):
         self.FTZero = channel.unary_unary(
                 '/Nrmk.IndyFramework.Control/FTZero',
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=common__msgs__pb2.Response.FromString,
+                )
+        self.MoveLF = channel.unary_unary(
+                '/Nrmk.IndyFramework.Control/MoveLF',
+                request_serializer=control__msgs__pb2.MoveLFReq.SerializeToString,
                 response_deserializer=common__msgs__pb2.Response.FromString,
                 )
         self.SetControlInferenceData = channel.unary_unary(
@@ -626,6 +706,18 @@ class ControlServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def SetComplianceMode(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetComplianceMode(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def Recover(self, request, context):
         """---------------------------------------------------------------- //
         Violation Recovery
@@ -803,6 +895,85 @@ class ControlServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def SetPluginBoolVariable(self, request, context):
+        """---------------------------------------------------------------- //
+        Plugin Variable
+        ---------------------------------------------------------------- //
+
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetPluginBoolVariable(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SetPluginIntVariable(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetPluginIntVariable(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SetPluginFloatVariable(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetPluginFloatVariable(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SetPluginJPosVariable(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetPluginJPosVariable(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SetPluginTPosVariable(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetPluginTPosVariable(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def PushBusEvent(self, request, context):
+        """---------------------------------------------------------------- //
+        Event Bus
+        ---------------------------------------------------------------- //
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def CatchBusEvent(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def InverseKinematics(self, request, context):
         """---------------------------------------------------------------- //
         Utility
@@ -947,11 +1118,14 @@ class ControlServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def MoveLF(self, request, context):
-        """---------------------------------------------------------------- //
-        Sanding
-        ---------------------------------------------------------------- //
-        """
+    def SetForceMode(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetForceMode(self, request, context):
+        """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
@@ -964,6 +1138,15 @@ class ControlServicer(object):
 
     def FTZero(self, request, context):
         """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def MoveLF(self, request, context):
+        """---------------------------------------------------------------- //
+        Sanding
+        ---------------------------------------------------------------- //
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
@@ -1131,6 +1314,16 @@ def add_ControlServicer_to_server(servicer, server):
                     request_deserializer=common__msgs__pb2.Empty.FromString,
                     response_serializer=common__msgs__pb2.TactTime.SerializeToString,
             ),
+            'SetComplianceMode': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetComplianceMode,
+                    request_deserializer=control__msgs__pb2.ComplianceMode.FromString,
+                    response_serializer=common__msgs__pb2.Response.SerializeToString,
+            ),
+            'GetComplianceMode': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetComplianceMode,
+                    request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=control__msgs__pb2.ComplianceMode.SerializeToString,
+            ),
             'Recover': grpc.unary_unary_rpc_method_handler(
                     servicer.Recover,
                     request_deserializer=common__msgs__pb2.Empty.FromString,
@@ -1271,6 +1464,66 @@ def add_ControlServicer_to_server(servicer, server):
                     request_deserializer=common__msgs__pb2.Empty.FromString,
                     response_serializer=control__msgs__pb2.TPosVars.SerializeToString,
             ),
+            'SetPluginBoolVariable': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetPluginBoolVariable,
+                    request_deserializer=common__msgs__pb2.NamedBool.FromString,
+                    response_serializer=common__msgs__pb2.Empty.SerializeToString,
+            ),
+            'GetPluginBoolVariable': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetPluginBoolVariable,
+                    request_deserializer=common__msgs__pb2.Name.FromString,
+                    response_serializer=common__msgs__pb2.NamedBool.SerializeToString,
+            ),
+            'SetPluginIntVariable': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetPluginIntVariable,
+                    request_deserializer=common__msgs__pb2.NamedInt.FromString,
+                    response_serializer=common__msgs__pb2.Empty.SerializeToString,
+            ),
+            'GetPluginIntVariable': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetPluginIntVariable,
+                    request_deserializer=common__msgs__pb2.Name.FromString,
+                    response_serializer=common__msgs__pb2.NamedInt.SerializeToString,
+            ),
+            'SetPluginFloatVariable': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetPluginFloatVariable,
+                    request_deserializer=common__msgs__pb2.NamedFloat.FromString,
+                    response_serializer=common__msgs__pb2.Empty.SerializeToString,
+            ),
+            'GetPluginFloatVariable': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetPluginFloatVariable,
+                    request_deserializer=common__msgs__pb2.Name.FromString,
+                    response_serializer=common__msgs__pb2.NamedFloat.SerializeToString,
+            ),
+            'SetPluginJPosVariable': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetPluginJPosVariable,
+                    request_deserializer=common__msgs__pb2.NamedJointPosition.FromString,
+                    response_serializer=common__msgs__pb2.Empty.SerializeToString,
+            ),
+            'GetPluginJPosVariable': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetPluginJPosVariable,
+                    request_deserializer=common__msgs__pb2.Name.FromString,
+                    response_serializer=common__msgs__pb2.NamedJointPosition.SerializeToString,
+            ),
+            'SetPluginTPosVariable': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetPluginTPosVariable,
+                    request_deserializer=common__msgs__pb2.NamedTaskPosition.FromString,
+                    response_serializer=common__msgs__pb2.Empty.SerializeToString,
+            ),
+            'GetPluginTPosVariable': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetPluginTPosVariable,
+                    request_deserializer=common__msgs__pb2.Name.FromString,
+                    response_serializer=common__msgs__pb2.NamedTaskPosition.SerializeToString,
+            ),
+            'PushBusEvent': grpc.unary_unary_rpc_method_handler(
+                    servicer.PushBusEvent,
+                    request_deserializer=control__msgs__pb2.BusEvent.FromString,
+                    response_serializer=common__msgs__pb2.State.SerializeToString,
+            ),
+            'CatchBusEvent': grpc.unary_unary_rpc_method_handler(
+                    servicer.CatchBusEvent,
+                    request_deserializer=control__msgs__pb2.CatchBusEventReq.FromString,
+                    response_serializer=control__msgs__pb2.BusEvent.SerializeToString,
+            ),
             'InverseKinematics': grpc.unary_unary_rpc_method_handler(
                     servicer.InverseKinematics,
                     request_deserializer=control__msgs__pb2.InverseKinematicsReq.FromString,
@@ -1386,10 +1639,15 @@ def add_ControlServicer_to_server(servicer, server):
                     request_deserializer=control__msgs__pb2.MoveTeleLReq.FromString,
                     response_serializer=common__msgs__pb2.Response.SerializeToString,
             ),
-            'MoveLF': grpc.unary_unary_rpc_method_handler(
-                    servicer.MoveLF,
-                    request_deserializer=control__msgs__pb2.MoveLFReq.FromString,
+            'SetForceMode': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetForceMode,
+                    request_deserializer=control__msgs__pb2.ForceModeReq.FromString,
                     response_serializer=common__msgs__pb2.Response.SerializeToString,
+            ),
+            'GetForceMode': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetForceMode,
+                    request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=control__msgs__pb2.ForceModeReq.SerializeToString,
             ),
             'GetTransformedFTSensorData': grpc.unary_unary_rpc_method_handler(
                     servicer.GetTransformedFTSensorData,
@@ -1399,6 +1657,11 @@ def add_ControlServicer_to_server(servicer, server):
             'FTZero': grpc.unary_unary_rpc_method_handler(
                     servicer.FTZero,
                     request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=common__msgs__pb2.Response.SerializeToString,
+            ),
+            'MoveLF': grpc.unary_unary_rpc_method_handler(
+                    servicer.MoveLF,
+                    request_deserializer=control__msgs__pb2.MoveLFReq.FromString,
                     response_serializer=common__msgs__pb2.Response.SerializeToString,
             ),
             'SetControlInferenceData': grpc.unary_unary_rpc_method_handler(
@@ -1915,6 +2178,40 @@ class Control(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
+    def SetComplianceMode(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Control/SetComplianceMode',
+            control__msgs__pb2.ComplianceMode.SerializeToString,
+            common__msgs__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetComplianceMode(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Control/GetComplianceMode',
+            common__msgs__pb2.Empty.SerializeToString,
+            control__msgs__pb2.ComplianceMode.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
     def Recover(request,
             target,
             options=(),
@@ -2391,6 +2688,210 @@ class Control(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
+    def SetPluginBoolVariable(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Control/SetPluginBoolVariable',
+            common__msgs__pb2.NamedBool.SerializeToString,
+            common__msgs__pb2.Empty.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetPluginBoolVariable(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Control/GetPluginBoolVariable',
+            common__msgs__pb2.Name.SerializeToString,
+            common__msgs__pb2.NamedBool.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SetPluginIntVariable(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Control/SetPluginIntVariable',
+            common__msgs__pb2.NamedInt.SerializeToString,
+            common__msgs__pb2.Empty.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetPluginIntVariable(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Control/GetPluginIntVariable',
+            common__msgs__pb2.Name.SerializeToString,
+            common__msgs__pb2.NamedInt.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SetPluginFloatVariable(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Control/SetPluginFloatVariable',
+            common__msgs__pb2.NamedFloat.SerializeToString,
+            common__msgs__pb2.Empty.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetPluginFloatVariable(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Control/GetPluginFloatVariable',
+            common__msgs__pb2.Name.SerializeToString,
+            common__msgs__pb2.NamedFloat.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SetPluginJPosVariable(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Control/SetPluginJPosVariable',
+            common__msgs__pb2.NamedJointPosition.SerializeToString,
+            common__msgs__pb2.Empty.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetPluginJPosVariable(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Control/GetPluginJPosVariable',
+            common__msgs__pb2.Name.SerializeToString,
+            common__msgs__pb2.NamedJointPosition.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SetPluginTPosVariable(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Control/SetPluginTPosVariable',
+            common__msgs__pb2.NamedTaskPosition.SerializeToString,
+            common__msgs__pb2.Empty.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetPluginTPosVariable(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Control/GetPluginTPosVariable',
+            common__msgs__pb2.Name.SerializeToString,
+            common__msgs__pb2.NamedTaskPosition.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def PushBusEvent(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Control/PushBusEvent',
+            control__msgs__pb2.BusEvent.SerializeToString,
+            common__msgs__pb2.State.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def CatchBusEvent(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Control/CatchBusEvent',
+            control__msgs__pb2.CatchBusEventReq.SerializeToString,
+            control__msgs__pb2.BusEvent.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
     def InverseKinematics(request,
             target,
             options=(),
@@ -2782,7 +3283,7 @@ class Control(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def MoveLF(request,
+    def SetForceMode(request,
             target,
             options=(),
             channel_credentials=None,
@@ -2792,9 +3293,26 @@ class Control(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Control/MoveLF',
-            control__msgs__pb2.MoveLFReq.SerializeToString,
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Control/SetForceMode',
+            control__msgs__pb2.ForceModeReq.SerializeToString,
             common__msgs__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetForceMode(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Control/GetForceMode',
+            common__msgs__pb2.Empty.SerializeToString,
+            control__msgs__pb2.ForceModeReq.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -2828,6 +3346,23 @@ class Control(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Control/FTZero',
             common__msgs__pb2.Empty.SerializeToString,
+            common__msgs__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def MoveLF(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Control/MoveLF',
+            control__msgs__pb2.MoveLFReq.SerializeToString,
             common__msgs__pb2.Response.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

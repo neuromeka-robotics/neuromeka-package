@@ -21,7 +21,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\nrtde.proto\x12\x12Nrmk.IndyFramework\x1a\x0frtde_msgs.proto\x1a\x11\x63ommon_msgs.proto2\xbb\x06\n\x0eRTDataExchange\x12L\n\rGetMotionData\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1e.Nrmk.IndyFramework.MotionData\"\x00\x12N\n\x0eGetControlData\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1f.Nrmk.IndyFramework.ControlData\"\x00\x12P\n\x0fGetControlState\x12\x19.Nrmk.IndyFramework.Empty\x1a .Nrmk.IndyFramework.ControlData2\"\x00\x12\x44\n\tGetIOData\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1a.Nrmk.IndyFramework.IOData\"\x00\x12J\n\x0cGetServoData\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1d.Nrmk.IndyFramework.ServoData\"\x00\x12R\n\x10GetViolationData\x12\x19.Nrmk.IndyFramework.Empty\x1a!.Nrmk.IndyFramework.ViolationData\"\x00\x12\x62\n\x18GetViolationMessageQueue\x12\x19.Nrmk.IndyFramework.Empty\x1a).Nrmk.IndyFramework.ViolationMessageQueue\"\x00\x12N\n\x0eGetProgramData\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1f.Nrmk.IndyFramework.ProgramData\"\x00\x12J\n\x0cGetStopState\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1d.Nrmk.IndyFramework.StopState\"\x00\x12S\n\x0cTestFunction\x12\x1f.Nrmk.IndyFramework.TestRequest\x1a .Nrmk.IndyFramework.TestResponse\"\x00\x62\x06proto3'
+  serialized_pb=b'\n\nrtde.proto\x12\x12Nrmk.IndyFramework\x1a\x0frtde_msgs.proto\x1a\x11\x63ommon_msgs.proto2\xed\x07\n\x0eRTDataExchange\x12L\n\rGetMotionData\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1e.Nrmk.IndyFramework.MotionData\"\x00\x12N\n\x0eGetControlData\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1f.Nrmk.IndyFramework.ControlData\"\x00\x12P\n\x0fGetControlState\x12\x19.Nrmk.IndyFramework.Empty\x1a .Nrmk.IndyFramework.ControlData2\"\x00\x12\x44\n\tGetIOData\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1a.Nrmk.IndyFramework.IOData\"\x00\x12J\n\x0cGetServoData\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1d.Nrmk.IndyFramework.ServoData\"\x00\x12R\n\x10GetViolationData\x12\x19.Nrmk.IndyFramework.Empty\x1a!.Nrmk.IndyFramework.ViolationData\"\x00\x12\x62\n\x18GetViolationMessageQueue\x12\x19.Nrmk.IndyFramework.Empty\x1a).Nrmk.IndyFramework.ViolationMessageQueue\"\x00\x12N\n\x0eGetProgramData\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1f.Nrmk.IndyFramework.ProgramData\"\x00\x12J\n\x0cGetStopState\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1d.Nrmk.IndyFramework.StopState\"\x00\x12^\n\x16GetCollisionModelState\x12\x19.Nrmk.IndyFramework.Empty\x1a\'.Nrmk.IndyFramework.CollisionModelState\"\x00\x12S\n\x0cTestFunction\x12\x1f.Nrmk.IndyFramework.TestRequest\x1a .Nrmk.IndyFramework.TestResponse\"\x00\x12P\n\x0fGetReservedData\x12\x19.Nrmk.IndyFramework.Empty\x1a .Nrmk.IndyFramework.ReservedData\"\x00\x62\x06proto3'
   ,
   dependencies=[rtde__msgs__pb2.DESCRIPTOR,common__msgs__pb2.DESCRIPTOR,])
 
@@ -39,7 +39,7 @@ _RTDATAEXCHANGE = _descriptor.ServiceDescriptor(
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
   serialized_start=71,
-  serialized_end=898,
+  serialized_end=1076,
   methods=[
   _descriptor.MethodDescriptor(
     name='GetMotionData',
@@ -132,12 +132,32 @@ _RTDATAEXCHANGE = _descriptor.ServiceDescriptor(
     create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
+    name='GetCollisionModelState',
+    full_name='Nrmk.IndyFramework.RTDataExchange.GetCollisionModelState',
+    index=9,
+    containing_service=None,
+    input_type=common__msgs__pb2._EMPTY,
+    output_type=rtde__msgs__pb2._COLLISIONMODELSTATE,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
     name='TestFunction',
     full_name='Nrmk.IndyFramework.RTDataExchange.TestFunction',
-    index=9,
+    index=10,
     containing_service=None,
     input_type=rtde__msgs__pb2._TESTREQUEST,
     output_type=rtde__msgs__pb2._TESTRESPONSE,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='GetReservedData',
+    full_name='Nrmk.IndyFramework.RTDataExchange.GetReservedData',
+    index=11,
+    containing_service=None,
+    input_type=common__msgs__pb2._EMPTY,
+    output_type=rtde__msgs__pb2._RESERVEDDATA,
     serialized_options=None,
     create_key=_descriptor._internal_create_key,
   ),

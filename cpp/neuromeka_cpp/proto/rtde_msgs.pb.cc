@@ -108,6 +108,9 @@ PROTOBUF_CONSTEXPR ControlData::ControlData(::_pbi::ConstantInitialized)
       /*decltype(_impl_.running_secs_)*/ 0u,
       /*decltype(_impl_.op_state_)*/ 0,
       /*decltype(_impl_.sim_mode_)*/ false,
+      /*decltype(_impl_.is_robot_connected_)*/ false,
+      /*decltype(_impl_.tool_link_)*/ 0,
+      /*decltype(_impl_.locked_joint_)*/ 0,
     } {}
 struct ControlDataDefaultTypeInternal {
   PROTOBUF_CONSTEXPR ControlDataDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
@@ -155,6 +158,33 @@ struct ControlData2DefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ControlData2DefaultTypeInternal _ControlData2_default_instance_;
         template <typename>
+PROTOBUF_CONSTEXPR ReservedData::ReservedData(::_pbi::ConstantInitialized)
+    : _impl_{
+      /*decltype(_impl_._has_bits_)*/ {},
+      /*decltype(_impl_._cached_size_)*/ {},
+      /*decltype(_impl_.qres1_)*/ {},
+      /*decltype(_impl_.qres2_)*/ {},
+      /*decltype(_impl_.qdotres1_)*/ {},
+      /*decltype(_impl_.qdotres2_)*/ {},
+      /*decltype(_impl_.taures1_)*/ {},
+      /*decltype(_impl_.taures2_)*/ {},
+      /*decltype(_impl_.eres1_)*/ {},
+      /*decltype(_impl_.eres2_)*/ {},
+      /*decltype(_impl_.edotres1_)*/ {},
+      /*decltype(_impl_.edotres2_)*/ {},
+      /*decltype(_impl_.response_)*/ nullptr,
+    } {}
+struct ReservedDataDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR ReservedDataDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~ReservedDataDefaultTypeInternal() {}
+  union {
+    ReservedData _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ReservedDataDefaultTypeInternal _ReservedData_default_instance_;
+        template <typename>
 PROTOBUF_CONSTEXPR IOData::IOData(::_pbi::ConstantInitialized)
     : _impl_{
       /*decltype(_impl_._has_bits_)*/ {},
@@ -193,6 +223,7 @@ PROTOBUF_CONSTEXPR ViolationData::ViolationData(::_pbi::ConstantInitialized)
       },
       /*decltype(_impl_.response_)*/ nullptr,
       /*decltype(_impl_.violation_code_)*/ ::uint64_t{0u},
+      /*decltype(_impl_.violation_id_)*/ ::uint64_t{0u},
       /*decltype(_impl_.j_index_)*/ 0u,
     } {}
 struct ViolationDataDefaultTypeInternal {
@@ -232,6 +263,7 @@ PROTOBUF_CONSTEXPR ServoData::ServoData(::_pbi::ConstantInitialized)
       /*decltype(_impl_.temperatures_)*/ {},
       /*decltype(_impl_.voltages_)*/ {},
       /*decltype(_impl_.currents_)*/ {},
+      /*decltype(_impl_.torques_)*/ {},
       /*decltype(_impl_.servo_actives_)*/ {},
       /*decltype(_impl_.brake_actives_)*/ {},
       /*decltype(_impl_.response_)*/ nullptr,
@@ -300,9 +332,45 @@ struct StopStateDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 StopStateDefaultTypeInternal _StopState_default_instance_;
+        template <typename>
+PROTOBUF_CONSTEXPR ModelCollision::ModelCollision(::_pbi::ConstantInitialized)
+    : _impl_{
+      /*decltype(_impl_.rule_)*/ 0,
+      /*decltype(_impl_.link1_)*/ 0,
+      /*decltype(_impl_.link2_)*/ 0,
+      /*decltype(_impl_.tool_idx_)*/ 0,
+      /*decltype(_impl_.env_idx_)*/ 0,
+      /*decltype(_impl_._cached_size_)*/ {},
+    } {}
+struct ModelCollisionDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR ModelCollisionDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~ModelCollisionDefaultTypeInternal() {}
+  union {
+    ModelCollision _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ModelCollisionDefaultTypeInternal _ModelCollision_default_instance_;
+        template <typename>
+PROTOBUF_CONSTEXPR CollisionModelState::CollisionModelState(::_pbi::ConstantInitialized)
+    : _impl_{
+      /*decltype(_impl_.collisions_)*/ {},
+      /*decltype(_impl_._cached_size_)*/ {},
+    } {}
+struct CollisionModelStateDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR CollisionModelStateDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~CollisionModelStateDefaultTypeInternal() {}
+  union {
+    CollisionModelState _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 CollisionModelStateDefaultTypeInternal _CollisionModelState_default_instance_;
 }  // namespace IndyFramework
 }  // namespace Nrmk
-static ::_pb::Metadata file_level_metadata_rtde_5fmsgs_2eproto[11];
+static ::_pb::Metadata file_level_metadata_rtde_5fmsgs_2eproto[14];
 static const ::_pb::EnumDescriptor* file_level_enum_descriptors_rtde_5fmsgs_2eproto[1];
 static constexpr const ::_pb::ServiceDescriptor**
     file_level_service_descriptors_rtde_5fmsgs_2eproto = nullptr;
@@ -375,13 +443,19 @@ const ::uint32_t TableStruct_rtde_5fmsgs_2eproto::offsets[] PROTOBUF_SECTION_VAR
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ControlData, _impl_.running_secs_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ControlData, _impl_.op_state_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ControlData, _impl_.sim_mode_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ControlData, _impl_.is_robot_connected_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ControlData, _impl_.q_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ControlData, _impl_.qdot_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ControlData, _impl_.p_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ControlData, _impl_.pdot_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ControlData, _impl_.ref_frame_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ControlData, _impl_.tool_frame_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ControlData, _impl_.tool_link_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ControlData, _impl_.locked_joint_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ControlData, _impl_.response_),
+    ~0u,
+    ~0u,
+    ~0u,
     ~0u,
     ~0u,
     ~0u,
@@ -440,6 +514,36 @@ const ::uint32_t TableStruct_rtde_5fmsgs_2eproto::offsets[] PROTOBUF_SECTION_VAR
     ~0u,
     ~0u,
     0,
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ReservedData, _impl_._has_bits_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ReservedData, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ReservedData, _impl_.qres1_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ReservedData, _impl_.qres2_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ReservedData, _impl_.qdotres1_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ReservedData, _impl_.qdotres2_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ReservedData, _impl_.taures1_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ReservedData, _impl_.taures2_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ReservedData, _impl_.eres1_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ReservedData, _impl_.eres2_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ReservedData, _impl_.edotres1_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ReservedData, _impl_.edotres2_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ReservedData, _impl_.response_),
+    ~0u,
+    ~0u,
+    ~0u,
+    ~0u,
+    ~0u,
+    ~0u,
+    ~0u,
+    ~0u,
+    ~0u,
+    ~0u,
+    0,
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::IOData, _impl_._has_bits_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::IOData, _internal_metadata_),
     ~0u,  // no _extensions_
@@ -479,7 +583,9 @@ const ::uint32_t TableStruct_rtde_5fmsgs_2eproto::offsets[] PROTOBUF_SECTION_VAR
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ViolationData, _impl_.i_args_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ViolationData, _impl_.f_args_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ViolationData, _impl_.violation_str_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ViolationData, _impl_.violation_id_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ViolationData, _impl_.response_),
+    ~0u,
     ~0u,
     ~0u,
     ~0u,
@@ -510,9 +616,11 @@ const ::uint32_t TableStruct_rtde_5fmsgs_2eproto::offsets[] PROTOBUF_SECTION_VAR
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ServoData, _impl_.temperatures_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ServoData, _impl_.voltages_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ServoData, _impl_.currents_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ServoData, _impl_.torques_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ServoData, _impl_.servo_actives_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ServoData, _impl_.brake_actives_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ServoData, _impl_.response_),
+    ~0u,
     ~0u,
     ~0u,
     ~0u,
@@ -562,6 +670,28 @@ const ::uint32_t TableStruct_rtde_5fmsgs_2eproto::offsets[] PROTOBUF_SECTION_VAR
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::StopState, _impl_.response_),
     ~0u,
     0,
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ModelCollision, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ModelCollision, _impl_.rule_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ModelCollision, _impl_.link1_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ModelCollision, _impl_.link2_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ModelCollision, _impl_.tool_idx_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ModelCollision, _impl_.env_idx_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::CollisionModelState, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::CollisionModelState, _impl_.collisions_),
 };
 
 static const ::_pbi::MigrationSchema
@@ -569,14 +699,17 @@ static const ::_pbi::MigrationSchema
         {0, -1, -1, sizeof(::Nrmk::IndyFramework::TestRequest)},
         {10, -1, -1, sizeof(::Nrmk::IndyFramework::TestResponse)},
         {20, 41, -1, sizeof(::Nrmk::IndyFramework::MotionData)},
-        {54, 74, -1, sizeof(::Nrmk::IndyFramework::ControlData)},
-        {86, 113, -1, sizeof(::Nrmk::IndyFramework::ControlData2)},
-        {132, 149, -1, sizeof(::Nrmk::IndyFramework::IOData)},
-        {158, 172, -1, sizeof(::Nrmk::IndyFramework::ViolationData)},
-        {178, 188, -1, sizeof(::Nrmk::IndyFramework::ViolationMessageQueue)},
-        {190, 205, -1, sizeof(::Nrmk::IndyFramework::ServoData)},
-        {212, 231, -1, sizeof(::Nrmk::IndyFramework::ProgramData)},
-        {242, 252, -1, sizeof(::Nrmk::IndyFramework::StopState)},
+        {54, 77, -1, sizeof(::Nrmk::IndyFramework::ControlData)},
+        {92, 119, -1, sizeof(::Nrmk::IndyFramework::ControlData2)},
+        {138, 157, -1, sizeof(::Nrmk::IndyFramework::ReservedData)},
+        {168, 185, -1, sizeof(::Nrmk::IndyFramework::IOData)},
+        {194, 209, -1, sizeof(::Nrmk::IndyFramework::ViolationData)},
+        {216, 226, -1, sizeof(::Nrmk::IndyFramework::ViolationMessageQueue)},
+        {228, 244, -1, sizeof(::Nrmk::IndyFramework::ServoData)},
+        {252, 271, -1, sizeof(::Nrmk::IndyFramework::ProgramData)},
+        {282, 292, -1, sizeof(::Nrmk::IndyFramework::StopState)},
+        {294, -1, -1, sizeof(::Nrmk::IndyFramework::ModelCollision)},
+        {307, -1, -1, sizeof(::Nrmk::IndyFramework::CollisionModelState)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -585,12 +718,15 @@ static const ::_pb::Message* const file_default_instances[] = {
     &::Nrmk::IndyFramework::_MotionData_default_instance_._instance,
     &::Nrmk::IndyFramework::_ControlData_default_instance_._instance,
     &::Nrmk::IndyFramework::_ControlData2_default_instance_._instance,
+    &::Nrmk::IndyFramework::_ReservedData_default_instance_._instance,
     &::Nrmk::IndyFramework::_IOData_default_instance_._instance,
     &::Nrmk::IndyFramework::_ViolationData_default_instance_._instance,
     &::Nrmk::IndyFramework::_ViolationMessageQueue_default_instance_._instance,
     &::Nrmk::IndyFramework::_ServoData_default_instance_._instance,
     &::Nrmk::IndyFramework::_ProgramData_default_instance_._instance,
     &::Nrmk::IndyFramework::_StopState_default_instance_._instance,
+    &::Nrmk::IndyFramework::_ModelCollision_default_instance_._instance,
+    &::Nrmk::IndyFramework::_CollisionModelState_default_instance_._instance,
 };
 const char descriptor_table_protodef_rtde_5fmsgs_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
     "\n\017rtde_msgs.proto\022\022Nrmk.IndyFramework\032\021d"
@@ -606,59 +742,73 @@ const char descriptor_table_protodef_rtde_5fmsgs_2eproto[] PROTOBUF_SECTION_VARI
     " \001(\005\022\027\n\017remain_distance\030\n \001(\002\022\031\n\021motion_"
     "queue_size\030\013 \001(\r\022\031\n\021cur_traj_progress\030\014 "
     "\001(\005\022.\n\010response\030d \001(\0132\034.Nrmk.IndyFramewo"
-    "rk.Response\"\232\002\n\013ControlData\022\025\n\rrunning_h"
+    "rk.Response\"\337\002\n\013ControlData\022\025\n\rrunning_h"
     "ours\030\001 \001(\r\022\024\n\014running_mins\030\002 \001(\r\022\024\n\014runn"
     "ing_secs\030\003 \001(\r\022-\n\010op_state\030\004 \001(\0162\033.Nrmk."
     "IndyFramework.OpState\022\020\n\010sim_mode\030\005 \001(\010\022"
-    "\t\n\001q\030\n \003(\002\022\014\n\004qdot\030\013 \003(\002\022\t\n\001p\030\014 \003(\002\022\014\n\004p"
-    "dot\030\r \003(\002\022\021\n\tref_frame\030\024 \003(\002\022\022\n\ntool_fra"
-    "me\030\025 \003(\002\022.\n\010response\030d \001(\0132\034.Nrmk.IndyFr"
-    "amework.Response\"\334\002\n\014ControlData2\022\t\n\001q\030\001"
-    " \003(\002\022\014\n\004qdot\030\002 \003(\002\022\r\n\005qddot\030\003 \003(\002\022\014\n\004qde"
-    "s\030\004 \003(\002\022\017\n\007qdotdes\030\005 \003(\002\022\020\n\010qddotdes\030\006 \003"
-    "(\002\022\t\n\001p\030\n \003(\002\022\014\n\004pdot\030\013 \003(\002\022\r\n\005pddot\030\014 \003"
-    "(\002\022\014\n\004pdes\030\r \003(\002\022\017\n\007pdotdes\030\016 \003(\002\022\020\n\010pdd"
-    "otdes\030\017 \003(\002\022\013\n\003tau\030\024 \003(\002\022\017\n\007tau_act\030\025 \003("
-    "\002\022\017\n\007tau_ext\030\026 \003(\002\022\017\n\007tau_jts\030\027 \003(\002\022\024\n\014t"
-    "au_jts_raw1\030\030 \003(\002\022\024\n\014tau_jts_raw2\030\031 \003(\002\022"
-    ".\n\010response\030d \001(\0132\034.Nrmk.IndyFramework.R"
-    "esponse\"\274\003\n\006IOData\022-\n\002di\030\001 \003(\0132!.Nrmk.In"
-    "dyFramework.DigitalSignal\022-\n\002do\030\002 \003(\0132!."
-    "Nrmk.IndyFramework.DigitalSignal\022,\n\002ai\030\003"
-    " \003(\0132 .Nrmk.IndyFramework.AnalogSignal\022,"
-    "\n\002ao\030\004 \003(\0132 .Nrmk.IndyFramework.AnalogSi"
-    "gnal\0221\n\006end_di\030\005 \003(\0132!.Nrmk.IndyFramewor"
-    "k.EndtoolSignal\0221\n\006end_do\030\006 \003(\0132!.Nrmk.I"
-    "ndyFramework.EndtoolSignal\0220\n\006end_ai\030\007 \003"
-    "(\0132 .Nrmk.IndyFramework.AnalogSignal\0220\n\006"
-    "end_ao\030\010 \003(\0132 .Nrmk.IndyFramework.Analog"
-    "Signal\022.\n\010response\030d \001(\0132\034.Nrmk.IndyFram"
-    "ework.Response\"\237\001\n\rViolationData\022\026\n\016viol"
-    "ation_code\030\001 \001(\004\022\017\n\007j_index\030\002 \001(\r\022\016\n\006i_a"
-    "rgs\030\003 \003(\005\022\016\n\006f_args\030\004 \003(\002\022\025\n\rviolation_s"
-    "tr\030\005 \001(\t\022.\n\010response\030d \001(\0132\034.Nrmk.IndyFr"
-    "amework.Response\"\203\001\n\025ViolationMessageQue"
-    "ue\022:\n\017violation_queue\030\001 \003(\0132!.Nrmk.IndyF"
-    "ramework.ViolationData\022.\n\010response\030d \001(\013"
-    "2\034.Nrmk.IndyFramework.Response\"\271\001\n\tServo"
-    "Data\022\024\n\014status_codes\030\001 \003(\t\022\024\n\014temperatur"
-    "es\030\002 \003(\002\022\020\n\010voltages\030\003 \003(\002\022\020\n\010currents\030\004"
-    " \003(\002\022\025\n\rservo_actives\030\n \003(\010\022\025\n\rbrake_act"
-    "ives\030\013 \003(\010\022.\n\010response\030d \001(\0132\034.Nrmk.Indy"
-    "Framework.Response\"\273\002\n\013ProgramData\0227\n\rpr"
-    "ogram_state\030\001 \001(\0162 .Nrmk.IndyFramework.P"
-    "rogramState\022\016\n\006cmd_id\030\002 \001(\005\022\022\n\nsub_cmd_i"
-    "d\030\003 \001(\005\022\025\n\rrunning_hours\030\004 \001(\r\022\024\n\014runnin"
-    "g_mins\030\005 \001(\r\022\024\n\014running_secs\030\006 \001(\r\022\024\n\014pr"
-    "ogram_name\030\007 \001(\t\022\025\n\rprogram_alarm\030\010 \001(\t\022"
-    "\032\n\022program_annotation\030\t \001(\t\022\023\n\013speed_rat"
-    "io\030\n \001(\005\022.\n\010response\030d \001(\0132\034.Nrmk.IndyFr"
-    "amework.Response\"\325\001\n\tStopState\022<\n\010catego"
-    "ry\030\001 \001(\0162*.Nrmk.IndyFramework.StopState."
-    "StopCategory\022.\n\010response\030d \001(\0132\034.Nrmk.In"
-    "dyFramework.Response\"Z\n\014StopCategory\022\016\n\n"
-    "STOP_CAT_0\020\000\022\016\n\nSTOP_CAT_1\020\001\022\016\n\nSTOP_CAT"
-    "_2\020\002\022\032\n\rSTOP_CAT_NONE\020\377\377\377\377\377\377\377\377\377\001b\006proto3"
+    "\032\n\022is_robot_connected\030\006 \001(\010\022\t\n\001q\030\n \003(\002\022\014"
+    "\n\004qdot\030\013 \003(\002\022\t\n\001p\030\014 \003(\002\022\014\n\004pdot\030\r \003(\002\022\021\n"
+    "\tref_frame\030\024 \003(\002\022\022\n\ntool_frame\030\025 \003(\002\022\021\n\t"
+    "tool_link\030\026 \001(\005\022\024\n\014locked_joint\030\027 \001(\005\022.\n"
+    "\010response\030d \001(\0132\034.Nrmk.IndyFramework.Res"
+    "ponse\"\334\002\n\014ControlData2\022\t\n\001q\030\001 \003(\002\022\014\n\004qdo"
+    "t\030\002 \003(\002\022\r\n\005qddot\030\003 \003(\002\022\014\n\004qdes\030\004 \003(\002\022\017\n\007"
+    "qdotdes\030\005 \003(\002\022\020\n\010qddotdes\030\006 \003(\002\022\t\n\001p\030\n \003"
+    "(\002\022\014\n\004pdot\030\013 \003(\002\022\r\n\005pddot\030\014 \003(\002\022\014\n\004pdes\030"
+    "\r \003(\002\022\017\n\007pdotdes\030\016 \003(\002\022\020\n\010pddotdes\030\017 \003(\002"
+    "\022\013\n\003tau\030\024 \003(\002\022\017\n\007tau_act\030\025 \003(\002\022\017\n\007tau_ex"
+    "t\030\026 \003(\002\022\017\n\007tau_jts\030\027 \003(\002\022\024\n\014tau_jts_raw1"
+    "\030\030 \003(\002\022\024\n\014tau_jts_raw2\030\031 \003(\002\022.\n\010response"
+    "\030d \001(\0132\034.Nrmk.IndyFramework.Response\"\344\001\n"
+    "\014ReservedData\022\r\n\005qres1\030\001 \003(\002\022\r\n\005qres2\030\002 "
+    "\003(\002\022\020\n\010qdotres1\030\003 \003(\002\022\020\n\010qdotres2\030\004 \003(\002\022"
+    "\017\n\007taures1\030\005 \003(\002\022\017\n\007taures2\030\006 \003(\002\022\r\n\005ere"
+    "s1\030\007 \003(\002\022\r\n\005eres2\030\010 \003(\002\022\020\n\010edotres1\030\t \003("
+    "\002\022\020\n\010edotres2\030\n \003(\002\022.\n\010response\030d \001(\0132\034."
+    "Nrmk.IndyFramework.Response\"\274\003\n\006IOData\022-"
+    "\n\002di\030\001 \003(\0132!.Nrmk.IndyFramework.DigitalS"
+    "ignal\022-\n\002do\030\002 \003(\0132!.Nrmk.IndyFramework.D"
+    "igitalSignal\022,\n\002ai\030\003 \003(\0132 .Nrmk.IndyFram"
+    "ework.AnalogSignal\022,\n\002ao\030\004 \003(\0132 .Nrmk.In"
+    "dyFramework.AnalogSignal\0221\n\006end_di\030\005 \003(\013"
+    "2!.Nrmk.IndyFramework.EndtoolSignal\0221\n\006e"
+    "nd_do\030\006 \003(\0132!.Nrmk.IndyFramework.Endtool"
+    "Signal\0220\n\006end_ai\030\007 \003(\0132 .Nrmk.IndyFramew"
+    "ork.AnalogSignal\0220\n\006end_ao\030\010 \003(\0132 .Nrmk."
+    "IndyFramework.AnalogSignal\022.\n\010response\030d"
+    " \001(\0132\034.Nrmk.IndyFramework.Response\"\265\001\n\rV"
+    "iolationData\022\026\n\016violation_code\030\001 \001(\004\022\017\n\007"
+    "j_index\030\002 \001(\r\022\016\n\006i_args\030\003 \003(\005\022\016\n\006f_args\030"
+    "\004 \003(\002\022\025\n\rviolation_str\030\005 \001(\t\022\024\n\014violatio"
+    "n_id\030\013 \001(\004\022.\n\010response\030d \001(\0132\034.Nrmk.Indy"
+    "Framework.Response\"\203\001\n\025ViolationMessageQ"
+    "ueue\022:\n\017violation_queue\030\001 \003(\0132!.Nrmk.Ind"
+    "yFramework.ViolationData\022.\n\010response\030d \001"
+    "(\0132\034.Nrmk.IndyFramework.Response\"\312\001\n\tSer"
+    "voData\022\024\n\014status_codes\030\001 \003(\t\022\024\n\014temperat"
+    "ures\030\002 \003(\002\022\020\n\010voltages\030\003 \003(\002\022\020\n\010currents"
+    "\030\004 \003(\002\022\017\n\007torques\030\005 \003(\002\022\025\n\rservo_actives"
+    "\030\n \003(\010\022\025\n\rbrake_actives\030\013 \003(\010\022.\n\010respons"
+    "e\030d \001(\0132\034.Nrmk.IndyFramework.Response\"\273\002"
+    "\n\013ProgramData\0227\n\rprogram_state\030\001 \001(\0162 .N"
+    "rmk.IndyFramework.ProgramState\022\016\n\006cmd_id"
+    "\030\002 \001(\005\022\022\n\nsub_cmd_id\030\003 \001(\005\022\025\n\rrunning_ho"
+    "urs\030\004 \001(\r\022\024\n\014running_mins\030\005 \001(\r\022\024\n\014runni"
+    "ng_secs\030\006 \001(\r\022\024\n\014program_name\030\007 \001(\t\022\025\n\rp"
+    "rogram_alarm\030\010 \001(\t\022\032\n\022program_annotation"
+    "\030\t \001(\t\022\023\n\013speed_ratio\030\n \001(\005\022.\n\010response\030"
+    "d \001(\0132\034.Nrmk.IndyFramework.Response\"\325\001\n\t"
+    "StopState\022<\n\010category\030\001 \001(\0162*.Nrmk.IndyF"
+    "ramework.StopState.StopCategory\022.\n\010respo"
+    "nse\030d \001(\0132\034.Nrmk.IndyFramework.Response\""
+    "Z\n\014StopCategory\022\016\n\nSTOP_CAT_0\020\000\022\016\n\nSTOP_"
+    "CAT_1\020\001\022\016\n\nSTOP_CAT_2\020\002\022\032\n\rSTOP_CAT_NONE"
+    "\020\377\377\377\377\377\377\377\377\377\001\"\200\001\n\016ModelCollision\022-\n\004rule\030\001"
+    " \001(\0162\037.Nrmk.IndyFramework.ContactRule\022\r\n"
+    "\005link1\030\002 \001(\005\022\r\n\005link2\030\003 \001(\005\022\020\n\010tool_idx\030"
+    "\004 \001(\005\022\017\n\007env_idx\030\005 \001(\005\"M\n\023CollisionModel"
+    "State\0226\n\ncollisions\030\001 \003(\0132\".Nrmk.IndyFra"
+    "mework.ModelCollisionb\006proto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_rtde_5fmsgs_2eproto_deps[2] =
     {
@@ -669,13 +819,13 @@ static ::absl::once_flag descriptor_table_rtde_5fmsgs_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_rtde_5fmsgs_2eproto = {
     false,
     false,
-    2640,
+    3189,
     descriptor_table_protodef_rtde_5fmsgs_2eproto,
     "rtde_msgs.proto",
     &descriptor_table_rtde_5fmsgs_2eproto_once,
     descriptor_table_rtde_5fmsgs_2eproto_deps,
     2,
-    11,
+    14,
     schemas,
     file_default_instances,
     TableStruct_rtde_5fmsgs_2eproto::offsets,
@@ -1723,6 +1873,9 @@ ControlData::ControlData(const ControlData& from) : ::google::protobuf::Message(
       decltype(_impl_.running_secs_){},
       decltype(_impl_.op_state_){},
       decltype(_impl_.sim_mode_){},
+      decltype(_impl_.is_robot_connected_){},
+      decltype(_impl_.tool_link_){},
+      decltype(_impl_.locked_joint_){},
   };
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
@@ -1730,8 +1883,8 @@ ControlData::ControlData(const ControlData& from) : ::google::protobuf::Message(
     _this->_impl_.response_ = new ::Nrmk::IndyFramework::Response(*from._impl_.response_);
   }
   ::memcpy(&_impl_.running_hours_, &from._impl_.running_hours_,
-    static_cast<::size_t>(reinterpret_cast<char*>(&_impl_.sim_mode_) -
-    reinterpret_cast<char*>(&_impl_.running_hours_)) + sizeof(_impl_.sim_mode_));
+    static_cast<::size_t>(reinterpret_cast<char*>(&_impl_.locked_joint_) -
+    reinterpret_cast<char*>(&_impl_.running_hours_)) + sizeof(_impl_.locked_joint_));
 
   // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.ControlData)
 }
@@ -1752,6 +1905,9 @@ inline void ControlData::SharedCtor(::_pb::Arena* arena) {
       decltype(_impl_.running_secs_){0u},
       decltype(_impl_.op_state_){0},
       decltype(_impl_.sim_mode_){false},
+      decltype(_impl_.is_robot_connected_){false},
+      decltype(_impl_.tool_link_){0},
+      decltype(_impl_.locked_joint_){0},
   };
 }
 ControlData::~ControlData() {
@@ -1791,8 +1947,8 @@ PROTOBUF_NOINLINE void ControlData::Clear() {
     _impl_.response_->Clear();
   }
   ::memset(&_impl_.running_hours_, 0, static_cast<::size_t>(
-      reinterpret_cast<char*>(&_impl_.sim_mode_) -
-      reinterpret_cast<char*>(&_impl_.running_hours_)) + sizeof(_impl_.sim_mode_));
+      reinterpret_cast<char*>(&_impl_.locked_joint_) -
+      reinterpret_cast<char*>(&_impl_.running_hours_)) + sizeof(_impl_.locked_joint_));
   _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
@@ -1805,15 +1961,15 @@ const char* ControlData::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<4, 12, 1, 0, 7> ControlData::_table_ = {
+const ::_pbi::TcParseTable<4, 15, 1, 0, 7> ControlData::_table_ = {
   {
     PROTOBUF_FIELD_OFFSET(ControlData, _impl_._has_bits_),
     0, // no _extensions_
     100, 120,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4293386720,  // skipmap
+    4287095232,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    12,  // num_field_entries
+    15,  // num_field_entries
     1,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     &_ControlData_default_instance_._instance,
@@ -1835,8 +1991,12 @@ const ::_pbi::TcParseTable<4, 12, 1, 0, 7> ControlData::_table_ = {
     // bool sim_mode = 5;
     {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(ControlData, _impl_.sim_mode_), 63>(),
      {40, 63, 0, PROTOBUF_FIELD_OFFSET(ControlData, _impl_.sim_mode_)}},
-    {::_pbi::TcParser::MiniParse, {}},
-    {::_pbi::TcParser::MiniParse, {}},
+    // bool is_robot_connected = 6;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(ControlData, _impl_.is_robot_connected_), 63>(),
+     {48, 63, 0, PROTOBUF_FIELD_OFFSET(ControlData, _impl_.is_robot_connected_)}},
+    // int32 locked_joint = 23;
+    {::_pbi::TcParser::FastV32S2,
+     {440, 63, 0, PROTOBUF_FIELD_OFFSET(ControlData, _impl_.locked_joint_)}},
     {::_pbi::TcParser::MiniParse, {}},
     {::_pbi::TcParser::MiniParse, {}},
     // repeated float q = 10;
@@ -1855,7 +2015,7 @@ const ::_pbi::TcParseTable<4, 12, 1, 0, 7> ControlData::_table_ = {
     {::_pbi::TcParser::MiniParse, {}},
   }}, {{
     100, 0, 1,
-    65534, 11,
+    65534, 14,
     65535, 65535
   }}, {{
     // uint32 running_hours = 1;
@@ -1872,6 +2032,9 @@ const ::_pbi::TcParseTable<4, 12, 1, 0, 7> ControlData::_table_ = {
     (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
     // bool sim_mode = 5;
     {PROTOBUF_FIELD_OFFSET(ControlData, _impl_.sim_mode_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
+    // bool is_robot_connected = 6;
+    {PROTOBUF_FIELD_OFFSET(ControlData, _impl_.is_robot_connected_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBool)},
     // repeated float q = 10;
     {PROTOBUF_FIELD_OFFSET(ControlData, _impl_.q_), -1, 0,
@@ -1891,6 +2054,12 @@ const ::_pbi::TcParseTable<4, 12, 1, 0, 7> ControlData::_table_ = {
     // repeated float tool_frame = 21;
     {PROTOBUF_FIELD_OFFSET(ControlData, _impl_.tool_frame_), -1, 0,
     (0 | ::_fl::kFcRepeated | ::_fl::kPackedFloat)},
+    // int32 tool_link = 22;
+    {PROTOBUF_FIELD_OFFSET(ControlData, _impl_.tool_link_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    // int32 locked_joint = 23;
+    {PROTOBUF_FIELD_OFFSET(ControlData, _impl_.locked_joint_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
     // .Nrmk.IndyFramework.Response response = 100;
     {PROTOBUF_FIELD_OFFSET(ControlData, _impl_.response_), _Internal::kHasBitsOffset + 0, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
@@ -1942,6 +2111,13 @@ const ::_pbi::TcParseTable<4, 12, 1, 0, 7> ControlData::_table_ = {
         5, this->_internal_sim_mode(), target);
   }
 
+  // bool is_robot_connected = 6;
+  if (this->_internal_is_robot_connected() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(
+        6, this->_internal_is_robot_connected(), target);
+  }
+
   // repeated float q = 10;
   if (this->_internal_q_size() > 0) {
     target = stream->WriteFixedPacked(10, _internal_q(), target);
@@ -1970,6 +2146,20 @@ const ::_pbi::TcParseTable<4, 12, 1, 0, 7> ControlData::_table_ = {
   // repeated float tool_frame = 21;
   if (this->_internal_tool_frame_size() > 0) {
     target = stream->WriteFixedPacked(21, _internal_tool_frame(), target);
+  }
+
+  // int32 tool_link = 22;
+  if (this->_internal_tool_link() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteInt32ToArray(
+        22, this->_internal_tool_link(), target);
+  }
+
+  // int32 locked_joint = 23;
+  if (this->_internal_locked_joint() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteInt32ToArray(
+        23, this->_internal_locked_joint(), target);
   }
 
   cached_has_bits = _impl_._has_bits_[0];
@@ -2106,6 +2296,23 @@ const ::_pbi::TcParseTable<4, 12, 1, 0, 7> ControlData::_table_ = {
     total_size += 2;
   }
 
+  // bool is_robot_connected = 6;
+  if (this->_internal_is_robot_connected() != 0) {
+    total_size += 2;
+  }
+
+  // int32 tool_link = 22;
+  if (this->_internal_tool_link() != 0) {
+    total_size += 2 + ::_pbi::WireFormatLite::Int32Size(
+                                    this->_internal_tool_link());
+  }
+
+  // int32 locked_joint = 23;
+  if (this->_internal_locked_joint() != 0) {
+    total_size += 2 + ::_pbi::WireFormatLite::Int32Size(
+                                    this->_internal_locked_joint());
+  }
+
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
@@ -2149,6 +2356,15 @@ void ControlData::MergeImpl(::google::protobuf::Message& to_msg, const ::google:
   if (from._internal_sim_mode() != 0) {
     _this->_internal_set_sim_mode(from._internal_sim_mode());
   }
+  if (from._internal_is_robot_connected() != 0) {
+    _this->_internal_set_is_robot_connected(from._internal_is_robot_connected());
+  }
+  if (from._internal_tool_link() != 0) {
+    _this->_internal_set_tool_link(from._internal_tool_link());
+  }
+  if (from._internal_locked_joint() != 0) {
+    _this->_internal_set_locked_joint(from._internal_locked_joint());
+  }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -2174,8 +2390,8 @@ void ControlData::InternalSwap(ControlData* other) {
   _impl_.ref_frame_.InternalSwap(&other->_impl_.ref_frame_);
   _impl_.tool_frame_.InternalSwap(&other->_impl_.tool_frame_);
   ::google::protobuf::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(ControlData, _impl_.sim_mode_)
-      + sizeof(ControlData::_impl_.sim_mode_)
+      PROTOBUF_FIELD_OFFSET(ControlData, _impl_.locked_joint_)
+      + sizeof(ControlData::_impl_.locked_joint_)
       - PROTOBUF_FIELD_OFFSET(ControlData, _impl_.response_)>(
           reinterpret_cast<char*>(&_impl_.response_),
           reinterpret_cast<char*>(&other->_impl_.response_));
@@ -2925,6 +3141,503 @@ void ControlData2::InternalSwap(ControlData2* other) {
 }
 // ===================================================================
 
+class ReservedData::_Internal {
+ public:
+  using HasBits = decltype(std::declval<ReservedData>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+    8 * PROTOBUF_FIELD_OFFSET(ReservedData, _impl_._has_bits_);
+  static const ::Nrmk::IndyFramework::Response& response(const ReservedData* msg);
+  static void set_has_response(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
+};
+
+const ::Nrmk::IndyFramework::Response& ReservedData::_Internal::response(const ReservedData* msg) {
+  return *msg->_impl_.response_;
+}
+void ReservedData::clear_response() {
+  if (_impl_.response_ != nullptr) _impl_.response_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+ReservedData::ReservedData(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Nrmk.IndyFramework.ReservedData)
+}
+ReservedData::ReservedData(const ReservedData& from) : ::google::protobuf::Message() {
+  ReservedData* const _this = this;
+  (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){from._impl_._has_bits_},
+      /*decltype(_impl_._cached_size_)*/ {},
+      decltype(_impl_.qres1_){from._impl_.qres1_},
+      decltype(_impl_.qres2_){from._impl_.qres2_},
+      decltype(_impl_.qdotres1_){from._impl_.qdotres1_},
+      decltype(_impl_.qdotres2_){from._impl_.qdotres2_},
+      decltype(_impl_.taures1_){from._impl_.taures1_},
+      decltype(_impl_.taures2_){from._impl_.taures2_},
+      decltype(_impl_.eres1_){from._impl_.eres1_},
+      decltype(_impl_.eres2_){from._impl_.eres2_},
+      decltype(_impl_.edotres1_){from._impl_.edotres1_},
+      decltype(_impl_.edotres2_){from._impl_.edotres2_},
+      decltype(_impl_.response_){nullptr},
+  };
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
+    _this->_impl_.response_ = new ::Nrmk::IndyFramework::Response(*from._impl_.response_);
+  }
+
+  // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.ReservedData)
+}
+inline void ReservedData::SharedCtor(::_pb::Arena* arena) {
+  (void)arena;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){},
+      /*decltype(_impl_._cached_size_)*/ {},
+      decltype(_impl_.qres1_){arena},
+      decltype(_impl_.qres2_){arena},
+      decltype(_impl_.qdotres1_){arena},
+      decltype(_impl_.qdotres2_){arena},
+      decltype(_impl_.taures1_){arena},
+      decltype(_impl_.taures2_){arena},
+      decltype(_impl_.eres1_){arena},
+      decltype(_impl_.eres2_){arena},
+      decltype(_impl_.edotres1_){arena},
+      decltype(_impl_.edotres2_){arena},
+      decltype(_impl_.response_){nullptr},
+  };
+}
+ReservedData::~ReservedData() {
+  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.ReservedData)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void ReservedData::SharedDtor() {
+  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.qres1_.~RepeatedField();
+  _impl_.qres2_.~RepeatedField();
+  _impl_.qdotres1_.~RepeatedField();
+  _impl_.qdotres2_.~RepeatedField();
+  _impl_.taures1_.~RepeatedField();
+  _impl_.taures2_.~RepeatedField();
+  _impl_.eres1_.~RepeatedField();
+  _impl_.eres2_.~RepeatedField();
+  _impl_.edotres1_.~RepeatedField();
+  _impl_.edotres2_.~RepeatedField();
+  if (this != internal_default_instance()) delete _impl_.response_;
+}
+void ReservedData::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+PROTOBUF_NOINLINE void ReservedData::Clear() {
+// @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.ReservedData)
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _internal_mutable_qres1()->Clear();
+  _internal_mutable_qres2()->Clear();
+  _internal_mutable_qdotres1()->Clear();
+  _internal_mutable_qdotres2()->Clear();
+  _internal_mutable_taures1()->Clear();
+  _internal_mutable_taures2()->Clear();
+  _internal_mutable_eres1()->Clear();
+  _internal_mutable_eres2()->Clear();
+  _internal_mutable_edotres1()->Clear();
+  _internal_mutable_edotres2()->Clear();
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.response_ != nullptr);
+    _impl_.response_->Clear();
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* ReservedData::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<4, 11, 1, 0, 7> ReservedData::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(ReservedData, _impl_._has_bits_),
+    0, // no _extensions_
+    100, 120,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294966272,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    11,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_ReservedData_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // repeated float qres1 = 1;
+    {::_pbi::TcParser::FastF32P1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(ReservedData, _impl_.qres1_)}},
+    // repeated float qres2 = 2;
+    {::_pbi::TcParser::FastF32P1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(ReservedData, _impl_.qres2_)}},
+    // repeated float qdotres1 = 3;
+    {::_pbi::TcParser::FastF32P1,
+     {26, 63, 0, PROTOBUF_FIELD_OFFSET(ReservedData, _impl_.qdotres1_)}},
+    // repeated float qdotres2 = 4;
+    {::_pbi::TcParser::FastF32P1,
+     {34, 63, 0, PROTOBUF_FIELD_OFFSET(ReservedData, _impl_.qdotres2_)}},
+    // repeated float taures1 = 5;
+    {::_pbi::TcParser::FastF32P1,
+     {42, 63, 0, PROTOBUF_FIELD_OFFSET(ReservedData, _impl_.taures1_)}},
+    // repeated float taures2 = 6;
+    {::_pbi::TcParser::FastF32P1,
+     {50, 63, 0, PROTOBUF_FIELD_OFFSET(ReservedData, _impl_.taures2_)}},
+    // repeated float eres1 = 7;
+    {::_pbi::TcParser::FastF32P1,
+     {58, 63, 0, PROTOBUF_FIELD_OFFSET(ReservedData, _impl_.eres1_)}},
+    // repeated float eres2 = 8;
+    {::_pbi::TcParser::FastF32P1,
+     {66, 63, 0, PROTOBUF_FIELD_OFFSET(ReservedData, _impl_.eres2_)}},
+    // repeated float edotres1 = 9;
+    {::_pbi::TcParser::FastF32P1,
+     {74, 63, 0, PROTOBUF_FIELD_OFFSET(ReservedData, _impl_.edotres1_)}},
+    // repeated float edotres2 = 10;
+    {::_pbi::TcParser::FastF32P1,
+     {82, 63, 0, PROTOBUF_FIELD_OFFSET(ReservedData, _impl_.edotres2_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+  }}, {{
+    100, 0, 1,
+    65534, 10,
+    65535, 65535
+  }}, {{
+    // repeated float qres1 = 1;
+    {PROTOBUF_FIELD_OFFSET(ReservedData, _impl_.qres1_), -1, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedFloat)},
+    // repeated float qres2 = 2;
+    {PROTOBUF_FIELD_OFFSET(ReservedData, _impl_.qres2_), -1, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedFloat)},
+    // repeated float qdotres1 = 3;
+    {PROTOBUF_FIELD_OFFSET(ReservedData, _impl_.qdotres1_), -1, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedFloat)},
+    // repeated float qdotres2 = 4;
+    {PROTOBUF_FIELD_OFFSET(ReservedData, _impl_.qdotres2_), -1, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedFloat)},
+    // repeated float taures1 = 5;
+    {PROTOBUF_FIELD_OFFSET(ReservedData, _impl_.taures1_), -1, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedFloat)},
+    // repeated float taures2 = 6;
+    {PROTOBUF_FIELD_OFFSET(ReservedData, _impl_.taures2_), -1, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedFloat)},
+    // repeated float eres1 = 7;
+    {PROTOBUF_FIELD_OFFSET(ReservedData, _impl_.eres1_), -1, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedFloat)},
+    // repeated float eres2 = 8;
+    {PROTOBUF_FIELD_OFFSET(ReservedData, _impl_.eres2_), -1, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedFloat)},
+    // repeated float edotres1 = 9;
+    {PROTOBUF_FIELD_OFFSET(ReservedData, _impl_.edotres1_), -1, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedFloat)},
+    // repeated float edotres2 = 10;
+    {PROTOBUF_FIELD_OFFSET(ReservedData, _impl_.edotres2_), -1, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedFloat)},
+    // .Nrmk.IndyFramework.Response response = 100;
+    {PROTOBUF_FIELD_OFFSET(ReservedData, _impl_.response_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::Nrmk::IndyFramework::Response>()},
+  }}, {{
+  }},
+};
+
+::uint8_t* ReservedData::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.ReservedData)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // repeated float qres1 = 1;
+  if (this->_internal_qres1_size() > 0) {
+    target = stream->WriteFixedPacked(1, _internal_qres1(), target);
+  }
+
+  // repeated float qres2 = 2;
+  if (this->_internal_qres2_size() > 0) {
+    target = stream->WriteFixedPacked(2, _internal_qres2(), target);
+  }
+
+  // repeated float qdotres1 = 3;
+  if (this->_internal_qdotres1_size() > 0) {
+    target = stream->WriteFixedPacked(3, _internal_qdotres1(), target);
+  }
+
+  // repeated float qdotres2 = 4;
+  if (this->_internal_qdotres2_size() > 0) {
+    target = stream->WriteFixedPacked(4, _internal_qdotres2(), target);
+  }
+
+  // repeated float taures1 = 5;
+  if (this->_internal_taures1_size() > 0) {
+    target = stream->WriteFixedPacked(5, _internal_taures1(), target);
+  }
+
+  // repeated float taures2 = 6;
+  if (this->_internal_taures2_size() > 0) {
+    target = stream->WriteFixedPacked(6, _internal_taures2(), target);
+  }
+
+  // repeated float eres1 = 7;
+  if (this->_internal_eres1_size() > 0) {
+    target = stream->WriteFixedPacked(7, _internal_eres1(), target);
+  }
+
+  // repeated float eres2 = 8;
+  if (this->_internal_eres2_size() > 0) {
+    target = stream->WriteFixedPacked(8, _internal_eres2(), target);
+  }
+
+  // repeated float edotres1 = 9;
+  if (this->_internal_edotres1_size() > 0) {
+    target = stream->WriteFixedPacked(9, _internal_edotres1(), target);
+  }
+
+  // repeated float edotres2 = 10;
+  if (this->_internal_edotres2_size() > 0) {
+    target = stream->WriteFixedPacked(10, _internal_edotres2(), target);
+  }
+
+  cached_has_bits = _impl_._has_bits_[0];
+  // .Nrmk.IndyFramework.Response response = 100;
+  if (cached_has_bits & 0x00000001u) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessage(100, _Internal::response(this),
+        _Internal::response(this).GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.ReservedData)
+  return target;
+}
+
+::size_t ReservedData::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.ReservedData)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated float qres1 = 1;
+  {
+    std::size_t data_size = std::size_t{4} *
+        ::_pbi::FromIntSize(this->_internal_qres1_size())
+    ;
+    std::size_t tag_size = data_size == 0
+        ? 0
+        : 1 + ::_pbi::WireFormatLite::Int32Size(
+                            static_cast<int32_t>(data_size))
+    ;
+    total_size += tag_size + data_size;
+  }
+  // repeated float qres2 = 2;
+  {
+    std::size_t data_size = std::size_t{4} *
+        ::_pbi::FromIntSize(this->_internal_qres2_size())
+    ;
+    std::size_t tag_size = data_size == 0
+        ? 0
+        : 1 + ::_pbi::WireFormatLite::Int32Size(
+                            static_cast<int32_t>(data_size))
+    ;
+    total_size += tag_size + data_size;
+  }
+  // repeated float qdotres1 = 3;
+  {
+    std::size_t data_size = std::size_t{4} *
+        ::_pbi::FromIntSize(this->_internal_qdotres1_size())
+    ;
+    std::size_t tag_size = data_size == 0
+        ? 0
+        : 1 + ::_pbi::WireFormatLite::Int32Size(
+                            static_cast<int32_t>(data_size))
+    ;
+    total_size += tag_size + data_size;
+  }
+  // repeated float qdotres2 = 4;
+  {
+    std::size_t data_size = std::size_t{4} *
+        ::_pbi::FromIntSize(this->_internal_qdotres2_size())
+    ;
+    std::size_t tag_size = data_size == 0
+        ? 0
+        : 1 + ::_pbi::WireFormatLite::Int32Size(
+                            static_cast<int32_t>(data_size))
+    ;
+    total_size += tag_size + data_size;
+  }
+  // repeated float taures1 = 5;
+  {
+    std::size_t data_size = std::size_t{4} *
+        ::_pbi::FromIntSize(this->_internal_taures1_size())
+    ;
+    std::size_t tag_size = data_size == 0
+        ? 0
+        : 1 + ::_pbi::WireFormatLite::Int32Size(
+                            static_cast<int32_t>(data_size))
+    ;
+    total_size += tag_size + data_size;
+  }
+  // repeated float taures2 = 6;
+  {
+    std::size_t data_size = std::size_t{4} *
+        ::_pbi::FromIntSize(this->_internal_taures2_size())
+    ;
+    std::size_t tag_size = data_size == 0
+        ? 0
+        : 1 + ::_pbi::WireFormatLite::Int32Size(
+                            static_cast<int32_t>(data_size))
+    ;
+    total_size += tag_size + data_size;
+  }
+  // repeated float eres1 = 7;
+  {
+    std::size_t data_size = std::size_t{4} *
+        ::_pbi::FromIntSize(this->_internal_eres1_size())
+    ;
+    std::size_t tag_size = data_size == 0
+        ? 0
+        : 1 + ::_pbi::WireFormatLite::Int32Size(
+                            static_cast<int32_t>(data_size))
+    ;
+    total_size += tag_size + data_size;
+  }
+  // repeated float eres2 = 8;
+  {
+    std::size_t data_size = std::size_t{4} *
+        ::_pbi::FromIntSize(this->_internal_eres2_size())
+    ;
+    std::size_t tag_size = data_size == 0
+        ? 0
+        : 1 + ::_pbi::WireFormatLite::Int32Size(
+                            static_cast<int32_t>(data_size))
+    ;
+    total_size += tag_size + data_size;
+  }
+  // repeated float edotres1 = 9;
+  {
+    std::size_t data_size = std::size_t{4} *
+        ::_pbi::FromIntSize(this->_internal_edotres1_size())
+    ;
+    std::size_t tag_size = data_size == 0
+        ? 0
+        : 1 + ::_pbi::WireFormatLite::Int32Size(
+                            static_cast<int32_t>(data_size))
+    ;
+    total_size += tag_size + data_size;
+  }
+  // repeated float edotres2 = 10;
+  {
+    std::size_t data_size = std::size_t{4} *
+        ::_pbi::FromIntSize(this->_internal_edotres2_size())
+    ;
+    std::size_t tag_size = data_size == 0
+        ? 0
+        : 1 + ::_pbi::WireFormatLite::Int32Size(
+                            static_cast<int32_t>(data_size))
+    ;
+    total_size += tag_size + data_size;
+  }
+  // .Nrmk.IndyFramework.Response response = 100;
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size += 2 +
+      ::google::protobuf::internal::WireFormatLite::MessageSize(
+        *_impl_.response_);
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData ReservedData::_class_data_ = {
+    ::google::protobuf::Message::CopyWithSourceCheck,
+    ReservedData::MergeImpl
+};
+const ::google::protobuf::Message::ClassData*ReservedData::GetClassData() const { return &_class_data_; }
+
+
+void ReservedData::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<ReservedData*>(&to_msg);
+  auto& from = static_cast<const ReservedData&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.ReservedData)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_internal_mutable_qres1()->MergeFrom(from._internal_qres1());
+  _this->_internal_mutable_qres2()->MergeFrom(from._internal_qres2());
+  _this->_internal_mutable_qdotres1()->MergeFrom(from._internal_qdotres1());
+  _this->_internal_mutable_qdotres2()->MergeFrom(from._internal_qdotres2());
+  _this->_internal_mutable_taures1()->MergeFrom(from._internal_taures1());
+  _this->_internal_mutable_taures2()->MergeFrom(from._internal_taures2());
+  _this->_internal_mutable_eres1()->MergeFrom(from._internal_eres1());
+  _this->_internal_mutable_eres2()->MergeFrom(from._internal_eres2());
+  _this->_internal_mutable_edotres1()->MergeFrom(from._internal_edotres1());
+  _this->_internal_mutable_edotres2()->MergeFrom(from._internal_edotres2());
+  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
+    _this->_internal_mutable_response()->::Nrmk::IndyFramework::Response::MergeFrom(
+        from._internal_response());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void ReservedData::CopyFrom(const ReservedData& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Nrmk.IndyFramework.ReservedData)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool ReservedData::IsInitialized() const {
+  return true;
+}
+
+void ReservedData::InternalSwap(ReservedData* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  _impl_.qres1_.InternalSwap(&other->_impl_.qres1_);
+  _impl_.qres2_.InternalSwap(&other->_impl_.qres2_);
+  _impl_.qdotres1_.InternalSwap(&other->_impl_.qdotres1_);
+  _impl_.qdotres2_.InternalSwap(&other->_impl_.qdotres2_);
+  _impl_.taures1_.InternalSwap(&other->_impl_.taures1_);
+  _impl_.taures2_.InternalSwap(&other->_impl_.taures2_);
+  _impl_.eres1_.InternalSwap(&other->_impl_.eres1_);
+  _impl_.eres2_.InternalSwap(&other->_impl_.eres2_);
+  _impl_.edotres1_.InternalSwap(&other->_impl_.edotres1_);
+  _impl_.edotres2_.InternalSwap(&other->_impl_.edotres2_);
+  swap(_impl_.response_, other->_impl_.response_);
+}
+
+::google::protobuf::Metadata ReservedData::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_rtde_5fmsgs_2eproto_getter, &descriptor_table_rtde_5fmsgs_2eproto_once,
+      file_level_metadata_rtde_5fmsgs_2eproto[5]);
+}
+// ===================================================================
+
 class IOData::_Internal {
  public:
   using HasBits = decltype(std::declval<IOData>()._impl_._has_bits_);
@@ -3362,7 +4075,7 @@ void IOData::InternalSwap(IOData* other) {
 ::google::protobuf::Metadata IOData::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_rtde_5fmsgs_2eproto_getter, &descriptor_table_rtde_5fmsgs_2eproto_once,
-      file_level_metadata_rtde_5fmsgs_2eproto[5]);
+      file_level_metadata_rtde_5fmsgs_2eproto[6]);
 }
 // ===================================================================
 
@@ -3401,6 +4114,7 @@ ViolationData::ViolationData(const ViolationData& from) : ::google::protobuf::Me
       decltype(_impl_.violation_str_){},
       decltype(_impl_.response_){nullptr},
       decltype(_impl_.violation_code_){},
+      decltype(_impl_.violation_id_){},
       decltype(_impl_.j_index_){},
   };
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
@@ -3432,6 +4146,7 @@ inline void ViolationData::SharedCtor(::_pb::Arena* arena) {
       decltype(_impl_.violation_str_){},
       decltype(_impl_.response_){nullptr},
       decltype(_impl_.violation_code_){::uint64_t{0u}},
+      decltype(_impl_.violation_id_){::uint64_t{0u}},
       decltype(_impl_.j_index_){0u},
   };
   _impl_.violation_str_.InitDefault();
@@ -3484,15 +4199,15 @@ const char* ViolationData::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<3, 6, 1, 54, 7> ViolationData::_table_ = {
+const ::_pbi::TcParseTable<3, 7, 1, 54, 7> ViolationData::_table_ = {
   {
     PROTOBUF_FIELD_OFFSET(ViolationData, _impl_._has_bits_),
     0, // no _extensions_
     100, 56,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967264,  // skipmap
+    4294966240,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    6,  // num_field_entries
+    7,  // num_field_entries
     1,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     &_ViolationData_default_instance_._instance,
@@ -3518,7 +4233,7 @@ const ::_pbi::TcParseTable<3, 6, 1, 54, 7> ViolationData::_table_ = {
     {::_pbi::TcParser::MiniParse, {}},
   }}, {{
     100, 0, 1,
-    65534, 5,
+    65534, 6,
     65535, 65535
   }}, {{
     // uint64 violation_code = 1;
@@ -3536,6 +4251,9 @@ const ::_pbi::TcParseTable<3, 6, 1, 54, 7> ViolationData::_table_ = {
     // string violation_str = 5;
     {PROTOBUF_FIELD_OFFSET(ViolationData, _impl_.violation_str_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // uint64 violation_id = 11;
+    {PROTOBUF_FIELD_OFFSET(ViolationData, _impl_.violation_id_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt64)},
     // .Nrmk.IndyFramework.Response response = 100;
     {PROTOBUF_FIELD_OFFSET(ViolationData, _impl_.response_), _Internal::kHasBitsOffset + 0, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
@@ -3589,6 +4307,13 @@ const ::_pbi::TcParseTable<3, 6, 1, 54, 7> ViolationData::_table_ = {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
         _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "Nrmk.IndyFramework.ViolationData.violation_str");
     target = stream->WriteStringMaybeAliased(5, _s, target);
+  }
+
+  // uint64 violation_id = 11;
+  if (this->_internal_violation_id() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(
+        11, this->_internal_violation_id(), target);
   }
 
   cached_has_bits = _impl_._has_bits_[0];
@@ -3661,6 +4386,12 @@ const ::_pbi::TcParseTable<3, 6, 1, 54, 7> ViolationData::_table_ = {
         this->_internal_violation_code());
   }
 
+  // uint64 violation_id = 11;
+  if (this->_internal_violation_id() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(
+        this->_internal_violation_id());
+  }
+
   // uint32 j_index = 2;
   if (this->_internal_j_index() != 0) {
     total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
@@ -3696,6 +4427,9 @@ void ViolationData::MergeImpl(::google::protobuf::Message& to_msg, const ::googl
   }
   if (from._internal_violation_code() != 0) {
     _this->_internal_set_violation_code(from._internal_violation_code());
+  }
+  if (from._internal_violation_id() != 0) {
+    _this->_internal_set_violation_id(from._internal_violation_id());
   }
   if (from._internal_j_index() != 0) {
     _this->_internal_set_j_index(from._internal_j_index());
@@ -3735,7 +4469,7 @@ void ViolationData::InternalSwap(ViolationData* other) {
 ::google::protobuf::Metadata ViolationData::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_rtde_5fmsgs_2eproto_getter, &descriptor_table_rtde_5fmsgs_2eproto_once,
-      file_level_metadata_rtde_5fmsgs_2eproto[6]);
+      file_level_metadata_rtde_5fmsgs_2eproto[7]);
 }
 // ===================================================================
 
@@ -3966,7 +4700,7 @@ void ViolationMessageQueue::InternalSwap(ViolationMessageQueue* other) {
 ::google::protobuf::Metadata ViolationMessageQueue::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_rtde_5fmsgs_2eproto_getter, &descriptor_table_rtde_5fmsgs_2eproto_once,
-      file_level_metadata_rtde_5fmsgs_2eproto[7]);
+      file_level_metadata_rtde_5fmsgs_2eproto[8]);
 }
 // ===================================================================
 
@@ -4003,6 +4737,7 @@ ServoData::ServoData(const ServoData& from) : ::google::protobuf::Message() {
       decltype(_impl_.temperatures_){from._impl_.temperatures_},
       decltype(_impl_.voltages_){from._impl_.voltages_},
       decltype(_impl_.currents_){from._impl_.currents_},
+      decltype(_impl_.torques_){from._impl_.torques_},
       decltype(_impl_.servo_actives_){from._impl_.servo_actives_},
       decltype(_impl_.brake_actives_){from._impl_.brake_actives_},
       decltype(_impl_.response_){nullptr},
@@ -4024,6 +4759,7 @@ inline void ServoData::SharedCtor(::_pb::Arena* arena) {
       decltype(_impl_.temperatures_){arena},
       decltype(_impl_.voltages_){arena},
       decltype(_impl_.currents_){arena},
+      decltype(_impl_.torques_){arena},
       decltype(_impl_.servo_actives_){arena},
       decltype(_impl_.brake_actives_){arena},
       decltype(_impl_.response_){nullptr},
@@ -4040,6 +4776,7 @@ inline void ServoData::SharedDtor() {
   _impl_.temperatures_.~RepeatedField();
   _impl_.voltages_.~RepeatedField();
   _impl_.currents_.~RepeatedField();
+  _impl_.torques_.~RepeatedField();
   _impl_.servo_actives_.~RepeatedField();
   _impl_.brake_actives_.~RepeatedField();
   if (this != internal_default_instance()) delete _impl_.response_;
@@ -4058,6 +4795,7 @@ PROTOBUF_NOINLINE void ServoData::Clear() {
   _internal_mutable_temperatures()->Clear();
   _internal_mutable_voltages()->Clear();
   _internal_mutable_currents()->Clear();
+  _internal_mutable_torques()->Clear();
   _internal_mutable_servo_actives()->Clear();
   _internal_mutable_brake_actives()->Clear();
   cached_has_bits = _impl_._has_bits_[0];
@@ -4077,23 +4815,21 @@ const char* ServoData::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<2, 7, 1, 49, 7> ServoData::_table_ = {
+const ::_pbi::TcParseTable<4, 8, 1, 57, 7> ServoData::_table_ = {
   {
     PROTOBUF_FIELD_OFFSET(ServoData, _impl_._has_bits_),
     0, // no _extensions_
-    100, 24,  // max_field_number, fast_idx_mask
+    100, 120,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294965744,  // skipmap
+    4294965728,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    7,  // num_field_entries
+    8,  // num_field_entries
     1,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     &_ServoData_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
-    // repeated float currents = 4;
-    {::_pbi::TcParser::FastF32P1,
-     {34, 63, 0, PROTOBUF_FIELD_OFFSET(ServoData, _impl_.currents_)}},
+    {::_pbi::TcParser::MiniParse, {}},
     // repeated string status_codes = 1;
     {::_pbi::TcParser::FastUR1,
      {10, 63, 0, PROTOBUF_FIELD_OFFSET(ServoData, _impl_.status_codes_)}},
@@ -4103,9 +4839,29 @@ const ::_pbi::TcParseTable<2, 7, 1, 49, 7> ServoData::_table_ = {
     // repeated float voltages = 3;
     {::_pbi::TcParser::FastF32P1,
      {26, 63, 0, PROTOBUF_FIELD_OFFSET(ServoData, _impl_.voltages_)}},
+    // repeated float currents = 4;
+    {::_pbi::TcParser::FastF32P1,
+     {34, 63, 0, PROTOBUF_FIELD_OFFSET(ServoData, _impl_.currents_)}},
+    // repeated float torques = 5;
+    {::_pbi::TcParser::FastF32P1,
+     {42, 63, 0, PROTOBUF_FIELD_OFFSET(ServoData, _impl_.torques_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    // repeated bool servo_actives = 10;
+    {::_pbi::TcParser::FastV8P1,
+     {82, 63, 0, PROTOBUF_FIELD_OFFSET(ServoData, _impl_.servo_actives_)}},
+    // repeated bool brake_actives = 11;
+    {::_pbi::TcParser::FastV8P1,
+     {90, 63, 0, PROTOBUF_FIELD_OFFSET(ServoData, _impl_.brake_actives_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
   }}, {{
     100, 0, 1,
-    65534, 6,
+    65534, 7,
     65535, 65535
   }}, {{
     // repeated string status_codes = 1;
@@ -4120,6 +4876,9 @@ const ::_pbi::TcParseTable<2, 7, 1, 49, 7> ServoData::_table_ = {
     // repeated float currents = 4;
     {PROTOBUF_FIELD_OFFSET(ServoData, _impl_.currents_), -1, 0,
     (0 | ::_fl::kFcRepeated | ::_fl::kPackedFloat)},
+    // repeated float torques = 5;
+    {PROTOBUF_FIELD_OFFSET(ServoData, _impl_.torques_), -1, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedFloat)},
     // repeated bool servo_actives = 10;
     {PROTOBUF_FIELD_OFFSET(ServoData, _impl_.servo_actives_), -1, 0,
     (0 | ::_fl::kFcRepeated | ::_fl::kPackedBool)},
@@ -4132,7 +4891,7 @@ const ::_pbi::TcParseTable<2, 7, 1, 49, 7> ServoData::_table_ = {
   }}, {{
     {::_pbi::TcParser::GetTable<::Nrmk::IndyFramework::Response>()},
   }}, {{
-    "\34\14\0\0\0\0\0\0"
+    "\34\14\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
     "Nrmk.IndyFramework.ServoData"
     "status_codes"
   }},
@@ -4166,6 +4925,11 @@ const ::_pbi::TcParseTable<2, 7, 1, 49, 7> ServoData::_table_ = {
   // repeated float currents = 4;
   if (this->_internal_currents_size() > 0) {
     target = stream->WriteFixedPacked(4, _internal_currents(), target);
+  }
+
+  // repeated float torques = 5;
+  if (this->_internal_torques_size() > 0) {
+    target = stream->WriteFixedPacked(5, _internal_torques(), target);
   }
 
   // repeated bool servo_actives = 10;
@@ -4245,6 +5009,18 @@ const ::_pbi::TcParseTable<2, 7, 1, 49, 7> ServoData::_table_ = {
     ;
     total_size += tag_size + data_size;
   }
+  // repeated float torques = 5;
+  {
+    std::size_t data_size = std::size_t{4} *
+        ::_pbi::FromIntSize(this->_internal_torques_size())
+    ;
+    std::size_t tag_size = data_size == 0
+        ? 0
+        : 1 + ::_pbi::WireFormatLite::Int32Size(
+                            static_cast<int32_t>(data_size))
+    ;
+    total_size += tag_size + data_size;
+  }
   // repeated bool servo_actives = 10;
   {
     std::size_t data_size = std::size_t{1} *
@@ -4299,6 +5075,7 @@ void ServoData::MergeImpl(::google::protobuf::Message& to_msg, const ::google::p
   _this->_internal_mutable_temperatures()->MergeFrom(from._internal_temperatures());
   _this->_internal_mutable_voltages()->MergeFrom(from._internal_voltages());
   _this->_internal_mutable_currents()->MergeFrom(from._internal_currents());
+  _this->_internal_mutable_torques()->MergeFrom(from._internal_torques());
   _this->_internal_mutable_servo_actives()->MergeFrom(from._internal_servo_actives());
   _this->_internal_mutable_brake_actives()->MergeFrom(from._internal_brake_actives());
   if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
@@ -4327,6 +5104,7 @@ void ServoData::InternalSwap(ServoData* other) {
   _impl_.temperatures_.InternalSwap(&other->_impl_.temperatures_);
   _impl_.voltages_.InternalSwap(&other->_impl_.voltages_);
   _impl_.currents_.InternalSwap(&other->_impl_.currents_);
+  _impl_.torques_.InternalSwap(&other->_impl_.torques_);
   _impl_.servo_actives_.InternalSwap(&other->_impl_.servo_actives_);
   _impl_.brake_actives_.InternalSwap(&other->_impl_.brake_actives_);
   swap(_impl_.response_, other->_impl_.response_);
@@ -4335,7 +5113,7 @@ void ServoData::InternalSwap(ServoData* other) {
 ::google::protobuf::Metadata ServoData::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_rtde_5fmsgs_2eproto_getter, &descriptor_table_rtde_5fmsgs_2eproto_once,
-      file_level_metadata_rtde_5fmsgs_2eproto[8]);
+      file_level_metadata_rtde_5fmsgs_2eproto[9]);
 }
 // ===================================================================
 
@@ -4848,7 +5626,7 @@ void ProgramData::InternalSwap(ProgramData* other) {
 ::google::protobuf::Metadata ProgramData::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_rtde_5fmsgs_2eproto_getter, &descriptor_table_rtde_5fmsgs_2eproto_once,
-      file_level_metadata_rtde_5fmsgs_2eproto[9]);
+      file_level_metadata_rtde_5fmsgs_2eproto[10]);
 }
 // ===================================================================
 
@@ -5083,7 +5861,447 @@ void StopState::InternalSwap(StopState* other) {
 ::google::protobuf::Metadata StopState::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_rtde_5fmsgs_2eproto_getter, &descriptor_table_rtde_5fmsgs_2eproto_once,
-      file_level_metadata_rtde_5fmsgs_2eproto[10]);
+      file_level_metadata_rtde_5fmsgs_2eproto[11]);
+}
+// ===================================================================
+
+class ModelCollision::_Internal {
+ public:
+};
+
+ModelCollision::ModelCollision(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Nrmk.IndyFramework.ModelCollision)
+}
+ModelCollision::ModelCollision(const ModelCollision& from)
+    : ::google::protobuf::Message(), _impl_(from._impl_) {
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.ModelCollision)
+}
+inline void ModelCollision::SharedCtor(::_pb::Arena* arena) {
+  (void)arena;
+  new (&_impl_) Impl_{
+      decltype(_impl_.rule_){0},
+      decltype(_impl_.link1_){0},
+      decltype(_impl_.link2_){0},
+      decltype(_impl_.tool_idx_){0},
+      decltype(_impl_.env_idx_){0},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+}
+ModelCollision::~ModelCollision() {
+  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.ModelCollision)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void ModelCollision::SharedDtor() {
+  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
+}
+void ModelCollision::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+PROTOBUF_NOINLINE void ModelCollision::Clear() {
+// @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.ModelCollision)
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ::memset(&_impl_.rule_, 0, static_cast<::size_t>(
+      reinterpret_cast<char*>(&_impl_.env_idx_) -
+      reinterpret_cast<char*>(&_impl_.rule_)) + sizeof(_impl_.env_idx_));
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* ModelCollision::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<3, 5, 0, 0, 2> ModelCollision::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    5, 56,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967264,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    5,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_ModelCollision_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // .Nrmk.IndyFramework.ContactRule rule = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(ModelCollision, _impl_.rule_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(ModelCollision, _impl_.rule_)}},
+    // int32 link1 = 2;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(ModelCollision, _impl_.link1_), 63>(),
+     {16, 63, 0, PROTOBUF_FIELD_OFFSET(ModelCollision, _impl_.link1_)}},
+    // int32 link2 = 3;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(ModelCollision, _impl_.link2_), 63>(),
+     {24, 63, 0, PROTOBUF_FIELD_OFFSET(ModelCollision, _impl_.link2_)}},
+    // int32 tool_idx = 4;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(ModelCollision, _impl_.tool_idx_), 63>(),
+     {32, 63, 0, PROTOBUF_FIELD_OFFSET(ModelCollision, _impl_.tool_idx_)}},
+    // int32 env_idx = 5;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(ModelCollision, _impl_.env_idx_), 63>(),
+     {40, 63, 0, PROTOBUF_FIELD_OFFSET(ModelCollision, _impl_.env_idx_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // .Nrmk.IndyFramework.ContactRule rule = 1;
+    {PROTOBUF_FIELD_OFFSET(ModelCollision, _impl_.rule_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
+    // int32 link1 = 2;
+    {PROTOBUF_FIELD_OFFSET(ModelCollision, _impl_.link1_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    // int32 link2 = 3;
+    {PROTOBUF_FIELD_OFFSET(ModelCollision, _impl_.link2_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    // int32 tool_idx = 4;
+    {PROTOBUF_FIELD_OFFSET(ModelCollision, _impl_.tool_idx_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    // int32 env_idx = 5;
+    {PROTOBUF_FIELD_OFFSET(ModelCollision, _impl_.env_idx_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+
+::uint8_t* ModelCollision::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.ModelCollision)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // .Nrmk.IndyFramework.ContactRule rule = 1;
+  if (this->_internal_rule() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+        1, this->_internal_rule(), target);
+  }
+
+  // int32 link1 = 2;
+  if (this->_internal_link1() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<2>(
+            stream, this->_internal_link1(), target);
+  }
+
+  // int32 link2 = 3;
+  if (this->_internal_link2() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<3>(
+            stream, this->_internal_link2(), target);
+  }
+
+  // int32 tool_idx = 4;
+  if (this->_internal_tool_idx() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<4>(
+            stream, this->_internal_tool_idx(), target);
+  }
+
+  // int32 env_idx = 5;
+  if (this->_internal_env_idx() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<5>(
+            stream, this->_internal_env_idx(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.ModelCollision)
+  return target;
+}
+
+::size_t ModelCollision::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.ModelCollision)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // .Nrmk.IndyFramework.ContactRule rule = 1;
+  if (this->_internal_rule() != 0) {
+    total_size += 1 +
+                  ::_pbi::WireFormatLite::EnumSize(this->_internal_rule());
+  }
+
+  // int32 link1 = 2;
+  if (this->_internal_link1() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_link1());
+  }
+
+  // int32 link2 = 3;
+  if (this->_internal_link2() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_link2());
+  }
+
+  // int32 tool_idx = 4;
+  if (this->_internal_tool_idx() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_tool_idx());
+  }
+
+  // int32 env_idx = 5;
+  if (this->_internal_env_idx() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_env_idx());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData ModelCollision::_class_data_ = {
+    ::google::protobuf::Message::CopyWithSourceCheck,
+    ModelCollision::MergeImpl
+};
+const ::google::protobuf::Message::ClassData*ModelCollision::GetClassData() const { return &_class_data_; }
+
+
+void ModelCollision::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<ModelCollision*>(&to_msg);
+  auto& from = static_cast<const ModelCollision&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.ModelCollision)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from._internal_rule() != 0) {
+    _this->_internal_set_rule(from._internal_rule());
+  }
+  if (from._internal_link1() != 0) {
+    _this->_internal_set_link1(from._internal_link1());
+  }
+  if (from._internal_link2() != 0) {
+    _this->_internal_set_link2(from._internal_link2());
+  }
+  if (from._internal_tool_idx() != 0) {
+    _this->_internal_set_tool_idx(from._internal_tool_idx());
+  }
+  if (from._internal_env_idx() != 0) {
+    _this->_internal_set_env_idx(from._internal_env_idx());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void ModelCollision::CopyFrom(const ModelCollision& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Nrmk.IndyFramework.ModelCollision)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool ModelCollision::IsInitialized() const {
+  return true;
+}
+
+void ModelCollision::InternalSwap(ModelCollision* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(ModelCollision, _impl_.env_idx_)
+      + sizeof(ModelCollision::_impl_.env_idx_)
+      - PROTOBUF_FIELD_OFFSET(ModelCollision, _impl_.rule_)>(
+          reinterpret_cast<char*>(&_impl_.rule_),
+          reinterpret_cast<char*>(&other->_impl_.rule_));
+}
+
+::google::protobuf::Metadata ModelCollision::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_rtde_5fmsgs_2eproto_getter, &descriptor_table_rtde_5fmsgs_2eproto_once,
+      file_level_metadata_rtde_5fmsgs_2eproto[12]);
+}
+// ===================================================================
+
+class CollisionModelState::_Internal {
+ public:
+};
+
+CollisionModelState::CollisionModelState(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Nrmk.IndyFramework.CollisionModelState)
+}
+CollisionModelState::CollisionModelState(const CollisionModelState& from) : ::google::protobuf::Message() {
+  CollisionModelState* const _this = this;
+  (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.collisions_){from._impl_.collisions_},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+
+  // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.CollisionModelState)
+}
+inline void CollisionModelState::SharedCtor(::_pb::Arena* arena) {
+  (void)arena;
+  new (&_impl_) Impl_{
+      decltype(_impl_.collisions_){arena},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+}
+CollisionModelState::~CollisionModelState() {
+  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.CollisionModelState)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void CollisionModelState::SharedDtor() {
+  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.collisions_.~RepeatedPtrField();
+}
+void CollisionModelState::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+PROTOBUF_NOINLINE void CollisionModelState::Clear() {
+// @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.CollisionModelState)
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _internal_mutable_collisions()->Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* CollisionModelState::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 1, 1, 0, 2> CollisionModelState::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    1, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    1,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_CollisionModelState_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // repeated .Nrmk.IndyFramework.ModelCollision collisions = 1;
+    {::_pbi::TcParser::FastMtR1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(CollisionModelState, _impl_.collisions_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // repeated .Nrmk.IndyFramework.ModelCollision collisions = 1;
+    {PROTOBUF_FIELD_OFFSET(CollisionModelState, _impl_.collisions_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::Nrmk::IndyFramework::ModelCollision>()},
+  }}, {{
+  }},
+};
+
+::uint8_t* CollisionModelState::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.CollisionModelState)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // repeated .Nrmk.IndyFramework.ModelCollision collisions = 1;
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_collisions_size()); i < n; i++) {
+    const auto& repfield = this->_internal_collisions().Get(i);
+    target = ::google::protobuf::internal::WireFormatLite::
+        InternalWriteMessage(1, repfield, repfield.GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.CollisionModelState)
+  return target;
+}
+
+::size_t CollisionModelState::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.CollisionModelState)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated .Nrmk.IndyFramework.ModelCollision collisions = 1;
+  total_size += 1UL * this->_internal_collisions_size();
+  for (const auto& msg : this->_internal_collisions()) {
+    total_size +=
+      ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
+  }
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData CollisionModelState::_class_data_ = {
+    ::google::protobuf::Message::CopyWithSourceCheck,
+    CollisionModelState::MergeImpl
+};
+const ::google::protobuf::Message::ClassData*CollisionModelState::GetClassData() const { return &_class_data_; }
+
+
+void CollisionModelState::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<CollisionModelState*>(&to_msg);
+  auto& from = static_cast<const CollisionModelState&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.CollisionModelState)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_internal_mutable_collisions()->MergeFrom(from._internal_collisions());
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void CollisionModelState::CopyFrom(const CollisionModelState& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Nrmk.IndyFramework.CollisionModelState)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool CollisionModelState::IsInitialized() const {
+  return true;
+}
+
+void CollisionModelState::InternalSwap(CollisionModelState* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.collisions_.InternalSwap(&other->_impl_.collisions_);
+}
+
+::google::protobuf::Metadata CollisionModelState::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_rtde_5fmsgs_2eproto_getter, &descriptor_table_rtde_5fmsgs_2eproto_once,
+      file_level_metadata_rtde_5fmsgs_2eproto[13]);
 }
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace IndyFramework

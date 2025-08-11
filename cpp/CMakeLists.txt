@@ -55,6 +55,7 @@ if(BUILD_PROTO)
 else()
     set(INDY_SOURCES
         neuromeka_cpp/indydcp3.cpp
+        neuromeka_cpp/proto/boot_msgs.pb.cc
         neuromeka_cpp/proto/common_msgs.pb.cc
         neuromeka_cpp/proto/config_msgs.pb.cc
         neuromeka_cpp/proto/control_msgs.pb.cc
@@ -62,7 +63,9 @@ else()
         neuromeka_cpp/proto/ethercat_msgs.pb.cc
         neuromeka_cpp/proto/moby_msgs.pb.cc
         neuromeka_cpp/proto/rtde_msgs.pb.cc
+        neuromeka_cpp/proto/cri_msgs.pb.cc
 
+        neuromeka_cpp/proto/boot_msgs.grpc.pb.cc
         neuromeka_cpp/proto/common_msgs.grpc.pb.cc
         neuromeka_cpp/proto/config_msgs.grpc.pb.cc
         neuromeka_cpp/proto/control_msgs.grpc.pb.cc
@@ -70,7 +73,9 @@ else()
         neuromeka_cpp/proto/ethercat_msgs.grpc.pb.cc
         neuromeka_cpp/proto/moby_msgs.grpc.pb.cc
         neuromeka_cpp/proto/rtde_msgs.grpc.pb.cc
+        neuromeka_cpp/proto/cri_msgs.grpc.pb.cc
 
+        neuromeka_cpp/proto/boot.pb.cc
         neuromeka_cpp/proto/config.pb.cc
         neuromeka_cpp/proto/control.pb.cc
         neuromeka_cpp/proto/device.pb.cc
@@ -81,6 +86,7 @@ else()
         neuromeka_cpp/proto/rtde.pb.cc
         neuromeka_cpp/proto/cri.pb.cc
 
+        neuromeka_cpp/proto/boot.grpc.pb.cc
         neuromeka_cpp/proto/config.grpc.pb.cc
         neuromeka_cpp/proto/control.grpc.pb.cc
         neuromeka_cpp/proto/device.grpc.pb.cc

@@ -484,10 +484,6 @@ PROTOBUF_CONSTEXPR WaitIOReq::WaitIOReq(::_pbi::ConstantInitialized)
       /*decltype(_impl_.do_list_)*/ {},
       /*decltype(_impl_.end_di_list_)*/ {},
       /*decltype(_impl_.end_do_list_)*/ {},
-      /*decltype(_impl_.set_do_list_)*/ {},
-      /*decltype(_impl_.set_end_do_list_)*/ {},
-      /*decltype(_impl_.set_ao_list_)*/ {},
-      /*decltype(_impl_.set_end_ao_list_)*/ {},
       /*decltype(_impl_.conjunction_)*/ 0,
       /*decltype(_impl_._cached_size_)*/ {},
     } {}
@@ -504,10 +500,6 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
         template <typename>
 PROTOBUF_CONSTEXPR WaitTimeReq::WaitTimeReq(::_pbi::ConstantInitialized)
     : _impl_{
-      /*decltype(_impl_.set_do_list_)*/ {},
-      /*decltype(_impl_.set_end_do_list_)*/ {},
-      /*decltype(_impl_.set_ao_list_)*/ {},
-      /*decltype(_impl_.set_end_ao_list_)*/ {},
       /*decltype(_impl_.time_)*/ 0,
       /*decltype(_impl_._cached_size_)*/ {},
     } {}
@@ -524,10 +516,6 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
         template <typename>
 PROTOBUF_CONSTEXPR WaitProgressReq::WaitProgressReq(::_pbi::ConstantInitialized)
     : _impl_{
-      /*decltype(_impl_.set_do_list_)*/ {},
-      /*decltype(_impl_.set_end_do_list_)*/ {},
-      /*decltype(_impl_.set_ao_list_)*/ {},
-      /*decltype(_impl_.set_end_ao_list_)*/ {},
       /*decltype(_impl_.progress_)*/ 0,
       /*decltype(_impl_._cached_size_)*/ {},
     } {}
@@ -544,10 +532,6 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
         template <typename>
 PROTOBUF_CONSTEXPR WaitTrajReq::WaitTrajReq(::_pbi::ConstantInitialized)
     : _impl_{
-      /*decltype(_impl_.set_do_list_)*/ {},
-      /*decltype(_impl_.set_end_do_list_)*/ {},
-      /*decltype(_impl_.set_ao_list_)*/ {},
-      /*decltype(_impl_.set_end_ao_list_)*/ {},
       /*decltype(_impl_.traj_condition_)*/ 0,
       /*decltype(_impl_._cached_size_)*/ {},
     } {}
@@ -564,10 +548,6 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
         template <typename>
 PROTOBUF_CONSTEXPR WaitRadiusReq::WaitRadiusReq(::_pbi::ConstantInitialized)
     : _impl_{
-      /*decltype(_impl_.set_do_list_)*/ {},
-      /*decltype(_impl_.set_end_do_list_)*/ {},
-      /*decltype(_impl_.set_ao_list_)*/ {},
-      /*decltype(_impl_.set_end_ao_list_)*/ {},
       /*decltype(_impl_.radius_)*/ 0,
       /*decltype(_impl_._cached_size_)*/ {},
     } {}
@@ -1323,6 +1303,106 @@ struct MoveTeleLReqDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MoveTeleLReqDefaultTypeInternal _MoveTeleLReq_default_instance_;
         template <typename>
+PROTOBUF_CONSTEXPR ForceModeReq::ForceModeReq(::_pbi::ConstantInitialized)
+    : _impl_{
+      /*decltype(_impl_.des_force_)*/ {},
+      /*decltype(_impl_.enabled_force_)*/ {},
+      /*decltype(_impl_.enable_)*/ false,
+      /*decltype(_impl_._cached_size_)*/ {},
+    } {}
+struct ForceModeReqDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR ForceModeReqDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~ForceModeReqDefaultTypeInternal() {}
+  union {
+    ForceModeReq _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ForceModeReqDefaultTypeInternal _ForceModeReq_default_instance_;
+        template <typename>
+PROTOBUF_CONSTEXPR TransformedFTSensorData::TransformedFTSensorData(::_pbi::ConstantInitialized)
+    : _impl_{
+      /*decltype(_impl_._has_bits_)*/ {},
+      /*decltype(_impl_._cached_size_)*/ {},
+      /*decltype(_impl_.response_)*/ nullptr,
+      /*decltype(_impl_.ft_fx_)*/ 0,
+      /*decltype(_impl_.ft_fy_)*/ 0,
+      /*decltype(_impl_.ft_fz_)*/ 0,
+      /*decltype(_impl_.ft_tx_)*/ 0,
+      /*decltype(_impl_.ft_ty_)*/ 0,
+      /*decltype(_impl_.ft_tz_)*/ 0,
+    } {}
+struct TransformedFTSensorDataDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR TransformedFTSensorDataDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~TransformedFTSensorDataDefaultTypeInternal() {}
+  union {
+    TransformedFTSensorData _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 TransformedFTSensorDataDefaultTypeInternal _TransformedFTSensorData_default_instance_;
+        template <typename>
+PROTOBUF_CONSTEXPR ComplianceMode::ComplianceMode(::_pbi::ConstantInitialized)
+    : _impl_{
+      /*decltype(_impl_.stiffness_)*/ {},
+      /* _impl_._stiffness_cached_byte_size_ = */ {0},
+      /*decltype(_impl_.enable_)*/ false,
+      /*decltype(_impl_._cached_size_)*/ {},
+    } {}
+struct ComplianceModeDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR ComplianceModeDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~ComplianceModeDefaultTypeInternal() {}
+  union {
+    ComplianceMode _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ComplianceModeDefaultTypeInternal _ComplianceMode_default_instance_;
+        template <typename>
+PROTOBUF_CONSTEXPR BusEvent::BusEvent(::_pbi::ConstantInitialized)
+    : _impl_{
+      /*decltype(_impl_.b_data_)*/ {},
+      /*decltype(_impl_.i_data_)*/ {},
+      /* _impl_._i_data_cached_byte_size_ = */ {0},
+      /*decltype(_impl_.f_data_)*/ {},
+      /*decltype(_impl_.text_data_)*/ {
+          &::_pbi::fixed_address_empty_string,
+          ::_pbi::ConstantInitialized{},
+      },
+      /*decltype(_impl_.event_id_)*/ ::uint64_t{0u},
+      /*decltype(_impl_._cached_size_)*/ {},
+    } {}
+struct BusEventDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR BusEventDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~BusEventDefaultTypeInternal() {}
+  union {
+    BusEvent _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 BusEventDefaultTypeInternal _BusEvent_default_instance_;
+        template <typename>
+PROTOBUF_CONSTEXPR CatchBusEventReq::CatchBusEventReq(::_pbi::ConstantInitialized)
+    : _impl_{
+      /*decltype(_impl_.event_id_)*/ ::uint64_t{0u},
+      /*decltype(_impl_.timeout_)*/ 0,
+      /*decltype(_impl_._cached_size_)*/ {},
+    } {}
+struct CatchBusEventReqDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR CatchBusEventReqDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~CatchBusEventReqDefaultTypeInternal() {}
+  union {
+    CatchBusEventReq _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 CatchBusEventReqDefaultTypeInternal _CatchBusEventReq_default_instance_;
+        template <typename>
 PROTOBUF_CONSTEXPR MoveLFReq::MoveLFReq(::_pbi::ConstantInitialized)
     : _impl_{
       /*decltype(_impl_._has_bits_)*/ {},
@@ -1367,29 +1447,6 @@ struct MoveFLResDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MoveFLResDefaultTypeInternal _MoveFLRes_default_instance_;
         template <typename>
-PROTOBUF_CONSTEXPR TransformedFTSensorData::TransformedFTSensorData(::_pbi::ConstantInitialized)
-    : _impl_{
-      /*decltype(_impl_._has_bits_)*/ {},
-      /*decltype(_impl_._cached_size_)*/ {},
-      /*decltype(_impl_.response_)*/ nullptr,
-      /*decltype(_impl_.ft_fx_)*/ 0,
-      /*decltype(_impl_.ft_fy_)*/ 0,
-      /*decltype(_impl_.ft_fz_)*/ 0,
-      /*decltype(_impl_.ft_tx_)*/ 0,
-      /*decltype(_impl_.ft_ty_)*/ 0,
-      /*decltype(_impl_.ft_tz_)*/ 0,
-    } {}
-struct TransformedFTSensorDataDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR TransformedFTSensorDataDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~TransformedFTSensorDataDefaultTypeInternal() {}
-  union {
-    TransformedFTSensorData _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 TransformedFTSensorDataDefaultTypeInternal _TransformedFTSensorData_default_instance_;
-        template <typename>
 PROTOBUF_CONSTEXPR ControlInferenceDataSet::ControlInferenceDataSet(::_pbi::ConstantInitialized)
     : _impl_{
       /*decltype(_impl_.infdata0_)*/ {},
@@ -1412,7 +1469,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ControlInferenceDataSetDefaultTypeInternal _ControlInferenceDataSet_default_instance_;
 }  // namespace IndyFramework
 }  // namespace Nrmk
-static ::_pb::Metadata file_level_metadata_control_5fmsgs_2eproto[71];
+static ::_pb::Metadata file_level_metadata_control_5fmsgs_2eproto[75];
 static const ::_pb::EnumDescriptor* file_level_enum_descriptors_control_5fmsgs_2eproto[12];
 static constexpr const ::_pb::ServiceDescriptor**
     file_level_service_descriptors_control_5fmsgs_2eproto = nullptr;
@@ -1766,10 +1823,6 @@ const ::uint32_t TableStruct_control_5fmsgs_2eproto::offsets[] PROTOBUF_SECTION_
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::WaitIOReq, _impl_.end_di_list_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::WaitIOReq, _impl_.end_do_list_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::WaitIOReq, _impl_.conjunction_),
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::WaitIOReq, _impl_.set_do_list_),
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::WaitIOReq, _impl_.set_end_do_list_),
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::WaitIOReq, _impl_.set_ao_list_),
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::WaitIOReq, _impl_.set_end_ao_list_),
     ~0u,  // no _has_bits_
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::WaitTimeReq, _internal_metadata_),
     ~0u,  // no _extensions_
@@ -1779,10 +1832,6 @@ const ::uint32_t TableStruct_control_5fmsgs_2eproto::offsets[] PROTOBUF_SECTION_
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::WaitTimeReq, _impl_.time_),
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::WaitTimeReq, _impl_.set_do_list_),
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::WaitTimeReq, _impl_.set_end_do_list_),
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::WaitTimeReq, _impl_.set_ao_list_),
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::WaitTimeReq, _impl_.set_end_ao_list_),
     ~0u,  // no _has_bits_
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::WaitProgressReq, _internal_metadata_),
     ~0u,  // no _extensions_
@@ -1792,10 +1841,6 @@ const ::uint32_t TableStruct_control_5fmsgs_2eproto::offsets[] PROTOBUF_SECTION_
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::WaitProgressReq, _impl_.progress_),
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::WaitProgressReq, _impl_.set_do_list_),
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::WaitProgressReq, _impl_.set_end_do_list_),
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::WaitProgressReq, _impl_.set_ao_list_),
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::WaitProgressReq, _impl_.set_end_ao_list_),
     ~0u,  // no _has_bits_
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::WaitTrajReq, _internal_metadata_),
     ~0u,  // no _extensions_
@@ -1805,10 +1850,6 @@ const ::uint32_t TableStruct_control_5fmsgs_2eproto::offsets[] PROTOBUF_SECTION_
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::WaitTrajReq, _impl_.traj_condition_),
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::WaitTrajReq, _impl_.set_do_list_),
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::WaitTrajReq, _impl_.set_end_do_list_),
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::WaitTrajReq, _impl_.set_ao_list_),
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::WaitTrajReq, _impl_.set_end_ao_list_),
     ~0u,  // no _has_bits_
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::WaitRadiusReq, _internal_metadata_),
     ~0u,  // no _extensions_
@@ -1818,10 +1859,6 @@ const ::uint32_t TableStruct_control_5fmsgs_2eproto::offsets[] PROTOBUF_SECTION_
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::WaitRadiusReq, _impl_.radius_),
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::WaitRadiusReq, _impl_.set_do_list_),
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::WaitRadiusReq, _impl_.set_end_do_list_),
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::WaitRadiusReq, _impl_.set_ao_list_),
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::WaitRadiusReq, _impl_.set_end_ao_list_),
     ~0u,  // no _has_bits_
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::Program, _internal_metadata_),
     ~0u,  // no _extensions_
@@ -2264,6 +2301,72 @@ const ::uint32_t TableStruct_control_5fmsgs_2eproto::offsets[] PROTOBUF_SECTION_
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::MoveTeleLReq, _impl_.vel_ratio_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::MoveTeleLReq, _impl_.acc_ratio_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::MoveTeleLReq, _impl_.method_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ForceModeReq, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ForceModeReq, _impl_.enable_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ForceModeReq, _impl_.des_force_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ForceModeReq, _impl_.enabled_force_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::TransformedFTSensorData, _impl_._has_bits_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::TransformedFTSensorData, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::TransformedFTSensorData, _impl_.ft_fx_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::TransformedFTSensorData, _impl_.ft_fy_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::TransformedFTSensorData, _impl_.ft_fz_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::TransformedFTSensorData, _impl_.ft_tx_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::TransformedFTSensorData, _impl_.ft_ty_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::TransformedFTSensorData, _impl_.ft_tz_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::TransformedFTSensorData, _impl_.response_),
+    ~0u,
+    ~0u,
+    ~0u,
+    ~0u,
+    ~0u,
+    ~0u,
+    0,
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ComplianceMode, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ComplianceMode, _impl_.enable_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ComplianceMode, _impl_.stiffness_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::BusEvent, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::BusEvent, _impl_.event_id_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::BusEvent, _impl_.b_data_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::BusEvent, _impl_.i_data_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::BusEvent, _impl_.f_data_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::BusEvent, _impl_.text_data_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::CatchBusEventReq, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::CatchBusEventReq, _impl_.event_id_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::CatchBusEventReq, _impl_.timeout_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::MoveLFReq, _impl_._has_bits_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::MoveLFReq, _internal_metadata_),
     ~0u,  // no _extensions_
@@ -2299,28 +2402,6 @@ const ::uint32_t TableStruct_control_5fmsgs_2eproto::offsets[] PROTOBUF_SECTION_
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::MoveFLRes, _impl_.msg_),
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::TransformedFTSensorData, _impl_._has_bits_),
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::TransformedFTSensorData, _internal_metadata_),
-    ~0u,  // no _extensions_
-    ~0u,  // no _oneof_case_
-    ~0u,  // no _weak_field_map_
-    ~0u,  // no _inlined_string_donated_
-    ~0u,  // no _split_
-    ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::TransformedFTSensorData, _impl_.ft_fx_),
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::TransformedFTSensorData, _impl_.ft_fy_),
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::TransformedFTSensorData, _impl_.ft_fz_),
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::TransformedFTSensorData, _impl_.ft_tx_),
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::TransformedFTSensorData, _impl_.ft_ty_),
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::TransformedFTSensorData, _impl_.ft_tz_),
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::TransformedFTSensorData, _impl_.response_),
-    ~0u,
-    ~0u,
-    ~0u,
-    ~0u,
-    ~0u,
-    ~0u,
-    0,
     ~0u,  // no _has_bits_
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ControlInferenceDataSet, _internal_metadata_),
     ~0u,  // no _extensions_
@@ -2362,54 +2443,58 @@ static const ::_pbi::MigrationSchema
         {306, -1, -1, sizeof(::Nrmk::IndyFramework::MoveGcodeReq)},
         {319, 331, -1, sizeof(::Nrmk::IndyFramework::MoveConveyorReq)},
         {335, -1, -1, sizeof(::Nrmk::IndyFramework::WaitIOReq)},
-        {352, -1, -1, sizeof(::Nrmk::IndyFramework::WaitTimeReq)},
-        {365, -1, -1, sizeof(::Nrmk::IndyFramework::WaitProgressReq)},
-        {378, -1, -1, sizeof(::Nrmk::IndyFramework::WaitTrajReq)},
-        {391, -1, -1, sizeof(::Nrmk::IndyFramework::WaitRadiusReq)},
-        {404, -1, -1, sizeof(::Nrmk::IndyFramework::Program)},
-        {414, 426, -1, sizeof(::Nrmk::IndyFramework::TuningProgram)},
-        {430, -1, -1, sizeof(::Nrmk::IndyFramework::ProgramInfo)},
-        {441, -1, -1, sizeof(::Nrmk::IndyFramework::Variable)},
-        {453, -1, -1, sizeof(::Nrmk::IndyFramework::IntVariable)},
-        {463, -1, -1, sizeof(::Nrmk::IndyFramework::ModbusVariable)},
-        {475, -1, -1, sizeof(::Nrmk::IndyFramework::BoolVariable)},
-        {485, -1, -1, sizeof(::Nrmk::IndyFramework::FloatVariable)},
-        {495, -1, -1, sizeof(::Nrmk::IndyFramework::JPosVariable)},
-        {505, -1, -1, sizeof(::Nrmk::IndyFramework::TPosVariable)},
-        {515, -1, -1, sizeof(::Nrmk::IndyFramework::ModbusServer)},
-        {527, -1, -1, sizeof(::Nrmk::IndyFramework::ModbusVariableList)},
-        {536, -1, -1, sizeof(::Nrmk::IndyFramework::AllVars)},
-        {545, -1, -1, sizeof(::Nrmk::IndyFramework::IntVars)},
-        {554, -1, -1, sizeof(::Nrmk::IndyFramework::ModbusVars)},
-        {563, -1, -1, sizeof(::Nrmk::IndyFramework::BoolVars)},
-        {572, -1, -1, sizeof(::Nrmk::IndyFramework::FloatVars)},
-        {581, -1, -1, sizeof(::Nrmk::IndyFramework::JPosVars)},
-        {590, -1, -1, sizeof(::Nrmk::IndyFramework::TPosVars)},
-        {599, -1, -1, sizeof(::Nrmk::IndyFramework::InverseKinematicsReq)},
-        {609, 619, -1, sizeof(::Nrmk::IndyFramework::InverseKinematicsRes)},
-        {621, -1, -1, sizeof(::Nrmk::IndyFramework::ForwardKinematicsReq)},
-        {630, 640, -1, sizeof(::Nrmk::IndyFramework::ForwardKinematicsRes)},
-        {642, -1, -1, sizeof(::Nrmk::IndyFramework::CheckAproachRetractValidReq)},
-        {654, 667, -1, sizeof(::Nrmk::IndyFramework::CheckAproachRetractValidRes)},
-        {672, -1, -1, sizeof(::Nrmk::IndyFramework::GetPalletPointListReq)},
-        {687, -1, -1, sizeof(::Nrmk::IndyFramework::PalletPoint)},
-        {699, 709, -1, sizeof(::Nrmk::IndyFramework::GetPalletPointListRes)},
-        {711, -1, -1, sizeof(::Nrmk::IndyFramework::CalculateRelativePoseReq)},
-        {722, 732, -1, sizeof(::Nrmk::IndyFramework::CalculateRelativePoseRes)},
-        {734, -1, -1, sizeof(::Nrmk::IndyFramework::CalculateCurrentPoseRelReq)},
-        {745, 755, -1, sizeof(::Nrmk::IndyFramework::CalculateCurrentPoseRelRes)},
-        {757, -1, -1, sizeof(::Nrmk::IndyFramework::TeleOpDevice)},
-        {770, -1, -1, sizeof(::Nrmk::IndyFramework::TeleOpState)},
-        {780, 790, -1, sizeof(::Nrmk::IndyFramework::TeleP)},
-        {792, 802, -1, sizeof(::Nrmk::IndyFramework::TeleOpFileList)},
-        {804, -1, -1, sizeof(::Nrmk::IndyFramework::TeleFileReq)},
-        {813, -1, -1, sizeof(::Nrmk::IndyFramework::TelePlayRate)},
-        {822, -1, -1, sizeof(::Nrmk::IndyFramework::MoveTeleJReq)},
-        {834, -1, -1, sizeof(::Nrmk::IndyFramework::MoveTeleLReq)},
-        {846, 863, -1, sizeof(::Nrmk::IndyFramework::MoveLFReq)},
-        {872, -1, -1, sizeof(::Nrmk::IndyFramework::MoveFLRes)},
-        {881, 896, -1, sizeof(::Nrmk::IndyFramework::TransformedFTSensorData)},
-        {903, -1, -1, sizeof(::Nrmk::IndyFramework::ControlInferenceDataSet)},
+        {348, -1, -1, sizeof(::Nrmk::IndyFramework::WaitTimeReq)},
+        {357, -1, -1, sizeof(::Nrmk::IndyFramework::WaitProgressReq)},
+        {366, -1, -1, sizeof(::Nrmk::IndyFramework::WaitTrajReq)},
+        {375, -1, -1, sizeof(::Nrmk::IndyFramework::WaitRadiusReq)},
+        {384, -1, -1, sizeof(::Nrmk::IndyFramework::Program)},
+        {394, 406, -1, sizeof(::Nrmk::IndyFramework::TuningProgram)},
+        {410, -1, -1, sizeof(::Nrmk::IndyFramework::ProgramInfo)},
+        {421, -1, -1, sizeof(::Nrmk::IndyFramework::Variable)},
+        {433, -1, -1, sizeof(::Nrmk::IndyFramework::IntVariable)},
+        {443, -1, -1, sizeof(::Nrmk::IndyFramework::ModbusVariable)},
+        {455, -1, -1, sizeof(::Nrmk::IndyFramework::BoolVariable)},
+        {465, -1, -1, sizeof(::Nrmk::IndyFramework::FloatVariable)},
+        {475, -1, -1, sizeof(::Nrmk::IndyFramework::JPosVariable)},
+        {485, -1, -1, sizeof(::Nrmk::IndyFramework::TPosVariable)},
+        {495, -1, -1, sizeof(::Nrmk::IndyFramework::ModbusServer)},
+        {507, -1, -1, sizeof(::Nrmk::IndyFramework::ModbusVariableList)},
+        {516, -1, -1, sizeof(::Nrmk::IndyFramework::AllVars)},
+        {525, -1, -1, sizeof(::Nrmk::IndyFramework::IntVars)},
+        {534, -1, -1, sizeof(::Nrmk::IndyFramework::ModbusVars)},
+        {543, -1, -1, sizeof(::Nrmk::IndyFramework::BoolVars)},
+        {552, -1, -1, sizeof(::Nrmk::IndyFramework::FloatVars)},
+        {561, -1, -1, sizeof(::Nrmk::IndyFramework::JPosVars)},
+        {570, -1, -1, sizeof(::Nrmk::IndyFramework::TPosVars)},
+        {579, -1, -1, sizeof(::Nrmk::IndyFramework::InverseKinematicsReq)},
+        {589, 599, -1, sizeof(::Nrmk::IndyFramework::InverseKinematicsRes)},
+        {601, -1, -1, sizeof(::Nrmk::IndyFramework::ForwardKinematicsReq)},
+        {610, 620, -1, sizeof(::Nrmk::IndyFramework::ForwardKinematicsRes)},
+        {622, -1, -1, sizeof(::Nrmk::IndyFramework::CheckAproachRetractValidReq)},
+        {634, 647, -1, sizeof(::Nrmk::IndyFramework::CheckAproachRetractValidRes)},
+        {652, -1, -1, sizeof(::Nrmk::IndyFramework::GetPalletPointListReq)},
+        {667, -1, -1, sizeof(::Nrmk::IndyFramework::PalletPoint)},
+        {679, 689, -1, sizeof(::Nrmk::IndyFramework::GetPalletPointListRes)},
+        {691, -1, -1, sizeof(::Nrmk::IndyFramework::CalculateRelativePoseReq)},
+        {702, 712, -1, sizeof(::Nrmk::IndyFramework::CalculateRelativePoseRes)},
+        {714, -1, -1, sizeof(::Nrmk::IndyFramework::CalculateCurrentPoseRelReq)},
+        {725, 735, -1, sizeof(::Nrmk::IndyFramework::CalculateCurrentPoseRelRes)},
+        {737, -1, -1, sizeof(::Nrmk::IndyFramework::TeleOpDevice)},
+        {750, -1, -1, sizeof(::Nrmk::IndyFramework::TeleOpState)},
+        {760, 770, -1, sizeof(::Nrmk::IndyFramework::TeleP)},
+        {772, 782, -1, sizeof(::Nrmk::IndyFramework::TeleOpFileList)},
+        {784, -1, -1, sizeof(::Nrmk::IndyFramework::TeleFileReq)},
+        {793, -1, -1, sizeof(::Nrmk::IndyFramework::TelePlayRate)},
+        {802, -1, -1, sizeof(::Nrmk::IndyFramework::MoveTeleJReq)},
+        {814, -1, -1, sizeof(::Nrmk::IndyFramework::MoveTeleLReq)},
+        {826, -1, -1, sizeof(::Nrmk::IndyFramework::ForceModeReq)},
+        {837, 852, -1, sizeof(::Nrmk::IndyFramework::TransformedFTSensorData)},
+        {859, -1, -1, sizeof(::Nrmk::IndyFramework::ComplianceMode)},
+        {869, -1, -1, sizeof(::Nrmk::IndyFramework::BusEvent)},
+        {882, -1, -1, sizeof(::Nrmk::IndyFramework::CatchBusEventReq)},
+        {892, 909, -1, sizeof(::Nrmk::IndyFramework::MoveLFReq)},
+        {918, -1, -1, sizeof(::Nrmk::IndyFramework::MoveFLRes)},
+        {927, -1, -1, sizeof(::Nrmk::IndyFramework::ControlInferenceDataSet)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -2480,9 +2565,13 @@ static const ::_pb::Message* const file_default_instances[] = {
     &::Nrmk::IndyFramework::_TelePlayRate_default_instance_._instance,
     &::Nrmk::IndyFramework::_MoveTeleJReq_default_instance_._instance,
     &::Nrmk::IndyFramework::_MoveTeleLReq_default_instance_._instance,
+    &::Nrmk::IndyFramework::_ForceModeReq_default_instance_._instance,
+    &::Nrmk::IndyFramework::_TransformedFTSensorData_default_instance_._instance,
+    &::Nrmk::IndyFramework::_ComplianceMode_default_instance_._instance,
+    &::Nrmk::IndyFramework::_BusEvent_default_instance_._instance,
+    &::Nrmk::IndyFramework::_CatchBusEventReq_default_instance_._instance,
     &::Nrmk::IndyFramework::_MoveLFReq_default_instance_._instance,
     &::Nrmk::IndyFramework::_MoveFLRes_default_instance_._instance,
-    &::Nrmk::IndyFramework::_TransformedFTSensorData_default_instance_._instance,
     &::Nrmk::IndyFramework::_ControlInferenceDataSet_default_instance_._instance,
 };
 const char descriptor_table_protodef_control_5fmsgs_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
@@ -2593,166 +2682,144 @@ const char descriptor_table_protodef_control_5fmsgs_2eproto[] PROTOBUF_SECTION_V
     "Req\022\025\n\rteaching_mode\030\001 \001(\010\022\027\n\017bypass_sin"
     "gular\030\002 \001(\010\022\021\n\tacc_ratio\030\003 \001(\002\022;\n\016post_c"
     "ondition\030\n \001(\0132#.Nrmk.IndyFramework.Moti"
-    "onCondition\"\336\003\n\tWaitIOReq\0222\n\007di_list\030\001 \003"
+    "onCondition\"\370\001\n\tWaitIOReq\0222\n\007di_list\030\001 \003"
     "(\0132!.Nrmk.IndyFramework.DigitalSignal\0222\n"
     "\007do_list\030\002 \003(\0132!.Nrmk.IndyFramework.Digi"
     "talSignal\0226\n\013end_di_list\030\003 \003(\0132!.Nrmk.In"
     "dyFramework.DigitalSignal\0226\n\013end_do_list"
     "\030\004 \003(\0132!.Nrmk.IndyFramework.DigitalSigna"
-    "l\022\023\n\013conjunction\030\005 \001(\005\0226\n\013set_do_list\030\006 "
-    "\003(\0132!.Nrmk.IndyFramework.DigitalSignal\022:"
-    "\n\017set_end_do_list\030\007 \003(\0132!.Nrmk.IndyFrame"
-    "work.DigitalSignal\0225\n\013set_ao_list\030\010 \003(\0132"
-    " .Nrmk.IndyFramework.AnalogSignal\0229\n\017set"
-    "_end_ao_list\030\t \003(\0132 .Nrmk.IndyFramework."
-    "AnalogSignal\"\201\002\n\013WaitTimeReq\022\014\n\004time\030\001 \001"
-    "(\002\0226\n\013set_do_list\030\002 \003(\0132!.Nrmk.IndyFrame"
-    "work.DigitalSignal\022:\n\017set_end_do_list\030\003 "
-    "\003(\0132!.Nrmk.IndyFramework.DigitalSignal\0225"
-    "\n\013set_ao_list\030\004 \003(\0132 .Nrmk.IndyFramework"
-    ".AnalogSignal\0229\n\017set_end_ao_list\030\005 \003(\0132 "
-    ".Nrmk.IndyFramework.AnalogSignal\"\211\002\n\017Wai"
-    "tProgressReq\022\020\n\010progress\030\001 \001(\005\0226\n\013set_do"
-    "_list\030\002 \003(\0132!.Nrmk.IndyFramework.Digital"
-    "Signal\022:\n\017set_end_do_list\030\003 \003(\0132!.Nrmk.I"
-    "ndyFramework.DigitalSignal\0225\n\013set_ao_lis"
-    "t\030\004 \003(\0132 .Nrmk.IndyFramework.AnalogSigna"
-    "l\0229\n\017set_end_ao_list\030\005 \003(\0132 .Nrmk.IndyFr"
-    "amework.AnalogSignal\"\256\002\n\013WaitTrajReq\0229\n\016"
-    "traj_condition\030\001 \001(\0162!.Nrmk.IndyFramewor"
-    "k.TrajCondition\0226\n\013set_do_list\030\002 \003(\0132!.N"
-    "rmk.IndyFramework.DigitalSignal\022:\n\017set_e"
-    "nd_do_list\030\003 \003(\0132!.Nrmk.IndyFramework.Di"
-    "gitalSignal\0225\n\013set_ao_list\030\004 \003(\0132 .Nrmk."
-    "IndyFramework.AnalogSignal\0229\n\017set_end_ao"
-    "_list\030\005 \003(\0132 .Nrmk.IndyFramework.AnalogS"
-    "ignal\"\205\002\n\rWaitRadiusReq\022\016\n\006radius\030\001 \001(\005\022"
-    "6\n\013set_do_list\030\002 \003(\0132!.Nrmk.IndyFramewor"
-    "k.DigitalSignal\022:\n\017set_end_do_list\030\003 \003(\013"
-    "2!.Nrmk.IndyFramework.DigitalSignal\0225\n\013s"
-    "et_ao_list\030\004 \003(\0132 .Nrmk.IndyFramework.An"
-    "alogSignal\0229\n\017set_end_ao_list\030\005 \003(\0132 .Nr"
-    "mk.IndyFramework.AnalogSignal\".\n\007Program"
-    "\022\021\n\tprog_name\030\001 \001(\t\022\020\n\010prog_idx\030\002 \001(\005\"\303\001"
-    "\n\rTuningProgram\022,\n\007program\030\001 \001(\0132\033.Nrmk."
-    "IndyFramework.Program\0225\n\014tuning_space\030\002 "
-    "\001(\0162\037.Nrmk.IndyFramework.TuningSpace\0226\n\t"
-    "precision\030\003 \001(\0162#.Nrmk.IndyFramework.Tun"
-    "ingPrecision\022\025\n\rvel_level_max\030\004 \001(\r\"<\n\013P"
-    "rogramInfo\022\014\n\004path\030\001 \001(\t\022\014\n\004size\030\002 \001(\004\022\021"
-    "\n\ttimestamp\030\003 \001(\t\"I\n\010Variable\022\014\n\004name\030\001 "
-    "\001(\t\022\014\n\004addr\030\002 \001(\005\022\014\n\004type\030\003 \001(\t\022\023\n\013in_wa"
-    "tching\030\004 \001(\010\"*\n\013IntVariable\022\014\n\004addr\030\001 \001("
-    "\005\022\r\n\005value\030\002 \001(\003\"\317\001\n\016ModbusVariable\022\014\n\004n"
-    "ame\030\001 \001(\t\022\014\n\004addr\030\002 \001(\005\022\r\n\005value\030\003 \001(\005\022B"
-    "\n\013signal_type\030\004 \001(\0162-.Nrmk.IndyFramework"
-    ".ModbusVariable.SignalType\"N\n\nSignalType"
-    "\022\014\n\010ReadCoil\020\000\022\r\n\tWriteCoil\020\001\022\020\n\014ReadReg"
-    "ister\020\002\022\021\n\rWriteRegister\020\003\"+\n\014BoolVariab"
-    "le\022\014\n\004addr\030\001 \001(\005\022\r\n\005value\030\002 \001(\010\",\n\rFloat"
-    "Variable\022\014\n\004addr\030\001 \001(\005\022\r\n\005value\030\002 \001(\002\"*\n"
-    "\014JPosVariable\022\014\n\004addr\030\001 \001(\005\022\014\n\004jpos\030\002 \003("
-    "\002\"*\n\014TPosVariable\022\014\n\004addr\030\001 \001(\005\022\014\n\004tpos\030"
-    "\002 \003(\002\"x\n\014ModbusServer\022\023\n\013server_name\030\001 \001"
-    "(\t\022\n\n\002ip\030\002 \001(\t\022\014\n\004port\030\003 \001(\005\0229\n\rvariable"
-    "_list\030\004 \003(\0132\".Nrmk.IndyFramework.ModbusV"
-    "ariable\"P\n\022ModbusVariableList\022:\n\020modbus_"
-    "variables\030\001 \003(\0132 .Nrmk.IndyFramework.Mod"
-    "busServer\":\n\007AllVars\022/\n\tvariables\030\001 \003(\0132"
-    "\034.Nrmk.IndyFramework.Variable\"=\n\007IntVars"
-    "\0222\n\tvariables\030\001 \003(\0132\037.Nrmk.IndyFramework"
-    ".IntVariable\"C\n\nModbusVars\0225\n\tvariables\030"
-    "\001 \003(\0132\".Nrmk.IndyFramework.ModbusVariabl"
-    "e\"\?\n\010BoolVars\0223\n\tvariables\030\001 \003(\0132 .Nrmk."
-    "IndyFramework.BoolVariable\"A\n\tFloatVars\022"
-    "4\n\tvariables\030\001 \003(\0132!.Nrmk.IndyFramework."
-    "FloatVariable\"\?\n\010JPosVars\0223\n\tvariables\030\001"
-    " \003(\0132 .Nrmk.IndyFramework.JPosVariable\"\?"
-    "\n\010TPosVars\0223\n\tvariables\030\001 \003(\0132 .Nrmk.Ind"
-    "yFramework.TPosVariable\"7\n\024InverseKinema"
-    "ticsReq\022\014\n\004tpos\030\001 \003(\002\022\021\n\tinit_jpos\030\002 \003(\002"
-    "\"T\n\024InverseKinematicsRes\022\014\n\004jpos\030\001 \003(\002\022."
-    "\n\010response\030d \001(\0132\034.Nrmk.IndyFramework.Re"
-    "sponse\"$\n\024ForwardKinematicsReq\022\014\n\004jpos\030\001"
-    " \003(\002\"T\n\024ForwardKinematicsRes\022\014\n\004tpos\030\001 \003"
-    "(\002\022.\n\010response\030d \001(\0132\034.Nrmk.IndyFramewor"
-    "k.Response\"c\n\033CheckAproachRetractValidRe"
-    "q\022\014\n\004tpos\030\001 \003(\002\022\021\n\tinit_jpos\030\002 \003(\002\022\020\n\010pr"
-    "e_tpos\030\003 \003(\002\022\021\n\tpost_tpos\030\004 \003(\002\"\233\001\n\033Chec"
-    "kAproachRetractValidRes\022\020\n\010is_valid\030\001 \001("
-    "\010\022\017\n\007tar_pos\030\002 \003(\002\022\024\n\014approach_pos\030\003 \003(\002"
-    "\022\023\n\013retract_pos\030\004 \003(\002\022.\n\010response\030d \001(\0132"
-    "\034.Nrmk.IndyFramework.Response\"\217\001\n\025GetPal"
-    "letPointListReq\022\014\n\004tpos\030\001 \003(\002\022\014\n\004jpos\030\002 "
-    "\003(\002\022\020\n\010pre_tpos\030\003 \003(\002\022\021\n\tpost_tpos\030\004 \003(\002"
-    "\022\026\n\016pallet_pattern\030\005 \001(\005\022\r\n\005width\030\006 \001(\005\022"
-    "\016\n\006height\030\007 \001(\005\"[\n\013PalletPoint\022\017\n\007tar_po"
-    "s\030\001 \003(\002\022\024\n\014approach_pos\030\002 \003(\002\022\023\n\013retract"
-    "_pos\030\003 \003(\002\022\020\n\010tar_jpos\030\004 \003(\002\"\177\n\025GetPalle"
-    "tPointListRes\0226\n\rpallet_points\030\001 \003(\0132\037.N"
-    "rmk.IndyFramework.PalletPoint\022.\n\010respons"
-    "e\030d \001(\0132\034.Nrmk.IndyFramework.Response\"s\n"
-    "\030CalculateRelativePoseReq\022\021\n\tstart_pos\030\001"
-    " \003(\002\022\017\n\007end_pos\030\002 \003(\002\0223\n\tbase_type\030\003 \001(\016"
-    "2 .Nrmk.IndyFramework.TaskBaseType\"`\n\030Ca"
-    "lculateRelativePoseRes\022\024\n\014relative_pos\030\001"
+    "l\022\023\n\013conjunction\030\005 \001(\005\"\033\n\013WaitTimeReq\022\014\n"
+    "\004time\030\001 \001(\002\"#\n\017WaitProgressReq\022\020\n\010progre"
+    "ss\030\001 \001(\005\"H\n\013WaitTrajReq\0229\n\016traj_conditio"
+    "n\030\001 \001(\0162!.Nrmk.IndyFramework.TrajConditi"
+    "on\"\037\n\rWaitRadiusReq\022\016\n\006radius\030\001 \001(\005\".\n\007P"
+    "rogram\022\021\n\tprog_name\030\001 \001(\t\022\020\n\010prog_idx\030\002 "
+    "\001(\005\"\303\001\n\rTuningProgram\022,\n\007program\030\001 \001(\0132\033"
+    ".Nrmk.IndyFramework.Program\0225\n\014tuning_sp"
+    "ace\030\002 \001(\0162\037.Nrmk.IndyFramework.TuningSpa"
+    "ce\0226\n\tprecision\030\003 \001(\0162#.Nrmk.IndyFramewo"
+    "rk.TuningPrecision\022\025\n\rvel_level_max\030\004 \001("
+    "\r\"<\n\013ProgramInfo\022\014\n\004path\030\001 \001(\t\022\014\n\004size\030\002"
+    " \001(\004\022\021\n\ttimestamp\030\003 \001(\t\"I\n\010Variable\022\014\n\004n"
+    "ame\030\001 \001(\t\022\014\n\004addr\030\002 \001(\005\022\014\n\004type\030\003 \001(\t\022\023\n"
+    "\013in_watching\030\004 \001(\010\"*\n\013IntVariable\022\014\n\004add"
+    "r\030\001 \001(\005\022\r\n\005value\030\002 \001(\003\"\317\001\n\016ModbusVariabl"
+    "e\022\014\n\004name\030\001 \001(\t\022\014\n\004addr\030\002 \001(\005\022\r\n\005value\030\003"
+    " \001(\005\022B\n\013signal_type\030\004 \001(\0162-.Nrmk.IndyFra"
+    "mework.ModbusVariable.SignalType\"N\n\nSign"
+    "alType\022\014\n\010ReadCoil\020\000\022\r\n\tWriteCoil\020\001\022\020\n\014R"
+    "eadRegister\020\002\022\021\n\rWriteRegister\020\003\"+\n\014Bool"
+    "Variable\022\014\n\004addr\030\001 \001(\005\022\r\n\005value\030\002 \001(\010\",\n"
+    "\rFloatVariable\022\014\n\004addr\030\001 \001(\005\022\r\n\005value\030\002 "
+    "\001(\002\"*\n\014JPosVariable\022\014\n\004addr\030\001 \001(\005\022\014\n\004jpo"
+    "s\030\002 \003(\002\"*\n\014TPosVariable\022\014\n\004addr\030\001 \001(\005\022\014\n"
+    "\004tpos\030\002 \003(\002\"x\n\014ModbusServer\022\023\n\013server_na"
+    "me\030\001 \001(\t\022\n\n\002ip\030\002 \001(\t\022\014\n\004port\030\003 \001(\005\0229\n\rva"
+    "riable_list\030\004 \003(\0132\".Nrmk.IndyFramework.M"
+    "odbusVariable\"P\n\022ModbusVariableList\022:\n\020m"
+    "odbus_variables\030\001 \003(\0132 .Nrmk.IndyFramewo"
+    "rk.ModbusServer\":\n\007AllVars\022/\n\tvariables\030"
+    "\001 \003(\0132\034.Nrmk.IndyFramework.Variable\"=\n\007I"
+    "ntVars\0222\n\tvariables\030\001 \003(\0132\037.Nrmk.IndyFra"
+    "mework.IntVariable\"C\n\nModbusVars\0225\n\tvari"
+    "ables\030\001 \003(\0132\".Nrmk.IndyFramework.ModbusV"
+    "ariable\"\?\n\010BoolVars\0223\n\tvariables\030\001 \003(\0132 "
+    ".Nrmk.IndyFramework.BoolVariable\"A\n\tFloa"
+    "tVars\0224\n\tvariables\030\001 \003(\0132!.Nrmk.IndyFram"
+    "ework.FloatVariable\"\?\n\010JPosVars\0223\n\tvaria"
+    "bles\030\001 \003(\0132 .Nrmk.IndyFramework.JPosVari"
+    "able\"\?\n\010TPosVars\0223\n\tvariables\030\001 \003(\0132 .Nr"
+    "mk.IndyFramework.TPosVariable\"7\n\024Inverse"
+    "KinematicsReq\022\014\n\004tpos\030\001 \003(\002\022\021\n\tinit_jpos"
+    "\030\002 \003(\002\"T\n\024InverseKinematicsRes\022\014\n\004jpos\030\001"
     " \003(\002\022.\n\010response\030d \001(\0132\034.Nrmk.IndyFramew"
-    "ork.Response\"|\n\032CalculateCurrentPoseRelR"
-    "eq\022\023\n\013current_pos\030\001 \003(\002\022\024\n\014relative_pos\030"
-    "\002 \003(\002\0223\n\tbase_type\030\003 \001(\0162 .Nrmk.IndyFram"
-    "ework.TaskBaseType\"d\n\032CalculateCurrentPo"
-    "seRelRes\022\026\n\016calculated_pos\030\001 \003(\002\022.\n\010resp"
-    "onse\030d \001(\0132\034.Nrmk.IndyFramework.Response"
-    "\"\262\001\n\014TeleOpDevice\022\014\n\004name\030\001 \001(\t\022\?\n\004type\030"
-    "\002 \001(\01621.Nrmk.IndyFramework.TeleOpDevice."
-    "TeleOpDeviceType\022\n\n\002ip\030\003 \001(\t\022\014\n\004port\030\004 \001"
-    "(\r\022\021\n\tconnected\030\005 \001(\010\"&\n\020TeleOpDeviceTyp"
-    "e\022\010\n\004NONE\020\000\022\010\n\004VIVE\020\001\"i\n\013TeleOpState\022*\n\004"
-    "mode\030\001 \001(\0162\034.Nrmk.IndyFramework.TeleMode"
-    "\022.\n\006method\030\002 \001(\0162\036.Nrmk.IndyFramework.Te"
-    "leMethod\"E\n\005TeleP\022\014\n\004tpos\030\001 \003(\002\022.\n\010respo"
-    "nse\030d \001(\0132\034.Nrmk.IndyFramework.Response\""
-    "O\n\016TeleOpFileList\022\r\n\005files\030\001 \003(\t\022.\n\010resp"
-    "onse\030d \001(\0132\034.Nrmk.IndyFramework.Response"
-    "\"\033\n\013TeleFileReq\022\014\n\004name\030\001 \001(\t\"\034\n\014TelePla"
-    "yRate\022\014\n\004rate\030\001 \001(\002\"r\n\014MoveTeleJReq\022\014\n\004j"
-    "pos\030\001 \003(\002\022\021\n\tvel_ratio\030\002 \001(\002\022\021\n\tacc_rati"
-    "o\030\003 \001(\002\022.\n\006method\030\n \001(\0162\036.Nrmk.IndyFrame"
-    "work.TeleMethod\"r\n\014MoveTeleLReq\022\014\n\004tpos\030"
-    "\001 \003(\002\022\021\n\tvel_ratio\030\002 \001(\002\022\021\n\tacc_ratio\030\003 "
-    "\001(\002\022.\n\006method\030\n \001(\0162\036.Nrmk.IndyFramework"
-    ".TeleMethod\"\310\002\n\tMoveLFReq\022+\n\006target\030\001 \001("
-    "\0132\033.Nrmk.IndyFramework.TargetP\0222\n\010blendi"
-    "ng\030\002 \001(\0132 .Nrmk.IndyFramework.BlendingTy"
-    "pe\022\021\n\tvel_ratio\030\003 \001(\002\022\021\n\tacc_ratio\030\004 \001(\002"
-    "\0226\n\010vel_type\030\005 \001(\0162$.Nrmk.IndyFramework."
-    "VelocityModeType\022\021\n\tdes_force\030\006 \003(\002\022\025\n\re"
-    "nabled_force\030\007 \003(\010\022;\n\016post_condition\030\024 \001"
-    "(\0132#.Nrmk.IndyFramework.MotionCondition\022"
-    "\025\n\rteaching_mode\030\036 \001(\010\"\030\n\tMoveFLRes\022\013\n\003m"
-    "sg\030d \001(\t\"\243\001\n\027TransformedFTSensorData\022\r\n\005"
-    "ft_Fx\030\001 \001(\002\022\r\n\005ft_Fy\030\002 \001(\002\022\r\n\005ft_Fz\030\003 \001("
-    "\002\022\r\n\005ft_Tx\030\004 \001(\002\022\r\n\005ft_Ty\030\005 \001(\002\022\r\n\005ft_Tz"
-    "\030\006 \001(\002\022.\n\010response\030d \001(\0132\034.Nrmk.IndyFram"
-    "ework.Response\"\205\001\n\027ControlInferenceDataS"
-    "et\022\020\n\010infdata0\030\001 \003(\002\022\020\n\010infdata1\030\002 \003(\002\022\020"
-    "\n\010infdata2\030\003 \003(\002\022\020\n\010infdata3\030\004 \003(\002\022\020\n\010in"
-    "fdata4\030\005 \003(\002\022\020\n\010infdata5\030\006 \003(\002*7\n\rJointB"
-    "aseType\022\022\n\016ABSOLUTE_JOINT\020\000\022\022\n\016RELATIVE_"
-    "JOINT\020\001*B\n\014TaskBaseType\022\021\n\rABSOLUTE_TASK"
-    "\020\000\022\021\n\rRELATIVE_TASK\020\001\022\014\n\010TCP_TASK\020\002*J\n\020V"
-    "elocityModeType\022\021\n\rTIME_ORIENTED\020\000\022\021\n\rDI"
-    "SP_ORIENTED\020\001\022\020\n\014ROT_ORIENTED\020\002*5\n\023Circu"
-    "larSettingType\022\r\n\tPOINT_SET\020\000\022\017\n\013CENTER_"
-    "AXIS\020\001*:\n\022CircularMovingType\022\014\n\010CONSTANT"
-    "\020\000\022\n\n\006RADIAL\020\001\022\n\n\006SMOOTH\020\002*j\n\010TeleMode\022\021"
-    "\n\rTELE_INACTIVE\020\000\022\016\n\nTELE_CALIB\020\001\022\017\n\013TEL"
-    "E_RECORD\020\002\022\r\n\tTELE_PLAY\020\003\022\014\n\010TELE_RAW\020\n\022"
-    "\r\n\tTELE_MOVE\020\024*\233\001\n\nTeleMethod\022\026\n\022TELE_TA"
-    "SK_ABSOLUTE\020\000\022\026\n\022TELE_TASK_RELATIVE\020\001\022\021\n"
-    "\rTELE_TASK_TCP\020\002\022\027\n\023TELE_JOINT_ABSOLUTE\020"
-    "\n\022\027\n\023TELE_JOINT_RELATIVE\020\013\022\030\n\024TELE_RECOR"
-    "D_ABSOLUTE\020\024b\006proto3"
+    "ork.Response\"$\n\024ForwardKinematicsReq\022\014\n\004"
+    "jpos\030\001 \003(\002\"T\n\024ForwardKinematicsRes\022\014\n\004tp"
+    "os\030\001 \003(\002\022.\n\010response\030d \001(\0132\034.Nrmk.IndyFr"
+    "amework.Response\"c\n\033CheckAproachRetractV"
+    "alidReq\022\014\n\004tpos\030\001 \003(\002\022\021\n\tinit_jpos\030\002 \003(\002"
+    "\022\020\n\010pre_tpos\030\003 \003(\002\022\021\n\tpost_tpos\030\004 \003(\002\"\233\001"
+    "\n\033CheckAproachRetractValidRes\022\020\n\010is_vali"
+    "d\030\001 \001(\010\022\017\n\007tar_pos\030\002 \003(\002\022\024\n\014approach_pos"
+    "\030\003 \003(\002\022\023\n\013retract_pos\030\004 \003(\002\022.\n\010response\030"
+    "d \001(\0132\034.Nrmk.IndyFramework.Response\"\217\001\n\025"
+    "GetPalletPointListReq\022\014\n\004tpos\030\001 \003(\002\022\014\n\004j"
+    "pos\030\002 \003(\002\022\020\n\010pre_tpos\030\003 \003(\002\022\021\n\tpost_tpos"
+    "\030\004 \003(\002\022\026\n\016pallet_pattern\030\005 \001(\005\022\r\n\005width\030"
+    "\006 \001(\005\022\016\n\006height\030\007 \001(\005\"[\n\013PalletPoint\022\017\n\007"
+    "tar_pos\030\001 \003(\002\022\024\n\014approach_pos\030\002 \003(\002\022\023\n\013r"
+    "etract_pos\030\003 \003(\002\022\020\n\010tar_jpos\030\004 \003(\002\"\177\n\025Ge"
+    "tPalletPointListRes\0226\n\rpallet_points\030\001 \003"
+    "(\0132\037.Nrmk.IndyFramework.PalletPoint\022.\n\010r"
+    "esponse\030d \001(\0132\034.Nrmk.IndyFramework.Respo"
+    "nse\"s\n\030CalculateRelativePoseReq\022\021\n\tstart"
+    "_pos\030\001 \003(\002\022\017\n\007end_pos\030\002 \003(\002\0223\n\tbase_type"
+    "\030\003 \001(\0162 .Nrmk.IndyFramework.TaskBaseType"
+    "\"`\n\030CalculateRelativePoseRes\022\024\n\014relative"
+    "_pos\030\001 \003(\002\022.\n\010response\030d \001(\0132\034.Nrmk.Indy"
+    "Framework.Response\"|\n\032CalculateCurrentPo"
+    "seRelReq\022\023\n\013current_pos\030\001 \003(\002\022\024\n\014relativ"
+    "e_pos\030\002 \003(\002\0223\n\tbase_type\030\003 \001(\0162 .Nrmk.In"
+    "dyFramework.TaskBaseType\"d\n\032CalculateCur"
+    "rentPoseRelRes\022\026\n\016calculated_pos\030\001 \003(\002\022."
+    "\n\010response\030d \001(\0132\034.Nrmk.IndyFramework.Re"
+    "sponse\"\262\001\n\014TeleOpDevice\022\014\n\004name\030\001 \001(\t\022\?\n"
+    "\004type\030\002 \001(\01621.Nrmk.IndyFramework.TeleOpD"
+    "evice.TeleOpDeviceType\022\n\n\002ip\030\003 \001(\t\022\014\n\004po"
+    "rt\030\004 \001(\r\022\021\n\tconnected\030\005 \001(\010\"&\n\020TeleOpDev"
+    "iceType\022\010\n\004NONE\020\000\022\010\n\004VIVE\020\001\"i\n\013TeleOpSta"
+    "te\022*\n\004mode\030\001 \001(\0162\034.Nrmk.IndyFramework.Te"
+    "leMode\022.\n\006method\030\002 \001(\0162\036.Nrmk.IndyFramew"
+    "ork.TeleMethod\"E\n\005TeleP\022\014\n\004tpos\030\001 \003(\002\022.\n"
+    "\010response\030d \001(\0132\034.Nrmk.IndyFramework.Res"
+    "ponse\"O\n\016TeleOpFileList\022\r\n\005files\030\001 \003(\t\022."
+    "\n\010response\030d \001(\0132\034.Nrmk.IndyFramework.Re"
+    "sponse\"\033\n\013TeleFileReq\022\014\n\004name\030\001 \001(\t\"\034\n\014T"
+    "elePlayRate\022\014\n\004rate\030\001 \001(\002\"r\n\014MoveTeleJRe"
+    "q\022\014\n\004jpos\030\001 \003(\002\022\021\n\tvel_ratio\030\002 \001(\002\022\021\n\tac"
+    "c_ratio\030\003 \001(\002\022.\n\006method\030\n \001(\0162\036.Nrmk.Ind"
+    "yFramework.TeleMethod\"r\n\014MoveTeleLReq\022\014\n"
+    "\004tpos\030\001 \003(\002\022\021\n\tvel_ratio\030\002 \001(\002\022\021\n\tacc_ra"
+    "tio\030\003 \001(\002\022.\n\006method\030\n \001(\0162\036.Nrmk.IndyFra"
+    "mework.TeleMethod\"H\n\014ForceModeReq\022\016\n\006ena"
+    "ble\030\001 \001(\010\022\021\n\tdes_force\030\002 \003(\002\022\025\n\renabled_"
+    "force\030\003 \003(\010\"\243\001\n\027TransformedFTSensorData\022"
+    "\r\n\005ft_Fx\030\001 \001(\002\022\r\n\005ft_Fy\030\002 \001(\002\022\r\n\005ft_Fz\030\003"
+    " \001(\002\022\r\n\005ft_Tx\030\004 \001(\002\022\r\n\005ft_Ty\030\005 \001(\002\022\r\n\005ft"
+    "_Tz\030\006 \001(\002\022.\n\010response\030d \001(\0132\034.Nrmk.IndyF"
+    "ramework.Response\"3\n\016ComplianceMode\022\016\n\006e"
+    "nable\030\001 \001(\010\022\021\n\tstiffness\030\002 \003(\005\"_\n\010BusEve"
+    "nt\022\020\n\010event_id\030\001 \001(\004\022\016\n\006b_data\030\002 \003(\010\022\016\n\006"
+    "i_data\030\003 \003(\005\022\016\n\006f_data\030\004 \003(\002\022\021\n\ttext_dat"
+    "a\030\005 \001(\t\"5\n\020CatchBusEventReq\022\020\n\010event_id\030"
+    "\001 \001(\004\022\017\n\007timeout\030\002 \001(\002\"\310\002\n\tMoveLFReq\022+\n\006"
+    "target\030\001 \001(\0132\033.Nrmk.IndyFramework.Target"
+    "P\0222\n\010blending\030\002 \001(\0132 .Nrmk.IndyFramework"
+    ".BlendingType\022\021\n\tvel_ratio\030\003 \001(\002\022\021\n\tacc_"
+    "ratio\030\004 \001(\002\0226\n\010vel_type\030\005 \001(\0162$.Nrmk.Ind"
+    "yFramework.VelocityModeType\022\021\n\tdes_force"
+    "\030\006 \003(\002\022\025\n\renabled_force\030\007 \003(\010\022;\n\016post_co"
+    "ndition\030\024 \001(\0132#.Nrmk.IndyFramework.Motio"
+    "nCondition\022\025\n\rteaching_mode\030\036 \001(\010\"\030\n\tMov"
+    "eFLRes\022\013\n\003msg\030d \001(\t\"\205\001\n\027ControlInference"
+    "DataSet\022\020\n\010infdata0\030\001 \003(\002\022\020\n\010infdata1\030\002 "
+    "\003(\002\022\020\n\010infdata2\030\003 \003(\002\022\020\n\010infdata3\030\004 \003(\002\022"
+    "\020\n\010infdata4\030\005 \003(\002\022\020\n\010infdata5\030\006 \003(\002*7\n\rJ"
+    "ointBaseType\022\022\n\016ABSOLUTE_JOINT\020\000\022\022\n\016RELA"
+    "TIVE_JOINT\020\001*B\n\014TaskBaseType\022\021\n\rABSOLUTE"
+    "_TASK\020\000\022\021\n\rRELATIVE_TASK\020\001\022\014\n\010TCP_TASK\020\002"
+    "*J\n\020VelocityModeType\022\021\n\rTIME_ORIENTED\020\000\022"
+    "\021\n\rDISP_ORIENTED\020\001\022\020\n\014ROT_ORIENTED\020\002*5\n\023"
+    "CircularSettingType\022\r\n\tPOINT_SET\020\000\022\017\n\013CE"
+    "NTER_AXIS\020\001*:\n\022CircularMovingType\022\014\n\010CON"
+    "STANT\020\000\022\n\n\006RADIAL\020\001\022\n\n\006SMOOTH\020\002*j\n\010TeleM"
+    "ode\022\021\n\rTELE_INACTIVE\020\000\022\016\n\nTELE_CALIB\020\001\022\017"
+    "\n\013TELE_RECORD\020\002\022\r\n\tTELE_PLAY\020\003\022\014\n\010TELE_R"
+    "AW\020\n\022\r\n\tTELE_MOVE\020\024*\233\001\n\nTeleMethod\022\026\n\022TE"
+    "LE_TASK_ABSOLUTE\020\000\022\026\n\022TELE_TASK_RELATIVE"
+    "\020\001\022\021\n\rTELE_TASK_TCP\020\002\022\027\n\023TELE_JOINT_ABSO"
+    "LUTE\020\n\022\027\n\023TELE_JOINT_RELATIVE\020\013\022\030\n\024TELE_"
+    "RECORD_ABSOLUTE\020\024b\006proto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_control_5fmsgs_2eproto_deps[2] =
     {
@@ -2763,13 +2830,13 @@ static ::absl::once_flag descriptor_table_control_5fmsgs_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_control_5fmsgs_2eproto = {
     false,
     false,
-    10660,
+    9785,
     descriptor_table_protodef_control_5fmsgs_2eproto,
     "control_msgs.proto",
     &descriptor_table_control_5fmsgs_2eproto_once,
     descriptor_table_control_5fmsgs_2eproto_deps,
     2,
-    71,
+    75,
     schemas,
     file_default_instances,
     TableStruct_control_5fmsgs_2eproto::offsets,
@@ -9894,18 +9961,6 @@ void WaitIOReq::clear_end_di_list() {
 void WaitIOReq::clear_end_do_list() {
   _internal_mutable_end_do_list()->Clear();
 }
-void WaitIOReq::clear_set_do_list() {
-  _internal_mutable_set_do_list()->Clear();
-}
-void WaitIOReq::clear_set_end_do_list() {
-  _internal_mutable_set_end_do_list()->Clear();
-}
-void WaitIOReq::clear_set_ao_list() {
-  _internal_mutable_set_ao_list()->Clear();
-}
-void WaitIOReq::clear_set_end_ao_list() {
-  _internal_mutable_set_end_ao_list()->Clear();
-}
 WaitIOReq::WaitIOReq(::google::protobuf::Arena* arena)
     : ::google::protobuf::Message(arena) {
   SharedCtor(arena);
@@ -9919,10 +9974,6 @@ WaitIOReq::WaitIOReq(const WaitIOReq& from) : ::google::protobuf::Message() {
       decltype(_impl_.do_list_){from._impl_.do_list_},
       decltype(_impl_.end_di_list_){from._impl_.end_di_list_},
       decltype(_impl_.end_do_list_){from._impl_.end_do_list_},
-      decltype(_impl_.set_do_list_){from._impl_.set_do_list_},
-      decltype(_impl_.set_end_do_list_){from._impl_.set_end_do_list_},
-      decltype(_impl_.set_ao_list_){from._impl_.set_ao_list_},
-      decltype(_impl_.set_end_ao_list_){from._impl_.set_end_ao_list_},
       decltype(_impl_.conjunction_){},
       /*decltype(_impl_._cached_size_)*/ {},
   };
@@ -9939,10 +9990,6 @@ inline void WaitIOReq::SharedCtor(::_pb::Arena* arena) {
       decltype(_impl_.do_list_){arena},
       decltype(_impl_.end_di_list_){arena},
       decltype(_impl_.end_do_list_){arena},
-      decltype(_impl_.set_do_list_){arena},
-      decltype(_impl_.set_end_do_list_){arena},
-      decltype(_impl_.set_ao_list_){arena},
-      decltype(_impl_.set_end_ao_list_){arena},
       decltype(_impl_.conjunction_){0},
       /*decltype(_impl_._cached_size_)*/ {},
   };
@@ -9958,10 +10005,6 @@ inline void WaitIOReq::SharedDtor() {
   _impl_.do_list_.~RepeatedPtrField();
   _impl_.end_di_list_.~RepeatedPtrField();
   _impl_.end_do_list_.~RepeatedPtrField();
-  _impl_.set_do_list_.~RepeatedPtrField();
-  _impl_.set_end_do_list_.~RepeatedPtrField();
-  _impl_.set_ao_list_.~RepeatedPtrField();
-  _impl_.set_end_ao_list_.~RepeatedPtrField();
 }
 void WaitIOReq::SetCachedSize(int size) const {
   _impl_._cached_size_.Set(size);
@@ -9977,10 +10020,6 @@ PROTOBUF_NOINLINE void WaitIOReq::Clear() {
   _internal_mutable_do_list()->Clear();
   _internal_mutable_end_di_list()->Clear();
   _internal_mutable_end_do_list()->Clear();
-  _internal_mutable_set_do_list()->Clear();
-  _internal_mutable_set_end_do_list()->Clear();
-  _internal_mutable_set_ao_list()->Clear();
-  _internal_mutable_set_end_ao_list()->Clear();
   _impl_.conjunction_ = 0;
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
@@ -9993,16 +10032,16 @@ const char* WaitIOReq::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<4, 9, 8, 0, 2> WaitIOReq::_table_ = {
+const ::_pbi::TcParseTable<3, 5, 4, 0, 2> WaitIOReq::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
-    9, 120,  // max_field_number, fast_idx_mask
+    5, 56,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294966784,  // skipmap
+    4294967264,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    9,  // num_field_entries
-    8,  // num_aux_entries
+    5,  // num_field_entries
+    4,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     &_WaitIOReq_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
@@ -10023,22 +10062,6 @@ const ::_pbi::TcParseTable<4, 9, 8, 0, 2> WaitIOReq::_table_ = {
     // int32 conjunction = 5;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(WaitIOReq, _impl_.conjunction_), 63>(),
      {40, 63, 0, PROTOBUF_FIELD_OFFSET(WaitIOReq, _impl_.conjunction_)}},
-    // repeated .Nrmk.IndyFramework.DigitalSignal set_do_list = 6;
-    {::_pbi::TcParser::FastMtR1,
-     {50, 63, 4, PROTOBUF_FIELD_OFFSET(WaitIOReq, _impl_.set_do_list_)}},
-    // repeated .Nrmk.IndyFramework.DigitalSignal set_end_do_list = 7;
-    {::_pbi::TcParser::FastMtR1,
-     {58, 63, 5, PROTOBUF_FIELD_OFFSET(WaitIOReq, _impl_.set_end_do_list_)}},
-    // repeated .Nrmk.IndyFramework.AnalogSignal set_ao_list = 8;
-    {::_pbi::TcParser::FastMtR1,
-     {66, 63, 6, PROTOBUF_FIELD_OFFSET(WaitIOReq, _impl_.set_ao_list_)}},
-    // repeated .Nrmk.IndyFramework.AnalogSignal set_end_ao_list = 9;
-    {::_pbi::TcParser::FastMtR1,
-     {74, 63, 7, PROTOBUF_FIELD_OFFSET(WaitIOReq, _impl_.set_end_ao_list_)}},
-    {::_pbi::TcParser::MiniParse, {}},
-    {::_pbi::TcParser::MiniParse, {}},
-    {::_pbi::TcParser::MiniParse, {}},
-    {::_pbi::TcParser::MiniParse, {}},
     {::_pbi::TcParser::MiniParse, {}},
     {::_pbi::TcParser::MiniParse, {}},
   }}, {{
@@ -10059,27 +10082,11 @@ const ::_pbi::TcParseTable<4, 9, 8, 0, 2> WaitIOReq::_table_ = {
     // int32 conjunction = 5;
     {PROTOBUF_FIELD_OFFSET(WaitIOReq, _impl_.conjunction_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
-    // repeated .Nrmk.IndyFramework.DigitalSignal set_do_list = 6;
-    {PROTOBUF_FIELD_OFFSET(WaitIOReq, _impl_.set_do_list_), 0, 4,
-    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
-    // repeated .Nrmk.IndyFramework.DigitalSignal set_end_do_list = 7;
-    {PROTOBUF_FIELD_OFFSET(WaitIOReq, _impl_.set_end_do_list_), 0, 5,
-    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
-    // repeated .Nrmk.IndyFramework.AnalogSignal set_ao_list = 8;
-    {PROTOBUF_FIELD_OFFSET(WaitIOReq, _impl_.set_ao_list_), 0, 6,
-    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
-    // repeated .Nrmk.IndyFramework.AnalogSignal set_end_ao_list = 9;
-    {PROTOBUF_FIELD_OFFSET(WaitIOReq, _impl_.set_end_ao_list_), 0, 7,
-    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
   }}, {{
     {::_pbi::TcParser::GetTable<::Nrmk::IndyFramework::DigitalSignal>()},
     {::_pbi::TcParser::GetTable<::Nrmk::IndyFramework::DigitalSignal>()},
     {::_pbi::TcParser::GetTable<::Nrmk::IndyFramework::DigitalSignal>()},
     {::_pbi::TcParser::GetTable<::Nrmk::IndyFramework::DigitalSignal>()},
-    {::_pbi::TcParser::GetTable<::Nrmk::IndyFramework::DigitalSignal>()},
-    {::_pbi::TcParser::GetTable<::Nrmk::IndyFramework::DigitalSignal>()},
-    {::_pbi::TcParser::GetTable<::Nrmk::IndyFramework::AnalogSignal>()},
-    {::_pbi::TcParser::GetTable<::Nrmk::IndyFramework::AnalogSignal>()},
   }}, {{
   }},
 };
@@ -10130,38 +10137,6 @@ const ::_pbi::TcParseTable<4, 9, 8, 0, 2> WaitIOReq::_table_ = {
             stream, this->_internal_conjunction(), target);
   }
 
-  // repeated .Nrmk.IndyFramework.DigitalSignal set_do_list = 6;
-  for (unsigned i = 0,
-      n = static_cast<unsigned>(this->_internal_set_do_list_size()); i < n; i++) {
-    const auto& repfield = this->_internal_set_do_list().Get(i);
-    target = ::google::protobuf::internal::WireFormatLite::
-        InternalWriteMessage(6, repfield, repfield.GetCachedSize(), target, stream);
-  }
-
-  // repeated .Nrmk.IndyFramework.DigitalSignal set_end_do_list = 7;
-  for (unsigned i = 0,
-      n = static_cast<unsigned>(this->_internal_set_end_do_list_size()); i < n; i++) {
-    const auto& repfield = this->_internal_set_end_do_list().Get(i);
-    target = ::google::protobuf::internal::WireFormatLite::
-        InternalWriteMessage(7, repfield, repfield.GetCachedSize(), target, stream);
-  }
-
-  // repeated .Nrmk.IndyFramework.AnalogSignal set_ao_list = 8;
-  for (unsigned i = 0,
-      n = static_cast<unsigned>(this->_internal_set_ao_list_size()); i < n; i++) {
-    const auto& repfield = this->_internal_set_ao_list().Get(i);
-    target = ::google::protobuf::internal::WireFormatLite::
-        InternalWriteMessage(8, repfield, repfield.GetCachedSize(), target, stream);
-  }
-
-  // repeated .Nrmk.IndyFramework.AnalogSignal set_end_ao_list = 9;
-  for (unsigned i = 0,
-      n = static_cast<unsigned>(this->_internal_set_end_ao_list_size()); i < n; i++) {
-    const auto& repfield = this->_internal_set_end_ao_list().Get(i);
-    target = ::google::protobuf::internal::WireFormatLite::
-        InternalWriteMessage(9, repfield, repfield.GetCachedSize(), target, stream);
-  }
-
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target =
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
@@ -10203,30 +10178,6 @@ const ::_pbi::TcParseTable<4, 9, 8, 0, 2> WaitIOReq::_table_ = {
     total_size +=
       ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
   }
-  // repeated .Nrmk.IndyFramework.DigitalSignal set_do_list = 6;
-  total_size += 1UL * this->_internal_set_do_list_size();
-  for (const auto& msg : this->_internal_set_do_list()) {
-    total_size +=
-      ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
-  }
-  // repeated .Nrmk.IndyFramework.DigitalSignal set_end_do_list = 7;
-  total_size += 1UL * this->_internal_set_end_do_list_size();
-  for (const auto& msg : this->_internal_set_end_do_list()) {
-    total_size +=
-      ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
-  }
-  // repeated .Nrmk.IndyFramework.AnalogSignal set_ao_list = 8;
-  total_size += 1UL * this->_internal_set_ao_list_size();
-  for (const auto& msg : this->_internal_set_ao_list()) {
-    total_size +=
-      ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
-  }
-  // repeated .Nrmk.IndyFramework.AnalogSignal set_end_ao_list = 9;
-  total_size += 1UL * this->_internal_set_end_ao_list_size();
-  for (const auto& msg : this->_internal_set_end_ao_list()) {
-    total_size +=
-      ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
-  }
   // int32 conjunction = 5;
   if (this->_internal_conjunction() != 0) {
     total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
@@ -10255,10 +10206,6 @@ void WaitIOReq::MergeImpl(::google::protobuf::Message& to_msg, const ::google::p
   _this->_internal_mutable_do_list()->MergeFrom(from._internal_do_list());
   _this->_internal_mutable_end_di_list()->MergeFrom(from._internal_end_di_list());
   _this->_internal_mutable_end_do_list()->MergeFrom(from._internal_end_do_list());
-  _this->_internal_mutable_set_do_list()->MergeFrom(from._internal_set_do_list());
-  _this->_internal_mutable_set_end_do_list()->MergeFrom(from._internal_set_end_do_list());
-  _this->_internal_mutable_set_ao_list()->MergeFrom(from._internal_set_ao_list());
-  _this->_internal_mutable_set_end_ao_list()->MergeFrom(from._internal_set_end_ao_list());
   if (from._internal_conjunction() != 0) {
     _this->_internal_set_conjunction(from._internal_conjunction());
   }
@@ -10283,10 +10230,6 @@ void WaitIOReq::InternalSwap(WaitIOReq* other) {
   _impl_.do_list_.InternalSwap(&other->_impl_.do_list_);
   _impl_.end_di_list_.InternalSwap(&other->_impl_.end_di_list_);
   _impl_.end_do_list_.InternalSwap(&other->_impl_.end_do_list_);
-  _impl_.set_do_list_.InternalSwap(&other->_impl_.set_do_list_);
-  _impl_.set_end_do_list_.InternalSwap(&other->_impl_.set_end_do_list_);
-  _impl_.set_ao_list_.InternalSwap(&other->_impl_.set_ao_list_);
-  _impl_.set_end_ao_list_.InternalSwap(&other->_impl_.set_end_ao_list_);
         swap(_impl_.conjunction_, other->_impl_.conjunction_);
 }
 
@@ -10301,47 +10244,20 @@ class WaitTimeReq::_Internal {
  public:
 };
 
-void WaitTimeReq::clear_set_do_list() {
-  _internal_mutable_set_do_list()->Clear();
-}
-void WaitTimeReq::clear_set_end_do_list() {
-  _internal_mutable_set_end_do_list()->Clear();
-}
-void WaitTimeReq::clear_set_ao_list() {
-  _internal_mutable_set_ao_list()->Clear();
-}
-void WaitTimeReq::clear_set_end_ao_list() {
-  _internal_mutable_set_end_ao_list()->Clear();
-}
 WaitTimeReq::WaitTimeReq(::google::protobuf::Arena* arena)
     : ::google::protobuf::Message(arena) {
   SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:Nrmk.IndyFramework.WaitTimeReq)
 }
-WaitTimeReq::WaitTimeReq(const WaitTimeReq& from) : ::google::protobuf::Message() {
-  WaitTimeReq* const _this = this;
-  (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.set_do_list_){from._impl_.set_do_list_},
-      decltype(_impl_.set_end_do_list_){from._impl_.set_end_do_list_},
-      decltype(_impl_.set_ao_list_){from._impl_.set_ao_list_},
-      decltype(_impl_.set_end_ao_list_){from._impl_.set_end_ao_list_},
-      decltype(_impl_.time_){},
-      /*decltype(_impl_._cached_size_)*/ {},
-  };
+WaitTimeReq::WaitTimeReq(const WaitTimeReq& from)
+    : ::google::protobuf::Message(), _impl_(from._impl_) {
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
-  _this->_impl_.time_ = from._impl_.time_;
-
   // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.WaitTimeReq)
 }
 inline void WaitTimeReq::SharedCtor(::_pb::Arena* arena) {
   (void)arena;
   new (&_impl_) Impl_{
-      decltype(_impl_.set_do_list_){arena},
-      decltype(_impl_.set_end_do_list_){arena},
-      decltype(_impl_.set_ao_list_){arena},
-      decltype(_impl_.set_end_ao_list_){arena},
       decltype(_impl_.time_){0},
       /*decltype(_impl_._cached_size_)*/ {},
   };
@@ -10353,10 +10269,6 @@ WaitTimeReq::~WaitTimeReq() {
 }
 inline void WaitTimeReq::SharedDtor() {
   ABSL_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.set_do_list_.~RepeatedPtrField();
-  _impl_.set_end_do_list_.~RepeatedPtrField();
-  _impl_.set_ao_list_.~RepeatedPtrField();
-  _impl_.set_end_ao_list_.~RepeatedPtrField();
 }
 void WaitTimeReq::SetCachedSize(int size) const {
   _impl_._cached_size_.Set(size);
@@ -10368,10 +10280,6 @@ PROTOBUF_NOINLINE void WaitTimeReq::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _internal_mutable_set_do_list()->Clear();
-  _internal_mutable_set_end_do_list()->Clear();
-  _internal_mutable_set_ao_list()->Clear();
-  _internal_mutable_set_end_ao_list()->Clear();
   _impl_.time_ = 0;
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
@@ -10384,62 +10292,32 @@ const char* WaitTimeReq::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<3, 5, 4, 0, 2> WaitTimeReq::_table_ = {
+const ::_pbi::TcParseTable<0, 1, 0, 0, 2> WaitTimeReq::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
-    5, 56,  // max_field_number, fast_idx_mask
+    1, 0,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967264,  // skipmap
+    4294967294,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    5,  // num_field_entries
-    4,  // num_aux_entries
-    offsetof(decltype(_table_), aux_entries),
+    1,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
     &_WaitTimeReq_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
-    {::_pbi::TcParser::MiniParse, {}},
     // float time = 1;
     {::_pbi::TcParser::FastF32S1,
      {13, 63, 0, PROTOBUF_FIELD_OFFSET(WaitTimeReq, _impl_.time_)}},
-    // repeated .Nrmk.IndyFramework.DigitalSignal set_do_list = 2;
-    {::_pbi::TcParser::FastMtR1,
-     {18, 63, 0, PROTOBUF_FIELD_OFFSET(WaitTimeReq, _impl_.set_do_list_)}},
-    // repeated .Nrmk.IndyFramework.DigitalSignal set_end_do_list = 3;
-    {::_pbi::TcParser::FastMtR1,
-     {26, 63, 1, PROTOBUF_FIELD_OFFSET(WaitTimeReq, _impl_.set_end_do_list_)}},
-    // repeated .Nrmk.IndyFramework.AnalogSignal set_ao_list = 4;
-    {::_pbi::TcParser::FastMtR1,
-     {34, 63, 2, PROTOBUF_FIELD_OFFSET(WaitTimeReq, _impl_.set_ao_list_)}},
-    // repeated .Nrmk.IndyFramework.AnalogSignal set_end_ao_list = 5;
-    {::_pbi::TcParser::FastMtR1,
-     {42, 63, 3, PROTOBUF_FIELD_OFFSET(WaitTimeReq, _impl_.set_end_ao_list_)}},
-    {::_pbi::TcParser::MiniParse, {}},
-    {::_pbi::TcParser::MiniParse, {}},
   }}, {{
     65535, 65535
   }}, {{
     // float time = 1;
     {PROTOBUF_FIELD_OFFSET(WaitTimeReq, _impl_.time_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kFloat)},
-    // repeated .Nrmk.IndyFramework.DigitalSignal set_do_list = 2;
-    {PROTOBUF_FIELD_OFFSET(WaitTimeReq, _impl_.set_do_list_), 0, 0,
-    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
-    // repeated .Nrmk.IndyFramework.DigitalSignal set_end_do_list = 3;
-    {PROTOBUF_FIELD_OFFSET(WaitTimeReq, _impl_.set_end_do_list_), 0, 1,
-    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
-    // repeated .Nrmk.IndyFramework.AnalogSignal set_ao_list = 4;
-    {PROTOBUF_FIELD_OFFSET(WaitTimeReq, _impl_.set_ao_list_), 0, 2,
-    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
-    // repeated .Nrmk.IndyFramework.AnalogSignal set_end_ao_list = 5;
-    {PROTOBUF_FIELD_OFFSET(WaitTimeReq, _impl_.set_end_ao_list_), 0, 3,
-    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
-  }}, {{
-    {::_pbi::TcParser::GetTable<::Nrmk::IndyFramework::DigitalSignal>()},
-    {::_pbi::TcParser::GetTable<::Nrmk::IndyFramework::DigitalSignal>()},
-    {::_pbi::TcParser::GetTable<::Nrmk::IndyFramework::AnalogSignal>()},
-    {::_pbi::TcParser::GetTable<::Nrmk::IndyFramework::AnalogSignal>()},
-  }}, {{
+  }},
+  // no aux_entries
+  {{
   }},
 };
 
@@ -10462,38 +10340,6 @@ const ::_pbi::TcParseTable<3, 5, 4, 0, 2> WaitTimeReq::_table_ = {
         1, this->_internal_time(), target);
   }
 
-  // repeated .Nrmk.IndyFramework.DigitalSignal set_do_list = 2;
-  for (unsigned i = 0,
-      n = static_cast<unsigned>(this->_internal_set_do_list_size()); i < n; i++) {
-    const auto& repfield = this->_internal_set_do_list().Get(i);
-    target = ::google::protobuf::internal::WireFormatLite::
-        InternalWriteMessage(2, repfield, repfield.GetCachedSize(), target, stream);
-  }
-
-  // repeated .Nrmk.IndyFramework.DigitalSignal set_end_do_list = 3;
-  for (unsigned i = 0,
-      n = static_cast<unsigned>(this->_internal_set_end_do_list_size()); i < n; i++) {
-    const auto& repfield = this->_internal_set_end_do_list().Get(i);
-    target = ::google::protobuf::internal::WireFormatLite::
-        InternalWriteMessage(3, repfield, repfield.GetCachedSize(), target, stream);
-  }
-
-  // repeated .Nrmk.IndyFramework.AnalogSignal set_ao_list = 4;
-  for (unsigned i = 0,
-      n = static_cast<unsigned>(this->_internal_set_ao_list_size()); i < n; i++) {
-    const auto& repfield = this->_internal_set_ao_list().Get(i);
-    target = ::google::protobuf::internal::WireFormatLite::
-        InternalWriteMessage(4, repfield, repfield.GetCachedSize(), target, stream);
-  }
-
-  // repeated .Nrmk.IndyFramework.AnalogSignal set_end_ao_list = 5;
-  for (unsigned i = 0,
-      n = static_cast<unsigned>(this->_internal_set_end_ao_list_size()); i < n; i++) {
-    const auto& repfield = this->_internal_set_end_ao_list().Get(i);
-    target = ::google::protobuf::internal::WireFormatLite::
-        InternalWriteMessage(5, repfield, repfield.GetCachedSize(), target, stream);
-  }
-
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target =
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
@@ -10511,30 +10357,6 @@ const ::_pbi::TcParseTable<3, 5, 4, 0, 2> WaitTimeReq::_table_ = {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // repeated .Nrmk.IndyFramework.DigitalSignal set_do_list = 2;
-  total_size += 1UL * this->_internal_set_do_list_size();
-  for (const auto& msg : this->_internal_set_do_list()) {
-    total_size +=
-      ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
-  }
-  // repeated .Nrmk.IndyFramework.DigitalSignal set_end_do_list = 3;
-  total_size += 1UL * this->_internal_set_end_do_list_size();
-  for (const auto& msg : this->_internal_set_end_do_list()) {
-    total_size +=
-      ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
-  }
-  // repeated .Nrmk.IndyFramework.AnalogSignal set_ao_list = 4;
-  total_size += 1UL * this->_internal_set_ao_list_size();
-  for (const auto& msg : this->_internal_set_ao_list()) {
-    total_size +=
-      ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
-  }
-  // repeated .Nrmk.IndyFramework.AnalogSignal set_end_ao_list = 5;
-  total_size += 1UL * this->_internal_set_end_ao_list_size();
-  for (const auto& msg : this->_internal_set_end_ao_list()) {
-    total_size +=
-      ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
-  }
   // float time = 1;
   static_assert(sizeof(::uint32_t) == sizeof(float),
                 "Code assumes ::uint32_t and float are the same size.");
@@ -10563,10 +10385,6 @@ void WaitTimeReq::MergeImpl(::google::protobuf::Message& to_msg, const ::google:
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_internal_mutable_set_do_list()->MergeFrom(from._internal_set_do_list());
-  _this->_internal_mutable_set_end_do_list()->MergeFrom(from._internal_set_end_do_list());
-  _this->_internal_mutable_set_ao_list()->MergeFrom(from._internal_set_ao_list());
-  _this->_internal_mutable_set_end_ao_list()->MergeFrom(from._internal_set_end_ao_list());
   static_assert(sizeof(::uint32_t) == sizeof(float),
                 "Code assumes ::uint32_t and float are the same size.");
   float tmp_time = from._internal_time();
@@ -10592,10 +10410,6 @@ PROTOBUF_NOINLINE bool WaitTimeReq::IsInitialized() const {
 void WaitTimeReq::InternalSwap(WaitTimeReq* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  _impl_.set_do_list_.InternalSwap(&other->_impl_.set_do_list_);
-  _impl_.set_end_do_list_.InternalSwap(&other->_impl_.set_end_do_list_);
-  _impl_.set_ao_list_.InternalSwap(&other->_impl_.set_ao_list_);
-  _impl_.set_end_ao_list_.InternalSwap(&other->_impl_.set_end_ao_list_);
         swap(_impl_.time_, other->_impl_.time_);
 }
 
@@ -10610,47 +10424,20 @@ class WaitProgressReq::_Internal {
  public:
 };
 
-void WaitProgressReq::clear_set_do_list() {
-  _internal_mutable_set_do_list()->Clear();
-}
-void WaitProgressReq::clear_set_end_do_list() {
-  _internal_mutable_set_end_do_list()->Clear();
-}
-void WaitProgressReq::clear_set_ao_list() {
-  _internal_mutable_set_ao_list()->Clear();
-}
-void WaitProgressReq::clear_set_end_ao_list() {
-  _internal_mutable_set_end_ao_list()->Clear();
-}
 WaitProgressReq::WaitProgressReq(::google::protobuf::Arena* arena)
     : ::google::protobuf::Message(arena) {
   SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:Nrmk.IndyFramework.WaitProgressReq)
 }
-WaitProgressReq::WaitProgressReq(const WaitProgressReq& from) : ::google::protobuf::Message() {
-  WaitProgressReq* const _this = this;
-  (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.set_do_list_){from._impl_.set_do_list_},
-      decltype(_impl_.set_end_do_list_){from._impl_.set_end_do_list_},
-      decltype(_impl_.set_ao_list_){from._impl_.set_ao_list_},
-      decltype(_impl_.set_end_ao_list_){from._impl_.set_end_ao_list_},
-      decltype(_impl_.progress_){},
-      /*decltype(_impl_._cached_size_)*/ {},
-  };
+WaitProgressReq::WaitProgressReq(const WaitProgressReq& from)
+    : ::google::protobuf::Message(), _impl_(from._impl_) {
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
-  _this->_impl_.progress_ = from._impl_.progress_;
-
   // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.WaitProgressReq)
 }
 inline void WaitProgressReq::SharedCtor(::_pb::Arena* arena) {
   (void)arena;
   new (&_impl_) Impl_{
-      decltype(_impl_.set_do_list_){arena},
-      decltype(_impl_.set_end_do_list_){arena},
-      decltype(_impl_.set_ao_list_){arena},
-      decltype(_impl_.set_end_ao_list_){arena},
       decltype(_impl_.progress_){0},
       /*decltype(_impl_._cached_size_)*/ {},
   };
@@ -10662,10 +10449,6 @@ WaitProgressReq::~WaitProgressReq() {
 }
 inline void WaitProgressReq::SharedDtor() {
   ABSL_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.set_do_list_.~RepeatedPtrField();
-  _impl_.set_end_do_list_.~RepeatedPtrField();
-  _impl_.set_ao_list_.~RepeatedPtrField();
-  _impl_.set_end_ao_list_.~RepeatedPtrField();
 }
 void WaitProgressReq::SetCachedSize(int size) const {
   _impl_._cached_size_.Set(size);
@@ -10677,10 +10460,6 @@ PROTOBUF_NOINLINE void WaitProgressReq::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _internal_mutable_set_do_list()->Clear();
-  _internal_mutable_set_end_do_list()->Clear();
-  _internal_mutable_set_ao_list()->Clear();
-  _internal_mutable_set_end_ao_list()->Clear();
   _impl_.progress_ = 0;
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
@@ -10693,62 +10472,32 @@ const char* WaitProgressReq::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<3, 5, 4, 0, 2> WaitProgressReq::_table_ = {
+const ::_pbi::TcParseTable<0, 1, 0, 0, 2> WaitProgressReq::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
-    5, 56,  // max_field_number, fast_idx_mask
+    1, 0,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967264,  // skipmap
+    4294967294,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    5,  // num_field_entries
-    4,  // num_aux_entries
-    offsetof(decltype(_table_), aux_entries),
+    1,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
     &_WaitProgressReq_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
-    {::_pbi::TcParser::MiniParse, {}},
     // int32 progress = 1;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(WaitProgressReq, _impl_.progress_), 63>(),
      {8, 63, 0, PROTOBUF_FIELD_OFFSET(WaitProgressReq, _impl_.progress_)}},
-    // repeated .Nrmk.IndyFramework.DigitalSignal set_do_list = 2;
-    {::_pbi::TcParser::FastMtR1,
-     {18, 63, 0, PROTOBUF_FIELD_OFFSET(WaitProgressReq, _impl_.set_do_list_)}},
-    // repeated .Nrmk.IndyFramework.DigitalSignal set_end_do_list = 3;
-    {::_pbi::TcParser::FastMtR1,
-     {26, 63, 1, PROTOBUF_FIELD_OFFSET(WaitProgressReq, _impl_.set_end_do_list_)}},
-    // repeated .Nrmk.IndyFramework.AnalogSignal set_ao_list = 4;
-    {::_pbi::TcParser::FastMtR1,
-     {34, 63, 2, PROTOBUF_FIELD_OFFSET(WaitProgressReq, _impl_.set_ao_list_)}},
-    // repeated .Nrmk.IndyFramework.AnalogSignal set_end_ao_list = 5;
-    {::_pbi::TcParser::FastMtR1,
-     {42, 63, 3, PROTOBUF_FIELD_OFFSET(WaitProgressReq, _impl_.set_end_ao_list_)}},
-    {::_pbi::TcParser::MiniParse, {}},
-    {::_pbi::TcParser::MiniParse, {}},
   }}, {{
     65535, 65535
   }}, {{
     // int32 progress = 1;
     {PROTOBUF_FIELD_OFFSET(WaitProgressReq, _impl_.progress_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
-    // repeated .Nrmk.IndyFramework.DigitalSignal set_do_list = 2;
-    {PROTOBUF_FIELD_OFFSET(WaitProgressReq, _impl_.set_do_list_), 0, 0,
-    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
-    // repeated .Nrmk.IndyFramework.DigitalSignal set_end_do_list = 3;
-    {PROTOBUF_FIELD_OFFSET(WaitProgressReq, _impl_.set_end_do_list_), 0, 1,
-    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
-    // repeated .Nrmk.IndyFramework.AnalogSignal set_ao_list = 4;
-    {PROTOBUF_FIELD_OFFSET(WaitProgressReq, _impl_.set_ao_list_), 0, 2,
-    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
-    // repeated .Nrmk.IndyFramework.AnalogSignal set_end_ao_list = 5;
-    {PROTOBUF_FIELD_OFFSET(WaitProgressReq, _impl_.set_end_ao_list_), 0, 3,
-    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
-  }}, {{
-    {::_pbi::TcParser::GetTable<::Nrmk::IndyFramework::DigitalSignal>()},
-    {::_pbi::TcParser::GetTable<::Nrmk::IndyFramework::DigitalSignal>()},
-    {::_pbi::TcParser::GetTable<::Nrmk::IndyFramework::AnalogSignal>()},
-    {::_pbi::TcParser::GetTable<::Nrmk::IndyFramework::AnalogSignal>()},
-  }}, {{
+  }},
+  // no aux_entries
+  {{
   }},
 };
 
@@ -10764,38 +10513,6 @@ const ::_pbi::TcParseTable<3, 5, 4, 0, 2> WaitProgressReq::_table_ = {
     target = ::google::protobuf::internal::WireFormatLite::
         WriteInt32ToArrayWithField<1>(
             stream, this->_internal_progress(), target);
-  }
-
-  // repeated .Nrmk.IndyFramework.DigitalSignal set_do_list = 2;
-  for (unsigned i = 0,
-      n = static_cast<unsigned>(this->_internal_set_do_list_size()); i < n; i++) {
-    const auto& repfield = this->_internal_set_do_list().Get(i);
-    target = ::google::protobuf::internal::WireFormatLite::
-        InternalWriteMessage(2, repfield, repfield.GetCachedSize(), target, stream);
-  }
-
-  // repeated .Nrmk.IndyFramework.DigitalSignal set_end_do_list = 3;
-  for (unsigned i = 0,
-      n = static_cast<unsigned>(this->_internal_set_end_do_list_size()); i < n; i++) {
-    const auto& repfield = this->_internal_set_end_do_list().Get(i);
-    target = ::google::protobuf::internal::WireFormatLite::
-        InternalWriteMessage(3, repfield, repfield.GetCachedSize(), target, stream);
-  }
-
-  // repeated .Nrmk.IndyFramework.AnalogSignal set_ao_list = 4;
-  for (unsigned i = 0,
-      n = static_cast<unsigned>(this->_internal_set_ao_list_size()); i < n; i++) {
-    const auto& repfield = this->_internal_set_ao_list().Get(i);
-    target = ::google::protobuf::internal::WireFormatLite::
-        InternalWriteMessage(4, repfield, repfield.GetCachedSize(), target, stream);
-  }
-
-  // repeated .Nrmk.IndyFramework.AnalogSignal set_end_ao_list = 5;
-  for (unsigned i = 0,
-      n = static_cast<unsigned>(this->_internal_set_end_ao_list_size()); i < n; i++) {
-    const auto& repfield = this->_internal_set_end_ao_list().Get(i);
-    target = ::google::protobuf::internal::WireFormatLite::
-        InternalWriteMessage(5, repfield, repfield.GetCachedSize(), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -10815,30 +10532,6 @@ const ::_pbi::TcParseTable<3, 5, 4, 0, 2> WaitProgressReq::_table_ = {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // repeated .Nrmk.IndyFramework.DigitalSignal set_do_list = 2;
-  total_size += 1UL * this->_internal_set_do_list_size();
-  for (const auto& msg : this->_internal_set_do_list()) {
-    total_size +=
-      ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
-  }
-  // repeated .Nrmk.IndyFramework.DigitalSignal set_end_do_list = 3;
-  total_size += 1UL * this->_internal_set_end_do_list_size();
-  for (const auto& msg : this->_internal_set_end_do_list()) {
-    total_size +=
-      ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
-  }
-  // repeated .Nrmk.IndyFramework.AnalogSignal set_ao_list = 4;
-  total_size += 1UL * this->_internal_set_ao_list_size();
-  for (const auto& msg : this->_internal_set_ao_list()) {
-    total_size +=
-      ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
-  }
-  // repeated .Nrmk.IndyFramework.AnalogSignal set_end_ao_list = 5;
-  total_size += 1UL * this->_internal_set_end_ao_list_size();
-  for (const auto& msg : this->_internal_set_end_ao_list()) {
-    total_size +=
-      ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
-  }
   // int32 progress = 1;
   if (this->_internal_progress() != 0) {
     total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
@@ -10863,10 +10556,6 @@ void WaitProgressReq::MergeImpl(::google::protobuf::Message& to_msg, const ::goo
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_internal_mutable_set_do_list()->MergeFrom(from._internal_set_do_list());
-  _this->_internal_mutable_set_end_do_list()->MergeFrom(from._internal_set_end_do_list());
-  _this->_internal_mutable_set_ao_list()->MergeFrom(from._internal_set_ao_list());
-  _this->_internal_mutable_set_end_ao_list()->MergeFrom(from._internal_set_end_ao_list());
   if (from._internal_progress() != 0) {
     _this->_internal_set_progress(from._internal_progress());
   }
@@ -10887,10 +10576,6 @@ PROTOBUF_NOINLINE bool WaitProgressReq::IsInitialized() const {
 void WaitProgressReq::InternalSwap(WaitProgressReq* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  _impl_.set_do_list_.InternalSwap(&other->_impl_.set_do_list_);
-  _impl_.set_end_do_list_.InternalSwap(&other->_impl_.set_end_do_list_);
-  _impl_.set_ao_list_.InternalSwap(&other->_impl_.set_ao_list_);
-  _impl_.set_end_ao_list_.InternalSwap(&other->_impl_.set_end_ao_list_);
         swap(_impl_.progress_, other->_impl_.progress_);
 }
 
@@ -10905,47 +10590,20 @@ class WaitTrajReq::_Internal {
  public:
 };
 
-void WaitTrajReq::clear_set_do_list() {
-  _internal_mutable_set_do_list()->Clear();
-}
-void WaitTrajReq::clear_set_end_do_list() {
-  _internal_mutable_set_end_do_list()->Clear();
-}
-void WaitTrajReq::clear_set_ao_list() {
-  _internal_mutable_set_ao_list()->Clear();
-}
-void WaitTrajReq::clear_set_end_ao_list() {
-  _internal_mutable_set_end_ao_list()->Clear();
-}
 WaitTrajReq::WaitTrajReq(::google::protobuf::Arena* arena)
     : ::google::protobuf::Message(arena) {
   SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:Nrmk.IndyFramework.WaitTrajReq)
 }
-WaitTrajReq::WaitTrajReq(const WaitTrajReq& from) : ::google::protobuf::Message() {
-  WaitTrajReq* const _this = this;
-  (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.set_do_list_){from._impl_.set_do_list_},
-      decltype(_impl_.set_end_do_list_){from._impl_.set_end_do_list_},
-      decltype(_impl_.set_ao_list_){from._impl_.set_ao_list_},
-      decltype(_impl_.set_end_ao_list_){from._impl_.set_end_ao_list_},
-      decltype(_impl_.traj_condition_){},
-      /*decltype(_impl_._cached_size_)*/ {},
-  };
+WaitTrajReq::WaitTrajReq(const WaitTrajReq& from)
+    : ::google::protobuf::Message(), _impl_(from._impl_) {
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
-  _this->_impl_.traj_condition_ = from._impl_.traj_condition_;
-
   // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.WaitTrajReq)
 }
 inline void WaitTrajReq::SharedCtor(::_pb::Arena* arena) {
   (void)arena;
   new (&_impl_) Impl_{
-      decltype(_impl_.set_do_list_){arena},
-      decltype(_impl_.set_end_do_list_){arena},
-      decltype(_impl_.set_ao_list_){arena},
-      decltype(_impl_.set_end_ao_list_){arena},
       decltype(_impl_.traj_condition_){0},
       /*decltype(_impl_._cached_size_)*/ {},
   };
@@ -10957,10 +10615,6 @@ WaitTrajReq::~WaitTrajReq() {
 }
 inline void WaitTrajReq::SharedDtor() {
   ABSL_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.set_do_list_.~RepeatedPtrField();
-  _impl_.set_end_do_list_.~RepeatedPtrField();
-  _impl_.set_ao_list_.~RepeatedPtrField();
-  _impl_.set_end_ao_list_.~RepeatedPtrField();
 }
 void WaitTrajReq::SetCachedSize(int size) const {
   _impl_._cached_size_.Set(size);
@@ -10972,10 +10626,6 @@ PROTOBUF_NOINLINE void WaitTrajReq::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _internal_mutable_set_do_list()->Clear();
-  _internal_mutable_set_end_do_list()->Clear();
-  _internal_mutable_set_ao_list()->Clear();
-  _internal_mutable_set_end_ao_list()->Clear();
   _impl_.traj_condition_ = 0;
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
@@ -10988,62 +10638,32 @@ const char* WaitTrajReq::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<3, 5, 4, 0, 2> WaitTrajReq::_table_ = {
+const ::_pbi::TcParseTable<0, 1, 0, 0, 2> WaitTrajReq::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
-    5, 56,  // max_field_number, fast_idx_mask
+    1, 0,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967264,  // skipmap
+    4294967294,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    5,  // num_field_entries
-    4,  // num_aux_entries
-    offsetof(decltype(_table_), aux_entries),
+    1,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
     &_WaitTrajReq_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
-    {::_pbi::TcParser::MiniParse, {}},
     // .Nrmk.IndyFramework.TrajCondition traj_condition = 1;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(WaitTrajReq, _impl_.traj_condition_), 63>(),
      {8, 63, 0, PROTOBUF_FIELD_OFFSET(WaitTrajReq, _impl_.traj_condition_)}},
-    // repeated .Nrmk.IndyFramework.DigitalSignal set_do_list = 2;
-    {::_pbi::TcParser::FastMtR1,
-     {18, 63, 0, PROTOBUF_FIELD_OFFSET(WaitTrajReq, _impl_.set_do_list_)}},
-    // repeated .Nrmk.IndyFramework.DigitalSignal set_end_do_list = 3;
-    {::_pbi::TcParser::FastMtR1,
-     {26, 63, 1, PROTOBUF_FIELD_OFFSET(WaitTrajReq, _impl_.set_end_do_list_)}},
-    // repeated .Nrmk.IndyFramework.AnalogSignal set_ao_list = 4;
-    {::_pbi::TcParser::FastMtR1,
-     {34, 63, 2, PROTOBUF_FIELD_OFFSET(WaitTrajReq, _impl_.set_ao_list_)}},
-    // repeated .Nrmk.IndyFramework.AnalogSignal set_end_ao_list = 5;
-    {::_pbi::TcParser::FastMtR1,
-     {42, 63, 3, PROTOBUF_FIELD_OFFSET(WaitTrajReq, _impl_.set_end_ao_list_)}},
-    {::_pbi::TcParser::MiniParse, {}},
-    {::_pbi::TcParser::MiniParse, {}},
   }}, {{
     65535, 65535
   }}, {{
     // .Nrmk.IndyFramework.TrajCondition traj_condition = 1;
     {PROTOBUF_FIELD_OFFSET(WaitTrajReq, _impl_.traj_condition_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
-    // repeated .Nrmk.IndyFramework.DigitalSignal set_do_list = 2;
-    {PROTOBUF_FIELD_OFFSET(WaitTrajReq, _impl_.set_do_list_), 0, 0,
-    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
-    // repeated .Nrmk.IndyFramework.DigitalSignal set_end_do_list = 3;
-    {PROTOBUF_FIELD_OFFSET(WaitTrajReq, _impl_.set_end_do_list_), 0, 1,
-    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
-    // repeated .Nrmk.IndyFramework.AnalogSignal set_ao_list = 4;
-    {PROTOBUF_FIELD_OFFSET(WaitTrajReq, _impl_.set_ao_list_), 0, 2,
-    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
-    // repeated .Nrmk.IndyFramework.AnalogSignal set_end_ao_list = 5;
-    {PROTOBUF_FIELD_OFFSET(WaitTrajReq, _impl_.set_end_ao_list_), 0, 3,
-    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
-  }}, {{
-    {::_pbi::TcParser::GetTable<::Nrmk::IndyFramework::DigitalSignal>()},
-    {::_pbi::TcParser::GetTable<::Nrmk::IndyFramework::DigitalSignal>()},
-    {::_pbi::TcParser::GetTable<::Nrmk::IndyFramework::AnalogSignal>()},
-    {::_pbi::TcParser::GetTable<::Nrmk::IndyFramework::AnalogSignal>()},
-  }}, {{
+  }},
+  // no aux_entries
+  {{
   }},
 };
 
@@ -11059,38 +10679,6 @@ const ::_pbi::TcParseTable<3, 5, 4, 0, 2> WaitTrajReq::_table_ = {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteEnumToArray(
         1, this->_internal_traj_condition(), target);
-  }
-
-  // repeated .Nrmk.IndyFramework.DigitalSignal set_do_list = 2;
-  for (unsigned i = 0,
-      n = static_cast<unsigned>(this->_internal_set_do_list_size()); i < n; i++) {
-    const auto& repfield = this->_internal_set_do_list().Get(i);
-    target = ::google::protobuf::internal::WireFormatLite::
-        InternalWriteMessage(2, repfield, repfield.GetCachedSize(), target, stream);
-  }
-
-  // repeated .Nrmk.IndyFramework.DigitalSignal set_end_do_list = 3;
-  for (unsigned i = 0,
-      n = static_cast<unsigned>(this->_internal_set_end_do_list_size()); i < n; i++) {
-    const auto& repfield = this->_internal_set_end_do_list().Get(i);
-    target = ::google::protobuf::internal::WireFormatLite::
-        InternalWriteMessage(3, repfield, repfield.GetCachedSize(), target, stream);
-  }
-
-  // repeated .Nrmk.IndyFramework.AnalogSignal set_ao_list = 4;
-  for (unsigned i = 0,
-      n = static_cast<unsigned>(this->_internal_set_ao_list_size()); i < n; i++) {
-    const auto& repfield = this->_internal_set_ao_list().Get(i);
-    target = ::google::protobuf::internal::WireFormatLite::
-        InternalWriteMessage(4, repfield, repfield.GetCachedSize(), target, stream);
-  }
-
-  // repeated .Nrmk.IndyFramework.AnalogSignal set_end_ao_list = 5;
-  for (unsigned i = 0,
-      n = static_cast<unsigned>(this->_internal_set_end_ao_list_size()); i < n; i++) {
-    const auto& repfield = this->_internal_set_end_ao_list().Get(i);
-    target = ::google::protobuf::internal::WireFormatLite::
-        InternalWriteMessage(5, repfield, repfield.GetCachedSize(), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -11110,30 +10698,6 @@ const ::_pbi::TcParseTable<3, 5, 4, 0, 2> WaitTrajReq::_table_ = {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // repeated .Nrmk.IndyFramework.DigitalSignal set_do_list = 2;
-  total_size += 1UL * this->_internal_set_do_list_size();
-  for (const auto& msg : this->_internal_set_do_list()) {
-    total_size +=
-      ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
-  }
-  // repeated .Nrmk.IndyFramework.DigitalSignal set_end_do_list = 3;
-  total_size += 1UL * this->_internal_set_end_do_list_size();
-  for (const auto& msg : this->_internal_set_end_do_list()) {
-    total_size +=
-      ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
-  }
-  // repeated .Nrmk.IndyFramework.AnalogSignal set_ao_list = 4;
-  total_size += 1UL * this->_internal_set_ao_list_size();
-  for (const auto& msg : this->_internal_set_ao_list()) {
-    total_size +=
-      ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
-  }
-  // repeated .Nrmk.IndyFramework.AnalogSignal set_end_ao_list = 5;
-  total_size += 1UL * this->_internal_set_end_ao_list_size();
-  for (const auto& msg : this->_internal_set_end_ao_list()) {
-    total_size +=
-      ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
-  }
   // .Nrmk.IndyFramework.TrajCondition traj_condition = 1;
   if (this->_internal_traj_condition() != 0) {
     total_size += 1 +
@@ -11158,10 +10722,6 @@ void WaitTrajReq::MergeImpl(::google::protobuf::Message& to_msg, const ::google:
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_internal_mutable_set_do_list()->MergeFrom(from._internal_set_do_list());
-  _this->_internal_mutable_set_end_do_list()->MergeFrom(from._internal_set_end_do_list());
-  _this->_internal_mutable_set_ao_list()->MergeFrom(from._internal_set_ao_list());
-  _this->_internal_mutable_set_end_ao_list()->MergeFrom(from._internal_set_end_ao_list());
   if (from._internal_traj_condition() != 0) {
     _this->_internal_set_traj_condition(from._internal_traj_condition());
   }
@@ -11182,10 +10742,6 @@ PROTOBUF_NOINLINE bool WaitTrajReq::IsInitialized() const {
 void WaitTrajReq::InternalSwap(WaitTrajReq* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  _impl_.set_do_list_.InternalSwap(&other->_impl_.set_do_list_);
-  _impl_.set_end_do_list_.InternalSwap(&other->_impl_.set_end_do_list_);
-  _impl_.set_ao_list_.InternalSwap(&other->_impl_.set_ao_list_);
-  _impl_.set_end_ao_list_.InternalSwap(&other->_impl_.set_end_ao_list_);
   swap(_impl_.traj_condition_, other->_impl_.traj_condition_);
 }
 
@@ -11200,47 +10756,20 @@ class WaitRadiusReq::_Internal {
  public:
 };
 
-void WaitRadiusReq::clear_set_do_list() {
-  _internal_mutable_set_do_list()->Clear();
-}
-void WaitRadiusReq::clear_set_end_do_list() {
-  _internal_mutable_set_end_do_list()->Clear();
-}
-void WaitRadiusReq::clear_set_ao_list() {
-  _internal_mutable_set_ao_list()->Clear();
-}
-void WaitRadiusReq::clear_set_end_ao_list() {
-  _internal_mutable_set_end_ao_list()->Clear();
-}
 WaitRadiusReq::WaitRadiusReq(::google::protobuf::Arena* arena)
     : ::google::protobuf::Message(arena) {
   SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:Nrmk.IndyFramework.WaitRadiusReq)
 }
-WaitRadiusReq::WaitRadiusReq(const WaitRadiusReq& from) : ::google::protobuf::Message() {
-  WaitRadiusReq* const _this = this;
-  (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.set_do_list_){from._impl_.set_do_list_},
-      decltype(_impl_.set_end_do_list_){from._impl_.set_end_do_list_},
-      decltype(_impl_.set_ao_list_){from._impl_.set_ao_list_},
-      decltype(_impl_.set_end_ao_list_){from._impl_.set_end_ao_list_},
-      decltype(_impl_.radius_){},
-      /*decltype(_impl_._cached_size_)*/ {},
-  };
+WaitRadiusReq::WaitRadiusReq(const WaitRadiusReq& from)
+    : ::google::protobuf::Message(), _impl_(from._impl_) {
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
-  _this->_impl_.radius_ = from._impl_.radius_;
-
   // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.WaitRadiusReq)
 }
 inline void WaitRadiusReq::SharedCtor(::_pb::Arena* arena) {
   (void)arena;
   new (&_impl_) Impl_{
-      decltype(_impl_.set_do_list_){arena},
-      decltype(_impl_.set_end_do_list_){arena},
-      decltype(_impl_.set_ao_list_){arena},
-      decltype(_impl_.set_end_ao_list_){arena},
       decltype(_impl_.radius_){0},
       /*decltype(_impl_._cached_size_)*/ {},
   };
@@ -11252,10 +10781,6 @@ WaitRadiusReq::~WaitRadiusReq() {
 }
 inline void WaitRadiusReq::SharedDtor() {
   ABSL_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.set_do_list_.~RepeatedPtrField();
-  _impl_.set_end_do_list_.~RepeatedPtrField();
-  _impl_.set_ao_list_.~RepeatedPtrField();
-  _impl_.set_end_ao_list_.~RepeatedPtrField();
 }
 void WaitRadiusReq::SetCachedSize(int size) const {
   _impl_._cached_size_.Set(size);
@@ -11267,10 +10792,6 @@ PROTOBUF_NOINLINE void WaitRadiusReq::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _internal_mutable_set_do_list()->Clear();
-  _internal_mutable_set_end_do_list()->Clear();
-  _internal_mutable_set_ao_list()->Clear();
-  _internal_mutable_set_end_ao_list()->Clear();
   _impl_.radius_ = 0;
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
@@ -11283,62 +10804,32 @@ const char* WaitRadiusReq::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<3, 5, 4, 0, 2> WaitRadiusReq::_table_ = {
+const ::_pbi::TcParseTable<0, 1, 0, 0, 2> WaitRadiusReq::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
-    5, 56,  // max_field_number, fast_idx_mask
+    1, 0,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967264,  // skipmap
+    4294967294,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    5,  // num_field_entries
-    4,  // num_aux_entries
-    offsetof(decltype(_table_), aux_entries),
+    1,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
     &_WaitRadiusReq_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
-    {::_pbi::TcParser::MiniParse, {}},
     // int32 radius = 1;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(WaitRadiusReq, _impl_.radius_), 63>(),
      {8, 63, 0, PROTOBUF_FIELD_OFFSET(WaitRadiusReq, _impl_.radius_)}},
-    // repeated .Nrmk.IndyFramework.DigitalSignal set_do_list = 2;
-    {::_pbi::TcParser::FastMtR1,
-     {18, 63, 0, PROTOBUF_FIELD_OFFSET(WaitRadiusReq, _impl_.set_do_list_)}},
-    // repeated .Nrmk.IndyFramework.DigitalSignal set_end_do_list = 3;
-    {::_pbi::TcParser::FastMtR1,
-     {26, 63, 1, PROTOBUF_FIELD_OFFSET(WaitRadiusReq, _impl_.set_end_do_list_)}},
-    // repeated .Nrmk.IndyFramework.AnalogSignal set_ao_list = 4;
-    {::_pbi::TcParser::FastMtR1,
-     {34, 63, 2, PROTOBUF_FIELD_OFFSET(WaitRadiusReq, _impl_.set_ao_list_)}},
-    // repeated .Nrmk.IndyFramework.AnalogSignal set_end_ao_list = 5;
-    {::_pbi::TcParser::FastMtR1,
-     {42, 63, 3, PROTOBUF_FIELD_OFFSET(WaitRadiusReq, _impl_.set_end_ao_list_)}},
-    {::_pbi::TcParser::MiniParse, {}},
-    {::_pbi::TcParser::MiniParse, {}},
   }}, {{
     65535, 65535
   }}, {{
     // int32 radius = 1;
     {PROTOBUF_FIELD_OFFSET(WaitRadiusReq, _impl_.radius_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
-    // repeated .Nrmk.IndyFramework.DigitalSignal set_do_list = 2;
-    {PROTOBUF_FIELD_OFFSET(WaitRadiusReq, _impl_.set_do_list_), 0, 0,
-    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
-    // repeated .Nrmk.IndyFramework.DigitalSignal set_end_do_list = 3;
-    {PROTOBUF_FIELD_OFFSET(WaitRadiusReq, _impl_.set_end_do_list_), 0, 1,
-    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
-    // repeated .Nrmk.IndyFramework.AnalogSignal set_ao_list = 4;
-    {PROTOBUF_FIELD_OFFSET(WaitRadiusReq, _impl_.set_ao_list_), 0, 2,
-    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
-    // repeated .Nrmk.IndyFramework.AnalogSignal set_end_ao_list = 5;
-    {PROTOBUF_FIELD_OFFSET(WaitRadiusReq, _impl_.set_end_ao_list_), 0, 3,
-    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
-  }}, {{
-    {::_pbi::TcParser::GetTable<::Nrmk::IndyFramework::DigitalSignal>()},
-    {::_pbi::TcParser::GetTable<::Nrmk::IndyFramework::DigitalSignal>()},
-    {::_pbi::TcParser::GetTable<::Nrmk::IndyFramework::AnalogSignal>()},
-    {::_pbi::TcParser::GetTable<::Nrmk::IndyFramework::AnalogSignal>()},
-  }}, {{
+  }},
+  // no aux_entries
+  {{
   }},
 };
 
@@ -11354,38 +10845,6 @@ const ::_pbi::TcParseTable<3, 5, 4, 0, 2> WaitRadiusReq::_table_ = {
     target = ::google::protobuf::internal::WireFormatLite::
         WriteInt32ToArrayWithField<1>(
             stream, this->_internal_radius(), target);
-  }
-
-  // repeated .Nrmk.IndyFramework.DigitalSignal set_do_list = 2;
-  for (unsigned i = 0,
-      n = static_cast<unsigned>(this->_internal_set_do_list_size()); i < n; i++) {
-    const auto& repfield = this->_internal_set_do_list().Get(i);
-    target = ::google::protobuf::internal::WireFormatLite::
-        InternalWriteMessage(2, repfield, repfield.GetCachedSize(), target, stream);
-  }
-
-  // repeated .Nrmk.IndyFramework.DigitalSignal set_end_do_list = 3;
-  for (unsigned i = 0,
-      n = static_cast<unsigned>(this->_internal_set_end_do_list_size()); i < n; i++) {
-    const auto& repfield = this->_internal_set_end_do_list().Get(i);
-    target = ::google::protobuf::internal::WireFormatLite::
-        InternalWriteMessage(3, repfield, repfield.GetCachedSize(), target, stream);
-  }
-
-  // repeated .Nrmk.IndyFramework.AnalogSignal set_ao_list = 4;
-  for (unsigned i = 0,
-      n = static_cast<unsigned>(this->_internal_set_ao_list_size()); i < n; i++) {
-    const auto& repfield = this->_internal_set_ao_list().Get(i);
-    target = ::google::protobuf::internal::WireFormatLite::
-        InternalWriteMessage(4, repfield, repfield.GetCachedSize(), target, stream);
-  }
-
-  // repeated .Nrmk.IndyFramework.AnalogSignal set_end_ao_list = 5;
-  for (unsigned i = 0,
-      n = static_cast<unsigned>(this->_internal_set_end_ao_list_size()); i < n; i++) {
-    const auto& repfield = this->_internal_set_end_ao_list().Get(i);
-    target = ::google::protobuf::internal::WireFormatLite::
-        InternalWriteMessage(5, repfield, repfield.GetCachedSize(), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -11405,30 +10864,6 @@ const ::_pbi::TcParseTable<3, 5, 4, 0, 2> WaitRadiusReq::_table_ = {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // repeated .Nrmk.IndyFramework.DigitalSignal set_do_list = 2;
-  total_size += 1UL * this->_internal_set_do_list_size();
-  for (const auto& msg : this->_internal_set_do_list()) {
-    total_size +=
-      ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
-  }
-  // repeated .Nrmk.IndyFramework.DigitalSignal set_end_do_list = 3;
-  total_size += 1UL * this->_internal_set_end_do_list_size();
-  for (const auto& msg : this->_internal_set_end_do_list()) {
-    total_size +=
-      ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
-  }
-  // repeated .Nrmk.IndyFramework.AnalogSignal set_ao_list = 4;
-  total_size += 1UL * this->_internal_set_ao_list_size();
-  for (const auto& msg : this->_internal_set_ao_list()) {
-    total_size +=
-      ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
-  }
-  // repeated .Nrmk.IndyFramework.AnalogSignal set_end_ao_list = 5;
-  total_size += 1UL * this->_internal_set_end_ao_list_size();
-  for (const auto& msg : this->_internal_set_end_ao_list()) {
-    total_size +=
-      ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
-  }
   // int32 radius = 1;
   if (this->_internal_radius() != 0) {
     total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
@@ -11453,10 +10888,6 @@ void WaitRadiusReq::MergeImpl(::google::protobuf::Message& to_msg, const ::googl
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_internal_mutable_set_do_list()->MergeFrom(from._internal_set_do_list());
-  _this->_internal_mutable_set_end_do_list()->MergeFrom(from._internal_set_end_do_list());
-  _this->_internal_mutable_set_ao_list()->MergeFrom(from._internal_set_ao_list());
-  _this->_internal_mutable_set_end_ao_list()->MergeFrom(from._internal_set_end_ao_list());
   if (from._internal_radius() != 0) {
     _this->_internal_set_radius(from._internal_radius());
   }
@@ -11477,10 +10908,6 @@ PROTOBUF_NOINLINE bool WaitRadiusReq::IsInitialized() const {
 void WaitRadiusReq::InternalSwap(WaitRadiusReq* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  _impl_.set_do_list_.InternalSwap(&other->_impl_.set_do_list_);
-  _impl_.set_end_do_list_.InternalSwap(&other->_impl_.set_end_do_list_);
-  _impl_.set_ao_list_.InternalSwap(&other->_impl_.set_ao_list_);
-  _impl_.set_end_ao_list_.InternalSwap(&other->_impl_.set_end_ao_list_);
         swap(_impl_.radius_, other->_impl_.radius_);
 }
 
@@ -20598,6 +20025,1412 @@ void MoveTeleLReq::InternalSwap(MoveTeleLReq* other) {
 }
 // ===================================================================
 
+class ForceModeReq::_Internal {
+ public:
+};
+
+ForceModeReq::ForceModeReq(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Nrmk.IndyFramework.ForceModeReq)
+}
+ForceModeReq::ForceModeReq(const ForceModeReq& from) : ::google::protobuf::Message() {
+  ForceModeReq* const _this = this;
+  (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.des_force_){from._impl_.des_force_},
+      decltype(_impl_.enabled_force_){from._impl_.enabled_force_},
+      decltype(_impl_.enable_){},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  _this->_impl_.enable_ = from._impl_.enable_;
+
+  // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.ForceModeReq)
+}
+inline void ForceModeReq::SharedCtor(::_pb::Arena* arena) {
+  (void)arena;
+  new (&_impl_) Impl_{
+      decltype(_impl_.des_force_){arena},
+      decltype(_impl_.enabled_force_){arena},
+      decltype(_impl_.enable_){false},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+}
+ForceModeReq::~ForceModeReq() {
+  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.ForceModeReq)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void ForceModeReq::SharedDtor() {
+  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.des_force_.~RepeatedField();
+  _impl_.enabled_force_.~RepeatedField();
+}
+void ForceModeReq::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+PROTOBUF_NOINLINE void ForceModeReq::Clear() {
+// @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.ForceModeReq)
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _internal_mutable_des_force()->Clear();
+  _internal_mutable_enabled_force()->Clear();
+  _impl_.enable_ = false;
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* ForceModeReq::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<2, 3, 0, 0, 2> ForceModeReq::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    3, 24,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967288,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    3,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_ForceModeReq_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // bool enable = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(ForceModeReq, _impl_.enable_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(ForceModeReq, _impl_.enable_)}},
+    // repeated float des_force = 2;
+    {::_pbi::TcParser::FastF32P1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(ForceModeReq, _impl_.des_force_)}},
+    // repeated bool enabled_force = 3;
+    {::_pbi::TcParser::FastV8P1,
+     {26, 63, 0, PROTOBUF_FIELD_OFFSET(ForceModeReq, _impl_.enabled_force_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // bool enable = 1;
+    {PROTOBUF_FIELD_OFFSET(ForceModeReq, _impl_.enable_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
+    // repeated float des_force = 2;
+    {PROTOBUF_FIELD_OFFSET(ForceModeReq, _impl_.des_force_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedFloat)},
+    // repeated bool enabled_force = 3;
+    {PROTOBUF_FIELD_OFFSET(ForceModeReq, _impl_.enabled_force_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedBool)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+
+::uint8_t* ForceModeReq::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.ForceModeReq)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // bool enable = 1;
+  if (this->_internal_enable() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(
+        1, this->_internal_enable(), target);
+  }
+
+  // repeated float des_force = 2;
+  if (this->_internal_des_force_size() > 0) {
+    target = stream->WriteFixedPacked(2, _internal_des_force(), target);
+  }
+
+  // repeated bool enabled_force = 3;
+  if (this->_internal_enabled_force_size() > 0) {
+    target = stream->WriteFixedPacked(3, _internal_enabled_force(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.ForceModeReq)
+  return target;
+}
+
+::size_t ForceModeReq::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.ForceModeReq)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated float des_force = 2;
+  {
+    std::size_t data_size = std::size_t{4} *
+        ::_pbi::FromIntSize(this->_internal_des_force_size())
+    ;
+    std::size_t tag_size = data_size == 0
+        ? 0
+        : 1 + ::_pbi::WireFormatLite::Int32Size(
+                            static_cast<int32_t>(data_size))
+    ;
+    total_size += tag_size + data_size;
+  }
+  // repeated bool enabled_force = 3;
+  {
+    std::size_t data_size = std::size_t{1} *
+        ::_pbi::FromIntSize(this->_internal_enabled_force_size())
+    ;
+    std::size_t tag_size = data_size == 0
+        ? 0
+        : 1 + ::_pbi::WireFormatLite::Int32Size(
+                            static_cast<int32_t>(data_size))
+    ;
+    total_size += tag_size + data_size;
+  }
+  // bool enable = 1;
+  if (this->_internal_enable() != 0) {
+    total_size += 2;
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData ForceModeReq::_class_data_ = {
+    ::google::protobuf::Message::CopyWithSourceCheck,
+    ForceModeReq::MergeImpl
+};
+const ::google::protobuf::Message::ClassData*ForceModeReq::GetClassData() const { return &_class_data_; }
+
+
+void ForceModeReq::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<ForceModeReq*>(&to_msg);
+  auto& from = static_cast<const ForceModeReq&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.ForceModeReq)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_internal_mutable_des_force()->MergeFrom(from._internal_des_force());
+  _this->_internal_mutable_enabled_force()->MergeFrom(from._internal_enabled_force());
+  if (from._internal_enable() != 0) {
+    _this->_internal_set_enable(from._internal_enable());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void ForceModeReq::CopyFrom(const ForceModeReq& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Nrmk.IndyFramework.ForceModeReq)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool ForceModeReq::IsInitialized() const {
+  return true;
+}
+
+void ForceModeReq::InternalSwap(ForceModeReq* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.des_force_.InternalSwap(&other->_impl_.des_force_);
+  _impl_.enabled_force_.InternalSwap(&other->_impl_.enabled_force_);
+        swap(_impl_.enable_, other->_impl_.enable_);
+}
+
+::google::protobuf::Metadata ForceModeReq::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_control_5fmsgs_2eproto_getter, &descriptor_table_control_5fmsgs_2eproto_once,
+      file_level_metadata_control_5fmsgs_2eproto[67]);
+}
+// ===================================================================
+
+class TransformedFTSensorData::_Internal {
+ public:
+  using HasBits = decltype(std::declval<TransformedFTSensorData>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+    8 * PROTOBUF_FIELD_OFFSET(TransformedFTSensorData, _impl_._has_bits_);
+  static const ::Nrmk::IndyFramework::Response& response(const TransformedFTSensorData* msg);
+  static void set_has_response(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
+};
+
+const ::Nrmk::IndyFramework::Response& TransformedFTSensorData::_Internal::response(const TransformedFTSensorData* msg) {
+  return *msg->_impl_.response_;
+}
+void TransformedFTSensorData::clear_response() {
+  if (_impl_.response_ != nullptr) _impl_.response_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+TransformedFTSensorData::TransformedFTSensorData(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Nrmk.IndyFramework.TransformedFTSensorData)
+}
+TransformedFTSensorData::TransformedFTSensorData(const TransformedFTSensorData& from) : ::google::protobuf::Message() {
+  TransformedFTSensorData* const _this = this;
+  (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){from._impl_._has_bits_},
+      /*decltype(_impl_._cached_size_)*/ {},
+      decltype(_impl_.response_){nullptr},
+      decltype(_impl_.ft_fx_){},
+      decltype(_impl_.ft_fy_){},
+      decltype(_impl_.ft_fz_){},
+      decltype(_impl_.ft_tx_){},
+      decltype(_impl_.ft_ty_){},
+      decltype(_impl_.ft_tz_){},
+  };
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
+    _this->_impl_.response_ = new ::Nrmk::IndyFramework::Response(*from._impl_.response_);
+  }
+  ::memcpy(&_impl_.ft_fx_, &from._impl_.ft_fx_,
+    static_cast<::size_t>(reinterpret_cast<char*>(&_impl_.ft_tz_) -
+    reinterpret_cast<char*>(&_impl_.ft_fx_)) + sizeof(_impl_.ft_tz_));
+
+  // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.TransformedFTSensorData)
+}
+inline void TransformedFTSensorData::SharedCtor(::_pb::Arena* arena) {
+  (void)arena;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){},
+      /*decltype(_impl_._cached_size_)*/ {},
+      decltype(_impl_.response_){nullptr},
+      decltype(_impl_.ft_fx_){0},
+      decltype(_impl_.ft_fy_){0},
+      decltype(_impl_.ft_fz_){0},
+      decltype(_impl_.ft_tx_){0},
+      decltype(_impl_.ft_ty_){0},
+      decltype(_impl_.ft_tz_){0},
+  };
+}
+TransformedFTSensorData::~TransformedFTSensorData() {
+  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.TransformedFTSensorData)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void TransformedFTSensorData::SharedDtor() {
+  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
+  if (this != internal_default_instance()) delete _impl_.response_;
+}
+void TransformedFTSensorData::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+PROTOBUF_NOINLINE void TransformedFTSensorData::Clear() {
+// @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.TransformedFTSensorData)
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.response_ != nullptr);
+    _impl_.response_->Clear();
+  }
+  ::memset(&_impl_.ft_fx_, 0, static_cast<::size_t>(
+      reinterpret_cast<char*>(&_impl_.ft_tz_) -
+      reinterpret_cast<char*>(&_impl_.ft_fx_)) + sizeof(_impl_.ft_tz_));
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* TransformedFTSensorData::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<3, 7, 1, 0, 7> TransformedFTSensorData::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(TransformedFTSensorData, _impl_._has_bits_),
+    0, // no _extensions_
+    100, 56,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967232,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    7,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_TransformedFTSensorData_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // float ft_Fx = 1;
+    {::_pbi::TcParser::FastF32S1,
+     {13, 63, 0, PROTOBUF_FIELD_OFFSET(TransformedFTSensorData, _impl_.ft_fx_)}},
+    // float ft_Fy = 2;
+    {::_pbi::TcParser::FastF32S1,
+     {21, 63, 0, PROTOBUF_FIELD_OFFSET(TransformedFTSensorData, _impl_.ft_fy_)}},
+    // float ft_Fz = 3;
+    {::_pbi::TcParser::FastF32S1,
+     {29, 63, 0, PROTOBUF_FIELD_OFFSET(TransformedFTSensorData, _impl_.ft_fz_)}},
+    // float ft_Tx = 4;
+    {::_pbi::TcParser::FastF32S1,
+     {37, 63, 0, PROTOBUF_FIELD_OFFSET(TransformedFTSensorData, _impl_.ft_tx_)}},
+    // float ft_Ty = 5;
+    {::_pbi::TcParser::FastF32S1,
+     {45, 63, 0, PROTOBUF_FIELD_OFFSET(TransformedFTSensorData, _impl_.ft_ty_)}},
+    // float ft_Tz = 6;
+    {::_pbi::TcParser::FastF32S1,
+     {53, 63, 0, PROTOBUF_FIELD_OFFSET(TransformedFTSensorData, _impl_.ft_tz_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+  }}, {{
+    100, 0, 1,
+    65534, 6,
+    65535, 65535
+  }}, {{
+    // float ft_Fx = 1;
+    {PROTOBUF_FIELD_OFFSET(TransformedFTSensorData, _impl_.ft_fx_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kFloat)},
+    // float ft_Fy = 2;
+    {PROTOBUF_FIELD_OFFSET(TransformedFTSensorData, _impl_.ft_fy_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kFloat)},
+    // float ft_Fz = 3;
+    {PROTOBUF_FIELD_OFFSET(TransformedFTSensorData, _impl_.ft_fz_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kFloat)},
+    // float ft_Tx = 4;
+    {PROTOBUF_FIELD_OFFSET(TransformedFTSensorData, _impl_.ft_tx_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kFloat)},
+    // float ft_Ty = 5;
+    {PROTOBUF_FIELD_OFFSET(TransformedFTSensorData, _impl_.ft_ty_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kFloat)},
+    // float ft_Tz = 6;
+    {PROTOBUF_FIELD_OFFSET(TransformedFTSensorData, _impl_.ft_tz_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kFloat)},
+    // .Nrmk.IndyFramework.Response response = 100;
+    {PROTOBUF_FIELD_OFFSET(TransformedFTSensorData, _impl_.response_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::Nrmk::IndyFramework::Response>()},
+  }}, {{
+  }},
+};
+
+::uint8_t* TransformedFTSensorData::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.TransformedFTSensorData)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // float ft_Fx = 1;
+  static_assert(sizeof(::uint32_t) == sizeof(float),
+                "Code assumes ::uint32_t and float are the same size.");
+  float tmp_ft_fx = this->_internal_ft_fx();
+  ::uint32_t raw_ft_fx;
+  memcpy(&raw_ft_fx, &tmp_ft_fx, sizeof(tmp_ft_fx));
+  if (raw_ft_fx != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(
+        1, this->_internal_ft_fx(), target);
+  }
+
+  // float ft_Fy = 2;
+  static_assert(sizeof(::uint32_t) == sizeof(float),
+                "Code assumes ::uint32_t and float are the same size.");
+  float tmp_ft_fy = this->_internal_ft_fy();
+  ::uint32_t raw_ft_fy;
+  memcpy(&raw_ft_fy, &tmp_ft_fy, sizeof(tmp_ft_fy));
+  if (raw_ft_fy != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(
+        2, this->_internal_ft_fy(), target);
+  }
+
+  // float ft_Fz = 3;
+  static_assert(sizeof(::uint32_t) == sizeof(float),
+                "Code assumes ::uint32_t and float are the same size.");
+  float tmp_ft_fz = this->_internal_ft_fz();
+  ::uint32_t raw_ft_fz;
+  memcpy(&raw_ft_fz, &tmp_ft_fz, sizeof(tmp_ft_fz));
+  if (raw_ft_fz != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(
+        3, this->_internal_ft_fz(), target);
+  }
+
+  // float ft_Tx = 4;
+  static_assert(sizeof(::uint32_t) == sizeof(float),
+                "Code assumes ::uint32_t and float are the same size.");
+  float tmp_ft_tx = this->_internal_ft_tx();
+  ::uint32_t raw_ft_tx;
+  memcpy(&raw_ft_tx, &tmp_ft_tx, sizeof(tmp_ft_tx));
+  if (raw_ft_tx != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(
+        4, this->_internal_ft_tx(), target);
+  }
+
+  // float ft_Ty = 5;
+  static_assert(sizeof(::uint32_t) == sizeof(float),
+                "Code assumes ::uint32_t and float are the same size.");
+  float tmp_ft_ty = this->_internal_ft_ty();
+  ::uint32_t raw_ft_ty;
+  memcpy(&raw_ft_ty, &tmp_ft_ty, sizeof(tmp_ft_ty));
+  if (raw_ft_ty != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(
+        5, this->_internal_ft_ty(), target);
+  }
+
+  // float ft_Tz = 6;
+  static_assert(sizeof(::uint32_t) == sizeof(float),
+                "Code assumes ::uint32_t and float are the same size.");
+  float tmp_ft_tz = this->_internal_ft_tz();
+  ::uint32_t raw_ft_tz;
+  memcpy(&raw_ft_tz, &tmp_ft_tz, sizeof(tmp_ft_tz));
+  if (raw_ft_tz != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(
+        6, this->_internal_ft_tz(), target);
+  }
+
+  cached_has_bits = _impl_._has_bits_[0];
+  // .Nrmk.IndyFramework.Response response = 100;
+  if (cached_has_bits & 0x00000001u) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessage(100, _Internal::response(this),
+        _Internal::response(this).GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.TransformedFTSensorData)
+  return target;
+}
+
+::size_t TransformedFTSensorData::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.TransformedFTSensorData)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // .Nrmk.IndyFramework.Response response = 100;
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size += 2 +
+      ::google::protobuf::internal::WireFormatLite::MessageSize(
+        *_impl_.response_);
+  }
+
+  // float ft_Fx = 1;
+  static_assert(sizeof(::uint32_t) == sizeof(float),
+                "Code assumes ::uint32_t and float are the same size.");
+  float tmp_ft_fx = this->_internal_ft_fx();
+  ::uint32_t raw_ft_fx;
+  memcpy(&raw_ft_fx, &tmp_ft_fx, sizeof(tmp_ft_fx));
+  if (raw_ft_fx != 0) {
+    total_size += 5;
+  }
+
+  // float ft_Fy = 2;
+  static_assert(sizeof(::uint32_t) == sizeof(float),
+                "Code assumes ::uint32_t and float are the same size.");
+  float tmp_ft_fy = this->_internal_ft_fy();
+  ::uint32_t raw_ft_fy;
+  memcpy(&raw_ft_fy, &tmp_ft_fy, sizeof(tmp_ft_fy));
+  if (raw_ft_fy != 0) {
+    total_size += 5;
+  }
+
+  // float ft_Fz = 3;
+  static_assert(sizeof(::uint32_t) == sizeof(float),
+                "Code assumes ::uint32_t and float are the same size.");
+  float tmp_ft_fz = this->_internal_ft_fz();
+  ::uint32_t raw_ft_fz;
+  memcpy(&raw_ft_fz, &tmp_ft_fz, sizeof(tmp_ft_fz));
+  if (raw_ft_fz != 0) {
+    total_size += 5;
+  }
+
+  // float ft_Tx = 4;
+  static_assert(sizeof(::uint32_t) == sizeof(float),
+                "Code assumes ::uint32_t and float are the same size.");
+  float tmp_ft_tx = this->_internal_ft_tx();
+  ::uint32_t raw_ft_tx;
+  memcpy(&raw_ft_tx, &tmp_ft_tx, sizeof(tmp_ft_tx));
+  if (raw_ft_tx != 0) {
+    total_size += 5;
+  }
+
+  // float ft_Ty = 5;
+  static_assert(sizeof(::uint32_t) == sizeof(float),
+                "Code assumes ::uint32_t and float are the same size.");
+  float tmp_ft_ty = this->_internal_ft_ty();
+  ::uint32_t raw_ft_ty;
+  memcpy(&raw_ft_ty, &tmp_ft_ty, sizeof(tmp_ft_ty));
+  if (raw_ft_ty != 0) {
+    total_size += 5;
+  }
+
+  // float ft_Tz = 6;
+  static_assert(sizeof(::uint32_t) == sizeof(float),
+                "Code assumes ::uint32_t and float are the same size.");
+  float tmp_ft_tz = this->_internal_ft_tz();
+  ::uint32_t raw_ft_tz;
+  memcpy(&raw_ft_tz, &tmp_ft_tz, sizeof(tmp_ft_tz));
+  if (raw_ft_tz != 0) {
+    total_size += 5;
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData TransformedFTSensorData::_class_data_ = {
+    ::google::protobuf::Message::CopyWithSourceCheck,
+    TransformedFTSensorData::MergeImpl
+};
+const ::google::protobuf::Message::ClassData*TransformedFTSensorData::GetClassData() const { return &_class_data_; }
+
+
+void TransformedFTSensorData::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<TransformedFTSensorData*>(&to_msg);
+  auto& from = static_cast<const TransformedFTSensorData&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.TransformedFTSensorData)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
+    _this->_internal_mutable_response()->::Nrmk::IndyFramework::Response::MergeFrom(
+        from._internal_response());
+  }
+  static_assert(sizeof(::uint32_t) == sizeof(float),
+                "Code assumes ::uint32_t and float are the same size.");
+  float tmp_ft_fx = from._internal_ft_fx();
+  ::uint32_t raw_ft_fx;
+  memcpy(&raw_ft_fx, &tmp_ft_fx, sizeof(tmp_ft_fx));
+  if (raw_ft_fx != 0) {
+    _this->_internal_set_ft_fx(from._internal_ft_fx());
+  }
+  static_assert(sizeof(::uint32_t) == sizeof(float),
+                "Code assumes ::uint32_t and float are the same size.");
+  float tmp_ft_fy = from._internal_ft_fy();
+  ::uint32_t raw_ft_fy;
+  memcpy(&raw_ft_fy, &tmp_ft_fy, sizeof(tmp_ft_fy));
+  if (raw_ft_fy != 0) {
+    _this->_internal_set_ft_fy(from._internal_ft_fy());
+  }
+  static_assert(sizeof(::uint32_t) == sizeof(float),
+                "Code assumes ::uint32_t and float are the same size.");
+  float tmp_ft_fz = from._internal_ft_fz();
+  ::uint32_t raw_ft_fz;
+  memcpy(&raw_ft_fz, &tmp_ft_fz, sizeof(tmp_ft_fz));
+  if (raw_ft_fz != 0) {
+    _this->_internal_set_ft_fz(from._internal_ft_fz());
+  }
+  static_assert(sizeof(::uint32_t) == sizeof(float),
+                "Code assumes ::uint32_t and float are the same size.");
+  float tmp_ft_tx = from._internal_ft_tx();
+  ::uint32_t raw_ft_tx;
+  memcpy(&raw_ft_tx, &tmp_ft_tx, sizeof(tmp_ft_tx));
+  if (raw_ft_tx != 0) {
+    _this->_internal_set_ft_tx(from._internal_ft_tx());
+  }
+  static_assert(sizeof(::uint32_t) == sizeof(float),
+                "Code assumes ::uint32_t and float are the same size.");
+  float tmp_ft_ty = from._internal_ft_ty();
+  ::uint32_t raw_ft_ty;
+  memcpy(&raw_ft_ty, &tmp_ft_ty, sizeof(tmp_ft_ty));
+  if (raw_ft_ty != 0) {
+    _this->_internal_set_ft_ty(from._internal_ft_ty());
+  }
+  static_assert(sizeof(::uint32_t) == sizeof(float),
+                "Code assumes ::uint32_t and float are the same size.");
+  float tmp_ft_tz = from._internal_ft_tz();
+  ::uint32_t raw_ft_tz;
+  memcpy(&raw_ft_tz, &tmp_ft_tz, sizeof(tmp_ft_tz));
+  if (raw_ft_tz != 0) {
+    _this->_internal_set_ft_tz(from._internal_ft_tz());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void TransformedFTSensorData::CopyFrom(const TransformedFTSensorData& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Nrmk.IndyFramework.TransformedFTSensorData)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool TransformedFTSensorData::IsInitialized() const {
+  return true;
+}
+
+void TransformedFTSensorData::InternalSwap(TransformedFTSensorData* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(TransformedFTSensorData, _impl_.ft_tz_)
+      + sizeof(TransformedFTSensorData::_impl_.ft_tz_)
+      - PROTOBUF_FIELD_OFFSET(TransformedFTSensorData, _impl_.response_)>(
+          reinterpret_cast<char*>(&_impl_.response_),
+          reinterpret_cast<char*>(&other->_impl_.response_));
+}
+
+::google::protobuf::Metadata TransformedFTSensorData::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_control_5fmsgs_2eproto_getter, &descriptor_table_control_5fmsgs_2eproto_once,
+      file_level_metadata_control_5fmsgs_2eproto[68]);
+}
+// ===================================================================
+
+class ComplianceMode::_Internal {
+ public:
+};
+
+ComplianceMode::ComplianceMode(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Nrmk.IndyFramework.ComplianceMode)
+}
+ComplianceMode::ComplianceMode(const ComplianceMode& from) : ::google::protobuf::Message() {
+  ComplianceMode* const _this = this;
+  (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.stiffness_){from._impl_.stiffness_},
+      /* _impl_._stiffness_cached_byte_size_ = */ {0},
+      decltype(_impl_.enable_){},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  _this->_impl_.enable_ = from._impl_.enable_;
+
+  // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.ComplianceMode)
+}
+inline void ComplianceMode::SharedCtor(::_pb::Arena* arena) {
+  (void)arena;
+  new (&_impl_) Impl_{
+      decltype(_impl_.stiffness_){arena},
+      /* _impl_._stiffness_cached_byte_size_ = */ {0},
+      decltype(_impl_.enable_){false},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+}
+ComplianceMode::~ComplianceMode() {
+  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.ComplianceMode)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void ComplianceMode::SharedDtor() {
+  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.stiffness_.~RepeatedField();
+}
+void ComplianceMode::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+PROTOBUF_NOINLINE void ComplianceMode::Clear() {
+// @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.ComplianceMode)
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _internal_mutable_stiffness()->Clear();
+  _impl_.enable_ = false;
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* ComplianceMode::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 0, 2> ComplianceMode::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_ComplianceMode_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // repeated int32 stiffness = 2;
+    {::_pbi::TcParser::FastV32P1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(ComplianceMode, _impl_.stiffness_)}},
+    // bool enable = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(ComplianceMode, _impl_.enable_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(ComplianceMode, _impl_.enable_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // bool enable = 1;
+    {PROTOBUF_FIELD_OFFSET(ComplianceMode, _impl_.enable_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
+    // repeated int32 stiffness = 2;
+    {PROTOBUF_FIELD_OFFSET(ComplianceMode, _impl_.stiffness_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedInt32)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+
+::uint8_t* ComplianceMode::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.ComplianceMode)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // bool enable = 1;
+  if (this->_internal_enable() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(
+        1, this->_internal_enable(), target);
+  }
+
+  // repeated int32 stiffness = 2;
+  {
+    int byte_size = _impl_._stiffness_cached_byte_size_.Get();
+    if (byte_size > 0) {
+      target = stream->WriteInt32Packed(2, _internal_stiffness(),
+                                                 byte_size, target);
+    }
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.ComplianceMode)
+  return target;
+}
+
+::size_t ComplianceMode::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.ComplianceMode)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated int32 stiffness = 2;
+  {
+    std::size_t data_size = ::_pbi::WireFormatLite::Int32Size(
+        this->_internal_stiffness())
+    ;
+    _impl_._stiffness_cached_byte_size_.Set(::_pbi::ToCachedSize(data_size));
+    std::size_t tag_size = data_size == 0
+        ? 0
+        : 1 + ::_pbi::WireFormatLite::Int32Size(
+                            static_cast<int32_t>(data_size))
+    ;
+    total_size += tag_size + data_size;
+  }
+  // bool enable = 1;
+  if (this->_internal_enable() != 0) {
+    total_size += 2;
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData ComplianceMode::_class_data_ = {
+    ::google::protobuf::Message::CopyWithSourceCheck,
+    ComplianceMode::MergeImpl
+};
+const ::google::protobuf::Message::ClassData*ComplianceMode::GetClassData() const { return &_class_data_; }
+
+
+void ComplianceMode::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<ComplianceMode*>(&to_msg);
+  auto& from = static_cast<const ComplianceMode&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.ComplianceMode)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_internal_mutable_stiffness()->MergeFrom(from._internal_stiffness());
+  if (from._internal_enable() != 0) {
+    _this->_internal_set_enable(from._internal_enable());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void ComplianceMode::CopyFrom(const ComplianceMode& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Nrmk.IndyFramework.ComplianceMode)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool ComplianceMode::IsInitialized() const {
+  return true;
+}
+
+void ComplianceMode::InternalSwap(ComplianceMode* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.stiffness_.InternalSwap(&other->_impl_.stiffness_);
+        swap(_impl_.enable_, other->_impl_.enable_);
+}
+
+::google::protobuf::Metadata ComplianceMode::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_control_5fmsgs_2eproto_getter, &descriptor_table_control_5fmsgs_2eproto_once,
+      file_level_metadata_control_5fmsgs_2eproto[69]);
+}
+// ===================================================================
+
+class BusEvent::_Internal {
+ public:
+};
+
+BusEvent::BusEvent(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Nrmk.IndyFramework.BusEvent)
+}
+BusEvent::BusEvent(const BusEvent& from) : ::google::protobuf::Message() {
+  BusEvent* const _this = this;
+  (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.b_data_){from._impl_.b_data_},
+      decltype(_impl_.i_data_){from._impl_.i_data_},
+      /* _impl_._i_data_cached_byte_size_ = */ {0},
+      decltype(_impl_.f_data_){from._impl_.f_data_},
+      decltype(_impl_.text_data_){},
+      decltype(_impl_.event_id_){},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  _impl_.text_data_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        _impl_.text_data_.Set("", GetArenaForAllocation());
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_text_data().empty()) {
+    _this->_impl_.text_data_.Set(from._internal_text_data(), _this->GetArenaForAllocation());
+  }
+  _this->_impl_.event_id_ = from._impl_.event_id_;
+
+  // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.BusEvent)
+}
+inline void BusEvent::SharedCtor(::_pb::Arena* arena) {
+  (void)arena;
+  new (&_impl_) Impl_{
+      decltype(_impl_.b_data_){arena},
+      decltype(_impl_.i_data_){arena},
+      /* _impl_._i_data_cached_byte_size_ = */ {0},
+      decltype(_impl_.f_data_){arena},
+      decltype(_impl_.text_data_){},
+      decltype(_impl_.event_id_){::uint64_t{0u}},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+  _impl_.text_data_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        _impl_.text_data_.Set("", GetArenaForAllocation());
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+BusEvent::~BusEvent() {
+  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.BusEvent)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void BusEvent::SharedDtor() {
+  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.b_data_.~RepeatedField();
+  _impl_.i_data_.~RepeatedField();
+  _impl_.f_data_.~RepeatedField();
+  _impl_.text_data_.Destroy();
+}
+void BusEvent::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+PROTOBUF_NOINLINE void BusEvent::Clear() {
+// @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.BusEvent)
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _internal_mutable_b_data()->Clear();
+  _internal_mutable_i_data()->Clear();
+  _internal_mutable_f_data()->Clear();
+  _impl_.text_data_.ClearToEmpty();
+  _impl_.event_id_ = ::uint64_t{0u};
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* BusEvent::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<3, 5, 0, 45, 2> BusEvent::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    5, 56,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967264,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    5,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_BusEvent_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // uint64 event_id = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(BusEvent, _impl_.event_id_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(BusEvent, _impl_.event_id_)}},
+    // repeated bool b_data = 2;
+    {::_pbi::TcParser::FastV8P1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(BusEvent, _impl_.b_data_)}},
+    // repeated int32 i_data = 3;
+    {::_pbi::TcParser::FastV32P1,
+     {26, 63, 0, PROTOBUF_FIELD_OFFSET(BusEvent, _impl_.i_data_)}},
+    // repeated float f_data = 4;
+    {::_pbi::TcParser::FastF32P1,
+     {34, 63, 0, PROTOBUF_FIELD_OFFSET(BusEvent, _impl_.f_data_)}},
+    // string text_data = 5;
+    {::_pbi::TcParser::FastUS1,
+     {42, 63, 0, PROTOBUF_FIELD_OFFSET(BusEvent, _impl_.text_data_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // uint64 event_id = 1;
+    {PROTOBUF_FIELD_OFFSET(BusEvent, _impl_.event_id_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt64)},
+    // repeated bool b_data = 2;
+    {PROTOBUF_FIELD_OFFSET(BusEvent, _impl_.b_data_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedBool)},
+    // repeated int32 i_data = 3;
+    {PROTOBUF_FIELD_OFFSET(BusEvent, _impl_.i_data_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedInt32)},
+    // repeated float f_data = 4;
+    {PROTOBUF_FIELD_OFFSET(BusEvent, _impl_.f_data_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedFloat)},
+    // string text_data = 5;
+    {PROTOBUF_FIELD_OFFSET(BusEvent, _impl_.text_data_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\33\0\0\0\0\11\0\0"
+    "Nrmk.IndyFramework.BusEvent"
+    "text_data"
+  }},
+};
+
+::uint8_t* BusEvent::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.BusEvent)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // uint64 event_id = 1;
+  if (this->_internal_event_id() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(
+        1, this->_internal_event_id(), target);
+  }
+
+  // repeated bool b_data = 2;
+  if (this->_internal_b_data_size() > 0) {
+    target = stream->WriteFixedPacked(2, _internal_b_data(), target);
+  }
+
+  // repeated int32 i_data = 3;
+  {
+    int byte_size = _impl_._i_data_cached_byte_size_.Get();
+    if (byte_size > 0) {
+      target = stream->WriteInt32Packed(3, _internal_i_data(),
+                                                 byte_size, target);
+    }
+  }
+
+  // repeated float f_data = 4;
+  if (this->_internal_f_data_size() > 0) {
+    target = stream->WriteFixedPacked(4, _internal_f_data(), target);
+  }
+
+  // string text_data = 5;
+  if (!this->_internal_text_data().empty()) {
+    const std::string& _s = this->_internal_text_data();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "Nrmk.IndyFramework.BusEvent.text_data");
+    target = stream->WriteStringMaybeAliased(5, _s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.BusEvent)
+  return target;
+}
+
+::size_t BusEvent::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.BusEvent)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated bool b_data = 2;
+  {
+    std::size_t data_size = std::size_t{1} *
+        ::_pbi::FromIntSize(this->_internal_b_data_size())
+    ;
+    std::size_t tag_size = data_size == 0
+        ? 0
+        : 1 + ::_pbi::WireFormatLite::Int32Size(
+                            static_cast<int32_t>(data_size))
+    ;
+    total_size += tag_size + data_size;
+  }
+  // repeated int32 i_data = 3;
+  {
+    std::size_t data_size = ::_pbi::WireFormatLite::Int32Size(
+        this->_internal_i_data())
+    ;
+    _impl_._i_data_cached_byte_size_.Set(::_pbi::ToCachedSize(data_size));
+    std::size_t tag_size = data_size == 0
+        ? 0
+        : 1 + ::_pbi::WireFormatLite::Int32Size(
+                            static_cast<int32_t>(data_size))
+    ;
+    total_size += tag_size + data_size;
+  }
+  // repeated float f_data = 4;
+  {
+    std::size_t data_size = std::size_t{4} *
+        ::_pbi::FromIntSize(this->_internal_f_data_size())
+    ;
+    std::size_t tag_size = data_size == 0
+        ? 0
+        : 1 + ::_pbi::WireFormatLite::Int32Size(
+                            static_cast<int32_t>(data_size))
+    ;
+    total_size += tag_size + data_size;
+  }
+  // string text_data = 5;
+  if (!this->_internal_text_data().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_text_data());
+  }
+
+  // uint64 event_id = 1;
+  if (this->_internal_event_id() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(
+        this->_internal_event_id());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData BusEvent::_class_data_ = {
+    ::google::protobuf::Message::CopyWithSourceCheck,
+    BusEvent::MergeImpl
+};
+const ::google::protobuf::Message::ClassData*BusEvent::GetClassData() const { return &_class_data_; }
+
+
+void BusEvent::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<BusEvent*>(&to_msg);
+  auto& from = static_cast<const BusEvent&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.BusEvent)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_internal_mutable_b_data()->MergeFrom(from._internal_b_data());
+  _this->_internal_mutable_i_data()->MergeFrom(from._internal_i_data());
+  _this->_internal_mutable_f_data()->MergeFrom(from._internal_f_data());
+  if (!from._internal_text_data().empty()) {
+    _this->_internal_set_text_data(from._internal_text_data());
+  }
+  if (from._internal_event_id() != 0) {
+    _this->_internal_set_event_id(from._internal_event_id());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void BusEvent::CopyFrom(const BusEvent& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Nrmk.IndyFramework.BusEvent)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool BusEvent::IsInitialized() const {
+  return true;
+}
+
+void BusEvent::InternalSwap(BusEvent* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.b_data_.InternalSwap(&other->_impl_.b_data_);
+  _impl_.i_data_.InternalSwap(&other->_impl_.i_data_);
+  _impl_.f_data_.InternalSwap(&other->_impl_.f_data_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.text_data_, lhs_arena,
+                                       &other->_impl_.text_data_, rhs_arena);
+        swap(_impl_.event_id_, other->_impl_.event_id_);
+}
+
+::google::protobuf::Metadata BusEvent::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_control_5fmsgs_2eproto_getter, &descriptor_table_control_5fmsgs_2eproto_once,
+      file_level_metadata_control_5fmsgs_2eproto[70]);
+}
+// ===================================================================
+
+class CatchBusEventReq::_Internal {
+ public:
+};
+
+CatchBusEventReq::CatchBusEventReq(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Nrmk.IndyFramework.CatchBusEventReq)
+}
+CatchBusEventReq::CatchBusEventReq(const CatchBusEventReq& from)
+    : ::google::protobuf::Message(), _impl_(from._impl_) {
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.CatchBusEventReq)
+}
+inline void CatchBusEventReq::SharedCtor(::_pb::Arena* arena) {
+  (void)arena;
+  new (&_impl_) Impl_{
+      decltype(_impl_.event_id_){::uint64_t{0u}},
+      decltype(_impl_.timeout_){0},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+}
+CatchBusEventReq::~CatchBusEventReq() {
+  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.CatchBusEventReq)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void CatchBusEventReq::SharedDtor() {
+  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
+}
+void CatchBusEventReq::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+PROTOBUF_NOINLINE void CatchBusEventReq::Clear() {
+// @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.CatchBusEventReq)
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ::memset(&_impl_.event_id_, 0, static_cast<::size_t>(
+      reinterpret_cast<char*>(&_impl_.timeout_) -
+      reinterpret_cast<char*>(&_impl_.event_id_)) + sizeof(_impl_.timeout_));
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* CatchBusEventReq::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 0, 2> CatchBusEventReq::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_CatchBusEventReq_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // float timeout = 2;
+    {::_pbi::TcParser::FastF32S1,
+     {21, 63, 0, PROTOBUF_FIELD_OFFSET(CatchBusEventReq, _impl_.timeout_)}},
+    // uint64 event_id = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(CatchBusEventReq, _impl_.event_id_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(CatchBusEventReq, _impl_.event_id_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // uint64 event_id = 1;
+    {PROTOBUF_FIELD_OFFSET(CatchBusEventReq, _impl_.event_id_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt64)},
+    // float timeout = 2;
+    {PROTOBUF_FIELD_OFFSET(CatchBusEventReq, _impl_.timeout_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kFloat)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+
+::uint8_t* CatchBusEventReq::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.CatchBusEventReq)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // uint64 event_id = 1;
+  if (this->_internal_event_id() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(
+        1, this->_internal_event_id(), target);
+  }
+
+  // float timeout = 2;
+  static_assert(sizeof(::uint32_t) == sizeof(float),
+                "Code assumes ::uint32_t and float are the same size.");
+  float tmp_timeout = this->_internal_timeout();
+  ::uint32_t raw_timeout;
+  memcpy(&raw_timeout, &tmp_timeout, sizeof(tmp_timeout));
+  if (raw_timeout != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(
+        2, this->_internal_timeout(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.CatchBusEventReq)
+  return target;
+}
+
+::size_t CatchBusEventReq::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.CatchBusEventReq)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // uint64 event_id = 1;
+  if (this->_internal_event_id() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(
+        this->_internal_event_id());
+  }
+
+  // float timeout = 2;
+  static_assert(sizeof(::uint32_t) == sizeof(float),
+                "Code assumes ::uint32_t and float are the same size.");
+  float tmp_timeout = this->_internal_timeout();
+  ::uint32_t raw_timeout;
+  memcpy(&raw_timeout, &tmp_timeout, sizeof(tmp_timeout));
+  if (raw_timeout != 0) {
+    total_size += 5;
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData CatchBusEventReq::_class_data_ = {
+    ::google::protobuf::Message::CopyWithSourceCheck,
+    CatchBusEventReq::MergeImpl
+};
+const ::google::protobuf::Message::ClassData*CatchBusEventReq::GetClassData() const { return &_class_data_; }
+
+
+void CatchBusEventReq::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<CatchBusEventReq*>(&to_msg);
+  auto& from = static_cast<const CatchBusEventReq&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.CatchBusEventReq)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from._internal_event_id() != 0) {
+    _this->_internal_set_event_id(from._internal_event_id());
+  }
+  static_assert(sizeof(::uint32_t) == sizeof(float),
+                "Code assumes ::uint32_t and float are the same size.");
+  float tmp_timeout = from._internal_timeout();
+  ::uint32_t raw_timeout;
+  memcpy(&raw_timeout, &tmp_timeout, sizeof(tmp_timeout));
+  if (raw_timeout != 0) {
+    _this->_internal_set_timeout(from._internal_timeout());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void CatchBusEventReq::CopyFrom(const CatchBusEventReq& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Nrmk.IndyFramework.CatchBusEventReq)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool CatchBusEventReq::IsInitialized() const {
+  return true;
+}
+
+void CatchBusEventReq::InternalSwap(CatchBusEventReq* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(CatchBusEventReq, _impl_.timeout_)
+      + sizeof(CatchBusEventReq::_impl_.timeout_)
+      - PROTOBUF_FIELD_OFFSET(CatchBusEventReq, _impl_.event_id_)>(
+          reinterpret_cast<char*>(&_impl_.event_id_),
+          reinterpret_cast<char*>(&other->_impl_.event_id_));
+}
+
+::google::protobuf::Metadata CatchBusEventReq::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_control_5fmsgs_2eproto_getter, &descriptor_table_control_5fmsgs_2eproto_once,
+      file_level_metadata_control_5fmsgs_2eproto[71]);
+}
+// ===================================================================
+
 class MoveLFReq::_Internal {
  public:
   using HasBits = decltype(std::declval<MoveLFReq>()._impl_._has_bits_);
@@ -21080,7 +21913,7 @@ void MoveLFReq::InternalSwap(MoveLFReq* other) {
 ::google::protobuf::Metadata MoveLFReq::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_control_5fmsgs_2eproto_getter, &descriptor_table_control_5fmsgs_2eproto_once,
-      file_level_metadata_control_5fmsgs_2eproto[67]);
+      file_level_metadata_control_5fmsgs_2eproto[72]);
 }
 // ===================================================================
 
@@ -21273,449 +22106,7 @@ void MoveFLRes::InternalSwap(MoveFLRes* other) {
 ::google::protobuf::Metadata MoveFLRes::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_control_5fmsgs_2eproto_getter, &descriptor_table_control_5fmsgs_2eproto_once,
-      file_level_metadata_control_5fmsgs_2eproto[68]);
-}
-// ===================================================================
-
-class TransformedFTSensorData::_Internal {
- public:
-  using HasBits = decltype(std::declval<TransformedFTSensorData>()._impl_._has_bits_);
-  static constexpr ::int32_t kHasBitsOffset =
-    8 * PROTOBUF_FIELD_OFFSET(TransformedFTSensorData, _impl_._has_bits_);
-  static const ::Nrmk::IndyFramework::Response& response(const TransformedFTSensorData* msg);
-  static void set_has_response(HasBits* has_bits) {
-    (*has_bits)[0] |= 1u;
-  }
-};
-
-const ::Nrmk::IndyFramework::Response& TransformedFTSensorData::_Internal::response(const TransformedFTSensorData* msg) {
-  return *msg->_impl_.response_;
-}
-void TransformedFTSensorData::clear_response() {
-  if (_impl_.response_ != nullptr) _impl_.response_->Clear();
-  _impl_._has_bits_[0] &= ~0x00000001u;
-}
-TransformedFTSensorData::TransformedFTSensorData(::google::protobuf::Arena* arena)
-    : ::google::protobuf::Message(arena) {
-  SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:Nrmk.IndyFramework.TransformedFTSensorData)
-}
-TransformedFTSensorData::TransformedFTSensorData(const TransformedFTSensorData& from) : ::google::protobuf::Message() {
-  TransformedFTSensorData* const _this = this;
-  (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_._has_bits_){from._impl_._has_bits_},
-      /*decltype(_impl_._cached_size_)*/ {},
-      decltype(_impl_.response_){nullptr},
-      decltype(_impl_.ft_fx_){},
-      decltype(_impl_.ft_fy_){},
-      decltype(_impl_.ft_fz_){},
-      decltype(_impl_.ft_tx_){},
-      decltype(_impl_.ft_ty_){},
-      decltype(_impl_.ft_tz_){},
-  };
-  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
-      from._internal_metadata_);
-  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
-    _this->_impl_.response_ = new ::Nrmk::IndyFramework::Response(*from._impl_.response_);
-  }
-  ::memcpy(&_impl_.ft_fx_, &from._impl_.ft_fx_,
-    static_cast<::size_t>(reinterpret_cast<char*>(&_impl_.ft_tz_) -
-    reinterpret_cast<char*>(&_impl_.ft_fx_)) + sizeof(_impl_.ft_tz_));
-
-  // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.TransformedFTSensorData)
-}
-inline void TransformedFTSensorData::SharedCtor(::_pb::Arena* arena) {
-  (void)arena;
-  new (&_impl_) Impl_{
-      decltype(_impl_._has_bits_){},
-      /*decltype(_impl_._cached_size_)*/ {},
-      decltype(_impl_.response_){nullptr},
-      decltype(_impl_.ft_fx_){0},
-      decltype(_impl_.ft_fy_){0},
-      decltype(_impl_.ft_fz_){0},
-      decltype(_impl_.ft_tx_){0},
-      decltype(_impl_.ft_ty_){0},
-      decltype(_impl_.ft_tz_){0},
-  };
-}
-TransformedFTSensorData::~TransformedFTSensorData() {
-  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.TransformedFTSensorData)
-  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
-  SharedDtor();
-}
-inline void TransformedFTSensorData::SharedDtor() {
-  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
-  if (this != internal_default_instance()) delete _impl_.response_;
-}
-void TransformedFTSensorData::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
-}
-
-PROTOBUF_NOINLINE void TransformedFTSensorData::Clear() {
-// @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.TransformedFTSensorData)
-  ::uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    ABSL_DCHECK(_impl_.response_ != nullptr);
-    _impl_.response_->Clear();
-  }
-  ::memset(&_impl_.ft_fx_, 0, static_cast<::size_t>(
-      reinterpret_cast<char*>(&_impl_.ft_tz_) -
-      reinterpret_cast<char*>(&_impl_.ft_fx_)) + sizeof(_impl_.ft_tz_));
-  _impl_._has_bits_.Clear();
-  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
-}
-
-const char* TransformedFTSensorData::_InternalParse(
-    const char* ptr, ::_pbi::ParseContext* ctx) {
-  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
-  return ptr;
-}
-
-
-PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<3, 7, 1, 0, 7> TransformedFTSensorData::_table_ = {
-  {
-    PROTOBUF_FIELD_OFFSET(TransformedFTSensorData, _impl_._has_bits_),
-    0, // no _extensions_
-    100, 56,  // max_field_number, fast_idx_mask
-    offsetof(decltype(_table_), field_lookup_table),
-    4294967232,  // skipmap
-    offsetof(decltype(_table_), field_entries),
-    7,  // num_field_entries
-    1,  // num_aux_entries
-    offsetof(decltype(_table_), aux_entries),
-    &_TransformedFTSensorData_default_instance_._instance,
-    ::_pbi::TcParser::GenericFallback,  // fallback
-  }, {{
-    {::_pbi::TcParser::MiniParse, {}},
-    // float ft_Fx = 1;
-    {::_pbi::TcParser::FastF32S1,
-     {13, 63, 0, PROTOBUF_FIELD_OFFSET(TransformedFTSensorData, _impl_.ft_fx_)}},
-    // float ft_Fy = 2;
-    {::_pbi::TcParser::FastF32S1,
-     {21, 63, 0, PROTOBUF_FIELD_OFFSET(TransformedFTSensorData, _impl_.ft_fy_)}},
-    // float ft_Fz = 3;
-    {::_pbi::TcParser::FastF32S1,
-     {29, 63, 0, PROTOBUF_FIELD_OFFSET(TransformedFTSensorData, _impl_.ft_fz_)}},
-    // float ft_Tx = 4;
-    {::_pbi::TcParser::FastF32S1,
-     {37, 63, 0, PROTOBUF_FIELD_OFFSET(TransformedFTSensorData, _impl_.ft_tx_)}},
-    // float ft_Ty = 5;
-    {::_pbi::TcParser::FastF32S1,
-     {45, 63, 0, PROTOBUF_FIELD_OFFSET(TransformedFTSensorData, _impl_.ft_ty_)}},
-    // float ft_Tz = 6;
-    {::_pbi::TcParser::FastF32S1,
-     {53, 63, 0, PROTOBUF_FIELD_OFFSET(TransformedFTSensorData, _impl_.ft_tz_)}},
-    {::_pbi::TcParser::MiniParse, {}},
-  }}, {{
-    100, 0, 1,
-    65534, 6,
-    65535, 65535
-  }}, {{
-    // float ft_Fx = 1;
-    {PROTOBUF_FIELD_OFFSET(TransformedFTSensorData, _impl_.ft_fx_), -1, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kFloat)},
-    // float ft_Fy = 2;
-    {PROTOBUF_FIELD_OFFSET(TransformedFTSensorData, _impl_.ft_fy_), -1, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kFloat)},
-    // float ft_Fz = 3;
-    {PROTOBUF_FIELD_OFFSET(TransformedFTSensorData, _impl_.ft_fz_), -1, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kFloat)},
-    // float ft_Tx = 4;
-    {PROTOBUF_FIELD_OFFSET(TransformedFTSensorData, _impl_.ft_tx_), -1, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kFloat)},
-    // float ft_Ty = 5;
-    {PROTOBUF_FIELD_OFFSET(TransformedFTSensorData, _impl_.ft_ty_), -1, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kFloat)},
-    // float ft_Tz = 6;
-    {PROTOBUF_FIELD_OFFSET(TransformedFTSensorData, _impl_.ft_tz_), -1, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kFloat)},
-    // .Nrmk.IndyFramework.Response response = 100;
-    {PROTOBUF_FIELD_OFFSET(TransformedFTSensorData, _impl_.response_), _Internal::kHasBitsOffset + 0, 0,
-    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
-  }}, {{
-    {::_pbi::TcParser::GetTable<::Nrmk::IndyFramework::Response>()},
-  }}, {{
-  }},
-};
-
-::uint8_t* TransformedFTSensorData::_InternalSerialize(
-    ::uint8_t* target,
-    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.TransformedFTSensorData)
-  ::uint32_t cached_has_bits = 0;
-  (void)cached_has_bits;
-
-  // float ft_Fx = 1;
-  static_assert(sizeof(::uint32_t) == sizeof(float),
-                "Code assumes ::uint32_t and float are the same size.");
-  float tmp_ft_fx = this->_internal_ft_fx();
-  ::uint32_t raw_ft_fx;
-  memcpy(&raw_ft_fx, &tmp_ft_fx, sizeof(tmp_ft_fx));
-  if (raw_ft_fx != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteFloatToArray(
-        1, this->_internal_ft_fx(), target);
-  }
-
-  // float ft_Fy = 2;
-  static_assert(sizeof(::uint32_t) == sizeof(float),
-                "Code assumes ::uint32_t and float are the same size.");
-  float tmp_ft_fy = this->_internal_ft_fy();
-  ::uint32_t raw_ft_fy;
-  memcpy(&raw_ft_fy, &tmp_ft_fy, sizeof(tmp_ft_fy));
-  if (raw_ft_fy != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteFloatToArray(
-        2, this->_internal_ft_fy(), target);
-  }
-
-  // float ft_Fz = 3;
-  static_assert(sizeof(::uint32_t) == sizeof(float),
-                "Code assumes ::uint32_t and float are the same size.");
-  float tmp_ft_fz = this->_internal_ft_fz();
-  ::uint32_t raw_ft_fz;
-  memcpy(&raw_ft_fz, &tmp_ft_fz, sizeof(tmp_ft_fz));
-  if (raw_ft_fz != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteFloatToArray(
-        3, this->_internal_ft_fz(), target);
-  }
-
-  // float ft_Tx = 4;
-  static_assert(sizeof(::uint32_t) == sizeof(float),
-                "Code assumes ::uint32_t and float are the same size.");
-  float tmp_ft_tx = this->_internal_ft_tx();
-  ::uint32_t raw_ft_tx;
-  memcpy(&raw_ft_tx, &tmp_ft_tx, sizeof(tmp_ft_tx));
-  if (raw_ft_tx != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteFloatToArray(
-        4, this->_internal_ft_tx(), target);
-  }
-
-  // float ft_Ty = 5;
-  static_assert(sizeof(::uint32_t) == sizeof(float),
-                "Code assumes ::uint32_t and float are the same size.");
-  float tmp_ft_ty = this->_internal_ft_ty();
-  ::uint32_t raw_ft_ty;
-  memcpy(&raw_ft_ty, &tmp_ft_ty, sizeof(tmp_ft_ty));
-  if (raw_ft_ty != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteFloatToArray(
-        5, this->_internal_ft_ty(), target);
-  }
-
-  // float ft_Tz = 6;
-  static_assert(sizeof(::uint32_t) == sizeof(float),
-                "Code assumes ::uint32_t and float are the same size.");
-  float tmp_ft_tz = this->_internal_ft_tz();
-  ::uint32_t raw_ft_tz;
-  memcpy(&raw_ft_tz, &tmp_ft_tz, sizeof(tmp_ft_tz));
-  if (raw_ft_tz != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteFloatToArray(
-        6, this->_internal_ft_tz(), target);
-  }
-
-  cached_has_bits = _impl_._has_bits_[0];
-  // .Nrmk.IndyFramework.Response response = 100;
-  if (cached_has_bits & 0x00000001u) {
-    target = ::google::protobuf::internal::WireFormatLite::
-      InternalWriteMessage(100, _Internal::response(this),
-        _Internal::response(this).GetCachedSize(), target, stream);
-  }
-
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target =
-        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
-  }
-  // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.TransformedFTSensorData)
-  return target;
-}
-
-::size_t TransformedFTSensorData::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.TransformedFTSensorData)
-  ::size_t total_size = 0;
-
-  ::uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  // .Nrmk.IndyFramework.Response response = 100;
-  cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    total_size += 2 +
-      ::google::protobuf::internal::WireFormatLite::MessageSize(
-        *_impl_.response_);
-  }
-
-  // float ft_Fx = 1;
-  static_assert(sizeof(::uint32_t) == sizeof(float),
-                "Code assumes ::uint32_t and float are the same size.");
-  float tmp_ft_fx = this->_internal_ft_fx();
-  ::uint32_t raw_ft_fx;
-  memcpy(&raw_ft_fx, &tmp_ft_fx, sizeof(tmp_ft_fx));
-  if (raw_ft_fx != 0) {
-    total_size += 5;
-  }
-
-  // float ft_Fy = 2;
-  static_assert(sizeof(::uint32_t) == sizeof(float),
-                "Code assumes ::uint32_t and float are the same size.");
-  float tmp_ft_fy = this->_internal_ft_fy();
-  ::uint32_t raw_ft_fy;
-  memcpy(&raw_ft_fy, &tmp_ft_fy, sizeof(tmp_ft_fy));
-  if (raw_ft_fy != 0) {
-    total_size += 5;
-  }
-
-  // float ft_Fz = 3;
-  static_assert(sizeof(::uint32_t) == sizeof(float),
-                "Code assumes ::uint32_t and float are the same size.");
-  float tmp_ft_fz = this->_internal_ft_fz();
-  ::uint32_t raw_ft_fz;
-  memcpy(&raw_ft_fz, &tmp_ft_fz, sizeof(tmp_ft_fz));
-  if (raw_ft_fz != 0) {
-    total_size += 5;
-  }
-
-  // float ft_Tx = 4;
-  static_assert(sizeof(::uint32_t) == sizeof(float),
-                "Code assumes ::uint32_t and float are the same size.");
-  float tmp_ft_tx = this->_internal_ft_tx();
-  ::uint32_t raw_ft_tx;
-  memcpy(&raw_ft_tx, &tmp_ft_tx, sizeof(tmp_ft_tx));
-  if (raw_ft_tx != 0) {
-    total_size += 5;
-  }
-
-  // float ft_Ty = 5;
-  static_assert(sizeof(::uint32_t) == sizeof(float),
-                "Code assumes ::uint32_t and float are the same size.");
-  float tmp_ft_ty = this->_internal_ft_ty();
-  ::uint32_t raw_ft_ty;
-  memcpy(&raw_ft_ty, &tmp_ft_ty, sizeof(tmp_ft_ty));
-  if (raw_ft_ty != 0) {
-    total_size += 5;
-  }
-
-  // float ft_Tz = 6;
-  static_assert(sizeof(::uint32_t) == sizeof(float),
-                "Code assumes ::uint32_t and float are the same size.");
-  float tmp_ft_tz = this->_internal_ft_tz();
-  ::uint32_t raw_ft_tz;
-  memcpy(&raw_ft_tz, &tmp_ft_tz, sizeof(tmp_ft_tz));
-  if (raw_ft_tz != 0) {
-    total_size += 5;
-  }
-
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
-}
-
-const ::google::protobuf::Message::ClassData TransformedFTSensorData::_class_data_ = {
-    ::google::protobuf::Message::CopyWithSourceCheck,
-    TransformedFTSensorData::MergeImpl
-};
-const ::google::protobuf::Message::ClassData*TransformedFTSensorData::GetClassData() const { return &_class_data_; }
-
-
-void TransformedFTSensorData::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
-  auto* const _this = static_cast<TransformedFTSensorData*>(&to_msg);
-  auto& from = static_cast<const TransformedFTSensorData&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.TransformedFTSensorData)
-  ABSL_DCHECK_NE(&from, _this);
-  ::uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
-    _this->_internal_mutable_response()->::Nrmk::IndyFramework::Response::MergeFrom(
-        from._internal_response());
-  }
-  static_assert(sizeof(::uint32_t) == sizeof(float),
-                "Code assumes ::uint32_t and float are the same size.");
-  float tmp_ft_fx = from._internal_ft_fx();
-  ::uint32_t raw_ft_fx;
-  memcpy(&raw_ft_fx, &tmp_ft_fx, sizeof(tmp_ft_fx));
-  if (raw_ft_fx != 0) {
-    _this->_internal_set_ft_fx(from._internal_ft_fx());
-  }
-  static_assert(sizeof(::uint32_t) == sizeof(float),
-                "Code assumes ::uint32_t and float are the same size.");
-  float tmp_ft_fy = from._internal_ft_fy();
-  ::uint32_t raw_ft_fy;
-  memcpy(&raw_ft_fy, &tmp_ft_fy, sizeof(tmp_ft_fy));
-  if (raw_ft_fy != 0) {
-    _this->_internal_set_ft_fy(from._internal_ft_fy());
-  }
-  static_assert(sizeof(::uint32_t) == sizeof(float),
-                "Code assumes ::uint32_t and float are the same size.");
-  float tmp_ft_fz = from._internal_ft_fz();
-  ::uint32_t raw_ft_fz;
-  memcpy(&raw_ft_fz, &tmp_ft_fz, sizeof(tmp_ft_fz));
-  if (raw_ft_fz != 0) {
-    _this->_internal_set_ft_fz(from._internal_ft_fz());
-  }
-  static_assert(sizeof(::uint32_t) == sizeof(float),
-                "Code assumes ::uint32_t and float are the same size.");
-  float tmp_ft_tx = from._internal_ft_tx();
-  ::uint32_t raw_ft_tx;
-  memcpy(&raw_ft_tx, &tmp_ft_tx, sizeof(tmp_ft_tx));
-  if (raw_ft_tx != 0) {
-    _this->_internal_set_ft_tx(from._internal_ft_tx());
-  }
-  static_assert(sizeof(::uint32_t) == sizeof(float),
-                "Code assumes ::uint32_t and float are the same size.");
-  float tmp_ft_ty = from._internal_ft_ty();
-  ::uint32_t raw_ft_ty;
-  memcpy(&raw_ft_ty, &tmp_ft_ty, sizeof(tmp_ft_ty));
-  if (raw_ft_ty != 0) {
-    _this->_internal_set_ft_ty(from._internal_ft_ty());
-  }
-  static_assert(sizeof(::uint32_t) == sizeof(float),
-                "Code assumes ::uint32_t and float are the same size.");
-  float tmp_ft_tz = from._internal_ft_tz();
-  ::uint32_t raw_ft_tz;
-  memcpy(&raw_ft_tz, &tmp_ft_tz, sizeof(tmp_ft_tz));
-  if (raw_ft_tz != 0) {
-    _this->_internal_set_ft_tz(from._internal_ft_tz());
-  }
-  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
-}
-
-void TransformedFTSensorData::CopyFrom(const TransformedFTSensorData& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:Nrmk.IndyFramework.TransformedFTSensorData)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-PROTOBUF_NOINLINE bool TransformedFTSensorData::IsInitialized() const {
-  return true;
-}
-
-void TransformedFTSensorData::InternalSwap(TransformedFTSensorData* other) {
-  using std::swap;
-  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
-  ::google::protobuf::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(TransformedFTSensorData, _impl_.ft_tz_)
-      + sizeof(TransformedFTSensorData::_impl_.ft_tz_)
-      - PROTOBUF_FIELD_OFFSET(TransformedFTSensorData, _impl_.response_)>(
-          reinterpret_cast<char*>(&_impl_.response_),
-          reinterpret_cast<char*>(&other->_impl_.response_));
-}
-
-::google::protobuf::Metadata TransformedFTSensorData::GetMetadata() const {
-  return ::_pbi::AssignDescriptors(
-      &descriptor_table_control_5fmsgs_2eproto_getter, &descriptor_table_control_5fmsgs_2eproto_once,
-      file_level_metadata_control_5fmsgs_2eproto[69]);
+      file_level_metadata_control_5fmsgs_2eproto[73]);
 }
 // ===================================================================
 
@@ -22037,7 +22428,7 @@ void ControlInferenceDataSet::InternalSwap(ControlInferenceDataSet* other) {
 ::google::protobuf::Metadata ControlInferenceDataSet::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_control_5fmsgs_2eproto_getter, &descriptor_table_control_5fmsgs_2eproto_once,
-      file_level_metadata_control_5fmsgs_2eproto[70]);
+      file_level_metadata_control_5fmsgs_2eproto[74]);
 }
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace IndyFramework

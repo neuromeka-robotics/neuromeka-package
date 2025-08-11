@@ -21,7 +21,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x11\x64\x65vice_msgs.proto\x12\x12Nrmk.IndyFramework\x1a\x11\x63ommon_msgs.proto\"&\n\x05Motor\x12\r\n\x05index\x18\x01 \x01(\r\x12\x0e\n\x06\x65nable\x18\x02 \x01(\x08\"&\n\x05Servo\x12\r\n\x05index\x18\x01 \x01(\r\x12\x0e\n\x06\x65nable\x18\x02 \x01(\x08\"u\n\x0bGripperData\x12\x35\n\x0cgripper_type\x18\x01 \x01(\x0e\x32\x1f.Nrmk.IndyFramework.GripperType\x12\x18\n\x10gripper_position\x18\x02 \x01(\x05\x12\x15\n\rgripper_state\x18\x03 \x01(\x05\"\x84\x02\n\x0eGripperCommand\x12N\n\x0fgripper_command\x18\x01 \x01(\x0e\x32\x35.Nrmk.IndyFramework.GripperCommand.GripperCommandType\x12\x35\n\x0cgripper_type\x18\x02 \x01(\x0e\x32\x1f.Nrmk.IndyFramework.GripperType\x12\x18\n\x10gripper_pvt_data\x18\x03 \x03(\x05\"Q\n\x12GripperCommandType\x12\x0f\n\x0b\x41UTO_DETECT\x10\x00\x12\x0c\n\x08\x41\x43TIVATE\x10\x01\x12\x0f\n\x0bRE_ACTIVATE\x10\x02\x12\x0b\n\x07SET_PVT\x10\x03\"Q\n\rDigitalSignal\x12\x0f\n\x07\x61\x64\x64ress\x18\x01 \x01(\r\x12/\n\x05state\x18\x02 \x01(\x0e\x32 .Nrmk.IndyFramework.DigitalState\"\x1c\n\tEndLedDim\x12\x0f\n\x07led_dim\x18\x01 \x01(\r\"O\n\rEndtoolSignal\x12\x0c\n\x04port\x18\x01 \x01(\t\x12\x30\n\x06states\x18\x02 \x03(\x0e\x32 .Nrmk.IndyFramework.EndtoolState\"0\n\x0c\x41nalogSignal\x12\x0f\n\x07\x61\x64\x64ress\x18\x01 \x01(\r\x12\x0f\n\x07voltage\x18\x02 \x01(\x05\"6\n\tMotorList\x12)\n\x06motors\x18\x01 \x03(\x0b\x32\x19.Nrmk.IndyFramework.Motor\"A\n\x0b\x44igitalList\x12\x32\n\x07signals\x18\x01 \x03(\x0b\x32!.Nrmk.IndyFramework.DigitalSignal\"G\n\x11\x45ndtoolSignalList\x12\x32\n\x07signals\x18\x01 \x03(\x0b\x32!.Nrmk.IndyFramework.EndtoolSignal\"?\n\nAnalogList\x12\x31\n\x07signals\x18\x01 \x03(\x0b\x32 .Nrmk.IndyFramework.AnalogSignal\"\xc1\x02\n\nDeviceInfo\x12\x12\n\nnum_joints\x18\x01 \x01(\r\x12\x14\n\x0crobot_serial\x18\x02 \x01(\t\x12\x0f\n\x07payload\x18\x03 \x01(\x02\x12\x17\n\x0fio_board_fw_ver\x18\n \x01(\t\x12\x1a\n\x12\x63ore_board_fw_vers\x18\x0b \x03(\t\x12\x1c\n\x14\x65ndtool_board_fw_ver\x18\x0c \x01(\t\x12\x16\n\x0e\x63ontroller_ver\x18\x14 \x01(\t\x12\x19\n\x11\x63ontroller_detail\x18\x15 \x01(\t\x12\x17\n\x0f\x63ontroller_date\x18\x16 \x01(\t\x12\x15\n\rteleop_loaded\x18\x1e \x01(\x08\x12\x12\n\ncalibrated\x18\x1f \x01(\x08\x12.\n\x08response\x18\x64 \x01(\x0b\x32\x1c.Nrmk.IndyFramework.Response\"\xc7\x01\n\x11\x42rakeControlStyle\x12\x41\n\x05style\x18\x01 \x01(\x0e\x32\x32.Nrmk.IndyFramework.BrakeControlStyle.ControlStyle\x12.\n\x08response\x18\x64 \x01(\x0b\x32\x1c.Nrmk.IndyFramework.Response\"?\n\x0c\x43ontrolStyle\x12\x0f\n\x0bUNAVAILABLE\x10\x00\x12\x0e\n\nCONCURRENT\x10\x01\x12\x0e\n\nINDIVIDUAL\x10\x02\"~\n\rGetEL5001Data\x12\x0e\n\x06status\x18\x01 \x01(\x05\x12\r\n\x05value\x18\x02 \x01(\x05\x12\r\n\x05\x64\x65lta\x18\x03 \x01(\x05\x12\x0f\n\x07\x61verage\x18\x04 \x01(\x02\x12.\n\x08response\x18\x64 \x01(\x0b\x32\x1c.Nrmk.IndyFramework.Response\"\x8d\x01\n\rGetEL5101Data\x12\x0e\n\x06status\x18\x01 \x01(\x05\x12\r\n\x05value\x18\x02 \x01(\x05\x12\r\n\x05latch\x18\x03 \x01(\x05\x12\r\n\x05\x64\x65lta\x18\x04 \x01(\x05\x12\x0f\n\x07\x61verage\x18\x05 \x01(\x02\x12.\n\x08response\x18\x64 \x01(\x0b\x32\x1c.Nrmk.IndyFramework.Response\"\x98\x01\n\x0c\x46TSensorData\x12\r\n\x05\x66t_Fx\x18\x01 \x01(\x02\x12\r\n\x05\x66t_Fy\x18\x02 \x01(\x02\x12\r\n\x05\x66t_Fz\x18\x03 \x01(\x02\x12\r\n\x05\x66t_Tx\x18\x04 \x01(\x02\x12\r\n\x05\x66t_Ty\x18\x05 \x01(\x02\x12\r\n\x05\x66t_Tz\x18\x06 \x01(\x02\x12.\n\x08response\x18\x64 \x01(\x0b\x32\x1c.Nrmk.IndyFramework.Response\"f\n\x11GetLoadFactorsRes\x12\x10\n\x08percents\x18\x01 \x03(\x05\x12\x0f\n\x07torques\x18\x02 \x03(\x02\x12.\n\x08response\x18\x64 \x01(\x0b\x32\x1c.Nrmk.IndyFramework.Response\"\x1c\n\x0eSetAutoModeReq\x12\n\n\x02on\x18\x01 \x01(\x08\"\x1d\n\x0eSetAutoModeRes\x12\x0b\n\x03msg\x18\x64 \x01(\t\"+\n\x10\x43heckAutoModeRes\x12\n\n\x02on\x18\x01 \x01(\x08\x12\x0b\n\x03msg\x18\x64 \x01(\t\".\n\x13\x43heckReducedModeRes\x12\n\n\x02on\x18\x01 \x01(\x08\x12\x0b\n\x03msg\x18\x64 \x01(\t\"`\n\x13SafetyFunctionState\x12\n\n\x02id\x18\x01 \x01(\r\x12\r\n\x05state\x18\x02 \x01(\r\x12.\n\x08response\x18\x64 \x01(\x0b\x32\x1c.Nrmk.IndyFramework.Response\"\x94\x01\n\x11SafetyControlData\x12\x11\n\tauto_mode\x18\x01 \x01(\x08\x12\x14\n\x0creduced_mode\x18\x02 \x01(\x08\x12\x17\n\x0f\x65nabler_pressed\x18\x03 \x01(\x08\x12=\n\x0csafety_state\x18\x05 \x01(\x0b\x32\'.Nrmk.IndyFramework.SafetyFunctionState\"\x97\x01\n\rSanderCommand\x12:\n\x04type\x18\x01 \x01(\x0e\x32,.Nrmk.IndyFramework.SanderCommand.SanderType\x12\n\n\x02ip\x18\x02 \x01(\t\x12\r\n\x05speed\x18\x03 \x01(\x02\x12\r\n\x05state\x18\n \x01(\x08\" \n\nSanderType\x12\x12\n\x0eSANDER_ONROBOT\x10\x00\"\x89\x02\n\x07\x45ncoder\x12\x35\n\x04type\x18\x01 \x01(\x0e\x32\'.Nrmk.IndyFramework.Encoder.EncoderType\x12\x10\n\x08\x63hannel1\x18\x02 \x01(\x03\x12\x10\n\x08\x63hannel2\x18\x03 \x01(\x03\x12\x12\n\nsample_num\x18\x04 \x01(\x03\x12\x13\n\x0bmm_per_tick\x18\x05 \x01(\x02\x12\x16\n\x0evel_const_mmps\x18\x06 \x01(\x02\x12\x10\n\x08reversed\x18\x07 \x01(\x08\"P\n\x0b\x45ncoderType\x12\x0c\n\x08\x43ONSTANT\x10\x00\x12\x0e\n\nQUADRATURE\x10\x01\x12\n\n\x06RISING\x10\x02\x12\x0b\n\x07\x46\x41LLING\x10\x03\x12\n\n\x06MODBUS\x10\x04\"\x8e\x01\n\x07Trigger\x12\x35\n\x04type\x18\x01 \x01(\x0e\x32\'.Nrmk.IndyFramework.Trigger.TriggerType\x12\x0f\n\x07\x63hannel\x18\x02 \x01(\x03\x12\x13\n\x0b\x64\x65tect_rise\x18\x03 \x01(\x08\"&\n\x0bTriggerType\x12\x0b\n\x07\x44IGITAL\x10\x00\x12\n\n\x06MODBUS\x10\x01\"\xb8\x02\n\x08\x43onveyor\x12\x0c\n\x04name\x18\x01 \x01(\t\x12,\n\x07\x65ncoder\x18\x02 \x01(\x0b\x32\x1b.Nrmk.IndyFramework.Encoder\x12,\n\x07trigger\x18\x03 \x01(\x0b\x32\x1b.Nrmk.IndyFramework.Trigger\x12\x13\n\x0boffset_dist\x18\x04 \x01(\x02\x12\x14\n\x0cworking_dist\x18\x05 \x01(\x02\x12-\n\tdirection\x18\x06 \x01(\x0b\x32\x1a.Nrmk.IndyFramework.Vector\x12\x33\n\rstarting_pose\x18\n \x01(\x0b\x32\x1c.Nrmk.IndyFramework.PosePair\x12\x33\n\rterminal_pose\x18\x0b \x01(\x0b\x32\x1c.Nrmk.IndyFramework.PosePair\"4\n\rConveyorState\x12\x10\n\x08velocity\x18\x01 \x01(\x02\x12\x11\n\ttriggered\x18\x02 \x01(\x02\"S\n\x18\x41\x64\x64PhotoneoCalibPointReq\x12\x13\n\x0bvision_name\x18\x01 \x01(\t\x12\n\n\x02px\x18\x02 \x01(\x01\x12\n\n\x02py\x18\x03 \x01(\x01\x12\n\n\x02pz\x18\x04 \x01(\x01\"\xc0\x01\n\x0cVisionServer\x12\x0c\n\x04name\x18\x01 \x01(\t\x12M\n\x12vision_server_type\x18\x02 \x01(\x0e\x32\x31.Nrmk.IndyFramework.VisionServer.VisionServerType\x12\n\n\x02ip\x18\x03 \x01(\t\x12\x0c\n\x04port\x18\x04 \x01(\r\"9\n\x10VisionServerType\x12\x0b\n\x07INDYEYE\x10\x00\x12\x0c\n\x08PHOTONEO\x10\x01\x12\n\n\x06HELIOS\x10\x02\"\xb9\x01\n\rVisionRequest\x12\x37\n\rvision_server\x18\x01 \x01(\x0b\x32 .Nrmk.IndyFramework.VisionServer\x12\x0e\n\x06object\x18\x02 \x01(\t\x12\x37\n\nframe_type\x18\x03 \x01(\x0e\x32#.Nrmk.IndyFramework.VisionFrameType\x12\x13\n\x0bsolution_id\x18\x04 \x01(\r\x12\x11\n\tvision_id\x18\x05 \x01(\r\"\x95\x01\n\x0cVisionResult\x12\r\n\x05\x66rame\x18\x01 \x03(\x02\x12\x37\n\nframe_type\x18\x02 \x01(\x0e\x32#.Nrmk.IndyFramework.VisionFrameType\x12\x0e\n\x06object\x18\x03 \x01(\t\x12\x10\n\x08\x64\x65tected\x18\x04 \x01(\x08\x12\x0e\n\x06passed\x18\x05 \x01(\x08\x12\x0b\n\x03msg\x18\x64 \x01(\t*<\n\x0bGripperType\x12\x08\n\x04NONE\x10\x00\x12\x13\n\x0fROBOTIQ_GRIPPER\x10\x01\x12\x0e\n\nDH_GRIPPER\x10\x02*=\n\x0c\x44igitalState\x12\r\n\tOFF_STATE\x10\x00\x12\x0c\n\x08ON_STATE\x10\x01\x12\x10\n\x0cUNUSED_STATE\x10\x02*b\n\x0c\x45ndtoolState\x12\n\n\x06UNUSED\x10\x00\x12\x0c\n\x08HIGH_PNP\x10\x02\x12\x0c\n\x08HIGH_NPN\x10\x01\x12\x14\n\x07LOW_NPN\x10\xff\xff\xff\xff\xff\xff\xff\xff\xff\x01\x12\x14\n\x07LOW_PNP\x10\xfe\xff\xff\xff\xff\xff\xff\xff\xff\x01*/\n\x0fVisionFrameType\x12\n\n\x06OBJECT\x10\x00\x12\x10\n\x0c\x45ND_EFFECTOR\x10\x01\x62\x06proto3'
+  serialized_pb=b'\n\x11\x64\x65vice_msgs.proto\x12\x12Nrmk.IndyFramework\x1a\x11\x63ommon_msgs.proto\"&\n\x05Motor\x12\r\n\x05index\x18\x01 \x01(\r\x12\x0e\n\x06\x65nable\x18\x02 \x01(\x08\"&\n\x05Servo\x12\r\n\x05index\x18\x01 \x01(\r\x12\x0e\n\x06\x65nable\x18\x02 \x01(\x08\"u\n\x0bGripperData\x12\x35\n\x0cgripper_type\x18\x01 \x01(\x0e\x32\x1f.Nrmk.IndyFramework.GripperType\x12\x18\n\x10gripper_position\x18\x02 \x01(\x05\x12\x15\n\rgripper_state\x18\x03 \x01(\x05\"\x84\x02\n\x0eGripperCommand\x12N\n\x0fgripper_command\x18\x01 \x01(\x0e\x32\x35.Nrmk.IndyFramework.GripperCommand.GripperCommandType\x12\x35\n\x0cgripper_type\x18\x02 \x01(\x0e\x32\x1f.Nrmk.IndyFramework.GripperType\x12\x18\n\x10gripper_pvt_data\x18\x03 \x03(\x05\"Q\n\x12GripperCommandType\x12\x0f\n\x0b\x41UTO_DETECT\x10\x00\x12\x0c\n\x08\x41\x43TIVATE\x10\x01\x12\x0f\n\x0bRE_ACTIVATE\x10\x02\x12\x0b\n\x07SET_PVT\x10\x03\"Q\n\rDigitalSignal\x12\x0f\n\x07\x61\x64\x64ress\x18\x01 \x01(\r\x12/\n\x05state\x18\x02 \x01(\x0e\x32 .Nrmk.IndyFramework.DigitalState\"\x1c\n\tEndLedDim\x12\x0f\n\x07led_dim\x18\x01 \x01(\r\"O\n\rEndtoolSignal\x12\x0c\n\x04port\x18\x01 \x01(\t\x12\x30\n\x06states\x18\x02 \x03(\x0e\x32 .Nrmk.IndyFramework.EndtoolState\"0\n\x0c\x41nalogSignal\x12\x0f\n\x07\x61\x64\x64ress\x18\x01 \x01(\r\x12\x0f\n\x07voltage\x18\x02 \x01(\x05\"6\n\tMotorList\x12)\n\x06motors\x18\x01 \x03(\x0b\x32\x19.Nrmk.IndyFramework.Motor\"A\n\x0b\x44igitalList\x12\x32\n\x07signals\x18\x01 \x03(\x0b\x32!.Nrmk.IndyFramework.DigitalSignal\"G\n\x11\x45ndtoolSignalList\x12\x32\n\x07signals\x18\x01 \x03(\x0b\x32!.Nrmk.IndyFramework.EndtoolSignal\"?\n\nAnalogList\x12\x31\n\x07signals\x18\x01 \x03(\x0b\x32 .Nrmk.IndyFramework.AnalogSignal\"\x86\x04\n\nDeviceInfo\x12\x12\n\nnum_joints\x18\x01 \x01(\r\x12\x14\n\x0crobot_serial\x18\x02 \x01(\t\x12\x0f\n\x07payload\x18\x03 \x01(\x02\x12\x11\n\trobot_dof\x18\x04 \x01(\r\x12\x12\n\nrobot_name\x18\x05 \x01(\t\x12\x11\n\tcb_serial\x18\x06 \x01(\t\x12\x17\n\x0fio_board_fw_ver\x18\n \x01(\t\x12\x1a\n\x12\x63ore_board_fw_vers\x18\x0b \x03(\t\x12\x1c\n\x14\x65ndtool_board_fw_ver\x18\x0c \x01(\t\x12\x16\n\x0e\x63ontroller_ver\x18\x14 \x01(\t\x12\x19\n\x11\x63ontroller_detail\x18\x15 \x01(\t\x12\x17\n\x0f\x63ontroller_date\x18\x16 \x01(\t\x12\x17\n\x0f\x63ontroller_type\x18\x17 \x01(\t\x12\x1b\n\x13\x63ontroller_platform\x18\x18 \x01(\t\x12\x15\n\rteleop_loaded\x18\x1e \x01(\x08\x12\x12\n\ncalibrated\x18\x1f \x01(\x08\x12\x15\n\ruse_safety_io\x18( \x01(\x08\x12\x10\n\x08use_npad\x18) \x01(\x08\x12\x13\n\x0buse_indykey\x18* \x01(\x08\x12\x15\n\ruse_auto_mode\x18+ \x01(\x08\x12.\n\x08response\x18\x64 \x01(\x0b\x32\x1c.Nrmk.IndyFramework.Response\"\xc7\x01\n\x11\x42rakeControlStyle\x12\x41\n\x05style\x18\x01 \x01(\x0e\x32\x32.Nrmk.IndyFramework.BrakeControlStyle.ControlStyle\x12.\n\x08response\x18\x64 \x01(\x0b\x32\x1c.Nrmk.IndyFramework.Response\"?\n\x0c\x43ontrolStyle\x12\x0f\n\x0bUNAVAILABLE\x10\x00\x12\x0e\n\nCONCURRENT\x10\x01\x12\x0e\n\nINDIVIDUAL\x10\x02\"\x98\x01\n\x0c\x46TSensorData\x12\r\n\x05\x66t_Fx\x18\x01 \x01(\x02\x12\r\n\x05\x66t_Fy\x18\x02 \x01(\x02\x12\r\n\x05\x66t_Fz\x18\x03 \x01(\x02\x12\r\n\x05\x66t_Tx\x18\x04 \x01(\x02\x12\r\n\x05\x66t_Ty\x18\x05 \x01(\x02\x12\r\n\x05\x66t_Tz\x18\x06 \x01(\x02\x12.\n\x08response\x18\x64 \x01(\x0b\x32\x1c.Nrmk.IndyFramework.Response\"f\n\x11GetLoadFactorsRes\x12\x10\n\x08percents\x18\x01 \x03(\x05\x12\x0f\n\x07torques\x18\x02 \x03(\x02\x12.\n\x08response\x18\x64 \x01(\x0b\x32\x1c.Nrmk.IndyFramework.Response\"\x1c\n\x0eSetAutoModeReq\x12\n\n\x02on\x18\x01 \x01(\x08\"\x1d\n\x0eSetAutoModeRes\x12\x0b\n\x03msg\x18\x64 \x01(\t\"+\n\x10\x43heckAutoModeRes\x12\n\n\x02on\x18\x01 \x01(\x08\x12\x0b\n\x03msg\x18\x64 \x01(\t\".\n\x13\x43heckReducedModeRes\x12\n\n\x02on\x18\x01 \x01(\x08\x12\x0b\n\x03msg\x18\x64 \x01(\t\"`\n\x13SafetyFunctionState\x12\n\n\x02id\x18\x01 \x01(\r\x12\r\n\x05state\x18\x02 \x01(\r\x12.\n\x08response\x18\x64 \x01(\x0b\x32\x1c.Nrmk.IndyFramework.Response\"\x94\x01\n\x11SafetyControlData\x12\x11\n\tauto_mode\x18\x01 \x01(\x08\x12\x14\n\x0creduced_mode\x18\x02 \x01(\x08\x12\x17\n\x0f\x65nabler_pressed\x18\x03 \x01(\x08\x12=\n\x0csafety_state\x18\x05 \x01(\x0b\x32\'.Nrmk.IndyFramework.SafetyFunctionState\"\xe6\x01\n\x10ViolationRequest\x12\x16\n\x0eviolation_type\x18\x01 \x01(\x04\x12\x37\n\rstop_category\x18\x02 \x01(\x0e\x32 .Nrmk.IndyFramework.StopCategory\x12\x0e\n\x06source\x18\x03 \x01(\x05\x12\x10\n\x08\x61xis_idx\x18\x0b \x01(\x05\x12\x13\n\x0bmisc_fvalue\x18\x0c \x01(\x01\x12\x13\n\x0bmisc_ivalue\x18\r \x01(\x03\x12\x10\n\x08misc_min\x18\x0e \x01(\x01\x12\x10\n\x08misc_max\x18\x0f \x01(\x01\x12\x11\n\tmisc_text\x18\x10 \x01(\t\"\x97\x01\n\rSanderCommand\x12:\n\x04type\x18\x01 \x01(\x0e\x32,.Nrmk.IndyFramework.SanderCommand.SanderType\x12\n\n\x02ip\x18\x02 \x01(\t\x12\r\n\x05speed\x18\x03 \x01(\x02\x12\r\n\x05state\x18\n \x01(\x08\" \n\nSanderType\x12\x12\n\x0eSANDER_ONROBOT\x10\x00\"\x89\x02\n\x07\x45ncoder\x12\x35\n\x04type\x18\x01 \x01(\x0e\x32\'.Nrmk.IndyFramework.Encoder.EncoderType\x12\x10\n\x08\x63hannel1\x18\x02 \x01(\x03\x12\x10\n\x08\x63hannel2\x18\x03 \x01(\x03\x12\x12\n\nsample_num\x18\x04 \x01(\x03\x12\x13\n\x0bmm_per_tick\x18\x05 \x01(\x02\x12\x16\n\x0evel_const_mmps\x18\x06 \x01(\x02\x12\x10\n\x08reversed\x18\x07 \x01(\x08\"P\n\x0b\x45ncoderType\x12\x0c\n\x08\x43ONSTANT\x10\x00\x12\x0e\n\nQUADRATURE\x10\x01\x12\n\n\x06RISING\x10\x02\x12\x0b\n\x07\x46\x41LLING\x10\x03\x12\n\n\x06MODBUS\x10\x04\"\x8e\x01\n\x07Trigger\x12\x35\n\x04type\x18\x01 \x01(\x0e\x32\'.Nrmk.IndyFramework.Trigger.TriggerType\x12\x0f\n\x07\x63hannel\x18\x02 \x01(\x03\x12\x13\n\x0b\x64\x65tect_rise\x18\x03 \x01(\x08\"&\n\x0bTriggerType\x12\x0b\n\x07\x44IGITAL\x10\x00\x12\n\n\x06MODBUS\x10\x01\"\xcb\x02\n\x08\x43onveyor\x12\x0c\n\x04name\x18\x01 \x01(\t\x12,\n\x07\x65ncoder\x18\x02 \x01(\x0b\x32\x1b.Nrmk.IndyFramework.Encoder\x12,\n\x07trigger\x18\x03 \x01(\x0b\x32\x1b.Nrmk.IndyFramework.Trigger\x12\x13\n\x0boffset_dist\x18\x04 \x01(\x02\x12\x14\n\x0cworking_dist\x18\x05 \x01(\x02\x12-\n\tdirection\x18\x06 \x01(\x0b\x32\x1a.Nrmk.IndyFramework.Vector\x12\x33\n\rstarting_pose\x18\n \x01(\x0b\x32\x1c.Nrmk.IndyFramework.PosePair\x12\x33\n\rterminal_pose\x18\x0b \x01(\x0b\x32\x1c.Nrmk.IndyFramework.PosePair\x12\x11\n\ttool_link\x18\x1f \x01(\x05\"4\n\rConveyorState\x12\x10\n\x08velocity\x18\x01 \x01(\x02\x12\x11\n\ttriggered\x18\x02 \x01(\x02\"(\n\x17\x43onveyorObjectDistances\x12\r\n\x05\x64ists\x18\x01 \x03(\x02\"S\n\x18\x41\x64\x64PhotoneoCalibPointReq\x12\x13\n\x0bvision_name\x18\x01 \x01(\t\x12\n\n\x02px\x18\x02 \x01(\x01\x12\n\n\x02py\x18\x03 \x01(\x01\x12\n\n\x02pz\x18\x04 \x01(\x01\"\xc0\x01\n\x0cVisionServer\x12\x0c\n\x04name\x18\x01 \x01(\t\x12M\n\x12vision_server_type\x18\x02 \x01(\x0e\x32\x31.Nrmk.IndyFramework.VisionServer.VisionServerType\x12\n\n\x02ip\x18\x03 \x01(\t\x12\x0c\n\x04port\x18\x04 \x01(\r\"9\n\x10VisionServerType\x12\x0b\n\x07INDYEYE\x10\x00\x12\x0c\n\x08PHOTONEO\x10\x01\x12\n\n\x06HELIOS\x10\x02\"\xb9\x01\n\rVisionRequest\x12\x37\n\rvision_server\x18\x01 \x01(\x0b\x32 .Nrmk.IndyFramework.VisionServer\x12\x0e\n\x06object\x18\x02 \x01(\t\x12\x37\n\nframe_type\x18\x03 \x01(\x0e\x32#.Nrmk.IndyFramework.VisionFrameType\x12\x13\n\x0bsolution_id\x18\x04 \x01(\r\x12\x11\n\tvision_id\x18\x05 \x01(\r\"\x95\x01\n\x0cVisionResult\x12\r\n\x05\x66rame\x18\x01 \x03(\x02\x12\x37\n\nframe_type\x18\x02 \x01(\x0e\x32#.Nrmk.IndyFramework.VisionFrameType\x12\x0e\n\x06object\x18\x03 \x01(\t\x12\x10\n\x08\x64\x65tected\x18\x04 \x01(\x08\x12\x0e\n\x06passed\x18\x05 \x01(\x08\x12\x0b\n\x03msg\x18\x64 \x01(\t\"\x96\x03\n\x04Tool\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x14\n\x0c\x65xecute_time\x18\x02 \x01(\x02\x12\x35\n\ndo_signals\x18\x03 \x03(\x0b\x32!.Nrmk.IndyFramework.DigitalSignal\x12\x38\n\renddo_signals\x18\x04 \x03(\x0b\x32!.Nrmk.IndyFramework.EndtoolSignal\x12\x34\n\nao_signals\x18\x05 \x03(\x0b\x32 .Nrmk.IndyFramework.AnalogSignal\x12\x37\n\rendao_signals\x18\x06 \x03(\x0b\x32 .Nrmk.IndyFramework.AnalogSignal\x12\x12\n\nexpression\x18\x07 \x03(\t\x12;\n\x0fgripper_signals\x18\x08 \x03(\x0b\x32\".Nrmk.IndyFramework.GripperCommand\x12\x39\n\x0emodbus_signals\x18\t \x03(\x0b\x32!.Nrmk.IndyFramework.ModbusCommand\"R\n\rModbusCommand\x12\x0e\n\x06server\x18\x01 \x01(\t\x12\x31\n\x07signals\x18\x02 \x03(\x0b\x32 .Nrmk.IndyFramework.ModbusSignal\"+\n\x0cModbusSignal\x12\x0c\n\x04\x61\x64\x64r\x18\x01 \x01(\x05\x12\r\n\x05value\x18\x02 \x01(\x05\"?\n\tTaskTimes\x12\x32\n\ntask_times\x18\x01 \x03(\x0b\x32\x1e.Nrmk.IndyFramework.NamedFloat*P\n\x0bGripperType\x12\x08\n\x04NONE\x10\x00\x12\x13\n\x0fROBOTIQ_GRIPPER\x10\x01\x12\x0e\n\nDH_GRIPPER\x10\x02\x12\x12\n\x0e\x41PICOO_SUSGRIP\x10\x03*=\n\x0c\x44igitalState\x12\r\n\tOFF_STATE\x10\x00\x12\x0c\n\x08ON_STATE\x10\x01\x12\x10\n\x0cUNUSED_STATE\x10\x02*b\n\x0c\x45ndtoolState\x12\n\n\x06UNUSED\x10\x00\x12\x0c\n\x08HIGH_PNP\x10\x02\x12\x0c\n\x08HIGH_NPN\x10\x01\x12\x14\n\x07LOW_NPN\x10\xff\xff\xff\xff\xff\xff\xff\xff\xff\x01\x12\x14\n\x07LOW_PNP\x10\xfe\xff\xff\xff\xff\xff\xff\xff\xff\x01*/\n\x0fVisionFrameType\x12\n\n\x06OBJECT\x10\x00\x12\x10\n\x0c\x45ND_EFFECTOR\x10\x01\x62\x06proto3'
   ,
   dependencies=[common__msgs__pb2.DESCRIPTOR,])
 
@@ -47,11 +47,16 @@ _GRIPPERTYPE = _descriptor.EnumDescriptor(
       serialized_options=None,
       type=None,
       create_key=_descriptor._internal_create_key),
+    _descriptor.EnumValueDescriptor(
+      name='APICOO_SUSGRIP', index=3, number=3,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=4043,
-  serialized_end=4103,
+  serialized_start=4865,
+  serialized_end=4945,
 )
 _sym_db.RegisterEnumDescriptor(_GRIPPERTYPE)
 
@@ -81,8 +86,8 @@ _DIGITALSTATE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=4105,
-  serialized_end=4166,
+  serialized_start=4947,
+  serialized_end=5008,
 )
 _sym_db.RegisterEnumDescriptor(_DIGITALSTATE)
 
@@ -122,8 +127,8 @@ _ENDTOOLSTATE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=4168,
-  serialized_end=4266,
+  serialized_start=5010,
+  serialized_end=5108,
 )
 _sym_db.RegisterEnumDescriptor(_ENDTOOLSTATE)
 
@@ -148,8 +153,8 @@ _VISIONFRAMETYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=4268,
-  serialized_end=4315,
+  serialized_start=5110,
+  serialized_end=5157,
 )
 _sym_db.RegisterEnumDescriptor(_VISIONFRAMETYPE)
 
@@ -157,6 +162,7 @@ VisionFrameType = enum_type_wrapper.EnumTypeWrapper(_VISIONFRAMETYPE)
 NONE = 0
 ROBOTIQ_GRIPPER = 1
 DH_GRIPPER = 2
+APICOO_SUSGRIP = 3
 OFF_STATE = 0
 ON_STATE = 1
 UNUSED_STATE = 2
@@ -229,8 +235,8 @@ _BRAKECONTROLSTYLE_CONTROLSTYLE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=1488,
-  serialized_end=1551,
+  serialized_start=1685,
+  serialized_end=1748,
 )
 _sym_db.RegisterEnumDescriptor(_BRAKECONTROLSTYLE_CONTROLSTYLE)
 
@@ -249,8 +255,8 @@ _SANDERCOMMAND_SANDERTYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=2607,
-  serialized_end=2639,
+  serialized_start=2765,
+  serialized_end=2797,
 )
 _sym_db.RegisterEnumDescriptor(_SANDERCOMMAND_SANDERTYPE)
 
@@ -289,8 +295,8 @@ _ENCODER_ENCODERTYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=2827,
-  serialized_end=2907,
+  serialized_start=2985,
+  serialized_end=3065,
 )
 _sym_db.RegisterEnumDescriptor(_ENCODER_ENCODERTYPE)
 
@@ -314,8 +320,8 @@ _TRIGGER_TRIGGERTYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=3014,
-  serialized_end=3052,
+  serialized_start=3172,
+  serialized_end=3210,
 )
 _sym_db.RegisterEnumDescriptor(_TRIGGER_TRIGGERTYPE)
 
@@ -344,8 +350,8 @@ _VISIONSERVER_VISIONSERVERTYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=3644,
-  serialized_end=3701,
+  serialized_start=3863,
+  serialized_end=3920,
 )
 _sym_db.RegisterEnumDescriptor(_VISIONSERVER_VISIONSERVERTYPE)
 
@@ -828,63 +834,126 @@ _DEVICEINFO = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='io_board_fw_ver', full_name='Nrmk.IndyFramework.DeviceInfo.io_board_fw_ver', index=3,
+      name='robot_dof', full_name='Nrmk.IndyFramework.DeviceInfo.robot_dof', index=3,
+      number=4, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='robot_name', full_name='Nrmk.IndyFramework.DeviceInfo.robot_name', index=4,
+      number=5, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='cb_serial', full_name='Nrmk.IndyFramework.DeviceInfo.cb_serial', index=5,
+      number=6, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='io_board_fw_ver', full_name='Nrmk.IndyFramework.DeviceInfo.io_board_fw_ver', index=6,
       number=10, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='core_board_fw_vers', full_name='Nrmk.IndyFramework.DeviceInfo.core_board_fw_vers', index=4,
+      name='core_board_fw_vers', full_name='Nrmk.IndyFramework.DeviceInfo.core_board_fw_vers', index=7,
       number=11, type=9, cpp_type=9, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='endtool_board_fw_ver', full_name='Nrmk.IndyFramework.DeviceInfo.endtool_board_fw_ver', index=5,
+      name='endtool_board_fw_ver', full_name='Nrmk.IndyFramework.DeviceInfo.endtool_board_fw_ver', index=8,
       number=12, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='controller_ver', full_name='Nrmk.IndyFramework.DeviceInfo.controller_ver', index=6,
+      name='controller_ver', full_name='Nrmk.IndyFramework.DeviceInfo.controller_ver', index=9,
       number=20, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='controller_detail', full_name='Nrmk.IndyFramework.DeviceInfo.controller_detail', index=7,
+      name='controller_detail', full_name='Nrmk.IndyFramework.DeviceInfo.controller_detail', index=10,
       number=21, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='controller_date', full_name='Nrmk.IndyFramework.DeviceInfo.controller_date', index=8,
+      name='controller_date', full_name='Nrmk.IndyFramework.DeviceInfo.controller_date', index=11,
       number=22, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='teleop_loaded', full_name='Nrmk.IndyFramework.DeviceInfo.teleop_loaded', index=9,
+      name='controller_type', full_name='Nrmk.IndyFramework.DeviceInfo.controller_type', index=12,
+      number=23, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='controller_platform', full_name='Nrmk.IndyFramework.DeviceInfo.controller_platform', index=13,
+      number=24, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='teleop_loaded', full_name='Nrmk.IndyFramework.DeviceInfo.teleop_loaded', index=14,
       number=30, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='calibrated', full_name='Nrmk.IndyFramework.DeviceInfo.calibrated', index=10,
+      name='calibrated', full_name='Nrmk.IndyFramework.DeviceInfo.calibrated', index=15,
       number=31, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='response', full_name='Nrmk.IndyFramework.DeviceInfo.response', index=11,
+      name='use_safety_io', full_name='Nrmk.IndyFramework.DeviceInfo.use_safety_io', index=16,
+      number=40, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='use_npad', full_name='Nrmk.IndyFramework.DeviceInfo.use_npad', index=17,
+      number=41, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='use_indykey', full_name='Nrmk.IndyFramework.DeviceInfo.use_indykey', index=18,
+      number=42, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='use_auto_mode', full_name='Nrmk.IndyFramework.DeviceInfo.use_auto_mode', index=19,
+      number=43, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='response', full_name='Nrmk.IndyFramework.DeviceInfo.response', index=20,
       number=100, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -903,7 +972,7 @@ _DEVICEINFO = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=1028,
-  serialized_end=1349,
+  serialized_end=1546,
 )
 
 
@@ -942,135 +1011,8 @@ _BRAKECONTROLSTYLE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1352,
-  serialized_end=1551,
-)
-
-
-_GETEL5001DATA = _descriptor.Descriptor(
-  name='GetEL5001Data',
-  full_name='Nrmk.IndyFramework.GetEL5001Data',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='status', full_name='Nrmk.IndyFramework.GetEL5001Data.status', index=0,
-      number=1, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='value', full_name='Nrmk.IndyFramework.GetEL5001Data.value', index=1,
-      number=2, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='delta', full_name='Nrmk.IndyFramework.GetEL5001Data.delta', index=2,
-      number=3, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='average', full_name='Nrmk.IndyFramework.GetEL5001Data.average', index=3,
-      number=4, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='response', full_name='Nrmk.IndyFramework.GetEL5001Data.response', index=4,
-      number=100, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1553,
-  serialized_end=1679,
-)
-
-
-_GETEL5101DATA = _descriptor.Descriptor(
-  name='GetEL5101Data',
-  full_name='Nrmk.IndyFramework.GetEL5101Data',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='status', full_name='Nrmk.IndyFramework.GetEL5101Data.status', index=0,
-      number=1, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='value', full_name='Nrmk.IndyFramework.GetEL5101Data.value', index=1,
-      number=2, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='latch', full_name='Nrmk.IndyFramework.GetEL5101Data.latch', index=2,
-      number=3, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='delta', full_name='Nrmk.IndyFramework.GetEL5101Data.delta', index=3,
-      number=4, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='average', full_name='Nrmk.IndyFramework.GetEL5101Data.average', index=4,
-      number=5, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='response', full_name='Nrmk.IndyFramework.GetEL5101Data.response', index=5,
-      number=100, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1682,
-  serialized_end=1823,
+  serialized_start=1549,
+  serialized_end=1748,
 )
 
 
@@ -1143,8 +1085,8 @@ _FTSENSORDATA = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1826,
-  serialized_end=1978,
+  serialized_start=1751,
+  serialized_end=1903,
 )
 
 
@@ -1189,8 +1131,8 @@ _GETLOADFACTORSRES = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1980,
-  serialized_end=2082,
+  serialized_start=1905,
+  serialized_end=2007,
 )
 
 
@@ -1221,8 +1163,8 @@ _SETAUTOMODEREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2084,
-  serialized_end=2112,
+  serialized_start=2009,
+  serialized_end=2037,
 )
 
 
@@ -1253,8 +1195,8 @@ _SETAUTOMODERES = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2114,
-  serialized_end=2143,
+  serialized_start=2039,
+  serialized_end=2068,
 )
 
 
@@ -1292,8 +1234,8 @@ _CHECKAUTOMODERES = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2145,
-  serialized_end=2188,
+  serialized_start=2070,
+  serialized_end=2113,
 )
 
 
@@ -1331,8 +1273,8 @@ _CHECKREDUCEDMODERES = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2190,
-  serialized_end=2236,
+  serialized_start=2115,
+  serialized_end=2161,
 )
 
 
@@ -1377,8 +1319,8 @@ _SAFETYFUNCTIONSTATE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2238,
-  serialized_end=2334,
+  serialized_start=2163,
+  serialized_end=2259,
 )
 
 
@@ -1430,8 +1372,96 @@ _SAFETYCONTROLDATA = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2337,
-  serialized_end=2485,
+  serialized_start=2262,
+  serialized_end=2410,
+)
+
+
+_VIOLATIONREQUEST = _descriptor.Descriptor(
+  name='ViolationRequest',
+  full_name='Nrmk.IndyFramework.ViolationRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='violation_type', full_name='Nrmk.IndyFramework.ViolationRequest.violation_type', index=0,
+      number=1, type=4, cpp_type=4, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='stop_category', full_name='Nrmk.IndyFramework.ViolationRequest.stop_category', index=1,
+      number=2, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='source', full_name='Nrmk.IndyFramework.ViolationRequest.source', index=2,
+      number=3, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='axis_idx', full_name='Nrmk.IndyFramework.ViolationRequest.axis_idx', index=3,
+      number=11, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='misc_fvalue', full_name='Nrmk.IndyFramework.ViolationRequest.misc_fvalue', index=4,
+      number=12, type=1, cpp_type=5, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='misc_ivalue', full_name='Nrmk.IndyFramework.ViolationRequest.misc_ivalue', index=5,
+      number=13, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='misc_min', full_name='Nrmk.IndyFramework.ViolationRequest.misc_min', index=6,
+      number=14, type=1, cpp_type=5, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='misc_max', full_name='Nrmk.IndyFramework.ViolationRequest.misc_max', index=7,
+      number=15, type=1, cpp_type=5, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='misc_text', full_name='Nrmk.IndyFramework.ViolationRequest.misc_text', index=8,
+      number=16, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=2413,
+  serialized_end=2643,
 )
 
 
@@ -1484,8 +1514,8 @@ _SANDERCOMMAND = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2488,
-  serialized_end=2639,
+  serialized_start=2646,
+  serialized_end=2797,
 )
 
 
@@ -1559,8 +1589,8 @@ _ENCODER = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2642,
-  serialized_end=2907,
+  serialized_start=2800,
+  serialized_end=3065,
 )
 
 
@@ -1606,8 +1636,8 @@ _TRIGGER = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2910,
-  serialized_end=3052,
+  serialized_start=3068,
+  serialized_end=3210,
 )
 
 
@@ -1675,6 +1705,13 @@ _CONVEYOR = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='tool_link', full_name='Nrmk.IndyFramework.Conveyor.tool_link', index=8,
+      number=31, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -1687,8 +1724,8 @@ _CONVEYOR = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3055,
-  serialized_end=3367,
+  serialized_start=3213,
+  serialized_end=3544,
 )
 
 
@@ -1726,8 +1763,40 @@ _CONVEYORSTATE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3369,
-  serialized_end=3421,
+  serialized_start=3546,
+  serialized_end=3598,
+)
+
+
+_CONVEYOROBJECTDISTANCES = _descriptor.Descriptor(
+  name='ConveyorObjectDistances',
+  full_name='Nrmk.IndyFramework.ConveyorObjectDistances',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='dists', full_name='Nrmk.IndyFramework.ConveyorObjectDistances.dists', index=0,
+      number=1, type=2, cpp_type=6, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=3600,
+  serialized_end=3640,
 )
 
 
@@ -1779,8 +1848,8 @@ _ADDPHOTONEOCALIBPOINTREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3423,
-  serialized_end=3506,
+  serialized_start=3642,
+  serialized_end=3725,
 )
 
 
@@ -1833,8 +1902,8 @@ _VISIONSERVER = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3509,
-  serialized_end=3701,
+  serialized_start=3728,
+  serialized_end=3920,
 )
 
 
@@ -1893,8 +1962,8 @@ _VISIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3704,
-  serialized_end=3889,
+  serialized_start=3923,
+  serialized_end=4108,
 )
 
 
@@ -1960,8 +2029,206 @@ _VISIONRESULT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3892,
-  serialized_end=4041,
+  serialized_start=4111,
+  serialized_end=4260,
+)
+
+
+_TOOL = _descriptor.Descriptor(
+  name='Tool',
+  full_name='Nrmk.IndyFramework.Tool',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='name', full_name='Nrmk.IndyFramework.Tool.name', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='execute_time', full_name='Nrmk.IndyFramework.Tool.execute_time', index=1,
+      number=2, type=2, cpp_type=6, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='do_signals', full_name='Nrmk.IndyFramework.Tool.do_signals', index=2,
+      number=3, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='enddo_signals', full_name='Nrmk.IndyFramework.Tool.enddo_signals', index=3,
+      number=4, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='ao_signals', full_name='Nrmk.IndyFramework.Tool.ao_signals', index=4,
+      number=5, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='endao_signals', full_name='Nrmk.IndyFramework.Tool.endao_signals', index=5,
+      number=6, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='expression', full_name='Nrmk.IndyFramework.Tool.expression', index=6,
+      number=7, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='gripper_signals', full_name='Nrmk.IndyFramework.Tool.gripper_signals', index=7,
+      number=8, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='modbus_signals', full_name='Nrmk.IndyFramework.Tool.modbus_signals', index=8,
+      number=9, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=4263,
+  serialized_end=4669,
+)
+
+
+_MODBUSCOMMAND = _descriptor.Descriptor(
+  name='ModbusCommand',
+  full_name='Nrmk.IndyFramework.ModbusCommand',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='server', full_name='Nrmk.IndyFramework.ModbusCommand.server', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='signals', full_name='Nrmk.IndyFramework.ModbusCommand.signals', index=1,
+      number=2, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=4671,
+  serialized_end=4753,
+)
+
+
+_MODBUSSIGNAL = _descriptor.Descriptor(
+  name='ModbusSignal',
+  full_name='Nrmk.IndyFramework.ModbusSignal',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='addr', full_name='Nrmk.IndyFramework.ModbusSignal.addr', index=0,
+      number=1, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='value', full_name='Nrmk.IndyFramework.ModbusSignal.value', index=1,
+      number=2, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=4755,
+  serialized_end=4798,
+)
+
+
+_TASKTIMES = _descriptor.Descriptor(
+  name='TaskTimes',
+  full_name='Nrmk.IndyFramework.TaskTimes',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='task_times', full_name='Nrmk.IndyFramework.TaskTimes.task_times', index=0,
+      number=1, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=4800,
+  serialized_end=4863,
 )
 
 _GRIPPERDATA.fields_by_name['gripper_type'].enum_type = _GRIPPERTYPE
@@ -1978,12 +2245,11 @@ _DEVICEINFO.fields_by_name['response'].message_type = common__msgs__pb2._RESPONS
 _BRAKECONTROLSTYLE.fields_by_name['style'].enum_type = _BRAKECONTROLSTYLE_CONTROLSTYLE
 _BRAKECONTROLSTYLE.fields_by_name['response'].message_type = common__msgs__pb2._RESPONSE
 _BRAKECONTROLSTYLE_CONTROLSTYLE.containing_type = _BRAKECONTROLSTYLE
-_GETEL5001DATA.fields_by_name['response'].message_type = common__msgs__pb2._RESPONSE
-_GETEL5101DATA.fields_by_name['response'].message_type = common__msgs__pb2._RESPONSE
 _FTSENSORDATA.fields_by_name['response'].message_type = common__msgs__pb2._RESPONSE
 _GETLOADFACTORSRES.fields_by_name['response'].message_type = common__msgs__pb2._RESPONSE
 _SAFETYFUNCTIONSTATE.fields_by_name['response'].message_type = common__msgs__pb2._RESPONSE
 _SAFETYCONTROLDATA.fields_by_name['safety_state'].message_type = _SAFETYFUNCTIONSTATE
+_VIOLATIONREQUEST.fields_by_name['stop_category'].enum_type = common__msgs__pb2._STOPCATEGORY
 _SANDERCOMMAND.fields_by_name['type'].enum_type = _SANDERCOMMAND_SANDERTYPE
 _SANDERCOMMAND_SANDERTYPE.containing_type = _SANDERCOMMAND
 _ENCODER.fields_by_name['type'].enum_type = _ENCODER_ENCODERTYPE
@@ -2000,6 +2266,14 @@ _VISIONSERVER_VISIONSERVERTYPE.containing_type = _VISIONSERVER
 _VISIONREQUEST.fields_by_name['vision_server'].message_type = _VISIONSERVER
 _VISIONREQUEST.fields_by_name['frame_type'].enum_type = _VISIONFRAMETYPE
 _VISIONRESULT.fields_by_name['frame_type'].enum_type = _VISIONFRAMETYPE
+_TOOL.fields_by_name['do_signals'].message_type = _DIGITALSIGNAL
+_TOOL.fields_by_name['enddo_signals'].message_type = _ENDTOOLSIGNAL
+_TOOL.fields_by_name['ao_signals'].message_type = _ANALOGSIGNAL
+_TOOL.fields_by_name['endao_signals'].message_type = _ANALOGSIGNAL
+_TOOL.fields_by_name['gripper_signals'].message_type = _GRIPPERCOMMAND
+_TOOL.fields_by_name['modbus_signals'].message_type = _MODBUSCOMMAND
+_MODBUSCOMMAND.fields_by_name['signals'].message_type = _MODBUSSIGNAL
+_TASKTIMES.fields_by_name['task_times'].message_type = common__msgs__pb2._NAMEDFLOAT
 DESCRIPTOR.message_types_by_name['Motor'] = _MOTOR
 DESCRIPTOR.message_types_by_name['Servo'] = _SERVO
 DESCRIPTOR.message_types_by_name['GripperData'] = _GRIPPERDATA
@@ -2014,8 +2288,6 @@ DESCRIPTOR.message_types_by_name['EndtoolSignalList'] = _ENDTOOLSIGNALLIST
 DESCRIPTOR.message_types_by_name['AnalogList'] = _ANALOGLIST
 DESCRIPTOR.message_types_by_name['DeviceInfo'] = _DEVICEINFO
 DESCRIPTOR.message_types_by_name['BrakeControlStyle'] = _BRAKECONTROLSTYLE
-DESCRIPTOR.message_types_by_name['GetEL5001Data'] = _GETEL5001DATA
-DESCRIPTOR.message_types_by_name['GetEL5101Data'] = _GETEL5101DATA
 DESCRIPTOR.message_types_by_name['FTSensorData'] = _FTSENSORDATA
 DESCRIPTOR.message_types_by_name['GetLoadFactorsRes'] = _GETLOADFACTORSRES
 DESCRIPTOR.message_types_by_name['SetAutoModeReq'] = _SETAUTOMODEREQ
@@ -2024,15 +2296,21 @@ DESCRIPTOR.message_types_by_name['CheckAutoModeRes'] = _CHECKAUTOMODERES
 DESCRIPTOR.message_types_by_name['CheckReducedModeRes'] = _CHECKREDUCEDMODERES
 DESCRIPTOR.message_types_by_name['SafetyFunctionState'] = _SAFETYFUNCTIONSTATE
 DESCRIPTOR.message_types_by_name['SafetyControlData'] = _SAFETYCONTROLDATA
+DESCRIPTOR.message_types_by_name['ViolationRequest'] = _VIOLATIONREQUEST
 DESCRIPTOR.message_types_by_name['SanderCommand'] = _SANDERCOMMAND
 DESCRIPTOR.message_types_by_name['Encoder'] = _ENCODER
 DESCRIPTOR.message_types_by_name['Trigger'] = _TRIGGER
 DESCRIPTOR.message_types_by_name['Conveyor'] = _CONVEYOR
 DESCRIPTOR.message_types_by_name['ConveyorState'] = _CONVEYORSTATE
+DESCRIPTOR.message_types_by_name['ConveyorObjectDistances'] = _CONVEYOROBJECTDISTANCES
 DESCRIPTOR.message_types_by_name['AddPhotoneoCalibPointReq'] = _ADDPHOTONEOCALIBPOINTREQ
 DESCRIPTOR.message_types_by_name['VisionServer'] = _VISIONSERVER
 DESCRIPTOR.message_types_by_name['VisionRequest'] = _VISIONREQUEST
 DESCRIPTOR.message_types_by_name['VisionResult'] = _VISIONRESULT
+DESCRIPTOR.message_types_by_name['Tool'] = _TOOL
+DESCRIPTOR.message_types_by_name['ModbusCommand'] = _MODBUSCOMMAND
+DESCRIPTOR.message_types_by_name['ModbusSignal'] = _MODBUSSIGNAL
+DESCRIPTOR.message_types_by_name['TaskTimes'] = _TASKTIMES
 DESCRIPTOR.enum_types_by_name['GripperType'] = _GRIPPERTYPE
 DESCRIPTOR.enum_types_by_name['DigitalState'] = _DIGITALSTATE
 DESCRIPTOR.enum_types_by_name['EndtoolState'] = _ENDTOOLSTATE
@@ -2137,20 +2415,6 @@ BrakeControlStyle = _reflection.GeneratedProtocolMessageType('BrakeControlStyle'
   })
 _sym_db.RegisterMessage(BrakeControlStyle)
 
-GetEL5001Data = _reflection.GeneratedProtocolMessageType('GetEL5001Data', (_message.Message,), {
-  'DESCRIPTOR' : _GETEL5001DATA,
-  '__module__' : 'device_msgs_pb2'
-  # @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.GetEL5001Data)
-  })
-_sym_db.RegisterMessage(GetEL5001Data)
-
-GetEL5101Data = _reflection.GeneratedProtocolMessageType('GetEL5101Data', (_message.Message,), {
-  'DESCRIPTOR' : _GETEL5101DATA,
-  '__module__' : 'device_msgs_pb2'
-  # @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.GetEL5101Data)
-  })
-_sym_db.RegisterMessage(GetEL5101Data)
-
 FTSensorData = _reflection.GeneratedProtocolMessageType('FTSensorData', (_message.Message,), {
   'DESCRIPTOR' : _FTSENSORDATA,
   '__module__' : 'device_msgs_pb2'
@@ -2207,6 +2471,13 @@ SafetyControlData = _reflection.GeneratedProtocolMessageType('SafetyControlData'
   })
 _sym_db.RegisterMessage(SafetyControlData)
 
+ViolationRequest = _reflection.GeneratedProtocolMessageType('ViolationRequest', (_message.Message,), {
+  'DESCRIPTOR' : _VIOLATIONREQUEST,
+  '__module__' : 'device_msgs_pb2'
+  # @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.ViolationRequest)
+  })
+_sym_db.RegisterMessage(ViolationRequest)
+
 SanderCommand = _reflection.GeneratedProtocolMessageType('SanderCommand', (_message.Message,), {
   'DESCRIPTOR' : _SANDERCOMMAND,
   '__module__' : 'device_msgs_pb2'
@@ -2242,6 +2513,13 @@ ConveyorState = _reflection.GeneratedProtocolMessageType('ConveyorState', (_mess
   })
 _sym_db.RegisterMessage(ConveyorState)
 
+ConveyorObjectDistances = _reflection.GeneratedProtocolMessageType('ConveyorObjectDistances', (_message.Message,), {
+  'DESCRIPTOR' : _CONVEYOROBJECTDISTANCES,
+  '__module__' : 'device_msgs_pb2'
+  # @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.ConveyorObjectDistances)
+  })
+_sym_db.RegisterMessage(ConveyorObjectDistances)
+
 AddPhotoneoCalibPointReq = _reflection.GeneratedProtocolMessageType('AddPhotoneoCalibPointReq', (_message.Message,), {
   'DESCRIPTOR' : _ADDPHOTONEOCALIBPOINTREQ,
   '__module__' : 'device_msgs_pb2'
@@ -2269,6 +2547,34 @@ VisionResult = _reflection.GeneratedProtocolMessageType('VisionResult', (_messag
   # @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.VisionResult)
   })
 _sym_db.RegisterMessage(VisionResult)
+
+Tool = _reflection.GeneratedProtocolMessageType('Tool', (_message.Message,), {
+  'DESCRIPTOR' : _TOOL,
+  '__module__' : 'device_msgs_pb2'
+  # @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.Tool)
+  })
+_sym_db.RegisterMessage(Tool)
+
+ModbusCommand = _reflection.GeneratedProtocolMessageType('ModbusCommand', (_message.Message,), {
+  'DESCRIPTOR' : _MODBUSCOMMAND,
+  '__module__' : 'device_msgs_pb2'
+  # @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.ModbusCommand)
+  })
+_sym_db.RegisterMessage(ModbusCommand)
+
+ModbusSignal = _reflection.GeneratedProtocolMessageType('ModbusSignal', (_message.Message,), {
+  'DESCRIPTOR' : _MODBUSSIGNAL,
+  '__module__' : 'device_msgs_pb2'
+  # @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.ModbusSignal)
+  })
+_sym_db.RegisterMessage(ModbusSignal)
+
+TaskTimes = _reflection.GeneratedProtocolMessageType('TaskTimes', (_message.Message,), {
+  'DESCRIPTOR' : _TASKTIMES,
+  '__module__' : 'device_msgs_pb2'
+  # @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.TaskTimes)
+  })
+_sym_db.RegisterMessage(TaskTimes)
 
 
 # @@protoc_insertion_point(module_scope)

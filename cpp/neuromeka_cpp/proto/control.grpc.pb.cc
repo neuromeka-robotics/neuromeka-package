@@ -52,6 +52,8 @@ static const char* Control_method_names[] = {
   "/Nrmk.IndyFramework.Control/GetFrictionCompensationState",
   "/Nrmk.IndyFramework.Control/SetTactTime",
   "/Nrmk.IndyFramework.Control/GetTactTime",
+  "/Nrmk.IndyFramework.Control/SetComplianceMode",
+  "/Nrmk.IndyFramework.Control/GetComplianceMode",
   "/Nrmk.IndyFramework.Control/Recover",
   "/Nrmk.IndyFramework.Control/Reboot",
   "/Nrmk.IndyFramework.Control/SetManualRecovery",
@@ -80,6 +82,18 @@ static const char* Control_method_names[] = {
   "/Nrmk.IndyFramework.Control/GetJPosVariable",
   "/Nrmk.IndyFramework.Control/SetTPosVariable",
   "/Nrmk.IndyFramework.Control/GetTPosVariable",
+  "/Nrmk.IndyFramework.Control/SetPluginBoolVariable",
+  "/Nrmk.IndyFramework.Control/GetPluginBoolVariable",
+  "/Nrmk.IndyFramework.Control/SetPluginIntVariable",
+  "/Nrmk.IndyFramework.Control/GetPluginIntVariable",
+  "/Nrmk.IndyFramework.Control/SetPluginFloatVariable",
+  "/Nrmk.IndyFramework.Control/GetPluginFloatVariable",
+  "/Nrmk.IndyFramework.Control/SetPluginJPosVariable",
+  "/Nrmk.IndyFramework.Control/GetPluginJPosVariable",
+  "/Nrmk.IndyFramework.Control/SetPluginTPosVariable",
+  "/Nrmk.IndyFramework.Control/GetPluginTPosVariable",
+  "/Nrmk.IndyFramework.Control/PushBusEvent",
+  "/Nrmk.IndyFramework.Control/CatchBusEvent",
   "/Nrmk.IndyFramework.Control/InverseKinematics",
   "/Nrmk.IndyFramework.Control/ForwardKinematics",
   "/Nrmk.IndyFramework.Control/CheckAproachRetractValid",
@@ -103,9 +117,11 @@ static const char* Control_method_names[] = {
   "/Nrmk.IndyFramework.Control/EnableTeleKey",
   "/Nrmk.IndyFramework.Control/MoveTeleJ",
   "/Nrmk.IndyFramework.Control/MoveTeleL",
-  "/Nrmk.IndyFramework.Control/MoveLF",
+  "/Nrmk.IndyFramework.Control/SetForceMode",
+  "/Nrmk.IndyFramework.Control/GetForceMode",
   "/Nrmk.IndyFramework.Control/GetTransformedFTSensorData",
   "/Nrmk.IndyFramework.Control/FTZero",
+  "/Nrmk.IndyFramework.Control/MoveLF",
   "/Nrmk.IndyFramework.Control/SetControlInferenceData",
   "/Nrmk.IndyFramework.Control/GetControlInferenceData",
 };
@@ -146,62 +162,78 @@ Control::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, c
   , rpcmethod_GetFrictionCompensationState_(Control_method_names[26], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_SetTactTime_(Control_method_names[27], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_GetTactTime_(Control_method_names[28], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_Recover_(Control_method_names[29], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_Reboot_(Control_method_names[30], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetManualRecovery_(Control_method_names[31], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_MoveRecoverJoint_(Control_method_names[32], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SearchProgram_(Control_method_names[33], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PlayProgram_(Control_method_names[34], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PauseProgram_(Control_method_names[35], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ResumeProgram_(Control_method_names[36], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_StopProgram_(Control_method_names[37], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SendAlarm_(Control_method_names[38], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SendAnnotation_(Control_method_names[39], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PlayTuningProgram_(Control_method_names[40], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PlayProgramLine_(Control_method_names[41], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetModbusVariableNameList_(Control_method_names[42], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetVariableNameList_(Control_method_names[43], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetVariableNameList_(Control_method_names[44], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetIntVariable_(Control_method_names[45], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetIntVariable_(Control_method_names[46], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetModbusVariable_(Control_method_names[47], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetModbusVariable_(Control_method_names[48], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetBoolVariable_(Control_method_names[49], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetBoolVariable_(Control_method_names[50], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetFloatVariable_(Control_method_names[51], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetFloatVariable_(Control_method_names[52], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetJPosVariable_(Control_method_names[53], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetJPosVariable_(Control_method_names[54], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetTPosVariable_(Control_method_names[55], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetTPosVariable_(Control_method_names[56], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_InverseKinematics_(Control_method_names[57], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ForwardKinematics_(Control_method_names[58], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_CheckAproachRetractValid_(Control_method_names[59], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetPalletPointList_(Control_method_names[60], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_CalculateRelativePose_(Control_method_names[61], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_CalculateCurrentPoseRel_(Control_method_names[62], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PingFromConty_(Control_method_names[63], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetTeleOpDevice_(Control_method_names[64], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetTeleOpState_(Control_method_names[65], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ConnectTeleOpDevice_(Control_method_names[66], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DisConnectTeleOpDevice_(Control_method_names[67], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ReadTeleOpInput_(Control_method_names[68], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_StartTeleOp_(Control_method_names[69], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_StopTeleOp_(Control_method_names[70], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetPlayRate_(Control_method_names[71], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetPlayRate_(Control_method_names[72], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetTeleFileList_(Control_method_names[73], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SaveTeleMotion_(Control_method_names[74], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_LoadTeleMotion_(Control_method_names[75], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DeleteTeleMotion_(Control_method_names[76], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_EnableTeleKey_(Control_method_names[77], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_MoveTeleJ_(Control_method_names[78], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_MoveTeleL_(Control_method_names[79], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_MoveLF_(Control_method_names[80], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetTransformedFTSensorData_(Control_method_names[81], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_FTZero_(Control_method_names[82], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetControlInferenceData_(Control_method_names[83], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetControlInferenceData_(Control_method_names[84], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetComplianceMode_(Control_method_names[29], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetComplianceMode_(Control_method_names[30], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Recover_(Control_method_names[31], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Reboot_(Control_method_names[32], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetManualRecovery_(Control_method_names[33], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_MoveRecoverJoint_(Control_method_names[34], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SearchProgram_(Control_method_names[35], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PlayProgram_(Control_method_names[36], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PauseProgram_(Control_method_names[37], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ResumeProgram_(Control_method_names[38], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_StopProgram_(Control_method_names[39], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SendAlarm_(Control_method_names[40], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SendAnnotation_(Control_method_names[41], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PlayTuningProgram_(Control_method_names[42], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PlayProgramLine_(Control_method_names[43], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetModbusVariableNameList_(Control_method_names[44], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetVariableNameList_(Control_method_names[45], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetVariableNameList_(Control_method_names[46], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetIntVariable_(Control_method_names[47], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetIntVariable_(Control_method_names[48], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetModbusVariable_(Control_method_names[49], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetModbusVariable_(Control_method_names[50], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetBoolVariable_(Control_method_names[51], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetBoolVariable_(Control_method_names[52], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetFloatVariable_(Control_method_names[53], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetFloatVariable_(Control_method_names[54], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetJPosVariable_(Control_method_names[55], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetJPosVariable_(Control_method_names[56], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetTPosVariable_(Control_method_names[57], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetTPosVariable_(Control_method_names[58], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetPluginBoolVariable_(Control_method_names[59], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetPluginBoolVariable_(Control_method_names[60], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetPluginIntVariable_(Control_method_names[61], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetPluginIntVariable_(Control_method_names[62], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetPluginFloatVariable_(Control_method_names[63], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetPluginFloatVariable_(Control_method_names[64], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetPluginJPosVariable_(Control_method_names[65], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetPluginJPosVariable_(Control_method_names[66], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetPluginTPosVariable_(Control_method_names[67], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetPluginTPosVariable_(Control_method_names[68], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PushBusEvent_(Control_method_names[69], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_CatchBusEvent_(Control_method_names[70], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_InverseKinematics_(Control_method_names[71], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ForwardKinematics_(Control_method_names[72], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_CheckAproachRetractValid_(Control_method_names[73], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetPalletPointList_(Control_method_names[74], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_CalculateRelativePose_(Control_method_names[75], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_CalculateCurrentPoseRel_(Control_method_names[76], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PingFromConty_(Control_method_names[77], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetTeleOpDevice_(Control_method_names[78], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetTeleOpState_(Control_method_names[79], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ConnectTeleOpDevice_(Control_method_names[80], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DisConnectTeleOpDevice_(Control_method_names[81], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ReadTeleOpInput_(Control_method_names[82], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_StartTeleOp_(Control_method_names[83], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_StopTeleOp_(Control_method_names[84], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetPlayRate_(Control_method_names[85], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetPlayRate_(Control_method_names[86], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetTeleFileList_(Control_method_names[87], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SaveTeleMotion_(Control_method_names[88], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_LoadTeleMotion_(Control_method_names[89], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteTeleMotion_(Control_method_names[90], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_EnableTeleKey_(Control_method_names[91], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_MoveTeleJ_(Control_method_names[92], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_MoveTeleL_(Control_method_names[93], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetForceMode_(Control_method_names[94], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetForceMode_(Control_method_names[95], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetTransformedFTSensorData_(Control_method_names[96], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_FTZero_(Control_method_names[97], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_MoveLF_(Control_method_names[98], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetControlInferenceData_(Control_method_names[99], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetControlInferenceData_(Control_method_names[100], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status Control::Stub::GetControlInfo(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::ControlInfo* response) {
@@ -871,6 +903,52 @@ void Control::Stub::async::GetTactTime(::grpc::ClientContext* context, const ::N
   return result;
 }
 
+::grpc::Status Control::Stub::SetComplianceMode(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ComplianceMode& request, ::Nrmk::IndyFramework::Response* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::ComplianceMode, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetComplianceMode_, context, request, response);
+}
+
+void Control::Stub::async::SetComplianceMode(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ComplianceMode* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::ComplianceMode, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetComplianceMode_, context, request, response, std::move(f));
+}
+
+void Control::Stub::async::SetComplianceMode(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ComplianceMode* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetComplianceMode_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Control::Stub::PrepareAsyncSetComplianceModeRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ComplianceMode& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Response, ::Nrmk::IndyFramework::ComplianceMode, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetComplianceMode_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Control::Stub::AsyncSetComplianceModeRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ComplianceMode& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetComplianceModeRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Control::Stub::GetComplianceMode(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::ComplianceMode* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ComplianceMode, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetComplianceMode_, context, request, response);
+}
+
+void Control::Stub::async::GetComplianceMode(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ComplianceMode* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ComplianceMode, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetComplianceMode_, context, request, response, std::move(f));
+}
+
+void Control::Stub::async::GetComplianceMode(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ComplianceMode* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetComplianceMode_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ComplianceMode>* Control::Stub::PrepareAsyncGetComplianceModeRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::ComplianceMode, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetComplianceMode_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ComplianceMode>* Control::Stub::AsyncGetComplianceModeRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetComplianceModeRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 ::grpc::Status Control::Stub::Recover(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::Response* response) {
   return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Recover_, context, request, response);
 }
@@ -1515,6 +1593,282 @@ void Control::Stub::async::GetTPosVariable(::grpc::ClientContext* context, const
   return result;
 }
 
+::grpc::Status Control::Stub::SetPluginBoolVariable(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::NamedBool& request, ::Nrmk::IndyFramework::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::NamedBool, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetPluginBoolVariable_, context, request, response);
+}
+
+void Control::Stub::async::SetPluginBoolVariable(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::NamedBool* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::NamedBool, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetPluginBoolVariable_, context, request, response, std::move(f));
+}
+
+void Control::Stub::async::SetPluginBoolVariable(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::NamedBool* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetPluginBoolVariable_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Control::Stub::PrepareAsyncSetPluginBoolVariableRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::NamedBool& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::NamedBool, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetPluginBoolVariable_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Control::Stub::AsyncSetPluginBoolVariableRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::NamedBool& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetPluginBoolVariableRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Control::Stub::GetPluginBoolVariable(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Name& request, ::Nrmk::IndyFramework::NamedBool* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Name, ::Nrmk::IndyFramework::NamedBool, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetPluginBoolVariable_, context, request, response);
+}
+
+void Control::Stub::async::GetPluginBoolVariable(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Name* request, ::Nrmk::IndyFramework::NamedBool* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Name, ::Nrmk::IndyFramework::NamedBool, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetPluginBoolVariable_, context, request, response, std::move(f));
+}
+
+void Control::Stub::async::GetPluginBoolVariable(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Name* request, ::Nrmk::IndyFramework::NamedBool* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetPluginBoolVariable_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::NamedBool>* Control::Stub::PrepareAsyncGetPluginBoolVariableRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Name& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::NamedBool, ::Nrmk::IndyFramework::Name, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetPluginBoolVariable_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::NamedBool>* Control::Stub::AsyncGetPluginBoolVariableRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Name& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetPluginBoolVariableRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Control::Stub::SetPluginIntVariable(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::NamedInt& request, ::Nrmk::IndyFramework::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::NamedInt, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetPluginIntVariable_, context, request, response);
+}
+
+void Control::Stub::async::SetPluginIntVariable(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::NamedInt* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::NamedInt, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetPluginIntVariable_, context, request, response, std::move(f));
+}
+
+void Control::Stub::async::SetPluginIntVariable(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::NamedInt* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetPluginIntVariable_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Control::Stub::PrepareAsyncSetPluginIntVariableRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::NamedInt& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::NamedInt, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetPluginIntVariable_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Control::Stub::AsyncSetPluginIntVariableRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::NamedInt& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetPluginIntVariableRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Control::Stub::GetPluginIntVariable(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Name& request, ::Nrmk::IndyFramework::NamedInt* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Name, ::Nrmk::IndyFramework::NamedInt, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetPluginIntVariable_, context, request, response);
+}
+
+void Control::Stub::async::GetPluginIntVariable(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Name* request, ::Nrmk::IndyFramework::NamedInt* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Name, ::Nrmk::IndyFramework::NamedInt, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetPluginIntVariable_, context, request, response, std::move(f));
+}
+
+void Control::Stub::async::GetPluginIntVariable(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Name* request, ::Nrmk::IndyFramework::NamedInt* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetPluginIntVariable_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::NamedInt>* Control::Stub::PrepareAsyncGetPluginIntVariableRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Name& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::NamedInt, ::Nrmk::IndyFramework::Name, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetPluginIntVariable_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::NamedInt>* Control::Stub::AsyncGetPluginIntVariableRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Name& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetPluginIntVariableRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Control::Stub::SetPluginFloatVariable(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::NamedFloat& request, ::Nrmk::IndyFramework::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::NamedFloat, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetPluginFloatVariable_, context, request, response);
+}
+
+void Control::Stub::async::SetPluginFloatVariable(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::NamedFloat* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::NamedFloat, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetPluginFloatVariable_, context, request, response, std::move(f));
+}
+
+void Control::Stub::async::SetPluginFloatVariable(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::NamedFloat* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetPluginFloatVariable_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Control::Stub::PrepareAsyncSetPluginFloatVariableRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::NamedFloat& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::NamedFloat, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetPluginFloatVariable_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Control::Stub::AsyncSetPluginFloatVariableRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::NamedFloat& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetPluginFloatVariableRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Control::Stub::GetPluginFloatVariable(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Name& request, ::Nrmk::IndyFramework::NamedFloat* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Name, ::Nrmk::IndyFramework::NamedFloat, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetPluginFloatVariable_, context, request, response);
+}
+
+void Control::Stub::async::GetPluginFloatVariable(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Name* request, ::Nrmk::IndyFramework::NamedFloat* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Name, ::Nrmk::IndyFramework::NamedFloat, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetPluginFloatVariable_, context, request, response, std::move(f));
+}
+
+void Control::Stub::async::GetPluginFloatVariable(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Name* request, ::Nrmk::IndyFramework::NamedFloat* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetPluginFloatVariable_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::NamedFloat>* Control::Stub::PrepareAsyncGetPluginFloatVariableRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Name& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::NamedFloat, ::Nrmk::IndyFramework::Name, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetPluginFloatVariable_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::NamedFloat>* Control::Stub::AsyncGetPluginFloatVariableRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Name& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetPluginFloatVariableRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Control::Stub::SetPluginJPosVariable(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::NamedJointPosition& request, ::Nrmk::IndyFramework::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::NamedJointPosition, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetPluginJPosVariable_, context, request, response);
+}
+
+void Control::Stub::async::SetPluginJPosVariable(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::NamedJointPosition* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::NamedJointPosition, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetPluginJPosVariable_, context, request, response, std::move(f));
+}
+
+void Control::Stub::async::SetPluginJPosVariable(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::NamedJointPosition* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetPluginJPosVariable_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Control::Stub::PrepareAsyncSetPluginJPosVariableRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::NamedJointPosition& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::NamedJointPosition, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetPluginJPosVariable_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Control::Stub::AsyncSetPluginJPosVariableRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::NamedJointPosition& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetPluginJPosVariableRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Control::Stub::GetPluginJPosVariable(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Name& request, ::Nrmk::IndyFramework::NamedJointPosition* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Name, ::Nrmk::IndyFramework::NamedJointPosition, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetPluginJPosVariable_, context, request, response);
+}
+
+void Control::Stub::async::GetPluginJPosVariable(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Name* request, ::Nrmk::IndyFramework::NamedJointPosition* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Name, ::Nrmk::IndyFramework::NamedJointPosition, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetPluginJPosVariable_, context, request, response, std::move(f));
+}
+
+void Control::Stub::async::GetPluginJPosVariable(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Name* request, ::Nrmk::IndyFramework::NamedJointPosition* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetPluginJPosVariable_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::NamedJointPosition>* Control::Stub::PrepareAsyncGetPluginJPosVariableRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Name& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::NamedJointPosition, ::Nrmk::IndyFramework::Name, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetPluginJPosVariable_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::NamedJointPosition>* Control::Stub::AsyncGetPluginJPosVariableRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Name& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetPluginJPosVariableRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Control::Stub::SetPluginTPosVariable(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::NamedTaskPosition& request, ::Nrmk::IndyFramework::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::NamedTaskPosition, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetPluginTPosVariable_, context, request, response);
+}
+
+void Control::Stub::async::SetPluginTPosVariable(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::NamedTaskPosition* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::NamedTaskPosition, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetPluginTPosVariable_, context, request, response, std::move(f));
+}
+
+void Control::Stub::async::SetPluginTPosVariable(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::NamedTaskPosition* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetPluginTPosVariable_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Control::Stub::PrepareAsyncSetPluginTPosVariableRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::NamedTaskPosition& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::NamedTaskPosition, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetPluginTPosVariable_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Control::Stub::AsyncSetPluginTPosVariableRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::NamedTaskPosition& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetPluginTPosVariableRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Control::Stub::GetPluginTPosVariable(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Name& request, ::Nrmk::IndyFramework::NamedTaskPosition* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Name, ::Nrmk::IndyFramework::NamedTaskPosition, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetPluginTPosVariable_, context, request, response);
+}
+
+void Control::Stub::async::GetPluginTPosVariable(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Name* request, ::Nrmk::IndyFramework::NamedTaskPosition* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Name, ::Nrmk::IndyFramework::NamedTaskPosition, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetPluginTPosVariable_, context, request, response, std::move(f));
+}
+
+void Control::Stub::async::GetPluginTPosVariable(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Name* request, ::Nrmk::IndyFramework::NamedTaskPosition* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetPluginTPosVariable_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::NamedTaskPosition>* Control::Stub::PrepareAsyncGetPluginTPosVariableRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Name& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::NamedTaskPosition, ::Nrmk::IndyFramework::Name, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetPluginTPosVariable_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::NamedTaskPosition>* Control::Stub::AsyncGetPluginTPosVariableRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Name& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetPluginTPosVariableRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Control::Stub::PushBusEvent(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BusEvent& request, ::Nrmk::IndyFramework::State* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::BusEvent, ::Nrmk::IndyFramework::State, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PushBusEvent_, context, request, response);
+}
+
+void Control::Stub::async::PushBusEvent(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BusEvent* request, ::Nrmk::IndyFramework::State* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::BusEvent, ::Nrmk::IndyFramework::State, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PushBusEvent_, context, request, response, std::move(f));
+}
+
+void Control::Stub::async::PushBusEvent(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BusEvent* request, ::Nrmk::IndyFramework::State* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PushBusEvent_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::State>* Control::Stub::PrepareAsyncPushBusEventRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BusEvent& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::State, ::Nrmk::IndyFramework::BusEvent, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PushBusEvent_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::State>* Control::Stub::AsyncPushBusEventRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BusEvent& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPushBusEventRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Control::Stub::CatchBusEvent(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::CatchBusEventReq& request, ::Nrmk::IndyFramework::BusEvent* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::CatchBusEventReq, ::Nrmk::IndyFramework::BusEvent, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_CatchBusEvent_, context, request, response);
+}
+
+void Control::Stub::async::CatchBusEvent(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::CatchBusEventReq* request, ::Nrmk::IndyFramework::BusEvent* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::CatchBusEventReq, ::Nrmk::IndyFramework::BusEvent, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_CatchBusEvent_, context, request, response, std::move(f));
+}
+
+void Control::Stub::async::CatchBusEvent(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::CatchBusEventReq* request, ::Nrmk::IndyFramework::BusEvent* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_CatchBusEvent_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::BusEvent>* Control::Stub::PrepareAsyncCatchBusEventRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::CatchBusEventReq& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::BusEvent, ::Nrmk::IndyFramework::CatchBusEventReq, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_CatchBusEvent_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::BusEvent>* Control::Stub::AsyncCatchBusEventRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::CatchBusEventReq& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncCatchBusEventRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 ::grpc::Status Control::Stub::InverseKinematics(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::InverseKinematicsReq& request, ::Nrmk::IndyFramework::InverseKinematicsRes* response) {
   return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::InverseKinematicsReq, ::Nrmk::IndyFramework::InverseKinematicsRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_InverseKinematics_, context, request, response);
 }
@@ -2044,25 +2398,48 @@ void Control::Stub::async::MoveTeleL(::grpc::ClientContext* context, const ::Nrm
   return result;
 }
 
-::grpc::Status Control::Stub::MoveLF(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::MoveLFReq& request, ::Nrmk::IndyFramework::Response* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::MoveLFReq, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_MoveLF_, context, request, response);
+::grpc::Status Control::Stub::SetForceMode(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ForceModeReq& request, ::Nrmk::IndyFramework::Response* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::ForceModeReq, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetForceMode_, context, request, response);
 }
 
-void Control::Stub::async::MoveLF(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::MoveLFReq* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::MoveLFReq, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_MoveLF_, context, request, response, std::move(f));
+void Control::Stub::async::SetForceMode(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ForceModeReq* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::ForceModeReq, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetForceMode_, context, request, response, std::move(f));
 }
 
-void Control::Stub::async::MoveLF(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::MoveLFReq* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_MoveLF_, context, request, response, reactor);
+void Control::Stub::async::SetForceMode(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ForceModeReq* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetForceMode_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Control::Stub::PrepareAsyncMoveLFRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::MoveLFReq& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Response, ::Nrmk::IndyFramework::MoveLFReq, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_MoveLF_, context, request);
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Control::Stub::PrepareAsyncSetForceModeRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ForceModeReq& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Response, ::Nrmk::IndyFramework::ForceModeReq, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetForceMode_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Control::Stub::AsyncMoveLFRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::MoveLFReq& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Control::Stub::AsyncSetForceModeRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ForceModeReq& request, ::grpc::CompletionQueue* cq) {
   auto* result =
-    this->PrepareAsyncMoveLFRaw(context, request, cq);
+    this->PrepareAsyncSetForceModeRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Control::Stub::GetForceMode(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::ForceModeReq* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ForceModeReq, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetForceMode_, context, request, response);
+}
+
+void Control::Stub::async::GetForceMode(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ForceModeReq* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ForceModeReq, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetForceMode_, context, request, response, std::move(f));
+}
+
+void Control::Stub::async::GetForceMode(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ForceModeReq* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetForceMode_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ForceModeReq>* Control::Stub::PrepareAsyncGetForceModeRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::ForceModeReq, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetForceMode_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ForceModeReq>* Control::Stub::AsyncGetForceModeRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetForceModeRaw(context, request, cq);
   result->StartCall();
   return result;
 }
@@ -2109,6 +2486,29 @@ void Control::Stub::async::FTZero(::grpc::ClientContext* context, const ::Nrmk::
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Control::Stub::AsyncFTZeroRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
   auto* result =
     this->PrepareAsyncFTZeroRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Control::Stub::MoveLF(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::MoveLFReq& request, ::Nrmk::IndyFramework::Response* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::MoveLFReq, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_MoveLF_, context, request, response);
+}
+
+void Control::Stub::async::MoveLF(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::MoveLFReq* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::MoveLFReq, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_MoveLF_, context, request, response, std::move(f));
+}
+
+void Control::Stub::async::MoveLF(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::MoveLFReq* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_MoveLF_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Control::Stub::PrepareAsyncMoveLFRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::MoveLFReq& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Response, ::Nrmk::IndyFramework::MoveLFReq, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_MoveLF_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Control::Stub::AsyncMoveLFRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::MoveLFReq& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncMoveLFRaw(context, request, cq);
   result->StartCall();
   return result;
 }
@@ -2453,6 +2853,26 @@ Control::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Control_method_names[29],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::ComplianceMode, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Control::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::ComplianceMode* req,
+             ::Nrmk::IndyFramework::Response* resp) {
+               return service->SetComplianceMode(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Control_method_names[30],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ComplianceMode, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Control::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::Empty* req,
+             ::Nrmk::IndyFramework::ComplianceMode* resp) {
+               return service->GetComplianceMode(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Control_method_names[31],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
              ::grpc::ServerContext* ctx,
@@ -2461,7 +2881,7 @@ Control::Service::Service() {
                return service->Recover(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[30],
+      Control_method_names[32],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -2471,7 +2891,7 @@ Control::Service::Service() {
                return service->Reboot(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[31],
+      Control_method_names[33],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::State, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -2481,7 +2901,7 @@ Control::Service::Service() {
                return service->SetManualRecovery(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[32],
+      Control_method_names[34],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::TargetJ, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -2491,7 +2911,7 @@ Control::Service::Service() {
                return service->MoveRecoverJoint(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[33],
+      Control_method_names[35],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::Program, ::Nrmk::IndyFramework::ProgramInfo, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -2501,7 +2921,7 @@ Control::Service::Service() {
                return service->SearchProgram(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[34],
+      Control_method_names[36],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::Program, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -2511,7 +2931,7 @@ Control::Service::Service() {
                return service->PlayProgram(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[35],
+      Control_method_names[37],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -2521,7 +2941,7 @@ Control::Service::Service() {
                return service->PauseProgram(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[36],
+      Control_method_names[38],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -2531,7 +2951,7 @@ Control::Service::Service() {
                return service->ResumeProgram(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[37],
+      Control_method_names[39],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -2541,7 +2961,7 @@ Control::Service::Service() {
                return service->StopProgram(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[38],
+      Control_method_names[40],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::Message, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -2551,7 +2971,7 @@ Control::Service::Service() {
                return service->SendAlarm(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[39],
+      Control_method_names[41],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::Message, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -2561,7 +2981,7 @@ Control::Service::Service() {
                return service->SendAnnotation(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[40],
+      Control_method_names[42],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::TuningProgram, ::Nrmk::IndyFramework::CollisionThresholds, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -2571,7 +2991,7 @@ Control::Service::Service() {
                return service->PlayTuningProgram(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[41],
+      Control_method_names[43],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::Program, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -2581,7 +3001,7 @@ Control::Service::Service() {
                return service->PlayProgramLine(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[42],
+      Control_method_names[44],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::ModbusVariableList, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -2591,7 +3011,7 @@ Control::Service::Service() {
                return service->SetModbusVariableNameList(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[43],
+      Control_method_names[45],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::AllVars, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -2601,7 +3021,7 @@ Control::Service::Service() {
                return service->SetVariableNameList(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[44],
+      Control_method_names[46],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::AllVars, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -2611,7 +3031,7 @@ Control::Service::Service() {
                return service->GetVariableNameList(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[45],
+      Control_method_names[47],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::IntVars, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -2621,7 +3041,7 @@ Control::Service::Service() {
                return service->SetIntVariable(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[46],
+      Control_method_names[48],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::IntVars, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -2631,7 +3051,7 @@ Control::Service::Service() {
                return service->GetIntVariable(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[47],
+      Control_method_names[49],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::ModbusVars, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -2641,7 +3061,7 @@ Control::Service::Service() {
                return service->SetModbusVariable(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[48],
+      Control_method_names[50],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ModbusVars, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -2651,7 +3071,7 @@ Control::Service::Service() {
                return service->GetModbusVariable(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[49],
+      Control_method_names[51],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::BoolVars, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -2661,7 +3081,7 @@ Control::Service::Service() {
                return service->SetBoolVariable(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[50],
+      Control_method_names[52],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::BoolVars, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -2671,7 +3091,7 @@ Control::Service::Service() {
                return service->GetBoolVariable(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[51],
+      Control_method_names[53],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::FloatVars, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -2681,7 +3101,7 @@ Control::Service::Service() {
                return service->SetFloatVariable(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[52],
+      Control_method_names[54],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::FloatVars, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -2691,7 +3111,7 @@ Control::Service::Service() {
                return service->GetFloatVariable(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[53],
+      Control_method_names[55],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::JPosVars, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -2701,7 +3121,7 @@ Control::Service::Service() {
                return service->SetJPosVariable(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[54],
+      Control_method_names[56],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::JPosVars, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -2711,7 +3131,7 @@ Control::Service::Service() {
                return service->GetJPosVariable(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[55],
+      Control_method_names[57],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::TPosVars, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -2721,7 +3141,7 @@ Control::Service::Service() {
                return service->SetTPosVariable(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[56],
+      Control_method_names[58],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::TPosVars, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -2731,7 +3151,127 @@ Control::Service::Service() {
                return service->GetTPosVariable(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[57],
+      Control_method_names[59],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::NamedBool, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Control::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::NamedBool* req,
+             ::Nrmk::IndyFramework::Empty* resp) {
+               return service->SetPluginBoolVariable(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Control_method_names[60],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::Name, ::Nrmk::IndyFramework::NamedBool, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Control::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::Name* req,
+             ::Nrmk::IndyFramework::NamedBool* resp) {
+               return service->GetPluginBoolVariable(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Control_method_names[61],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::NamedInt, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Control::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::NamedInt* req,
+             ::Nrmk::IndyFramework::Empty* resp) {
+               return service->SetPluginIntVariable(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Control_method_names[62],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::Name, ::Nrmk::IndyFramework::NamedInt, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Control::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::Name* req,
+             ::Nrmk::IndyFramework::NamedInt* resp) {
+               return service->GetPluginIntVariable(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Control_method_names[63],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::NamedFloat, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Control::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::NamedFloat* req,
+             ::Nrmk::IndyFramework::Empty* resp) {
+               return service->SetPluginFloatVariable(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Control_method_names[64],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::Name, ::Nrmk::IndyFramework::NamedFloat, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Control::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::Name* req,
+             ::Nrmk::IndyFramework::NamedFloat* resp) {
+               return service->GetPluginFloatVariable(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Control_method_names[65],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::NamedJointPosition, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Control::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::NamedJointPosition* req,
+             ::Nrmk::IndyFramework::Empty* resp) {
+               return service->SetPluginJPosVariable(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Control_method_names[66],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::Name, ::Nrmk::IndyFramework::NamedJointPosition, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Control::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::Name* req,
+             ::Nrmk::IndyFramework::NamedJointPosition* resp) {
+               return service->GetPluginJPosVariable(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Control_method_names[67],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::NamedTaskPosition, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Control::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::NamedTaskPosition* req,
+             ::Nrmk::IndyFramework::Empty* resp) {
+               return service->SetPluginTPosVariable(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Control_method_names[68],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::Name, ::Nrmk::IndyFramework::NamedTaskPosition, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Control::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::Name* req,
+             ::Nrmk::IndyFramework::NamedTaskPosition* resp) {
+               return service->GetPluginTPosVariable(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Control_method_names[69],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::BusEvent, ::Nrmk::IndyFramework::State, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Control::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::BusEvent* req,
+             ::Nrmk::IndyFramework::State* resp) {
+               return service->PushBusEvent(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Control_method_names[70],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::CatchBusEventReq, ::Nrmk::IndyFramework::BusEvent, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Control::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::CatchBusEventReq* req,
+             ::Nrmk::IndyFramework::BusEvent* resp) {
+               return service->CatchBusEvent(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Control_method_names[71],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::InverseKinematicsReq, ::Nrmk::IndyFramework::InverseKinematicsRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -2741,7 +3281,7 @@ Control::Service::Service() {
                return service->InverseKinematics(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[58],
+      Control_method_names[72],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::ForwardKinematicsReq, ::Nrmk::IndyFramework::ForwardKinematicsRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -2751,7 +3291,7 @@ Control::Service::Service() {
                return service->ForwardKinematics(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[59],
+      Control_method_names[73],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::CheckAproachRetractValidReq, ::Nrmk::IndyFramework::CheckAproachRetractValidRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -2761,7 +3301,7 @@ Control::Service::Service() {
                return service->CheckAproachRetractValid(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[60],
+      Control_method_names[74],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::GetPalletPointListReq, ::Nrmk::IndyFramework::GetPalletPointListRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -2771,7 +3311,7 @@ Control::Service::Service() {
                return service->GetPalletPointList(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[61],
+      Control_method_names[75],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::CalculateRelativePoseReq, ::Nrmk::IndyFramework::CalculateRelativePoseRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -2781,7 +3321,7 @@ Control::Service::Service() {
                return service->CalculateRelativePose(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[62],
+      Control_method_names[76],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::CalculateCurrentPoseRelReq, ::Nrmk::IndyFramework::CalculateCurrentPoseRelRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -2791,7 +3331,7 @@ Control::Service::Service() {
                return service->CalculateCurrentPoseRel(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[63],
+      Control_method_names[77],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -2801,7 +3341,7 @@ Control::Service::Service() {
                return service->PingFromConty(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[64],
+      Control_method_names[78],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::TeleOpDevice, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -2811,7 +3351,7 @@ Control::Service::Service() {
                return service->GetTeleOpDevice(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[65],
+      Control_method_names[79],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::TeleOpState, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -2821,7 +3361,7 @@ Control::Service::Service() {
                return service->GetTeleOpState(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[66],
+      Control_method_names[80],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::TeleOpDevice, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -2831,7 +3371,7 @@ Control::Service::Service() {
                return service->ConnectTeleOpDevice(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[67],
+      Control_method_names[81],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -2841,7 +3381,7 @@ Control::Service::Service() {
                return service->DisConnectTeleOpDevice(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[68],
+      Control_method_names[82],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::TeleP, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -2851,7 +3391,7 @@ Control::Service::Service() {
                return service->ReadTeleOpInput(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[69],
+      Control_method_names[83],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::TeleOpState, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -2861,7 +3401,7 @@ Control::Service::Service() {
                return service->StartTeleOp(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[70],
+      Control_method_names[84],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -2871,7 +3411,7 @@ Control::Service::Service() {
                return service->StopTeleOp(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[71],
+      Control_method_names[85],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::TelePlayRate, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -2881,7 +3421,7 @@ Control::Service::Service() {
                return service->SetPlayRate(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[72],
+      Control_method_names[86],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::TelePlayRate, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -2891,7 +3431,7 @@ Control::Service::Service() {
                return service->GetPlayRate(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[73],
+      Control_method_names[87],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::TeleOpFileList, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -2901,7 +3441,7 @@ Control::Service::Service() {
                return service->GetTeleFileList(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[74],
+      Control_method_names[88],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::TeleFileReq, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -2911,7 +3451,7 @@ Control::Service::Service() {
                return service->SaveTeleMotion(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[75],
+      Control_method_names[89],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::TeleFileReq, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -2921,7 +3461,7 @@ Control::Service::Service() {
                return service->LoadTeleMotion(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[76],
+      Control_method_names[90],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::TeleFileReq, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -2931,7 +3471,7 @@ Control::Service::Service() {
                return service->DeleteTeleMotion(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[77],
+      Control_method_names[91],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::State, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -2941,7 +3481,7 @@ Control::Service::Service() {
                return service->EnableTeleKey(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[78],
+      Control_method_names[92],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::MoveTeleJReq, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -2951,7 +3491,7 @@ Control::Service::Service() {
                return service->MoveTeleJ(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[79],
+      Control_method_names[93],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::MoveTeleLReq, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -2961,17 +3501,27 @@ Control::Service::Service() {
                return service->MoveTeleL(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[80],
+      Control_method_names[94],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::MoveLFReq, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::ForceModeReq, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
              ::grpc::ServerContext* ctx,
-             const ::Nrmk::IndyFramework::MoveLFReq* req,
+             const ::Nrmk::IndyFramework::ForceModeReq* req,
              ::Nrmk::IndyFramework::Response* resp) {
-               return service->MoveLF(ctx, req, resp);
+               return service->SetForceMode(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[81],
+      Control_method_names[95],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ForceModeReq, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Control::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::Empty* req,
+             ::Nrmk::IndyFramework::ForceModeReq* resp) {
+               return service->GetForceMode(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Control_method_names[96],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::TransformedFTSensorData, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -2981,7 +3531,7 @@ Control::Service::Service() {
                return service->GetTransformedFTSensorData(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[82],
+      Control_method_names[97],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -2991,7 +3541,17 @@ Control::Service::Service() {
                return service->FTZero(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[83],
+      Control_method_names[98],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::MoveLFReq, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Control::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::MoveLFReq* req,
+             ::Nrmk::IndyFramework::Response* resp) {
+               return service->MoveLF(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Control_method_names[99],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::ControlInferenceDataSet, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -3001,7 +3561,7 @@ Control::Service::Service() {
                return service->SetControlInferenceData(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[84],
+      Control_method_names[100],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ControlInferenceDataSet, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -3218,6 +3778,20 @@ Control::Service::~Service() {
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
+::grpc::Status Control::Service::SetComplianceMode(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::ComplianceMode* request, ::Nrmk::IndyFramework::Response* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Control::Service::GetComplianceMode(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ComplianceMode* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
 ::grpc::Status Control::Service::Recover(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::Response* response) {
   (void) context;
   (void) request;
@@ -3414,6 +3988,90 @@ Control::Service::~Service() {
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
+::grpc::Status Control::Service::SetPluginBoolVariable(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::NamedBool* request, ::Nrmk::IndyFramework::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Control::Service::GetPluginBoolVariable(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Name* request, ::Nrmk::IndyFramework::NamedBool* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Control::Service::SetPluginIntVariable(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::NamedInt* request, ::Nrmk::IndyFramework::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Control::Service::GetPluginIntVariable(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Name* request, ::Nrmk::IndyFramework::NamedInt* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Control::Service::SetPluginFloatVariable(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::NamedFloat* request, ::Nrmk::IndyFramework::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Control::Service::GetPluginFloatVariable(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Name* request, ::Nrmk::IndyFramework::NamedFloat* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Control::Service::SetPluginJPosVariable(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::NamedJointPosition* request, ::Nrmk::IndyFramework::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Control::Service::GetPluginJPosVariable(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Name* request, ::Nrmk::IndyFramework::NamedJointPosition* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Control::Service::SetPluginTPosVariable(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::NamedTaskPosition* request, ::Nrmk::IndyFramework::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Control::Service::GetPluginTPosVariable(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Name* request, ::Nrmk::IndyFramework::NamedTaskPosition* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Control::Service::PushBusEvent(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::BusEvent* request, ::Nrmk::IndyFramework::State* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Control::Service::CatchBusEvent(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::CatchBusEventReq* request, ::Nrmk::IndyFramework::BusEvent* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
 ::grpc::Status Control::Service::InverseKinematics(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::InverseKinematicsReq* request, ::Nrmk::IndyFramework::InverseKinematicsRes* response) {
   (void) context;
   (void) request;
@@ -3575,7 +4233,14 @@ Control::Service::~Service() {
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-::grpc::Status Control::Service::MoveLF(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::MoveLFReq* request, ::Nrmk::IndyFramework::Response* response) {
+::grpc::Status Control::Service::SetForceMode(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::ForceModeReq* request, ::Nrmk::IndyFramework::Response* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Control::Service::GetForceMode(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ForceModeReq* response) {
   (void) context;
   (void) request;
   (void) response;
@@ -3590,6 +4255,13 @@ Control::Service::~Service() {
 }
 
 ::grpc::Status Control::Service::FTZero(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::Response* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Control::Service::MoveLF(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::MoveLFReq* request, ::Nrmk::IndyFramework::Response* response) {
   (void) context;
   (void) request;
   (void) response;

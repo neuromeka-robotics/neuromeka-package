@@ -225,7 +225,6 @@ class Moby final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Empty>> PrepareAsyncSetDriveInterpolatorOnOff(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Empty>>(PrepareAsyncSetDriveInterpolatorOnOffRaw(context, request, cq));
     }
-    // rpc SetRotationInterpolatorParam(DoubleVals) returns (Empty) {}
     virtual ::grpc::Status SetRotationControllerType(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::IntVal& request, ::Nrmk::IndyFramework::Empty* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Empty>> AsyncSetRotationControllerType(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::IntVal& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Empty>>(AsyncSetRotationControllerTypeRaw(context, request, cq));
@@ -277,7 +276,6 @@ class Moby final {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Empty>>(PrepareAsyncSetExtraDORaw(context, request, cq));
     }
     // Gain setting
-    // rpc SetRotationTorqueMode(BoolVal) returns (Empty) {}
     virtual ::grpc::Status SetControlParam(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::RotationGain& request, ::Nrmk::IndyFramework::Empty* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Empty>> AsyncSetControlParam(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::RotationGain& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Empty>>(AsyncSetControlParamRaw(context, request, cq));
@@ -369,7 +367,6 @@ class Moby final {
       virtual void SetDriveAccDec(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DoubleVals* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void SetDriveInterpolatorOnOff(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)>) = 0;
       virtual void SetDriveInterpolatorOnOff(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      // rpc SetRotationInterpolatorParam(DoubleVals) returns (Empty) {}
       virtual void SetRotationControllerType(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::IntVal* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)>) = 0;
       virtual void SetRotationControllerType(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::IntVal* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void SetForceKinematics(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ForcedKinematicsData* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)>) = 0;
@@ -386,7 +383,6 @@ class Moby final {
       virtual void SetExtraDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVals* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)>) = 0;
       virtual void SetExtraDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVals* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       // Gain setting
-      // rpc SetRotationTorqueMode(BoolVal) returns (Empty) {}
       virtual void SetControlParam(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::RotationGain* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)>) = 0;
       virtual void SetControlParam(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::RotationGain* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void GetControlParam(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::IntVal* request, ::Nrmk::IndyFramework::RotationGain* response, std::function<void(::grpc::Status)>) = 0;
@@ -977,7 +973,6 @@ class Moby final {
     virtual ::grpc::Status SetRotationInterpolator(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::IntVal* request, ::Nrmk::IndyFramework::Empty* response);
     virtual ::grpc::Status SetDriveAccDec(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::DoubleVals* request, ::Nrmk::IndyFramework::Empty* response);
     virtual ::grpc::Status SetDriveInterpolatorOnOff(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::BoolVal* request, ::Nrmk::IndyFramework::Empty* response);
-    // rpc SetRotationInterpolatorParam(DoubleVals) returns (Empty) {}
     virtual ::grpc::Status SetRotationControllerType(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::IntVal* request, ::Nrmk::IndyFramework::Empty* response);
     virtual ::grpc::Status SetForceKinematics(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::ForcedKinematicsData* request, ::Nrmk::IndyFramework::Empty* response);
     virtual ::grpc::Status GetForceKinematics(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ForcedKinematicsData* response);
@@ -987,7 +982,6 @@ class Moby final {
     virtual ::grpc::Status TurnBuzzOnOff(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::BoolVal* request, ::Nrmk::IndyFramework::Empty* response);
     virtual ::grpc::Status SetExtraDO(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::BoolVals* request, ::Nrmk::IndyFramework::Empty* response);
     // Gain setting
-    // rpc SetRotationTorqueMode(BoolVal) returns (Empty) {}
     virtual ::grpc::Status SetControlParam(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::RotationGain* request, ::Nrmk::IndyFramework::Empty* response);
     virtual ::grpc::Status GetControlParam(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::IntVal* request, ::Nrmk::IndyFramework::RotationGain* response);
     // Data logging

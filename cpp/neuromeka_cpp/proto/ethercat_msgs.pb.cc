@@ -195,24 +195,6 @@ struct ServoRxDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ServoRxDefaultTypeInternal _ServoRx_default_instance_;
         template <typename>
-PROTOBUF_CONSTEXPR ServoTxIndex::ServoTxIndex(::_pbi::ConstantInitialized)
-    : _impl_{
-      /*decltype(_impl_._has_bits_)*/ {},
-      /*decltype(_impl_._cached_size_)*/ {},
-      /*decltype(_impl_.tx_)*/ nullptr,
-      /*decltype(_impl_.servoindex_)*/ 0u,
-    } {}
-struct ServoTxIndexDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR ServoTxIndexDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~ServoTxIndexDefaultTypeInternal() {}
-  union {
-    ServoTxIndex _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ServoTxIndexDefaultTypeInternal _ServoTxIndex_default_instance_;
-        template <typename>
 PROTOBUF_CONSTEXPR ServoRxIndex::ServoRxIndex(::_pbi::ConstantInitialized)
     : _impl_{
       /*decltype(_impl_._has_bits_)*/ {},
@@ -628,53 +610,6 @@ struct SDOIntValDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SDOIntValDefaultTypeInternal _SDOIntVal_default_instance_;
         template <typename>
-PROTOBUF_CONSTEXPR SDOFloatVal::SDOFloatVal(::_pbi::ConstantInitialized)
-    : _impl_{
-      /*decltype(_impl_.val_)*/ 0,
-      /*decltype(_impl_._cached_size_)*/ {},
-    } {}
-struct SDOFloatValDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR SDOFloatValDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~SDOFloatValDefaultTypeInternal() {}
-  union {
-    SDOFloatVal _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SDOFloatValDefaultTypeInternal _SDOFloatVal_default_instance_;
-        template <typename>
-PROTOBUF_CONSTEXPR SDOStrVal::SDOStrVal(::_pbi::ConstantInitialized)
-    : _impl_{
-      /*decltype(_impl_.val_)*/ {
-          &::_pbi::fixed_address_empty_string,
-          ::_pbi::ConstantInitialized{},
-      },
-      /*decltype(_impl_._cached_size_)*/ {},
-    } {}
-struct SDOStrValDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR SDOStrValDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~SDOStrValDefaultTypeInternal() {}
-  union {
-    SDOStrVal _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SDOStrValDefaultTypeInternal _SDOStrVal_default_instance_;
-      template <typename>
-PROTOBUF_CONSTEXPR EtherCATInfo::EtherCATInfo(::_pbi::ConstantInitialized) {}
-struct EtherCATInfoDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR EtherCATInfoDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~EtherCATInfoDefaultTypeInternal() {}
-  union {
-    EtherCATInfo _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 EtherCATInfoDefaultTypeInternal _EtherCATInfo_default_instance_;
-        template <typename>
 PROTOBUF_CONSTEXPR RobotZeroCount::RobotZeroCount(::_pbi::ConstantInitialized)
     : _impl_{
       /*decltype(_impl_.count_)*/ 0,
@@ -692,7 +627,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RobotZeroCountDefaultTypeInternal _RobotZeroCount_default_instance_;
 }  // namespace IndyFramework
 }  // namespace Nrmk
-static ::_pb::Metadata file_level_metadata_ethercat_5fmsgs_2eproto[36];
+static ::_pb::Metadata file_level_metadata_ethercat_5fmsgs_2eproto[32];
 static constexpr const ::_pb::EnumDescriptor**
     file_level_enum_descriptors_ethercat_5fmsgs_2eproto = nullptr;
 static constexpr const ::_pb::ServiceDescriptor**
@@ -800,18 +735,6 @@ const ::uint32_t TableStruct_ethercat_5fmsgs_2eproto::offsets[] PROTOBUF_SECTION
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ServoRx, _impl_.targetposition_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ServoRx, _impl_.targetvelocity_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ServoRx, _impl_.targettorque_),
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ServoTxIndex, _impl_._has_bits_),
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ServoTxIndex, _internal_metadata_),
-    ~0u,  // no _extensions_
-    ~0u,  // no _oneof_case_
-    ~0u,  // no _weak_field_map_
-    ~0u,  // no _inlined_string_donated_
-    ~0u,  // no _split_
-    ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ServoTxIndex, _impl_.servoindex_),
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ServoTxIndex, _impl_.tx_),
-    ~0u,
-    0,
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ServoRxIndex, _impl_._has_bits_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ServoRxIndex, _internal_metadata_),
     ~0u,  // no _extensions_
@@ -1090,32 +1013,6 @@ const ::uint32_t TableStruct_ethercat_5fmsgs_2eproto::offsets[] PROTOBUF_SECTION
     ~0u,  // no sizeof(Split)
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::SDOIntVal, _impl_.val_),
     ~0u,  // no _has_bits_
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::SDOFloatVal, _internal_metadata_),
-    ~0u,  // no _extensions_
-    ~0u,  // no _oneof_case_
-    ~0u,  // no _weak_field_map_
-    ~0u,  // no _inlined_string_donated_
-    ~0u,  // no _split_
-    ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::SDOFloatVal, _impl_.val_),
-    ~0u,  // no _has_bits_
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::SDOStrVal, _internal_metadata_),
-    ~0u,  // no _extensions_
-    ~0u,  // no _oneof_case_
-    ~0u,  // no _weak_field_map_
-    ~0u,  // no _inlined_string_donated_
-    ~0u,  // no _split_
-    ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::SDOStrVal, _impl_.val_),
-    ~0u,  // no _has_bits_
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::EtherCATInfo, _internal_metadata_),
-    ~0u,  // no _extensions_
-    ~0u,  // no _oneof_case_
-    ~0u,  // no _weak_field_map_
-    ~0u,  // no _inlined_string_donated_
-    ~0u,  // no _split_
-    ~0u,  // no sizeof(Split)
-    ~0u,  // no _has_bits_
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::RobotZeroCount, _internal_metadata_),
     ~0u,  // no _extensions_
     ~0u,  // no _oneof_case_
@@ -1138,32 +1035,28 @@ static const ::_pbi::MigrationSchema
         {66, -1, -1, sizeof(::Nrmk::IndyFramework::EcatIndex)},
         {75, -1, -1, sizeof(::Nrmk::IndyFramework::ServoTx)},
         {88, -1, -1, sizeof(::Nrmk::IndyFramework::ServoRx)},
-        {101, 111, -1, sizeof(::Nrmk::IndyFramework::ServoTxIndex)},
-        {113, 123, -1, sizeof(::Nrmk::IndyFramework::ServoRxIndex)},
-        {125, -1, -1, sizeof(::Nrmk::IndyFramework::ServoTxKeba)},
-        {142, -1, -1, sizeof(::Nrmk::IndyFramework::ServoRxKeba)},
-        {159, 169, -1, sizeof(::Nrmk::IndyFramework::ServoRxIndexKeba)},
-        {171, -1, -1, sizeof(::Nrmk::IndyFramework::ServoTemp)},
-        {180, -1, -1, sizeof(::Nrmk::IndyFramework::ServoError)},
-        {189, -1, -1, sizeof(::Nrmk::IndyFramework::ServoBrake)},
-        {199, -1, -1, sizeof(::Nrmk::IndyFramework::FTSensor)},
-        {213, 226, -1, sizeof(::Nrmk::IndyFramework::EndtoolTx)},
-        {231, -1, -1, sizeof(::Nrmk::IndyFramework::EndtoolRx)},
-        {246, -1, -1, sizeof(::Nrmk::IndyFramework::EndtoolDockingTx)},
-        {271, -1, -1, sizeof(::Nrmk::IndyFramework::LedDim)},
-        {280, -1, -1, sizeof(::Nrmk::IndyFramework::SRKeyEndtoolRx)},
-        {294, -1, -1, sizeof(::Nrmk::IndyFramework::SRKeyEndtoolTx)},
-        {308, 322, -1, sizeof(::Nrmk::IndyFramework::IOBoardTx)},
-        {328, -1, -1, sizeof(::Nrmk::IndyFramework::IOBoardRx)},
-        {342, -1, -1, sizeof(::Nrmk::IndyFramework::DIOIndex)},
-        {351, -1, -1, sizeof(::Nrmk::IndyFramework::DIODigitalInput)},
-        {361, -1, -1, sizeof(::Nrmk::IndyFramework::DIODigitalOutput)},
-        {371, -1, -1, sizeof(::Nrmk::IndyFramework::ServoParam)},
-        {381, -1, -1, sizeof(::Nrmk::IndyFramework::SDOIntVal)},
-        {390, -1, -1, sizeof(::Nrmk::IndyFramework::SDOFloatVal)},
-        {399, -1, -1, sizeof(::Nrmk::IndyFramework::SDOStrVal)},
-        {408, -1, -1, sizeof(::Nrmk::IndyFramework::EtherCATInfo)},
-        {416, -1, -1, sizeof(::Nrmk::IndyFramework::RobotZeroCount)},
+        {101, 111, -1, sizeof(::Nrmk::IndyFramework::ServoRxIndex)},
+        {113, -1, -1, sizeof(::Nrmk::IndyFramework::ServoTxKeba)},
+        {130, -1, -1, sizeof(::Nrmk::IndyFramework::ServoRxKeba)},
+        {147, 157, -1, sizeof(::Nrmk::IndyFramework::ServoRxIndexKeba)},
+        {159, -1, -1, sizeof(::Nrmk::IndyFramework::ServoTemp)},
+        {168, -1, -1, sizeof(::Nrmk::IndyFramework::ServoError)},
+        {177, -1, -1, sizeof(::Nrmk::IndyFramework::ServoBrake)},
+        {187, -1, -1, sizeof(::Nrmk::IndyFramework::FTSensor)},
+        {201, 214, -1, sizeof(::Nrmk::IndyFramework::EndtoolTx)},
+        {219, -1, -1, sizeof(::Nrmk::IndyFramework::EndtoolRx)},
+        {234, -1, -1, sizeof(::Nrmk::IndyFramework::EndtoolDockingTx)},
+        {259, -1, -1, sizeof(::Nrmk::IndyFramework::LedDim)},
+        {268, -1, -1, sizeof(::Nrmk::IndyFramework::SRKeyEndtoolRx)},
+        {282, -1, -1, sizeof(::Nrmk::IndyFramework::SRKeyEndtoolTx)},
+        {296, 310, -1, sizeof(::Nrmk::IndyFramework::IOBoardTx)},
+        {316, -1, -1, sizeof(::Nrmk::IndyFramework::IOBoardRx)},
+        {330, -1, -1, sizeof(::Nrmk::IndyFramework::DIOIndex)},
+        {339, -1, -1, sizeof(::Nrmk::IndyFramework::DIODigitalInput)},
+        {349, -1, -1, sizeof(::Nrmk::IndyFramework::DIODigitalOutput)},
+        {359, -1, -1, sizeof(::Nrmk::IndyFramework::ServoParam)},
+        {369, -1, -1, sizeof(::Nrmk::IndyFramework::SDOIntVal)},
+        {378, -1, -1, sizeof(::Nrmk::IndyFramework::RobotZeroCount)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -1177,7 +1070,6 @@ static const ::_pb::Message* const file_default_instances[] = {
     &::Nrmk::IndyFramework::_EcatIndex_default_instance_._instance,
     &::Nrmk::IndyFramework::_ServoTx_default_instance_._instance,
     &::Nrmk::IndyFramework::_ServoRx_default_instance_._instance,
-    &::Nrmk::IndyFramework::_ServoTxIndex_default_instance_._instance,
     &::Nrmk::IndyFramework::_ServoRxIndex_default_instance_._instance,
     &::Nrmk::IndyFramework::_ServoTxKeba_default_instance_._instance,
     &::Nrmk::IndyFramework::_ServoRxKeba_default_instance_._instance,
@@ -1199,9 +1091,6 @@ static const ::_pb::Message* const file_default_instances[] = {
     &::Nrmk::IndyFramework::_DIODigitalOutput_default_instance_._instance,
     &::Nrmk::IndyFramework::_ServoParam_default_instance_._instance,
     &::Nrmk::IndyFramework::_SDOIntVal_default_instance_._instance,
-    &::Nrmk::IndyFramework::_SDOFloatVal_default_instance_._instance,
-    &::Nrmk::IndyFramework::_SDOStrVal_default_instance_._instance,
-    &::Nrmk::IndyFramework::_EtherCATInfo_default_instance_._instance,
     &::Nrmk::IndyFramework::_RobotZeroCount_default_instance_._instance,
 };
 const char descriptor_table_protodef_ethercat_5fmsgs_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
@@ -1220,79 +1109,75 @@ const char descriptor_table_protodef_ethercat_5fmsgs_2eproto[] PROTOBUF_SECTION_
     "\005 \001(\005\"t\n\007ServoRx\022\023\n\013controlWord\030\001 \001(\r\022\016\n"
     "\006modeOp\030\002 \001(\005\022\026\n\016targetPosition\030\003 \001(\003\022\026\n"
     "\016targetVelocity\030\004 \001(\005\022\024\n\014targetTorque\030\005 "
-    "\001(\005\"K\n\014ServoTxIndex\022\022\n\nservoIndex\030\001 \001(\r\022"
-    "\'\n\002tx\030\002 \001(\0132\033.Nrmk.IndyFramework.ServoTx"
-    "\"K\n\014ServoRxIndex\022\022\n\nservoIndex\030\001 \001(\r\022\'\n\002"
-    "rx\030\002 \001(\0132\033.Nrmk.IndyFramework.ServoRx\"\337\001"
-    "\n\013ServoTxKeba\022\022\n\nstatusWord\030\001 \001(\r\022\023\n\013sta"
-    "tusWord2\030\002 \001(\r\022\023\n\013statusWord3\030\003 \001(\r\022\026\n\016a"
-    "ctualPosition\030\004 \001(\005\022\027\n\017actualPosition2\030\005"
-    " \001(\005\022\027\n\017actualPosition3\030\006 \001(\005\022\026\n\016actualV"
-    "elocity\030\007 \001(\005\022\027\n\017actualVelocity2\030\010 \001(\005\022\027"
-    "\n\017actualVelocity3\030\t \001(\005\"\334\001\n\013ServoRxKeba\022"
-    "\023\n\013controlWord\030\001 \001(\r\022\024\n\014controlWord2\030\002 \001"
-    "(\r\022\024\n\014controlWord3\030\003 \001(\r\022\026\n\016targetPositi"
-    "on\030\004 \001(\003\022\027\n\017targetPosition2\030\005 \001(\003\022\027\n\017tar"
-    "getPosition3\030\006 \001(\003\022\024\n\014targetTorque\030\007 \001(\005"
-    "\022\025\n\rtargetTorque2\030\010 \001(\005\022\025\n\rtargetTorque3"
-    "\030\t \001(\005\"S\n\020ServoRxIndexKeba\022\022\n\nservoIndex"
-    "\030\001 \001(\r\022+\n\002rx\030\002 \001(\0132\037.Nrmk.IndyFramework."
-    "ServoRxKeba\" \n\tServoTemp\022\023\n\013temperature\030"
-    "\001 \001(\002\"\037\n\nServoError\022\021\n\terrorCode\030\001 \001(\r\"."
-    "\n\nServoBrake\022\021\n\tecatIndex\030\001 \001(\r\022\r\n\005onoff"
-    "\030\002 \001(\010\"R\n\010FTSensor\022\n\n\002fx\030\001 \001(\005\022\n\n\002fy\030\002 \001"
-    "(\005\022\n\n\002fz\030\003 \001(\005\022\n\n\002tx\030\004 \001(\005\022\n\n\002ty\030\005 \001(\005\022\n"
-    "\n\002tz\030\006 \001(\005\"\200\001\n\tEndtoolTx\022\016\n\006status\030\001 \001(\r"
-    "\022\016\n\006button\030\002 \001(\r\022/\n\tft_sensor\030\003 \001(\0132\034.Nr"
-    "mk.IndyFramework.FTSensor\022\020\n\010ft_state\030\004 "
-    "\001(\r\022\020\n\010ft_error\030\005 \001(\r\"z\n\tEndtoolRx\022\013\n\003eq"
-    "c\030\001 \001(\r\022\017\n\007gripper\030\002 \001(\r\022\020\n\010ft_param\030\003 \001"
-    "(\r\022\020\n\010led_mode\030\004 \001(\r\022\r\n\005led_g\030\005 \001(\r\022\r\n\005l"
-    "ed_r\030\006 \001(\r\022\r\n\005led_b\030\007 \001(\r\"\214\003\n\020EndtoolDoc"
-    "kingTx\022\026\n\016docking_status\030\001 \001(\r\022\026\n\016dockin"
-    "g_button\030\002 \001(\r\022\025\n\rdocking_dist1\030\003 \001(\r\022\025\n"
-    "\rdocking_dist2\030\004 \001(\r\022\025\n\rdocking_dist3\030\005 "
-    "\001(\r\022\025\n\rdocking_dist4\030\006 \001(\r\022\025\n\rdocking_di"
-    "st5\030\007 \001(\r\022\025\n\rdocking_dist6\030\010 \001(\r\022\025\n\rdock"
-    "ing_dist7\030\t \001(\r\022\025\n\rdocking_dist8\030\n \001(\r\022\025"
-    "\n\rdirect_status\030\013 \001(\r\022\025\n\rdirect_button\030\014"
-    " \001(\r\022\026\n\016direct_encoder\030\r \001(\r\022\021\n\tjoystic1"
-    "x\030\016 \001(\r\022\021\n\tjoystic1y\030\017 \001(\r\022\021\n\tjoystic2x\030"
-    "\020 \001(\r\022\021\n\tjoystic2y\030\021 \001(\r\"\031\n\006LedDim\022\017\n\007le"
-    "d_dim\030\001 \001(\r\"\226\001\n\016SRKeyEndtoolRx\022\014\n\004dout\030\001"
-    " \001(\r\022\017\n\007tool_Id\030\002 \001(\r\022\020\n\010set_Tool\030\003 \001(\r\022"
-    "\032\n\022tool_Closing_Force\030\004 \001(\r\022\032\n\022tool_Open"
-    "ing_Force\030\005 \001(\r\022\033\n\023tool_Force_Location\030\006"
-    " \001(\r\"|\n\016SRKeyEndtoolTx\022\013\n\003din\030\001 \001(\r\022\023\n\013t"
-    "ool_Status\030\002 \001(\r\022\025\n\rtool_Location\030\003 \001(\r\022"
-    "\017\n\007analog0\030\004 \001(\r\022\017\n\007analog1\030\005 \001(\r\022\017\n\007ver"
-    "sion\030\006 \001(\r\"\204\001\n\tIOBoardTx\022\014\n\004di5v\030\001 \001(\r\022\016"
-    "\n\006di24v1\030\002 \001(\r\022\016\n\006di24v2\030\003 \001(\r\022\013\n\003ai1\030\004 "
-    "\001(\r\022\013\n\003ai2\030\005 \001(\r\022/\n\tft_sensor\030\006 \001(\0132\034.Nr"
-    "mk.IndyFramework.FTSensor\"e\n\tIOBoardRx\022\014"
-    "\n\004do5v\030\001 \001(\r\022\016\n\006do24v1\030\002 \001(\r\022\016\n\006do24v2\030\003"
-    " \001(\r\022\013\n\003ao1\030\004 \001(\r\022\013\n\003ao2\030\005 \001(\r\022\020\n\010ft_par"
-    "am\030\006 \001(\r\"\034\n\010DIOIndex\022\020\n\010dioIndex\030\001 \001(\r\"4"
-    "\n\017DIODigitalInput\022\020\n\010dioIndex\030\001 \001(\r\022\017\n\007d"
-    "i_list\030\002 \003(\r\"5\n\020DIODigitalOutput\022\020\n\010dioI"
-    "ndex\030\001 \001(\r\022\017\n\007do_list\030\002 \003(\r\"+\n\nServoPara"
-    "m\022\020\n\010slaveIdx\030\001 \001(\r\022\013\n\003val\030\002 \001(\005\"\030\n\tSDOI"
-    "ntVal\022\013\n\003val\030\001 \001(\005\"\032\n\013SDOFloatVal\022\013\n\003val"
-    "\030\001 \001(\002\"\030\n\tSDOStrVal\022\013\n\003val\030\001 \001(\t\"\016\n\014Ethe"
-    "rCATInfo\"\037\n\016RobotZeroCount\022\r\n\005count\030\001 \001("
-    "\005b\006proto3"
+    "\001(\005\"K\n\014ServoRxIndex\022\022\n\nservoIndex\030\001 \001(\r\022"
+    "\'\n\002rx\030\002 \001(\0132\033.Nrmk.IndyFramework.ServoRx"
+    "\"\337\001\n\013ServoTxKeba\022\022\n\nstatusWord\030\001 \001(\r\022\023\n\013"
+    "statusWord2\030\002 \001(\r\022\023\n\013statusWord3\030\003 \001(\r\022\026"
+    "\n\016actualPosition\030\004 \001(\005\022\027\n\017actualPosition"
+    "2\030\005 \001(\005\022\027\n\017actualPosition3\030\006 \001(\005\022\026\n\016actu"
+    "alVelocity\030\007 \001(\005\022\027\n\017actualVelocity2\030\010 \001("
+    "\005\022\027\n\017actualVelocity3\030\t \001(\005\"\334\001\n\013ServoRxKe"
+    "ba\022\023\n\013controlWord\030\001 \001(\r\022\024\n\014controlWord2\030"
+    "\002 \001(\r\022\024\n\014controlWord3\030\003 \001(\r\022\026\n\016targetPos"
+    "ition\030\004 \001(\003\022\027\n\017targetPosition2\030\005 \001(\003\022\027\n\017"
+    "targetPosition3\030\006 \001(\003\022\024\n\014targetTorque\030\007 "
+    "\001(\005\022\025\n\rtargetTorque2\030\010 \001(\005\022\025\n\rtargetTorq"
+    "ue3\030\t \001(\005\"S\n\020ServoRxIndexKeba\022\022\n\nservoIn"
+    "dex\030\001 \001(\r\022+\n\002rx\030\002 \001(\0132\037.Nrmk.IndyFramewo"
+    "rk.ServoRxKeba\" \n\tServoTemp\022\023\n\013temperatu"
+    "re\030\001 \001(\002\"\037\n\nServoError\022\021\n\terrorCode\030\001 \001("
+    "\r\".\n\nServoBrake\022\021\n\tecatIndex\030\001 \001(\r\022\r\n\005on"
+    "off\030\002 \001(\010\"R\n\010FTSensor\022\n\n\002fx\030\001 \001(\005\022\n\n\002fy\030"
+    "\002 \001(\005\022\n\n\002fz\030\003 \001(\005\022\n\n\002tx\030\004 \001(\005\022\n\n\002ty\030\005 \001("
+    "\005\022\n\n\002tz\030\006 \001(\005\"\200\001\n\tEndtoolTx\022\016\n\006status\030\001 "
+    "\001(\r\022\016\n\006button\030\002 \001(\r\022/\n\tft_sensor\030\003 \001(\0132\034"
+    ".Nrmk.IndyFramework.FTSensor\022\020\n\010ft_state"
+    "\030\004 \001(\r\022\020\n\010ft_error\030\005 \001(\r\"z\n\tEndtoolRx\022\013\n"
+    "\003eqc\030\001 \001(\r\022\017\n\007gripper\030\002 \001(\r\022\020\n\010ft_param\030"
+    "\003 \001(\r\022\020\n\010led_mode\030\004 \001(\r\022\r\n\005led_g\030\005 \001(\r\022\r"
+    "\n\005led_r\030\006 \001(\r\022\r\n\005led_b\030\007 \001(\r\"\214\003\n\020Endtool"
+    "DockingTx\022\026\n\016docking_status\030\001 \001(\r\022\026\n\016doc"
+    "king_button\030\002 \001(\r\022\025\n\rdocking_dist1\030\003 \001(\r"
+    "\022\025\n\rdocking_dist2\030\004 \001(\r\022\025\n\rdocking_dist3"
+    "\030\005 \001(\r\022\025\n\rdocking_dist4\030\006 \001(\r\022\025\n\rdocking"
+    "_dist5\030\007 \001(\r\022\025\n\rdocking_dist6\030\010 \001(\r\022\025\n\rd"
+    "ocking_dist7\030\t \001(\r\022\025\n\rdocking_dist8\030\n \001("
+    "\r\022\025\n\rdirect_status\030\013 \001(\r\022\025\n\rdirect_butto"
+    "n\030\014 \001(\r\022\026\n\016direct_encoder\030\r \001(\r\022\021\n\tjoyst"
+    "ic1x\030\016 \001(\r\022\021\n\tjoystic1y\030\017 \001(\r\022\021\n\tjoystic"
+    "2x\030\020 \001(\r\022\021\n\tjoystic2y\030\021 \001(\r\"\031\n\006LedDim\022\017\n"
+    "\007led_dim\030\001 \001(\r\"\226\001\n\016SRKeyEndtoolRx\022\014\n\004dou"
+    "t\030\001 \001(\r\022\017\n\007tool_Id\030\002 \001(\r\022\020\n\010set_Tool\030\003 \001"
+    "(\r\022\032\n\022tool_Closing_Force\030\004 \001(\r\022\032\n\022tool_O"
+    "pening_Force\030\005 \001(\r\022\033\n\023tool_Force_Locatio"
+    "n\030\006 \001(\r\"|\n\016SRKeyEndtoolTx\022\013\n\003din\030\001 \001(\r\022\023"
+    "\n\013tool_Status\030\002 \001(\r\022\025\n\rtool_Location\030\003 \001"
+    "(\r\022\017\n\007analog0\030\004 \001(\r\022\017\n\007analog1\030\005 \001(\r\022\017\n\007"
+    "version\030\006 \001(\r\"\204\001\n\tIOBoardTx\022\014\n\004di5v\030\001 \001("
+    "\r\022\016\n\006di24v1\030\002 \001(\r\022\016\n\006di24v2\030\003 \001(\r\022\013\n\003ai1"
+    "\030\004 \001(\r\022\013\n\003ai2\030\005 \001(\r\022/\n\tft_sensor\030\006 \001(\0132\034"
+    ".Nrmk.IndyFramework.FTSensor\"e\n\tIOBoardR"
+    "x\022\014\n\004do5v\030\001 \001(\r\022\016\n\006do24v1\030\002 \001(\r\022\016\n\006do24v"
+    "2\030\003 \001(\r\022\013\n\003ao1\030\004 \001(\r\022\013\n\003ao2\030\005 \001(\r\022\020\n\010ft_"
+    "param\030\006 \001(\r\"\034\n\010DIOIndex\022\020\n\010dioIndex\030\001 \001("
+    "\r\"4\n\017DIODigitalInput\022\020\n\010dioIndex\030\001 \001(\r\022\017"
+    "\n\007di_list\030\002 \003(\r\"5\n\020DIODigitalOutput\022\020\n\010d"
+    "ioIndex\030\001 \001(\r\022\017\n\007do_list\030\002 \003(\r\"+\n\nServoP"
+    "aram\022\020\n\010slaveIdx\030\001 \001(\r\022\013\n\003val\030\002 \001(\005\"\030\n\tS"
+    "DOIntVal\022\013\n\003val\030\001 \001(\005\"\037\n\016RobotZeroCount\022"
+    "\r\n\005count\030\001 \001(\005b\006proto3"
 };
 static ::absl::once_flag descriptor_table_ethercat_5fmsgs_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_ethercat_5fmsgs_2eproto = {
     false,
     false,
-    3009,
+    2862,
     descriptor_table_protodef_ethercat_5fmsgs_2eproto,
     "ethercat_msgs.proto",
     &descriptor_table_ethercat_5fmsgs_2eproto_once,
     nullptr,
     0,
-    36,
+    32,
     schemas,
     file_default_instances,
     TableStruct_ethercat_5fmsgs_2eproto::offsets,
@@ -3296,235 +3181,6 @@ void ServoRx::InternalSwap(ServoRx* other) {
 }
 // ===================================================================
 
-class ServoTxIndex::_Internal {
- public:
-  using HasBits = decltype(std::declval<ServoTxIndex>()._impl_._has_bits_);
-  static constexpr ::int32_t kHasBitsOffset =
-    8 * PROTOBUF_FIELD_OFFSET(ServoTxIndex, _impl_._has_bits_);
-  static const ::Nrmk::IndyFramework::ServoTx& tx(const ServoTxIndex* msg);
-  static void set_has_tx(HasBits* has_bits) {
-    (*has_bits)[0] |= 1u;
-  }
-};
-
-const ::Nrmk::IndyFramework::ServoTx& ServoTxIndex::_Internal::tx(const ServoTxIndex* msg) {
-  return *msg->_impl_.tx_;
-}
-ServoTxIndex::ServoTxIndex(::google::protobuf::Arena* arena)
-    : ::google::protobuf::Message(arena) {
-  SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:Nrmk.IndyFramework.ServoTxIndex)
-}
-ServoTxIndex::ServoTxIndex(const ServoTxIndex& from) : ::google::protobuf::Message() {
-  ServoTxIndex* const _this = this;
-  (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_._has_bits_){from._impl_._has_bits_},
-      /*decltype(_impl_._cached_size_)*/ {},
-      decltype(_impl_.tx_){nullptr},
-      decltype(_impl_.servoindex_){},
-  };
-  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
-      from._internal_metadata_);
-  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
-    _this->_impl_.tx_ = new ::Nrmk::IndyFramework::ServoTx(*from._impl_.tx_);
-  }
-  _this->_impl_.servoindex_ = from._impl_.servoindex_;
-
-  // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.ServoTxIndex)
-}
-inline void ServoTxIndex::SharedCtor(::_pb::Arena* arena) {
-  (void)arena;
-  new (&_impl_) Impl_{
-      decltype(_impl_._has_bits_){},
-      /*decltype(_impl_._cached_size_)*/ {},
-      decltype(_impl_.tx_){nullptr},
-      decltype(_impl_.servoindex_){0u},
-  };
-}
-ServoTxIndex::~ServoTxIndex() {
-  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.ServoTxIndex)
-  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
-  SharedDtor();
-}
-inline void ServoTxIndex::SharedDtor() {
-  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
-  if (this != internal_default_instance()) delete _impl_.tx_;
-}
-void ServoTxIndex::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
-}
-
-PROTOBUF_NOINLINE void ServoTxIndex::Clear() {
-// @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.ServoTxIndex)
-  ::uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    ABSL_DCHECK(_impl_.tx_ != nullptr);
-    _impl_.tx_->Clear();
-  }
-  _impl_.servoindex_ = 0u;
-  _impl_._has_bits_.Clear();
-  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
-}
-
-const char* ServoTxIndex::_InternalParse(
-    const char* ptr, ::_pbi::ParseContext* ctx) {
-  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
-  return ptr;
-}
-
-
-PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 2, 1, 0, 2> ServoTxIndex::_table_ = {
-  {
-    PROTOBUF_FIELD_OFFSET(ServoTxIndex, _impl_._has_bits_),
-    0, // no _extensions_
-    2, 8,  // max_field_number, fast_idx_mask
-    offsetof(decltype(_table_), field_lookup_table),
-    4294967292,  // skipmap
-    offsetof(decltype(_table_), field_entries),
-    2,  // num_field_entries
-    1,  // num_aux_entries
-    offsetof(decltype(_table_), aux_entries),
-    &_ServoTxIndex_default_instance_._instance,
-    ::_pbi::TcParser::GenericFallback,  // fallback
-  }, {{
-    // .Nrmk.IndyFramework.ServoTx tx = 2;
-    {::_pbi::TcParser::FastMtS1,
-     {18, 0, 0, PROTOBUF_FIELD_OFFSET(ServoTxIndex, _impl_.tx_)}},
-    // uint32 servoIndex = 1;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(ServoTxIndex, _impl_.servoindex_), 63>(),
-     {8, 63, 0, PROTOBUF_FIELD_OFFSET(ServoTxIndex, _impl_.servoindex_)}},
-  }}, {{
-    65535, 65535
-  }}, {{
-    // uint32 servoIndex = 1;
-    {PROTOBUF_FIELD_OFFSET(ServoTxIndex, _impl_.servoindex_), -1, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
-    // .Nrmk.IndyFramework.ServoTx tx = 2;
-    {PROTOBUF_FIELD_OFFSET(ServoTxIndex, _impl_.tx_), _Internal::kHasBitsOffset + 0, 0,
-    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
-  }}, {{
-    {::_pbi::TcParser::GetTable<::Nrmk::IndyFramework::ServoTx>()},
-  }}, {{
-  }},
-};
-
-::uint8_t* ServoTxIndex::_InternalSerialize(
-    ::uint8_t* target,
-    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.ServoTxIndex)
-  ::uint32_t cached_has_bits = 0;
-  (void)cached_has_bits;
-
-  // uint32 servoIndex = 1;
-  if (this->_internal_servoindex() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
-        1, this->_internal_servoindex(), target);
-  }
-
-  cached_has_bits = _impl_._has_bits_[0];
-  // .Nrmk.IndyFramework.ServoTx tx = 2;
-  if (cached_has_bits & 0x00000001u) {
-    target = ::google::protobuf::internal::WireFormatLite::
-      InternalWriteMessage(2, _Internal::tx(this),
-        _Internal::tx(this).GetCachedSize(), target, stream);
-  }
-
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target =
-        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
-  }
-  // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.ServoTxIndex)
-  return target;
-}
-
-::size_t ServoTxIndex::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.ServoTxIndex)
-  ::size_t total_size = 0;
-
-  ::uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  // .Nrmk.IndyFramework.ServoTx tx = 2;
-  cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::MessageSize(
-        *_impl_.tx_);
-  }
-
-  // uint32 servoIndex = 1;
-  if (this->_internal_servoindex() != 0) {
-    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
-        this->_internal_servoindex());
-  }
-
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
-}
-
-const ::google::protobuf::Message::ClassData ServoTxIndex::_class_data_ = {
-    ::google::protobuf::Message::CopyWithSourceCheck,
-    ServoTxIndex::MergeImpl
-};
-const ::google::protobuf::Message::ClassData*ServoTxIndex::GetClassData() const { return &_class_data_; }
-
-
-void ServoTxIndex::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
-  auto* const _this = static_cast<ServoTxIndex*>(&to_msg);
-  auto& from = static_cast<const ServoTxIndex&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.ServoTxIndex)
-  ABSL_DCHECK_NE(&from, _this);
-  ::uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
-    _this->_internal_mutable_tx()->::Nrmk::IndyFramework::ServoTx::MergeFrom(
-        from._internal_tx());
-  }
-  if (from._internal_servoindex() != 0) {
-    _this->_internal_set_servoindex(from._internal_servoindex());
-  }
-  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
-}
-
-void ServoTxIndex::CopyFrom(const ServoTxIndex& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:Nrmk.IndyFramework.ServoTxIndex)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-PROTOBUF_NOINLINE bool ServoTxIndex::IsInitialized() const {
-  return true;
-}
-
-void ServoTxIndex::InternalSwap(ServoTxIndex* other) {
-  using std::swap;
-  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
-  ::google::protobuf::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(ServoTxIndex, _impl_.servoindex_)
-      + sizeof(ServoTxIndex::_impl_.servoindex_)
-      - PROTOBUF_FIELD_OFFSET(ServoTxIndex, _impl_.tx_)>(
-          reinterpret_cast<char*>(&_impl_.tx_),
-          reinterpret_cast<char*>(&other->_impl_.tx_));
-}
-
-::google::protobuf::Metadata ServoTxIndex::GetMetadata() const {
-  return ::_pbi::AssignDescriptors(
-      &descriptor_table_ethercat_5fmsgs_2eproto_getter, &descriptor_table_ethercat_5fmsgs_2eproto_once,
-      file_level_metadata_ethercat_5fmsgs_2eproto[10]);
-}
-// ===================================================================
-
 class ServoRxIndex::_Internal {
  public:
   using HasBits = decltype(std::declval<ServoRxIndex>()._impl_._has_bits_);
@@ -3750,7 +3406,7 @@ void ServoRxIndex::InternalSwap(ServoRxIndex* other) {
 ::google::protobuf::Metadata ServoRxIndex::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_ethercat_5fmsgs_2eproto_getter, &descriptor_table_ethercat_5fmsgs_2eproto_once,
-      file_level_metadata_ethercat_5fmsgs_2eproto[11]);
+      file_level_metadata_ethercat_5fmsgs_2eproto[10]);
 }
 // ===================================================================
 
@@ -4114,7 +3770,7 @@ void ServoTxKeba::InternalSwap(ServoTxKeba* other) {
 ::google::protobuf::Metadata ServoTxKeba::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_ethercat_5fmsgs_2eproto_getter, &descriptor_table_ethercat_5fmsgs_2eproto_once,
-      file_level_metadata_ethercat_5fmsgs_2eproto[12]);
+      file_level_metadata_ethercat_5fmsgs_2eproto[11]);
 }
 // ===================================================================
 
@@ -4478,7 +4134,7 @@ void ServoRxKeba::InternalSwap(ServoRxKeba* other) {
 ::google::protobuf::Metadata ServoRxKeba::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_ethercat_5fmsgs_2eproto_getter, &descriptor_table_ethercat_5fmsgs_2eproto_once,
-      file_level_metadata_ethercat_5fmsgs_2eproto[13]);
+      file_level_metadata_ethercat_5fmsgs_2eproto[12]);
 }
 // ===================================================================
 
@@ -4707,7 +4363,7 @@ void ServoRxIndexKeba::InternalSwap(ServoRxIndexKeba* other) {
 ::google::protobuf::Metadata ServoRxIndexKeba::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_ethercat_5fmsgs_2eproto_getter, &descriptor_table_ethercat_5fmsgs_2eproto_once,
-      file_level_metadata_ethercat_5fmsgs_2eproto[14]);
+      file_level_metadata_ethercat_5fmsgs_2eproto[13]);
 }
 // ===================================================================
 
@@ -4887,7 +4543,7 @@ void ServoTemp::InternalSwap(ServoTemp* other) {
 ::google::protobuf::Metadata ServoTemp::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_ethercat_5fmsgs_2eproto_getter, &descriptor_table_ethercat_5fmsgs_2eproto_once,
-      file_level_metadata_ethercat_5fmsgs_2eproto[15]);
+      file_level_metadata_ethercat_5fmsgs_2eproto[14]);
 }
 // ===================================================================
 
@@ -5053,7 +4709,7 @@ void ServoError::InternalSwap(ServoError* other) {
 ::google::protobuf::Metadata ServoError::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_ethercat_5fmsgs_2eproto_getter, &descriptor_table_ethercat_5fmsgs_2eproto_once,
-      file_level_metadata_ethercat_5fmsgs_2eproto[16]);
+      file_level_metadata_ethercat_5fmsgs_2eproto[15]);
 }
 // ===================================================================
 
@@ -5248,7 +4904,7 @@ void ServoBrake::InternalSwap(ServoBrake* other) {
 ::google::protobuf::Metadata ServoBrake::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_ethercat_5fmsgs_2eproto_getter, &descriptor_table_ethercat_5fmsgs_2eproto_once,
-      file_level_metadata_ethercat_5fmsgs_2eproto[17]);
+      file_level_metadata_ethercat_5fmsgs_2eproto[16]);
 }
 // ===================================================================
 
@@ -5538,7 +5194,7 @@ void FTSensor::InternalSwap(FTSensor* other) {
 ::google::protobuf::Metadata FTSensor::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_ethercat_5fmsgs_2eproto_getter, &descriptor_table_ethercat_5fmsgs_2eproto_once,
-      file_level_metadata_ethercat_5fmsgs_2eproto[18]);
+      file_level_metadata_ethercat_5fmsgs_2eproto[17]);
 }
 // ===================================================================
 
@@ -5846,7 +5502,7 @@ void EndtoolTx::InternalSwap(EndtoolTx* other) {
 ::google::protobuf::Metadata EndtoolTx::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_ethercat_5fmsgs_2eproto_getter, &descriptor_table_ethercat_5fmsgs_2eproto_once,
-      file_level_metadata_ethercat_5fmsgs_2eproto[19]);
+      file_level_metadata_ethercat_5fmsgs_2eproto[18]);
 }
 // ===================================================================
 
@@ -6158,7 +5814,7 @@ void EndtoolRx::InternalSwap(EndtoolRx* other) {
 ::google::protobuf::Metadata EndtoolRx::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_ethercat_5fmsgs_2eproto_getter, &descriptor_table_ethercat_5fmsgs_2eproto_once,
-      file_level_metadata_ethercat_5fmsgs_2eproto[20]);
+      file_level_metadata_ethercat_5fmsgs_2eproto[19]);
 }
 // ===================================================================
 
@@ -6714,7 +6370,7 @@ void EndtoolDockingTx::InternalSwap(EndtoolDockingTx* other) {
 ::google::protobuf::Metadata EndtoolDockingTx::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_ethercat_5fmsgs_2eproto_getter, &descriptor_table_ethercat_5fmsgs_2eproto_once,
-      file_level_metadata_ethercat_5fmsgs_2eproto[21]);
+      file_level_metadata_ethercat_5fmsgs_2eproto[20]);
 }
 // ===================================================================
 
@@ -6880,7 +6536,7 @@ void LedDim::InternalSwap(LedDim* other) {
 ::google::protobuf::Metadata LedDim::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_ethercat_5fmsgs_2eproto_getter, &descriptor_table_ethercat_5fmsgs_2eproto_once,
-      file_level_metadata_ethercat_5fmsgs_2eproto[22]);
+      file_level_metadata_ethercat_5fmsgs_2eproto[21]);
 }
 // ===================================================================
 
@@ -7170,7 +6826,7 @@ void SRKeyEndtoolRx::InternalSwap(SRKeyEndtoolRx* other) {
 ::google::protobuf::Metadata SRKeyEndtoolRx::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_ethercat_5fmsgs_2eproto_getter, &descriptor_table_ethercat_5fmsgs_2eproto_once,
-      file_level_metadata_ethercat_5fmsgs_2eproto[23]);
+      file_level_metadata_ethercat_5fmsgs_2eproto[22]);
 }
 // ===================================================================
 
@@ -7460,7 +7116,7 @@ void SRKeyEndtoolTx::InternalSwap(SRKeyEndtoolTx* other) {
 ::google::protobuf::Metadata SRKeyEndtoolTx::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_ethercat_5fmsgs_2eproto_getter, &descriptor_table_ethercat_5fmsgs_2eproto_once,
-      file_level_metadata_ethercat_5fmsgs_2eproto[24]);
+      file_level_metadata_ethercat_5fmsgs_2eproto[23]);
 }
 // ===================================================================
 
@@ -7791,7 +7447,7 @@ void IOBoardTx::InternalSwap(IOBoardTx* other) {
 ::google::protobuf::Metadata IOBoardTx::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_ethercat_5fmsgs_2eproto_getter, &descriptor_table_ethercat_5fmsgs_2eproto_once,
-      file_level_metadata_ethercat_5fmsgs_2eproto[25]);
+      file_level_metadata_ethercat_5fmsgs_2eproto[24]);
 }
 // ===================================================================
 
@@ -8081,7 +7737,7 @@ void IOBoardRx::InternalSwap(IOBoardRx* other) {
 ::google::protobuf::Metadata IOBoardRx::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_ethercat_5fmsgs_2eproto_getter, &descriptor_table_ethercat_5fmsgs_2eproto_once,
-      file_level_metadata_ethercat_5fmsgs_2eproto[26]);
+      file_level_metadata_ethercat_5fmsgs_2eproto[25]);
 }
 // ===================================================================
 
@@ -8247,7 +7903,7 @@ void DIOIndex::InternalSwap(DIOIndex* other) {
 ::google::protobuf::Metadata DIOIndex::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_ethercat_5fmsgs_2eproto_getter, &descriptor_table_ethercat_5fmsgs_2eproto_once,
-      file_level_metadata_ethercat_5fmsgs_2eproto[27]);
+      file_level_metadata_ethercat_5fmsgs_2eproto[26]);
 }
 // ===================================================================
 
@@ -8456,7 +8112,7 @@ void DIODigitalInput::InternalSwap(DIODigitalInput* other) {
 ::google::protobuf::Metadata DIODigitalInput::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_ethercat_5fmsgs_2eproto_getter, &descriptor_table_ethercat_5fmsgs_2eproto_once,
-      file_level_metadata_ethercat_5fmsgs_2eproto[28]);
+      file_level_metadata_ethercat_5fmsgs_2eproto[27]);
 }
 // ===================================================================
 
@@ -8665,7 +8321,7 @@ void DIODigitalOutput::InternalSwap(DIODigitalOutput* other) {
 ::google::protobuf::Metadata DIODigitalOutput::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_ethercat_5fmsgs_2eproto_getter, &descriptor_table_ethercat_5fmsgs_2eproto_once,
-      file_level_metadata_ethercat_5fmsgs_2eproto[29]);
+      file_level_metadata_ethercat_5fmsgs_2eproto[28]);
 }
 // ===================================================================
 
@@ -8861,7 +8517,7 @@ void ServoParam::InternalSwap(ServoParam* other) {
 ::google::protobuf::Metadata ServoParam::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_ethercat_5fmsgs_2eproto_getter, &descriptor_table_ethercat_5fmsgs_2eproto_once,
-      file_level_metadata_ethercat_5fmsgs_2eproto[30]);
+      file_level_metadata_ethercat_5fmsgs_2eproto[29]);
 }
 // ===================================================================
 
@@ -9027,417 +8683,7 @@ void SDOIntVal::InternalSwap(SDOIntVal* other) {
 ::google::protobuf::Metadata SDOIntVal::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_ethercat_5fmsgs_2eproto_getter, &descriptor_table_ethercat_5fmsgs_2eproto_once,
-      file_level_metadata_ethercat_5fmsgs_2eproto[31]);
-}
-// ===================================================================
-
-class SDOFloatVal::_Internal {
- public:
-};
-
-SDOFloatVal::SDOFloatVal(::google::protobuf::Arena* arena)
-    : ::google::protobuf::Message(arena) {
-  SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:Nrmk.IndyFramework.SDOFloatVal)
-}
-SDOFloatVal::SDOFloatVal(const SDOFloatVal& from)
-    : ::google::protobuf::Message(), _impl_(from._impl_) {
-  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
-      from._internal_metadata_);
-  // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.SDOFloatVal)
-}
-inline void SDOFloatVal::SharedCtor(::_pb::Arena* arena) {
-  (void)arena;
-  new (&_impl_) Impl_{
-      decltype(_impl_.val_){0},
-      /*decltype(_impl_._cached_size_)*/ {},
-  };
-}
-SDOFloatVal::~SDOFloatVal() {
-  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.SDOFloatVal)
-  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
-  SharedDtor();
-}
-inline void SDOFloatVal::SharedDtor() {
-  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
-}
-void SDOFloatVal::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
-}
-
-PROTOBUF_NOINLINE void SDOFloatVal::Clear() {
-// @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.SDOFloatVal)
-  ::uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  _impl_.val_ = 0;
-  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
-}
-
-const char* SDOFloatVal::_InternalParse(
-    const char* ptr, ::_pbi::ParseContext* ctx) {
-  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
-  return ptr;
-}
-
-
-PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<0, 1, 0, 0, 2> SDOFloatVal::_table_ = {
-  {
-    0,  // no _has_bits_
-    0, // no _extensions_
-    1, 0,  // max_field_number, fast_idx_mask
-    offsetof(decltype(_table_), field_lookup_table),
-    4294967294,  // skipmap
-    offsetof(decltype(_table_), field_entries),
-    1,  // num_field_entries
-    0,  // num_aux_entries
-    offsetof(decltype(_table_), field_names),  // no aux_entries
-    &_SDOFloatVal_default_instance_._instance,
-    ::_pbi::TcParser::GenericFallback,  // fallback
-  }, {{
-    // float val = 1;
-    {::_pbi::TcParser::FastF32S1,
-     {13, 63, 0, PROTOBUF_FIELD_OFFSET(SDOFloatVal, _impl_.val_)}},
-  }}, {{
-    65535, 65535
-  }}, {{
-    // float val = 1;
-    {PROTOBUF_FIELD_OFFSET(SDOFloatVal, _impl_.val_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kFloat)},
-  }},
-  // no aux_entries
-  {{
-  }},
-};
-
-::uint8_t* SDOFloatVal::_InternalSerialize(
-    ::uint8_t* target,
-    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.SDOFloatVal)
-  ::uint32_t cached_has_bits = 0;
-  (void)cached_has_bits;
-
-  // float val = 1;
-  static_assert(sizeof(::uint32_t) == sizeof(float),
-                "Code assumes ::uint32_t and float are the same size.");
-  float tmp_val = this->_internal_val();
-  ::uint32_t raw_val;
-  memcpy(&raw_val, &tmp_val, sizeof(tmp_val));
-  if (raw_val != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteFloatToArray(
-        1, this->_internal_val(), target);
-  }
-
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target =
-        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
-  }
-  // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.SDOFloatVal)
-  return target;
-}
-
-::size_t SDOFloatVal::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.SDOFloatVal)
-  ::size_t total_size = 0;
-
-  ::uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  // float val = 1;
-  static_assert(sizeof(::uint32_t) == sizeof(float),
-                "Code assumes ::uint32_t and float are the same size.");
-  float tmp_val = this->_internal_val();
-  ::uint32_t raw_val;
-  memcpy(&raw_val, &tmp_val, sizeof(tmp_val));
-  if (raw_val != 0) {
-    total_size += 5;
-  }
-
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
-}
-
-const ::google::protobuf::Message::ClassData SDOFloatVal::_class_data_ = {
-    ::google::protobuf::Message::CopyWithSourceCheck,
-    SDOFloatVal::MergeImpl
-};
-const ::google::protobuf::Message::ClassData*SDOFloatVal::GetClassData() const { return &_class_data_; }
-
-
-void SDOFloatVal::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
-  auto* const _this = static_cast<SDOFloatVal*>(&to_msg);
-  auto& from = static_cast<const SDOFloatVal&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.SDOFloatVal)
-  ABSL_DCHECK_NE(&from, _this);
-  ::uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  static_assert(sizeof(::uint32_t) == sizeof(float),
-                "Code assumes ::uint32_t and float are the same size.");
-  float tmp_val = from._internal_val();
-  ::uint32_t raw_val;
-  memcpy(&raw_val, &tmp_val, sizeof(tmp_val));
-  if (raw_val != 0) {
-    _this->_internal_set_val(from._internal_val());
-  }
-  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
-}
-
-void SDOFloatVal::CopyFrom(const SDOFloatVal& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:Nrmk.IndyFramework.SDOFloatVal)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-PROTOBUF_NOINLINE bool SDOFloatVal::IsInitialized() const {
-  return true;
-}
-
-void SDOFloatVal::InternalSwap(SDOFloatVal* other) {
-  using std::swap;
-  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-        swap(_impl_.val_, other->_impl_.val_);
-}
-
-::google::protobuf::Metadata SDOFloatVal::GetMetadata() const {
-  return ::_pbi::AssignDescriptors(
-      &descriptor_table_ethercat_5fmsgs_2eproto_getter, &descriptor_table_ethercat_5fmsgs_2eproto_once,
-      file_level_metadata_ethercat_5fmsgs_2eproto[32]);
-}
-// ===================================================================
-
-class SDOStrVal::_Internal {
- public:
-};
-
-SDOStrVal::SDOStrVal(::google::protobuf::Arena* arena)
-    : ::google::protobuf::Message(arena) {
-  SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:Nrmk.IndyFramework.SDOStrVal)
-}
-SDOStrVal::SDOStrVal(const SDOStrVal& from) : ::google::protobuf::Message() {
-  SDOStrVal* const _this = this;
-  (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.val_){},
-      /*decltype(_impl_._cached_size_)*/ {},
-  };
-  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
-      from._internal_metadata_);
-  _impl_.val_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        _impl_.val_.Set("", GetArenaForAllocation());
-  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_val().empty()) {
-    _this->_impl_.val_.Set(from._internal_val(), _this->GetArenaForAllocation());
-  }
-
-  // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.SDOStrVal)
-}
-inline void SDOStrVal::SharedCtor(::_pb::Arena* arena) {
-  (void)arena;
-  new (&_impl_) Impl_{
-      decltype(_impl_.val_){},
-      /*decltype(_impl_._cached_size_)*/ {},
-  };
-  _impl_.val_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        _impl_.val_.Set("", GetArenaForAllocation());
-  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-}
-SDOStrVal::~SDOStrVal() {
-  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.SDOStrVal)
-  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
-  SharedDtor();
-}
-inline void SDOStrVal::SharedDtor() {
-  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.val_.Destroy();
-}
-void SDOStrVal::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
-}
-
-PROTOBUF_NOINLINE void SDOStrVal::Clear() {
-// @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.SDOStrVal)
-  ::uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  _impl_.val_.ClearToEmpty();
-  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
-}
-
-const char* SDOStrVal::_InternalParse(
-    const char* ptr, ::_pbi::ParseContext* ctx) {
-  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
-  return ptr;
-}
-
-
-PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<0, 1, 0, 40, 2> SDOStrVal::_table_ = {
-  {
-    0,  // no _has_bits_
-    0, // no _extensions_
-    1, 0,  // max_field_number, fast_idx_mask
-    offsetof(decltype(_table_), field_lookup_table),
-    4294967294,  // skipmap
-    offsetof(decltype(_table_), field_entries),
-    1,  // num_field_entries
-    0,  // num_aux_entries
-    offsetof(decltype(_table_), field_names),  // no aux_entries
-    &_SDOStrVal_default_instance_._instance,
-    ::_pbi::TcParser::GenericFallback,  // fallback
-  }, {{
-    // string val = 1;
-    {::_pbi::TcParser::FastUS1,
-     {10, 63, 0, PROTOBUF_FIELD_OFFSET(SDOStrVal, _impl_.val_)}},
-  }}, {{
-    65535, 65535
-  }}, {{
-    // string val = 1;
-    {PROTOBUF_FIELD_OFFSET(SDOStrVal, _impl_.val_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-  }},
-  // no aux_entries
-  {{
-    "\34\3\0\0\0\0\0\0"
-    "Nrmk.IndyFramework.SDOStrVal"
-    "val"
-  }},
-};
-
-::uint8_t* SDOStrVal::_InternalSerialize(
-    ::uint8_t* target,
-    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.SDOStrVal)
-  ::uint32_t cached_has_bits = 0;
-  (void)cached_has_bits;
-
-  // string val = 1;
-  if (!this->_internal_val().empty()) {
-    const std::string& _s = this->_internal_val();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "Nrmk.IndyFramework.SDOStrVal.val");
-    target = stream->WriteStringMaybeAliased(1, _s, target);
-  }
-
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target =
-        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
-  }
-  // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.SDOStrVal)
-  return target;
-}
-
-::size_t SDOStrVal::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.SDOStrVal)
-  ::size_t total_size = 0;
-
-  ::uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  // string val = 1;
-  if (!this->_internal_val().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                    this->_internal_val());
-  }
-
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
-}
-
-const ::google::protobuf::Message::ClassData SDOStrVal::_class_data_ = {
-    ::google::protobuf::Message::CopyWithSourceCheck,
-    SDOStrVal::MergeImpl
-};
-const ::google::protobuf::Message::ClassData*SDOStrVal::GetClassData() const { return &_class_data_; }
-
-
-void SDOStrVal::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
-  auto* const _this = static_cast<SDOStrVal*>(&to_msg);
-  auto& from = static_cast<const SDOStrVal&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.SDOStrVal)
-  ABSL_DCHECK_NE(&from, _this);
-  ::uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  if (!from._internal_val().empty()) {
-    _this->_internal_set_val(from._internal_val());
-  }
-  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
-}
-
-void SDOStrVal::CopyFrom(const SDOStrVal& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:Nrmk.IndyFramework.SDOStrVal)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-PROTOBUF_NOINLINE bool SDOStrVal::IsInitialized() const {
-  return true;
-}
-
-void SDOStrVal::InternalSwap(SDOStrVal* other) {
-  using std::swap;
-  auto* lhs_arena = GetArenaForAllocation();
-  auto* rhs_arena = other->GetArenaForAllocation();
-  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.val_, lhs_arena,
-                                       &other->_impl_.val_, rhs_arena);
-}
-
-::google::protobuf::Metadata SDOStrVal::GetMetadata() const {
-  return ::_pbi::AssignDescriptors(
-      &descriptor_table_ethercat_5fmsgs_2eproto_getter, &descriptor_table_ethercat_5fmsgs_2eproto_once,
-      file_level_metadata_ethercat_5fmsgs_2eproto[33]);
-}
-// ===================================================================
-
-class EtherCATInfo::_Internal {
- public:
-};
-
-EtherCATInfo::EtherCATInfo(::google::protobuf::Arena* arena)
-    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
-  // @@protoc_insertion_point(arena_constructor:Nrmk.IndyFramework.EtherCATInfo)
-}
-EtherCATInfo::EtherCATInfo(const EtherCATInfo& from) : ::google::protobuf::internal::ZeroFieldsBase() {
-  EtherCATInfo* const _this = this;
-  (void)_this;
-  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
-      from._internal_metadata_);
-
-  // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.EtherCATInfo)
-}
-
-
-
-
-const ::google::protobuf::Message::ClassData EtherCATInfo::_class_data_ = {
-    ::google::protobuf::internal::ZeroFieldsBase::CopyImpl,
-    ::google::protobuf::internal::ZeroFieldsBase::MergeImpl,
-};
-const ::google::protobuf::Message::ClassData*EtherCATInfo::GetClassData() const { return &_class_data_; }
-
-
-
-
-
-
-
-::google::protobuf::Metadata EtherCATInfo::GetMetadata() const {
-  return ::_pbi::AssignDescriptors(
-      &descriptor_table_ethercat_5fmsgs_2eproto_getter, &descriptor_table_ethercat_5fmsgs_2eproto_once,
-      file_level_metadata_ethercat_5fmsgs_2eproto[34]);
+      file_level_metadata_ethercat_5fmsgs_2eproto[30]);
 }
 // ===================================================================
 
@@ -9603,7 +8849,7 @@ void RobotZeroCount::InternalSwap(RobotZeroCount* other) {
 ::google::protobuf::Metadata RobotZeroCount::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_ethercat_5fmsgs_2eproto_getter, &descriptor_table_ethercat_5fmsgs_2eproto_once,
-      file_level_metadata_ethercat_5fmsgs_2eproto[35]);
+      file_level_metadata_ethercat_5fmsgs_2eproto[31]);
 }
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace IndyFramework

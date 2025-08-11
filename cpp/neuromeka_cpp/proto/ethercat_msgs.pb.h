@@ -24,7 +24,6 @@
 #include "google/protobuf/io/coded_stream.h"
 #include "google/protobuf/arena.h"
 #include "google/protobuf/arenastring.h"
-#include "google/protobuf/generated_message_bases.h"
 #include "google/protobuf/generated_message_tctable_decl.h"
 #include "google/protobuf/generated_message_util.h"
 #include "google/protobuf/metadata_lite.h"
@@ -86,9 +85,6 @@ extern EndtoolRxDefaultTypeInternal _EndtoolRx_default_instance_;
 class EndtoolTx;
 struct EndtoolTxDefaultTypeInternal;
 extern EndtoolTxDefaultTypeInternal _EndtoolTx_default_instance_;
-class EtherCATInfo;
-struct EtherCATInfoDefaultTypeInternal;
-extern EtherCATInfoDefaultTypeInternal _EtherCATInfo_default_instance_;
 class FTSensor;
 struct FTSensorDefaultTypeInternal;
 extern FTSensorDefaultTypeInternal _FTSensor_default_instance_;
@@ -107,15 +103,9 @@ extern MasterStatusDefaultTypeInternal _MasterStatus_default_instance_;
 class RobotZeroCount;
 struct RobotZeroCountDefaultTypeInternal;
 extern RobotZeroCountDefaultTypeInternal _RobotZeroCount_default_instance_;
-class SDOFloatVal;
-struct SDOFloatValDefaultTypeInternal;
-extern SDOFloatValDefaultTypeInternal _SDOFloatVal_default_instance_;
 class SDOIntVal;
 struct SDOIntValDefaultTypeInternal;
 extern SDOIntValDefaultTypeInternal _SDOIntVal_default_instance_;
-class SDOStrVal;
-struct SDOStrValDefaultTypeInternal;
-extern SDOStrValDefaultTypeInternal _SDOStrVal_default_instance_;
 class SRKeyEndtoolRx;
 struct SRKeyEndtoolRxDefaultTypeInternal;
 extern SRKeyEndtoolRxDefaultTypeInternal _SRKeyEndtoolRx_default_instance_;
@@ -152,9 +142,6 @@ extern ServoTempDefaultTypeInternal _ServoTemp_default_instance_;
 class ServoTx;
 struct ServoTxDefaultTypeInternal;
 extern ServoTxDefaultTypeInternal _ServoTx_default_instance_;
-class ServoTxIndex;
-struct ServoTxIndexDefaultTypeInternal;
-extern ServoTxIndexDefaultTypeInternal _ServoTxIndex_default_instance_;
 class ServoTxKeba;
 struct ServoTxKebaDefaultTypeInternal;
 extern ServoTxKebaDefaultTypeInternal _ServoTxKeba_default_instance_;
@@ -1916,182 +1903,6 @@ class ServoRx final :
   friend struct ::TableStruct_ethercat_5fmsgs_2eproto;
 };// -------------------------------------------------------------------
 
-class ServoTxIndex final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.ServoTxIndex) */ {
- public:
-  inline ServoTxIndex() : ServoTxIndex(nullptr) {}
-  ~ServoTxIndex() override;
-  template<typename = void>
-  explicit PROTOBUF_CONSTEXPR ServoTxIndex(::google::protobuf::internal::ConstantInitialized);
-
-  ServoTxIndex(const ServoTxIndex& from);
-  ServoTxIndex(ServoTxIndex&& from) noexcept
-    : ServoTxIndex() {
-    *this = ::std::move(from);
-  }
-
-  inline ServoTxIndex& operator=(const ServoTxIndex& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline ServoTxIndex& operator=(ServoTxIndex&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetOwningArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const ServoTxIndex& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const ServoTxIndex* internal_default_instance() {
-    return reinterpret_cast<const ServoTxIndex*>(
-               &_ServoTxIndex_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    10;
-
-  friend void swap(ServoTxIndex& a, ServoTxIndex& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(ServoTxIndex* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() != nullptr &&
-        GetOwningArena() == other->GetOwningArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() == other->GetOwningArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(ServoTxIndex* other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  ServoTxIndex* New(::google::protobuf::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<ServoTxIndex>(arena);
-  }
-  using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const ServoTxIndex& from);
-  using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom( const ServoTxIndex& from) {
-    ServoTxIndex::MergeImpl(*this, from);
-  }
-  private:
-  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  ::size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::google::protobuf::Arena* arena);
-  void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(ServoTxIndex* other);
-
-  private:
-  friend class ::google::protobuf::internal::AnyMetadata;
-  static ::absl::string_view FullMessageName() {
-    return "Nrmk.IndyFramework.ServoTxIndex";
-  }
-  protected:
-  explicit ServoTxIndex(::google::protobuf::Arena* arena);
-  public:
-
-  static const ClassData _class_data_;
-  const ::google::protobuf::Message::ClassData*GetClassData() const final;
-
-  ::google::protobuf::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kTxFieldNumber = 2,
-    kServoIndexFieldNumber = 1,
-  };
-  // .Nrmk.IndyFramework.ServoTx tx = 2;
-  bool has_tx() const;
-  void clear_tx() ;
-  const ::Nrmk::IndyFramework::ServoTx& tx() const;
-  PROTOBUF_NODISCARD ::Nrmk::IndyFramework::ServoTx* release_tx();
-  ::Nrmk::IndyFramework::ServoTx* mutable_tx();
-  void set_allocated_tx(::Nrmk::IndyFramework::ServoTx* value);
-  void unsafe_arena_set_allocated_tx(::Nrmk::IndyFramework::ServoTx* value);
-  ::Nrmk::IndyFramework::ServoTx* unsafe_arena_release_tx();
-
-  private:
-  const ::Nrmk::IndyFramework::ServoTx& _internal_tx() const;
-  ::Nrmk::IndyFramework::ServoTx* _internal_mutable_tx();
-
-  public:
-  // uint32 servoIndex = 1;
-  void clear_servoindex() ;
-  ::uint32_t servoindex() const;
-  void set_servoindex(::uint32_t value);
-
-  private:
-  ::uint32_t _internal_servoindex() const;
-  void _internal_set_servoindex(::uint32_t value);
-
-  public:
-  // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.ServoTxIndex)
- private:
-  class _Internal;
-
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<1, 2, 1, 0, 2> _table_;
-  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  struct Impl_ {
-    ::google::protobuf::internal::HasBits<1> _has_bits_;
-    mutable ::google::protobuf::internal::CachedSize _cached_size_;
-    ::Nrmk::IndyFramework::ServoTx* tx_;
-    ::uint32_t servoindex_;
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_ethercat_5fmsgs_2eproto;
-};// -------------------------------------------------------------------
-
 class ServoRxIndex final :
     public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.ServoRxIndex) */ {
  public:
@@ -2148,7 +1959,7 @@ class ServoRxIndex final :
                &_ServoRxIndex_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    11;
+    10;
 
   friend void swap(ServoRxIndex& a, ServoRxIndex& b) {
     a.Swap(&b);
@@ -2324,7 +2135,7 @@ class ServoTxKeba final :
                &_ServoTxKeba_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    12;
+    11;
 
   friend void swap(ServoTxKeba& a, ServoTxKeba& b) {
     a.Swap(&b);
@@ -2578,7 +2389,7 @@ class ServoRxKeba final :
                &_ServoRxKeba_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    13;
+    12;
 
   friend void swap(ServoRxKeba& a, ServoRxKeba& b) {
     a.Swap(&b);
@@ -2832,7 +2643,7 @@ class ServoRxIndexKeba final :
                &_ServoRxIndexKeba_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    14;
+    13;
 
   friend void swap(ServoRxIndexKeba& a, ServoRxIndexKeba& b) {
     a.Swap(&b);
@@ -3008,7 +2819,7 @@ class ServoTemp final :
                &_ServoTemp_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    15;
+    14;
 
   friend void swap(ServoTemp& a, ServoTemp& b) {
     a.Swap(&b);
@@ -3166,7 +2977,7 @@ class ServoError final :
                &_ServoError_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    16;
+    15;
 
   friend void swap(ServoError& a, ServoError& b) {
     a.Swap(&b);
@@ -3324,7 +3135,7 @@ class ServoBrake final :
                &_ServoBrake_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    17;
+    16;
 
   friend void swap(ServoBrake& a, ServoBrake& b) {
     a.Swap(&b);
@@ -3494,7 +3305,7 @@ class FTSensor final :
                &_FTSensor_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    18;
+    17;
 
   friend void swap(FTSensor& a, FTSensor& b) {
     a.Swap(&b);
@@ -3712,7 +3523,7 @@ class EndtoolTx final :
                &_EndtoolTx_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    19;
+    18;
 
   friend void swap(EndtoolTx& a, EndtoolTx& b) {
     a.Swap(&b);
@@ -3924,7 +3735,7 @@ class EndtoolRx final :
                &_EndtoolRx_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    20;
+    19;
 
   friend void swap(EndtoolRx& a, EndtoolRx& b) {
     a.Swap(&b);
@@ -4154,7 +3965,7 @@ class EndtoolDockingTx final :
                &_EndtoolDockingTx_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    21;
+    20;
 
   friend void swap(EndtoolDockingTx& a, EndtoolDockingTx& b) {
     a.Swap(&b);
@@ -4504,7 +4315,7 @@ class LedDim final :
                &_LedDim_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    22;
+    21;
 
   friend void swap(LedDim& a, LedDim& b) {
     a.Swap(&b);
@@ -4662,7 +4473,7 @@ class SRKeyEndtoolRx final :
                &_SRKeyEndtoolRx_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    23;
+    22;
 
   friend void swap(SRKeyEndtoolRx& a, SRKeyEndtoolRx& b) {
     a.Swap(&b);
@@ -4880,7 +4691,7 @@ class SRKeyEndtoolTx final :
                &_SRKeyEndtoolTx_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    24;
+    23;
 
   friend void swap(SRKeyEndtoolTx& a, SRKeyEndtoolTx& b) {
     a.Swap(&b);
@@ -5098,7 +4909,7 @@ class IOBoardTx final :
                &_IOBoardTx_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    25;
+    24;
 
   friend void swap(IOBoardTx& a, IOBoardTx& b) {
     a.Swap(&b);
@@ -5322,7 +5133,7 @@ class IOBoardRx final :
                &_IOBoardRx_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    26;
+    25;
 
   friend void swap(IOBoardRx& a, IOBoardRx& b) {
     a.Swap(&b);
@@ -5540,7 +5351,7 @@ class DIOIndex final :
                &_DIOIndex_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    27;
+    26;
 
   friend void swap(DIOIndex& a, DIOIndex& b) {
     a.Swap(&b);
@@ -5698,7 +5509,7 @@ class DIODigitalInput final :
                &_DIODigitalInput_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    28;
+    27;
 
   friend void swap(DIODigitalInput& a, DIODigitalInput& b) {
     a.Swap(&b);
@@ -5877,7 +5688,7 @@ class DIODigitalOutput final :
                &_DIODigitalOutput_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    29;
+    28;
 
   friend void swap(DIODigitalOutput& a, DIODigitalOutput& b) {
     a.Swap(&b);
@@ -6056,7 +5867,7 @@ class ServoParam final :
                &_ServoParam_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    30;
+    29;
 
   friend void swap(ServoParam& a, ServoParam& b) {
     a.Swap(&b);
@@ -6226,7 +6037,7 @@ class SDOIntVal final :
                &_SDOIntVal_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    31;
+    30;
 
   friend void swap(SDOIntVal& a, SDOIntVal& b) {
     a.Swap(&b);
@@ -6328,453 +6139,6 @@ class SDOIntVal final :
   friend struct ::TableStruct_ethercat_5fmsgs_2eproto;
 };// -------------------------------------------------------------------
 
-class SDOFloatVal final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.SDOFloatVal) */ {
- public:
-  inline SDOFloatVal() : SDOFloatVal(nullptr) {}
-  ~SDOFloatVal() override;
-  template<typename = void>
-  explicit PROTOBUF_CONSTEXPR SDOFloatVal(::google::protobuf::internal::ConstantInitialized);
-
-  SDOFloatVal(const SDOFloatVal& from);
-  SDOFloatVal(SDOFloatVal&& from) noexcept
-    : SDOFloatVal() {
-    *this = ::std::move(from);
-  }
-
-  inline SDOFloatVal& operator=(const SDOFloatVal& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline SDOFloatVal& operator=(SDOFloatVal&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetOwningArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const SDOFloatVal& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const SDOFloatVal* internal_default_instance() {
-    return reinterpret_cast<const SDOFloatVal*>(
-               &_SDOFloatVal_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    32;
-
-  friend void swap(SDOFloatVal& a, SDOFloatVal& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(SDOFloatVal* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() != nullptr &&
-        GetOwningArena() == other->GetOwningArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() == other->GetOwningArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(SDOFloatVal* other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  SDOFloatVal* New(::google::protobuf::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<SDOFloatVal>(arena);
-  }
-  using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const SDOFloatVal& from);
-  using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom( const SDOFloatVal& from) {
-    SDOFloatVal::MergeImpl(*this, from);
-  }
-  private:
-  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  ::size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::google::protobuf::Arena* arena);
-  void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(SDOFloatVal* other);
-
-  private:
-  friend class ::google::protobuf::internal::AnyMetadata;
-  static ::absl::string_view FullMessageName() {
-    return "Nrmk.IndyFramework.SDOFloatVal";
-  }
-  protected:
-  explicit SDOFloatVal(::google::protobuf::Arena* arena);
-  public:
-
-  static const ClassData _class_data_;
-  const ::google::protobuf::Message::ClassData*GetClassData() const final;
-
-  ::google::protobuf::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kValFieldNumber = 1,
-  };
-  // float val = 1;
-  void clear_val() ;
-  float val() const;
-  void set_val(float value);
-
-  private:
-  float _internal_val() const;
-  void _internal_set_val(float value);
-
-  public:
-  // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.SDOFloatVal)
- private:
-  class _Internal;
-
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<0, 1, 0, 0, 2> _table_;
-  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  struct Impl_ {
-    float val_;
-    mutable ::google::protobuf::internal::CachedSize _cached_size_;
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_ethercat_5fmsgs_2eproto;
-};// -------------------------------------------------------------------
-
-class SDOStrVal final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.SDOStrVal) */ {
- public:
-  inline SDOStrVal() : SDOStrVal(nullptr) {}
-  ~SDOStrVal() override;
-  template<typename = void>
-  explicit PROTOBUF_CONSTEXPR SDOStrVal(::google::protobuf::internal::ConstantInitialized);
-
-  SDOStrVal(const SDOStrVal& from);
-  SDOStrVal(SDOStrVal&& from) noexcept
-    : SDOStrVal() {
-    *this = ::std::move(from);
-  }
-
-  inline SDOStrVal& operator=(const SDOStrVal& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline SDOStrVal& operator=(SDOStrVal&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetOwningArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const SDOStrVal& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const SDOStrVal* internal_default_instance() {
-    return reinterpret_cast<const SDOStrVal*>(
-               &_SDOStrVal_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    33;
-
-  friend void swap(SDOStrVal& a, SDOStrVal& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(SDOStrVal* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() != nullptr &&
-        GetOwningArena() == other->GetOwningArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() == other->GetOwningArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(SDOStrVal* other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  SDOStrVal* New(::google::protobuf::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<SDOStrVal>(arena);
-  }
-  using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const SDOStrVal& from);
-  using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom( const SDOStrVal& from) {
-    SDOStrVal::MergeImpl(*this, from);
-  }
-  private:
-  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  ::size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::google::protobuf::Arena* arena);
-  void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(SDOStrVal* other);
-
-  private:
-  friend class ::google::protobuf::internal::AnyMetadata;
-  static ::absl::string_view FullMessageName() {
-    return "Nrmk.IndyFramework.SDOStrVal";
-  }
-  protected:
-  explicit SDOStrVal(::google::protobuf::Arena* arena);
-  public:
-
-  static const ClassData _class_data_;
-  const ::google::protobuf::Message::ClassData*GetClassData() const final;
-
-  ::google::protobuf::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kValFieldNumber = 1,
-  };
-  // string val = 1;
-  void clear_val() ;
-  const std::string& val() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_val(Arg_&& arg, Args_... args);
-  std::string* mutable_val();
-  PROTOBUF_NODISCARD std::string* release_val();
-  void set_allocated_val(std::string* ptr);
-
-  private:
-  const std::string& _internal_val() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_val(
-      const std::string& value);
-  std::string* _internal_mutable_val();
-
-  public:
-  // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.SDOStrVal)
- private:
-  class _Internal;
-
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<0, 1, 0, 40, 2> _table_;
-  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  struct Impl_ {
-    ::google::protobuf::internal::ArenaStringPtr val_;
-    mutable ::google::protobuf::internal::CachedSize _cached_size_;
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_ethercat_5fmsgs_2eproto;
-};// -------------------------------------------------------------------
-
-class EtherCATInfo final :
-    public ::google::protobuf::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.EtherCATInfo) */ {
- public:
-  inline EtherCATInfo() : EtherCATInfo(nullptr) {}
-  template<typename = void>
-  explicit PROTOBUF_CONSTEXPR EtherCATInfo(::google::protobuf::internal::ConstantInitialized);
-
-  EtherCATInfo(const EtherCATInfo& from);
-  EtherCATInfo(EtherCATInfo&& from) noexcept
-    : EtherCATInfo() {
-    *this = ::std::move(from);
-  }
-
-  inline EtherCATInfo& operator=(const EtherCATInfo& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline EtherCATInfo& operator=(EtherCATInfo&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetOwningArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const EtherCATInfo& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const EtherCATInfo* internal_default_instance() {
-    return reinterpret_cast<const EtherCATInfo*>(
-               &_EtherCATInfo_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    34;
-
-  friend void swap(EtherCATInfo& a, EtherCATInfo& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(EtherCATInfo* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() != nullptr &&
-        GetOwningArena() == other->GetOwningArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() == other->GetOwningArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(EtherCATInfo* other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  EtherCATInfo* New(::google::protobuf::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<EtherCATInfo>(arena);
-  }
-  using ::google::protobuf::internal::ZeroFieldsBase::CopyFrom;
-  inline void CopyFrom(const EtherCATInfo& from) {
-    ::google::protobuf::internal::ZeroFieldsBase::CopyImpl(*this, from);
-  }
-  using ::google::protobuf::internal::ZeroFieldsBase::MergeFrom;
-  void MergeFrom(const EtherCATInfo& from) {
-    ::google::protobuf::internal::ZeroFieldsBase::MergeImpl(*this, from);
-  }
-  public:
-
-  private:
-  friend class ::google::protobuf::internal::AnyMetadata;
-  static ::absl::string_view FullMessageName() {
-    return "Nrmk.IndyFramework.EtherCATInfo";
-  }
-  protected:
-  explicit EtherCATInfo(::google::protobuf::Arena* arena);
-  public:
-
-  static const ClassData _class_data_;
-  const ::google::protobuf::Message::ClassData*GetClassData() const final;
-
-  ::google::protobuf::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.EtherCATInfo)
- private:
-  class _Internal;
-
-  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  struct Impl_ {
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  friend struct ::TableStruct_ethercat_5fmsgs_2eproto;
-};// -------------------------------------------------------------------
-
 class RobotZeroCount final :
     public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.RobotZeroCount) */ {
  public:
@@ -6831,7 +6195,7 @@ class RobotZeroCount final :
                &_RobotZeroCount_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    35;
+    31;
 
   friend void swap(RobotZeroCount& a, RobotZeroCount& b) {
     a.Swap(&b);
@@ -7505,128 +6869,6 @@ inline void ServoRx::_internal_set_targettorque(::int32_t value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.targettorque_ = value;
-}
-
-// -------------------------------------------------------------------
-
-// ServoTxIndex
-
-// uint32 servoIndex = 1;
-inline void ServoTxIndex::clear_servoindex() {
-  _impl_.servoindex_ = 0u;
-}
-inline ::uint32_t ServoTxIndex::servoindex() const {
-  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.ServoTxIndex.servoIndex)
-  return _internal_servoindex();
-}
-inline void ServoTxIndex::set_servoindex(::uint32_t value) {
-  _internal_set_servoindex(value);
-  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.ServoTxIndex.servoIndex)
-}
-inline ::uint32_t ServoTxIndex::_internal_servoindex() const {
-  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.servoindex_;
-}
-inline void ServoTxIndex::_internal_set_servoindex(::uint32_t value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  _impl_.servoindex_ = value;
-}
-
-// .Nrmk.IndyFramework.ServoTx tx = 2;
-inline bool ServoTxIndex::has_tx() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
-  PROTOBUF_ASSUME(!value || _impl_.tx_ != nullptr);
-  return value;
-}
-inline void ServoTxIndex::clear_tx() {
-  if (_impl_.tx_ != nullptr) _impl_.tx_->Clear();
-  _impl_._has_bits_[0] &= ~0x00000001u;
-}
-inline const ::Nrmk::IndyFramework::ServoTx& ServoTxIndex::_internal_tx() const {
-  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  const ::Nrmk::IndyFramework::ServoTx* p = _impl_.tx_;
-  return p != nullptr ? *p : reinterpret_cast<const ::Nrmk::IndyFramework::ServoTx&>(::Nrmk::IndyFramework::_ServoTx_default_instance_);
-}
-inline const ::Nrmk::IndyFramework::ServoTx& ServoTxIndex::tx() const {
-  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.ServoTxIndex.tx)
-  return _internal_tx();
-}
-inline void ServoTxIndex::unsafe_arena_set_allocated_tx(::Nrmk::IndyFramework::ServoTx* value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  if (GetArenaForAllocation() == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.tx_);
-  }
-  _impl_.tx_ = reinterpret_cast<::Nrmk::IndyFramework::ServoTx*>(value);
-  if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000001u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000001u;
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Nrmk.IndyFramework.ServoTxIndex.tx)
-}
-inline ::Nrmk::IndyFramework::ServoTx* ServoTxIndex::release_tx() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-
-  _impl_._has_bits_[0] &= ~0x00000001u;
-  ::Nrmk::IndyFramework::ServoTx* released = _impl_.tx_;
-  _impl_.tx_ = nullptr;
-#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
-  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
-  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
-  if (GetArenaForAllocation() == nullptr) {
-    delete old;
-  }
-#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
-  if (GetArenaForAllocation() != nullptr) {
-    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
-  }
-#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
-  return released;
-}
-inline ::Nrmk::IndyFramework::ServoTx* ServoTxIndex::unsafe_arena_release_tx() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:Nrmk.IndyFramework.ServoTxIndex.tx)
-
-  _impl_._has_bits_[0] &= ~0x00000001u;
-  ::Nrmk::IndyFramework::ServoTx* temp = _impl_.tx_;
-  _impl_.tx_ = nullptr;
-  return temp;
-}
-inline ::Nrmk::IndyFramework::ServoTx* ServoTxIndex::_internal_mutable_tx() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_._has_bits_[0] |= 0x00000001u;
-  if (_impl_.tx_ == nullptr) {
-    auto* p = CreateMaybeMessage<::Nrmk::IndyFramework::ServoTx>(GetArenaForAllocation());
-    _impl_.tx_ = reinterpret_cast<::Nrmk::IndyFramework::ServoTx*>(p);
-  }
-  return _impl_.tx_;
-}
-inline ::Nrmk::IndyFramework::ServoTx* ServoTxIndex::mutable_tx() {
-  ::Nrmk::IndyFramework::ServoTx* _msg = _internal_mutable_tx();
-  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.ServoTxIndex.tx)
-  return _msg;
-}
-inline void ServoTxIndex::set_allocated_tx(::Nrmk::IndyFramework::ServoTx* value) {
-  ::google::protobuf::Arena* message_arena = GetArenaForAllocation();
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  if (message_arena == nullptr) {
-    delete reinterpret_cast<::Nrmk::IndyFramework::ServoTx*>(_impl_.tx_);
-  }
-
-  if (value != nullptr) {
-    ::google::protobuf::Arena* submessage_arena =
-        ::google::protobuf::Arena::InternalGetOwningArena(reinterpret_cast<::Nrmk::IndyFramework::ServoTx*>(value));
-    if (message_arena != submessage_arena) {
-      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
-    }
-    _impl_._has_bits_[0] |= 0x00000001u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000001u;
-  }
-
-  _impl_.tx_ = reinterpret_cast<::Nrmk::IndyFramework::ServoTx*>(value);
-  // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.ServoTxIndex.tx)
 }
 
 // -------------------------------------------------------------------
@@ -10116,91 +9358,6 @@ inline void SDOIntVal::_internal_set_val(::int32_t value) {
   ;
   _impl_.val_ = value;
 }
-
-// -------------------------------------------------------------------
-
-// SDOFloatVal
-
-// float val = 1;
-inline void SDOFloatVal::clear_val() {
-  _impl_.val_ = 0;
-}
-inline float SDOFloatVal::val() const {
-  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.SDOFloatVal.val)
-  return _internal_val();
-}
-inline void SDOFloatVal::set_val(float value) {
-  _internal_set_val(value);
-  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.SDOFloatVal.val)
-}
-inline float SDOFloatVal::_internal_val() const {
-  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.val_;
-}
-inline void SDOFloatVal::_internal_set_val(float value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  _impl_.val_ = value;
-}
-
-// -------------------------------------------------------------------
-
-// SDOStrVal
-
-// string val = 1;
-inline void SDOStrVal::clear_val() {
-  _impl_.val_.ClearToEmpty();
-}
-inline const std::string& SDOStrVal::val() const {
-  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.SDOStrVal.val)
-  return _internal_val();
-}
-template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void SDOStrVal::set_val(Arg_&& arg,
-                                                     Args_... args) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  _impl_.val_.Set(static_cast<Arg_&&>(arg), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.SDOStrVal.val)
-}
-inline std::string* SDOStrVal::mutable_val() {
-  std::string* _s = _internal_mutable_val();
-  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.SDOStrVal.val)
-  return _s;
-}
-inline const std::string& SDOStrVal::_internal_val() const {
-  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.val_.Get();
-}
-inline void SDOStrVal::_internal_set_val(const std::string& value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  _impl_.val_.Set(value, GetArenaForAllocation());
-}
-inline std::string* SDOStrVal::_internal_mutable_val() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  return _impl_.val_.Mutable( GetArenaForAllocation());
-}
-inline std::string* SDOStrVal::release_val() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:Nrmk.IndyFramework.SDOStrVal.val)
-  return _impl_.val_.Release();
-}
-inline void SDOStrVal::set_allocated_val(std::string* value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.val_.SetAllocated(value, GetArenaForAllocation());
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        if (_impl_.val_.IsDefault()) {
-          _impl_.val_.Set("", GetArenaForAllocation());
-        }
-  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.SDOStrVal.val)
-}
-
-// -------------------------------------------------------------------
-
-// EtherCATInfo
 
 // -------------------------------------------------------------------
 
