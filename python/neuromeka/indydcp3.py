@@ -8,6 +8,8 @@ from neuromeka.common import *
 from neuromeka.enums import *
 
 import time
+from typing import Optional, List
+
 import grpc
 from google.protobuf import json_format
 from google.protobuf.json_format import ParseDict
@@ -453,11 +455,11 @@ class IndyDCP3:
                                          use_integers_for_enums=True)
 
     def get_el5001(self):
-        # Not defined in proto_ori Device; keep method for backward-compat with clear error
+        # Not defined in proto_ori Device; 
         return {"error": "Unsupported RPC on Device: GetEL5001 (not in proto_ori)"}
 
     def get_el5101(self):
-        # Not defined in proto_ori Device; keep method for backward-compat with clear error
+        # Not defined in proto_ori Device;
         return {"error": "Unsupported RPC on Device: GetEL5101 (not in proto_ori)"}
 
     def get_brake_control_style(self):
@@ -748,7 +750,6 @@ class IndyDCP3:
     # CRI Funtions (CRI)
     ############################
     def activate_cri(self, on: bool) -> dict:
-        # Mapped to new RPC ActiveCRIVel(State)
         response = self.cri.ActiveCRIVel(common_msgs.State(enable=on))
         return json_format.MessageToDict(response,
                                          including_default_value_fields=True,
@@ -756,7 +757,6 @@ class IndyDCP3:
                                          use_integers_for_enums=True)
 
     def is_cri_active(self) -> dict:
-        # No direct IsActivate in new API; use IsSFDLogin(State)
         response = self.cri.IsSFDLogin(common_msgs.Empty())
         return json_format.MessageToDict(response,
                                          including_default_value_fields=True,
@@ -764,8 +764,7 @@ class IndyDCP3:
                                          use_integers_for_enums=True)
 
     def login_cri_server(self, email: str, token: str) -> dict:
-        # Use SFDAccount with LoginSFD
-        response = self.cri.LoginSFD(cri_msgs_pb2.SFDAccount(email=email, token=token))
+        response = self.cri.LoginSFD(cri_msgs.SFDAccount(email=email, token=token))
         return json_format.MessageToDict(response,
                                          including_default_value_fields=True,
                                          preserving_proto_field_name=True,
@@ -779,7 +778,7 @@ class IndyDCP3:
                                          use_integers_for_enums=True)
 
     def set_cri_target(self, pn: str, fn: str, rn: str) -> dict:
-        response = self.cri.SelectSFDTarget(cri_msgs_pb2.SFDTarget(pn=pn, fn=fn, rn=rn))
+        response = self.cri.SelectSFDTarget(cri_msgs.SFDTarget(pn=pn, fn=fn, rn=rn))
         return json_format.MessageToDict(response,
                                          including_default_value_fields=True,
                                          preserving_proto_field_name=True,
@@ -1690,7 +1689,7 @@ class IndyDCP3:
     ############################
     # Compliance Mode
     ############################
-    def set_compliance_mode(self, enable: bool, stiffness: list | None = None):
+    def set_compliance_mode(self, enable: bool, stiffness: 'Optional[List[int]]' = None):
         """
         Set Compliance Mode
             enable -> bool
@@ -1987,7 +1986,7 @@ class IndyDCP3:
                                          preserving_proto_field_name=True,
                                          use_integers_for_enums=True)
 
-    def set_plugin_jpos_variable(self, name: str, jpos: list[float]):
+    def set_plugin_jpos_variable(self, name: str, jpos: List[float]):
         response = self.control.SetPluginJPosVariable(
             common_msgs.NamedJointPosition(name=name, jpos=jpos)
         )
@@ -2004,7 +2003,8 @@ class IndyDCP3:
                                          including_default_value_fields=True,
                                          preserving_proto_field_name=True,
                                          use_integers_for_enums=True)
-    def set_plugin_tpos_variable(self, name: str, tpos: list[float]):
+
+    def set_plugin_tpos_variable(self, name: str, tpos: List[float]):
         response = self.control.SetPluginTPosVariable(
             common_msgs.NamedTaskPosition(name=name, tpos=tpos)
         )
@@ -2290,9 +2290,11 @@ class IndyDCP3:
     ############################
     # Bus Events
     ############################
-    def push_bus_event(self, event_id: int, b_data: list[bool] | None = None,
-                       i_data: list[int] | None = None, f_data: list[float] | None = None,
-                       text_data: str | None = None):
+    def push_bus_event(self, event_id: int,
+                       b_data: 'Optional[List[bool]]' = None,
+                       i_data: 'Optional[List[int]]' = None,
+                       f_data: 'Optional[List[float]]' = None,
+                       text_data: 'Optional[str]' = None):
         evt = control_msgs.BusEvent(
             event_id=event_id,
             b_data=b_data or [],
