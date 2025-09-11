@@ -1,14 +1,54 @@
-import os
 import sys
 
-generated_files_path = os.path.abspath(os.path.dirname(__file__))
-sys.path.append(generated_files_path)
+def _alias_local_pb2_modules():
+	import importlib
+	names = [
+		# message types
+		'boot_msgs_pb2',
+		'common_msgs_pb2',
+		'config_msgs_pb2',
+		'control_msgs_pb2',
+		'cri_msgs_pb2',
+		'device_msgs_pb2',
+		'ethercat_msgs_pb2',
+		'moby_msgs_pb2',
+		'rtde_msgs_pb2',
+		'teleop_dev_pb2',
+		'plotting_pb2',
+		# services/messages
+		'boot_pb2',
+		'config_pb2',
+		'control_pb2',
+		'cri_pb2',
+		'device_pb2',
+		'ethercat_pb2',
+		'linear_pb2',
+		'moby_pb2',
+		'rtde_pb2',
+		'indyeye_pb2',
+		'eyetask_pb2',
+		# grpc stubs
+		'boot_pb2_grpc',
+		'config_pb2_grpc',
+		'control_pb2_grpc',
+		'cri_pb2_grpc',
+		'device_pb2_grpc',
+		'ethercat_pb2_grpc',
+		'linear_pb2_grpc',
+		'moby_pb2_grpc',
+		'rtde_pb2_grpc',
+		'teleop_dev_pb2_grpc',
+		'plotting_pb2_grpc',
+		'indyeye_pb2_grpc',
+		'eyetask_pb2_grpc',
+	]
+	for name in names:
+		try:
+			sys.modules[name] = importlib.import_module(f'.{name}', __name__)
+		except ModuleNotFoundError:
+			pass
 
-# Remove legacy paths
-path_to_remove1 = "/home/user/dev/runtest/Release/IndyDeployment/PythonMiddleware/interfaces/impl"
-path_to_remove2 = "/home/user/release/IndyDeployment/PythonMiddleware/interfaces/impl"
-if path_to_remove1 in sys.path: sys.path.remove(path_to_remove1)
-if path_to_remove2 in sys.path: sys.path.remove(path_to_remove2)
+_alias_local_pb2_modules()
 
 # gRPC service stubs
 from .boot_pb2_grpc         import *
