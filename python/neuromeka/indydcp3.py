@@ -58,39 +58,82 @@ class IndyDCP3:
             self.cri_channel.close()
 
     def __to_digital_request_list__(self, digital_signal_list) -> list:
-        request_list = []
-        if digital_signal_list is not None:
-            for signal in digital_signal_list:
-                request_list.append(device_msgs.DigitalSignal(address=signal['address'], state=signal['state']))
-        return request_list
+        req = []
+        if not digital_signal_list:
+            return req
+        for sig in digital_signal_list:
+            if isinstance(sig, device_msgs.DigitalSignal):
+                req.append(sig)
+            elif isinstance(sig, dict):
+                req.append(device_msgs.DigitalSignal(
+                    address=sig['address'],
+                    state=sig['state'],
+                    tool_index=sig.get('tool_index', 0)
+                ))
+            elif isinstance(sig, (tuple, list)):
+                if len(sig) == 2:
+                    address, state = sig
+                    tool_index = 0
+                elif len(sig) == 3:
+                    address, state, tool_index = sig
+                else:
+                    raise ValueError("Digital tuple need 2 or 3 elements (address, state[, tool_index])")
+                req.append(device_msgs.DigitalSignal(address=address, state=state, tool_index=tool_index))
+            else:
+                raise TypeError(f"Digital signal type error: {type(sig)}")
+        return req
 
     def __to_analog_request_list__(self, analog_signal_list) -> list:
-        request_list = []
-        if analog_signal_list is not None:
-            for signal in analog_signal_list:
-                if isinstance(signal, (tuple, list)) and len(signal) == 2:
-                    address, voltage = signal
-                    request_list.append(device_msgs.AnalogSignal(address=address, voltage=voltage))
-                elif isinstance(signal, dict):
-                    request_list.append(device_msgs.AnalogSignal(address=signal['address'], voltage=signal['voltage']))
+        req = []
+        if not analog_signal_list:
+            return req
+        for sig in analog_signal_list:
+            if isinstance(sig, device_msgs.AnalogSignal):
+                req.append(sig)
+            elif isinstance(sig, dict):
+                req.append(device_msgs.AnalogSignal(
+                    address=sig['address'],
+                    voltage=sig['voltage'],
+                    tool_index=sig.get('tool_index', 0)
+                ))
+            elif isinstance(sig, (tuple, list)):
+                if len(sig) == 2:
+                    address, voltage = sig
+                    tool_index = 0
+                elif len(sig) == 3:
+                    address, voltage, tool_index = sig
                 else:
-                    request_list.append(signal)
-        return request_list
+                    raise ValueError("Analog tuple need 2 or 3 elements (address, voltage[, tool_index])")
+                req.append(device_msgs.AnalogSignal(address=address, voltage=voltage, tool_index=tool_index))
+            else:
+                raise TypeError(f"Analog signal type error: {type(sig)}")
+        return req
 
     def __to_endtool_signal_list__(self, endtool_signal_list) -> list:
-        request_list = []
-        if endtool_signal_list is not None:
-            for sig in endtool_signal_list:
-                if isinstance(sig, device_msgs.EndtoolSignal):
-                    request_list.append(sig)
-                elif isinstance(sig, (tuple, list)) and len(sig) == 2:
+        req = []
+        if not endtool_signal_list:
+            return req
+        for sig in endtool_signal_list:
+            if isinstance(sig, device_msgs.EndtoolSignal):
+                req.append(sig)
+            elif isinstance(sig, dict):
+                req.append(device_msgs.EndtoolSignal(
+                    port=str(sig['port']),
+                    states=list(sig['states']),
+                    tool_index=sig.get('tool_index', 0)
+                ))
+            elif isinstance(sig, (tuple, list)):
+                if len(sig) == 2:
                     port, states = sig
-                    request_list.append(device_msgs.EndtoolSignal(port=str(port), states=list(states)))
-                elif isinstance(sig, dict):
-                    request_list.append(device_msgs.EndtoolSignal(port=sig['port'], states=list(sig['states'])))
+                    tool_index = 0
+                elif len(sig) == 3:
+                    port, states, tool_index = sig
                 else:
-                    request_list.append(device_msgs.EndtoolSignal(port=sig.port, states=list(sig.states)))
-        return request_list
+                    raise ValueError("Endtool tuple need 2 or 3 elements (port, states[, tool_index])")
+                req.append(device_msgs.EndtoolSignal(port=str(port), states=list(states), tool_index=tool_index))
+            else:
+                raise TypeError(f"Endtool signal type error: {type(sig)}")
+        return req
 
     ############################
     # IndyDCP3 API protocols
@@ -424,8 +467,22 @@ class IndyDCP3:
                                          preserving_proto_field_name=True,
                                          use_integers_for_enums=True)
 
+    def get_endtool_rs485_rx_for(self, index: int) -> dict:
+        response = self.device.GetEndRS485RxFor(common_msgs.Int(value=index))
+        return json_format.MessageToDict(response,
+                                         including_default_value_fields=True,
+                                         preserving_proto_field_name=True,
+                                         use_integers_for_enums=True)
+
     def get_endtool_rs485_tx(self) -> dict:
         response = self.device.GetEndRS485Tx(common_msgs.Empty())
+        return json_format.MessageToDict(response,
+                                         including_default_value_fields=True,
+                                         preserving_proto_field_name=True,
+                                         use_integers_for_enums=True)
+
+    def get_endtool_rs485_tx_for(self, index: int) -> dict:
+        response = self.device.GetEndRS485TxFor(common_msgs.Int(value=index))
         return json_format.MessageToDict(response,
                                          including_default_value_fields=True,
                                          preserving_proto_field_name=True,
@@ -440,8 +497,8 @@ class IndyDCP3:
                                          preserving_proto_field_name=True,
                                          use_integers_for_enums=True)
 
-    def set_endtool_led_dim(self, led_dim):
-        response = self.device.SetEndLedDim(device_msgs.EndLedDim(led_dim=led_dim))
+    def set_endtool_led_dim(self, led_dim, tool_index=0):
+        response = self.device.SetEndLedDim(device_msgs.EndLedDim(led_dim=led_dim, tool_index=tool_index))
         return json_format.MessageToDict(response,
                                          including_default_value_fields=True,
                                          preserving_proto_field_name=True,
@@ -544,6 +601,13 @@ class IndyDCP3:
                                          preserving_proto_field_name=True,
                                          use_integers_for_enums=True)
 
+    def set_conveyor_arm_index(self, index: int):
+        response = self.device.SetConveyorArmIndex(common_msgs.Int(value=index))
+        return json_format.MessageToDict(response,
+                                         including_default_value_fields=True,
+                                         preserving_proto_field_name=True,
+                                         use_integers_for_enums=True)
+
     def set_conveyor_tool_link(self, index: int):
         response = self.device.SetConveyorToolLink(common_msgs.Int(value=index))
         return json_format.MessageToDict(response,
@@ -576,9 +640,9 @@ class IndyDCP3:
                                          preserving_proto_field_name=True,
                                          use_integers_for_enums=True)
 
-    def set_sander_command(self, sander_type, ip: str, speed: float, state: bool):
+    def set_sander_command(self, sander_type, ip: str, speed: float, state: bool, tool_index=0):
         response = self.device.SetSanderCommand(
-            device_msgs.SanderCommand(type=sander_type, ip=ip, speed=speed, state=state))
+            device_msgs.SanderCommand(type=sander_type, ip=ip, speed=speed, state=state, tool_index=tool_index))
         return json_format.MessageToDict(response,
                                          including_default_value_fields=True,
                                          preserving_proto_field_name=True,
@@ -598,9 +662,16 @@ class IndyDCP3:
                                          preserving_proto_field_name=True,
                                          use_integers_for_enums=True)
 
-    def add_photoneo_calib_point(self, vision_name, px, py, pz):
+    def get_sander_command_for(self, index: int):
+        response = self.device.GetSanderCommandFor(common_msgs.Int(value=index))
+        return json_format.MessageToDict(response,
+                                         including_default_value_fields=True,
+                                         preserving_proto_field_name=True,
+                                         use_integers_for_enums=True)
+
+    def add_photoneo_calib_point(self, vision_name, px, py, pz, arm_index=0):
         response = self.device.AddPhotoneoCalibPoint(
-            device_msgs.AddPhotoneoCalibPointReq(vision_name=vision_name, px=px, py=py, pz=pz))
+            device_msgs.AddPhotoneoCalibPointReq(vision_name=vision_name, px=px, py=py, pz=pz, arm_index=arm_index))
         return json_format.MessageToDict(response,
                                          including_default_value_fields=True,
                                          preserving_proto_field_name=True,
@@ -627,6 +698,13 @@ class IndyDCP3:
         FT Sensor Data:
         """
         response = self.device.GetFTSensorData(common_msgs.Empty())
+        return json_format.MessageToDict(response,
+                                         including_default_value_fields=True,
+                                         preserving_proto_field_name=True,
+                                         use_integers_for_enums=True)
+
+    def get_ft_sensor_data_for(self, index: int):
+        response = self.device.GetFTSensorDataFor(common_msgs.Int(value=index))
         return json_format.MessageToDict(response,
                                          including_default_value_fields=True,
                                          preserving_proto_field_name=True,
@@ -699,10 +777,11 @@ class IndyDCP3:
                                          preserving_proto_field_name=True,
                                          use_integers_for_enums=True)
 
-    def set_gripper_command(self, command, gripper_type, pvt_data):
+    def set_gripper_command(self, command, gripper_type, pvt_data, tool_index=0):
         response = self.device.SetGripperCommand(device_msgs.GripperCommand(gripper_command=command,
                                                                             gripper_type=gripper_type,
-                                                                            gripper_pvt_data=pvt_data))
+                                                                            gripper_pvt_data=pvt_data,
+                                                                            tool_index=tool_index))
         return json_format.MessageToDict(response,
                                          including_default_value_fields=True,
                                          preserving_proto_field_name=True,
@@ -923,7 +1002,8 @@ class IndyDCP3:
               acc_ratio=Limits.JogAccRatioDefault,
               post_condition=PostCondition(),
               teaching_mode=False,
-              bypass_singular=False) -> dict:
+              bypass_singular=False,
+              arm_index: int = 0) -> dict:
         """
         tstart = [mm, mm, mm, deg, deg, deg]
         ttarget = [mm, mm, mm, deg, deg, deg]
@@ -960,7 +1040,8 @@ class IndyDCP3:
             vel_ratio=vel_ratio, acc_ratio=acc_ratio,
             post_condition=post_cond,
             teaching_mode=teaching_mode,
-            bypass_singular=bypass_singular
+            bypass_singular=bypass_singular,
+            arm_index=arm_index
         ))
         return json_format.MessageToDict(response,
                                          including_default_value_fields=True,
@@ -972,7 +1053,8 @@ class IndyDCP3:
                    base_type=TaskBaseType.ABSOLUTE,
                    blending_radius=0.0,
                    move_time=5.0,
-                   post_condition=PostCondition()) -> dict:
+                   post_condition=PostCondition(),
+                   arm_index: int = 0) -> dict:
         """
         tstart = [mm, mm, mm, deg, deg, deg]
         ttarget = [mm, mm, mm, deg, deg, deg]
@@ -1002,7 +1084,8 @@ class IndyDCP3:
             target=ptarget,
             blending=blending,
             time=move_time,
-            post_condition=post_cond
+            post_condition=post_cond,
+            arm_index=arm_index
         ))
         return json_format.MessageToDict(response,
                                          including_default_value_fields=True,
@@ -1066,6 +1149,13 @@ class IndyDCP3:
                                          preserving_proto_field_name=True,
                                          use_integers_for_enums=True)
 
+    def get_transformed_ft_sensor_data_for(self, index: int):
+        response = self.control.GetTransformedFTSensorDataFor(common_msgs.Int(value=index))
+        return json_format.MessageToDict(response,
+                                         including_default_value_fields=True,
+                                         preserving_proto_field_name=True,
+                                         use_integers_for_enums=True)
+
     def movec(self, tpos0, tpos1,
               blending_type=BlendingType.NONE,
               base_type=TaskBaseType.ABSOLUTE,
@@ -1077,7 +1167,8 @@ class IndyDCP3:
               acc_ratio=Limits.JogAccRatioDefault,
               post_condition=PostCondition(),
               teaching_mode=False,
-              bypass_singular=False) -> dict:
+              bypass_singular=False,
+              arm_index: int = 0) -> dict:
         """
         tstart = [mm, mm, mm, deg, deg, deg]
         ttarget = [mm, mm, mm, deg, deg, deg]
@@ -1110,7 +1201,8 @@ class IndyDCP3:
             vel_ratio=vel_ratio, acc_ratio=acc_ratio,
             post_condition=post_cond,
             teaching_mode=teaching_mode,
-            bypass_singular=bypass_singular
+            bypass_singular=bypass_singular,
+            arm_index=arm_index
         ))
         return json_format.MessageToDict(response,
                                          including_default_value_fields=True,
@@ -1125,7 +1217,8 @@ class IndyDCP3:
                move_type=control_msgs.CONSTANT,
                blending_radius=0.0,
                move_time=5.0,
-               post_condition=PostCondition()) -> dict:
+               post_condition=PostCondition(),
+               arm_index: int = 0) -> dict:
         
         ctarget = control_msgs.TargetC(t_start=[], t_pos0=list(tpos0), t_pos1=list(tpos1),
                                        base_type=base_type)
@@ -1152,7 +1245,8 @@ class IndyDCP3:
             setting_type=setting_type,
             move_type=move_type,
             time=move_time,
-            post_condition=post_cond
+            post_condition=post_cond,
+            arm_index=arm_index
         ))
         return json_format.MessageToDict(response,
                                          including_default_value_fields=True,
@@ -1163,13 +1257,15 @@ class IndyDCP3:
                    is_smooth_mode=False,
                    smooth_radius=0.0,
                    vel_ratio=Limits.JogVelRatioDefault,
-                   acc_ratio=Limits.JogAccRatioDefault) -> dict:
+                   acc_ratio=Limits.JogAccRatioDefault,
+                   arm_index: int = 0) -> dict:
         
         gcode_req = control_msgs.MoveGcodeReq(gcode_file=gcode_file,
                                               is_smooth_mode=is_smooth_mode,
                                               smooth_radius=smooth_radius,
                                               vel_ratio=vel_ratio,
-                                              acc_ratio=acc_ratio)
+                                              acc_ratio=acc_ratio,
+                                              arm_index=arm_index)
         
         response = self.control.MoveGcode(gcode_req)
         return json_format.MessageToDict(response,
@@ -1343,6 +1439,14 @@ class IndyDCP3:
                                          including_default_value_fields=True,
                                          preserving_proto_field_name=True,
                                          use_integers_for_enums=True)
+
+    def read_teleop_input_for(self, index: int):
+        """Read teleoperation input for specific index."""
+        response = self.control.ReadTeleOpInputFor(common_msgs.Int(value=index))
+        return json_format.MessageToDict(response,
+                                         including_default_value_fields=True,
+                                         preserving_proto_field_name=True,
+                                         use_integers_for_enums=True)
     
     def start_teleop(self, method):
         """
@@ -1443,25 +1547,25 @@ class IndyDCP3:
                                          preserving_proto_field_name=True,
                                          use_integers_for_enums=True)
 
-    def movetelel_abs(self, tpos, vel_ratio=1.0, acc_ratio=1.0):
+    def movetelel_abs(self, tpos, vel_ratio=1.0, acc_ratio=1.0, arm_index=0):
         """
         Task Teleoperation - Absolute
         jpos = [mm, mm, mm, deg, deg, deg]
         """
         response = self.control.MoveTeleL(control_msgs.MoveTeleLReq(tpos=tpos, vel_ratio=vel_ratio, acc_ratio=acc_ratio,
-                                                                    method=control_msgs.TELE_TASK_ABSOLUTE))
+                                                                    method=control_msgs.TELE_TASK_ABSOLUTE, arm_index=arm_index))
         return json_format.MessageToDict(response,
                                          including_default_value_fields=True,
                                          preserving_proto_field_name=True,
                                          use_integers_for_enums=True)
 
-    def movetelel_rel(self, tpos, vel_ratio=1.0, acc_ratio=1.0):
+    def movetelel_rel(self, tpos, vel_ratio=1.0, acc_ratio=1.0, arm_index=0):
         """
         Task Teleoperation - Relative
         jpos = [mm, mm, mm, deg, deg, deg]
         """
         response = self.control.MoveTeleL(control_msgs.MoveTeleLReq(tpos=tpos, vel_ratio=vel_ratio, acc_ratio=acc_ratio,
-                                                                    method=control_msgs.TELE_TASK_RELATIVE))
+                                                                    method=control_msgs.TELE_TASK_RELATIVE, arm_index=arm_index))
         return json_format.MessageToDict(response,
                                          including_default_value_fields=True,
                                          preserving_proto_field_name=True,
@@ -1501,7 +1605,7 @@ class IndyDCP3:
     ############################
     # Control - Additional
     ############################
-    def inverse_kin(self, tpos, init_jpos) -> dict:
+    def inverse_kin(self, tpos, init_jpos, arm_index=0) -> dict:
         """
         :param tpos:
         :param init_jpos:
@@ -1510,13 +1614,51 @@ class IndyDCP3:
         """
         response = self.control.InverseKinematics(control_msgs.InverseKinematicsReq(
             tpos=list(tpos),
-            init_jpos=list(init_jpos)
+            init_jpos=list(init_jpos),
+            arm_index=arm_index
         ))
         return json_format.MessageToDict(response,
                                          including_default_value_fields=True,
                                          preserving_proto_field_name=True,
                                          use_integers_for_enums=True)
-    def forward_kin(self, jpos) -> dict:
+
+    def get_motion_j(self, req: dict):
+        msg = control_msgs.GetMotionJReq()
+        try:
+            ParseDict(req, msg)
+        except Exception as e:
+            return {'error': f'parse_error: {e}', 'input': req}
+        response = self.control.GetMotionJ(msg)
+        return json_format.MessageToDict(response,
+                                         including_default_value_fields=True,
+                                         preserving_proto_field_name=True,
+                                         use_integers_for_enums=True)
+
+    def get_motion_l(self, req: dict):
+        msg = control_msgs.GetMotionLReq()
+        try:
+            ParseDict(req, msg)
+        except Exception as e:
+            return {'error': f'parse_error: {e}', 'input': req}
+        response = self.control.GetMotionL(msg)
+        return json_format.MessageToDict(response,
+                                         including_default_value_fields=True,
+                                         preserving_proto_field_name=True,
+                                         use_integers_for_enums=True)
+
+    def get_motion_c(self, req: dict):
+        msg = control_msgs.GetMotionCReq()
+        try:
+            ParseDict(req, msg)
+        except Exception as e:
+            return {'error': f'parse_error: {e}', 'input': req}
+        response = self.control.GetMotionC(msg)
+        return json_format.MessageToDict(response,
+                                         including_default_value_fields=True,
+                                         preserving_proto_field_name=True,
+                                         use_integers_for_enums=True)
+        
+    def forward_kin(self, jpos, arm_index=0) -> dict:
         """
         :param tpos:
         :param init_jpos:
@@ -1524,7 +1666,7 @@ class IndyDCP3:
             'jpos': []
         """
         response = self.control.ForwardKinematics(control_msgs.ForwardKinematicsReq(
-            jpos=list(jpos)
+            jpos=list(jpos), arm_index=arm_index
         ))
         return json_format.MessageToDict(response,
                                          including_default_value_fields=True,
@@ -1642,6 +1784,47 @@ class IndyDCP3:
          Stop program
         """
         response = self.control.StopProgram(common_msgs.Empty())
+        return json_format.MessageToDict(response,
+                                         including_default_value_fields=True,
+                                         preserving_proto_field_name=True,
+                                         use_integers_for_enums=True)
+
+    # --- Program Breakpoints & Stepping ---
+    def set_program_breakpoints(self, breakpoints: dict):
+        msg = common_msgs.ProgramBreakPoints()
+        try:
+            ParseDict(breakpoints, msg)
+        except Exception as e:
+            return {'error': f'parse_error: {e}', 'input': breakpoints}
+        response = self.control.SetProgramBreakPoints(msg)
+        return json_format.MessageToDict(response,
+                                         including_default_value_fields=True,
+                                         preserving_proto_field_name=True,
+                                         use_integers_for_enums=True)
+
+    def get_program_breakpoints(self):
+        response = self.control.GetProgramBreakPoints(common_msgs.Empty())
+        return json_format.MessageToDict(response,
+                                         including_default_value_fields=True,
+                                         preserving_proto_field_name=True,
+                                         use_integers_for_enums=True)
+
+    def program_step_over(self):
+        response = self.control.ProgramStepOver(common_msgs.Empty())
+        return json_format.MessageToDict(response,
+                                         including_default_value_fields=True,
+                                         preserving_proto_field_name=True,
+                                         use_integers_for_enums=True)
+
+    def program_step_into(self):
+        response = self.control.ProgramStepInto(common_msgs.Empty())
+        return json_format.MessageToDict(response,
+                                         including_default_value_fields=True,
+                                         preserving_proto_field_name=True,
+                                         use_integers_for_enums=True)
+
+    def program_step_out(self):
+        response = self.control.ProgramStepOut(common_msgs.Empty())
         return json_format.MessageToDict(response,
                                          including_default_value_fields=True,
                                          preserving_proto_field_name=True,
@@ -2376,39 +2559,51 @@ class IndyDCP3:
                                          preserving_proto_field_name=True,
                                          use_integers_for_enums=True)
 
-    def set_ref_frame(self, fpos: list):
+    def get_ref_frame_for(self, index: int):
+        """
+        Reference frame at specific index
+            index -> int
+            returns Frame
+        """
+        response = self.config.GetRefFrameFor(common_msgs.Int(value=index))
+        return json_format.MessageToDict(response,
+                                         including_default_value_fields=True,
+                                         preserving_proto_field_name=True,
+                                         use_integers_for_enums=True)
+
+    def set_ref_frame(self, fpos: list, arm_index: int = 0, link_index: int = 0):
         """
         Ref Frame
             fpos -> float[6]
         """
         response = self.config.SetRefFrame(config_msgs.Frame(
-            fpos=list(fpos)
+            fpos=list(fpos), arm_index=arm_index, link_index=link_index
         ))
         return json_format.MessageToDict(response,
                                          including_default_value_fields=True,
                                          preserving_proto_field_name=True,
                                          use_integers_for_enums=True)
 
-    def set_ref_frame_planar(self, fpos0: list, fpos1: list, fpos2: list):
+    def set_ref_frame_planar(self, fpos0: list, fpos1: list, fpos2: list, arm_index: int = 0):
         """
         Ref Frame
             fpos -> float[6]
         """
         response = self.config.SetRefFramePlanar(config_msgs.PlanarFrame(
-            fpos0=list(fpos0), fpos1=list(fpos1), fpos2=list(fpos2)
+            fpos0=list(fpos0), fpos1=list(fpos1), fpos2=list(fpos2), arm_index=arm_index
         ))
         return json_format.MessageToDict(response,
                                          including_default_value_fields=True,
                                          preserving_proto_field_name=True,
                                          use_integers_for_enums=True)
 
-    def set_tool_frame(self, fpos: list):
+    def set_tool_frame(self, fpos: list, arm_index: int = 0, link_index: int = 0):
         """
         Tool Frame
             fpos -> float[6]
         """
         response = self.config.SetToolFrame(config_msgs.Frame(
-            fpos=list(fpos)
+            fpos=list(fpos), arm_index=arm_index, link_index=link_index
         ))
         return json_format.MessageToDict(response,
                                          including_default_value_fields=True,
@@ -2493,9 +2688,11 @@ class IndyDCP3:
     def get_tool_property(self):
         """
         Tool Properties:
-            mass   -> float
-            center_of_mass   -> float[3]
-            inertia   -> float[6]
+            mass -> float
+            center_of_mass -> float[3]
+            inertia -> float[6]
+            arm_index -> int
+            link_index -> int (deprecated)
         """
         response = self.config.GetToolProperty(common_msgs.Empty())
         return json_format.MessageToDict(response,
@@ -2503,7 +2700,19 @@ class IndyDCP3:
                                          preserving_proto_field_name=True,
                                          use_integers_for_enums=True)
 
-    def set_tool_property(self, mass: float, center_of_mass: list, inertia: list):
+    def get_tool_property_at(self, index: int):
+        """
+        Tool Properties at index:
+            index -> int
+            returns ToolProperties (mass, center_of_mass[3], inertia[6], arm_index, link_index(deprecated))
+        """
+        response = self.config.GetToolPropertyAt(common_msgs.Int(value=index))
+        return json_format.MessageToDict(response,
+                                         including_default_value_fields=True,
+                                         preserving_proto_field_name=True,
+                                         use_integers_for_enums=True)
+
+    def set_tool_property(self, mass: float, center_of_mass: list, inertia: list, arm_index: int = 0, link_index: int = 0):
         """
         Tool Properties:
             mass   -> float
@@ -2511,7 +2720,9 @@ class IndyDCP3:
             inertia   -> float[6]
         """
         response = self.config.SetToolProperty(config_msgs.ToolProperties(
-            mass=mass, center_of_mass=list(center_of_mass), inertia=list(inertia)
+            mass=mass, center_of_mass=list(center_of_mass), 
+            inertia=list(inertia), arm_index=arm_index, 
+            link_index=link_index if link_index is not None else 0
         ))
         return json_format.MessageToDict(response,
                                          including_default_value_fields=True,
@@ -3033,7 +3244,7 @@ class IndyDCP3:
                                          preserving_proto_field_name=True,
                                          use_integers_for_enums=True)
 
-    def check_aproach_retract_valid(self, tpos, init_jpos, pre_tpos, post_tpos):
+    def check_aproach_retract_valid(self, tpos, init_jpos, pre_tpos, post_tpos, arm_index=0):
         """
         Check aproach retract valid
         """
@@ -3041,14 +3252,15 @@ class IndyDCP3:
             tpos=list(tpos),
             init_jpos=list(init_jpos),
             pre_tpos=list(pre_tpos),
-            post_tpos=list(post_tpos)
+            post_tpos=list(post_tpos),
+            arm_index=arm_index
         ))
         return json_format.MessageToDict(response,
                                          including_default_value_fields=True,
                                          preserving_proto_field_name=True,
                                          use_integers_for_enums=True)
 
-    def get_pallet_point_list(self, tpos, jpos, pre_tpos, post_tpos, pallet_pattern, width, height):
+    def get_pallet_point_list(self, tpos, jpos, pre_tpos, post_tpos, pallet_pattern, width, height, arm_index=0):
         """
         Get pallet point list
         """
@@ -3059,7 +3271,8 @@ class IndyDCP3:
             post_tpos=list(post_tpos),
             pallet_pattern=pallet_pattern,
             width=width,
-            height=height
+            height=height,
+            arm_index=arm_index
         ))
         return json_format.MessageToDict(response,
                                          including_default_value_fields=True,
@@ -3153,7 +3366,8 @@ class IndyDCP3:
                                ft_frame_translation_offset_z=0.0,
                                ft_frame_rotation_offset_r=0.0,
                                ft_frame_rotation_offset_p=0.0,
-                               ft_frame_rotation_offset_y=0.0):
+                               ft_frame_rotation_offset_y=0.0,
+                               arm_index=0):
         response = self.config.SetFTSensorConfig(config_msgs.FTSensorDevice(
             dev_type=dev_type, com_type=com_type,ip_address=ip_address,
             ft_frame_translation_offset_x=ft_frame_translation_offset_x,
@@ -3161,7 +3375,8 @@ class IndyDCP3:
             ft_frame_translation_offset_z=ft_frame_translation_offset_z,
             ft_frame_rotation_offset_r=ft_frame_rotation_offset_r,
             ft_frame_rotation_offset_p=ft_frame_rotation_offset_p,
-            ft_frame_rotation_offset_y=ft_frame_rotation_offset_y))
+            ft_frame_rotation_offset_y=ft_frame_rotation_offset_y,
+            arm_index=arm_index))
         return json_format.MessageToDict(response,
                                          including_default_value_fields=True,
                                          preserving_proto_field_name=True,
@@ -3169,6 +3384,18 @@ class IndyDCP3:
 
     def get_ft_sensor_config(self):
         response = self.config.GetFTSensorConfig(common_msgs.Empty())
+        return json_format.MessageToDict(response,
+                                         including_default_value_fields=True,
+                                         preserving_proto_field_name=True,
+                                         use_integers_for_enums=True)
+
+    def get_ft_sensor_config_for(self, index: int):
+        """
+        F/T Sensor configuration at specific index
+            index -> int
+            returns FTSensorDevice
+        """
+        response = self.config.GetFTSensorConfigFor(common_msgs.Int(value=index))
         return json_format.MessageToDict(response,
                                          including_default_value_fields=True,
                                          preserving_proto_field_name=True,

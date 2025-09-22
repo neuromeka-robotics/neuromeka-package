@@ -118,6 +118,18 @@ extern ForwardKinematicsReqDefaultTypeInternal _ForwardKinematicsReq_default_ins
 class ForwardKinematicsRes;
 struct ForwardKinematicsResDefaultTypeInternal;
 extern ForwardKinematicsResDefaultTypeInternal _ForwardKinematicsRes_default_instance_;
+class GetMotionCReq;
+struct GetMotionCReqDefaultTypeInternal;
+extern GetMotionCReqDefaultTypeInternal _GetMotionCReq_default_instance_;
+class GetMotionJReq;
+struct GetMotionJReqDefaultTypeInternal;
+extern GetMotionJReqDefaultTypeInternal _GetMotionJReq_default_instance_;
+class GetMotionLReq;
+struct GetMotionLReqDefaultTypeInternal;
+extern GetMotionLReqDefaultTypeInternal _GetMotionLReq_default_instance_;
+class GetMotionRes;
+struct GetMotionResDefaultTypeInternal;
+extern GetMotionResDefaultTypeInternal _GetMotionRes_default_instance_;
 class GetPalletPointListReq;
 struct GetPalletPointListReqDefaultTypeInternal;
 extern GetPalletPointListReqDefaultTypeInternal _GetPalletPointListReq_default_instance_;
@@ -3572,6 +3584,7 @@ class MoveLReq final :
     kVelRatioFieldNumber = 3,
     kAccRatioFieldNumber = 4,
     kVelTypeFieldNumber = 5,
+    kArmIndexFieldNumber = 10,
     kTeachingModeFieldNumber = 30,
     kBypassSingularFieldNumber = 40,
   };
@@ -3650,6 +3663,16 @@ class MoveLReq final :
   void _internal_set_vel_type(::Nrmk::IndyFramework::VelocityModeType value);
 
   public:
+  // int32 arm_index = 10;
+  void clear_arm_index() ;
+  ::int32_t arm_index() const;
+  void set_arm_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_arm_index() const;
+  void _internal_set_arm_index(::int32_t value);
+
+  public:
   // bool teaching_mode = 30;
   void clear_teaching_mode() ;
   bool teaching_mode() const;
@@ -3675,7 +3698,7 @@ class MoveLReq final :
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<3, 8, 3, 0, 7> _table_;
+  static const ::google::protobuf::internal::TcParseTable<4, 9, 3, 0, 7> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
@@ -3688,6 +3711,7 @@ class MoveLReq final :
     float vel_ratio_;
     float acc_ratio_;
     int vel_type_;
+    ::int32_t arm_index_;
     bool teaching_mode_;
     bool bypass_singular_;
     PROTOBUF_TSAN_DECLARE_MEMBER
@@ -3828,6 +3852,7 @@ class MoveLTReq final :
     kBlendingFieldNumber = 2,
     kPostConditionFieldNumber = 20,
     kTimeFieldNumber = 3,
+    kArmIndexFieldNumber = 10,
   };
   // .Nrmk.IndyFramework.TargetP target = 1;
   bool has_target() const;
@@ -3884,12 +3909,22 @@ class MoveLTReq final :
   void _internal_set_time(float value);
 
   public:
+  // int32 arm_index = 10;
+  void clear_arm_index() ;
+  ::int32_t arm_index() const;
+  void set_arm_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_arm_index() const;
+  void _internal_set_arm_index(::int32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.MoveLTReq)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<2, 4, 3, 0, 2> _table_;
+  static const ::google::protobuf::internal::TcParseTable<2, 5, 3, 0, 2> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
@@ -3900,6 +3935,7 @@ class MoveLTReq final :
     ::Nrmk::IndyFramework::BlendingType* blending_;
     ::Nrmk::IndyFramework::MotionCondition* post_condition_;
     float time_;
+    ::int32_t arm_index_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -4274,6 +4310,7 @@ class MoveCReq final :
     kAngleFieldNumber = 3,
     kSettingTypeFieldNumber = 10,
     kMoveTypeFieldNumber = 11,
+    kArmIndexFieldNumber = 15,
     kVelRatioFieldNumber = 20,
     kAccRatioFieldNumber = 21,
     kVelTypeFieldNumber = 22,
@@ -4355,6 +4392,16 @@ class MoveCReq final :
   void _internal_set_move_type(::Nrmk::IndyFramework::CircularMovingType value);
 
   public:
+  // int32 arm_index = 15;
+  void clear_arm_index() ;
+  ::int32_t arm_index() const;
+  void set_arm_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_arm_index() const;
+  void _internal_set_arm_index(::int32_t value);
+
+  public:
   // float vel_ratio = 20;
   void clear_vel_ratio() ;
   float vel_ratio() const;
@@ -4410,7 +4457,7 @@ class MoveCReq final :
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<4, 11, 3, 0, 7> _table_;
+  static const ::google::protobuf::internal::TcParseTable<4, 12, 3, 0, 7> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
@@ -4423,6 +4470,7 @@ class MoveCReq final :
     float angle_;
     int setting_type_;
     int move_type_;
+    ::int32_t arm_index_;
     float vel_ratio_;
     float acc_ratio_;
     int vel_type_;
@@ -4568,6 +4616,7 @@ class MoveCTReq final :
     kAngleFieldNumber = 3,
     kSettingTypeFieldNumber = 10,
     kMoveTypeFieldNumber = 11,
+    kArmIndexFieldNumber = 15,
     kTimeFieldNumber = 20,
   };
   // .Nrmk.IndyFramework.TargetC target = 1;
@@ -4645,6 +4694,16 @@ class MoveCTReq final :
   void _internal_set_move_type(::Nrmk::IndyFramework::CircularMovingType value);
 
   public:
+  // int32 arm_index = 15;
+  void clear_arm_index() ;
+  ::int32_t arm_index() const;
+  void set_arm_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_arm_index() const;
+  void _internal_set_arm_index(::int32_t value);
+
+  public:
   // float time = 20;
   void clear_time() ;
   float time() const;
@@ -4660,7 +4719,7 @@ class MoveCTReq final :
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<2, 7, 3, 0, 2> _table_;
+  static const ::google::protobuf::internal::TcParseTable<4, 8, 3, 0, 2> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
@@ -4673,6 +4732,7 @@ class MoveCTReq final :
     float angle_;
     int setting_type_;
     int move_type_;
+    ::int32_t arm_index_;
     float time_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -5225,6 +5285,7 @@ class MoveGcodeReq final :
     kSmoothRadiusFieldNumber = 3,
     kVelRatioFieldNumber = 4,
     kAccRatioFieldNumber = 5,
+    kArmIndexFieldNumber = 10,
   };
   // string gcode_file = 1;
   void clear_gcode_file() ;
@@ -5282,12 +5343,22 @@ class MoveGcodeReq final :
   void _internal_set_acc_ratio(float value);
 
   public:
+  // int32 arm_index = 10;
+  void clear_arm_index() ;
+  ::int32_t arm_index() const;
+  void set_arm_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_arm_index() const;
+  void _internal_set_arm_index(::int32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.MoveGcodeReq)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<3, 5, 0, 50, 2> _table_;
+  static const ::google::protobuf::internal::TcParseTable<3, 6, 0, 50, 2> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
@@ -5297,6 +5368,7 @@ class MoveGcodeReq final :
     float smooth_radius_;
     float vel_ratio_;
     float acc_ratio_;
+    ::int32_t arm_index_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -6503,7 +6575,11 @@ class Program final :
 
   enum : int {
     kProgNameFieldNumber = 1,
+    kStartLineIndexFieldNumber = 11,
+    kEndLineIndexFieldNumber = 12,
     kProgIdxFieldNumber = 2,
+    kTeachingModeFieldNumber = 20,
+    kDebugModeFieldNumber = 30,
   };
   // string prog_name = 1;
   void clear_prog_name() ;
@@ -6521,6 +6597,36 @@ class Program final :
   std::string* _internal_mutable_prog_name();
 
   public:
+  // .Nrmk.IndyFramework.ProgramLine start_line_index = 11;
+  bool has_start_line_index() const;
+  void clear_start_line_index() ;
+  const ::Nrmk::IndyFramework::ProgramLine& start_line_index() const;
+  PROTOBUF_NODISCARD ::Nrmk::IndyFramework::ProgramLine* release_start_line_index();
+  ::Nrmk::IndyFramework::ProgramLine* mutable_start_line_index();
+  void set_allocated_start_line_index(::Nrmk::IndyFramework::ProgramLine* value);
+  void unsafe_arena_set_allocated_start_line_index(::Nrmk::IndyFramework::ProgramLine* value);
+  ::Nrmk::IndyFramework::ProgramLine* unsafe_arena_release_start_line_index();
+
+  private:
+  const ::Nrmk::IndyFramework::ProgramLine& _internal_start_line_index() const;
+  ::Nrmk::IndyFramework::ProgramLine* _internal_mutable_start_line_index();
+
+  public:
+  // .Nrmk.IndyFramework.ProgramLine end_line_index = 12;
+  bool has_end_line_index() const;
+  void clear_end_line_index() ;
+  const ::Nrmk::IndyFramework::ProgramLine& end_line_index() const;
+  PROTOBUF_NODISCARD ::Nrmk::IndyFramework::ProgramLine* release_end_line_index();
+  ::Nrmk::IndyFramework::ProgramLine* mutable_end_line_index();
+  void set_allocated_end_line_index(::Nrmk::IndyFramework::ProgramLine* value);
+  void unsafe_arena_set_allocated_end_line_index(::Nrmk::IndyFramework::ProgramLine* value);
+  ::Nrmk::IndyFramework::ProgramLine* unsafe_arena_release_end_line_index();
+
+  private:
+  const ::Nrmk::IndyFramework::ProgramLine& _internal_end_line_index() const;
+  ::Nrmk::IndyFramework::ProgramLine* _internal_mutable_end_line_index();
+
+  public:
   // int32 prog_idx = 2;
   void clear_prog_idx() ;
   ::int32_t prog_idx() const;
@@ -6531,19 +6637,44 @@ class Program final :
   void _internal_set_prog_idx(::int32_t value);
 
   public:
+  // bool teaching_mode = 20;
+  void clear_teaching_mode() ;
+  bool teaching_mode() const;
+  void set_teaching_mode(bool value);
+
+  private:
+  bool _internal_teaching_mode() const;
+  void _internal_set_teaching_mode(bool value);
+
+  public:
+  // bool debug_mode = 30;
+  void clear_debug_mode() ;
+  bool debug_mode() const;
+  void set_debug_mode(bool value);
+
+  private:
+  bool _internal_debug_mode() const;
+  void _internal_set_debug_mode(bool value);
+
+  public:
   // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.Program)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<1, 2, 0, 44, 2> _table_;
+  static const ::google::protobuf::internal::TcParseTable<3, 6, 2, 44, 2> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
-    ::google::protobuf::internal::ArenaStringPtr prog_name_;
-    ::int32_t prog_idx_;
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::ArenaStringPtr prog_name_;
+    ::Nrmk::IndyFramework::ProgramLine* start_line_index_;
+    ::Nrmk::IndyFramework::ProgramLine* end_line_index_;
+    ::int32_t prog_idx_;
+    bool teaching_mode_;
+    bool debug_mode_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -9910,6 +10041,7 @@ class InverseKinematicsReq final :
   enum : int {
     kTposFieldNumber = 1,
     kInitJposFieldNumber = 2,
+    kArmIndexFieldNumber = 10,
   };
   // repeated float tpos = 1;
   int tpos_size() const;
@@ -9947,18 +10079,29 @@ class InverseKinematicsReq final :
   ::google::protobuf::RepeatedField<float>* _internal_mutable_init_jpos();
 
   public:
+  // int32 arm_index = 10;
+  void clear_arm_index() ;
+  ::int32_t arm_index() const;
+  void set_arm_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_arm_index() const;
+  void _internal_set_arm_index(::int32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.InverseKinematicsReq)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<1, 2, 0, 0, 2> _table_;
+  static const ::google::protobuf::internal::TcParseTable<1, 3, 0, 0, 2> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
     ::google::protobuf::RepeatedField<float> tpos_;
     ::google::protobuf::RepeatedField<float> init_jpos_;
+    ::int32_t arm_index_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -10096,6 +10239,7 @@ class InverseKinematicsRes final :
   enum : int {
     kJposFieldNumber = 1,
     kResponseFieldNumber = 100,
+    kArmIndexFieldNumber = 10,
   };
   // repeated float jpos = 1;
   int jpos_size() const;
@@ -10130,12 +10274,22 @@ class InverseKinematicsRes final :
   ::Nrmk::IndyFramework::Response* _internal_mutable_response();
 
   public:
+  // int32 arm_index = 10;
+  void clear_arm_index() ;
+  ::int32_t arm_index() const;
+  void set_arm_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_arm_index() const;
+  void _internal_set_arm_index(::int32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.InverseKinematicsRes)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<1, 2, 1, 0, 7> _table_;
+  static const ::google::protobuf::internal::TcParseTable<2, 3, 1, 0, 7> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
@@ -10144,6 +10298,7 @@ class InverseKinematicsRes final :
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::RepeatedField<float> jpos_;
     ::Nrmk::IndyFramework::Response* response_;
+    ::int32_t arm_index_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -10279,6 +10434,7 @@ class ForwardKinematicsReq final :
 
   enum : int {
     kJposFieldNumber = 1,
+    kArmIndexFieldNumber = 10,
   };
   // repeated float jpos = 1;
   int jpos_size() const;
@@ -10298,17 +10454,28 @@ class ForwardKinematicsReq final :
   ::google::protobuf::RepeatedField<float>* _internal_mutable_jpos();
 
   public:
+  // int32 arm_index = 10;
+  void clear_arm_index() ;
+  ::int32_t arm_index() const;
+  void set_arm_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_arm_index() const;
+  void _internal_set_arm_index(::int32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.ForwardKinematicsReq)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<0, 1, 0, 0, 2> _table_;
+  static const ::google::protobuf::internal::TcParseTable<1, 2, 0, 0, 2> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
     ::google::protobuf::RepeatedField<float> jpos_;
+    ::int32_t arm_index_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -10446,6 +10613,7 @@ class ForwardKinematicsRes final :
   enum : int {
     kTposFieldNumber = 1,
     kResponseFieldNumber = 100,
+    kArmIndexFieldNumber = 10,
   };
   // repeated float tpos = 1;
   int tpos_size() const;
@@ -10480,12 +10648,22 @@ class ForwardKinematicsRes final :
   ::Nrmk::IndyFramework::Response* _internal_mutable_response();
 
   public:
+  // int32 arm_index = 10;
+  void clear_arm_index() ;
+  ::int32_t arm_index() const;
+  void set_arm_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_arm_index() const;
+  void _internal_set_arm_index(::int32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.ForwardKinematicsRes)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<1, 2, 1, 0, 7> _table_;
+  static const ::google::protobuf::internal::TcParseTable<2, 3, 1, 0, 7> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
@@ -10494,6 +10672,7 @@ class ForwardKinematicsRes final :
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::RepeatedField<float> tpos_;
     ::Nrmk::IndyFramework::Response* response_;
+    ::int32_t arm_index_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -10632,6 +10811,7 @@ class CheckAproachRetractValidReq final :
     kInitJposFieldNumber = 2,
     kPreTposFieldNumber = 3,
     kPostTposFieldNumber = 4,
+    kArmIndexFieldNumber = 10,
   };
   // repeated float tpos = 1;
   int tpos_size() const;
@@ -10705,12 +10885,22 @@ class CheckAproachRetractValidReq final :
   ::google::protobuf::RepeatedField<float>* _internal_mutable_post_tpos();
 
   public:
+  // int32 arm_index = 10;
+  void clear_arm_index() ;
+  ::int32_t arm_index() const;
+  void set_arm_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_arm_index() const;
+  void _internal_set_arm_index(::int32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.CheckAproachRetractValidReq)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<2, 4, 0, 0, 2> _table_;
+  static const ::google::protobuf::internal::TcParseTable<2, 5, 0, 0, 2> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
@@ -10719,6 +10909,7 @@ class CheckAproachRetractValidReq final :
     ::google::protobuf::RepeatedField<float> init_jpos_;
     ::google::protobuf::RepeatedField<float> pre_tpos_;
     ::google::protobuf::RepeatedField<float> post_tpos_;
+    ::int32_t arm_index_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -10859,6 +11050,7 @@ class CheckAproachRetractValidRes final :
     kRetractPosFieldNumber = 4,
     kResponseFieldNumber = 100,
     kIsValidFieldNumber = 1,
+    kArmIndexFieldNumber = 10,
   };
   // repeated float tar_pos = 2;
   int tar_pos_size() const;
@@ -10939,12 +11131,22 @@ class CheckAproachRetractValidRes final :
   void _internal_set_is_valid(bool value);
 
   public:
+  // int32 arm_index = 10;
+  void clear_arm_index() ;
+  ::int32_t arm_index() const;
+  void set_arm_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_arm_index() const;
+  void _internal_set_arm_index(::int32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.CheckAproachRetractValidRes)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<2, 5, 1, 0, 7> _table_;
+  static const ::google::protobuf::internal::TcParseTable<2, 6, 1, 0, 7> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
@@ -10956,6 +11158,7 @@ class CheckAproachRetractValidRes final :
     ::google::protobuf::RepeatedField<float> retract_pos_;
     ::Nrmk::IndyFramework::Response* response_;
     bool is_valid_;
+    ::int32_t arm_index_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -11097,6 +11300,7 @@ class GetPalletPointListReq final :
     kPalletPatternFieldNumber = 5,
     kWidthFieldNumber = 6,
     kHeightFieldNumber = 7,
+    kArmIndexFieldNumber = 10,
   };
   // repeated float tpos = 1;
   int tpos_size() const;
@@ -11200,12 +11404,22 @@ class GetPalletPointListReq final :
   void _internal_set_height(::int32_t value);
 
   public:
+  // int32 arm_index = 10;
+  void clear_arm_index() ;
+  ::int32_t arm_index() const;
+  void set_arm_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_arm_index() const;
+  void _internal_set_arm_index(::int32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.GetPalletPointListReq)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<3, 7, 0, 0, 2> _table_;
+  static const ::google::protobuf::internal::TcParseTable<4, 8, 0, 0, 2> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
@@ -11217,6 +11431,7 @@ class GetPalletPointListReq final :
     ::int32_t pallet_pattern_;
     ::int32_t width_;
     ::int32_t height_;
+    ::int32_t arm_index_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -11580,6 +11795,7 @@ class GetPalletPointListRes final :
   enum : int {
     kPalletPointsFieldNumber = 1,
     kResponseFieldNumber = 100,
+    kArmIndexFieldNumber = 10,
   };
   // repeated .Nrmk.IndyFramework.PalletPoint pallet_points = 1;
   int pallet_points_size() const;
@@ -11614,12 +11830,22 @@ class GetPalletPointListRes final :
   ::Nrmk::IndyFramework::Response* _internal_mutable_response();
 
   public:
+  // int32 arm_index = 10;
+  void clear_arm_index() ;
+  ::int32_t arm_index() const;
+  void set_arm_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_arm_index() const;
+  void _internal_set_arm_index(::int32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.GetPalletPointListRes)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<1, 2, 2, 0, 7> _table_;
+  static const ::google::protobuf::internal::TcParseTable<2, 3, 2, 0, 7> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
@@ -11628,6 +11854,7 @@ class GetPalletPointListRes final :
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::PalletPoint > pallet_points_;
     ::Nrmk::IndyFramework::Response* response_;
+    ::int32_t arm_index_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -12936,6 +13163,7 @@ class TeleP final :
   enum : int {
     kTposFieldNumber = 1,
     kResponseFieldNumber = 100,
+    kArmIndexFieldNumber = 20,
   };
   // repeated float tpos = 1;
   int tpos_size() const;
@@ -12970,12 +13198,22 @@ class TeleP final :
   ::Nrmk::IndyFramework::Response* _internal_mutable_response();
 
   public:
+  // int32 arm_index = 20;
+  void clear_arm_index() ;
+  ::int32_t arm_index() const;
+  void set_arm_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_arm_index() const;
+  void _internal_set_arm_index(::int32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.TeleP)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<1, 2, 1, 0, 7> _table_;
+  static const ::google::protobuf::internal::TcParseTable<1, 3, 1, 0, 7> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
@@ -12984,6 +13222,7 @@ class TeleP final :
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::RepeatedField<float> tpos_;
     ::Nrmk::IndyFramework::Response* response_;
+    ::int32_t arm_index_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -13840,6 +14079,7 @@ class MoveTeleLReq final :
     kVelRatioFieldNumber = 2,
     kAccRatioFieldNumber = 3,
     kMethodFieldNumber = 10,
+    kArmIndexFieldNumber = 20,
   };
   // repeated float tpos = 1;
   int tpos_size() const;
@@ -13889,12 +14129,22 @@ class MoveTeleLReq final :
   void _internal_set_method(::Nrmk::IndyFramework::TeleMethod value);
 
   public:
+  // int32 arm_index = 20;
+  void clear_arm_index() ;
+  ::int32_t arm_index() const;
+  void set_arm_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_arm_index() const;
+  void _internal_set_arm_index(::int32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.MoveTeleLReq)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<2, 4, 0, 0, 2> _table_;
+  static const ::google::protobuf::internal::TcParseTable<2, 5, 0, 0, 2> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
@@ -13903,6 +14153,7 @@ class MoveTeleLReq final :
     float vel_ratio_;
     float acc_ratio_;
     int method_;
+    ::int32_t arm_index_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -14041,6 +14292,7 @@ class ForceModeReq final :
     kDesForceFieldNumber = 2,
     kEnabledForceFieldNumber = 3,
     kEnableFieldNumber = 1,
+    kArmIndexFieldNumber = 20,
   };
   // repeated float des_force = 2;
   int des_force_size() const;
@@ -14088,12 +14340,22 @@ class ForceModeReq final :
   void _internal_set_enable(bool value);
 
   public:
+  // int32 arm_index = 20;
+  void clear_arm_index() ;
+  ::int32_t arm_index() const;
+  void set_arm_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_arm_index() const;
+  void _internal_set_arm_index(::int32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.ForceModeReq)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<2, 3, 0, 0, 2> _table_;
+  static const ::google::protobuf::internal::TcParseTable<2, 4, 0, 0, 2> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
@@ -14101,6 +14363,7 @@ class ForceModeReq final :
     ::google::protobuf::RepeatedField<float> des_force_;
     ::google::protobuf::RepeatedField<bool> enabled_force_;
     bool enable_;
+    ::int32_t arm_index_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -14930,6 +15193,1004 @@ class CatchBusEventReq final :
   friend struct ::TableStruct_control_5fmsgs_2eproto;
 };// -------------------------------------------------------------------
 
+class GetMotionJReq final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.GetMotionJReq) */ {
+ public:
+  inline GetMotionJReq() : GetMotionJReq(nullptr) {}
+  ~GetMotionJReq() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR GetMotionJReq(::google::protobuf::internal::ConstantInitialized);
+
+  GetMotionJReq(const GetMotionJReq& from);
+  GetMotionJReq(GetMotionJReq&& from) noexcept
+    : GetMotionJReq() {
+    *this = ::std::move(from);
+  }
+
+  inline GetMotionJReq& operator=(const GetMotionJReq& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetMotionJReq& operator=(GetMotionJReq&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetMotionJReq& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetMotionJReq* internal_default_instance() {
+    return reinterpret_cast<const GetMotionJReq*>(
+               &_GetMotionJReq_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    72;
+
+  friend void swap(GetMotionJReq& a, GetMotionJReq& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GetMotionJReq* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetMotionJReq* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetMotionJReq* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<GetMotionJReq>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const GetMotionJReq& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const GetMotionJReq& from) {
+    GetMotionJReq::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GetMotionJReq* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "Nrmk.IndyFramework.GetMotionJReq";
+  }
+  protected:
+  explicit GetMotionJReq(::google::protobuf::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kTargetListFieldNumber = 1,
+    kBlendingFieldNumber = 2,
+    kPostConditionFieldNumber = 20,
+    kVelRatioFieldNumber = 3,
+    kAccRatioFieldNumber = 4,
+    kTimeStepFieldNumber = 30,
+  };
+  // repeated .Nrmk.IndyFramework.TargetJ target_list = 1;
+  int target_list_size() const;
+  private:
+  int _internal_target_list_size() const;
+
+  public:
+  void clear_target_list() ;
+  ::Nrmk::IndyFramework::TargetJ* mutable_target_list(int index);
+  ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::TargetJ >*
+      mutable_target_list();
+  private:
+  const ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::TargetJ>& _internal_target_list() const;
+  ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::TargetJ>* _internal_mutable_target_list();
+  public:
+  const ::Nrmk::IndyFramework::TargetJ& target_list(int index) const;
+  ::Nrmk::IndyFramework::TargetJ* add_target_list();
+  const ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::TargetJ >&
+      target_list() const;
+  // .Nrmk.IndyFramework.BlendingType blending = 2;
+  bool has_blending() const;
+  void clear_blending() ;
+  const ::Nrmk::IndyFramework::BlendingType& blending() const;
+  PROTOBUF_NODISCARD ::Nrmk::IndyFramework::BlendingType* release_blending();
+  ::Nrmk::IndyFramework::BlendingType* mutable_blending();
+  void set_allocated_blending(::Nrmk::IndyFramework::BlendingType* value);
+  void unsafe_arena_set_allocated_blending(::Nrmk::IndyFramework::BlendingType* value);
+  ::Nrmk::IndyFramework::BlendingType* unsafe_arena_release_blending();
+
+  private:
+  const ::Nrmk::IndyFramework::BlendingType& _internal_blending() const;
+  ::Nrmk::IndyFramework::BlendingType* _internal_mutable_blending();
+
+  public:
+  // .Nrmk.IndyFramework.MotionCondition post_condition = 20;
+  bool has_post_condition() const;
+  void clear_post_condition() ;
+  const ::Nrmk::IndyFramework::MotionCondition& post_condition() const;
+  PROTOBUF_NODISCARD ::Nrmk::IndyFramework::MotionCondition* release_post_condition();
+  ::Nrmk::IndyFramework::MotionCondition* mutable_post_condition();
+  void set_allocated_post_condition(::Nrmk::IndyFramework::MotionCondition* value);
+  void unsafe_arena_set_allocated_post_condition(::Nrmk::IndyFramework::MotionCondition* value);
+  ::Nrmk::IndyFramework::MotionCondition* unsafe_arena_release_post_condition();
+
+  private:
+  const ::Nrmk::IndyFramework::MotionCondition& _internal_post_condition() const;
+  ::Nrmk::IndyFramework::MotionCondition* _internal_mutable_post_condition();
+
+  public:
+  // float vel_ratio = 3;
+  void clear_vel_ratio() ;
+  float vel_ratio() const;
+  void set_vel_ratio(float value);
+
+  private:
+  float _internal_vel_ratio() const;
+  void _internal_set_vel_ratio(float value);
+
+  public:
+  // float acc_ratio = 4;
+  void clear_acc_ratio() ;
+  float acc_ratio() const;
+  void set_acc_ratio(float value);
+
+  private:
+  float _internal_acc_ratio() const;
+  void _internal_set_acc_ratio(float value);
+
+  public:
+  // float time_step = 30;
+  void clear_time_step() ;
+  float time_step() const;
+  void set_time_step(float value);
+
+  private:
+  float _internal_time_step() const;
+  void _internal_set_time_step(float value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.GetMotionJReq)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<3, 6, 3, 0, 2> _table_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::TargetJ > target_list_;
+    ::Nrmk::IndyFramework::BlendingType* blending_;
+    ::Nrmk::IndyFramework::MotionCondition* post_condition_;
+    float vel_ratio_;
+    float acc_ratio_;
+    float time_step_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_control_5fmsgs_2eproto;
+};// -------------------------------------------------------------------
+
+class GetMotionLReq final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.GetMotionLReq) */ {
+ public:
+  inline GetMotionLReq() : GetMotionLReq(nullptr) {}
+  ~GetMotionLReq() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR GetMotionLReq(::google::protobuf::internal::ConstantInitialized);
+
+  GetMotionLReq(const GetMotionLReq& from);
+  GetMotionLReq(GetMotionLReq&& from) noexcept
+    : GetMotionLReq() {
+    *this = ::std::move(from);
+  }
+
+  inline GetMotionLReq& operator=(const GetMotionLReq& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetMotionLReq& operator=(GetMotionLReq&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetMotionLReq& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetMotionLReq* internal_default_instance() {
+    return reinterpret_cast<const GetMotionLReq*>(
+               &_GetMotionLReq_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    73;
+
+  friend void swap(GetMotionLReq& a, GetMotionLReq& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GetMotionLReq* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetMotionLReq* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetMotionLReq* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<GetMotionLReq>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const GetMotionLReq& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const GetMotionLReq& from) {
+    GetMotionLReq::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GetMotionLReq* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "Nrmk.IndyFramework.GetMotionLReq";
+  }
+  protected:
+  explicit GetMotionLReq(::google::protobuf::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kTargetListFieldNumber = 1,
+    kBlendingFieldNumber = 2,
+    kPostConditionFieldNumber = 20,
+    kVelRatioFieldNumber = 3,
+    kAccRatioFieldNumber = 4,
+    kVelTypeFieldNumber = 5,
+    kArmIndexFieldNumber = 10,
+    kTimeStepFieldNumber = 30,
+  };
+  // repeated .Nrmk.IndyFramework.TargetP target_list = 1;
+  int target_list_size() const;
+  private:
+  int _internal_target_list_size() const;
+
+  public:
+  void clear_target_list() ;
+  ::Nrmk::IndyFramework::TargetP* mutable_target_list(int index);
+  ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::TargetP >*
+      mutable_target_list();
+  private:
+  const ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::TargetP>& _internal_target_list() const;
+  ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::TargetP>* _internal_mutable_target_list();
+  public:
+  const ::Nrmk::IndyFramework::TargetP& target_list(int index) const;
+  ::Nrmk::IndyFramework::TargetP* add_target_list();
+  const ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::TargetP >&
+      target_list() const;
+  // .Nrmk.IndyFramework.BlendingType blending = 2;
+  bool has_blending() const;
+  void clear_blending() ;
+  const ::Nrmk::IndyFramework::BlendingType& blending() const;
+  PROTOBUF_NODISCARD ::Nrmk::IndyFramework::BlendingType* release_blending();
+  ::Nrmk::IndyFramework::BlendingType* mutable_blending();
+  void set_allocated_blending(::Nrmk::IndyFramework::BlendingType* value);
+  void unsafe_arena_set_allocated_blending(::Nrmk::IndyFramework::BlendingType* value);
+  ::Nrmk::IndyFramework::BlendingType* unsafe_arena_release_blending();
+
+  private:
+  const ::Nrmk::IndyFramework::BlendingType& _internal_blending() const;
+  ::Nrmk::IndyFramework::BlendingType* _internal_mutable_blending();
+
+  public:
+  // .Nrmk.IndyFramework.MotionCondition post_condition = 20;
+  bool has_post_condition() const;
+  void clear_post_condition() ;
+  const ::Nrmk::IndyFramework::MotionCondition& post_condition() const;
+  PROTOBUF_NODISCARD ::Nrmk::IndyFramework::MotionCondition* release_post_condition();
+  ::Nrmk::IndyFramework::MotionCondition* mutable_post_condition();
+  void set_allocated_post_condition(::Nrmk::IndyFramework::MotionCondition* value);
+  void unsafe_arena_set_allocated_post_condition(::Nrmk::IndyFramework::MotionCondition* value);
+  ::Nrmk::IndyFramework::MotionCondition* unsafe_arena_release_post_condition();
+
+  private:
+  const ::Nrmk::IndyFramework::MotionCondition& _internal_post_condition() const;
+  ::Nrmk::IndyFramework::MotionCondition* _internal_mutable_post_condition();
+
+  public:
+  // float vel_ratio = 3;
+  void clear_vel_ratio() ;
+  float vel_ratio() const;
+  void set_vel_ratio(float value);
+
+  private:
+  float _internal_vel_ratio() const;
+  void _internal_set_vel_ratio(float value);
+
+  public:
+  // float acc_ratio = 4;
+  void clear_acc_ratio() ;
+  float acc_ratio() const;
+  void set_acc_ratio(float value);
+
+  private:
+  float _internal_acc_ratio() const;
+  void _internal_set_acc_ratio(float value);
+
+  public:
+  // .Nrmk.IndyFramework.VelocityModeType vel_type = 5;
+  void clear_vel_type() ;
+  ::Nrmk::IndyFramework::VelocityModeType vel_type() const;
+  void set_vel_type(::Nrmk::IndyFramework::VelocityModeType value);
+
+  private:
+  ::Nrmk::IndyFramework::VelocityModeType _internal_vel_type() const;
+  void _internal_set_vel_type(::Nrmk::IndyFramework::VelocityModeType value);
+
+  public:
+  // int32 arm_index = 10;
+  void clear_arm_index() ;
+  ::int32_t arm_index() const;
+  void set_arm_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_arm_index() const;
+  void _internal_set_arm_index(::int32_t value);
+
+  public:
+  // float time_step = 30;
+  void clear_time_step() ;
+  float time_step() const;
+  void set_time_step(float value);
+
+  private:
+  float _internal_time_step() const;
+  void _internal_set_time_step(float value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.GetMotionLReq)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<4, 8, 3, 0, 2> _table_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::TargetP > target_list_;
+    ::Nrmk::IndyFramework::BlendingType* blending_;
+    ::Nrmk::IndyFramework::MotionCondition* post_condition_;
+    float vel_ratio_;
+    float acc_ratio_;
+    int vel_type_;
+    ::int32_t arm_index_;
+    float time_step_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_control_5fmsgs_2eproto;
+};// -------------------------------------------------------------------
+
+class GetMotionCReq final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.GetMotionCReq) */ {
+ public:
+  inline GetMotionCReq() : GetMotionCReq(nullptr) {}
+  ~GetMotionCReq() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR GetMotionCReq(::google::protobuf::internal::ConstantInitialized);
+
+  GetMotionCReq(const GetMotionCReq& from);
+  GetMotionCReq(GetMotionCReq&& from) noexcept
+    : GetMotionCReq() {
+    *this = ::std::move(from);
+  }
+
+  inline GetMotionCReq& operator=(const GetMotionCReq& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetMotionCReq& operator=(GetMotionCReq&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetMotionCReq& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetMotionCReq* internal_default_instance() {
+    return reinterpret_cast<const GetMotionCReq*>(
+               &_GetMotionCReq_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    74;
+
+  friend void swap(GetMotionCReq& a, GetMotionCReq& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GetMotionCReq* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetMotionCReq* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetMotionCReq* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<GetMotionCReq>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const GetMotionCReq& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const GetMotionCReq& from) {
+    GetMotionCReq::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GetMotionCReq* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "Nrmk.IndyFramework.GetMotionCReq";
+  }
+  protected:
+  explicit GetMotionCReq(::google::protobuf::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kTargetFieldNumber = 1,
+    kBlendingFieldNumber = 2,
+    kPostConditionFieldNumber = 25,
+    kAngleFieldNumber = 3,
+    kSettingTypeFieldNumber = 10,
+    kMoveTypeFieldNumber = 11,
+    kArmIndexFieldNumber = 15,
+    kVelRatioFieldNumber = 20,
+    kAccRatioFieldNumber = 21,
+    kVelTypeFieldNumber = 22,
+    kTimeStepFieldNumber = 30,
+  };
+  // .Nrmk.IndyFramework.TargetC target = 1;
+  bool has_target() const;
+  void clear_target() ;
+  const ::Nrmk::IndyFramework::TargetC& target() const;
+  PROTOBUF_NODISCARD ::Nrmk::IndyFramework::TargetC* release_target();
+  ::Nrmk::IndyFramework::TargetC* mutable_target();
+  void set_allocated_target(::Nrmk::IndyFramework::TargetC* value);
+  void unsafe_arena_set_allocated_target(::Nrmk::IndyFramework::TargetC* value);
+  ::Nrmk::IndyFramework::TargetC* unsafe_arena_release_target();
+
+  private:
+  const ::Nrmk::IndyFramework::TargetC& _internal_target() const;
+  ::Nrmk::IndyFramework::TargetC* _internal_mutable_target();
+
+  public:
+  // .Nrmk.IndyFramework.BlendingType blending = 2;
+  bool has_blending() const;
+  void clear_blending() ;
+  const ::Nrmk::IndyFramework::BlendingType& blending() const;
+  PROTOBUF_NODISCARD ::Nrmk::IndyFramework::BlendingType* release_blending();
+  ::Nrmk::IndyFramework::BlendingType* mutable_blending();
+  void set_allocated_blending(::Nrmk::IndyFramework::BlendingType* value);
+  void unsafe_arena_set_allocated_blending(::Nrmk::IndyFramework::BlendingType* value);
+  ::Nrmk::IndyFramework::BlendingType* unsafe_arena_release_blending();
+
+  private:
+  const ::Nrmk::IndyFramework::BlendingType& _internal_blending() const;
+  ::Nrmk::IndyFramework::BlendingType* _internal_mutable_blending();
+
+  public:
+  // .Nrmk.IndyFramework.MotionCondition post_condition = 25;
+  bool has_post_condition() const;
+  void clear_post_condition() ;
+  const ::Nrmk::IndyFramework::MotionCondition& post_condition() const;
+  PROTOBUF_NODISCARD ::Nrmk::IndyFramework::MotionCondition* release_post_condition();
+  ::Nrmk::IndyFramework::MotionCondition* mutable_post_condition();
+  void set_allocated_post_condition(::Nrmk::IndyFramework::MotionCondition* value);
+  void unsafe_arena_set_allocated_post_condition(::Nrmk::IndyFramework::MotionCondition* value);
+  ::Nrmk::IndyFramework::MotionCondition* unsafe_arena_release_post_condition();
+
+  private:
+  const ::Nrmk::IndyFramework::MotionCondition& _internal_post_condition() const;
+  ::Nrmk::IndyFramework::MotionCondition* _internal_mutable_post_condition();
+
+  public:
+  // float angle = 3;
+  void clear_angle() ;
+  float angle() const;
+  void set_angle(float value);
+
+  private:
+  float _internal_angle() const;
+  void _internal_set_angle(float value);
+
+  public:
+  // .Nrmk.IndyFramework.CircularSettingType setting_type = 10;
+  void clear_setting_type() ;
+  ::Nrmk::IndyFramework::CircularSettingType setting_type() const;
+  void set_setting_type(::Nrmk::IndyFramework::CircularSettingType value);
+
+  private:
+  ::Nrmk::IndyFramework::CircularSettingType _internal_setting_type() const;
+  void _internal_set_setting_type(::Nrmk::IndyFramework::CircularSettingType value);
+
+  public:
+  // .Nrmk.IndyFramework.CircularMovingType move_type = 11;
+  void clear_move_type() ;
+  ::Nrmk::IndyFramework::CircularMovingType move_type() const;
+  void set_move_type(::Nrmk::IndyFramework::CircularMovingType value);
+
+  private:
+  ::Nrmk::IndyFramework::CircularMovingType _internal_move_type() const;
+  void _internal_set_move_type(::Nrmk::IndyFramework::CircularMovingType value);
+
+  public:
+  // int32 arm_index = 15;
+  void clear_arm_index() ;
+  ::int32_t arm_index() const;
+  void set_arm_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_arm_index() const;
+  void _internal_set_arm_index(::int32_t value);
+
+  public:
+  // float vel_ratio = 20;
+  void clear_vel_ratio() ;
+  float vel_ratio() const;
+  void set_vel_ratio(float value);
+
+  private:
+  float _internal_vel_ratio() const;
+  void _internal_set_vel_ratio(float value);
+
+  public:
+  // float acc_ratio = 21;
+  void clear_acc_ratio() ;
+  float acc_ratio() const;
+  void set_acc_ratio(float value);
+
+  private:
+  float _internal_acc_ratio() const;
+  void _internal_set_acc_ratio(float value);
+
+  public:
+  // .Nrmk.IndyFramework.VelocityModeType vel_type = 22;
+  void clear_vel_type() ;
+  ::Nrmk::IndyFramework::VelocityModeType vel_type() const;
+  void set_vel_type(::Nrmk::IndyFramework::VelocityModeType value);
+
+  private:
+  ::Nrmk::IndyFramework::VelocityModeType _internal_vel_type() const;
+  void _internal_set_vel_type(::Nrmk::IndyFramework::VelocityModeType value);
+
+  public:
+  // float time_step = 30;
+  void clear_time_step() ;
+  float time_step() const;
+  void set_time_step(float value);
+
+  private:
+  float _internal_time_step() const;
+  void _internal_set_time_step(float value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.GetMotionCReq)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<4, 11, 3, 0, 2> _table_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    ::Nrmk::IndyFramework::TargetC* target_;
+    ::Nrmk::IndyFramework::BlendingType* blending_;
+    ::Nrmk::IndyFramework::MotionCondition* post_condition_;
+    float angle_;
+    int setting_type_;
+    int move_type_;
+    ::int32_t arm_index_;
+    float vel_ratio_;
+    float acc_ratio_;
+    int vel_type_;
+    float time_step_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_control_5fmsgs_2eproto;
+};// -------------------------------------------------------------------
+
+class GetMotionRes final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.GetMotionRes) */ {
+ public:
+  inline GetMotionRes() : GetMotionRes(nullptr) {}
+  ~GetMotionRes() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR GetMotionRes(::google::protobuf::internal::ConstantInitialized);
+
+  GetMotionRes(const GetMotionRes& from);
+  GetMotionRes(GetMotionRes&& from) noexcept
+    : GetMotionRes() {
+    *this = ::std::move(from);
+  }
+
+  inline GetMotionRes& operator=(const GetMotionRes& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetMotionRes& operator=(GetMotionRes&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetMotionRes& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetMotionRes* internal_default_instance() {
+    return reinterpret_cast<const GetMotionRes*>(
+               &_GetMotionRes_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    75;
+
+  friend void swap(GetMotionRes& a, GetMotionRes& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GetMotionRes* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetMotionRes* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetMotionRes* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<GetMotionRes>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const GetMotionRes& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const GetMotionRes& from) {
+    GetMotionRes::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GetMotionRes* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "Nrmk.IndyFramework.GetMotionRes";
+  }
+  protected:
+  explicit GetMotionRes(::google::protobuf::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kTimestampFieldNumber = 1,
+    kQListFieldNumber = 2,
+    kQdotListFieldNumber = 3,
+  };
+  // repeated float timestamp = 1;
+  int timestamp_size() const;
+  private:
+  int _internal_timestamp_size() const;
+
+  public:
+  void clear_timestamp() ;
+  float timestamp(int index) const;
+  void set_timestamp(int index, float value);
+  void add_timestamp(float value);
+  const ::google::protobuf::RepeatedField<float>& timestamp() const;
+  ::google::protobuf::RepeatedField<float>* mutable_timestamp();
+
+  private:
+  const ::google::protobuf::RepeatedField<float>& _internal_timestamp() const;
+  ::google::protobuf::RepeatedField<float>* _internal_mutable_timestamp();
+
+  public:
+  // repeated .Nrmk.IndyFramework.Vector q_list = 2;
+  int q_list_size() const;
+  private:
+  int _internal_q_list_size() const;
+
+  public:
+  void clear_q_list() ;
+  ::Nrmk::IndyFramework::Vector* mutable_q_list(int index);
+  ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::Vector >*
+      mutable_q_list();
+  private:
+  const ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::Vector>& _internal_q_list() const;
+  ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::Vector>* _internal_mutable_q_list();
+  public:
+  const ::Nrmk::IndyFramework::Vector& q_list(int index) const;
+  ::Nrmk::IndyFramework::Vector* add_q_list();
+  const ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::Vector >&
+      q_list() const;
+  // repeated .Nrmk.IndyFramework.Vector qdot_list = 3;
+  int qdot_list_size() const;
+  private:
+  int _internal_qdot_list_size() const;
+
+  public:
+  void clear_qdot_list() ;
+  ::Nrmk::IndyFramework::Vector* mutable_qdot_list(int index);
+  ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::Vector >*
+      mutable_qdot_list();
+  private:
+  const ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::Vector>& _internal_qdot_list() const;
+  ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::Vector>* _internal_mutable_qdot_list();
+  public:
+  const ::Nrmk::IndyFramework::Vector& qdot_list(int index) const;
+  ::Nrmk::IndyFramework::Vector* add_qdot_list();
+  const ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::Vector >&
+      qdot_list() const;
+  // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.GetMotionRes)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<2, 3, 2, 0, 2> _table_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::google::protobuf::RepeatedField<float> timestamp_;
+    ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::Vector > q_list_;
+    ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::Vector > qdot_list_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_control_5fmsgs_2eproto;
+};// -------------------------------------------------------------------
+
 class MoveLFReq final :
     public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.MoveLFReq) */ {
  public:
@@ -14986,7 +16247,7 @@ class MoveLFReq final :
                &_MoveLFReq_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    72;
+    76;
 
   friend void swap(MoveLFReq& a, MoveLFReq& b) {
     a.Swap(&b);
@@ -15272,7 +16533,7 @@ class MoveFLRes final :
                &_MoveFLRes_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    73;
+    77;
 
   friend void swap(MoveFLRes& a, MoveFLRes& b) {
     a.Swap(&b);
@@ -15436,7 +16697,7 @@ class ControlInferenceDataSet final :
                &_ControlInferenceDataSet_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    74;
+    78;
 
   friend void swap(ControlInferenceDataSet& a, ControlInferenceDataSet& b) {
     a.Swap(&b);
@@ -18424,6 +19685,28 @@ inline void MoveLReq::_internal_set_vel_type(::Nrmk::IndyFramework::VelocityMode
   _impl_.vel_type_ = value;
 }
 
+// int32 arm_index = 10;
+inline void MoveLReq::clear_arm_index() {
+  _impl_.arm_index_ = 0;
+}
+inline ::int32_t MoveLReq::arm_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.MoveLReq.arm_index)
+  return _internal_arm_index();
+}
+inline void MoveLReq::set_arm_index(::int32_t value) {
+  _internal_set_arm_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.MoveLReq.arm_index)
+}
+inline ::int32_t MoveLReq::_internal_arm_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.arm_index_;
+}
+inline void MoveLReq::_internal_set_arm_index(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.arm_index_ = value;
+}
+
 // .Nrmk.IndyFramework.MotionCondition post_condition = 20;
 inline bool MoveLReq::has_post_condition() const {
   bool value = (_impl_._has_bits_[0] & 0x00000004u) != 0;
@@ -18780,6 +20063,28 @@ inline void MoveLTReq::_internal_set_time(float value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.time_ = value;
+}
+
+// int32 arm_index = 10;
+inline void MoveLTReq::clear_arm_index() {
+  _impl_.arm_index_ = 0;
+}
+inline ::int32_t MoveLTReq::arm_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.MoveLTReq.arm_index)
+  return _internal_arm_index();
+}
+inline void MoveLTReq::set_arm_index(::int32_t value) {
+  _internal_set_arm_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.MoveLTReq.arm_index)
+}
+inline ::int32_t MoveLTReq::_internal_arm_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.arm_index_;
+}
+inline void MoveLTReq::_internal_set_arm_index(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.arm_index_ = value;
 }
 
 // .Nrmk.IndyFramework.MotionCondition post_condition = 20;
@@ -19316,6 +20621,28 @@ inline void MoveCReq::_internal_set_move_type(::Nrmk::IndyFramework::CircularMov
   _impl_.move_type_ = value;
 }
 
+// int32 arm_index = 15;
+inline void MoveCReq::clear_arm_index() {
+  _impl_.arm_index_ = 0;
+}
+inline ::int32_t MoveCReq::arm_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.MoveCReq.arm_index)
+  return _internal_arm_index();
+}
+inline void MoveCReq::set_arm_index(::int32_t value) {
+  _internal_set_arm_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.MoveCReq.arm_index)
+}
+inline ::int32_t MoveCReq::_internal_arm_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.arm_index_;
+}
+inline void MoveCReq::_internal_set_arm_index(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.arm_index_ = value;
+}
+
 // float vel_ratio = 20;
 inline void MoveCReq::clear_vel_ratio() {
   _impl_.vel_ratio_ = 0;
@@ -19782,6 +21109,28 @@ inline void MoveCTReq::_internal_set_move_type(::Nrmk::IndyFramework::CircularMo
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.move_type_ = value;
+}
+
+// int32 arm_index = 15;
+inline void MoveCTReq::clear_arm_index() {
+  _impl_.arm_index_ = 0;
+}
+inline ::int32_t MoveCTReq::arm_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.MoveCTReq.arm_index)
+  return _internal_arm_index();
+}
+inline void MoveCTReq::set_arm_index(::int32_t value) {
+  _internal_set_arm_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.MoveCTReq.arm_index)
+}
+inline ::int32_t MoveCTReq::_internal_arm_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.arm_index_;
+}
+inline void MoveCTReq::_internal_set_arm_index(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.arm_index_ = value;
 }
 
 // float time = 20;
@@ -20309,6 +21658,28 @@ inline void MoveGcodeReq::_internal_set_acc_ratio(float value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.acc_ratio_ = value;
+}
+
+// int32 arm_index = 10;
+inline void MoveGcodeReq::clear_arm_index() {
+  _impl_.arm_index_ = 0;
+}
+inline ::int32_t MoveGcodeReq::arm_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.MoveGcodeReq.arm_index)
+  return _internal_arm_index();
+}
+inline void MoveGcodeReq::set_arm_index(::int32_t value) {
+  _internal_set_arm_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.MoveGcodeReq.arm_index)
+}
+inline ::int32_t MoveGcodeReq::_internal_arm_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.arm_index_;
+}
+inline void MoveGcodeReq::_internal_set_arm_index(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.arm_index_ = value;
 }
 
 // -------------------------------------------------------------------
@@ -20854,6 +22225,234 @@ inline void Program::_internal_set_prog_idx(::int32_t value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.prog_idx_ = value;
+}
+
+// .Nrmk.IndyFramework.ProgramLine start_line_index = 11;
+inline bool Program::has_start_line_index() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.start_line_index_ != nullptr);
+  return value;
+}
+inline const ::Nrmk::IndyFramework::ProgramLine& Program::_internal_start_line_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  const ::Nrmk::IndyFramework::ProgramLine* p = _impl_.start_line_index_;
+  return p != nullptr ? *p : reinterpret_cast<const ::Nrmk::IndyFramework::ProgramLine&>(::Nrmk::IndyFramework::_ProgramLine_default_instance_);
+}
+inline const ::Nrmk::IndyFramework::ProgramLine& Program::start_line_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.Program.start_line_index)
+  return _internal_start_line_index();
+}
+inline void Program::unsafe_arena_set_allocated_start_line_index(::Nrmk::IndyFramework::ProgramLine* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.start_line_index_);
+  }
+  _impl_.start_line_index_ = reinterpret_cast<::Nrmk::IndyFramework::ProgramLine*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Nrmk.IndyFramework.Program.start_line_index)
+}
+inline ::Nrmk::IndyFramework::ProgramLine* Program::release_start_line_index() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::Nrmk::IndyFramework::ProgramLine* released = _impl_.start_line_index_;
+  _impl_.start_line_index_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  if (GetArenaForAllocation() == nullptr) {
+    delete old;
+  }
+#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return released;
+}
+inline ::Nrmk::IndyFramework::ProgramLine* Program::unsafe_arena_release_start_line_index() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:Nrmk.IndyFramework.Program.start_line_index)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::Nrmk::IndyFramework::ProgramLine* temp = _impl_.start_line_index_;
+  _impl_.start_line_index_ = nullptr;
+  return temp;
+}
+inline ::Nrmk::IndyFramework::ProgramLine* Program::_internal_mutable_start_line_index() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  if (_impl_.start_line_index_ == nullptr) {
+    auto* p = CreateMaybeMessage<::Nrmk::IndyFramework::ProgramLine>(GetArenaForAllocation());
+    _impl_.start_line_index_ = reinterpret_cast<::Nrmk::IndyFramework::ProgramLine*>(p);
+  }
+  return _impl_.start_line_index_;
+}
+inline ::Nrmk::IndyFramework::ProgramLine* Program::mutable_start_line_index() {
+  ::Nrmk::IndyFramework::ProgramLine* _msg = _internal_mutable_start_line_index();
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.Program.start_line_index)
+  return _msg;
+}
+inline void Program::set_allocated_start_line_index(::Nrmk::IndyFramework::ProgramLine* value) {
+  ::google::protobuf::Arena* message_arena = GetArenaForAllocation();
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.start_line_index_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena =
+        ::google::protobuf::Arena::InternalGetOwningArena(reinterpret_cast<::google::protobuf::MessageLite*>(value));
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.start_line_index_ = reinterpret_cast<::Nrmk::IndyFramework::ProgramLine*>(value);
+  // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.Program.start_line_index)
+}
+
+// .Nrmk.IndyFramework.ProgramLine end_line_index = 12;
+inline bool Program::has_end_line_index() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.end_line_index_ != nullptr);
+  return value;
+}
+inline const ::Nrmk::IndyFramework::ProgramLine& Program::_internal_end_line_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  const ::Nrmk::IndyFramework::ProgramLine* p = _impl_.end_line_index_;
+  return p != nullptr ? *p : reinterpret_cast<const ::Nrmk::IndyFramework::ProgramLine&>(::Nrmk::IndyFramework::_ProgramLine_default_instance_);
+}
+inline const ::Nrmk::IndyFramework::ProgramLine& Program::end_line_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.Program.end_line_index)
+  return _internal_end_line_index();
+}
+inline void Program::unsafe_arena_set_allocated_end_line_index(::Nrmk::IndyFramework::ProgramLine* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.end_line_index_);
+  }
+  _impl_.end_line_index_ = reinterpret_cast<::Nrmk::IndyFramework::ProgramLine*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Nrmk.IndyFramework.Program.end_line_index)
+}
+inline ::Nrmk::IndyFramework::ProgramLine* Program::release_end_line_index() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  ::Nrmk::IndyFramework::ProgramLine* released = _impl_.end_line_index_;
+  _impl_.end_line_index_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  if (GetArenaForAllocation() == nullptr) {
+    delete old;
+  }
+#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return released;
+}
+inline ::Nrmk::IndyFramework::ProgramLine* Program::unsafe_arena_release_end_line_index() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:Nrmk.IndyFramework.Program.end_line_index)
+
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  ::Nrmk::IndyFramework::ProgramLine* temp = _impl_.end_line_index_;
+  _impl_.end_line_index_ = nullptr;
+  return temp;
+}
+inline ::Nrmk::IndyFramework::ProgramLine* Program::_internal_mutable_end_line_index() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  if (_impl_.end_line_index_ == nullptr) {
+    auto* p = CreateMaybeMessage<::Nrmk::IndyFramework::ProgramLine>(GetArenaForAllocation());
+    _impl_.end_line_index_ = reinterpret_cast<::Nrmk::IndyFramework::ProgramLine*>(p);
+  }
+  return _impl_.end_line_index_;
+}
+inline ::Nrmk::IndyFramework::ProgramLine* Program::mutable_end_line_index() {
+  ::Nrmk::IndyFramework::ProgramLine* _msg = _internal_mutable_end_line_index();
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.Program.end_line_index)
+  return _msg;
+}
+inline void Program::set_allocated_end_line_index(::Nrmk::IndyFramework::ProgramLine* value) {
+  ::google::protobuf::Arena* message_arena = GetArenaForAllocation();
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.end_line_index_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena =
+        ::google::protobuf::Arena::InternalGetOwningArena(reinterpret_cast<::google::protobuf::MessageLite*>(value));
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+
+  _impl_.end_line_index_ = reinterpret_cast<::Nrmk::IndyFramework::ProgramLine*>(value);
+  // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.Program.end_line_index)
+}
+
+// bool teaching_mode = 20;
+inline void Program::clear_teaching_mode() {
+  _impl_.teaching_mode_ = false;
+}
+inline bool Program::teaching_mode() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.Program.teaching_mode)
+  return _internal_teaching_mode();
+}
+inline void Program::set_teaching_mode(bool value) {
+  _internal_set_teaching_mode(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.Program.teaching_mode)
+}
+inline bool Program::_internal_teaching_mode() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.teaching_mode_;
+}
+inline void Program::_internal_set_teaching_mode(bool value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.teaching_mode_ = value;
+}
+
+// bool debug_mode = 30;
+inline void Program::clear_debug_mode() {
+  _impl_.debug_mode_ = false;
+}
+inline bool Program::debug_mode() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.Program.debug_mode)
+  return _internal_debug_mode();
+}
+inline void Program::set_debug_mode(bool value) {
+  _internal_set_debug_mode(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.Program.debug_mode)
+}
+inline bool Program::_internal_debug_mode() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.debug_mode_;
+}
+inline void Program::_internal_set_debug_mode(bool value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.debug_mode_ = value;
 }
 
 // -------------------------------------------------------------------
@@ -22363,6 +23962,28 @@ inline ::google::protobuf::RepeatedField<float>* InverseKinematicsReq::_internal
   return &_impl_.init_jpos_;
 }
 
+// int32 arm_index = 10;
+inline void InverseKinematicsReq::clear_arm_index() {
+  _impl_.arm_index_ = 0;
+}
+inline ::int32_t InverseKinematicsReq::arm_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.InverseKinematicsReq.arm_index)
+  return _internal_arm_index();
+}
+inline void InverseKinematicsReq::set_arm_index(::int32_t value) {
+  _internal_set_arm_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.InverseKinematicsReq.arm_index)
+}
+inline ::int32_t InverseKinematicsReq::_internal_arm_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.arm_index_;
+}
+inline void InverseKinematicsReq::_internal_set_arm_index(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.arm_index_ = value;
+}
+
 // -------------------------------------------------------------------
 
 // InverseKinematicsRes
@@ -22407,6 +24028,28 @@ inline const ::google::protobuf::RepeatedField<float>& InverseKinematicsRes::_in
 inline ::google::protobuf::RepeatedField<float>* InverseKinematicsRes::_internal_mutable_jpos() {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return &_impl_.jpos_;
+}
+
+// int32 arm_index = 10;
+inline void InverseKinematicsRes::clear_arm_index() {
+  _impl_.arm_index_ = 0;
+}
+inline ::int32_t InverseKinematicsRes::arm_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.InverseKinematicsRes.arm_index)
+  return _internal_arm_index();
+}
+inline void InverseKinematicsRes::set_arm_index(::int32_t value) {
+  _internal_set_arm_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.InverseKinematicsRes.arm_index)
+}
+inline ::int32_t InverseKinematicsRes::_internal_arm_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.arm_index_;
+}
+inline void InverseKinematicsRes::_internal_set_arm_index(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.arm_index_ = value;
 }
 
 // .Nrmk.IndyFramework.Response response = 100;
@@ -22547,6 +24190,28 @@ inline ::google::protobuf::RepeatedField<float>* ForwardKinematicsReq::_internal
   return &_impl_.jpos_;
 }
 
+// int32 arm_index = 10;
+inline void ForwardKinematicsReq::clear_arm_index() {
+  _impl_.arm_index_ = 0;
+}
+inline ::int32_t ForwardKinematicsReq::arm_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.ForwardKinematicsReq.arm_index)
+  return _internal_arm_index();
+}
+inline void ForwardKinematicsReq::set_arm_index(::int32_t value) {
+  _internal_set_arm_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.ForwardKinematicsReq.arm_index)
+}
+inline ::int32_t ForwardKinematicsReq::_internal_arm_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.arm_index_;
+}
+inline void ForwardKinematicsReq::_internal_set_arm_index(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.arm_index_ = value;
+}
+
 // -------------------------------------------------------------------
 
 // ForwardKinematicsRes
@@ -22591,6 +24256,28 @@ inline const ::google::protobuf::RepeatedField<float>& ForwardKinematicsRes::_in
 inline ::google::protobuf::RepeatedField<float>* ForwardKinematicsRes::_internal_mutable_tpos() {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return &_impl_.tpos_;
+}
+
+// int32 arm_index = 10;
+inline void ForwardKinematicsRes::clear_arm_index() {
+  _impl_.arm_index_ = 0;
+}
+inline ::int32_t ForwardKinematicsRes::arm_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.ForwardKinematicsRes.arm_index)
+  return _internal_arm_index();
+}
+inline void ForwardKinematicsRes::set_arm_index(::int32_t value) {
+  _internal_set_arm_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.ForwardKinematicsRes.arm_index)
+}
+inline ::int32_t ForwardKinematicsRes::_internal_arm_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.arm_index_;
+}
+inline void ForwardKinematicsRes::_internal_set_arm_index(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.arm_index_ = value;
 }
 
 // .Nrmk.IndyFramework.Response response = 100;
@@ -22857,6 +24544,28 @@ inline ::google::protobuf::RepeatedField<float>* CheckAproachRetractValidReq::_i
   return &_impl_.post_tpos_;
 }
 
+// int32 arm_index = 10;
+inline void CheckAproachRetractValidReq::clear_arm_index() {
+  _impl_.arm_index_ = 0;
+}
+inline ::int32_t CheckAproachRetractValidReq::arm_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.CheckAproachRetractValidReq.arm_index)
+  return _internal_arm_index();
+}
+inline void CheckAproachRetractValidReq::set_arm_index(::int32_t value) {
+  _internal_set_arm_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.CheckAproachRetractValidReq.arm_index)
+}
+inline ::int32_t CheckAproachRetractValidReq::_internal_arm_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.arm_index_;
+}
+inline void CheckAproachRetractValidReq::_internal_set_arm_index(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.arm_index_ = value;
+}
+
 // -------------------------------------------------------------------
 
 // CheckAproachRetractValidRes
@@ -23007,6 +24716,28 @@ inline const ::google::protobuf::RepeatedField<float>& CheckAproachRetractValidR
 inline ::google::protobuf::RepeatedField<float>* CheckAproachRetractValidRes::_internal_mutable_retract_pos() {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return &_impl_.retract_pos_;
+}
+
+// int32 arm_index = 10;
+inline void CheckAproachRetractValidRes::clear_arm_index() {
+  _impl_.arm_index_ = 0;
+}
+inline ::int32_t CheckAproachRetractValidRes::arm_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.CheckAproachRetractValidRes.arm_index)
+  return _internal_arm_index();
+}
+inline void CheckAproachRetractValidRes::set_arm_index(::int32_t value) {
+  _internal_set_arm_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.CheckAproachRetractValidRes.arm_index)
+}
+inline ::int32_t CheckAproachRetractValidRes::_internal_arm_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.arm_index_;
+}
+inline void CheckAproachRetractValidRes::_internal_set_arm_index(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.arm_index_ = value;
 }
 
 // .Nrmk.IndyFramework.Response response = 100;
@@ -23339,6 +25070,28 @@ inline void GetPalletPointListReq::_internal_set_height(::int32_t value) {
   _impl_.height_ = value;
 }
 
+// int32 arm_index = 10;
+inline void GetPalletPointListReq::clear_arm_index() {
+  _impl_.arm_index_ = 0;
+}
+inline ::int32_t GetPalletPointListReq::arm_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.GetPalletPointListReq.arm_index)
+  return _internal_arm_index();
+}
+inline void GetPalletPointListReq::set_arm_index(::int32_t value) {
+  _internal_set_arm_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.GetPalletPointListReq.arm_index)
+}
+inline ::int32_t GetPalletPointListReq::_internal_arm_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.arm_index_;
+}
+inline void GetPalletPointListReq::_internal_set_arm_index(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.arm_index_ = value;
+}
+
 // -------------------------------------------------------------------
 
 // PalletPoint
@@ -23559,6 +25312,28 @@ inline ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::PalletPoint>*
 GetPalletPointListRes::_internal_mutable_pallet_points() {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return &_impl_.pallet_points_;
+}
+
+// int32 arm_index = 10;
+inline void GetPalletPointListRes::clear_arm_index() {
+  _impl_.arm_index_ = 0;
+}
+inline ::int32_t GetPalletPointListRes::arm_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.GetPalletPointListRes.arm_index)
+  return _internal_arm_index();
+}
+inline void GetPalletPointListRes::set_arm_index(::int32_t value) {
+  _internal_set_arm_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.GetPalletPointListRes.arm_index)
+}
+inline ::int32_t GetPalletPointListRes::_internal_arm_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.arm_index_;
+}
+inline void GetPalletPointListRes::_internal_set_arm_index(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.arm_index_ = value;
 }
 
 // .Nrmk.IndyFramework.Response response = 100;
@@ -24415,6 +26190,28 @@ inline ::google::protobuf::RepeatedField<float>* TeleP::_internal_mutable_tpos()
   return &_impl_.tpos_;
 }
 
+// int32 arm_index = 20;
+inline void TeleP::clear_arm_index() {
+  _impl_.arm_index_ = 0;
+}
+inline ::int32_t TeleP::arm_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.TeleP.arm_index)
+  return _internal_arm_index();
+}
+inline void TeleP::set_arm_index(::int32_t value) {
+  _internal_set_arm_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.TeleP.arm_index)
+}
+inline ::int32_t TeleP::_internal_arm_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.arm_index_;
+}
+inline void TeleP::_internal_set_arm_index(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.arm_index_ = value;
+}
+
 // .Nrmk.IndyFramework.Response response = 100;
 inline bool TeleP::has_response() const {
   bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
@@ -25004,6 +26801,28 @@ inline void MoveTeleLReq::_internal_set_method(::Nrmk::IndyFramework::TeleMethod
   _impl_.method_ = value;
 }
 
+// int32 arm_index = 20;
+inline void MoveTeleLReq::clear_arm_index() {
+  _impl_.arm_index_ = 0;
+}
+inline ::int32_t MoveTeleLReq::arm_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.MoveTeleLReq.arm_index)
+  return _internal_arm_index();
+}
+inline void MoveTeleLReq::set_arm_index(::int32_t value) {
+  _internal_set_arm_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.MoveTeleLReq.arm_index)
+}
+inline ::int32_t MoveTeleLReq::_internal_arm_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.arm_index_;
+}
+inline void MoveTeleLReq::_internal_set_arm_index(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.arm_index_ = value;
+}
+
 // -------------------------------------------------------------------
 
 // ForceModeReq
@@ -25112,6 +26931,28 @@ inline const ::google::protobuf::RepeatedField<bool>& ForceModeReq::_internal_en
 inline ::google::protobuf::RepeatedField<bool>* ForceModeReq::_internal_mutable_enabled_force() {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return &_impl_.enabled_force_;
+}
+
+// int32 arm_index = 20;
+inline void ForceModeReq::clear_arm_index() {
+  _impl_.arm_index_ = 0;
+}
+inline ::int32_t ForceModeReq::arm_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.ForceModeReq.arm_index)
+  return _internal_arm_index();
+}
+inline void ForceModeReq::set_arm_index(::int32_t value) {
+  _internal_set_arm_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.ForceModeReq.arm_index)
+}
+inline ::int32_t ForceModeReq::_internal_arm_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.arm_index_;
+}
+inline void ForceModeReq::_internal_set_arm_index(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.arm_index_ = value;
 }
 
 // -------------------------------------------------------------------
@@ -25659,6 +27500,1266 @@ inline void CatchBusEventReq::_internal_set_timeout(float value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.timeout_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// GetMotionJReq
+
+// repeated .Nrmk.IndyFramework.TargetJ target_list = 1;
+inline int GetMotionJReq::_internal_target_list_size() const {
+  return _internal_target_list().size();
+}
+inline int GetMotionJReq::target_list_size() const {
+  return _internal_target_list_size();
+}
+inline void GetMotionJReq::clear_target_list() {
+  _internal_mutable_target_list()->Clear();
+}
+inline ::Nrmk::IndyFramework::TargetJ* GetMotionJReq::mutable_target_list(int index) {
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.GetMotionJReq.target_list)
+  return _internal_mutable_target_list()->Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::TargetJ >*
+GetMotionJReq::mutable_target_list() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.GetMotionJReq.target_list)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_target_list();
+}
+inline const ::Nrmk::IndyFramework::TargetJ& GetMotionJReq::target_list(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.GetMotionJReq.target_list)
+    return _internal_target_list().Get(index);
+}
+inline ::Nrmk::IndyFramework::TargetJ* GetMotionJReq::add_target_list() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::Nrmk::IndyFramework::TargetJ* _add = _internal_mutable_target_list()->Add();
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.GetMotionJReq.target_list)
+  return _add;
+}
+inline const ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::TargetJ >&
+GetMotionJReq::target_list() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.GetMotionJReq.target_list)
+  return _internal_target_list();
+}
+inline const ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::TargetJ>&
+GetMotionJReq::_internal_target_list() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.target_list_;
+}
+inline ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::TargetJ>*
+GetMotionJReq::_internal_mutable_target_list() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.target_list_;
+}
+
+// .Nrmk.IndyFramework.BlendingType blending = 2;
+inline bool GetMotionJReq::has_blending() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.blending_ != nullptr);
+  return value;
+}
+inline void GetMotionJReq::clear_blending() {
+  if (_impl_.blending_ != nullptr) _impl_.blending_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::Nrmk::IndyFramework::BlendingType& GetMotionJReq::_internal_blending() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  const ::Nrmk::IndyFramework::BlendingType* p = _impl_.blending_;
+  return p != nullptr ? *p : reinterpret_cast<const ::Nrmk::IndyFramework::BlendingType&>(::Nrmk::IndyFramework::_BlendingType_default_instance_);
+}
+inline const ::Nrmk::IndyFramework::BlendingType& GetMotionJReq::blending() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.GetMotionJReq.blending)
+  return _internal_blending();
+}
+inline void GetMotionJReq::unsafe_arena_set_allocated_blending(::Nrmk::IndyFramework::BlendingType* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.blending_);
+  }
+  _impl_.blending_ = reinterpret_cast<::Nrmk::IndyFramework::BlendingType*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Nrmk.IndyFramework.GetMotionJReq.blending)
+}
+inline ::Nrmk::IndyFramework::BlendingType* GetMotionJReq::release_blending() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::Nrmk::IndyFramework::BlendingType* released = _impl_.blending_;
+  _impl_.blending_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  if (GetArenaForAllocation() == nullptr) {
+    delete old;
+  }
+#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return released;
+}
+inline ::Nrmk::IndyFramework::BlendingType* GetMotionJReq::unsafe_arena_release_blending() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:Nrmk.IndyFramework.GetMotionJReq.blending)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::Nrmk::IndyFramework::BlendingType* temp = _impl_.blending_;
+  _impl_.blending_ = nullptr;
+  return temp;
+}
+inline ::Nrmk::IndyFramework::BlendingType* GetMotionJReq::_internal_mutable_blending() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  if (_impl_.blending_ == nullptr) {
+    auto* p = CreateMaybeMessage<::Nrmk::IndyFramework::BlendingType>(GetArenaForAllocation());
+    _impl_.blending_ = reinterpret_cast<::Nrmk::IndyFramework::BlendingType*>(p);
+  }
+  return _impl_.blending_;
+}
+inline ::Nrmk::IndyFramework::BlendingType* GetMotionJReq::mutable_blending() {
+  ::Nrmk::IndyFramework::BlendingType* _msg = _internal_mutable_blending();
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.GetMotionJReq.blending)
+  return _msg;
+}
+inline void GetMotionJReq::set_allocated_blending(::Nrmk::IndyFramework::BlendingType* value) {
+  ::google::protobuf::Arena* message_arena = GetArenaForAllocation();
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::Nrmk::IndyFramework::BlendingType*>(_impl_.blending_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena =
+        ::google::protobuf::Arena::InternalGetOwningArena(reinterpret_cast<::Nrmk::IndyFramework::BlendingType*>(value));
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.blending_ = reinterpret_cast<::Nrmk::IndyFramework::BlendingType*>(value);
+  // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.GetMotionJReq.blending)
+}
+
+// float vel_ratio = 3;
+inline void GetMotionJReq::clear_vel_ratio() {
+  _impl_.vel_ratio_ = 0;
+}
+inline float GetMotionJReq::vel_ratio() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.GetMotionJReq.vel_ratio)
+  return _internal_vel_ratio();
+}
+inline void GetMotionJReq::set_vel_ratio(float value) {
+  _internal_set_vel_ratio(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.GetMotionJReq.vel_ratio)
+}
+inline float GetMotionJReq::_internal_vel_ratio() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.vel_ratio_;
+}
+inline void GetMotionJReq::_internal_set_vel_ratio(float value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.vel_ratio_ = value;
+}
+
+// float acc_ratio = 4;
+inline void GetMotionJReq::clear_acc_ratio() {
+  _impl_.acc_ratio_ = 0;
+}
+inline float GetMotionJReq::acc_ratio() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.GetMotionJReq.acc_ratio)
+  return _internal_acc_ratio();
+}
+inline void GetMotionJReq::set_acc_ratio(float value) {
+  _internal_set_acc_ratio(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.GetMotionJReq.acc_ratio)
+}
+inline float GetMotionJReq::_internal_acc_ratio() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.acc_ratio_;
+}
+inline void GetMotionJReq::_internal_set_acc_ratio(float value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.acc_ratio_ = value;
+}
+
+// .Nrmk.IndyFramework.MotionCondition post_condition = 20;
+inline bool GetMotionJReq::has_post_condition() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.post_condition_ != nullptr);
+  return value;
+}
+inline void GetMotionJReq::clear_post_condition() {
+  if (_impl_.post_condition_ != nullptr) _impl_.post_condition_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000002u;
+}
+inline const ::Nrmk::IndyFramework::MotionCondition& GetMotionJReq::_internal_post_condition() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  const ::Nrmk::IndyFramework::MotionCondition* p = _impl_.post_condition_;
+  return p != nullptr ? *p : reinterpret_cast<const ::Nrmk::IndyFramework::MotionCondition&>(::Nrmk::IndyFramework::_MotionCondition_default_instance_);
+}
+inline const ::Nrmk::IndyFramework::MotionCondition& GetMotionJReq::post_condition() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.GetMotionJReq.post_condition)
+  return _internal_post_condition();
+}
+inline void GetMotionJReq::unsafe_arena_set_allocated_post_condition(::Nrmk::IndyFramework::MotionCondition* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.post_condition_);
+  }
+  _impl_.post_condition_ = reinterpret_cast<::Nrmk::IndyFramework::MotionCondition*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Nrmk.IndyFramework.GetMotionJReq.post_condition)
+}
+inline ::Nrmk::IndyFramework::MotionCondition* GetMotionJReq::release_post_condition() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  ::Nrmk::IndyFramework::MotionCondition* released = _impl_.post_condition_;
+  _impl_.post_condition_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  if (GetArenaForAllocation() == nullptr) {
+    delete old;
+  }
+#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return released;
+}
+inline ::Nrmk::IndyFramework::MotionCondition* GetMotionJReq::unsafe_arena_release_post_condition() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:Nrmk.IndyFramework.GetMotionJReq.post_condition)
+
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  ::Nrmk::IndyFramework::MotionCondition* temp = _impl_.post_condition_;
+  _impl_.post_condition_ = nullptr;
+  return temp;
+}
+inline ::Nrmk::IndyFramework::MotionCondition* GetMotionJReq::_internal_mutable_post_condition() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  if (_impl_.post_condition_ == nullptr) {
+    auto* p = CreateMaybeMessage<::Nrmk::IndyFramework::MotionCondition>(GetArenaForAllocation());
+    _impl_.post_condition_ = reinterpret_cast<::Nrmk::IndyFramework::MotionCondition*>(p);
+  }
+  return _impl_.post_condition_;
+}
+inline ::Nrmk::IndyFramework::MotionCondition* GetMotionJReq::mutable_post_condition() {
+  ::Nrmk::IndyFramework::MotionCondition* _msg = _internal_mutable_post_condition();
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.GetMotionJReq.post_condition)
+  return _msg;
+}
+inline void GetMotionJReq::set_allocated_post_condition(::Nrmk::IndyFramework::MotionCondition* value) {
+  ::google::protobuf::Arena* message_arena = GetArenaForAllocation();
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::Nrmk::IndyFramework::MotionCondition*>(_impl_.post_condition_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena =
+        ::google::protobuf::Arena::InternalGetOwningArena(reinterpret_cast<::Nrmk::IndyFramework::MotionCondition*>(value));
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+
+  _impl_.post_condition_ = reinterpret_cast<::Nrmk::IndyFramework::MotionCondition*>(value);
+  // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.GetMotionJReq.post_condition)
+}
+
+// float time_step = 30;
+inline void GetMotionJReq::clear_time_step() {
+  _impl_.time_step_ = 0;
+}
+inline float GetMotionJReq::time_step() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.GetMotionJReq.time_step)
+  return _internal_time_step();
+}
+inline void GetMotionJReq::set_time_step(float value) {
+  _internal_set_time_step(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.GetMotionJReq.time_step)
+}
+inline float GetMotionJReq::_internal_time_step() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.time_step_;
+}
+inline void GetMotionJReq::_internal_set_time_step(float value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.time_step_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// GetMotionLReq
+
+// repeated .Nrmk.IndyFramework.TargetP target_list = 1;
+inline int GetMotionLReq::_internal_target_list_size() const {
+  return _internal_target_list().size();
+}
+inline int GetMotionLReq::target_list_size() const {
+  return _internal_target_list_size();
+}
+inline void GetMotionLReq::clear_target_list() {
+  _internal_mutable_target_list()->Clear();
+}
+inline ::Nrmk::IndyFramework::TargetP* GetMotionLReq::mutable_target_list(int index) {
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.GetMotionLReq.target_list)
+  return _internal_mutable_target_list()->Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::TargetP >*
+GetMotionLReq::mutable_target_list() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.GetMotionLReq.target_list)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_target_list();
+}
+inline const ::Nrmk::IndyFramework::TargetP& GetMotionLReq::target_list(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.GetMotionLReq.target_list)
+    return _internal_target_list().Get(index);
+}
+inline ::Nrmk::IndyFramework::TargetP* GetMotionLReq::add_target_list() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::Nrmk::IndyFramework::TargetP* _add = _internal_mutable_target_list()->Add();
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.GetMotionLReq.target_list)
+  return _add;
+}
+inline const ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::TargetP >&
+GetMotionLReq::target_list() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.GetMotionLReq.target_list)
+  return _internal_target_list();
+}
+inline const ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::TargetP>&
+GetMotionLReq::_internal_target_list() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.target_list_;
+}
+inline ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::TargetP>*
+GetMotionLReq::_internal_mutable_target_list() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.target_list_;
+}
+
+// .Nrmk.IndyFramework.BlendingType blending = 2;
+inline bool GetMotionLReq::has_blending() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.blending_ != nullptr);
+  return value;
+}
+inline void GetMotionLReq::clear_blending() {
+  if (_impl_.blending_ != nullptr) _impl_.blending_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::Nrmk::IndyFramework::BlendingType& GetMotionLReq::_internal_blending() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  const ::Nrmk::IndyFramework::BlendingType* p = _impl_.blending_;
+  return p != nullptr ? *p : reinterpret_cast<const ::Nrmk::IndyFramework::BlendingType&>(::Nrmk::IndyFramework::_BlendingType_default_instance_);
+}
+inline const ::Nrmk::IndyFramework::BlendingType& GetMotionLReq::blending() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.GetMotionLReq.blending)
+  return _internal_blending();
+}
+inline void GetMotionLReq::unsafe_arena_set_allocated_blending(::Nrmk::IndyFramework::BlendingType* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.blending_);
+  }
+  _impl_.blending_ = reinterpret_cast<::Nrmk::IndyFramework::BlendingType*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Nrmk.IndyFramework.GetMotionLReq.blending)
+}
+inline ::Nrmk::IndyFramework::BlendingType* GetMotionLReq::release_blending() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::Nrmk::IndyFramework::BlendingType* released = _impl_.blending_;
+  _impl_.blending_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  if (GetArenaForAllocation() == nullptr) {
+    delete old;
+  }
+#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return released;
+}
+inline ::Nrmk::IndyFramework::BlendingType* GetMotionLReq::unsafe_arena_release_blending() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:Nrmk.IndyFramework.GetMotionLReq.blending)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::Nrmk::IndyFramework::BlendingType* temp = _impl_.blending_;
+  _impl_.blending_ = nullptr;
+  return temp;
+}
+inline ::Nrmk::IndyFramework::BlendingType* GetMotionLReq::_internal_mutable_blending() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  if (_impl_.blending_ == nullptr) {
+    auto* p = CreateMaybeMessage<::Nrmk::IndyFramework::BlendingType>(GetArenaForAllocation());
+    _impl_.blending_ = reinterpret_cast<::Nrmk::IndyFramework::BlendingType*>(p);
+  }
+  return _impl_.blending_;
+}
+inline ::Nrmk::IndyFramework::BlendingType* GetMotionLReq::mutable_blending() {
+  ::Nrmk::IndyFramework::BlendingType* _msg = _internal_mutable_blending();
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.GetMotionLReq.blending)
+  return _msg;
+}
+inline void GetMotionLReq::set_allocated_blending(::Nrmk::IndyFramework::BlendingType* value) {
+  ::google::protobuf::Arena* message_arena = GetArenaForAllocation();
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::Nrmk::IndyFramework::BlendingType*>(_impl_.blending_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena =
+        ::google::protobuf::Arena::InternalGetOwningArena(reinterpret_cast<::Nrmk::IndyFramework::BlendingType*>(value));
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.blending_ = reinterpret_cast<::Nrmk::IndyFramework::BlendingType*>(value);
+  // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.GetMotionLReq.blending)
+}
+
+// float vel_ratio = 3;
+inline void GetMotionLReq::clear_vel_ratio() {
+  _impl_.vel_ratio_ = 0;
+}
+inline float GetMotionLReq::vel_ratio() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.GetMotionLReq.vel_ratio)
+  return _internal_vel_ratio();
+}
+inline void GetMotionLReq::set_vel_ratio(float value) {
+  _internal_set_vel_ratio(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.GetMotionLReq.vel_ratio)
+}
+inline float GetMotionLReq::_internal_vel_ratio() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.vel_ratio_;
+}
+inline void GetMotionLReq::_internal_set_vel_ratio(float value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.vel_ratio_ = value;
+}
+
+// float acc_ratio = 4;
+inline void GetMotionLReq::clear_acc_ratio() {
+  _impl_.acc_ratio_ = 0;
+}
+inline float GetMotionLReq::acc_ratio() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.GetMotionLReq.acc_ratio)
+  return _internal_acc_ratio();
+}
+inline void GetMotionLReq::set_acc_ratio(float value) {
+  _internal_set_acc_ratio(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.GetMotionLReq.acc_ratio)
+}
+inline float GetMotionLReq::_internal_acc_ratio() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.acc_ratio_;
+}
+inline void GetMotionLReq::_internal_set_acc_ratio(float value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.acc_ratio_ = value;
+}
+
+// .Nrmk.IndyFramework.VelocityModeType vel_type = 5;
+inline void GetMotionLReq::clear_vel_type() {
+  _impl_.vel_type_ = 0;
+}
+inline ::Nrmk::IndyFramework::VelocityModeType GetMotionLReq::vel_type() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.GetMotionLReq.vel_type)
+  return _internal_vel_type();
+}
+inline void GetMotionLReq::set_vel_type(::Nrmk::IndyFramework::VelocityModeType value) {
+  _internal_set_vel_type(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.GetMotionLReq.vel_type)
+}
+inline ::Nrmk::IndyFramework::VelocityModeType GetMotionLReq::_internal_vel_type() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return static_cast<::Nrmk::IndyFramework::VelocityModeType>(_impl_.vel_type_);
+}
+inline void GetMotionLReq::_internal_set_vel_type(::Nrmk::IndyFramework::VelocityModeType value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.vel_type_ = value;
+}
+
+// int32 arm_index = 10;
+inline void GetMotionLReq::clear_arm_index() {
+  _impl_.arm_index_ = 0;
+}
+inline ::int32_t GetMotionLReq::arm_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.GetMotionLReq.arm_index)
+  return _internal_arm_index();
+}
+inline void GetMotionLReq::set_arm_index(::int32_t value) {
+  _internal_set_arm_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.GetMotionLReq.arm_index)
+}
+inline ::int32_t GetMotionLReq::_internal_arm_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.arm_index_;
+}
+inline void GetMotionLReq::_internal_set_arm_index(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.arm_index_ = value;
+}
+
+// .Nrmk.IndyFramework.MotionCondition post_condition = 20;
+inline bool GetMotionLReq::has_post_condition() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.post_condition_ != nullptr);
+  return value;
+}
+inline void GetMotionLReq::clear_post_condition() {
+  if (_impl_.post_condition_ != nullptr) _impl_.post_condition_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000002u;
+}
+inline const ::Nrmk::IndyFramework::MotionCondition& GetMotionLReq::_internal_post_condition() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  const ::Nrmk::IndyFramework::MotionCondition* p = _impl_.post_condition_;
+  return p != nullptr ? *p : reinterpret_cast<const ::Nrmk::IndyFramework::MotionCondition&>(::Nrmk::IndyFramework::_MotionCondition_default_instance_);
+}
+inline const ::Nrmk::IndyFramework::MotionCondition& GetMotionLReq::post_condition() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.GetMotionLReq.post_condition)
+  return _internal_post_condition();
+}
+inline void GetMotionLReq::unsafe_arena_set_allocated_post_condition(::Nrmk::IndyFramework::MotionCondition* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.post_condition_);
+  }
+  _impl_.post_condition_ = reinterpret_cast<::Nrmk::IndyFramework::MotionCondition*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Nrmk.IndyFramework.GetMotionLReq.post_condition)
+}
+inline ::Nrmk::IndyFramework::MotionCondition* GetMotionLReq::release_post_condition() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  ::Nrmk::IndyFramework::MotionCondition* released = _impl_.post_condition_;
+  _impl_.post_condition_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  if (GetArenaForAllocation() == nullptr) {
+    delete old;
+  }
+#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return released;
+}
+inline ::Nrmk::IndyFramework::MotionCondition* GetMotionLReq::unsafe_arena_release_post_condition() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:Nrmk.IndyFramework.GetMotionLReq.post_condition)
+
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  ::Nrmk::IndyFramework::MotionCondition* temp = _impl_.post_condition_;
+  _impl_.post_condition_ = nullptr;
+  return temp;
+}
+inline ::Nrmk::IndyFramework::MotionCondition* GetMotionLReq::_internal_mutable_post_condition() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  if (_impl_.post_condition_ == nullptr) {
+    auto* p = CreateMaybeMessage<::Nrmk::IndyFramework::MotionCondition>(GetArenaForAllocation());
+    _impl_.post_condition_ = reinterpret_cast<::Nrmk::IndyFramework::MotionCondition*>(p);
+  }
+  return _impl_.post_condition_;
+}
+inline ::Nrmk::IndyFramework::MotionCondition* GetMotionLReq::mutable_post_condition() {
+  ::Nrmk::IndyFramework::MotionCondition* _msg = _internal_mutable_post_condition();
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.GetMotionLReq.post_condition)
+  return _msg;
+}
+inline void GetMotionLReq::set_allocated_post_condition(::Nrmk::IndyFramework::MotionCondition* value) {
+  ::google::protobuf::Arena* message_arena = GetArenaForAllocation();
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::Nrmk::IndyFramework::MotionCondition*>(_impl_.post_condition_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena =
+        ::google::protobuf::Arena::InternalGetOwningArena(reinterpret_cast<::Nrmk::IndyFramework::MotionCondition*>(value));
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+
+  _impl_.post_condition_ = reinterpret_cast<::Nrmk::IndyFramework::MotionCondition*>(value);
+  // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.GetMotionLReq.post_condition)
+}
+
+// float time_step = 30;
+inline void GetMotionLReq::clear_time_step() {
+  _impl_.time_step_ = 0;
+}
+inline float GetMotionLReq::time_step() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.GetMotionLReq.time_step)
+  return _internal_time_step();
+}
+inline void GetMotionLReq::set_time_step(float value) {
+  _internal_set_time_step(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.GetMotionLReq.time_step)
+}
+inline float GetMotionLReq::_internal_time_step() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.time_step_;
+}
+inline void GetMotionLReq::_internal_set_time_step(float value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.time_step_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// GetMotionCReq
+
+// .Nrmk.IndyFramework.TargetC target = 1;
+inline bool GetMotionCReq::has_target() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.target_ != nullptr);
+  return value;
+}
+inline void GetMotionCReq::clear_target() {
+  if (_impl_.target_ != nullptr) _impl_.target_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::Nrmk::IndyFramework::TargetC& GetMotionCReq::_internal_target() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  const ::Nrmk::IndyFramework::TargetC* p = _impl_.target_;
+  return p != nullptr ? *p : reinterpret_cast<const ::Nrmk::IndyFramework::TargetC&>(::Nrmk::IndyFramework::_TargetC_default_instance_);
+}
+inline const ::Nrmk::IndyFramework::TargetC& GetMotionCReq::target() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.GetMotionCReq.target)
+  return _internal_target();
+}
+inline void GetMotionCReq::unsafe_arena_set_allocated_target(::Nrmk::IndyFramework::TargetC* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.target_);
+  }
+  _impl_.target_ = reinterpret_cast<::Nrmk::IndyFramework::TargetC*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Nrmk.IndyFramework.GetMotionCReq.target)
+}
+inline ::Nrmk::IndyFramework::TargetC* GetMotionCReq::release_target() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::Nrmk::IndyFramework::TargetC* released = _impl_.target_;
+  _impl_.target_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  if (GetArenaForAllocation() == nullptr) {
+    delete old;
+  }
+#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return released;
+}
+inline ::Nrmk::IndyFramework::TargetC* GetMotionCReq::unsafe_arena_release_target() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:Nrmk.IndyFramework.GetMotionCReq.target)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::Nrmk::IndyFramework::TargetC* temp = _impl_.target_;
+  _impl_.target_ = nullptr;
+  return temp;
+}
+inline ::Nrmk::IndyFramework::TargetC* GetMotionCReq::_internal_mutable_target() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  if (_impl_.target_ == nullptr) {
+    auto* p = CreateMaybeMessage<::Nrmk::IndyFramework::TargetC>(GetArenaForAllocation());
+    _impl_.target_ = reinterpret_cast<::Nrmk::IndyFramework::TargetC*>(p);
+  }
+  return _impl_.target_;
+}
+inline ::Nrmk::IndyFramework::TargetC* GetMotionCReq::mutable_target() {
+  ::Nrmk::IndyFramework::TargetC* _msg = _internal_mutable_target();
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.GetMotionCReq.target)
+  return _msg;
+}
+inline void GetMotionCReq::set_allocated_target(::Nrmk::IndyFramework::TargetC* value) {
+  ::google::protobuf::Arena* message_arena = GetArenaForAllocation();
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::Nrmk::IndyFramework::TargetC*>(_impl_.target_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena =
+        ::google::protobuf::Arena::InternalGetOwningArena(reinterpret_cast<::Nrmk::IndyFramework::TargetC*>(value));
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.target_ = reinterpret_cast<::Nrmk::IndyFramework::TargetC*>(value);
+  // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.GetMotionCReq.target)
+}
+
+// .Nrmk.IndyFramework.BlendingType blending = 2;
+inline bool GetMotionCReq::has_blending() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.blending_ != nullptr);
+  return value;
+}
+inline void GetMotionCReq::clear_blending() {
+  if (_impl_.blending_ != nullptr) _impl_.blending_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000002u;
+}
+inline const ::Nrmk::IndyFramework::BlendingType& GetMotionCReq::_internal_blending() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  const ::Nrmk::IndyFramework::BlendingType* p = _impl_.blending_;
+  return p != nullptr ? *p : reinterpret_cast<const ::Nrmk::IndyFramework::BlendingType&>(::Nrmk::IndyFramework::_BlendingType_default_instance_);
+}
+inline const ::Nrmk::IndyFramework::BlendingType& GetMotionCReq::blending() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.GetMotionCReq.blending)
+  return _internal_blending();
+}
+inline void GetMotionCReq::unsafe_arena_set_allocated_blending(::Nrmk::IndyFramework::BlendingType* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.blending_);
+  }
+  _impl_.blending_ = reinterpret_cast<::Nrmk::IndyFramework::BlendingType*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Nrmk.IndyFramework.GetMotionCReq.blending)
+}
+inline ::Nrmk::IndyFramework::BlendingType* GetMotionCReq::release_blending() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  ::Nrmk::IndyFramework::BlendingType* released = _impl_.blending_;
+  _impl_.blending_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  if (GetArenaForAllocation() == nullptr) {
+    delete old;
+  }
+#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return released;
+}
+inline ::Nrmk::IndyFramework::BlendingType* GetMotionCReq::unsafe_arena_release_blending() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:Nrmk.IndyFramework.GetMotionCReq.blending)
+
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  ::Nrmk::IndyFramework::BlendingType* temp = _impl_.blending_;
+  _impl_.blending_ = nullptr;
+  return temp;
+}
+inline ::Nrmk::IndyFramework::BlendingType* GetMotionCReq::_internal_mutable_blending() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  if (_impl_.blending_ == nullptr) {
+    auto* p = CreateMaybeMessage<::Nrmk::IndyFramework::BlendingType>(GetArenaForAllocation());
+    _impl_.blending_ = reinterpret_cast<::Nrmk::IndyFramework::BlendingType*>(p);
+  }
+  return _impl_.blending_;
+}
+inline ::Nrmk::IndyFramework::BlendingType* GetMotionCReq::mutable_blending() {
+  ::Nrmk::IndyFramework::BlendingType* _msg = _internal_mutable_blending();
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.GetMotionCReq.blending)
+  return _msg;
+}
+inline void GetMotionCReq::set_allocated_blending(::Nrmk::IndyFramework::BlendingType* value) {
+  ::google::protobuf::Arena* message_arena = GetArenaForAllocation();
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::Nrmk::IndyFramework::BlendingType*>(_impl_.blending_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena =
+        ::google::protobuf::Arena::InternalGetOwningArena(reinterpret_cast<::Nrmk::IndyFramework::BlendingType*>(value));
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+
+  _impl_.blending_ = reinterpret_cast<::Nrmk::IndyFramework::BlendingType*>(value);
+  // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.GetMotionCReq.blending)
+}
+
+// float angle = 3;
+inline void GetMotionCReq::clear_angle() {
+  _impl_.angle_ = 0;
+}
+inline float GetMotionCReq::angle() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.GetMotionCReq.angle)
+  return _internal_angle();
+}
+inline void GetMotionCReq::set_angle(float value) {
+  _internal_set_angle(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.GetMotionCReq.angle)
+}
+inline float GetMotionCReq::_internal_angle() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.angle_;
+}
+inline void GetMotionCReq::_internal_set_angle(float value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.angle_ = value;
+}
+
+// .Nrmk.IndyFramework.CircularSettingType setting_type = 10;
+inline void GetMotionCReq::clear_setting_type() {
+  _impl_.setting_type_ = 0;
+}
+inline ::Nrmk::IndyFramework::CircularSettingType GetMotionCReq::setting_type() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.GetMotionCReq.setting_type)
+  return _internal_setting_type();
+}
+inline void GetMotionCReq::set_setting_type(::Nrmk::IndyFramework::CircularSettingType value) {
+  _internal_set_setting_type(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.GetMotionCReq.setting_type)
+}
+inline ::Nrmk::IndyFramework::CircularSettingType GetMotionCReq::_internal_setting_type() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return static_cast<::Nrmk::IndyFramework::CircularSettingType>(_impl_.setting_type_);
+}
+inline void GetMotionCReq::_internal_set_setting_type(::Nrmk::IndyFramework::CircularSettingType value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.setting_type_ = value;
+}
+
+// .Nrmk.IndyFramework.CircularMovingType move_type = 11;
+inline void GetMotionCReq::clear_move_type() {
+  _impl_.move_type_ = 0;
+}
+inline ::Nrmk::IndyFramework::CircularMovingType GetMotionCReq::move_type() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.GetMotionCReq.move_type)
+  return _internal_move_type();
+}
+inline void GetMotionCReq::set_move_type(::Nrmk::IndyFramework::CircularMovingType value) {
+  _internal_set_move_type(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.GetMotionCReq.move_type)
+}
+inline ::Nrmk::IndyFramework::CircularMovingType GetMotionCReq::_internal_move_type() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return static_cast<::Nrmk::IndyFramework::CircularMovingType>(_impl_.move_type_);
+}
+inline void GetMotionCReq::_internal_set_move_type(::Nrmk::IndyFramework::CircularMovingType value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.move_type_ = value;
+}
+
+// int32 arm_index = 15;
+inline void GetMotionCReq::clear_arm_index() {
+  _impl_.arm_index_ = 0;
+}
+inline ::int32_t GetMotionCReq::arm_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.GetMotionCReq.arm_index)
+  return _internal_arm_index();
+}
+inline void GetMotionCReq::set_arm_index(::int32_t value) {
+  _internal_set_arm_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.GetMotionCReq.arm_index)
+}
+inline ::int32_t GetMotionCReq::_internal_arm_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.arm_index_;
+}
+inline void GetMotionCReq::_internal_set_arm_index(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.arm_index_ = value;
+}
+
+// float vel_ratio = 20;
+inline void GetMotionCReq::clear_vel_ratio() {
+  _impl_.vel_ratio_ = 0;
+}
+inline float GetMotionCReq::vel_ratio() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.GetMotionCReq.vel_ratio)
+  return _internal_vel_ratio();
+}
+inline void GetMotionCReq::set_vel_ratio(float value) {
+  _internal_set_vel_ratio(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.GetMotionCReq.vel_ratio)
+}
+inline float GetMotionCReq::_internal_vel_ratio() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.vel_ratio_;
+}
+inline void GetMotionCReq::_internal_set_vel_ratio(float value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.vel_ratio_ = value;
+}
+
+// float acc_ratio = 21;
+inline void GetMotionCReq::clear_acc_ratio() {
+  _impl_.acc_ratio_ = 0;
+}
+inline float GetMotionCReq::acc_ratio() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.GetMotionCReq.acc_ratio)
+  return _internal_acc_ratio();
+}
+inline void GetMotionCReq::set_acc_ratio(float value) {
+  _internal_set_acc_ratio(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.GetMotionCReq.acc_ratio)
+}
+inline float GetMotionCReq::_internal_acc_ratio() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.acc_ratio_;
+}
+inline void GetMotionCReq::_internal_set_acc_ratio(float value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.acc_ratio_ = value;
+}
+
+// .Nrmk.IndyFramework.VelocityModeType vel_type = 22;
+inline void GetMotionCReq::clear_vel_type() {
+  _impl_.vel_type_ = 0;
+}
+inline ::Nrmk::IndyFramework::VelocityModeType GetMotionCReq::vel_type() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.GetMotionCReq.vel_type)
+  return _internal_vel_type();
+}
+inline void GetMotionCReq::set_vel_type(::Nrmk::IndyFramework::VelocityModeType value) {
+  _internal_set_vel_type(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.GetMotionCReq.vel_type)
+}
+inline ::Nrmk::IndyFramework::VelocityModeType GetMotionCReq::_internal_vel_type() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return static_cast<::Nrmk::IndyFramework::VelocityModeType>(_impl_.vel_type_);
+}
+inline void GetMotionCReq::_internal_set_vel_type(::Nrmk::IndyFramework::VelocityModeType value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.vel_type_ = value;
+}
+
+// .Nrmk.IndyFramework.MotionCondition post_condition = 25;
+inline bool GetMotionCReq::has_post_condition() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000004u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.post_condition_ != nullptr);
+  return value;
+}
+inline void GetMotionCReq::clear_post_condition() {
+  if (_impl_.post_condition_ != nullptr) _impl_.post_condition_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000004u;
+}
+inline const ::Nrmk::IndyFramework::MotionCondition& GetMotionCReq::_internal_post_condition() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  const ::Nrmk::IndyFramework::MotionCondition* p = _impl_.post_condition_;
+  return p != nullptr ? *p : reinterpret_cast<const ::Nrmk::IndyFramework::MotionCondition&>(::Nrmk::IndyFramework::_MotionCondition_default_instance_);
+}
+inline const ::Nrmk::IndyFramework::MotionCondition& GetMotionCReq::post_condition() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.GetMotionCReq.post_condition)
+  return _internal_post_condition();
+}
+inline void GetMotionCReq::unsafe_arena_set_allocated_post_condition(::Nrmk::IndyFramework::MotionCondition* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.post_condition_);
+  }
+  _impl_.post_condition_ = reinterpret_cast<::Nrmk::IndyFramework::MotionCondition*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000004u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000004u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Nrmk.IndyFramework.GetMotionCReq.post_condition)
+}
+inline ::Nrmk::IndyFramework::MotionCondition* GetMotionCReq::release_post_condition() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+
+  _impl_._has_bits_[0] &= ~0x00000004u;
+  ::Nrmk::IndyFramework::MotionCondition* released = _impl_.post_condition_;
+  _impl_.post_condition_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  if (GetArenaForAllocation() == nullptr) {
+    delete old;
+  }
+#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return released;
+}
+inline ::Nrmk::IndyFramework::MotionCondition* GetMotionCReq::unsafe_arena_release_post_condition() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:Nrmk.IndyFramework.GetMotionCReq.post_condition)
+
+  _impl_._has_bits_[0] &= ~0x00000004u;
+  ::Nrmk::IndyFramework::MotionCondition* temp = _impl_.post_condition_;
+  _impl_.post_condition_ = nullptr;
+  return temp;
+}
+inline ::Nrmk::IndyFramework::MotionCondition* GetMotionCReq::_internal_mutable_post_condition() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_._has_bits_[0] |= 0x00000004u;
+  if (_impl_.post_condition_ == nullptr) {
+    auto* p = CreateMaybeMessage<::Nrmk::IndyFramework::MotionCondition>(GetArenaForAllocation());
+    _impl_.post_condition_ = reinterpret_cast<::Nrmk::IndyFramework::MotionCondition*>(p);
+  }
+  return _impl_.post_condition_;
+}
+inline ::Nrmk::IndyFramework::MotionCondition* GetMotionCReq::mutable_post_condition() {
+  ::Nrmk::IndyFramework::MotionCondition* _msg = _internal_mutable_post_condition();
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.GetMotionCReq.post_condition)
+  return _msg;
+}
+inline void GetMotionCReq::set_allocated_post_condition(::Nrmk::IndyFramework::MotionCondition* value) {
+  ::google::protobuf::Arena* message_arena = GetArenaForAllocation();
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::Nrmk::IndyFramework::MotionCondition*>(_impl_.post_condition_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena =
+        ::google::protobuf::Arena::InternalGetOwningArena(reinterpret_cast<::Nrmk::IndyFramework::MotionCondition*>(value));
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000004u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000004u;
+  }
+
+  _impl_.post_condition_ = reinterpret_cast<::Nrmk::IndyFramework::MotionCondition*>(value);
+  // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.GetMotionCReq.post_condition)
+}
+
+// float time_step = 30;
+inline void GetMotionCReq::clear_time_step() {
+  _impl_.time_step_ = 0;
+}
+inline float GetMotionCReq::time_step() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.GetMotionCReq.time_step)
+  return _internal_time_step();
+}
+inline void GetMotionCReq::set_time_step(float value) {
+  _internal_set_time_step(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.GetMotionCReq.time_step)
+}
+inline float GetMotionCReq::_internal_time_step() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.time_step_;
+}
+inline void GetMotionCReq::_internal_set_time_step(float value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.time_step_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// GetMotionRes
+
+// repeated float timestamp = 1;
+inline int GetMotionRes::_internal_timestamp_size() const {
+  return _internal_timestamp().size();
+}
+inline int GetMotionRes::timestamp_size() const {
+  return _internal_timestamp_size();
+}
+inline void GetMotionRes::clear_timestamp() {
+  _internal_mutable_timestamp()->Clear();
+}
+inline float GetMotionRes::timestamp(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.GetMotionRes.timestamp)
+  return _internal_timestamp().Get(index);
+}
+inline void GetMotionRes::set_timestamp(int index, float value) {
+  _internal_mutable_timestamp()->Set(index, value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.GetMotionRes.timestamp)
+}
+inline void GetMotionRes::add_timestamp(float value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_timestamp()->Add(value);
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.GetMotionRes.timestamp)
+}
+inline const ::google::protobuf::RepeatedField<float>& GetMotionRes::timestamp() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.GetMotionRes.timestamp)
+  return _internal_timestamp();
+}
+inline ::google::protobuf::RepeatedField<float>* GetMotionRes::mutable_timestamp() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.GetMotionRes.timestamp)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_timestamp();
+}
+
+inline const ::google::protobuf::RepeatedField<float>& GetMotionRes::_internal_timestamp() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.timestamp_;
+}
+inline ::google::protobuf::RepeatedField<float>* GetMotionRes::_internal_mutable_timestamp() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.timestamp_;
+}
+
+// repeated .Nrmk.IndyFramework.Vector q_list = 2;
+inline int GetMotionRes::_internal_q_list_size() const {
+  return _internal_q_list().size();
+}
+inline int GetMotionRes::q_list_size() const {
+  return _internal_q_list_size();
+}
+inline ::Nrmk::IndyFramework::Vector* GetMotionRes::mutable_q_list(int index) {
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.GetMotionRes.q_list)
+  return _internal_mutable_q_list()->Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::Vector >*
+GetMotionRes::mutable_q_list() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.GetMotionRes.q_list)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_q_list();
+}
+inline const ::Nrmk::IndyFramework::Vector& GetMotionRes::q_list(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.GetMotionRes.q_list)
+    return _internal_q_list().Get(index);
+}
+inline ::Nrmk::IndyFramework::Vector* GetMotionRes::add_q_list() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::Nrmk::IndyFramework::Vector* _add = _internal_mutable_q_list()->Add();
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.GetMotionRes.q_list)
+  return _add;
+}
+inline const ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::Vector >&
+GetMotionRes::q_list() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.GetMotionRes.q_list)
+  return _internal_q_list();
+}
+inline const ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::Vector>&
+GetMotionRes::_internal_q_list() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.q_list_;
+}
+inline ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::Vector>*
+GetMotionRes::_internal_mutable_q_list() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.q_list_;
+}
+
+// repeated .Nrmk.IndyFramework.Vector qdot_list = 3;
+inline int GetMotionRes::_internal_qdot_list_size() const {
+  return _internal_qdot_list().size();
+}
+inline int GetMotionRes::qdot_list_size() const {
+  return _internal_qdot_list_size();
+}
+inline ::Nrmk::IndyFramework::Vector* GetMotionRes::mutable_qdot_list(int index) {
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.GetMotionRes.qdot_list)
+  return _internal_mutable_qdot_list()->Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::Vector >*
+GetMotionRes::mutable_qdot_list() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.GetMotionRes.qdot_list)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_qdot_list();
+}
+inline const ::Nrmk::IndyFramework::Vector& GetMotionRes::qdot_list(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.GetMotionRes.qdot_list)
+    return _internal_qdot_list().Get(index);
+}
+inline ::Nrmk::IndyFramework::Vector* GetMotionRes::add_qdot_list() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::Nrmk::IndyFramework::Vector* _add = _internal_mutable_qdot_list()->Add();
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.GetMotionRes.qdot_list)
+  return _add;
+}
+inline const ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::Vector >&
+GetMotionRes::qdot_list() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.GetMotionRes.qdot_list)
+  return _internal_qdot_list();
+}
+inline const ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::Vector>&
+GetMotionRes::_internal_qdot_list() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.qdot_list_;
+}
+inline ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::Vector>*
+GetMotionRes::_internal_mutable_qdot_list() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.qdot_list_;
 }
 
 // -------------------------------------------------------------------

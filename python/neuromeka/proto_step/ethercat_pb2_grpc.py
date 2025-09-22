@@ -150,9 +150,19 @@ class EtherCATStub(object):
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
                 response_deserializer=common__msgs__pb2.EndtoolRS485Rx.FromString,
                 )
+        self.GetEndtoolRS485RxFor = channel.unary_unary(
+                '/Nrmk.IndyFramework.EtherCAT/GetEndtoolRS485RxFor',
+                request_serializer=common__msgs__pb2.Int.SerializeToString,
+                response_deserializer=common__msgs__pb2.EndtoolRS485Rx.FromString,
+                )
         self.GetEndtoolRS485Tx = channel.unary_unary(
                 '/Nrmk.IndyFramework.EtherCAT/GetEndtoolRS485Tx',
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=common__msgs__pb2.EndtoolRS485Tx.FromString,
+                )
+        self.GetEndtoolRS485TxFor = channel.unary_unary(
+                '/Nrmk.IndyFramework.EtherCAT/GetEndtoolRS485TxFor',
+                request_serializer=common__msgs__pb2.Int.SerializeToString,
                 response_deserializer=common__msgs__pb2.EndtoolRS485Tx.FromString,
                 )
         self.SetEndtoolLedDim = channel.unary_unary(
@@ -426,7 +436,19 @@ class EtherCATServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetEndtoolRS485RxFor(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def GetEndtoolRS485Tx(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetEndtoolRS485TxFor(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -693,9 +715,19 @@ def add_EtherCATServicer_to_server(servicer, server):
                     request_deserializer=common__msgs__pb2.Empty.FromString,
                     response_serializer=common__msgs__pb2.EndtoolRS485Rx.SerializeToString,
             ),
+            'GetEndtoolRS485RxFor': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetEndtoolRS485RxFor,
+                    request_deserializer=common__msgs__pb2.Int.FromString,
+                    response_serializer=common__msgs__pb2.EndtoolRS485Rx.SerializeToString,
+            ),
             'GetEndtoolRS485Tx': grpc.unary_unary_rpc_method_handler(
                     servicer.GetEndtoolRS485Tx,
                     request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=common__msgs__pb2.EndtoolRS485Tx.SerializeToString,
+            ),
+            'GetEndtoolRS485TxFor': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetEndtoolRS485TxFor,
+                    request_deserializer=common__msgs__pb2.Int.FromString,
                     response_serializer=common__msgs__pb2.EndtoolRS485Tx.SerializeToString,
             ),
             'SetEndtoolLedDim': grpc.unary_unary_rpc_method_handler(
@@ -1268,6 +1300,23 @@ class EtherCAT(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
+    def GetEndtoolRS485RxFor(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.EtherCAT/GetEndtoolRS485RxFor',
+            common__msgs__pb2.Int.SerializeToString,
+            common__msgs__pb2.EndtoolRS485Rx.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
     def GetEndtoolRS485Tx(request,
             target,
             options=(),
@@ -1280,6 +1329,23 @@ class EtherCAT(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.EtherCAT/GetEndtoolRS485Tx',
             common__msgs__pb2.Empty.SerializeToString,
+            common__msgs__pb2.EndtoolRS485Tx.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetEndtoolRS485TxFor(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.EtherCAT/GetEndtoolRS485TxFor',
+            common__msgs__pb2.Int.SerializeToString,
             common__msgs__pb2.EndtoolRS485Tx.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

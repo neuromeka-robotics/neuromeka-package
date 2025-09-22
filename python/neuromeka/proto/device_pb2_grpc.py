@@ -85,9 +85,19 @@ class DeviceStub(object):
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
                 response_deserializer=common__msgs__pb2.EndtoolRS485Rx.FromString,
                 )
+        self.GetEndRS485RxFor = channel.unary_unary(
+                '/Nrmk.IndyFramework.Device/GetEndRS485RxFor',
+                request_serializer=common__msgs__pb2.Int.SerializeToString,
+                response_deserializer=common__msgs__pb2.EndtoolRS485Rx.FromString,
+                )
         self.GetEndRS485Tx = channel.unary_unary(
                 '/Nrmk.IndyFramework.Device/GetEndRS485Tx',
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=common__msgs__pb2.EndtoolRS485Tx.FromString,
+                )
+        self.GetEndRS485TxFor = channel.unary_unary(
+                '/Nrmk.IndyFramework.Device/GetEndRS485TxFor',
+                request_serializer=common__msgs__pb2.Int.SerializeToString,
                 response_deserializer=common__msgs__pb2.EndtoolRS485Tx.FromString,
                 )
         self.SetEndLedDim = channel.unary_unary(
@@ -155,9 +165,19 @@ class DeviceStub(object):
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
                 response_deserializer=device__msgs__pb2.SanderCommand.FromString,
                 )
+        self.GetSanderCommandFor = channel.unary_unary(
+                '/Nrmk.IndyFramework.Device/GetSanderCommandFor',
+                request_serializer=common__msgs__pb2.Int.SerializeToString,
+                response_deserializer=device__msgs__pb2.SanderCommand.FromString,
+                )
         self.GetFTSensorData = channel.unary_unary(
                 '/Nrmk.IndyFramework.Device/GetFTSensorData',
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=device__msgs__pb2.FTSensorData.FromString,
+                )
+        self.GetFTSensorDataFor = channel.unary_unary(
+                '/Nrmk.IndyFramework.Device/GetFTSensorDataFor',
+                request_serializer=common__msgs__pb2.Int.SerializeToString,
                 response_deserializer=device__msgs__pb2.FTSensorData.FromString,
                 )
         self.GetConveyor = channel.unary_unary(
@@ -197,6 +217,11 @@ class DeviceStub(object):
                 )
         self.SetConveyorToolLink = channel.unary_unary(
                 '/Nrmk.IndyFramework.Device/SetConveyorToolLink',
+                request_serializer=common__msgs__pb2.Int.SerializeToString,
+                response_deserializer=common__msgs__pb2.Response.FromString,
+                )
+        self.SetConveyorArmIndex = channel.unary_unary(
+                '/Nrmk.IndyFramework.Device/SetConveyorArmIndex',
                 request_serializer=common__msgs__pb2.Int.SerializeToString,
                 response_deserializer=common__msgs__pb2.Response.FromString,
                 )
@@ -379,7 +404,19 @@ class DeviceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetEndRS485RxFor(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def GetEndRS485Tx(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetEndRS485TxFor(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -464,7 +501,19 @@ class DeviceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetSanderCommandFor(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def GetFTSensorData(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetFTSensorDataFor(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -514,6 +563,12 @@ class DeviceServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def SetConveyorToolLink(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SetConveyorArmIndex(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -705,9 +760,19 @@ def add_DeviceServicer_to_server(servicer, server):
                     request_deserializer=common__msgs__pb2.Empty.FromString,
                     response_serializer=common__msgs__pb2.EndtoolRS485Rx.SerializeToString,
             ),
+            'GetEndRS485RxFor': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetEndRS485RxFor,
+                    request_deserializer=common__msgs__pb2.Int.FromString,
+                    response_serializer=common__msgs__pb2.EndtoolRS485Rx.SerializeToString,
+            ),
             'GetEndRS485Tx': grpc.unary_unary_rpc_method_handler(
                     servicer.GetEndRS485Tx,
                     request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=common__msgs__pb2.EndtoolRS485Tx.SerializeToString,
+            ),
+            'GetEndRS485TxFor': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetEndRS485TxFor,
+                    request_deserializer=common__msgs__pb2.Int.FromString,
                     response_serializer=common__msgs__pb2.EndtoolRS485Tx.SerializeToString,
             ),
             'SetEndLedDim': grpc.unary_unary_rpc_method_handler(
@@ -775,9 +840,19 @@ def add_DeviceServicer_to_server(servicer, server):
                     request_deserializer=common__msgs__pb2.Empty.FromString,
                     response_serializer=device__msgs__pb2.SanderCommand.SerializeToString,
             ),
+            'GetSanderCommandFor': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetSanderCommandFor,
+                    request_deserializer=common__msgs__pb2.Int.FromString,
+                    response_serializer=device__msgs__pb2.SanderCommand.SerializeToString,
+            ),
             'GetFTSensorData': grpc.unary_unary_rpc_method_handler(
                     servicer.GetFTSensorData,
                     request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=device__msgs__pb2.FTSensorData.SerializeToString,
+            ),
+            'GetFTSensorDataFor': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetFTSensorDataFor,
+                    request_deserializer=common__msgs__pb2.Int.FromString,
                     response_serializer=device__msgs__pb2.FTSensorData.SerializeToString,
             ),
             'GetConveyor': grpc.unary_unary_rpc_method_handler(
@@ -817,6 +892,11 @@ def add_DeviceServicer_to_server(servicer, server):
             ),
             'SetConveyorToolLink': grpc.unary_unary_rpc_method_handler(
                     servicer.SetConveyorToolLink,
+                    request_deserializer=common__msgs__pb2.Int.FromString,
+                    response_serializer=common__msgs__pb2.Response.SerializeToString,
+            ),
+            'SetConveyorArmIndex': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetConveyorArmIndex,
                     request_deserializer=common__msgs__pb2.Int.FromString,
                     response_serializer=common__msgs__pb2.Response.SerializeToString,
             ),
@@ -1159,6 +1239,23 @@ class Device(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
+    def GetEndRS485RxFor(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/GetEndRS485RxFor',
+            common__msgs__pb2.Int.SerializeToString,
+            common__msgs__pb2.EndtoolRS485Rx.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
     def GetEndRS485Tx(request,
             target,
             options=(),
@@ -1171,6 +1268,23 @@ class Device(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/GetEndRS485Tx',
             common__msgs__pb2.Empty.SerializeToString,
+            common__msgs__pb2.EndtoolRS485Tx.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetEndRS485TxFor(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/GetEndRS485TxFor',
+            common__msgs__pb2.Int.SerializeToString,
             common__msgs__pb2.EndtoolRS485Tx.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
@@ -1397,6 +1511,23 @@ class Device(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
+    def GetSanderCommandFor(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/GetSanderCommandFor',
+            common__msgs__pb2.Int.SerializeToString,
+            device__msgs__pb2.SanderCommand.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
     def GetFTSensorData(request,
             target,
             options=(),
@@ -1409,6 +1540,23 @@ class Device(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/GetFTSensorData',
             common__msgs__pb2.Empty.SerializeToString,
+            device__msgs__pb2.FTSensorData.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetFTSensorDataFor(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/GetFTSensorDataFor',
+            common__msgs__pb2.Int.SerializeToString,
             device__msgs__pb2.FTSensorData.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
@@ -1544,6 +1692,23 @@ class Device(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/SetConveyorToolLink',
+            common__msgs__pb2.Int.SerializeToString,
+            common__msgs__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SetConveyorArmIndex(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/SetConveyorArmIndex',
             common__msgs__pb2.Int.SerializeToString,
             common__msgs__pb2.Response.FromString,
             options, channel_credentials,

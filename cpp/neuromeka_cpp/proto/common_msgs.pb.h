@@ -111,6 +111,12 @@ extern PauseCatDefaultTypeInternal _PauseCat_default_instance_;
 class PosePair;
 struct PosePairDefaultTypeInternal;
 extern PosePairDefaultTypeInternal _PosePair_default_instance_;
+class ProgramBreakPoints;
+struct ProgramBreakPointsDefaultTypeInternal;
+extern ProgramBreakPointsDefaultTypeInternal _ProgramBreakPoints_default_instance_;
+class ProgramLine;
+struct ProgramLineDefaultTypeInternal;
+extern ProgramLineDefaultTypeInternal _ProgramLine_default_instance_;
 class Response;
 struct ResponseDefaultTypeInternal;
 extern ResponseDefaultTypeInternal _Response_default_instance_;
@@ -525,10 +531,11 @@ inline bool AxisType_Parse(absl::string_view name, AxisType* value) {
       AxisType_descriptor(), name, value);
 }
 enum ContactRule : int {
-  VIOLATION = 0,
+  COLLISION = 0,
   COLLISION_LEVEL = 1,
   SPEED_LIMIT = 2,
   DIRECTION_LIMIT = 3,
+  VIOLATION = 4,
   ContactRule_INT_MIN_SENTINEL_DO_NOT_USE_ =
       std::numeric_limits<::int32_t>::min(),
   ContactRule_INT_MAX_SENTINEL_DO_NOT_USE_ =
@@ -537,8 +544,8 @@ enum ContactRule : int {
 
 bool ContactRule_IsValid(int value);
 constexpr ContactRule ContactRule_MIN = static_cast<ContactRule>(0);
-constexpr ContactRule ContactRule_MAX = static_cast<ContactRule>(3);
-constexpr int ContactRule_ARRAYSIZE = 3 + 1;
+constexpr ContactRule ContactRule_MAX = static_cast<ContactRule>(4);
+constexpr int ContactRule_ARRAYSIZE = 4 + 1;
 const ::google::protobuf::EnumDescriptor*
 ContactRule_descriptor();
 template <typename T>
@@ -551,7 +558,7 @@ const std::string& ContactRule_Name(T value) {
 template <>
 inline const std::string& ContactRule_Name(ContactRule value) {
   return ::google::protobuf::internal::NameOfDenseEnum<ContactRule_descriptor,
-                                                 0, 3>(
+                                                 0, 4>(
       static_cast<int>(value));
 }
 inline bool ContactRule_Parse(absl::string_view name, ContactRule* value) {
@@ -2623,6 +2630,7 @@ class EndtoolRS485Tx final :
   enum : int {
     kWord1FieldNumber = 1,
     kWord2FieldNumber = 2,
+    kToolIndexFieldNumber = 10,
   };
   // uint32 word1 = 1;
   void clear_word1() ;
@@ -2644,18 +2652,29 @@ class EndtoolRS485Tx final :
   void _internal_set_word2(::uint32_t value);
 
   public:
+  // int32 tool_index = 10;
+  void clear_tool_index() ;
+  ::int32_t tool_index() const;
+  void set_tool_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_tool_index() const;
+  void _internal_set_tool_index(::int32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.EndtoolRS485Tx)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<1, 2, 0, 0, 2> _table_;
+  static const ::google::protobuf::internal::TcParseTable<1, 3, 0, 0, 2> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
     ::uint32_t word1_;
     ::uint32_t word2_;
+    ::int32_t tool_index_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -2793,6 +2812,7 @@ class EndtoolRS485Rx final :
   enum : int {
     kWord1FieldNumber = 1,
     kWord2FieldNumber = 2,
+    kToolIndexFieldNumber = 10,
   };
   // uint32 word1 = 1;
   void clear_word1() ;
@@ -2814,18 +2834,29 @@ class EndtoolRS485Rx final :
   void _internal_set_word2(::uint32_t value);
 
   public:
+  // int32 tool_index = 10;
+  void clear_tool_index() ;
+  ::int32_t tool_index() const;
+  void set_tool_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_tool_index() const;
+  void _internal_set_tool_index(::int32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.EndtoolRS485Rx)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<1, 2, 0, 0, 2> _table_;
+  static const ::google::protobuf::internal::TcParseTable<1, 3, 0, 0, 2> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
     ::uint32_t word1_;
     ::uint32_t word2_;
+    ::int32_t tool_index_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -4631,6 +4662,342 @@ class ModbusServerDef final :
   };
   union { Impl_ _impl_; };
   friend struct ::TableStruct_common_5fmsgs_2eproto;
+};// -------------------------------------------------------------------
+
+class ProgramLine final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.ProgramLine) */ {
+ public:
+  inline ProgramLine() : ProgramLine(nullptr) {}
+  ~ProgramLine() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR ProgramLine(::google::protobuf::internal::ConstantInitialized);
+
+  ProgramLine(const ProgramLine& from);
+  ProgramLine(ProgramLine&& from) noexcept
+    : ProgramLine() {
+    *this = ::std::move(from);
+  }
+
+  inline ProgramLine& operator=(const ProgramLine& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ProgramLine& operator=(ProgramLine&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ProgramLine& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ProgramLine* internal_default_instance() {
+    return reinterpret_cast<const ProgramLine*>(
+               &_ProgramLine_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    23;
+
+  friend void swap(ProgramLine& a, ProgramLine& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ProgramLine* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ProgramLine* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ProgramLine* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ProgramLine>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const ProgramLine& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const ProgramLine& from) {
+    ProgramLine::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ProgramLine* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "Nrmk.IndyFramework.ProgramLine";
+  }
+  protected:
+  explicit ProgramLine(::google::protobuf::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kCmdIdFieldNumber = 1,
+    kSubCmdIdFieldNumber = 2,
+  };
+  // int32 cmd_id = 1;
+  void clear_cmd_id() ;
+  ::int32_t cmd_id() const;
+  void set_cmd_id(::int32_t value);
+
+  private:
+  ::int32_t _internal_cmd_id() const;
+  void _internal_set_cmd_id(::int32_t value);
+
+  public:
+  // int32 sub_cmd_id = 2;
+  void clear_sub_cmd_id() ;
+  ::int32_t sub_cmd_id() const;
+  void set_sub_cmd_id(::int32_t value);
+
+  private:
+  ::int32_t _internal_sub_cmd_id() const;
+  void _internal_set_sub_cmd_id(::int32_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.ProgramLine)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<1, 2, 0, 0, 2> _table_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::int32_t cmd_id_;
+    ::int32_t sub_cmd_id_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_common_5fmsgs_2eproto;
+};// -------------------------------------------------------------------
+
+class ProgramBreakPoints final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.ProgramBreakPoints) */ {
+ public:
+  inline ProgramBreakPoints() : ProgramBreakPoints(nullptr) {}
+  ~ProgramBreakPoints() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR ProgramBreakPoints(::google::protobuf::internal::ConstantInitialized);
+
+  ProgramBreakPoints(const ProgramBreakPoints& from);
+  ProgramBreakPoints(ProgramBreakPoints&& from) noexcept
+    : ProgramBreakPoints() {
+    *this = ::std::move(from);
+  }
+
+  inline ProgramBreakPoints& operator=(const ProgramBreakPoints& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ProgramBreakPoints& operator=(ProgramBreakPoints&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ProgramBreakPoints& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ProgramBreakPoints* internal_default_instance() {
+    return reinterpret_cast<const ProgramBreakPoints*>(
+               &_ProgramBreakPoints_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    24;
+
+  friend void swap(ProgramBreakPoints& a, ProgramBreakPoints& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ProgramBreakPoints* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ProgramBreakPoints* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ProgramBreakPoints* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ProgramBreakPoints>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const ProgramBreakPoints& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const ProgramBreakPoints& from) {
+    ProgramBreakPoints::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ProgramBreakPoints* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "Nrmk.IndyFramework.ProgramBreakPoints";
+  }
+  protected:
+  explicit ProgramBreakPoints(::google::protobuf::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kBreakpointsFieldNumber = 1,
+  };
+  // repeated .Nrmk.IndyFramework.ProgramLine breakpoints = 1;
+  int breakpoints_size() const;
+  private:
+  int _internal_breakpoints_size() const;
+
+  public:
+  void clear_breakpoints() ;
+  ::Nrmk::IndyFramework::ProgramLine* mutable_breakpoints(int index);
+  ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::ProgramLine >*
+      mutable_breakpoints();
+  private:
+  const ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::ProgramLine>& _internal_breakpoints() const;
+  ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::ProgramLine>* _internal_mutable_breakpoints();
+  public:
+  const ::Nrmk::IndyFramework::ProgramLine& breakpoints(int index) const;
+  ::Nrmk::IndyFramework::ProgramLine* add_breakpoints();
+  const ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::ProgramLine >&
+      breakpoints() const;
+  // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.ProgramBreakPoints)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<0, 1, 1, 0, 2> _table_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::ProgramLine > breakpoints_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_common_5fmsgs_2eproto;
 };
 
 // ===================================================================
@@ -5174,6 +5541,28 @@ inline void EndtoolRS485Tx::_internal_set_word2(::uint32_t value) {
   _impl_.word2_ = value;
 }
 
+// int32 tool_index = 10;
+inline void EndtoolRS485Tx::clear_tool_index() {
+  _impl_.tool_index_ = 0;
+}
+inline ::int32_t EndtoolRS485Tx::tool_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.EndtoolRS485Tx.tool_index)
+  return _internal_tool_index();
+}
+inline void EndtoolRS485Tx::set_tool_index(::int32_t value) {
+  _internal_set_tool_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.EndtoolRS485Tx.tool_index)
+}
+inline ::int32_t EndtoolRS485Tx::_internal_tool_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.tool_index_;
+}
+inline void EndtoolRS485Tx::_internal_set_tool_index(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.tool_index_ = value;
+}
+
 // -------------------------------------------------------------------
 
 // EndtoolRS485Rx
@@ -5220,6 +5609,28 @@ inline void EndtoolRS485Rx::_internal_set_word2(::uint32_t value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.word2_ = value;
+}
+
+// int32 tool_index = 10;
+inline void EndtoolRS485Rx::clear_tool_index() {
+  _impl_.tool_index_ = 0;
+}
+inline ::int32_t EndtoolRS485Rx::tool_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.EndtoolRS485Rx.tool_index)
+  return _internal_tool_index();
+}
+inline void EndtoolRS485Rx::set_tool_index(::int32_t value) {
+  _internal_set_tool_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.EndtoolRS485Rx.tool_index)
+}
+inline ::int32_t EndtoolRS485Rx::_internal_tool_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.tool_index_;
+}
+inline void EndtoolRS485Rx::_internal_set_tool_index(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.tool_index_ = value;
 }
 
 // -------------------------------------------------------------------
@@ -6357,6 +6768,104 @@ inline void ModbusServerDef::_internal_set_unit_id(::int32_t value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.unit_id_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// ProgramLine
+
+// int32 cmd_id = 1;
+inline void ProgramLine::clear_cmd_id() {
+  _impl_.cmd_id_ = 0;
+}
+inline ::int32_t ProgramLine::cmd_id() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.ProgramLine.cmd_id)
+  return _internal_cmd_id();
+}
+inline void ProgramLine::set_cmd_id(::int32_t value) {
+  _internal_set_cmd_id(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.ProgramLine.cmd_id)
+}
+inline ::int32_t ProgramLine::_internal_cmd_id() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.cmd_id_;
+}
+inline void ProgramLine::_internal_set_cmd_id(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.cmd_id_ = value;
+}
+
+// int32 sub_cmd_id = 2;
+inline void ProgramLine::clear_sub_cmd_id() {
+  _impl_.sub_cmd_id_ = 0;
+}
+inline ::int32_t ProgramLine::sub_cmd_id() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.ProgramLine.sub_cmd_id)
+  return _internal_sub_cmd_id();
+}
+inline void ProgramLine::set_sub_cmd_id(::int32_t value) {
+  _internal_set_sub_cmd_id(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.ProgramLine.sub_cmd_id)
+}
+inline ::int32_t ProgramLine::_internal_sub_cmd_id() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.sub_cmd_id_;
+}
+inline void ProgramLine::_internal_set_sub_cmd_id(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.sub_cmd_id_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// ProgramBreakPoints
+
+// repeated .Nrmk.IndyFramework.ProgramLine breakpoints = 1;
+inline int ProgramBreakPoints::_internal_breakpoints_size() const {
+  return _internal_breakpoints().size();
+}
+inline int ProgramBreakPoints::breakpoints_size() const {
+  return _internal_breakpoints_size();
+}
+inline void ProgramBreakPoints::clear_breakpoints() {
+  _internal_mutable_breakpoints()->Clear();
+}
+inline ::Nrmk::IndyFramework::ProgramLine* ProgramBreakPoints::mutable_breakpoints(int index) {
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.ProgramBreakPoints.breakpoints)
+  return _internal_mutable_breakpoints()->Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::ProgramLine >*
+ProgramBreakPoints::mutable_breakpoints() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.ProgramBreakPoints.breakpoints)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_breakpoints();
+}
+inline const ::Nrmk::IndyFramework::ProgramLine& ProgramBreakPoints::breakpoints(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.ProgramBreakPoints.breakpoints)
+    return _internal_breakpoints().Get(index);
+}
+inline ::Nrmk::IndyFramework::ProgramLine* ProgramBreakPoints::add_breakpoints() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::Nrmk::IndyFramework::ProgramLine* _add = _internal_mutable_breakpoints()->Add();
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.ProgramBreakPoints.breakpoints)
+  return _add;
+}
+inline const ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::ProgramLine >&
+ProgramBreakPoints::breakpoints() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.ProgramBreakPoints.breakpoints)
+  return _internal_breakpoints();
+}
+inline const ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::ProgramLine>&
+ProgramBreakPoints::_internal_breakpoints() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.breakpoints_;
+}
+inline ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::ProgramLine>*
+ProgramBreakPoints::_internal_mutable_breakpoints() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.breakpoints_;
 }
 
 #ifdef __GNUC__

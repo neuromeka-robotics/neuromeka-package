@@ -102,6 +102,10 @@ PROTOBUF_CONSTEXPR ControlData::ControlData(::_pbi::ConstantInitialized)
       /*decltype(_impl_.pdot_)*/ {},
       /*decltype(_impl_.ref_frame_)*/ {},
       /*decltype(_impl_.tool_frame_)*/ {},
+      /*decltype(_impl_.tool_links_)*/ {},
+      /* _impl_._tool_links_cached_byte_size_ = */ {0},
+      /*decltype(_impl_.locked_joints_)*/ {},
+      /* _impl_._locked_joints_cached_byte_size_ = */ {0},
       /*decltype(_impl_.response_)*/ nullptr,
       /*decltype(_impl_.running_hours_)*/ 0u,
       /*decltype(_impl_.running_mins_)*/ 0u,
@@ -295,6 +299,8 @@ PROTOBUF_CONSTEXPR ProgramData::ProgramData(::_pbi::ConstantInitialized)
           &::_pbi::fixed_address_empty_string,
           ::_pbi::ConstantInitialized{},
       },
+      /*decltype(_impl_.start_line_index_)*/ nullptr,
+      /*decltype(_impl_.end_line_index_)*/ nullptr,
       /*decltype(_impl_.response_)*/ nullptr,
       /*decltype(_impl_.program_state_)*/ 0,
       /*decltype(_impl_.cmd_id_)*/ 0,
@@ -303,6 +309,7 @@ PROTOBUF_CONSTEXPR ProgramData::ProgramData(::_pbi::ConstantInitialized)
       /*decltype(_impl_.running_mins_)*/ 0u,
       /*decltype(_impl_.running_secs_)*/ 0u,
       /*decltype(_impl_.speed_ratio_)*/ 0,
+      /*decltype(_impl_.debug_mode_)*/ false,
     } {}
 struct ProgramDataDefaultTypeInternal {
   PROTOBUF_CONSTEXPR ProgramDataDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
@@ -452,7 +459,11 @@ const ::uint32_t TableStruct_rtde_5fmsgs_2eproto::offsets[] PROTOBUF_SECTION_VAR
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ControlData, _impl_.tool_frame_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ControlData, _impl_.tool_link_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ControlData, _impl_.locked_joint_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ControlData, _impl_.tool_links_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ControlData, _impl_.locked_joints_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ControlData, _impl_.response_),
+    ~0u,
+    ~0u,
     ~0u,
     ~0u,
     ~0u,
@@ -646,6 +657,9 @@ const ::uint32_t TableStruct_rtde_5fmsgs_2eproto::offsets[] PROTOBUF_SECTION_VAR
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ProgramData, _impl_.program_alarm_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ProgramData, _impl_.program_annotation_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ProgramData, _impl_.speed_ratio_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ProgramData, _impl_.start_line_index_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ProgramData, _impl_.end_line_index_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ProgramData, _impl_.debug_mode_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ProgramData, _impl_.response_),
     ~0u,
     ~0u,
@@ -658,6 +672,9 @@ const ::uint32_t TableStruct_rtde_5fmsgs_2eproto::offsets[] PROTOBUF_SECTION_VAR
     ~0u,
     ~0u,
     0,
+    1,
+    ~0u,
+    2,
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::StopState, _impl_._has_bits_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::StopState, _internal_metadata_),
     ~0u,  // no _extensions_
@@ -699,17 +716,17 @@ static const ::_pbi::MigrationSchema
         {0, -1, -1, sizeof(::Nrmk::IndyFramework::TestRequest)},
         {10, -1, -1, sizeof(::Nrmk::IndyFramework::TestResponse)},
         {20, 41, -1, sizeof(::Nrmk::IndyFramework::MotionData)},
-        {54, 77, -1, sizeof(::Nrmk::IndyFramework::ControlData)},
-        {92, 119, -1, sizeof(::Nrmk::IndyFramework::ControlData2)},
-        {138, 157, -1, sizeof(::Nrmk::IndyFramework::ReservedData)},
-        {168, 185, -1, sizeof(::Nrmk::IndyFramework::IOData)},
-        {194, 209, -1, sizeof(::Nrmk::IndyFramework::ViolationData)},
-        {216, 226, -1, sizeof(::Nrmk::IndyFramework::ViolationMessageQueue)},
-        {228, 244, -1, sizeof(::Nrmk::IndyFramework::ServoData)},
-        {252, 271, -1, sizeof(::Nrmk::IndyFramework::ProgramData)},
-        {282, 292, -1, sizeof(::Nrmk::IndyFramework::StopState)},
-        {294, -1, -1, sizeof(::Nrmk::IndyFramework::ModelCollision)},
-        {307, -1, -1, sizeof(::Nrmk::IndyFramework::CollisionModelState)},
+        {54, 79, -1, sizeof(::Nrmk::IndyFramework::ControlData)},
+        {96, 123, -1, sizeof(::Nrmk::IndyFramework::ControlData2)},
+        {142, 161, -1, sizeof(::Nrmk::IndyFramework::ReservedData)},
+        {172, 189, -1, sizeof(::Nrmk::IndyFramework::IOData)},
+        {198, 213, -1, sizeof(::Nrmk::IndyFramework::ViolationData)},
+        {220, 230, -1, sizeof(::Nrmk::IndyFramework::ViolationMessageQueue)},
+        {232, 248, -1, sizeof(::Nrmk::IndyFramework::ServoData)},
+        {256, 278, -1, sizeof(::Nrmk::IndyFramework::ProgramData)},
+        {292, 302, -1, sizeof(::Nrmk::IndyFramework::StopState)},
+        {304, -1, -1, sizeof(::Nrmk::IndyFramework::ModelCollision)},
+        {317, -1, -1, sizeof(::Nrmk::IndyFramework::CollisionModelState)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -742,73 +759,78 @@ const char descriptor_table_protodef_rtde_5fmsgs_2eproto[] PROTOBUF_SECTION_VARI
     " \001(\005\022\027\n\017remain_distance\030\n \001(\002\022\031\n\021motion_"
     "queue_size\030\013 \001(\r\022\031\n\021cur_traj_progress\030\014 "
     "\001(\005\022.\n\010response\030d \001(\0132\034.Nrmk.IndyFramewo"
-    "rk.Response\"\337\002\n\013ControlData\022\025\n\rrunning_h"
+    "rk.Response\"\212\003\n\013ControlData\022\025\n\rrunning_h"
     "ours\030\001 \001(\r\022\024\n\014running_mins\030\002 \001(\r\022\024\n\014runn"
     "ing_secs\030\003 \001(\r\022-\n\010op_state\030\004 \001(\0162\033.Nrmk."
     "IndyFramework.OpState\022\020\n\010sim_mode\030\005 \001(\010\022"
     "\032\n\022is_robot_connected\030\006 \001(\010\022\t\n\001q\030\n \003(\002\022\014"
     "\n\004qdot\030\013 \003(\002\022\t\n\001p\030\014 \003(\002\022\014\n\004pdot\030\r \003(\002\022\021\n"
     "\tref_frame\030\024 \003(\002\022\022\n\ntool_frame\030\025 \003(\002\022\021\n\t"
-    "tool_link\030\026 \001(\005\022\024\n\014locked_joint\030\027 \001(\005\022.\n"
-    "\010response\030d \001(\0132\034.Nrmk.IndyFramework.Res"
-    "ponse\"\334\002\n\014ControlData2\022\t\n\001q\030\001 \003(\002\022\014\n\004qdo"
-    "t\030\002 \003(\002\022\r\n\005qddot\030\003 \003(\002\022\014\n\004qdes\030\004 \003(\002\022\017\n\007"
-    "qdotdes\030\005 \003(\002\022\020\n\010qddotdes\030\006 \003(\002\022\t\n\001p\030\n \003"
-    "(\002\022\014\n\004pdot\030\013 \003(\002\022\r\n\005pddot\030\014 \003(\002\022\014\n\004pdes\030"
-    "\r \003(\002\022\017\n\007pdotdes\030\016 \003(\002\022\020\n\010pddotdes\030\017 \003(\002"
-    "\022\013\n\003tau\030\024 \003(\002\022\017\n\007tau_act\030\025 \003(\002\022\017\n\007tau_ex"
-    "t\030\026 \003(\002\022\017\n\007tau_jts\030\027 \003(\002\022\024\n\014tau_jts_raw1"
-    "\030\030 \003(\002\022\024\n\014tau_jts_raw2\030\031 \003(\002\022.\n\010response"
-    "\030d \001(\0132\034.Nrmk.IndyFramework.Response\"\344\001\n"
-    "\014ReservedData\022\r\n\005qres1\030\001 \003(\002\022\r\n\005qres2\030\002 "
-    "\003(\002\022\020\n\010qdotres1\030\003 \003(\002\022\020\n\010qdotres2\030\004 \003(\002\022"
-    "\017\n\007taures1\030\005 \003(\002\022\017\n\007taures2\030\006 \003(\002\022\r\n\005ere"
-    "s1\030\007 \003(\002\022\r\n\005eres2\030\010 \003(\002\022\020\n\010edotres1\030\t \003("
-    "\002\022\020\n\010edotres2\030\n \003(\002\022.\n\010response\030d \001(\0132\034."
-    "Nrmk.IndyFramework.Response\"\274\003\n\006IOData\022-"
-    "\n\002di\030\001 \003(\0132!.Nrmk.IndyFramework.DigitalS"
-    "ignal\022-\n\002do\030\002 \003(\0132!.Nrmk.IndyFramework.D"
-    "igitalSignal\022,\n\002ai\030\003 \003(\0132 .Nrmk.IndyFram"
-    "ework.AnalogSignal\022,\n\002ao\030\004 \003(\0132 .Nrmk.In"
-    "dyFramework.AnalogSignal\0221\n\006end_di\030\005 \003(\013"
-    "2!.Nrmk.IndyFramework.EndtoolSignal\0221\n\006e"
-    "nd_do\030\006 \003(\0132!.Nrmk.IndyFramework.Endtool"
-    "Signal\0220\n\006end_ai\030\007 \003(\0132 .Nrmk.IndyFramew"
-    "ork.AnalogSignal\0220\n\006end_ao\030\010 \003(\0132 .Nrmk."
-    "IndyFramework.AnalogSignal\022.\n\010response\030d"
-    " \001(\0132\034.Nrmk.IndyFramework.Response\"\265\001\n\rV"
-    "iolationData\022\026\n\016violation_code\030\001 \001(\004\022\017\n\007"
-    "j_index\030\002 \001(\r\022\016\n\006i_args\030\003 \003(\005\022\016\n\006f_args\030"
-    "\004 \003(\002\022\025\n\rviolation_str\030\005 \001(\t\022\024\n\014violatio"
-    "n_id\030\013 \001(\004\022.\n\010response\030d \001(\0132\034.Nrmk.Indy"
-    "Framework.Response\"\203\001\n\025ViolationMessageQ"
-    "ueue\022:\n\017violation_queue\030\001 \003(\0132!.Nrmk.Ind"
-    "yFramework.ViolationData\022.\n\010response\030d \001"
-    "(\0132\034.Nrmk.IndyFramework.Response\"\312\001\n\tSer"
-    "voData\022\024\n\014status_codes\030\001 \003(\t\022\024\n\014temperat"
-    "ures\030\002 \003(\002\022\020\n\010voltages\030\003 \003(\002\022\020\n\010currents"
-    "\030\004 \003(\002\022\017\n\007torques\030\005 \003(\002\022\025\n\rservo_actives"
-    "\030\n \003(\010\022\025\n\rbrake_actives\030\013 \003(\010\022.\n\010respons"
-    "e\030d \001(\0132\034.Nrmk.IndyFramework.Response\"\273\002"
-    "\n\013ProgramData\0227\n\rprogram_state\030\001 \001(\0162 .N"
-    "rmk.IndyFramework.ProgramState\022\016\n\006cmd_id"
-    "\030\002 \001(\005\022\022\n\nsub_cmd_id\030\003 \001(\005\022\025\n\rrunning_ho"
-    "urs\030\004 \001(\r\022\024\n\014running_mins\030\005 \001(\r\022\024\n\014runni"
-    "ng_secs\030\006 \001(\r\022\024\n\014program_name\030\007 \001(\t\022\025\n\rp"
-    "rogram_alarm\030\010 \001(\t\022\032\n\022program_annotation"
-    "\030\t \001(\t\022\023\n\013speed_ratio\030\n \001(\005\022.\n\010response\030"
-    "d \001(\0132\034.Nrmk.IndyFramework.Response\"\325\001\n\t"
-    "StopState\022<\n\010category\030\001 \001(\0162*.Nrmk.IndyF"
-    "ramework.StopState.StopCategory\022.\n\010respo"
+    "tool_link\030\026 \001(\005\022\024\n\014locked_joint\030\027 \001(\005\022\022\n"
+    "\ntool_links\030\031 \003(\005\022\025\n\rlocked_joints\030\032 \003(\005"
+    "\022.\n\010response\030d \001(\0132\034.Nrmk.IndyFramework."
+    "Response\"\334\002\n\014ControlData2\022\t\n\001q\030\001 \003(\002\022\014\n\004"
+    "qdot\030\002 \003(\002\022\r\n\005qddot\030\003 \003(\002\022\014\n\004qdes\030\004 \003(\002\022"
+    "\017\n\007qdotdes\030\005 \003(\002\022\020\n\010qddotdes\030\006 \003(\002\022\t\n\001p\030"
+    "\n \003(\002\022\014\n\004pdot\030\013 \003(\002\022\r\n\005pddot\030\014 \003(\002\022\014\n\004pd"
+    "es\030\r \003(\002\022\017\n\007pdotdes\030\016 \003(\002\022\020\n\010pddotdes\030\017 "
+    "\003(\002\022\013\n\003tau\030\024 \003(\002\022\017\n\007tau_act\030\025 \003(\002\022\017\n\007tau"
+    "_ext\030\026 \003(\002\022\017\n\007tau_jts\030\027 \003(\002\022\024\n\014tau_jts_r"
+    "aw1\030\030 \003(\002\022\024\n\014tau_jts_raw2\030\031 \003(\002\022.\n\010respo"
     "nse\030d \001(\0132\034.Nrmk.IndyFramework.Response\""
-    "Z\n\014StopCategory\022\016\n\nSTOP_CAT_0\020\000\022\016\n\nSTOP_"
-    "CAT_1\020\001\022\016\n\nSTOP_CAT_2\020\002\022\032\n\rSTOP_CAT_NONE"
-    "\020\377\377\377\377\377\377\377\377\377\001\"\200\001\n\016ModelCollision\022-\n\004rule\030\001"
-    " \001(\0162\037.Nrmk.IndyFramework.ContactRule\022\r\n"
-    "\005link1\030\002 \001(\005\022\r\n\005link2\030\003 \001(\005\022\020\n\010tool_idx\030"
-    "\004 \001(\005\022\017\n\007env_idx\030\005 \001(\005\"M\n\023CollisionModel"
-    "State\0226\n\ncollisions\030\001 \003(\0132\".Nrmk.IndyFra"
-    "mework.ModelCollisionb\006proto3"
+    "\344\001\n\014ReservedData\022\r\n\005qres1\030\001 \003(\002\022\r\n\005qres2"
+    "\030\002 \003(\002\022\020\n\010qdotres1\030\003 \003(\002\022\020\n\010qdotres2\030\004 \003"
+    "(\002\022\017\n\007taures1\030\005 \003(\002\022\017\n\007taures2\030\006 \003(\002\022\r\n\005"
+    "eres1\030\007 \003(\002\022\r\n\005eres2\030\010 \003(\002\022\020\n\010edotres1\030\t"
+    " \003(\002\022\020\n\010edotres2\030\n \003(\002\022.\n\010response\030d \001(\013"
+    "2\034.Nrmk.IndyFramework.Response\"\274\003\n\006IODat"
+    "a\022-\n\002di\030\001 \003(\0132!.Nrmk.IndyFramework.Digit"
+    "alSignal\022-\n\002do\030\002 \003(\0132!.Nrmk.IndyFramewor"
+    "k.DigitalSignal\022,\n\002ai\030\003 \003(\0132 .Nrmk.IndyF"
+    "ramework.AnalogSignal\022,\n\002ao\030\004 \003(\0132 .Nrmk"
+    ".IndyFramework.AnalogSignal\0221\n\006end_di\030\005 "
+    "\003(\0132!.Nrmk.IndyFramework.EndtoolSignal\0221"
+    "\n\006end_do\030\006 \003(\0132!.Nrmk.IndyFramework.Endt"
+    "oolSignal\0220\n\006end_ai\030\007 \003(\0132 .Nrmk.IndyFra"
+    "mework.AnalogSignal\0220\n\006end_ao\030\010 \003(\0132 .Nr"
+    "mk.IndyFramework.AnalogSignal\022.\n\010respons"
+    "e\030d \001(\0132\034.Nrmk.IndyFramework.Response\"\265\001"
+    "\n\rViolationData\022\026\n\016violation_code\030\001 \001(\004\022"
+    "\017\n\007j_index\030\002 \001(\r\022\016\n\006i_args\030\003 \003(\005\022\016\n\006f_ar"
+    "gs\030\004 \003(\002\022\025\n\rviolation_str\030\005 \001(\t\022\024\n\014viola"
+    "tion_id\030\013 \001(\004\022.\n\010response\030d \001(\0132\034.Nrmk.I"
+    "ndyFramework.Response\"\203\001\n\025ViolationMessa"
+    "geQueue\022:\n\017violation_queue\030\001 \003(\0132!.Nrmk."
+    "IndyFramework.ViolationData\022.\n\010response\030"
+    "d \001(\0132\034.Nrmk.IndyFramework.Response\"\312\001\n\t"
+    "ServoData\022\024\n\014status_codes\030\001 \003(\t\022\024\n\014tempe"
+    "ratures\030\002 \003(\002\022\020\n\010voltages\030\003 \003(\002\022\020\n\010curre"
+    "nts\030\004 \003(\002\022\017\n\007torques\030\005 \003(\002\022\025\n\rservo_acti"
+    "ves\030\n \003(\010\022\025\n\rbrake_actives\030\013 \003(\010\022.\n\010resp"
+    "onse\030d \001(\0132\034.Nrmk.IndyFramework.Response"
+    "\"\303\003\n\013ProgramData\0227\n\rprogram_state\030\001 \001(\0162"
+    " .Nrmk.IndyFramework.ProgramState\022\016\n\006cmd"
+    "_id\030\002 \001(\005\022\022\n\nsub_cmd_id\030\003 \001(\005\022\025\n\rrunning"
+    "_hours\030\004 \001(\r\022\024\n\014running_mins\030\005 \001(\r\022\024\n\014ru"
+    "nning_secs\030\006 \001(\r\022\024\n\014program_name\030\007 \001(\t\022\025"
+    "\n\rprogram_alarm\030\010 \001(\t\022\032\n\022program_annotat"
+    "ion\030\t \001(\t\022\023\n\013speed_ratio\030\n \001(\005\0229\n\020start_"
+    "line_index\030\013 \001(\0132\037.Nrmk.IndyFramework.Pr"
+    "ogramLine\0227\n\016end_line_index\030\014 \001(\0132\037.Nrmk"
+    ".IndyFramework.ProgramLine\022\022\n\ndebug_mode"
+    "\030\036 \001(\010\022.\n\010response\030d \001(\0132\034.Nrmk.IndyFram"
+    "ework.Response\"\325\001\n\tStopState\022<\n\010category"
+    "\030\001 \001(\0162*.Nrmk.IndyFramework.StopState.St"
+    "opCategory\022.\n\010response\030d \001(\0132\034.Nrmk.Indy"
+    "Framework.Response\"Z\n\014StopCategory\022\016\n\nST"
+    "OP_CAT_0\020\000\022\016\n\nSTOP_CAT_1\020\001\022\016\n\nSTOP_CAT_2"
+    "\020\002\022\032\n\rSTOP_CAT_NONE\020\377\377\377\377\377\377\377\377\377\001\"\200\001\n\016Model"
+    "Collision\022-\n\004rule\030\001 \001(\0162\037.Nrmk.IndyFrame"
+    "work.ContactRule\022\r\n\005link1\030\002 \001(\005\022\r\n\005link2"
+    "\030\003 \001(\005\022\020\n\010tool_idx\030\004 \001(\005\022\017\n\007env_idx\030\005 \001("
+    "\005\"M\n\023CollisionModelState\0226\n\ncollisions\030\001"
+    " \003(\0132\".Nrmk.IndyFramework.ModelCollision"
+    "b\006proto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_rtde_5fmsgs_2eproto_deps[2] =
     {
@@ -819,7 +841,7 @@ static ::absl::once_flag descriptor_table_rtde_5fmsgs_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_rtde_5fmsgs_2eproto = {
     false,
     false,
-    3189,
+    3368,
     descriptor_table_protodef_rtde_5fmsgs_2eproto,
     "rtde_msgs.proto",
     &descriptor_table_rtde_5fmsgs_2eproto_once,
@@ -1867,6 +1889,10 @@ ControlData::ControlData(const ControlData& from) : ::google::protobuf::Message(
       decltype(_impl_.pdot_){from._impl_.pdot_},
       decltype(_impl_.ref_frame_){from._impl_.ref_frame_},
       decltype(_impl_.tool_frame_){from._impl_.tool_frame_},
+      decltype(_impl_.tool_links_){from._impl_.tool_links_},
+      /* _impl_._tool_links_cached_byte_size_ = */ {0},
+      decltype(_impl_.locked_joints_){from._impl_.locked_joints_},
+      /* _impl_._locked_joints_cached_byte_size_ = */ {0},
       decltype(_impl_.response_){nullptr},
       decltype(_impl_.running_hours_){},
       decltype(_impl_.running_mins_){},
@@ -1899,6 +1925,10 @@ inline void ControlData::SharedCtor(::_pb::Arena* arena) {
       decltype(_impl_.pdot_){arena},
       decltype(_impl_.ref_frame_){arena},
       decltype(_impl_.tool_frame_){arena},
+      decltype(_impl_.tool_links_){arena},
+      /* _impl_._tool_links_cached_byte_size_ = */ {0},
+      decltype(_impl_.locked_joints_){arena},
+      /* _impl_._locked_joints_cached_byte_size_ = */ {0},
       decltype(_impl_.response_){nullptr},
       decltype(_impl_.running_hours_){0u},
       decltype(_impl_.running_mins_){0u},
@@ -1923,6 +1953,8 @@ inline void ControlData::SharedDtor() {
   _impl_.pdot_.~RepeatedField();
   _impl_.ref_frame_.~RepeatedField();
   _impl_.tool_frame_.~RepeatedField();
+  _impl_.tool_links_.~RepeatedField();
+  _impl_.locked_joints_.~RepeatedField();
   if (this != internal_default_instance()) delete _impl_.response_;
 }
 void ControlData::SetCachedSize(int size) const {
@@ -1941,6 +1973,8 @@ PROTOBUF_NOINLINE void ControlData::Clear() {
   _internal_mutable_pdot()->Clear();
   _internal_mutable_ref_frame()->Clear();
   _internal_mutable_tool_frame()->Clear();
+  _internal_mutable_tool_links()->Clear();
+  _internal_mutable_locked_joints()->Clear();
   cached_has_bits = _impl_._has_bits_[0];
   if (cached_has_bits & 0x00000001u) {
     ABSL_DCHECK(_impl_.response_ != nullptr);
@@ -1961,15 +1995,15 @@ const char* ControlData::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<4, 15, 1, 0, 7> ControlData::_table_ = {
+const ::_pbi::TcParseTable<5, 17, 1, 0, 7> ControlData::_table_ = {
   {
     PROTOBUF_FIELD_OFFSET(ControlData, _impl_._has_bits_),
     0, // no _extensions_
-    100, 120,  // max_field_number, fast_idx_mask
+    100, 248,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4287095232,  // skipmap
+    4236763584,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    15,  // num_field_entries
+    17,  // num_field_entries
     1,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     &_ControlData_default_instance_._instance,
@@ -1994,9 +2028,7 @@ const ::_pbi::TcParseTable<4, 15, 1, 0, 7> ControlData::_table_ = {
     // bool is_robot_connected = 6;
     {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(ControlData, _impl_.is_robot_connected_), 63>(),
      {48, 63, 0, PROTOBUF_FIELD_OFFSET(ControlData, _impl_.is_robot_connected_)}},
-    // int32 locked_joint = 23;
-    {::_pbi::TcParser::FastV32S2,
-     {440, 63, 0, PROTOBUF_FIELD_OFFSET(ControlData, _impl_.locked_joint_)}},
+    {::_pbi::TcParser::MiniParse, {}},
     {::_pbi::TcParser::MiniParse, {}},
     {::_pbi::TcParser::MiniParse, {}},
     // repeated float q = 10;
@@ -2013,9 +2045,37 @@ const ::_pbi::TcParseTable<4, 15, 1, 0, 7> ControlData::_table_ = {
      {106, 63, 0, PROTOBUF_FIELD_OFFSET(ControlData, _impl_.pdot_)}},
     {::_pbi::TcParser::MiniParse, {}},
     {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    // repeated float ref_frame = 20;
+    {::_pbi::TcParser::FastF32P2,
+     {418, 63, 0, PROTOBUF_FIELD_OFFSET(ControlData, _impl_.ref_frame_)}},
+    // repeated float tool_frame = 21;
+    {::_pbi::TcParser::FastF32P2,
+     {426, 63, 0, PROTOBUF_FIELD_OFFSET(ControlData, _impl_.tool_frame_)}},
+    // int32 tool_link = 22;
+    {::_pbi::TcParser::FastV32S2,
+     {432, 63, 0, PROTOBUF_FIELD_OFFSET(ControlData, _impl_.tool_link_)}},
+    // int32 locked_joint = 23;
+    {::_pbi::TcParser::FastV32S2,
+     {440, 63, 0, PROTOBUF_FIELD_OFFSET(ControlData, _impl_.locked_joint_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+    // repeated int32 tool_links = 25;
+    {::_pbi::TcParser::FastV32P2,
+     {458, 63, 0, PROTOBUF_FIELD_OFFSET(ControlData, _impl_.tool_links_)}},
+    // repeated int32 locked_joints = 26;
+    {::_pbi::TcParser::FastV32P2,
+     {466, 63, 0, PROTOBUF_FIELD_OFFSET(ControlData, _impl_.locked_joints_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
   }}, {{
     100, 0, 1,
-    65534, 14,
+    65534, 16,
     65535, 65535
   }}, {{
     // uint32 running_hours = 1;
@@ -2060,6 +2120,12 @@ const ::_pbi::TcParseTable<4, 15, 1, 0, 7> ControlData::_table_ = {
     // int32 locked_joint = 23;
     {PROTOBUF_FIELD_OFFSET(ControlData, _impl_.locked_joint_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    // repeated int32 tool_links = 25;
+    {PROTOBUF_FIELD_OFFSET(ControlData, _impl_.tool_links_), -1, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedInt32)},
+    // repeated int32 locked_joints = 26;
+    {PROTOBUF_FIELD_OFFSET(ControlData, _impl_.locked_joints_), -1, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedInt32)},
     // .Nrmk.IndyFramework.Response response = 100;
     {PROTOBUF_FIELD_OFFSET(ControlData, _impl_.response_), _Internal::kHasBitsOffset + 0, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
@@ -2162,6 +2228,24 @@ const ::_pbi::TcParseTable<4, 15, 1, 0, 7> ControlData::_table_ = {
         23, this->_internal_locked_joint(), target);
   }
 
+  // repeated int32 tool_links = 25;
+  {
+    int byte_size = _impl_._tool_links_cached_byte_size_.Get();
+    if (byte_size > 0) {
+      target = stream->WriteInt32Packed(25, _internal_tool_links(),
+                                                 byte_size, target);
+    }
+  }
+
+  // repeated int32 locked_joints = 26;
+  {
+    int byte_size = _impl_._locked_joints_cached_byte_size_.Get();
+    if (byte_size > 0) {
+      target = stream->WriteInt32Packed(26, _internal_locked_joints(),
+                                                 byte_size, target);
+    }
+  }
+
   cached_has_bits = _impl_._has_bits_[0];
   // .Nrmk.IndyFramework.Response response = 100;
   if (cached_has_bits & 0x00000001u) {
@@ -2259,6 +2343,32 @@ const ::_pbi::TcParseTable<4, 15, 1, 0, 7> ControlData::_table_ = {
     ;
     total_size += tag_size + data_size;
   }
+  // repeated int32 tool_links = 25;
+  {
+    std::size_t data_size = ::_pbi::WireFormatLite::Int32Size(
+        this->_internal_tool_links())
+    ;
+    _impl_._tool_links_cached_byte_size_.Set(::_pbi::ToCachedSize(data_size));
+    std::size_t tag_size = data_size == 0
+        ? 0
+        : 2 + ::_pbi::WireFormatLite::Int32Size(
+                            static_cast<int32_t>(data_size))
+    ;
+    total_size += tag_size + data_size;
+  }
+  // repeated int32 locked_joints = 26;
+  {
+    std::size_t data_size = ::_pbi::WireFormatLite::Int32Size(
+        this->_internal_locked_joints())
+    ;
+    _impl_._locked_joints_cached_byte_size_.Set(::_pbi::ToCachedSize(data_size));
+    std::size_t tag_size = data_size == 0
+        ? 0
+        : 2 + ::_pbi::WireFormatLite::Int32Size(
+                            static_cast<int32_t>(data_size))
+    ;
+    total_size += tag_size + data_size;
+  }
   // .Nrmk.IndyFramework.Response response = 100;
   cached_has_bits = _impl_._has_bits_[0];
   if (cached_has_bits & 0x00000001u) {
@@ -2337,6 +2447,8 @@ void ControlData::MergeImpl(::google::protobuf::Message& to_msg, const ::google:
   _this->_internal_mutable_pdot()->MergeFrom(from._internal_pdot());
   _this->_internal_mutable_ref_frame()->MergeFrom(from._internal_ref_frame());
   _this->_internal_mutable_tool_frame()->MergeFrom(from._internal_tool_frame());
+  _this->_internal_mutable_tool_links()->MergeFrom(from._internal_tool_links());
+  _this->_internal_mutable_locked_joints()->MergeFrom(from._internal_locked_joints());
   if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
     _this->_internal_mutable_response()->::Nrmk::IndyFramework::Response::MergeFrom(
         from._internal_response());
@@ -2389,6 +2501,8 @@ void ControlData::InternalSwap(ControlData* other) {
   _impl_.pdot_.InternalSwap(&other->_impl_.pdot_);
   _impl_.ref_frame_.InternalSwap(&other->_impl_.ref_frame_);
   _impl_.tool_frame_.InternalSwap(&other->_impl_.tool_frame_);
+  _impl_.tool_links_.InternalSwap(&other->_impl_.tool_links_);
+  _impl_.locked_joints_.InternalSwap(&other->_impl_.locked_joints_);
   ::google::protobuf::internal::memswap<
       PROTOBUF_FIELD_OFFSET(ControlData, _impl_.locked_joint_)
       + sizeof(ControlData::_impl_.locked_joint_)
@@ -5122,18 +5236,40 @@ class ProgramData::_Internal {
   using HasBits = decltype(std::declval<ProgramData>()._impl_._has_bits_);
   static constexpr ::int32_t kHasBitsOffset =
     8 * PROTOBUF_FIELD_OFFSET(ProgramData, _impl_._has_bits_);
+  static const ::Nrmk::IndyFramework::ProgramLine& start_line_index(const ProgramData* msg);
+  static void set_has_start_line_index(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
+  static const ::Nrmk::IndyFramework::ProgramLine& end_line_index(const ProgramData* msg);
+  static void set_has_end_line_index(HasBits* has_bits) {
+    (*has_bits)[0] |= 2u;
+  }
   static const ::Nrmk::IndyFramework::Response& response(const ProgramData* msg);
   static void set_has_response(HasBits* has_bits) {
-    (*has_bits)[0] |= 1u;
+    (*has_bits)[0] |= 4u;
   }
 };
 
+const ::Nrmk::IndyFramework::ProgramLine& ProgramData::_Internal::start_line_index(const ProgramData* msg) {
+  return *msg->_impl_.start_line_index_;
+}
+const ::Nrmk::IndyFramework::ProgramLine& ProgramData::_Internal::end_line_index(const ProgramData* msg) {
+  return *msg->_impl_.end_line_index_;
+}
 const ::Nrmk::IndyFramework::Response& ProgramData::_Internal::response(const ProgramData* msg) {
   return *msg->_impl_.response_;
 }
+void ProgramData::clear_start_line_index() {
+  if (_impl_.start_line_index_ != nullptr) _impl_.start_line_index_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+void ProgramData::clear_end_line_index() {
+  if (_impl_.end_line_index_ != nullptr) _impl_.end_line_index_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000002u;
+}
 void ProgramData::clear_response() {
   if (_impl_.response_ != nullptr) _impl_.response_->Clear();
-  _impl_._has_bits_[0] &= ~0x00000001u;
+  _impl_._has_bits_[0] &= ~0x00000004u;
 }
 ProgramData::ProgramData(::google::protobuf::Arena* arena)
     : ::google::protobuf::Message(arena) {
@@ -5149,6 +5285,8 @@ ProgramData::ProgramData(const ProgramData& from) : ::google::protobuf::Message(
       decltype(_impl_.program_name_){},
       decltype(_impl_.program_alarm_){},
       decltype(_impl_.program_annotation_){},
+      decltype(_impl_.start_line_index_){nullptr},
+      decltype(_impl_.end_line_index_){nullptr},
       decltype(_impl_.response_){nullptr},
       decltype(_impl_.program_state_){},
       decltype(_impl_.cmd_id_){},
@@ -5157,6 +5295,7 @@ ProgramData::ProgramData(const ProgramData& from) : ::google::protobuf::Message(
       decltype(_impl_.running_mins_){},
       decltype(_impl_.running_secs_){},
       decltype(_impl_.speed_ratio_){},
+      decltype(_impl_.debug_mode_){},
   };
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
@@ -5182,11 +5321,17 @@ ProgramData::ProgramData(const ProgramData& from) : ::google::protobuf::Message(
     _this->_impl_.program_annotation_.Set(from._internal_program_annotation(), _this->GetArenaForAllocation());
   }
   if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
+    _this->_impl_.start_line_index_ = new ::Nrmk::IndyFramework::ProgramLine(*from._impl_.start_line_index_);
+  }
+  if ((from._impl_._has_bits_[0] & 0x00000002u) != 0) {
+    _this->_impl_.end_line_index_ = new ::Nrmk::IndyFramework::ProgramLine(*from._impl_.end_line_index_);
+  }
+  if ((from._impl_._has_bits_[0] & 0x00000004u) != 0) {
     _this->_impl_.response_ = new ::Nrmk::IndyFramework::Response(*from._impl_.response_);
   }
   ::memcpy(&_impl_.program_state_, &from._impl_.program_state_,
-    static_cast<::size_t>(reinterpret_cast<char*>(&_impl_.speed_ratio_) -
-    reinterpret_cast<char*>(&_impl_.program_state_)) + sizeof(_impl_.speed_ratio_));
+    static_cast<::size_t>(reinterpret_cast<char*>(&_impl_.debug_mode_) -
+    reinterpret_cast<char*>(&_impl_.program_state_)) + sizeof(_impl_.debug_mode_));
 
   // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.ProgramData)
 }
@@ -5198,6 +5343,8 @@ inline void ProgramData::SharedCtor(::_pb::Arena* arena) {
       decltype(_impl_.program_name_){},
       decltype(_impl_.program_alarm_){},
       decltype(_impl_.program_annotation_){},
+      decltype(_impl_.start_line_index_){nullptr},
+      decltype(_impl_.end_line_index_){nullptr},
       decltype(_impl_.response_){nullptr},
       decltype(_impl_.program_state_){0},
       decltype(_impl_.cmd_id_){0},
@@ -5206,6 +5353,7 @@ inline void ProgramData::SharedCtor(::_pb::Arena* arena) {
       decltype(_impl_.running_mins_){0u},
       decltype(_impl_.running_secs_){0u},
       decltype(_impl_.speed_ratio_){0},
+      decltype(_impl_.debug_mode_){false},
   };
   _impl_.program_name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -5230,6 +5378,8 @@ inline void ProgramData::SharedDtor() {
   _impl_.program_name_.Destroy();
   _impl_.program_alarm_.Destroy();
   _impl_.program_annotation_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.start_line_index_;
+  if (this != internal_default_instance()) delete _impl_.end_line_index_;
   if (this != internal_default_instance()) delete _impl_.response_;
 }
 void ProgramData::SetCachedSize(int size) const {
@@ -5246,13 +5396,23 @@ PROTOBUF_NOINLINE void ProgramData::Clear() {
   _impl_.program_alarm_.ClearToEmpty();
   _impl_.program_annotation_.ClearToEmpty();
   cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    ABSL_DCHECK(_impl_.response_ != nullptr);
-    _impl_.response_->Clear();
+  if (cached_has_bits & 0x00000007u) {
+    if (cached_has_bits & 0x00000001u) {
+      ABSL_DCHECK(_impl_.start_line_index_ != nullptr);
+      _impl_.start_line_index_->Clear();
+    }
+    if (cached_has_bits & 0x00000002u) {
+      ABSL_DCHECK(_impl_.end_line_index_ != nullptr);
+      _impl_.end_line_index_->Clear();
+    }
+    if (cached_has_bits & 0x00000004u) {
+      ABSL_DCHECK(_impl_.response_ != nullptr);
+      _impl_.response_->Clear();
+    }
   }
   ::memset(&_impl_.program_state_, 0, static_cast<::size_t>(
-      reinterpret_cast<char*>(&_impl_.speed_ratio_) -
-      reinterpret_cast<char*>(&_impl_.program_state_)) + sizeof(_impl_.speed_ratio_));
+      reinterpret_cast<char*>(&_impl_.debug_mode_) -
+      reinterpret_cast<char*>(&_impl_.program_state_)) + sizeof(_impl_.debug_mode_));
   _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
@@ -5265,16 +5425,16 @@ const char* ProgramData::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<4, 11, 1, 90, 7> ProgramData::_table_ = {
+const ::_pbi::TcParseTable<4, 14, 3, 90, 7> ProgramData::_table_ = {
   {
     PROTOBUF_FIELD_OFFSET(ProgramData, _impl_._has_bits_),
     0, // no _extensions_
     100, 120,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294966272,  // skipmap
+    3758092288,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    11,  // num_field_entries
-    1,  // num_aux_entries
+    14,  // num_field_entries
+    3,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     &_ProgramData_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
@@ -5310,14 +5470,20 @@ const ::_pbi::TcParseTable<4, 11, 1, 90, 7> ProgramData::_table_ = {
     // int32 speed_ratio = 10;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(ProgramData, _impl_.speed_ratio_), 63>(),
      {80, 63, 0, PROTOBUF_FIELD_OFFSET(ProgramData, _impl_.speed_ratio_)}},
+    // .Nrmk.IndyFramework.ProgramLine start_line_index = 11;
+    {::_pbi::TcParser::FastMtS1,
+     {90, 0, 0, PROTOBUF_FIELD_OFFSET(ProgramData, _impl_.start_line_index_)}},
+    // .Nrmk.IndyFramework.ProgramLine end_line_index = 12;
+    {::_pbi::TcParser::FastMtS1,
+     {98, 1, 1, PROTOBUF_FIELD_OFFSET(ProgramData, _impl_.end_line_index_)}},
     {::_pbi::TcParser::MiniParse, {}},
-    {::_pbi::TcParser::MiniParse, {}},
-    {::_pbi::TcParser::MiniParse, {}},
-    {::_pbi::TcParser::MiniParse, {}},
+    // bool debug_mode = 30;
+    {::_pbi::TcParser::FastV8S2,
+     {496, 63, 0, PROTOBUF_FIELD_OFFSET(ProgramData, _impl_.debug_mode_)}},
     {::_pbi::TcParser::MiniParse, {}},
   }}, {{
     100, 0, 1,
-    65534, 10,
+    65534, 13,
     65535, 65535
   }}, {{
     // .Nrmk.IndyFramework.ProgramState program_state = 1;
@@ -5350,10 +5516,21 @@ const ::_pbi::TcParseTable<4, 11, 1, 90, 7> ProgramData::_table_ = {
     // int32 speed_ratio = 10;
     {PROTOBUF_FIELD_OFFSET(ProgramData, _impl_.speed_ratio_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    // .Nrmk.IndyFramework.ProgramLine start_line_index = 11;
+    {PROTOBUF_FIELD_OFFSET(ProgramData, _impl_.start_line_index_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+    // .Nrmk.IndyFramework.ProgramLine end_line_index = 12;
+    {PROTOBUF_FIELD_OFFSET(ProgramData, _impl_.end_line_index_), _Internal::kHasBitsOffset + 1, 1,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+    // bool debug_mode = 30;
+    {PROTOBUF_FIELD_OFFSET(ProgramData, _impl_.debug_mode_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
     // .Nrmk.IndyFramework.Response response = 100;
-    {PROTOBUF_FIELD_OFFSET(ProgramData, _impl_.response_), _Internal::kHasBitsOffset + 0, 0,
+    {PROTOBUF_FIELD_OFFSET(ProgramData, _impl_.response_), _Internal::kHasBitsOffset + 2, 2,
     (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
   }}, {{
+    {::_pbi::TcParser::GetTable<::Nrmk::IndyFramework::ProgramLine>()},
+    {::_pbi::TcParser::GetTable<::Nrmk::IndyFramework::ProgramLine>()},
     {::_pbi::TcParser::GetTable<::Nrmk::IndyFramework::Response>()},
   }}, {{
     "\36\0\0\0\0\0\0\14\15\22\0\0\0\0\0\0"
@@ -5445,8 +5622,29 @@ const ::_pbi::TcParseTable<4, 11, 1, 90, 7> ProgramData::_table_ = {
   }
 
   cached_has_bits = _impl_._has_bits_[0];
-  // .Nrmk.IndyFramework.Response response = 100;
+  // .Nrmk.IndyFramework.ProgramLine start_line_index = 11;
   if (cached_has_bits & 0x00000001u) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessage(11, _Internal::start_line_index(this),
+        _Internal::start_line_index(this).GetCachedSize(), target, stream);
+  }
+
+  // .Nrmk.IndyFramework.ProgramLine end_line_index = 12;
+  if (cached_has_bits & 0x00000002u) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessage(12, _Internal::end_line_index(this),
+        _Internal::end_line_index(this).GetCachedSize(), target, stream);
+  }
+
+  // bool debug_mode = 30;
+  if (this->_internal_debug_mode() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(
+        30, this->_internal_debug_mode(), target);
+  }
+
+  // .Nrmk.IndyFramework.Response response = 100;
+  if (cached_has_bits & 0x00000004u) {
     target = ::google::protobuf::internal::WireFormatLite::
       InternalWriteMessage(100, _Internal::response(this),
         _Internal::response(this).GetCachedSize(), target, stream);
@@ -5487,14 +5685,30 @@ const ::_pbi::TcParseTable<4, 11, 1, 90, 7> ProgramData::_table_ = {
                                     this->_internal_program_annotation());
   }
 
-  // .Nrmk.IndyFramework.Response response = 100;
   cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    total_size += 2 +
-      ::google::protobuf::internal::WireFormatLite::MessageSize(
-        *_impl_.response_);
-  }
+  if (cached_has_bits & 0x00000007u) {
+    // .Nrmk.IndyFramework.ProgramLine start_line_index = 11;
+    if (cached_has_bits & 0x00000001u) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::MessageSize(
+          *_impl_.start_line_index_);
+    }
 
+    // .Nrmk.IndyFramework.ProgramLine end_line_index = 12;
+    if (cached_has_bits & 0x00000002u) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::MessageSize(
+          *_impl_.end_line_index_);
+    }
+
+    // .Nrmk.IndyFramework.Response response = 100;
+    if (cached_has_bits & 0x00000004u) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSize(
+          *_impl_.response_);
+    }
+
+  }
   // .Nrmk.IndyFramework.ProgramState program_state = 1;
   if (this->_internal_program_state() != 0) {
     total_size += 1 +
@@ -5537,6 +5751,11 @@ const ::_pbi::TcParseTable<4, 11, 1, 90, 7> ProgramData::_table_ = {
         this->_internal_speed_ratio());
   }
 
+  // bool debug_mode = 30;
+  if (this->_internal_debug_mode() != 0) {
+    total_size += 3;
+  }
+
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
@@ -5564,9 +5783,20 @@ void ProgramData::MergeImpl(::google::protobuf::Message& to_msg, const ::google:
   if (!from._internal_program_annotation().empty()) {
     _this->_internal_set_program_annotation(from._internal_program_annotation());
   }
-  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
-    _this->_internal_mutable_response()->::Nrmk::IndyFramework::Response::MergeFrom(
-        from._internal_response());
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000007u) {
+    if (cached_has_bits & 0x00000001u) {
+      _this->_internal_mutable_start_line_index()->::Nrmk::IndyFramework::ProgramLine::MergeFrom(
+          from._internal_start_line_index());
+    }
+    if (cached_has_bits & 0x00000002u) {
+      _this->_internal_mutable_end_line_index()->::Nrmk::IndyFramework::ProgramLine::MergeFrom(
+          from._internal_end_line_index());
+    }
+    if (cached_has_bits & 0x00000004u) {
+      _this->_internal_mutable_response()->::Nrmk::IndyFramework::Response::MergeFrom(
+          from._internal_response());
+    }
   }
   if (from._internal_program_state() != 0) {
     _this->_internal_set_program_state(from._internal_program_state());
@@ -5588,6 +5818,9 @@ void ProgramData::MergeImpl(::google::protobuf::Message& to_msg, const ::google:
   }
   if (from._internal_speed_ratio() != 0) {
     _this->_internal_set_speed_ratio(from._internal_speed_ratio());
+  }
+  if (from._internal_debug_mode() != 0) {
+    _this->_internal_set_debug_mode(from._internal_debug_mode());
   }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
@@ -5616,11 +5849,11 @@ void ProgramData::InternalSwap(ProgramData* other) {
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.program_annotation_, lhs_arena,
                                        &other->_impl_.program_annotation_, rhs_arena);
   ::google::protobuf::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(ProgramData, _impl_.speed_ratio_)
-      + sizeof(ProgramData::_impl_.speed_ratio_)
-      - PROTOBUF_FIELD_OFFSET(ProgramData, _impl_.response_)>(
-          reinterpret_cast<char*>(&_impl_.response_),
-          reinterpret_cast<char*>(&other->_impl_.response_));
+      PROTOBUF_FIELD_OFFSET(ProgramData, _impl_.debug_mode_)
+      + sizeof(ProgramData::_impl_.debug_mode_)
+      - PROTOBUF_FIELD_OFFSET(ProgramData, _impl_.start_line_index_)>(
+          reinterpret_cast<char*>(&_impl_.start_line_index_),
+          reinterpret_cast<char*>(&other->_impl_.start_line_index_));
 }
 
 ::google::protobuf::Metadata ProgramData::GetMetadata() const {

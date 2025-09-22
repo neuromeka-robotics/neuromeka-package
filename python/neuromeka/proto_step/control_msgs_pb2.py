@@ -22,7 +22,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x12\x63ontrol_msgs.proto\x12\x12Nrmk.IndyFramework\x1a\x11\x64\x65vice_msgs.proto\x1a\x11\x63ommon_msgs.proto\"k\n\x0b\x43ontrolInfo\x12\x17\n\x0f\x63ontrol_version\x18\x01 \x01(\t\x12\x13\n\x0brobot_model\x18\x02 \x01(\t\x12.\n\x08response\x18\x64 \x01(\x0b\x32\x1c.Nrmk.IndyFramework.Response\":\n\x0eSDKLicenseInfo\x12\x13\n\x0blicense_key\x18\x01 \x01(\t\x12\x13\n\x0b\x65xpire_date\x18\x02 \x01(\t\"S\n\x0eSDKLicenseResp\x12\x11\n\tactivated\x18\x01 \x01(\x08\x12.\n\x08response\x18\x64 \x01(\x0b\x32\x1c.Nrmk.IndyFramework.Response\"\xc1\x02\n\x11VariableCondition\x12/\n\x06i_vars\x18\x01 \x03(\x0b\x32\x1f.Nrmk.IndyFramework.IntVariable\x12\x31\n\x06\x66_vars\x18\x02 \x03(\x0b\x32!.Nrmk.IndyFramework.FloatVariable\x12\x30\n\x06\x62_vars\x18\x03 \x03(\x0b\x32 .Nrmk.IndyFramework.BoolVariable\x12\x32\n\x06m_vars\x18\x04 \x03(\x0b\x32\".Nrmk.IndyFramework.ModbusVariable\x12\x30\n\x06j_vars\x18\x05 \x03(\x0b\x32 .Nrmk.IndyFramework.JPosVariable\x12\x30\n\x06t_vars\x18\x06 \x03(\x0b\x32 .Nrmk.IndyFramework.TPosVariable\"o\n\x0bIOCondition\x12-\n\x02\x64i\x18\x01 \x03(\x0b\x32!.Nrmk.IndyFramework.DigitalSignal\x12\x31\n\x06\x65nd_di\x18\x02 \x03(\x0b\x32!.Nrmk.IndyFramework.DigitalSignal\"\x96\x03\n\x0fMotionCondition\x12\x44\n\ttype_cond\x18\x01 \x01(\x0e\x32\x31.Nrmk.IndyFramework.MotionCondition.ConditionType\x12\x44\n\ntype_react\x18\x02 \x01(\x0e\x32\x30.Nrmk.IndyFramework.MotionCondition.ReactionType\x12\x12\n\nconst_cond\x18\x03 \x01(\x08\x12\x30\n\x07io_cond\x18\x04 \x01(\x0b\x32\x1f.Nrmk.IndyFramework.IOCondition\x12\x37\n\x08var_cond\x18\x05 \x01(\x0b\x32%.Nrmk.IndyFramework.VariableCondition\":\n\rConditionType\x12\x0e\n\nCONST_COND\x10\x00\x12\x0b\n\x07IO_COND\x10\x01\x12\x0c\n\x08VAR_COND\x10\x02\"<\n\x0cReactionType\x12\r\n\tNONE_COND\x10\x00\x12\r\n\tSTOP_COND\x10\x01\x12\x0e\n\nPAUSE_COND\x10\x02\"\x8b\x01\n\x0c\x42lendingType\x12\x33\n\x04type\x18\x01 \x01(\x0e\x32%.Nrmk.IndyFramework.BlendingType.Type\x12\x17\n\x0f\x62lending_radius\x18\x02 \x01(\x02\"-\n\x04Type\x12\x08\n\x04NONE\x10\x00\x12\x0c\n\x08OVERRIDE\x10\x01\x12\r\n\tDUPLICATE\x10\x02\"b\n\x07TargetJ\x12\x0f\n\x07j_start\x18\x01 \x03(\x02\x12\x10\n\x08j_target\x18\x02 \x03(\x02\x12\x34\n\tbase_type\x18\x03 \x01(\x0e\x32!.Nrmk.IndyFramework.JointBaseType\"\xe5\x01\n\x08MoveJReq\x12+\n\x06target\x18\x01 \x01(\x0b\x32\x1b.Nrmk.IndyFramework.TargetJ\x12\x32\n\x08\x62lending\x18\x02 \x01(\x0b\x32 .Nrmk.IndyFramework.BlendingType\x12\x11\n\tvel_ratio\x18\x03 \x01(\x02\x12\x11\n\tacc_ratio\x18\x04 \x01(\x02\x12;\n\x0epost_condition\x18\x14 \x01(\x0b\x32#.Nrmk.IndyFramework.MotionCondition\x12\x15\n\rteaching_mode\x18\x1e \x01(\x08\"\xe9\x01\n\x0cMoveJCondReq\x12+\n\x06target\x18\x01 \x01(\x0b\x32\x1b.Nrmk.IndyFramework.TargetJ\x12\x32\n\x08\x62lending\x18\x02 \x01(\x0b\x32 .Nrmk.IndyFramework.BlendingType\x12\x11\n\tvel_ratio\x18\x03 \x01(\x02\x12\x11\n\tacc_ratio\x18\x04 \x01(\x02\x12;\n\x0epost_condition\x18\x14 \x01(\x0b\x32#.Nrmk.IndyFramework.MotionCondition\x12\x15\n\rteaching_mode\x18\x1e \x01(\x08\"\xb7\x01\n\tMoveJTReq\x12+\n\x06target\x18\x01 \x01(\x0b\x32\x1b.Nrmk.IndyFramework.TargetJ\x12\x32\n\x08\x62lending\x18\x02 \x01(\x0b\x32 .Nrmk.IndyFramework.BlendingType\x12\x0c\n\x04time\x18\x03 \x01(\x02\x12;\n\x0epost_condition\x18\x14 \x01(\x0b\x32#.Nrmk.IndyFramework.MotionCondition\"a\n\x07TargetP\x12\x0f\n\x07t_start\x18\x01 \x03(\x02\x12\x10\n\x08t_target\x18\x02 \x03(\x02\x12\x33\n\tbase_type\x18\x03 \x01(\x0e\x32 .Nrmk.IndyFramework.TaskBaseType\"o\n\x07TargetC\x12\x0f\n\x07t_start\x18\x01 \x03(\x02\x12\x0e\n\x06t_pos0\x18\x02 \x03(\x02\x12\x0e\n\x06t_pos1\x18\x03 \x03(\x02\x12\x33\n\tbase_type\x18\x04 \x01(\x0e\x32 .Nrmk.IndyFramework.TaskBaseType\"\xb6\x02\n\x08MoveLReq\x12+\n\x06target\x18\x01 \x01(\x0b\x32\x1b.Nrmk.IndyFramework.TargetP\x12\x32\n\x08\x62lending\x18\x02 \x01(\x0b\x32 .Nrmk.IndyFramework.BlendingType\x12\x11\n\tvel_ratio\x18\x03 \x01(\x02\x12\x11\n\tacc_ratio\x18\x04 \x01(\x02\x12\x36\n\x08vel_type\x18\x05 \x01(\x0e\x32$.Nrmk.IndyFramework.VelocityModeType\x12;\n\x0epost_condition\x18\x14 \x01(\x0b\x32#.Nrmk.IndyFramework.MotionCondition\x12\x15\n\rteaching_mode\x18\x1e \x01(\x08\x12\x17\n\x0f\x62ypass_singular\x18( \x01(\x08\"\xb7\x01\n\tMoveLTReq\x12+\n\x06target\x18\x01 \x01(\x0b\x32\x1b.Nrmk.IndyFramework.TargetP\x12\x32\n\x08\x62lending\x18\x02 \x01(\x0b\x32 .Nrmk.IndyFramework.BlendingType\x12\x0c\n\x04time\x18\x03 \x01(\x02\x12;\n\x0epost_condition\x18\x14 \x01(\x0b\x32#.Nrmk.IndyFramework.MotionCondition\"\x8e\x01\n\x0bMoveAxisReq\x12\x10\n\x08start_mm\x18\x01 \x03(\x02\x12\x11\n\ttarget_mm\x18\x02 \x03(\x02\x12\x16\n\x0evel_percentage\x18\x03 \x01(\x02\x12\x16\n\x0e\x61\x63\x63_percentage\x18\x04 \x01(\x02\x12\x13\n\x0bis_absolute\x18\x05 \x01(\x08\x12\x15\n\rteaching_mode\x18\n \x01(\x08\"\xbf\x03\n\x08MoveCReq\x12+\n\x06target\x18\x01 \x01(\x0b\x32\x1b.Nrmk.IndyFramework.TargetC\x12\x32\n\x08\x62lending\x18\x02 \x01(\x0b\x32 .Nrmk.IndyFramework.BlendingType\x12\r\n\x05\x61ngle\x18\x03 \x01(\x02\x12=\n\x0csetting_type\x18\n \x01(\x0e\x32\'.Nrmk.IndyFramework.CircularSettingType\x12\x39\n\tmove_type\x18\x0b \x01(\x0e\x32&.Nrmk.IndyFramework.CircularMovingType\x12\x11\n\tvel_ratio\x18\x14 \x01(\x02\x12\x11\n\tacc_ratio\x18\x15 \x01(\x02\x12\x36\n\x08vel_type\x18\x16 \x01(\x0e\x32$.Nrmk.IndyFramework.VelocityModeType\x12;\n\x0epost_condition\x18\x19 \x01(\x0b\x32#.Nrmk.IndyFramework.MotionCondition\x12\x15\n\rteaching_mode\x18\x1e \x01(\x08\x12\x17\n\x0f\x62ypass_singular\x18( \x01(\x08\"\xc0\x02\n\tMoveCTReq\x12+\n\x06target\x18\x01 \x01(\x0b\x32\x1b.Nrmk.IndyFramework.TargetC\x12\x32\n\x08\x62lending\x18\x02 \x01(\x0b\x32 .Nrmk.IndyFramework.BlendingType\x12\r\n\x05\x61ngle\x18\x03 \x01(\x02\x12=\n\x0csetting_type\x18\n \x01(\x0e\x32\'.Nrmk.IndyFramework.CircularSettingType\x12\x39\n\tmove_type\x18\x0b \x01(\x0e\x32&.Nrmk.IndyFramework.CircularMovingType\x12\x0c\n\x04time\x18\x14 \x01(\x02\x12;\n\x0epost_condition\x18\x19 \x01(\x0b\x32#.Nrmk.IndyFramework.MotionCondition\"\x9d\x01\n\x10MoveJointTrajReq\x12*\n\x06q_list\x18\x01 \x03(\x0b\x32\x1a.Nrmk.IndyFramework.Vector\x12-\n\tqdot_list\x18\x02 \x03(\x0b\x32\x1a.Nrmk.IndyFramework.Vector\x12.\n\nqddot_list\x18\x03 \x03(\x0b\x32\x1a.Nrmk.IndyFramework.Vector\"\x9c\x01\n\x0fMoveTaskTrajReq\x12*\n\x06p_list\x18\x01 \x03(\x0b\x32\x1a.Nrmk.IndyFramework.Vector\x12-\n\tpdot_list\x18\x02 \x03(\x0b\x32\x1a.Nrmk.IndyFramework.Vector\x12.\n\npddot_list\x18\x03 \x03(\x0b\x32\x1a.Nrmk.IndyFramework.Vector\"w\n\x0cMoveGcodeReq\x12\x12\n\ngcode_file\x18\x01 \x01(\t\x12\x16\n\x0eis_smooth_mode\x18\x02 \x01(\x08\x12\x15\n\rsmooth_radius\x18\x03 \x01(\x02\x12\x11\n\tvel_ratio\x18\x04 \x01(\x02\x12\x11\n\tacc_ratio\x18\x05 \x01(\x02\"\x91\x01\n\x0fMoveConveyorReq\x12\x15\n\rteaching_mode\x18\x01 \x01(\x08\x12\x17\n\x0f\x62ypass_singular\x18\x02 \x01(\x08\x12\x11\n\tacc_ratio\x18\x03 \x01(\x02\x12;\n\x0epost_condition\x18\n \x01(\x0b\x32#.Nrmk.IndyFramework.MotionCondition\"\xf8\x01\n\tWaitIOReq\x12\x32\n\x07\x64i_list\x18\x01 \x03(\x0b\x32!.Nrmk.IndyFramework.DigitalSignal\x12\x32\n\x07\x64o_list\x18\x02 \x03(\x0b\x32!.Nrmk.IndyFramework.DigitalSignal\x12\x36\n\x0b\x65nd_di_list\x18\x03 \x03(\x0b\x32!.Nrmk.IndyFramework.DigitalSignal\x12\x36\n\x0b\x65nd_do_list\x18\x04 \x03(\x0b\x32!.Nrmk.IndyFramework.DigitalSignal\x12\x13\n\x0b\x63onjunction\x18\x05 \x01(\x05\"\x1b\n\x0bWaitTimeReq\x12\x0c\n\x04time\x18\x01 \x01(\x02\"#\n\x0fWaitProgressReq\x12\x10\n\x08progress\x18\x01 \x01(\x05\"H\n\x0bWaitTrajReq\x12\x39\n\x0etraj_condition\x18\x01 \x01(\x0e\x32!.Nrmk.IndyFramework.TrajCondition\"\x1f\n\rWaitRadiusReq\x12\x0e\n\x06radius\x18\x01 \x01(\x05\".\n\x07Program\x12\x11\n\tprog_name\x18\x01 \x01(\t\x12\x10\n\x08prog_idx\x18\x02 \x01(\x05\"\xc3\x01\n\rTuningProgram\x12,\n\x07program\x18\x01 \x01(\x0b\x32\x1b.Nrmk.IndyFramework.Program\x12\x35\n\x0ctuning_space\x18\x02 \x01(\x0e\x32\x1f.Nrmk.IndyFramework.TuningSpace\x12\x36\n\tprecision\x18\x03 \x01(\x0e\x32#.Nrmk.IndyFramework.TuningPrecision\x12\x15\n\rvel_level_max\x18\x04 \x01(\r\"<\n\x0bProgramInfo\x12\x0c\n\x04path\x18\x01 \x01(\t\x12\x0c\n\x04size\x18\x02 \x01(\x04\x12\x11\n\ttimestamp\x18\x03 \x01(\t\"I\n\x08Variable\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0c\n\x04\x61\x64\x64r\x18\x02 \x01(\x05\x12\x0c\n\x04type\x18\x03 \x01(\t\x12\x13\n\x0bin_watching\x18\x04 \x01(\x08\"*\n\x0bIntVariable\x12\x0c\n\x04\x61\x64\x64r\x18\x01 \x01(\x05\x12\r\n\x05value\x18\x02 \x01(\x03\"\xcf\x01\n\x0eModbusVariable\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0c\n\x04\x61\x64\x64r\x18\x02 \x01(\x05\x12\r\n\x05value\x18\x03 \x01(\x05\x12\x42\n\x0bsignal_type\x18\x04 \x01(\x0e\x32-.Nrmk.IndyFramework.ModbusVariable.SignalType\"N\n\nSignalType\x12\x0c\n\x08ReadCoil\x10\x00\x12\r\n\tWriteCoil\x10\x01\x12\x10\n\x0cReadRegister\x10\x02\x12\x11\n\rWriteRegister\x10\x03\"+\n\x0c\x42oolVariable\x12\x0c\n\x04\x61\x64\x64r\x18\x01 \x01(\x05\x12\r\n\x05value\x18\x02 \x01(\x08\",\n\rFloatVariable\x12\x0c\n\x04\x61\x64\x64r\x18\x01 \x01(\x05\x12\r\n\x05value\x18\x02 \x01(\x02\"*\n\x0cJPosVariable\x12\x0c\n\x04\x61\x64\x64r\x18\x01 \x01(\x05\x12\x0c\n\x04jpos\x18\x02 \x03(\x02\"*\n\x0cTPosVariable\x12\x0c\n\x04\x61\x64\x64r\x18\x01 \x01(\x05\x12\x0c\n\x04tpos\x18\x02 \x03(\x02\"x\n\x0cModbusServer\x12\x13\n\x0bserver_name\x18\x01 \x01(\t\x12\n\n\x02ip\x18\x02 \x01(\t\x12\x0c\n\x04port\x18\x03 \x01(\x05\x12\x39\n\rvariable_list\x18\x04 \x03(\x0b\x32\".Nrmk.IndyFramework.ModbusVariable\"P\n\x12ModbusVariableList\x12:\n\x10modbus_variables\x18\x01 \x03(\x0b\x32 .Nrmk.IndyFramework.ModbusServer\":\n\x07\x41llVars\x12/\n\tvariables\x18\x01 \x03(\x0b\x32\x1c.Nrmk.IndyFramework.Variable\"=\n\x07IntVars\x12\x32\n\tvariables\x18\x01 \x03(\x0b\x32\x1f.Nrmk.IndyFramework.IntVariable\"C\n\nModbusVars\x12\x35\n\tvariables\x18\x01 \x03(\x0b\x32\".Nrmk.IndyFramework.ModbusVariable\"?\n\x08\x42oolVars\x12\x33\n\tvariables\x18\x01 \x03(\x0b\x32 .Nrmk.IndyFramework.BoolVariable\"A\n\tFloatVars\x12\x34\n\tvariables\x18\x01 \x03(\x0b\x32!.Nrmk.IndyFramework.FloatVariable\"?\n\x08JPosVars\x12\x33\n\tvariables\x18\x01 \x03(\x0b\x32 .Nrmk.IndyFramework.JPosVariable\"?\n\x08TPosVars\x12\x33\n\tvariables\x18\x01 \x03(\x0b\x32 .Nrmk.IndyFramework.TPosVariable\"7\n\x14InverseKinematicsReq\x12\x0c\n\x04tpos\x18\x01 \x03(\x02\x12\x11\n\tinit_jpos\x18\x02 \x03(\x02\"T\n\x14InverseKinematicsRes\x12\x0c\n\x04jpos\x18\x01 \x03(\x02\x12.\n\x08response\x18\x64 \x01(\x0b\x32\x1c.Nrmk.IndyFramework.Response\"$\n\x14\x46orwardKinematicsReq\x12\x0c\n\x04jpos\x18\x01 \x03(\x02\"T\n\x14\x46orwardKinematicsRes\x12\x0c\n\x04tpos\x18\x01 \x03(\x02\x12.\n\x08response\x18\x64 \x01(\x0b\x32\x1c.Nrmk.IndyFramework.Response\"c\n\x1b\x43heckAproachRetractValidReq\x12\x0c\n\x04tpos\x18\x01 \x03(\x02\x12\x11\n\tinit_jpos\x18\x02 \x03(\x02\x12\x10\n\x08pre_tpos\x18\x03 \x03(\x02\x12\x11\n\tpost_tpos\x18\x04 \x03(\x02\"\x9b\x01\n\x1b\x43heckAproachRetractValidRes\x12\x10\n\x08is_valid\x18\x01 \x01(\x08\x12\x0f\n\x07tar_pos\x18\x02 \x03(\x02\x12\x14\n\x0c\x61pproach_pos\x18\x03 \x03(\x02\x12\x13\n\x0bretract_pos\x18\x04 \x03(\x02\x12.\n\x08response\x18\x64 \x01(\x0b\x32\x1c.Nrmk.IndyFramework.Response\"\x8f\x01\n\x15GetPalletPointListReq\x12\x0c\n\x04tpos\x18\x01 \x03(\x02\x12\x0c\n\x04jpos\x18\x02 \x03(\x02\x12\x10\n\x08pre_tpos\x18\x03 \x03(\x02\x12\x11\n\tpost_tpos\x18\x04 \x03(\x02\x12\x16\n\x0epallet_pattern\x18\x05 \x01(\x05\x12\r\n\x05width\x18\x06 \x01(\x05\x12\x0e\n\x06height\x18\x07 \x01(\x05\"[\n\x0bPalletPoint\x12\x0f\n\x07tar_pos\x18\x01 \x03(\x02\x12\x14\n\x0c\x61pproach_pos\x18\x02 \x03(\x02\x12\x13\n\x0bretract_pos\x18\x03 \x03(\x02\x12\x10\n\x08tar_jpos\x18\x04 \x03(\x02\"\x7f\n\x15GetPalletPointListRes\x12\x36\n\rpallet_points\x18\x01 \x03(\x0b\x32\x1f.Nrmk.IndyFramework.PalletPoint\x12.\n\x08response\x18\x64 \x01(\x0b\x32\x1c.Nrmk.IndyFramework.Response\"s\n\x18\x43\x61lculateRelativePoseReq\x12\x11\n\tstart_pos\x18\x01 \x03(\x02\x12\x0f\n\x07\x65nd_pos\x18\x02 \x03(\x02\x12\x33\n\tbase_type\x18\x03 \x01(\x0e\x32 .Nrmk.IndyFramework.TaskBaseType\"`\n\x18\x43\x61lculateRelativePoseRes\x12\x14\n\x0crelative_pos\x18\x01 \x03(\x02\x12.\n\x08response\x18\x64 \x01(\x0b\x32\x1c.Nrmk.IndyFramework.Response\"|\n\x1a\x43\x61lculateCurrentPoseRelReq\x12\x13\n\x0b\x63urrent_pos\x18\x01 \x03(\x02\x12\x14\n\x0crelative_pos\x18\x02 \x03(\x02\x12\x33\n\tbase_type\x18\x03 \x01(\x0e\x32 .Nrmk.IndyFramework.TaskBaseType\"d\n\x1a\x43\x61lculateCurrentPoseRelRes\x12\x16\n\x0e\x63\x61lculated_pos\x18\x01 \x03(\x02\x12.\n\x08response\x18\x64 \x01(\x0b\x32\x1c.Nrmk.IndyFramework.Response\"\xb2\x01\n\x0cTeleOpDevice\x12\x0c\n\x04name\x18\x01 \x01(\t\x12?\n\x04type\x18\x02 \x01(\x0e\x32\x31.Nrmk.IndyFramework.TeleOpDevice.TeleOpDeviceType\x12\n\n\x02ip\x18\x03 \x01(\t\x12\x0c\n\x04port\x18\x04 \x01(\r\x12\x11\n\tconnected\x18\x05 \x01(\x08\"&\n\x10TeleOpDeviceType\x12\x08\n\x04NONE\x10\x00\x12\x08\n\x04VIVE\x10\x01\"i\n\x0bTeleOpState\x12*\n\x04mode\x18\x01 \x01(\x0e\x32\x1c.Nrmk.IndyFramework.TeleMode\x12.\n\x06method\x18\x02 \x01(\x0e\x32\x1e.Nrmk.IndyFramework.TeleMethod\"E\n\x05TeleP\x12\x0c\n\x04tpos\x18\x01 \x03(\x02\x12.\n\x08response\x18\x64 \x01(\x0b\x32\x1c.Nrmk.IndyFramework.Response\"O\n\x0eTeleOpFileList\x12\r\n\x05\x66iles\x18\x01 \x03(\t\x12.\n\x08response\x18\x64 \x01(\x0b\x32\x1c.Nrmk.IndyFramework.Response\"\x1b\n\x0bTeleFileReq\x12\x0c\n\x04name\x18\x01 \x01(\t\"\x1c\n\x0cTelePlayRate\x12\x0c\n\x04rate\x18\x01 \x01(\x02\"r\n\x0cMoveTeleJReq\x12\x0c\n\x04jpos\x18\x01 \x03(\x02\x12\x11\n\tvel_ratio\x18\x02 \x01(\x02\x12\x11\n\tacc_ratio\x18\x03 \x01(\x02\x12.\n\x06method\x18\n \x01(\x0e\x32\x1e.Nrmk.IndyFramework.TeleMethod\"r\n\x0cMoveTeleLReq\x12\x0c\n\x04tpos\x18\x01 \x03(\x02\x12\x11\n\tvel_ratio\x18\x02 \x01(\x02\x12\x11\n\tacc_ratio\x18\x03 \x01(\x02\x12.\n\x06method\x18\n \x01(\x0e\x32\x1e.Nrmk.IndyFramework.TeleMethod\"H\n\x0c\x46orceModeReq\x12\x0e\n\x06\x65nable\x18\x01 \x01(\x08\x12\x11\n\tdes_force\x18\x02 \x03(\x02\x12\x15\n\renabled_force\x18\x03 \x03(\x08\"\xa3\x01\n\x17TransformedFTSensorData\x12\r\n\x05\x66t_Fx\x18\x01 \x01(\x02\x12\r\n\x05\x66t_Fy\x18\x02 \x01(\x02\x12\r\n\x05\x66t_Fz\x18\x03 \x01(\x02\x12\r\n\x05\x66t_Tx\x18\x04 \x01(\x02\x12\r\n\x05\x66t_Ty\x18\x05 \x01(\x02\x12\r\n\x05\x66t_Tz\x18\x06 \x01(\x02\x12.\n\x08response\x18\x64 \x01(\x0b\x32\x1c.Nrmk.IndyFramework.Response\"3\n\x0e\x43omplianceMode\x12\x0e\n\x06\x65nable\x18\x01 \x01(\x08\x12\x11\n\tstiffness\x18\x02 \x03(\x05\"_\n\x08\x42usEvent\x12\x10\n\x08\x65vent_id\x18\x01 \x01(\x04\x12\x0e\n\x06\x62_data\x18\x02 \x03(\x08\x12\x0e\n\x06i_data\x18\x03 \x03(\x05\x12\x0e\n\x06\x66_data\x18\x04 \x03(\x02\x12\x11\n\ttext_data\x18\x05 \x01(\t\"5\n\x10\x43\x61tchBusEventReq\x12\x10\n\x08\x65vent_id\x18\x01 \x01(\x04\x12\x0f\n\x07timeout\x18\x02 \x01(\x02\"\xc8\x02\n\tMoveLFReq\x12+\n\x06target\x18\x01 \x01(\x0b\x32\x1b.Nrmk.IndyFramework.TargetP\x12\x32\n\x08\x62lending\x18\x02 \x01(\x0b\x32 .Nrmk.IndyFramework.BlendingType\x12\x11\n\tvel_ratio\x18\x03 \x01(\x02\x12\x11\n\tacc_ratio\x18\x04 \x01(\x02\x12\x36\n\x08vel_type\x18\x05 \x01(\x0e\x32$.Nrmk.IndyFramework.VelocityModeType\x12\x11\n\tdes_force\x18\x06 \x03(\x02\x12\x15\n\renabled_force\x18\x07 \x03(\x08\x12;\n\x0epost_condition\x18\x14 \x01(\x0b\x32#.Nrmk.IndyFramework.MotionCondition\x12\x15\n\rteaching_mode\x18\x1e \x01(\x08\"\x18\n\tMoveFLRes\x12\x0b\n\x03msg\x18\x64 \x01(\t\"\x85\x01\n\x17\x43ontrolInferenceDataSet\x12\x10\n\x08infdata0\x18\x01 \x03(\x02\x12\x10\n\x08infdata1\x18\x02 \x03(\x02\x12\x10\n\x08infdata2\x18\x03 \x03(\x02\x12\x10\n\x08infdata3\x18\x04 \x03(\x02\x12\x10\n\x08infdata4\x18\x05 \x03(\x02\x12\x10\n\x08infdata5\x18\x06 \x03(\x02*7\n\rJointBaseType\x12\x12\n\x0e\x41\x42SOLUTE_JOINT\x10\x00\x12\x12\n\x0eRELATIVE_JOINT\x10\x01*B\n\x0cTaskBaseType\x12\x11\n\rABSOLUTE_TASK\x10\x00\x12\x11\n\rRELATIVE_TASK\x10\x01\x12\x0c\n\x08TCP_TASK\x10\x02*J\n\x10VelocityModeType\x12\x11\n\rTIME_ORIENTED\x10\x00\x12\x11\n\rDISP_ORIENTED\x10\x01\x12\x10\n\x0cROT_ORIENTED\x10\x02*5\n\x13\x43ircularSettingType\x12\r\n\tPOINT_SET\x10\x00\x12\x0f\n\x0b\x43\x45NTER_AXIS\x10\x01*:\n\x12\x43ircularMovingType\x12\x0c\n\x08\x43ONSTANT\x10\x00\x12\n\n\x06RADIAL\x10\x01\x12\n\n\x06SMOOTH\x10\x02*j\n\x08TeleMode\x12\x11\n\rTELE_INACTIVE\x10\x00\x12\x0e\n\nTELE_CALIB\x10\x01\x12\x0f\n\x0bTELE_RECORD\x10\x02\x12\r\n\tTELE_PLAY\x10\x03\x12\x0c\n\x08TELE_RAW\x10\n\x12\r\n\tTELE_MOVE\x10\x14*\x9b\x01\n\nTeleMethod\x12\x16\n\x12TELE_TASK_ABSOLUTE\x10\x00\x12\x16\n\x12TELE_TASK_RELATIVE\x10\x01\x12\x11\n\rTELE_TASK_TCP\x10\x02\x12\x17\n\x13TELE_JOINT_ABSOLUTE\x10\n\x12\x17\n\x13TELE_JOINT_RELATIVE\x10\x0b\x12\x18\n\x14TELE_RECORD_ABSOLUTE\x10\x14\x62\x06proto3'
+  serialized_pb=b'\n\x12\x63ontrol_msgs.proto\x12\x12Nrmk.IndyFramework\x1a\x11\x64\x65vice_msgs.proto\x1a\x11\x63ommon_msgs.proto\"k\n\x0b\x43ontrolInfo\x12\x17\n\x0f\x63ontrol_version\x18\x01 \x01(\t\x12\x13\n\x0brobot_model\x18\x02 \x01(\t\x12.\n\x08response\x18\x64 \x01(\x0b\x32\x1c.Nrmk.IndyFramework.Response\":\n\x0eSDKLicenseInfo\x12\x13\n\x0blicense_key\x18\x01 \x01(\t\x12\x13\n\x0b\x65xpire_date\x18\x02 \x01(\t\"S\n\x0eSDKLicenseResp\x12\x11\n\tactivated\x18\x01 \x01(\x08\x12.\n\x08response\x18\x64 \x01(\x0b\x32\x1c.Nrmk.IndyFramework.Response\"\xc1\x02\n\x11VariableCondition\x12/\n\x06i_vars\x18\x01 \x03(\x0b\x32\x1f.Nrmk.IndyFramework.IntVariable\x12\x31\n\x06\x66_vars\x18\x02 \x03(\x0b\x32!.Nrmk.IndyFramework.FloatVariable\x12\x30\n\x06\x62_vars\x18\x03 \x03(\x0b\x32 .Nrmk.IndyFramework.BoolVariable\x12\x32\n\x06m_vars\x18\x04 \x03(\x0b\x32\".Nrmk.IndyFramework.ModbusVariable\x12\x30\n\x06j_vars\x18\x05 \x03(\x0b\x32 .Nrmk.IndyFramework.JPosVariable\x12\x30\n\x06t_vars\x18\x06 \x03(\x0b\x32 .Nrmk.IndyFramework.TPosVariable\"o\n\x0bIOCondition\x12-\n\x02\x64i\x18\x01 \x03(\x0b\x32!.Nrmk.IndyFramework.DigitalSignal\x12\x31\n\x06\x65nd_di\x18\x02 \x03(\x0b\x32!.Nrmk.IndyFramework.DigitalSignal\"\x96\x03\n\x0fMotionCondition\x12\x44\n\ttype_cond\x18\x01 \x01(\x0e\x32\x31.Nrmk.IndyFramework.MotionCondition.ConditionType\x12\x44\n\ntype_react\x18\x02 \x01(\x0e\x32\x30.Nrmk.IndyFramework.MotionCondition.ReactionType\x12\x12\n\nconst_cond\x18\x03 \x01(\x08\x12\x30\n\x07io_cond\x18\x04 \x01(\x0b\x32\x1f.Nrmk.IndyFramework.IOCondition\x12\x37\n\x08var_cond\x18\x05 \x01(\x0b\x32%.Nrmk.IndyFramework.VariableCondition\":\n\rConditionType\x12\x0e\n\nCONST_COND\x10\x00\x12\x0b\n\x07IO_COND\x10\x01\x12\x0c\n\x08VAR_COND\x10\x02\"<\n\x0cReactionType\x12\r\n\tNONE_COND\x10\x00\x12\r\n\tSTOP_COND\x10\x01\x12\x0e\n\nPAUSE_COND\x10\x02\"\x8b\x01\n\x0c\x42lendingType\x12\x33\n\x04type\x18\x01 \x01(\x0e\x32%.Nrmk.IndyFramework.BlendingType.Type\x12\x17\n\x0f\x62lending_radius\x18\x02 \x01(\x02\"-\n\x04Type\x12\x08\n\x04NONE\x10\x00\x12\x0c\n\x08OVERRIDE\x10\x01\x12\r\n\tDUPLICATE\x10\x02\"b\n\x07TargetJ\x12\x0f\n\x07j_start\x18\x01 \x03(\x02\x12\x10\n\x08j_target\x18\x02 \x03(\x02\x12\x34\n\tbase_type\x18\x03 \x01(\x0e\x32!.Nrmk.IndyFramework.JointBaseType\"\xe5\x01\n\x08MoveJReq\x12+\n\x06target\x18\x01 \x01(\x0b\x32\x1b.Nrmk.IndyFramework.TargetJ\x12\x32\n\x08\x62lending\x18\x02 \x01(\x0b\x32 .Nrmk.IndyFramework.BlendingType\x12\x11\n\tvel_ratio\x18\x03 \x01(\x02\x12\x11\n\tacc_ratio\x18\x04 \x01(\x02\x12;\n\x0epost_condition\x18\x14 \x01(\x0b\x32#.Nrmk.IndyFramework.MotionCondition\x12\x15\n\rteaching_mode\x18\x1e \x01(\x08\"\xe9\x01\n\x0cMoveJCondReq\x12+\n\x06target\x18\x01 \x01(\x0b\x32\x1b.Nrmk.IndyFramework.TargetJ\x12\x32\n\x08\x62lending\x18\x02 \x01(\x0b\x32 .Nrmk.IndyFramework.BlendingType\x12\x11\n\tvel_ratio\x18\x03 \x01(\x02\x12\x11\n\tacc_ratio\x18\x04 \x01(\x02\x12;\n\x0epost_condition\x18\x14 \x01(\x0b\x32#.Nrmk.IndyFramework.MotionCondition\x12\x15\n\rteaching_mode\x18\x1e \x01(\x08\"\xb7\x01\n\tMoveJTReq\x12+\n\x06target\x18\x01 \x01(\x0b\x32\x1b.Nrmk.IndyFramework.TargetJ\x12\x32\n\x08\x62lending\x18\x02 \x01(\x0b\x32 .Nrmk.IndyFramework.BlendingType\x12\x0c\n\x04time\x18\x03 \x01(\x02\x12;\n\x0epost_condition\x18\x14 \x01(\x0b\x32#.Nrmk.IndyFramework.MotionCondition\"a\n\x07TargetP\x12\x0f\n\x07t_start\x18\x01 \x03(\x02\x12\x10\n\x08t_target\x18\x02 \x03(\x02\x12\x33\n\tbase_type\x18\x03 \x01(\x0e\x32 .Nrmk.IndyFramework.TaskBaseType\"o\n\x07TargetC\x12\x0f\n\x07t_start\x18\x01 \x03(\x02\x12\x0e\n\x06t_pos0\x18\x02 \x03(\x02\x12\x0e\n\x06t_pos1\x18\x03 \x03(\x02\x12\x33\n\tbase_type\x18\x04 \x01(\x0e\x32 .Nrmk.IndyFramework.TaskBaseType\"\xc9\x02\n\x08MoveLReq\x12+\n\x06target\x18\x01 \x01(\x0b\x32\x1b.Nrmk.IndyFramework.TargetP\x12\x32\n\x08\x62lending\x18\x02 \x01(\x0b\x32 .Nrmk.IndyFramework.BlendingType\x12\x11\n\tvel_ratio\x18\x03 \x01(\x02\x12\x11\n\tacc_ratio\x18\x04 \x01(\x02\x12\x36\n\x08vel_type\x18\x05 \x01(\x0e\x32$.Nrmk.IndyFramework.VelocityModeType\x12\x11\n\tarm_index\x18\n \x01(\x05\x12;\n\x0epost_condition\x18\x14 \x01(\x0b\x32#.Nrmk.IndyFramework.MotionCondition\x12\x15\n\rteaching_mode\x18\x1e \x01(\x08\x12\x17\n\x0f\x62ypass_singular\x18( \x01(\x08\"\xca\x01\n\tMoveLTReq\x12+\n\x06target\x18\x01 \x01(\x0b\x32\x1b.Nrmk.IndyFramework.TargetP\x12\x32\n\x08\x62lending\x18\x02 \x01(\x0b\x32 .Nrmk.IndyFramework.BlendingType\x12\x0c\n\x04time\x18\x03 \x01(\x02\x12\x11\n\tarm_index\x18\n \x01(\x05\x12;\n\x0epost_condition\x18\x14 \x01(\x0b\x32#.Nrmk.IndyFramework.MotionCondition\"\x8e\x01\n\x0bMoveAxisReq\x12\x10\n\x08start_mm\x18\x01 \x03(\x02\x12\x11\n\ttarget_mm\x18\x02 \x03(\x02\x12\x16\n\x0evel_percentage\x18\x03 \x01(\x02\x12\x16\n\x0e\x61\x63\x63_percentage\x18\x04 \x01(\x02\x12\x13\n\x0bis_absolute\x18\x05 \x01(\x08\x12\x15\n\rteaching_mode\x18\n \x01(\x08\"\xd2\x03\n\x08MoveCReq\x12+\n\x06target\x18\x01 \x01(\x0b\x32\x1b.Nrmk.IndyFramework.TargetC\x12\x32\n\x08\x62lending\x18\x02 \x01(\x0b\x32 .Nrmk.IndyFramework.BlendingType\x12\r\n\x05\x61ngle\x18\x03 \x01(\x02\x12=\n\x0csetting_type\x18\n \x01(\x0e\x32\'.Nrmk.IndyFramework.CircularSettingType\x12\x39\n\tmove_type\x18\x0b \x01(\x0e\x32&.Nrmk.IndyFramework.CircularMovingType\x12\x11\n\tarm_index\x18\x0f \x01(\x05\x12\x11\n\tvel_ratio\x18\x14 \x01(\x02\x12\x11\n\tacc_ratio\x18\x15 \x01(\x02\x12\x36\n\x08vel_type\x18\x16 \x01(\x0e\x32$.Nrmk.IndyFramework.VelocityModeType\x12;\n\x0epost_condition\x18\x19 \x01(\x0b\x32#.Nrmk.IndyFramework.MotionCondition\x12\x15\n\rteaching_mode\x18\x1e \x01(\x08\x12\x17\n\x0f\x62ypass_singular\x18( \x01(\x08\"\xd3\x02\n\tMoveCTReq\x12+\n\x06target\x18\x01 \x01(\x0b\x32\x1b.Nrmk.IndyFramework.TargetC\x12\x32\n\x08\x62lending\x18\x02 \x01(\x0b\x32 .Nrmk.IndyFramework.BlendingType\x12\r\n\x05\x61ngle\x18\x03 \x01(\x02\x12=\n\x0csetting_type\x18\n \x01(\x0e\x32\'.Nrmk.IndyFramework.CircularSettingType\x12\x39\n\tmove_type\x18\x0b \x01(\x0e\x32&.Nrmk.IndyFramework.CircularMovingType\x12\x11\n\tarm_index\x18\x0f \x01(\x05\x12\x0c\n\x04time\x18\x14 \x01(\x02\x12;\n\x0epost_condition\x18\x19 \x01(\x0b\x32#.Nrmk.IndyFramework.MotionCondition\"\x9d\x01\n\x10MoveJointTrajReq\x12*\n\x06q_list\x18\x01 \x03(\x0b\x32\x1a.Nrmk.IndyFramework.Vector\x12-\n\tqdot_list\x18\x02 \x03(\x0b\x32\x1a.Nrmk.IndyFramework.Vector\x12.\n\nqddot_list\x18\x03 \x03(\x0b\x32\x1a.Nrmk.IndyFramework.Vector\"\x9c\x01\n\x0fMoveTaskTrajReq\x12*\n\x06p_list\x18\x01 \x03(\x0b\x32\x1a.Nrmk.IndyFramework.Vector\x12-\n\tpdot_list\x18\x02 \x03(\x0b\x32\x1a.Nrmk.IndyFramework.Vector\x12.\n\npddot_list\x18\x03 \x03(\x0b\x32\x1a.Nrmk.IndyFramework.Vector\"\x8a\x01\n\x0cMoveGcodeReq\x12\x12\n\ngcode_file\x18\x01 \x01(\t\x12\x16\n\x0eis_smooth_mode\x18\x02 \x01(\x08\x12\x15\n\rsmooth_radius\x18\x03 \x01(\x02\x12\x11\n\tvel_ratio\x18\x04 \x01(\x02\x12\x11\n\tacc_ratio\x18\x05 \x01(\x02\x12\x11\n\tarm_index\x18\n \x01(\x05\"\x91\x01\n\x0fMoveConveyorReq\x12\x15\n\rteaching_mode\x18\x01 \x01(\x08\x12\x17\n\x0f\x62ypass_singular\x18\x02 \x01(\x08\x12\x11\n\tacc_ratio\x18\x03 \x01(\x02\x12;\n\x0epost_condition\x18\n \x01(\x0b\x32#.Nrmk.IndyFramework.MotionCondition\"\xf8\x01\n\tWaitIOReq\x12\x32\n\x07\x64i_list\x18\x01 \x03(\x0b\x32!.Nrmk.IndyFramework.DigitalSignal\x12\x32\n\x07\x64o_list\x18\x02 \x03(\x0b\x32!.Nrmk.IndyFramework.DigitalSignal\x12\x36\n\x0b\x65nd_di_list\x18\x03 \x03(\x0b\x32!.Nrmk.IndyFramework.DigitalSignal\x12\x36\n\x0b\x65nd_do_list\x18\x04 \x03(\x0b\x32!.Nrmk.IndyFramework.DigitalSignal\x12\x13\n\x0b\x63onjunction\x18\x05 \x01(\x05\"\x1b\n\x0bWaitTimeReq\x12\x0c\n\x04time\x18\x01 \x01(\x02\"#\n\x0fWaitProgressReq\x12\x10\n\x08progress\x18\x01 \x01(\x05\"H\n\x0bWaitTrajReq\x12\x39\n\x0etraj_condition\x18\x01 \x01(\x0e\x32!.Nrmk.IndyFramework.TrajCondition\"\x1f\n\rWaitRadiusReq\x12\x0e\n\x06radius\x18\x01 \x01(\x05\"\xcd\x01\n\x07Program\x12\x11\n\tprog_name\x18\x01 \x01(\t\x12\x10\n\x08prog_idx\x18\x02 \x01(\x05\x12\x39\n\x10start_line_index\x18\x0b \x01(\x0b\x32\x1f.Nrmk.IndyFramework.ProgramLine\x12\x37\n\x0e\x65nd_line_index\x18\x0c \x01(\x0b\x32\x1f.Nrmk.IndyFramework.ProgramLine\x12\x15\n\rteaching_mode\x18\x14 \x01(\x08\x12\x12\n\ndebug_mode\x18\x1e \x01(\x08\"\xc3\x01\n\rTuningProgram\x12,\n\x07program\x18\x01 \x01(\x0b\x32\x1b.Nrmk.IndyFramework.Program\x12\x35\n\x0ctuning_space\x18\x02 \x01(\x0e\x32\x1f.Nrmk.IndyFramework.TuningSpace\x12\x36\n\tprecision\x18\x03 \x01(\x0e\x32#.Nrmk.IndyFramework.TuningPrecision\x12\x15\n\rvel_level_max\x18\x04 \x01(\r\"<\n\x0bProgramInfo\x12\x0c\n\x04path\x18\x01 \x01(\t\x12\x0c\n\x04size\x18\x02 \x01(\x04\x12\x11\n\ttimestamp\x18\x03 \x01(\t\"I\n\x08Variable\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0c\n\x04\x61\x64\x64r\x18\x02 \x01(\x05\x12\x0c\n\x04type\x18\x03 \x01(\t\x12\x13\n\x0bin_watching\x18\x04 \x01(\x08\"*\n\x0bIntVariable\x12\x0c\n\x04\x61\x64\x64r\x18\x01 \x01(\x05\x12\r\n\x05value\x18\x02 \x01(\x03\"\xcf\x01\n\x0eModbusVariable\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0c\n\x04\x61\x64\x64r\x18\x02 \x01(\x05\x12\r\n\x05value\x18\x03 \x01(\x05\x12\x42\n\x0bsignal_type\x18\x04 \x01(\x0e\x32-.Nrmk.IndyFramework.ModbusVariable.SignalType\"N\n\nSignalType\x12\x0c\n\x08ReadCoil\x10\x00\x12\r\n\tWriteCoil\x10\x01\x12\x10\n\x0cReadRegister\x10\x02\x12\x11\n\rWriteRegister\x10\x03\"+\n\x0c\x42oolVariable\x12\x0c\n\x04\x61\x64\x64r\x18\x01 \x01(\x05\x12\r\n\x05value\x18\x02 \x01(\x08\",\n\rFloatVariable\x12\x0c\n\x04\x61\x64\x64r\x18\x01 \x01(\x05\x12\r\n\x05value\x18\x02 \x01(\x02\"*\n\x0cJPosVariable\x12\x0c\n\x04\x61\x64\x64r\x18\x01 \x01(\x05\x12\x0c\n\x04jpos\x18\x02 \x03(\x02\"*\n\x0cTPosVariable\x12\x0c\n\x04\x61\x64\x64r\x18\x01 \x01(\x05\x12\x0c\n\x04tpos\x18\x02 \x03(\x02\"x\n\x0cModbusServer\x12\x13\n\x0bserver_name\x18\x01 \x01(\t\x12\n\n\x02ip\x18\x02 \x01(\t\x12\x0c\n\x04port\x18\x03 \x01(\x05\x12\x39\n\rvariable_list\x18\x04 \x03(\x0b\x32\".Nrmk.IndyFramework.ModbusVariable\"P\n\x12ModbusVariableList\x12:\n\x10modbus_variables\x18\x01 \x03(\x0b\x32 .Nrmk.IndyFramework.ModbusServer\":\n\x07\x41llVars\x12/\n\tvariables\x18\x01 \x03(\x0b\x32\x1c.Nrmk.IndyFramework.Variable\"=\n\x07IntVars\x12\x32\n\tvariables\x18\x01 \x03(\x0b\x32\x1f.Nrmk.IndyFramework.IntVariable\"C\n\nModbusVars\x12\x35\n\tvariables\x18\x01 \x03(\x0b\x32\".Nrmk.IndyFramework.ModbusVariable\"?\n\x08\x42oolVars\x12\x33\n\tvariables\x18\x01 \x03(\x0b\x32 .Nrmk.IndyFramework.BoolVariable\"A\n\tFloatVars\x12\x34\n\tvariables\x18\x01 \x03(\x0b\x32!.Nrmk.IndyFramework.FloatVariable\"?\n\x08JPosVars\x12\x33\n\tvariables\x18\x01 \x03(\x0b\x32 .Nrmk.IndyFramework.JPosVariable\"?\n\x08TPosVars\x12\x33\n\tvariables\x18\x01 \x03(\x0b\x32 .Nrmk.IndyFramework.TPosVariable\"J\n\x14InverseKinematicsReq\x12\x0c\n\x04tpos\x18\x01 \x03(\x02\x12\x11\n\tinit_jpos\x18\x02 \x03(\x02\x12\x11\n\tarm_index\x18\n \x01(\x05\"g\n\x14InverseKinematicsRes\x12\x0c\n\x04jpos\x18\x01 \x03(\x02\x12\x11\n\tarm_index\x18\n \x01(\x05\x12.\n\x08response\x18\x64 \x01(\x0b\x32\x1c.Nrmk.IndyFramework.Response\"7\n\x14\x46orwardKinematicsReq\x12\x0c\n\x04jpos\x18\x01 \x03(\x02\x12\x11\n\tarm_index\x18\n \x01(\x05\"g\n\x14\x46orwardKinematicsRes\x12\x0c\n\x04tpos\x18\x01 \x03(\x02\x12\x11\n\tarm_index\x18\n \x01(\x05\x12.\n\x08response\x18\x64 \x01(\x0b\x32\x1c.Nrmk.IndyFramework.Response\"v\n\x1b\x43heckAproachRetractValidReq\x12\x0c\n\x04tpos\x18\x01 \x03(\x02\x12\x11\n\tinit_jpos\x18\x02 \x03(\x02\x12\x10\n\x08pre_tpos\x18\x03 \x03(\x02\x12\x11\n\tpost_tpos\x18\x04 \x03(\x02\x12\x11\n\tarm_index\x18\n \x01(\x05\"\xae\x01\n\x1b\x43heckAproachRetractValidRes\x12\x10\n\x08is_valid\x18\x01 \x01(\x08\x12\x0f\n\x07tar_pos\x18\x02 \x03(\x02\x12\x14\n\x0c\x61pproach_pos\x18\x03 \x03(\x02\x12\x13\n\x0bretract_pos\x18\x04 \x03(\x02\x12\x11\n\tarm_index\x18\n \x01(\x05\x12.\n\x08response\x18\x64 \x01(\x0b\x32\x1c.Nrmk.IndyFramework.Response\"\xa2\x01\n\x15GetPalletPointListReq\x12\x0c\n\x04tpos\x18\x01 \x03(\x02\x12\x0c\n\x04jpos\x18\x02 \x03(\x02\x12\x10\n\x08pre_tpos\x18\x03 \x03(\x02\x12\x11\n\tpost_tpos\x18\x04 \x03(\x02\x12\x16\n\x0epallet_pattern\x18\x05 \x01(\x05\x12\r\n\x05width\x18\x06 \x01(\x05\x12\x0e\n\x06height\x18\x07 \x01(\x05\x12\x11\n\tarm_index\x18\n \x01(\x05\"[\n\x0bPalletPoint\x12\x0f\n\x07tar_pos\x18\x01 \x03(\x02\x12\x14\n\x0c\x61pproach_pos\x18\x02 \x03(\x02\x12\x13\n\x0bretract_pos\x18\x03 \x03(\x02\x12\x10\n\x08tar_jpos\x18\x04 \x03(\x02\"\x92\x01\n\x15GetPalletPointListRes\x12\x36\n\rpallet_points\x18\x01 \x03(\x0b\x32\x1f.Nrmk.IndyFramework.PalletPoint\x12\x11\n\tarm_index\x18\n \x01(\x05\x12.\n\x08response\x18\x64 \x01(\x0b\x32\x1c.Nrmk.IndyFramework.Response\"s\n\x18\x43\x61lculateRelativePoseReq\x12\x11\n\tstart_pos\x18\x01 \x03(\x02\x12\x0f\n\x07\x65nd_pos\x18\x02 \x03(\x02\x12\x33\n\tbase_type\x18\x03 \x01(\x0e\x32 .Nrmk.IndyFramework.TaskBaseType\"`\n\x18\x43\x61lculateRelativePoseRes\x12\x14\n\x0crelative_pos\x18\x01 \x03(\x02\x12.\n\x08response\x18\x64 \x01(\x0b\x32\x1c.Nrmk.IndyFramework.Response\"|\n\x1a\x43\x61lculateCurrentPoseRelReq\x12\x13\n\x0b\x63urrent_pos\x18\x01 \x03(\x02\x12\x14\n\x0crelative_pos\x18\x02 \x03(\x02\x12\x33\n\tbase_type\x18\x03 \x01(\x0e\x32 .Nrmk.IndyFramework.TaskBaseType\"d\n\x1a\x43\x61lculateCurrentPoseRelRes\x12\x16\n\x0e\x63\x61lculated_pos\x18\x01 \x03(\x02\x12.\n\x08response\x18\x64 \x01(\x0b\x32\x1c.Nrmk.IndyFramework.Response\"\xb2\x01\n\x0cTeleOpDevice\x12\x0c\n\x04name\x18\x01 \x01(\t\x12?\n\x04type\x18\x02 \x01(\x0e\x32\x31.Nrmk.IndyFramework.TeleOpDevice.TeleOpDeviceType\x12\n\n\x02ip\x18\x03 \x01(\t\x12\x0c\n\x04port\x18\x04 \x01(\r\x12\x11\n\tconnected\x18\x05 \x01(\x08\"&\n\x10TeleOpDeviceType\x12\x08\n\x04NONE\x10\x00\x12\x08\n\x04VIVE\x10\x01\"i\n\x0bTeleOpState\x12*\n\x04mode\x18\x01 \x01(\x0e\x32\x1c.Nrmk.IndyFramework.TeleMode\x12.\n\x06method\x18\x02 \x01(\x0e\x32\x1e.Nrmk.IndyFramework.TeleMethod\"X\n\x05TeleP\x12\x0c\n\x04tpos\x18\x01 \x03(\x02\x12\x11\n\tarm_index\x18\x14 \x01(\x05\x12.\n\x08response\x18\x64 \x01(\x0b\x32\x1c.Nrmk.IndyFramework.Response\"O\n\x0eTeleOpFileList\x12\r\n\x05\x66iles\x18\x01 \x03(\t\x12.\n\x08response\x18\x64 \x01(\x0b\x32\x1c.Nrmk.IndyFramework.Response\"\x1b\n\x0bTeleFileReq\x12\x0c\n\x04name\x18\x01 \x01(\t\"\x1c\n\x0cTelePlayRate\x12\x0c\n\x04rate\x18\x01 \x01(\x02\"r\n\x0cMoveTeleJReq\x12\x0c\n\x04jpos\x18\x01 \x03(\x02\x12\x11\n\tvel_ratio\x18\x02 \x01(\x02\x12\x11\n\tacc_ratio\x18\x03 \x01(\x02\x12.\n\x06method\x18\n \x01(\x0e\x32\x1e.Nrmk.IndyFramework.TeleMethod\"\x85\x01\n\x0cMoveTeleLReq\x12\x0c\n\x04tpos\x18\x01 \x03(\x02\x12\x11\n\tvel_ratio\x18\x02 \x01(\x02\x12\x11\n\tacc_ratio\x18\x03 \x01(\x02\x12.\n\x06method\x18\n \x01(\x0e\x32\x1e.Nrmk.IndyFramework.TeleMethod\x12\x11\n\tarm_index\x18\x14 \x01(\x05\"[\n\x0c\x46orceModeReq\x12\x0e\n\x06\x65nable\x18\x01 \x01(\x08\x12\x11\n\tdes_force\x18\x02 \x03(\x02\x12\x15\n\renabled_force\x18\x03 \x03(\x08\x12\x11\n\tarm_index\x18\x14 \x01(\x05\"\xa3\x01\n\x17TransformedFTSensorData\x12\r\n\x05\x66t_Fx\x18\x01 \x01(\x02\x12\r\n\x05\x66t_Fy\x18\x02 \x01(\x02\x12\r\n\x05\x66t_Fz\x18\x03 \x01(\x02\x12\r\n\x05\x66t_Tx\x18\x04 \x01(\x02\x12\r\n\x05\x66t_Ty\x18\x05 \x01(\x02\x12\r\n\x05\x66t_Tz\x18\x06 \x01(\x02\x12.\n\x08response\x18\x64 \x01(\x0b\x32\x1c.Nrmk.IndyFramework.Response\"3\n\x0e\x43omplianceMode\x12\x0e\n\x06\x65nable\x18\x01 \x01(\x08\x12\x11\n\tstiffness\x18\x02 \x03(\x05\"_\n\x08\x42usEvent\x12\x10\n\x08\x65vent_id\x18\x01 \x01(\x04\x12\x0e\n\x06\x62_data\x18\x02 \x03(\x08\x12\x0e\n\x06i_data\x18\x03 \x03(\x05\x12\x0e\n\x06\x66_data\x18\x04 \x03(\x02\x12\x11\n\ttext_data\x18\x05 \x01(\t\"5\n\x10\x43\x61tchBusEventReq\x12\x10\n\x08\x65vent_id\x18\x01 \x01(\x04\x12\x0f\n\x07timeout\x18\x02 \x01(\x02\"\xeb\x01\n\rGetMotionJReq\x12\x30\n\x0btarget_list\x18\x01 \x03(\x0b\x32\x1b.Nrmk.IndyFramework.TargetJ\x12\x32\n\x08\x62lending\x18\x02 \x01(\x0b\x32 .Nrmk.IndyFramework.BlendingType\x12\x11\n\tvel_ratio\x18\x03 \x01(\x02\x12\x11\n\tacc_ratio\x18\x04 \x01(\x02\x12;\n\x0epost_condition\x18\x14 \x01(\x0b\x32#.Nrmk.IndyFramework.MotionCondition\x12\x11\n\ttime_step\x18\x1e \x01(\x02\"\xb6\x02\n\rGetMotionLReq\x12\x30\n\x0btarget_list\x18\x01 \x03(\x0b\x32\x1b.Nrmk.IndyFramework.TargetP\x12\x32\n\x08\x62lending\x18\x02 \x01(\x0b\x32 .Nrmk.IndyFramework.BlendingType\x12\x11\n\tvel_ratio\x18\x03 \x01(\x02\x12\x11\n\tacc_ratio\x18\x04 \x01(\x02\x12\x36\n\x08vel_type\x18\x05 \x01(\x0e\x32$.Nrmk.IndyFramework.VelocityModeType\x12\x11\n\tarm_index\x18\n \x01(\x05\x12;\n\x0epost_condition\x18\x14 \x01(\x0b\x32#.Nrmk.IndyFramework.MotionCondition\x12\x11\n\ttime_step\x18\x1e \x01(\x02\"\xba\x03\n\rGetMotionCReq\x12+\n\x06target\x18\x01 \x01(\x0b\x32\x1b.Nrmk.IndyFramework.TargetC\x12\x32\n\x08\x62lending\x18\x02 \x01(\x0b\x32 .Nrmk.IndyFramework.BlendingType\x12\r\n\x05\x61ngle\x18\x03 \x01(\x02\x12=\n\x0csetting_type\x18\n \x01(\x0e\x32\'.Nrmk.IndyFramework.CircularSettingType\x12\x39\n\tmove_type\x18\x0b \x01(\x0e\x32&.Nrmk.IndyFramework.CircularMovingType\x12\x11\n\tarm_index\x18\x0f \x01(\x05\x12\x11\n\tvel_ratio\x18\x14 \x01(\x02\x12\x11\n\tacc_ratio\x18\x15 \x01(\x02\x12\x36\n\x08vel_type\x18\x16 \x01(\x0e\x32$.Nrmk.IndyFramework.VelocityModeType\x12;\n\x0epost_condition\x18\x19 \x01(\x0b\x32#.Nrmk.IndyFramework.MotionCondition\x12\x11\n\ttime_step\x18\x1e \x01(\x02\"|\n\x0cGetMotionRes\x12\x11\n\ttimestamp\x18\x01 \x03(\x02\x12*\n\x06q_list\x18\x02 \x03(\x0b\x32\x1a.Nrmk.IndyFramework.Vector\x12-\n\tqdot_list\x18\x03 \x03(\x0b\x32\x1a.Nrmk.IndyFramework.Vector\"\xc8\x02\n\tMoveLFReq\x12+\n\x06target\x18\x01 \x01(\x0b\x32\x1b.Nrmk.IndyFramework.TargetP\x12\x32\n\x08\x62lending\x18\x02 \x01(\x0b\x32 .Nrmk.IndyFramework.BlendingType\x12\x11\n\tvel_ratio\x18\x03 \x01(\x02\x12\x11\n\tacc_ratio\x18\x04 \x01(\x02\x12\x36\n\x08vel_type\x18\x05 \x01(\x0e\x32$.Nrmk.IndyFramework.VelocityModeType\x12\x11\n\tdes_force\x18\x06 \x03(\x02\x12\x15\n\renabled_force\x18\x07 \x03(\x08\x12;\n\x0epost_condition\x18\x14 \x01(\x0b\x32#.Nrmk.IndyFramework.MotionCondition\x12\x15\n\rteaching_mode\x18\x1e \x01(\x08\"\x18\n\tMoveFLRes\x12\x0b\n\x03msg\x18\x64 \x01(\t\"\x85\x01\n\x17\x43ontrolInferenceDataSet\x12\x10\n\x08infdata0\x18\x01 \x03(\x02\x12\x10\n\x08infdata1\x18\x02 \x03(\x02\x12\x10\n\x08infdata2\x18\x03 \x03(\x02\x12\x10\n\x08infdata3\x18\x04 \x03(\x02\x12\x10\n\x08infdata4\x18\x05 \x03(\x02\x12\x10\n\x08infdata5\x18\x06 \x03(\x02*7\n\rJointBaseType\x12\x12\n\x0e\x41\x42SOLUTE_JOINT\x10\x00\x12\x12\n\x0eRELATIVE_JOINT\x10\x01*B\n\x0cTaskBaseType\x12\x11\n\rABSOLUTE_TASK\x10\x00\x12\x11\n\rRELATIVE_TASK\x10\x01\x12\x0c\n\x08TCP_TASK\x10\x02*J\n\x10VelocityModeType\x12\x11\n\rTIME_ORIENTED\x10\x00\x12\x11\n\rDISP_ORIENTED\x10\x01\x12\x10\n\x0cROT_ORIENTED\x10\x02*5\n\x13\x43ircularSettingType\x12\r\n\tPOINT_SET\x10\x00\x12\x0f\n\x0b\x43\x45NTER_AXIS\x10\x01*:\n\x12\x43ircularMovingType\x12\x0c\n\x08\x43ONSTANT\x10\x00\x12\n\n\x06RADIAL\x10\x01\x12\n\n\x06SMOOTH\x10\x02*j\n\x08TeleMode\x12\x11\n\rTELE_INACTIVE\x10\x00\x12\x0e\n\nTELE_CALIB\x10\x01\x12\x0f\n\x0bTELE_RECORD\x10\x02\x12\r\n\tTELE_PLAY\x10\x03\x12\x0c\n\x08TELE_RAW\x10\n\x12\r\n\tTELE_MOVE\x10\x14*\x9b\x01\n\nTeleMethod\x12\x16\n\x12TELE_TASK_ABSOLUTE\x10\x00\x12\x16\n\x12TELE_TASK_RELATIVE\x10\x01\x12\x11\n\rTELE_TASK_TCP\x10\x02\x12\x17\n\x13TELE_JOINT_ABSOLUTE\x10\n\x12\x17\n\x13TELE_JOINT_RELATIVE\x10\x0b\x12\x18\n\x14TELE_RECORD_ABSOLUTE\x10\x14\x62\x06proto3'
   ,
   dependencies=[device__msgs__pb2.DESCRIPTOR,common__msgs__pb2.DESCRIPTOR,])
 
@@ -46,8 +46,8 @@ _JOINTBASETYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=9197,
-  serialized_end=9252,
+  serialized_start=10786,
+  serialized_end=10841,
 )
 _sym_db.RegisterEnumDescriptor(_JOINTBASETYPE)
 
@@ -77,8 +77,8 @@ _TASKBASETYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=9254,
-  serialized_end=9320,
+  serialized_start=10843,
+  serialized_end=10909,
 )
 _sym_db.RegisterEnumDescriptor(_TASKBASETYPE)
 
@@ -108,8 +108,8 @@ _VELOCITYMODETYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=9322,
-  serialized_end=9396,
+  serialized_start=10911,
+  serialized_end=10985,
 )
 _sym_db.RegisterEnumDescriptor(_VELOCITYMODETYPE)
 
@@ -134,8 +134,8 @@ _CIRCULARSETTINGTYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=9398,
-  serialized_end=9451,
+  serialized_start=10987,
+  serialized_end=11040,
 )
 _sym_db.RegisterEnumDescriptor(_CIRCULARSETTINGTYPE)
 
@@ -165,8 +165,8 @@ _CIRCULARMOVINGTYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=9453,
-  serialized_end=9511,
+  serialized_start=11042,
+  serialized_end=11100,
 )
 _sym_db.RegisterEnumDescriptor(_CIRCULARMOVINGTYPE)
 
@@ -211,8 +211,8 @@ _TELEMODE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=9513,
-  serialized_end=9619,
+  serialized_start=11102,
+  serialized_end=11208,
 )
 _sym_db.RegisterEnumDescriptor(_TELEMODE)
 
@@ -257,8 +257,8 @@ _TELEMETHOD = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=9622,
-  serialized_end=9777,
+  serialized_start=11211,
+  serialized_end=11366,
 )
 _sym_db.RegisterEnumDescriptor(_TELEMETHOD)
 
@@ -410,8 +410,8 @@ _MODBUSVARIABLE_SIGNALTYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=5274,
-  serialized_end=5352,
+  serialized_start=5530,
+  serialized_end=5608,
 )
 _sym_db.RegisterEnumDescriptor(_MODBUSVARIABLE_SIGNALTYPE)
 
@@ -435,8 +435,8 @@ _TELEOPDEVICE_TELEOPDEVICETYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=7669,
-  serialized_end=7707,
+  serialized_start=8078,
+  serialized_end=8116,
 )
 _sym_db.RegisterEnumDescriptor(_TELEOPDEVICE_TELEOPDEVICETYPE)
 
@@ -1149,21 +1149,28 @@ _MOVELREQ = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='post_condition', full_name='Nrmk.IndyFramework.MoveLReq.post_condition', index=5,
+      name='arm_index', full_name='Nrmk.IndyFramework.MoveLReq.arm_index', index=5,
+      number=10, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='post_condition', full_name='Nrmk.IndyFramework.MoveLReq.post_condition', index=6,
       number=20, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='teaching_mode', full_name='Nrmk.IndyFramework.MoveLReq.teaching_mode', index=6,
+      name='teaching_mode', full_name='Nrmk.IndyFramework.MoveLReq.teaching_mode', index=7,
       number=30, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='bypass_singular', full_name='Nrmk.IndyFramework.MoveLReq.bypass_singular', index=7,
+      name='bypass_singular', full_name='Nrmk.IndyFramework.MoveLReq.bypass_singular', index=8,
       number=40, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
@@ -1182,7 +1189,7 @@ _MOVELREQ = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=2289,
-  serialized_end=2599,
+  serialized_end=2618,
 )
 
 
@@ -1216,7 +1223,14 @@ _MOVELTREQ = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='post_condition', full_name='Nrmk.IndyFramework.MoveLTReq.post_condition', index=3,
+      name='arm_index', full_name='Nrmk.IndyFramework.MoveLTReq.arm_index', index=3,
+      number=10, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='post_condition', full_name='Nrmk.IndyFramework.MoveLTReq.post_condition', index=4,
       number=20, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -1234,8 +1248,8 @@ _MOVELTREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2602,
-  serialized_end=2785,
+  serialized_start=2621,
+  serialized_end=2823,
 )
 
 
@@ -1301,8 +1315,8 @@ _MOVEAXISREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2788,
-  serialized_end=2930,
+  serialized_start=2826,
+  serialized_end=2968,
 )
 
 
@@ -1350,42 +1364,49 @@ _MOVECREQ = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='vel_ratio', full_name='Nrmk.IndyFramework.MoveCReq.vel_ratio', index=5,
+      name='arm_index', full_name='Nrmk.IndyFramework.MoveCReq.arm_index', index=5,
+      number=15, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='vel_ratio', full_name='Nrmk.IndyFramework.MoveCReq.vel_ratio', index=6,
       number=20, type=2, cpp_type=6, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='acc_ratio', full_name='Nrmk.IndyFramework.MoveCReq.acc_ratio', index=6,
+      name='acc_ratio', full_name='Nrmk.IndyFramework.MoveCReq.acc_ratio', index=7,
       number=21, type=2, cpp_type=6, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='vel_type', full_name='Nrmk.IndyFramework.MoveCReq.vel_type', index=7,
+      name='vel_type', full_name='Nrmk.IndyFramework.MoveCReq.vel_type', index=8,
       number=22, type=14, cpp_type=8, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='post_condition', full_name='Nrmk.IndyFramework.MoveCReq.post_condition', index=8,
+      name='post_condition', full_name='Nrmk.IndyFramework.MoveCReq.post_condition', index=9,
       number=25, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='teaching_mode', full_name='Nrmk.IndyFramework.MoveCReq.teaching_mode', index=9,
+      name='teaching_mode', full_name='Nrmk.IndyFramework.MoveCReq.teaching_mode', index=10,
       number=30, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='bypass_singular', full_name='Nrmk.IndyFramework.MoveCReq.bypass_singular', index=10,
+      name='bypass_singular', full_name='Nrmk.IndyFramework.MoveCReq.bypass_singular', index=11,
       number=40, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
@@ -1403,8 +1424,8 @@ _MOVECREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2933,
-  serialized_end=3380,
+  serialized_start=2971,
+  serialized_end=3437,
 )
 
 
@@ -1452,14 +1473,21 @@ _MOVECTREQ = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='time', full_name='Nrmk.IndyFramework.MoveCTReq.time', index=5,
+      name='arm_index', full_name='Nrmk.IndyFramework.MoveCTReq.arm_index', index=5,
+      number=15, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='time', full_name='Nrmk.IndyFramework.MoveCTReq.time', index=6,
       number=20, type=2, cpp_type=6, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='post_condition', full_name='Nrmk.IndyFramework.MoveCTReq.post_condition', index=6,
+      name='post_condition', full_name='Nrmk.IndyFramework.MoveCTReq.post_condition', index=7,
       number=25, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -1477,8 +1505,8 @@ _MOVECTREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3383,
-  serialized_end=3703,
+  serialized_start=3440,
+  serialized_end=3779,
 )
 
 
@@ -1523,8 +1551,8 @@ _MOVEJOINTTRAJREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3706,
-  serialized_end=3863,
+  serialized_start=3782,
+  serialized_end=3939,
 )
 
 
@@ -1569,8 +1597,8 @@ _MOVETASKTRAJREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3866,
-  serialized_end=4022,
+  serialized_start=3942,
+  serialized_end=4098,
 )
 
 
@@ -1617,6 +1645,13 @@ _MOVEGCODEREQ = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='arm_index', full_name='Nrmk.IndyFramework.MoveGcodeReq.arm_index', index=5,
+      number=10, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -1629,8 +1664,8 @@ _MOVEGCODEREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4024,
-  serialized_end=4143,
+  serialized_start=4101,
+  serialized_end=4239,
 )
 
 
@@ -1682,8 +1717,8 @@ _MOVECONVEYORREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4146,
-  serialized_end=4291,
+  serialized_start=4242,
+  serialized_end=4387,
 )
 
 
@@ -1742,8 +1777,8 @@ _WAITIOREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4294,
-  serialized_end=4542,
+  serialized_start=4390,
+  serialized_end=4638,
 )
 
 
@@ -1774,8 +1809,8 @@ _WAITTIMEREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4544,
-  serialized_end=4571,
+  serialized_start=4640,
+  serialized_end=4667,
 )
 
 
@@ -1806,8 +1841,8 @@ _WAITPROGRESSREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4573,
-  serialized_end=4608,
+  serialized_start=4669,
+  serialized_end=4704,
 )
 
 
@@ -1838,8 +1873,8 @@ _WAITTRAJREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4610,
-  serialized_end=4682,
+  serialized_start=4706,
+  serialized_end=4778,
 )
 
 
@@ -1870,8 +1905,8 @@ _WAITRADIUSREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4684,
-  serialized_end=4715,
+  serialized_start=4780,
+  serialized_end=4811,
 )
 
 
@@ -1897,6 +1932,34 @@ _PROGRAM = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='start_line_index', full_name='Nrmk.IndyFramework.Program.start_line_index', index=2,
+      number=11, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='end_line_index', full_name='Nrmk.IndyFramework.Program.end_line_index', index=3,
+      number=12, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='teaching_mode', full_name='Nrmk.IndyFramework.Program.teaching_mode', index=4,
+      number=20, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='debug_mode', full_name='Nrmk.IndyFramework.Program.debug_mode', index=5,
+      number=30, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -1909,8 +1972,8 @@ _PROGRAM = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4717,
-  serialized_end=4763,
+  serialized_start=4814,
+  serialized_end=5019,
 )
 
 
@@ -1962,8 +2025,8 @@ _TUNINGPROGRAM = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4766,
-  serialized_end=4961,
+  serialized_start=5022,
+  serialized_end=5217,
 )
 
 
@@ -2008,8 +2071,8 @@ _PROGRAMINFO = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4963,
-  serialized_end=5023,
+  serialized_start=5219,
+  serialized_end=5279,
 )
 
 
@@ -2061,8 +2124,8 @@ _VARIABLE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5025,
-  serialized_end=5098,
+  serialized_start=5281,
+  serialized_end=5354,
 )
 
 
@@ -2100,8 +2163,8 @@ _INTVARIABLE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5100,
-  serialized_end=5142,
+  serialized_start=5356,
+  serialized_end=5398,
 )
 
 
@@ -2154,8 +2217,8 @@ _MODBUSVARIABLE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5145,
-  serialized_end=5352,
+  serialized_start=5401,
+  serialized_end=5608,
 )
 
 
@@ -2193,8 +2256,8 @@ _BOOLVARIABLE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5354,
-  serialized_end=5397,
+  serialized_start=5610,
+  serialized_end=5653,
 )
 
 
@@ -2232,8 +2295,8 @@ _FLOATVARIABLE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5399,
-  serialized_end=5443,
+  serialized_start=5655,
+  serialized_end=5699,
 )
 
 
@@ -2271,8 +2334,8 @@ _JPOSVARIABLE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5445,
-  serialized_end=5487,
+  serialized_start=5701,
+  serialized_end=5743,
 )
 
 
@@ -2310,8 +2373,8 @@ _TPOSVARIABLE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5489,
-  serialized_end=5531,
+  serialized_start=5745,
+  serialized_end=5787,
 )
 
 
@@ -2363,8 +2426,8 @@ _MODBUSSERVER = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5533,
-  serialized_end=5653,
+  serialized_start=5789,
+  serialized_end=5909,
 )
 
 
@@ -2395,8 +2458,8 @@ _MODBUSVARIABLELIST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5655,
-  serialized_end=5735,
+  serialized_start=5911,
+  serialized_end=5991,
 )
 
 
@@ -2427,8 +2490,8 @@ _ALLVARS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5737,
-  serialized_end=5795,
+  serialized_start=5993,
+  serialized_end=6051,
 )
 
 
@@ -2459,8 +2522,8 @@ _INTVARS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5797,
-  serialized_end=5858,
+  serialized_start=6053,
+  serialized_end=6114,
 )
 
 
@@ -2491,8 +2554,8 @@ _MODBUSVARS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5860,
-  serialized_end=5927,
+  serialized_start=6116,
+  serialized_end=6183,
 )
 
 
@@ -2523,8 +2586,8 @@ _BOOLVARS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5929,
-  serialized_end=5992,
+  serialized_start=6185,
+  serialized_end=6248,
 )
 
 
@@ -2555,8 +2618,8 @@ _FLOATVARS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5994,
-  serialized_end=6059,
+  serialized_start=6250,
+  serialized_end=6315,
 )
 
 
@@ -2587,8 +2650,8 @@ _JPOSVARS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=6061,
-  serialized_end=6124,
+  serialized_start=6317,
+  serialized_end=6380,
 )
 
 
@@ -2619,8 +2682,8 @@ _TPOSVARS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=6126,
-  serialized_end=6189,
+  serialized_start=6382,
+  serialized_end=6445,
 )
 
 
@@ -2646,6 +2709,13 @@ _INVERSEKINEMATICSREQ = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='arm_index', full_name='Nrmk.IndyFramework.InverseKinematicsReq.arm_index', index=2,
+      number=10, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -2658,8 +2728,8 @@ _INVERSEKINEMATICSREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=6191,
-  serialized_end=6246,
+  serialized_start=6447,
+  serialized_end=6521,
 )
 
 
@@ -2679,7 +2749,14 @@ _INVERSEKINEMATICSRES = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='response', full_name='Nrmk.IndyFramework.InverseKinematicsRes.response', index=1,
+      name='arm_index', full_name='Nrmk.IndyFramework.InverseKinematicsRes.arm_index', index=1,
+      number=10, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='response', full_name='Nrmk.IndyFramework.InverseKinematicsRes.response', index=2,
       number=100, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -2697,8 +2774,8 @@ _INVERSEKINEMATICSRES = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=6248,
-  serialized_end=6332,
+  serialized_start=6523,
+  serialized_end=6626,
 )
 
 
@@ -2717,6 +2794,13 @@ _FORWARDKINEMATICSREQ = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='arm_index', full_name='Nrmk.IndyFramework.ForwardKinematicsReq.arm_index', index=1,
+      number=10, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -2729,8 +2813,8 @@ _FORWARDKINEMATICSREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=6334,
-  serialized_end=6370,
+  serialized_start=6628,
+  serialized_end=6683,
 )
 
 
@@ -2750,7 +2834,14 @@ _FORWARDKINEMATICSRES = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='response', full_name='Nrmk.IndyFramework.ForwardKinematicsRes.response', index=1,
+      name='arm_index', full_name='Nrmk.IndyFramework.ForwardKinematicsRes.arm_index', index=1,
+      number=10, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='response', full_name='Nrmk.IndyFramework.ForwardKinematicsRes.response', index=2,
       number=100, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -2768,8 +2859,8 @@ _FORWARDKINEMATICSRES = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=6372,
-  serialized_end=6456,
+  serialized_start=6685,
+  serialized_end=6788,
 )
 
 
@@ -2809,6 +2900,13 @@ _CHECKAPROACHRETRACTVALIDREQ = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='arm_index', full_name='Nrmk.IndyFramework.CheckAproachRetractValidReq.arm_index', index=4,
+      number=10, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -2821,8 +2919,8 @@ _CHECKAPROACHRETRACTVALIDREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=6458,
-  serialized_end=6557,
+  serialized_start=6790,
+  serialized_end=6908,
 )
 
 
@@ -2863,7 +2961,14 @@ _CHECKAPROACHRETRACTVALIDRES = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='response', full_name='Nrmk.IndyFramework.CheckAproachRetractValidRes.response', index=4,
+      name='arm_index', full_name='Nrmk.IndyFramework.CheckAproachRetractValidRes.arm_index', index=4,
+      number=10, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='response', full_name='Nrmk.IndyFramework.CheckAproachRetractValidRes.response', index=5,
       number=100, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -2881,8 +2986,8 @@ _CHECKAPROACHRETRACTVALIDRES = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=6560,
-  serialized_end=6715,
+  serialized_start=6911,
+  serialized_end=7085,
 )
 
 
@@ -2943,6 +3048,13 @@ _GETPALLETPOINTLISTREQ = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='arm_index', full_name='Nrmk.IndyFramework.GetPalletPointListReq.arm_index', index=7,
+      number=10, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -2955,8 +3067,8 @@ _GETPALLETPOINTLISTREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=6718,
-  serialized_end=6861,
+  serialized_start=7088,
+  serialized_end=7250,
 )
 
 
@@ -3008,8 +3120,8 @@ _PALLETPOINT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=6863,
-  serialized_end=6954,
+  serialized_start=7252,
+  serialized_end=7343,
 )
 
 
@@ -3029,7 +3141,14 @@ _GETPALLETPOINTLISTRES = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='response', full_name='Nrmk.IndyFramework.GetPalletPointListRes.response', index=1,
+      name='arm_index', full_name='Nrmk.IndyFramework.GetPalletPointListRes.arm_index', index=1,
+      number=10, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='response', full_name='Nrmk.IndyFramework.GetPalletPointListRes.response', index=2,
       number=100, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -3047,8 +3166,8 @@ _GETPALLETPOINTLISTRES = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=6956,
-  serialized_end=7083,
+  serialized_start=7346,
+  serialized_end=7492,
 )
 
 
@@ -3093,8 +3212,8 @@ _CALCULATERELATIVEPOSEREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=7085,
-  serialized_end=7200,
+  serialized_start=7494,
+  serialized_end=7609,
 )
 
 
@@ -3132,8 +3251,8 @@ _CALCULATERELATIVEPOSERES = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=7202,
-  serialized_end=7298,
+  serialized_start=7611,
+  serialized_end=7707,
 )
 
 
@@ -3178,8 +3297,8 @@ _CALCULATECURRENTPOSERELREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=7300,
-  serialized_end=7424,
+  serialized_start=7709,
+  serialized_end=7833,
 )
 
 
@@ -3217,8 +3336,8 @@ _CALCULATECURRENTPOSERELRES = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=7426,
-  serialized_end=7526,
+  serialized_start=7835,
+  serialized_end=7935,
 )
 
 
@@ -3278,8 +3397,8 @@ _TELEOPDEVICE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=7529,
-  serialized_end=7707,
+  serialized_start=7938,
+  serialized_end=8116,
 )
 
 
@@ -3317,8 +3436,8 @@ _TELEOPSTATE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=7709,
-  serialized_end=7814,
+  serialized_start=8118,
+  serialized_end=8223,
 )
 
 
@@ -3338,7 +3457,14 @@ _TELEP = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='response', full_name='Nrmk.IndyFramework.TeleP.response', index=1,
+      name='arm_index', full_name='Nrmk.IndyFramework.TeleP.arm_index', index=1,
+      number=20, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='response', full_name='Nrmk.IndyFramework.TeleP.response', index=2,
       number=100, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -3356,8 +3482,8 @@ _TELEP = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=7816,
-  serialized_end=7885,
+  serialized_start=8225,
+  serialized_end=8313,
 )
 
 
@@ -3395,8 +3521,8 @@ _TELEOPFILELIST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=7887,
-  serialized_end=7966,
+  serialized_start=8315,
+  serialized_end=8394,
 )
 
 
@@ -3427,8 +3553,8 @@ _TELEFILEREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=7968,
-  serialized_end=7995,
+  serialized_start=8396,
+  serialized_end=8423,
 )
 
 
@@ -3459,8 +3585,8 @@ _TELEPLAYRATE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=7997,
-  serialized_end=8025,
+  serialized_start=8425,
+  serialized_end=8453,
 )
 
 
@@ -3512,8 +3638,8 @@ _MOVETELEJREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=8027,
-  serialized_end=8141,
+  serialized_start=8455,
+  serialized_end=8569,
 )
 
 
@@ -3553,6 +3679,13 @@ _MOVETELELREQ = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='arm_index', full_name='Nrmk.IndyFramework.MoveTeleLReq.arm_index', index=4,
+      number=20, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -3565,8 +3698,8 @@ _MOVETELELREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=8143,
-  serialized_end=8257,
+  serialized_start=8572,
+  serialized_end=8705,
 )
 
 
@@ -3599,6 +3732,13 @@ _FORCEMODEREQ = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='arm_index', full_name='Nrmk.IndyFramework.ForceModeReq.arm_index', index=3,
+      number=20, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -3611,8 +3751,8 @@ _FORCEMODEREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=8259,
-  serialized_end=8331,
+  serialized_start=8707,
+  serialized_end=8798,
 )
 
 
@@ -3685,8 +3825,8 @@ _TRANSFORMEDFTSENSORDATA = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=8334,
-  serialized_end=8497,
+  serialized_start=8801,
+  serialized_end=8964,
 )
 
 
@@ -3724,8 +3864,8 @@ _COMPLIANCEMODE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=8499,
-  serialized_end=8550,
+  serialized_start=8966,
+  serialized_end=9017,
 )
 
 
@@ -3784,8 +3924,8 @@ _BUSEVENT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=8552,
-  serialized_end=8647,
+  serialized_start=9019,
+  serialized_end=9114,
 )
 
 
@@ -3823,8 +3963,304 @@ _CATCHBUSEVENTREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=8649,
-  serialized_end=8702,
+  serialized_start=9116,
+  serialized_end=9169,
+)
+
+
+_GETMOTIONJREQ = _descriptor.Descriptor(
+  name='GetMotionJReq',
+  full_name='Nrmk.IndyFramework.GetMotionJReq',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='target_list', full_name='Nrmk.IndyFramework.GetMotionJReq.target_list', index=0,
+      number=1, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='blending', full_name='Nrmk.IndyFramework.GetMotionJReq.blending', index=1,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='vel_ratio', full_name='Nrmk.IndyFramework.GetMotionJReq.vel_ratio', index=2,
+      number=3, type=2, cpp_type=6, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='acc_ratio', full_name='Nrmk.IndyFramework.GetMotionJReq.acc_ratio', index=3,
+      number=4, type=2, cpp_type=6, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='post_condition', full_name='Nrmk.IndyFramework.GetMotionJReq.post_condition', index=4,
+      number=20, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='time_step', full_name='Nrmk.IndyFramework.GetMotionJReq.time_step', index=5,
+      number=30, type=2, cpp_type=6, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=9172,
+  serialized_end=9407,
+)
+
+
+_GETMOTIONLREQ = _descriptor.Descriptor(
+  name='GetMotionLReq',
+  full_name='Nrmk.IndyFramework.GetMotionLReq',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='target_list', full_name='Nrmk.IndyFramework.GetMotionLReq.target_list', index=0,
+      number=1, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='blending', full_name='Nrmk.IndyFramework.GetMotionLReq.blending', index=1,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='vel_ratio', full_name='Nrmk.IndyFramework.GetMotionLReq.vel_ratio', index=2,
+      number=3, type=2, cpp_type=6, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='acc_ratio', full_name='Nrmk.IndyFramework.GetMotionLReq.acc_ratio', index=3,
+      number=4, type=2, cpp_type=6, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='vel_type', full_name='Nrmk.IndyFramework.GetMotionLReq.vel_type', index=4,
+      number=5, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='arm_index', full_name='Nrmk.IndyFramework.GetMotionLReq.arm_index', index=5,
+      number=10, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='post_condition', full_name='Nrmk.IndyFramework.GetMotionLReq.post_condition', index=6,
+      number=20, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='time_step', full_name='Nrmk.IndyFramework.GetMotionLReq.time_step', index=7,
+      number=30, type=2, cpp_type=6, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=9410,
+  serialized_end=9720,
+)
+
+
+_GETMOTIONCREQ = _descriptor.Descriptor(
+  name='GetMotionCReq',
+  full_name='Nrmk.IndyFramework.GetMotionCReq',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='target', full_name='Nrmk.IndyFramework.GetMotionCReq.target', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='blending', full_name='Nrmk.IndyFramework.GetMotionCReq.blending', index=1,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='angle', full_name='Nrmk.IndyFramework.GetMotionCReq.angle', index=2,
+      number=3, type=2, cpp_type=6, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='setting_type', full_name='Nrmk.IndyFramework.GetMotionCReq.setting_type', index=3,
+      number=10, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='move_type', full_name='Nrmk.IndyFramework.GetMotionCReq.move_type', index=4,
+      number=11, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='arm_index', full_name='Nrmk.IndyFramework.GetMotionCReq.arm_index', index=5,
+      number=15, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='vel_ratio', full_name='Nrmk.IndyFramework.GetMotionCReq.vel_ratio', index=6,
+      number=20, type=2, cpp_type=6, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='acc_ratio', full_name='Nrmk.IndyFramework.GetMotionCReq.acc_ratio', index=7,
+      number=21, type=2, cpp_type=6, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='vel_type', full_name='Nrmk.IndyFramework.GetMotionCReq.vel_type', index=8,
+      number=22, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='post_condition', full_name='Nrmk.IndyFramework.GetMotionCReq.post_condition', index=9,
+      number=25, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='time_step', full_name='Nrmk.IndyFramework.GetMotionCReq.time_step', index=10,
+      number=30, type=2, cpp_type=6, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=9723,
+  serialized_end=10165,
+)
+
+
+_GETMOTIONRES = _descriptor.Descriptor(
+  name='GetMotionRes',
+  full_name='Nrmk.IndyFramework.GetMotionRes',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='timestamp', full_name='Nrmk.IndyFramework.GetMotionRes.timestamp', index=0,
+      number=1, type=2, cpp_type=6, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='q_list', full_name='Nrmk.IndyFramework.GetMotionRes.q_list', index=1,
+      number=2, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='qdot_list', full_name='Nrmk.IndyFramework.GetMotionRes.qdot_list', index=2,
+      number=3, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=10167,
+  serialized_end=10291,
 )
 
 
@@ -3911,8 +4347,8 @@ _MOVELFREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=8705,
-  serialized_end=9033,
+  serialized_start=10294,
+  serialized_end=10622,
 )
 
 
@@ -3943,8 +4379,8 @@ _MOVEFLRES = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=9035,
-  serialized_end=9059,
+  serialized_start=10624,
+  serialized_end=10648,
 )
 
 
@@ -4010,8 +4446,8 @@ _CONTROLINFERENCEDATASET = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=9062,
-  serialized_end=9195,
+  serialized_start=10651,
+  serialized_end=10784,
 )
 
 _CONTROLINFO.fields_by_name['response'].message_type = common__msgs__pb2._RESPONSE
@@ -4074,6 +4510,8 @@ _WAITIOREQ.fields_by_name['do_list'].message_type = device__msgs__pb2._DIGITALSI
 _WAITIOREQ.fields_by_name['end_di_list'].message_type = device__msgs__pb2._DIGITALSIGNAL
 _WAITIOREQ.fields_by_name['end_do_list'].message_type = device__msgs__pb2._DIGITALSIGNAL
 _WAITTRAJREQ.fields_by_name['traj_condition'].enum_type = common__msgs__pb2._TRAJCONDITION
+_PROGRAM.fields_by_name['start_line_index'].message_type = common__msgs__pb2._PROGRAMLINE
+_PROGRAM.fields_by_name['end_line_index'].message_type = common__msgs__pb2._PROGRAMLINE
 _TUNINGPROGRAM.fields_by_name['program'].message_type = _PROGRAM
 _TUNINGPROGRAM.fields_by_name['tuning_space'].enum_type = common__msgs__pb2._TUNINGSPACE
 _TUNINGPROGRAM.fields_by_name['precision'].enum_type = common__msgs__pb2._TUNINGPRECISION
@@ -4106,6 +4544,21 @@ _TELEOPFILELIST.fields_by_name['response'].message_type = common__msgs__pb2._RES
 _MOVETELEJREQ.fields_by_name['method'].enum_type = _TELEMETHOD
 _MOVETELELREQ.fields_by_name['method'].enum_type = _TELEMETHOD
 _TRANSFORMEDFTSENSORDATA.fields_by_name['response'].message_type = common__msgs__pb2._RESPONSE
+_GETMOTIONJREQ.fields_by_name['target_list'].message_type = _TARGETJ
+_GETMOTIONJREQ.fields_by_name['blending'].message_type = _BLENDINGTYPE
+_GETMOTIONJREQ.fields_by_name['post_condition'].message_type = _MOTIONCONDITION
+_GETMOTIONLREQ.fields_by_name['target_list'].message_type = _TARGETP
+_GETMOTIONLREQ.fields_by_name['blending'].message_type = _BLENDINGTYPE
+_GETMOTIONLREQ.fields_by_name['vel_type'].enum_type = _VELOCITYMODETYPE
+_GETMOTIONLREQ.fields_by_name['post_condition'].message_type = _MOTIONCONDITION
+_GETMOTIONCREQ.fields_by_name['target'].message_type = _TARGETC
+_GETMOTIONCREQ.fields_by_name['blending'].message_type = _BLENDINGTYPE
+_GETMOTIONCREQ.fields_by_name['setting_type'].enum_type = _CIRCULARSETTINGTYPE
+_GETMOTIONCREQ.fields_by_name['move_type'].enum_type = _CIRCULARMOVINGTYPE
+_GETMOTIONCREQ.fields_by_name['vel_type'].enum_type = _VELOCITYMODETYPE
+_GETMOTIONCREQ.fields_by_name['post_condition'].message_type = _MOTIONCONDITION
+_GETMOTIONRES.fields_by_name['q_list'].message_type = common__msgs__pb2._VECTOR
+_GETMOTIONRES.fields_by_name['qdot_list'].message_type = common__msgs__pb2._VECTOR
 _MOVELFREQ.fields_by_name['target'].message_type = _TARGETP
 _MOVELFREQ.fields_by_name['blending'].message_type = _BLENDINGTYPE
 _MOVELFREQ.fields_by_name['vel_type'].enum_type = _VELOCITYMODETYPE
@@ -4182,6 +4635,10 @@ DESCRIPTOR.message_types_by_name['TransformedFTSensorData'] = _TRANSFORMEDFTSENS
 DESCRIPTOR.message_types_by_name['ComplianceMode'] = _COMPLIANCEMODE
 DESCRIPTOR.message_types_by_name['BusEvent'] = _BUSEVENT
 DESCRIPTOR.message_types_by_name['CatchBusEventReq'] = _CATCHBUSEVENTREQ
+DESCRIPTOR.message_types_by_name['GetMotionJReq'] = _GETMOTIONJREQ
+DESCRIPTOR.message_types_by_name['GetMotionLReq'] = _GETMOTIONLREQ
+DESCRIPTOR.message_types_by_name['GetMotionCReq'] = _GETMOTIONCREQ
+DESCRIPTOR.message_types_by_name['GetMotionRes'] = _GETMOTIONRES
 DESCRIPTOR.message_types_by_name['MoveLFReq'] = _MOVELFREQ
 DESCRIPTOR.message_types_by_name['MoveFLRes'] = _MOVEFLRES
 DESCRIPTOR.message_types_by_name['ControlInferenceDataSet'] = _CONTROLINFERENCEDATASET
@@ -4697,6 +5154,34 @@ CatchBusEventReq = _reflection.GeneratedProtocolMessageType('CatchBusEventReq', 
   # @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.CatchBusEventReq)
   })
 _sym_db.RegisterMessage(CatchBusEventReq)
+
+GetMotionJReq = _reflection.GeneratedProtocolMessageType('GetMotionJReq', (_message.Message,), {
+  'DESCRIPTOR' : _GETMOTIONJREQ,
+  '__module__' : 'control_msgs_pb2'
+  # @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.GetMotionJReq)
+  })
+_sym_db.RegisterMessage(GetMotionJReq)
+
+GetMotionLReq = _reflection.GeneratedProtocolMessageType('GetMotionLReq', (_message.Message,), {
+  'DESCRIPTOR' : _GETMOTIONLREQ,
+  '__module__' : 'control_msgs_pb2'
+  # @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.GetMotionLReq)
+  })
+_sym_db.RegisterMessage(GetMotionLReq)
+
+GetMotionCReq = _reflection.GeneratedProtocolMessageType('GetMotionCReq', (_message.Message,), {
+  'DESCRIPTOR' : _GETMOTIONCREQ,
+  '__module__' : 'control_msgs_pb2'
+  # @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.GetMotionCReq)
+  })
+_sym_db.RegisterMessage(GetMotionCReq)
+
+GetMotionRes = _reflection.GeneratedProtocolMessageType('GetMotionRes', (_message.Message,), {
+  'DESCRIPTOR' : _GETMOTIONRES,
+  '__module__' : 'control_msgs_pb2'
+  # @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.GetMotionRes)
+  })
+_sym_db.RegisterMessage(GetMotionRes)
 
 MoveLFReq = _reflection.GeneratedProtocolMessageType('MoveLFReq', (_message.Message,), {
   'DESCRIPTOR' : _MOVELFREQ,

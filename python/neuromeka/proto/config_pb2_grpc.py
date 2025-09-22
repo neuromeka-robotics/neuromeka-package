@@ -50,6 +50,11 @@ class ConfigStub(object):
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
                 response_deserializer=config__msgs__pb2.Frame.FromString,
                 )
+        self.GetRefFrameFor = channel.unary_unary(
+                '/Nrmk.IndyFramework.Config/GetRefFrameFor',
+                request_serializer=common__msgs__pb2.Int.SerializeToString,
+                response_deserializer=config__msgs__pb2.Frame.FromString,
+                )
         self.SetRefFrame = channel.unary_unary(
                 '/Nrmk.IndyFramework.Config/SetRefFrame',
                 request_serializer=config__msgs__pb2.Frame.SerializeToString,
@@ -280,6 +285,11 @@ class ConfigStub(object):
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
                 response_deserializer=config__msgs__pb2.ToolProperties.FromString,
                 )
+        self.GetToolPropertyAt = channel.unary_unary(
+                '/Nrmk.IndyFramework.Config/GetToolPropertyAt',
+                request_serializer=common__msgs__pb2.Int.SerializeToString,
+                response_deserializer=config__msgs__pb2.ToolProperties.FromString,
+                )
         self.GetToolFrameList = channel.unary_unary(
                 '/Nrmk.IndyFramework.Config/GetToolFrameList',
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
@@ -405,6 +415,11 @@ class ConfigStub(object):
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
                 response_deserializer=config__msgs__pb2.FTSensorDevice.FromString,
                 )
+        self.GetFTSensorConfigFor = channel.unary_unary(
+                '/Nrmk.IndyFramework.Config/GetFTSensorConfigFor',
+                request_serializer=common__msgs__pb2.Int.SerializeToString,
+                response_deserializer=config__msgs__pb2.FTSensorDevice.FromString,
+                )
         self.SetTeleOpParams = channel.unary_unary(
                 '/Nrmk.IndyFramework.Config/SetTeleOpParams',
                 request_serializer=config__msgs__pb2.TeleOpParams.SerializeToString,
@@ -502,6 +517,12 @@ class ConfigServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def GetRefFrame(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetRefFrameFor(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -783,6 +804,12 @@ class ConfigServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetToolPropertyAt(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def GetToolFrameList(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -933,6 +960,12 @@ class ConfigServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetFTSensorConfigFor(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def SetTeleOpParams(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -1036,6 +1069,11 @@ def add_ConfigServicer_to_server(servicer, server):
             'GetRefFrame': grpc.unary_unary_rpc_method_handler(
                     servicer.GetRefFrame,
                     request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=config__msgs__pb2.Frame.SerializeToString,
+            ),
+            'GetRefFrameFor': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetRefFrameFor,
+                    request_deserializer=common__msgs__pb2.Int.FromString,
                     response_serializer=config__msgs__pb2.Frame.SerializeToString,
             ),
             'SetRefFrame': grpc.unary_unary_rpc_method_handler(
@@ -1268,6 +1306,11 @@ def add_ConfigServicer_to_server(servicer, server):
                     request_deserializer=common__msgs__pb2.Empty.FromString,
                     response_serializer=config__msgs__pb2.ToolProperties.SerializeToString,
             ),
+            'GetToolPropertyAt': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetToolPropertyAt,
+                    request_deserializer=common__msgs__pb2.Int.FromString,
+                    response_serializer=config__msgs__pb2.ToolProperties.SerializeToString,
+            ),
             'GetToolFrameList': grpc.unary_unary_rpc_method_handler(
                     servicer.GetToolFrameList,
                     request_deserializer=common__msgs__pb2.Empty.FromString,
@@ -1391,6 +1434,11 @@ def add_ConfigServicer_to_server(servicer, server):
             'GetFTSensorConfig': grpc.unary_unary_rpc_method_handler(
                     servicer.GetFTSensorConfig,
                     request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=config__msgs__pb2.FTSensorDevice.SerializeToString,
+            ),
+            'GetFTSensorConfigFor': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetFTSensorConfigFor,
+                    request_deserializer=common__msgs__pb2.Int.FromString,
                     response_serializer=config__msgs__pb2.FTSensorDevice.SerializeToString,
             ),
             'SetTeleOpParams': grpc.unary_unary_rpc_method_handler(
@@ -1573,6 +1621,23 @@ class Config(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Config/GetRefFrame',
             common__msgs__pb2.Empty.SerializeToString,
+            config__msgs__pb2.Frame.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetRefFrameFor(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Config/GetRefFrameFor',
+            common__msgs__pb2.Int.SerializeToString,
             config__msgs__pb2.Frame.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
@@ -2360,6 +2425,23 @@ class Config(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
+    def GetToolPropertyAt(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Config/GetToolPropertyAt',
+            common__msgs__pb2.Int.SerializeToString,
+            config__msgs__pb2.ToolProperties.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
     def GetToolFrameList(request,
             target,
             options=(),
@@ -2780,6 +2862,23 @@ class Config(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Config/GetFTSensorConfig',
             common__msgs__pb2.Empty.SerializeToString,
+            config__msgs__pb2.FTSensorDevice.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetFTSensorConfigFor(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Config/GetFTSensorConfigFor',
+            common__msgs__pb2.Int.SerializeToString,
             config__msgs__pb2.FTSensorDevice.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

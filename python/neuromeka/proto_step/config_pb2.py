@@ -21,7 +21,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x0c\x63onfig.proto\x12\x12Nrmk.IndyFramework\x1a\x11\x63onfig_msgs.proto\x1a\x11\x63ommon_msgs.proto2\x85<\n\x06\x43onfig\x12\x42\n\x08GetNonce\x12\x19.Nrmk.IndyFramework.Empty\x1a\x19.Nrmk.IndyFramework.Nonce\"\x00\x12\x43\n\x05Login\x12\x1a.Nrmk.IndyFramework.Digest\x1a\x1c.Nrmk.IndyFramework.LoginRes\"\x00\x12\x46\n\nTestDigest\x12\x1a.Nrmk.IndyFramework.Passwd\x1a\x1a.Nrmk.IndyFramework.Digest\"\x00\x12H\n\x0bVerifyToken\x12\x19.Nrmk.IndyFramework.Token\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12W\n\x0e\x43hangePassword\x12%.Nrmk.IndyFramework.ChangePasswordReq\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12L\n\rGetPathConfig\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1e.Nrmk.IndyFramework.PathConfig\"\x00\x12\x45\n\x0bGetRefFrame\x12\x19.Nrmk.IndyFramework.Empty\x1a\x19.Nrmk.IndyFramework.Frame\"\x00\x12H\n\x0bSetRefFrame\x12\x19.Nrmk.IndyFramework.Frame\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12W\n\x11SetRefFramePlanar\x12\x1f.Nrmk.IndyFramework.PlanarFrame\x1a\x1f.Nrmk.IndyFramework.FrameResult\"\x00\x12I\n\x0eSetLockedJoint\x12\x17.Nrmk.IndyFramework.Int\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12\x46\n\x0bSetToolLink\x12\x17.Nrmk.IndyFramework.Int\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12I\n\x0cSetToolFrame\x12\x19.Nrmk.IndyFramework.Frame\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12J\n\rSetSpeedRatio\x12\x19.Nrmk.IndyFramework.Ratio\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12G\n\rGetSpeedRatio\x12\x19.Nrmk.IndyFramework.Empty\x1a\x19.Nrmk.IndyFramework.Ratio\"\x00\x12S\n\x0fSetDIConfigList\x12 .Nrmk.IndyFramework.DIConfigList\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12P\n\x0fGetDIConfigList\x12\x19.Nrmk.IndyFramework.Empty\x1a .Nrmk.IndyFramework.DIConfigList\"\x00\x12S\n\x0fSetDOConfigList\x12 .Nrmk.IndyFramework.DOConfigList\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12P\n\x0fGetDOConfigList\x12\x19.Nrmk.IndyFramework.Empty\x1a .Nrmk.IndyFramework.DOConfigList\"\x00\x12O\n\x0fSetHomePosition\x12\x1c.Nrmk.IndyFramework.JointPos\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12L\n\x0fGetHomePosition\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1c.Nrmk.IndyFramework.JointPos\"\x00\x12L\n\x0fGetPackPosition\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1c.Nrmk.IndyFramework.JointPos\"\x00\x12K\n\x0bSetToolList\x12\x1c.Nrmk.IndyFramework.ToolList\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12H\n\x0bGetToolList\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1c.Nrmk.IndyFramework.ToolList\"\x00\x12X\n\x13GetVisionServerList\x12\x19.Nrmk.IndyFramework.Empty\x1a$.Nrmk.IndyFramework.VisionServerList\"\x00\x12[\n\x13SetVisionServerList\x12$.Nrmk.IndyFramework.VisionServerList\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12X\n\x13GetModbusServerList\x12\x19.Nrmk.IndyFramework.Empty\x1a$.Nrmk.IndyFramework.ModbusServerList\"\x00\x12[\n\x13SetModbusServerList\x12$.Nrmk.IndyFramework.ModbusServerList\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12P\n\x0fGetConveyorList\x12\x19.Nrmk.IndyFramework.Empty\x1a .Nrmk.IndyFramework.ConveyorList\"\x00\x12S\n\x0fSetConveyorList\x12 .Nrmk.IndyFramework.ConveyorList\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12Y\n\x0fSetAutoServoOff\x12&.Nrmk.IndyFramework.AutoServoOffConfig\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12V\n\x0fGetAutoServoOff\x12\x19.Nrmk.IndyFramework.Empty\x1a&.Nrmk.IndyFramework.AutoServoOffConfig\"\x00\x12W\n\x13SetJointControlGain\x12 .Nrmk.IndyFramework.JointGainSet\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12T\n\x13GetJointControlGain\x12\x19.Nrmk.IndyFramework.Empty\x1a .Nrmk.IndyFramework.JointGainSet\"\x00\x12U\n\x12SetTaskControlGain\x12\x1f.Nrmk.IndyFramework.TaskGainSet\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12R\n\x12GetTaskControlGain\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1f.Nrmk.IndyFramework.TaskGainSet\"\x00\x12_\n\x17SetImpedanceControlGain\x12$.Nrmk.IndyFramework.ImpedanceGainSet\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12\\\n\x17GetImpedanceControlGain\x12\x19.Nrmk.IndyFramework.Empty\x1a$.Nrmk.IndyFramework.ImpedanceGainSet\"\x00\x12W\n\x13SetForceControlGain\x12 .Nrmk.IndyFramework.ForceGainSet\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12T\n\x13GetForceControlGain\x12\x19.Nrmk.IndyFramework.Empty\x1a .Nrmk.IndyFramework.ForceGainSet\"\x00\x12U\n\x12SetTestControlGain\x12\x1f.Nrmk.IndyFramework.TestGainSet\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12R\n\x12GetTestControlGain\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1f.Nrmk.IndyFramework.TestGainSet\"\x00\x12Y\n\x14SetCustomControlGain\x12!.Nrmk.IndyFramework.CustomGainSet\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12V\n\x14GetCustomControlGain\x12\x19.Nrmk.IndyFramework.Empty\x1a!.Nrmk.IndyFramework.CustomGainSet\"\x00\x12g\n\x19SetNewControllerTestOnOff\x12*.Nrmk.IndyFramework.NewControllerTestState\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12i\n\x1eGetNewControllerTestOnOffState\x12\x19.Nrmk.IndyFramework.Empty\x1a*.Nrmk.IndyFramework.NewControllerTestState\"\x00\x12\x66\n\x1dSetComplianceControlJointGain\x12%.Nrmk.IndyFramework.ComplianceGainSet\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12\x63\n\x1dGetComplianceControlJointGain\x12\x19.Nrmk.IndyFramework.Empty\x1a%.Nrmk.IndyFramework.ComplianceGainSet\"\x00\x12V\n\x0fSetFrictionComp\x12#.Nrmk.IndyFramework.FrictionCompSet\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12S\n\x0fGetFrictionComp\x12\x19.Nrmk.IndyFramework.Empty\x1a#.Nrmk.IndyFramework.FrictionCompSet\"\x00\x12Q\n\x0bSetMountPos\x12\".Nrmk.IndyFramework.MountingAngles\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12N\n\x0bGetMountPos\x12\x19.Nrmk.IndyFramework.Empty\x1a\".Nrmk.IndyFramework.MountingAngles\"\x00\x12U\n\x0fSetToolProperty\x12\".Nrmk.IndyFramework.ToolProperties\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12R\n\x0fGetToolProperty\x12\x19.Nrmk.IndyFramework.Empty\x1a\".Nrmk.IndyFramework.ToolProperties\"\x00\x12R\n\x10GetToolFrameList\x12\x19.Nrmk.IndyFramework.Empty\x1a!.Nrmk.IndyFramework.ToolFrameList\"\x00\x12U\n\x10SetToolFrameList\x12!.Nrmk.IndyFramework.ToolFrameList\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12P\n\x0fGetRefFrameList\x12\x19.Nrmk.IndyFramework.Empty\x1a .Nrmk.IndyFramework.RefFrameList\"\x00\x12S\n\x0fSetRefFrameList\x12 .Nrmk.IndyFramework.RefFrameList\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12R\n\x10GetCustomPosList\x12\x19.Nrmk.IndyFramework.Empty\x1a!.Nrmk.IndyFramework.CustomPosList\"\x00\x12U\n\x10SetCustomPosList\x12!.Nrmk.IndyFramework.CustomPosList\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12Z\n\x10SetCollSensLevel\x12&.Nrmk.IndyFramework.CollisionSensLevel\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12W\n\x10GetCollSensLevel\x12\x19.Nrmk.IndyFramework.Empty\x1a&.Nrmk.IndyFramework.CollisionSensLevel\"\x00\x12[\n\x10SetCollSensParam\x12\'.Nrmk.IndyFramework.CollisionThresholds\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12X\n\x10GetCollSensParam\x12\x19.Nrmk.IndyFramework.Empty\x1a\'.Nrmk.IndyFramework.CollisionThresholds\"\x00\x12_\n\x17GetDefaultCollSensParam\x12\x19.Nrmk.IndyFramework.Empty\x1a\'.Nrmk.IndyFramework.CollisionThresholds\"\x00\x12T\n\rSetCollPolicy\x12#.Nrmk.IndyFramework.CollisionPolicy\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12Q\n\rGetCollPolicy\x12\x19.Nrmk.IndyFramework.Empty\x1a#.Nrmk.IndyFramework.CollisionPolicy\"\x00\x12\x63\n\x17SetOnStartProgramConfig\x12(.Nrmk.IndyFramework.OnStartProgramConfig\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12`\n\x17GetOnStartProgramConfig\x12\x19.Nrmk.IndyFramework.Empty\x1a(.Nrmk.IndyFramework.OnStartProgramConfig\"\x00\x12S\n\x16SetSimpleCollThreshold\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12S\n\x0fSetSafetyLimits\x12 .Nrmk.IndyFramework.SafetyLimits\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12P\n\x0fGetSafetyLimits\x12\x19.Nrmk.IndyFramework.Empty\x1a .Nrmk.IndyFramework.SafetyLimits\"\x00\x12[\n\x13SetSafetyStopConfig\x12$.Nrmk.IndyFramework.SafetyStopConfig\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12X\n\x13GetSafetyStopConfig\x12\x19.Nrmk.IndyFramework.Empty\x1a$.Nrmk.IndyFramework.SafetyStopConfig\"\x00\x12V\n\x0fGetReducedRatio\x12\x19.Nrmk.IndyFramework.Empty\x1a&.Nrmk.IndyFramework.GetReducedRatioRes\"\x00\x12V\n\x0fGetReducedSpeed\x12\x19.Nrmk.IndyFramework.Empty\x1a&.Nrmk.IndyFramework.GetReducedSpeedRes\"\x00\x12Y\n\x0fSetReducedSpeed\x12&.Nrmk.IndyFramework.SetReducedSpeedReq\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12W\n\x11SetFTSensorConfig\x12\".Nrmk.IndyFramework.FTSensorDevice\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12T\n\x11GetFTSensorConfig\x12\x19.Nrmk.IndyFramework.Empty\x1a\".Nrmk.IndyFramework.FTSensorDevice\"\x00\x12S\n\x0fSetTeleOpParams\x12 .Nrmk.IndyFramework.TeleOpParams\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12P\n\x0fGetTeleOpParams\x12\x19.Nrmk.IndyFramework.Empty\x1a .Nrmk.IndyFramework.TeleOpParams\"\x00\x12X\n\x13GetKinematicsParams\x12\x19.Nrmk.IndyFramework.Empty\x1a$.Nrmk.IndyFramework.KinematicsParams\"\x00\x12_\n\x16GetCollisonModelMargin\x12\x19.Nrmk.IndyFramework.Empty\x1a(.Nrmk.IndyFramework.CollisionModelMargin\"\x00\x12\x62\n\x16SetCollisonModelMargin\x12(.Nrmk.IndyFramework.CollisionModelMargin\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12U\n\x10SetToolShapeList\x12!.Nrmk.IndyFramework.ToolShapeList\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12R\n\x10GetToolShapeList\x12\x19.Nrmk.IndyFramework.Empty\x1a!.Nrmk.IndyFramework.ToolShapeList\"\x00\x12Y\n\x12SetEnvironmentList\x12#.Nrmk.IndyFramework.EnvironmentList\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12V\n\x12GetEnvironmentList\x12\x19.Nrmk.IndyFramework.Empty\x1a#.Nrmk.IndyFramework.EnvironmentList\"\x00\x12[\n\x13SetSensorlessParams\x12$.Nrmk.IndyFramework.SensorlessParams\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12X\n\x13GetSensorlessParams\x12\x19.Nrmk.IndyFramework.Empty\x1a$.Nrmk.IndyFramework.SensorlessParams\"\x00\x62\x06proto3'
+  serialized_pb=b'\n\x0c\x63onfig.proto\x12\x12Nrmk.IndyFramework\x1a\x11\x63onfig_msgs.proto\x1a\x11\x63ommon_msgs.proto2\xf8=\n\x06\x43onfig\x12\x42\n\x08GetNonce\x12\x19.Nrmk.IndyFramework.Empty\x1a\x19.Nrmk.IndyFramework.Nonce\"\x00\x12\x43\n\x05Login\x12\x1a.Nrmk.IndyFramework.Digest\x1a\x1c.Nrmk.IndyFramework.LoginRes\"\x00\x12\x46\n\nTestDigest\x12\x1a.Nrmk.IndyFramework.Passwd\x1a\x1a.Nrmk.IndyFramework.Digest\"\x00\x12H\n\x0bVerifyToken\x12\x19.Nrmk.IndyFramework.Token\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12W\n\x0e\x43hangePassword\x12%.Nrmk.IndyFramework.ChangePasswordReq\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12L\n\rGetPathConfig\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1e.Nrmk.IndyFramework.PathConfig\"\x00\x12\x45\n\x0bGetRefFrame\x12\x19.Nrmk.IndyFramework.Empty\x1a\x19.Nrmk.IndyFramework.Frame\"\x00\x12\x46\n\x0eGetRefFrameFor\x12\x17.Nrmk.IndyFramework.Int\x1a\x19.Nrmk.IndyFramework.Frame\"\x00\x12H\n\x0bSetRefFrame\x12\x19.Nrmk.IndyFramework.Frame\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12W\n\x11SetRefFramePlanar\x12\x1f.Nrmk.IndyFramework.PlanarFrame\x1a\x1f.Nrmk.IndyFramework.FrameResult\"\x00\x12I\n\x0eSetLockedJoint\x12\x17.Nrmk.IndyFramework.Int\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12\x46\n\x0bSetToolLink\x12\x17.Nrmk.IndyFramework.Int\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12I\n\x0cSetToolFrame\x12\x19.Nrmk.IndyFramework.Frame\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12J\n\rSetSpeedRatio\x12\x19.Nrmk.IndyFramework.Ratio\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12G\n\rGetSpeedRatio\x12\x19.Nrmk.IndyFramework.Empty\x1a\x19.Nrmk.IndyFramework.Ratio\"\x00\x12S\n\x0fSetDIConfigList\x12 .Nrmk.IndyFramework.DIConfigList\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12P\n\x0fGetDIConfigList\x12\x19.Nrmk.IndyFramework.Empty\x1a .Nrmk.IndyFramework.DIConfigList\"\x00\x12S\n\x0fSetDOConfigList\x12 .Nrmk.IndyFramework.DOConfigList\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12P\n\x0fGetDOConfigList\x12\x19.Nrmk.IndyFramework.Empty\x1a .Nrmk.IndyFramework.DOConfigList\"\x00\x12O\n\x0fSetHomePosition\x12\x1c.Nrmk.IndyFramework.JointPos\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12L\n\x0fGetHomePosition\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1c.Nrmk.IndyFramework.JointPos\"\x00\x12L\n\x0fGetPackPosition\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1c.Nrmk.IndyFramework.JointPos\"\x00\x12K\n\x0bSetToolList\x12\x1c.Nrmk.IndyFramework.ToolList\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12H\n\x0bGetToolList\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1c.Nrmk.IndyFramework.ToolList\"\x00\x12X\n\x13GetVisionServerList\x12\x19.Nrmk.IndyFramework.Empty\x1a$.Nrmk.IndyFramework.VisionServerList\"\x00\x12[\n\x13SetVisionServerList\x12$.Nrmk.IndyFramework.VisionServerList\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12X\n\x13GetModbusServerList\x12\x19.Nrmk.IndyFramework.Empty\x1a$.Nrmk.IndyFramework.ModbusServerList\"\x00\x12[\n\x13SetModbusServerList\x12$.Nrmk.IndyFramework.ModbusServerList\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12P\n\x0fGetConveyorList\x12\x19.Nrmk.IndyFramework.Empty\x1a .Nrmk.IndyFramework.ConveyorList\"\x00\x12S\n\x0fSetConveyorList\x12 .Nrmk.IndyFramework.ConveyorList\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12Y\n\x0fSetAutoServoOff\x12&.Nrmk.IndyFramework.AutoServoOffConfig\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12V\n\x0fGetAutoServoOff\x12\x19.Nrmk.IndyFramework.Empty\x1a&.Nrmk.IndyFramework.AutoServoOffConfig\"\x00\x12W\n\x13SetJointControlGain\x12 .Nrmk.IndyFramework.JointGainSet\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12T\n\x13GetJointControlGain\x12\x19.Nrmk.IndyFramework.Empty\x1a .Nrmk.IndyFramework.JointGainSet\"\x00\x12U\n\x12SetTaskControlGain\x12\x1f.Nrmk.IndyFramework.TaskGainSet\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12R\n\x12GetTaskControlGain\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1f.Nrmk.IndyFramework.TaskGainSet\"\x00\x12_\n\x17SetImpedanceControlGain\x12$.Nrmk.IndyFramework.ImpedanceGainSet\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12\\\n\x17GetImpedanceControlGain\x12\x19.Nrmk.IndyFramework.Empty\x1a$.Nrmk.IndyFramework.ImpedanceGainSet\"\x00\x12W\n\x13SetForceControlGain\x12 .Nrmk.IndyFramework.ForceGainSet\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12T\n\x13GetForceControlGain\x12\x19.Nrmk.IndyFramework.Empty\x1a .Nrmk.IndyFramework.ForceGainSet\"\x00\x12U\n\x12SetTestControlGain\x12\x1f.Nrmk.IndyFramework.TestGainSet\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12R\n\x12GetTestControlGain\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1f.Nrmk.IndyFramework.TestGainSet\"\x00\x12Y\n\x14SetCustomControlGain\x12!.Nrmk.IndyFramework.CustomGainSet\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12V\n\x14GetCustomControlGain\x12\x19.Nrmk.IndyFramework.Empty\x1a!.Nrmk.IndyFramework.CustomGainSet\"\x00\x12g\n\x19SetNewControllerTestOnOff\x12*.Nrmk.IndyFramework.NewControllerTestState\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12i\n\x1eGetNewControllerTestOnOffState\x12\x19.Nrmk.IndyFramework.Empty\x1a*.Nrmk.IndyFramework.NewControllerTestState\"\x00\x12\x66\n\x1dSetComplianceControlJointGain\x12%.Nrmk.IndyFramework.ComplianceGainSet\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12\x63\n\x1dGetComplianceControlJointGain\x12\x19.Nrmk.IndyFramework.Empty\x1a%.Nrmk.IndyFramework.ComplianceGainSet\"\x00\x12V\n\x0fSetFrictionComp\x12#.Nrmk.IndyFramework.FrictionCompSet\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12S\n\x0fGetFrictionComp\x12\x19.Nrmk.IndyFramework.Empty\x1a#.Nrmk.IndyFramework.FrictionCompSet\"\x00\x12Q\n\x0bSetMountPos\x12\".Nrmk.IndyFramework.MountingAngles\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12N\n\x0bGetMountPos\x12\x19.Nrmk.IndyFramework.Empty\x1a\".Nrmk.IndyFramework.MountingAngles\"\x00\x12U\n\x0fSetToolProperty\x12\".Nrmk.IndyFramework.ToolProperties\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12R\n\x0fGetToolProperty\x12\x19.Nrmk.IndyFramework.Empty\x1a\".Nrmk.IndyFramework.ToolProperties\"\x00\x12R\n\x11GetToolPropertyAt\x12\x17.Nrmk.IndyFramework.Int\x1a\".Nrmk.IndyFramework.ToolProperties\"\x00\x12R\n\x10GetToolFrameList\x12\x19.Nrmk.IndyFramework.Empty\x1a!.Nrmk.IndyFramework.ToolFrameList\"\x00\x12U\n\x10SetToolFrameList\x12!.Nrmk.IndyFramework.ToolFrameList\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12P\n\x0fGetRefFrameList\x12\x19.Nrmk.IndyFramework.Empty\x1a .Nrmk.IndyFramework.RefFrameList\"\x00\x12S\n\x0fSetRefFrameList\x12 .Nrmk.IndyFramework.RefFrameList\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12R\n\x10GetCustomPosList\x12\x19.Nrmk.IndyFramework.Empty\x1a!.Nrmk.IndyFramework.CustomPosList\"\x00\x12U\n\x10SetCustomPosList\x12!.Nrmk.IndyFramework.CustomPosList\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12Z\n\x10SetCollSensLevel\x12&.Nrmk.IndyFramework.CollisionSensLevel\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12W\n\x10GetCollSensLevel\x12\x19.Nrmk.IndyFramework.Empty\x1a&.Nrmk.IndyFramework.CollisionSensLevel\"\x00\x12[\n\x10SetCollSensParam\x12\'.Nrmk.IndyFramework.CollisionThresholds\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12X\n\x10GetCollSensParam\x12\x19.Nrmk.IndyFramework.Empty\x1a\'.Nrmk.IndyFramework.CollisionThresholds\"\x00\x12_\n\x17GetDefaultCollSensParam\x12\x19.Nrmk.IndyFramework.Empty\x1a\'.Nrmk.IndyFramework.CollisionThresholds\"\x00\x12T\n\rSetCollPolicy\x12#.Nrmk.IndyFramework.CollisionPolicy\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12Q\n\rGetCollPolicy\x12\x19.Nrmk.IndyFramework.Empty\x1a#.Nrmk.IndyFramework.CollisionPolicy\"\x00\x12\x63\n\x17SetOnStartProgramConfig\x12(.Nrmk.IndyFramework.OnStartProgramConfig\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12`\n\x17GetOnStartProgramConfig\x12\x19.Nrmk.IndyFramework.Empty\x1a(.Nrmk.IndyFramework.OnStartProgramConfig\"\x00\x12S\n\x16SetSimpleCollThreshold\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12S\n\x0fSetSafetyLimits\x12 .Nrmk.IndyFramework.SafetyLimits\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12P\n\x0fGetSafetyLimits\x12\x19.Nrmk.IndyFramework.Empty\x1a .Nrmk.IndyFramework.SafetyLimits\"\x00\x12[\n\x13SetSafetyStopConfig\x12$.Nrmk.IndyFramework.SafetyStopConfig\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12X\n\x13GetSafetyStopConfig\x12\x19.Nrmk.IndyFramework.Empty\x1a$.Nrmk.IndyFramework.SafetyStopConfig\"\x00\x12V\n\x0fGetReducedRatio\x12\x19.Nrmk.IndyFramework.Empty\x1a&.Nrmk.IndyFramework.GetReducedRatioRes\"\x00\x12V\n\x0fGetReducedSpeed\x12\x19.Nrmk.IndyFramework.Empty\x1a&.Nrmk.IndyFramework.GetReducedSpeedRes\"\x00\x12Y\n\x0fSetReducedSpeed\x12&.Nrmk.IndyFramework.SetReducedSpeedReq\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12W\n\x11SetFTSensorConfig\x12\".Nrmk.IndyFramework.FTSensorDevice\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12T\n\x11GetFTSensorConfig\x12\x19.Nrmk.IndyFramework.Empty\x1a\".Nrmk.IndyFramework.FTSensorDevice\"\x00\x12U\n\x14GetFTSensorConfigFor\x12\x17.Nrmk.IndyFramework.Int\x1a\".Nrmk.IndyFramework.FTSensorDevice\"\x00\x12S\n\x0fSetTeleOpParams\x12 .Nrmk.IndyFramework.TeleOpParams\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12P\n\x0fGetTeleOpParams\x12\x19.Nrmk.IndyFramework.Empty\x1a .Nrmk.IndyFramework.TeleOpParams\"\x00\x12X\n\x13GetKinematicsParams\x12\x19.Nrmk.IndyFramework.Empty\x1a$.Nrmk.IndyFramework.KinematicsParams\"\x00\x12_\n\x16GetCollisonModelMargin\x12\x19.Nrmk.IndyFramework.Empty\x1a(.Nrmk.IndyFramework.CollisionModelMargin\"\x00\x12\x62\n\x16SetCollisonModelMargin\x12(.Nrmk.IndyFramework.CollisionModelMargin\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12U\n\x10SetToolShapeList\x12!.Nrmk.IndyFramework.ToolShapeList\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12R\n\x10GetToolShapeList\x12\x19.Nrmk.IndyFramework.Empty\x1a!.Nrmk.IndyFramework.ToolShapeList\"\x00\x12Y\n\x12SetEnvironmentList\x12#.Nrmk.IndyFramework.EnvironmentList\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12V\n\x12GetEnvironmentList\x12\x19.Nrmk.IndyFramework.Empty\x1a#.Nrmk.IndyFramework.EnvironmentList\"\x00\x12[\n\x13SetSensorlessParams\x12$.Nrmk.IndyFramework.SensorlessParams\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12X\n\x13GetSensorlessParams\x12\x19.Nrmk.IndyFramework.Empty\x1a$.Nrmk.IndyFramework.SensorlessParams\"\x00\x62\x06proto3'
   ,
   dependencies=[config__msgs__pb2.DESCRIPTOR,common__msgs__pb2.DESCRIPTOR,])
 
@@ -39,7 +39,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
   serialized_start=75,
-  serialized_end=7760,
+  serialized_end=8003,
   methods=[
   _descriptor.MethodDescriptor(
     name='GetNonce',
@@ -112,9 +112,19 @@ _CONFIG = _descriptor.ServiceDescriptor(
     create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
+    name='GetRefFrameFor',
+    full_name='Nrmk.IndyFramework.Config.GetRefFrameFor',
+    index=7,
+    containing_service=None,
+    input_type=common__msgs__pb2._INT,
+    output_type=config__msgs__pb2._FRAME,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
     name='SetRefFrame',
     full_name='Nrmk.IndyFramework.Config.SetRefFrame',
-    index=7,
+    index=8,
     containing_service=None,
     input_type=config__msgs__pb2._FRAME,
     output_type=common__msgs__pb2._RESPONSE,
@@ -124,7 +134,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SetRefFramePlanar',
     full_name='Nrmk.IndyFramework.Config.SetRefFramePlanar',
-    index=8,
+    index=9,
     containing_service=None,
     input_type=config__msgs__pb2._PLANARFRAME,
     output_type=config__msgs__pb2._FRAMERESULT,
@@ -134,7 +144,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SetLockedJoint',
     full_name='Nrmk.IndyFramework.Config.SetLockedJoint',
-    index=9,
+    index=10,
     containing_service=None,
     input_type=common__msgs__pb2._INT,
     output_type=common__msgs__pb2._RESPONSE,
@@ -144,7 +154,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SetToolLink',
     full_name='Nrmk.IndyFramework.Config.SetToolLink',
-    index=10,
+    index=11,
     containing_service=None,
     input_type=common__msgs__pb2._INT,
     output_type=common__msgs__pb2._RESPONSE,
@@ -154,7 +164,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SetToolFrame',
     full_name='Nrmk.IndyFramework.Config.SetToolFrame',
-    index=11,
+    index=12,
     containing_service=None,
     input_type=config__msgs__pb2._FRAME,
     output_type=common__msgs__pb2._RESPONSE,
@@ -164,7 +174,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SetSpeedRatio',
     full_name='Nrmk.IndyFramework.Config.SetSpeedRatio',
-    index=12,
+    index=13,
     containing_service=None,
     input_type=config__msgs__pb2._RATIO,
     output_type=common__msgs__pb2._RESPONSE,
@@ -174,7 +184,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='GetSpeedRatio',
     full_name='Nrmk.IndyFramework.Config.GetSpeedRatio',
-    index=13,
+    index=14,
     containing_service=None,
     input_type=common__msgs__pb2._EMPTY,
     output_type=config__msgs__pb2._RATIO,
@@ -184,7 +194,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SetDIConfigList',
     full_name='Nrmk.IndyFramework.Config.SetDIConfigList',
-    index=14,
+    index=15,
     containing_service=None,
     input_type=config__msgs__pb2._DICONFIGLIST,
     output_type=common__msgs__pb2._RESPONSE,
@@ -194,7 +204,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='GetDIConfigList',
     full_name='Nrmk.IndyFramework.Config.GetDIConfigList',
-    index=15,
+    index=16,
     containing_service=None,
     input_type=common__msgs__pb2._EMPTY,
     output_type=config__msgs__pb2._DICONFIGLIST,
@@ -204,7 +214,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SetDOConfigList',
     full_name='Nrmk.IndyFramework.Config.SetDOConfigList',
-    index=16,
+    index=17,
     containing_service=None,
     input_type=config__msgs__pb2._DOCONFIGLIST,
     output_type=common__msgs__pb2._RESPONSE,
@@ -214,7 +224,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='GetDOConfigList',
     full_name='Nrmk.IndyFramework.Config.GetDOConfigList',
-    index=17,
+    index=18,
     containing_service=None,
     input_type=common__msgs__pb2._EMPTY,
     output_type=config__msgs__pb2._DOCONFIGLIST,
@@ -224,7 +234,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SetHomePosition',
     full_name='Nrmk.IndyFramework.Config.SetHomePosition',
-    index=18,
+    index=19,
     containing_service=None,
     input_type=config__msgs__pb2._JOINTPOS,
     output_type=common__msgs__pb2._RESPONSE,
@@ -234,7 +244,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='GetHomePosition',
     full_name='Nrmk.IndyFramework.Config.GetHomePosition',
-    index=19,
+    index=20,
     containing_service=None,
     input_type=common__msgs__pb2._EMPTY,
     output_type=config__msgs__pb2._JOINTPOS,
@@ -244,7 +254,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='GetPackPosition',
     full_name='Nrmk.IndyFramework.Config.GetPackPosition',
-    index=20,
+    index=21,
     containing_service=None,
     input_type=common__msgs__pb2._EMPTY,
     output_type=config__msgs__pb2._JOINTPOS,
@@ -254,7 +264,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SetToolList',
     full_name='Nrmk.IndyFramework.Config.SetToolList',
-    index=21,
+    index=22,
     containing_service=None,
     input_type=config__msgs__pb2._TOOLLIST,
     output_type=common__msgs__pb2._RESPONSE,
@@ -264,7 +274,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='GetToolList',
     full_name='Nrmk.IndyFramework.Config.GetToolList',
-    index=22,
+    index=23,
     containing_service=None,
     input_type=common__msgs__pb2._EMPTY,
     output_type=config__msgs__pb2._TOOLLIST,
@@ -274,7 +284,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='GetVisionServerList',
     full_name='Nrmk.IndyFramework.Config.GetVisionServerList',
-    index=23,
+    index=24,
     containing_service=None,
     input_type=common__msgs__pb2._EMPTY,
     output_type=config__msgs__pb2._VISIONSERVERLIST,
@@ -284,7 +294,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SetVisionServerList',
     full_name='Nrmk.IndyFramework.Config.SetVisionServerList',
-    index=24,
+    index=25,
     containing_service=None,
     input_type=config__msgs__pb2._VISIONSERVERLIST,
     output_type=common__msgs__pb2._RESPONSE,
@@ -294,7 +304,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='GetModbusServerList',
     full_name='Nrmk.IndyFramework.Config.GetModbusServerList',
-    index=25,
+    index=26,
     containing_service=None,
     input_type=common__msgs__pb2._EMPTY,
     output_type=config__msgs__pb2._MODBUSSERVERLIST,
@@ -304,7 +314,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SetModbusServerList',
     full_name='Nrmk.IndyFramework.Config.SetModbusServerList',
-    index=26,
+    index=27,
     containing_service=None,
     input_type=config__msgs__pb2._MODBUSSERVERLIST,
     output_type=common__msgs__pb2._RESPONSE,
@@ -314,7 +324,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='GetConveyorList',
     full_name='Nrmk.IndyFramework.Config.GetConveyorList',
-    index=27,
+    index=28,
     containing_service=None,
     input_type=common__msgs__pb2._EMPTY,
     output_type=config__msgs__pb2._CONVEYORLIST,
@@ -324,7 +334,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SetConveyorList',
     full_name='Nrmk.IndyFramework.Config.SetConveyorList',
-    index=28,
+    index=29,
     containing_service=None,
     input_type=config__msgs__pb2._CONVEYORLIST,
     output_type=common__msgs__pb2._RESPONSE,
@@ -334,7 +344,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SetAutoServoOff',
     full_name='Nrmk.IndyFramework.Config.SetAutoServoOff',
-    index=29,
+    index=30,
     containing_service=None,
     input_type=config__msgs__pb2._AUTOSERVOOFFCONFIG,
     output_type=common__msgs__pb2._RESPONSE,
@@ -344,7 +354,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='GetAutoServoOff',
     full_name='Nrmk.IndyFramework.Config.GetAutoServoOff',
-    index=30,
+    index=31,
     containing_service=None,
     input_type=common__msgs__pb2._EMPTY,
     output_type=config__msgs__pb2._AUTOSERVOOFFCONFIG,
@@ -354,7 +364,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SetJointControlGain',
     full_name='Nrmk.IndyFramework.Config.SetJointControlGain',
-    index=31,
+    index=32,
     containing_service=None,
     input_type=config__msgs__pb2._JOINTGAINSET,
     output_type=common__msgs__pb2._RESPONSE,
@@ -364,7 +374,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='GetJointControlGain',
     full_name='Nrmk.IndyFramework.Config.GetJointControlGain',
-    index=32,
+    index=33,
     containing_service=None,
     input_type=common__msgs__pb2._EMPTY,
     output_type=config__msgs__pb2._JOINTGAINSET,
@@ -374,7 +384,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SetTaskControlGain',
     full_name='Nrmk.IndyFramework.Config.SetTaskControlGain',
-    index=33,
+    index=34,
     containing_service=None,
     input_type=config__msgs__pb2._TASKGAINSET,
     output_type=common__msgs__pb2._RESPONSE,
@@ -384,7 +394,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='GetTaskControlGain',
     full_name='Nrmk.IndyFramework.Config.GetTaskControlGain',
-    index=34,
+    index=35,
     containing_service=None,
     input_type=common__msgs__pb2._EMPTY,
     output_type=config__msgs__pb2._TASKGAINSET,
@@ -394,7 +404,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SetImpedanceControlGain',
     full_name='Nrmk.IndyFramework.Config.SetImpedanceControlGain',
-    index=35,
+    index=36,
     containing_service=None,
     input_type=config__msgs__pb2._IMPEDANCEGAINSET,
     output_type=common__msgs__pb2._RESPONSE,
@@ -404,7 +414,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='GetImpedanceControlGain',
     full_name='Nrmk.IndyFramework.Config.GetImpedanceControlGain',
-    index=36,
+    index=37,
     containing_service=None,
     input_type=common__msgs__pb2._EMPTY,
     output_type=config__msgs__pb2._IMPEDANCEGAINSET,
@@ -414,7 +424,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SetForceControlGain',
     full_name='Nrmk.IndyFramework.Config.SetForceControlGain',
-    index=37,
+    index=38,
     containing_service=None,
     input_type=config__msgs__pb2._FORCEGAINSET,
     output_type=common__msgs__pb2._RESPONSE,
@@ -424,7 +434,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='GetForceControlGain',
     full_name='Nrmk.IndyFramework.Config.GetForceControlGain',
-    index=38,
+    index=39,
     containing_service=None,
     input_type=common__msgs__pb2._EMPTY,
     output_type=config__msgs__pb2._FORCEGAINSET,
@@ -434,7 +444,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SetTestControlGain',
     full_name='Nrmk.IndyFramework.Config.SetTestControlGain',
-    index=39,
+    index=40,
     containing_service=None,
     input_type=config__msgs__pb2._TESTGAINSET,
     output_type=common__msgs__pb2._RESPONSE,
@@ -444,7 +454,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='GetTestControlGain',
     full_name='Nrmk.IndyFramework.Config.GetTestControlGain',
-    index=40,
+    index=41,
     containing_service=None,
     input_type=common__msgs__pb2._EMPTY,
     output_type=config__msgs__pb2._TESTGAINSET,
@@ -454,7 +464,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SetCustomControlGain',
     full_name='Nrmk.IndyFramework.Config.SetCustomControlGain',
-    index=41,
+    index=42,
     containing_service=None,
     input_type=config__msgs__pb2._CUSTOMGAINSET,
     output_type=common__msgs__pb2._RESPONSE,
@@ -464,7 +474,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='GetCustomControlGain',
     full_name='Nrmk.IndyFramework.Config.GetCustomControlGain',
-    index=42,
+    index=43,
     containing_service=None,
     input_type=common__msgs__pb2._EMPTY,
     output_type=config__msgs__pb2._CUSTOMGAINSET,
@@ -474,7 +484,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SetNewControllerTestOnOff',
     full_name='Nrmk.IndyFramework.Config.SetNewControllerTestOnOff',
-    index=43,
+    index=44,
     containing_service=None,
     input_type=config__msgs__pb2._NEWCONTROLLERTESTSTATE,
     output_type=common__msgs__pb2._RESPONSE,
@@ -484,7 +494,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='GetNewControllerTestOnOffState',
     full_name='Nrmk.IndyFramework.Config.GetNewControllerTestOnOffState',
-    index=44,
+    index=45,
     containing_service=None,
     input_type=common__msgs__pb2._EMPTY,
     output_type=config__msgs__pb2._NEWCONTROLLERTESTSTATE,
@@ -494,7 +504,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SetComplianceControlJointGain',
     full_name='Nrmk.IndyFramework.Config.SetComplianceControlJointGain',
-    index=45,
+    index=46,
     containing_service=None,
     input_type=config__msgs__pb2._COMPLIANCEGAINSET,
     output_type=common__msgs__pb2._RESPONSE,
@@ -504,7 +514,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='GetComplianceControlJointGain',
     full_name='Nrmk.IndyFramework.Config.GetComplianceControlJointGain',
-    index=46,
+    index=47,
     containing_service=None,
     input_type=common__msgs__pb2._EMPTY,
     output_type=config__msgs__pb2._COMPLIANCEGAINSET,
@@ -514,7 +524,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SetFrictionComp',
     full_name='Nrmk.IndyFramework.Config.SetFrictionComp',
-    index=47,
+    index=48,
     containing_service=None,
     input_type=config__msgs__pb2._FRICTIONCOMPSET,
     output_type=common__msgs__pb2._RESPONSE,
@@ -524,7 +534,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='GetFrictionComp',
     full_name='Nrmk.IndyFramework.Config.GetFrictionComp',
-    index=48,
+    index=49,
     containing_service=None,
     input_type=common__msgs__pb2._EMPTY,
     output_type=config__msgs__pb2._FRICTIONCOMPSET,
@@ -534,7 +544,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SetMountPos',
     full_name='Nrmk.IndyFramework.Config.SetMountPos',
-    index=49,
+    index=50,
     containing_service=None,
     input_type=config__msgs__pb2._MOUNTINGANGLES,
     output_type=common__msgs__pb2._RESPONSE,
@@ -544,7 +554,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='GetMountPos',
     full_name='Nrmk.IndyFramework.Config.GetMountPos',
-    index=50,
+    index=51,
     containing_service=None,
     input_type=common__msgs__pb2._EMPTY,
     output_type=config__msgs__pb2._MOUNTINGANGLES,
@@ -554,7 +564,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SetToolProperty',
     full_name='Nrmk.IndyFramework.Config.SetToolProperty',
-    index=51,
+    index=52,
     containing_service=None,
     input_type=config__msgs__pb2._TOOLPROPERTIES,
     output_type=common__msgs__pb2._RESPONSE,
@@ -564,7 +574,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='GetToolProperty',
     full_name='Nrmk.IndyFramework.Config.GetToolProperty',
-    index=52,
+    index=53,
     containing_service=None,
     input_type=common__msgs__pb2._EMPTY,
     output_type=config__msgs__pb2._TOOLPROPERTIES,
@@ -572,9 +582,19 @@ _CONFIG = _descriptor.ServiceDescriptor(
     create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
+    name='GetToolPropertyAt',
+    full_name='Nrmk.IndyFramework.Config.GetToolPropertyAt',
+    index=54,
+    containing_service=None,
+    input_type=common__msgs__pb2._INT,
+    output_type=config__msgs__pb2._TOOLPROPERTIES,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
     name='GetToolFrameList',
     full_name='Nrmk.IndyFramework.Config.GetToolFrameList',
-    index=53,
+    index=55,
     containing_service=None,
     input_type=common__msgs__pb2._EMPTY,
     output_type=config__msgs__pb2._TOOLFRAMELIST,
@@ -584,7 +604,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SetToolFrameList',
     full_name='Nrmk.IndyFramework.Config.SetToolFrameList',
-    index=54,
+    index=56,
     containing_service=None,
     input_type=config__msgs__pb2._TOOLFRAMELIST,
     output_type=common__msgs__pb2._RESPONSE,
@@ -594,7 +614,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='GetRefFrameList',
     full_name='Nrmk.IndyFramework.Config.GetRefFrameList',
-    index=55,
+    index=57,
     containing_service=None,
     input_type=common__msgs__pb2._EMPTY,
     output_type=config__msgs__pb2._REFFRAMELIST,
@@ -604,7 +624,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SetRefFrameList',
     full_name='Nrmk.IndyFramework.Config.SetRefFrameList',
-    index=56,
+    index=58,
     containing_service=None,
     input_type=config__msgs__pb2._REFFRAMELIST,
     output_type=common__msgs__pb2._RESPONSE,
@@ -614,7 +634,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='GetCustomPosList',
     full_name='Nrmk.IndyFramework.Config.GetCustomPosList',
-    index=57,
+    index=59,
     containing_service=None,
     input_type=common__msgs__pb2._EMPTY,
     output_type=config__msgs__pb2._CUSTOMPOSLIST,
@@ -624,7 +644,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SetCustomPosList',
     full_name='Nrmk.IndyFramework.Config.SetCustomPosList',
-    index=58,
+    index=60,
     containing_service=None,
     input_type=config__msgs__pb2._CUSTOMPOSLIST,
     output_type=common__msgs__pb2._RESPONSE,
@@ -634,7 +654,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SetCollSensLevel',
     full_name='Nrmk.IndyFramework.Config.SetCollSensLevel',
-    index=59,
+    index=61,
     containing_service=None,
     input_type=config__msgs__pb2._COLLISIONSENSLEVEL,
     output_type=common__msgs__pb2._RESPONSE,
@@ -644,7 +664,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='GetCollSensLevel',
     full_name='Nrmk.IndyFramework.Config.GetCollSensLevel',
-    index=60,
+    index=62,
     containing_service=None,
     input_type=common__msgs__pb2._EMPTY,
     output_type=config__msgs__pb2._COLLISIONSENSLEVEL,
@@ -654,7 +674,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SetCollSensParam',
     full_name='Nrmk.IndyFramework.Config.SetCollSensParam',
-    index=61,
+    index=63,
     containing_service=None,
     input_type=config__msgs__pb2._COLLISIONTHRESHOLDS,
     output_type=common__msgs__pb2._RESPONSE,
@@ -664,7 +684,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='GetCollSensParam',
     full_name='Nrmk.IndyFramework.Config.GetCollSensParam',
-    index=62,
+    index=64,
     containing_service=None,
     input_type=common__msgs__pb2._EMPTY,
     output_type=config__msgs__pb2._COLLISIONTHRESHOLDS,
@@ -674,7 +694,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='GetDefaultCollSensParam',
     full_name='Nrmk.IndyFramework.Config.GetDefaultCollSensParam',
-    index=63,
+    index=65,
     containing_service=None,
     input_type=common__msgs__pb2._EMPTY,
     output_type=config__msgs__pb2._COLLISIONTHRESHOLDS,
@@ -684,7 +704,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SetCollPolicy',
     full_name='Nrmk.IndyFramework.Config.SetCollPolicy',
-    index=64,
+    index=66,
     containing_service=None,
     input_type=config__msgs__pb2._COLLISIONPOLICY,
     output_type=common__msgs__pb2._RESPONSE,
@@ -694,7 +714,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='GetCollPolicy',
     full_name='Nrmk.IndyFramework.Config.GetCollPolicy',
-    index=65,
+    index=67,
     containing_service=None,
     input_type=common__msgs__pb2._EMPTY,
     output_type=config__msgs__pb2._COLLISIONPOLICY,
@@ -704,7 +724,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SetOnStartProgramConfig',
     full_name='Nrmk.IndyFramework.Config.SetOnStartProgramConfig',
-    index=66,
+    index=68,
     containing_service=None,
     input_type=config__msgs__pb2._ONSTARTPROGRAMCONFIG,
     output_type=common__msgs__pb2._RESPONSE,
@@ -714,7 +734,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='GetOnStartProgramConfig',
     full_name='Nrmk.IndyFramework.Config.GetOnStartProgramConfig',
-    index=67,
+    index=69,
     containing_service=None,
     input_type=common__msgs__pb2._EMPTY,
     output_type=config__msgs__pb2._ONSTARTPROGRAMCONFIG,
@@ -724,7 +744,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SetSimpleCollThreshold',
     full_name='Nrmk.IndyFramework.Config.SetSimpleCollThreshold',
-    index=68,
+    index=70,
     containing_service=None,
     input_type=common__msgs__pb2._EMPTY,
     output_type=common__msgs__pb2._RESPONSE,
@@ -734,7 +754,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SetSafetyLimits',
     full_name='Nrmk.IndyFramework.Config.SetSafetyLimits',
-    index=69,
+    index=71,
     containing_service=None,
     input_type=config__msgs__pb2._SAFETYLIMITS,
     output_type=common__msgs__pb2._RESPONSE,
@@ -744,7 +764,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='GetSafetyLimits',
     full_name='Nrmk.IndyFramework.Config.GetSafetyLimits',
-    index=70,
+    index=72,
     containing_service=None,
     input_type=common__msgs__pb2._EMPTY,
     output_type=config__msgs__pb2._SAFETYLIMITS,
@@ -754,7 +774,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SetSafetyStopConfig',
     full_name='Nrmk.IndyFramework.Config.SetSafetyStopConfig',
-    index=71,
+    index=73,
     containing_service=None,
     input_type=config__msgs__pb2._SAFETYSTOPCONFIG,
     output_type=common__msgs__pb2._RESPONSE,
@@ -764,7 +784,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='GetSafetyStopConfig',
     full_name='Nrmk.IndyFramework.Config.GetSafetyStopConfig',
-    index=72,
+    index=74,
     containing_service=None,
     input_type=common__msgs__pb2._EMPTY,
     output_type=config__msgs__pb2._SAFETYSTOPCONFIG,
@@ -774,7 +794,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='GetReducedRatio',
     full_name='Nrmk.IndyFramework.Config.GetReducedRatio',
-    index=73,
+    index=75,
     containing_service=None,
     input_type=common__msgs__pb2._EMPTY,
     output_type=config__msgs__pb2._GETREDUCEDRATIORES,
@@ -784,7 +804,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='GetReducedSpeed',
     full_name='Nrmk.IndyFramework.Config.GetReducedSpeed',
-    index=74,
+    index=76,
     containing_service=None,
     input_type=common__msgs__pb2._EMPTY,
     output_type=config__msgs__pb2._GETREDUCEDSPEEDRES,
@@ -794,7 +814,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SetReducedSpeed',
     full_name='Nrmk.IndyFramework.Config.SetReducedSpeed',
-    index=75,
+    index=77,
     containing_service=None,
     input_type=config__msgs__pb2._SETREDUCEDSPEEDREQ,
     output_type=common__msgs__pb2._RESPONSE,
@@ -804,7 +824,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SetFTSensorConfig',
     full_name='Nrmk.IndyFramework.Config.SetFTSensorConfig',
-    index=76,
+    index=78,
     containing_service=None,
     input_type=config__msgs__pb2._FTSENSORDEVICE,
     output_type=common__msgs__pb2._RESPONSE,
@@ -814,7 +834,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='GetFTSensorConfig',
     full_name='Nrmk.IndyFramework.Config.GetFTSensorConfig',
-    index=77,
+    index=79,
     containing_service=None,
     input_type=common__msgs__pb2._EMPTY,
     output_type=config__msgs__pb2._FTSENSORDEVICE,
@@ -822,9 +842,19 @@ _CONFIG = _descriptor.ServiceDescriptor(
     create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
+    name='GetFTSensorConfigFor',
+    full_name='Nrmk.IndyFramework.Config.GetFTSensorConfigFor',
+    index=80,
+    containing_service=None,
+    input_type=common__msgs__pb2._INT,
+    output_type=config__msgs__pb2._FTSENSORDEVICE,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
     name='SetTeleOpParams',
     full_name='Nrmk.IndyFramework.Config.SetTeleOpParams',
-    index=78,
+    index=81,
     containing_service=None,
     input_type=config__msgs__pb2._TELEOPPARAMS,
     output_type=common__msgs__pb2._RESPONSE,
@@ -834,7 +864,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='GetTeleOpParams',
     full_name='Nrmk.IndyFramework.Config.GetTeleOpParams',
-    index=79,
+    index=82,
     containing_service=None,
     input_type=common__msgs__pb2._EMPTY,
     output_type=config__msgs__pb2._TELEOPPARAMS,
@@ -844,7 +874,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='GetKinematicsParams',
     full_name='Nrmk.IndyFramework.Config.GetKinematicsParams',
-    index=80,
+    index=83,
     containing_service=None,
     input_type=common__msgs__pb2._EMPTY,
     output_type=config__msgs__pb2._KINEMATICSPARAMS,
@@ -854,7 +884,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='GetCollisonModelMargin',
     full_name='Nrmk.IndyFramework.Config.GetCollisonModelMargin',
-    index=81,
+    index=84,
     containing_service=None,
     input_type=common__msgs__pb2._EMPTY,
     output_type=config__msgs__pb2._COLLISIONMODELMARGIN,
@@ -864,7 +894,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SetCollisonModelMargin',
     full_name='Nrmk.IndyFramework.Config.SetCollisonModelMargin',
-    index=82,
+    index=85,
     containing_service=None,
     input_type=config__msgs__pb2._COLLISIONMODELMARGIN,
     output_type=common__msgs__pb2._RESPONSE,
@@ -874,7 +904,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SetToolShapeList',
     full_name='Nrmk.IndyFramework.Config.SetToolShapeList',
-    index=83,
+    index=86,
     containing_service=None,
     input_type=config__msgs__pb2._TOOLSHAPELIST,
     output_type=common__msgs__pb2._RESPONSE,
@@ -884,7 +914,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='GetToolShapeList',
     full_name='Nrmk.IndyFramework.Config.GetToolShapeList',
-    index=84,
+    index=87,
     containing_service=None,
     input_type=common__msgs__pb2._EMPTY,
     output_type=config__msgs__pb2._TOOLSHAPELIST,
@@ -894,7 +924,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SetEnvironmentList',
     full_name='Nrmk.IndyFramework.Config.SetEnvironmentList',
-    index=85,
+    index=88,
     containing_service=None,
     input_type=config__msgs__pb2._ENVIRONMENTLIST,
     output_type=common__msgs__pb2._RESPONSE,
@@ -904,7 +934,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='GetEnvironmentList',
     full_name='Nrmk.IndyFramework.Config.GetEnvironmentList',
-    index=86,
+    index=89,
     containing_service=None,
     input_type=common__msgs__pb2._EMPTY,
     output_type=config__msgs__pb2._ENVIRONMENTLIST,
@@ -914,7 +944,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SetSensorlessParams',
     full_name='Nrmk.IndyFramework.Config.SetSensorlessParams',
-    index=87,
+    index=90,
     containing_service=None,
     input_type=config__msgs__pb2._SENSORLESSPARAMS,
     output_type=common__msgs__pb2._RESPONSE,
@@ -924,7 +954,7 @@ _CONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='GetSensorlessParams',
     full_name='Nrmk.IndyFramework.Config.GetSensorlessParams',
-    index=88,
+    index=91,
     containing_service=None,
     input_type=common__msgs__pb2._EMPTY,
     output_type=config__msgs__pb2._SENSORLESSPARAMS,

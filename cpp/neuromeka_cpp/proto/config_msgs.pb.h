@@ -449,6 +449,7 @@ inline bool Shape_ShapeType_Parse(absl::string_view name, Shape_ShapeType* value
 enum Zone_Subject : int {
   Zone_Subject_WHOLE_BODY = 0,
   Zone_Subject_TOOL_ONLY = 1,
+  Zone_Subject_END_POINT = 2,
   Zone_Subject_Zone_Subject_INT_MIN_SENTINEL_DO_NOT_USE_ =
       std::numeric_limits<::int32_t>::min(),
   Zone_Subject_Zone_Subject_INT_MAX_SENTINEL_DO_NOT_USE_ =
@@ -457,8 +458,8 @@ enum Zone_Subject : int {
 
 bool Zone_Subject_IsValid(int value);
 constexpr Zone_Subject Zone_Subject_Subject_MIN = static_cast<Zone_Subject>(0);
-constexpr Zone_Subject Zone_Subject_Subject_MAX = static_cast<Zone_Subject>(1);
-constexpr int Zone_Subject_Subject_ARRAYSIZE = 1 + 1;
+constexpr Zone_Subject Zone_Subject_Subject_MAX = static_cast<Zone_Subject>(2);
+constexpr int Zone_Subject_Subject_ARRAYSIZE = 2 + 1;
 const ::google::protobuf::EnumDescriptor*
 Zone_Subject_descriptor();
 template <typename T>
@@ -471,7 +472,7 @@ const std::string& Zone_Subject_Name(T value) {
 template <>
 inline const std::string& Zone_Subject_Name(Zone_Subject value) {
   return ::google::protobuf::internal::NameOfDenseEnum<Zone_Subject_descriptor,
-                                                 0, 1>(
+                                                 0, 2>(
       static_cast<int>(value));
 }
 inline bool Zone_Subject_Parse(absl::string_view name, Zone_Subject* value) {
@@ -2711,6 +2712,8 @@ class Frame final :
 
   enum : int {
     kFposFieldNumber = 1,
+    kArmIndexFieldNumber = 10,
+    kLinkIndexFieldNumber = 11,
   };
   // repeated float fpos = 1;
   int fpos_size() const;
@@ -2730,17 +2733,39 @@ class Frame final :
   ::google::protobuf::RepeatedField<float>* _internal_mutable_fpos();
 
   public:
+  // int32 arm_index = 10;
+  void clear_arm_index() ;
+  ::int32_t arm_index() const;
+  void set_arm_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_arm_index() const;
+  void _internal_set_arm_index(::int32_t value);
+
+  public:
+  // int32 link_index = 11;
+  void clear_link_index() ;
+  ::int32_t link_index() const;
+  void set_link_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_link_index() const;
+  void _internal_set_link_index(::int32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.Frame)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<0, 1, 0, 0, 2> _table_;
+  static const ::google::protobuf::internal::TcParseTable<2, 3, 0, 0, 2> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
     ::google::protobuf::RepeatedField<float> fpos_;
+    ::int32_t arm_index_;
+    ::int32_t link_index_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -3045,6 +3070,7 @@ class PlanarFrame final :
     kFpos0FieldNumber = 1,
     kFpos1FieldNumber = 2,
     kFpos2FieldNumber = 3,
+    kArmIndexFieldNumber = 10,
   };
   // repeated float fpos0 = 1;
   int fpos0_size() const;
@@ -3100,12 +3126,22 @@ class PlanarFrame final :
   ::google::protobuf::RepeatedField<float>* _internal_mutable_fpos2();
 
   public:
+  // int32 arm_index = 10;
+  void clear_arm_index() ;
+  ::int32_t arm_index() const;
+  void set_arm_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_arm_index() const;
+  void _internal_set_arm_index(::int32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.PlanarFrame)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<2, 3, 0, 0, 2> _table_;
+  static const ::google::protobuf::internal::TcParseTable<2, 4, 0, 0, 2> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
@@ -3113,6 +3149,7 @@ class PlanarFrame final :
     ::google::protobuf::RepeatedField<float> fpos0_;
     ::google::protobuf::RepeatedField<float> fpos1_;
     ::google::protobuf::RepeatedField<float> fpos2_;
+    ::int32_t arm_index_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -6754,6 +6791,8 @@ class ToolProperties final :
     kCenterOfMassFieldNumber = 2,
     kInertiaFieldNumber = 3,
     kMassFieldNumber = 1,
+    kLinkIndexFieldNumber = 10,
+    kArmIndexFieldNumber = 11,
   };
   // repeated float center_of_mass = 2;
   int center_of_mass_size() const;
@@ -6801,12 +6840,32 @@ class ToolProperties final :
   void _internal_set_mass(float value);
 
   public:
+  // int32 link_index = 10;
+  void clear_link_index() ;
+  ::int32_t link_index() const;
+  void set_link_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_link_index() const;
+  void _internal_set_link_index(::int32_t value);
+
+  public:
+  // int32 arm_index = 11;
+  void clear_arm_index() ;
+  ::int32_t arm_index() const;
+  void set_arm_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_arm_index() const;
+  void _internal_set_arm_index(::int32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.ToolProperties)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<2, 3, 0, 0, 2> _table_;
+  static const ::google::protobuf::internal::TcParseTable<2, 5, 0, 0, 2> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
@@ -6814,6 +6873,8 @@ class ToolProperties final :
     ::google::protobuf::RepeatedField<float> center_of_mass_;
     ::google::protobuf::RepeatedField<float> inertia_;
     float mass_;
+    ::int32_t link_index_;
+    ::int32_t arm_index_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -7635,19 +7696,10 @@ class OnStartProgramConfig final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kAutoRunFieldNumber = 1,
     kIndexFieldNumber = 2,
+    kAutoRunFieldNumber = 1,
+    kAutoBootOnPowerFieldNumber = 3,
   };
-  // bool auto_run = 1;
-  void clear_auto_run() ;
-  bool auto_run() const;
-  void set_auto_run(bool value);
-
-  private:
-  bool _internal_auto_run() const;
-  void _internal_set_auto_run(bool value);
-
-  public:
   // int32 index = 2;
   void clear_index() ;
   ::int32_t index() const;
@@ -7658,18 +7710,39 @@ class OnStartProgramConfig final :
   void _internal_set_index(::int32_t value);
 
   public:
+  // bool auto_run = 1;
+  void clear_auto_run() ;
+  bool auto_run() const;
+  void set_auto_run(bool value);
+
+  private:
+  bool _internal_auto_run() const;
+  void _internal_set_auto_run(bool value);
+
+  public:
+  // bool auto_boot_on_power = 3;
+  void clear_auto_boot_on_power() ;
+  bool auto_boot_on_power() const;
+  void set_auto_boot_on_power(bool value);
+
+  private:
+  bool _internal_auto_boot_on_power() const;
+  void _internal_set_auto_boot_on_power(bool value);
+
+  public:
   // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.OnStartProgramConfig)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<1, 2, 0, 0, 2> _table_;
+  static const ::google::protobuf::internal::TcParseTable<2, 3, 0, 0, 2> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
-    bool auto_run_;
     ::int32_t index_;
+    bool auto_run_;
+    bool auto_boot_on_power_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -9674,6 +9747,7 @@ class FTSensorDevice final :
     kFtFrameRotationOffsetRFieldNumber = 14,
     kFtFrameRotationOffsetPFieldNumber = 15,
     kFtFrameRotationOffsetYFieldNumber = 16,
+    kArmIndexFieldNumber = 20,
   };
   // string ip_address = 3;
   void clear_ip_address() ;
@@ -9771,12 +9845,22 @@ class FTSensorDevice final :
   void _internal_set_ft_frame_rotation_offset_y(float value);
 
   public:
+  // int32 arm_index = 20;
+  void clear_arm_index() ;
+  ::int32_t arm_index() const;
+  void set_arm_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_arm_index() const;
+  void _internal_set_arm_index(::int32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.FTSensorDevice)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<4, 9, 0, 60, 2> _table_;
+  static const ::google::protobuf::internal::TcParseTable<4, 10, 0, 60, 2> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
@@ -9790,6 +9874,7 @@ class FTSensorDevice final :
     float ft_frame_rotation_offset_r_;
     float ft_frame_rotation_offset_p_;
     float ft_frame_rotation_offset_y_;
+    ::int32_t arm_index_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -10890,6 +10975,7 @@ class Shape final :
     kWidthFieldNumber = 11,
     kDepthFieldNumber = 12,
     kHeightFieldNumber = 13,
+    kArmIndexFieldNumber = 20,
   };
   // repeated float position = 2;
   int position_size() const;
@@ -10977,12 +11063,22 @@ class Shape final :
   void _internal_set_height(float value);
 
   public:
+  // int32 arm_index = 20;
+  void clear_arm_index() ;
+  ::int32_t arm_index() const;
+  void set_arm_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_arm_index() const;
+  void _internal_set_arm_index(::int32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.Shape)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<3, 7, 0, 0, 2> _table_;
+  static const ::google::protobuf::internal::TcParseTable<4, 8, 0, 0, 2> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
@@ -10994,6 +11090,7 @@ class Shape final :
     float width_;
     float depth_;
     float height_;
+    ::int32_t arm_index_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -11663,6 +11760,7 @@ class Zone final :
   using Subject = Zone_Subject;
   static constexpr Subject WHOLE_BODY = Zone_Subject_WHOLE_BODY;
   static constexpr Subject TOOL_ONLY = Zone_Subject_TOOL_ONLY;
+  static constexpr Subject END_POINT = Zone_Subject_END_POINT;
   static inline bool Subject_IsValid(int value) {
     return Zone_Subject_IsValid(value);
   }
@@ -13310,6 +13408,50 @@ inline ::google::protobuf::RepeatedField<float>* Frame::_internal_mutable_fpos()
   return &_impl_.fpos_;
 }
 
+// int32 arm_index = 10;
+inline void Frame::clear_arm_index() {
+  _impl_.arm_index_ = 0;
+}
+inline ::int32_t Frame::arm_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.Frame.arm_index)
+  return _internal_arm_index();
+}
+inline void Frame::set_arm_index(::int32_t value) {
+  _internal_set_arm_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.Frame.arm_index)
+}
+inline ::int32_t Frame::_internal_arm_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.arm_index_;
+}
+inline void Frame::_internal_set_arm_index(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.arm_index_ = value;
+}
+
+// int32 link_index = 11;
+inline void Frame::clear_link_index() {
+  _impl_.link_index_ = 0;
+}
+inline ::int32_t Frame::link_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.Frame.link_index)
+  return _internal_link_index();
+}
+inline void Frame::set_link_index(::int32_t value) {
+  _internal_set_link_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.Frame.link_index)
+}
+inline ::int32_t Frame::_internal_link_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.link_index_;
+}
+inline void Frame::_internal_set_link_index(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.link_index_ = value;
+}
+
 // -------------------------------------------------------------------
 
 // JointPos
@@ -13484,6 +13626,28 @@ inline const ::google::protobuf::RepeatedField<float>& PlanarFrame::_internal_fp
 inline ::google::protobuf::RepeatedField<float>* PlanarFrame::_internal_mutable_fpos2() {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return &_impl_.fpos2_;
+}
+
+// int32 arm_index = 10;
+inline void PlanarFrame::clear_arm_index() {
+  _impl_.arm_index_ = 0;
+}
+inline ::int32_t PlanarFrame::arm_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.PlanarFrame.arm_index)
+  return _internal_arm_index();
+}
+inline void PlanarFrame::set_arm_index(::int32_t value) {
+  _internal_set_arm_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.PlanarFrame.arm_index)
+}
+inline ::int32_t PlanarFrame::_internal_arm_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.arm_index_;
+}
+inline void PlanarFrame::_internal_set_arm_index(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.arm_index_ = value;
 }
 
 // -------------------------------------------------------------------
@@ -16034,6 +16198,50 @@ inline ::google::protobuf::RepeatedField<float>* ToolProperties::_internal_mutab
   return &_impl_.inertia_;
 }
 
+// int32 link_index = 10;
+inline void ToolProperties::clear_link_index() {
+  _impl_.link_index_ = 0;
+}
+inline ::int32_t ToolProperties::link_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.ToolProperties.link_index)
+  return _internal_link_index();
+}
+inline void ToolProperties::set_link_index(::int32_t value) {
+  _internal_set_link_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.ToolProperties.link_index)
+}
+inline ::int32_t ToolProperties::_internal_link_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.link_index_;
+}
+inline void ToolProperties::_internal_set_link_index(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.link_index_ = value;
+}
+
+// int32 arm_index = 11;
+inline void ToolProperties::clear_arm_index() {
+  _impl_.arm_index_ = 0;
+}
+inline ::int32_t ToolProperties::arm_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.ToolProperties.arm_index)
+  return _internal_arm_index();
+}
+inline void ToolProperties::set_arm_index(::int32_t value) {
+  _internal_set_arm_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.ToolProperties.arm_index)
+}
+inline ::int32_t ToolProperties::_internal_arm_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.arm_index_;
+}
+inline void ToolProperties::_internal_set_arm_index(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.arm_index_ = value;
+}
+
 // -------------------------------------------------------------------
 
 // CollisionSensLevel
@@ -16600,6 +16808,28 @@ inline void OnStartProgramConfig::_internal_set_index(::int32_t value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.index_ = value;
+}
+
+// bool auto_boot_on_power = 3;
+inline void OnStartProgramConfig::clear_auto_boot_on_power() {
+  _impl_.auto_boot_on_power_ = false;
+}
+inline bool OnStartProgramConfig::auto_boot_on_power() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.OnStartProgramConfig.auto_boot_on_power)
+  return _internal_auto_boot_on_power();
+}
+inline void OnStartProgramConfig::set_auto_boot_on_power(bool value) {
+  _internal_set_auto_boot_on_power(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.OnStartProgramConfig.auto_boot_on_power)
+}
+inline bool OnStartProgramConfig::_internal_auto_boot_on_power() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.auto_boot_on_power_;
+}
+inline void OnStartProgramConfig::_internal_set_auto_boot_on_power(bool value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.auto_boot_on_power_ = value;
 }
 
 // -------------------------------------------------------------------
@@ -17920,6 +18150,28 @@ inline void FTSensorDevice::_internal_set_ft_frame_rotation_offset_y(float value
   _impl_.ft_frame_rotation_offset_y_ = value;
 }
 
+// int32 arm_index = 20;
+inline void FTSensorDevice::clear_arm_index() {
+  _impl_.arm_index_ = 0;
+}
+inline ::int32_t FTSensorDevice::arm_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.FTSensorDevice.arm_index)
+  return _internal_arm_index();
+}
+inline void FTSensorDevice::set_arm_index(::int32_t value) {
+  _internal_set_arm_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.FTSensorDevice.arm_index)
+}
+inline ::int32_t FTSensorDevice::_internal_arm_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.arm_index_;
+}
+inline void FTSensorDevice::_internal_set_arm_index(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.arm_index_ = value;
+}
+
 // -------------------------------------------------------------------
 
 // FTSensorDeviceRes
@@ -18497,6 +18749,28 @@ inline void Shape::_internal_set_height(float value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.height_ = value;
+}
+
+// int32 arm_index = 20;
+inline void Shape::clear_arm_index() {
+  _impl_.arm_index_ = 0;
+}
+inline ::int32_t Shape::arm_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.Shape.arm_index)
+  return _internal_arm_index();
+}
+inline void Shape::set_arm_index(::int32_t value) {
+  _internal_set_arm_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.Shape.arm_index)
+}
+inline ::int32_t Shape::_internal_arm_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.arm_index_;
+}
+inline void Shape::_internal_set_arm_index(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.arm_index_ = value;
 }
 
 // -------------------------------------------------------------------

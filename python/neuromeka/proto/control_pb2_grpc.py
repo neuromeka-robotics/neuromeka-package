@@ -236,6 +236,31 @@ class ControlStub(object):
                 request_serializer=control__msgs__pb2.Program.SerializeToString,
                 response_deserializer=common__msgs__pb2.Response.FromString,
                 )
+        self.SetProgramBreakPoints = channel.unary_unary(
+                '/Nrmk.IndyFramework.Control/SetProgramBreakPoints',
+                request_serializer=common__msgs__pb2.ProgramBreakPoints.SerializeToString,
+                response_deserializer=common__msgs__pb2.Response.FromString,
+                )
+        self.GetProgramBreakPoints = channel.unary_unary(
+                '/Nrmk.IndyFramework.Control/GetProgramBreakPoints',
+                request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=common__msgs__pb2.ProgramBreakPoints.FromString,
+                )
+        self.ProgramStepOver = channel.unary_unary(
+                '/Nrmk.IndyFramework.Control/ProgramStepOver',
+                request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=common__msgs__pb2.Response.FromString,
+                )
+        self.ProgramStepInto = channel.unary_unary(
+                '/Nrmk.IndyFramework.Control/ProgramStepInto',
+                request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=common__msgs__pb2.Response.FromString,
+                )
+        self.ProgramStepOut = channel.unary_unary(
+                '/Nrmk.IndyFramework.Control/ProgramStepOut',
+                request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=common__msgs__pb2.Response.FromString,
+                )
         self.SetModbusVariableNameList = channel.unary_unary(
                 '/Nrmk.IndyFramework.Control/SetModbusVariableNameList',
                 request_serializer=control__msgs__pb2.ModbusVariableList.SerializeToString,
@@ -431,6 +456,11 @@ class ControlStub(object):
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
                 response_deserializer=control__msgs__pb2.TeleP.FromString,
                 )
+        self.ReadTeleOpInputFor = channel.unary_unary(
+                '/Nrmk.IndyFramework.Control/ReadTeleOpInputFor',
+                request_serializer=common__msgs__pb2.Int.SerializeToString,
+                response_deserializer=control__msgs__pb2.TeleP.FromString,
+                )
         self.StartTeleOp = channel.unary_unary(
                 '/Nrmk.IndyFramework.Control/StartTeleOp',
                 request_serializer=control__msgs__pb2.TeleOpState.SerializeToString,
@@ -501,10 +531,30 @@ class ControlStub(object):
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
                 response_deserializer=control__msgs__pb2.TransformedFTSensorData.FromString,
                 )
+        self.GetTransformedFTSensorDataFor = channel.unary_unary(
+                '/Nrmk.IndyFramework.Control/GetTransformedFTSensorDataFor',
+                request_serializer=common__msgs__pb2.Int.SerializeToString,
+                response_deserializer=control__msgs__pb2.TransformedFTSensorData.FromString,
+                )
         self.FTZero = channel.unary_unary(
                 '/Nrmk.IndyFramework.Control/FTZero',
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
                 response_deserializer=common__msgs__pb2.Response.FromString,
+                )
+        self.GetMotionJ = channel.unary_unary(
+                '/Nrmk.IndyFramework.Control/GetMotionJ',
+                request_serializer=control__msgs__pb2.GetMotionJReq.SerializeToString,
+                response_deserializer=control__msgs__pb2.GetMotionRes.FromString,
+                )
+        self.GetMotionL = channel.unary_unary(
+                '/Nrmk.IndyFramework.Control/GetMotionL',
+                request_serializer=control__msgs__pb2.GetMotionLReq.SerializeToString,
+                response_deserializer=control__msgs__pb2.GetMotionRes.FromString,
+                )
+        self.GetMotionC = channel.unary_unary(
+                '/Nrmk.IndyFramework.Control/GetMotionC',
+                request_serializer=control__msgs__pb2.GetMotionCReq.SerializeToString,
+                response_deserializer=control__msgs__pb2.GetMotionRes.FromString,
                 )
         self.MoveLF = channel.unary_unary(
                 '/Nrmk.IndyFramework.Control/MoveLF',
@@ -802,6 +852,36 @@ class ControlServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def SetProgramBreakPoints(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetProgramBreakPoints(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def ProgramStepOver(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def ProgramStepInto(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def ProgramStepOut(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def SetModbusVariableNameList(self, request, context):
         """---------------------------------------------------------------- //
         Custom Variable
@@ -1052,6 +1132,12 @@ class ControlServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def ReadTeleOpInputFor(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def StartTeleOp(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -1136,7 +1222,35 @@ class ControlServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetTransformedFTSensorDataFor(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def FTZero(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetMotionJ(self, request, context):
+        """---------------------------------------------------------------- //
+        Motion Preview
+        ---------------------------------------------------------------- //
+
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetMotionL(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetMotionC(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -1389,6 +1503,31 @@ def add_ControlServicer_to_server(servicer, server):
                     request_deserializer=control__msgs__pb2.Program.FromString,
                     response_serializer=common__msgs__pb2.Response.SerializeToString,
             ),
+            'SetProgramBreakPoints': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetProgramBreakPoints,
+                    request_deserializer=common__msgs__pb2.ProgramBreakPoints.FromString,
+                    response_serializer=common__msgs__pb2.Response.SerializeToString,
+            ),
+            'GetProgramBreakPoints': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetProgramBreakPoints,
+                    request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=common__msgs__pb2.ProgramBreakPoints.SerializeToString,
+            ),
+            'ProgramStepOver': grpc.unary_unary_rpc_method_handler(
+                    servicer.ProgramStepOver,
+                    request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=common__msgs__pb2.Response.SerializeToString,
+            ),
+            'ProgramStepInto': grpc.unary_unary_rpc_method_handler(
+                    servicer.ProgramStepInto,
+                    request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=common__msgs__pb2.Response.SerializeToString,
+            ),
+            'ProgramStepOut': grpc.unary_unary_rpc_method_handler(
+                    servicer.ProgramStepOut,
+                    request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=common__msgs__pb2.Response.SerializeToString,
+            ),
             'SetModbusVariableNameList': grpc.unary_unary_rpc_method_handler(
                     servicer.SetModbusVariableNameList,
                     request_deserializer=control__msgs__pb2.ModbusVariableList.FromString,
@@ -1584,6 +1723,11 @@ def add_ControlServicer_to_server(servicer, server):
                     request_deserializer=common__msgs__pb2.Empty.FromString,
                     response_serializer=control__msgs__pb2.TeleP.SerializeToString,
             ),
+            'ReadTeleOpInputFor': grpc.unary_unary_rpc_method_handler(
+                    servicer.ReadTeleOpInputFor,
+                    request_deserializer=common__msgs__pb2.Int.FromString,
+                    response_serializer=control__msgs__pb2.TeleP.SerializeToString,
+            ),
             'StartTeleOp': grpc.unary_unary_rpc_method_handler(
                     servicer.StartTeleOp,
                     request_deserializer=control__msgs__pb2.TeleOpState.FromString,
@@ -1654,10 +1798,30 @@ def add_ControlServicer_to_server(servicer, server):
                     request_deserializer=common__msgs__pb2.Empty.FromString,
                     response_serializer=control__msgs__pb2.TransformedFTSensorData.SerializeToString,
             ),
+            'GetTransformedFTSensorDataFor': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetTransformedFTSensorDataFor,
+                    request_deserializer=common__msgs__pb2.Int.FromString,
+                    response_serializer=control__msgs__pb2.TransformedFTSensorData.SerializeToString,
+            ),
             'FTZero': grpc.unary_unary_rpc_method_handler(
                     servicer.FTZero,
                     request_deserializer=common__msgs__pb2.Empty.FromString,
                     response_serializer=common__msgs__pb2.Response.SerializeToString,
+            ),
+            'GetMotionJ': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetMotionJ,
+                    request_deserializer=control__msgs__pb2.GetMotionJReq.FromString,
+                    response_serializer=control__msgs__pb2.GetMotionRes.SerializeToString,
+            ),
+            'GetMotionL': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetMotionL,
+                    request_deserializer=control__msgs__pb2.GetMotionLReq.FromString,
+                    response_serializer=control__msgs__pb2.GetMotionRes.SerializeToString,
+            ),
+            'GetMotionC': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetMotionC,
+                    request_deserializer=control__msgs__pb2.GetMotionCReq.FromString,
+                    response_serializer=control__msgs__pb2.GetMotionRes.SerializeToString,
             ),
             'MoveLF': grpc.unary_unary_rpc_method_handler(
                     servicer.MoveLF,
@@ -2433,6 +2597,91 @@ class Control(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
+    def SetProgramBreakPoints(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Control/SetProgramBreakPoints',
+            common__msgs__pb2.ProgramBreakPoints.SerializeToString,
+            common__msgs__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetProgramBreakPoints(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Control/GetProgramBreakPoints',
+            common__msgs__pb2.Empty.SerializeToString,
+            common__msgs__pb2.ProgramBreakPoints.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def ProgramStepOver(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Control/ProgramStepOver',
+            common__msgs__pb2.Empty.SerializeToString,
+            common__msgs__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def ProgramStepInto(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Control/ProgramStepInto',
+            common__msgs__pb2.Empty.SerializeToString,
+            common__msgs__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def ProgramStepOut(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Control/ProgramStepOut',
+            common__msgs__pb2.Empty.SerializeToString,
+            common__msgs__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
     def SetModbusVariableNameList(request,
             target,
             options=(),
@@ -3096,6 +3345,23 @@ class Control(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
+    def ReadTeleOpInputFor(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Control/ReadTeleOpInputFor',
+            common__msgs__pb2.Int.SerializeToString,
+            control__msgs__pb2.TeleP.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
     def StartTeleOp(request,
             target,
             options=(),
@@ -3334,6 +3600,23 @@ class Control(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
+    def GetTransformedFTSensorDataFor(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Control/GetTransformedFTSensorDataFor',
+            common__msgs__pb2.Int.SerializeToString,
+            control__msgs__pb2.TransformedFTSensorData.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
     def FTZero(request,
             target,
             options=(),
@@ -3347,6 +3630,57 @@ class Control(object):
         return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Control/FTZero',
             common__msgs__pb2.Empty.SerializeToString,
             common__msgs__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetMotionJ(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Control/GetMotionJ',
+            control__msgs__pb2.GetMotionJReq.SerializeToString,
+            control__msgs__pb2.GetMotionRes.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetMotionL(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Control/GetMotionL',
+            control__msgs__pb2.GetMotionLReq.SerializeToString,
+            control__msgs__pb2.GetMotionRes.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetMotionC(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Control/GetMotionC',
+            control__msgs__pb2.GetMotionCReq.SerializeToString,
+            control__msgs__pb2.GetMotionRes.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

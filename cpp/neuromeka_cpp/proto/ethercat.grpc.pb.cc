@@ -50,7 +50,9 @@ static const char* EtherCAT_method_names[] = {
   "/Nrmk.IndyFramework.EtherCAT/GetEndtoolDockingTx",
   "/Nrmk.IndyFramework.EtherCAT/SetEndtoolRS485Rx",
   "/Nrmk.IndyFramework.EtherCAT/GetEndtoolRS485Rx",
+  "/Nrmk.IndyFramework.EtherCAT/GetEndtoolRS485RxFor",
   "/Nrmk.IndyFramework.EtherCAT/GetEndtoolRS485Tx",
+  "/Nrmk.IndyFramework.EtherCAT/GetEndtoolRS485TxFor",
   "/Nrmk.IndyFramework.EtherCAT/SetEndtoolLedDim",
   "/Nrmk.IndyFramework.EtherCAT/SetSRKeyEndtoolRx",
   "/Nrmk.IndyFramework.EtherCAT/GetSRKeyEndtoolRx",
@@ -107,27 +109,29 @@ EtherCAT::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, 
   , rpcmethod_GetEndtoolDockingTx_(EtherCAT_method_names[24], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_SetEndtoolRS485Rx_(EtherCAT_method_names[25], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_GetEndtoolRS485Rx_(EtherCAT_method_names[26], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetEndtoolRS485Tx_(EtherCAT_method_names[27], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetEndtoolLedDim_(EtherCAT_method_names[28], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetSRKeyEndtoolRx_(EtherCAT_method_names[29], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetSRKeyEndtoolRx_(EtherCAT_method_names[30], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetSRKeyEndtoolTx_(EtherCAT_method_names[31], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetIOBoardRx_(EtherCAT_method_names[32], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetIOBoardTx_(EtherCAT_method_names[33], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetIOBoardRx_(EtherCAT_method_names[34], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetDI_(EtherCAT_method_names[35], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetDO_(EtherCAT_method_names[36], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetDO_(EtherCAT_method_names[37], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetMaxTorqueSDO_(EtherCAT_method_names[38], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetProfileVelSDO_(EtherCAT_method_names[39], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetProfileAccSDO_(EtherCAT_method_names[40], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetProfileDecSDO_(EtherCAT_method_names[41], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetMaxTorqueSDO_(EtherCAT_method_names[42], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetProfileVelSDO_(EtherCAT_method_names[43], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetProfileAccSDO_(EtherCAT_method_names[44], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetProfileDecSDO_(EtherCAT_method_names[45], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetRobotZeroCount_(EtherCAT_method_names[46], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetRobotZeroAsCurrent_(EtherCAT_method_names[47], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetEndtoolRS485RxFor_(EtherCAT_method_names[27], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetEndtoolRS485Tx_(EtherCAT_method_names[28], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetEndtoolRS485TxFor_(EtherCAT_method_names[29], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetEndtoolLedDim_(EtherCAT_method_names[30], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetSRKeyEndtoolRx_(EtherCAT_method_names[31], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetSRKeyEndtoolRx_(EtherCAT_method_names[32], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetSRKeyEndtoolTx_(EtherCAT_method_names[33], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetIOBoardRx_(EtherCAT_method_names[34], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetIOBoardTx_(EtherCAT_method_names[35], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetIOBoardRx_(EtherCAT_method_names[36], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetDI_(EtherCAT_method_names[37], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetDO_(EtherCAT_method_names[38], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetDO_(EtherCAT_method_names[39], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetMaxTorqueSDO_(EtherCAT_method_names[40], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetProfileVelSDO_(EtherCAT_method_names[41], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetProfileAccSDO_(EtherCAT_method_names[42], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetProfileDecSDO_(EtherCAT_method_names[43], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetMaxTorqueSDO_(EtherCAT_method_names[44], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetProfileVelSDO_(EtherCAT_method_names[45], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetProfileAccSDO_(EtherCAT_method_names[46], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetProfileDecSDO_(EtherCAT_method_names[47], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetRobotZeroCount_(EtherCAT_method_names[48], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetRobotZeroAsCurrent_(EtherCAT_method_names[49], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status EtherCAT::Stub::SetMasterStatus(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::MasterStatus& request, ::Nrmk::IndyFramework::Empty* response) {
@@ -751,6 +755,29 @@ void EtherCAT::Stub::async::GetEndtoolRS485Rx(::grpc::ClientContext* context, co
   return result;
 }
 
+::grpc::Status EtherCAT::Stub::GetEndtoolRS485RxFor(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Int& request, ::Nrmk::IndyFramework::EndtoolRS485Rx* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Int, ::Nrmk::IndyFramework::EndtoolRS485Rx, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetEndtoolRS485RxFor_, context, request, response);
+}
+
+void EtherCAT::Stub::async::GetEndtoolRS485RxFor(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Int* request, ::Nrmk::IndyFramework::EndtoolRS485Rx* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Int, ::Nrmk::IndyFramework::EndtoolRS485Rx, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetEndtoolRS485RxFor_, context, request, response, std::move(f));
+}
+
+void EtherCAT::Stub::async::GetEndtoolRS485RxFor(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Int* request, ::Nrmk::IndyFramework::EndtoolRS485Rx* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetEndtoolRS485RxFor_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::EndtoolRS485Rx>* EtherCAT::Stub::PrepareAsyncGetEndtoolRS485RxForRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Int& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::EndtoolRS485Rx, ::Nrmk::IndyFramework::Int, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetEndtoolRS485RxFor_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::EndtoolRS485Rx>* EtherCAT::Stub::AsyncGetEndtoolRS485RxForRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Int& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetEndtoolRS485RxForRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 ::grpc::Status EtherCAT::Stub::GetEndtoolRS485Tx(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::EndtoolRS485Tx* response) {
   return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::EndtoolRS485Tx, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetEndtoolRS485Tx_, context, request, response);
 }
@@ -770,6 +797,29 @@ void EtherCAT::Stub::async::GetEndtoolRS485Tx(::grpc::ClientContext* context, co
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::EndtoolRS485Tx>* EtherCAT::Stub::AsyncGetEndtoolRS485TxRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
   auto* result =
     this->PrepareAsyncGetEndtoolRS485TxRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status EtherCAT::Stub::GetEndtoolRS485TxFor(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Int& request, ::Nrmk::IndyFramework::EndtoolRS485Tx* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Int, ::Nrmk::IndyFramework::EndtoolRS485Tx, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetEndtoolRS485TxFor_, context, request, response);
+}
+
+void EtherCAT::Stub::async::GetEndtoolRS485TxFor(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Int* request, ::Nrmk::IndyFramework::EndtoolRS485Tx* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Int, ::Nrmk::IndyFramework::EndtoolRS485Tx, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetEndtoolRS485TxFor_, context, request, response, std::move(f));
+}
+
+void EtherCAT::Stub::async::GetEndtoolRS485TxFor(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Int* request, ::Nrmk::IndyFramework::EndtoolRS485Tx* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetEndtoolRS485TxFor_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::EndtoolRS485Tx>* EtherCAT::Stub::PrepareAsyncGetEndtoolRS485TxForRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Int& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::EndtoolRS485Tx, ::Nrmk::IndyFramework::Int, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetEndtoolRS485TxFor_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::EndtoolRS485Tx>* EtherCAT::Stub::AsyncGetEndtoolRS485TxForRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Int& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetEndtoolRS485TxForRaw(context, request, cq);
   result->StartCall();
   return result;
 }
@@ -1508,6 +1558,16 @@ EtherCAT::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       EtherCAT_method_names[27],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::Int, ::Nrmk::IndyFramework::EndtoolRS485Rx, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](EtherCAT::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::Int* req,
+             ::Nrmk::IndyFramework::EndtoolRS485Rx* resp) {
+               return service->GetEndtoolRS485RxFor(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      EtherCAT_method_names[28],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::EndtoolRS485Tx, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](EtherCAT::Service* service,
              ::grpc::ServerContext* ctx,
@@ -1516,7 +1576,17 @@ EtherCAT::Service::Service() {
                return service->GetEndtoolRS485Tx(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      EtherCAT_method_names[28],
+      EtherCAT_method_names[29],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::Int, ::Nrmk::IndyFramework::EndtoolRS485Tx, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](EtherCAT::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::Int* req,
+             ::Nrmk::IndyFramework::EndtoolRS485Tx* resp) {
+               return service->GetEndtoolRS485TxFor(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      EtherCAT_method_names[30],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::LedDim, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](EtherCAT::Service* service,
@@ -1526,7 +1596,7 @@ EtherCAT::Service::Service() {
                return service->SetEndtoolLedDim(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      EtherCAT_method_names[29],
+      EtherCAT_method_names[31],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::SRKeyEndtoolRx, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](EtherCAT::Service* service,
@@ -1536,7 +1606,7 @@ EtherCAT::Service::Service() {
                return service->SetSRKeyEndtoolRx(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      EtherCAT_method_names[30],
+      EtherCAT_method_names[32],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::SRKeyEndtoolRx, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](EtherCAT::Service* service,
@@ -1546,7 +1616,7 @@ EtherCAT::Service::Service() {
                return service->GetSRKeyEndtoolRx(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      EtherCAT_method_names[31],
+      EtherCAT_method_names[33],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::SRKeyEndtoolTx, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](EtherCAT::Service* service,
@@ -1556,7 +1626,7 @@ EtherCAT::Service::Service() {
                return service->GetSRKeyEndtoolTx(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      EtherCAT_method_names[32],
+      EtherCAT_method_names[34],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::IOBoardRx, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](EtherCAT::Service* service,
@@ -1566,7 +1636,7 @@ EtherCAT::Service::Service() {
                return service->SetIOBoardRx(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      EtherCAT_method_names[33],
+      EtherCAT_method_names[35],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::IOBoardTx, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](EtherCAT::Service* service,
@@ -1576,7 +1646,7 @@ EtherCAT::Service::Service() {
                return service->GetIOBoardTx(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      EtherCAT_method_names[34],
+      EtherCAT_method_names[36],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::IOBoardRx, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](EtherCAT::Service* service,
@@ -1586,7 +1656,7 @@ EtherCAT::Service::Service() {
                return service->GetIOBoardRx(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      EtherCAT_method_names[35],
+      EtherCAT_method_names[37],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::DIOIndex, ::Nrmk::IndyFramework::DIODigitalInput, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](EtherCAT::Service* service,
@@ -1596,7 +1666,7 @@ EtherCAT::Service::Service() {
                return service->GetDI(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      EtherCAT_method_names[36],
+      EtherCAT_method_names[38],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::DIOIndex, ::Nrmk::IndyFramework::DIODigitalOutput, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](EtherCAT::Service* service,
@@ -1606,7 +1676,7 @@ EtherCAT::Service::Service() {
                return service->GetDO(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      EtherCAT_method_names[37],
+      EtherCAT_method_names[39],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::DIODigitalOutput, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](EtherCAT::Service* service,
@@ -1616,7 +1686,7 @@ EtherCAT::Service::Service() {
                return service->SetDO(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      EtherCAT_method_names[38],
+      EtherCAT_method_names[40],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::EcatIndex, ::Nrmk::IndyFramework::SDOIntVal, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](EtherCAT::Service* service,
@@ -1626,7 +1696,7 @@ EtherCAT::Service::Service() {
                return service->GetMaxTorqueSDO(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      EtherCAT_method_names[39],
+      EtherCAT_method_names[41],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::EcatIndex, ::Nrmk::IndyFramework::SDOIntVal, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](EtherCAT::Service* service,
@@ -1636,7 +1706,7 @@ EtherCAT::Service::Service() {
                return service->GetProfileVelSDO(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      EtherCAT_method_names[40],
+      EtherCAT_method_names[42],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::EcatIndex, ::Nrmk::IndyFramework::SDOIntVal, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](EtherCAT::Service* service,
@@ -1646,7 +1716,7 @@ EtherCAT::Service::Service() {
                return service->GetProfileAccSDO(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      EtherCAT_method_names[41],
+      EtherCAT_method_names[43],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::EcatIndex, ::Nrmk::IndyFramework::SDOIntVal, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](EtherCAT::Service* service,
@@ -1656,7 +1726,7 @@ EtherCAT::Service::Service() {
                return service->GetProfileDecSDO(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      EtherCAT_method_names[42],
+      EtherCAT_method_names[44],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::ServoParam, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](EtherCAT::Service* service,
@@ -1666,7 +1736,7 @@ EtherCAT::Service::Service() {
                return service->SetMaxTorqueSDO(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      EtherCAT_method_names[43],
+      EtherCAT_method_names[45],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::ServoParam, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](EtherCAT::Service* service,
@@ -1676,7 +1746,7 @@ EtherCAT::Service::Service() {
                return service->SetProfileVelSDO(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      EtherCAT_method_names[44],
+      EtherCAT_method_names[46],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::ServoParam, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](EtherCAT::Service* service,
@@ -1686,7 +1756,7 @@ EtherCAT::Service::Service() {
                return service->SetProfileAccSDO(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      EtherCAT_method_names[45],
+      EtherCAT_method_names[47],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::ServoParam, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](EtherCAT::Service* service,
@@ -1696,7 +1766,7 @@ EtherCAT::Service::Service() {
                return service->SetProfileDecSDO(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      EtherCAT_method_names[46],
+      EtherCAT_method_names[48],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::ServoIndex, ::Nrmk::IndyFramework::RobotZeroCount, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](EtherCAT::Service* service,
@@ -1706,7 +1776,7 @@ EtherCAT::Service::Service() {
                return service->GetRobotZeroCount(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      EtherCAT_method_names[47],
+      EtherCAT_method_names[49],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::ServoIndex, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](EtherCAT::Service* service,
@@ -1909,7 +1979,21 @@ EtherCAT::Service::~Service() {
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
+::grpc::Status EtherCAT::Service::GetEndtoolRS485RxFor(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Int* request, ::Nrmk::IndyFramework::EndtoolRS485Rx* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
 ::grpc::Status EtherCAT::Service::GetEndtoolRS485Tx(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::EndtoolRS485Tx* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status EtherCAT::Service::GetEndtoolRS485TxFor(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Int* request, ::Nrmk::IndyFramework::EndtoolRS485Tx* response) {
   (void) context;
   (void) request;
   (void) response;

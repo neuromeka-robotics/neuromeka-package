@@ -986,6 +986,7 @@ class GripperData final :
     kGripperTypeFieldNumber = 1,
     kGripperPositionFieldNumber = 2,
     kGripperStateFieldNumber = 3,
+    kToolIndexFieldNumber = 10,
   };
   // .Nrmk.IndyFramework.GripperType gripper_type = 1;
   void clear_gripper_type() ;
@@ -1017,12 +1018,22 @@ class GripperData final :
   void _internal_set_gripper_state(::int32_t value);
 
   public:
+  // int32 tool_index = 10;
+  void clear_tool_index() ;
+  ::int32_t tool_index() const;
+  void set_tool_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_tool_index() const;
+  void _internal_set_tool_index(::int32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.GripperData)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<2, 3, 0, 0, 2> _table_;
+  static const ::google::protobuf::internal::TcParseTable<2, 4, 0, 0, 2> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
@@ -1030,6 +1041,7 @@ class GripperData final :
     int gripper_type_;
     ::int32_t gripper_position_;
     ::int32_t gripper_state_;
+    ::int32_t tool_index_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -1190,6 +1202,7 @@ class GripperCommand final :
     kGripperPvtDataFieldNumber = 3,
     kGripperCommandFieldNumber = 1,
     kGripperTypeFieldNumber = 2,
+    kToolIndexFieldNumber = 10,
   };
   // repeated int32 gripper_pvt_data = 3;
   int gripper_pvt_data_size() const;
@@ -1229,12 +1242,22 @@ class GripperCommand final :
   void _internal_set_gripper_type(::Nrmk::IndyFramework::GripperType value);
 
   public:
+  // int32 tool_index = 10;
+  void clear_tool_index() ;
+  ::int32_t tool_index() const;
+  void set_tool_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_tool_index() const;
+  void _internal_set_tool_index(::int32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.GripperCommand)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<2, 3, 0, 0, 2> _table_;
+  static const ::google::protobuf::internal::TcParseTable<2, 4, 0, 0, 2> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
@@ -1243,6 +1266,7 @@ class GripperCommand final :
     mutable ::google::protobuf::internal::CachedSize _gripper_pvt_data_cached_byte_size_;
     int gripper_command_;
     int gripper_type_;
+    ::int32_t tool_index_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -1380,6 +1404,7 @@ class DigitalSignal final :
   enum : int {
     kAddressFieldNumber = 1,
     kStateFieldNumber = 2,
+    kToolIndexFieldNumber = 10,
   };
   // uint32 address = 1;
   void clear_address() ;
@@ -1401,18 +1426,29 @@ class DigitalSignal final :
   void _internal_set_state(::Nrmk::IndyFramework::DigitalState value);
 
   public:
+  // int32 tool_index = 10;
+  void clear_tool_index() ;
+  ::int32_t tool_index() const;
+  void set_tool_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_tool_index() const;
+  void _internal_set_tool_index(::int32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.DigitalSignal)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<1, 2, 0, 0, 2> _table_;
+  static const ::google::protobuf::internal::TcParseTable<1, 3, 0, 0, 2> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
     ::uint32_t address_;
     int state_;
+    ::int32_t tool_index_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -1549,6 +1585,7 @@ class EndLedDim final :
 
   enum : int {
     kLedDimFieldNumber = 1,
+    kToolIndexFieldNumber = 10,
   };
   // uint32 led_dim = 1;
   void clear_led_dim() ;
@@ -1560,17 +1597,28 @@ class EndLedDim final :
   void _internal_set_led_dim(::uint32_t value);
 
   public:
+  // int32 tool_index = 10;
+  void clear_tool_index() ;
+  ::int32_t tool_index() const;
+  void set_tool_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_tool_index() const;
+  void _internal_set_tool_index(::int32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.EndLedDim)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<0, 1, 0, 0, 2> _table_;
+  static const ::google::protobuf::internal::TcParseTable<1, 2, 0, 0, 2> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
     ::uint32_t led_dim_;
+    ::int32_t tool_index_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -1708,6 +1756,7 @@ class EndtoolSignal final :
   enum : int {
     kStatesFieldNumber = 2,
     kPortFieldNumber = 1,
+    kToolIndexFieldNumber = 10,
   };
   // repeated .Nrmk.IndyFramework.EndtoolState states = 2;
   int states_size() const;
@@ -1744,12 +1793,22 @@ class EndtoolSignal final :
   std::string* _internal_mutable_port();
 
   public:
+  // int32 tool_index = 10;
+  void clear_tool_index() ;
+  ::int32_t tool_index() const;
+  void set_tool_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_tool_index() const;
+  void _internal_set_tool_index(::int32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.EndtoolSignal)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<1, 2, 0, 45, 2> _table_;
+  static const ::google::protobuf::internal::TcParseTable<1, 3, 0, 45, 2> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
@@ -1757,6 +1816,7 @@ class EndtoolSignal final :
     ::google::protobuf::RepeatedField<int> states_;
     mutable ::google::protobuf::internal::CachedSize _states_cached_byte_size_;
     ::google::protobuf::internal::ArenaStringPtr port_;
+    ::int32_t tool_index_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -1894,6 +1954,7 @@ class AnalogSignal final :
   enum : int {
     kAddressFieldNumber = 1,
     kVoltageFieldNumber = 2,
+    kToolIndexFieldNumber = 10,
   };
   // uint32 address = 1;
   void clear_address() ;
@@ -1915,18 +1976,29 @@ class AnalogSignal final :
   void _internal_set_voltage(::int32_t value);
 
   public:
+  // int32 tool_index = 10;
+  void clear_tool_index() ;
+  ::int32_t tool_index() const;
+  void set_tool_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_tool_index() const;
+  void _internal_set_tool_index(::int32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.AnalogSignal)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<1, 2, 0, 0, 2> _table_;
+  static const ::google::protobuf::internal::TcParseTable<1, 3, 0, 0, 2> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
     ::uint32_t address_;
     ::int32_t voltage_;
+    ::int32_t tool_index_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -2727,6 +2799,7 @@ class DeviceInfo final :
 
   enum : int {
     kCoreBoardFwVersFieldNumber = 11,
+    kEndtoolBoardFwVersFieldNumber = 13,
     kRobotSerialFieldNumber = 2,
     kRobotNameFieldNumber = 5,
     kCbSerialFieldNumber = 6,
@@ -2747,6 +2820,7 @@ class DeviceInfo final :
     kUseNpadFieldNumber = 41,
     kUseIndykeyFieldNumber = 42,
     kUseAutoModeFieldNumber = 43,
+    kUseSafetyMcuFieldNumber = 50,
   };
   // repeated string core_board_fw_vers = 11;
   int core_board_fw_vers_size() const;
@@ -2774,6 +2848,34 @@ class DeviceInfo final :
   private:
   const ::google::protobuf::RepeatedPtrField<std::string>& _internal_core_board_fw_vers() const;
   ::google::protobuf::RepeatedPtrField<std::string>* _internal_mutable_core_board_fw_vers();
+
+  public:
+  // repeated string endtool_board_fw_vers = 13;
+  int endtool_board_fw_vers_size() const;
+  private:
+  int _internal_endtool_board_fw_vers_size() const;
+
+  public:
+  void clear_endtool_board_fw_vers() ;
+  const std::string& endtool_board_fw_vers(int index) const;
+  std::string* mutable_endtool_board_fw_vers(int index);
+  void set_endtool_board_fw_vers(int index, const std::string& value);
+  void set_endtool_board_fw_vers(int index, std::string&& value);
+  void set_endtool_board_fw_vers(int index, const char* value);
+  void set_endtool_board_fw_vers(int index, const char* value, std::size_t size);
+  void set_endtool_board_fw_vers(int index, absl::string_view value);
+  std::string* add_endtool_board_fw_vers();
+  void add_endtool_board_fw_vers(const std::string& value);
+  void add_endtool_board_fw_vers(std::string&& value);
+  void add_endtool_board_fw_vers(const char* value);
+  void add_endtool_board_fw_vers(const char* value, std::size_t size);
+  void add_endtool_board_fw_vers(absl::string_view value);
+  const ::google::protobuf::RepeatedPtrField<std::string>& endtool_board_fw_vers() const;
+  ::google::protobuf::RepeatedPtrField<std::string>* mutable_endtool_board_fw_vers();
+
+  private:
+  const ::google::protobuf::RepeatedPtrField<std::string>& _internal_endtool_board_fw_vers() const;
+  ::google::protobuf::RepeatedPtrField<std::string>* _internal_mutable_endtool_board_fw_vers();
 
   public:
   // string robot_serial = 2;
@@ -3041,12 +3143,22 @@ class DeviceInfo final :
   void _internal_set_use_auto_mode(bool value);
 
   public:
+  // bool use_safety_mcu = 50;
+  void clear_use_safety_mcu() ;
+  bool use_safety_mcu() const;
+  void set_use_safety_mcu(bool value);
+
+  private:
+  bool _internal_use_safety_mcu() const;
+  void _internal_set_use_safety_mcu(bool value);
+
+  public:
   // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.DeviceInfo)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<5, 21, 1, 218, 13> _table_;
+  static const ::google::protobuf::internal::TcParseTable<5, 23, 1, 239, 13> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
@@ -3054,6 +3166,7 @@ class DeviceInfo final :
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::RepeatedPtrField<std::string> core_board_fw_vers_;
+    ::google::protobuf::RepeatedPtrField<std::string> endtool_board_fw_vers_;
     ::google::protobuf::internal::ArenaStringPtr robot_serial_;
     ::google::protobuf::internal::ArenaStringPtr robot_name_;
     ::google::protobuf::internal::ArenaStringPtr cb_serial_;
@@ -3074,6 +3187,7 @@ class DeviceInfo final :
     bool use_npad_;
     bool use_indykey_;
     bool use_auto_mode_;
+    bool use_safety_mcu_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -5191,6 +5305,7 @@ class SanderCommand final :
     kTypeFieldNumber = 1,
     kSpeedFieldNumber = 3,
     kStateFieldNumber = 10,
+    kToolIndexFieldNumber = 20,
   };
   // string ip = 2;
   void clear_ip() ;
@@ -5238,12 +5353,22 @@ class SanderCommand final :
   void _internal_set_state(bool value);
 
   public:
+  // int32 tool_index = 20;
+  void clear_tool_index() ;
+  ::int32_t tool_index() const;
+  void set_tool_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_tool_index() const;
+  void _internal_set_tool_index(::int32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.SanderCommand)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<2, 4, 0, 43, 2> _table_;
+  static const ::google::protobuf::internal::TcParseTable<2, 5, 0, 43, 2> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
@@ -5252,6 +5377,7 @@ class SanderCommand final :
     int type_;
     float speed_;
     bool state_;
+    ::int32_t tool_index_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -5850,6 +5976,7 @@ class Conveyor final :
     kTerminalPoseFieldNumber = 11,
     kOffsetDistFieldNumber = 4,
     kWorkingDistFieldNumber = 5,
+    kArmIndexFieldNumber = 20,
     kToolLinkFieldNumber = 31,
   };
   // string name = 1;
@@ -5963,6 +6090,16 @@ class Conveyor final :
   void _internal_set_working_dist(float value);
 
   public:
+  // int32 arm_index = 20;
+  void clear_arm_index() ;
+  ::int32_t arm_index() const;
+  void set_arm_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_arm_index() const;
+  void _internal_set_arm_index(::int32_t value);
+
+  public:
   // int32 tool_link = 31;
   void clear_tool_link() ;
   ::int32_t tool_link() const;
@@ -5978,7 +6115,7 @@ class Conveyor final :
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<4, 9, 5, 48, 2> _table_;
+  static const ::google::protobuf::internal::TcParseTable<4, 10, 5, 48, 2> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
@@ -5993,6 +6130,7 @@ class Conveyor final :
     ::Nrmk::IndyFramework::PosePair* terminal_pose_;
     float offset_dist_;
     float working_dist_;
+    ::int32_t arm_index_;
     ::int32_t tool_link_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -6468,6 +6606,7 @@ class AddPhotoneoCalibPointReq final :
     kPxFieldNumber = 2,
     kPyFieldNumber = 3,
     kPzFieldNumber = 4,
+    kArmIndexFieldNumber = 10,
   };
   // string vision_name = 1;
   void clear_vision_name() ;
@@ -6515,12 +6654,22 @@ class AddPhotoneoCalibPointReq final :
   void _internal_set_pz(double value);
 
   public:
+  // int32 arm_index = 10;
+  void clear_arm_index() ;
+  ::int32_t arm_index() const;
+  void set_arm_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_arm_index() const;
+  void _internal_set_arm_index(::int32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.AddPhotoneoCalibPointReq)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<2, 4, 0, 63, 2> _table_;
+  static const ::google::protobuf::internal::TcParseTable<2, 5, 0, 63, 2> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
@@ -6529,6 +6678,7 @@ class AddPhotoneoCalibPointReq final :
     double px_;
     double py_;
     double pz_;
+    ::int32_t arm_index_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -8243,6 +8393,28 @@ inline void GripperData::_internal_set_gripper_state(::int32_t value) {
   _impl_.gripper_state_ = value;
 }
 
+// int32 tool_index = 10;
+inline void GripperData::clear_tool_index() {
+  _impl_.tool_index_ = 0;
+}
+inline ::int32_t GripperData::tool_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.GripperData.tool_index)
+  return _internal_tool_index();
+}
+inline void GripperData::set_tool_index(::int32_t value) {
+  _internal_set_tool_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.GripperData.tool_index)
+}
+inline ::int32_t GripperData::_internal_tool_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.tool_index_;
+}
+inline void GripperData::_internal_set_tool_index(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.tool_index_ = value;
+}
+
 // -------------------------------------------------------------------
 
 // GripperCommand
@@ -8333,6 +8505,28 @@ inline ::google::protobuf::RepeatedField<::int32_t>* GripperCommand::_internal_m
   return &_impl_.gripper_pvt_data_;
 }
 
+// int32 tool_index = 10;
+inline void GripperCommand::clear_tool_index() {
+  _impl_.tool_index_ = 0;
+}
+inline ::int32_t GripperCommand::tool_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.GripperCommand.tool_index)
+  return _internal_tool_index();
+}
+inline void GripperCommand::set_tool_index(::int32_t value) {
+  _internal_set_tool_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.GripperCommand.tool_index)
+}
+inline ::int32_t GripperCommand::_internal_tool_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.tool_index_;
+}
+inline void GripperCommand::_internal_set_tool_index(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.tool_index_ = value;
+}
+
 // -------------------------------------------------------------------
 
 // DigitalSignal
@@ -8381,6 +8575,28 @@ inline void DigitalSignal::_internal_set_state(::Nrmk::IndyFramework::DigitalSta
   _impl_.state_ = value;
 }
 
+// int32 tool_index = 10;
+inline void DigitalSignal::clear_tool_index() {
+  _impl_.tool_index_ = 0;
+}
+inline ::int32_t DigitalSignal::tool_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.DigitalSignal.tool_index)
+  return _internal_tool_index();
+}
+inline void DigitalSignal::set_tool_index(::int32_t value) {
+  _internal_set_tool_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.DigitalSignal.tool_index)
+}
+inline ::int32_t DigitalSignal::_internal_tool_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.tool_index_;
+}
+inline void DigitalSignal::_internal_set_tool_index(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.tool_index_ = value;
+}
+
 // -------------------------------------------------------------------
 
 // EndLedDim
@@ -8405,6 +8621,28 @@ inline void EndLedDim::_internal_set_led_dim(::uint32_t value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.led_dim_ = value;
+}
+
+// int32 tool_index = 10;
+inline void EndLedDim::clear_tool_index() {
+  _impl_.tool_index_ = 0;
+}
+inline ::int32_t EndLedDim::tool_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.EndLedDim.tool_index)
+  return _internal_tool_index();
+}
+inline void EndLedDim::set_tool_index(::int32_t value) {
+  _internal_set_tool_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.EndLedDim.tool_index)
+}
+inline ::int32_t EndLedDim::_internal_tool_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.tool_index_;
+}
+inline void EndLedDim::_internal_set_tool_index(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.tool_index_ = value;
 }
 
 // -------------------------------------------------------------------
@@ -8503,6 +8741,28 @@ inline ::google::protobuf::RepeatedField<int>* EndtoolSignal::_internal_mutable_
   return &_impl_.states_;
 }
 
+// int32 tool_index = 10;
+inline void EndtoolSignal::clear_tool_index() {
+  _impl_.tool_index_ = 0;
+}
+inline ::int32_t EndtoolSignal::tool_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.EndtoolSignal.tool_index)
+  return _internal_tool_index();
+}
+inline void EndtoolSignal::set_tool_index(::int32_t value) {
+  _internal_set_tool_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.EndtoolSignal.tool_index)
+}
+inline ::int32_t EndtoolSignal::_internal_tool_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.tool_index_;
+}
+inline void EndtoolSignal::_internal_set_tool_index(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.tool_index_ = value;
+}
+
 // -------------------------------------------------------------------
 
 // AnalogSignal
@@ -8549,6 +8809,28 @@ inline void AnalogSignal::_internal_set_voltage(::int32_t value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.voltage_ = value;
+}
+
+// int32 tool_index = 10;
+inline void AnalogSignal::clear_tool_index() {
+  _impl_.tool_index_ = 0;
+}
+inline ::int32_t AnalogSignal::tool_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.AnalogSignal.tool_index)
+  return _internal_tool_index();
+}
+inline void AnalogSignal::set_tool_index(::int32_t value) {
+  _internal_set_tool_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.AnalogSignal.tool_index)
+}
+inline ::int32_t AnalogSignal::_internal_tool_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.tool_index_;
+}
+inline void AnalogSignal::_internal_set_tool_index(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.tool_index_ = value;
 }
 
 // -------------------------------------------------------------------
@@ -9172,6 +9454,102 @@ inline void DeviceInfo::set_allocated_endtool_board_fw_ver(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.DeviceInfo.endtool_board_fw_ver)
 }
 
+// repeated string endtool_board_fw_vers = 13;
+inline int DeviceInfo::_internal_endtool_board_fw_vers_size() const {
+  return _internal_endtool_board_fw_vers().size();
+}
+inline int DeviceInfo::endtool_board_fw_vers_size() const {
+  return _internal_endtool_board_fw_vers_size();
+}
+inline void DeviceInfo::clear_endtool_board_fw_vers() {
+  _internal_mutable_endtool_board_fw_vers()->Clear();
+}
+inline std::string* DeviceInfo::add_endtool_board_fw_vers() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  std::string* _s = _internal_mutable_endtool_board_fw_vers()->Add();
+  // @@protoc_insertion_point(field_add_mutable:Nrmk.IndyFramework.DeviceInfo.endtool_board_fw_vers)
+  return _s;
+}
+inline const std::string& DeviceInfo::endtool_board_fw_vers(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.DeviceInfo.endtool_board_fw_vers)
+  return _internal_endtool_board_fw_vers().Get(index);
+}
+inline std::string* DeviceInfo::mutable_endtool_board_fw_vers(int index) {
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.DeviceInfo.endtool_board_fw_vers)
+  return _internal_mutable_endtool_board_fw_vers()->Mutable(index);
+}
+inline void DeviceInfo::set_endtool_board_fw_vers(int index, const std::string& value) {
+  _internal_mutable_endtool_board_fw_vers()->Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.DeviceInfo.endtool_board_fw_vers)
+}
+inline void DeviceInfo::set_endtool_board_fw_vers(int index, std::string&& value) {
+  _internal_mutable_endtool_board_fw_vers()->Mutable(index)->assign(std::move(value));
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.DeviceInfo.endtool_board_fw_vers)
+}
+inline void DeviceInfo::set_endtool_board_fw_vers(int index, const char* value) {
+  ABSL_DCHECK(value != nullptr);
+  _internal_mutable_endtool_board_fw_vers()->Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:Nrmk.IndyFramework.DeviceInfo.endtool_board_fw_vers)
+}
+inline void DeviceInfo::set_endtool_board_fw_vers(int index, const char* value,
+                              std::size_t size) {
+  _internal_mutable_endtool_board_fw_vers()->Mutable(index)->assign(
+      reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:Nrmk.IndyFramework.DeviceInfo.endtool_board_fw_vers)
+}
+inline void DeviceInfo::set_endtool_board_fw_vers(int index, absl::string_view value) {
+  _internal_mutable_endtool_board_fw_vers()->Mutable(index)->assign(value.data(),
+                                                     value.size());
+  // @@protoc_insertion_point(field_set_string_piece:Nrmk.IndyFramework.DeviceInfo.endtool_board_fw_vers)
+}
+inline void DeviceInfo::add_endtool_board_fw_vers(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_endtool_board_fw_vers()->Add()->assign(value);
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.DeviceInfo.endtool_board_fw_vers)
+}
+inline void DeviceInfo::add_endtool_board_fw_vers(std::string&& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_endtool_board_fw_vers()->Add(std::move(value));
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.DeviceInfo.endtool_board_fw_vers)
+}
+inline void DeviceInfo::add_endtool_board_fw_vers(const char* value) {
+  ABSL_DCHECK(value != nullptr);
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_endtool_board_fw_vers()->Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:Nrmk.IndyFramework.DeviceInfo.endtool_board_fw_vers)
+}
+inline void DeviceInfo::add_endtool_board_fw_vers(const char* value, std::size_t size) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_endtool_board_fw_vers()->Add()->assign(
+      reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:Nrmk.IndyFramework.DeviceInfo.endtool_board_fw_vers)
+}
+inline void DeviceInfo::add_endtool_board_fw_vers(absl::string_view value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_endtool_board_fw_vers()->Add()->assign(value.data(), value.size());
+  // @@protoc_insertion_point(field_add_string_piece:Nrmk.IndyFramework.DeviceInfo.endtool_board_fw_vers)
+}
+inline const ::google::protobuf::RepeatedPtrField<std::string>&
+DeviceInfo::endtool_board_fw_vers() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.DeviceInfo.endtool_board_fw_vers)
+  return _internal_endtool_board_fw_vers();
+}
+inline ::google::protobuf::RepeatedPtrField<std::string>* DeviceInfo::mutable_endtool_board_fw_vers() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.DeviceInfo.endtool_board_fw_vers)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_endtool_board_fw_vers();
+}
+inline const ::google::protobuf::RepeatedPtrField<std::string>&
+DeviceInfo::_internal_endtool_board_fw_vers() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.endtool_board_fw_vers_;
+}
+inline ::google::protobuf::RepeatedPtrField<std::string>*
+DeviceInfo::_internal_mutable_endtool_board_fw_vers() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.endtool_board_fw_vers_;
+}
+
 // string controller_ver = 20;
 inline void DeviceInfo::clear_controller_ver() {
   _impl_.controller_ver_.ClearToEmpty();
@@ -9557,6 +9935,28 @@ inline void DeviceInfo::_internal_set_use_auto_mode(bool value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.use_auto_mode_ = value;
+}
+
+// bool use_safety_mcu = 50;
+inline void DeviceInfo::clear_use_safety_mcu() {
+  _impl_.use_safety_mcu_ = false;
+}
+inline bool DeviceInfo::use_safety_mcu() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.DeviceInfo.use_safety_mcu)
+  return _internal_use_safety_mcu();
+}
+inline void DeviceInfo::set_use_safety_mcu(bool value) {
+  _internal_set_use_safety_mcu(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.DeviceInfo.use_safety_mcu)
+}
+inline bool DeviceInfo::_internal_use_safety_mcu() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.use_safety_mcu_;
+}
+inline void DeviceInfo::_internal_set_use_safety_mcu(bool value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.use_safety_mcu_ = value;
 }
 
 // .Nrmk.IndyFramework.Response response = 100;
@@ -11070,6 +11470,28 @@ inline void SanderCommand::_internal_set_state(bool value) {
   _impl_.state_ = value;
 }
 
+// int32 tool_index = 20;
+inline void SanderCommand::clear_tool_index() {
+  _impl_.tool_index_ = 0;
+}
+inline ::int32_t SanderCommand::tool_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.SanderCommand.tool_index)
+  return _internal_tool_index();
+}
+inline void SanderCommand::set_tool_index(::int32_t value) {
+  _internal_set_tool_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.SanderCommand.tool_index)
+}
+inline ::int32_t SanderCommand::_internal_tool_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.tool_index_;
+}
+inline void SanderCommand::_internal_set_tool_index(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.tool_index_ = value;
+}
+
 // -------------------------------------------------------------------
 
 // Encoder
@@ -11865,6 +12287,28 @@ inline void Conveyor::set_allocated_terminal_pose(::Nrmk::IndyFramework::PosePai
   // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.Conveyor.terminal_pose)
 }
 
+// int32 arm_index = 20;
+inline void Conveyor::clear_arm_index() {
+  _impl_.arm_index_ = 0;
+}
+inline ::int32_t Conveyor::arm_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.Conveyor.arm_index)
+  return _internal_arm_index();
+}
+inline void Conveyor::set_arm_index(::int32_t value) {
+  _internal_set_arm_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.Conveyor.arm_index)
+}
+inline ::int32_t Conveyor::_internal_arm_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.arm_index_;
+}
+inline void Conveyor::_internal_set_arm_index(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.arm_index_ = value;
+}
+
 // int32 tool_link = 31;
 inline void Conveyor::clear_tool_link() {
   _impl_.tool_link_ = 0;
@@ -12100,6 +12544,28 @@ inline void AddPhotoneoCalibPointReq::_internal_set_pz(double value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.pz_ = value;
+}
+
+// int32 arm_index = 10;
+inline void AddPhotoneoCalibPointReq::clear_arm_index() {
+  _impl_.arm_index_ = 0;
+}
+inline ::int32_t AddPhotoneoCalibPointReq::arm_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.AddPhotoneoCalibPointReq.arm_index)
+  return _internal_arm_index();
+}
+inline void AddPhotoneoCalibPointReq::set_arm_index(::int32_t value) {
+  _internal_set_arm_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.AddPhotoneoCalibPointReq.arm_index)
+}
+inline ::int32_t AddPhotoneoCalibPointReq::_internal_arm_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.arm_index_;
+}
+inline void AddPhotoneoCalibPointReq::_internal_set_arm_index(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.arm_index_ = value;
 }
 
 // -------------------------------------------------------------------
