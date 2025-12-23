@@ -160,6 +160,11 @@ class MobyStub(object):
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
                 response_deserializer=moby__msgs__pb2.ForcedKinematicsData.FromString,
                 )
+        self.MoveSteerToZero = channel.unary_unary(
+                '/Nrmk.IndyFramework.Moby/MoveSteerToZero',
+                request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=common__msgs__pb2.Empty.FromString,
+                )
         self.PauseBumper = channel.unary_unary(
                 '/Nrmk.IndyFramework.Moby/PauseBumper',
                 request_serializer=moby__msgs__pb2.BoolVal.SerializeToString,
@@ -180,6 +185,16 @@ class MobyStub(object):
                 request_serializer=moby__msgs__pb2.BoolVals.SerializeToString,
                 response_deserializer=common__msgs__pb2.Empty.FromString,
                 )
+        self.EnableExternalLEDControl = channel.unary_unary(
+                '/Nrmk.IndyFramework.Moby/EnableExternalLEDControl',
+                request_serializer=moby__msgs__pb2.BoolVal.SerializeToString,
+                response_deserializer=common__msgs__pb2.Empty.FromString,
+                )
+        self.SetLEDMode = channel.unary_unary(
+                '/Nrmk.IndyFramework.Moby/SetLEDMode',
+                request_serializer=moby__msgs__pb2.LEDControlMode.SerializeToString,
+                response_deserializer=common__msgs__pb2.Empty.FromString,
+                )
         self.SetControlParam = channel.unary_unary(
                 '/Nrmk.IndyFramework.Moby/SetControlParam',
                 request_serializer=moby__msgs__pb2.RotationGain.SerializeToString,
@@ -198,6 +213,16 @@ class MobyStub(object):
         self.EndRTLogging = channel.unary_unary(
                 '/Nrmk.IndyFramework.Moby/EndRTLogging',
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=common__msgs__pb2.Empty.FromString,
+                )
+        self.GetControlSource = channel.unary_unary(
+                '/Nrmk.IndyFramework.Moby/GetControlSource',
+                request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=moby__msgs__pb2.IntVal.FromString,
+                )
+        self.SetControlSource = channel.unary_unary(
+                '/Nrmk.IndyFramework.Moby/SetControlSource',
+                request_serializer=moby__msgs__pb2.IntVal.SerializeToString,
                 response_deserializer=common__msgs__pb2.Empty.FromString,
                 )
 
@@ -386,6 +411,12 @@ class MobyServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def MoveSteerToZero(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def PauseBumper(self, request, context):
         """Moby-Agri related commands
         """
@@ -411,8 +442,24 @@ class MobyServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def EnableExternalLEDControl(self, request, context):
+        """LED Control commands
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SetLEDMode(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def SetControlParam(self, request, context):
-        """Gain setting
+        """rpc GetRobotZeroCount(Empty) returns (RobotZeroCount) {}
+        rpc SetRobotZeroAsCurrent(Empty) returns (Empty) {}
+
+        Gain setting
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -432,6 +479,20 @@ class MobyServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def EndRTLogging(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetControlSource(self, request, context):
+        """Control source management - applied to SwerveDoubles
+        0=third-party, 1=nrmk
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SetControlSource(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -585,6 +646,11 @@ def add_MobyServicer_to_server(servicer, server):
                     request_deserializer=common__msgs__pb2.Empty.FromString,
                     response_serializer=moby__msgs__pb2.ForcedKinematicsData.SerializeToString,
             ),
+            'MoveSteerToZero': grpc.unary_unary_rpc_method_handler(
+                    servicer.MoveSteerToZero,
+                    request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=common__msgs__pb2.Empty.SerializeToString,
+            ),
             'PauseBumper': grpc.unary_unary_rpc_method_handler(
                     servicer.PauseBumper,
                     request_deserializer=moby__msgs__pb2.BoolVal.FromString,
@@ -605,6 +671,16 @@ def add_MobyServicer_to_server(servicer, server):
                     request_deserializer=moby__msgs__pb2.BoolVals.FromString,
                     response_serializer=common__msgs__pb2.Empty.SerializeToString,
             ),
+            'EnableExternalLEDControl': grpc.unary_unary_rpc_method_handler(
+                    servicer.EnableExternalLEDControl,
+                    request_deserializer=moby__msgs__pb2.BoolVal.FromString,
+                    response_serializer=common__msgs__pb2.Empty.SerializeToString,
+            ),
+            'SetLEDMode': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetLEDMode,
+                    request_deserializer=moby__msgs__pb2.LEDControlMode.FromString,
+                    response_serializer=common__msgs__pb2.Empty.SerializeToString,
+            ),
             'SetControlParam': grpc.unary_unary_rpc_method_handler(
                     servicer.SetControlParam,
                     request_deserializer=moby__msgs__pb2.RotationGain.FromString,
@@ -623,6 +699,16 @@ def add_MobyServicer_to_server(servicer, server):
             'EndRTLogging': grpc.unary_unary_rpc_method_handler(
                     servicer.EndRTLogging,
                     request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=common__msgs__pb2.Empty.SerializeToString,
+            ),
+            'GetControlSource': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetControlSource,
+                    request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=moby__msgs__pb2.IntVal.SerializeToString,
+            ),
+            'SetControlSource': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetControlSource,
+                    request_deserializer=moby__msgs__pb2.IntVal.FromString,
                     response_serializer=common__msgs__pb2.Empty.SerializeToString,
             ),
     }
@@ -1129,6 +1215,23 @@ class Moby(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
+    def MoveSteerToZero(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Moby/MoveSteerToZero',
+            common__msgs__pb2.Empty.SerializeToString,
+            common__msgs__pb2.Empty.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
     def PauseBumper(request,
             target,
             options=(),
@@ -1197,6 +1300,40 @@ class Moby(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
+    def EnableExternalLEDControl(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Moby/EnableExternalLEDControl',
+            moby__msgs__pb2.BoolVal.SerializeToString,
+            common__msgs__pb2.Empty.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SetLEDMode(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Moby/SetLEDMode',
+            moby__msgs__pb2.LEDControlMode.SerializeToString,
+            common__msgs__pb2.Empty.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
     def SetControlParam(request,
             target,
             options=(),
@@ -1260,6 +1397,40 @@ class Moby(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Moby/EndRTLogging',
             common__msgs__pb2.Empty.SerializeToString,
+            common__msgs__pb2.Empty.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetControlSource(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Moby/GetControlSource',
+            common__msgs__pb2.Empty.SerializeToString,
+            moby__msgs__pb2.IntVal.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SetControlSource(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Moby/SetControlSource',
+            moby__msgs__pb2.IntVal.SerializeToString,
             common__msgs__pb2.Empty.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

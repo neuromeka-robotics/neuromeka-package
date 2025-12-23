@@ -22,7 +22,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\rcontrol.proto\x12\x12Nrmk.IndyFramework\x1a\x12\x63ontrol_msgs.proto\x1a\x11\x63onfig_msgs.proto\x1a\x11\x63ommon_msgs.proto2\xb6H\n\x07\x43ontrol\x12N\n\x0eGetControlInfo\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1f.Nrmk.IndyFramework.ControlInfo\"\x00\x12[\n\x0f\x41\x63tivateIndySDK\x12\".Nrmk.IndyFramework.SDKLicenseInfo\x1a\".Nrmk.IndyFramework.SDKLicenseResp\"\x00\x12\x45\n\x05MoveJ\x12\x1c.Nrmk.IndyFramework.MoveJReq\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12G\n\x06MoveJT\x12\x1d.Nrmk.IndyFramework.MoveJTReq\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12\x45\n\x05MoveL\x12\x1c.Nrmk.IndyFramework.MoveLReq\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12G\n\x06MoveLT\x12\x1d.Nrmk.IndyFramework.MoveLTReq\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12\x45\n\x05MoveC\x12\x1c.Nrmk.IndyFramework.MoveCReq\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12G\n\x06MoveCT\x12\x1d.Nrmk.IndyFramework.MoveCTReq\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12U\n\rMoveJointTraj\x12$.Nrmk.IndyFramework.MoveJointTrajReq\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12S\n\x0cMoveTaskTraj\x12#.Nrmk.IndyFramework.MoveTaskTrajReq\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12M\n\tMoveGcode\x12 .Nrmk.IndyFramework.MoveGcodeReq\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12S\n\x0cMoveConveyor\x12#.Nrmk.IndyFramework.MoveConveyorReq\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12G\n\x06WaitIO\x12\x1d.Nrmk.IndyFramework.WaitIOReq\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12K\n\x08WaitTime\x12\x1f.Nrmk.IndyFramework.WaitTimeReq\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12S\n\x0cWaitProgress\x12#.Nrmk.IndyFramework.WaitProgressReq\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12K\n\x08WaitTraj\x12\x1f.Nrmk.IndyFramework.WaitTrajReq\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12O\n\nWaitRadius\x12!.Nrmk.IndyFramework.WaitRadiusReq\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12M\n\tMoveJCond\x12 .Nrmk.IndyFramework.MoveJCondReq\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12Q\n\x0eMoveLinearAxis\x12\x1f.Nrmk.IndyFramework.MoveAxisReq\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12I\n\nStopMotion\x12\x1b.Nrmk.IndyFramework.StopCat\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12K\n\x0bPauseMotion\x12\x1c.Nrmk.IndyFramework.PauseCat\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12N\n\x11SetDirectTeaching\x12\x19.Nrmk.IndyFramework.State\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12N\n\x11SetSimulationMode\x12\x19.Nrmk.IndyFramework.State\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12S\n\x14SetCustomControlMode\x12\x1b.Nrmk.IndyFramework.IntMode\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12P\n\x14GetCustomControlMode\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1b.Nrmk.IndyFramework.IntMode\"\x00\x12T\n\x17SetFrictionCompensation\x12\x19.Nrmk.IndyFramework.State\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12V\n\x1cGetFrictionCompensationState\x12\x19.Nrmk.IndyFramework.Empty\x1a\x19.Nrmk.IndyFramework.State\"\x00\x12K\n\x0bSetTactTime\x12\x1c.Nrmk.IndyFramework.TactTime\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12H\n\x0bGetTactTime\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1c.Nrmk.IndyFramework.TactTime\"\x00\x12W\n\x11SetComplianceMode\x12\".Nrmk.IndyFramework.ComplianceMode\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12T\n\x11GetComplianceMode\x12\x19.Nrmk.IndyFramework.Empty\x1a\".Nrmk.IndyFramework.ComplianceMode\"\x00\x12\x44\n\x07Recover\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12\x43\n\x06Reboot\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12N\n\x11SetManualRecovery\x12\x19.Nrmk.IndyFramework.State\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12O\n\x10MoveRecoverJoint\x12\x1b.Nrmk.IndyFramework.TargetJ\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12O\n\rSearchProgram\x12\x1b.Nrmk.IndyFramework.Program\x1a\x1f.Nrmk.IndyFramework.ProgramInfo\"\x00\x12J\n\x0bPlayProgram\x12\x1b.Nrmk.IndyFramework.Program\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12I\n\x0cPauseProgram\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12J\n\rResumeProgram\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12H\n\x0bStopProgram\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12\x45\n\tSendAlarm\x12\x1b.Nrmk.IndyFramework.Message\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12J\n\x0eSendAnnotation\x12\x1b.Nrmk.IndyFramework.Message\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12\x61\n\x11PlayTuningProgram\x12!.Nrmk.IndyFramework.TuningProgram\x1a\'.Nrmk.IndyFramework.CollisionThresholds\"\x00\x12N\n\x0fPlayProgramLine\x12\x1b.Nrmk.IndyFramework.Program\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12_\n\x15SetProgramBreakPoints\x12&.Nrmk.IndyFramework.ProgramBreakPoints\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12\\\n\x15GetProgramBreakPoints\x12\x19.Nrmk.IndyFramework.Empty\x1a&.Nrmk.IndyFramework.ProgramBreakPoints\"\x00\x12L\n\x0fProgramStepOver\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12L\n\x0fProgramStepInto\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12K\n\x0eProgramStepOut\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12`\n\x19SetModbusVariableNameList\x12&.Nrmk.IndyFramework.ModbusVariableList\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12O\n\x13SetVariableNameList\x12\x1b.Nrmk.IndyFramework.AllVars\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12O\n\x13GetVariableNameList\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1b.Nrmk.IndyFramework.AllVars\"\x00\x12J\n\x0eSetIntVariable\x12\x1b.Nrmk.IndyFramework.IntVars\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12J\n\x0eGetIntVariable\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1b.Nrmk.IndyFramework.IntVars\"\x00\x12P\n\x11SetModbusVariable\x12\x1e.Nrmk.IndyFramework.ModbusVars\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12P\n\x11GetModbusVariable\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1e.Nrmk.IndyFramework.ModbusVars\"\x00\x12L\n\x0fSetBoolVariable\x12\x1c.Nrmk.IndyFramework.BoolVars\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12L\n\x0fGetBoolVariable\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1c.Nrmk.IndyFramework.BoolVars\"\x00\x12N\n\x10SetFloatVariable\x12\x1d.Nrmk.IndyFramework.FloatVars\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12N\n\x10GetFloatVariable\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1d.Nrmk.IndyFramework.FloatVars\"\x00\x12L\n\x0fSetJPosVariable\x12\x1c.Nrmk.IndyFramework.JPosVars\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12L\n\x0fGetJPosVariable\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1c.Nrmk.IndyFramework.JPosVars\"\x00\x12L\n\x0fSetTPosVariable\x12\x1c.Nrmk.IndyFramework.TPosVars\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12L\n\x0fGetTPosVariable\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1c.Nrmk.IndyFramework.TPosVars\"\x00\x12S\n\x15SetPluginBoolVariable\x12\x1d.Nrmk.IndyFramework.NamedBool\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12R\n\x15GetPluginBoolVariable\x12\x18.Nrmk.IndyFramework.Name\x1a\x1d.Nrmk.IndyFramework.NamedBool\"\x00\x12Q\n\x14SetPluginIntVariable\x12\x1c.Nrmk.IndyFramework.NamedInt\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12P\n\x14GetPluginIntVariable\x12\x18.Nrmk.IndyFramework.Name\x1a\x1c.Nrmk.IndyFramework.NamedInt\"\x00\x12U\n\x16SetPluginFloatVariable\x12\x1e.Nrmk.IndyFramework.NamedFloat\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12T\n\x16GetPluginFloatVariable\x12\x18.Nrmk.IndyFramework.Name\x1a\x1e.Nrmk.IndyFramework.NamedFloat\"\x00\x12\\\n\x15SetPluginJPosVariable\x12&.Nrmk.IndyFramework.NamedJointPosition\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12[\n\x15GetPluginJPosVariable\x12\x18.Nrmk.IndyFramework.Name\x1a&.Nrmk.IndyFramework.NamedJointPosition\"\x00\x12[\n\x15SetPluginTPosVariable\x12%.Nrmk.IndyFramework.NamedTaskPosition\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12Z\n\x15GetPluginTPosVariable\x12\x18.Nrmk.IndyFramework.Name\x1a%.Nrmk.IndyFramework.NamedTaskPosition\"\x00\x12I\n\x0cPushBusEvent\x12\x1c.Nrmk.IndyFramework.BusEvent\x1a\x19.Nrmk.IndyFramework.State\"\x00\x12U\n\rCatchBusEvent\x12$.Nrmk.IndyFramework.CatchBusEventReq\x1a\x1c.Nrmk.IndyFramework.BusEvent\"\x00\x12i\n\x11InverseKinematics\x12(.Nrmk.IndyFramework.InverseKinematicsReq\x1a(.Nrmk.IndyFramework.InverseKinematicsRes\"\x00\x12i\n\x11\x46orwardKinematics\x12(.Nrmk.IndyFramework.ForwardKinematicsReq\x1a(.Nrmk.IndyFramework.ForwardKinematicsRes\"\x00\x12~\n\x18\x43heckAproachRetractValid\x12/.Nrmk.IndyFramework.CheckAproachRetractValidReq\x1a/.Nrmk.IndyFramework.CheckAproachRetractValidRes\"\x00\x12l\n\x12GetPalletPointList\x12).Nrmk.IndyFramework.GetPalletPointListReq\x1a).Nrmk.IndyFramework.GetPalletPointListRes\"\x00\x12u\n\x15\x43\x61lculateRelativePose\x12,.Nrmk.IndyFramework.CalculateRelativePoseReq\x1a,.Nrmk.IndyFramework.CalculateRelativePoseRes\"\x00\x12{\n\x17\x43\x61lculateCurrentPoseRel\x12..Nrmk.IndyFramework.CalculateCurrentPoseRelReq\x1a..Nrmk.IndyFramework.CalculateCurrentPoseRelRes\"\x00\x12G\n\rPingFromConty\x12\x19.Nrmk.IndyFramework.Empty\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12P\n\x0fGetTeleOpDevice\x12\x19.Nrmk.IndyFramework.Empty\x1a .Nrmk.IndyFramework.TeleOpDevice\"\x00\x12N\n\x0eGetTeleOpState\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1f.Nrmk.IndyFramework.TeleOpState\"\x00\x12W\n\x13\x43onnectTeleOpDevice\x12 .Nrmk.IndyFramework.TeleOpDevice\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12S\n\x16\x44isConnectTeleOpDevice\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12I\n\x0fReadTeleOpInput\x12\x19.Nrmk.IndyFramework.Empty\x1a\x19.Nrmk.IndyFramework.TeleP\"\x00\x12J\n\x12ReadTeleOpInputFor\x12\x17.Nrmk.IndyFramework.Int\x1a\x19.Nrmk.IndyFramework.TeleP\"\x00\x12N\n\x0bStartTeleOp\x12\x1f.Nrmk.IndyFramework.TeleOpState\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12G\n\nStopTeleOp\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12O\n\x0bSetPlayRate\x12 .Nrmk.IndyFramework.TelePlayRate\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12L\n\x0bGetPlayRate\x12\x19.Nrmk.IndyFramework.Empty\x1a .Nrmk.IndyFramework.TelePlayRate\"\x00\x12R\n\x0fGetTeleFileList\x12\x19.Nrmk.IndyFramework.Empty\x1a\".Nrmk.IndyFramework.TeleOpFileList\"\x00\x12Q\n\x0eSaveTeleMotion\x12\x1f.Nrmk.IndyFramework.TeleFileReq\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12Q\n\x0eLoadTeleMotion\x12\x1f.Nrmk.IndyFramework.TeleFileReq\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12S\n\x10\x44\x65leteTeleMotion\x12\x1f.Nrmk.IndyFramework.TeleFileReq\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12J\n\rEnableTeleKey\x12\x19.Nrmk.IndyFramework.State\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12M\n\tMoveTeleJ\x12 .Nrmk.IndyFramework.MoveTeleJReq\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12M\n\tMoveTeleL\x12 .Nrmk.IndyFramework.MoveTeleLReq\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12P\n\x0cSetForceMode\x12 .Nrmk.IndyFramework.ForceModeReq\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12M\n\x0cGetForceMode\x12\x19.Nrmk.IndyFramework.Empty\x1a .Nrmk.IndyFramework.ForceModeReq\"\x00\x12\x66\n\x1aGetTransformedFTSensorData\x12\x19.Nrmk.IndyFramework.Empty\x1a+.Nrmk.IndyFramework.TransformedFTSensorData\"\x00\x12g\n\x1dGetTransformedFTSensorDataFor\x12\x17.Nrmk.IndyFramework.Int\x1a+.Nrmk.IndyFramework.TransformedFTSensorData\"\x00\x12\x43\n\x06\x46TZero\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12S\n\nGetMotionJ\x12!.Nrmk.IndyFramework.GetMotionJReq\x1a .Nrmk.IndyFramework.GetMotionRes\"\x00\x12S\n\nGetMotionL\x12!.Nrmk.IndyFramework.GetMotionLReq\x1a .Nrmk.IndyFramework.GetMotionRes\"\x00\x12S\n\nGetMotionC\x12!.Nrmk.IndyFramework.GetMotionCReq\x1a .Nrmk.IndyFramework.GetMotionRes\"\x00\x12G\n\x06MoveLF\x12\x1d.Nrmk.IndyFramework.MoveLFReq\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12\x66\n\x17SetControlInferenceData\x12+.Nrmk.IndyFramework.ControlInferenceDataSet\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12\x63\n\x17GetControlInferenceData\x12\x19.Nrmk.IndyFramework.Empty\x1a+.Nrmk.IndyFramework.ControlInferenceDataSet\"\x00\x62\x06proto3'
+  serialized_pb=b'\n\rcontrol.proto\x12\x12Nrmk.IndyFramework\x1a\x12\x63ontrol_msgs.proto\x1a\x11\x63onfig_msgs.proto\x1a\x11\x63ommon_msgs.proto2\x82I\n\x07\x43ontrol\x12N\n\x0eGetControlInfo\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1f.Nrmk.IndyFramework.ControlInfo\"\x00\x12[\n\x0f\x41\x63tivateIndySDK\x12\".Nrmk.IndyFramework.SDKLicenseInfo\x1a\".Nrmk.IndyFramework.SDKLicenseResp\"\x00\x12\x45\n\x05MoveJ\x12\x1c.Nrmk.IndyFramework.MoveJReq\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12G\n\x06MoveJT\x12\x1d.Nrmk.IndyFramework.MoveJTReq\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12\x45\n\x05MoveL\x12\x1c.Nrmk.IndyFramework.MoveLReq\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12G\n\x06MoveLT\x12\x1d.Nrmk.IndyFramework.MoveLTReq\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12\x45\n\x05MoveC\x12\x1c.Nrmk.IndyFramework.MoveCReq\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12G\n\x06MoveCT\x12\x1d.Nrmk.IndyFramework.MoveCTReq\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12U\n\rMoveJointTraj\x12$.Nrmk.IndyFramework.MoveJointTrajReq\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12S\n\x0cMoveTaskTraj\x12#.Nrmk.IndyFramework.MoveTaskTrajReq\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12M\n\tMoveGcode\x12 .Nrmk.IndyFramework.MoveGcodeReq\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12S\n\x0cMoveConveyor\x12#.Nrmk.IndyFramework.MoveConveyorReq\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12G\n\x06WaitIO\x12\x1d.Nrmk.IndyFramework.WaitIOReq\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12K\n\x08WaitTime\x12\x1f.Nrmk.IndyFramework.WaitTimeReq\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12S\n\x0cWaitProgress\x12#.Nrmk.IndyFramework.WaitProgressReq\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12K\n\x08WaitTraj\x12\x1f.Nrmk.IndyFramework.WaitTrajReq\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12O\n\nWaitRadius\x12!.Nrmk.IndyFramework.WaitRadiusReq\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12M\n\tMoveJCond\x12 .Nrmk.IndyFramework.MoveJCondReq\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12Q\n\x0eMoveLinearAxis\x12\x1f.Nrmk.IndyFramework.MoveAxisReq\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12I\n\nStopMotion\x12\x1b.Nrmk.IndyFramework.StopCat\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12K\n\x0bPauseMotion\x12\x1c.Nrmk.IndyFramework.PauseCat\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12N\n\x11SetDirectTeaching\x12\x19.Nrmk.IndyFramework.State\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12N\n\x11SetSimulationMode\x12\x19.Nrmk.IndyFramework.State\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12S\n\x14SetCustomControlMode\x12\x1b.Nrmk.IndyFramework.IntMode\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12P\n\x14GetCustomControlMode\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1b.Nrmk.IndyFramework.IntMode\"\x00\x12T\n\x17SetFrictionCompensation\x12\x19.Nrmk.IndyFramework.State\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12V\n\x1cGetFrictionCompensationState\x12\x19.Nrmk.IndyFramework.Empty\x1a\x19.Nrmk.IndyFramework.State\"\x00\x12K\n\x0bSetTactTime\x12\x1c.Nrmk.IndyFramework.TactTime\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12H\n\x0bGetTactTime\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1c.Nrmk.IndyFramework.TactTime\"\x00\x12W\n\x11SetComplianceMode\x12\".Nrmk.IndyFramework.ComplianceMode\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12T\n\x11GetComplianceMode\x12\x19.Nrmk.IndyFramework.Empty\x1a\".Nrmk.IndyFramework.ComplianceMode\"\x00\x12\x44\n\x07Recover\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12\x42\n\x05Reset\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12N\n\x11SetManualRecovery\x12\x19.Nrmk.IndyFramework.State\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12O\n\x10MoveRecoverJoint\x12\x1b.Nrmk.IndyFramework.TargetJ\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12O\n\rSearchProgram\x12\x1b.Nrmk.IndyFramework.Program\x1a\x1f.Nrmk.IndyFramework.ProgramInfo\"\x00\x12J\n\x0bPlayProgram\x12\x1b.Nrmk.IndyFramework.Program\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12I\n\x0cPauseProgram\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12J\n\rResumeProgram\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12H\n\x0bStopProgram\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12\x45\n\tSendAlarm\x12\x1b.Nrmk.IndyFramework.Message\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12J\n\x0eSendAnnotation\x12\x1b.Nrmk.IndyFramework.Message\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12\x61\n\x11PlayTuningProgram\x12!.Nrmk.IndyFramework.TuningProgram\x1a\'.Nrmk.IndyFramework.CollisionThresholds\"\x00\x12N\n\x0fPlayProgramLine\x12\x1b.Nrmk.IndyFramework.Program\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12_\n\x15SetProgramBreakPoints\x12&.Nrmk.IndyFramework.ProgramBreakPoints\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12\\\n\x15GetProgramBreakPoints\x12\x19.Nrmk.IndyFramework.Empty\x1a&.Nrmk.IndyFramework.ProgramBreakPoints\"\x00\x12L\n\x0fProgramStepOver\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12L\n\x0fProgramStepInto\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12K\n\x0eProgramStepOut\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12`\n\x19SetModbusVariableNameList\x12&.Nrmk.IndyFramework.ModbusVariableList\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12O\n\x13SetVariableNameList\x12\x1b.Nrmk.IndyFramework.AllVars\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12O\n\x13GetVariableNameList\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1b.Nrmk.IndyFramework.AllVars\"\x00\x12J\n\x0eSetIntVariable\x12\x1b.Nrmk.IndyFramework.IntVars\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12J\n\x0eGetIntVariable\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1b.Nrmk.IndyFramework.IntVars\"\x00\x12P\n\x11SetModbusVariable\x12\x1e.Nrmk.IndyFramework.ModbusVars\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12P\n\x11GetModbusVariable\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1e.Nrmk.IndyFramework.ModbusVars\"\x00\x12L\n\x0fSetBoolVariable\x12\x1c.Nrmk.IndyFramework.BoolVars\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12L\n\x0fGetBoolVariable\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1c.Nrmk.IndyFramework.BoolVars\"\x00\x12N\n\x10SetFloatVariable\x12\x1d.Nrmk.IndyFramework.FloatVars\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12N\n\x10GetFloatVariable\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1d.Nrmk.IndyFramework.FloatVars\"\x00\x12L\n\x0fSetJPosVariable\x12\x1c.Nrmk.IndyFramework.JPosVars\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12L\n\x0fGetJPosVariable\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1c.Nrmk.IndyFramework.JPosVars\"\x00\x12L\n\x0fSetTPosVariable\x12\x1c.Nrmk.IndyFramework.TPosVars\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12L\n\x0fGetTPosVariable\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1c.Nrmk.IndyFramework.TPosVars\"\x00\x12S\n\x15SetPluginBoolVariable\x12\x1d.Nrmk.IndyFramework.NamedBool\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12R\n\x15GetPluginBoolVariable\x12\x18.Nrmk.IndyFramework.Name\x1a\x1d.Nrmk.IndyFramework.NamedBool\"\x00\x12Q\n\x14SetPluginIntVariable\x12\x1c.Nrmk.IndyFramework.NamedInt\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12P\n\x14GetPluginIntVariable\x12\x18.Nrmk.IndyFramework.Name\x1a\x1c.Nrmk.IndyFramework.NamedInt\"\x00\x12U\n\x16SetPluginFloatVariable\x12\x1e.Nrmk.IndyFramework.NamedFloat\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12T\n\x16GetPluginFloatVariable\x12\x18.Nrmk.IndyFramework.Name\x1a\x1e.Nrmk.IndyFramework.NamedFloat\"\x00\x12\\\n\x15SetPluginJPosVariable\x12&.Nrmk.IndyFramework.NamedJointPosition\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12[\n\x15GetPluginJPosVariable\x12\x18.Nrmk.IndyFramework.Name\x1a&.Nrmk.IndyFramework.NamedJointPosition\"\x00\x12[\n\x15SetPluginTPosVariable\x12%.Nrmk.IndyFramework.NamedTaskPosition\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12Z\n\x15GetPluginTPosVariable\x12\x18.Nrmk.IndyFramework.Name\x1a%.Nrmk.IndyFramework.NamedTaskPosition\"\x00\x12I\n\x0cPushBusEvent\x12\x1c.Nrmk.IndyFramework.BusEvent\x1a\x19.Nrmk.IndyFramework.State\"\x00\x12U\n\rCatchBusEvent\x12$.Nrmk.IndyFramework.CatchBusEventReq\x1a\x1c.Nrmk.IndyFramework.BusEvent\"\x00\x12i\n\x11InverseKinematics\x12(.Nrmk.IndyFramework.InverseKinematicsReq\x1a(.Nrmk.IndyFramework.InverseKinematicsRes\"\x00\x12i\n\x11\x46orwardKinematics\x12(.Nrmk.IndyFramework.ForwardKinematicsReq\x1a(.Nrmk.IndyFramework.ForwardKinematicsRes\"\x00\x12~\n\x18\x43heckAproachRetractValid\x12/.Nrmk.IndyFramework.CheckAproachRetractValidReq\x1a/.Nrmk.IndyFramework.CheckAproachRetractValidRes\"\x00\x12l\n\x12GetPalletPointList\x12).Nrmk.IndyFramework.GetPalletPointListReq\x1a).Nrmk.IndyFramework.GetPalletPointListRes\"\x00\x12u\n\x15\x43\x61lculateRelativePose\x12,.Nrmk.IndyFramework.CalculateRelativePoseReq\x1a,.Nrmk.IndyFramework.CalculateRelativePoseRes\"\x00\x12{\n\x17\x43\x61lculateCurrentPoseRel\x12..Nrmk.IndyFramework.CalculateCurrentPoseRelReq\x1a..Nrmk.IndyFramework.CalculateCurrentPoseRelRes\"\x00\x12G\n\rPingFromConty\x12\x19.Nrmk.IndyFramework.Empty\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12P\n\x0fGetTeleOpDevice\x12\x19.Nrmk.IndyFramework.Empty\x1a .Nrmk.IndyFramework.TeleOpDevice\"\x00\x12N\n\x0eGetTeleOpState\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1f.Nrmk.IndyFramework.TeleOpState\"\x00\x12W\n\x13\x43onnectTeleOpDevice\x12 .Nrmk.IndyFramework.TeleOpDevice\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12S\n\x16\x44isConnectTeleOpDevice\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12I\n\x0fReadTeleOpInput\x12\x19.Nrmk.IndyFramework.Empty\x1a\x19.Nrmk.IndyFramework.TeleP\"\x00\x12J\n\x12ReadTeleOpInputFor\x12\x17.Nrmk.IndyFramework.Int\x1a\x19.Nrmk.IndyFramework.TeleP\"\x00\x12K\n\x0fSetTeleCalibArm\x12\x18.Nrmk.IndyFramework.UInt\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12N\n\x0bStartTeleOp\x12\x1f.Nrmk.IndyFramework.TeleOpState\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12G\n\nStopTeleOp\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12O\n\x0bSetPlayRate\x12 .Nrmk.IndyFramework.TelePlayRate\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12L\n\x0bGetPlayRate\x12\x19.Nrmk.IndyFramework.Empty\x1a .Nrmk.IndyFramework.TelePlayRate\"\x00\x12R\n\x0fGetTeleFileList\x12\x19.Nrmk.IndyFramework.Empty\x1a\".Nrmk.IndyFramework.TeleOpFileList\"\x00\x12Q\n\x0eSaveTeleMotion\x12\x1f.Nrmk.IndyFramework.TeleFileReq\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12Q\n\x0eLoadTeleMotion\x12\x1f.Nrmk.IndyFramework.TeleFileReq\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12S\n\x10\x44\x65leteTeleMotion\x12\x1f.Nrmk.IndyFramework.TeleFileReq\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12J\n\rEnableTeleKey\x12\x19.Nrmk.IndyFramework.State\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12M\n\tMoveTeleJ\x12 .Nrmk.IndyFramework.MoveTeleJReq\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12M\n\tMoveTeleL\x12 .Nrmk.IndyFramework.MoveTeleLReq\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12P\n\x0cSetForceMode\x12 .Nrmk.IndyFramework.ForceModeReq\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12M\n\x0cGetForceMode\x12\x19.Nrmk.IndyFramework.Empty\x1a .Nrmk.IndyFramework.ForceModeReq\"\x00\x12\x66\n\x1aGetTransformedFTSensorData\x12\x19.Nrmk.IndyFramework.Empty\x1a+.Nrmk.IndyFramework.TransformedFTSensorData\"\x00\x12g\n\x1dGetTransformedFTSensorDataFor\x12\x17.Nrmk.IndyFramework.Int\x1a+.Nrmk.IndyFramework.TransformedFTSensorData\"\x00\x12\x43\n\x06\x46TZero\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12S\n\nGetMotionJ\x12!.Nrmk.IndyFramework.GetMotionJReq\x1a .Nrmk.IndyFramework.GetMotionRes\"\x00\x12S\n\nGetMotionL\x12!.Nrmk.IndyFramework.GetMotionLReq\x1a .Nrmk.IndyFramework.GetMotionRes\"\x00\x12S\n\nGetMotionC\x12!.Nrmk.IndyFramework.GetMotionCReq\x1a .Nrmk.IndyFramework.GetMotionRes\"\x00\x12G\n\x06MoveLF\x12\x1d.Nrmk.IndyFramework.MoveLFReq\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12\x66\n\x17SetControlInferenceData\x12+.Nrmk.IndyFramework.ControlInferenceDataSet\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12\x63\n\x17GetControlInferenceData\x12\x19.Nrmk.IndyFramework.Empty\x1a+.Nrmk.IndyFramework.ControlInferenceDataSet\"\x00\x62\x06proto3'
   ,
   dependencies=[control__msgs__pb2.DESCRIPTOR,config__msgs__pb2.DESCRIPTOR,common__msgs__pb2.DESCRIPTOR,])
 
@@ -40,7 +40,7 @@ _CONTROL = _descriptor.ServiceDescriptor(
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
   serialized_start=96,
-  serialized_end=9366,
+  serialized_end=9442,
   methods=[
   _descriptor.MethodDescriptor(
     name='GetControlInfo',
@@ -363,8 +363,8 @@ _CONTROL = _descriptor.ServiceDescriptor(
     create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
-    name='Reboot',
-    full_name='Nrmk.IndyFramework.Control.Reboot',
+    name='Reset',
+    full_name='Nrmk.IndyFramework.Control.Reset',
     index=32,
     containing_service=None,
     input_type=common__msgs__pb2._EMPTY,
@@ -933,9 +933,19 @@ _CONTROL = _descriptor.ServiceDescriptor(
     create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
+    name='SetTeleCalibArm',
+    full_name='Nrmk.IndyFramework.Control.SetTeleCalibArm',
+    index=89,
+    containing_service=None,
+    input_type=common__msgs__pb2._UINT,
+    output_type=common__msgs__pb2._RESPONSE,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
     name='StartTeleOp',
     full_name='Nrmk.IndyFramework.Control.StartTeleOp',
-    index=89,
+    index=90,
     containing_service=None,
     input_type=control__msgs__pb2._TELEOPSTATE,
     output_type=common__msgs__pb2._RESPONSE,
@@ -945,7 +955,7 @@ _CONTROL = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='StopTeleOp',
     full_name='Nrmk.IndyFramework.Control.StopTeleOp',
-    index=90,
+    index=91,
     containing_service=None,
     input_type=common__msgs__pb2._EMPTY,
     output_type=common__msgs__pb2._RESPONSE,
@@ -955,7 +965,7 @@ _CONTROL = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SetPlayRate',
     full_name='Nrmk.IndyFramework.Control.SetPlayRate',
-    index=91,
+    index=92,
     containing_service=None,
     input_type=control__msgs__pb2._TELEPLAYRATE,
     output_type=common__msgs__pb2._RESPONSE,
@@ -965,7 +975,7 @@ _CONTROL = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='GetPlayRate',
     full_name='Nrmk.IndyFramework.Control.GetPlayRate',
-    index=92,
+    index=93,
     containing_service=None,
     input_type=common__msgs__pb2._EMPTY,
     output_type=control__msgs__pb2._TELEPLAYRATE,
@@ -975,7 +985,7 @@ _CONTROL = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='GetTeleFileList',
     full_name='Nrmk.IndyFramework.Control.GetTeleFileList',
-    index=93,
+    index=94,
     containing_service=None,
     input_type=common__msgs__pb2._EMPTY,
     output_type=control__msgs__pb2._TELEOPFILELIST,
@@ -985,7 +995,7 @@ _CONTROL = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SaveTeleMotion',
     full_name='Nrmk.IndyFramework.Control.SaveTeleMotion',
-    index=94,
+    index=95,
     containing_service=None,
     input_type=control__msgs__pb2._TELEFILEREQ,
     output_type=common__msgs__pb2._RESPONSE,
@@ -995,7 +1005,7 @@ _CONTROL = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='LoadTeleMotion',
     full_name='Nrmk.IndyFramework.Control.LoadTeleMotion',
-    index=95,
+    index=96,
     containing_service=None,
     input_type=control__msgs__pb2._TELEFILEREQ,
     output_type=common__msgs__pb2._RESPONSE,
@@ -1005,7 +1015,7 @@ _CONTROL = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='DeleteTeleMotion',
     full_name='Nrmk.IndyFramework.Control.DeleteTeleMotion',
-    index=96,
+    index=97,
     containing_service=None,
     input_type=control__msgs__pb2._TELEFILEREQ,
     output_type=common__msgs__pb2._RESPONSE,
@@ -1015,7 +1025,7 @@ _CONTROL = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='EnableTeleKey',
     full_name='Nrmk.IndyFramework.Control.EnableTeleKey',
-    index=97,
+    index=98,
     containing_service=None,
     input_type=common__msgs__pb2._STATE,
     output_type=common__msgs__pb2._RESPONSE,
@@ -1025,7 +1035,7 @@ _CONTROL = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='MoveTeleJ',
     full_name='Nrmk.IndyFramework.Control.MoveTeleJ',
-    index=98,
+    index=99,
     containing_service=None,
     input_type=control__msgs__pb2._MOVETELEJREQ,
     output_type=common__msgs__pb2._RESPONSE,
@@ -1035,7 +1045,7 @@ _CONTROL = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='MoveTeleL',
     full_name='Nrmk.IndyFramework.Control.MoveTeleL',
-    index=99,
+    index=100,
     containing_service=None,
     input_type=control__msgs__pb2._MOVETELELREQ,
     output_type=common__msgs__pb2._RESPONSE,
@@ -1045,7 +1055,7 @@ _CONTROL = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SetForceMode',
     full_name='Nrmk.IndyFramework.Control.SetForceMode',
-    index=100,
+    index=101,
     containing_service=None,
     input_type=control__msgs__pb2._FORCEMODEREQ,
     output_type=common__msgs__pb2._RESPONSE,
@@ -1055,7 +1065,7 @@ _CONTROL = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='GetForceMode',
     full_name='Nrmk.IndyFramework.Control.GetForceMode',
-    index=101,
+    index=102,
     containing_service=None,
     input_type=common__msgs__pb2._EMPTY,
     output_type=control__msgs__pb2._FORCEMODEREQ,
@@ -1065,7 +1075,7 @@ _CONTROL = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='GetTransformedFTSensorData',
     full_name='Nrmk.IndyFramework.Control.GetTransformedFTSensorData',
-    index=102,
+    index=103,
     containing_service=None,
     input_type=common__msgs__pb2._EMPTY,
     output_type=control__msgs__pb2._TRANSFORMEDFTSENSORDATA,
@@ -1075,7 +1085,7 @@ _CONTROL = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='GetTransformedFTSensorDataFor',
     full_name='Nrmk.IndyFramework.Control.GetTransformedFTSensorDataFor',
-    index=103,
+    index=104,
     containing_service=None,
     input_type=common__msgs__pb2._INT,
     output_type=control__msgs__pb2._TRANSFORMEDFTSENSORDATA,
@@ -1085,7 +1095,7 @@ _CONTROL = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='FTZero',
     full_name='Nrmk.IndyFramework.Control.FTZero',
-    index=104,
+    index=105,
     containing_service=None,
     input_type=common__msgs__pb2._EMPTY,
     output_type=common__msgs__pb2._RESPONSE,
@@ -1095,7 +1105,7 @@ _CONTROL = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='GetMotionJ',
     full_name='Nrmk.IndyFramework.Control.GetMotionJ',
-    index=105,
+    index=106,
     containing_service=None,
     input_type=control__msgs__pb2._GETMOTIONJREQ,
     output_type=control__msgs__pb2._GETMOTIONRES,
@@ -1105,7 +1115,7 @@ _CONTROL = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='GetMotionL',
     full_name='Nrmk.IndyFramework.Control.GetMotionL',
-    index=106,
+    index=107,
     containing_service=None,
     input_type=control__msgs__pb2._GETMOTIONLREQ,
     output_type=control__msgs__pb2._GETMOTIONRES,
@@ -1115,7 +1125,7 @@ _CONTROL = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='GetMotionC',
     full_name='Nrmk.IndyFramework.Control.GetMotionC',
-    index=107,
+    index=108,
     containing_service=None,
     input_type=control__msgs__pb2._GETMOTIONCREQ,
     output_type=control__msgs__pb2._GETMOTIONRES,
@@ -1125,7 +1135,7 @@ _CONTROL = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='MoveLF',
     full_name='Nrmk.IndyFramework.Control.MoveLF',
-    index=108,
+    index=109,
     containing_service=None,
     input_type=control__msgs__pb2._MOVELFREQ,
     output_type=common__msgs__pb2._RESPONSE,
@@ -1135,7 +1145,7 @@ _CONTROL = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SetControlInferenceData',
     full_name='Nrmk.IndyFramework.Control.SetControlInferenceData',
-    index=109,
+    index=110,
     containing_service=None,
     input_type=control__msgs__pb2._CONTROLINFERENCEDATASET,
     output_type=common__msgs__pb2._RESPONSE,
@@ -1145,7 +1155,7 @@ _CONTROL = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='GetControlInferenceData',
     full_name='Nrmk.IndyFramework.Control.GetControlInferenceData',
-    index=110,
+    index=111,
     containing_service=None,
     input_type=common__msgs__pb2._EMPTY,
     output_type=control__msgs__pb2._CONTROLINFERENCEDATASET,

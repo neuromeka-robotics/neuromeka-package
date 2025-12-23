@@ -1151,9 +1151,76 @@ struct EnvironmentListDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 EnvironmentListDefaultTypeInternal _EnvironmentList_default_instance_;
+        template <typename>
+PROTOBUF_CONSTEXPR WeldingConfigInfo::WeldingConfigInfo(::_pbi::ConstantInitialized)
+    : _impl_{
+      /*decltype(_impl_.model_)*/ {
+          &::_pbi::fixed_address_empty_string,
+          ::_pbi::ConstantInitialized{},
+      },
+      /*decltype(_impl_.interface_)*/ {
+          &::_pbi::fixed_address_empty_string,
+          ::_pbi::ConstantInitialized{},
+      },
+      /*decltype(_impl_.modbus_ip_)*/ {
+          &::_pbi::fixed_address_empty_string,
+          ::_pbi::ConstantInitialized{},
+      },
+      /*decltype(_impl_.node_id_)*/ 0u,
+      /*decltype(_impl_.baud_rate_)*/ 0u,
+      /*decltype(_impl_.vision_)*/ false,
+      /*decltype(_impl_.modbus_port_)*/ 0u,
+      /*decltype(_impl_._cached_size_)*/ {},
+    } {}
+struct WeldingConfigInfoDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR WeldingConfigInfoDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~WeldingConfigInfoDefaultTypeInternal() {}
+  union {
+    WeldingConfigInfo _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 WeldingConfigInfoDefaultTypeInternal _WeldingConfigInfo_default_instance_;
+        template <typename>
+PROTOBUF_CONSTEXPR WeldPosition::WeldPosition(::_pbi::ConstantInitialized)
+    : _impl_{
+      /*decltype(_impl_.position_)*/ {},
+      /*decltype(_impl_.name_)*/ {
+          &::_pbi::fixed_address_empty_string,
+          ::_pbi::ConstantInitialized{},
+      },
+      /*decltype(_impl_._cached_size_)*/ {},
+    } {}
+struct WeldPositionDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR WeldPositionDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~WeldPositionDefaultTypeInternal() {}
+  union {
+    WeldPosition _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 WeldPositionDefaultTypeInternal _WeldPosition_default_instance_;
+        template <typename>
+PROTOBUF_CONSTEXPR WeldPositionList::WeldPositionList(::_pbi::ConstantInitialized)
+    : _impl_{
+      /*decltype(_impl_.positions_)*/ {},
+      /*decltype(_impl_._cached_size_)*/ {},
+    } {}
+struct WeldPositionListDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR WeldPositionListDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~WeldPositionListDefaultTypeInternal() {}
+  union {
+    WeldPositionList _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 WeldPositionListDefaultTypeInternal _WeldPositionList_default_instance_;
 }  // namespace IndyFramework
 }  // namespace Nrmk
-static ::_pb::Metadata file_level_metadata_config_5fmsgs_2eproto[58];
+static ::_pb::Metadata file_level_metadata_config_5fmsgs_2eproto[61];
 static const ::_pb::EnumDescriptor* file_level_enum_descriptors_config_5fmsgs_2eproto[7];
 static constexpr const ::_pb::ServiceDescriptor**
     file_level_service_descriptors_config_5fmsgs_2eproto = nullptr;
@@ -1829,6 +1896,40 @@ const ::uint32_t TableStruct_config_5fmsgs_2eproto::offsets[] PROTOBUF_SECTION_V
     ~0u,  // no sizeof(Split)
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::EnvironmentList, _impl_.environments_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::EnvironmentList, _impl_.default_name_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::WeldingConfigInfo, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::WeldingConfigInfo, _impl_.model_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::WeldingConfigInfo, _impl_.interface_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::WeldingConfigInfo, _impl_.node_id_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::WeldingConfigInfo, _impl_.baud_rate_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::WeldingConfigInfo, _impl_.vision_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::WeldingConfigInfo, _impl_.modbus_ip_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::WeldingConfigInfo, _impl_.modbus_port_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::WeldPosition, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::WeldPosition, _impl_.name_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::WeldPosition, _impl_.position_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::WeldPositionList, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::WeldPositionList, _impl_.positions_),
 };
 
 static const ::_pbi::MigrationSchema
@@ -1891,6 +1992,9 @@ static const ::_pbi::MigrationSchema
         {624, 641, -1, sizeof(::Nrmk::IndyFramework::Zone)},
         {650, -1, -1, sizeof(::Nrmk::IndyFramework::NamedEnvironment)},
         {660, -1, -1, sizeof(::Nrmk::IndyFramework::EnvironmentList)},
+        {670, -1, -1, sizeof(::Nrmk::IndyFramework::WeldingConfigInfo)},
+        {685, -1, -1, sizeof(::Nrmk::IndyFramework::WeldPosition)},
+        {695, -1, -1, sizeof(::Nrmk::IndyFramework::WeldPositionList)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -1952,6 +2056,9 @@ static const ::_pb::Message* const file_default_instances[] = {
     &::Nrmk::IndyFramework::_Zone_default_instance_._instance,
     &::Nrmk::IndyFramework::_NamedEnvironment_default_instance_._instance,
     &::Nrmk::IndyFramework::_EnvironmentList_default_instance_._instance,
+    &::Nrmk::IndyFramework::_WeldingConfigInfo_default_instance_._instance,
+    &::Nrmk::IndyFramework::_WeldPosition_default_instance_._instance,
+    &::Nrmk::IndyFramework::_WeldPositionList_default_instance_._instance,
 };
 const char descriptor_table_protodef_config_5fmsgs_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
     "\n\021config_msgs.proto\022\022Nrmk.IndyFramework\032"
@@ -1970,160 +2077,167 @@ const char descriptor_table_protodef_config_5fmsgs_2eproto[] PROTOBUF_SECTION_VA
     "ework.NamedTaskPosition\022\024\n\014default_name\030"
     "\002 \001(\t\"d\n\014RefFrameList\022>\n\nref_frames\030\001 \003("
     "\0132*.Nrmk.IndyFramework.NamedReferencePos"
-    "ition\022\024\n\014default_name\030\002 \001(\t\"K\n\rCustomPos"
-    "List\022:\n\ncustom_pos\030\001 \003(\0132&.Nrmk.IndyFram"
-    "ework.NamedJointPosition\"C\n\014ConveyorList"
-    "\0223\n\rconveyor_list\030\001 \003(\0132\034.Nrmk.IndyFrame"
-    "work.Conveyor\"<\n\005Frame\022\014\n\004fpos\030\001 \003(\002\022\021\n\t"
-    "arm_index\030\n \001(\005\022\022\n\nlink_index\030\013 \001(\005\"\030\n\010J"
-    "ointPos\022\014\n\004jpos\030\001 \003(\002\"M\n\013PlanarFrame\022\r\n\005"
-    "fpos0\030\001 \003(\002\022\r\n\005fpos1\030\002 \003(\002\022\r\n\005fpos2\030\003 \003("
-    "\002\022\021\n\tarm_index\030\n \001(\005\"K\n\013FrameResult\022\014\n\004f"
-    "pos\030\001 \003(\002\022.\n\010response\030\002 \001(\0132\034.Nrmk.IndyF"
-    "ramework.Response\"L\n\020VisionServerList\0228\n"
-    "\016vision_servers\030\001 \003(\0132 .Nrmk.IndyFramewo"
-    "rk.VisionServer\"O\n\020ModbusServerList\022;\n\016m"
-    "odbus_servers\030\001 \003(\0132#.Nrmk.IndyFramework"
-    ".ModbusServerDef\"\026\n\005Ratio\022\r\n\005ratio\030\001 \001(\r"
-    "\"2\n\022AutoServoOffConfig\022\016\n\006enable\030\001 \001(\010\022\014"
-    "\n\004time\030\002 \001(\002\"\304\002\n\020CollTuningConfig\022G\n\tpre"
-    "cision\030\001 \001(\01624.Nrmk.IndyFramework.CollTu"
-    "ningConfig.TuningPrecision\022F\n\014tuning_spa"
-    "ce\030\002 \001(\01620.Nrmk.IndyFramework.CollTuning"
-    "Config.TuningSpace\022\025\n\rvel_level_max\030\003 \001("
-    "\005\"\?\n\017TuningPrecision\022\014\n\010LOW_TUNE\020\000\022\017\n\013MI"
-    "DDLE_TUNE\020\001\022\r\n\tHIGH_TUNE\020\002\"G\n\013TuningSpac"
-    "e\022\013\n\007NO_TUNE\020\000\022\016\n\nJOINT_TUNE\020\001\022\r\n\tTASK_T"
-    "UNE\020\002\022\014\n\010ALL_TUNE\020\003\"3\n\014JointGainSet\022\n\n\002k"
-    "p\030\001 \003(\002\022\n\n\002kv\030\002 \003(\002\022\013\n\003kl2\030\003 \003(\002\"2\n\013Task"
-    "GainSet\022\n\n\002kp\030\001 \003(\002\022\n\n\002kv\030\002 \003(\002\022\013\n\003kl2\030\003"
-    " \003(\002\"Q\n\020ImpedanceGainSet\022\014\n\004mass\030\001 \003(\002\022\017"
-    "\n\007damping\030\002 \003(\002\022\021\n\tstiffness\030\003 \003(\002\022\013\n\003kl"
-    "2\030\004 \003(\002\"\177\n\014ForceGainSet\022\n\n\002kp\030\001 \003(\002\022\n\n\002k"
-    "v\030\002 \003(\002\022\013\n\003kl2\030\003 \003(\002\022\014\n\004mass\030\004 \003(\002\022\017\n\007da"
-    "mping\030\005 \003(\002\022\021\n\tstiffness\030\006 \003(\002\022\013\n\003kpf\030\007 "
-    "\003(\002\022\013\n\003kif\030\010 \003(\002\"i\n\013TestGainSet\022\r\n\005kpctc"
-    "\030\001 \003(\002\022\r\n\005kvctc\030\002 \003(\002\022\r\n\005kictc\030\003 \003(\002\022\r\n\005"
-    "knric\030\004 \003(\002\022\016\n\006kpnric\030\005 \003(\002\022\016\n\006kinric\030\006 "
-    "\003(\002\"\202\001\n\021ComplianceGainSet\022\n\n\002kp\030\001 \003(\002\022\n\n"
-    "\002kv\030\002 \003(\002\022\013\n\003kl2\030\003 \003(\002\022\n\n\002kd\030\004 \003(\002\022\n\n\002bd"
-    "\030\005 \003(\002\022\014\n\004rate\030\006 \003(\002\022\n\n\002ki\030\007 \003(\002\022\n\n\002ks\030\010"
-    " \003(\002\022\n\n\002km\030\t \003(\002\"\245\001\n\rCustomGainSet\022\r\n\005ga"
-    "in0\030\001 \003(\002\022\r\n\005gain1\030\002 \003(\002\022\r\n\005gain2\030\003 \003(\002\022"
-    "\r\n\005gain3\030\004 \003(\002\022\r\n\005gain4\030\005 \003(\002\022\r\n\005gain5\030\006"
-    " \003(\002\022\r\n\005gain6\030\007 \003(\002\022\r\n\005gain7\030\010 \003(\002\022\r\n\005ga"
-    "in8\030\t \003(\002\022\r\n\005gain9\030\n \003(\002\":\n\026NewControlle"
-    "rTestState\022\017\n\007Jenable\030\001 \001(\010\022\017\n\007Tenable\030\002"
-    " \001(\010\"\207\001\n\017FrictionCompSet\022\033\n\023control_comp"
-    "_enable\030\001 \001(\010\022\033\n\023control_comp_levels\030\002 \003"
-    "(\005\022\034\n\024teaching_comp_enable\030\003 \001(\010\022\034\n\024teac"
-    "hing_comp_levels\030\004 \003(\005\"(\n\016MountingAngles"
-    "\022\n\n\002ry\030\001 \001(\002\022\n\n\002rz\030\002 \001(\002\"n\n\016ToolProperti"
-    "es\022\014\n\004mass\030\001 \001(\002\022\026\n\016center_of_mass\030\002 \003(\002"
-    "\022\017\n\007inertia\030\003 \003(\002\022\022\n\nlink_index\030\n \001(\005\022\021\n"
-    "\tarm_index\030\013 \001(\005\"#\n\022CollisionSensLevel\022\r"
-    "\n\005level\030\001 \001(\r\"\262\002\n\023CollisionThresholds\022\026\n"
-    "\016j_torque_bases\030\001 \003(\002\022\031\n\021j_torque_tangen"
-    "ts\030\002 \003(\002\022\026\n\016t_torque_bases\030\003 \003(\002\022\031\n\021t_to"
-    "rque_tangents\030\004 \003(\002\022\023\n\013error_bases\030\005 \003(\002"
-    "\022\026\n\016error_tangents\030\006 \003(\002\022\037\n\027t_constvel_t"
-    "orque_bases\030\007 \003(\002\022\"\n\032t_constvel_torque_t"
-    "angents\030\010 \003(\002\022\037\n\027t_conveyor_torque_bases"
-    "\030\t \003(\002\022\"\n\032t_conveyor_torque_tangents\030\n \003"
-    "(\002\"t\n\017CollisionPolicy\0227\n\006policy\030\001 \001(\0162\'."
-    "Nrmk.IndyFramework.CollisionPolicyType\022\022"
-    "\n\nsleep_time\030\002 \001(\002\022\024\n\014gravity_time\030\003 \001(\002"
-    "\"S\n\024OnStartProgramConfig\022\020\n\010auto_run\030\001 \001"
-    "(\010\022\r\n\005index\030\002 \001(\005\022\032\n\022auto_boot_on_power\030"
-    "\003 \001(\010\"\346\001\n\014SafetyLimits\022\023\n\013power_limit\030\001 "
-    "\001(\002\022\031\n\021power_limit_ratio\030\002 \001(\002\022\027\n\017tcp_fo"
-    "rce_limit\030\003 \001(\002\022\035\n\025tcp_force_limit_ratio"
-    "\030\004 \001(\002\022\027\n\017tcp_speed_limit\030\005 \001(\002\022\035\n\025tcp_s"
-    "peed_limit_ratio\030\006 \001(\002\022\032\n\022joint_upper_li"
-    "mits\030\007 \003(\002\022\032\n\022joint_lower_limits\030\010 \003(\002\"\240"
-    "\004\n\020SafetyStopConfig\022G\n\035joint_position_li"
-    "mit_stop_cat\030\001 \001(\0162 .Nrmk.IndyFramework."
-    "StopCategory\022D\n\032joint_speed_limit_stop_c"
-    "at\030\002 \001(\0162 .Nrmk.IndyFramework.StopCatego"
-    "ry\022E\n\033joint_torque_limit_stop_cat\030\003 \001(\0162"
-    " .Nrmk.IndyFramework.StopCategory\022B\n\030tcp"
-    "_speed_limit_stop_cat\030\004 \001(\0162 .Nrmk.IndyF"
-    "ramework.StopCategory\022B\n\030tcp_force_limit"
-    "_stop_cat\030\005 \001(\0162 .Nrmk.IndyFramework.Sto"
-    "pCategory\022>\n\024power_limit_stop_cat\030\006 \001(\0162"
-    " .Nrmk.IndyFramework.StopCategory\0229\n\017saf"
-    "egd_stop_cat\030\007 \003(\0162 .Nrmk.IndyFramework."
-    "StopCategory\0223\n\013safegd_type\030\n \003(\0162\036.Nrmk"
-    ".IndyFramework.SafeGdType\"\351\001\n\010DIConfig\022\025"
-    "\n\rfunction_code\030\001 \001(\005\022\025\n\rfunction_name\030\002"
-    " \001(\t\0229\n\016triggerSignals\030\003 \003(\0132!.Nrmk.Indy"
-    "Framework.DigitalSignal\0229\n\016successSignal"
-    "s\030\004 \003(\0132!.Nrmk.IndyFramework.DigitalSign"
-    "al\0229\n\016failureSignals\030\005 \003(\0132!.Nrmk.IndyFr"
-    "amework.DigitalSignal\"@\n\014DIConfigList\0220\n"
-    "\ndi_configs\030\001 \003(\0132\034.Nrmk.IndyFramework.D"
-    "IConfig\"\237\001\n\010DOConfig\022\022\n\nstate_code\030\001 \001(\005"
-    "\022\022\n\nstate_name\030\002 \001(\t\0224\n\tonSignals\030\003 \003(\0132"
-    "!.Nrmk.IndyFramework.DigitalSignal\0225\n\nof"
-    "fSignals\030\004 \003(\0132!.Nrmk.IndyFramework.Digi"
-    "talSignal\"@\n\014DOConfigList\0220\n\ndo_configs\030"
-    "\001 \003(\0132\034.Nrmk.IndyFramework.DOConfig\"0\n\022G"
-    "etReducedRatioRes\022\r\n\005ratio\030\001 \001(\002\022\013\n\003msg\030"
-    "d \001(\t\"0\n\022GetReducedSpeedRes\022\r\n\005speed\030\001 \001"
-    "(\002\022\013\n\003msg\030d \001(\t\"#\n\022SetReducedSpeedReq\022\r\n"
-    "\005speed\030\001 \001(\002\"\364\004\n\016FTSensorDevice\022G\n\010dev_t"
-    "ype\030\001 \001(\01625.Nrmk.IndyFramework.FTSensorD"
-    "evice.FTSensorDeviceType\022J\n\010com_type\030\002 \001"
-    "(\01628.Nrmk.IndyFramework.FTSensorDevice.F"
-    "TSensorDeviceComType\022\022\n\nip_address\030\003 \001(\t"
-    "\022%\n\035ft_frame_translation_offset_x\030\013 \001(\002\022"
-    "%\n\035ft_frame_translation_offset_y\030\014 \001(\002\022%"
-    "\n\035ft_frame_translation_offset_z\030\r \001(\002\022\"\n"
-    "\032ft_frame_rotation_offset_r\030\016 \001(\002\022\"\n\032ft_"
-    "frame_rotation_offset_p\030\017 \001(\002\022\"\n\032ft_fram"
-    "e_rotation_offset_y\030\020 \001(\002\022\021\n\tarm_index\030\024"
-    " \001(\005\"q\n\022FTSensorDeviceType\022\010\n\004NONE\020\000\022\016\n\n"
-    "AFT200_D80\020\001\022\021\n\rAFT200_D80_EC\020\002\022\016\n\nRFT80"
-    "_6A01\020\003\022\016\n\nRFT60_HA01\020\004\022\016\n\nHEX_E_H_QC\020\005\""
-    "R\n\025FTSensorDeviceComType\022\016\n\nENDTOOLCAN\020\000"
-    "\022\t\n\005CBCAN\020\001\022\020\n\014MODBUSCLIENT\020\002\022\014\n\010ETHERCA"
-    "T\020\003\" \n\021FTSensorDeviceRes\022\013\n\003msg\030d \001(\t\"N\n"
-    "\014TeleOpParams\022\025\n\rsmooth_factor\030\001 \001(\002\022\023\n\013"
-    "cutoff_freq\030\002 \001(\002\022\022\n\nerror_gain\030\003 \001(\002\"\231\002"
-    "\n\020KinematicsParams\0225\n\003mdh\030\001 \003(\0132(.Nrmk.I"
-    "ndyFramework.KinematicsParams.MDH\032\230\001\n\003MD"
-    "H\022\t\n\001a\030\001 \001(\002\022\r\n\005alpha\030\002 \001(\002\022\n\n\002d0\030\003 \001(\002\022"
-    "\016\n\006theta0\030\004 \001(\002\022<\n\004type\030\005 \001(\0162..Nrmk.Ind"
-    "yFramework.KinematicsParams.JointType\022\r\n"
-    "\005index\030\n \001(\005\022\016\n\006parent\030\013 \001(\005\"3\n\tJointTyp"
-    "e\022\014\n\010REVOLUTE\020\000\022\r\n\tPRISMATIC\020\001\022\t\n\005FIXED\020"
-    "\002\"H\n\024CollisionModelMargin\022\030\n\020collision_m"
-    "argin\030\001 \001(\002\022\026\n\016recover_margin\030\002 \001(\002\"\376\001\n\005"
-    "Shape\0227\n\nshape_type\030\001 \001(\0162#.Nrmk.IndyFra"
-    "mework.Shape.ShapeType\022\020\n\010position\030\002 \003(\002"
-    "\022\023\n\013orientation\030\003 \003(\002\022\016\n\006radius\030\n \001(\002\022\r\n"
-    "\005width\030\013 \001(\002\022\r\n\005depth\030\014 \001(\002\022\016\n\006height\030\r "
-    "\001(\002\022\021\n\tarm_index\030\024 \001(\005\"D\n\tShapeType\022\n\n\006S"
-    "PHERE\020\000\022\014\n\010CYLINDER\020\001\022\010\n\004CUBE\020\n\022\t\n\005PLANE"
-    "\020\013\022\010\n\004WALL\020\014\"%\n\020SensorlessParams\022\021\n\ttau_"
-    "bound\030\001 \003(\002\"H\n\rNamedGeometry\022)\n\006shapes\030\001"
-    " \003(\0132\031.Nrmk.IndyFramework.Shape\022\014\n\004name\030"
-    "\n \001(\t\"\\\n\rToolShapeList\0225\n\ngeometries\030\001 \003"
-    "(\0132!.Nrmk.IndyFramework.NamedGeometry\022\024\n"
-    "\014default_name\030\n \001(\t\"\315\002\n\004Zone\022(\n\005shape\030d "
-    "\001(\0132\031.Nrmk.IndyFramework.Shape\0222\n\007subjec"
-    "t\030\310\001 \001(\0162 .Nrmk.IndyFramework.Zone.Subje"
-    "ct\022.\n\004rule\030\254\002 \001(\0162\037.Nrmk.IndyFramework.C"
-    "ontactRule\022\023\n\ncoll_level\030\267\002 \001(\r\022\022\n\tvel_r"
-    "atio\030\301\002 \001(\002\022\022\n\tacc_ratio\030\302\002 \001(\002\022\024\n\013tool_"
-    "vector\030\313\002 \003(\002\022\023\n\nref_vector\030\314\002 \003(\002\022\026\n\ral"
-    "lowed_angle\030\315\002 \001(\002\"7\n\007Subject\022\016\n\nWHOLE_B"
-    "ODY\020\000\022\r\n\tTOOL_ONLY\020\001\022\r\n\tEND_POINT\020\002\"I\n\020N"
-    "amedEnvironment\022\'\n\005zones\030\001 \003(\0132\030.Nrmk.In"
-    "dyFramework.Zone\022\014\n\004name\030\n \001(\t\"c\n\017Enviro"
-    "nmentList\022:\n\014environments\030\001 \003(\0132$.Nrmk.I"
-    "ndyFramework.NamedEnvironment\022\024\n\014default"
-    "_name\030\n \001(\tb\006proto3"
+    "ition\022\024\n\014default_name\030\002 \001(\t\"I\n\rCustomPos"
+    "List\0228\n\ncustom_pos\030\001 \003(\0132$.Nrmk.IndyFram"
+    "ework.NamedPositionSet\"C\n\014ConveyorList\0223"
+    "\n\rconveyor_list\030\001 \003(\0132\034.Nrmk.IndyFramewo"
+    "rk.Conveyor\"<\n\005Frame\022\014\n\004fpos\030\001 \003(\002\022\021\n\tar"
+    "m_index\030\n \001(\005\022\022\n\nlink_index\030\013 \001(\005\"\030\n\010Joi"
+    "ntPos\022\014\n\004jpos\030\001 \003(\002\"M\n\013PlanarFrame\022\r\n\005fp"
+    "os0\030\001 \003(\002\022\r\n\005fpos1\030\002 \003(\002\022\r\n\005fpos2\030\003 \003(\002\022"
+    "\021\n\tarm_index\030\n \001(\005\"K\n\013FrameResult\022\014\n\004fpo"
+    "s\030\001 \003(\002\022.\n\010response\030\002 \001(\0132\034.Nrmk.IndyFra"
+    "mework.Response\"L\n\020VisionServerList\0228\n\016v"
+    "ision_servers\030\001 \003(\0132 .Nrmk.IndyFramework"
+    ".VisionServer\"O\n\020ModbusServerList\022;\n\016mod"
+    "bus_servers\030\001 \003(\0132#.Nrmk.IndyFramework.M"
+    "odbusServerDef\"\026\n\005Ratio\022\r\n\005ratio\030\001 \001(\r\"2"
+    "\n\022AutoServoOffConfig\022\016\n\006enable\030\001 \001(\010\022\014\n\004"
+    "time\030\002 \001(\002\"\304\002\n\020CollTuningConfig\022G\n\tpreci"
+    "sion\030\001 \001(\01624.Nrmk.IndyFramework.CollTuni"
+    "ngConfig.TuningPrecision\022F\n\014tuning_space"
+    "\030\002 \001(\01620.Nrmk.IndyFramework.CollTuningCo"
+    "nfig.TuningSpace\022\025\n\rvel_level_max\030\003 \001(\005\""
+    "\?\n\017TuningPrecision\022\014\n\010LOW_TUNE\020\000\022\017\n\013MIDD"
+    "LE_TUNE\020\001\022\r\n\tHIGH_TUNE\020\002\"G\n\013TuningSpace\022"
+    "\013\n\007NO_TUNE\020\000\022\016\n\nJOINT_TUNE\020\001\022\r\n\tTASK_TUN"
+    "E\020\002\022\014\n\010ALL_TUNE\020\003\"3\n\014JointGainSet\022\n\n\002kp\030"
+    "\001 \003(\002\022\n\n\002kv\030\002 \003(\002\022\013\n\003kl2\030\003 \003(\002\"2\n\013TaskGa"
+    "inSet\022\n\n\002kp\030\001 \003(\002\022\n\n\002kv\030\002 \003(\002\022\013\n\003kl2\030\003 \003"
+    "(\002\"Q\n\020ImpedanceGainSet\022\014\n\004mass\030\001 \003(\002\022\017\n\007"
+    "damping\030\002 \003(\002\022\021\n\tstiffness\030\003 \003(\002\022\013\n\003kl2\030"
+    "\004 \003(\002\"\177\n\014ForceGainSet\022\n\n\002kp\030\001 \003(\002\022\n\n\002kv\030"
+    "\002 \003(\002\022\013\n\003kl2\030\003 \003(\002\022\014\n\004mass\030\004 \003(\002\022\017\n\007damp"
+    "ing\030\005 \003(\002\022\021\n\tstiffness\030\006 \003(\002\022\013\n\003kpf\030\007 \003("
+    "\002\022\013\n\003kif\030\010 \003(\002\"i\n\013TestGainSet\022\r\n\005kpctc\030\001"
+    " \003(\002\022\r\n\005kvctc\030\002 \003(\002\022\r\n\005kictc\030\003 \003(\002\022\r\n\005kn"
+    "ric\030\004 \003(\002\022\016\n\006kpnric\030\005 \003(\002\022\016\n\006kinric\030\006 \003("
+    "\002\"\202\001\n\021ComplianceGainSet\022\n\n\002kp\030\001 \003(\002\022\n\n\002k"
+    "v\030\002 \003(\002\022\013\n\003kl2\030\003 \003(\002\022\n\n\002kd\030\004 \003(\002\022\n\n\002bd\030\005"
+    " \003(\002\022\014\n\004rate\030\006 \003(\002\022\n\n\002ki\030\007 \003(\002\022\n\n\002ks\030\010 \003"
+    "(\002\022\n\n\002km\030\t \003(\002\"\245\001\n\rCustomGainSet\022\r\n\005gain"
+    "0\030\001 \003(\002\022\r\n\005gain1\030\002 \003(\002\022\r\n\005gain2\030\003 \003(\002\022\r\n"
+    "\005gain3\030\004 \003(\002\022\r\n\005gain4\030\005 \003(\002\022\r\n\005gain5\030\006 \003"
+    "(\002\022\r\n\005gain6\030\007 \003(\002\022\r\n\005gain7\030\010 \003(\002\022\r\n\005gain"
+    "8\030\t \003(\002\022\r\n\005gain9\030\n \003(\002\":\n\026NewControllerT"
+    "estState\022\017\n\007Jenable\030\001 \001(\010\022\017\n\007Tenable\030\002 \001"
+    "(\010\"\207\001\n\017FrictionCompSet\022\033\n\023control_comp_e"
+    "nable\030\001 \001(\010\022\033\n\023control_comp_levels\030\002 \003(\005"
+    "\022\034\n\024teaching_comp_enable\030\003 \001(\010\022\034\n\024teachi"
+    "ng_comp_levels\030\004 \003(\005\"(\n\016MountingAngles\022\n"
+    "\n\002ry\030\001 \001(\002\022\n\n\002rz\030\002 \001(\002\"n\n\016ToolProperties"
+    "\022\014\n\004mass\030\001 \001(\002\022\026\n\016center_of_mass\030\002 \003(\002\022\017"
+    "\n\007inertia\030\003 \003(\002\022\022\n\nlink_index\030\n \001(\005\022\021\n\ta"
+    "rm_index\030\013 \001(\005\"#\n\022CollisionSensLevel\022\r\n\005"
+    "level\030\001 \001(\r\"\262\002\n\023CollisionThresholds\022\026\n\016j"
+    "_torque_bases\030\001 \003(\002\022\031\n\021j_torque_tangents"
+    "\030\002 \003(\002\022\026\n\016t_torque_bases\030\003 \003(\002\022\031\n\021t_torq"
+    "ue_tangents\030\004 \003(\002\022\023\n\013error_bases\030\005 \003(\002\022\026"
+    "\n\016error_tangents\030\006 \003(\002\022\037\n\027t_constvel_tor"
+    "que_bases\030\007 \003(\002\022\"\n\032t_constvel_torque_tan"
+    "gents\030\010 \003(\002\022\037\n\027t_conveyor_torque_bases\030\t"
+    " \003(\002\022\"\n\032t_conveyor_torque_tangents\030\n \003(\002"
+    "\"t\n\017CollisionPolicy\0227\n\006policy\030\001 \001(\0162\'.Nr"
+    "mk.IndyFramework.CollisionPolicyType\022\022\n\n"
+    "sleep_time\030\002 \001(\002\022\024\n\014gravity_time\030\003 \001(\002\"S"
+    "\n\024OnStartProgramConfig\022\020\n\010auto_run\030\001 \001(\010"
+    "\022\r\n\005index\030\002 \001(\005\022\032\n\022auto_boot_on_power\030\003 "
+    "\001(\010\"\346\001\n\014SafetyLimits\022\023\n\013power_limit\030\001 \001("
+    "\002\022\031\n\021power_limit_ratio\030\002 \001(\002\022\027\n\017tcp_forc"
+    "e_limit\030\003 \001(\002\022\035\n\025tcp_force_limit_ratio\030\004"
+    " \001(\002\022\027\n\017tcp_speed_limit\030\005 \001(\002\022\035\n\025tcp_spe"
+    "ed_limit_ratio\030\006 \001(\002\022\032\n\022joint_upper_limi"
+    "ts\030\007 \003(\002\022\032\n\022joint_lower_limits\030\010 \003(\002\"\240\004\n"
+    "\020SafetyStopConfig\022G\n\035joint_position_limi"
+    "t_stop_cat\030\001 \001(\0162 .Nrmk.IndyFramework.St"
+    "opCategory\022D\n\032joint_speed_limit_stop_cat"
+    "\030\002 \001(\0162 .Nrmk.IndyFramework.StopCategory"
+    "\022E\n\033joint_torque_limit_stop_cat\030\003 \001(\0162 ."
+    "Nrmk.IndyFramework.StopCategory\022B\n\030tcp_s"
+    "peed_limit_stop_cat\030\004 \001(\0162 .Nrmk.IndyFra"
+    "mework.StopCategory\022B\n\030tcp_force_limit_s"
+    "top_cat\030\005 \001(\0162 .Nrmk.IndyFramework.StopC"
+    "ategory\022>\n\024power_limit_stop_cat\030\006 \001(\0162 ."
+    "Nrmk.IndyFramework.StopCategory\0229\n\017safeg"
+    "d_stop_cat\030\007 \003(\0162 .Nrmk.IndyFramework.St"
+    "opCategory\0223\n\013safegd_type\030\n \003(\0162\036.Nrmk.I"
+    "ndyFramework.SafeGdType\"\351\001\n\010DIConfig\022\025\n\r"
+    "function_code\030\001 \001(\005\022\025\n\rfunction_name\030\002 \001"
+    "(\t\0229\n\016triggerSignals\030\003 \003(\0132!.Nrmk.IndyFr"
+    "amework.DigitalSignal\0229\n\016successSignals\030"
+    "\004 \003(\0132!.Nrmk.IndyFramework.DigitalSignal"
+    "\0229\n\016failureSignals\030\005 \003(\0132!.Nrmk.IndyFram"
+    "ework.DigitalSignal\"@\n\014DIConfigList\0220\n\nd"
+    "i_configs\030\001 \003(\0132\034.Nrmk.IndyFramework.DIC"
+    "onfig\"\237\001\n\010DOConfig\022\022\n\nstate_code\030\001 \001(\005\022\022"
+    "\n\nstate_name\030\002 \001(\t\0224\n\tonSignals\030\003 \003(\0132!."
+    "Nrmk.IndyFramework.DigitalSignal\0225\n\noffS"
+    "ignals\030\004 \003(\0132!.Nrmk.IndyFramework.Digita"
+    "lSignal\"@\n\014DOConfigList\0220\n\ndo_configs\030\001 "
+    "\003(\0132\034.Nrmk.IndyFramework.DOConfig\"0\n\022Get"
+    "ReducedRatioRes\022\r\n\005ratio\030\001 \001(\002\022\013\n\003msg\030d "
+    "\001(\t\"0\n\022GetReducedSpeedRes\022\r\n\005speed\030\001 \001(\002"
+    "\022\013\n\003msg\030d \001(\t\"#\n\022SetReducedSpeedReq\022\r\n\005s"
+    "peed\030\001 \001(\002\"\364\004\n\016FTSensorDevice\022G\n\010dev_typ"
+    "e\030\001 \001(\01625.Nrmk.IndyFramework.FTSensorDev"
+    "ice.FTSensorDeviceType\022J\n\010com_type\030\002 \001(\016"
+    "28.Nrmk.IndyFramework.FTSensorDevice.FTS"
+    "ensorDeviceComType\022\022\n\nip_address\030\003 \001(\t\022%"
+    "\n\035ft_frame_translation_offset_x\030\013 \001(\002\022%\n"
+    "\035ft_frame_translation_offset_y\030\014 \001(\002\022%\n\035"
+    "ft_frame_translation_offset_z\030\r \001(\002\022\"\n\032f"
+    "t_frame_rotation_offset_r\030\016 \001(\002\022\"\n\032ft_fr"
+    "ame_rotation_offset_p\030\017 \001(\002\022\"\n\032ft_frame_"
+    "rotation_offset_y\030\020 \001(\002\022\021\n\tarm_index\030\024 \001"
+    "(\005\"q\n\022FTSensorDeviceType\022\010\n\004NONE\020\000\022\016\n\nAF"
+    "T200_D80\020\001\022\021\n\rAFT200_D80_EC\020\002\022\016\n\nRFT80_6"
+    "A01\020\003\022\016\n\nRFT60_HA01\020\004\022\016\n\nHEX_E_H_QC\020\005\"R\n"
+    "\025FTSensorDeviceComType\022\016\n\nENDTOOLCAN\020\000\022\t"
+    "\n\005CBCAN\020\001\022\020\n\014MODBUSCLIENT\020\002\022\014\n\010ETHERCAT\020"
+    "\003\" \n\021FTSensorDeviceRes\022\013\n\003msg\030d \001(\t\"N\n\014T"
+    "eleOpParams\022\025\n\rsmooth_factor\030\001 \001(\002\022\023\n\013cu"
+    "toff_freq\030\002 \001(\002\022\022\n\nerror_gain\030\003 \001(\002\"\231\002\n\020"
+    "KinematicsParams\0225\n\003mdh\030\001 \003(\0132(.Nrmk.Ind"
+    "yFramework.KinematicsParams.MDH\032\230\001\n\003MDH\022"
+    "\t\n\001a\030\001 \001(\002\022\r\n\005alpha\030\002 \001(\002\022\n\n\002d0\030\003 \001(\002\022\016\n"
+    "\006theta0\030\004 \001(\002\022<\n\004type\030\005 \001(\0162..Nrmk.IndyF"
+    "ramework.KinematicsParams.JointType\022\r\n\005i"
+    "ndex\030\n \001(\005\022\016\n\006parent\030\013 \001(\005\"3\n\tJointType\022"
+    "\014\n\010REVOLUTE\020\000\022\r\n\tPRISMATIC\020\001\022\t\n\005FIXED\020\002\""
+    "H\n\024CollisionModelMargin\022\030\n\020collision_mar"
+    "gin\030\001 \001(\002\022\026\n\016recover_margin\030\002 \001(\002\"\376\001\n\005Sh"
+    "ape\0227\n\nshape_type\030\001 \001(\0162#.Nrmk.IndyFrame"
+    "work.Shape.ShapeType\022\020\n\010position\030\002 \003(\002\022\023"
+    "\n\013orientation\030\003 \003(\002\022\016\n\006radius\030\n \001(\002\022\r\n\005w"
+    "idth\030\013 \001(\002\022\r\n\005depth\030\014 \001(\002\022\016\n\006height\030\r \001("
+    "\002\022\021\n\tarm_index\030\024 \001(\005\"D\n\tShapeType\022\n\n\006SPH"
+    "ERE\020\000\022\014\n\010CYLINDER\020\001\022\010\n\004CUBE\020\n\022\t\n\005PLANE\020\013"
+    "\022\010\n\004WALL\020\014\"%\n\020SensorlessParams\022\021\n\ttau_bo"
+    "und\030\001 \003(\002\"H\n\rNamedGeometry\022)\n\006shapes\030\001 \003"
+    "(\0132\031.Nrmk.IndyFramework.Shape\022\014\n\004name\030\n "
+    "\001(\t\"\\\n\rToolShapeList\0225\n\ngeometries\030\001 \003(\013"
+    "2!.Nrmk.IndyFramework.NamedGeometry\022\024\n\014d"
+    "efault_name\030\n \001(\t\"\315\002\n\004Zone\022(\n\005shape\030d \001("
+    "\0132\031.Nrmk.IndyFramework.Shape\0222\n\007subject\030"
+    "\310\001 \001(\0162 .Nrmk.IndyFramework.Zone.Subject"
+    "\022.\n\004rule\030\254\002 \001(\0162\037.Nrmk.IndyFramework.Con"
+    "tactRule\022\023\n\ncoll_level\030\267\002 \001(\r\022\022\n\tvel_rat"
+    "io\030\301\002 \001(\002\022\022\n\tacc_ratio\030\302\002 \001(\002\022\024\n\013tool_ve"
+    "ctor\030\313\002 \003(\002\022\023\n\nref_vector\030\314\002 \003(\002\022\026\n\rallo"
+    "wed_angle\030\315\002 \001(\002\"7\n\007Subject\022\016\n\nWHOLE_BOD"
+    "Y\020\000\022\r\n\tTOOL_ONLY\020\001\022\r\n\tEND_POINT\020\002\"I\n\020Nam"
+    "edEnvironment\022\'\n\005zones\030\001 \003(\0132\030.Nrmk.Indy"
+    "Framework.Zone\022\014\n\004name\030\n \001(\t\"c\n\017Environm"
+    "entList\022:\n\014environments\030\001 \003(\0132$.Nrmk.Ind"
+    "yFramework.NamedEnvironment\022\024\n\014default_n"
+    "ame\030\n \001(\t\"\221\001\n\021WeldingConfigInfo\022\r\n\005model"
+    "\030\001 \001(\t\022\021\n\tinterface\030\002 \001(\t\022\017\n\007node_id\030\003 \001"
+    "(\r\022\021\n\tbaud_rate\030\004 \001(\r\022\016\n\006vision\030\005 \001(\010\022\021\n"
+    "\tmodbus_ip\030\006 \001(\t\022\023\n\013modbus_port\030\007 \001(\r\".\n"
+    "\014WeldPosition\022\014\n\004name\030\001 \001(\t\022\020\n\010position\030"
+    "\002 \003(\002\"G\n\020WeldPositionList\0223\n\tpositions\030\001"
+    " \003(\0132 .Nrmk.IndyFramework.WeldPositionb\006"
+    "proto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_config_5fmsgs_2eproto_deps[2] =
     {
@@ -2134,13 +2248,13 @@ static ::absl::once_flag descriptor_table_config_5fmsgs_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_config_5fmsgs_2eproto = {
     false,
     false,
-    6779,
+    7046,
     descriptor_table_protodef_config_5fmsgs_2eproto,
     "config_msgs.proto",
     &descriptor_table_config_5fmsgs_2eproto_once,
     descriptor_table_config_5fmsgs_2eproto_deps,
     2,
-    58,
+    61,
     schemas,
     file_default_instances,
     TableStruct_config_5fmsgs_2eproto::offsets,
@@ -4578,17 +4692,17 @@ const ::_pbi::TcParseTable<0, 1, 1, 0, 2> CustomPosList::_table_ = {
     &_CustomPosList_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
-    // repeated .Nrmk.IndyFramework.NamedJointPosition custom_pos = 1;
+    // repeated .Nrmk.IndyFramework.NamedPositionSet custom_pos = 1;
     {::_pbi::TcParser::FastMtR1,
      {10, 63, 0, PROTOBUF_FIELD_OFFSET(CustomPosList, _impl_.custom_pos_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // repeated .Nrmk.IndyFramework.NamedJointPosition custom_pos = 1;
+    // repeated .Nrmk.IndyFramework.NamedPositionSet custom_pos = 1;
     {PROTOBUF_FIELD_OFFSET(CustomPosList, _impl_.custom_pos_), 0, 0,
     (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
   }}, {{
-    {::_pbi::TcParser::GetTable<::Nrmk::IndyFramework::NamedJointPosition>()},
+    {::_pbi::TcParser::GetTable<::Nrmk::IndyFramework::NamedPositionSet>()},
   }}, {{
   }},
 };
@@ -4600,7 +4714,7 @@ const ::_pbi::TcParseTable<0, 1, 1, 0, 2> CustomPosList::_table_ = {
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
-  // repeated .Nrmk.IndyFramework.NamedJointPosition custom_pos = 1;
+  // repeated .Nrmk.IndyFramework.NamedPositionSet custom_pos = 1;
   for (unsigned i = 0,
       n = static_cast<unsigned>(this->_internal_custom_pos_size()); i < n; i++) {
     const auto& repfield = this->_internal_custom_pos().Get(i);
@@ -4625,7 +4739,7 @@ const ::_pbi::TcParseTable<0, 1, 1, 0, 2> CustomPosList::_table_ = {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // repeated .Nrmk.IndyFramework.NamedJointPosition custom_pos = 1;
+  // repeated .Nrmk.IndyFramework.NamedPositionSet custom_pos = 1;
   total_size += 1UL * this->_internal_custom_pos_size();
   for (const auto& msg : this->_internal_custom_pos()) {
     total_size +=
@@ -17111,6 +17225,779 @@ void EnvironmentList::InternalSwap(EnvironmentList* other) {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
       file_level_metadata_config_5fmsgs_2eproto[57]);
+}
+// ===================================================================
+
+class WeldingConfigInfo::_Internal {
+ public:
+};
+
+WeldingConfigInfo::WeldingConfigInfo(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Nrmk.IndyFramework.WeldingConfigInfo)
+}
+WeldingConfigInfo::WeldingConfigInfo(const WeldingConfigInfo& from) : ::google::protobuf::Message() {
+  WeldingConfigInfo* const _this = this;
+  (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.model_){},
+      decltype(_impl_.interface_){},
+      decltype(_impl_.modbus_ip_){},
+      decltype(_impl_.node_id_){},
+      decltype(_impl_.baud_rate_){},
+      decltype(_impl_.vision_){},
+      decltype(_impl_.modbus_port_){},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  _impl_.model_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        _impl_.model_.Set("", GetArenaForAllocation());
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_model().empty()) {
+    _this->_impl_.model_.Set(from._internal_model(), _this->GetArenaForAllocation());
+  }
+  _impl_.interface_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        _impl_.interface_.Set("", GetArenaForAllocation());
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_interface().empty()) {
+    _this->_impl_.interface_.Set(from._internal_interface(), _this->GetArenaForAllocation());
+  }
+  _impl_.modbus_ip_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        _impl_.modbus_ip_.Set("", GetArenaForAllocation());
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_modbus_ip().empty()) {
+    _this->_impl_.modbus_ip_.Set(from._internal_modbus_ip(), _this->GetArenaForAllocation());
+  }
+  ::memcpy(&_impl_.node_id_, &from._impl_.node_id_,
+    static_cast<::size_t>(reinterpret_cast<char*>(&_impl_.modbus_port_) -
+    reinterpret_cast<char*>(&_impl_.node_id_)) + sizeof(_impl_.modbus_port_));
+
+  // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.WeldingConfigInfo)
+}
+inline void WeldingConfigInfo::SharedCtor(::_pb::Arena* arena) {
+  (void)arena;
+  new (&_impl_) Impl_{
+      decltype(_impl_.model_){},
+      decltype(_impl_.interface_){},
+      decltype(_impl_.modbus_ip_){},
+      decltype(_impl_.node_id_){0u},
+      decltype(_impl_.baud_rate_){0u},
+      decltype(_impl_.vision_){false},
+      decltype(_impl_.modbus_port_){0u},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+  _impl_.model_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        _impl_.model_.Set("", GetArenaForAllocation());
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.interface_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        _impl_.interface_.Set("", GetArenaForAllocation());
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.modbus_ip_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        _impl_.modbus_ip_.Set("", GetArenaForAllocation());
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+WeldingConfigInfo::~WeldingConfigInfo() {
+  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.WeldingConfigInfo)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void WeldingConfigInfo::SharedDtor() {
+  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.model_.Destroy();
+  _impl_.interface_.Destroy();
+  _impl_.modbus_ip_.Destroy();
+}
+void WeldingConfigInfo::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+PROTOBUF_NOINLINE void WeldingConfigInfo::Clear() {
+// @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.WeldingConfigInfo)
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.model_.ClearToEmpty();
+  _impl_.interface_.ClearToEmpty();
+  _impl_.modbus_ip_.ClearToEmpty();
+  ::memset(&_impl_.node_id_, 0, static_cast<::size_t>(
+      reinterpret_cast<char*>(&_impl_.modbus_port_) -
+      reinterpret_cast<char*>(&_impl_.node_id_)) + sizeof(_impl_.modbus_port_));
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* WeldingConfigInfo::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<3, 7, 0, 68, 2> WeldingConfigInfo::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    7, 56,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967168,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    7,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_WeldingConfigInfo_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // string model = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(WeldingConfigInfo, _impl_.model_)}},
+    // string interface = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(WeldingConfigInfo, _impl_.interface_)}},
+    // uint32 node_id = 3;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(WeldingConfigInfo, _impl_.node_id_), 63>(),
+     {24, 63, 0, PROTOBUF_FIELD_OFFSET(WeldingConfigInfo, _impl_.node_id_)}},
+    // uint32 baud_rate = 4;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(WeldingConfigInfo, _impl_.baud_rate_), 63>(),
+     {32, 63, 0, PROTOBUF_FIELD_OFFSET(WeldingConfigInfo, _impl_.baud_rate_)}},
+    // bool vision = 5;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(WeldingConfigInfo, _impl_.vision_), 63>(),
+     {40, 63, 0, PROTOBUF_FIELD_OFFSET(WeldingConfigInfo, _impl_.vision_)}},
+    // string modbus_ip = 6;
+    {::_pbi::TcParser::FastUS1,
+     {50, 63, 0, PROTOBUF_FIELD_OFFSET(WeldingConfigInfo, _impl_.modbus_ip_)}},
+    // uint32 modbus_port = 7;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(WeldingConfigInfo, _impl_.modbus_port_), 63>(),
+     {56, 63, 0, PROTOBUF_FIELD_OFFSET(WeldingConfigInfo, _impl_.modbus_port_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string model = 1;
+    {PROTOBUF_FIELD_OFFSET(WeldingConfigInfo, _impl_.model_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string interface = 2;
+    {PROTOBUF_FIELD_OFFSET(WeldingConfigInfo, _impl_.interface_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // uint32 node_id = 3;
+    {PROTOBUF_FIELD_OFFSET(WeldingConfigInfo, _impl_.node_id_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
+    // uint32 baud_rate = 4;
+    {PROTOBUF_FIELD_OFFSET(WeldingConfigInfo, _impl_.baud_rate_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
+    // bool vision = 5;
+    {PROTOBUF_FIELD_OFFSET(WeldingConfigInfo, _impl_.vision_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
+    // string modbus_ip = 6;
+    {PROTOBUF_FIELD_OFFSET(WeldingConfigInfo, _impl_.modbus_ip_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // uint32 modbus_port = 7;
+    {PROTOBUF_FIELD_OFFSET(WeldingConfigInfo, _impl_.modbus_port_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
+  }},
+  // no aux_entries
+  {{
+    "\44\5\11\0\0\0\11\0"
+    "Nrmk.IndyFramework.WeldingConfigInfo"
+    "model"
+    "interface"
+    "modbus_ip"
+  }},
+};
+
+::uint8_t* WeldingConfigInfo::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.WeldingConfigInfo)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // string model = 1;
+  if (!this->_internal_model().empty()) {
+    const std::string& _s = this->_internal_model();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "Nrmk.IndyFramework.WeldingConfigInfo.model");
+    target = stream->WriteStringMaybeAliased(1, _s, target);
+  }
+
+  // string interface = 2;
+  if (!this->_internal_interface().empty()) {
+    const std::string& _s = this->_internal_interface();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "Nrmk.IndyFramework.WeldingConfigInfo.interface");
+    target = stream->WriteStringMaybeAliased(2, _s, target);
+  }
+
+  // uint32 node_id = 3;
+  if (this->_internal_node_id() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+        3, this->_internal_node_id(), target);
+  }
+
+  // uint32 baud_rate = 4;
+  if (this->_internal_baud_rate() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+        4, this->_internal_baud_rate(), target);
+  }
+
+  // bool vision = 5;
+  if (this->_internal_vision() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(
+        5, this->_internal_vision(), target);
+  }
+
+  // string modbus_ip = 6;
+  if (!this->_internal_modbus_ip().empty()) {
+    const std::string& _s = this->_internal_modbus_ip();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "Nrmk.IndyFramework.WeldingConfigInfo.modbus_ip");
+    target = stream->WriteStringMaybeAliased(6, _s, target);
+  }
+
+  // uint32 modbus_port = 7;
+  if (this->_internal_modbus_port() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+        7, this->_internal_modbus_port(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.WeldingConfigInfo)
+  return target;
+}
+
+::size_t WeldingConfigInfo::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.WeldingConfigInfo)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string model = 1;
+  if (!this->_internal_model().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_model());
+  }
+
+  // string interface = 2;
+  if (!this->_internal_interface().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_interface());
+  }
+
+  // string modbus_ip = 6;
+  if (!this->_internal_modbus_ip().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_modbus_ip());
+  }
+
+  // uint32 node_id = 3;
+  if (this->_internal_node_id() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+        this->_internal_node_id());
+  }
+
+  // uint32 baud_rate = 4;
+  if (this->_internal_baud_rate() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+        this->_internal_baud_rate());
+  }
+
+  // bool vision = 5;
+  if (this->_internal_vision() != 0) {
+    total_size += 2;
+  }
+
+  // uint32 modbus_port = 7;
+  if (this->_internal_modbus_port() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+        this->_internal_modbus_port());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData WeldingConfigInfo::_class_data_ = {
+    ::google::protobuf::Message::CopyWithSourceCheck,
+    WeldingConfigInfo::MergeImpl
+};
+const ::google::protobuf::Message::ClassData*WeldingConfigInfo::GetClassData() const { return &_class_data_; }
+
+
+void WeldingConfigInfo::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<WeldingConfigInfo*>(&to_msg);
+  auto& from = static_cast<const WeldingConfigInfo&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.WeldingConfigInfo)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_model().empty()) {
+    _this->_internal_set_model(from._internal_model());
+  }
+  if (!from._internal_interface().empty()) {
+    _this->_internal_set_interface(from._internal_interface());
+  }
+  if (!from._internal_modbus_ip().empty()) {
+    _this->_internal_set_modbus_ip(from._internal_modbus_ip());
+  }
+  if (from._internal_node_id() != 0) {
+    _this->_internal_set_node_id(from._internal_node_id());
+  }
+  if (from._internal_baud_rate() != 0) {
+    _this->_internal_set_baud_rate(from._internal_baud_rate());
+  }
+  if (from._internal_vision() != 0) {
+    _this->_internal_set_vision(from._internal_vision());
+  }
+  if (from._internal_modbus_port() != 0) {
+    _this->_internal_set_modbus_port(from._internal_modbus_port());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void WeldingConfigInfo::CopyFrom(const WeldingConfigInfo& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Nrmk.IndyFramework.WeldingConfigInfo)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool WeldingConfigInfo::IsInitialized() const {
+  return true;
+}
+
+void WeldingConfigInfo::InternalSwap(WeldingConfigInfo* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.model_, lhs_arena,
+                                       &other->_impl_.model_, rhs_arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.interface_, lhs_arena,
+                                       &other->_impl_.interface_, rhs_arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.modbus_ip_, lhs_arena,
+                                       &other->_impl_.modbus_ip_, rhs_arena);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(WeldingConfigInfo, _impl_.modbus_port_)
+      + sizeof(WeldingConfigInfo::_impl_.modbus_port_)
+      - PROTOBUF_FIELD_OFFSET(WeldingConfigInfo, _impl_.node_id_)>(
+          reinterpret_cast<char*>(&_impl_.node_id_),
+          reinterpret_cast<char*>(&other->_impl_.node_id_));
+}
+
+::google::protobuf::Metadata WeldingConfigInfo::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
+      file_level_metadata_config_5fmsgs_2eproto[58]);
+}
+// ===================================================================
+
+class WeldPosition::_Internal {
+ public:
+};
+
+WeldPosition::WeldPosition(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Nrmk.IndyFramework.WeldPosition)
+}
+WeldPosition::WeldPosition(const WeldPosition& from) : ::google::protobuf::Message() {
+  WeldPosition* const _this = this;
+  (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.position_){from._impl_.position_},
+      decltype(_impl_.name_){},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  _impl_.name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        _impl_.name_.Set("", GetArenaForAllocation());
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_name().empty()) {
+    _this->_impl_.name_.Set(from._internal_name(), _this->GetArenaForAllocation());
+  }
+
+  // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.WeldPosition)
+}
+inline void WeldPosition::SharedCtor(::_pb::Arena* arena) {
+  (void)arena;
+  new (&_impl_) Impl_{
+      decltype(_impl_.position_){arena},
+      decltype(_impl_.name_){},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+  _impl_.name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        _impl_.name_.Set("", GetArenaForAllocation());
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+WeldPosition::~WeldPosition() {
+  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.WeldPosition)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void WeldPosition::SharedDtor() {
+  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.position_.~RepeatedField();
+  _impl_.name_.Destroy();
+}
+void WeldPosition::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+PROTOBUF_NOINLINE void WeldPosition::Clear() {
+// @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.WeldPosition)
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _internal_mutable_position()->Clear();
+  _impl_.name_.ClearToEmpty();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* WeldPosition::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 44, 2> WeldPosition::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_WeldPosition_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // repeated float position = 2;
+    {::_pbi::TcParser::FastF32P1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(WeldPosition, _impl_.position_)}},
+    // string name = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(WeldPosition, _impl_.name_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string name = 1;
+    {PROTOBUF_FIELD_OFFSET(WeldPosition, _impl_.name_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // repeated float position = 2;
+    {PROTOBUF_FIELD_OFFSET(WeldPosition, _impl_.position_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedFloat)},
+  }},
+  // no aux_entries
+  {{
+    "\37\4\0\0\0\0\0\0"
+    "Nrmk.IndyFramework.WeldPosition"
+    "name"
+  }},
+};
+
+::uint8_t* WeldPosition::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.WeldPosition)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // string name = 1;
+  if (!this->_internal_name().empty()) {
+    const std::string& _s = this->_internal_name();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "Nrmk.IndyFramework.WeldPosition.name");
+    target = stream->WriteStringMaybeAliased(1, _s, target);
+  }
+
+  // repeated float position = 2;
+  if (this->_internal_position_size() > 0) {
+    target = stream->WriteFixedPacked(2, _internal_position(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.WeldPosition)
+  return target;
+}
+
+::size_t WeldPosition::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.WeldPosition)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated float position = 2;
+  {
+    std::size_t data_size = std::size_t{4} *
+        ::_pbi::FromIntSize(this->_internal_position_size())
+    ;
+    std::size_t tag_size = data_size == 0
+        ? 0
+        : 1 + ::_pbi::WireFormatLite::Int32Size(
+                            static_cast<int32_t>(data_size))
+    ;
+    total_size += tag_size + data_size;
+  }
+  // string name = 1;
+  if (!this->_internal_name().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_name());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData WeldPosition::_class_data_ = {
+    ::google::protobuf::Message::CopyWithSourceCheck,
+    WeldPosition::MergeImpl
+};
+const ::google::protobuf::Message::ClassData*WeldPosition::GetClassData() const { return &_class_data_; }
+
+
+void WeldPosition::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<WeldPosition*>(&to_msg);
+  auto& from = static_cast<const WeldPosition&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.WeldPosition)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_internal_mutable_position()->MergeFrom(from._internal_position());
+  if (!from._internal_name().empty()) {
+    _this->_internal_set_name(from._internal_name());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void WeldPosition::CopyFrom(const WeldPosition& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Nrmk.IndyFramework.WeldPosition)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool WeldPosition::IsInitialized() const {
+  return true;
+}
+
+void WeldPosition::InternalSwap(WeldPosition* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.position_.InternalSwap(&other->_impl_.position_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.name_, lhs_arena,
+                                       &other->_impl_.name_, rhs_arena);
+}
+
+::google::protobuf::Metadata WeldPosition::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
+      file_level_metadata_config_5fmsgs_2eproto[59]);
+}
+// ===================================================================
+
+class WeldPositionList::_Internal {
+ public:
+};
+
+WeldPositionList::WeldPositionList(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Nrmk.IndyFramework.WeldPositionList)
+}
+WeldPositionList::WeldPositionList(const WeldPositionList& from) : ::google::protobuf::Message() {
+  WeldPositionList* const _this = this;
+  (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.positions_){from._impl_.positions_},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+
+  // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.WeldPositionList)
+}
+inline void WeldPositionList::SharedCtor(::_pb::Arena* arena) {
+  (void)arena;
+  new (&_impl_) Impl_{
+      decltype(_impl_.positions_){arena},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+}
+WeldPositionList::~WeldPositionList() {
+  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.WeldPositionList)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void WeldPositionList::SharedDtor() {
+  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.positions_.~RepeatedPtrField();
+}
+void WeldPositionList::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+PROTOBUF_NOINLINE void WeldPositionList::Clear() {
+// @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.WeldPositionList)
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _internal_mutable_positions()->Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* WeldPositionList::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 1, 1, 0, 2> WeldPositionList::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    1, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    1,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_WeldPositionList_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // repeated .Nrmk.IndyFramework.WeldPosition positions = 1;
+    {::_pbi::TcParser::FastMtR1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(WeldPositionList, _impl_.positions_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // repeated .Nrmk.IndyFramework.WeldPosition positions = 1;
+    {PROTOBUF_FIELD_OFFSET(WeldPositionList, _impl_.positions_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::Nrmk::IndyFramework::WeldPosition>()},
+  }}, {{
+  }},
+};
+
+::uint8_t* WeldPositionList::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.WeldPositionList)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // repeated .Nrmk.IndyFramework.WeldPosition positions = 1;
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_positions_size()); i < n; i++) {
+    const auto& repfield = this->_internal_positions().Get(i);
+    target = ::google::protobuf::internal::WireFormatLite::
+        InternalWriteMessage(1, repfield, repfield.GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.WeldPositionList)
+  return target;
+}
+
+::size_t WeldPositionList::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.WeldPositionList)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated .Nrmk.IndyFramework.WeldPosition positions = 1;
+  total_size += 1UL * this->_internal_positions_size();
+  for (const auto& msg : this->_internal_positions()) {
+    total_size +=
+      ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
+  }
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData WeldPositionList::_class_data_ = {
+    ::google::protobuf::Message::CopyWithSourceCheck,
+    WeldPositionList::MergeImpl
+};
+const ::google::protobuf::Message::ClassData*WeldPositionList::GetClassData() const { return &_class_data_; }
+
+
+void WeldPositionList::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<WeldPositionList*>(&to_msg);
+  auto& from = static_cast<const WeldPositionList&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.WeldPositionList)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_internal_mutable_positions()->MergeFrom(from._internal_positions());
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void WeldPositionList::CopyFrom(const WeldPositionList& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Nrmk.IndyFramework.WeldPositionList)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool WeldPositionList::IsInitialized() const {
+  return true;
+}
+
+void WeldPositionList::InternalSwap(WeldPositionList* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.positions_.InternalSwap(&other->_impl_.positions_);
+}
+
+::google::protobuf::Metadata WeldPositionList::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
+      file_level_metadata_config_5fmsgs_2eproto[60]);
 }
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace IndyFramework

@@ -577,6 +577,183 @@ struct DIODigitalOutputDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 DIODigitalOutputDefaultTypeInternal _DIODigitalOutput_default_instance_;
         template <typename>
+PROTOBUF_CONSTEXPR AIOIndex::AIOIndex(::_pbi::ConstantInitialized)
+    : _impl_{
+      /*decltype(_impl_.aioindex_)*/ 0u,
+      /*decltype(_impl_._cached_size_)*/ {},
+    } {}
+struct AIOIndexDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR AIOIndexDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~AIOIndexDefaultTypeInternal() {}
+  union {
+    AIOIndex _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AIOIndexDefaultTypeInternal _AIOIndex_default_instance_;
+        template <typename>
+PROTOBUF_CONSTEXPR AIOAnalogInput::AIOAnalogInput(::_pbi::ConstantInitialized)
+    : _impl_{
+      /*decltype(_impl_.ai_list_)*/ {},
+      /* _impl_._ai_list_cached_byte_size_ = */ {0},
+      /*decltype(_impl_.aioindex_)*/ 0u,
+      /*decltype(_impl_._cached_size_)*/ {},
+    } {}
+struct AIOAnalogInputDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR AIOAnalogInputDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~AIOAnalogInputDefaultTypeInternal() {}
+  union {
+    AIOAnalogInput _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AIOAnalogInputDefaultTypeInternal _AIOAnalogInput_default_instance_;
+        template <typename>
+PROTOBUF_CONSTEXPR AIOAnalogOutput::AIOAnalogOutput(::_pbi::ConstantInitialized)
+    : _impl_{
+      /*decltype(_impl_.ao_list_)*/ {},
+      /* _impl_._ao_list_cached_byte_size_ = */ {0},
+      /*decltype(_impl_.aioindex_)*/ 0u,
+      /*decltype(_impl_._cached_size_)*/ {},
+    } {}
+struct AIOAnalogOutputDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR AIOAnalogOutputDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~AIOAnalogOutputDefaultTypeInternal() {}
+  union {
+    AIOAnalogOutput _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AIOAnalogOutputDefaultTypeInternal _AIOAnalogOutput_default_instance_;
+        template <typename>
+PROTOBUF_CONSTEXPR HandIndex::HandIndex(::_pbi::ConstantInitialized)
+    : _impl_{
+      /*decltype(_impl_.handindex_)*/ 0u,
+      /*decltype(_impl_._cached_size_)*/ {},
+    } {}
+struct HandIndexDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR HandIndexDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~HandIndexDefaultTypeInternal() {}
+  union {
+    HandIndex _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 HandIndexDefaultTypeInternal _HandIndex_default_instance_;
+        template <typename>
+PROTOBUF_CONSTEXPR ZenHandRx::ZenHandRx(::_pbi::ConstantInitialized)
+    : _impl_{
+      /*decltype(_impl_.modeop_)*/ {},
+      /* _impl_._modeop_cached_byte_size_ = */ {0},
+      /*decltype(_impl_.ctlcommand_)*/ {},
+      /* _impl_._ctlcommand_cached_byte_size_ = */ {0},
+      /*decltype(_impl_.targetposition_)*/ {},
+      /* _impl_._targetposition_cached_byte_size_ = */ {0},
+      /*decltype(_impl_.targetvelocity_)*/ {},
+      /* _impl_._targetvelocity_cached_byte_size_ = */ {0},
+      /*decltype(_impl_.targetcurrent_)*/ {},
+      /* _impl_._targetcurrent_cached_byte_size_ = */ {0},
+      /*decltype(_impl_.handindex_)*/ 0u,
+      /*decltype(_impl_.handcontrol_)*/ 0u,
+      /*decltype(_impl_._cached_size_)*/ {},
+    } {}
+struct ZenHandRxDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR ZenHandRxDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~ZenHandRxDefaultTypeInternal() {}
+  union {
+    ZenHandRx _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ZenHandRxDefaultTypeInternal _ZenHandRx_default_instance_;
+        template <typename>
+PROTOBUF_CONSTEXPR ZenHandTx::ZenHandTx(::_pbi::ConstantInitialized)
+    : _impl_{
+      /*decltype(_impl_.modeopdisp_)*/ {},
+      /* _impl_._modeopdisp_cached_byte_size_ = */ {0},
+      /*decltype(_impl_.actualposition_)*/ {},
+      /* _impl_._actualposition_cached_byte_size_ = */ {0},
+      /*decltype(_impl_.actualvelocity_)*/ {},
+      /* _impl_._actualvelocity_cached_byte_size_ = */ {0},
+      /*decltype(_impl_.actualcurrent_)*/ {},
+      /* _impl_._actualcurrent_cached_byte_size_ = */ {0},
+      /*decltype(_impl_.errcode_)*/ {},
+      /* _impl_._errcode_cached_byte_size_ = */ {0},
+      /*decltype(_impl_.handindex_)*/ 0u,
+      /*decltype(_impl_.framemessage_)*/ 0u,
+      /*decltype(_impl_._cached_size_)*/ {},
+    } {}
+struct ZenHandTxDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR ZenHandTxDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~ZenHandTxDefaultTypeInternal() {}
+  union {
+    ZenHandTx _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ZenHandTxDefaultTypeInternal _ZenHandTx_default_instance_;
+        template <typename>
+PROTOBUF_CONSTEXPR ZenHandSensor::ZenHandSensor(::_pbi::ConstantInitialized)
+    : _impl_{
+      /*decltype(_impl_.tactile_)*/ {},
+      /*decltype(_impl_.handindex_)*/ 0u,
+      /*decltype(_impl_._cached_size_)*/ {},
+    } {}
+struct ZenHandSensorDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR ZenHandSensorDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~ZenHandSensorDefaultTypeInternal() {}
+  union {
+    ZenHandSensor _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ZenHandSensorDefaultTypeInternal _ZenHandSensor_default_instance_;
+        template <typename>
+PROTOBUF_CONSTEXPR ZenHandTactile::ZenHandTactile(::_pbi::ConstantInitialized)
+    : _impl_{
+      /*decltype(_impl_._has_bits_)*/ {},
+      /*decltype(_impl_._cached_size_)*/ {},
+      /*decltype(_impl_.point_)*/ {},
+      /*decltype(_impl_.totalforce_)*/ nullptr,
+      /*decltype(_impl_.temp_)*/ 0u,
+    } {}
+struct ZenHandTactileDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR ZenHandTactileDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~ZenHandTactileDefaultTypeInternal() {}
+  union {
+    ZenHandTactile _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ZenHandTactileDefaultTypeInternal _ZenHandTactile_default_instance_;
+        template <typename>
+PROTOBUF_CONSTEXPR ZenForcePoint::ZenForcePoint(::_pbi::ConstantInitialized)
+    : _impl_{
+      /*decltype(_impl_.x_)*/ 0,
+      /*decltype(_impl_.y_)*/ 0,
+      /*decltype(_impl_.z_)*/ 0,
+      /*decltype(_impl_.force_)*/ 0,
+      /*decltype(_impl_._cached_size_)*/ {},
+    } {}
+struct ZenForcePointDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR ZenForcePointDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~ZenForcePointDefaultTypeInternal() {}
+  union {
+    ZenForcePoint _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ZenForcePointDefaultTypeInternal _ZenForcePoint_default_instance_;
+        template <typename>
 PROTOBUF_CONSTEXPR ServoParam::ServoParam(::_pbi::ConstantInitialized)
     : _impl_{
       /*decltype(_impl_.slaveidx_)*/ 0u,
@@ -627,7 +804,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RobotZeroCountDefaultTypeInternal _RobotZeroCount_default_instance_;
 }  // namespace IndyFramework
 }  // namespace Nrmk
-static ::_pb::Metadata file_level_metadata_ethercat_5fmsgs_2eproto[32];
+static ::_pb::Metadata file_level_metadata_ethercat_5fmsgs_2eproto[41];
 static constexpr const ::_pb::EnumDescriptor**
     file_level_enum_descriptors_ethercat_5fmsgs_2eproto = nullptr;
 static constexpr const ::_pb::ServiceDescriptor**
@@ -994,6 +1171,110 @@ const ::uint32_t TableStruct_ethercat_5fmsgs_2eproto::offsets[] PROTOBUF_SECTION
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::DIODigitalOutput, _impl_.dioindex_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::DIODigitalOutput, _impl_.do_list_),
     ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::AIOIndex, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::AIOIndex, _impl_.aioindex_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::AIOAnalogInput, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::AIOAnalogInput, _impl_.aioindex_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::AIOAnalogInput, _impl_.ai_list_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::AIOAnalogOutput, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::AIOAnalogOutput, _impl_.aioindex_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::AIOAnalogOutput, _impl_.ao_list_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::HandIndex, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::HandIndex, _impl_.handindex_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ZenHandRx, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ZenHandRx, _impl_.handindex_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ZenHandRx, _impl_.handcontrol_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ZenHandRx, _impl_.modeop_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ZenHandRx, _impl_.ctlcommand_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ZenHandRx, _impl_.targetposition_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ZenHandRx, _impl_.targetvelocity_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ZenHandRx, _impl_.targetcurrent_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ZenHandTx, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ZenHandTx, _impl_.handindex_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ZenHandTx, _impl_.framemessage_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ZenHandTx, _impl_.modeopdisp_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ZenHandTx, _impl_.actualposition_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ZenHandTx, _impl_.actualvelocity_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ZenHandTx, _impl_.actualcurrent_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ZenHandTx, _impl_.errcode_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ZenHandSensor, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ZenHandSensor, _impl_.handindex_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ZenHandSensor, _impl_.tactile_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ZenHandTactile, _impl_._has_bits_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ZenHandTactile, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ZenHandTactile, _impl_.totalforce_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ZenHandTactile, _impl_.point_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ZenHandTactile, _impl_.temp_),
+    0,
+    ~0u,
+    ~0u,
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ZenForcePoint, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ZenForcePoint, _impl_.x_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ZenForcePoint, _impl_.y_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ZenForcePoint, _impl_.z_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ZenForcePoint, _impl_.force_),
+    ~0u,  // no _has_bits_
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ServoParam, _internal_metadata_),
     ~0u,  // no _extensions_
     ~0u,  // no _oneof_case_
@@ -1054,9 +1335,18 @@ static const ::_pbi::MigrationSchema
         {330, -1, -1, sizeof(::Nrmk::IndyFramework::DIOIndex)},
         {339, -1, -1, sizeof(::Nrmk::IndyFramework::DIODigitalInput)},
         {349, -1, -1, sizeof(::Nrmk::IndyFramework::DIODigitalOutput)},
-        {359, -1, -1, sizeof(::Nrmk::IndyFramework::ServoParam)},
-        {369, -1, -1, sizeof(::Nrmk::IndyFramework::SDOIntVal)},
-        {378, -1, -1, sizeof(::Nrmk::IndyFramework::RobotZeroCount)},
+        {359, -1, -1, sizeof(::Nrmk::IndyFramework::AIOIndex)},
+        {368, -1, -1, sizeof(::Nrmk::IndyFramework::AIOAnalogInput)},
+        {378, -1, -1, sizeof(::Nrmk::IndyFramework::AIOAnalogOutput)},
+        {388, -1, -1, sizeof(::Nrmk::IndyFramework::HandIndex)},
+        {397, -1, -1, sizeof(::Nrmk::IndyFramework::ZenHandRx)},
+        {412, -1, -1, sizeof(::Nrmk::IndyFramework::ZenHandTx)},
+        {427, -1, -1, sizeof(::Nrmk::IndyFramework::ZenHandSensor)},
+        {437, 448, -1, sizeof(::Nrmk::IndyFramework::ZenHandTactile)},
+        {451, -1, -1, sizeof(::Nrmk::IndyFramework::ZenForcePoint)},
+        {463, -1, -1, sizeof(::Nrmk::IndyFramework::ServoParam)},
+        {473, -1, -1, sizeof(::Nrmk::IndyFramework::SDOIntVal)},
+        {482, -1, -1, sizeof(::Nrmk::IndyFramework::RobotZeroCount)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -1089,6 +1379,15 @@ static const ::_pb::Message* const file_default_instances[] = {
     &::Nrmk::IndyFramework::_DIOIndex_default_instance_._instance,
     &::Nrmk::IndyFramework::_DIODigitalInput_default_instance_._instance,
     &::Nrmk::IndyFramework::_DIODigitalOutput_default_instance_._instance,
+    &::Nrmk::IndyFramework::_AIOIndex_default_instance_._instance,
+    &::Nrmk::IndyFramework::_AIOAnalogInput_default_instance_._instance,
+    &::Nrmk::IndyFramework::_AIOAnalogOutput_default_instance_._instance,
+    &::Nrmk::IndyFramework::_HandIndex_default_instance_._instance,
+    &::Nrmk::IndyFramework::_ZenHandRx_default_instance_._instance,
+    &::Nrmk::IndyFramework::_ZenHandTx_default_instance_._instance,
+    &::Nrmk::IndyFramework::_ZenHandSensor_default_instance_._instance,
+    &::Nrmk::IndyFramework::_ZenHandTactile_default_instance_._instance,
+    &::Nrmk::IndyFramework::_ZenForcePoint_default_instance_._instance,
     &::Nrmk::IndyFramework::_ServoParam_default_instance_._instance,
     &::Nrmk::IndyFramework::_SDOIntVal_default_instance_._instance,
     &::Nrmk::IndyFramework::_RobotZeroCount_default_instance_._instance,
@@ -1162,22 +1461,42 @@ const char descriptor_table_protodef_ethercat_5fmsgs_2eproto[] PROTOBUF_SECTION_
     "param\030\006 \001(\r\"\034\n\010DIOIndex\022\020\n\010dioIndex\030\001 \001("
     "\r\"4\n\017DIODigitalInput\022\020\n\010dioIndex\030\001 \001(\r\022\017"
     "\n\007di_list\030\002 \003(\r\"5\n\020DIODigitalOutput\022\020\n\010d"
-    "ioIndex\030\001 \001(\r\022\017\n\007do_list\030\002 \003(\r\"+\n\nServoP"
-    "aram\022\020\n\010slaveIdx\030\001 \001(\r\022\013\n\003val\030\002 \001(\005\"\030\n\tS"
-    "DOIntVal\022\013\n\003val\030\001 \001(\005\"\037\n\016RobotZeroCount\022"
-    "\r\n\005count\030\001 \001(\005b\006proto3"
+    "ioIndex\030\001 \001(\r\022\017\n\007do_list\030\002 \003(\r\"\034\n\010AIOInd"
+    "ex\022\020\n\010aioIndex\030\001 \001(\r\"3\n\016AIOAnalogInput\022\020"
+    "\n\010aioIndex\030\001 \001(\r\022\017\n\007ai_list\030\002 \003(\005\"4\n\017AIO"
+    "AnalogOutput\022\020\n\010aioIndex\030\001 \001(\r\022\017\n\007ao_lis"
+    "t\030\002 \003(\005\"\036\n\tHandIndex\022\021\n\thandIndex\030\001 \001(\r\""
+    "\236\001\n\tZenHandRx\022\021\n\thandIndex\030\001 \001(\r\022\023\n\013hand"
+    "Control\030\002 \001(\r\022\016\n\006modeOp\030\003 \003(\005\022\022\n\nctlComm"
+    "and\030\004 \003(\005\022\026\n\016targetPosition\030\005 \003(\005\022\026\n\016tar"
+    "getVelocity\030\006 \003(\005\022\025\n\rtargetCurrent\030\007 \003(\005"
+    "\"\240\001\n\tZenHandTx\022\021\n\thandIndex\030\001 \001(\r\022\024\n\014fra"
+    "meMessage\030\002 \001(\r\022\022\n\nmodeOpDisp\030\003 \003(\005\022\026\n\016a"
+    "ctualPosition\030\004 \003(\005\022\026\n\016actualVelocity\030\005 "
+    "\003(\005\022\025\n\ractualCurrent\030\006 \003(\005\022\017\n\007errCode\030\007 "
+    "\003(\r\"W\n\rZenHandSensor\022\021\n\thandIndex\030\001 \001(\r\022"
+    "3\n\007tactile\030\002 \003(\0132\".Nrmk.IndyFramework.Ze"
+    "nHandTactile\"\207\001\n\016ZenHandTactile\0225\n\ntotal"
+    "Force\030\001 \001(\0132!.Nrmk.IndyFramework.ZenForc"
+    "ePoint\0220\n\005point\030\002 \003(\0132!.Nrmk.IndyFramewo"
+    "rk.ZenForcePoint\022\014\n\004temp\030\003 \001(\r\"\?\n\rZenFor"
+    "cePoint\022\t\n\001x\030\001 \001(\005\022\t\n\001y\030\002 \001(\005\022\t\n\001z\030\003 \001(\005"
+    "\022\r\n\005force\030\004 \001(\005\"+\n\nServoParam\022\020\n\010slaveId"
+    "x\030\001 \001(\r\022\013\n\003val\030\002 \001(\005\"\030\n\tSDOIntVal\022\013\n\003val"
+    "\030\001 \001(\005\"\037\n\016RobotZeroCount\022\r\n\005count\030\001 \001(\005b"
+    "\006proto3"
 };
 static ::absl::once_flag descriptor_table_ethercat_5fmsgs_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_ethercat_5fmsgs_2eproto = {
     false,
     false,
-    2862,
+    3647,
     descriptor_table_protodef_ethercat_5fmsgs_2eproto,
     "ethercat_msgs.proto",
     &descriptor_table_ethercat_5fmsgs_2eproto_once,
     nullptr,
     0,
-    32,
+    41,
     schemas,
     file_default_instances,
     TableStruct_ethercat_5fmsgs_2eproto::offsets,
@@ -8325,6 +8644,2228 @@ void DIODigitalOutput::InternalSwap(DIODigitalOutput* other) {
 }
 // ===================================================================
 
+class AIOIndex::_Internal {
+ public:
+};
+
+AIOIndex::AIOIndex(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Nrmk.IndyFramework.AIOIndex)
+}
+AIOIndex::AIOIndex(const AIOIndex& from)
+    : ::google::protobuf::Message(), _impl_(from._impl_) {
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.AIOIndex)
+}
+inline void AIOIndex::SharedCtor(::_pb::Arena* arena) {
+  (void)arena;
+  new (&_impl_) Impl_{
+      decltype(_impl_.aioindex_){0u},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+}
+AIOIndex::~AIOIndex() {
+  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.AIOIndex)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void AIOIndex::SharedDtor() {
+  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
+}
+void AIOIndex::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+PROTOBUF_NOINLINE void AIOIndex::Clear() {
+// @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.AIOIndex)
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.aioindex_ = 0u;
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* AIOIndex::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 1, 0, 0, 2> AIOIndex::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    1, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    1,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_AIOIndex_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // uint32 aioIndex = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(AIOIndex, _impl_.aioindex_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(AIOIndex, _impl_.aioindex_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // uint32 aioIndex = 1;
+    {PROTOBUF_FIELD_OFFSET(AIOIndex, _impl_.aioindex_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+
+::uint8_t* AIOIndex::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.AIOIndex)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // uint32 aioIndex = 1;
+  if (this->_internal_aioindex() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+        1, this->_internal_aioindex(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.AIOIndex)
+  return target;
+}
+
+::size_t AIOIndex::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.AIOIndex)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // uint32 aioIndex = 1;
+  if (this->_internal_aioindex() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+        this->_internal_aioindex());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData AIOIndex::_class_data_ = {
+    ::google::protobuf::Message::CopyWithSourceCheck,
+    AIOIndex::MergeImpl
+};
+const ::google::protobuf::Message::ClassData*AIOIndex::GetClassData() const { return &_class_data_; }
+
+
+void AIOIndex::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<AIOIndex*>(&to_msg);
+  auto& from = static_cast<const AIOIndex&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.AIOIndex)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from._internal_aioindex() != 0) {
+    _this->_internal_set_aioindex(from._internal_aioindex());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void AIOIndex::CopyFrom(const AIOIndex& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Nrmk.IndyFramework.AIOIndex)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool AIOIndex::IsInitialized() const {
+  return true;
+}
+
+void AIOIndex::InternalSwap(AIOIndex* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+        swap(_impl_.aioindex_, other->_impl_.aioindex_);
+}
+
+::google::protobuf::Metadata AIOIndex::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_ethercat_5fmsgs_2eproto_getter, &descriptor_table_ethercat_5fmsgs_2eproto_once,
+      file_level_metadata_ethercat_5fmsgs_2eproto[29]);
+}
+// ===================================================================
+
+class AIOAnalogInput::_Internal {
+ public:
+};
+
+AIOAnalogInput::AIOAnalogInput(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Nrmk.IndyFramework.AIOAnalogInput)
+}
+AIOAnalogInput::AIOAnalogInput(const AIOAnalogInput& from) : ::google::protobuf::Message() {
+  AIOAnalogInput* const _this = this;
+  (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.ai_list_){from._impl_.ai_list_},
+      /* _impl_._ai_list_cached_byte_size_ = */ {0},
+      decltype(_impl_.aioindex_){},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  _this->_impl_.aioindex_ = from._impl_.aioindex_;
+
+  // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.AIOAnalogInput)
+}
+inline void AIOAnalogInput::SharedCtor(::_pb::Arena* arena) {
+  (void)arena;
+  new (&_impl_) Impl_{
+      decltype(_impl_.ai_list_){arena},
+      /* _impl_._ai_list_cached_byte_size_ = */ {0},
+      decltype(_impl_.aioindex_){0u},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+}
+AIOAnalogInput::~AIOAnalogInput() {
+  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.AIOAnalogInput)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void AIOAnalogInput::SharedDtor() {
+  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.ai_list_.~RepeatedField();
+}
+void AIOAnalogInput::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+PROTOBUF_NOINLINE void AIOAnalogInput::Clear() {
+// @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.AIOAnalogInput)
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _internal_mutable_ai_list()->Clear();
+  _impl_.aioindex_ = 0u;
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* AIOAnalogInput::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 0, 2> AIOAnalogInput::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_AIOAnalogInput_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // repeated int32 ai_list = 2;
+    {::_pbi::TcParser::FastV32P1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(AIOAnalogInput, _impl_.ai_list_)}},
+    // uint32 aioIndex = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(AIOAnalogInput, _impl_.aioindex_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(AIOAnalogInput, _impl_.aioindex_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // uint32 aioIndex = 1;
+    {PROTOBUF_FIELD_OFFSET(AIOAnalogInput, _impl_.aioindex_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
+    // repeated int32 ai_list = 2;
+    {PROTOBUF_FIELD_OFFSET(AIOAnalogInput, _impl_.ai_list_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedInt32)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+
+::uint8_t* AIOAnalogInput::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.AIOAnalogInput)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // uint32 aioIndex = 1;
+  if (this->_internal_aioindex() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+        1, this->_internal_aioindex(), target);
+  }
+
+  // repeated int32 ai_list = 2;
+  {
+    int byte_size = _impl_._ai_list_cached_byte_size_.Get();
+    if (byte_size > 0) {
+      target = stream->WriteInt32Packed(2, _internal_ai_list(),
+                                                 byte_size, target);
+    }
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.AIOAnalogInput)
+  return target;
+}
+
+::size_t AIOAnalogInput::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.AIOAnalogInput)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated int32 ai_list = 2;
+  {
+    std::size_t data_size = ::_pbi::WireFormatLite::Int32Size(
+        this->_internal_ai_list())
+    ;
+    _impl_._ai_list_cached_byte_size_.Set(::_pbi::ToCachedSize(data_size));
+    std::size_t tag_size = data_size == 0
+        ? 0
+        : 1 + ::_pbi::WireFormatLite::Int32Size(
+                            static_cast<int32_t>(data_size))
+    ;
+    total_size += tag_size + data_size;
+  }
+  // uint32 aioIndex = 1;
+  if (this->_internal_aioindex() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+        this->_internal_aioindex());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData AIOAnalogInput::_class_data_ = {
+    ::google::protobuf::Message::CopyWithSourceCheck,
+    AIOAnalogInput::MergeImpl
+};
+const ::google::protobuf::Message::ClassData*AIOAnalogInput::GetClassData() const { return &_class_data_; }
+
+
+void AIOAnalogInput::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<AIOAnalogInput*>(&to_msg);
+  auto& from = static_cast<const AIOAnalogInput&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.AIOAnalogInput)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_internal_mutable_ai_list()->MergeFrom(from._internal_ai_list());
+  if (from._internal_aioindex() != 0) {
+    _this->_internal_set_aioindex(from._internal_aioindex());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void AIOAnalogInput::CopyFrom(const AIOAnalogInput& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Nrmk.IndyFramework.AIOAnalogInput)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool AIOAnalogInput::IsInitialized() const {
+  return true;
+}
+
+void AIOAnalogInput::InternalSwap(AIOAnalogInput* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.ai_list_.InternalSwap(&other->_impl_.ai_list_);
+        swap(_impl_.aioindex_, other->_impl_.aioindex_);
+}
+
+::google::protobuf::Metadata AIOAnalogInput::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_ethercat_5fmsgs_2eproto_getter, &descriptor_table_ethercat_5fmsgs_2eproto_once,
+      file_level_metadata_ethercat_5fmsgs_2eproto[30]);
+}
+// ===================================================================
+
+class AIOAnalogOutput::_Internal {
+ public:
+};
+
+AIOAnalogOutput::AIOAnalogOutput(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Nrmk.IndyFramework.AIOAnalogOutput)
+}
+AIOAnalogOutput::AIOAnalogOutput(const AIOAnalogOutput& from) : ::google::protobuf::Message() {
+  AIOAnalogOutput* const _this = this;
+  (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.ao_list_){from._impl_.ao_list_},
+      /* _impl_._ao_list_cached_byte_size_ = */ {0},
+      decltype(_impl_.aioindex_){},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  _this->_impl_.aioindex_ = from._impl_.aioindex_;
+
+  // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.AIOAnalogOutput)
+}
+inline void AIOAnalogOutput::SharedCtor(::_pb::Arena* arena) {
+  (void)arena;
+  new (&_impl_) Impl_{
+      decltype(_impl_.ao_list_){arena},
+      /* _impl_._ao_list_cached_byte_size_ = */ {0},
+      decltype(_impl_.aioindex_){0u},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+}
+AIOAnalogOutput::~AIOAnalogOutput() {
+  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.AIOAnalogOutput)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void AIOAnalogOutput::SharedDtor() {
+  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.ao_list_.~RepeatedField();
+}
+void AIOAnalogOutput::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+PROTOBUF_NOINLINE void AIOAnalogOutput::Clear() {
+// @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.AIOAnalogOutput)
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _internal_mutable_ao_list()->Clear();
+  _impl_.aioindex_ = 0u;
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* AIOAnalogOutput::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 0, 2> AIOAnalogOutput::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_AIOAnalogOutput_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // repeated int32 ao_list = 2;
+    {::_pbi::TcParser::FastV32P1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(AIOAnalogOutput, _impl_.ao_list_)}},
+    // uint32 aioIndex = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(AIOAnalogOutput, _impl_.aioindex_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(AIOAnalogOutput, _impl_.aioindex_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // uint32 aioIndex = 1;
+    {PROTOBUF_FIELD_OFFSET(AIOAnalogOutput, _impl_.aioindex_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
+    // repeated int32 ao_list = 2;
+    {PROTOBUF_FIELD_OFFSET(AIOAnalogOutput, _impl_.ao_list_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedInt32)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+
+::uint8_t* AIOAnalogOutput::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.AIOAnalogOutput)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // uint32 aioIndex = 1;
+  if (this->_internal_aioindex() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+        1, this->_internal_aioindex(), target);
+  }
+
+  // repeated int32 ao_list = 2;
+  {
+    int byte_size = _impl_._ao_list_cached_byte_size_.Get();
+    if (byte_size > 0) {
+      target = stream->WriteInt32Packed(2, _internal_ao_list(),
+                                                 byte_size, target);
+    }
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.AIOAnalogOutput)
+  return target;
+}
+
+::size_t AIOAnalogOutput::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.AIOAnalogOutput)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated int32 ao_list = 2;
+  {
+    std::size_t data_size = ::_pbi::WireFormatLite::Int32Size(
+        this->_internal_ao_list())
+    ;
+    _impl_._ao_list_cached_byte_size_.Set(::_pbi::ToCachedSize(data_size));
+    std::size_t tag_size = data_size == 0
+        ? 0
+        : 1 + ::_pbi::WireFormatLite::Int32Size(
+                            static_cast<int32_t>(data_size))
+    ;
+    total_size += tag_size + data_size;
+  }
+  // uint32 aioIndex = 1;
+  if (this->_internal_aioindex() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+        this->_internal_aioindex());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData AIOAnalogOutput::_class_data_ = {
+    ::google::protobuf::Message::CopyWithSourceCheck,
+    AIOAnalogOutput::MergeImpl
+};
+const ::google::protobuf::Message::ClassData*AIOAnalogOutput::GetClassData() const { return &_class_data_; }
+
+
+void AIOAnalogOutput::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<AIOAnalogOutput*>(&to_msg);
+  auto& from = static_cast<const AIOAnalogOutput&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.AIOAnalogOutput)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_internal_mutable_ao_list()->MergeFrom(from._internal_ao_list());
+  if (from._internal_aioindex() != 0) {
+    _this->_internal_set_aioindex(from._internal_aioindex());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void AIOAnalogOutput::CopyFrom(const AIOAnalogOutput& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Nrmk.IndyFramework.AIOAnalogOutput)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool AIOAnalogOutput::IsInitialized() const {
+  return true;
+}
+
+void AIOAnalogOutput::InternalSwap(AIOAnalogOutput* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.ao_list_.InternalSwap(&other->_impl_.ao_list_);
+        swap(_impl_.aioindex_, other->_impl_.aioindex_);
+}
+
+::google::protobuf::Metadata AIOAnalogOutput::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_ethercat_5fmsgs_2eproto_getter, &descriptor_table_ethercat_5fmsgs_2eproto_once,
+      file_level_metadata_ethercat_5fmsgs_2eproto[31]);
+}
+// ===================================================================
+
+class HandIndex::_Internal {
+ public:
+};
+
+HandIndex::HandIndex(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Nrmk.IndyFramework.HandIndex)
+}
+HandIndex::HandIndex(const HandIndex& from)
+    : ::google::protobuf::Message(), _impl_(from._impl_) {
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.HandIndex)
+}
+inline void HandIndex::SharedCtor(::_pb::Arena* arena) {
+  (void)arena;
+  new (&_impl_) Impl_{
+      decltype(_impl_.handindex_){0u},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+}
+HandIndex::~HandIndex() {
+  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.HandIndex)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void HandIndex::SharedDtor() {
+  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
+}
+void HandIndex::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+PROTOBUF_NOINLINE void HandIndex::Clear() {
+// @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.HandIndex)
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.handindex_ = 0u;
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* HandIndex::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 1, 0, 0, 2> HandIndex::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    1, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    1,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_HandIndex_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // uint32 handIndex = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(HandIndex, _impl_.handindex_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(HandIndex, _impl_.handindex_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // uint32 handIndex = 1;
+    {PROTOBUF_FIELD_OFFSET(HandIndex, _impl_.handindex_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+
+::uint8_t* HandIndex::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.HandIndex)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // uint32 handIndex = 1;
+  if (this->_internal_handindex() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+        1, this->_internal_handindex(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.HandIndex)
+  return target;
+}
+
+::size_t HandIndex::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.HandIndex)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // uint32 handIndex = 1;
+  if (this->_internal_handindex() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+        this->_internal_handindex());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData HandIndex::_class_data_ = {
+    ::google::protobuf::Message::CopyWithSourceCheck,
+    HandIndex::MergeImpl
+};
+const ::google::protobuf::Message::ClassData*HandIndex::GetClassData() const { return &_class_data_; }
+
+
+void HandIndex::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<HandIndex*>(&to_msg);
+  auto& from = static_cast<const HandIndex&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.HandIndex)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from._internal_handindex() != 0) {
+    _this->_internal_set_handindex(from._internal_handindex());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void HandIndex::CopyFrom(const HandIndex& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Nrmk.IndyFramework.HandIndex)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool HandIndex::IsInitialized() const {
+  return true;
+}
+
+void HandIndex::InternalSwap(HandIndex* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+        swap(_impl_.handindex_, other->_impl_.handindex_);
+}
+
+::google::protobuf::Metadata HandIndex::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_ethercat_5fmsgs_2eproto_getter, &descriptor_table_ethercat_5fmsgs_2eproto_once,
+      file_level_metadata_ethercat_5fmsgs_2eproto[32]);
+}
+// ===================================================================
+
+class ZenHandRx::_Internal {
+ public:
+};
+
+ZenHandRx::ZenHandRx(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Nrmk.IndyFramework.ZenHandRx)
+}
+ZenHandRx::ZenHandRx(const ZenHandRx& from) : ::google::protobuf::Message() {
+  ZenHandRx* const _this = this;
+  (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.modeop_){from._impl_.modeop_},
+      /* _impl_._modeop_cached_byte_size_ = */ {0},
+      decltype(_impl_.ctlcommand_){from._impl_.ctlcommand_},
+      /* _impl_._ctlcommand_cached_byte_size_ = */ {0},
+      decltype(_impl_.targetposition_){from._impl_.targetposition_},
+      /* _impl_._targetposition_cached_byte_size_ = */ {0},
+      decltype(_impl_.targetvelocity_){from._impl_.targetvelocity_},
+      /* _impl_._targetvelocity_cached_byte_size_ = */ {0},
+      decltype(_impl_.targetcurrent_){from._impl_.targetcurrent_},
+      /* _impl_._targetcurrent_cached_byte_size_ = */ {0},
+      decltype(_impl_.handindex_){},
+      decltype(_impl_.handcontrol_){},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  ::memcpy(&_impl_.handindex_, &from._impl_.handindex_,
+    static_cast<::size_t>(reinterpret_cast<char*>(&_impl_.handcontrol_) -
+    reinterpret_cast<char*>(&_impl_.handindex_)) + sizeof(_impl_.handcontrol_));
+
+  // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.ZenHandRx)
+}
+inline void ZenHandRx::SharedCtor(::_pb::Arena* arena) {
+  (void)arena;
+  new (&_impl_) Impl_{
+      decltype(_impl_.modeop_){arena},
+      /* _impl_._modeop_cached_byte_size_ = */ {0},
+      decltype(_impl_.ctlcommand_){arena},
+      /* _impl_._ctlcommand_cached_byte_size_ = */ {0},
+      decltype(_impl_.targetposition_){arena},
+      /* _impl_._targetposition_cached_byte_size_ = */ {0},
+      decltype(_impl_.targetvelocity_){arena},
+      /* _impl_._targetvelocity_cached_byte_size_ = */ {0},
+      decltype(_impl_.targetcurrent_){arena},
+      /* _impl_._targetcurrent_cached_byte_size_ = */ {0},
+      decltype(_impl_.handindex_){0u},
+      decltype(_impl_.handcontrol_){0u},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+}
+ZenHandRx::~ZenHandRx() {
+  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.ZenHandRx)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void ZenHandRx::SharedDtor() {
+  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.modeop_.~RepeatedField();
+  _impl_.ctlcommand_.~RepeatedField();
+  _impl_.targetposition_.~RepeatedField();
+  _impl_.targetvelocity_.~RepeatedField();
+  _impl_.targetcurrent_.~RepeatedField();
+}
+void ZenHandRx::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+PROTOBUF_NOINLINE void ZenHandRx::Clear() {
+// @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.ZenHandRx)
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _internal_mutable_modeop()->Clear();
+  _internal_mutable_ctlcommand()->Clear();
+  _internal_mutable_targetposition()->Clear();
+  _internal_mutable_targetvelocity()->Clear();
+  _internal_mutable_targetcurrent()->Clear();
+  ::memset(&_impl_.handindex_, 0, static_cast<::size_t>(
+      reinterpret_cast<char*>(&_impl_.handcontrol_) -
+      reinterpret_cast<char*>(&_impl_.handindex_)) + sizeof(_impl_.handcontrol_));
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* ZenHandRx::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<3, 7, 0, 0, 2> ZenHandRx::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    7, 56,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967168,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    7,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_ZenHandRx_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // uint32 handIndex = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(ZenHandRx, _impl_.handindex_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(ZenHandRx, _impl_.handindex_)}},
+    // uint32 handControl = 2;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(ZenHandRx, _impl_.handcontrol_), 63>(),
+     {16, 63, 0, PROTOBUF_FIELD_OFFSET(ZenHandRx, _impl_.handcontrol_)}},
+    // repeated int32 modeOp = 3;
+    {::_pbi::TcParser::FastV32P1,
+     {26, 63, 0, PROTOBUF_FIELD_OFFSET(ZenHandRx, _impl_.modeop_)}},
+    // repeated int32 ctlCommand = 4;
+    {::_pbi::TcParser::FastV32P1,
+     {34, 63, 0, PROTOBUF_FIELD_OFFSET(ZenHandRx, _impl_.ctlcommand_)}},
+    // repeated int32 targetPosition = 5;
+    {::_pbi::TcParser::FastV32P1,
+     {42, 63, 0, PROTOBUF_FIELD_OFFSET(ZenHandRx, _impl_.targetposition_)}},
+    // repeated int32 targetVelocity = 6;
+    {::_pbi::TcParser::FastV32P1,
+     {50, 63, 0, PROTOBUF_FIELD_OFFSET(ZenHandRx, _impl_.targetvelocity_)}},
+    // repeated int32 targetCurrent = 7;
+    {::_pbi::TcParser::FastV32P1,
+     {58, 63, 0, PROTOBUF_FIELD_OFFSET(ZenHandRx, _impl_.targetcurrent_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // uint32 handIndex = 1;
+    {PROTOBUF_FIELD_OFFSET(ZenHandRx, _impl_.handindex_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
+    // uint32 handControl = 2;
+    {PROTOBUF_FIELD_OFFSET(ZenHandRx, _impl_.handcontrol_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
+    // repeated int32 modeOp = 3;
+    {PROTOBUF_FIELD_OFFSET(ZenHandRx, _impl_.modeop_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedInt32)},
+    // repeated int32 ctlCommand = 4;
+    {PROTOBUF_FIELD_OFFSET(ZenHandRx, _impl_.ctlcommand_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedInt32)},
+    // repeated int32 targetPosition = 5;
+    {PROTOBUF_FIELD_OFFSET(ZenHandRx, _impl_.targetposition_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedInt32)},
+    // repeated int32 targetVelocity = 6;
+    {PROTOBUF_FIELD_OFFSET(ZenHandRx, _impl_.targetvelocity_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedInt32)},
+    // repeated int32 targetCurrent = 7;
+    {PROTOBUF_FIELD_OFFSET(ZenHandRx, _impl_.targetcurrent_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedInt32)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+
+::uint8_t* ZenHandRx::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.ZenHandRx)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // uint32 handIndex = 1;
+  if (this->_internal_handindex() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+        1, this->_internal_handindex(), target);
+  }
+
+  // uint32 handControl = 2;
+  if (this->_internal_handcontrol() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+        2, this->_internal_handcontrol(), target);
+  }
+
+  // repeated int32 modeOp = 3;
+  {
+    int byte_size = _impl_._modeop_cached_byte_size_.Get();
+    if (byte_size > 0) {
+      target = stream->WriteInt32Packed(3, _internal_modeop(),
+                                                 byte_size, target);
+    }
+  }
+
+  // repeated int32 ctlCommand = 4;
+  {
+    int byte_size = _impl_._ctlcommand_cached_byte_size_.Get();
+    if (byte_size > 0) {
+      target = stream->WriteInt32Packed(4, _internal_ctlcommand(),
+                                                 byte_size, target);
+    }
+  }
+
+  // repeated int32 targetPosition = 5;
+  {
+    int byte_size = _impl_._targetposition_cached_byte_size_.Get();
+    if (byte_size > 0) {
+      target = stream->WriteInt32Packed(5, _internal_targetposition(),
+                                                 byte_size, target);
+    }
+  }
+
+  // repeated int32 targetVelocity = 6;
+  {
+    int byte_size = _impl_._targetvelocity_cached_byte_size_.Get();
+    if (byte_size > 0) {
+      target = stream->WriteInt32Packed(6, _internal_targetvelocity(),
+                                                 byte_size, target);
+    }
+  }
+
+  // repeated int32 targetCurrent = 7;
+  {
+    int byte_size = _impl_._targetcurrent_cached_byte_size_.Get();
+    if (byte_size > 0) {
+      target = stream->WriteInt32Packed(7, _internal_targetcurrent(),
+                                                 byte_size, target);
+    }
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.ZenHandRx)
+  return target;
+}
+
+::size_t ZenHandRx::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.ZenHandRx)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated int32 modeOp = 3;
+  {
+    std::size_t data_size = ::_pbi::WireFormatLite::Int32Size(
+        this->_internal_modeop())
+    ;
+    _impl_._modeop_cached_byte_size_.Set(::_pbi::ToCachedSize(data_size));
+    std::size_t tag_size = data_size == 0
+        ? 0
+        : 1 + ::_pbi::WireFormatLite::Int32Size(
+                            static_cast<int32_t>(data_size))
+    ;
+    total_size += tag_size + data_size;
+  }
+  // repeated int32 ctlCommand = 4;
+  {
+    std::size_t data_size = ::_pbi::WireFormatLite::Int32Size(
+        this->_internal_ctlcommand())
+    ;
+    _impl_._ctlcommand_cached_byte_size_.Set(::_pbi::ToCachedSize(data_size));
+    std::size_t tag_size = data_size == 0
+        ? 0
+        : 1 + ::_pbi::WireFormatLite::Int32Size(
+                            static_cast<int32_t>(data_size))
+    ;
+    total_size += tag_size + data_size;
+  }
+  // repeated int32 targetPosition = 5;
+  {
+    std::size_t data_size = ::_pbi::WireFormatLite::Int32Size(
+        this->_internal_targetposition())
+    ;
+    _impl_._targetposition_cached_byte_size_.Set(::_pbi::ToCachedSize(data_size));
+    std::size_t tag_size = data_size == 0
+        ? 0
+        : 1 + ::_pbi::WireFormatLite::Int32Size(
+                            static_cast<int32_t>(data_size))
+    ;
+    total_size += tag_size + data_size;
+  }
+  // repeated int32 targetVelocity = 6;
+  {
+    std::size_t data_size = ::_pbi::WireFormatLite::Int32Size(
+        this->_internal_targetvelocity())
+    ;
+    _impl_._targetvelocity_cached_byte_size_.Set(::_pbi::ToCachedSize(data_size));
+    std::size_t tag_size = data_size == 0
+        ? 0
+        : 1 + ::_pbi::WireFormatLite::Int32Size(
+                            static_cast<int32_t>(data_size))
+    ;
+    total_size += tag_size + data_size;
+  }
+  // repeated int32 targetCurrent = 7;
+  {
+    std::size_t data_size = ::_pbi::WireFormatLite::Int32Size(
+        this->_internal_targetcurrent())
+    ;
+    _impl_._targetcurrent_cached_byte_size_.Set(::_pbi::ToCachedSize(data_size));
+    std::size_t tag_size = data_size == 0
+        ? 0
+        : 1 + ::_pbi::WireFormatLite::Int32Size(
+                            static_cast<int32_t>(data_size))
+    ;
+    total_size += tag_size + data_size;
+  }
+  // uint32 handIndex = 1;
+  if (this->_internal_handindex() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+        this->_internal_handindex());
+  }
+
+  // uint32 handControl = 2;
+  if (this->_internal_handcontrol() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+        this->_internal_handcontrol());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData ZenHandRx::_class_data_ = {
+    ::google::protobuf::Message::CopyWithSourceCheck,
+    ZenHandRx::MergeImpl
+};
+const ::google::protobuf::Message::ClassData*ZenHandRx::GetClassData() const { return &_class_data_; }
+
+
+void ZenHandRx::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<ZenHandRx*>(&to_msg);
+  auto& from = static_cast<const ZenHandRx&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.ZenHandRx)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_internal_mutable_modeop()->MergeFrom(from._internal_modeop());
+  _this->_internal_mutable_ctlcommand()->MergeFrom(from._internal_ctlcommand());
+  _this->_internal_mutable_targetposition()->MergeFrom(from._internal_targetposition());
+  _this->_internal_mutable_targetvelocity()->MergeFrom(from._internal_targetvelocity());
+  _this->_internal_mutable_targetcurrent()->MergeFrom(from._internal_targetcurrent());
+  if (from._internal_handindex() != 0) {
+    _this->_internal_set_handindex(from._internal_handindex());
+  }
+  if (from._internal_handcontrol() != 0) {
+    _this->_internal_set_handcontrol(from._internal_handcontrol());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void ZenHandRx::CopyFrom(const ZenHandRx& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Nrmk.IndyFramework.ZenHandRx)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool ZenHandRx::IsInitialized() const {
+  return true;
+}
+
+void ZenHandRx::InternalSwap(ZenHandRx* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.modeop_.InternalSwap(&other->_impl_.modeop_);
+  _impl_.ctlcommand_.InternalSwap(&other->_impl_.ctlcommand_);
+  _impl_.targetposition_.InternalSwap(&other->_impl_.targetposition_);
+  _impl_.targetvelocity_.InternalSwap(&other->_impl_.targetvelocity_);
+  _impl_.targetcurrent_.InternalSwap(&other->_impl_.targetcurrent_);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(ZenHandRx, _impl_.handcontrol_)
+      + sizeof(ZenHandRx::_impl_.handcontrol_)
+      - PROTOBUF_FIELD_OFFSET(ZenHandRx, _impl_.handindex_)>(
+          reinterpret_cast<char*>(&_impl_.handindex_),
+          reinterpret_cast<char*>(&other->_impl_.handindex_));
+}
+
+::google::protobuf::Metadata ZenHandRx::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_ethercat_5fmsgs_2eproto_getter, &descriptor_table_ethercat_5fmsgs_2eproto_once,
+      file_level_metadata_ethercat_5fmsgs_2eproto[33]);
+}
+// ===================================================================
+
+class ZenHandTx::_Internal {
+ public:
+};
+
+ZenHandTx::ZenHandTx(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Nrmk.IndyFramework.ZenHandTx)
+}
+ZenHandTx::ZenHandTx(const ZenHandTx& from) : ::google::protobuf::Message() {
+  ZenHandTx* const _this = this;
+  (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.modeopdisp_){from._impl_.modeopdisp_},
+      /* _impl_._modeopdisp_cached_byte_size_ = */ {0},
+      decltype(_impl_.actualposition_){from._impl_.actualposition_},
+      /* _impl_._actualposition_cached_byte_size_ = */ {0},
+      decltype(_impl_.actualvelocity_){from._impl_.actualvelocity_},
+      /* _impl_._actualvelocity_cached_byte_size_ = */ {0},
+      decltype(_impl_.actualcurrent_){from._impl_.actualcurrent_},
+      /* _impl_._actualcurrent_cached_byte_size_ = */ {0},
+      decltype(_impl_.errcode_){from._impl_.errcode_},
+      /* _impl_._errcode_cached_byte_size_ = */ {0},
+      decltype(_impl_.handindex_){},
+      decltype(_impl_.framemessage_){},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  ::memcpy(&_impl_.handindex_, &from._impl_.handindex_,
+    static_cast<::size_t>(reinterpret_cast<char*>(&_impl_.framemessage_) -
+    reinterpret_cast<char*>(&_impl_.handindex_)) + sizeof(_impl_.framemessage_));
+
+  // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.ZenHandTx)
+}
+inline void ZenHandTx::SharedCtor(::_pb::Arena* arena) {
+  (void)arena;
+  new (&_impl_) Impl_{
+      decltype(_impl_.modeopdisp_){arena},
+      /* _impl_._modeopdisp_cached_byte_size_ = */ {0},
+      decltype(_impl_.actualposition_){arena},
+      /* _impl_._actualposition_cached_byte_size_ = */ {0},
+      decltype(_impl_.actualvelocity_){arena},
+      /* _impl_._actualvelocity_cached_byte_size_ = */ {0},
+      decltype(_impl_.actualcurrent_){arena},
+      /* _impl_._actualcurrent_cached_byte_size_ = */ {0},
+      decltype(_impl_.errcode_){arena},
+      /* _impl_._errcode_cached_byte_size_ = */ {0},
+      decltype(_impl_.handindex_){0u},
+      decltype(_impl_.framemessage_){0u},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+}
+ZenHandTx::~ZenHandTx() {
+  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.ZenHandTx)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void ZenHandTx::SharedDtor() {
+  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.modeopdisp_.~RepeatedField();
+  _impl_.actualposition_.~RepeatedField();
+  _impl_.actualvelocity_.~RepeatedField();
+  _impl_.actualcurrent_.~RepeatedField();
+  _impl_.errcode_.~RepeatedField();
+}
+void ZenHandTx::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+PROTOBUF_NOINLINE void ZenHandTx::Clear() {
+// @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.ZenHandTx)
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _internal_mutable_modeopdisp()->Clear();
+  _internal_mutable_actualposition()->Clear();
+  _internal_mutable_actualvelocity()->Clear();
+  _internal_mutable_actualcurrent()->Clear();
+  _internal_mutable_errcode()->Clear();
+  ::memset(&_impl_.handindex_, 0, static_cast<::size_t>(
+      reinterpret_cast<char*>(&_impl_.framemessage_) -
+      reinterpret_cast<char*>(&_impl_.handindex_)) + sizeof(_impl_.framemessage_));
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* ZenHandTx::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<3, 7, 0, 0, 2> ZenHandTx::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    7, 56,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967168,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    7,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_ZenHandTx_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // uint32 handIndex = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(ZenHandTx, _impl_.handindex_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(ZenHandTx, _impl_.handindex_)}},
+    // uint32 frameMessage = 2;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(ZenHandTx, _impl_.framemessage_), 63>(),
+     {16, 63, 0, PROTOBUF_FIELD_OFFSET(ZenHandTx, _impl_.framemessage_)}},
+    // repeated int32 modeOpDisp = 3;
+    {::_pbi::TcParser::FastV32P1,
+     {26, 63, 0, PROTOBUF_FIELD_OFFSET(ZenHandTx, _impl_.modeopdisp_)}},
+    // repeated int32 actualPosition = 4;
+    {::_pbi::TcParser::FastV32P1,
+     {34, 63, 0, PROTOBUF_FIELD_OFFSET(ZenHandTx, _impl_.actualposition_)}},
+    // repeated int32 actualVelocity = 5;
+    {::_pbi::TcParser::FastV32P1,
+     {42, 63, 0, PROTOBUF_FIELD_OFFSET(ZenHandTx, _impl_.actualvelocity_)}},
+    // repeated int32 actualCurrent = 6;
+    {::_pbi::TcParser::FastV32P1,
+     {50, 63, 0, PROTOBUF_FIELD_OFFSET(ZenHandTx, _impl_.actualcurrent_)}},
+    // repeated uint32 errCode = 7;
+    {::_pbi::TcParser::FastV32P1,
+     {58, 63, 0, PROTOBUF_FIELD_OFFSET(ZenHandTx, _impl_.errcode_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // uint32 handIndex = 1;
+    {PROTOBUF_FIELD_OFFSET(ZenHandTx, _impl_.handindex_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
+    // uint32 frameMessage = 2;
+    {PROTOBUF_FIELD_OFFSET(ZenHandTx, _impl_.framemessage_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
+    // repeated int32 modeOpDisp = 3;
+    {PROTOBUF_FIELD_OFFSET(ZenHandTx, _impl_.modeopdisp_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedInt32)},
+    // repeated int32 actualPosition = 4;
+    {PROTOBUF_FIELD_OFFSET(ZenHandTx, _impl_.actualposition_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedInt32)},
+    // repeated int32 actualVelocity = 5;
+    {PROTOBUF_FIELD_OFFSET(ZenHandTx, _impl_.actualvelocity_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedInt32)},
+    // repeated int32 actualCurrent = 6;
+    {PROTOBUF_FIELD_OFFSET(ZenHandTx, _impl_.actualcurrent_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedInt32)},
+    // repeated uint32 errCode = 7;
+    {PROTOBUF_FIELD_OFFSET(ZenHandTx, _impl_.errcode_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedUInt32)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+
+::uint8_t* ZenHandTx::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.ZenHandTx)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // uint32 handIndex = 1;
+  if (this->_internal_handindex() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+        1, this->_internal_handindex(), target);
+  }
+
+  // uint32 frameMessage = 2;
+  if (this->_internal_framemessage() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+        2, this->_internal_framemessage(), target);
+  }
+
+  // repeated int32 modeOpDisp = 3;
+  {
+    int byte_size = _impl_._modeopdisp_cached_byte_size_.Get();
+    if (byte_size > 0) {
+      target = stream->WriteInt32Packed(3, _internal_modeopdisp(),
+                                                 byte_size, target);
+    }
+  }
+
+  // repeated int32 actualPosition = 4;
+  {
+    int byte_size = _impl_._actualposition_cached_byte_size_.Get();
+    if (byte_size > 0) {
+      target = stream->WriteInt32Packed(4, _internal_actualposition(),
+                                                 byte_size, target);
+    }
+  }
+
+  // repeated int32 actualVelocity = 5;
+  {
+    int byte_size = _impl_._actualvelocity_cached_byte_size_.Get();
+    if (byte_size > 0) {
+      target = stream->WriteInt32Packed(5, _internal_actualvelocity(),
+                                                 byte_size, target);
+    }
+  }
+
+  // repeated int32 actualCurrent = 6;
+  {
+    int byte_size = _impl_._actualcurrent_cached_byte_size_.Get();
+    if (byte_size > 0) {
+      target = stream->WriteInt32Packed(6, _internal_actualcurrent(),
+                                                 byte_size, target);
+    }
+  }
+
+  // repeated uint32 errCode = 7;
+  {
+    int byte_size = _impl_._errcode_cached_byte_size_.Get();
+    if (byte_size > 0) {
+      target = stream->WriteUInt32Packed(7, _internal_errcode(),
+                                                 byte_size, target);
+    }
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.ZenHandTx)
+  return target;
+}
+
+::size_t ZenHandTx::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.ZenHandTx)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated int32 modeOpDisp = 3;
+  {
+    std::size_t data_size = ::_pbi::WireFormatLite::Int32Size(
+        this->_internal_modeopdisp())
+    ;
+    _impl_._modeopdisp_cached_byte_size_.Set(::_pbi::ToCachedSize(data_size));
+    std::size_t tag_size = data_size == 0
+        ? 0
+        : 1 + ::_pbi::WireFormatLite::Int32Size(
+                            static_cast<int32_t>(data_size))
+    ;
+    total_size += tag_size + data_size;
+  }
+  // repeated int32 actualPosition = 4;
+  {
+    std::size_t data_size = ::_pbi::WireFormatLite::Int32Size(
+        this->_internal_actualposition())
+    ;
+    _impl_._actualposition_cached_byte_size_.Set(::_pbi::ToCachedSize(data_size));
+    std::size_t tag_size = data_size == 0
+        ? 0
+        : 1 + ::_pbi::WireFormatLite::Int32Size(
+                            static_cast<int32_t>(data_size))
+    ;
+    total_size += tag_size + data_size;
+  }
+  // repeated int32 actualVelocity = 5;
+  {
+    std::size_t data_size = ::_pbi::WireFormatLite::Int32Size(
+        this->_internal_actualvelocity())
+    ;
+    _impl_._actualvelocity_cached_byte_size_.Set(::_pbi::ToCachedSize(data_size));
+    std::size_t tag_size = data_size == 0
+        ? 0
+        : 1 + ::_pbi::WireFormatLite::Int32Size(
+                            static_cast<int32_t>(data_size))
+    ;
+    total_size += tag_size + data_size;
+  }
+  // repeated int32 actualCurrent = 6;
+  {
+    std::size_t data_size = ::_pbi::WireFormatLite::Int32Size(
+        this->_internal_actualcurrent())
+    ;
+    _impl_._actualcurrent_cached_byte_size_.Set(::_pbi::ToCachedSize(data_size));
+    std::size_t tag_size = data_size == 0
+        ? 0
+        : 1 + ::_pbi::WireFormatLite::Int32Size(
+                            static_cast<int32_t>(data_size))
+    ;
+    total_size += tag_size + data_size;
+  }
+  // repeated uint32 errCode = 7;
+  {
+    std::size_t data_size = ::_pbi::WireFormatLite::UInt32Size(
+        this->_internal_errcode())
+    ;
+    _impl_._errcode_cached_byte_size_.Set(::_pbi::ToCachedSize(data_size));
+    std::size_t tag_size = data_size == 0
+        ? 0
+        : 1 + ::_pbi::WireFormatLite::Int32Size(
+                            static_cast<int32_t>(data_size))
+    ;
+    total_size += tag_size + data_size;
+  }
+  // uint32 handIndex = 1;
+  if (this->_internal_handindex() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+        this->_internal_handindex());
+  }
+
+  // uint32 frameMessage = 2;
+  if (this->_internal_framemessage() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+        this->_internal_framemessage());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData ZenHandTx::_class_data_ = {
+    ::google::protobuf::Message::CopyWithSourceCheck,
+    ZenHandTx::MergeImpl
+};
+const ::google::protobuf::Message::ClassData*ZenHandTx::GetClassData() const { return &_class_data_; }
+
+
+void ZenHandTx::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<ZenHandTx*>(&to_msg);
+  auto& from = static_cast<const ZenHandTx&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.ZenHandTx)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_internal_mutable_modeopdisp()->MergeFrom(from._internal_modeopdisp());
+  _this->_internal_mutable_actualposition()->MergeFrom(from._internal_actualposition());
+  _this->_internal_mutable_actualvelocity()->MergeFrom(from._internal_actualvelocity());
+  _this->_internal_mutable_actualcurrent()->MergeFrom(from._internal_actualcurrent());
+  _this->_internal_mutable_errcode()->MergeFrom(from._internal_errcode());
+  if (from._internal_handindex() != 0) {
+    _this->_internal_set_handindex(from._internal_handindex());
+  }
+  if (from._internal_framemessage() != 0) {
+    _this->_internal_set_framemessage(from._internal_framemessage());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void ZenHandTx::CopyFrom(const ZenHandTx& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Nrmk.IndyFramework.ZenHandTx)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool ZenHandTx::IsInitialized() const {
+  return true;
+}
+
+void ZenHandTx::InternalSwap(ZenHandTx* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.modeopdisp_.InternalSwap(&other->_impl_.modeopdisp_);
+  _impl_.actualposition_.InternalSwap(&other->_impl_.actualposition_);
+  _impl_.actualvelocity_.InternalSwap(&other->_impl_.actualvelocity_);
+  _impl_.actualcurrent_.InternalSwap(&other->_impl_.actualcurrent_);
+  _impl_.errcode_.InternalSwap(&other->_impl_.errcode_);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(ZenHandTx, _impl_.framemessage_)
+      + sizeof(ZenHandTx::_impl_.framemessage_)
+      - PROTOBUF_FIELD_OFFSET(ZenHandTx, _impl_.handindex_)>(
+          reinterpret_cast<char*>(&_impl_.handindex_),
+          reinterpret_cast<char*>(&other->_impl_.handindex_));
+}
+
+::google::protobuf::Metadata ZenHandTx::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_ethercat_5fmsgs_2eproto_getter, &descriptor_table_ethercat_5fmsgs_2eproto_once,
+      file_level_metadata_ethercat_5fmsgs_2eproto[34]);
+}
+// ===================================================================
+
+class ZenHandSensor::_Internal {
+ public:
+};
+
+ZenHandSensor::ZenHandSensor(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Nrmk.IndyFramework.ZenHandSensor)
+}
+ZenHandSensor::ZenHandSensor(const ZenHandSensor& from) : ::google::protobuf::Message() {
+  ZenHandSensor* const _this = this;
+  (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.tactile_){from._impl_.tactile_},
+      decltype(_impl_.handindex_){},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  _this->_impl_.handindex_ = from._impl_.handindex_;
+
+  // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.ZenHandSensor)
+}
+inline void ZenHandSensor::SharedCtor(::_pb::Arena* arena) {
+  (void)arena;
+  new (&_impl_) Impl_{
+      decltype(_impl_.tactile_){arena},
+      decltype(_impl_.handindex_){0u},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+}
+ZenHandSensor::~ZenHandSensor() {
+  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.ZenHandSensor)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void ZenHandSensor::SharedDtor() {
+  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.tactile_.~RepeatedPtrField();
+}
+void ZenHandSensor::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+PROTOBUF_NOINLINE void ZenHandSensor::Clear() {
+// @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.ZenHandSensor)
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _internal_mutable_tactile()->Clear();
+  _impl_.handindex_ = 0u;
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* ZenHandSensor::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 1, 0, 2> ZenHandSensor::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_ZenHandSensor_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // repeated .Nrmk.IndyFramework.ZenHandTactile tactile = 2;
+    {::_pbi::TcParser::FastMtR1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(ZenHandSensor, _impl_.tactile_)}},
+    // uint32 handIndex = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(ZenHandSensor, _impl_.handindex_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(ZenHandSensor, _impl_.handindex_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // uint32 handIndex = 1;
+    {PROTOBUF_FIELD_OFFSET(ZenHandSensor, _impl_.handindex_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
+    // repeated .Nrmk.IndyFramework.ZenHandTactile tactile = 2;
+    {PROTOBUF_FIELD_OFFSET(ZenHandSensor, _impl_.tactile_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::Nrmk::IndyFramework::ZenHandTactile>()},
+  }}, {{
+  }},
+};
+
+::uint8_t* ZenHandSensor::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.ZenHandSensor)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // uint32 handIndex = 1;
+  if (this->_internal_handindex() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+        1, this->_internal_handindex(), target);
+  }
+
+  // repeated .Nrmk.IndyFramework.ZenHandTactile tactile = 2;
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_tactile_size()); i < n; i++) {
+    const auto& repfield = this->_internal_tactile().Get(i);
+    target = ::google::protobuf::internal::WireFormatLite::
+        InternalWriteMessage(2, repfield, repfield.GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.ZenHandSensor)
+  return target;
+}
+
+::size_t ZenHandSensor::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.ZenHandSensor)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated .Nrmk.IndyFramework.ZenHandTactile tactile = 2;
+  total_size += 1UL * this->_internal_tactile_size();
+  for (const auto& msg : this->_internal_tactile()) {
+    total_size +=
+      ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
+  }
+  // uint32 handIndex = 1;
+  if (this->_internal_handindex() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+        this->_internal_handindex());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData ZenHandSensor::_class_data_ = {
+    ::google::protobuf::Message::CopyWithSourceCheck,
+    ZenHandSensor::MergeImpl
+};
+const ::google::protobuf::Message::ClassData*ZenHandSensor::GetClassData() const { return &_class_data_; }
+
+
+void ZenHandSensor::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<ZenHandSensor*>(&to_msg);
+  auto& from = static_cast<const ZenHandSensor&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.ZenHandSensor)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_internal_mutable_tactile()->MergeFrom(from._internal_tactile());
+  if (from._internal_handindex() != 0) {
+    _this->_internal_set_handindex(from._internal_handindex());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void ZenHandSensor::CopyFrom(const ZenHandSensor& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Nrmk.IndyFramework.ZenHandSensor)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool ZenHandSensor::IsInitialized() const {
+  return true;
+}
+
+void ZenHandSensor::InternalSwap(ZenHandSensor* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.tactile_.InternalSwap(&other->_impl_.tactile_);
+        swap(_impl_.handindex_, other->_impl_.handindex_);
+}
+
+::google::protobuf::Metadata ZenHandSensor::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_ethercat_5fmsgs_2eproto_getter, &descriptor_table_ethercat_5fmsgs_2eproto_once,
+      file_level_metadata_ethercat_5fmsgs_2eproto[35]);
+}
+// ===================================================================
+
+class ZenHandTactile::_Internal {
+ public:
+  using HasBits = decltype(std::declval<ZenHandTactile>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+    8 * PROTOBUF_FIELD_OFFSET(ZenHandTactile, _impl_._has_bits_);
+  static const ::Nrmk::IndyFramework::ZenForcePoint& totalforce(const ZenHandTactile* msg);
+  static void set_has_totalforce(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
+};
+
+const ::Nrmk::IndyFramework::ZenForcePoint& ZenHandTactile::_Internal::totalforce(const ZenHandTactile* msg) {
+  return *msg->_impl_.totalforce_;
+}
+ZenHandTactile::ZenHandTactile(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Nrmk.IndyFramework.ZenHandTactile)
+}
+ZenHandTactile::ZenHandTactile(const ZenHandTactile& from) : ::google::protobuf::Message() {
+  ZenHandTactile* const _this = this;
+  (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){from._impl_._has_bits_},
+      /*decltype(_impl_._cached_size_)*/ {},
+      decltype(_impl_.point_){from._impl_.point_},
+      decltype(_impl_.totalforce_){nullptr},
+      decltype(_impl_.temp_){},
+  };
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
+    _this->_impl_.totalforce_ = new ::Nrmk::IndyFramework::ZenForcePoint(*from._impl_.totalforce_);
+  }
+  _this->_impl_.temp_ = from._impl_.temp_;
+
+  // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.ZenHandTactile)
+}
+inline void ZenHandTactile::SharedCtor(::_pb::Arena* arena) {
+  (void)arena;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){},
+      /*decltype(_impl_._cached_size_)*/ {},
+      decltype(_impl_.point_){arena},
+      decltype(_impl_.totalforce_){nullptr},
+      decltype(_impl_.temp_){0u},
+  };
+}
+ZenHandTactile::~ZenHandTactile() {
+  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.ZenHandTactile)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void ZenHandTactile::SharedDtor() {
+  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.point_.~RepeatedPtrField();
+  if (this != internal_default_instance()) delete _impl_.totalforce_;
+}
+void ZenHandTactile::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+PROTOBUF_NOINLINE void ZenHandTactile::Clear() {
+// @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.ZenHandTactile)
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _internal_mutable_point()->Clear();
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.totalforce_ != nullptr);
+    _impl_.totalforce_->Clear();
+  }
+  _impl_.temp_ = 0u;
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* ZenHandTactile::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<2, 3, 2, 0, 2> ZenHandTactile::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(ZenHandTactile, _impl_._has_bits_),
+    0, // no _extensions_
+    3, 24,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967288,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    3,  // num_field_entries
+    2,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_ZenHandTactile_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // .Nrmk.IndyFramework.ZenForcePoint totalForce = 1;
+    {::_pbi::TcParser::FastMtS1,
+     {10, 0, 0, PROTOBUF_FIELD_OFFSET(ZenHandTactile, _impl_.totalforce_)}},
+    // repeated .Nrmk.IndyFramework.ZenForcePoint point = 2;
+    {::_pbi::TcParser::FastMtR1,
+     {18, 63, 1, PROTOBUF_FIELD_OFFSET(ZenHandTactile, _impl_.point_)}},
+    // uint32 temp = 3;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(ZenHandTactile, _impl_.temp_), 63>(),
+     {24, 63, 0, PROTOBUF_FIELD_OFFSET(ZenHandTactile, _impl_.temp_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // .Nrmk.IndyFramework.ZenForcePoint totalForce = 1;
+    {PROTOBUF_FIELD_OFFSET(ZenHandTactile, _impl_.totalforce_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+    // repeated .Nrmk.IndyFramework.ZenForcePoint point = 2;
+    {PROTOBUF_FIELD_OFFSET(ZenHandTactile, _impl_.point_), -1, 1,
+    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+    // uint32 temp = 3;
+    {PROTOBUF_FIELD_OFFSET(ZenHandTactile, _impl_.temp_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::Nrmk::IndyFramework::ZenForcePoint>()},
+    {::_pbi::TcParser::GetTable<::Nrmk::IndyFramework::ZenForcePoint>()},
+  }}, {{
+  }},
+};
+
+::uint8_t* ZenHandTactile::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.ZenHandTactile)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  // .Nrmk.IndyFramework.ZenForcePoint totalForce = 1;
+  if (cached_has_bits & 0x00000001u) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessage(1, _Internal::totalforce(this),
+        _Internal::totalforce(this).GetCachedSize(), target, stream);
+  }
+
+  // repeated .Nrmk.IndyFramework.ZenForcePoint point = 2;
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_point_size()); i < n; i++) {
+    const auto& repfield = this->_internal_point().Get(i);
+    target = ::google::protobuf::internal::WireFormatLite::
+        InternalWriteMessage(2, repfield, repfield.GetCachedSize(), target, stream);
+  }
+
+  // uint32 temp = 3;
+  if (this->_internal_temp() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+        3, this->_internal_temp(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.ZenHandTactile)
+  return target;
+}
+
+::size_t ZenHandTactile::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.ZenHandTactile)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated .Nrmk.IndyFramework.ZenForcePoint point = 2;
+  total_size += 1UL * this->_internal_point_size();
+  for (const auto& msg : this->_internal_point()) {
+    total_size +=
+      ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
+  }
+  // .Nrmk.IndyFramework.ZenForcePoint totalForce = 1;
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::MessageSize(
+        *_impl_.totalforce_);
+  }
+
+  // uint32 temp = 3;
+  if (this->_internal_temp() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+        this->_internal_temp());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData ZenHandTactile::_class_data_ = {
+    ::google::protobuf::Message::CopyWithSourceCheck,
+    ZenHandTactile::MergeImpl
+};
+const ::google::protobuf::Message::ClassData*ZenHandTactile::GetClassData() const { return &_class_data_; }
+
+
+void ZenHandTactile::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<ZenHandTactile*>(&to_msg);
+  auto& from = static_cast<const ZenHandTactile&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.ZenHandTactile)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_internal_mutable_point()->MergeFrom(from._internal_point());
+  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
+    _this->_internal_mutable_totalforce()->::Nrmk::IndyFramework::ZenForcePoint::MergeFrom(
+        from._internal_totalforce());
+  }
+  if (from._internal_temp() != 0) {
+    _this->_internal_set_temp(from._internal_temp());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void ZenHandTactile::CopyFrom(const ZenHandTactile& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Nrmk.IndyFramework.ZenHandTactile)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool ZenHandTactile::IsInitialized() const {
+  return true;
+}
+
+void ZenHandTactile::InternalSwap(ZenHandTactile* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  _impl_.point_.InternalSwap(&other->_impl_.point_);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(ZenHandTactile, _impl_.temp_)
+      + sizeof(ZenHandTactile::_impl_.temp_)
+      - PROTOBUF_FIELD_OFFSET(ZenHandTactile, _impl_.totalforce_)>(
+          reinterpret_cast<char*>(&_impl_.totalforce_),
+          reinterpret_cast<char*>(&other->_impl_.totalforce_));
+}
+
+::google::protobuf::Metadata ZenHandTactile::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_ethercat_5fmsgs_2eproto_getter, &descriptor_table_ethercat_5fmsgs_2eproto_once,
+      file_level_metadata_ethercat_5fmsgs_2eproto[36]);
+}
+// ===================================================================
+
+class ZenForcePoint::_Internal {
+ public:
+};
+
+ZenForcePoint::ZenForcePoint(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Nrmk.IndyFramework.ZenForcePoint)
+}
+ZenForcePoint::ZenForcePoint(const ZenForcePoint& from)
+    : ::google::protobuf::Message(), _impl_(from._impl_) {
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.ZenForcePoint)
+}
+inline void ZenForcePoint::SharedCtor(::_pb::Arena* arena) {
+  (void)arena;
+  new (&_impl_) Impl_{
+      decltype(_impl_.x_){0},
+      decltype(_impl_.y_){0},
+      decltype(_impl_.z_){0},
+      decltype(_impl_.force_){0},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+}
+ZenForcePoint::~ZenForcePoint() {
+  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.ZenForcePoint)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void ZenForcePoint::SharedDtor() {
+  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
+}
+void ZenForcePoint::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+PROTOBUF_NOINLINE void ZenForcePoint::Clear() {
+// @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.ZenForcePoint)
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ::memset(&_impl_.x_, 0, static_cast<::size_t>(
+      reinterpret_cast<char*>(&_impl_.force_) -
+      reinterpret_cast<char*>(&_impl_.x_)) + sizeof(_impl_.force_));
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* ZenForcePoint::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<2, 4, 0, 0, 2> ZenForcePoint::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    4, 24,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967280,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    4,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_ZenForcePoint_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // int32 force = 4;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(ZenForcePoint, _impl_.force_), 63>(),
+     {32, 63, 0, PROTOBUF_FIELD_OFFSET(ZenForcePoint, _impl_.force_)}},
+    // int32 x = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(ZenForcePoint, _impl_.x_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(ZenForcePoint, _impl_.x_)}},
+    // int32 y = 2;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(ZenForcePoint, _impl_.y_), 63>(),
+     {16, 63, 0, PROTOBUF_FIELD_OFFSET(ZenForcePoint, _impl_.y_)}},
+    // int32 z = 3;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(ZenForcePoint, _impl_.z_), 63>(),
+     {24, 63, 0, PROTOBUF_FIELD_OFFSET(ZenForcePoint, _impl_.z_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // int32 x = 1;
+    {PROTOBUF_FIELD_OFFSET(ZenForcePoint, _impl_.x_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    // int32 y = 2;
+    {PROTOBUF_FIELD_OFFSET(ZenForcePoint, _impl_.y_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    // int32 z = 3;
+    {PROTOBUF_FIELD_OFFSET(ZenForcePoint, _impl_.z_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    // int32 force = 4;
+    {PROTOBUF_FIELD_OFFSET(ZenForcePoint, _impl_.force_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+
+::uint8_t* ZenForcePoint::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.ZenForcePoint)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // int32 x = 1;
+  if (this->_internal_x() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<1>(
+            stream, this->_internal_x(), target);
+  }
+
+  // int32 y = 2;
+  if (this->_internal_y() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<2>(
+            stream, this->_internal_y(), target);
+  }
+
+  // int32 z = 3;
+  if (this->_internal_z() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<3>(
+            stream, this->_internal_z(), target);
+  }
+
+  // int32 force = 4;
+  if (this->_internal_force() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<4>(
+            stream, this->_internal_force(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.ZenForcePoint)
+  return target;
+}
+
+::size_t ZenForcePoint::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.ZenForcePoint)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // int32 x = 1;
+  if (this->_internal_x() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_x());
+  }
+
+  // int32 y = 2;
+  if (this->_internal_y() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_y());
+  }
+
+  // int32 z = 3;
+  if (this->_internal_z() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_z());
+  }
+
+  // int32 force = 4;
+  if (this->_internal_force() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_force());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData ZenForcePoint::_class_data_ = {
+    ::google::protobuf::Message::CopyWithSourceCheck,
+    ZenForcePoint::MergeImpl
+};
+const ::google::protobuf::Message::ClassData*ZenForcePoint::GetClassData() const { return &_class_data_; }
+
+
+void ZenForcePoint::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<ZenForcePoint*>(&to_msg);
+  auto& from = static_cast<const ZenForcePoint&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.ZenForcePoint)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from._internal_x() != 0) {
+    _this->_internal_set_x(from._internal_x());
+  }
+  if (from._internal_y() != 0) {
+    _this->_internal_set_y(from._internal_y());
+  }
+  if (from._internal_z() != 0) {
+    _this->_internal_set_z(from._internal_z());
+  }
+  if (from._internal_force() != 0) {
+    _this->_internal_set_force(from._internal_force());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void ZenForcePoint::CopyFrom(const ZenForcePoint& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Nrmk.IndyFramework.ZenForcePoint)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool ZenForcePoint::IsInitialized() const {
+  return true;
+}
+
+void ZenForcePoint::InternalSwap(ZenForcePoint* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(ZenForcePoint, _impl_.force_)
+      + sizeof(ZenForcePoint::_impl_.force_)
+      - PROTOBUF_FIELD_OFFSET(ZenForcePoint, _impl_.x_)>(
+          reinterpret_cast<char*>(&_impl_.x_),
+          reinterpret_cast<char*>(&other->_impl_.x_));
+}
+
+::google::protobuf::Metadata ZenForcePoint::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_ethercat_5fmsgs_2eproto_getter, &descriptor_table_ethercat_5fmsgs_2eproto_once,
+      file_level_metadata_ethercat_5fmsgs_2eproto[37]);
+}
+// ===================================================================
+
 class ServoParam::_Internal {
  public:
 };
@@ -8517,7 +11058,7 @@ void ServoParam::InternalSwap(ServoParam* other) {
 ::google::protobuf::Metadata ServoParam::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_ethercat_5fmsgs_2eproto_getter, &descriptor_table_ethercat_5fmsgs_2eproto_once,
-      file_level_metadata_ethercat_5fmsgs_2eproto[29]);
+      file_level_metadata_ethercat_5fmsgs_2eproto[38]);
 }
 // ===================================================================
 
@@ -8683,7 +11224,7 @@ void SDOIntVal::InternalSwap(SDOIntVal* other) {
 ::google::protobuf::Metadata SDOIntVal::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_ethercat_5fmsgs_2eproto_getter, &descriptor_table_ethercat_5fmsgs_2eproto_once,
-      file_level_metadata_ethercat_5fmsgs_2eproto[30]);
+      file_level_metadata_ethercat_5fmsgs_2eproto[39]);
 }
 // ===================================================================
 
@@ -8849,7 +11390,7 @@ void RobotZeroCount::InternalSwap(RobotZeroCount* other) {
 ::google::protobuf::Metadata RobotZeroCount::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_ethercat_5fmsgs_2eproto_getter, &descriptor_table_ethercat_5fmsgs_2eproto_once,
-      file_level_metadata_ethercat_5fmsgs_2eproto[31]);
+      file_level_metadata_ethercat_5fmsgs_2eproto[40]);
 }
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace IndyFramework

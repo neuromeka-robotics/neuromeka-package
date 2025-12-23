@@ -777,11 +777,28 @@ class IndyDCP3:
                                          preserving_proto_field_name=True,
                                          use_integers_for_enums=True)
 
-    def set_gripper_command(self, command, gripper_type, pvt_data, tool_index=0):
-        response = self.device.SetGripperCommand(device_msgs.GripperCommand(gripper_command=command,
-                                                                            gripper_type=gripper_type,
-                                                                            gripper_pvt_data=pvt_data,
-                                                                            tool_index=tool_index))
+    def set_gripper_command(self,
+                            command,
+                            gripper_type,
+                            pvt_data,
+                            tool_index=0,
+                            gripper_modbus_use: bool = False,
+                            gripper_modbus_server_name: str = ""):
+        # gripper_pvt_data is a repeated int32 in proto; normalize common input shapes.
+        if pvt_data is None:
+            pvt_data = []
+        elif not isinstance(pvt_data, (list, tuple)):
+            pvt_data = [pvt_data]
+        pvt_data = [int(x) for x in pvt_data]
+
+        response = self.device.SetGripperCommand(device_msgs.GripperCommand(
+            gripper_command=command,
+            gripper_type=gripper_type,
+            gripper_pvt_data=pvt_data,
+            gripper_modbus_use=gripper_modbus_use,
+            gripper_modbus_server_name=gripper_modbus_server_name,
+            tool_index=tool_index,
+        ))
         return json_format.MessageToDict(response,
                                          including_default_value_fields=True,
                                          preserving_proto_field_name=True,

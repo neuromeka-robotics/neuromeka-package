@@ -229,6 +229,15 @@ extern ToolShapeListDefaultTypeInternal _ToolShapeList_default_instance_;
 class VisionServerList;
 struct VisionServerListDefaultTypeInternal;
 extern VisionServerListDefaultTypeInternal _VisionServerList_default_instance_;
+class WeldPosition;
+struct WeldPositionDefaultTypeInternal;
+extern WeldPositionDefaultTypeInternal _WeldPosition_default_instance_;
+class WeldPositionList;
+struct WeldPositionListDefaultTypeInternal;
+extern WeldPositionListDefaultTypeInternal _WeldPositionList_default_instance_;
+class WeldingConfigInfo;
+struct WeldingConfigInfoDefaultTypeInternal;
+extern WeldingConfigInfoDefaultTypeInternal _WeldingConfigInfo_default_instance_;
 class Zone;
 struct ZoneDefaultTypeInternal;
 extern ZoneDefaultTypeInternal _Zone_default_instance_;
@@ -2381,23 +2390,23 @@ class CustomPosList final :
   enum : int {
     kCustomPosFieldNumber = 1,
   };
-  // repeated .Nrmk.IndyFramework.NamedJointPosition custom_pos = 1;
+  // repeated .Nrmk.IndyFramework.NamedPositionSet custom_pos = 1;
   int custom_pos_size() const;
   private:
   int _internal_custom_pos_size() const;
 
   public:
   void clear_custom_pos() ;
-  ::Nrmk::IndyFramework::NamedJointPosition* mutable_custom_pos(int index);
-  ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::NamedJointPosition >*
+  ::Nrmk::IndyFramework::NamedPositionSet* mutable_custom_pos(int index);
+  ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::NamedPositionSet >*
       mutable_custom_pos();
   private:
-  const ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::NamedJointPosition>& _internal_custom_pos() const;
-  ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::NamedJointPosition>* _internal_mutable_custom_pos();
+  const ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::NamedPositionSet>& _internal_custom_pos() const;
+  ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::NamedPositionSet>* _internal_mutable_custom_pos();
   public:
-  const ::Nrmk::IndyFramework::NamedJointPosition& custom_pos(int index) const;
-  ::Nrmk::IndyFramework::NamedJointPosition* add_custom_pos();
-  const ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::NamedJointPosition >&
+  const ::Nrmk::IndyFramework::NamedPositionSet& custom_pos(int index) const;
+  ::Nrmk::IndyFramework::NamedPositionSet* add_custom_pos();
+  const ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::NamedPositionSet >&
       custom_pos() const;
   // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.CustomPosList)
  private:
@@ -2409,7 +2418,7 @@ class CustomPosList final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
-    ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::NamedJointPosition > custom_pos_;
+    ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::NamedPositionSet > custom_pos_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -12295,6 +12304,604 @@ class EnvironmentList final :
   };
   union { Impl_ _impl_; };
   friend struct ::TableStruct_config_5fmsgs_2eproto;
+};// -------------------------------------------------------------------
+
+class WeldingConfigInfo final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.WeldingConfigInfo) */ {
+ public:
+  inline WeldingConfigInfo() : WeldingConfigInfo(nullptr) {}
+  ~WeldingConfigInfo() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR WeldingConfigInfo(::google::protobuf::internal::ConstantInitialized);
+
+  WeldingConfigInfo(const WeldingConfigInfo& from);
+  WeldingConfigInfo(WeldingConfigInfo&& from) noexcept
+    : WeldingConfigInfo() {
+    *this = ::std::move(from);
+  }
+
+  inline WeldingConfigInfo& operator=(const WeldingConfigInfo& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline WeldingConfigInfo& operator=(WeldingConfigInfo&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const WeldingConfigInfo& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const WeldingConfigInfo* internal_default_instance() {
+    return reinterpret_cast<const WeldingConfigInfo*>(
+               &_WeldingConfigInfo_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    58;
+
+  friend void swap(WeldingConfigInfo& a, WeldingConfigInfo& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(WeldingConfigInfo* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(WeldingConfigInfo* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  WeldingConfigInfo* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<WeldingConfigInfo>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const WeldingConfigInfo& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const WeldingConfigInfo& from) {
+    WeldingConfigInfo::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(WeldingConfigInfo* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "Nrmk.IndyFramework.WeldingConfigInfo";
+  }
+  protected:
+  explicit WeldingConfigInfo(::google::protobuf::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kModelFieldNumber = 1,
+    kInterfaceFieldNumber = 2,
+    kModbusIpFieldNumber = 6,
+    kNodeIdFieldNumber = 3,
+    kBaudRateFieldNumber = 4,
+    kVisionFieldNumber = 5,
+    kModbusPortFieldNumber = 7,
+  };
+  // string model = 1;
+  void clear_model() ;
+  const std::string& model() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_model(Arg_&& arg, Args_... args);
+  std::string* mutable_model();
+  PROTOBUF_NODISCARD std::string* release_model();
+  void set_allocated_model(std::string* ptr);
+
+  private:
+  const std::string& _internal_model() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_model(
+      const std::string& value);
+  std::string* _internal_mutable_model();
+
+  public:
+  // string interface = 2;
+  void clear_interface() ;
+  const std::string& interface() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_interface(Arg_&& arg, Args_... args);
+  std::string* mutable_interface();
+  PROTOBUF_NODISCARD std::string* release_interface();
+  void set_allocated_interface(std::string* ptr);
+
+  private:
+  const std::string& _internal_interface() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_interface(
+      const std::string& value);
+  std::string* _internal_mutable_interface();
+
+  public:
+  // string modbus_ip = 6;
+  void clear_modbus_ip() ;
+  const std::string& modbus_ip() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_modbus_ip(Arg_&& arg, Args_... args);
+  std::string* mutable_modbus_ip();
+  PROTOBUF_NODISCARD std::string* release_modbus_ip();
+  void set_allocated_modbus_ip(std::string* ptr);
+
+  private:
+  const std::string& _internal_modbus_ip() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_modbus_ip(
+      const std::string& value);
+  std::string* _internal_mutable_modbus_ip();
+
+  public:
+  // uint32 node_id = 3;
+  void clear_node_id() ;
+  ::uint32_t node_id() const;
+  void set_node_id(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_node_id() const;
+  void _internal_set_node_id(::uint32_t value);
+
+  public:
+  // uint32 baud_rate = 4;
+  void clear_baud_rate() ;
+  ::uint32_t baud_rate() const;
+  void set_baud_rate(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_baud_rate() const;
+  void _internal_set_baud_rate(::uint32_t value);
+
+  public:
+  // bool vision = 5;
+  void clear_vision() ;
+  bool vision() const;
+  void set_vision(bool value);
+
+  private:
+  bool _internal_vision() const;
+  void _internal_set_vision(bool value);
+
+  public:
+  // uint32 modbus_port = 7;
+  void clear_modbus_port() ;
+  ::uint32_t modbus_port() const;
+  void set_modbus_port(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_modbus_port() const;
+  void _internal_set_modbus_port(::uint32_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.WeldingConfigInfo)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<3, 7, 0, 68, 2> _table_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::google::protobuf::internal::ArenaStringPtr model_;
+    ::google::protobuf::internal::ArenaStringPtr interface_;
+    ::google::protobuf::internal::ArenaStringPtr modbus_ip_;
+    ::uint32_t node_id_;
+    ::uint32_t baud_rate_;
+    bool vision_;
+    ::uint32_t modbus_port_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_config_5fmsgs_2eproto;
+};// -------------------------------------------------------------------
+
+class WeldPosition final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.WeldPosition) */ {
+ public:
+  inline WeldPosition() : WeldPosition(nullptr) {}
+  ~WeldPosition() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR WeldPosition(::google::protobuf::internal::ConstantInitialized);
+
+  WeldPosition(const WeldPosition& from);
+  WeldPosition(WeldPosition&& from) noexcept
+    : WeldPosition() {
+    *this = ::std::move(from);
+  }
+
+  inline WeldPosition& operator=(const WeldPosition& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline WeldPosition& operator=(WeldPosition&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const WeldPosition& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const WeldPosition* internal_default_instance() {
+    return reinterpret_cast<const WeldPosition*>(
+               &_WeldPosition_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    59;
+
+  friend void swap(WeldPosition& a, WeldPosition& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(WeldPosition* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(WeldPosition* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  WeldPosition* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<WeldPosition>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const WeldPosition& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const WeldPosition& from) {
+    WeldPosition::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(WeldPosition* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "Nrmk.IndyFramework.WeldPosition";
+  }
+  protected:
+  explicit WeldPosition(::google::protobuf::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kPositionFieldNumber = 2,
+    kNameFieldNumber = 1,
+  };
+  // repeated float position = 2;
+  int position_size() const;
+  private:
+  int _internal_position_size() const;
+
+  public:
+  void clear_position() ;
+  float position(int index) const;
+  void set_position(int index, float value);
+  void add_position(float value);
+  const ::google::protobuf::RepeatedField<float>& position() const;
+  ::google::protobuf::RepeatedField<float>* mutable_position();
+
+  private:
+  const ::google::protobuf::RepeatedField<float>& _internal_position() const;
+  ::google::protobuf::RepeatedField<float>* _internal_mutable_position();
+
+  public:
+  // string name = 1;
+  void clear_name() ;
+  const std::string& name() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_name(Arg_&& arg, Args_... args);
+  std::string* mutable_name();
+  PROTOBUF_NODISCARD std::string* release_name();
+  void set_allocated_name(std::string* ptr);
+
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(
+      const std::string& value);
+  std::string* _internal_mutable_name();
+
+  public:
+  // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.WeldPosition)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<1, 2, 0, 44, 2> _table_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::google::protobuf::RepeatedField<float> position_;
+    ::google::protobuf::internal::ArenaStringPtr name_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_config_5fmsgs_2eproto;
+};// -------------------------------------------------------------------
+
+class WeldPositionList final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.WeldPositionList) */ {
+ public:
+  inline WeldPositionList() : WeldPositionList(nullptr) {}
+  ~WeldPositionList() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR WeldPositionList(::google::protobuf::internal::ConstantInitialized);
+
+  WeldPositionList(const WeldPositionList& from);
+  WeldPositionList(WeldPositionList&& from) noexcept
+    : WeldPositionList() {
+    *this = ::std::move(from);
+  }
+
+  inline WeldPositionList& operator=(const WeldPositionList& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline WeldPositionList& operator=(WeldPositionList&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const WeldPositionList& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const WeldPositionList* internal_default_instance() {
+    return reinterpret_cast<const WeldPositionList*>(
+               &_WeldPositionList_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    60;
+
+  friend void swap(WeldPositionList& a, WeldPositionList& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(WeldPositionList* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(WeldPositionList* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  WeldPositionList* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<WeldPositionList>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const WeldPositionList& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const WeldPositionList& from) {
+    WeldPositionList::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(WeldPositionList* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "Nrmk.IndyFramework.WeldPositionList";
+  }
+  protected:
+  explicit WeldPositionList(::google::protobuf::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kPositionsFieldNumber = 1,
+  };
+  // repeated .Nrmk.IndyFramework.WeldPosition positions = 1;
+  int positions_size() const;
+  private:
+  int _internal_positions_size() const;
+
+  public:
+  void clear_positions() ;
+  ::Nrmk::IndyFramework::WeldPosition* mutable_positions(int index);
+  ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::WeldPosition >*
+      mutable_positions();
+  private:
+  const ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::WeldPosition>& _internal_positions() const;
+  ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::WeldPosition>* _internal_mutable_positions();
+  public:
+  const ::Nrmk::IndyFramework::WeldPosition& positions(int index) const;
+  ::Nrmk::IndyFramework::WeldPosition* add_positions();
+  const ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::WeldPosition >&
+      positions() const;
+  // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.WeldPositionList)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<0, 1, 1, 0, 2> _table_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::WeldPosition > positions_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_config_5fmsgs_2eproto;
 };
 
 // ===================================================================
@@ -13272,44 +13879,44 @@ inline void RefFrameList::set_allocated_default_name(std::string* value) {
 
 // CustomPosList
 
-// repeated .Nrmk.IndyFramework.NamedJointPosition custom_pos = 1;
+// repeated .Nrmk.IndyFramework.NamedPositionSet custom_pos = 1;
 inline int CustomPosList::_internal_custom_pos_size() const {
   return _internal_custom_pos().size();
 }
 inline int CustomPosList::custom_pos_size() const {
   return _internal_custom_pos_size();
 }
-inline ::Nrmk::IndyFramework::NamedJointPosition* CustomPosList::mutable_custom_pos(int index) {
+inline ::Nrmk::IndyFramework::NamedPositionSet* CustomPosList::mutable_custom_pos(int index) {
   // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.CustomPosList.custom_pos)
   return _internal_mutable_custom_pos()->Mutable(index);
 }
-inline ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::NamedJointPosition >*
+inline ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::NamedPositionSet >*
 CustomPosList::mutable_custom_pos() {
   // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.CustomPosList.custom_pos)
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   return _internal_mutable_custom_pos();
 }
-inline const ::Nrmk::IndyFramework::NamedJointPosition& CustomPosList::custom_pos(int index) const {
+inline const ::Nrmk::IndyFramework::NamedPositionSet& CustomPosList::custom_pos(int index) const {
   // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.CustomPosList.custom_pos)
     return _internal_custom_pos().Get(index);
 }
-inline ::Nrmk::IndyFramework::NamedJointPosition* CustomPosList::add_custom_pos() {
+inline ::Nrmk::IndyFramework::NamedPositionSet* CustomPosList::add_custom_pos() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ::Nrmk::IndyFramework::NamedJointPosition* _add = _internal_mutable_custom_pos()->Add();
+  ::Nrmk::IndyFramework::NamedPositionSet* _add = _internal_mutable_custom_pos()->Add();
   // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.CustomPosList.custom_pos)
   return _add;
 }
-inline const ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::NamedJointPosition >&
+inline const ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::NamedPositionSet >&
 CustomPosList::custom_pos() const {
   // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.CustomPosList.custom_pos)
   return _internal_custom_pos();
 }
-inline const ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::NamedJointPosition>&
+inline const ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::NamedPositionSet>&
 CustomPosList::_internal_custom_pos() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.custom_pos_;
 }
-inline ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::NamedJointPosition>*
+inline ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::NamedPositionSet>*
 CustomPosList::_internal_mutable_custom_pos() {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return &_impl_.custom_pos_;
@@ -19537,6 +20144,398 @@ inline void EnvironmentList::set_allocated_default_name(std::string* value) {
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.EnvironmentList.default_name)
+}
+
+// -------------------------------------------------------------------
+
+// WeldingConfigInfo
+
+// string model = 1;
+inline void WeldingConfigInfo::clear_model() {
+  _impl_.model_.ClearToEmpty();
+}
+inline const std::string& WeldingConfigInfo::model() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.WeldingConfigInfo.model)
+  return _internal_model();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void WeldingConfigInfo::set_model(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.model_.Set(static_cast<Arg_&&>(arg), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.WeldingConfigInfo.model)
+}
+inline std::string* WeldingConfigInfo::mutable_model() {
+  std::string* _s = _internal_mutable_model();
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.WeldingConfigInfo.model)
+  return _s;
+}
+inline const std::string& WeldingConfigInfo::_internal_model() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.model_.Get();
+}
+inline void WeldingConfigInfo::_internal_set_model(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.model_.Set(value, GetArenaForAllocation());
+}
+inline std::string* WeldingConfigInfo::_internal_mutable_model() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.model_.Mutable( GetArenaForAllocation());
+}
+inline std::string* WeldingConfigInfo::release_model() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:Nrmk.IndyFramework.WeldingConfigInfo.model)
+  return _impl_.model_.Release();
+}
+inline void WeldingConfigInfo::set_allocated_model(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.model_.SetAllocated(value, GetArenaForAllocation());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.model_.IsDefault()) {
+          _impl_.model_.Set("", GetArenaForAllocation());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.WeldingConfigInfo.model)
+}
+
+// string interface = 2;
+inline void WeldingConfigInfo::clear_interface() {
+  _impl_.interface_.ClearToEmpty();
+}
+inline const std::string& WeldingConfigInfo::interface() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.WeldingConfigInfo.interface)
+  return _internal_interface();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void WeldingConfigInfo::set_interface(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.interface_.Set(static_cast<Arg_&&>(arg), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.WeldingConfigInfo.interface)
+}
+inline std::string* WeldingConfigInfo::mutable_interface() {
+  std::string* _s = _internal_mutable_interface();
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.WeldingConfigInfo.interface)
+  return _s;
+}
+inline const std::string& WeldingConfigInfo::_internal_interface() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.interface_.Get();
+}
+inline void WeldingConfigInfo::_internal_set_interface(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.interface_.Set(value, GetArenaForAllocation());
+}
+inline std::string* WeldingConfigInfo::_internal_mutable_interface() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.interface_.Mutable( GetArenaForAllocation());
+}
+inline std::string* WeldingConfigInfo::release_interface() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:Nrmk.IndyFramework.WeldingConfigInfo.interface)
+  return _impl_.interface_.Release();
+}
+inline void WeldingConfigInfo::set_allocated_interface(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.interface_.SetAllocated(value, GetArenaForAllocation());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.interface_.IsDefault()) {
+          _impl_.interface_.Set("", GetArenaForAllocation());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.WeldingConfigInfo.interface)
+}
+
+// uint32 node_id = 3;
+inline void WeldingConfigInfo::clear_node_id() {
+  _impl_.node_id_ = 0u;
+}
+inline ::uint32_t WeldingConfigInfo::node_id() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.WeldingConfigInfo.node_id)
+  return _internal_node_id();
+}
+inline void WeldingConfigInfo::set_node_id(::uint32_t value) {
+  _internal_set_node_id(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.WeldingConfigInfo.node_id)
+}
+inline ::uint32_t WeldingConfigInfo::_internal_node_id() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.node_id_;
+}
+inline void WeldingConfigInfo::_internal_set_node_id(::uint32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.node_id_ = value;
+}
+
+// uint32 baud_rate = 4;
+inline void WeldingConfigInfo::clear_baud_rate() {
+  _impl_.baud_rate_ = 0u;
+}
+inline ::uint32_t WeldingConfigInfo::baud_rate() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.WeldingConfigInfo.baud_rate)
+  return _internal_baud_rate();
+}
+inline void WeldingConfigInfo::set_baud_rate(::uint32_t value) {
+  _internal_set_baud_rate(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.WeldingConfigInfo.baud_rate)
+}
+inline ::uint32_t WeldingConfigInfo::_internal_baud_rate() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.baud_rate_;
+}
+inline void WeldingConfigInfo::_internal_set_baud_rate(::uint32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.baud_rate_ = value;
+}
+
+// bool vision = 5;
+inline void WeldingConfigInfo::clear_vision() {
+  _impl_.vision_ = false;
+}
+inline bool WeldingConfigInfo::vision() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.WeldingConfigInfo.vision)
+  return _internal_vision();
+}
+inline void WeldingConfigInfo::set_vision(bool value) {
+  _internal_set_vision(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.WeldingConfigInfo.vision)
+}
+inline bool WeldingConfigInfo::_internal_vision() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.vision_;
+}
+inline void WeldingConfigInfo::_internal_set_vision(bool value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.vision_ = value;
+}
+
+// string modbus_ip = 6;
+inline void WeldingConfigInfo::clear_modbus_ip() {
+  _impl_.modbus_ip_.ClearToEmpty();
+}
+inline const std::string& WeldingConfigInfo::modbus_ip() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.WeldingConfigInfo.modbus_ip)
+  return _internal_modbus_ip();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void WeldingConfigInfo::set_modbus_ip(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.modbus_ip_.Set(static_cast<Arg_&&>(arg), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.WeldingConfigInfo.modbus_ip)
+}
+inline std::string* WeldingConfigInfo::mutable_modbus_ip() {
+  std::string* _s = _internal_mutable_modbus_ip();
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.WeldingConfigInfo.modbus_ip)
+  return _s;
+}
+inline const std::string& WeldingConfigInfo::_internal_modbus_ip() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.modbus_ip_.Get();
+}
+inline void WeldingConfigInfo::_internal_set_modbus_ip(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.modbus_ip_.Set(value, GetArenaForAllocation());
+}
+inline std::string* WeldingConfigInfo::_internal_mutable_modbus_ip() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.modbus_ip_.Mutable( GetArenaForAllocation());
+}
+inline std::string* WeldingConfigInfo::release_modbus_ip() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:Nrmk.IndyFramework.WeldingConfigInfo.modbus_ip)
+  return _impl_.modbus_ip_.Release();
+}
+inline void WeldingConfigInfo::set_allocated_modbus_ip(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.modbus_ip_.SetAllocated(value, GetArenaForAllocation());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.modbus_ip_.IsDefault()) {
+          _impl_.modbus_ip_.Set("", GetArenaForAllocation());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.WeldingConfigInfo.modbus_ip)
+}
+
+// uint32 modbus_port = 7;
+inline void WeldingConfigInfo::clear_modbus_port() {
+  _impl_.modbus_port_ = 0u;
+}
+inline ::uint32_t WeldingConfigInfo::modbus_port() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.WeldingConfigInfo.modbus_port)
+  return _internal_modbus_port();
+}
+inline void WeldingConfigInfo::set_modbus_port(::uint32_t value) {
+  _internal_set_modbus_port(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.WeldingConfigInfo.modbus_port)
+}
+inline ::uint32_t WeldingConfigInfo::_internal_modbus_port() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.modbus_port_;
+}
+inline void WeldingConfigInfo::_internal_set_modbus_port(::uint32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.modbus_port_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// WeldPosition
+
+// string name = 1;
+inline void WeldPosition::clear_name() {
+  _impl_.name_.ClearToEmpty();
+}
+inline const std::string& WeldPosition::name() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.WeldPosition.name)
+  return _internal_name();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void WeldPosition::set_name(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.name_.Set(static_cast<Arg_&&>(arg), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.WeldPosition.name)
+}
+inline std::string* WeldPosition::mutable_name() {
+  std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.WeldPosition.name)
+  return _s;
+}
+inline const std::string& WeldPosition::_internal_name() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.name_.Get();
+}
+inline void WeldPosition::_internal_set_name(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* WeldPosition::_internal_mutable_name() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.name_.Mutable( GetArenaForAllocation());
+}
+inline std::string* WeldPosition::release_name() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:Nrmk.IndyFramework.WeldPosition.name)
+  return _impl_.name_.Release();
+}
+inline void WeldPosition::set_allocated_name(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.name_.SetAllocated(value, GetArenaForAllocation());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.name_.IsDefault()) {
+          _impl_.name_.Set("", GetArenaForAllocation());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.WeldPosition.name)
+}
+
+// repeated float position = 2;
+inline int WeldPosition::_internal_position_size() const {
+  return _internal_position().size();
+}
+inline int WeldPosition::position_size() const {
+  return _internal_position_size();
+}
+inline void WeldPosition::clear_position() {
+  _internal_mutable_position()->Clear();
+}
+inline float WeldPosition::position(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.WeldPosition.position)
+  return _internal_position().Get(index);
+}
+inline void WeldPosition::set_position(int index, float value) {
+  _internal_mutable_position()->Set(index, value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.WeldPosition.position)
+}
+inline void WeldPosition::add_position(float value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_position()->Add(value);
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.WeldPosition.position)
+}
+inline const ::google::protobuf::RepeatedField<float>& WeldPosition::position() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.WeldPosition.position)
+  return _internal_position();
+}
+inline ::google::protobuf::RepeatedField<float>* WeldPosition::mutable_position() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.WeldPosition.position)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_position();
+}
+
+inline const ::google::protobuf::RepeatedField<float>& WeldPosition::_internal_position() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.position_;
+}
+inline ::google::protobuf::RepeatedField<float>* WeldPosition::_internal_mutable_position() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.position_;
+}
+
+// -------------------------------------------------------------------
+
+// WeldPositionList
+
+// repeated .Nrmk.IndyFramework.WeldPosition positions = 1;
+inline int WeldPositionList::_internal_positions_size() const {
+  return _internal_positions().size();
+}
+inline int WeldPositionList::positions_size() const {
+  return _internal_positions_size();
+}
+inline void WeldPositionList::clear_positions() {
+  _internal_mutable_positions()->Clear();
+}
+inline ::Nrmk::IndyFramework::WeldPosition* WeldPositionList::mutable_positions(int index) {
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.WeldPositionList.positions)
+  return _internal_mutable_positions()->Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::WeldPosition >*
+WeldPositionList::mutable_positions() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.WeldPositionList.positions)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_positions();
+}
+inline const ::Nrmk::IndyFramework::WeldPosition& WeldPositionList::positions(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.WeldPositionList.positions)
+    return _internal_positions().Get(index);
+}
+inline ::Nrmk::IndyFramework::WeldPosition* WeldPositionList::add_positions() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::Nrmk::IndyFramework::WeldPosition* _add = _internal_mutable_positions()->Add();
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.WeldPositionList.positions)
+  return _add;
+}
+inline const ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::WeldPosition >&
+WeldPositionList::positions() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.WeldPositionList.positions)
+  return _internal_positions();
+}
+inline const ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::WeldPosition>&
+WeldPositionList::_internal_positions() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.positions_;
+}
+inline ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::WeldPosition>*
+WeldPositionList::_internal_mutable_positions() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.positions_;
 }
 
 #ifdef __GNUC__

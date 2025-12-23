@@ -115,6 +115,10 @@ static const char* Config_method_names[] = {
   "/Nrmk.IndyFramework.Config/GetEnvironmentList",
   "/Nrmk.IndyFramework.Config/SetSensorlessParams",
   "/Nrmk.IndyFramework.Config/GetSensorlessParams",
+  "/Nrmk.IndyFramework.Config/GetWeldingMachineConfig",
+  "/Nrmk.IndyFramework.Config/SetWeldingMachineConfig",
+  "/Nrmk.IndyFramework.Config/GetWeldPositionList",
+  "/Nrmk.IndyFramework.Config/SetWeldPositionList",
 };
 
 std::unique_ptr< Config::Stub> Config::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -216,6 +220,10 @@ Config::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, co
   , rpcmethod_GetEnvironmentList_(Config_method_names[89], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_SetSensorlessParams_(Config_method_names[90], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_GetSensorlessParams_(Config_method_names[91], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetWeldingMachineConfig_(Config_method_names[92], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetWeldingMachineConfig_(Config_method_names[93], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetWeldPositionList_(Config_method_names[94], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetWeldPositionList_(Config_method_names[95], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status Config::Stub::GetNonce(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::Nonce* response) {
@@ -2334,6 +2342,98 @@ void Config::Stub::async::GetSensorlessParams(::grpc::ClientContext* context, co
   return result;
 }
 
+::grpc::Status Config::Stub::GetWeldingMachineConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::WeldingConfigInfo* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::WeldingConfigInfo, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetWeldingMachineConfig_, context, request, response);
+}
+
+void Config::Stub::async::GetWeldingMachineConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::WeldingConfigInfo* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::WeldingConfigInfo, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetWeldingMachineConfig_, context, request, response, std::move(f));
+}
+
+void Config::Stub::async::GetWeldingMachineConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::WeldingConfigInfo* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetWeldingMachineConfig_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::WeldingConfigInfo>* Config::Stub::PrepareAsyncGetWeldingMachineConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::WeldingConfigInfo, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetWeldingMachineConfig_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::WeldingConfigInfo>* Config::Stub::AsyncGetWeldingMachineConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetWeldingMachineConfigRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Config::Stub::SetWeldingMachineConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::WeldingConfigInfo& request, ::Nrmk::IndyFramework::Response* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::WeldingConfigInfo, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetWeldingMachineConfig_, context, request, response);
+}
+
+void Config::Stub::async::SetWeldingMachineConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::WeldingConfigInfo* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::WeldingConfigInfo, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetWeldingMachineConfig_, context, request, response, std::move(f));
+}
+
+void Config::Stub::async::SetWeldingMachineConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::WeldingConfigInfo* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetWeldingMachineConfig_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::PrepareAsyncSetWeldingMachineConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::WeldingConfigInfo& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Response, ::Nrmk::IndyFramework::WeldingConfigInfo, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetWeldingMachineConfig_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::AsyncSetWeldingMachineConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::WeldingConfigInfo& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetWeldingMachineConfigRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Config::Stub::GetWeldPositionList(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::WeldPositionList* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::WeldPositionList, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetWeldPositionList_, context, request, response);
+}
+
+void Config::Stub::async::GetWeldPositionList(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::WeldPositionList* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::WeldPositionList, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetWeldPositionList_, context, request, response, std::move(f));
+}
+
+void Config::Stub::async::GetWeldPositionList(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::WeldPositionList* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetWeldPositionList_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::WeldPositionList>* Config::Stub::PrepareAsyncGetWeldPositionListRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::WeldPositionList, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetWeldPositionList_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::WeldPositionList>* Config::Stub::AsyncGetWeldPositionListRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetWeldPositionListRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Config::Stub::SetWeldPositionList(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::WeldPositionList& request, ::Nrmk::IndyFramework::Response* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::WeldPositionList, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetWeldPositionList_, context, request, response);
+}
+
+void Config::Stub::async::SetWeldPositionList(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::WeldPositionList* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::WeldPositionList, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetWeldPositionList_, context, request, response, std::move(f));
+}
+
+void Config::Stub::async::SetWeldPositionList(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::WeldPositionList* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetWeldPositionList_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::PrepareAsyncSetWeldPositionListRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::WeldPositionList& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Response, ::Nrmk::IndyFramework::WeldPositionList, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetWeldPositionList_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Config::Stub::AsyncSetWeldPositionListRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::WeldPositionList& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetWeldPositionListRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 Config::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Config_method_names[0],
@@ -3255,6 +3355,46 @@ Config::Service::Service() {
              ::Nrmk::IndyFramework::SensorlessParams* resp) {
                return service->GetSensorlessParams(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Config_method_names[92],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::WeldingConfigInfo, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Config::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::Empty* req,
+             ::Nrmk::IndyFramework::WeldingConfigInfo* resp) {
+               return service->GetWeldingMachineConfig(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Config_method_names[93],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::WeldingConfigInfo, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Config::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::WeldingConfigInfo* req,
+             ::Nrmk::IndyFramework::Response* resp) {
+               return service->SetWeldingMachineConfig(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Config_method_names[94],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::WeldPositionList, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Config::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::Empty* req,
+             ::Nrmk::IndyFramework::WeldPositionList* resp) {
+               return service->GetWeldPositionList(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Config_method_names[95],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Config::Service, ::Nrmk::IndyFramework::WeldPositionList, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Config::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::WeldPositionList* req,
+             ::Nrmk::IndyFramework::Response* resp) {
+               return service->SetWeldPositionList(ctx, req, resp);
+             }, this)));
 }
 
 Config::Service::~Service() {
@@ -3898,6 +4038,34 @@ Config::Service::~Service() {
 }
 
 ::grpc::Status Config::Service::GetSensorlessParams(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::SensorlessParams* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Config::Service::GetWeldingMachineConfig(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::WeldingConfigInfo* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Config::Service::SetWeldingMachineConfig(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::WeldingConfigInfo* request, ::Nrmk::IndyFramework::Response* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Config::Service::GetWeldPositionList(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::WeldPositionList* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Config::Service::SetWeldPositionList(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::WeldPositionList* request, ::Nrmk::IndyFramework::Response* response) {
   (void) context;
   (void) request;
   (void) response;

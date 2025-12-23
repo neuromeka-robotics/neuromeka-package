@@ -176,8 +176,8 @@ class ControlStub(object):
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
                 response_deserializer=common__msgs__pb2.Response.FromString,
                 )
-        self.Reboot = channel.unary_unary(
-                '/Nrmk.IndyFramework.Control/Reboot',
+        self.Reset = channel.unary_unary(
+                '/Nrmk.IndyFramework.Control/Reset',
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
                 response_deserializer=common__msgs__pb2.Response.FromString,
                 )
@@ -460,6 +460,11 @@ class ControlStub(object):
                 '/Nrmk.IndyFramework.Control/ReadTeleOpInputFor',
                 request_serializer=common__msgs__pb2.Int.SerializeToString,
                 response_deserializer=control__msgs__pb2.TeleP.FromString,
+                )
+        self.SetTeleCalibArm = channel.unary_unary(
+                '/Nrmk.IndyFramework.Control/SetTeleCalibArm',
+                request_serializer=common__msgs__pb2.UInt.SerializeToString,
+                response_deserializer=common__msgs__pb2.Response.FromString,
                 )
         self.StartTeleOp = channel.unary_unary(
                 '/Nrmk.IndyFramework.Control/StartTeleOp',
@@ -777,7 +782,7 @@ class ControlServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def Reboot(self, request, context):
+    def Reset(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -1138,6 +1143,12 @@ class ControlServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def SetTeleCalibArm(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def StartTeleOp(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -1443,8 +1454,8 @@ def add_ControlServicer_to_server(servicer, server):
                     request_deserializer=common__msgs__pb2.Empty.FromString,
                     response_serializer=common__msgs__pb2.Response.SerializeToString,
             ),
-            'Reboot': grpc.unary_unary_rpc_method_handler(
-                    servicer.Reboot,
+            'Reset': grpc.unary_unary_rpc_method_handler(
+                    servicer.Reset,
                     request_deserializer=common__msgs__pb2.Empty.FromString,
                     response_serializer=common__msgs__pb2.Response.SerializeToString,
             ),
@@ -1727,6 +1738,11 @@ def add_ControlServicer_to_server(servicer, server):
                     servicer.ReadTeleOpInputFor,
                     request_deserializer=common__msgs__pb2.Int.FromString,
                     response_serializer=control__msgs__pb2.TeleP.SerializeToString,
+            ),
+            'SetTeleCalibArm': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetTeleCalibArm,
+                    request_deserializer=common__msgs__pb2.UInt.FromString,
+                    response_serializer=common__msgs__pb2.Response.SerializeToString,
             ),
             'StartTeleOp': grpc.unary_unary_rpc_method_handler(
                     servicer.StartTeleOp,
@@ -2393,7 +2409,7 @@ class Control(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def Reboot(request,
+    def Reset(request,
             target,
             options=(),
             channel_credentials=None,
@@ -2403,7 +2419,7 @@ class Control(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Control/Reboot',
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Control/Reset',
             common__msgs__pb2.Empty.SerializeToString,
             common__msgs__pb2.Response.FromString,
             options, channel_credentials,
@@ -3358,6 +3374,23 @@ class Control(object):
         return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Control/ReadTeleOpInputFor',
             common__msgs__pb2.Int.SerializeToString,
             control__msgs__pb2.TeleP.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SetTeleCalibArm(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Control/SetTeleCalibArm',
+            common__msgs__pb2.UInt.SerializeToString,
+            common__msgs__pb2.Response.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

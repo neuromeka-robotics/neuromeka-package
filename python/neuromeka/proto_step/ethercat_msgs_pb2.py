@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x13\x65thercat_msgs.proto\x12\x12Nrmk.IndyFramework\"\x1e\n\x0cMasterStatus\x12\x0e\n\x06status\x18\x01 \x01(\r\"\x1d\n\x0bSlaveStatus\x12\x0e\n\x06status\x18\x01 \x03(\r\"\"\n\x10\x45\x63\x61tDomainStatus\x12\x0e\n\x06status\x18\x01 \x01(\r\" \n\x0f\x45\x63\x61tSystemReady\x12\r\n\x05ready\x18\x01 \x03(\x08\"\x1c\n\x0b\x45\x63\x61tServoOn\x12\r\n\x05servo\x18\x01 \x03(\x08\"\\\n\x0cSlaveTypeNum\x12\x11\n\tnum_servo\x18\x01 \x01(\r\x12\x13\n\x0bnum_ioboard\x18\x02 \x01(\r\x12\x13\n\x0bnum_endtool\x18\x03 \x01(\r\x12\x0f\n\x07num_dio\x18\x04 \x01(\r\" \n\nServoIndex\x12\x12\n\nservoIndex\x18\x01 \x01(\r\"\x1e\n\tEcatIndex\x12\x11\n\tecatIndex\x18\x01 \x01(\r\"w\n\x07ServoTx\x12\x12\n\nstatusWord\x18\x01 \x01(\r\x12\x12\n\nmodeOpDisp\x18\x02 \x01(\x05\x12\x16\n\x0e\x61\x63tualPosition\x18\x03 \x01(\x05\x12\x16\n\x0e\x61\x63tualVelocity\x18\x04 \x01(\x05\x12\x14\n\x0c\x61\x63tualTorque\x18\x05 \x01(\x05\"t\n\x07ServoRx\x12\x13\n\x0b\x63ontrolWord\x18\x01 \x01(\r\x12\x0e\n\x06modeOp\x18\x02 \x01(\x05\x12\x16\n\x0etargetPosition\x18\x03 \x01(\x03\x12\x16\n\x0etargetVelocity\x18\x04 \x01(\x05\x12\x14\n\x0ctargetTorque\x18\x05 \x01(\x05\"K\n\x0cServoRxIndex\x12\x12\n\nservoIndex\x18\x01 \x01(\r\x12\'\n\x02rx\x18\x02 \x01(\x0b\x32\x1b.Nrmk.IndyFramework.ServoRx\"\xdf\x01\n\x0bServoTxKeba\x12\x12\n\nstatusWord\x18\x01 \x01(\r\x12\x13\n\x0bstatusWord2\x18\x02 \x01(\r\x12\x13\n\x0bstatusWord3\x18\x03 \x01(\r\x12\x16\n\x0e\x61\x63tualPosition\x18\x04 \x01(\x05\x12\x17\n\x0f\x61\x63tualPosition2\x18\x05 \x01(\x05\x12\x17\n\x0f\x61\x63tualPosition3\x18\x06 \x01(\x05\x12\x16\n\x0e\x61\x63tualVelocity\x18\x07 \x01(\x05\x12\x17\n\x0f\x61\x63tualVelocity2\x18\x08 \x01(\x05\x12\x17\n\x0f\x61\x63tualVelocity3\x18\t \x01(\x05\"\xdc\x01\n\x0bServoRxKeba\x12\x13\n\x0b\x63ontrolWord\x18\x01 \x01(\r\x12\x14\n\x0c\x63ontrolWord2\x18\x02 \x01(\r\x12\x14\n\x0c\x63ontrolWord3\x18\x03 \x01(\r\x12\x16\n\x0etargetPosition\x18\x04 \x01(\x03\x12\x17\n\x0ftargetPosition2\x18\x05 \x01(\x03\x12\x17\n\x0ftargetPosition3\x18\x06 \x01(\x03\x12\x14\n\x0ctargetTorque\x18\x07 \x01(\x05\x12\x15\n\rtargetTorque2\x18\x08 \x01(\x05\x12\x15\n\rtargetTorque3\x18\t \x01(\x05\"S\n\x10ServoRxIndexKeba\x12\x12\n\nservoIndex\x18\x01 \x01(\r\x12+\n\x02rx\x18\x02 \x01(\x0b\x32\x1f.Nrmk.IndyFramework.ServoRxKeba\" \n\tServoTemp\x12\x13\n\x0btemperature\x18\x01 \x01(\x02\"\x1f\n\nServoError\x12\x11\n\terrorCode\x18\x01 \x01(\r\".\n\nServoBrake\x12\x11\n\tecatIndex\x18\x01 \x01(\r\x12\r\n\x05onoff\x18\x02 \x01(\x08\"R\n\x08\x46TSensor\x12\n\n\x02\x66x\x18\x01 \x01(\x05\x12\n\n\x02\x66y\x18\x02 \x01(\x05\x12\n\n\x02\x66z\x18\x03 \x01(\x05\x12\n\n\x02tx\x18\x04 \x01(\x05\x12\n\n\x02ty\x18\x05 \x01(\x05\x12\n\n\x02tz\x18\x06 \x01(\x05\"\x80\x01\n\tEndtoolTx\x12\x0e\n\x06status\x18\x01 \x01(\r\x12\x0e\n\x06\x62utton\x18\x02 \x01(\r\x12/\n\tft_sensor\x18\x03 \x01(\x0b\x32\x1c.Nrmk.IndyFramework.FTSensor\x12\x10\n\x08\x66t_state\x18\x04 \x01(\r\x12\x10\n\x08\x66t_error\x18\x05 \x01(\r\"z\n\tEndtoolRx\x12\x0b\n\x03\x65qc\x18\x01 \x01(\r\x12\x0f\n\x07gripper\x18\x02 \x01(\r\x12\x10\n\x08\x66t_param\x18\x03 \x01(\r\x12\x10\n\x08led_mode\x18\x04 \x01(\r\x12\r\n\x05led_g\x18\x05 \x01(\r\x12\r\n\x05led_r\x18\x06 \x01(\r\x12\r\n\x05led_b\x18\x07 \x01(\r\"\x8c\x03\n\x10\x45ndtoolDockingTx\x12\x16\n\x0e\x64ocking_status\x18\x01 \x01(\r\x12\x16\n\x0e\x64ocking_button\x18\x02 \x01(\r\x12\x15\n\rdocking_dist1\x18\x03 \x01(\r\x12\x15\n\rdocking_dist2\x18\x04 \x01(\r\x12\x15\n\rdocking_dist3\x18\x05 \x01(\r\x12\x15\n\rdocking_dist4\x18\x06 \x01(\r\x12\x15\n\rdocking_dist5\x18\x07 \x01(\r\x12\x15\n\rdocking_dist6\x18\x08 \x01(\r\x12\x15\n\rdocking_dist7\x18\t \x01(\r\x12\x15\n\rdocking_dist8\x18\n \x01(\r\x12\x15\n\rdirect_status\x18\x0b \x01(\r\x12\x15\n\rdirect_button\x18\x0c \x01(\r\x12\x16\n\x0e\x64irect_encoder\x18\r \x01(\r\x12\x11\n\tjoystic1x\x18\x0e \x01(\r\x12\x11\n\tjoystic1y\x18\x0f \x01(\r\x12\x11\n\tjoystic2x\x18\x10 \x01(\r\x12\x11\n\tjoystic2y\x18\x11 \x01(\r\"\x19\n\x06LedDim\x12\x0f\n\x07led_dim\x18\x01 \x01(\r\"\x96\x01\n\x0eSRKeyEndtoolRx\x12\x0c\n\x04\x64out\x18\x01 \x01(\r\x12\x0f\n\x07tool_Id\x18\x02 \x01(\r\x12\x10\n\x08set_Tool\x18\x03 \x01(\r\x12\x1a\n\x12tool_Closing_Force\x18\x04 \x01(\r\x12\x1a\n\x12tool_Opening_Force\x18\x05 \x01(\r\x12\x1b\n\x13tool_Force_Location\x18\x06 \x01(\r\"|\n\x0eSRKeyEndtoolTx\x12\x0b\n\x03\x64in\x18\x01 \x01(\r\x12\x13\n\x0btool_Status\x18\x02 \x01(\r\x12\x15\n\rtool_Location\x18\x03 \x01(\r\x12\x0f\n\x07\x61nalog0\x18\x04 \x01(\r\x12\x0f\n\x07\x61nalog1\x18\x05 \x01(\r\x12\x0f\n\x07version\x18\x06 \x01(\r\"\x84\x01\n\tIOBoardTx\x12\x0c\n\x04\x64i5v\x18\x01 \x01(\r\x12\x0e\n\x06\x64i24v1\x18\x02 \x01(\r\x12\x0e\n\x06\x64i24v2\x18\x03 \x01(\r\x12\x0b\n\x03\x61i1\x18\x04 \x01(\r\x12\x0b\n\x03\x61i2\x18\x05 \x01(\r\x12/\n\tft_sensor\x18\x06 \x01(\x0b\x32\x1c.Nrmk.IndyFramework.FTSensor\"e\n\tIOBoardRx\x12\x0c\n\x04\x64o5v\x18\x01 \x01(\r\x12\x0e\n\x06\x64o24v1\x18\x02 \x01(\r\x12\x0e\n\x06\x64o24v2\x18\x03 \x01(\r\x12\x0b\n\x03\x61o1\x18\x04 \x01(\r\x12\x0b\n\x03\x61o2\x18\x05 \x01(\r\x12\x10\n\x08\x66t_param\x18\x06 \x01(\r\"\x1c\n\x08\x44IOIndex\x12\x10\n\x08\x64ioIndex\x18\x01 \x01(\r\"4\n\x0f\x44IODigitalInput\x12\x10\n\x08\x64ioIndex\x18\x01 \x01(\r\x12\x0f\n\x07\x64i_list\x18\x02 \x03(\r\"5\n\x10\x44IODigitalOutput\x12\x10\n\x08\x64ioIndex\x18\x01 \x01(\r\x12\x0f\n\x07\x64o_list\x18\x02 \x03(\r\"+\n\nServoParam\x12\x10\n\x08slaveIdx\x18\x01 \x01(\r\x12\x0b\n\x03val\x18\x02 \x01(\x05\"\x18\n\tSDOIntVal\x12\x0b\n\x03val\x18\x01 \x01(\x05\"\x1f\n\x0eRobotZeroCount\x12\r\n\x05\x63ount\x18\x01 \x01(\x05\x62\x06proto3'
+  serialized_pb=b'\n\x13\x65thercat_msgs.proto\x12\x12Nrmk.IndyFramework\"\x1e\n\x0cMasterStatus\x12\x0e\n\x06status\x18\x01 \x01(\r\"\x1d\n\x0bSlaveStatus\x12\x0e\n\x06status\x18\x01 \x03(\r\"\"\n\x10\x45\x63\x61tDomainStatus\x12\x0e\n\x06status\x18\x01 \x01(\r\" \n\x0f\x45\x63\x61tSystemReady\x12\r\n\x05ready\x18\x01 \x03(\x08\"\x1c\n\x0b\x45\x63\x61tServoOn\x12\r\n\x05servo\x18\x01 \x03(\x08\"\\\n\x0cSlaveTypeNum\x12\x11\n\tnum_servo\x18\x01 \x01(\r\x12\x13\n\x0bnum_ioboard\x18\x02 \x01(\r\x12\x13\n\x0bnum_endtool\x18\x03 \x01(\r\x12\x0f\n\x07num_dio\x18\x04 \x01(\r\" \n\nServoIndex\x12\x12\n\nservoIndex\x18\x01 \x01(\r\"\x1e\n\tEcatIndex\x12\x11\n\tecatIndex\x18\x01 \x01(\r\"w\n\x07ServoTx\x12\x12\n\nstatusWord\x18\x01 \x01(\r\x12\x12\n\nmodeOpDisp\x18\x02 \x01(\x05\x12\x16\n\x0e\x61\x63tualPosition\x18\x03 \x01(\x05\x12\x16\n\x0e\x61\x63tualVelocity\x18\x04 \x01(\x05\x12\x14\n\x0c\x61\x63tualTorque\x18\x05 \x01(\x05\"t\n\x07ServoRx\x12\x13\n\x0b\x63ontrolWord\x18\x01 \x01(\r\x12\x0e\n\x06modeOp\x18\x02 \x01(\x05\x12\x16\n\x0etargetPosition\x18\x03 \x01(\x03\x12\x16\n\x0etargetVelocity\x18\x04 \x01(\x05\x12\x14\n\x0ctargetTorque\x18\x05 \x01(\x05\"K\n\x0cServoRxIndex\x12\x12\n\nservoIndex\x18\x01 \x01(\r\x12\'\n\x02rx\x18\x02 \x01(\x0b\x32\x1b.Nrmk.IndyFramework.ServoRx\"\xdf\x01\n\x0bServoTxKeba\x12\x12\n\nstatusWord\x18\x01 \x01(\r\x12\x13\n\x0bstatusWord2\x18\x02 \x01(\r\x12\x13\n\x0bstatusWord3\x18\x03 \x01(\r\x12\x16\n\x0e\x61\x63tualPosition\x18\x04 \x01(\x05\x12\x17\n\x0f\x61\x63tualPosition2\x18\x05 \x01(\x05\x12\x17\n\x0f\x61\x63tualPosition3\x18\x06 \x01(\x05\x12\x16\n\x0e\x61\x63tualVelocity\x18\x07 \x01(\x05\x12\x17\n\x0f\x61\x63tualVelocity2\x18\x08 \x01(\x05\x12\x17\n\x0f\x61\x63tualVelocity3\x18\t \x01(\x05\"\xdc\x01\n\x0bServoRxKeba\x12\x13\n\x0b\x63ontrolWord\x18\x01 \x01(\r\x12\x14\n\x0c\x63ontrolWord2\x18\x02 \x01(\r\x12\x14\n\x0c\x63ontrolWord3\x18\x03 \x01(\r\x12\x16\n\x0etargetPosition\x18\x04 \x01(\x03\x12\x17\n\x0ftargetPosition2\x18\x05 \x01(\x03\x12\x17\n\x0ftargetPosition3\x18\x06 \x01(\x03\x12\x14\n\x0ctargetTorque\x18\x07 \x01(\x05\x12\x15\n\rtargetTorque2\x18\x08 \x01(\x05\x12\x15\n\rtargetTorque3\x18\t \x01(\x05\"S\n\x10ServoRxIndexKeba\x12\x12\n\nservoIndex\x18\x01 \x01(\r\x12+\n\x02rx\x18\x02 \x01(\x0b\x32\x1f.Nrmk.IndyFramework.ServoRxKeba\" \n\tServoTemp\x12\x13\n\x0btemperature\x18\x01 \x01(\x02\"\x1f\n\nServoError\x12\x11\n\terrorCode\x18\x01 \x01(\r\".\n\nServoBrake\x12\x11\n\tecatIndex\x18\x01 \x01(\r\x12\r\n\x05onoff\x18\x02 \x01(\x08\"R\n\x08\x46TSensor\x12\n\n\x02\x66x\x18\x01 \x01(\x05\x12\n\n\x02\x66y\x18\x02 \x01(\x05\x12\n\n\x02\x66z\x18\x03 \x01(\x05\x12\n\n\x02tx\x18\x04 \x01(\x05\x12\n\n\x02ty\x18\x05 \x01(\x05\x12\n\n\x02tz\x18\x06 \x01(\x05\"\x80\x01\n\tEndtoolTx\x12\x0e\n\x06status\x18\x01 \x01(\r\x12\x0e\n\x06\x62utton\x18\x02 \x01(\r\x12/\n\tft_sensor\x18\x03 \x01(\x0b\x32\x1c.Nrmk.IndyFramework.FTSensor\x12\x10\n\x08\x66t_state\x18\x04 \x01(\r\x12\x10\n\x08\x66t_error\x18\x05 \x01(\r\"z\n\tEndtoolRx\x12\x0b\n\x03\x65qc\x18\x01 \x01(\r\x12\x0f\n\x07gripper\x18\x02 \x01(\r\x12\x10\n\x08\x66t_param\x18\x03 \x01(\r\x12\x10\n\x08led_mode\x18\x04 \x01(\r\x12\r\n\x05led_g\x18\x05 \x01(\r\x12\r\n\x05led_r\x18\x06 \x01(\r\x12\r\n\x05led_b\x18\x07 \x01(\r\"\x8c\x03\n\x10\x45ndtoolDockingTx\x12\x16\n\x0e\x64ocking_status\x18\x01 \x01(\r\x12\x16\n\x0e\x64ocking_button\x18\x02 \x01(\r\x12\x15\n\rdocking_dist1\x18\x03 \x01(\r\x12\x15\n\rdocking_dist2\x18\x04 \x01(\r\x12\x15\n\rdocking_dist3\x18\x05 \x01(\r\x12\x15\n\rdocking_dist4\x18\x06 \x01(\r\x12\x15\n\rdocking_dist5\x18\x07 \x01(\r\x12\x15\n\rdocking_dist6\x18\x08 \x01(\r\x12\x15\n\rdocking_dist7\x18\t \x01(\r\x12\x15\n\rdocking_dist8\x18\n \x01(\r\x12\x15\n\rdirect_status\x18\x0b \x01(\r\x12\x15\n\rdirect_button\x18\x0c \x01(\r\x12\x16\n\x0e\x64irect_encoder\x18\r \x01(\r\x12\x11\n\tjoystic1x\x18\x0e \x01(\r\x12\x11\n\tjoystic1y\x18\x0f \x01(\r\x12\x11\n\tjoystic2x\x18\x10 \x01(\r\x12\x11\n\tjoystic2y\x18\x11 \x01(\r\"\x19\n\x06LedDim\x12\x0f\n\x07led_dim\x18\x01 \x01(\r\"\x96\x01\n\x0eSRKeyEndtoolRx\x12\x0c\n\x04\x64out\x18\x01 \x01(\r\x12\x0f\n\x07tool_Id\x18\x02 \x01(\r\x12\x10\n\x08set_Tool\x18\x03 \x01(\r\x12\x1a\n\x12tool_Closing_Force\x18\x04 \x01(\r\x12\x1a\n\x12tool_Opening_Force\x18\x05 \x01(\r\x12\x1b\n\x13tool_Force_Location\x18\x06 \x01(\r\"|\n\x0eSRKeyEndtoolTx\x12\x0b\n\x03\x64in\x18\x01 \x01(\r\x12\x13\n\x0btool_Status\x18\x02 \x01(\r\x12\x15\n\rtool_Location\x18\x03 \x01(\r\x12\x0f\n\x07\x61nalog0\x18\x04 \x01(\r\x12\x0f\n\x07\x61nalog1\x18\x05 \x01(\r\x12\x0f\n\x07version\x18\x06 \x01(\r\"\x84\x01\n\tIOBoardTx\x12\x0c\n\x04\x64i5v\x18\x01 \x01(\r\x12\x0e\n\x06\x64i24v1\x18\x02 \x01(\r\x12\x0e\n\x06\x64i24v2\x18\x03 \x01(\r\x12\x0b\n\x03\x61i1\x18\x04 \x01(\r\x12\x0b\n\x03\x61i2\x18\x05 \x01(\r\x12/\n\tft_sensor\x18\x06 \x01(\x0b\x32\x1c.Nrmk.IndyFramework.FTSensor\"e\n\tIOBoardRx\x12\x0c\n\x04\x64o5v\x18\x01 \x01(\r\x12\x0e\n\x06\x64o24v1\x18\x02 \x01(\r\x12\x0e\n\x06\x64o24v2\x18\x03 \x01(\r\x12\x0b\n\x03\x61o1\x18\x04 \x01(\r\x12\x0b\n\x03\x61o2\x18\x05 \x01(\r\x12\x10\n\x08\x66t_param\x18\x06 \x01(\r\"\x1c\n\x08\x44IOIndex\x12\x10\n\x08\x64ioIndex\x18\x01 \x01(\r\"4\n\x0f\x44IODigitalInput\x12\x10\n\x08\x64ioIndex\x18\x01 \x01(\r\x12\x0f\n\x07\x64i_list\x18\x02 \x03(\r\"5\n\x10\x44IODigitalOutput\x12\x10\n\x08\x64ioIndex\x18\x01 \x01(\r\x12\x0f\n\x07\x64o_list\x18\x02 \x03(\r\"\x1c\n\x08\x41IOIndex\x12\x10\n\x08\x61ioIndex\x18\x01 \x01(\r\"3\n\x0e\x41IOAnalogInput\x12\x10\n\x08\x61ioIndex\x18\x01 \x01(\r\x12\x0f\n\x07\x61i_list\x18\x02 \x03(\x05\"4\n\x0f\x41IOAnalogOutput\x12\x10\n\x08\x61ioIndex\x18\x01 \x01(\r\x12\x0f\n\x07\x61o_list\x18\x02 \x03(\x05\"\x1e\n\tHandIndex\x12\x11\n\thandIndex\x18\x01 \x01(\r\"\x9e\x01\n\tZenHandRx\x12\x11\n\thandIndex\x18\x01 \x01(\r\x12\x13\n\x0bhandControl\x18\x02 \x01(\r\x12\x0e\n\x06modeOp\x18\x03 \x03(\x05\x12\x12\n\nctlCommand\x18\x04 \x03(\x05\x12\x16\n\x0etargetPosition\x18\x05 \x03(\x05\x12\x16\n\x0etargetVelocity\x18\x06 \x03(\x05\x12\x15\n\rtargetCurrent\x18\x07 \x03(\x05\"\xa0\x01\n\tZenHandTx\x12\x11\n\thandIndex\x18\x01 \x01(\r\x12\x14\n\x0c\x66rameMessage\x18\x02 \x01(\r\x12\x12\n\nmodeOpDisp\x18\x03 \x03(\x05\x12\x16\n\x0e\x61\x63tualPosition\x18\x04 \x03(\x05\x12\x16\n\x0e\x61\x63tualVelocity\x18\x05 \x03(\x05\x12\x15\n\ractualCurrent\x18\x06 \x03(\x05\x12\x0f\n\x07\x65rrCode\x18\x07 \x03(\r\"W\n\rZenHandSensor\x12\x11\n\thandIndex\x18\x01 \x01(\r\x12\x33\n\x07tactile\x18\x02 \x03(\x0b\x32\".Nrmk.IndyFramework.ZenHandTactile\"\x87\x01\n\x0eZenHandTactile\x12\x35\n\ntotalForce\x18\x01 \x01(\x0b\x32!.Nrmk.IndyFramework.ZenForcePoint\x12\x30\n\x05point\x18\x02 \x03(\x0b\x32!.Nrmk.IndyFramework.ZenForcePoint\x12\x0c\n\x04temp\x18\x03 \x01(\r\"?\n\rZenForcePoint\x12\t\n\x01x\x18\x01 \x01(\x05\x12\t\n\x01y\x18\x02 \x01(\x05\x12\t\n\x01z\x18\x03 \x01(\x05\x12\r\n\x05\x66orce\x18\x04 \x01(\x05\"+\n\nServoParam\x12\x10\n\x08slaveIdx\x18\x01 \x01(\r\x12\x0b\n\x03val\x18\x02 \x01(\x05\"\x18\n\tSDOIntVal\x12\x0b\n\x03val\x18\x01 \x01(\x05\"\x1f\n\x0eRobotZeroCount\x12\r\n\x05\x63ount\x18\x01 \x01(\x05\x62\x06proto3'
 )
 
 
@@ -1534,6 +1534,434 @@ _DIODIGITALOUTPUT = _descriptor.Descriptor(
 )
 
 
+_AIOINDEX = _descriptor.Descriptor(
+  name='AIOIndex',
+  full_name='Nrmk.IndyFramework.AIOIndex',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='aioIndex', full_name='Nrmk.IndyFramework.AIOIndex.aioIndex', index=0,
+      number=1, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=2752,
+  serialized_end=2780,
+)
+
+
+_AIOANALOGINPUT = _descriptor.Descriptor(
+  name='AIOAnalogInput',
+  full_name='Nrmk.IndyFramework.AIOAnalogInput',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='aioIndex', full_name='Nrmk.IndyFramework.AIOAnalogInput.aioIndex', index=0,
+      number=1, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='ai_list', full_name='Nrmk.IndyFramework.AIOAnalogInput.ai_list', index=1,
+      number=2, type=5, cpp_type=1, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=2782,
+  serialized_end=2833,
+)
+
+
+_AIOANALOGOUTPUT = _descriptor.Descriptor(
+  name='AIOAnalogOutput',
+  full_name='Nrmk.IndyFramework.AIOAnalogOutput',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='aioIndex', full_name='Nrmk.IndyFramework.AIOAnalogOutput.aioIndex', index=0,
+      number=1, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='ao_list', full_name='Nrmk.IndyFramework.AIOAnalogOutput.ao_list', index=1,
+      number=2, type=5, cpp_type=1, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=2835,
+  serialized_end=2887,
+)
+
+
+_HANDINDEX = _descriptor.Descriptor(
+  name='HandIndex',
+  full_name='Nrmk.IndyFramework.HandIndex',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='handIndex', full_name='Nrmk.IndyFramework.HandIndex.handIndex', index=0,
+      number=1, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=2889,
+  serialized_end=2919,
+)
+
+
+_ZENHANDRX = _descriptor.Descriptor(
+  name='ZenHandRx',
+  full_name='Nrmk.IndyFramework.ZenHandRx',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='handIndex', full_name='Nrmk.IndyFramework.ZenHandRx.handIndex', index=0,
+      number=1, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='handControl', full_name='Nrmk.IndyFramework.ZenHandRx.handControl', index=1,
+      number=2, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='modeOp', full_name='Nrmk.IndyFramework.ZenHandRx.modeOp', index=2,
+      number=3, type=5, cpp_type=1, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='ctlCommand', full_name='Nrmk.IndyFramework.ZenHandRx.ctlCommand', index=3,
+      number=4, type=5, cpp_type=1, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='targetPosition', full_name='Nrmk.IndyFramework.ZenHandRx.targetPosition', index=4,
+      number=5, type=5, cpp_type=1, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='targetVelocity', full_name='Nrmk.IndyFramework.ZenHandRx.targetVelocity', index=5,
+      number=6, type=5, cpp_type=1, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='targetCurrent', full_name='Nrmk.IndyFramework.ZenHandRx.targetCurrent', index=6,
+      number=7, type=5, cpp_type=1, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=2922,
+  serialized_end=3080,
+)
+
+
+_ZENHANDTX = _descriptor.Descriptor(
+  name='ZenHandTx',
+  full_name='Nrmk.IndyFramework.ZenHandTx',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='handIndex', full_name='Nrmk.IndyFramework.ZenHandTx.handIndex', index=0,
+      number=1, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='frameMessage', full_name='Nrmk.IndyFramework.ZenHandTx.frameMessage', index=1,
+      number=2, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='modeOpDisp', full_name='Nrmk.IndyFramework.ZenHandTx.modeOpDisp', index=2,
+      number=3, type=5, cpp_type=1, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='actualPosition', full_name='Nrmk.IndyFramework.ZenHandTx.actualPosition', index=3,
+      number=4, type=5, cpp_type=1, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='actualVelocity', full_name='Nrmk.IndyFramework.ZenHandTx.actualVelocity', index=4,
+      number=5, type=5, cpp_type=1, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='actualCurrent', full_name='Nrmk.IndyFramework.ZenHandTx.actualCurrent', index=5,
+      number=6, type=5, cpp_type=1, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='errCode', full_name='Nrmk.IndyFramework.ZenHandTx.errCode', index=6,
+      number=7, type=13, cpp_type=3, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=3083,
+  serialized_end=3243,
+)
+
+
+_ZENHANDSENSOR = _descriptor.Descriptor(
+  name='ZenHandSensor',
+  full_name='Nrmk.IndyFramework.ZenHandSensor',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='handIndex', full_name='Nrmk.IndyFramework.ZenHandSensor.handIndex', index=0,
+      number=1, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='tactile', full_name='Nrmk.IndyFramework.ZenHandSensor.tactile', index=1,
+      number=2, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=3245,
+  serialized_end=3332,
+)
+
+
+_ZENHANDTACTILE = _descriptor.Descriptor(
+  name='ZenHandTactile',
+  full_name='Nrmk.IndyFramework.ZenHandTactile',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='totalForce', full_name='Nrmk.IndyFramework.ZenHandTactile.totalForce', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='point', full_name='Nrmk.IndyFramework.ZenHandTactile.point', index=1,
+      number=2, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='temp', full_name='Nrmk.IndyFramework.ZenHandTactile.temp', index=2,
+      number=3, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=3335,
+  serialized_end=3470,
+)
+
+
+_ZENFORCEPOINT = _descriptor.Descriptor(
+  name='ZenForcePoint',
+  full_name='Nrmk.IndyFramework.ZenForcePoint',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='x', full_name='Nrmk.IndyFramework.ZenForcePoint.x', index=0,
+      number=1, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='y', full_name='Nrmk.IndyFramework.ZenForcePoint.y', index=1,
+      number=2, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='z', full_name='Nrmk.IndyFramework.ZenForcePoint.z', index=2,
+      number=3, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='force', full_name='Nrmk.IndyFramework.ZenForcePoint.force', index=3,
+      number=4, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=3472,
+  serialized_end=3535,
+)
+
+
 _SERVOPARAM = _descriptor.Descriptor(
   name='ServoParam',
   full_name='Nrmk.IndyFramework.ServoParam',
@@ -1568,8 +1996,8 @@ _SERVOPARAM = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2752,
-  serialized_end=2795,
+  serialized_start=3537,
+  serialized_end=3580,
 )
 
 
@@ -1600,8 +2028,8 @@ _SDOINTVAL = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2797,
-  serialized_end=2821,
+  serialized_start=3582,
+  serialized_end=3606,
 )
 
 
@@ -1632,14 +2060,17 @@ _ROBOTZEROCOUNT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2823,
-  serialized_end=2854,
+  serialized_start=3608,
+  serialized_end=3639,
 )
 
 _SERVORXINDEX.fields_by_name['rx'].message_type = _SERVORX
 _SERVORXINDEXKEBA.fields_by_name['rx'].message_type = _SERVORXKEBA
 _ENDTOOLTX.fields_by_name['ft_sensor'].message_type = _FTSENSOR
 _IOBOARDTX.fields_by_name['ft_sensor'].message_type = _FTSENSOR
+_ZENHANDSENSOR.fields_by_name['tactile'].message_type = _ZENHANDTACTILE
+_ZENHANDTACTILE.fields_by_name['totalForce'].message_type = _ZENFORCEPOINT
+_ZENHANDTACTILE.fields_by_name['point'].message_type = _ZENFORCEPOINT
 DESCRIPTOR.message_types_by_name['MasterStatus'] = _MASTERSTATUS
 DESCRIPTOR.message_types_by_name['SlaveStatus'] = _SLAVESTATUS
 DESCRIPTOR.message_types_by_name['EcatDomainStatus'] = _ECATDOMAINSTATUS
@@ -1669,6 +2100,15 @@ DESCRIPTOR.message_types_by_name['IOBoardRx'] = _IOBOARDRX
 DESCRIPTOR.message_types_by_name['DIOIndex'] = _DIOINDEX
 DESCRIPTOR.message_types_by_name['DIODigitalInput'] = _DIODIGITALINPUT
 DESCRIPTOR.message_types_by_name['DIODigitalOutput'] = _DIODIGITALOUTPUT
+DESCRIPTOR.message_types_by_name['AIOIndex'] = _AIOINDEX
+DESCRIPTOR.message_types_by_name['AIOAnalogInput'] = _AIOANALOGINPUT
+DESCRIPTOR.message_types_by_name['AIOAnalogOutput'] = _AIOANALOGOUTPUT
+DESCRIPTOR.message_types_by_name['HandIndex'] = _HANDINDEX
+DESCRIPTOR.message_types_by_name['ZenHandRx'] = _ZENHANDRX
+DESCRIPTOR.message_types_by_name['ZenHandTx'] = _ZENHANDTX
+DESCRIPTOR.message_types_by_name['ZenHandSensor'] = _ZENHANDSENSOR
+DESCRIPTOR.message_types_by_name['ZenHandTactile'] = _ZENHANDTACTILE
+DESCRIPTOR.message_types_by_name['ZenForcePoint'] = _ZENFORCEPOINT
 DESCRIPTOR.message_types_by_name['ServoParam'] = _SERVOPARAM
 DESCRIPTOR.message_types_by_name['SDOIntVal'] = _SDOINTVAL
 DESCRIPTOR.message_types_by_name['RobotZeroCount'] = _ROBOTZEROCOUNT
@@ -1876,6 +2316,69 @@ DIODigitalOutput = _reflection.GeneratedProtocolMessageType('DIODigitalOutput', 
   # @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.DIODigitalOutput)
   })
 _sym_db.RegisterMessage(DIODigitalOutput)
+
+AIOIndex = _reflection.GeneratedProtocolMessageType('AIOIndex', (_message.Message,), {
+  'DESCRIPTOR' : _AIOINDEX,
+  '__module__' : 'ethercat_msgs_pb2'
+  # @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.AIOIndex)
+  })
+_sym_db.RegisterMessage(AIOIndex)
+
+AIOAnalogInput = _reflection.GeneratedProtocolMessageType('AIOAnalogInput', (_message.Message,), {
+  'DESCRIPTOR' : _AIOANALOGINPUT,
+  '__module__' : 'ethercat_msgs_pb2'
+  # @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.AIOAnalogInput)
+  })
+_sym_db.RegisterMessage(AIOAnalogInput)
+
+AIOAnalogOutput = _reflection.GeneratedProtocolMessageType('AIOAnalogOutput', (_message.Message,), {
+  'DESCRIPTOR' : _AIOANALOGOUTPUT,
+  '__module__' : 'ethercat_msgs_pb2'
+  # @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.AIOAnalogOutput)
+  })
+_sym_db.RegisterMessage(AIOAnalogOutput)
+
+HandIndex = _reflection.GeneratedProtocolMessageType('HandIndex', (_message.Message,), {
+  'DESCRIPTOR' : _HANDINDEX,
+  '__module__' : 'ethercat_msgs_pb2'
+  # @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.HandIndex)
+  })
+_sym_db.RegisterMessage(HandIndex)
+
+ZenHandRx = _reflection.GeneratedProtocolMessageType('ZenHandRx', (_message.Message,), {
+  'DESCRIPTOR' : _ZENHANDRX,
+  '__module__' : 'ethercat_msgs_pb2'
+  # @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.ZenHandRx)
+  })
+_sym_db.RegisterMessage(ZenHandRx)
+
+ZenHandTx = _reflection.GeneratedProtocolMessageType('ZenHandTx', (_message.Message,), {
+  'DESCRIPTOR' : _ZENHANDTX,
+  '__module__' : 'ethercat_msgs_pb2'
+  # @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.ZenHandTx)
+  })
+_sym_db.RegisterMessage(ZenHandTx)
+
+ZenHandSensor = _reflection.GeneratedProtocolMessageType('ZenHandSensor', (_message.Message,), {
+  'DESCRIPTOR' : _ZENHANDSENSOR,
+  '__module__' : 'ethercat_msgs_pb2'
+  # @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.ZenHandSensor)
+  })
+_sym_db.RegisterMessage(ZenHandSensor)
+
+ZenHandTactile = _reflection.GeneratedProtocolMessageType('ZenHandTactile', (_message.Message,), {
+  'DESCRIPTOR' : _ZENHANDTACTILE,
+  '__module__' : 'ethercat_msgs_pb2'
+  # @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.ZenHandTactile)
+  })
+_sym_db.RegisterMessage(ZenHandTactile)
+
+ZenForcePoint = _reflection.GeneratedProtocolMessageType('ZenForcePoint', (_message.Message,), {
+  'DESCRIPTOR' : _ZENFORCEPOINT,
+  '__module__' : 'ethercat_msgs_pb2'
+  # @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.ZenForcePoint)
+  })
+_sym_db.RegisterMessage(ZenForcePoint)
 
 ServoParam = _reflection.GeneratedProtocolMessageType('ServoParam', (_message.Message,), {
   'DESCRIPTOR' : _SERVOPARAM,

@@ -52,14 +52,19 @@ static const char* Moby_method_names[] = {
   "/Nrmk.IndyFramework.Moby/SetRotationControllerType",
   "/Nrmk.IndyFramework.Moby/SetForceKinematics",
   "/Nrmk.IndyFramework.Moby/GetForceKinematics",
+  "/Nrmk.IndyFramework.Moby/MoveSteerToZero",
   "/Nrmk.IndyFramework.Moby/PauseBumper",
   "/Nrmk.IndyFramework.Moby/TurnLightOnOff",
   "/Nrmk.IndyFramework.Moby/TurnBuzzOnOff",
   "/Nrmk.IndyFramework.Moby/SetExtraDO",
+  "/Nrmk.IndyFramework.Moby/EnableExternalLEDControl",
+  "/Nrmk.IndyFramework.Moby/SetLEDMode",
   "/Nrmk.IndyFramework.Moby/SetControlParam",
   "/Nrmk.IndyFramework.Moby/GetControlParam",
   "/Nrmk.IndyFramework.Moby/StartRTLogging",
   "/Nrmk.IndyFramework.Moby/EndRTLogging",
+  "/Nrmk.IndyFramework.Moby/GetControlSource",
+  "/Nrmk.IndyFramework.Moby/SetControlSource",
 };
 
 std::unique_ptr< Moby::Stub> Moby::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -98,14 +103,19 @@ Moby::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, cons
   , rpcmethod_SetRotationControllerType_(Moby_method_names[26], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_SetForceKinematics_(Moby_method_names[27], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_GetForceKinematics_(Moby_method_names[28], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PauseBumper_(Moby_method_names[29], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_TurnLightOnOff_(Moby_method_names[30], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_TurnBuzzOnOff_(Moby_method_names[31], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetExtraDO_(Moby_method_names[32], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetControlParam_(Moby_method_names[33], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetControlParam_(Moby_method_names[34], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_StartRTLogging_(Moby_method_names[35], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_EndRTLogging_(Moby_method_names[36], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_MoveSteerToZero_(Moby_method_names[29], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PauseBumper_(Moby_method_names[30], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_TurnLightOnOff_(Moby_method_names[31], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_TurnBuzzOnOff_(Moby_method_names[32], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetExtraDO_(Moby_method_names[33], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_EnableExternalLEDControl_(Moby_method_names[34], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetLEDMode_(Moby_method_names[35], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetControlParam_(Moby_method_names[36], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetControlParam_(Moby_method_names[37], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_StartRTLogging_(Moby_method_names[38], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_EndRTLogging_(Moby_method_names[39], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetControlSource_(Moby_method_names[40], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetControlSource_(Moby_method_names[41], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status Moby::Stub::GetMobyState(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::MobyState* response) {
@@ -775,6 +785,29 @@ void Moby::Stub::async::GetForceKinematics(::grpc::ClientContext* context, const
   return result;
 }
 
+::grpc::Status Moby::Stub::MoveSteerToZero(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_MoveSteerToZero_, context, request, response);
+}
+
+void Moby::Stub::async::MoveSteerToZero(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_MoveSteerToZero_, context, request, response, std::move(f));
+}
+
+void Moby::Stub::async::MoveSteerToZero(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_MoveSteerToZero_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Moby::Stub::PrepareAsyncMoveSteerToZeroRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_MoveSteerToZero_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Moby::Stub::AsyncMoveSteerToZeroRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncMoveSteerToZeroRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 ::grpc::Status Moby::Stub::PauseBumper(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal& request, ::Nrmk::IndyFramework::Empty* response) {
   return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::BoolVal, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PauseBumper_, context, request, response);
 }
@@ -867,6 +900,52 @@ void Moby::Stub::async::SetExtraDO(::grpc::ClientContext* context, const ::Nrmk:
   return result;
 }
 
+::grpc::Status Moby::Stub::EnableExternalLEDControl(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal& request, ::Nrmk::IndyFramework::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::BoolVal, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_EnableExternalLEDControl_, context, request, response);
+}
+
+void Moby::Stub::async::EnableExternalLEDControl(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::BoolVal, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_EnableExternalLEDControl_, context, request, response, std::move(f));
+}
+
+void Moby::Stub::async::EnableExternalLEDControl(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_EnableExternalLEDControl_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Moby::Stub::PrepareAsyncEnableExternalLEDControlRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::BoolVal, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_EnableExternalLEDControl_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Moby::Stub::AsyncEnableExternalLEDControlRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncEnableExternalLEDControlRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Moby::Stub::SetLEDMode(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::LEDControlMode& request, ::Nrmk::IndyFramework::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::LEDControlMode, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetLEDMode_, context, request, response);
+}
+
+void Moby::Stub::async::SetLEDMode(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::LEDControlMode* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::LEDControlMode, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetLEDMode_, context, request, response, std::move(f));
+}
+
+void Moby::Stub::async::SetLEDMode(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::LEDControlMode* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetLEDMode_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Moby::Stub::PrepareAsyncSetLEDModeRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::LEDControlMode& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::LEDControlMode, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetLEDMode_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Moby::Stub::AsyncSetLEDModeRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::LEDControlMode& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetLEDModeRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 ::grpc::Status Moby::Stub::SetControlParam(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::RotationGain& request, ::Nrmk::IndyFramework::Empty* response) {
   return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::RotationGain, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetControlParam_, context, request, response);
 }
@@ -955,6 +1034,52 @@ void Moby::Stub::async::EndRTLogging(::grpc::ClientContext* context, const ::Nrm
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Moby::Stub::AsyncEndRTLoggingRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
   auto* result =
     this->PrepareAsyncEndRTLoggingRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Moby::Stub::GetControlSource(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::IntVal* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::IntVal, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetControlSource_, context, request, response);
+}
+
+void Moby::Stub::async::GetControlSource(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::IntVal* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::IntVal, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetControlSource_, context, request, response, std::move(f));
+}
+
+void Moby::Stub::async::GetControlSource(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::IntVal* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetControlSource_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::IntVal>* Moby::Stub::PrepareAsyncGetControlSourceRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::IntVal, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetControlSource_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::IntVal>* Moby::Stub::AsyncGetControlSourceRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetControlSourceRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Moby::Stub::SetControlSource(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::IntVal& request, ::Nrmk::IndyFramework::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::IntVal, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetControlSource_, context, request, response);
+}
+
+void Moby::Stub::async::SetControlSource(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::IntVal* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::IntVal, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetControlSource_, context, request, response, std::move(f));
+}
+
+void Moby::Stub::async::SetControlSource(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::IntVal* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetControlSource_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Moby::Stub::PrepareAsyncSetControlSourceRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::IntVal& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::IntVal, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetControlSource_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* Moby::Stub::AsyncSetControlSourceRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::IntVal& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetControlSourceRaw(context, request, cq);
   result->StartCall();
   return result;
 }
@@ -1253,12 +1378,12 @@ Moby::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Moby_method_names[29],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::BoolVal, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Moby::Service* service,
              ::grpc::ServerContext* ctx,
-             const ::Nrmk::IndyFramework::BoolVal* req,
+             const ::Nrmk::IndyFramework::Empty* req,
              ::Nrmk::IndyFramework::Empty* resp) {
-               return service->PauseBumper(ctx, req, resp);
+               return service->MoveSteerToZero(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Moby_method_names[30],
@@ -1268,7 +1393,7 @@ Moby::Service::Service() {
              ::grpc::ServerContext* ctx,
              const ::Nrmk::IndyFramework::BoolVal* req,
              ::Nrmk::IndyFramework::Empty* resp) {
-               return service->TurnLightOnOff(ctx, req, resp);
+               return service->PauseBumper(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Moby_method_names[31],
@@ -1278,10 +1403,20 @@ Moby::Service::Service() {
              ::grpc::ServerContext* ctx,
              const ::Nrmk::IndyFramework::BoolVal* req,
              ::Nrmk::IndyFramework::Empty* resp) {
-               return service->TurnBuzzOnOff(ctx, req, resp);
+               return service->TurnLightOnOff(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Moby_method_names[32],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::BoolVal, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Moby::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::BoolVal* req,
+             ::Nrmk::IndyFramework::Empty* resp) {
+               return service->TurnBuzzOnOff(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Moby_method_names[33],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::BoolVals, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Moby::Service* service,
@@ -1291,7 +1426,27 @@ Moby::Service::Service() {
                return service->SetExtraDO(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Moby_method_names[33],
+      Moby_method_names[34],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::BoolVal, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Moby::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::BoolVal* req,
+             ::Nrmk::IndyFramework::Empty* resp) {
+               return service->EnableExternalLEDControl(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Moby_method_names[35],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::LEDControlMode, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Moby::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::LEDControlMode* req,
+             ::Nrmk::IndyFramework::Empty* resp) {
+               return service->SetLEDMode(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Moby_method_names[36],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::RotationGain, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Moby::Service* service,
@@ -1301,7 +1456,7 @@ Moby::Service::Service() {
                return service->SetControlParam(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Moby_method_names[34],
+      Moby_method_names[37],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::IntVal, ::Nrmk::IndyFramework::RotationGain, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Moby::Service* service,
@@ -1311,7 +1466,7 @@ Moby::Service::Service() {
                return service->GetControlParam(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Moby_method_names[35],
+      Moby_method_names[38],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Moby::Service* service,
@@ -1321,7 +1476,7 @@ Moby::Service::Service() {
                return service->StartRTLogging(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Moby_method_names[36],
+      Moby_method_names[39],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Moby::Service* service,
@@ -1329,6 +1484,26 @@ Moby::Service::Service() {
              const ::Nrmk::IndyFramework::Empty* req,
              ::Nrmk::IndyFramework::Empty* resp) {
                return service->EndRTLogging(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Moby_method_names[40],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::IntVal, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Moby::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::Empty* req,
+             ::Nrmk::IndyFramework::IntVal* resp) {
+               return service->GetControlSource(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Moby_method_names[41],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Moby::Service, ::Nrmk::IndyFramework::IntVal, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Moby::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::IntVal* req,
+             ::Nrmk::IndyFramework::Empty* resp) {
+               return service->SetControlSource(ctx, req, resp);
              }, this)));
 }
 
@@ -1538,6 +1713,13 @@ Moby::Service::~Service() {
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
+::grpc::Status Moby::Service::MoveSteerToZero(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
 ::grpc::Status Moby::Service::PauseBumper(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::BoolVal* request, ::Nrmk::IndyFramework::Empty* response) {
   (void) context;
   (void) request;
@@ -1566,6 +1748,20 @@ Moby::Service::~Service() {
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
+::grpc::Status Moby::Service::EnableExternalLEDControl(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::BoolVal* request, ::Nrmk::IndyFramework::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Moby::Service::SetLEDMode(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::LEDControlMode* request, ::Nrmk::IndyFramework::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
 ::grpc::Status Moby::Service::SetControlParam(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::RotationGain* request, ::Nrmk::IndyFramework::Empty* response) {
   (void) context;
   (void) request;
@@ -1588,6 +1784,20 @@ Moby::Service::~Service() {
 }
 
 ::grpc::Status Moby::Service::EndRTLogging(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Moby::Service::GetControlSource(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::IntVal* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Moby::Service::SetControlSource(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::IntVal* request, ::Nrmk::IndyFramework::Empty* response) {
   (void) context;
   (void) request;
   (void) response;

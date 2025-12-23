@@ -30,6 +30,16 @@ class DeviceStub(object):
                 request_serializer=device__msgs__pb2.Servo.SerializeToString,
                 response_deserializer=common__msgs__pb2.Response.FromString,
                 )
+        self.SimDIConfig = channel.unary_unary(
+                '/Nrmk.IndyFramework.Device/SimDIConfig',
+                request_serializer=device__msgs__pb2.DISignals.SerializeToString,
+                response_deserializer=common__msgs__pb2.Response.FromString,
+                )
+        self.DOModeConfig = channel.unary_unary(
+                '/Nrmk.IndyFramework.Device/DOModeConfig',
+                request_serializer=device__msgs__pb2.DOMode.SerializeToString,
+                response_deserializer=common__msgs__pb2.Response.FromString,
+                )
         self.SetDI = channel.unary_unary(
                 '/Nrmk.IndyFramework.Device/SetDI',
                 request_serializer=device__msgs__pb2.DigitalList.SerializeToString,
@@ -290,6 +300,11 @@ class DeviceStub(object):
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
                 response_deserializer=device__msgs__pb2.GripperData.FromString,
                 )
+        self.GetGripperDataFor = channel.unary_unary(
+                '/Nrmk.IndyFramework.Device/GetGripperDataFor',
+                request_serializer=common__msgs__pb2.Int.SerializeToString,
+                response_deserializer=device__msgs__pb2.GripperData.FromString,
+                )
         self.SetGripperCommand = channel.unary_unary(
                 '/Nrmk.IndyFramework.Device/SetGripperCommand',
                 request_serializer=device__msgs__pb2.GripperCommand.SerializeToString,
@@ -310,10 +325,55 @@ class DeviceStub(object):
                 request_serializer=device__msgs__pb2.VisionRequest.SerializeToString,
                 response_deserializer=device__msgs__pb2.VisionResult.FromString,
                 )
+        self.ConfigurePickit3D = channel.unary_unary(
+                '/Nrmk.IndyFramework.Device/ConfigurePickit3D',
+                request_serializer=device__msgs__pb2.ConfigurePickit3DReq.SerializeToString,
+                response_deserializer=common__msgs__pb2.Response.FromString,
+                )
+        self.GetPickit3DDetection = channel.unary_unary(
+                '/Nrmk.IndyFramework.Device/GetPickit3DDetection',
+                request_serializer=device__msgs__pb2.VisionRequest.SerializeToString,
+                response_deserializer=device__msgs__pb2.VisionResult.FromString,
+                )
+        self.GetPickit3DRetrieval = channel.unary_unary(
+                '/Nrmk.IndyFramework.Device/GetPickit3DRetrieval',
+                request_serializer=device__msgs__pb2.VisionRequest.SerializeToString,
+                response_deserializer=device__msgs__pb2.VisionResult.FromString,
+                )
         self.GetRTTaskTimes = channel.unary_unary(
                 '/Nrmk.IndyFramework.Device/GetRTTaskTimes',
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
                 response_deserializer=device__msgs__pb2.TaskTimes.FromString,
+                )
+        self.SocketCmdSetConfig = channel.unary_unary(
+                '/Nrmk.IndyFramework.Device/SocketCmdSetConfig',
+                request_serializer=device__msgs__pb2.SocketCommandConfig.SerializeToString,
+                response_deserializer=common__msgs__pb2.Response.FromString,
+                )
+        self.SocketCmdGetConfig = channel.unary_unary(
+                '/Nrmk.IndyFramework.Device/SocketCmdGetConfig',
+                request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=device__msgs__pb2.SocketCommandConfig.FromString,
+                )
+        self.SocketCmdStart = channel.unary_unary(
+                '/Nrmk.IndyFramework.Device/SocketCmdStart',
+                request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=device__msgs__pb2.SocketCommandStatus.FromString,
+                )
+        self.SocketCmdStop = channel.unary_unary(
+                '/Nrmk.IndyFramework.Device/SocketCmdStop',
+                request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=device__msgs__pb2.SocketCommandStatus.FromString,
+                )
+        self.SocketCmdSendData = channel.unary_unary(
+                '/Nrmk.IndyFramework.Device/SocketCmdSendData',
+                request_serializer=device__msgs__pb2.SocketPayload.SerializeToString,
+                response_deserializer=device__msgs__pb2.SocketCommandStatus.FromString,
+                )
+        self.SocketCmdGetLatestData = channel.unary_unary(
+                '/Nrmk.IndyFramework.Device/SocketCmdGetLatestData',
+                request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=device__msgs__pb2.SocketPayload.FromString,
                 )
 
 
@@ -333,6 +393,18 @@ class DeviceServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def SetServo(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SimDIConfig(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def DOModeConfig(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -654,6 +726,12 @@ class DeviceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetGripperDataFor(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def SetGripperCommand(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -680,9 +758,65 @@ class DeviceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def ConfigurePickit3D(self, request, context):
+        """/////////////Pickit3D Detection Retrieval//////////////////////
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetPickit3DDetection(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetPickit3DRetrieval(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def GetRTTaskTimes(self, request, context):
         """/////////////System Status//////////////////////
         """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SocketCmdSetConfig(self, request, context):
+        """/////////////Socket Command//////////////////////
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SocketCmdGetConfig(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SocketCmdStart(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SocketCmdStop(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SocketCmdSendData(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SocketCmdGetLatestData(self, request, context):
+        """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
@@ -703,6 +837,16 @@ def add_DeviceServicer_to_server(servicer, server):
             'SetServo': grpc.unary_unary_rpc_method_handler(
                     servicer.SetServo,
                     request_deserializer=device__msgs__pb2.Servo.FromString,
+                    response_serializer=common__msgs__pb2.Response.SerializeToString,
+            ),
+            'SimDIConfig': grpc.unary_unary_rpc_method_handler(
+                    servicer.SimDIConfig,
+                    request_deserializer=device__msgs__pb2.DISignals.FromString,
+                    response_serializer=common__msgs__pb2.Response.SerializeToString,
+            ),
+            'DOModeConfig': grpc.unary_unary_rpc_method_handler(
+                    servicer.DOModeConfig,
+                    request_deserializer=device__msgs__pb2.DOMode.FromString,
                     response_serializer=common__msgs__pb2.Response.SerializeToString,
             ),
             'SetDI': grpc.unary_unary_rpc_method_handler(
@@ -965,6 +1109,11 @@ def add_DeviceServicer_to_server(servicer, server):
                     request_deserializer=common__msgs__pb2.Empty.FromString,
                     response_serializer=device__msgs__pb2.GripperData.SerializeToString,
             ),
+            'GetGripperDataFor': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetGripperDataFor,
+                    request_deserializer=common__msgs__pb2.Int.FromString,
+                    response_serializer=device__msgs__pb2.GripperData.SerializeToString,
+            ),
             'SetGripperCommand': grpc.unary_unary_rpc_method_handler(
                     servicer.SetGripperCommand,
                     request_deserializer=device__msgs__pb2.GripperCommand.FromString,
@@ -985,10 +1134,55 @@ def add_DeviceServicer_to_server(servicer, server):
                     request_deserializer=device__msgs__pb2.VisionRequest.FromString,
                     response_serializer=device__msgs__pb2.VisionResult.SerializeToString,
             ),
+            'ConfigurePickit3D': grpc.unary_unary_rpc_method_handler(
+                    servicer.ConfigurePickit3D,
+                    request_deserializer=device__msgs__pb2.ConfigurePickit3DReq.FromString,
+                    response_serializer=common__msgs__pb2.Response.SerializeToString,
+            ),
+            'GetPickit3DDetection': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetPickit3DDetection,
+                    request_deserializer=device__msgs__pb2.VisionRequest.FromString,
+                    response_serializer=device__msgs__pb2.VisionResult.SerializeToString,
+            ),
+            'GetPickit3DRetrieval': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetPickit3DRetrieval,
+                    request_deserializer=device__msgs__pb2.VisionRequest.FromString,
+                    response_serializer=device__msgs__pb2.VisionResult.SerializeToString,
+            ),
             'GetRTTaskTimes': grpc.unary_unary_rpc_method_handler(
                     servicer.GetRTTaskTimes,
                     request_deserializer=common__msgs__pb2.Empty.FromString,
                     response_serializer=device__msgs__pb2.TaskTimes.SerializeToString,
+            ),
+            'SocketCmdSetConfig': grpc.unary_unary_rpc_method_handler(
+                    servicer.SocketCmdSetConfig,
+                    request_deserializer=device__msgs__pb2.SocketCommandConfig.FromString,
+                    response_serializer=common__msgs__pb2.Response.SerializeToString,
+            ),
+            'SocketCmdGetConfig': grpc.unary_unary_rpc_method_handler(
+                    servicer.SocketCmdGetConfig,
+                    request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=device__msgs__pb2.SocketCommandConfig.SerializeToString,
+            ),
+            'SocketCmdStart': grpc.unary_unary_rpc_method_handler(
+                    servicer.SocketCmdStart,
+                    request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=device__msgs__pb2.SocketCommandStatus.SerializeToString,
+            ),
+            'SocketCmdStop': grpc.unary_unary_rpc_method_handler(
+                    servicer.SocketCmdStop,
+                    request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=device__msgs__pb2.SocketCommandStatus.SerializeToString,
+            ),
+            'SocketCmdSendData': grpc.unary_unary_rpc_method_handler(
+                    servicer.SocketCmdSendData,
+                    request_deserializer=device__msgs__pb2.SocketPayload.FromString,
+                    response_serializer=device__msgs__pb2.SocketCommandStatus.SerializeToString,
+            ),
+            'SocketCmdGetLatestData': grpc.unary_unary_rpc_method_handler(
+                    servicer.SocketCmdGetLatestData,
+                    request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=device__msgs__pb2.SocketPayload.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -1047,6 +1241,40 @@ class Device(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/SetServo',
             device__msgs__pb2.Servo.SerializeToString,
+            common__msgs__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SimDIConfig(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/SimDIConfig',
+            device__msgs__pb2.DISignals.SerializeToString,
+            common__msgs__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def DOModeConfig(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/DOModeConfig',
+            device__msgs__pb2.DOMode.SerializeToString,
             common__msgs__pb2.Response.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
@@ -1936,6 +2164,23 @@ class Device(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
+    def GetGripperDataFor(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/GetGripperDataFor',
+            common__msgs__pb2.Int.SerializeToString,
+            device__msgs__pb2.GripperData.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
     def SetGripperCommand(request,
             target,
             options=(),
@@ -2004,6 +2249,57 @@ class Device(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
+    def ConfigurePickit3D(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/ConfigurePickit3D',
+            device__msgs__pb2.ConfigurePickit3DReq.SerializeToString,
+            common__msgs__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetPickit3DDetection(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/GetPickit3DDetection',
+            device__msgs__pb2.VisionRequest.SerializeToString,
+            device__msgs__pb2.VisionResult.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetPickit3DRetrieval(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/GetPickit3DRetrieval',
+            device__msgs__pb2.VisionRequest.SerializeToString,
+            device__msgs__pb2.VisionResult.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
     def GetRTTaskTimes(request,
             target,
             options=(),
@@ -2017,5 +2313,107 @@ class Device(object):
         return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/GetRTTaskTimes',
             common__msgs__pb2.Empty.SerializeToString,
             device__msgs__pb2.TaskTimes.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SocketCmdSetConfig(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/SocketCmdSetConfig',
+            device__msgs__pb2.SocketCommandConfig.SerializeToString,
+            common__msgs__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SocketCmdGetConfig(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/SocketCmdGetConfig',
+            common__msgs__pb2.Empty.SerializeToString,
+            device__msgs__pb2.SocketCommandConfig.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SocketCmdStart(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/SocketCmdStart',
+            common__msgs__pb2.Empty.SerializeToString,
+            device__msgs__pb2.SocketCommandStatus.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SocketCmdStop(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/SocketCmdStop',
+            common__msgs__pb2.Empty.SerializeToString,
+            device__msgs__pb2.SocketCommandStatus.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SocketCmdSendData(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/SocketCmdSendData',
+            device__msgs__pb2.SocketPayload.SerializeToString,
+            device__msgs__pb2.SocketCommandStatus.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SocketCmdGetLatestData(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/SocketCmdGetLatestData',
+            common__msgs__pb2.Empty.SerializeToString,
+            device__msgs__pb2.SocketPayload.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

@@ -33,7 +33,7 @@ static constexpr ::_pbi::MigrationSchema* schemas = nullptr;
 static constexpr ::_pb::Message* const* file_default_instances = nullptr;
 const char descriptor_table_protodef_ethercat_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
     "\n\016ethercat.proto\022\022Nrmk.IndyFramework\032\023et"
-    "hercat_msgs.proto\032\021common_msgs.proto2\203 \n"
+    "hercat_msgs.proto\032\021common_msgs.proto2\255$\n"
     "\010EtherCAT\022P\n\017SetMasterStatus\022 .Nrmk.Indy"
     "Framework.MasterStatus\032\031.Nrmk.IndyFramew"
     "ork.Empty\"\000\022P\n\017GetMasterStatus\022\031.Nrmk.In"
@@ -115,28 +115,42 @@ const char descriptor_table_protodef_ethercat_2eproto[] PROTOBUF_SECTION_VARIABL
     "Nrmk.IndyFramework.DIOIndex\032$.Nrmk.IndyF"
     "ramework.DIODigitalOutput\"\000\022J\n\005SetDO\022$.N"
     "rmk.IndyFramework.DIODigitalOutput\032\031.Nrm"
-    "k.IndyFramework.Empty\"\000\022Q\n\017GetMaxTorqueS"
-    "DO\022\035.Nrmk.IndyFramework.EcatIndex\032\035.Nrmk"
-    ".IndyFramework.SDOIntVal\"\000\022R\n\020GetProfile"
-    "VelSDO\022\035.Nrmk.IndyFramework.EcatIndex\032\035."
-    "Nrmk.IndyFramework.SDOIntVal\"\000\022R\n\020GetPro"
-    "fileAccSDO\022\035.Nrmk.IndyFramework.EcatInde"
-    "x\032\035.Nrmk.IndyFramework.SDOIntVal\"\000\022R\n\020Ge"
-    "tProfileDecSDO\022\035.Nrmk.IndyFramework.Ecat"
-    "Index\032\035.Nrmk.IndyFramework.SDOIntVal\"\000\022N"
-    "\n\017SetMaxTorqueSDO\022\036.Nrmk.IndyFramework.S"
-    "ervoParam\032\031.Nrmk.IndyFramework.Empty\"\000\022O"
-    "\n\020SetProfileVelSDO\022\036.Nrmk.IndyFramework."
-    "ServoParam\032\031.Nrmk.IndyFramework.Empty\"\000\022"
-    "O\n\020SetProfileAccSDO\022\036.Nrmk.IndyFramework"
-    ".ServoParam\032\031.Nrmk.IndyFramework.Empty\"\000"
-    "\022O\n\020SetProfileDecSDO\022\036.Nrmk.IndyFramewor"
-    "k.ServoParam\032\031.Nrmk.IndyFramework.Empty\""
-    "\000\022Y\n\021GetRobotZeroCount\022\036.Nrmk.IndyFramew"
-    "ork.ServoIndex\032\".Nrmk.IndyFramework.Robo"
-    "tZeroCount\"\000\022T\n\025SetRobotZeroAsCurrent\022\036."
-    "Nrmk.IndyFramework.ServoIndex\032\031.Nrmk.Ind"
-    "yFramework.Empty\"\000b\006proto3"
+    "k.IndyFramework.Empty\"\000\022K\n\005GetAI\022\034.Nrmk."
+    "IndyFramework.AIOIndex\032\".Nrmk.IndyFramew"
+    "ork.AIOAnalogInput\"\000\022L\n\005GetAO\022\034.Nrmk.Ind"
+    "yFramework.AIOIndex\032#.Nrmk.IndyFramework"
+    ".AIOAnalogOutput\"\000\022I\n\005SetAO\022#.Nrmk.IndyF"
+    "ramework.AIOAnalogOutput\032\031.Nrmk.IndyFram"
+    "ework.Empty\"\000\022J\n\014SetZenHandRx\022\035.Nrmk.Ind"
+    "yFramework.ZenHandRx\032\031.Nrmk.IndyFramewor"
+    "k.Empty\"\000\022N\n\014GetZenHandTx\022\035.Nrmk.IndyFra"
+    "mework.HandIndex\032\035.Nrmk.IndyFramework.Ze"
+    "nHandTx\"\000\022N\n\014GetZenHandRx\022\035.Nrmk.IndyFra"
+    "mework.HandIndex\032\035.Nrmk.IndyFramework.Ze"
+    "nHandRx\"\000\022V\n\020GetZenHandSensor\022\035.Nrmk.Ind"
+    "yFramework.HandIndex\032!.Nrmk.IndyFramewor"
+    "k.ZenHandSensor\"\000\022Q\n\017GetMaxTorqueSDO\022\035.N"
+    "rmk.IndyFramework.EcatIndex\032\035.Nrmk.IndyF"
+    "ramework.SDOIntVal\"\000\022R\n\020GetProfileVelSDO"
+    "\022\035.Nrmk.IndyFramework.EcatIndex\032\035.Nrmk.I"
+    "ndyFramework.SDOIntVal\"\000\022R\n\020GetProfileAc"
+    "cSDO\022\035.Nrmk.IndyFramework.EcatIndex\032\035.Nr"
+    "mk.IndyFramework.SDOIntVal\"\000\022R\n\020GetProfi"
+    "leDecSDO\022\035.Nrmk.IndyFramework.EcatIndex\032"
+    "\035.Nrmk.IndyFramework.SDOIntVal\"\000\022N\n\017SetM"
+    "axTorqueSDO\022\036.Nrmk.IndyFramework.ServoPa"
+    "ram\032\031.Nrmk.IndyFramework.Empty\"\000\022O\n\020SetP"
+    "rofileVelSDO\022\036.Nrmk.IndyFramework.ServoP"
+    "aram\032\031.Nrmk.IndyFramework.Empty\"\000\022O\n\020Set"
+    "ProfileAccSDO\022\036.Nrmk.IndyFramework.Servo"
+    "Param\032\031.Nrmk.IndyFramework.Empty\"\000\022O\n\020Se"
+    "tProfileDecSDO\022\036.Nrmk.IndyFramework.Serv"
+    "oParam\032\031.Nrmk.IndyFramework.Empty\"\000\022Y\n\021G"
+    "etRobotZeroCount\022\036.Nrmk.IndyFramework.Se"
+    "rvoIndex\032\".Nrmk.IndyFramework.RobotZeroC"
+    "ount\"\000\022T\n\025SetRobotZeroAsCurrent\022\036.Nrmk.I"
+    "ndyFramework.ServoIndex\032\031.Nrmk.IndyFrame"
+    "work.Empty\"\000b\006proto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_ethercat_2eproto_deps[2] =
     {
@@ -147,7 +161,7 @@ static ::absl::once_flag descriptor_table_ethercat_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_ethercat_2eproto = {
     false,
     false,
-    4186,
+    4740,
     descriptor_table_protodef_ethercat_2eproto,
     "ethercat.proto",
     &descriptor_table_ethercat_2eproto_once,

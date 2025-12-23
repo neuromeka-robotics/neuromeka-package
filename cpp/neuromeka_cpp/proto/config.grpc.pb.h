@@ -681,6 +681,36 @@ class Config final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::SensorlessParams>> PrepareAsyncGetSensorlessParams(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::SensorlessParams>>(PrepareAsyncGetSensorlessParamsRaw(context, request, cq));
     }
+    // Welding Machine Configuration
+    virtual ::grpc::Status GetWeldingMachineConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::WeldingConfigInfo* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::WeldingConfigInfo>> AsyncGetWeldingMachineConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::WeldingConfigInfo>>(AsyncGetWeldingMachineConfigRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::WeldingConfigInfo>> PrepareAsyncGetWeldingMachineConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::WeldingConfigInfo>>(PrepareAsyncGetWeldingMachineConfigRaw(context, request, cq));
+    }
+    virtual ::grpc::Status SetWeldingMachineConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::WeldingConfigInfo& request, ::Nrmk::IndyFramework::Response* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>> AsyncSetWeldingMachineConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::WeldingConfigInfo& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>>(AsyncSetWeldingMachineConfigRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>> PrepareAsyncSetWeldingMachineConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::WeldingConfigInfo& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>>(PrepareAsyncSetWeldingMachineConfigRaw(context, request, cq));
+    }
+    // Welding Position Configuration
+    virtual ::grpc::Status GetWeldPositionList(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::WeldPositionList* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::WeldPositionList>> AsyncGetWeldPositionList(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::WeldPositionList>>(AsyncGetWeldPositionListRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::WeldPositionList>> PrepareAsyncGetWeldPositionList(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::WeldPositionList>>(PrepareAsyncGetWeldPositionListRaw(context, request, cq));
+    }
+    virtual ::grpc::Status SetWeldPositionList(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::WeldPositionList& request, ::Nrmk::IndyFramework::Response* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>> AsyncSetWeldPositionList(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::WeldPositionList& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>>(AsyncSetWeldPositionListRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>> PrepareAsyncSetWeldPositionList(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::WeldPositionList& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>>(PrepareAsyncSetWeldPositionListRaw(context, request, cq));
+    }
     class async_interface {
      public:
       virtual ~async_interface() {}
@@ -869,6 +899,16 @@ class Config final {
       virtual void SetSensorlessParams(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SensorlessParams* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void GetSensorlessParams(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::SensorlessParams* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetSensorlessParams(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::SensorlessParams* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // Welding Machine Configuration
+      virtual void GetWeldingMachineConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::WeldingConfigInfo* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetWeldingMachineConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::WeldingConfigInfo* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void SetWeldingMachineConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::WeldingConfigInfo* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void SetWeldingMachineConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::WeldingConfigInfo* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // Welding Position Configuration
+      virtual void GetWeldPositionList(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::WeldPositionList* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetWeldPositionList(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::WeldPositionList* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void SetWeldPositionList(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::WeldPositionList* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void SetWeldPositionList(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::WeldPositionList* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
@@ -1058,6 +1098,14 @@ class Config final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>* PrepareAsyncSetSensorlessParamsRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SensorlessParams& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::SensorlessParams>* AsyncGetSensorlessParamsRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::SensorlessParams>* PrepareAsyncGetSensorlessParamsRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::WeldingConfigInfo>* AsyncGetWeldingMachineConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::WeldingConfigInfo>* PrepareAsyncGetWeldingMachineConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>* AsyncSetWeldingMachineConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::WeldingConfigInfo& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>* PrepareAsyncSetWeldingMachineConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::WeldingConfigInfo& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::WeldPositionList>* AsyncGetWeldPositionListRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::WeldPositionList>* PrepareAsyncGetWeldPositionListRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>* AsyncSetWeldPositionListRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::WeldPositionList& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>* PrepareAsyncSetWeldPositionListRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::WeldPositionList& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -1706,6 +1754,34 @@ class Config final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::SensorlessParams>> PrepareAsyncGetSensorlessParams(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::SensorlessParams>>(PrepareAsyncGetSensorlessParamsRaw(context, request, cq));
     }
+    ::grpc::Status GetWeldingMachineConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::WeldingConfigInfo* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::WeldingConfigInfo>> AsyncGetWeldingMachineConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::WeldingConfigInfo>>(AsyncGetWeldingMachineConfigRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::WeldingConfigInfo>> PrepareAsyncGetWeldingMachineConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::WeldingConfigInfo>>(PrepareAsyncGetWeldingMachineConfigRaw(context, request, cq));
+    }
+    ::grpc::Status SetWeldingMachineConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::WeldingConfigInfo& request, ::Nrmk::IndyFramework::Response* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>> AsyncSetWeldingMachineConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::WeldingConfigInfo& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>>(AsyncSetWeldingMachineConfigRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>> PrepareAsyncSetWeldingMachineConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::WeldingConfigInfo& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>>(PrepareAsyncSetWeldingMachineConfigRaw(context, request, cq));
+    }
+    ::grpc::Status GetWeldPositionList(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::WeldPositionList* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::WeldPositionList>> AsyncGetWeldPositionList(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::WeldPositionList>>(AsyncGetWeldPositionListRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::WeldPositionList>> PrepareAsyncGetWeldPositionList(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::WeldPositionList>>(PrepareAsyncGetWeldPositionListRaw(context, request, cq));
+    }
+    ::grpc::Status SetWeldPositionList(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::WeldPositionList& request, ::Nrmk::IndyFramework::Response* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>> AsyncSetWeldPositionList(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::WeldPositionList& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>>(AsyncSetWeldPositionListRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>> PrepareAsyncSetWeldPositionList(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::WeldPositionList& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>>(PrepareAsyncSetWeldPositionListRaw(context, request, cq));
+    }
     class async final :
       public StubInterface::async_interface {
      public:
@@ -1893,6 +1969,14 @@ class Config final {
       void SetSensorlessParams(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SensorlessParams* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) override;
       void GetSensorlessParams(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::SensorlessParams* response, std::function<void(::grpc::Status)>) override;
       void GetSensorlessParams(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::SensorlessParams* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void GetWeldingMachineConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::WeldingConfigInfo* response, std::function<void(::grpc::Status)>) override;
+      void GetWeldingMachineConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::WeldingConfigInfo* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void SetWeldingMachineConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::WeldingConfigInfo* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)>) override;
+      void SetWeldingMachineConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::WeldingConfigInfo* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void GetWeldPositionList(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::WeldPositionList* response, std::function<void(::grpc::Status)>) override;
+      void GetWeldPositionList(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::WeldPositionList* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void SetWeldPositionList(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::WeldPositionList* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)>) override;
+      void SetWeldPositionList(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::WeldPositionList* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -2088,6 +2172,14 @@ class Config final {
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* PrepareAsyncSetSensorlessParamsRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SensorlessParams& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::SensorlessParams>* AsyncGetSensorlessParamsRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::SensorlessParams>* PrepareAsyncGetSensorlessParamsRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::WeldingConfigInfo>* AsyncGetWeldingMachineConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::WeldingConfigInfo>* PrepareAsyncGetWeldingMachineConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* AsyncSetWeldingMachineConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::WeldingConfigInfo& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* PrepareAsyncSetWeldingMachineConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::WeldingConfigInfo& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::WeldPositionList>* AsyncGetWeldPositionListRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::WeldPositionList>* PrepareAsyncGetWeldPositionListRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* AsyncSetWeldPositionListRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::WeldPositionList& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* PrepareAsyncSetWeldPositionListRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::WeldPositionList& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_GetNonce_;
     const ::grpc::internal::RpcMethod rpcmethod_Login_;
     const ::grpc::internal::RpcMethod rpcmethod_TestDigest_;
@@ -2180,6 +2272,10 @@ class Config final {
     const ::grpc::internal::RpcMethod rpcmethod_GetEnvironmentList_;
     const ::grpc::internal::RpcMethod rpcmethod_SetSensorlessParams_;
     const ::grpc::internal::RpcMethod rpcmethod_GetSensorlessParams_;
+    const ::grpc::internal::RpcMethod rpcmethod_GetWeldingMachineConfig_;
+    const ::grpc::internal::RpcMethod rpcmethod_SetWeldingMachineConfig_;
+    const ::grpc::internal::RpcMethod rpcmethod_GetWeldPositionList_;
+    const ::grpc::internal::RpcMethod rpcmethod_SetWeldPositionList_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -2280,6 +2376,12 @@ class Config final {
     virtual ::grpc::Status GetEnvironmentList(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::EnvironmentList* response);
     virtual ::grpc::Status SetSensorlessParams(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::SensorlessParams* request, ::Nrmk::IndyFramework::Response* response);
     virtual ::grpc::Status GetSensorlessParams(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::SensorlessParams* response);
+    // Welding Machine Configuration
+    virtual ::grpc::Status GetWeldingMachineConfig(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::WeldingConfigInfo* response);
+    virtual ::grpc::Status SetWeldingMachineConfig(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::WeldingConfigInfo* request, ::Nrmk::IndyFramework::Response* response);
+    // Welding Position Configuration
+    virtual ::grpc::Status GetWeldPositionList(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::WeldPositionList* response);
+    virtual ::grpc::Status SetWeldPositionList(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::WeldPositionList* request, ::Nrmk::IndyFramework::Response* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_GetNonce : public BaseClass {
@@ -4121,7 +4223,87 @@ class Config final {
       ::grpc::Service::RequestAsyncUnary(91, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_GetNonce<WithAsyncMethod_Login<WithAsyncMethod_TestDigest<WithAsyncMethod_VerifyToken<WithAsyncMethod_ChangePassword<WithAsyncMethod_GetPathConfig<WithAsyncMethod_GetRefFrame<WithAsyncMethod_GetRefFrameFor<WithAsyncMethod_SetRefFrame<WithAsyncMethod_SetRefFramePlanar<WithAsyncMethod_SetLockedJoint<WithAsyncMethod_SetToolLink<WithAsyncMethod_SetToolFrame<WithAsyncMethod_SetSpeedRatio<WithAsyncMethod_GetSpeedRatio<WithAsyncMethod_SetDIConfigList<WithAsyncMethod_GetDIConfigList<WithAsyncMethod_SetDOConfigList<WithAsyncMethod_GetDOConfigList<WithAsyncMethod_SetHomePosition<WithAsyncMethod_GetHomePosition<WithAsyncMethod_GetPackPosition<WithAsyncMethod_SetToolList<WithAsyncMethod_GetToolList<WithAsyncMethod_GetVisionServerList<WithAsyncMethod_SetVisionServerList<WithAsyncMethod_GetModbusServerList<WithAsyncMethod_SetModbusServerList<WithAsyncMethod_GetConveyorList<WithAsyncMethod_SetConveyorList<WithAsyncMethod_SetAutoServoOff<WithAsyncMethod_GetAutoServoOff<WithAsyncMethod_SetJointControlGain<WithAsyncMethod_GetJointControlGain<WithAsyncMethod_SetTaskControlGain<WithAsyncMethod_GetTaskControlGain<WithAsyncMethod_SetImpedanceControlGain<WithAsyncMethod_GetImpedanceControlGain<WithAsyncMethod_SetForceControlGain<WithAsyncMethod_GetForceControlGain<WithAsyncMethod_SetTestControlGain<WithAsyncMethod_GetTestControlGain<WithAsyncMethod_SetCustomControlGain<WithAsyncMethod_GetCustomControlGain<WithAsyncMethod_SetNewControllerTestOnOff<WithAsyncMethod_GetNewControllerTestOnOffState<WithAsyncMethod_SetComplianceControlJointGain<WithAsyncMethod_GetComplianceControlJointGain<WithAsyncMethod_SetFrictionComp<WithAsyncMethod_GetFrictionComp<WithAsyncMethod_SetMountPos<WithAsyncMethod_GetMountPos<WithAsyncMethod_SetToolProperty<WithAsyncMethod_GetToolProperty<WithAsyncMethod_GetToolPropertyAt<WithAsyncMethod_GetToolFrameList<WithAsyncMethod_SetToolFrameList<WithAsyncMethod_GetRefFrameList<WithAsyncMethod_SetRefFrameList<WithAsyncMethod_GetCustomPosList<WithAsyncMethod_SetCustomPosList<WithAsyncMethod_SetCollSensLevel<WithAsyncMethod_GetCollSensLevel<WithAsyncMethod_SetCollSensParam<WithAsyncMethod_GetCollSensParam<WithAsyncMethod_GetDefaultCollSensParam<WithAsyncMethod_SetCollPolicy<WithAsyncMethod_GetCollPolicy<WithAsyncMethod_SetOnStartProgramConfig<WithAsyncMethod_GetOnStartProgramConfig<WithAsyncMethod_SetSimpleCollThreshold<WithAsyncMethod_SetSafetyLimits<WithAsyncMethod_GetSafetyLimits<WithAsyncMethod_SetSafetyStopConfig<WithAsyncMethod_GetSafetyStopConfig<WithAsyncMethod_GetReducedRatio<WithAsyncMethod_GetReducedSpeed<WithAsyncMethod_SetReducedSpeed<WithAsyncMethod_SetFTSensorConfig<WithAsyncMethod_GetFTSensorConfig<WithAsyncMethod_GetFTSensorConfigFor<WithAsyncMethod_SetTeleOpParams<WithAsyncMethod_GetTeleOpParams<WithAsyncMethod_GetKinematicsParams<WithAsyncMethod_GetCollisonModelMargin<WithAsyncMethod_SetCollisonModelMargin<WithAsyncMethod_SetToolShapeList<WithAsyncMethod_GetToolShapeList<WithAsyncMethod_SetEnvironmentList<WithAsyncMethod_GetEnvironmentList<WithAsyncMethod_SetSensorlessParams<WithAsyncMethod_GetSensorlessParams<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_GetWeldingMachineConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_GetWeldingMachineConfig() {
+      ::grpc::Service::MarkMethodAsync(92);
+    }
+    ~WithAsyncMethod_GetWeldingMachineConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetWeldingMachineConfig(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::WeldingConfigInfo* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetWeldingMachineConfig(::grpc::ServerContext* context, ::Nrmk::IndyFramework::Empty* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::WeldingConfigInfo>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(92, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_SetWeldingMachineConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_SetWeldingMachineConfig() {
+      ::grpc::Service::MarkMethodAsync(93);
+    }
+    ~WithAsyncMethod_SetWeldingMachineConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetWeldingMachineConfig(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::WeldingConfigInfo* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSetWeldingMachineConfig(::grpc::ServerContext* context, ::Nrmk::IndyFramework::WeldingConfigInfo* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::Response>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(93, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_GetWeldPositionList : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_GetWeldPositionList() {
+      ::grpc::Service::MarkMethodAsync(94);
+    }
+    ~WithAsyncMethod_GetWeldPositionList() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetWeldPositionList(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::WeldPositionList* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetWeldPositionList(::grpc::ServerContext* context, ::Nrmk::IndyFramework::Empty* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::WeldPositionList>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(94, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_SetWeldPositionList : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_SetWeldPositionList() {
+      ::grpc::Service::MarkMethodAsync(95);
+    }
+    ~WithAsyncMethod_SetWeldPositionList() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetWeldPositionList(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::WeldPositionList* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSetWeldPositionList(::grpc::ServerContext* context, ::Nrmk::IndyFramework::WeldPositionList* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::Response>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(95, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_GetNonce<WithAsyncMethod_Login<WithAsyncMethod_TestDigest<WithAsyncMethod_VerifyToken<WithAsyncMethod_ChangePassword<WithAsyncMethod_GetPathConfig<WithAsyncMethod_GetRefFrame<WithAsyncMethod_GetRefFrameFor<WithAsyncMethod_SetRefFrame<WithAsyncMethod_SetRefFramePlanar<WithAsyncMethod_SetLockedJoint<WithAsyncMethod_SetToolLink<WithAsyncMethod_SetToolFrame<WithAsyncMethod_SetSpeedRatio<WithAsyncMethod_GetSpeedRatio<WithAsyncMethod_SetDIConfigList<WithAsyncMethod_GetDIConfigList<WithAsyncMethod_SetDOConfigList<WithAsyncMethod_GetDOConfigList<WithAsyncMethod_SetHomePosition<WithAsyncMethod_GetHomePosition<WithAsyncMethod_GetPackPosition<WithAsyncMethod_SetToolList<WithAsyncMethod_GetToolList<WithAsyncMethod_GetVisionServerList<WithAsyncMethod_SetVisionServerList<WithAsyncMethod_GetModbusServerList<WithAsyncMethod_SetModbusServerList<WithAsyncMethod_GetConveyorList<WithAsyncMethod_SetConveyorList<WithAsyncMethod_SetAutoServoOff<WithAsyncMethod_GetAutoServoOff<WithAsyncMethod_SetJointControlGain<WithAsyncMethod_GetJointControlGain<WithAsyncMethod_SetTaskControlGain<WithAsyncMethod_GetTaskControlGain<WithAsyncMethod_SetImpedanceControlGain<WithAsyncMethod_GetImpedanceControlGain<WithAsyncMethod_SetForceControlGain<WithAsyncMethod_GetForceControlGain<WithAsyncMethod_SetTestControlGain<WithAsyncMethod_GetTestControlGain<WithAsyncMethod_SetCustomControlGain<WithAsyncMethod_GetCustomControlGain<WithAsyncMethod_SetNewControllerTestOnOff<WithAsyncMethod_GetNewControllerTestOnOffState<WithAsyncMethod_SetComplianceControlJointGain<WithAsyncMethod_GetComplianceControlJointGain<WithAsyncMethod_SetFrictionComp<WithAsyncMethod_GetFrictionComp<WithAsyncMethod_SetMountPos<WithAsyncMethod_GetMountPos<WithAsyncMethod_SetToolProperty<WithAsyncMethod_GetToolProperty<WithAsyncMethod_GetToolPropertyAt<WithAsyncMethod_GetToolFrameList<WithAsyncMethod_SetToolFrameList<WithAsyncMethod_GetRefFrameList<WithAsyncMethod_SetRefFrameList<WithAsyncMethod_GetCustomPosList<WithAsyncMethod_SetCustomPosList<WithAsyncMethod_SetCollSensLevel<WithAsyncMethod_GetCollSensLevel<WithAsyncMethod_SetCollSensParam<WithAsyncMethod_GetCollSensParam<WithAsyncMethod_GetDefaultCollSensParam<WithAsyncMethod_SetCollPolicy<WithAsyncMethod_GetCollPolicy<WithAsyncMethod_SetOnStartProgramConfig<WithAsyncMethod_GetOnStartProgramConfig<WithAsyncMethod_SetSimpleCollThreshold<WithAsyncMethod_SetSafetyLimits<WithAsyncMethod_GetSafetyLimits<WithAsyncMethod_SetSafetyStopConfig<WithAsyncMethod_GetSafetyStopConfig<WithAsyncMethod_GetReducedRatio<WithAsyncMethod_GetReducedSpeed<WithAsyncMethod_SetReducedSpeed<WithAsyncMethod_SetFTSensorConfig<WithAsyncMethod_GetFTSensorConfig<WithAsyncMethod_GetFTSensorConfigFor<WithAsyncMethod_SetTeleOpParams<WithAsyncMethod_GetTeleOpParams<WithAsyncMethod_GetKinematicsParams<WithAsyncMethod_GetCollisonModelMargin<WithAsyncMethod_SetCollisonModelMargin<WithAsyncMethod_SetToolShapeList<WithAsyncMethod_GetToolShapeList<WithAsyncMethod_SetEnvironmentList<WithAsyncMethod_GetEnvironmentList<WithAsyncMethod_SetSensorlessParams<WithAsyncMethod_GetSensorlessParams<WithAsyncMethod_GetWeldingMachineConfig<WithAsyncMethod_SetWeldingMachineConfig<WithAsyncMethod_GetWeldPositionList<WithAsyncMethod_SetWeldPositionList<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_GetNonce : public BaseClass {
    private:
@@ -6606,7 +6788,115 @@ class Config final {
     virtual ::grpc::ServerUnaryReactor* GetSensorlessParams(
       ::grpc::CallbackServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::SensorlessParams* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_GetNonce<WithCallbackMethod_Login<WithCallbackMethod_TestDigest<WithCallbackMethod_VerifyToken<WithCallbackMethod_ChangePassword<WithCallbackMethod_GetPathConfig<WithCallbackMethod_GetRefFrame<WithCallbackMethod_GetRefFrameFor<WithCallbackMethod_SetRefFrame<WithCallbackMethod_SetRefFramePlanar<WithCallbackMethod_SetLockedJoint<WithCallbackMethod_SetToolLink<WithCallbackMethod_SetToolFrame<WithCallbackMethod_SetSpeedRatio<WithCallbackMethod_GetSpeedRatio<WithCallbackMethod_SetDIConfigList<WithCallbackMethod_GetDIConfigList<WithCallbackMethod_SetDOConfigList<WithCallbackMethod_GetDOConfigList<WithCallbackMethod_SetHomePosition<WithCallbackMethod_GetHomePosition<WithCallbackMethod_GetPackPosition<WithCallbackMethod_SetToolList<WithCallbackMethod_GetToolList<WithCallbackMethod_GetVisionServerList<WithCallbackMethod_SetVisionServerList<WithCallbackMethod_GetModbusServerList<WithCallbackMethod_SetModbusServerList<WithCallbackMethod_GetConveyorList<WithCallbackMethod_SetConveyorList<WithCallbackMethod_SetAutoServoOff<WithCallbackMethod_GetAutoServoOff<WithCallbackMethod_SetJointControlGain<WithCallbackMethod_GetJointControlGain<WithCallbackMethod_SetTaskControlGain<WithCallbackMethod_GetTaskControlGain<WithCallbackMethod_SetImpedanceControlGain<WithCallbackMethod_GetImpedanceControlGain<WithCallbackMethod_SetForceControlGain<WithCallbackMethod_GetForceControlGain<WithCallbackMethod_SetTestControlGain<WithCallbackMethod_GetTestControlGain<WithCallbackMethod_SetCustomControlGain<WithCallbackMethod_GetCustomControlGain<WithCallbackMethod_SetNewControllerTestOnOff<WithCallbackMethod_GetNewControllerTestOnOffState<WithCallbackMethod_SetComplianceControlJointGain<WithCallbackMethod_GetComplianceControlJointGain<WithCallbackMethod_SetFrictionComp<WithCallbackMethod_GetFrictionComp<WithCallbackMethod_SetMountPos<WithCallbackMethod_GetMountPos<WithCallbackMethod_SetToolProperty<WithCallbackMethod_GetToolProperty<WithCallbackMethod_GetToolPropertyAt<WithCallbackMethod_GetToolFrameList<WithCallbackMethod_SetToolFrameList<WithCallbackMethod_GetRefFrameList<WithCallbackMethod_SetRefFrameList<WithCallbackMethod_GetCustomPosList<WithCallbackMethod_SetCustomPosList<WithCallbackMethod_SetCollSensLevel<WithCallbackMethod_GetCollSensLevel<WithCallbackMethod_SetCollSensParam<WithCallbackMethod_GetCollSensParam<WithCallbackMethod_GetDefaultCollSensParam<WithCallbackMethod_SetCollPolicy<WithCallbackMethod_GetCollPolicy<WithCallbackMethod_SetOnStartProgramConfig<WithCallbackMethod_GetOnStartProgramConfig<WithCallbackMethod_SetSimpleCollThreshold<WithCallbackMethod_SetSafetyLimits<WithCallbackMethod_GetSafetyLimits<WithCallbackMethod_SetSafetyStopConfig<WithCallbackMethod_GetSafetyStopConfig<WithCallbackMethod_GetReducedRatio<WithCallbackMethod_GetReducedSpeed<WithCallbackMethod_SetReducedSpeed<WithCallbackMethod_SetFTSensorConfig<WithCallbackMethod_GetFTSensorConfig<WithCallbackMethod_GetFTSensorConfigFor<WithCallbackMethod_SetTeleOpParams<WithCallbackMethod_GetTeleOpParams<WithCallbackMethod_GetKinematicsParams<WithCallbackMethod_GetCollisonModelMargin<WithCallbackMethod_SetCollisonModelMargin<WithCallbackMethod_SetToolShapeList<WithCallbackMethod_GetToolShapeList<WithCallbackMethod_SetEnvironmentList<WithCallbackMethod_GetEnvironmentList<WithCallbackMethod_SetSensorlessParams<WithCallbackMethod_GetSensorlessParams<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > CallbackService;
+  template <class BaseClass>
+  class WithCallbackMethod_GetWeldingMachineConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_GetWeldingMachineConfig() {
+      ::grpc::Service::MarkMethodCallback(92,
+          new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::WeldingConfigInfo>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::WeldingConfigInfo* response) { return this->GetWeldingMachineConfig(context, request, response); }));}
+    void SetMessageAllocatorFor_GetWeldingMachineConfig(
+        ::grpc::MessageAllocator< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::WeldingConfigInfo>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(92);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::WeldingConfigInfo>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_GetWeldingMachineConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetWeldingMachineConfig(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::WeldingConfigInfo* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GetWeldingMachineConfig(
+      ::grpc::CallbackServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::WeldingConfigInfo* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_SetWeldingMachineConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_SetWeldingMachineConfig() {
+      ::grpc::Service::MarkMethodCallback(93,
+          new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::WeldingConfigInfo, ::Nrmk::IndyFramework::Response>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::WeldingConfigInfo* request, ::Nrmk::IndyFramework::Response* response) { return this->SetWeldingMachineConfig(context, request, response); }));}
+    void SetMessageAllocatorFor_SetWeldingMachineConfig(
+        ::grpc::MessageAllocator< ::Nrmk::IndyFramework::WeldingConfigInfo, ::Nrmk::IndyFramework::Response>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(93);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::WeldingConfigInfo, ::Nrmk::IndyFramework::Response>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_SetWeldingMachineConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetWeldingMachineConfig(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::WeldingConfigInfo* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* SetWeldingMachineConfig(
+      ::grpc::CallbackServerContext* /*context*/, const ::Nrmk::IndyFramework::WeldingConfigInfo* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_GetWeldPositionList : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_GetWeldPositionList() {
+      ::grpc::Service::MarkMethodCallback(94,
+          new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::WeldPositionList>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::WeldPositionList* response) { return this->GetWeldPositionList(context, request, response); }));}
+    void SetMessageAllocatorFor_GetWeldPositionList(
+        ::grpc::MessageAllocator< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::WeldPositionList>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(94);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::WeldPositionList>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_GetWeldPositionList() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetWeldPositionList(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::WeldPositionList* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GetWeldPositionList(
+      ::grpc::CallbackServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::WeldPositionList* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_SetWeldPositionList : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_SetWeldPositionList() {
+      ::grpc::Service::MarkMethodCallback(95,
+          new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::WeldPositionList, ::Nrmk::IndyFramework::Response>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::WeldPositionList* request, ::Nrmk::IndyFramework::Response* response) { return this->SetWeldPositionList(context, request, response); }));}
+    void SetMessageAllocatorFor_SetWeldPositionList(
+        ::grpc::MessageAllocator< ::Nrmk::IndyFramework::WeldPositionList, ::Nrmk::IndyFramework::Response>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(95);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::WeldPositionList, ::Nrmk::IndyFramework::Response>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_SetWeldPositionList() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetWeldPositionList(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::WeldPositionList* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* SetWeldPositionList(
+      ::grpc::CallbackServerContext* /*context*/, const ::Nrmk::IndyFramework::WeldPositionList* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_GetNonce<WithCallbackMethod_Login<WithCallbackMethod_TestDigest<WithCallbackMethod_VerifyToken<WithCallbackMethod_ChangePassword<WithCallbackMethod_GetPathConfig<WithCallbackMethod_GetRefFrame<WithCallbackMethod_GetRefFrameFor<WithCallbackMethod_SetRefFrame<WithCallbackMethod_SetRefFramePlanar<WithCallbackMethod_SetLockedJoint<WithCallbackMethod_SetToolLink<WithCallbackMethod_SetToolFrame<WithCallbackMethod_SetSpeedRatio<WithCallbackMethod_GetSpeedRatio<WithCallbackMethod_SetDIConfigList<WithCallbackMethod_GetDIConfigList<WithCallbackMethod_SetDOConfigList<WithCallbackMethod_GetDOConfigList<WithCallbackMethod_SetHomePosition<WithCallbackMethod_GetHomePosition<WithCallbackMethod_GetPackPosition<WithCallbackMethod_SetToolList<WithCallbackMethod_GetToolList<WithCallbackMethod_GetVisionServerList<WithCallbackMethod_SetVisionServerList<WithCallbackMethod_GetModbusServerList<WithCallbackMethod_SetModbusServerList<WithCallbackMethod_GetConveyorList<WithCallbackMethod_SetConveyorList<WithCallbackMethod_SetAutoServoOff<WithCallbackMethod_GetAutoServoOff<WithCallbackMethod_SetJointControlGain<WithCallbackMethod_GetJointControlGain<WithCallbackMethod_SetTaskControlGain<WithCallbackMethod_GetTaskControlGain<WithCallbackMethod_SetImpedanceControlGain<WithCallbackMethod_GetImpedanceControlGain<WithCallbackMethod_SetForceControlGain<WithCallbackMethod_GetForceControlGain<WithCallbackMethod_SetTestControlGain<WithCallbackMethod_GetTestControlGain<WithCallbackMethod_SetCustomControlGain<WithCallbackMethod_GetCustomControlGain<WithCallbackMethod_SetNewControllerTestOnOff<WithCallbackMethod_GetNewControllerTestOnOffState<WithCallbackMethod_SetComplianceControlJointGain<WithCallbackMethod_GetComplianceControlJointGain<WithCallbackMethod_SetFrictionComp<WithCallbackMethod_GetFrictionComp<WithCallbackMethod_SetMountPos<WithCallbackMethod_GetMountPos<WithCallbackMethod_SetToolProperty<WithCallbackMethod_GetToolProperty<WithCallbackMethod_GetToolPropertyAt<WithCallbackMethod_GetToolFrameList<WithCallbackMethod_SetToolFrameList<WithCallbackMethod_GetRefFrameList<WithCallbackMethod_SetRefFrameList<WithCallbackMethod_GetCustomPosList<WithCallbackMethod_SetCustomPosList<WithCallbackMethod_SetCollSensLevel<WithCallbackMethod_GetCollSensLevel<WithCallbackMethod_SetCollSensParam<WithCallbackMethod_GetCollSensParam<WithCallbackMethod_GetDefaultCollSensParam<WithCallbackMethod_SetCollPolicy<WithCallbackMethod_GetCollPolicy<WithCallbackMethod_SetOnStartProgramConfig<WithCallbackMethod_GetOnStartProgramConfig<WithCallbackMethod_SetSimpleCollThreshold<WithCallbackMethod_SetSafetyLimits<WithCallbackMethod_GetSafetyLimits<WithCallbackMethod_SetSafetyStopConfig<WithCallbackMethod_GetSafetyStopConfig<WithCallbackMethod_GetReducedRatio<WithCallbackMethod_GetReducedSpeed<WithCallbackMethod_SetReducedSpeed<WithCallbackMethod_SetFTSensorConfig<WithCallbackMethod_GetFTSensorConfig<WithCallbackMethod_GetFTSensorConfigFor<WithCallbackMethod_SetTeleOpParams<WithCallbackMethod_GetTeleOpParams<WithCallbackMethod_GetKinematicsParams<WithCallbackMethod_GetCollisonModelMargin<WithCallbackMethod_SetCollisonModelMargin<WithCallbackMethod_SetToolShapeList<WithCallbackMethod_GetToolShapeList<WithCallbackMethod_SetEnvironmentList<WithCallbackMethod_GetEnvironmentList<WithCallbackMethod_SetSensorlessParams<WithCallbackMethod_GetSensorlessParams<WithCallbackMethod_GetWeldingMachineConfig<WithCallbackMethod_SetWeldingMachineConfig<WithCallbackMethod_GetWeldPositionList<WithCallbackMethod_SetWeldPositionList<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_GetNonce : public BaseClass {
@@ -8168,6 +8458,74 @@ class Config final {
     }
     // disable synchronous version of this method
     ::grpc::Status GetSensorlessParams(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::SensorlessParams* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_GetWeldingMachineConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_GetWeldingMachineConfig() {
+      ::grpc::Service::MarkMethodGeneric(92);
+    }
+    ~WithGenericMethod_GetWeldingMachineConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetWeldingMachineConfig(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::WeldingConfigInfo* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_SetWeldingMachineConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_SetWeldingMachineConfig() {
+      ::grpc::Service::MarkMethodGeneric(93);
+    }
+    ~WithGenericMethod_SetWeldingMachineConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetWeldingMachineConfig(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::WeldingConfigInfo* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_GetWeldPositionList : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_GetWeldPositionList() {
+      ::grpc::Service::MarkMethodGeneric(94);
+    }
+    ~WithGenericMethod_GetWeldPositionList() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetWeldPositionList(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::WeldPositionList* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_SetWeldPositionList : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_SetWeldPositionList() {
+      ::grpc::Service::MarkMethodGeneric(95);
+    }
+    ~WithGenericMethod_SetWeldPositionList() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetWeldPositionList(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::WeldPositionList* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -10010,6 +10368,86 @@ class Config final {
     }
     void RequestGetSensorlessParams(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(91, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_GetWeldingMachineConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_GetWeldingMachineConfig() {
+      ::grpc::Service::MarkMethodRaw(92);
+    }
+    ~WithRawMethod_GetWeldingMachineConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetWeldingMachineConfig(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::WeldingConfigInfo* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetWeldingMachineConfig(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(92, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_SetWeldingMachineConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_SetWeldingMachineConfig() {
+      ::grpc::Service::MarkMethodRaw(93);
+    }
+    ~WithRawMethod_SetWeldingMachineConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetWeldingMachineConfig(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::WeldingConfigInfo* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSetWeldingMachineConfig(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(93, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_GetWeldPositionList : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_GetWeldPositionList() {
+      ::grpc::Service::MarkMethodRaw(94);
+    }
+    ~WithRawMethod_GetWeldPositionList() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetWeldPositionList(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::WeldPositionList* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetWeldPositionList(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(94, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_SetWeldPositionList : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_SetWeldPositionList() {
+      ::grpc::Service::MarkMethodRaw(95);
+    }
+    ~WithRawMethod_SetWeldPositionList() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetWeldPositionList(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::WeldPositionList* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSetWeldPositionList(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(95, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -12034,6 +12472,94 @@ class Config final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* GetSensorlessParams(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_GetWeldingMachineConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_GetWeldingMachineConfig() {
+      ::grpc::Service::MarkMethodRawCallback(92,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetWeldingMachineConfig(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_GetWeldingMachineConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetWeldingMachineConfig(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::WeldingConfigInfo* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GetWeldingMachineConfig(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_SetWeldingMachineConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_SetWeldingMachineConfig() {
+      ::grpc::Service::MarkMethodRawCallback(93,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SetWeldingMachineConfig(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_SetWeldingMachineConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetWeldingMachineConfig(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::WeldingConfigInfo* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* SetWeldingMachineConfig(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_GetWeldPositionList : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_GetWeldPositionList() {
+      ::grpc::Service::MarkMethodRawCallback(94,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetWeldPositionList(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_GetWeldPositionList() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetWeldPositionList(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::WeldPositionList* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GetWeldPositionList(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_SetWeldPositionList : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_SetWeldPositionList() {
+      ::grpc::Service::MarkMethodRawCallback(95,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SetWeldPositionList(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_SetWeldPositionList() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetWeldPositionList(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::WeldPositionList* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* SetWeldPositionList(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
@@ -14520,9 +15046,117 @@ class Config final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedGetSensorlessParams(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Nrmk::IndyFramework::Empty,::Nrmk::IndyFramework::SensorlessParams>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_GetNonce<WithStreamedUnaryMethod_Login<WithStreamedUnaryMethod_TestDigest<WithStreamedUnaryMethod_VerifyToken<WithStreamedUnaryMethod_ChangePassword<WithStreamedUnaryMethod_GetPathConfig<WithStreamedUnaryMethod_GetRefFrame<WithStreamedUnaryMethod_GetRefFrameFor<WithStreamedUnaryMethod_SetRefFrame<WithStreamedUnaryMethod_SetRefFramePlanar<WithStreamedUnaryMethod_SetLockedJoint<WithStreamedUnaryMethod_SetToolLink<WithStreamedUnaryMethod_SetToolFrame<WithStreamedUnaryMethod_SetSpeedRatio<WithStreamedUnaryMethod_GetSpeedRatio<WithStreamedUnaryMethod_SetDIConfigList<WithStreamedUnaryMethod_GetDIConfigList<WithStreamedUnaryMethod_SetDOConfigList<WithStreamedUnaryMethod_GetDOConfigList<WithStreamedUnaryMethod_SetHomePosition<WithStreamedUnaryMethod_GetHomePosition<WithStreamedUnaryMethod_GetPackPosition<WithStreamedUnaryMethod_SetToolList<WithStreamedUnaryMethod_GetToolList<WithStreamedUnaryMethod_GetVisionServerList<WithStreamedUnaryMethod_SetVisionServerList<WithStreamedUnaryMethod_GetModbusServerList<WithStreamedUnaryMethod_SetModbusServerList<WithStreamedUnaryMethod_GetConveyorList<WithStreamedUnaryMethod_SetConveyorList<WithStreamedUnaryMethod_SetAutoServoOff<WithStreamedUnaryMethod_GetAutoServoOff<WithStreamedUnaryMethod_SetJointControlGain<WithStreamedUnaryMethod_GetJointControlGain<WithStreamedUnaryMethod_SetTaskControlGain<WithStreamedUnaryMethod_GetTaskControlGain<WithStreamedUnaryMethod_SetImpedanceControlGain<WithStreamedUnaryMethod_GetImpedanceControlGain<WithStreamedUnaryMethod_SetForceControlGain<WithStreamedUnaryMethod_GetForceControlGain<WithStreamedUnaryMethod_SetTestControlGain<WithStreamedUnaryMethod_GetTestControlGain<WithStreamedUnaryMethod_SetCustomControlGain<WithStreamedUnaryMethod_GetCustomControlGain<WithStreamedUnaryMethod_SetNewControllerTestOnOff<WithStreamedUnaryMethod_GetNewControllerTestOnOffState<WithStreamedUnaryMethod_SetComplianceControlJointGain<WithStreamedUnaryMethod_GetComplianceControlJointGain<WithStreamedUnaryMethod_SetFrictionComp<WithStreamedUnaryMethod_GetFrictionComp<WithStreamedUnaryMethod_SetMountPos<WithStreamedUnaryMethod_GetMountPos<WithStreamedUnaryMethod_SetToolProperty<WithStreamedUnaryMethod_GetToolProperty<WithStreamedUnaryMethod_GetToolPropertyAt<WithStreamedUnaryMethod_GetToolFrameList<WithStreamedUnaryMethod_SetToolFrameList<WithStreamedUnaryMethod_GetRefFrameList<WithStreamedUnaryMethod_SetRefFrameList<WithStreamedUnaryMethod_GetCustomPosList<WithStreamedUnaryMethod_SetCustomPosList<WithStreamedUnaryMethod_SetCollSensLevel<WithStreamedUnaryMethod_GetCollSensLevel<WithStreamedUnaryMethod_SetCollSensParam<WithStreamedUnaryMethod_GetCollSensParam<WithStreamedUnaryMethod_GetDefaultCollSensParam<WithStreamedUnaryMethod_SetCollPolicy<WithStreamedUnaryMethod_GetCollPolicy<WithStreamedUnaryMethod_SetOnStartProgramConfig<WithStreamedUnaryMethod_GetOnStartProgramConfig<WithStreamedUnaryMethod_SetSimpleCollThreshold<WithStreamedUnaryMethod_SetSafetyLimits<WithStreamedUnaryMethod_GetSafetyLimits<WithStreamedUnaryMethod_SetSafetyStopConfig<WithStreamedUnaryMethod_GetSafetyStopConfig<WithStreamedUnaryMethod_GetReducedRatio<WithStreamedUnaryMethod_GetReducedSpeed<WithStreamedUnaryMethod_SetReducedSpeed<WithStreamedUnaryMethod_SetFTSensorConfig<WithStreamedUnaryMethod_GetFTSensorConfig<WithStreamedUnaryMethod_GetFTSensorConfigFor<WithStreamedUnaryMethod_SetTeleOpParams<WithStreamedUnaryMethod_GetTeleOpParams<WithStreamedUnaryMethod_GetKinematicsParams<WithStreamedUnaryMethod_GetCollisonModelMargin<WithStreamedUnaryMethod_SetCollisonModelMargin<WithStreamedUnaryMethod_SetToolShapeList<WithStreamedUnaryMethod_GetToolShapeList<WithStreamedUnaryMethod_SetEnvironmentList<WithStreamedUnaryMethod_GetEnvironmentList<WithStreamedUnaryMethod_SetSensorlessParams<WithStreamedUnaryMethod_GetSensorlessParams<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_GetWeldingMachineConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_GetWeldingMachineConfig() {
+      ::grpc::Service::MarkMethodStreamed(92,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::WeldingConfigInfo>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::WeldingConfigInfo>* streamer) {
+                       return this->StreamedGetWeldingMachineConfig(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_GetWeldingMachineConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status GetWeldingMachineConfig(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::WeldingConfigInfo* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedGetWeldingMachineConfig(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Nrmk::IndyFramework::Empty,::Nrmk::IndyFramework::WeldingConfigInfo>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_SetWeldingMachineConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_SetWeldingMachineConfig() {
+      ::grpc::Service::MarkMethodStreamed(93,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::Nrmk::IndyFramework::WeldingConfigInfo, ::Nrmk::IndyFramework::Response>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::Nrmk::IndyFramework::WeldingConfigInfo, ::Nrmk::IndyFramework::Response>* streamer) {
+                       return this->StreamedSetWeldingMachineConfig(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_SetWeldingMachineConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status SetWeldingMachineConfig(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::WeldingConfigInfo* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedSetWeldingMachineConfig(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Nrmk::IndyFramework::WeldingConfigInfo,::Nrmk::IndyFramework::Response>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_GetWeldPositionList : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_GetWeldPositionList() {
+      ::grpc::Service::MarkMethodStreamed(94,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::WeldPositionList>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::WeldPositionList>* streamer) {
+                       return this->StreamedGetWeldPositionList(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_GetWeldPositionList() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status GetWeldPositionList(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::WeldPositionList* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedGetWeldPositionList(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Nrmk::IndyFramework::Empty,::Nrmk::IndyFramework::WeldPositionList>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_SetWeldPositionList : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_SetWeldPositionList() {
+      ::grpc::Service::MarkMethodStreamed(95,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::Nrmk::IndyFramework::WeldPositionList, ::Nrmk::IndyFramework::Response>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::Nrmk::IndyFramework::WeldPositionList, ::Nrmk::IndyFramework::Response>* streamer) {
+                       return this->StreamedSetWeldPositionList(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_SetWeldPositionList() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status SetWeldPositionList(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::WeldPositionList* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedSetWeldPositionList(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Nrmk::IndyFramework::WeldPositionList,::Nrmk::IndyFramework::Response>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_GetNonce<WithStreamedUnaryMethod_Login<WithStreamedUnaryMethod_TestDigest<WithStreamedUnaryMethod_VerifyToken<WithStreamedUnaryMethod_ChangePassword<WithStreamedUnaryMethod_GetPathConfig<WithStreamedUnaryMethod_GetRefFrame<WithStreamedUnaryMethod_GetRefFrameFor<WithStreamedUnaryMethod_SetRefFrame<WithStreamedUnaryMethod_SetRefFramePlanar<WithStreamedUnaryMethod_SetLockedJoint<WithStreamedUnaryMethod_SetToolLink<WithStreamedUnaryMethod_SetToolFrame<WithStreamedUnaryMethod_SetSpeedRatio<WithStreamedUnaryMethod_GetSpeedRatio<WithStreamedUnaryMethod_SetDIConfigList<WithStreamedUnaryMethod_GetDIConfigList<WithStreamedUnaryMethod_SetDOConfigList<WithStreamedUnaryMethod_GetDOConfigList<WithStreamedUnaryMethod_SetHomePosition<WithStreamedUnaryMethod_GetHomePosition<WithStreamedUnaryMethod_GetPackPosition<WithStreamedUnaryMethod_SetToolList<WithStreamedUnaryMethod_GetToolList<WithStreamedUnaryMethod_GetVisionServerList<WithStreamedUnaryMethod_SetVisionServerList<WithStreamedUnaryMethod_GetModbusServerList<WithStreamedUnaryMethod_SetModbusServerList<WithStreamedUnaryMethod_GetConveyorList<WithStreamedUnaryMethod_SetConveyorList<WithStreamedUnaryMethod_SetAutoServoOff<WithStreamedUnaryMethod_GetAutoServoOff<WithStreamedUnaryMethod_SetJointControlGain<WithStreamedUnaryMethod_GetJointControlGain<WithStreamedUnaryMethod_SetTaskControlGain<WithStreamedUnaryMethod_GetTaskControlGain<WithStreamedUnaryMethod_SetImpedanceControlGain<WithStreamedUnaryMethod_GetImpedanceControlGain<WithStreamedUnaryMethod_SetForceControlGain<WithStreamedUnaryMethod_GetForceControlGain<WithStreamedUnaryMethod_SetTestControlGain<WithStreamedUnaryMethod_GetTestControlGain<WithStreamedUnaryMethod_SetCustomControlGain<WithStreamedUnaryMethod_GetCustomControlGain<WithStreamedUnaryMethod_SetNewControllerTestOnOff<WithStreamedUnaryMethod_GetNewControllerTestOnOffState<WithStreamedUnaryMethod_SetComplianceControlJointGain<WithStreamedUnaryMethod_GetComplianceControlJointGain<WithStreamedUnaryMethod_SetFrictionComp<WithStreamedUnaryMethod_GetFrictionComp<WithStreamedUnaryMethod_SetMountPos<WithStreamedUnaryMethod_GetMountPos<WithStreamedUnaryMethod_SetToolProperty<WithStreamedUnaryMethod_GetToolProperty<WithStreamedUnaryMethod_GetToolPropertyAt<WithStreamedUnaryMethod_GetToolFrameList<WithStreamedUnaryMethod_SetToolFrameList<WithStreamedUnaryMethod_GetRefFrameList<WithStreamedUnaryMethod_SetRefFrameList<WithStreamedUnaryMethod_GetCustomPosList<WithStreamedUnaryMethod_SetCustomPosList<WithStreamedUnaryMethod_SetCollSensLevel<WithStreamedUnaryMethod_GetCollSensLevel<WithStreamedUnaryMethod_SetCollSensParam<WithStreamedUnaryMethod_GetCollSensParam<WithStreamedUnaryMethod_GetDefaultCollSensParam<WithStreamedUnaryMethod_SetCollPolicy<WithStreamedUnaryMethod_GetCollPolicy<WithStreamedUnaryMethod_SetOnStartProgramConfig<WithStreamedUnaryMethod_GetOnStartProgramConfig<WithStreamedUnaryMethod_SetSimpleCollThreshold<WithStreamedUnaryMethod_SetSafetyLimits<WithStreamedUnaryMethod_GetSafetyLimits<WithStreamedUnaryMethod_SetSafetyStopConfig<WithStreamedUnaryMethod_GetSafetyStopConfig<WithStreamedUnaryMethod_GetReducedRatio<WithStreamedUnaryMethod_GetReducedSpeed<WithStreamedUnaryMethod_SetReducedSpeed<WithStreamedUnaryMethod_SetFTSensorConfig<WithStreamedUnaryMethod_GetFTSensorConfig<WithStreamedUnaryMethod_GetFTSensorConfigFor<WithStreamedUnaryMethod_SetTeleOpParams<WithStreamedUnaryMethod_GetTeleOpParams<WithStreamedUnaryMethod_GetKinematicsParams<WithStreamedUnaryMethod_GetCollisonModelMargin<WithStreamedUnaryMethod_SetCollisonModelMargin<WithStreamedUnaryMethod_SetToolShapeList<WithStreamedUnaryMethod_GetToolShapeList<WithStreamedUnaryMethod_SetEnvironmentList<WithStreamedUnaryMethod_GetEnvironmentList<WithStreamedUnaryMethod_SetSensorlessParams<WithStreamedUnaryMethod_GetSensorlessParams<WithStreamedUnaryMethod_GetWeldingMachineConfig<WithStreamedUnaryMethod_SetWeldingMachineConfig<WithStreamedUnaryMethod_GetWeldPositionList<WithStreamedUnaryMethod_SetWeldPositionList<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_GetNonce<WithStreamedUnaryMethod_Login<WithStreamedUnaryMethod_TestDigest<WithStreamedUnaryMethod_VerifyToken<WithStreamedUnaryMethod_ChangePassword<WithStreamedUnaryMethod_GetPathConfig<WithStreamedUnaryMethod_GetRefFrame<WithStreamedUnaryMethod_GetRefFrameFor<WithStreamedUnaryMethod_SetRefFrame<WithStreamedUnaryMethod_SetRefFramePlanar<WithStreamedUnaryMethod_SetLockedJoint<WithStreamedUnaryMethod_SetToolLink<WithStreamedUnaryMethod_SetToolFrame<WithStreamedUnaryMethod_SetSpeedRatio<WithStreamedUnaryMethod_GetSpeedRatio<WithStreamedUnaryMethod_SetDIConfigList<WithStreamedUnaryMethod_GetDIConfigList<WithStreamedUnaryMethod_SetDOConfigList<WithStreamedUnaryMethod_GetDOConfigList<WithStreamedUnaryMethod_SetHomePosition<WithStreamedUnaryMethod_GetHomePosition<WithStreamedUnaryMethod_GetPackPosition<WithStreamedUnaryMethod_SetToolList<WithStreamedUnaryMethod_GetToolList<WithStreamedUnaryMethod_GetVisionServerList<WithStreamedUnaryMethod_SetVisionServerList<WithStreamedUnaryMethod_GetModbusServerList<WithStreamedUnaryMethod_SetModbusServerList<WithStreamedUnaryMethod_GetConveyorList<WithStreamedUnaryMethod_SetConveyorList<WithStreamedUnaryMethod_SetAutoServoOff<WithStreamedUnaryMethod_GetAutoServoOff<WithStreamedUnaryMethod_SetJointControlGain<WithStreamedUnaryMethod_GetJointControlGain<WithStreamedUnaryMethod_SetTaskControlGain<WithStreamedUnaryMethod_GetTaskControlGain<WithStreamedUnaryMethod_SetImpedanceControlGain<WithStreamedUnaryMethod_GetImpedanceControlGain<WithStreamedUnaryMethod_SetForceControlGain<WithStreamedUnaryMethod_GetForceControlGain<WithStreamedUnaryMethod_SetTestControlGain<WithStreamedUnaryMethod_GetTestControlGain<WithStreamedUnaryMethod_SetCustomControlGain<WithStreamedUnaryMethod_GetCustomControlGain<WithStreamedUnaryMethod_SetNewControllerTestOnOff<WithStreamedUnaryMethod_GetNewControllerTestOnOffState<WithStreamedUnaryMethod_SetComplianceControlJointGain<WithStreamedUnaryMethod_GetComplianceControlJointGain<WithStreamedUnaryMethod_SetFrictionComp<WithStreamedUnaryMethod_GetFrictionComp<WithStreamedUnaryMethod_SetMountPos<WithStreamedUnaryMethod_GetMountPos<WithStreamedUnaryMethod_SetToolProperty<WithStreamedUnaryMethod_GetToolProperty<WithStreamedUnaryMethod_GetToolPropertyAt<WithStreamedUnaryMethod_GetToolFrameList<WithStreamedUnaryMethod_SetToolFrameList<WithStreamedUnaryMethod_GetRefFrameList<WithStreamedUnaryMethod_SetRefFrameList<WithStreamedUnaryMethod_GetCustomPosList<WithStreamedUnaryMethod_SetCustomPosList<WithStreamedUnaryMethod_SetCollSensLevel<WithStreamedUnaryMethod_GetCollSensLevel<WithStreamedUnaryMethod_SetCollSensParam<WithStreamedUnaryMethod_GetCollSensParam<WithStreamedUnaryMethod_GetDefaultCollSensParam<WithStreamedUnaryMethod_SetCollPolicy<WithStreamedUnaryMethod_GetCollPolicy<WithStreamedUnaryMethod_SetOnStartProgramConfig<WithStreamedUnaryMethod_GetOnStartProgramConfig<WithStreamedUnaryMethod_SetSimpleCollThreshold<WithStreamedUnaryMethod_SetSafetyLimits<WithStreamedUnaryMethod_GetSafetyLimits<WithStreamedUnaryMethod_SetSafetyStopConfig<WithStreamedUnaryMethod_GetSafetyStopConfig<WithStreamedUnaryMethod_GetReducedRatio<WithStreamedUnaryMethod_GetReducedSpeed<WithStreamedUnaryMethod_SetReducedSpeed<WithStreamedUnaryMethod_SetFTSensorConfig<WithStreamedUnaryMethod_GetFTSensorConfig<WithStreamedUnaryMethod_GetFTSensorConfigFor<WithStreamedUnaryMethod_SetTeleOpParams<WithStreamedUnaryMethod_GetTeleOpParams<WithStreamedUnaryMethod_GetKinematicsParams<WithStreamedUnaryMethod_GetCollisonModelMargin<WithStreamedUnaryMethod_SetCollisonModelMargin<WithStreamedUnaryMethod_SetToolShapeList<WithStreamedUnaryMethod_GetToolShapeList<WithStreamedUnaryMethod_SetEnvironmentList<WithStreamedUnaryMethod_GetEnvironmentList<WithStreamedUnaryMethod_SetSensorlessParams<WithStreamedUnaryMethod_GetSensorlessParams<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_GetNonce<WithStreamedUnaryMethod_Login<WithStreamedUnaryMethod_TestDigest<WithStreamedUnaryMethod_VerifyToken<WithStreamedUnaryMethod_ChangePassword<WithStreamedUnaryMethod_GetPathConfig<WithStreamedUnaryMethod_GetRefFrame<WithStreamedUnaryMethod_GetRefFrameFor<WithStreamedUnaryMethod_SetRefFrame<WithStreamedUnaryMethod_SetRefFramePlanar<WithStreamedUnaryMethod_SetLockedJoint<WithStreamedUnaryMethod_SetToolLink<WithStreamedUnaryMethod_SetToolFrame<WithStreamedUnaryMethod_SetSpeedRatio<WithStreamedUnaryMethod_GetSpeedRatio<WithStreamedUnaryMethod_SetDIConfigList<WithStreamedUnaryMethod_GetDIConfigList<WithStreamedUnaryMethod_SetDOConfigList<WithStreamedUnaryMethod_GetDOConfigList<WithStreamedUnaryMethod_SetHomePosition<WithStreamedUnaryMethod_GetHomePosition<WithStreamedUnaryMethod_GetPackPosition<WithStreamedUnaryMethod_SetToolList<WithStreamedUnaryMethod_GetToolList<WithStreamedUnaryMethod_GetVisionServerList<WithStreamedUnaryMethod_SetVisionServerList<WithStreamedUnaryMethod_GetModbusServerList<WithStreamedUnaryMethod_SetModbusServerList<WithStreamedUnaryMethod_GetConveyorList<WithStreamedUnaryMethod_SetConveyorList<WithStreamedUnaryMethod_SetAutoServoOff<WithStreamedUnaryMethod_GetAutoServoOff<WithStreamedUnaryMethod_SetJointControlGain<WithStreamedUnaryMethod_GetJointControlGain<WithStreamedUnaryMethod_SetTaskControlGain<WithStreamedUnaryMethod_GetTaskControlGain<WithStreamedUnaryMethod_SetImpedanceControlGain<WithStreamedUnaryMethod_GetImpedanceControlGain<WithStreamedUnaryMethod_SetForceControlGain<WithStreamedUnaryMethod_GetForceControlGain<WithStreamedUnaryMethod_SetTestControlGain<WithStreamedUnaryMethod_GetTestControlGain<WithStreamedUnaryMethod_SetCustomControlGain<WithStreamedUnaryMethod_GetCustomControlGain<WithStreamedUnaryMethod_SetNewControllerTestOnOff<WithStreamedUnaryMethod_GetNewControllerTestOnOffState<WithStreamedUnaryMethod_SetComplianceControlJointGain<WithStreamedUnaryMethod_GetComplianceControlJointGain<WithStreamedUnaryMethod_SetFrictionComp<WithStreamedUnaryMethod_GetFrictionComp<WithStreamedUnaryMethod_SetMountPos<WithStreamedUnaryMethod_GetMountPos<WithStreamedUnaryMethod_SetToolProperty<WithStreamedUnaryMethod_GetToolProperty<WithStreamedUnaryMethod_GetToolPropertyAt<WithStreamedUnaryMethod_GetToolFrameList<WithStreamedUnaryMethod_SetToolFrameList<WithStreamedUnaryMethod_GetRefFrameList<WithStreamedUnaryMethod_SetRefFrameList<WithStreamedUnaryMethod_GetCustomPosList<WithStreamedUnaryMethod_SetCustomPosList<WithStreamedUnaryMethod_SetCollSensLevel<WithStreamedUnaryMethod_GetCollSensLevel<WithStreamedUnaryMethod_SetCollSensParam<WithStreamedUnaryMethod_GetCollSensParam<WithStreamedUnaryMethod_GetDefaultCollSensParam<WithStreamedUnaryMethod_SetCollPolicy<WithStreamedUnaryMethod_GetCollPolicy<WithStreamedUnaryMethod_SetOnStartProgramConfig<WithStreamedUnaryMethod_GetOnStartProgramConfig<WithStreamedUnaryMethod_SetSimpleCollThreshold<WithStreamedUnaryMethod_SetSafetyLimits<WithStreamedUnaryMethod_GetSafetyLimits<WithStreamedUnaryMethod_SetSafetyStopConfig<WithStreamedUnaryMethod_GetSafetyStopConfig<WithStreamedUnaryMethod_GetReducedRatio<WithStreamedUnaryMethod_GetReducedSpeed<WithStreamedUnaryMethod_SetReducedSpeed<WithStreamedUnaryMethod_SetFTSensorConfig<WithStreamedUnaryMethod_GetFTSensorConfig<WithStreamedUnaryMethod_GetFTSensorConfigFor<WithStreamedUnaryMethod_SetTeleOpParams<WithStreamedUnaryMethod_GetTeleOpParams<WithStreamedUnaryMethod_GetKinematicsParams<WithStreamedUnaryMethod_GetCollisonModelMargin<WithStreamedUnaryMethod_SetCollisonModelMargin<WithStreamedUnaryMethod_SetToolShapeList<WithStreamedUnaryMethod_GetToolShapeList<WithStreamedUnaryMethod_SetEnvironmentList<WithStreamedUnaryMethod_GetEnvironmentList<WithStreamedUnaryMethod_SetSensorlessParams<WithStreamedUnaryMethod_GetSensorlessParams<WithStreamedUnaryMethod_GetWeldingMachineConfig<WithStreamedUnaryMethod_SetWeldingMachineConfig<WithStreamedUnaryMethod_GetWeldPositionList<WithStreamedUnaryMethod_SetWeldPositionList<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > StreamedService;
 };
 
 }  // namespace IndyFramework

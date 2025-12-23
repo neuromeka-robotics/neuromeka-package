@@ -475,6 +475,26 @@ class ConfigStub(object):
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
                 response_deserializer=config__msgs__pb2.SensorlessParams.FromString,
                 )
+        self.GetWeldingMachineConfig = channel.unary_unary(
+                '/Nrmk.IndyFramework.Config/GetWeldingMachineConfig',
+                request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=config__msgs__pb2.WeldingConfigInfo.FromString,
+                )
+        self.SetWeldingMachineConfig = channel.unary_unary(
+                '/Nrmk.IndyFramework.Config/SetWeldingMachineConfig',
+                request_serializer=config__msgs__pb2.WeldingConfigInfo.SerializeToString,
+                response_deserializer=common__msgs__pb2.Response.FromString,
+                )
+        self.GetWeldPositionList = channel.unary_unary(
+                '/Nrmk.IndyFramework.Config/GetWeldPositionList',
+                request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=config__msgs__pb2.WeldPositionList.FromString,
+                )
+        self.SetWeldPositionList = channel.unary_unary(
+                '/Nrmk.IndyFramework.Config/SetWeldPositionList',
+                request_serializer=config__msgs__pb2.WeldPositionList.SerializeToString,
+                response_deserializer=common__msgs__pb2.Response.FromString,
+                )
 
 
 class ConfigServicer(object):
@@ -1033,6 +1053,32 @@ class ConfigServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetWeldingMachineConfig(self, request, context):
+        """Welding Machine Configuration
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SetWeldingMachineConfig(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetWeldPositionList(self, request, context):
+        """Welding Position Configuration
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SetWeldPositionList(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_ConfigServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -1495,6 +1541,26 @@ def add_ConfigServicer_to_server(servicer, server):
                     servicer.GetSensorlessParams,
                     request_deserializer=common__msgs__pb2.Empty.FromString,
                     response_serializer=config__msgs__pb2.SensorlessParams.SerializeToString,
+            ),
+            'GetWeldingMachineConfig': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetWeldingMachineConfig,
+                    request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=config__msgs__pb2.WeldingConfigInfo.SerializeToString,
+            ),
+            'SetWeldingMachineConfig': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetWeldingMachineConfig,
+                    request_deserializer=config__msgs__pb2.WeldingConfigInfo.FromString,
+                    response_serializer=common__msgs__pb2.Response.SerializeToString,
+            ),
+            'GetWeldPositionList': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetWeldPositionList,
+                    request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=config__msgs__pb2.WeldPositionList.SerializeToString,
+            ),
+            'SetWeldPositionList': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetWeldPositionList,
+                    request_deserializer=config__msgs__pb2.WeldPositionList.FromString,
+                    response_serializer=common__msgs__pb2.Response.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -3067,5 +3133,73 @@ class Config(object):
         return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Config/GetSensorlessParams',
             common__msgs__pb2.Empty.SerializeToString,
             config__msgs__pb2.SensorlessParams.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetWeldingMachineConfig(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Config/GetWeldingMachineConfig',
+            common__msgs__pb2.Empty.SerializeToString,
+            config__msgs__pb2.WeldingConfigInfo.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SetWeldingMachineConfig(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Config/SetWeldingMachineConfig',
+            config__msgs__pb2.WeldingConfigInfo.SerializeToString,
+            common__msgs__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetWeldPositionList(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Config/GetWeldPositionList',
+            common__msgs__pb2.Empty.SerializeToString,
+            config__msgs__pb2.WeldPositionList.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SetWeldPositionList(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Config/SetWeldPositionList',
+            config__msgs__pb2.WeldPositionList.SerializeToString,
+            common__msgs__pb2.Response.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

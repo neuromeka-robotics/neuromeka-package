@@ -63,6 +63,13 @@ static const char* EtherCAT_method_names[] = {
   "/Nrmk.IndyFramework.EtherCAT/GetDI",
   "/Nrmk.IndyFramework.EtherCAT/GetDO",
   "/Nrmk.IndyFramework.EtherCAT/SetDO",
+  "/Nrmk.IndyFramework.EtherCAT/GetAI",
+  "/Nrmk.IndyFramework.EtherCAT/GetAO",
+  "/Nrmk.IndyFramework.EtherCAT/SetAO",
+  "/Nrmk.IndyFramework.EtherCAT/SetZenHandRx",
+  "/Nrmk.IndyFramework.EtherCAT/GetZenHandTx",
+  "/Nrmk.IndyFramework.EtherCAT/GetZenHandRx",
+  "/Nrmk.IndyFramework.EtherCAT/GetZenHandSensor",
   "/Nrmk.IndyFramework.EtherCAT/GetMaxTorqueSDO",
   "/Nrmk.IndyFramework.EtherCAT/GetProfileVelSDO",
   "/Nrmk.IndyFramework.EtherCAT/GetProfileAccSDO",
@@ -122,16 +129,23 @@ EtherCAT::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, 
   , rpcmethod_GetDI_(EtherCAT_method_names[37], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_GetDO_(EtherCAT_method_names[38], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_SetDO_(EtherCAT_method_names[39], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetMaxTorqueSDO_(EtherCAT_method_names[40], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetProfileVelSDO_(EtherCAT_method_names[41], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetProfileAccSDO_(EtherCAT_method_names[42], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetProfileDecSDO_(EtherCAT_method_names[43], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetMaxTorqueSDO_(EtherCAT_method_names[44], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetProfileVelSDO_(EtherCAT_method_names[45], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetProfileAccSDO_(EtherCAT_method_names[46], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetProfileDecSDO_(EtherCAT_method_names[47], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetRobotZeroCount_(EtherCAT_method_names[48], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetRobotZeroAsCurrent_(EtherCAT_method_names[49], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetAI_(EtherCAT_method_names[40], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetAO_(EtherCAT_method_names[41], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetAO_(EtherCAT_method_names[42], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetZenHandRx_(EtherCAT_method_names[43], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetZenHandTx_(EtherCAT_method_names[44], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetZenHandRx_(EtherCAT_method_names[45], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetZenHandSensor_(EtherCAT_method_names[46], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetMaxTorqueSDO_(EtherCAT_method_names[47], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetProfileVelSDO_(EtherCAT_method_names[48], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetProfileAccSDO_(EtherCAT_method_names[49], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetProfileDecSDO_(EtherCAT_method_names[50], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetMaxTorqueSDO_(EtherCAT_method_names[51], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetProfileVelSDO_(EtherCAT_method_names[52], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetProfileAccSDO_(EtherCAT_method_names[53], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetProfileDecSDO_(EtherCAT_method_names[54], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetRobotZeroCount_(EtherCAT_method_names[55], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetRobotZeroAsCurrent_(EtherCAT_method_names[56], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status EtherCAT::Stub::SetMasterStatus(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::MasterStatus& request, ::Nrmk::IndyFramework::Empty* response) {
@@ -1054,6 +1068,167 @@ void EtherCAT::Stub::async::SetDO(::grpc::ClientContext* context, const ::Nrmk::
   return result;
 }
 
+::grpc::Status EtherCAT::Stub::GetAI(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::AIOIndex& request, ::Nrmk::IndyFramework::AIOAnalogInput* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::AIOIndex, ::Nrmk::IndyFramework::AIOAnalogInput, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetAI_, context, request, response);
+}
+
+void EtherCAT::Stub::async::GetAI(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::AIOIndex* request, ::Nrmk::IndyFramework::AIOAnalogInput* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::AIOIndex, ::Nrmk::IndyFramework::AIOAnalogInput, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetAI_, context, request, response, std::move(f));
+}
+
+void EtherCAT::Stub::async::GetAI(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::AIOIndex* request, ::Nrmk::IndyFramework::AIOAnalogInput* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetAI_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::AIOAnalogInput>* EtherCAT::Stub::PrepareAsyncGetAIRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::AIOIndex& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::AIOAnalogInput, ::Nrmk::IndyFramework::AIOIndex, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetAI_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::AIOAnalogInput>* EtherCAT::Stub::AsyncGetAIRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::AIOIndex& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetAIRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status EtherCAT::Stub::GetAO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::AIOIndex& request, ::Nrmk::IndyFramework::AIOAnalogOutput* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::AIOIndex, ::Nrmk::IndyFramework::AIOAnalogOutput, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetAO_, context, request, response);
+}
+
+void EtherCAT::Stub::async::GetAO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::AIOIndex* request, ::Nrmk::IndyFramework::AIOAnalogOutput* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::AIOIndex, ::Nrmk::IndyFramework::AIOAnalogOutput, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetAO_, context, request, response, std::move(f));
+}
+
+void EtherCAT::Stub::async::GetAO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::AIOIndex* request, ::Nrmk::IndyFramework::AIOAnalogOutput* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetAO_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::AIOAnalogOutput>* EtherCAT::Stub::PrepareAsyncGetAORaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::AIOIndex& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::AIOAnalogOutput, ::Nrmk::IndyFramework::AIOIndex, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetAO_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::AIOAnalogOutput>* EtherCAT::Stub::AsyncGetAORaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::AIOIndex& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetAORaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status EtherCAT::Stub::SetAO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::AIOAnalogOutput& request, ::Nrmk::IndyFramework::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::AIOAnalogOutput, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetAO_, context, request, response);
+}
+
+void EtherCAT::Stub::async::SetAO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::AIOAnalogOutput* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::AIOAnalogOutput, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetAO_, context, request, response, std::move(f));
+}
+
+void EtherCAT::Stub::async::SetAO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::AIOAnalogOutput* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetAO_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* EtherCAT::Stub::PrepareAsyncSetAORaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::AIOAnalogOutput& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::AIOAnalogOutput, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetAO_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* EtherCAT::Stub::AsyncSetAORaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::AIOAnalogOutput& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetAORaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status EtherCAT::Stub::SetZenHandRx(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ZenHandRx& request, ::Nrmk::IndyFramework::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::ZenHandRx, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetZenHandRx_, context, request, response);
+}
+
+void EtherCAT::Stub::async::SetZenHandRx(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ZenHandRx* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::ZenHandRx, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetZenHandRx_, context, request, response, std::move(f));
+}
+
+void EtherCAT::Stub::async::SetZenHandRx(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ZenHandRx* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetZenHandRx_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* EtherCAT::Stub::PrepareAsyncSetZenHandRxRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ZenHandRx& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ZenHandRx, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetZenHandRx_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* EtherCAT::Stub::AsyncSetZenHandRxRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ZenHandRx& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetZenHandRxRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status EtherCAT::Stub::GetZenHandTx(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::HandIndex& request, ::Nrmk::IndyFramework::ZenHandTx* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::HandIndex, ::Nrmk::IndyFramework::ZenHandTx, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetZenHandTx_, context, request, response);
+}
+
+void EtherCAT::Stub::async::GetZenHandTx(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::HandIndex* request, ::Nrmk::IndyFramework::ZenHandTx* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::HandIndex, ::Nrmk::IndyFramework::ZenHandTx, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetZenHandTx_, context, request, response, std::move(f));
+}
+
+void EtherCAT::Stub::async::GetZenHandTx(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::HandIndex* request, ::Nrmk::IndyFramework::ZenHandTx* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetZenHandTx_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ZenHandTx>* EtherCAT::Stub::PrepareAsyncGetZenHandTxRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::HandIndex& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::ZenHandTx, ::Nrmk::IndyFramework::HandIndex, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetZenHandTx_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ZenHandTx>* EtherCAT::Stub::AsyncGetZenHandTxRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::HandIndex& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetZenHandTxRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status EtherCAT::Stub::GetZenHandRx(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::HandIndex& request, ::Nrmk::IndyFramework::ZenHandRx* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::HandIndex, ::Nrmk::IndyFramework::ZenHandRx, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetZenHandRx_, context, request, response);
+}
+
+void EtherCAT::Stub::async::GetZenHandRx(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::HandIndex* request, ::Nrmk::IndyFramework::ZenHandRx* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::HandIndex, ::Nrmk::IndyFramework::ZenHandRx, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetZenHandRx_, context, request, response, std::move(f));
+}
+
+void EtherCAT::Stub::async::GetZenHandRx(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::HandIndex* request, ::Nrmk::IndyFramework::ZenHandRx* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetZenHandRx_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ZenHandRx>* EtherCAT::Stub::PrepareAsyncGetZenHandRxRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::HandIndex& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::ZenHandRx, ::Nrmk::IndyFramework::HandIndex, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetZenHandRx_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ZenHandRx>* EtherCAT::Stub::AsyncGetZenHandRxRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::HandIndex& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetZenHandRxRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status EtherCAT::Stub::GetZenHandSensor(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::HandIndex& request, ::Nrmk::IndyFramework::ZenHandSensor* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::HandIndex, ::Nrmk::IndyFramework::ZenHandSensor, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetZenHandSensor_, context, request, response);
+}
+
+void EtherCAT::Stub::async::GetZenHandSensor(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::HandIndex* request, ::Nrmk::IndyFramework::ZenHandSensor* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::HandIndex, ::Nrmk::IndyFramework::ZenHandSensor, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetZenHandSensor_, context, request, response, std::move(f));
+}
+
+void EtherCAT::Stub::async::GetZenHandSensor(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::HandIndex* request, ::Nrmk::IndyFramework::ZenHandSensor* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetZenHandSensor_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ZenHandSensor>* EtherCAT::Stub::PrepareAsyncGetZenHandSensorRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::HandIndex& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::ZenHandSensor, ::Nrmk::IndyFramework::HandIndex, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetZenHandSensor_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ZenHandSensor>* EtherCAT::Stub::AsyncGetZenHandSensorRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::HandIndex& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetZenHandSensorRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 ::grpc::Status EtherCAT::Stub::GetMaxTorqueSDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::EcatIndex& request, ::Nrmk::IndyFramework::SDOIntVal* response) {
   return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::EcatIndex, ::Nrmk::IndyFramework::SDOIntVal, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetMaxTorqueSDO_, context, request, response);
 }
@@ -1688,6 +1863,76 @@ EtherCAT::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       EtherCAT_method_names[40],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::AIOIndex, ::Nrmk::IndyFramework::AIOAnalogInput, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](EtherCAT::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::AIOIndex* req,
+             ::Nrmk::IndyFramework::AIOAnalogInput* resp) {
+               return service->GetAI(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      EtherCAT_method_names[41],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::AIOIndex, ::Nrmk::IndyFramework::AIOAnalogOutput, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](EtherCAT::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::AIOIndex* req,
+             ::Nrmk::IndyFramework::AIOAnalogOutput* resp) {
+               return service->GetAO(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      EtherCAT_method_names[42],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::AIOAnalogOutput, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](EtherCAT::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::AIOAnalogOutput* req,
+             ::Nrmk::IndyFramework::Empty* resp) {
+               return service->SetAO(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      EtherCAT_method_names[43],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::ZenHandRx, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](EtherCAT::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::ZenHandRx* req,
+             ::Nrmk::IndyFramework::Empty* resp) {
+               return service->SetZenHandRx(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      EtherCAT_method_names[44],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::HandIndex, ::Nrmk::IndyFramework::ZenHandTx, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](EtherCAT::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::HandIndex* req,
+             ::Nrmk::IndyFramework::ZenHandTx* resp) {
+               return service->GetZenHandTx(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      EtherCAT_method_names[45],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::HandIndex, ::Nrmk::IndyFramework::ZenHandRx, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](EtherCAT::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::HandIndex* req,
+             ::Nrmk::IndyFramework::ZenHandRx* resp) {
+               return service->GetZenHandRx(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      EtherCAT_method_names[46],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::HandIndex, ::Nrmk::IndyFramework::ZenHandSensor, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](EtherCAT::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::HandIndex* req,
+             ::Nrmk::IndyFramework::ZenHandSensor* resp) {
+               return service->GetZenHandSensor(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      EtherCAT_method_names[47],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::EcatIndex, ::Nrmk::IndyFramework::SDOIntVal, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](EtherCAT::Service* service,
              ::grpc::ServerContext* ctx,
@@ -1696,7 +1941,7 @@ EtherCAT::Service::Service() {
                return service->GetMaxTorqueSDO(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      EtherCAT_method_names[41],
+      EtherCAT_method_names[48],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::EcatIndex, ::Nrmk::IndyFramework::SDOIntVal, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](EtherCAT::Service* service,
@@ -1706,7 +1951,7 @@ EtherCAT::Service::Service() {
                return service->GetProfileVelSDO(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      EtherCAT_method_names[42],
+      EtherCAT_method_names[49],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::EcatIndex, ::Nrmk::IndyFramework::SDOIntVal, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](EtherCAT::Service* service,
@@ -1716,7 +1961,7 @@ EtherCAT::Service::Service() {
                return service->GetProfileAccSDO(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      EtherCAT_method_names[43],
+      EtherCAT_method_names[50],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::EcatIndex, ::Nrmk::IndyFramework::SDOIntVal, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](EtherCAT::Service* service,
@@ -1726,7 +1971,7 @@ EtherCAT::Service::Service() {
                return service->GetProfileDecSDO(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      EtherCAT_method_names[44],
+      EtherCAT_method_names[51],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::ServoParam, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](EtherCAT::Service* service,
@@ -1736,7 +1981,7 @@ EtherCAT::Service::Service() {
                return service->SetMaxTorqueSDO(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      EtherCAT_method_names[45],
+      EtherCAT_method_names[52],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::ServoParam, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](EtherCAT::Service* service,
@@ -1746,7 +1991,7 @@ EtherCAT::Service::Service() {
                return service->SetProfileVelSDO(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      EtherCAT_method_names[46],
+      EtherCAT_method_names[53],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::ServoParam, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](EtherCAT::Service* service,
@@ -1756,7 +2001,7 @@ EtherCAT::Service::Service() {
                return service->SetProfileAccSDO(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      EtherCAT_method_names[47],
+      EtherCAT_method_names[54],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::ServoParam, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](EtherCAT::Service* service,
@@ -1766,7 +2011,7 @@ EtherCAT::Service::Service() {
                return service->SetProfileDecSDO(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      EtherCAT_method_names[48],
+      EtherCAT_method_names[55],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::ServoIndex, ::Nrmk::IndyFramework::RobotZeroCount, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](EtherCAT::Service* service,
@@ -1776,7 +2021,7 @@ EtherCAT::Service::Service() {
                return service->GetRobotZeroCount(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      EtherCAT_method_names[49],
+      EtherCAT_method_names[56],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< EtherCAT::Service, ::Nrmk::IndyFramework::ServoIndex, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](EtherCAT::Service* service,
@@ -2064,6 +2309,55 @@ EtherCAT::Service::~Service() {
 }
 
 ::grpc::Status EtherCAT::Service::SetDO(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::DIODigitalOutput* request, ::Nrmk::IndyFramework::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status EtherCAT::Service::GetAI(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::AIOIndex* request, ::Nrmk::IndyFramework::AIOAnalogInput* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status EtherCAT::Service::GetAO(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::AIOIndex* request, ::Nrmk::IndyFramework::AIOAnalogOutput* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status EtherCAT::Service::SetAO(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::AIOAnalogOutput* request, ::Nrmk::IndyFramework::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status EtherCAT::Service::SetZenHandRx(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::ZenHandRx* request, ::Nrmk::IndyFramework::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status EtherCAT::Service::GetZenHandTx(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::HandIndex* request, ::Nrmk::IndyFramework::ZenHandTx* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status EtherCAT::Service::GetZenHandRx(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::HandIndex* request, ::Nrmk::IndyFramework::ZenHandRx* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status EtherCAT::Service::GetZenHandSensor(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::HandIndex* request, ::Nrmk::IndyFramework::ZenHandSensor* response) {
   (void) context;
   (void) request;
   (void) response;

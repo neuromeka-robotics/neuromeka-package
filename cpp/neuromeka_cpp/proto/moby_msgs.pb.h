@@ -31,6 +31,7 @@
 #include "google/protobuf/message.h"
 #include "google/protobuf/repeated_field.h"  // IWYU pragma: export
 #include "google/protobuf/extension_set.h"  // IWYU pragma: export
+#include "google/protobuf/generated_enum_reflection.h"
 #include "google/protobuf/unknown_field_set.h"
 // @@protoc_insertion_point(includes)
 
@@ -106,6 +107,9 @@ extern IntValDefaultTypeInternal _IntVal_default_instance_;
 class IntVals;
 struct IntValsDefaultTypeInternal;
 extern IntValsDefaultTypeInternal _IntVals_default_instance_;
+class LEDControlMode;
+struct LEDControlModeDefaultTypeInternal;
+extern LEDControlModeDefaultTypeInternal _LEDControlMode_default_instance_;
 class MobyErrorState;
 struct MobyErrorStateDefaultTypeInternal;
 extern MobyErrorStateDefaultTypeInternal _MobyErrorState_default_instance_;
@@ -151,6 +155,42 @@ namespace protobuf {
 
 namespace Nrmk {
 namespace IndyFramework {
+enum LEDMode : int {
+  GREEN_SOLID = 0,
+  GREEN_BLINK = 1,
+  RED_SOLID = 2,
+  RED_BLINK = 3,
+  BLUE_SOLID = 4,
+  BLUE_BLINK = 5,
+  LEDMode_INT_MIN_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::min(),
+  LEDMode_INT_MAX_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::max(),
+};
+
+bool LEDMode_IsValid(int value);
+constexpr LEDMode LEDMode_MIN = static_cast<LEDMode>(0);
+constexpr LEDMode LEDMode_MAX = static_cast<LEDMode>(5);
+constexpr int LEDMode_ARRAYSIZE = 5 + 1;
+const ::google::protobuf::EnumDescriptor*
+LEDMode_descriptor();
+template <typename T>
+const std::string& LEDMode_Name(T value) {
+  static_assert(std::is_same<T, LEDMode>::value ||
+                    std::is_integral<T>::value,
+                "Incorrect type passed to LEDMode_Name().");
+  return LEDMode_Name(static_cast<LEDMode>(value));
+}
+template <>
+inline const std::string& LEDMode_Name(LEDMode value) {
+  return ::google::protobuf::internal::NameOfDenseEnum<LEDMode_descriptor,
+                                                 0, 5>(
+      static_cast<int>(value));
+}
+inline bool LEDMode_Parse(absl::string_view name, LEDMode* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<LEDMode>(
+      LEDMode_descriptor(), name, value);
+}
 
 // ===================================================================
 
@@ -1877,6 +1917,7 @@ class SwerveDoubles final :
     kFrFieldNumber = 2,
     kBlFieldNumber = 3,
     kBrFieldNumber = 4,
+    kControlSourceFieldNumber = 5,
   };
   // double fl = 1;
   void clear_fl() ;
@@ -1918,12 +1959,22 @@ class SwerveDoubles final :
   void _internal_set_br(double value);
 
   public:
+  // int32 control_source = 5;
+  void clear_control_source() ;
+  ::int32_t control_source() const;
+  void set_control_source(::int32_t value);
+
+  private:
+  ::int32_t _internal_control_source() const;
+  void _internal_set_control_source(::int32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.SwerveDoubles)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<2, 4, 0, 0, 2> _table_;
+  static const ::google::protobuf::internal::TcParseTable<3, 5, 0, 0, 2> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
@@ -1932,6 +1983,7 @@ class SwerveDoubles final :
     double fr_;
     double bl_;
     double br_;
+    ::int32_t control_source_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -5895,6 +5947,164 @@ class VelAccBoundary final :
   };
   union { Impl_ _impl_; };
   friend struct ::TableStruct_moby_5fmsgs_2eproto;
+};// -------------------------------------------------------------------
+
+class LEDControlMode final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.LEDControlMode) */ {
+ public:
+  inline LEDControlMode() : LEDControlMode(nullptr) {}
+  ~LEDControlMode() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR LEDControlMode(::google::protobuf::internal::ConstantInitialized);
+
+  LEDControlMode(const LEDControlMode& from);
+  LEDControlMode(LEDControlMode&& from) noexcept
+    : LEDControlMode() {
+    *this = ::std::move(from);
+  }
+
+  inline LEDControlMode& operator=(const LEDControlMode& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline LEDControlMode& operator=(LEDControlMode&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const LEDControlMode& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const LEDControlMode* internal_default_instance() {
+    return reinterpret_cast<const LEDControlMode*>(
+               &_LEDControlMode_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    29;
+
+  friend void swap(LEDControlMode& a, LEDControlMode& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(LEDControlMode* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(LEDControlMode* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  LEDControlMode* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<LEDControlMode>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const LEDControlMode& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const LEDControlMode& from) {
+    LEDControlMode::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(LEDControlMode* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "Nrmk.IndyFramework.LEDControlMode";
+  }
+  protected:
+  explicit LEDControlMode(::google::protobuf::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kModeFieldNumber = 1,
+  };
+  // .Nrmk.IndyFramework.LEDMode mode = 1;
+  void clear_mode() ;
+  ::Nrmk::IndyFramework::LEDMode mode() const;
+  void set_mode(::Nrmk::IndyFramework::LEDMode value);
+
+  private:
+  ::Nrmk::IndyFramework::LEDMode _internal_mode() const;
+  void _internal_set_mode(::Nrmk::IndyFramework::LEDMode value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.LEDControlMode)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<0, 1, 0, 0, 2> _table_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    int mode_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_moby_5fmsgs_2eproto;
 };
 
 // ===================================================================
@@ -6801,6 +7011,28 @@ inline void SwerveDoubles::_internal_set_br(double value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.br_ = value;
+}
+
+// int32 control_source = 5;
+inline void SwerveDoubles::clear_control_source() {
+  _impl_.control_source_ = 0;
+}
+inline ::int32_t SwerveDoubles::control_source() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.SwerveDoubles.control_source)
+  return _internal_control_source();
+}
+inline void SwerveDoubles::set_control_source(::int32_t value) {
+  _internal_set_control_source(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.SwerveDoubles.control_source)
+}
+inline ::int32_t SwerveDoubles::_internal_control_source() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.control_source_;
+}
+inline void SwerveDoubles::_internal_set_control_source(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.control_source_ = value;
 }
 
 // -------------------------------------------------------------------
@@ -8848,6 +9080,32 @@ inline void VelAccBoundary::_internal_set_amax(float value) {
   _impl_.amax_ = value;
 }
 
+// -------------------------------------------------------------------
+
+// LEDControlMode
+
+// .Nrmk.IndyFramework.LEDMode mode = 1;
+inline void LEDControlMode::clear_mode() {
+  _impl_.mode_ = 0;
+}
+inline ::Nrmk::IndyFramework::LEDMode LEDControlMode::mode() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.LEDControlMode.mode)
+  return _internal_mode();
+}
+inline void LEDControlMode::set_mode(::Nrmk::IndyFramework::LEDMode value) {
+  _internal_set_mode(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.LEDControlMode.mode)
+}
+inline ::Nrmk::IndyFramework::LEDMode LEDControlMode::_internal_mode() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return static_cast<::Nrmk::IndyFramework::LEDMode>(_impl_.mode_);
+}
+inline void LEDControlMode::_internal_set_mode(::Nrmk::IndyFramework::LEDMode value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.mode_ = value;
+}
+
 #ifdef __GNUC__
 #pragma GCC diagnostic pop
 #endif  // __GNUC__
@@ -8856,6 +9114,19 @@ inline void VelAccBoundary::_internal_set_amax(float value) {
 }  // namespace IndyFramework
 }  // namespace Nrmk
 
+
+namespace google {
+namespace protobuf {
+
+template <>
+struct is_proto_enum<::Nrmk::IndyFramework::LEDMode> : std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor<::Nrmk::IndyFramework::LEDMode>() {
+  return ::Nrmk::IndyFramework::LEDMode_descriptor();
+}
+
+}  // namespace protobuf
+}  // namespace google
 
 // @@protoc_insertion_point(global_scope)
 

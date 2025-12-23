@@ -55,6 +55,15 @@ extern const ::google::protobuf::internal::DescriptorTable
     descriptor_table_ethercat_5fmsgs_2eproto;
 namespace Nrmk {
 namespace IndyFramework {
+class AIOAnalogInput;
+struct AIOAnalogInputDefaultTypeInternal;
+extern AIOAnalogInputDefaultTypeInternal _AIOAnalogInput_default_instance_;
+class AIOAnalogOutput;
+struct AIOAnalogOutputDefaultTypeInternal;
+extern AIOAnalogOutputDefaultTypeInternal _AIOAnalogOutput_default_instance_;
+class AIOIndex;
+struct AIOIndexDefaultTypeInternal;
+extern AIOIndexDefaultTypeInternal _AIOIndex_default_instance_;
 class DIODigitalInput;
 struct DIODigitalInputDefaultTypeInternal;
 extern DIODigitalInputDefaultTypeInternal _DIODigitalInput_default_instance_;
@@ -88,6 +97,9 @@ extern EndtoolTxDefaultTypeInternal _EndtoolTx_default_instance_;
 class FTSensor;
 struct FTSensorDefaultTypeInternal;
 extern FTSensorDefaultTypeInternal _FTSensor_default_instance_;
+class HandIndex;
+struct HandIndexDefaultTypeInternal;
+extern HandIndexDefaultTypeInternal _HandIndex_default_instance_;
 class IOBoardRx;
 struct IOBoardRxDefaultTypeInternal;
 extern IOBoardRxDefaultTypeInternal _IOBoardRx_default_instance_;
@@ -151,6 +163,21 @@ extern SlaveStatusDefaultTypeInternal _SlaveStatus_default_instance_;
 class SlaveTypeNum;
 struct SlaveTypeNumDefaultTypeInternal;
 extern SlaveTypeNumDefaultTypeInternal _SlaveTypeNum_default_instance_;
+class ZenForcePoint;
+struct ZenForcePointDefaultTypeInternal;
+extern ZenForcePointDefaultTypeInternal _ZenForcePoint_default_instance_;
+class ZenHandRx;
+struct ZenHandRxDefaultTypeInternal;
+extern ZenHandRxDefaultTypeInternal _ZenHandRx_default_instance_;
+class ZenHandSensor;
+struct ZenHandSensorDefaultTypeInternal;
+extern ZenHandSensorDefaultTypeInternal _ZenHandSensor_default_instance_;
+class ZenHandTactile;
+struct ZenHandTactileDefaultTypeInternal;
+extern ZenHandTactileDefaultTypeInternal _ZenHandTactile_default_instance_;
+class ZenHandTx;
+struct ZenHandTxDefaultTypeInternal;
+extern ZenHandTxDefaultTypeInternal _ZenHandTx_default_instance_;
 }  // namespace IndyFramework
 }  // namespace Nrmk
 namespace google {
@@ -5811,6 +5838,1798 @@ class DIODigitalOutput final :
   friend struct ::TableStruct_ethercat_5fmsgs_2eproto;
 };// -------------------------------------------------------------------
 
+class AIOIndex final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.AIOIndex) */ {
+ public:
+  inline AIOIndex() : AIOIndex(nullptr) {}
+  ~AIOIndex() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR AIOIndex(::google::protobuf::internal::ConstantInitialized);
+
+  AIOIndex(const AIOIndex& from);
+  AIOIndex(AIOIndex&& from) noexcept
+    : AIOIndex() {
+    *this = ::std::move(from);
+  }
+
+  inline AIOIndex& operator=(const AIOIndex& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline AIOIndex& operator=(AIOIndex&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const AIOIndex& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const AIOIndex* internal_default_instance() {
+    return reinterpret_cast<const AIOIndex*>(
+               &_AIOIndex_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    29;
+
+  friend void swap(AIOIndex& a, AIOIndex& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(AIOIndex* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(AIOIndex* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  AIOIndex* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<AIOIndex>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const AIOIndex& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const AIOIndex& from) {
+    AIOIndex::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(AIOIndex* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "Nrmk.IndyFramework.AIOIndex";
+  }
+  protected:
+  explicit AIOIndex(::google::protobuf::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kAioIndexFieldNumber = 1,
+  };
+  // uint32 aioIndex = 1;
+  void clear_aioindex() ;
+  ::uint32_t aioindex() const;
+  void set_aioindex(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_aioindex() const;
+  void _internal_set_aioindex(::uint32_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.AIOIndex)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<0, 1, 0, 0, 2> _table_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::uint32_t aioindex_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_ethercat_5fmsgs_2eproto;
+};// -------------------------------------------------------------------
+
+class AIOAnalogInput final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.AIOAnalogInput) */ {
+ public:
+  inline AIOAnalogInput() : AIOAnalogInput(nullptr) {}
+  ~AIOAnalogInput() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR AIOAnalogInput(::google::protobuf::internal::ConstantInitialized);
+
+  AIOAnalogInput(const AIOAnalogInput& from);
+  AIOAnalogInput(AIOAnalogInput&& from) noexcept
+    : AIOAnalogInput() {
+    *this = ::std::move(from);
+  }
+
+  inline AIOAnalogInput& operator=(const AIOAnalogInput& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline AIOAnalogInput& operator=(AIOAnalogInput&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const AIOAnalogInput& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const AIOAnalogInput* internal_default_instance() {
+    return reinterpret_cast<const AIOAnalogInput*>(
+               &_AIOAnalogInput_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    30;
+
+  friend void swap(AIOAnalogInput& a, AIOAnalogInput& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(AIOAnalogInput* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(AIOAnalogInput* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  AIOAnalogInput* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<AIOAnalogInput>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const AIOAnalogInput& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const AIOAnalogInput& from) {
+    AIOAnalogInput::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(AIOAnalogInput* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "Nrmk.IndyFramework.AIOAnalogInput";
+  }
+  protected:
+  explicit AIOAnalogInput(::google::protobuf::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kAiListFieldNumber = 2,
+    kAioIndexFieldNumber = 1,
+  };
+  // repeated int32 ai_list = 2;
+  int ai_list_size() const;
+  private:
+  int _internal_ai_list_size() const;
+
+  public:
+  void clear_ai_list() ;
+  ::int32_t ai_list(int index) const;
+  void set_ai_list(int index, ::int32_t value);
+  void add_ai_list(::int32_t value);
+  const ::google::protobuf::RepeatedField<::int32_t>& ai_list() const;
+  ::google::protobuf::RepeatedField<::int32_t>* mutable_ai_list();
+
+  private:
+  const ::google::protobuf::RepeatedField<::int32_t>& _internal_ai_list() const;
+  ::google::protobuf::RepeatedField<::int32_t>* _internal_mutable_ai_list();
+
+  public:
+  // uint32 aioIndex = 1;
+  void clear_aioindex() ;
+  ::uint32_t aioindex() const;
+  void set_aioindex(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_aioindex() const;
+  void _internal_set_aioindex(::uint32_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.AIOAnalogInput)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<1, 2, 0, 0, 2> _table_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::google::protobuf::RepeatedField<::int32_t> ai_list_;
+    mutable ::google::protobuf::internal::CachedSize _ai_list_cached_byte_size_;
+    ::uint32_t aioindex_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_ethercat_5fmsgs_2eproto;
+};// -------------------------------------------------------------------
+
+class AIOAnalogOutput final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.AIOAnalogOutput) */ {
+ public:
+  inline AIOAnalogOutput() : AIOAnalogOutput(nullptr) {}
+  ~AIOAnalogOutput() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR AIOAnalogOutput(::google::protobuf::internal::ConstantInitialized);
+
+  AIOAnalogOutput(const AIOAnalogOutput& from);
+  AIOAnalogOutput(AIOAnalogOutput&& from) noexcept
+    : AIOAnalogOutput() {
+    *this = ::std::move(from);
+  }
+
+  inline AIOAnalogOutput& operator=(const AIOAnalogOutput& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline AIOAnalogOutput& operator=(AIOAnalogOutput&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const AIOAnalogOutput& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const AIOAnalogOutput* internal_default_instance() {
+    return reinterpret_cast<const AIOAnalogOutput*>(
+               &_AIOAnalogOutput_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    31;
+
+  friend void swap(AIOAnalogOutput& a, AIOAnalogOutput& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(AIOAnalogOutput* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(AIOAnalogOutput* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  AIOAnalogOutput* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<AIOAnalogOutput>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const AIOAnalogOutput& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const AIOAnalogOutput& from) {
+    AIOAnalogOutput::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(AIOAnalogOutput* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "Nrmk.IndyFramework.AIOAnalogOutput";
+  }
+  protected:
+  explicit AIOAnalogOutput(::google::protobuf::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kAoListFieldNumber = 2,
+    kAioIndexFieldNumber = 1,
+  };
+  // repeated int32 ao_list = 2;
+  int ao_list_size() const;
+  private:
+  int _internal_ao_list_size() const;
+
+  public:
+  void clear_ao_list() ;
+  ::int32_t ao_list(int index) const;
+  void set_ao_list(int index, ::int32_t value);
+  void add_ao_list(::int32_t value);
+  const ::google::protobuf::RepeatedField<::int32_t>& ao_list() const;
+  ::google::protobuf::RepeatedField<::int32_t>* mutable_ao_list();
+
+  private:
+  const ::google::protobuf::RepeatedField<::int32_t>& _internal_ao_list() const;
+  ::google::protobuf::RepeatedField<::int32_t>* _internal_mutable_ao_list();
+
+  public:
+  // uint32 aioIndex = 1;
+  void clear_aioindex() ;
+  ::uint32_t aioindex() const;
+  void set_aioindex(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_aioindex() const;
+  void _internal_set_aioindex(::uint32_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.AIOAnalogOutput)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<1, 2, 0, 0, 2> _table_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::google::protobuf::RepeatedField<::int32_t> ao_list_;
+    mutable ::google::protobuf::internal::CachedSize _ao_list_cached_byte_size_;
+    ::uint32_t aioindex_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_ethercat_5fmsgs_2eproto;
+};// -------------------------------------------------------------------
+
+class HandIndex final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.HandIndex) */ {
+ public:
+  inline HandIndex() : HandIndex(nullptr) {}
+  ~HandIndex() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR HandIndex(::google::protobuf::internal::ConstantInitialized);
+
+  HandIndex(const HandIndex& from);
+  HandIndex(HandIndex&& from) noexcept
+    : HandIndex() {
+    *this = ::std::move(from);
+  }
+
+  inline HandIndex& operator=(const HandIndex& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline HandIndex& operator=(HandIndex&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const HandIndex& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const HandIndex* internal_default_instance() {
+    return reinterpret_cast<const HandIndex*>(
+               &_HandIndex_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    32;
+
+  friend void swap(HandIndex& a, HandIndex& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(HandIndex* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(HandIndex* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  HandIndex* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<HandIndex>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const HandIndex& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const HandIndex& from) {
+    HandIndex::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(HandIndex* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "Nrmk.IndyFramework.HandIndex";
+  }
+  protected:
+  explicit HandIndex(::google::protobuf::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kHandIndexFieldNumber = 1,
+  };
+  // uint32 handIndex = 1;
+  void clear_handindex() ;
+  ::uint32_t handindex() const;
+  void set_handindex(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_handindex() const;
+  void _internal_set_handindex(::uint32_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.HandIndex)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<0, 1, 0, 0, 2> _table_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::uint32_t handindex_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_ethercat_5fmsgs_2eproto;
+};// -------------------------------------------------------------------
+
+class ZenHandRx final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.ZenHandRx) */ {
+ public:
+  inline ZenHandRx() : ZenHandRx(nullptr) {}
+  ~ZenHandRx() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR ZenHandRx(::google::protobuf::internal::ConstantInitialized);
+
+  ZenHandRx(const ZenHandRx& from);
+  ZenHandRx(ZenHandRx&& from) noexcept
+    : ZenHandRx() {
+    *this = ::std::move(from);
+  }
+
+  inline ZenHandRx& operator=(const ZenHandRx& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ZenHandRx& operator=(ZenHandRx&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ZenHandRx& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ZenHandRx* internal_default_instance() {
+    return reinterpret_cast<const ZenHandRx*>(
+               &_ZenHandRx_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    33;
+
+  friend void swap(ZenHandRx& a, ZenHandRx& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ZenHandRx* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ZenHandRx* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ZenHandRx* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ZenHandRx>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const ZenHandRx& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const ZenHandRx& from) {
+    ZenHandRx::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ZenHandRx* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "Nrmk.IndyFramework.ZenHandRx";
+  }
+  protected:
+  explicit ZenHandRx(::google::protobuf::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kModeOpFieldNumber = 3,
+    kCtlCommandFieldNumber = 4,
+    kTargetPositionFieldNumber = 5,
+    kTargetVelocityFieldNumber = 6,
+    kTargetCurrentFieldNumber = 7,
+    kHandIndexFieldNumber = 1,
+    kHandControlFieldNumber = 2,
+  };
+  // repeated int32 modeOp = 3;
+  int modeop_size() const;
+  private:
+  int _internal_modeop_size() const;
+
+  public:
+  void clear_modeop() ;
+  ::int32_t modeop(int index) const;
+  void set_modeop(int index, ::int32_t value);
+  void add_modeop(::int32_t value);
+  const ::google::protobuf::RepeatedField<::int32_t>& modeop() const;
+  ::google::protobuf::RepeatedField<::int32_t>* mutable_modeop();
+
+  private:
+  const ::google::protobuf::RepeatedField<::int32_t>& _internal_modeop() const;
+  ::google::protobuf::RepeatedField<::int32_t>* _internal_mutable_modeop();
+
+  public:
+  // repeated int32 ctlCommand = 4;
+  int ctlcommand_size() const;
+  private:
+  int _internal_ctlcommand_size() const;
+
+  public:
+  void clear_ctlcommand() ;
+  ::int32_t ctlcommand(int index) const;
+  void set_ctlcommand(int index, ::int32_t value);
+  void add_ctlcommand(::int32_t value);
+  const ::google::protobuf::RepeatedField<::int32_t>& ctlcommand() const;
+  ::google::protobuf::RepeatedField<::int32_t>* mutable_ctlcommand();
+
+  private:
+  const ::google::protobuf::RepeatedField<::int32_t>& _internal_ctlcommand() const;
+  ::google::protobuf::RepeatedField<::int32_t>* _internal_mutable_ctlcommand();
+
+  public:
+  // repeated int32 targetPosition = 5;
+  int targetposition_size() const;
+  private:
+  int _internal_targetposition_size() const;
+
+  public:
+  void clear_targetposition() ;
+  ::int32_t targetposition(int index) const;
+  void set_targetposition(int index, ::int32_t value);
+  void add_targetposition(::int32_t value);
+  const ::google::protobuf::RepeatedField<::int32_t>& targetposition() const;
+  ::google::protobuf::RepeatedField<::int32_t>* mutable_targetposition();
+
+  private:
+  const ::google::protobuf::RepeatedField<::int32_t>& _internal_targetposition() const;
+  ::google::protobuf::RepeatedField<::int32_t>* _internal_mutable_targetposition();
+
+  public:
+  // repeated int32 targetVelocity = 6;
+  int targetvelocity_size() const;
+  private:
+  int _internal_targetvelocity_size() const;
+
+  public:
+  void clear_targetvelocity() ;
+  ::int32_t targetvelocity(int index) const;
+  void set_targetvelocity(int index, ::int32_t value);
+  void add_targetvelocity(::int32_t value);
+  const ::google::protobuf::RepeatedField<::int32_t>& targetvelocity() const;
+  ::google::protobuf::RepeatedField<::int32_t>* mutable_targetvelocity();
+
+  private:
+  const ::google::protobuf::RepeatedField<::int32_t>& _internal_targetvelocity() const;
+  ::google::protobuf::RepeatedField<::int32_t>* _internal_mutable_targetvelocity();
+
+  public:
+  // repeated int32 targetCurrent = 7;
+  int targetcurrent_size() const;
+  private:
+  int _internal_targetcurrent_size() const;
+
+  public:
+  void clear_targetcurrent() ;
+  ::int32_t targetcurrent(int index) const;
+  void set_targetcurrent(int index, ::int32_t value);
+  void add_targetcurrent(::int32_t value);
+  const ::google::protobuf::RepeatedField<::int32_t>& targetcurrent() const;
+  ::google::protobuf::RepeatedField<::int32_t>* mutable_targetcurrent();
+
+  private:
+  const ::google::protobuf::RepeatedField<::int32_t>& _internal_targetcurrent() const;
+  ::google::protobuf::RepeatedField<::int32_t>* _internal_mutable_targetcurrent();
+
+  public:
+  // uint32 handIndex = 1;
+  void clear_handindex() ;
+  ::uint32_t handindex() const;
+  void set_handindex(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_handindex() const;
+  void _internal_set_handindex(::uint32_t value);
+
+  public:
+  // uint32 handControl = 2;
+  void clear_handcontrol() ;
+  ::uint32_t handcontrol() const;
+  void set_handcontrol(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_handcontrol() const;
+  void _internal_set_handcontrol(::uint32_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.ZenHandRx)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<3, 7, 0, 0, 2> _table_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::google::protobuf::RepeatedField<::int32_t> modeop_;
+    mutable ::google::protobuf::internal::CachedSize _modeop_cached_byte_size_;
+    ::google::protobuf::RepeatedField<::int32_t> ctlcommand_;
+    mutable ::google::protobuf::internal::CachedSize _ctlcommand_cached_byte_size_;
+    ::google::protobuf::RepeatedField<::int32_t> targetposition_;
+    mutable ::google::protobuf::internal::CachedSize _targetposition_cached_byte_size_;
+    ::google::protobuf::RepeatedField<::int32_t> targetvelocity_;
+    mutable ::google::protobuf::internal::CachedSize _targetvelocity_cached_byte_size_;
+    ::google::protobuf::RepeatedField<::int32_t> targetcurrent_;
+    mutable ::google::protobuf::internal::CachedSize _targetcurrent_cached_byte_size_;
+    ::uint32_t handindex_;
+    ::uint32_t handcontrol_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_ethercat_5fmsgs_2eproto;
+};// -------------------------------------------------------------------
+
+class ZenHandTx final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.ZenHandTx) */ {
+ public:
+  inline ZenHandTx() : ZenHandTx(nullptr) {}
+  ~ZenHandTx() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR ZenHandTx(::google::protobuf::internal::ConstantInitialized);
+
+  ZenHandTx(const ZenHandTx& from);
+  ZenHandTx(ZenHandTx&& from) noexcept
+    : ZenHandTx() {
+    *this = ::std::move(from);
+  }
+
+  inline ZenHandTx& operator=(const ZenHandTx& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ZenHandTx& operator=(ZenHandTx&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ZenHandTx& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ZenHandTx* internal_default_instance() {
+    return reinterpret_cast<const ZenHandTx*>(
+               &_ZenHandTx_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    34;
+
+  friend void swap(ZenHandTx& a, ZenHandTx& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ZenHandTx* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ZenHandTx* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ZenHandTx* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ZenHandTx>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const ZenHandTx& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const ZenHandTx& from) {
+    ZenHandTx::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ZenHandTx* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "Nrmk.IndyFramework.ZenHandTx";
+  }
+  protected:
+  explicit ZenHandTx(::google::protobuf::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kModeOpDispFieldNumber = 3,
+    kActualPositionFieldNumber = 4,
+    kActualVelocityFieldNumber = 5,
+    kActualCurrentFieldNumber = 6,
+    kErrCodeFieldNumber = 7,
+    kHandIndexFieldNumber = 1,
+    kFrameMessageFieldNumber = 2,
+  };
+  // repeated int32 modeOpDisp = 3;
+  int modeopdisp_size() const;
+  private:
+  int _internal_modeopdisp_size() const;
+
+  public:
+  void clear_modeopdisp() ;
+  ::int32_t modeopdisp(int index) const;
+  void set_modeopdisp(int index, ::int32_t value);
+  void add_modeopdisp(::int32_t value);
+  const ::google::protobuf::RepeatedField<::int32_t>& modeopdisp() const;
+  ::google::protobuf::RepeatedField<::int32_t>* mutable_modeopdisp();
+
+  private:
+  const ::google::protobuf::RepeatedField<::int32_t>& _internal_modeopdisp() const;
+  ::google::protobuf::RepeatedField<::int32_t>* _internal_mutable_modeopdisp();
+
+  public:
+  // repeated int32 actualPosition = 4;
+  int actualposition_size() const;
+  private:
+  int _internal_actualposition_size() const;
+
+  public:
+  void clear_actualposition() ;
+  ::int32_t actualposition(int index) const;
+  void set_actualposition(int index, ::int32_t value);
+  void add_actualposition(::int32_t value);
+  const ::google::protobuf::RepeatedField<::int32_t>& actualposition() const;
+  ::google::protobuf::RepeatedField<::int32_t>* mutable_actualposition();
+
+  private:
+  const ::google::protobuf::RepeatedField<::int32_t>& _internal_actualposition() const;
+  ::google::protobuf::RepeatedField<::int32_t>* _internal_mutable_actualposition();
+
+  public:
+  // repeated int32 actualVelocity = 5;
+  int actualvelocity_size() const;
+  private:
+  int _internal_actualvelocity_size() const;
+
+  public:
+  void clear_actualvelocity() ;
+  ::int32_t actualvelocity(int index) const;
+  void set_actualvelocity(int index, ::int32_t value);
+  void add_actualvelocity(::int32_t value);
+  const ::google::protobuf::RepeatedField<::int32_t>& actualvelocity() const;
+  ::google::protobuf::RepeatedField<::int32_t>* mutable_actualvelocity();
+
+  private:
+  const ::google::protobuf::RepeatedField<::int32_t>& _internal_actualvelocity() const;
+  ::google::protobuf::RepeatedField<::int32_t>* _internal_mutable_actualvelocity();
+
+  public:
+  // repeated int32 actualCurrent = 6;
+  int actualcurrent_size() const;
+  private:
+  int _internal_actualcurrent_size() const;
+
+  public:
+  void clear_actualcurrent() ;
+  ::int32_t actualcurrent(int index) const;
+  void set_actualcurrent(int index, ::int32_t value);
+  void add_actualcurrent(::int32_t value);
+  const ::google::protobuf::RepeatedField<::int32_t>& actualcurrent() const;
+  ::google::protobuf::RepeatedField<::int32_t>* mutable_actualcurrent();
+
+  private:
+  const ::google::protobuf::RepeatedField<::int32_t>& _internal_actualcurrent() const;
+  ::google::protobuf::RepeatedField<::int32_t>* _internal_mutable_actualcurrent();
+
+  public:
+  // repeated uint32 errCode = 7;
+  int errcode_size() const;
+  private:
+  int _internal_errcode_size() const;
+
+  public:
+  void clear_errcode() ;
+  ::uint32_t errcode(int index) const;
+  void set_errcode(int index, ::uint32_t value);
+  void add_errcode(::uint32_t value);
+  const ::google::protobuf::RepeatedField<::uint32_t>& errcode() const;
+  ::google::protobuf::RepeatedField<::uint32_t>* mutable_errcode();
+
+  private:
+  const ::google::protobuf::RepeatedField<::uint32_t>& _internal_errcode() const;
+  ::google::protobuf::RepeatedField<::uint32_t>* _internal_mutable_errcode();
+
+  public:
+  // uint32 handIndex = 1;
+  void clear_handindex() ;
+  ::uint32_t handindex() const;
+  void set_handindex(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_handindex() const;
+  void _internal_set_handindex(::uint32_t value);
+
+  public:
+  // uint32 frameMessage = 2;
+  void clear_framemessage() ;
+  ::uint32_t framemessage() const;
+  void set_framemessage(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_framemessage() const;
+  void _internal_set_framemessage(::uint32_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.ZenHandTx)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<3, 7, 0, 0, 2> _table_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::google::protobuf::RepeatedField<::int32_t> modeopdisp_;
+    mutable ::google::protobuf::internal::CachedSize _modeopdisp_cached_byte_size_;
+    ::google::protobuf::RepeatedField<::int32_t> actualposition_;
+    mutable ::google::protobuf::internal::CachedSize _actualposition_cached_byte_size_;
+    ::google::protobuf::RepeatedField<::int32_t> actualvelocity_;
+    mutable ::google::protobuf::internal::CachedSize _actualvelocity_cached_byte_size_;
+    ::google::protobuf::RepeatedField<::int32_t> actualcurrent_;
+    mutable ::google::protobuf::internal::CachedSize _actualcurrent_cached_byte_size_;
+    ::google::protobuf::RepeatedField<::uint32_t> errcode_;
+    mutable ::google::protobuf::internal::CachedSize _errcode_cached_byte_size_;
+    ::uint32_t handindex_;
+    ::uint32_t framemessage_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_ethercat_5fmsgs_2eproto;
+};// -------------------------------------------------------------------
+
+class ZenHandSensor final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.ZenHandSensor) */ {
+ public:
+  inline ZenHandSensor() : ZenHandSensor(nullptr) {}
+  ~ZenHandSensor() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR ZenHandSensor(::google::protobuf::internal::ConstantInitialized);
+
+  ZenHandSensor(const ZenHandSensor& from);
+  ZenHandSensor(ZenHandSensor&& from) noexcept
+    : ZenHandSensor() {
+    *this = ::std::move(from);
+  }
+
+  inline ZenHandSensor& operator=(const ZenHandSensor& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ZenHandSensor& operator=(ZenHandSensor&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ZenHandSensor& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ZenHandSensor* internal_default_instance() {
+    return reinterpret_cast<const ZenHandSensor*>(
+               &_ZenHandSensor_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    35;
+
+  friend void swap(ZenHandSensor& a, ZenHandSensor& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ZenHandSensor* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ZenHandSensor* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ZenHandSensor* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ZenHandSensor>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const ZenHandSensor& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const ZenHandSensor& from) {
+    ZenHandSensor::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ZenHandSensor* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "Nrmk.IndyFramework.ZenHandSensor";
+  }
+  protected:
+  explicit ZenHandSensor(::google::protobuf::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kTactileFieldNumber = 2,
+    kHandIndexFieldNumber = 1,
+  };
+  // repeated .Nrmk.IndyFramework.ZenHandTactile tactile = 2;
+  int tactile_size() const;
+  private:
+  int _internal_tactile_size() const;
+
+  public:
+  void clear_tactile() ;
+  ::Nrmk::IndyFramework::ZenHandTactile* mutable_tactile(int index);
+  ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::ZenHandTactile >*
+      mutable_tactile();
+  private:
+  const ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::ZenHandTactile>& _internal_tactile() const;
+  ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::ZenHandTactile>* _internal_mutable_tactile();
+  public:
+  const ::Nrmk::IndyFramework::ZenHandTactile& tactile(int index) const;
+  ::Nrmk::IndyFramework::ZenHandTactile* add_tactile();
+  const ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::ZenHandTactile >&
+      tactile() const;
+  // uint32 handIndex = 1;
+  void clear_handindex() ;
+  ::uint32_t handindex() const;
+  void set_handindex(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_handindex() const;
+  void _internal_set_handindex(::uint32_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.ZenHandSensor)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<1, 2, 1, 0, 2> _table_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::ZenHandTactile > tactile_;
+    ::uint32_t handindex_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_ethercat_5fmsgs_2eproto;
+};// -------------------------------------------------------------------
+
+class ZenHandTactile final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.ZenHandTactile) */ {
+ public:
+  inline ZenHandTactile() : ZenHandTactile(nullptr) {}
+  ~ZenHandTactile() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR ZenHandTactile(::google::protobuf::internal::ConstantInitialized);
+
+  ZenHandTactile(const ZenHandTactile& from);
+  ZenHandTactile(ZenHandTactile&& from) noexcept
+    : ZenHandTactile() {
+    *this = ::std::move(from);
+  }
+
+  inline ZenHandTactile& operator=(const ZenHandTactile& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ZenHandTactile& operator=(ZenHandTactile&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ZenHandTactile& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ZenHandTactile* internal_default_instance() {
+    return reinterpret_cast<const ZenHandTactile*>(
+               &_ZenHandTactile_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    36;
+
+  friend void swap(ZenHandTactile& a, ZenHandTactile& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ZenHandTactile* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ZenHandTactile* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ZenHandTactile* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ZenHandTactile>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const ZenHandTactile& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const ZenHandTactile& from) {
+    ZenHandTactile::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ZenHandTactile* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "Nrmk.IndyFramework.ZenHandTactile";
+  }
+  protected:
+  explicit ZenHandTactile(::google::protobuf::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kPointFieldNumber = 2,
+    kTotalForceFieldNumber = 1,
+    kTempFieldNumber = 3,
+  };
+  // repeated .Nrmk.IndyFramework.ZenForcePoint point = 2;
+  int point_size() const;
+  private:
+  int _internal_point_size() const;
+
+  public:
+  void clear_point() ;
+  ::Nrmk::IndyFramework::ZenForcePoint* mutable_point(int index);
+  ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::ZenForcePoint >*
+      mutable_point();
+  private:
+  const ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::ZenForcePoint>& _internal_point() const;
+  ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::ZenForcePoint>* _internal_mutable_point();
+  public:
+  const ::Nrmk::IndyFramework::ZenForcePoint& point(int index) const;
+  ::Nrmk::IndyFramework::ZenForcePoint* add_point();
+  const ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::ZenForcePoint >&
+      point() const;
+  // .Nrmk.IndyFramework.ZenForcePoint totalForce = 1;
+  bool has_totalforce() const;
+  void clear_totalforce() ;
+  const ::Nrmk::IndyFramework::ZenForcePoint& totalforce() const;
+  PROTOBUF_NODISCARD ::Nrmk::IndyFramework::ZenForcePoint* release_totalforce();
+  ::Nrmk::IndyFramework::ZenForcePoint* mutable_totalforce();
+  void set_allocated_totalforce(::Nrmk::IndyFramework::ZenForcePoint* value);
+  void unsafe_arena_set_allocated_totalforce(::Nrmk::IndyFramework::ZenForcePoint* value);
+  ::Nrmk::IndyFramework::ZenForcePoint* unsafe_arena_release_totalforce();
+
+  private:
+  const ::Nrmk::IndyFramework::ZenForcePoint& _internal_totalforce() const;
+  ::Nrmk::IndyFramework::ZenForcePoint* _internal_mutable_totalforce();
+
+  public:
+  // uint32 temp = 3;
+  void clear_temp() ;
+  ::uint32_t temp() const;
+  void set_temp(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_temp() const;
+  void _internal_set_temp(::uint32_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.ZenHandTactile)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<2, 3, 2, 0, 2> _table_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::ZenForcePoint > point_;
+    ::Nrmk::IndyFramework::ZenForcePoint* totalforce_;
+    ::uint32_t temp_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_ethercat_5fmsgs_2eproto;
+};// -------------------------------------------------------------------
+
+class ZenForcePoint final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.ZenForcePoint) */ {
+ public:
+  inline ZenForcePoint() : ZenForcePoint(nullptr) {}
+  ~ZenForcePoint() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR ZenForcePoint(::google::protobuf::internal::ConstantInitialized);
+
+  ZenForcePoint(const ZenForcePoint& from);
+  ZenForcePoint(ZenForcePoint&& from) noexcept
+    : ZenForcePoint() {
+    *this = ::std::move(from);
+  }
+
+  inline ZenForcePoint& operator=(const ZenForcePoint& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ZenForcePoint& operator=(ZenForcePoint&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ZenForcePoint& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ZenForcePoint* internal_default_instance() {
+    return reinterpret_cast<const ZenForcePoint*>(
+               &_ZenForcePoint_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    37;
+
+  friend void swap(ZenForcePoint& a, ZenForcePoint& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ZenForcePoint* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ZenForcePoint* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ZenForcePoint* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ZenForcePoint>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const ZenForcePoint& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const ZenForcePoint& from) {
+    ZenForcePoint::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ZenForcePoint* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "Nrmk.IndyFramework.ZenForcePoint";
+  }
+  protected:
+  explicit ZenForcePoint(::google::protobuf::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kXFieldNumber = 1,
+    kYFieldNumber = 2,
+    kZFieldNumber = 3,
+    kForceFieldNumber = 4,
+  };
+  // int32 x = 1;
+  void clear_x() ;
+  ::int32_t x() const;
+  void set_x(::int32_t value);
+
+  private:
+  ::int32_t _internal_x() const;
+  void _internal_set_x(::int32_t value);
+
+  public:
+  // int32 y = 2;
+  void clear_y() ;
+  ::int32_t y() const;
+  void set_y(::int32_t value);
+
+  private:
+  ::int32_t _internal_y() const;
+  void _internal_set_y(::int32_t value);
+
+  public:
+  // int32 z = 3;
+  void clear_z() ;
+  ::int32_t z() const;
+  void set_z(::int32_t value);
+
+  private:
+  ::int32_t _internal_z() const;
+  void _internal_set_z(::int32_t value);
+
+  public:
+  // int32 force = 4;
+  void clear_force() ;
+  ::int32_t force() const;
+  void set_force(::int32_t value);
+
+  private:
+  ::int32_t _internal_force() const;
+  void _internal_set_force(::int32_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.ZenForcePoint)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<2, 4, 0, 0, 2> _table_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::int32_t x_;
+    ::int32_t y_;
+    ::int32_t z_;
+    ::int32_t force_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_ethercat_5fmsgs_2eproto;
+};// -------------------------------------------------------------------
+
 class ServoParam final :
     public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.ServoParam) */ {
  public:
@@ -5867,7 +7686,7 @@ class ServoParam final :
                &_ServoParam_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    29;
+    38;
 
   friend void swap(ServoParam& a, ServoParam& b) {
     a.Swap(&b);
@@ -6037,7 +7856,7 @@ class SDOIntVal final :
                &_SDOIntVal_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    30;
+    39;
 
   friend void swap(SDOIntVal& a, SDOIntVal& b) {
     a.Swap(&b);
@@ -6195,7 +8014,7 @@ class RobotZeroCount final :
                &_RobotZeroCount_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    31;
+    40;
 
   friend void swap(RobotZeroCount& a, RobotZeroCount& b) {
     a.Swap(&b);
@@ -9283,6 +11102,1042 @@ inline const ::google::protobuf::RepeatedField<::uint32_t>& DIODigitalOutput::_i
 inline ::google::protobuf::RepeatedField<::uint32_t>* DIODigitalOutput::_internal_mutable_do_list() {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return &_impl_.do_list_;
+}
+
+// -------------------------------------------------------------------
+
+// AIOIndex
+
+// uint32 aioIndex = 1;
+inline void AIOIndex::clear_aioindex() {
+  _impl_.aioindex_ = 0u;
+}
+inline ::uint32_t AIOIndex::aioindex() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.AIOIndex.aioIndex)
+  return _internal_aioindex();
+}
+inline void AIOIndex::set_aioindex(::uint32_t value) {
+  _internal_set_aioindex(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.AIOIndex.aioIndex)
+}
+inline ::uint32_t AIOIndex::_internal_aioindex() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.aioindex_;
+}
+inline void AIOIndex::_internal_set_aioindex(::uint32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.aioindex_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// AIOAnalogInput
+
+// uint32 aioIndex = 1;
+inline void AIOAnalogInput::clear_aioindex() {
+  _impl_.aioindex_ = 0u;
+}
+inline ::uint32_t AIOAnalogInput::aioindex() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.AIOAnalogInput.aioIndex)
+  return _internal_aioindex();
+}
+inline void AIOAnalogInput::set_aioindex(::uint32_t value) {
+  _internal_set_aioindex(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.AIOAnalogInput.aioIndex)
+}
+inline ::uint32_t AIOAnalogInput::_internal_aioindex() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.aioindex_;
+}
+inline void AIOAnalogInput::_internal_set_aioindex(::uint32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.aioindex_ = value;
+}
+
+// repeated int32 ai_list = 2;
+inline int AIOAnalogInput::_internal_ai_list_size() const {
+  return _internal_ai_list().size();
+}
+inline int AIOAnalogInput::ai_list_size() const {
+  return _internal_ai_list_size();
+}
+inline void AIOAnalogInput::clear_ai_list() {
+  _internal_mutable_ai_list()->Clear();
+}
+inline ::int32_t AIOAnalogInput::ai_list(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.AIOAnalogInput.ai_list)
+  return _internal_ai_list().Get(index);
+}
+inline void AIOAnalogInput::set_ai_list(int index, ::int32_t value) {
+  _internal_mutable_ai_list()->Set(index, value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.AIOAnalogInput.ai_list)
+}
+inline void AIOAnalogInput::add_ai_list(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_ai_list()->Add(value);
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.AIOAnalogInput.ai_list)
+}
+inline const ::google::protobuf::RepeatedField<::int32_t>& AIOAnalogInput::ai_list() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.AIOAnalogInput.ai_list)
+  return _internal_ai_list();
+}
+inline ::google::protobuf::RepeatedField<::int32_t>* AIOAnalogInput::mutable_ai_list() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.AIOAnalogInput.ai_list)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_ai_list();
+}
+
+inline const ::google::protobuf::RepeatedField<::int32_t>& AIOAnalogInput::_internal_ai_list() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.ai_list_;
+}
+inline ::google::protobuf::RepeatedField<::int32_t>* AIOAnalogInput::_internal_mutable_ai_list() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.ai_list_;
+}
+
+// -------------------------------------------------------------------
+
+// AIOAnalogOutput
+
+// uint32 aioIndex = 1;
+inline void AIOAnalogOutput::clear_aioindex() {
+  _impl_.aioindex_ = 0u;
+}
+inline ::uint32_t AIOAnalogOutput::aioindex() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.AIOAnalogOutput.aioIndex)
+  return _internal_aioindex();
+}
+inline void AIOAnalogOutput::set_aioindex(::uint32_t value) {
+  _internal_set_aioindex(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.AIOAnalogOutput.aioIndex)
+}
+inline ::uint32_t AIOAnalogOutput::_internal_aioindex() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.aioindex_;
+}
+inline void AIOAnalogOutput::_internal_set_aioindex(::uint32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.aioindex_ = value;
+}
+
+// repeated int32 ao_list = 2;
+inline int AIOAnalogOutput::_internal_ao_list_size() const {
+  return _internal_ao_list().size();
+}
+inline int AIOAnalogOutput::ao_list_size() const {
+  return _internal_ao_list_size();
+}
+inline void AIOAnalogOutput::clear_ao_list() {
+  _internal_mutable_ao_list()->Clear();
+}
+inline ::int32_t AIOAnalogOutput::ao_list(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.AIOAnalogOutput.ao_list)
+  return _internal_ao_list().Get(index);
+}
+inline void AIOAnalogOutput::set_ao_list(int index, ::int32_t value) {
+  _internal_mutable_ao_list()->Set(index, value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.AIOAnalogOutput.ao_list)
+}
+inline void AIOAnalogOutput::add_ao_list(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_ao_list()->Add(value);
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.AIOAnalogOutput.ao_list)
+}
+inline const ::google::protobuf::RepeatedField<::int32_t>& AIOAnalogOutput::ao_list() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.AIOAnalogOutput.ao_list)
+  return _internal_ao_list();
+}
+inline ::google::protobuf::RepeatedField<::int32_t>* AIOAnalogOutput::mutable_ao_list() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.AIOAnalogOutput.ao_list)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_ao_list();
+}
+
+inline const ::google::protobuf::RepeatedField<::int32_t>& AIOAnalogOutput::_internal_ao_list() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.ao_list_;
+}
+inline ::google::protobuf::RepeatedField<::int32_t>* AIOAnalogOutput::_internal_mutable_ao_list() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.ao_list_;
+}
+
+// -------------------------------------------------------------------
+
+// HandIndex
+
+// uint32 handIndex = 1;
+inline void HandIndex::clear_handindex() {
+  _impl_.handindex_ = 0u;
+}
+inline ::uint32_t HandIndex::handindex() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.HandIndex.handIndex)
+  return _internal_handindex();
+}
+inline void HandIndex::set_handindex(::uint32_t value) {
+  _internal_set_handindex(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.HandIndex.handIndex)
+}
+inline ::uint32_t HandIndex::_internal_handindex() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.handindex_;
+}
+inline void HandIndex::_internal_set_handindex(::uint32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.handindex_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// ZenHandRx
+
+// uint32 handIndex = 1;
+inline void ZenHandRx::clear_handindex() {
+  _impl_.handindex_ = 0u;
+}
+inline ::uint32_t ZenHandRx::handindex() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.ZenHandRx.handIndex)
+  return _internal_handindex();
+}
+inline void ZenHandRx::set_handindex(::uint32_t value) {
+  _internal_set_handindex(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.ZenHandRx.handIndex)
+}
+inline ::uint32_t ZenHandRx::_internal_handindex() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.handindex_;
+}
+inline void ZenHandRx::_internal_set_handindex(::uint32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.handindex_ = value;
+}
+
+// uint32 handControl = 2;
+inline void ZenHandRx::clear_handcontrol() {
+  _impl_.handcontrol_ = 0u;
+}
+inline ::uint32_t ZenHandRx::handcontrol() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.ZenHandRx.handControl)
+  return _internal_handcontrol();
+}
+inline void ZenHandRx::set_handcontrol(::uint32_t value) {
+  _internal_set_handcontrol(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.ZenHandRx.handControl)
+}
+inline ::uint32_t ZenHandRx::_internal_handcontrol() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.handcontrol_;
+}
+inline void ZenHandRx::_internal_set_handcontrol(::uint32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.handcontrol_ = value;
+}
+
+// repeated int32 modeOp = 3;
+inline int ZenHandRx::_internal_modeop_size() const {
+  return _internal_modeop().size();
+}
+inline int ZenHandRx::modeop_size() const {
+  return _internal_modeop_size();
+}
+inline void ZenHandRx::clear_modeop() {
+  _internal_mutable_modeop()->Clear();
+}
+inline ::int32_t ZenHandRx::modeop(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.ZenHandRx.modeOp)
+  return _internal_modeop().Get(index);
+}
+inline void ZenHandRx::set_modeop(int index, ::int32_t value) {
+  _internal_mutable_modeop()->Set(index, value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.ZenHandRx.modeOp)
+}
+inline void ZenHandRx::add_modeop(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_modeop()->Add(value);
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.ZenHandRx.modeOp)
+}
+inline const ::google::protobuf::RepeatedField<::int32_t>& ZenHandRx::modeop() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.ZenHandRx.modeOp)
+  return _internal_modeop();
+}
+inline ::google::protobuf::RepeatedField<::int32_t>* ZenHandRx::mutable_modeop() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.ZenHandRx.modeOp)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_modeop();
+}
+
+inline const ::google::protobuf::RepeatedField<::int32_t>& ZenHandRx::_internal_modeop() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.modeop_;
+}
+inline ::google::protobuf::RepeatedField<::int32_t>* ZenHandRx::_internal_mutable_modeop() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.modeop_;
+}
+
+// repeated int32 ctlCommand = 4;
+inline int ZenHandRx::_internal_ctlcommand_size() const {
+  return _internal_ctlcommand().size();
+}
+inline int ZenHandRx::ctlcommand_size() const {
+  return _internal_ctlcommand_size();
+}
+inline void ZenHandRx::clear_ctlcommand() {
+  _internal_mutable_ctlcommand()->Clear();
+}
+inline ::int32_t ZenHandRx::ctlcommand(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.ZenHandRx.ctlCommand)
+  return _internal_ctlcommand().Get(index);
+}
+inline void ZenHandRx::set_ctlcommand(int index, ::int32_t value) {
+  _internal_mutable_ctlcommand()->Set(index, value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.ZenHandRx.ctlCommand)
+}
+inline void ZenHandRx::add_ctlcommand(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_ctlcommand()->Add(value);
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.ZenHandRx.ctlCommand)
+}
+inline const ::google::protobuf::RepeatedField<::int32_t>& ZenHandRx::ctlcommand() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.ZenHandRx.ctlCommand)
+  return _internal_ctlcommand();
+}
+inline ::google::protobuf::RepeatedField<::int32_t>* ZenHandRx::mutable_ctlcommand() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.ZenHandRx.ctlCommand)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_ctlcommand();
+}
+
+inline const ::google::protobuf::RepeatedField<::int32_t>& ZenHandRx::_internal_ctlcommand() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.ctlcommand_;
+}
+inline ::google::protobuf::RepeatedField<::int32_t>* ZenHandRx::_internal_mutable_ctlcommand() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.ctlcommand_;
+}
+
+// repeated int32 targetPosition = 5;
+inline int ZenHandRx::_internal_targetposition_size() const {
+  return _internal_targetposition().size();
+}
+inline int ZenHandRx::targetposition_size() const {
+  return _internal_targetposition_size();
+}
+inline void ZenHandRx::clear_targetposition() {
+  _internal_mutable_targetposition()->Clear();
+}
+inline ::int32_t ZenHandRx::targetposition(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.ZenHandRx.targetPosition)
+  return _internal_targetposition().Get(index);
+}
+inline void ZenHandRx::set_targetposition(int index, ::int32_t value) {
+  _internal_mutable_targetposition()->Set(index, value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.ZenHandRx.targetPosition)
+}
+inline void ZenHandRx::add_targetposition(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_targetposition()->Add(value);
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.ZenHandRx.targetPosition)
+}
+inline const ::google::protobuf::RepeatedField<::int32_t>& ZenHandRx::targetposition() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.ZenHandRx.targetPosition)
+  return _internal_targetposition();
+}
+inline ::google::protobuf::RepeatedField<::int32_t>* ZenHandRx::mutable_targetposition() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.ZenHandRx.targetPosition)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_targetposition();
+}
+
+inline const ::google::protobuf::RepeatedField<::int32_t>& ZenHandRx::_internal_targetposition() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.targetposition_;
+}
+inline ::google::protobuf::RepeatedField<::int32_t>* ZenHandRx::_internal_mutable_targetposition() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.targetposition_;
+}
+
+// repeated int32 targetVelocity = 6;
+inline int ZenHandRx::_internal_targetvelocity_size() const {
+  return _internal_targetvelocity().size();
+}
+inline int ZenHandRx::targetvelocity_size() const {
+  return _internal_targetvelocity_size();
+}
+inline void ZenHandRx::clear_targetvelocity() {
+  _internal_mutable_targetvelocity()->Clear();
+}
+inline ::int32_t ZenHandRx::targetvelocity(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.ZenHandRx.targetVelocity)
+  return _internal_targetvelocity().Get(index);
+}
+inline void ZenHandRx::set_targetvelocity(int index, ::int32_t value) {
+  _internal_mutable_targetvelocity()->Set(index, value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.ZenHandRx.targetVelocity)
+}
+inline void ZenHandRx::add_targetvelocity(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_targetvelocity()->Add(value);
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.ZenHandRx.targetVelocity)
+}
+inline const ::google::protobuf::RepeatedField<::int32_t>& ZenHandRx::targetvelocity() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.ZenHandRx.targetVelocity)
+  return _internal_targetvelocity();
+}
+inline ::google::protobuf::RepeatedField<::int32_t>* ZenHandRx::mutable_targetvelocity() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.ZenHandRx.targetVelocity)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_targetvelocity();
+}
+
+inline const ::google::protobuf::RepeatedField<::int32_t>& ZenHandRx::_internal_targetvelocity() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.targetvelocity_;
+}
+inline ::google::protobuf::RepeatedField<::int32_t>* ZenHandRx::_internal_mutable_targetvelocity() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.targetvelocity_;
+}
+
+// repeated int32 targetCurrent = 7;
+inline int ZenHandRx::_internal_targetcurrent_size() const {
+  return _internal_targetcurrent().size();
+}
+inline int ZenHandRx::targetcurrent_size() const {
+  return _internal_targetcurrent_size();
+}
+inline void ZenHandRx::clear_targetcurrent() {
+  _internal_mutable_targetcurrent()->Clear();
+}
+inline ::int32_t ZenHandRx::targetcurrent(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.ZenHandRx.targetCurrent)
+  return _internal_targetcurrent().Get(index);
+}
+inline void ZenHandRx::set_targetcurrent(int index, ::int32_t value) {
+  _internal_mutable_targetcurrent()->Set(index, value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.ZenHandRx.targetCurrent)
+}
+inline void ZenHandRx::add_targetcurrent(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_targetcurrent()->Add(value);
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.ZenHandRx.targetCurrent)
+}
+inline const ::google::protobuf::RepeatedField<::int32_t>& ZenHandRx::targetcurrent() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.ZenHandRx.targetCurrent)
+  return _internal_targetcurrent();
+}
+inline ::google::protobuf::RepeatedField<::int32_t>* ZenHandRx::mutable_targetcurrent() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.ZenHandRx.targetCurrent)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_targetcurrent();
+}
+
+inline const ::google::protobuf::RepeatedField<::int32_t>& ZenHandRx::_internal_targetcurrent() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.targetcurrent_;
+}
+inline ::google::protobuf::RepeatedField<::int32_t>* ZenHandRx::_internal_mutable_targetcurrent() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.targetcurrent_;
+}
+
+// -------------------------------------------------------------------
+
+// ZenHandTx
+
+// uint32 handIndex = 1;
+inline void ZenHandTx::clear_handindex() {
+  _impl_.handindex_ = 0u;
+}
+inline ::uint32_t ZenHandTx::handindex() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.ZenHandTx.handIndex)
+  return _internal_handindex();
+}
+inline void ZenHandTx::set_handindex(::uint32_t value) {
+  _internal_set_handindex(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.ZenHandTx.handIndex)
+}
+inline ::uint32_t ZenHandTx::_internal_handindex() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.handindex_;
+}
+inline void ZenHandTx::_internal_set_handindex(::uint32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.handindex_ = value;
+}
+
+// uint32 frameMessage = 2;
+inline void ZenHandTx::clear_framemessage() {
+  _impl_.framemessage_ = 0u;
+}
+inline ::uint32_t ZenHandTx::framemessage() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.ZenHandTx.frameMessage)
+  return _internal_framemessage();
+}
+inline void ZenHandTx::set_framemessage(::uint32_t value) {
+  _internal_set_framemessage(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.ZenHandTx.frameMessage)
+}
+inline ::uint32_t ZenHandTx::_internal_framemessage() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.framemessage_;
+}
+inline void ZenHandTx::_internal_set_framemessage(::uint32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.framemessage_ = value;
+}
+
+// repeated int32 modeOpDisp = 3;
+inline int ZenHandTx::_internal_modeopdisp_size() const {
+  return _internal_modeopdisp().size();
+}
+inline int ZenHandTx::modeopdisp_size() const {
+  return _internal_modeopdisp_size();
+}
+inline void ZenHandTx::clear_modeopdisp() {
+  _internal_mutable_modeopdisp()->Clear();
+}
+inline ::int32_t ZenHandTx::modeopdisp(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.ZenHandTx.modeOpDisp)
+  return _internal_modeopdisp().Get(index);
+}
+inline void ZenHandTx::set_modeopdisp(int index, ::int32_t value) {
+  _internal_mutable_modeopdisp()->Set(index, value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.ZenHandTx.modeOpDisp)
+}
+inline void ZenHandTx::add_modeopdisp(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_modeopdisp()->Add(value);
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.ZenHandTx.modeOpDisp)
+}
+inline const ::google::protobuf::RepeatedField<::int32_t>& ZenHandTx::modeopdisp() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.ZenHandTx.modeOpDisp)
+  return _internal_modeopdisp();
+}
+inline ::google::protobuf::RepeatedField<::int32_t>* ZenHandTx::mutable_modeopdisp() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.ZenHandTx.modeOpDisp)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_modeopdisp();
+}
+
+inline const ::google::protobuf::RepeatedField<::int32_t>& ZenHandTx::_internal_modeopdisp() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.modeopdisp_;
+}
+inline ::google::protobuf::RepeatedField<::int32_t>* ZenHandTx::_internal_mutable_modeopdisp() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.modeopdisp_;
+}
+
+// repeated int32 actualPosition = 4;
+inline int ZenHandTx::_internal_actualposition_size() const {
+  return _internal_actualposition().size();
+}
+inline int ZenHandTx::actualposition_size() const {
+  return _internal_actualposition_size();
+}
+inline void ZenHandTx::clear_actualposition() {
+  _internal_mutable_actualposition()->Clear();
+}
+inline ::int32_t ZenHandTx::actualposition(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.ZenHandTx.actualPosition)
+  return _internal_actualposition().Get(index);
+}
+inline void ZenHandTx::set_actualposition(int index, ::int32_t value) {
+  _internal_mutable_actualposition()->Set(index, value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.ZenHandTx.actualPosition)
+}
+inline void ZenHandTx::add_actualposition(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_actualposition()->Add(value);
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.ZenHandTx.actualPosition)
+}
+inline const ::google::protobuf::RepeatedField<::int32_t>& ZenHandTx::actualposition() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.ZenHandTx.actualPosition)
+  return _internal_actualposition();
+}
+inline ::google::protobuf::RepeatedField<::int32_t>* ZenHandTx::mutable_actualposition() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.ZenHandTx.actualPosition)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_actualposition();
+}
+
+inline const ::google::protobuf::RepeatedField<::int32_t>& ZenHandTx::_internal_actualposition() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.actualposition_;
+}
+inline ::google::protobuf::RepeatedField<::int32_t>* ZenHandTx::_internal_mutable_actualposition() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.actualposition_;
+}
+
+// repeated int32 actualVelocity = 5;
+inline int ZenHandTx::_internal_actualvelocity_size() const {
+  return _internal_actualvelocity().size();
+}
+inline int ZenHandTx::actualvelocity_size() const {
+  return _internal_actualvelocity_size();
+}
+inline void ZenHandTx::clear_actualvelocity() {
+  _internal_mutable_actualvelocity()->Clear();
+}
+inline ::int32_t ZenHandTx::actualvelocity(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.ZenHandTx.actualVelocity)
+  return _internal_actualvelocity().Get(index);
+}
+inline void ZenHandTx::set_actualvelocity(int index, ::int32_t value) {
+  _internal_mutable_actualvelocity()->Set(index, value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.ZenHandTx.actualVelocity)
+}
+inline void ZenHandTx::add_actualvelocity(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_actualvelocity()->Add(value);
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.ZenHandTx.actualVelocity)
+}
+inline const ::google::protobuf::RepeatedField<::int32_t>& ZenHandTx::actualvelocity() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.ZenHandTx.actualVelocity)
+  return _internal_actualvelocity();
+}
+inline ::google::protobuf::RepeatedField<::int32_t>* ZenHandTx::mutable_actualvelocity() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.ZenHandTx.actualVelocity)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_actualvelocity();
+}
+
+inline const ::google::protobuf::RepeatedField<::int32_t>& ZenHandTx::_internal_actualvelocity() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.actualvelocity_;
+}
+inline ::google::protobuf::RepeatedField<::int32_t>* ZenHandTx::_internal_mutable_actualvelocity() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.actualvelocity_;
+}
+
+// repeated int32 actualCurrent = 6;
+inline int ZenHandTx::_internal_actualcurrent_size() const {
+  return _internal_actualcurrent().size();
+}
+inline int ZenHandTx::actualcurrent_size() const {
+  return _internal_actualcurrent_size();
+}
+inline void ZenHandTx::clear_actualcurrent() {
+  _internal_mutable_actualcurrent()->Clear();
+}
+inline ::int32_t ZenHandTx::actualcurrent(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.ZenHandTx.actualCurrent)
+  return _internal_actualcurrent().Get(index);
+}
+inline void ZenHandTx::set_actualcurrent(int index, ::int32_t value) {
+  _internal_mutable_actualcurrent()->Set(index, value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.ZenHandTx.actualCurrent)
+}
+inline void ZenHandTx::add_actualcurrent(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_actualcurrent()->Add(value);
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.ZenHandTx.actualCurrent)
+}
+inline const ::google::protobuf::RepeatedField<::int32_t>& ZenHandTx::actualcurrent() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.ZenHandTx.actualCurrent)
+  return _internal_actualcurrent();
+}
+inline ::google::protobuf::RepeatedField<::int32_t>* ZenHandTx::mutable_actualcurrent() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.ZenHandTx.actualCurrent)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_actualcurrent();
+}
+
+inline const ::google::protobuf::RepeatedField<::int32_t>& ZenHandTx::_internal_actualcurrent() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.actualcurrent_;
+}
+inline ::google::protobuf::RepeatedField<::int32_t>* ZenHandTx::_internal_mutable_actualcurrent() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.actualcurrent_;
+}
+
+// repeated uint32 errCode = 7;
+inline int ZenHandTx::_internal_errcode_size() const {
+  return _internal_errcode().size();
+}
+inline int ZenHandTx::errcode_size() const {
+  return _internal_errcode_size();
+}
+inline void ZenHandTx::clear_errcode() {
+  _internal_mutable_errcode()->Clear();
+}
+inline ::uint32_t ZenHandTx::errcode(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.ZenHandTx.errCode)
+  return _internal_errcode().Get(index);
+}
+inline void ZenHandTx::set_errcode(int index, ::uint32_t value) {
+  _internal_mutable_errcode()->Set(index, value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.ZenHandTx.errCode)
+}
+inline void ZenHandTx::add_errcode(::uint32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_errcode()->Add(value);
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.ZenHandTx.errCode)
+}
+inline const ::google::protobuf::RepeatedField<::uint32_t>& ZenHandTx::errcode() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.ZenHandTx.errCode)
+  return _internal_errcode();
+}
+inline ::google::protobuf::RepeatedField<::uint32_t>* ZenHandTx::mutable_errcode() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.ZenHandTx.errCode)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_errcode();
+}
+
+inline const ::google::protobuf::RepeatedField<::uint32_t>& ZenHandTx::_internal_errcode() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.errcode_;
+}
+inline ::google::protobuf::RepeatedField<::uint32_t>* ZenHandTx::_internal_mutable_errcode() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.errcode_;
+}
+
+// -------------------------------------------------------------------
+
+// ZenHandSensor
+
+// uint32 handIndex = 1;
+inline void ZenHandSensor::clear_handindex() {
+  _impl_.handindex_ = 0u;
+}
+inline ::uint32_t ZenHandSensor::handindex() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.ZenHandSensor.handIndex)
+  return _internal_handindex();
+}
+inline void ZenHandSensor::set_handindex(::uint32_t value) {
+  _internal_set_handindex(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.ZenHandSensor.handIndex)
+}
+inline ::uint32_t ZenHandSensor::_internal_handindex() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.handindex_;
+}
+inline void ZenHandSensor::_internal_set_handindex(::uint32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.handindex_ = value;
+}
+
+// repeated .Nrmk.IndyFramework.ZenHandTactile tactile = 2;
+inline int ZenHandSensor::_internal_tactile_size() const {
+  return _internal_tactile().size();
+}
+inline int ZenHandSensor::tactile_size() const {
+  return _internal_tactile_size();
+}
+inline void ZenHandSensor::clear_tactile() {
+  _internal_mutable_tactile()->Clear();
+}
+inline ::Nrmk::IndyFramework::ZenHandTactile* ZenHandSensor::mutable_tactile(int index) {
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.ZenHandSensor.tactile)
+  return _internal_mutable_tactile()->Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::ZenHandTactile >*
+ZenHandSensor::mutable_tactile() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.ZenHandSensor.tactile)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_tactile();
+}
+inline const ::Nrmk::IndyFramework::ZenHandTactile& ZenHandSensor::tactile(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.ZenHandSensor.tactile)
+    return _internal_tactile().Get(index);
+}
+inline ::Nrmk::IndyFramework::ZenHandTactile* ZenHandSensor::add_tactile() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::Nrmk::IndyFramework::ZenHandTactile* _add = _internal_mutable_tactile()->Add();
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.ZenHandSensor.tactile)
+  return _add;
+}
+inline const ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::ZenHandTactile >&
+ZenHandSensor::tactile() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.ZenHandSensor.tactile)
+  return _internal_tactile();
+}
+inline const ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::ZenHandTactile>&
+ZenHandSensor::_internal_tactile() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.tactile_;
+}
+inline ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::ZenHandTactile>*
+ZenHandSensor::_internal_mutable_tactile() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.tactile_;
+}
+
+// -------------------------------------------------------------------
+
+// ZenHandTactile
+
+// .Nrmk.IndyFramework.ZenForcePoint totalForce = 1;
+inline bool ZenHandTactile::has_totalforce() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.totalforce_ != nullptr);
+  return value;
+}
+inline void ZenHandTactile::clear_totalforce() {
+  if (_impl_.totalforce_ != nullptr) _impl_.totalforce_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::Nrmk::IndyFramework::ZenForcePoint& ZenHandTactile::_internal_totalforce() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  const ::Nrmk::IndyFramework::ZenForcePoint* p = _impl_.totalforce_;
+  return p != nullptr ? *p : reinterpret_cast<const ::Nrmk::IndyFramework::ZenForcePoint&>(::Nrmk::IndyFramework::_ZenForcePoint_default_instance_);
+}
+inline const ::Nrmk::IndyFramework::ZenForcePoint& ZenHandTactile::totalforce() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.ZenHandTactile.totalForce)
+  return _internal_totalforce();
+}
+inline void ZenHandTactile::unsafe_arena_set_allocated_totalforce(::Nrmk::IndyFramework::ZenForcePoint* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.totalforce_);
+  }
+  _impl_.totalforce_ = reinterpret_cast<::Nrmk::IndyFramework::ZenForcePoint*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Nrmk.IndyFramework.ZenHandTactile.totalForce)
+}
+inline ::Nrmk::IndyFramework::ZenForcePoint* ZenHandTactile::release_totalforce() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::Nrmk::IndyFramework::ZenForcePoint* released = _impl_.totalforce_;
+  _impl_.totalforce_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  if (GetArenaForAllocation() == nullptr) {
+    delete old;
+  }
+#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return released;
+}
+inline ::Nrmk::IndyFramework::ZenForcePoint* ZenHandTactile::unsafe_arena_release_totalforce() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:Nrmk.IndyFramework.ZenHandTactile.totalForce)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::Nrmk::IndyFramework::ZenForcePoint* temp = _impl_.totalforce_;
+  _impl_.totalforce_ = nullptr;
+  return temp;
+}
+inline ::Nrmk::IndyFramework::ZenForcePoint* ZenHandTactile::_internal_mutable_totalforce() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  if (_impl_.totalforce_ == nullptr) {
+    auto* p = CreateMaybeMessage<::Nrmk::IndyFramework::ZenForcePoint>(GetArenaForAllocation());
+    _impl_.totalforce_ = reinterpret_cast<::Nrmk::IndyFramework::ZenForcePoint*>(p);
+  }
+  return _impl_.totalforce_;
+}
+inline ::Nrmk::IndyFramework::ZenForcePoint* ZenHandTactile::mutable_totalforce() {
+  ::Nrmk::IndyFramework::ZenForcePoint* _msg = _internal_mutable_totalforce();
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.ZenHandTactile.totalForce)
+  return _msg;
+}
+inline void ZenHandTactile::set_allocated_totalforce(::Nrmk::IndyFramework::ZenForcePoint* value) {
+  ::google::protobuf::Arena* message_arena = GetArenaForAllocation();
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::Nrmk::IndyFramework::ZenForcePoint*>(_impl_.totalforce_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena =
+        ::google::protobuf::Arena::InternalGetOwningArena(reinterpret_cast<::Nrmk::IndyFramework::ZenForcePoint*>(value));
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.totalforce_ = reinterpret_cast<::Nrmk::IndyFramework::ZenForcePoint*>(value);
+  // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.ZenHandTactile.totalForce)
+}
+
+// repeated .Nrmk.IndyFramework.ZenForcePoint point = 2;
+inline int ZenHandTactile::_internal_point_size() const {
+  return _internal_point().size();
+}
+inline int ZenHandTactile::point_size() const {
+  return _internal_point_size();
+}
+inline void ZenHandTactile::clear_point() {
+  _internal_mutable_point()->Clear();
+}
+inline ::Nrmk::IndyFramework::ZenForcePoint* ZenHandTactile::mutable_point(int index) {
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.ZenHandTactile.point)
+  return _internal_mutable_point()->Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::ZenForcePoint >*
+ZenHandTactile::mutable_point() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.ZenHandTactile.point)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_point();
+}
+inline const ::Nrmk::IndyFramework::ZenForcePoint& ZenHandTactile::point(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.ZenHandTactile.point)
+    return _internal_point().Get(index);
+}
+inline ::Nrmk::IndyFramework::ZenForcePoint* ZenHandTactile::add_point() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::Nrmk::IndyFramework::ZenForcePoint* _add = _internal_mutable_point()->Add();
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.ZenHandTactile.point)
+  return _add;
+}
+inline const ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::ZenForcePoint >&
+ZenHandTactile::point() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.ZenHandTactile.point)
+  return _internal_point();
+}
+inline const ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::ZenForcePoint>&
+ZenHandTactile::_internal_point() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.point_;
+}
+inline ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::ZenForcePoint>*
+ZenHandTactile::_internal_mutable_point() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.point_;
+}
+
+// uint32 temp = 3;
+inline void ZenHandTactile::clear_temp() {
+  _impl_.temp_ = 0u;
+}
+inline ::uint32_t ZenHandTactile::temp() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.ZenHandTactile.temp)
+  return _internal_temp();
+}
+inline void ZenHandTactile::set_temp(::uint32_t value) {
+  _internal_set_temp(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.ZenHandTactile.temp)
+}
+inline ::uint32_t ZenHandTactile::_internal_temp() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.temp_;
+}
+inline void ZenHandTactile::_internal_set_temp(::uint32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.temp_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// ZenForcePoint
+
+// int32 x = 1;
+inline void ZenForcePoint::clear_x() {
+  _impl_.x_ = 0;
+}
+inline ::int32_t ZenForcePoint::x() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.ZenForcePoint.x)
+  return _internal_x();
+}
+inline void ZenForcePoint::set_x(::int32_t value) {
+  _internal_set_x(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.ZenForcePoint.x)
+}
+inline ::int32_t ZenForcePoint::_internal_x() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.x_;
+}
+inline void ZenForcePoint::_internal_set_x(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.x_ = value;
+}
+
+// int32 y = 2;
+inline void ZenForcePoint::clear_y() {
+  _impl_.y_ = 0;
+}
+inline ::int32_t ZenForcePoint::y() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.ZenForcePoint.y)
+  return _internal_y();
+}
+inline void ZenForcePoint::set_y(::int32_t value) {
+  _internal_set_y(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.ZenForcePoint.y)
+}
+inline ::int32_t ZenForcePoint::_internal_y() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.y_;
+}
+inline void ZenForcePoint::_internal_set_y(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.y_ = value;
+}
+
+// int32 z = 3;
+inline void ZenForcePoint::clear_z() {
+  _impl_.z_ = 0;
+}
+inline ::int32_t ZenForcePoint::z() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.ZenForcePoint.z)
+  return _internal_z();
+}
+inline void ZenForcePoint::set_z(::int32_t value) {
+  _internal_set_z(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.ZenForcePoint.z)
+}
+inline ::int32_t ZenForcePoint::_internal_z() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.z_;
+}
+inline void ZenForcePoint::_internal_set_z(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.z_ = value;
+}
+
+// int32 force = 4;
+inline void ZenForcePoint::clear_force() {
+  _impl_.force_ = 0;
+}
+inline ::int32_t ZenForcePoint::force() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.ZenForcePoint.force)
+  return _internal_force();
+}
+inline void ZenForcePoint::set_force(::int32_t value) {
+  _internal_set_force(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.ZenForcePoint.force)
+}
+inline ::int32_t ZenForcePoint::_internal_force() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.force_;
+}
+inline void ZenForcePoint::_internal_set_force(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.force_ = value;
 }
 
 // -------------------------------------------------------------------

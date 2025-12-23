@@ -33,7 +33,7 @@ static constexpr ::_pbi::MigrationSchema* schemas = nullptr;
 static constexpr ::_pb::Message* const* file_default_instances = nullptr;
 const char descriptor_table_protodef_config_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
     "\n\014config.proto\022\022Nrmk.IndyFramework\032\021conf"
-    "ig_msgs.proto\032\021common_msgs.proto2\370=\n\006Con"
+    "ig_msgs.proto\032\021common_msgs.proto2\360@\n\006Con"
     "fig\022B\n\010GetNonce\022\031.Nrmk.IndyFramework.Emp"
     "ty\032\031.Nrmk.IndyFramework.Nonce\"\000\022C\n\005Login"
     "\022\032.Nrmk.IndyFramework.Digest\032\034.Nrmk.Indy"
@@ -232,7 +232,16 @@ const char descriptor_table_protodef_config_2eproto[] PROTOBUF_SECTION_VARIABLE(
     "s\032\034.Nrmk.IndyFramework.Response\"\000\022X\n\023Get"
     "SensorlessParams\022\031.Nrmk.IndyFramework.Em"
     "pty\032$.Nrmk.IndyFramework.SensorlessParam"
-    "s\"\000b\006proto3"
+    "s\"\000\022]\n\027GetWeldingMachineConfig\022\031.Nrmk.In"
+    "dyFramework.Empty\032%.Nrmk.IndyFramework.W"
+    "eldingConfigInfo\"\000\022`\n\027SetWeldingMachineC"
+    "onfig\022%.Nrmk.IndyFramework.WeldingConfig"
+    "Info\032\034.Nrmk.IndyFramework.Response\"\000\022X\n\023"
+    "GetWeldPositionList\022\031.Nrmk.IndyFramework"
+    ".Empty\032$.Nrmk.IndyFramework.WeldPosition"
+    "List\"\000\022[\n\023SetWeldPositionList\022$.Nrmk.Ind"
+    "yFramework.WeldPositionList\032\034.Nrmk.IndyF"
+    "ramework.Response\"\000b\006proto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_config_2eproto_deps[2] =
     {
@@ -243,7 +252,7 @@ static ::absl::once_flag descriptor_table_config_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_config_2eproto = {
     false,
     false,
-    8011,
+    8387,
     descriptor_table_protodef_config_2eproto,
     "config.proto",
     &descriptor_table_config_2eproto_once,

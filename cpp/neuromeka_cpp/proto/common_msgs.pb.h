@@ -99,6 +99,9 @@ extern NamedIntDefaultTypeInternal _NamedInt_default_instance_;
 class NamedJointPosition;
 struct NamedJointPositionDefaultTypeInternal;
 extern NamedJointPositionDefaultTypeInternal _NamedJointPosition_default_instance_;
+class NamedPositionSet;
+struct NamedPositionSetDefaultTypeInternal;
+extern NamedPositionSetDefaultTypeInternal _NamedPositionSet_default_instance_;
 class NamedReferencePosition;
 struct NamedReferencePositionDefaultTypeInternal;
 extern NamedReferencePositionDefaultTypeInternal _NamedReferencePosition_default_instance_;
@@ -129,6 +132,9 @@ extern StopCatDefaultTypeInternal _StopCat_default_instance_;
 class TactTime;
 struct TactTimeDefaultTypeInternal;
 extern TactTimeDefaultTypeInternal _TactTime_default_instance_;
+class UInt;
+struct UIntDefaultTypeInternal;
+extern UIntDefaultTypeInternal _UInt_default_instance_;
 class Vector;
 struct VectorDefaultTypeInternal;
 extern VectorDefaultTypeInternal _Vector_default_instance_;
@@ -156,7 +162,7 @@ enum OpState : int {
   OP_BRAKE_CONTROL = 11,
   OP_SYSTEM_RESET = 12,
   OP_SYSTEM_SWITCH = 13,
-  OP_VIOLATE_HARD = 15,
+  OP_POWER_OFF = 15,
   OP_MANUAL_RECOVER = 16,
   TELE_OP = 17,
   TRAJ_MOVING = 18,
@@ -1176,6 +1182,164 @@ class Int final :
   friend struct ::TableStruct_common_5fmsgs_2eproto;
 };// -------------------------------------------------------------------
 
+class UInt final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.UInt) */ {
+ public:
+  inline UInt() : UInt(nullptr) {}
+  ~UInt() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR UInt(::google::protobuf::internal::ConstantInitialized);
+
+  UInt(const UInt& from);
+  UInt(UInt&& from) noexcept
+    : UInt() {
+    *this = ::std::move(from);
+  }
+
+  inline UInt& operator=(const UInt& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline UInt& operator=(UInt&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const UInt& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const UInt* internal_default_instance() {
+    return reinterpret_cast<const UInt*>(
+               &_UInt_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    4;
+
+  friend void swap(UInt& a, UInt& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(UInt* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(UInt* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  UInt* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<UInt>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const UInt& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const UInt& from) {
+    UInt::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(UInt* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "Nrmk.IndyFramework.UInt";
+  }
+  protected:
+  explicit UInt(::google::protobuf::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kValueFieldNumber = 1,
+  };
+  // uint64 value = 1;
+  void clear_value() ;
+  ::uint64_t value() const;
+  void set_value(::uint64_t value);
+
+  private:
+  ::uint64_t _internal_value() const;
+  void _internal_set_value(::uint64_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.UInt)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<0, 1, 0, 0, 2> _table_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::uint64_t value_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_common_5fmsgs_2eproto;
+};// -------------------------------------------------------------------
+
 class Float final :
     public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.Float) */ {
  public:
@@ -1232,7 +1396,7 @@ class Float final :
                &_Float_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    4;
+    5;
 
   friend void swap(Float& a, Float& b) {
     a.Swap(&b);
@@ -1390,7 +1554,7 @@ class IntMode final :
                &_IntMode_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    5;
+    6;
 
   friend void swap(IntMode& a, IntMode& b) {
     a.Swap(&b);
@@ -1548,7 +1712,7 @@ class StopCat final :
                &_StopCat_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    6;
+    7;
 
   friend void swap(StopCat& a, StopCat& b) {
     a.Swap(&b);
@@ -1706,7 +1870,7 @@ class PauseCat final :
                &_PauseCat_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    7;
+    8;
 
   friend void swap(PauseCat& a, PauseCat& b) {
     a.Swap(&b);
@@ -1864,7 +2028,7 @@ class Response final :
                &_Response_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    8;
+    9;
 
   friend void swap(Response& a, Response& b) {
     a.Swap(&b);
@@ -2040,7 +2204,7 @@ class Message final :
                &_Message_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    9;
+    10;
 
   friend void swap(Message& a, Message& b) {
     a.Swap(&b);
@@ -2204,7 +2368,7 @@ class Vector final :
                &_Vector_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    10;
+    11;
 
   friend void swap(Vector& a, Vector& b) {
     a.Swap(&b);
@@ -2370,7 +2534,7 @@ class PosePair final :
                &_PosePair_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    11;
+    12;
 
   friend void swap(PosePair& a, PosePair& b) {
     a.Swap(&b);
@@ -2556,7 +2720,7 @@ class EndtoolRS485Tx final :
                &_EndtoolRS485Tx_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    12;
+    13;
 
   friend void swap(EndtoolRS485Tx& a, EndtoolRS485Tx& b) {
     a.Swap(&b);
@@ -2630,6 +2794,11 @@ class EndtoolRS485Tx final :
   enum : int {
     kWord1FieldNumber = 1,
     kWord2FieldNumber = 2,
+    kWord3FieldNumber = 3,
+    kWord4FieldNumber = 4,
+    kWord5FieldNumber = 5,
+    kStatusFieldNumber = 6,
+    kNumFieldNumber = 7,
     kToolIndexFieldNumber = 10,
   };
   // uint32 word1 = 1;
@@ -2652,6 +2821,56 @@ class EndtoolRS485Tx final :
   void _internal_set_word2(::uint32_t value);
 
   public:
+  // uint32 word3 = 3;
+  void clear_word3() ;
+  ::uint32_t word3() const;
+  void set_word3(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_word3() const;
+  void _internal_set_word3(::uint32_t value);
+
+  public:
+  // uint32 word4 = 4;
+  void clear_word4() ;
+  ::uint32_t word4() const;
+  void set_word4(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_word4() const;
+  void _internal_set_word4(::uint32_t value);
+
+  public:
+  // uint32 word5 = 5;
+  void clear_word5() ;
+  ::uint32_t word5() const;
+  void set_word5(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_word5() const;
+  void _internal_set_word5(::uint32_t value);
+
+  public:
+  // uint32 status = 6;
+  void clear_status() ;
+  ::uint32_t status() const;
+  void set_status(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_status() const;
+  void _internal_set_status(::uint32_t value);
+
+  public:
+  // uint32 num = 7;
+  void clear_num() ;
+  ::uint32_t num() const;
+  void set_num(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_num() const;
+  void _internal_set_num(::uint32_t value);
+
+  public:
   // int32 tool_index = 10;
   void clear_tool_index() ;
   ::int32_t tool_index() const;
@@ -2667,13 +2886,18 @@ class EndtoolRS485Tx final :
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<1, 3, 0, 0, 2> _table_;
+  static const ::google::protobuf::internal::TcParseTable<4, 8, 0, 0, 2> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
     ::uint32_t word1_;
     ::uint32_t word2_;
+    ::uint32_t word3_;
+    ::uint32_t word4_;
+    ::uint32_t word5_;
+    ::uint32_t status_;
+    ::uint32_t num_;
     ::int32_t tool_index_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
@@ -2738,7 +2962,7 @@ class EndtoolRS485Rx final :
                &_EndtoolRS485Rx_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    13;
+    14;
 
   friend void swap(EndtoolRS485Rx& a, EndtoolRS485Rx& b) {
     a.Swap(&b);
@@ -2812,6 +3036,11 @@ class EndtoolRS485Rx final :
   enum : int {
     kWord1FieldNumber = 1,
     kWord2FieldNumber = 2,
+    kWord3FieldNumber = 3,
+    kWord4FieldNumber = 4,
+    kWord5FieldNumber = 5,
+    kControlFieldNumber = 6,
+    kNumFieldNumber = 7,
     kToolIndexFieldNumber = 10,
   };
   // uint32 word1 = 1;
@@ -2834,6 +3063,56 @@ class EndtoolRS485Rx final :
   void _internal_set_word2(::uint32_t value);
 
   public:
+  // uint32 word3 = 3;
+  void clear_word3() ;
+  ::uint32_t word3() const;
+  void set_word3(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_word3() const;
+  void _internal_set_word3(::uint32_t value);
+
+  public:
+  // uint32 word4 = 4;
+  void clear_word4() ;
+  ::uint32_t word4() const;
+  void set_word4(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_word4() const;
+  void _internal_set_word4(::uint32_t value);
+
+  public:
+  // uint32 word5 = 5;
+  void clear_word5() ;
+  ::uint32_t word5() const;
+  void set_word5(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_word5() const;
+  void _internal_set_word5(::uint32_t value);
+
+  public:
+  // uint32 control = 6;
+  void clear_control() ;
+  ::uint32_t control() const;
+  void set_control(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_control() const;
+  void _internal_set_control(::uint32_t value);
+
+  public:
+  // uint32 num = 7;
+  void clear_num() ;
+  ::uint32_t num() const;
+  void set_num(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_num() const;
+  void _internal_set_num(::uint32_t value);
+
+  public:
   // int32 tool_index = 10;
   void clear_tool_index() ;
   ::int32_t tool_index() const;
@@ -2849,13 +3128,18 @@ class EndtoolRS485Rx final :
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<1, 3, 0, 0, 2> _table_;
+  static const ::google::protobuf::internal::TcParseTable<4, 8, 0, 0, 2> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
     ::uint32_t word1_;
     ::uint32_t word2_;
+    ::uint32_t word3_;
+    ::uint32_t word4_;
+    ::uint32_t word5_;
+    ::uint32_t control_;
+    ::uint32_t num_;
     ::int32_t tool_index_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
@@ -2920,7 +3204,7 @@ class TactTime final :
                &_TactTime_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    14;
+    15;
 
   friend void swap(TactTime& a, TactTime& b) {
     a.Swap(&b);
@@ -3096,7 +3380,7 @@ class DateTime final :
                &_DateTime_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    15;
+    16;
 
   friend void swap(DateTime& a, DateTime& b) {
     a.Swap(&b);
@@ -3314,7 +3598,7 @@ class NamedBool final :
                &_NamedBool_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    16;
+    17;
 
   friend void swap(NamedBool& a, NamedBool& b) {
     a.Swap(&b);
@@ -3490,7 +3774,7 @@ class NamedInt final :
                &_NamedInt_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    17;
+    18;
 
   friend void swap(NamedInt& a, NamedInt& b) {
     a.Swap(&b);
@@ -3666,7 +3950,7 @@ class NamedFloat final :
                &_NamedFloat_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    18;
+    19;
 
   friend void swap(NamedFloat& a, NamedFloat& b) {
     a.Swap(&b);
@@ -3842,7 +4126,7 @@ class NamedTaskPosition final :
                &_NamedTaskPosition_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    19;
+    20;
 
   friend void swap(NamedTaskPosition& a, NamedTaskPosition& b) {
     a.Swap(&b);
@@ -4026,7 +4310,7 @@ class NamedJointPosition final :
                &_NamedJointPosition_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    20;
+    21;
 
   friend void swap(NamedJointPosition& a, NamedJointPosition& b) {
     a.Swap(&b);
@@ -4154,6 +4438,210 @@ class NamedJointPosition final :
   friend struct ::TableStruct_common_5fmsgs_2eproto;
 };// -------------------------------------------------------------------
 
+class NamedPositionSet final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.NamedPositionSet) */ {
+ public:
+  inline NamedPositionSet() : NamedPositionSet(nullptr) {}
+  ~NamedPositionSet() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR NamedPositionSet(::google::protobuf::internal::ConstantInitialized);
+
+  NamedPositionSet(const NamedPositionSet& from);
+  NamedPositionSet(NamedPositionSet&& from) noexcept
+    : NamedPositionSet() {
+    *this = ::std::move(from);
+  }
+
+  inline NamedPositionSet& operator=(const NamedPositionSet& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline NamedPositionSet& operator=(NamedPositionSet&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const NamedPositionSet& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const NamedPositionSet* internal_default_instance() {
+    return reinterpret_cast<const NamedPositionSet*>(
+               &_NamedPositionSet_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    22;
+
+  friend void swap(NamedPositionSet& a, NamedPositionSet& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(NamedPositionSet* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(NamedPositionSet* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  NamedPositionSet* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<NamedPositionSet>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const NamedPositionSet& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const NamedPositionSet& from) {
+    NamedPositionSet::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(NamedPositionSet* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "Nrmk.IndyFramework.NamedPositionSet";
+  }
+  protected:
+  explicit NamedPositionSet(::google::protobuf::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kJposFieldNumber = 2,
+    kTposFieldNumber = 3,
+    kNameFieldNumber = 1,
+  };
+  // repeated float jpos = 2;
+  int jpos_size() const;
+  private:
+  int _internal_jpos_size() const;
+
+  public:
+  void clear_jpos() ;
+  float jpos(int index) const;
+  void set_jpos(int index, float value);
+  void add_jpos(float value);
+  const ::google::protobuf::RepeatedField<float>& jpos() const;
+  ::google::protobuf::RepeatedField<float>* mutable_jpos();
+
+  private:
+  const ::google::protobuf::RepeatedField<float>& _internal_jpos() const;
+  ::google::protobuf::RepeatedField<float>* _internal_mutable_jpos();
+
+  public:
+  // repeated float tpos = 3;
+  int tpos_size() const;
+  private:
+  int _internal_tpos_size() const;
+
+  public:
+  void clear_tpos() ;
+  float tpos(int index) const;
+  void set_tpos(int index, float value);
+  void add_tpos(float value);
+  const ::google::protobuf::RepeatedField<float>& tpos() const;
+  ::google::protobuf::RepeatedField<float>* mutable_tpos();
+
+  private:
+  const ::google::protobuf::RepeatedField<float>& _internal_tpos() const;
+  ::google::protobuf::RepeatedField<float>* _internal_mutable_tpos();
+
+  public:
+  // string name = 1;
+  void clear_name() ;
+  const std::string& name() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_name(Arg_&& arg, Args_... args);
+  std::string* mutable_name();
+  PROTOBUF_NODISCARD std::string* release_name();
+  void set_allocated_name(std::string* ptr);
+
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(
+      const std::string& value);
+  std::string* _internal_mutable_name();
+
+  public:
+  // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.NamedPositionSet)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<2, 3, 0, 48, 2> _table_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::google::protobuf::RepeatedField<float> jpos_;
+    ::google::protobuf::RepeatedField<float> tpos_;
+    ::google::protobuf::internal::ArenaStringPtr name_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_common_5fmsgs_2eproto;
+};// -------------------------------------------------------------------
+
 class NamedReferencePosition final :
     public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.NamedReferencePosition) */ {
  public:
@@ -4210,7 +4698,7 @@ class NamedReferencePosition final :
                &_NamedReferencePosition_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    21;
+    23;
 
   friend void swap(NamedReferencePosition& a, NamedReferencePosition& b) {
     a.Swap(&b);
@@ -4514,7 +5002,7 @@ class ModbusServerDef final :
                &_ModbusServerDef_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    22;
+    24;
 
   friend void swap(ModbusServerDef& a, ModbusServerDef& b) {
     a.Swap(&b);
@@ -4588,8 +5076,14 @@ class ModbusServerDef final :
   enum : int {
     kNameFieldNumber = 1,
     kIpFieldNumber = 2,
+    kSerialParityFieldNumber = 7,
     kPortFieldNumber = 3,
     kUnitIdFieldNumber = 4,
+    kConnTypeFieldNumber = 5,
+    kSerialBaudFieldNumber = 6,
+    kSerialDataBitsFieldNumber = 8,
+    kSerialStopBitsFieldNumber = 9,
+    kRtuTransportFieldNumber = 10,
   };
   // string name = 1;
   void clear_name() ;
@@ -4623,6 +5117,22 @@ class ModbusServerDef final :
   std::string* _internal_mutable_ip();
 
   public:
+  // string serial_parity = 7;
+  void clear_serial_parity() ;
+  const std::string& serial_parity() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_serial_parity(Arg_&& arg, Args_... args);
+  std::string* mutable_serial_parity();
+  PROTOBUF_NODISCARD std::string* release_serial_parity();
+  void set_allocated_serial_parity(std::string* ptr);
+
+  private:
+  const std::string& _internal_serial_parity() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_serial_parity(
+      const std::string& value);
+  std::string* _internal_mutable_serial_parity();
+
+  public:
   // int32 port = 3;
   void clear_port() ;
   ::int32_t port() const;
@@ -4643,20 +5153,76 @@ class ModbusServerDef final :
   void _internal_set_unit_id(::int32_t value);
 
   public:
+  // int32 conn_type = 5;
+  void clear_conn_type() ;
+  ::int32_t conn_type() const;
+  void set_conn_type(::int32_t value);
+
+  private:
+  ::int32_t _internal_conn_type() const;
+  void _internal_set_conn_type(::int32_t value);
+
+  public:
+  // int32 serial_baud = 6;
+  void clear_serial_baud() ;
+  ::int32_t serial_baud() const;
+  void set_serial_baud(::int32_t value);
+
+  private:
+  ::int32_t _internal_serial_baud() const;
+  void _internal_set_serial_baud(::int32_t value);
+
+  public:
+  // int32 serial_data_bits = 8;
+  void clear_serial_data_bits() ;
+  ::int32_t serial_data_bits() const;
+  void set_serial_data_bits(::int32_t value);
+
+  private:
+  ::int32_t _internal_serial_data_bits() const;
+  void _internal_set_serial_data_bits(::int32_t value);
+
+  public:
+  // int32 serial_stop_bits = 9;
+  void clear_serial_stop_bits() ;
+  ::int32_t serial_stop_bits() const;
+  void set_serial_stop_bits(::int32_t value);
+
+  private:
+  ::int32_t _internal_serial_stop_bits() const;
+  void _internal_set_serial_stop_bits(::int32_t value);
+
+  public:
+  // int32 rtu_transport = 10;
+  void clear_rtu_transport() ;
+  ::int32_t rtu_transport() const;
+  void set_rtu_transport(::int32_t value);
+
+  private:
+  ::int32_t _internal_rtu_transport() const;
+  void _internal_set_rtu_transport(::int32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.ModbusServerDef)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<2, 4, 0, 49, 2> _table_;
+  static const ::google::protobuf::internal::TcParseTable<4, 10, 0, 70, 2> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
     ::google::protobuf::internal::ArenaStringPtr name_;
     ::google::protobuf::internal::ArenaStringPtr ip_;
+    ::google::protobuf::internal::ArenaStringPtr serial_parity_;
     ::int32_t port_;
     ::int32_t unit_id_;
+    ::int32_t conn_type_;
+    ::int32_t serial_baud_;
+    ::int32_t serial_data_bits_;
+    ::int32_t serial_stop_bits_;
+    ::int32_t rtu_transport_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -4720,7 +5286,7 @@ class ProgramLine final :
                &_ProgramLine_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    23;
+    25;
 
   friend void swap(ProgramLine& a, ProgramLine& b) {
     a.Swap(&b);
@@ -4890,7 +5456,7 @@ class ProgramBreakPoints final :
                &_ProgramBreakPoints_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    24;
+    26;
 
   friend void swap(ProgramBreakPoints& a, ProgramBreakPoints& b) {
     a.Swap(&b);
@@ -5118,6 +5684,32 @@ inline ::int64_t Int::_internal_value() const {
   return _impl_.value_;
 }
 inline void Int::_internal_set_value(::int64_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.value_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// UInt
+
+// uint64 value = 1;
+inline void UInt::clear_value() {
+  _impl_.value_ = ::uint64_t{0u};
+}
+inline ::uint64_t UInt::value() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.UInt.value)
+  return _internal_value();
+}
+inline void UInt::set_value(::uint64_t value) {
+  _internal_set_value(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.UInt.value)
+}
+inline ::uint64_t UInt::_internal_value() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.value_;
+}
+inline void UInt::_internal_set_value(::uint64_t value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.value_ = value;
@@ -5541,6 +6133,116 @@ inline void EndtoolRS485Tx::_internal_set_word2(::uint32_t value) {
   _impl_.word2_ = value;
 }
 
+// uint32 word3 = 3;
+inline void EndtoolRS485Tx::clear_word3() {
+  _impl_.word3_ = 0u;
+}
+inline ::uint32_t EndtoolRS485Tx::word3() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.EndtoolRS485Tx.word3)
+  return _internal_word3();
+}
+inline void EndtoolRS485Tx::set_word3(::uint32_t value) {
+  _internal_set_word3(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.EndtoolRS485Tx.word3)
+}
+inline ::uint32_t EndtoolRS485Tx::_internal_word3() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.word3_;
+}
+inline void EndtoolRS485Tx::_internal_set_word3(::uint32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.word3_ = value;
+}
+
+// uint32 word4 = 4;
+inline void EndtoolRS485Tx::clear_word4() {
+  _impl_.word4_ = 0u;
+}
+inline ::uint32_t EndtoolRS485Tx::word4() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.EndtoolRS485Tx.word4)
+  return _internal_word4();
+}
+inline void EndtoolRS485Tx::set_word4(::uint32_t value) {
+  _internal_set_word4(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.EndtoolRS485Tx.word4)
+}
+inline ::uint32_t EndtoolRS485Tx::_internal_word4() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.word4_;
+}
+inline void EndtoolRS485Tx::_internal_set_word4(::uint32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.word4_ = value;
+}
+
+// uint32 word5 = 5;
+inline void EndtoolRS485Tx::clear_word5() {
+  _impl_.word5_ = 0u;
+}
+inline ::uint32_t EndtoolRS485Tx::word5() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.EndtoolRS485Tx.word5)
+  return _internal_word5();
+}
+inline void EndtoolRS485Tx::set_word5(::uint32_t value) {
+  _internal_set_word5(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.EndtoolRS485Tx.word5)
+}
+inline ::uint32_t EndtoolRS485Tx::_internal_word5() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.word5_;
+}
+inline void EndtoolRS485Tx::_internal_set_word5(::uint32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.word5_ = value;
+}
+
+// uint32 status = 6;
+inline void EndtoolRS485Tx::clear_status() {
+  _impl_.status_ = 0u;
+}
+inline ::uint32_t EndtoolRS485Tx::status() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.EndtoolRS485Tx.status)
+  return _internal_status();
+}
+inline void EndtoolRS485Tx::set_status(::uint32_t value) {
+  _internal_set_status(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.EndtoolRS485Tx.status)
+}
+inline ::uint32_t EndtoolRS485Tx::_internal_status() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.status_;
+}
+inline void EndtoolRS485Tx::_internal_set_status(::uint32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.status_ = value;
+}
+
+// uint32 num = 7;
+inline void EndtoolRS485Tx::clear_num() {
+  _impl_.num_ = 0u;
+}
+inline ::uint32_t EndtoolRS485Tx::num() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.EndtoolRS485Tx.num)
+  return _internal_num();
+}
+inline void EndtoolRS485Tx::set_num(::uint32_t value) {
+  _internal_set_num(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.EndtoolRS485Tx.num)
+}
+inline ::uint32_t EndtoolRS485Tx::_internal_num() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.num_;
+}
+inline void EndtoolRS485Tx::_internal_set_num(::uint32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.num_ = value;
+}
+
 // int32 tool_index = 10;
 inline void EndtoolRS485Tx::clear_tool_index() {
   _impl_.tool_index_ = 0;
@@ -5609,6 +6311,116 @@ inline void EndtoolRS485Rx::_internal_set_word2(::uint32_t value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.word2_ = value;
+}
+
+// uint32 word3 = 3;
+inline void EndtoolRS485Rx::clear_word3() {
+  _impl_.word3_ = 0u;
+}
+inline ::uint32_t EndtoolRS485Rx::word3() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.EndtoolRS485Rx.word3)
+  return _internal_word3();
+}
+inline void EndtoolRS485Rx::set_word3(::uint32_t value) {
+  _internal_set_word3(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.EndtoolRS485Rx.word3)
+}
+inline ::uint32_t EndtoolRS485Rx::_internal_word3() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.word3_;
+}
+inline void EndtoolRS485Rx::_internal_set_word3(::uint32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.word3_ = value;
+}
+
+// uint32 word4 = 4;
+inline void EndtoolRS485Rx::clear_word4() {
+  _impl_.word4_ = 0u;
+}
+inline ::uint32_t EndtoolRS485Rx::word4() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.EndtoolRS485Rx.word4)
+  return _internal_word4();
+}
+inline void EndtoolRS485Rx::set_word4(::uint32_t value) {
+  _internal_set_word4(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.EndtoolRS485Rx.word4)
+}
+inline ::uint32_t EndtoolRS485Rx::_internal_word4() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.word4_;
+}
+inline void EndtoolRS485Rx::_internal_set_word4(::uint32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.word4_ = value;
+}
+
+// uint32 word5 = 5;
+inline void EndtoolRS485Rx::clear_word5() {
+  _impl_.word5_ = 0u;
+}
+inline ::uint32_t EndtoolRS485Rx::word5() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.EndtoolRS485Rx.word5)
+  return _internal_word5();
+}
+inline void EndtoolRS485Rx::set_word5(::uint32_t value) {
+  _internal_set_word5(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.EndtoolRS485Rx.word5)
+}
+inline ::uint32_t EndtoolRS485Rx::_internal_word5() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.word5_;
+}
+inline void EndtoolRS485Rx::_internal_set_word5(::uint32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.word5_ = value;
+}
+
+// uint32 control = 6;
+inline void EndtoolRS485Rx::clear_control() {
+  _impl_.control_ = 0u;
+}
+inline ::uint32_t EndtoolRS485Rx::control() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.EndtoolRS485Rx.control)
+  return _internal_control();
+}
+inline void EndtoolRS485Rx::set_control(::uint32_t value) {
+  _internal_set_control(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.EndtoolRS485Rx.control)
+}
+inline ::uint32_t EndtoolRS485Rx::_internal_control() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.control_;
+}
+inline void EndtoolRS485Rx::_internal_set_control(::uint32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.control_ = value;
+}
+
+// uint32 num = 7;
+inline void EndtoolRS485Rx::clear_num() {
+  _impl_.num_ = 0u;
+}
+inline ::uint32_t EndtoolRS485Rx::num() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.EndtoolRS485Rx.num)
+  return _internal_num();
+}
+inline void EndtoolRS485Rx::set_num(::uint32_t value) {
+  _internal_set_num(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.EndtoolRS485Rx.num)
+}
+inline ::uint32_t EndtoolRS485Rx::_internal_num() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.num_;
+}
+inline void EndtoolRS485Rx::_internal_set_num(::uint32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.num_ = value;
 }
 
 // int32 tool_index = 10;
@@ -6273,6 +7085,145 @@ inline ::google::protobuf::RepeatedField<float>* NamedJointPosition::_internal_m
 
 // -------------------------------------------------------------------
 
+// NamedPositionSet
+
+// string name = 1;
+inline void NamedPositionSet::clear_name() {
+  _impl_.name_.ClearToEmpty();
+}
+inline const std::string& NamedPositionSet::name() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.NamedPositionSet.name)
+  return _internal_name();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void NamedPositionSet::set_name(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.name_.Set(static_cast<Arg_&&>(arg), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.NamedPositionSet.name)
+}
+inline std::string* NamedPositionSet::mutable_name() {
+  std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.NamedPositionSet.name)
+  return _s;
+}
+inline const std::string& NamedPositionSet::_internal_name() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.name_.Get();
+}
+inline void NamedPositionSet::_internal_set_name(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* NamedPositionSet::_internal_mutable_name() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.name_.Mutable( GetArenaForAllocation());
+}
+inline std::string* NamedPositionSet::release_name() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:Nrmk.IndyFramework.NamedPositionSet.name)
+  return _impl_.name_.Release();
+}
+inline void NamedPositionSet::set_allocated_name(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.name_.SetAllocated(value, GetArenaForAllocation());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.name_.IsDefault()) {
+          _impl_.name_.Set("", GetArenaForAllocation());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.NamedPositionSet.name)
+}
+
+// repeated float jpos = 2;
+inline int NamedPositionSet::_internal_jpos_size() const {
+  return _internal_jpos().size();
+}
+inline int NamedPositionSet::jpos_size() const {
+  return _internal_jpos_size();
+}
+inline void NamedPositionSet::clear_jpos() {
+  _internal_mutable_jpos()->Clear();
+}
+inline float NamedPositionSet::jpos(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.NamedPositionSet.jpos)
+  return _internal_jpos().Get(index);
+}
+inline void NamedPositionSet::set_jpos(int index, float value) {
+  _internal_mutable_jpos()->Set(index, value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.NamedPositionSet.jpos)
+}
+inline void NamedPositionSet::add_jpos(float value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_jpos()->Add(value);
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.NamedPositionSet.jpos)
+}
+inline const ::google::protobuf::RepeatedField<float>& NamedPositionSet::jpos() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.NamedPositionSet.jpos)
+  return _internal_jpos();
+}
+inline ::google::protobuf::RepeatedField<float>* NamedPositionSet::mutable_jpos() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.NamedPositionSet.jpos)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_jpos();
+}
+
+inline const ::google::protobuf::RepeatedField<float>& NamedPositionSet::_internal_jpos() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.jpos_;
+}
+inline ::google::protobuf::RepeatedField<float>* NamedPositionSet::_internal_mutable_jpos() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.jpos_;
+}
+
+// repeated float tpos = 3;
+inline int NamedPositionSet::_internal_tpos_size() const {
+  return _internal_tpos().size();
+}
+inline int NamedPositionSet::tpos_size() const {
+  return _internal_tpos_size();
+}
+inline void NamedPositionSet::clear_tpos() {
+  _internal_mutable_tpos()->Clear();
+}
+inline float NamedPositionSet::tpos(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.NamedPositionSet.tpos)
+  return _internal_tpos().Get(index);
+}
+inline void NamedPositionSet::set_tpos(int index, float value) {
+  _internal_mutable_tpos()->Set(index, value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.NamedPositionSet.tpos)
+}
+inline void NamedPositionSet::add_tpos(float value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_tpos()->Add(value);
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.NamedPositionSet.tpos)
+}
+inline const ::google::protobuf::RepeatedField<float>& NamedPositionSet::tpos() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.NamedPositionSet.tpos)
+  return _internal_tpos();
+}
+inline ::google::protobuf::RepeatedField<float>* NamedPositionSet::mutable_tpos() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.NamedPositionSet.tpos)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_tpos();
+}
+
+inline const ::google::protobuf::RepeatedField<float>& NamedPositionSet::_internal_tpos() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.tpos_;
+}
+inline ::google::protobuf::RepeatedField<float>* NamedPositionSet::_internal_mutable_tpos() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.tpos_;
+}
+
+// -------------------------------------------------------------------
+
 // NamedReferencePosition
 
 // string name = 1;
@@ -6768,6 +7719,167 @@ inline void ModbusServerDef::_internal_set_unit_id(::int32_t value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.unit_id_ = value;
+}
+
+// int32 conn_type = 5;
+inline void ModbusServerDef::clear_conn_type() {
+  _impl_.conn_type_ = 0;
+}
+inline ::int32_t ModbusServerDef::conn_type() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.ModbusServerDef.conn_type)
+  return _internal_conn_type();
+}
+inline void ModbusServerDef::set_conn_type(::int32_t value) {
+  _internal_set_conn_type(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.ModbusServerDef.conn_type)
+}
+inline ::int32_t ModbusServerDef::_internal_conn_type() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.conn_type_;
+}
+inline void ModbusServerDef::_internal_set_conn_type(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.conn_type_ = value;
+}
+
+// int32 serial_baud = 6;
+inline void ModbusServerDef::clear_serial_baud() {
+  _impl_.serial_baud_ = 0;
+}
+inline ::int32_t ModbusServerDef::serial_baud() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.ModbusServerDef.serial_baud)
+  return _internal_serial_baud();
+}
+inline void ModbusServerDef::set_serial_baud(::int32_t value) {
+  _internal_set_serial_baud(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.ModbusServerDef.serial_baud)
+}
+inline ::int32_t ModbusServerDef::_internal_serial_baud() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.serial_baud_;
+}
+inline void ModbusServerDef::_internal_set_serial_baud(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.serial_baud_ = value;
+}
+
+// string serial_parity = 7;
+inline void ModbusServerDef::clear_serial_parity() {
+  _impl_.serial_parity_.ClearToEmpty();
+}
+inline const std::string& ModbusServerDef::serial_parity() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.ModbusServerDef.serial_parity)
+  return _internal_serial_parity();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void ModbusServerDef::set_serial_parity(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.serial_parity_.Set(static_cast<Arg_&&>(arg), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.ModbusServerDef.serial_parity)
+}
+inline std::string* ModbusServerDef::mutable_serial_parity() {
+  std::string* _s = _internal_mutable_serial_parity();
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.ModbusServerDef.serial_parity)
+  return _s;
+}
+inline const std::string& ModbusServerDef::_internal_serial_parity() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.serial_parity_.Get();
+}
+inline void ModbusServerDef::_internal_set_serial_parity(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.serial_parity_.Set(value, GetArenaForAllocation());
+}
+inline std::string* ModbusServerDef::_internal_mutable_serial_parity() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.serial_parity_.Mutable( GetArenaForAllocation());
+}
+inline std::string* ModbusServerDef::release_serial_parity() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:Nrmk.IndyFramework.ModbusServerDef.serial_parity)
+  return _impl_.serial_parity_.Release();
+}
+inline void ModbusServerDef::set_allocated_serial_parity(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.serial_parity_.SetAllocated(value, GetArenaForAllocation());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.serial_parity_.IsDefault()) {
+          _impl_.serial_parity_.Set("", GetArenaForAllocation());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.ModbusServerDef.serial_parity)
+}
+
+// int32 serial_data_bits = 8;
+inline void ModbusServerDef::clear_serial_data_bits() {
+  _impl_.serial_data_bits_ = 0;
+}
+inline ::int32_t ModbusServerDef::serial_data_bits() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.ModbusServerDef.serial_data_bits)
+  return _internal_serial_data_bits();
+}
+inline void ModbusServerDef::set_serial_data_bits(::int32_t value) {
+  _internal_set_serial_data_bits(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.ModbusServerDef.serial_data_bits)
+}
+inline ::int32_t ModbusServerDef::_internal_serial_data_bits() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.serial_data_bits_;
+}
+inline void ModbusServerDef::_internal_set_serial_data_bits(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.serial_data_bits_ = value;
+}
+
+// int32 serial_stop_bits = 9;
+inline void ModbusServerDef::clear_serial_stop_bits() {
+  _impl_.serial_stop_bits_ = 0;
+}
+inline ::int32_t ModbusServerDef::serial_stop_bits() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.ModbusServerDef.serial_stop_bits)
+  return _internal_serial_stop_bits();
+}
+inline void ModbusServerDef::set_serial_stop_bits(::int32_t value) {
+  _internal_set_serial_stop_bits(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.ModbusServerDef.serial_stop_bits)
+}
+inline ::int32_t ModbusServerDef::_internal_serial_stop_bits() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.serial_stop_bits_;
+}
+inline void ModbusServerDef::_internal_set_serial_stop_bits(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.serial_stop_bits_ = value;
+}
+
+// int32 rtu_transport = 10;
+inline void ModbusServerDef::clear_rtu_transport() {
+  _impl_.rtu_transport_ = 0;
+}
+inline ::int32_t ModbusServerDef::rtu_transport() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.ModbusServerDef.rtu_transport)
+  return _internal_rtu_transport();
+}
+inline void ModbusServerDef::set_rtu_transport(::int32_t value) {
+  _internal_set_rtu_transport(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.ModbusServerDef.rtu_transport)
+}
+inline ::int32_t ModbusServerDef::_internal_rtu_transport() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.rtu_transport_;
+}
+inline void ModbusServerDef::_internal_set_rtu_transport(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.rtu_transport_ = value;
 }
 
 // -------------------------------------------------------------------

@@ -184,6 +184,7 @@ PROTOBUF_CONSTEXPR SwerveDoubles::SwerveDoubles(::_pbi::ConstantInitialized)
       /*decltype(_impl_.fr_)*/ 0,
       /*decltype(_impl_.bl_)*/ 0,
       /*decltype(_impl_.br_)*/ 0,
+      /*decltype(_impl_.control_source_)*/ 0,
       /*decltype(_impl_._cached_size_)*/ {},
     } {}
 struct SwerveDoublesDefaultTypeInternal {
@@ -585,11 +586,26 @@ struct VelAccBoundaryDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 VelAccBoundaryDefaultTypeInternal _VelAccBoundary_default_instance_;
+        template <typename>
+PROTOBUF_CONSTEXPR LEDControlMode::LEDControlMode(::_pbi::ConstantInitialized)
+    : _impl_{
+      /*decltype(_impl_.mode_)*/ 0,
+      /*decltype(_impl_._cached_size_)*/ {},
+    } {}
+struct LEDControlModeDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR LEDControlModeDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~LEDControlModeDefaultTypeInternal() {}
+  union {
+    LEDControlMode _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 LEDControlModeDefaultTypeInternal _LEDControlMode_default_instance_;
 }  // namespace IndyFramework
 }  // namespace Nrmk
-static ::_pb::Metadata file_level_metadata_moby_5fmsgs_2eproto[29];
-static constexpr const ::_pb::EnumDescriptor**
-    file_level_enum_descriptors_moby_5fmsgs_2eproto = nullptr;
+static ::_pb::Metadata file_level_metadata_moby_5fmsgs_2eproto[30];
+static const ::_pb::EnumDescriptor* file_level_enum_descriptors_moby_5fmsgs_2eproto[1];
 static constexpr const ::_pb::ServiceDescriptor**
     file_level_service_descriptors_moby_5fmsgs_2eproto = nullptr;
 const ::uint32_t TableStruct_moby_5fmsgs_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(
@@ -705,6 +721,7 @@ const ::uint32_t TableStruct_moby_5fmsgs_2eproto::offsets[] PROTOBUF_SECTION_VAR
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::SwerveDoubles, _impl_.fr_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::SwerveDoubles, _impl_.bl_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::SwerveDoubles, _impl_.br_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::SwerveDoubles, _impl_.control_source_),
     ~0u,  // no _has_bits_
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::TargetVel, _internal_metadata_),
     ~0u,  // no _extensions_
@@ -943,6 +960,15 @@ const ::uint32_t TableStruct_moby_5fmsgs_2eproto::offsets[] PROTOBUF_SECTION_VAR
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::VelAccBoundary, _impl_.idx_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::VelAccBoundary, _impl_.vmax_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::VelAccBoundary, _impl_.amax_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::LEDControlMode, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::LEDControlMode, _impl_.mode_),
 };
 
 static const ::_pbi::MigrationSchema
@@ -956,26 +982,27 @@ static const ::_pbi::MigrationSchema
         {71, -1, -1, sizeof(::Nrmk::IndyFramework::MobyVel)},
         {82, -1, -1, sizeof(::Nrmk::IndyFramework::IMUData)},
         {99, -1, -1, sizeof(::Nrmk::IndyFramework::SwerveDoubles)},
-        {111, -1, -1, sizeof(::Nrmk::IndyFramework::TargetVel)},
-        {122, -1, -1, sizeof(::Nrmk::IndyFramework::ZeroCount)},
-        {134, -1, -1, sizeof(::Nrmk::IndyFramework::IRData)},
-        {151, -1, -1, sizeof(::Nrmk::IndyFramework::USData)},
-        {175, -1, -1, sizeof(::Nrmk::IndyFramework::BMSData)},
-        {204, -1, -1, sizeof(::Nrmk::IndyFramework::ForcedKinematicsData)},
-        {214, -1, -1, sizeof(::Nrmk::IndyFramework::GBool)},
-        {224, -1, -1, sizeof(::Nrmk::IndyFramework::GInt)},
-        {234, -1, -1, sizeof(::Nrmk::IndyFramework::GFloat)},
-        {244, -1, -1, sizeof(::Nrmk::IndyFramework::GString)},
-        {254, -1, -1, sizeof(::Nrmk::IndyFramework::BoolVal)},
-        {263, -1, -1, sizeof(::Nrmk::IndyFramework::BoolVals)},
-        {272, -1, -1, sizeof(::Nrmk::IndyFramework::IntVal)},
-        {281, -1, -1, sizeof(::Nrmk::IndyFramework::IntVals)},
-        {290, -1, -1, sizeof(::Nrmk::IndyFramework::FloatVal)},
-        {299, -1, -1, sizeof(::Nrmk::IndyFramework::FloatVals)},
-        {308, -1, -1, sizeof(::Nrmk::IndyFramework::DoubleVal)},
-        {317, -1, -1, sizeof(::Nrmk::IndyFramework::DoubleVals)},
-        {326, -1, -1, sizeof(::Nrmk::IndyFramework::RotationGain)},
-        {338, -1, -1, sizeof(::Nrmk::IndyFramework::VelAccBoundary)},
+        {112, -1, -1, sizeof(::Nrmk::IndyFramework::TargetVel)},
+        {123, -1, -1, sizeof(::Nrmk::IndyFramework::ZeroCount)},
+        {135, -1, -1, sizeof(::Nrmk::IndyFramework::IRData)},
+        {152, -1, -1, sizeof(::Nrmk::IndyFramework::USData)},
+        {176, -1, -1, sizeof(::Nrmk::IndyFramework::BMSData)},
+        {205, -1, -1, sizeof(::Nrmk::IndyFramework::ForcedKinematicsData)},
+        {215, -1, -1, sizeof(::Nrmk::IndyFramework::GBool)},
+        {225, -1, -1, sizeof(::Nrmk::IndyFramework::GInt)},
+        {235, -1, -1, sizeof(::Nrmk::IndyFramework::GFloat)},
+        {245, -1, -1, sizeof(::Nrmk::IndyFramework::GString)},
+        {255, -1, -1, sizeof(::Nrmk::IndyFramework::BoolVal)},
+        {264, -1, -1, sizeof(::Nrmk::IndyFramework::BoolVals)},
+        {273, -1, -1, sizeof(::Nrmk::IndyFramework::IntVal)},
+        {282, -1, -1, sizeof(::Nrmk::IndyFramework::IntVals)},
+        {291, -1, -1, sizeof(::Nrmk::IndyFramework::FloatVal)},
+        {300, -1, -1, sizeof(::Nrmk::IndyFramework::FloatVals)},
+        {309, -1, -1, sizeof(::Nrmk::IndyFramework::DoubleVal)},
+        {318, -1, -1, sizeof(::Nrmk::IndyFramework::DoubleVals)},
+        {327, -1, -1, sizeof(::Nrmk::IndyFramework::RotationGain)},
+        {339, -1, -1, sizeof(::Nrmk::IndyFramework::VelAccBoundary)},
+        {350, -1, -1, sizeof(::Nrmk::IndyFramework::LEDControlMode)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -1008,6 +1035,7 @@ static const ::_pb::Message* const file_default_instances[] = {
     &::Nrmk::IndyFramework::_DoubleVals_default_instance_._instance,
     &::Nrmk::IndyFramework::_RotationGain_default_instance_._instance,
     &::Nrmk::IndyFramework::_VelAccBoundary_default_instance_._instance,
+    &::Nrmk::IndyFramework::_LEDControlMode_default_instance_._instance,
 };
 const char descriptor_table_protodef_moby_5fmsgs_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
     "\n\017moby_msgs.proto\022\022Nrmk.IndyFramework\" \n"
@@ -1029,63 +1057,68 @@ const char descriptor_table_protodef_moby_5fmsgs_2eproto[] PROTOBUF_SECTION_VARI
     "\006angleX\030\001 \001(\001\022\016\n\006angleY\030\002 \001(\001\022\016\n\006angleZ\030"
     "\003 \001(\001\022\021\n\tangleVelX\030\004 \001(\001\022\021\n\tangleVelY\030\005 "
     "\001(\001\022\021\n\tangleVelZ\030\006 \001(\001\022\017\n\007linAccX\030\007 \001(\001\022"
-    "\017\n\007linAccY\030\010 \001(\001\022\017\n\007linAccZ\030\t \001(\001\"\?\n\rSwe"
+    "\017\n\007linAccY\030\010 \001(\001\022\017\n\007linAccZ\030\t \001(\001\"W\n\rSwe"
     "rveDoubles\022\n\n\002fl\030\001 \001(\001\022\n\n\002fr\030\002 \001(\001\022\n\n\002bl"
-    "\030\003 \001(\001\022\n\n\002br\030\004 \001(\001\"/\n\tTargetVel\022\n\n\002vx\030\001 "
-    "\001(\001\022\n\n\002vy\030\002 \001(\001\022\n\n\002vw\030\003 \001(\001\";\n\tZeroCount"
-    "\022\n\n\002fl\030\001 \001(\005\022\n\n\002fr\030\002 \001(\005\022\n\n\002bl\030\003 \001(\005\022\n\n\002"
-    "br\030\004 \001(\005\"\256\001\n\006IRData\022\021\n\tir_front1\030\001 \001(\005\022\021"
-    "\n\tir_front2\030\002 \001(\005\022\020\n\010ir_left1\030\003 \001(\005\022\020\n\010i"
-    "r_left2\030\004 \001(\005\022\020\n\010ir_left3\030\005 \001(\005\022\017\n\007ir_re"
-    "ar\030\006 \001(\005\022\021\n\tir_right1\030\007 \001(\005\022\021\n\tir_right2"
-    "\030\010 \001(\005\022\021\n\tir_right3\030\t \001(\005\"\211\003\n\006USData\022\026\n\016"
-    "us_front_left1\030\001 \001(\005\022\026\n\016us_front_left2\030\002"
-    " \001(\005\022\026\n\016us_front_left3\030\003 \001(\005\022\027\n\017us_front"
-    "_ground\030\004 \001(\005\022\027\n\017us_front_right1\030\005 \001(\005\022\027"
-    "\n\017us_front_right2\030\006 \001(\005\022\027\n\017us_front_righ"
-    "t3\030\007 \001(\005\022\027\n\017us_front_right4\030\010 \001(\005\022\026\n\016us_"
-    "back_right1\030\t \001(\005\022\026\n\016us_back_right2\030\n \001("
-    "\005\022\026\n\016us_back_right3\030\013 \001(\005\022\026\n\016us_back_gro"
-    "und\030\014 \001(\005\022\025\n\rus_back_left1\030\r \001(\005\022\025\n\rus_b"
-    "ack_left2\030\016 \001(\005\022\025\n\rus_back_left3\030\017 \001(\005\022\025"
-    "\n\rus_back_left4\030\020 \001(\005\"\314\003\n\007BMSData\022\022\n\nbms"
-    "_status\030\001 \003(\005\022\021\n\tpack_volt\030\002 \003(\005\022\024\n\014batt"
-    "ery_volt\030\003 \003(\005\022\025\n\rpack_current1\030\004 \003(\005\022\025\n"
-    "\rpack_current2\030\005 \003(\005\022\020\n\010isCharge\030\006 \001(\005\022\026"
-    "\n\016isCellOverVolt\030\007 \001(\005\022\027\n\017isCellUnderVol"
-    "t\030\010 \001(\005\022\027\n\017isOverCurCharge\030\t \001(\005\022\030\n\020isOv"
-    "erCurDischrg\030\n \001(\005\022\026\n\016isShortCircuit\030\013 \001"
-    "(\005\022\031\n\021isOverTemperature\030\014 \001(\005\022\026\n\016isPackO"
-    "verVolt\030\r \001(\005\022\013\n\003SOC\030\016 \001(\005\022\013\n\003SOH\030\017 \001(\005\022"
-    "\023\n\013time_charge\030\020 \001(\005\022\024\n\014time_dcharge\030\021 \001"
-    "(\005\022\021\n\trem_capAh\030\022 \001(\005\022\021\n\trem_capWh\030\023 \001(\005"
-    "\022\027\n\017bms_temperature\030\024 \003(\005\022\021\n\tcell_volt\030\025"
-    " \003(\005\"7\n\024ForcedKinematicsData\022\020\n\010activate"
-    "\030\001 \001(\010\022\r\n\005angle\030\002 \001(\005\"!\n\005GBool\022\013\n\003idx\030\001 "
-    "\001(\005\022\013\n\003val\030\002 \001(\010\" \n\004GInt\022\013\n\003idx\030\001 \001(\005\022\013\n"
-    "\003val\030\002 \001(\005\"\"\n\006GFloat\022\013\n\003idx\030\001 \001(\005\022\013\n\003val"
-    "\030\002 \001(\002\"#\n\007GString\022\013\n\003idx\030\001 \001(\005\022\013\n\003val\030\002 "
-    "\001(\t\"\026\n\007BoolVal\022\013\n\003val\030\001 \001(\010\"\027\n\010BoolVals\022"
-    "\013\n\003val\030\001 \003(\010\"\025\n\006IntVal\022\013\n\003val\030\001 \001(\005\"\026\n\007I"
-    "ntVals\022\013\n\003val\030\001 \003(\005\"\027\n\010FloatVal\022\013\n\003val\030\001"
-    " \001(\002\"\030\n\tFloatVals\022\013\n\003val\030\001 \003(\002\"\030\n\tDouble"
-    "Val\022\013\n\003val\030\001 \001(\001\"\031\n\nDoubleVals\022\013\n\003val\030\001 "
-    "\003(\001\">\n\014RotationGain\022\013\n\003idx\030\001 \001(\005\022\t\n\001k\030\002 "
-    "\001(\001\022\n\n\002kv\030\003 \001(\001\022\n\n\002kp\030\004 \001(\001\"9\n\016VelAccBou"
-    "ndary\022\013\n\003idx\030\001 \001(\005\022\014\n\004vmax\030\002 \001(\002\022\014\n\004amax"
-    "\030\003 \001(\002b\006proto3"
+    "\030\003 \001(\001\022\n\n\002br\030\004 \001(\001\022\026\n\016control_source\030\005 \001"
+    "(\005\"/\n\tTargetVel\022\n\n\002vx\030\001 \001(\001\022\n\n\002vy\030\002 \001(\001\022"
+    "\n\n\002vw\030\003 \001(\001\";\n\tZeroCount\022\n\n\002fl\030\001 \001(\005\022\n\n\002"
+    "fr\030\002 \001(\005\022\n\n\002bl\030\003 \001(\005\022\n\n\002br\030\004 \001(\005\"\256\001\n\006IRD"
+    "ata\022\021\n\tir_front1\030\001 \001(\005\022\021\n\tir_front2\030\002 \001("
+    "\005\022\020\n\010ir_left1\030\003 \001(\005\022\020\n\010ir_left2\030\004 \001(\005\022\020\n"
+    "\010ir_left3\030\005 \001(\005\022\017\n\007ir_rear\030\006 \001(\005\022\021\n\tir_r"
+    "ight1\030\007 \001(\005\022\021\n\tir_right2\030\010 \001(\005\022\021\n\tir_rig"
+    "ht3\030\t \001(\005\"\211\003\n\006USData\022\026\n\016us_front_left1\030\001"
+    " \001(\005\022\026\n\016us_front_left2\030\002 \001(\005\022\026\n\016us_front"
+    "_left3\030\003 \001(\005\022\027\n\017us_front_ground\030\004 \001(\005\022\027\n"
+    "\017us_front_right1\030\005 \001(\005\022\027\n\017us_front_right"
+    "2\030\006 \001(\005\022\027\n\017us_front_right3\030\007 \001(\005\022\027\n\017us_f"
+    "ront_right4\030\010 \001(\005\022\026\n\016us_back_right1\030\t \001("
+    "\005\022\026\n\016us_back_right2\030\n \001(\005\022\026\n\016us_back_rig"
+    "ht3\030\013 \001(\005\022\026\n\016us_back_ground\030\014 \001(\005\022\025\n\rus_"
+    "back_left1\030\r \001(\005\022\025\n\rus_back_left2\030\016 \001(\005\022"
+    "\025\n\rus_back_left3\030\017 \001(\005\022\025\n\rus_back_left4\030"
+    "\020 \001(\005\"\314\003\n\007BMSData\022\022\n\nbms_status\030\001 \003(\005\022\021\n"
+    "\tpack_volt\030\002 \003(\005\022\024\n\014battery_volt\030\003 \003(\005\022\025"
+    "\n\rpack_current1\030\004 \003(\005\022\025\n\rpack_current2\030\005"
+    " \003(\005\022\020\n\010isCharge\030\006 \001(\005\022\026\n\016isCellOverVolt"
+    "\030\007 \001(\005\022\027\n\017isCellUnderVolt\030\010 \001(\005\022\027\n\017isOve"
+    "rCurCharge\030\t \001(\005\022\030\n\020isOverCurDischrg\030\n \001"
+    "(\005\022\026\n\016isShortCircuit\030\013 \001(\005\022\031\n\021isOverTemp"
+    "erature\030\014 \001(\005\022\026\n\016isPackOverVolt\030\r \001(\005\022\013\n"
+    "\003SOC\030\016 \001(\005\022\013\n\003SOH\030\017 \001(\005\022\023\n\013time_charge\030\020"
+    " \001(\005\022\024\n\014time_dcharge\030\021 \001(\005\022\021\n\trem_capAh\030"
+    "\022 \001(\005\022\021\n\trem_capWh\030\023 \001(\005\022\027\n\017bms_temperat"
+    "ure\030\024 \003(\005\022\021\n\tcell_volt\030\025 \003(\005\"7\n\024ForcedKi"
+    "nematicsData\022\020\n\010activate\030\001 \001(\010\022\r\n\005angle\030"
+    "\002 \001(\005\"!\n\005GBool\022\013\n\003idx\030\001 \001(\005\022\013\n\003val\030\002 \001(\010"
+    "\" \n\004GInt\022\013\n\003idx\030\001 \001(\005\022\013\n\003val\030\002 \001(\005\"\"\n\006GF"
+    "loat\022\013\n\003idx\030\001 \001(\005\022\013\n\003val\030\002 \001(\002\"#\n\007GStrin"
+    "g\022\013\n\003idx\030\001 \001(\005\022\013\n\003val\030\002 \001(\t\"\026\n\007BoolVal\022\013"
+    "\n\003val\030\001 \001(\010\"\027\n\010BoolVals\022\013\n\003val\030\001 \003(\010\"\025\n\006"
+    "IntVal\022\013\n\003val\030\001 \001(\005\"\026\n\007IntVals\022\013\n\003val\030\001 "
+    "\003(\005\"\027\n\010FloatVal\022\013\n\003val\030\001 \001(\002\"\030\n\tFloatVal"
+    "s\022\013\n\003val\030\001 \003(\002\"\030\n\tDoubleVal\022\013\n\003val\030\001 \001(\001"
+    "\"\031\n\nDoubleVals\022\013\n\003val\030\001 \003(\001\">\n\014RotationG"
+    "ain\022\013\n\003idx\030\001 \001(\005\022\t\n\001k\030\002 \001(\001\022\n\n\002kv\030\003 \001(\001\022"
+    "\n\n\002kp\030\004 \001(\001\"9\n\016VelAccBoundary\022\013\n\003idx\030\001 \001"
+    "(\005\022\014\n\004vmax\030\002 \001(\002\022\014\n\004amax\030\003 \001(\002\";\n\016LEDCon"
+    "trolMode\022)\n\004mode\030\001 \001(\0162\033.Nrmk.IndyFramew"
+    "ork.LEDMode*i\n\007LEDMode\022\017\n\013GREEN_SOLID\020\000\022"
+    "\017\n\013GREEN_BLINK\020\001\022\r\n\tRED_SOLID\020\002\022\r\n\tRED_B"
+    "LINK\020\003\022\016\n\nBLUE_SOLID\020\004\022\016\n\nBLUE_BLINK\020\005b\006"
+    "proto3"
 };
 static ::absl::once_flag descriptor_table_moby_5fmsgs_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_moby_5fmsgs_2eproto = {
     false,
     false,
-    2534,
+    2726,
     descriptor_table_protodef_moby_5fmsgs_2eproto,
     "moby_msgs.proto",
     &descriptor_table_moby_5fmsgs_2eproto_once,
     nullptr,
     0,
-    29,
+    30,
     schemas,
     file_default_instances,
     TableStruct_moby_5fmsgs_2eproto::offsets,
@@ -1113,6 +1146,23 @@ PROTOBUF_ATTRIBUTE_INIT_PRIORITY2
 static ::_pbi::AddDescriptorsRunner dynamic_init_dummy_moby_5fmsgs_2eproto(&descriptor_table_moby_5fmsgs_2eproto);
 namespace Nrmk {
 namespace IndyFramework {
+const ::google::protobuf::EnumDescriptor* LEDMode_descriptor() {
+  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_moby_5fmsgs_2eproto);
+  return file_level_enum_descriptors_moby_5fmsgs_2eproto[0];
+}
+bool LEDMode_IsValid(int value) {
+  switch (value) {
+    case 0:
+    case 1:
+    case 2:
+    case 3:
+    case 4:
+    case 5:
+      return true;
+    default:
+      return false;
+  }
+}
 // ===================================================================
 
 class DriveIndex::_Internal {
@@ -3359,6 +3409,7 @@ inline void SwerveDoubles::SharedCtor(::_pb::Arena* arena) {
       decltype(_impl_.fr_){0},
       decltype(_impl_.bl_){0},
       decltype(_impl_.br_){0},
+      decltype(_impl_.control_source_){0},
       /*decltype(_impl_._cached_size_)*/ {},
   };
 }
@@ -3381,8 +3432,8 @@ PROTOBUF_NOINLINE void SwerveDoubles::Clear() {
   (void) cached_has_bits;
 
   ::memset(&_impl_.fl_, 0, static_cast<::size_t>(
-      reinterpret_cast<char*>(&_impl_.br_) -
-      reinterpret_cast<char*>(&_impl_.fl_)) + sizeof(_impl_.br_));
+      reinterpret_cast<char*>(&_impl_.control_source_) -
+      reinterpret_cast<char*>(&_impl_.fl_)) + sizeof(_impl_.control_source_));
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -3394,23 +3445,21 @@ const char* SwerveDoubles::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<2, 4, 0, 0, 2> SwerveDoubles::_table_ = {
+const ::_pbi::TcParseTable<3, 5, 0, 0, 2> SwerveDoubles::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
-    4, 24,  // max_field_number, fast_idx_mask
+    5, 56,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967280,  // skipmap
+    4294967264,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    4,  // num_field_entries
+    5,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
     &_SwerveDoubles_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
-    // double br = 4;
-    {::_pbi::TcParser::FastF64S1,
-     {33, 63, 0, PROTOBUF_FIELD_OFFSET(SwerveDoubles, _impl_.br_)}},
+    {::_pbi::TcParser::MiniParse, {}},
     // double fl = 1;
     {::_pbi::TcParser::FastF64S1,
      {9, 63, 0, PROTOBUF_FIELD_OFFSET(SwerveDoubles, _impl_.fl_)}},
@@ -3420,6 +3469,14 @@ const ::_pbi::TcParseTable<2, 4, 0, 0, 2> SwerveDoubles::_table_ = {
     // double bl = 3;
     {::_pbi::TcParser::FastF64S1,
      {25, 63, 0, PROTOBUF_FIELD_OFFSET(SwerveDoubles, _impl_.bl_)}},
+    // double br = 4;
+    {::_pbi::TcParser::FastF64S1,
+     {33, 63, 0, PROTOBUF_FIELD_OFFSET(SwerveDoubles, _impl_.br_)}},
+    // int32 control_source = 5;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(SwerveDoubles, _impl_.control_source_), 63>(),
+     {40, 63, 0, PROTOBUF_FIELD_OFFSET(SwerveDoubles, _impl_.control_source_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
   }}, {{
     65535, 65535
   }}, {{
@@ -3435,6 +3492,9 @@ const ::_pbi::TcParseTable<2, 4, 0, 0, 2> SwerveDoubles::_table_ = {
     // double br = 4;
     {PROTOBUF_FIELD_OFFSET(SwerveDoubles, _impl_.br_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kDouble)},
+    // int32 control_source = 5;
+    {PROTOBUF_FIELD_OFFSET(SwerveDoubles, _impl_.control_source_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
   }},
   // no aux_entries
   {{
@@ -3496,6 +3556,13 @@ const ::_pbi::TcParseTable<2, 4, 0, 0, 2> SwerveDoubles::_table_ = {
         4, this->_internal_br(), target);
   }
 
+  // int32 control_source = 5;
+  if (this->_internal_control_source() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<5>(
+            stream, this->_internal_control_source(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target =
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
@@ -3553,6 +3620,12 @@ const ::_pbi::TcParseTable<2, 4, 0, 0, 2> SwerveDoubles::_table_ = {
     total_size += 9;
   }
 
+  // int32 control_source = 5;
+  if (this->_internal_control_source() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_control_source());
+  }
+
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
@@ -3603,6 +3676,9 @@ void SwerveDoubles::MergeImpl(::google::protobuf::Message& to_msg, const ::googl
   if (raw_br != 0) {
     _this->_internal_set_br(from._internal_br());
   }
+  if (from._internal_control_source() != 0) {
+    _this->_internal_set_control_source(from._internal_control_source());
+  }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -3621,8 +3697,8 @@ void SwerveDoubles::InternalSwap(SwerveDoubles* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::google::protobuf::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(SwerveDoubles, _impl_.br_)
-      + sizeof(SwerveDoubles::_impl_.br_)
+      PROTOBUF_FIELD_OFFSET(SwerveDoubles, _impl_.control_source_)
+      + sizeof(SwerveDoubles::_impl_.control_source_)
       - PROTOBUF_FIELD_OFFSET(SwerveDoubles, _impl_.fl_)>(
           reinterpret_cast<char*>(&_impl_.fl_),
           reinterpret_cast<char*>(&other->_impl_.fl_));
@@ -8719,6 +8795,172 @@ void VelAccBoundary::InternalSwap(VelAccBoundary* other) {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_moby_5fmsgs_2eproto_getter, &descriptor_table_moby_5fmsgs_2eproto_once,
       file_level_metadata_moby_5fmsgs_2eproto[28]);
+}
+// ===================================================================
+
+class LEDControlMode::_Internal {
+ public:
+};
+
+LEDControlMode::LEDControlMode(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Nrmk.IndyFramework.LEDControlMode)
+}
+LEDControlMode::LEDControlMode(const LEDControlMode& from)
+    : ::google::protobuf::Message(), _impl_(from._impl_) {
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.LEDControlMode)
+}
+inline void LEDControlMode::SharedCtor(::_pb::Arena* arena) {
+  (void)arena;
+  new (&_impl_) Impl_{
+      decltype(_impl_.mode_){0},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+}
+LEDControlMode::~LEDControlMode() {
+  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.LEDControlMode)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void LEDControlMode::SharedDtor() {
+  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
+}
+void LEDControlMode::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+PROTOBUF_NOINLINE void LEDControlMode::Clear() {
+// @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.LEDControlMode)
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.mode_ = 0;
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* LEDControlMode::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 1, 0, 0, 2> LEDControlMode::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    1, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    1,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_LEDControlMode_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // .Nrmk.IndyFramework.LEDMode mode = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(LEDControlMode, _impl_.mode_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(LEDControlMode, _impl_.mode_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // .Nrmk.IndyFramework.LEDMode mode = 1;
+    {PROTOBUF_FIELD_OFFSET(LEDControlMode, _impl_.mode_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+
+::uint8_t* LEDControlMode::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.LEDControlMode)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // .Nrmk.IndyFramework.LEDMode mode = 1;
+  if (this->_internal_mode() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+        1, this->_internal_mode(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.LEDControlMode)
+  return target;
+}
+
+::size_t LEDControlMode::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.LEDControlMode)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // .Nrmk.IndyFramework.LEDMode mode = 1;
+  if (this->_internal_mode() != 0) {
+    total_size += 1 +
+                  ::_pbi::WireFormatLite::EnumSize(this->_internal_mode());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData LEDControlMode::_class_data_ = {
+    ::google::protobuf::Message::CopyWithSourceCheck,
+    LEDControlMode::MergeImpl
+};
+const ::google::protobuf::Message::ClassData*LEDControlMode::GetClassData() const { return &_class_data_; }
+
+
+void LEDControlMode::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<LEDControlMode*>(&to_msg);
+  auto& from = static_cast<const LEDControlMode&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.LEDControlMode)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from._internal_mode() != 0) {
+    _this->_internal_set_mode(from._internal_mode());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void LEDControlMode::CopyFrom(const LEDControlMode& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Nrmk.IndyFramework.LEDControlMode)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool LEDControlMode::IsInitialized() const {
+  return true;
+}
+
+void LEDControlMode::InternalSwap(LEDControlMode* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_.mode_, other->_impl_.mode_);
+}
+
+::google::protobuf::Metadata LEDControlMode::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_moby_5fmsgs_2eproto_getter, &descriptor_table_moby_5fmsgs_2eproto_once,
+      file_level_metadata_moby_5fmsgs_2eproto[29]);
 }
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace IndyFramework
