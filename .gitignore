@@ -10,3 +10,4 @@
 **/*.bak
 **/*.bk
 **/*.egg-info/
+**/tests/
