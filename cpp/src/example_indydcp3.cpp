@@ -421,7 +421,7 @@ void example_start_teleoperation(IndyDCP3& indy, TeleMethod method=TeleMethod::T
 }
 
 void example_move_joints_in_teleoperation(IndyDCP3& indy, const std::vector<float>& jpos) {
-    bool is_success = indy.movetelej(jpos, 1.0, 1.0, TeleMethod::TELE_JOINT_RELATIVE);
+    bool is_success = indy.movetelej(jpos, 0.8, 7.0, TeleMethod::TELE_JOINT_RELATIVE);
     if (is_success) {
         std::cout << "Joint positions moved successfully in teleoperation mode." << std::endl;
     } else {

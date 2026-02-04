@@ -238,13 +238,13 @@ class IndyDCP3
         bool stop_teleop();
 
         bool movetelej(const std::vector<float>& jpos, 
-                        const float vel_ratio=1.0, 
-                        const float acc_ratio=1.0,
+                        const float vel_ratio=0.8, 
+                        const float acc_ratio=7.0,
                         const TeleMethod method=TeleMethod::TELE_JOINT_ABSOLUTE);
 
         bool movetelel(const std::array<float, 6>& tpos, 
-                        const float vel_ratio=1.0, 
-                        const float acc_ratio=1.0,
+                        const float vel_ratio=0.8, 
+                        const float acc_ratio=7.0,
                         const TeleMethod method=TeleMethod::TELE_TASK_ABSOLUTE);
 
         //----------------------------------
