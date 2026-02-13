@@ -33,7 +33,7 @@ static constexpr ::_pbi::MigrationSchema* schemas = nullptr;
 static constexpr ::_pb::Message* const* file_default_instances = nullptr;
 const char descriptor_table_protodef_ethercat_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
     "\n\016ethercat.proto\022\022Nrmk.IndyFramework\032\023et"
-    "hercat_msgs.proto\032\021common_msgs.proto2\325\036\n"
+    "hercat_msgs.proto\032\021common_msgs.proto2\273 \n"
     "\010EtherCAT\022P\n\017SetMasterStatus\022 .Nrmk.Indy"
     "Framework.MasterStatus\032\031.Nrmk.IndyFramew"
     "ork.Empty\"\000\022P\n\017GetMasterStatus\022\031.Nrmk.In"
@@ -111,28 +111,34 @@ const char descriptor_table_protodef_ethercat_2eproto[] PROTOBUF_SECTION_VARIABL
     "work.DIOIndex\032$.Nrmk.IndyFramework.DIODi"
     "gitalOutput\"\000\022J\n\005SetDO\022$.Nrmk.IndyFramew"
     "ork.DIODigitalOutput\032\031.Nrmk.IndyFramewor"
-    "k.Empty\"\000\022Q\n\017GetMaxTorqueSDO\022\035.Nrmk.Indy"
-    "Framework.EcatIndex\032\035.Nrmk.IndyFramework"
-    ".SDOIntVal\"\000\022R\n\020GetProfileVelSDO\022\035.Nrmk."
-    "IndyFramework.EcatIndex\032\035.Nrmk.IndyFrame"
-    "work.SDOIntVal\"\000\022R\n\020GetProfileAccSDO\022\035.N"
-    "rmk.IndyFramework.EcatIndex\032\035.Nrmk.IndyF"
-    "ramework.SDOIntVal\"\000\022R\n\020GetProfileDecSDO"
-    "\022\035.Nrmk.IndyFramework.EcatIndex\032\035.Nrmk.I"
-    "ndyFramework.SDOIntVal\"\000\022N\n\017SetMaxTorque"
-    "SDO\022\036.Nrmk.IndyFramework.ServoParam\032\031.Nr"
-    "mk.IndyFramework.Empty\"\000\022O\n\020SetProfileVe"
-    "lSDO\022\036.Nrmk.IndyFramework.ServoParam\032\031.N"
-    "rmk.IndyFramework.Empty\"\000\022O\n\020SetProfileA"
-    "ccSDO\022\036.Nrmk.IndyFramework.ServoParam\032\031."
-    "Nrmk.IndyFramework.Empty\"\000\022O\n\020SetProfile"
-    "DecSDO\022\036.Nrmk.IndyFramework.ServoParam\032\031"
-    ".Nrmk.IndyFramework.Empty\"\000\022Y\n\021GetRobotZ"
-    "eroCount\022\036.Nrmk.IndyFramework.ServoIndex"
-    "\032\".Nrmk.IndyFramework.RobotZeroCount\"\000\022T"
-    "\n\025SetRobotZeroAsCurrent\022\036.Nrmk.IndyFrame"
-    "work.ServoIndex\032\031.Nrmk.IndyFramework.Emp"
-    "ty\"\000b\006proto3"
+    "k.Empty\"\000\022K\n\005GetAI\022\034.Nrmk.IndyFramework."
+    "AIOIndex\032\".Nrmk.IndyFramework.AIOAnalogI"
+    "nput\"\000\022L\n\005GetAO\022\034.Nrmk.IndyFramework.AIO"
+    "Index\032#.Nrmk.IndyFramework.AIOAnalogOutp"
+    "ut\"\000\022I\n\005SetAO\022#.Nrmk.IndyFramework.AIOAn"
+    "alogOutput\032\031.Nrmk.IndyFramework.Empty\"\000\022"
+    "Q\n\017GetMaxTorqueSDO\022\035.Nrmk.IndyFramework."
+    "EcatIndex\032\035.Nrmk.IndyFramework.SDOIntVal"
+    "\"\000\022R\n\020GetProfileVelSDO\022\035.Nrmk.IndyFramew"
+    "ork.EcatIndex\032\035.Nrmk.IndyFramework.SDOIn"
+    "tVal\"\000\022R\n\020GetProfileAccSDO\022\035.Nrmk.IndyFr"
+    "amework.EcatIndex\032\035.Nrmk.IndyFramework.S"
+    "DOIntVal\"\000\022R\n\020GetProfileDecSDO\022\035.Nrmk.In"
+    "dyFramework.EcatIndex\032\035.Nrmk.IndyFramewo"
+    "rk.SDOIntVal\"\000\022N\n\017SetMaxTorqueSDO\022\036.Nrmk"
+    ".IndyFramework.ServoParam\032\031.Nrmk.IndyFra"
+    "mework.Empty\"\000\022O\n\020SetProfileVelSDO\022\036.Nrm"
+    "k.IndyFramework.ServoParam\032\031.Nrmk.IndyFr"
+    "amework.Empty\"\000\022O\n\020SetProfileAccSDO\022\036.Nr"
+    "mk.IndyFramework.ServoParam\032\031.Nrmk.IndyF"
+    "ramework.Empty\"\000\022O\n\020SetProfileDecSDO\022\036.N"
+    "rmk.IndyFramework.ServoParam\032\031.Nrmk.Indy"
+    "Framework.Empty\"\000\022Y\n\021GetRobotZeroCount\022\036"
+    ".Nrmk.IndyFramework.ServoIndex\032\".Nrmk.In"
+    "dyFramework.RobotZeroCount\"\000\022T\n\025SetRobot"
+    "ZeroAsCurrent\022\036.Nrmk.IndyFramework.Servo"
+    "Index\032\031.Nrmk.IndyFramework.Empty\"\000b\006prot"
+    "o3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_ethercat_2eproto_deps[2] =
     {
@@ -143,7 +149,7 @@ static ::absl::once_flag descriptor_table_ethercat_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_ethercat_2eproto = {
     false,
     false,
-    4012,
+    4242,
     descriptor_table_protodef_ethercat_2eproto,
     "ethercat.proto",
     &descriptor_table_ethercat_2eproto_once,

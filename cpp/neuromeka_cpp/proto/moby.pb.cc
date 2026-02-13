@@ -33,7 +33,7 @@ static constexpr ::_pbi::MigrationSchema* schemas = nullptr;
 static constexpr ::_pb::Message* const* file_default_instances = nullptr;
 const char descriptor_table_protodef_moby_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
     "\n\nmoby.proto\022\022Nrmk.IndyFramework\032\017moby_m"
-    "sgs.proto\032\021common_msgs.proto2\345\026\n\004Moby\022J\n"
+    "sgs.proto\032\021common_msgs.proto2\357\031\n\004Moby\022J\n"
     "\014GetMobyState\022\031.Nrmk.IndyFramework.Empty"
     "\032\035.Nrmk.IndyFramework.MobyState\"\000\022T\n\021Get"
     "MobyErrorState\022\031.Nrmk.IndyFramework.Empt"
@@ -91,14 +91,20 @@ const char descriptor_table_protodef_moby_2eproto[] PROTOBUF_SECTION_VARIABLE(pr
     "rcedKinematicsData\032\031.Nrmk.IndyFramework."
     "Empty\"\000\022[\n\022GetForceKinematics\022\031.Nrmk.Ind"
     "yFramework.Empty\032(.Nrmk.IndyFramework.Fo"
-    "rcedKinematicsData\"\000\022G\n\013PauseBumper\022\033.Nr"
-    "mk.IndyFramework.BoolVal\032\031.Nrmk.IndyFram"
-    "ework.Empty\"\000\022J\n\016TurnLightOnOff\022\033.Nrmk.I"
-    "ndyFramework.BoolVal\032\031.Nrmk.IndyFramewor"
-    "k.Empty\"\000\022I\n\rTurnBuzzOnOff\022\033.Nrmk.IndyFr"
+    "rcedKinematicsData\"\000\022I\n\017MoveSteerToZero\022"
+    "\031.Nrmk.IndyFramework.Empty\032\031.Nrmk.IndyFr"
+    "amework.Empty\"\000\022G\n\013PauseBumper\022\033.Nrmk.In"
+    "dyFramework.BoolVal\032\031.Nrmk.IndyFramework"
+    ".Empty\"\000\022J\n\016TurnLightOnOff\022\033.Nrmk.IndyFr"
     "amework.BoolVal\032\031.Nrmk.IndyFramework.Emp"
-    "ty\"\000\022G\n\nSetExtraDO\022\034.Nrmk.IndyFramework."
-    "BoolVals\032\031.Nrmk.IndyFramework.Empty\"\000\022P\n"
+    "ty\"\000\022I\n\rTurnBuzzOnOff\022\033.Nrmk.IndyFramewo"
+    "rk.BoolVal\032\031.Nrmk.IndyFramework.Empty\"\000\022"
+    "G\n\nSetExtraDO\022\034.Nrmk.IndyFramework.BoolV"
+    "als\032\031.Nrmk.IndyFramework.Empty\"\000\022T\n\030Enab"
+    "leExternalLEDControl\022\033.Nrmk.IndyFramewor"
+    "k.BoolVal\032\031.Nrmk.IndyFramework.Empty\"\000\022M"
+    "\n\nSetLEDMode\022\".Nrmk.IndyFramework.LEDCon"
+    "trolMode\032\031.Nrmk.IndyFramework.Empty\"\000\022P\n"
     "\017SetControlParam\022 .Nrmk.IndyFramework.Ro"
     "tationGain\032\031.Nrmk.IndyFramework.Empty\"\000\022"
     "Q\n\017GetControlParam\022\032.Nrmk.IndyFramework."
@@ -106,7 +112,11 @@ const char descriptor_table_protodef_moby_2eproto[] PROTOBUF_SECTION_VARIABLE(pr
     "\"\000\022H\n\016StartRTLogging\022\031.Nrmk.IndyFramewor"
     "k.Empty\032\031.Nrmk.IndyFramework.Empty\"\000\022F\n\014"
     "EndRTLogging\022\031.Nrmk.IndyFramework.Empty\032"
-    "\031.Nrmk.IndyFramework.Empty\"\000b\006proto3"
+    "\031.Nrmk.IndyFramework.Empty\"\000\022K\n\020GetContr"
+    "olSource\022\031.Nrmk.IndyFramework.Empty\032\032.Nr"
+    "mk.IndyFramework.IntVal\"\000\022K\n\020SetControlS"
+    "ource\022\032.Nrmk.IndyFramework.IntVal\032\031.Nrmk"
+    ".IndyFramework.Empty\"\000b\006proto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_moby_2eproto_deps[2] =
     {
@@ -117,7 +127,7 @@ static ::absl::once_flag descriptor_table_moby_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_moby_2eproto = {
     false,
     false,
-    2996,
+    3390,
     descriptor_table_protodef_moby_2eproto,
     "moby.proto",
     &descriptor_table_moby_2eproto_once,

@@ -2019,21 +2019,25 @@ void example_set_do_config_list(IndyDCP3& indy) {
     do_config->set_state_code(2);
     do_config->set_state_name("ExampleState");
 
-    Nrmk::IndyFramework::DigitalSignal* on_signal1 = do_config->add_onsignals();
+    Nrmk::IndyFramework::DOChannelMode* on_signal1 = do_config->add_onsignals();
     on_signal1->set_address(1);
     on_signal1->set_state(Nrmk::IndyFramework::ON_STATE);
+    on_signal1->set_do_mode(Nrmk::IndyFramework::DOChannelMode::DO_STEADY);
 
-    Nrmk::IndyFramework::DigitalSignal* on_signal2 = do_config->add_onsignals();
+    Nrmk::IndyFramework::DOChannelMode* on_signal2 = do_config->add_onsignals();
     on_signal2->set_address(2);
     on_signal2->set_state(Nrmk::IndyFramework::OFF_STATE);
+    on_signal2->set_do_mode(Nrmk::IndyFramework::DOChannelMode::DO_STEADY);
 
-    Nrmk::IndyFramework::DigitalSignal* off_signal1 = do_config->add_offsignals();
+    Nrmk::IndyFramework::DOChannelMode* off_signal1 = do_config->add_offsignals();
     off_signal1->set_address(1);
     off_signal1->set_state(Nrmk::IndyFramework::ON_STATE);
+    off_signal1->set_do_mode(Nrmk::IndyFramework::DOChannelMode::DO_STEADY);
 
-    Nrmk::IndyFramework::DigitalSignal* off_signal2 = do_config->add_offsignals();
+    Nrmk::IndyFramework::DOChannelMode* off_signal2 = do_config->add_offsignals();
     off_signal2->set_address(2);
     off_signal2->set_state(Nrmk::IndyFramework::OFF_STATE);
+    off_signal2->set_do_mode(Nrmk::IndyFramework::DOChannelMode::DO_STEADY);
 
     bool is_success = indy.set_do_config_list(do_config_list);
     if (is_success) {

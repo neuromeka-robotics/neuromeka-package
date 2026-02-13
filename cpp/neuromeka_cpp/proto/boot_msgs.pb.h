@@ -204,9 +204,11 @@ class BootStatus final :
   enum : int {
     kEthercatUsedFieldNumber = 1,
     kSafetyUsedFieldNumber = 2,
+    kSafetyMcuFieldNumber = 3,
     kSafetyConnectedFieldNumber = 11,
     kMainPwRelayOnFieldNumber = 21,
     kSafetyPwRelayOnFieldNumber = 22,
+    kRobotPwSupplyOnFieldNumber = 23,
     kEthercatConnectedFieldNumber = 31,
     kControlOnFieldNumber = 100,
   };
@@ -228,6 +230,16 @@ class BootStatus final :
   private:
   bool _internal_safety_used() const;
   void _internal_set_safety_used(bool value);
+
+  public:
+  // bool safety_mcu = 3;
+  void clear_safety_mcu() ;
+  bool safety_mcu() const;
+  void set_safety_mcu(bool value);
+
+  private:
+  bool _internal_safety_mcu() const;
+  void _internal_set_safety_mcu(bool value);
 
   public:
   // bool safety_connected = 11;
@@ -260,6 +272,16 @@ class BootStatus final :
   void _internal_set_safety_pw_relay_on(bool value);
 
   public:
+  // bool robot_pw_supply_on = 23;
+  void clear_robot_pw_supply_on() ;
+  bool robot_pw_supply_on() const;
+  void set_robot_pw_supply_on(bool value);
+
+  private:
+  bool _internal_robot_pw_supply_on() const;
+  void _internal_set_robot_pw_supply_on(bool value);
+
+  public:
   // bool ethercat_connected = 31;
   void clear_ethercat_connected() ;
   bool ethercat_connected() const;
@@ -285,16 +307,18 @@ class BootStatus final :
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<3, 7, 0, 0, 7> _table_;
+  static const ::google::protobuf::internal::TcParseTable<4, 9, 0, 0, 7> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
     bool ethercat_used_;
     bool safety_used_;
+    bool safety_mcu_;
     bool safety_connected_;
     bool main_pw_relay_on_;
     bool safety_pw_relay_on_;
+    bool robot_pw_supply_on_;
     bool ethercat_connected_;
     bool control_on_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
@@ -364,6 +388,28 @@ inline void BootStatus::_internal_set_safety_used(bool value) {
   _impl_.safety_used_ = value;
 }
 
+// bool safety_mcu = 3;
+inline void BootStatus::clear_safety_mcu() {
+  _impl_.safety_mcu_ = false;
+}
+inline bool BootStatus::safety_mcu() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.BootStatus.safety_mcu)
+  return _internal_safety_mcu();
+}
+inline void BootStatus::set_safety_mcu(bool value) {
+  _internal_set_safety_mcu(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.BootStatus.safety_mcu)
+}
+inline bool BootStatus::_internal_safety_mcu() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.safety_mcu_;
+}
+inline void BootStatus::_internal_set_safety_mcu(bool value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.safety_mcu_ = value;
+}
+
 // bool safety_connected = 11;
 inline void BootStatus::clear_safety_connected() {
   _impl_.safety_connected_ = false;
@@ -428,6 +474,28 @@ inline void BootStatus::_internal_set_safety_pw_relay_on(bool value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.safety_pw_relay_on_ = value;
+}
+
+// bool robot_pw_supply_on = 23;
+inline void BootStatus::clear_robot_pw_supply_on() {
+  _impl_.robot_pw_supply_on_ = false;
+}
+inline bool BootStatus::robot_pw_supply_on() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.BootStatus.robot_pw_supply_on)
+  return _internal_robot_pw_supply_on();
+}
+inline void BootStatus::set_robot_pw_supply_on(bool value) {
+  _internal_set_robot_pw_supply_on(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.BootStatus.robot_pw_supply_on)
+}
+inline bool BootStatus::_internal_robot_pw_supply_on() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.robot_pw_supply_on_;
+}
+inline void BootStatus::_internal_set_robot_pw_supply_on(bool value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.robot_pw_supply_on_ = value;
 }
 
 // bool ethercat_connected = 31;

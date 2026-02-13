@@ -246,6 +246,13 @@ class Moby final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::ForcedKinematicsData>> PrepareAsyncGetForceKinematics(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::ForcedKinematicsData>>(PrepareAsyncGetForceKinematicsRaw(context, request, cq));
     }
+    virtual ::grpc::Status MoveSteerToZero(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::Empty* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Empty>> AsyncMoveSteerToZero(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Empty>>(AsyncMoveSteerToZeroRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Empty>> PrepareAsyncMoveSteerToZero(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Empty>>(PrepareAsyncMoveSteerToZeroRaw(context, request, cq));
+    }
     // Moby-Agri related commands
     virtual ::grpc::Status PauseBumper(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal& request, ::Nrmk::IndyFramework::Empty* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Empty>> AsyncPauseBumper(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal& request, ::grpc::CompletionQueue* cq) {
@@ -275,6 +282,24 @@ class Moby final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Empty>> PrepareAsyncSetExtraDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVals& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Empty>>(PrepareAsyncSetExtraDORaw(context, request, cq));
     }
+    // LED Control commands
+    virtual ::grpc::Status EnableExternalLEDControl(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal& request, ::Nrmk::IndyFramework::Empty* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Empty>> AsyncEnableExternalLEDControl(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Empty>>(AsyncEnableExternalLEDControlRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Empty>> PrepareAsyncEnableExternalLEDControl(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Empty>>(PrepareAsyncEnableExternalLEDControlRaw(context, request, cq));
+    }
+    virtual ::grpc::Status SetLEDMode(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::LEDControlMode& request, ::Nrmk::IndyFramework::Empty* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Empty>> AsyncSetLEDMode(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::LEDControlMode& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Empty>>(AsyncSetLEDModeRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Empty>> PrepareAsyncSetLEDMode(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::LEDControlMode& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Empty>>(PrepareAsyncSetLEDModeRaw(context, request, cq));
+    }
+    // rpc GetRobotZeroCount(Empty) returns (RobotZeroCount) {}
+    // rpc SetRobotZeroAsCurrent(Empty) returns (Empty) {}
+    //
     // Gain setting
     virtual ::grpc::Status SetControlParam(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::RotationGain& request, ::Nrmk::IndyFramework::Empty* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Empty>> AsyncSetControlParam(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::RotationGain& request, ::grpc::CompletionQueue* cq) {
@@ -304,6 +329,22 @@ class Moby final {
     }
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Empty>> PrepareAsyncEndRTLogging(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Empty>>(PrepareAsyncEndRTLoggingRaw(context, request, cq));
+    }
+    // Control source management - applied to SwerveDoubles
+    // 0=third-party, 1=nrmk
+    virtual ::grpc::Status GetControlSource(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::IntVal* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::IntVal>> AsyncGetControlSource(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::IntVal>>(AsyncGetControlSourceRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::IntVal>> PrepareAsyncGetControlSource(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::IntVal>>(PrepareAsyncGetControlSourceRaw(context, request, cq));
+    }
+    virtual ::grpc::Status SetControlSource(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::IntVal& request, ::Nrmk::IndyFramework::Empty* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Empty>> AsyncSetControlSource(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::IntVal& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Empty>>(AsyncSetControlSourceRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Empty>> PrepareAsyncSetControlSource(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::IntVal& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Empty>>(PrepareAsyncSetControlSourceRaw(context, request, cq));
     }
     class async_interface {
      public:
@@ -373,6 +414,8 @@ class Moby final {
       virtual void SetForceKinematics(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ForcedKinematicsData* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void GetForceKinematics(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ForcedKinematicsData* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetForceKinematics(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ForcedKinematicsData* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void MoveSteerToZero(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void MoveSteerToZero(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       // Moby-Agri related commands
       virtual void PauseBumper(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)>) = 0;
       virtual void PauseBumper(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
@@ -382,6 +425,14 @@ class Moby final {
       virtual void TurnBuzzOnOff(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void SetExtraDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVals* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)>) = 0;
       virtual void SetExtraDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVals* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // LED Control commands
+      virtual void EnableExternalLEDControl(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void EnableExternalLEDControl(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void SetLEDMode(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::LEDControlMode* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void SetLEDMode(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::LEDControlMode* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // rpc GetRobotZeroCount(Empty) returns (RobotZeroCount) {}
+      // rpc SetRobotZeroAsCurrent(Empty) returns (Empty) {}
+      //
       // Gain setting
       virtual void SetControlParam(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::RotationGain* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)>) = 0;
       virtual void SetControlParam(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::RotationGain* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
@@ -392,6 +443,12 @@ class Moby final {
       virtual void StartRTLogging(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void EndRTLogging(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)>) = 0;
       virtual void EndRTLogging(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // Control source management - applied to SwerveDoubles
+      // 0=third-party, 1=nrmk
+      virtual void GetControlSource(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::IntVal* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetControlSource(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::IntVal* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void SetControlSource(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::IntVal* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void SetControlSource(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::IntVal* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
@@ -455,6 +512,8 @@ class Moby final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Empty>* PrepareAsyncSetForceKinematicsRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ForcedKinematicsData& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::ForcedKinematicsData>* AsyncGetForceKinematicsRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::ForcedKinematicsData>* PrepareAsyncGetForceKinematicsRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Empty>* AsyncMoveSteerToZeroRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Empty>* PrepareAsyncMoveSteerToZeroRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Empty>* AsyncPauseBumperRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Empty>* PrepareAsyncPauseBumperRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Empty>* AsyncTurnLightOnOffRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal& request, ::grpc::CompletionQueue* cq) = 0;
@@ -463,6 +522,10 @@ class Moby final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Empty>* PrepareAsyncTurnBuzzOnOffRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Empty>* AsyncSetExtraDORaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVals& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Empty>* PrepareAsyncSetExtraDORaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVals& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Empty>* AsyncEnableExternalLEDControlRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Empty>* PrepareAsyncEnableExternalLEDControlRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Empty>* AsyncSetLEDModeRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::LEDControlMode& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Empty>* PrepareAsyncSetLEDModeRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::LEDControlMode& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Empty>* AsyncSetControlParamRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::RotationGain& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Empty>* PrepareAsyncSetControlParamRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::RotationGain& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::RotationGain>* AsyncGetControlParamRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::IntVal& request, ::grpc::CompletionQueue* cq) = 0;
@@ -471,6 +534,10 @@ class Moby final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Empty>* PrepareAsyncStartRTLoggingRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Empty>* AsyncEndRTLoggingRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Empty>* PrepareAsyncEndRTLoggingRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::IntVal>* AsyncGetControlSourceRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::IntVal>* PrepareAsyncGetControlSourceRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Empty>* AsyncSetControlSourceRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::IntVal& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Empty>* PrepareAsyncSetControlSourceRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::IntVal& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -678,6 +745,13 @@ class Moby final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ForcedKinematicsData>> PrepareAsyncGetForceKinematics(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ForcedKinematicsData>>(PrepareAsyncGetForceKinematicsRaw(context, request, cq));
     }
+    ::grpc::Status MoveSteerToZero(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::Empty* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>> AsyncMoveSteerToZero(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>>(AsyncMoveSteerToZeroRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>> PrepareAsyncMoveSteerToZero(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>>(PrepareAsyncMoveSteerToZeroRaw(context, request, cq));
+    }
     ::grpc::Status PauseBumper(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal& request, ::Nrmk::IndyFramework::Empty* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>> AsyncPauseBumper(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>>(AsyncPauseBumperRaw(context, request, cq));
@@ -706,6 +780,20 @@ class Moby final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>> PrepareAsyncSetExtraDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVals& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>>(PrepareAsyncSetExtraDORaw(context, request, cq));
     }
+    ::grpc::Status EnableExternalLEDControl(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal& request, ::Nrmk::IndyFramework::Empty* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>> AsyncEnableExternalLEDControl(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>>(AsyncEnableExternalLEDControlRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>> PrepareAsyncEnableExternalLEDControl(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>>(PrepareAsyncEnableExternalLEDControlRaw(context, request, cq));
+    }
+    ::grpc::Status SetLEDMode(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::LEDControlMode& request, ::Nrmk::IndyFramework::Empty* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>> AsyncSetLEDMode(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::LEDControlMode& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>>(AsyncSetLEDModeRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>> PrepareAsyncSetLEDMode(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::LEDControlMode& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>>(PrepareAsyncSetLEDModeRaw(context, request, cq));
+    }
     ::grpc::Status SetControlParam(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::RotationGain& request, ::Nrmk::IndyFramework::Empty* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>> AsyncSetControlParam(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::RotationGain& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>>(AsyncSetControlParamRaw(context, request, cq));
@@ -733,6 +821,20 @@ class Moby final {
     }
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>> PrepareAsyncEndRTLogging(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>>(PrepareAsyncEndRTLoggingRaw(context, request, cq));
+    }
+    ::grpc::Status GetControlSource(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::IntVal* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::IntVal>> AsyncGetControlSource(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::IntVal>>(AsyncGetControlSourceRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::IntVal>> PrepareAsyncGetControlSource(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::IntVal>>(PrepareAsyncGetControlSourceRaw(context, request, cq));
+    }
+    ::grpc::Status SetControlSource(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::IntVal& request, ::Nrmk::IndyFramework::Empty* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>> AsyncSetControlSource(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::IntVal& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>>(AsyncSetControlSourceRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>> PrepareAsyncSetControlSource(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::IntVal& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>>(PrepareAsyncSetControlSourceRaw(context, request, cq));
     }
     class async final :
       public StubInterface::async_interface {
@@ -795,6 +897,8 @@ class Moby final {
       void SetForceKinematics(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ForcedKinematicsData* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
       void GetForceKinematics(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ForcedKinematicsData* response, std::function<void(::grpc::Status)>) override;
       void GetForceKinematics(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ForcedKinematicsData* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void MoveSteerToZero(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)>) override;
+      void MoveSteerToZero(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
       void PauseBumper(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)>) override;
       void PauseBumper(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
       void TurnLightOnOff(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)>) override;
@@ -803,6 +907,10 @@ class Moby final {
       void TurnBuzzOnOff(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
       void SetExtraDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVals* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)>) override;
       void SetExtraDO(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVals* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void EnableExternalLEDControl(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)>) override;
+      void EnableExternalLEDControl(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void SetLEDMode(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::LEDControlMode* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)>) override;
+      void SetLEDMode(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::LEDControlMode* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
       void SetControlParam(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::RotationGain* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)>) override;
       void SetControlParam(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::RotationGain* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
       void GetControlParam(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::IntVal* request, ::Nrmk::IndyFramework::RotationGain* response, std::function<void(::grpc::Status)>) override;
@@ -811,6 +919,10 @@ class Moby final {
       void StartRTLogging(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
       void EndRTLogging(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)>) override;
       void EndRTLogging(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void GetControlSource(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::IntVal* response, std::function<void(::grpc::Status)>) override;
+      void GetControlSource(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::IntVal* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void SetControlSource(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::IntVal* request, ::Nrmk::IndyFramework::Empty* response, std::function<void(::grpc::Status)>) override;
+      void SetControlSource(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::IntVal* request, ::Nrmk::IndyFramework::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -880,6 +992,8 @@ class Moby final {
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* PrepareAsyncSetForceKinematicsRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ForcedKinematicsData& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ForcedKinematicsData>* AsyncGetForceKinematicsRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ForcedKinematicsData>* PrepareAsyncGetForceKinematicsRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* AsyncMoveSteerToZeroRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* PrepareAsyncMoveSteerToZeroRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* AsyncPauseBumperRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* PrepareAsyncPauseBumperRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* AsyncTurnLightOnOffRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal& request, ::grpc::CompletionQueue* cq) override;
@@ -888,6 +1002,10 @@ class Moby final {
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* PrepareAsyncTurnBuzzOnOffRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* AsyncSetExtraDORaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVals& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* PrepareAsyncSetExtraDORaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVals& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* AsyncEnableExternalLEDControlRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* PrepareAsyncEnableExternalLEDControlRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::BoolVal& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* AsyncSetLEDModeRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::LEDControlMode& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* PrepareAsyncSetLEDModeRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::LEDControlMode& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* AsyncSetControlParamRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::RotationGain& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* PrepareAsyncSetControlParamRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::RotationGain& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::RotationGain>* AsyncGetControlParamRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::IntVal& request, ::grpc::CompletionQueue* cq) override;
@@ -896,6 +1014,10 @@ class Moby final {
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* PrepareAsyncStartRTLoggingRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* AsyncEndRTLoggingRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* PrepareAsyncEndRTLoggingRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::IntVal>* AsyncGetControlSourceRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::IntVal>* PrepareAsyncGetControlSourceRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* AsyncSetControlSourceRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::IntVal& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Empty>* PrepareAsyncSetControlSourceRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::IntVal& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_GetMobyState_;
     const ::grpc::internal::RpcMethod rpcmethod_GetMobyErrorState_;
     const ::grpc::internal::RpcMethod rpcmethod_Recover_;
@@ -925,14 +1047,19 @@ class Moby final {
     const ::grpc::internal::RpcMethod rpcmethod_SetRotationControllerType_;
     const ::grpc::internal::RpcMethod rpcmethod_SetForceKinematics_;
     const ::grpc::internal::RpcMethod rpcmethod_GetForceKinematics_;
+    const ::grpc::internal::RpcMethod rpcmethod_MoveSteerToZero_;
     const ::grpc::internal::RpcMethod rpcmethod_PauseBumper_;
     const ::grpc::internal::RpcMethod rpcmethod_TurnLightOnOff_;
     const ::grpc::internal::RpcMethod rpcmethod_TurnBuzzOnOff_;
     const ::grpc::internal::RpcMethod rpcmethod_SetExtraDO_;
+    const ::grpc::internal::RpcMethod rpcmethod_EnableExternalLEDControl_;
+    const ::grpc::internal::RpcMethod rpcmethod_SetLEDMode_;
     const ::grpc::internal::RpcMethod rpcmethod_SetControlParam_;
     const ::grpc::internal::RpcMethod rpcmethod_GetControlParam_;
     const ::grpc::internal::RpcMethod rpcmethod_StartRTLogging_;
     const ::grpc::internal::RpcMethod rpcmethod_EndRTLogging_;
+    const ::grpc::internal::RpcMethod rpcmethod_GetControlSource_;
+    const ::grpc::internal::RpcMethod rpcmethod_SetControlSource_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -976,17 +1103,28 @@ class Moby final {
     virtual ::grpc::Status SetRotationControllerType(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::IntVal* request, ::Nrmk::IndyFramework::Empty* response);
     virtual ::grpc::Status SetForceKinematics(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::ForcedKinematicsData* request, ::Nrmk::IndyFramework::Empty* response);
     virtual ::grpc::Status GetForceKinematics(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ForcedKinematicsData* response);
+    virtual ::grpc::Status MoveSteerToZero(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::Empty* response);
     // Moby-Agri related commands
     virtual ::grpc::Status PauseBumper(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::BoolVal* request, ::Nrmk::IndyFramework::Empty* response);
     virtual ::grpc::Status TurnLightOnOff(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::BoolVal* request, ::Nrmk::IndyFramework::Empty* response);
     virtual ::grpc::Status TurnBuzzOnOff(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::BoolVal* request, ::Nrmk::IndyFramework::Empty* response);
     virtual ::grpc::Status SetExtraDO(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::BoolVals* request, ::Nrmk::IndyFramework::Empty* response);
+    // LED Control commands
+    virtual ::grpc::Status EnableExternalLEDControl(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::BoolVal* request, ::Nrmk::IndyFramework::Empty* response);
+    virtual ::grpc::Status SetLEDMode(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::LEDControlMode* request, ::Nrmk::IndyFramework::Empty* response);
+    // rpc GetRobotZeroCount(Empty) returns (RobotZeroCount) {}
+    // rpc SetRobotZeroAsCurrent(Empty) returns (Empty) {}
+    //
     // Gain setting
     virtual ::grpc::Status SetControlParam(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::RotationGain* request, ::Nrmk::IndyFramework::Empty* response);
     virtual ::grpc::Status GetControlParam(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::IntVal* request, ::Nrmk::IndyFramework::RotationGain* response);
     // Data logging
     virtual ::grpc::Status StartRTLogging(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::Empty* response);
     virtual ::grpc::Status EndRTLogging(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::Empty* response);
+    // Control source management - applied to SwerveDoubles
+    // 0=third-party, 1=nrmk
+    virtual ::grpc::Status GetControlSource(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::IntVal* response);
+    virtual ::grpc::Status SetControlSource(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::IntVal* request, ::Nrmk::IndyFramework::Empty* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_GetMobyState : public BaseClass {
@@ -1569,12 +1707,32 @@ class Moby final {
     }
   };
   template <class BaseClass>
+  class WithAsyncMethod_MoveSteerToZero : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_MoveSteerToZero() {
+      ::grpc::Service::MarkMethodAsync(29);
+    }
+    ~WithAsyncMethod_MoveSteerToZero() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status MoveSteerToZero(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestMoveSteerToZero(::grpc::ServerContext* context, ::Nrmk::IndyFramework::Empty* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(29, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithAsyncMethod_PauseBumper : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_PauseBumper() {
-      ::grpc::Service::MarkMethodAsync(29);
+      ::grpc::Service::MarkMethodAsync(30);
     }
     ~WithAsyncMethod_PauseBumper() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1585,7 +1743,7 @@ class Moby final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPauseBumper(::grpc::ServerContext* context, ::Nrmk::IndyFramework::BoolVal* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(29, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(30, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1594,7 +1752,7 @@ class Moby final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_TurnLightOnOff() {
-      ::grpc::Service::MarkMethodAsync(30);
+      ::grpc::Service::MarkMethodAsync(31);
     }
     ~WithAsyncMethod_TurnLightOnOff() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1605,7 +1763,7 @@ class Moby final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestTurnLightOnOff(::grpc::ServerContext* context, ::Nrmk::IndyFramework::BoolVal* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(30, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(31, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1614,7 +1772,7 @@ class Moby final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_TurnBuzzOnOff() {
-      ::grpc::Service::MarkMethodAsync(31);
+      ::grpc::Service::MarkMethodAsync(32);
     }
     ~WithAsyncMethod_TurnBuzzOnOff() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1625,7 +1783,7 @@ class Moby final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestTurnBuzzOnOff(::grpc::ServerContext* context, ::Nrmk::IndyFramework::BoolVal* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(31, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(32, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1634,7 +1792,7 @@ class Moby final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_SetExtraDO() {
-      ::grpc::Service::MarkMethodAsync(32);
+      ::grpc::Service::MarkMethodAsync(33);
     }
     ~WithAsyncMethod_SetExtraDO() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1645,7 +1803,47 @@ class Moby final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestSetExtraDO(::grpc::ServerContext* context, ::Nrmk::IndyFramework::BoolVals* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(32, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(33, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_EnableExternalLEDControl : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_EnableExternalLEDControl() {
+      ::grpc::Service::MarkMethodAsync(34);
+    }
+    ~WithAsyncMethod_EnableExternalLEDControl() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status EnableExternalLEDControl(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::BoolVal* /*request*/, ::Nrmk::IndyFramework::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestEnableExternalLEDControl(::grpc::ServerContext* context, ::Nrmk::IndyFramework::BoolVal* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(34, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_SetLEDMode : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_SetLEDMode() {
+      ::grpc::Service::MarkMethodAsync(35);
+    }
+    ~WithAsyncMethod_SetLEDMode() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetLEDMode(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::LEDControlMode* /*request*/, ::Nrmk::IndyFramework::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSetLEDMode(::grpc::ServerContext* context, ::Nrmk::IndyFramework::LEDControlMode* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(35, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1654,7 +1852,7 @@ class Moby final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_SetControlParam() {
-      ::grpc::Service::MarkMethodAsync(33);
+      ::grpc::Service::MarkMethodAsync(36);
     }
     ~WithAsyncMethod_SetControlParam() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1665,7 +1863,7 @@ class Moby final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestSetControlParam(::grpc::ServerContext* context, ::Nrmk::IndyFramework::RotationGain* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(33, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(36, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1674,7 +1872,7 @@ class Moby final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetControlParam() {
-      ::grpc::Service::MarkMethodAsync(34);
+      ::grpc::Service::MarkMethodAsync(37);
     }
     ~WithAsyncMethod_GetControlParam() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1685,7 +1883,7 @@ class Moby final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetControlParam(::grpc::ServerContext* context, ::Nrmk::IndyFramework::IntVal* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::RotationGain>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(34, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(37, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1694,7 +1892,7 @@ class Moby final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_StartRTLogging() {
-      ::grpc::Service::MarkMethodAsync(35);
+      ::grpc::Service::MarkMethodAsync(38);
     }
     ~WithAsyncMethod_StartRTLogging() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1705,7 +1903,7 @@ class Moby final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestStartRTLogging(::grpc::ServerContext* context, ::Nrmk::IndyFramework::Empty* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(35, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(38, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1714,7 +1912,7 @@ class Moby final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_EndRTLogging() {
-      ::grpc::Service::MarkMethodAsync(36);
+      ::grpc::Service::MarkMethodAsync(39);
     }
     ~WithAsyncMethod_EndRTLogging() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1725,10 +1923,50 @@ class Moby final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestEndRTLogging(::grpc::ServerContext* context, ::Nrmk::IndyFramework::Empty* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(36, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(39, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_GetMobyState<WithAsyncMethod_GetMobyErrorState<WithAsyncMethod_Recover<WithAsyncMethod_GetMobyPose<WithAsyncMethod_GetMobyVel<WithAsyncMethod_ResetMobyPose<WithAsyncMethod_GetRotationAngleDeg<WithAsyncMethod_GetDriveSpeed<WithAsyncMethod_GetTargetVel<WithAsyncMethod_GetRotationZeroCount<WithAsyncMethod_GetGyroData<WithAsyncMethod_ResetGyroSensor<WithAsyncMethod_UseGyroForOdom<WithAsyncMethod_GetGyroFullData<WithAsyncMethod_GetIRSensorData<WithAsyncMethod_GetUSSensorData<WithAsyncMethod_GetBMSData<WithAsyncMethod_SetStepControl<WithAsyncMethod_StopMotion<WithAsyncMethod_SetRotationAngleDeg<WithAsyncMethod_DriveWheel<WithAsyncMethod_SetZeroPosAsCurrentPos<WithAsyncMethod_SetRotationVelAcc<WithAsyncMethod_SetRotationInterpolator<WithAsyncMethod_SetDriveAccDec<WithAsyncMethod_SetDriveInterpolatorOnOff<WithAsyncMethod_SetRotationControllerType<WithAsyncMethod_SetForceKinematics<WithAsyncMethod_GetForceKinematics<WithAsyncMethod_PauseBumper<WithAsyncMethod_TurnLightOnOff<WithAsyncMethod_TurnBuzzOnOff<WithAsyncMethod_SetExtraDO<WithAsyncMethod_SetControlParam<WithAsyncMethod_GetControlParam<WithAsyncMethod_StartRTLogging<WithAsyncMethod_EndRTLogging<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_GetControlSource : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_GetControlSource() {
+      ::grpc::Service::MarkMethodAsync(40);
+    }
+    ~WithAsyncMethod_GetControlSource() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetControlSource(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::IntVal* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetControlSource(::grpc::ServerContext* context, ::Nrmk::IndyFramework::Empty* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::IntVal>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(40, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_SetControlSource : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_SetControlSource() {
+      ::grpc::Service::MarkMethodAsync(41);
+    }
+    ~WithAsyncMethod_SetControlSource() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetControlSource(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::IntVal* /*request*/, ::Nrmk::IndyFramework::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSetControlSource(::grpc::ServerContext* context, ::Nrmk::IndyFramework::IntVal* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(41, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_GetMobyState<WithAsyncMethod_GetMobyErrorState<WithAsyncMethod_Recover<WithAsyncMethod_GetMobyPose<WithAsyncMethod_GetMobyVel<WithAsyncMethod_ResetMobyPose<WithAsyncMethod_GetRotationAngleDeg<WithAsyncMethod_GetDriveSpeed<WithAsyncMethod_GetTargetVel<WithAsyncMethod_GetRotationZeroCount<WithAsyncMethod_GetGyroData<WithAsyncMethod_ResetGyroSensor<WithAsyncMethod_UseGyroForOdom<WithAsyncMethod_GetGyroFullData<WithAsyncMethod_GetIRSensorData<WithAsyncMethod_GetUSSensorData<WithAsyncMethod_GetBMSData<WithAsyncMethod_SetStepControl<WithAsyncMethod_StopMotion<WithAsyncMethod_SetRotationAngleDeg<WithAsyncMethod_DriveWheel<WithAsyncMethod_SetZeroPosAsCurrentPos<WithAsyncMethod_SetRotationVelAcc<WithAsyncMethod_SetRotationInterpolator<WithAsyncMethod_SetDriveAccDec<WithAsyncMethod_SetDriveInterpolatorOnOff<WithAsyncMethod_SetRotationControllerType<WithAsyncMethod_SetForceKinematics<WithAsyncMethod_GetForceKinematics<WithAsyncMethod_MoveSteerToZero<WithAsyncMethod_PauseBumper<WithAsyncMethod_TurnLightOnOff<WithAsyncMethod_TurnBuzzOnOff<WithAsyncMethod_SetExtraDO<WithAsyncMethod_EnableExternalLEDControl<WithAsyncMethod_SetLEDMode<WithAsyncMethod_SetControlParam<WithAsyncMethod_GetControlParam<WithAsyncMethod_StartRTLogging<WithAsyncMethod_EndRTLogging<WithAsyncMethod_GetControlSource<WithAsyncMethod_SetControlSource<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_GetMobyState : public BaseClass {
    private:
@@ -2513,18 +2751,45 @@ class Moby final {
       ::grpc::CallbackServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::ForcedKinematicsData* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
+  class WithCallbackMethod_MoveSteerToZero : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_MoveSteerToZero() {
+      ::grpc::Service::MarkMethodCallback(29,
+          new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Empty>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::Empty* response) { return this->MoveSteerToZero(context, request, response); }));}
+    void SetMessageAllocatorFor_MoveSteerToZero(
+        ::grpc::MessageAllocator< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Empty>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(29);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Empty>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_MoveSteerToZero() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status MoveSteerToZero(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* MoveSteerToZero(
+      ::grpc::CallbackServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::Empty* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
   class WithCallbackMethod_PauseBumper : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_PauseBumper() {
-      ::grpc::Service::MarkMethodCallback(29,
+      ::grpc::Service::MarkMethodCallback(30,
           new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::BoolVal, ::Nrmk::IndyFramework::Empty>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::BoolVal* request, ::Nrmk::IndyFramework::Empty* response) { return this->PauseBumper(context, request, response); }));}
     void SetMessageAllocatorFor_PauseBumper(
         ::grpc::MessageAllocator< ::Nrmk::IndyFramework::BoolVal, ::Nrmk::IndyFramework::Empty>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(29);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(30);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::BoolVal, ::Nrmk::IndyFramework::Empty>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -2545,13 +2810,13 @@ class Moby final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_TurnLightOnOff() {
-      ::grpc::Service::MarkMethodCallback(30,
+      ::grpc::Service::MarkMethodCallback(31,
           new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::BoolVal, ::Nrmk::IndyFramework::Empty>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::BoolVal* request, ::Nrmk::IndyFramework::Empty* response) { return this->TurnLightOnOff(context, request, response); }));}
     void SetMessageAllocatorFor_TurnLightOnOff(
         ::grpc::MessageAllocator< ::Nrmk::IndyFramework::BoolVal, ::Nrmk::IndyFramework::Empty>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(30);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(31);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::BoolVal, ::Nrmk::IndyFramework::Empty>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -2572,13 +2837,13 @@ class Moby final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_TurnBuzzOnOff() {
-      ::grpc::Service::MarkMethodCallback(31,
+      ::grpc::Service::MarkMethodCallback(32,
           new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::BoolVal, ::Nrmk::IndyFramework::Empty>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::BoolVal* request, ::Nrmk::IndyFramework::Empty* response) { return this->TurnBuzzOnOff(context, request, response); }));}
     void SetMessageAllocatorFor_TurnBuzzOnOff(
         ::grpc::MessageAllocator< ::Nrmk::IndyFramework::BoolVal, ::Nrmk::IndyFramework::Empty>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(31);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(32);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::BoolVal, ::Nrmk::IndyFramework::Empty>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -2599,13 +2864,13 @@ class Moby final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_SetExtraDO() {
-      ::grpc::Service::MarkMethodCallback(32,
+      ::grpc::Service::MarkMethodCallback(33,
           new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::BoolVals, ::Nrmk::IndyFramework::Empty>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::BoolVals* request, ::Nrmk::IndyFramework::Empty* response) { return this->SetExtraDO(context, request, response); }));}
     void SetMessageAllocatorFor_SetExtraDO(
         ::grpc::MessageAllocator< ::Nrmk::IndyFramework::BoolVals, ::Nrmk::IndyFramework::Empty>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(32);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(33);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::BoolVals, ::Nrmk::IndyFramework::Empty>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -2621,18 +2886,72 @@ class Moby final {
       ::grpc::CallbackServerContext* /*context*/, const ::Nrmk::IndyFramework::BoolVals* /*request*/, ::Nrmk::IndyFramework::Empty* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
+  class WithCallbackMethod_EnableExternalLEDControl : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_EnableExternalLEDControl() {
+      ::grpc::Service::MarkMethodCallback(34,
+          new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::BoolVal, ::Nrmk::IndyFramework::Empty>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::BoolVal* request, ::Nrmk::IndyFramework::Empty* response) { return this->EnableExternalLEDControl(context, request, response); }));}
+    void SetMessageAllocatorFor_EnableExternalLEDControl(
+        ::grpc::MessageAllocator< ::Nrmk::IndyFramework::BoolVal, ::Nrmk::IndyFramework::Empty>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(34);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::BoolVal, ::Nrmk::IndyFramework::Empty>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_EnableExternalLEDControl() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status EnableExternalLEDControl(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::BoolVal* /*request*/, ::Nrmk::IndyFramework::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* EnableExternalLEDControl(
+      ::grpc::CallbackServerContext* /*context*/, const ::Nrmk::IndyFramework::BoolVal* /*request*/, ::Nrmk::IndyFramework::Empty* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_SetLEDMode : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_SetLEDMode() {
+      ::grpc::Service::MarkMethodCallback(35,
+          new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::LEDControlMode, ::Nrmk::IndyFramework::Empty>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::LEDControlMode* request, ::Nrmk::IndyFramework::Empty* response) { return this->SetLEDMode(context, request, response); }));}
+    void SetMessageAllocatorFor_SetLEDMode(
+        ::grpc::MessageAllocator< ::Nrmk::IndyFramework::LEDControlMode, ::Nrmk::IndyFramework::Empty>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(35);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::LEDControlMode, ::Nrmk::IndyFramework::Empty>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_SetLEDMode() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetLEDMode(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::LEDControlMode* /*request*/, ::Nrmk::IndyFramework::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* SetLEDMode(
+      ::grpc::CallbackServerContext* /*context*/, const ::Nrmk::IndyFramework::LEDControlMode* /*request*/, ::Nrmk::IndyFramework::Empty* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
   class WithCallbackMethod_SetControlParam : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_SetControlParam() {
-      ::grpc::Service::MarkMethodCallback(33,
+      ::grpc::Service::MarkMethodCallback(36,
           new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::RotationGain, ::Nrmk::IndyFramework::Empty>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::RotationGain* request, ::Nrmk::IndyFramework::Empty* response) { return this->SetControlParam(context, request, response); }));}
     void SetMessageAllocatorFor_SetControlParam(
         ::grpc::MessageAllocator< ::Nrmk::IndyFramework::RotationGain, ::Nrmk::IndyFramework::Empty>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(33);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(36);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::RotationGain, ::Nrmk::IndyFramework::Empty>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -2653,13 +2972,13 @@ class Moby final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetControlParam() {
-      ::grpc::Service::MarkMethodCallback(34,
+      ::grpc::Service::MarkMethodCallback(37,
           new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::IntVal, ::Nrmk::IndyFramework::RotationGain>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::IntVal* request, ::Nrmk::IndyFramework::RotationGain* response) { return this->GetControlParam(context, request, response); }));}
     void SetMessageAllocatorFor_GetControlParam(
         ::grpc::MessageAllocator< ::Nrmk::IndyFramework::IntVal, ::Nrmk::IndyFramework::RotationGain>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(34);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(37);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::IntVal, ::Nrmk::IndyFramework::RotationGain>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -2680,13 +2999,13 @@ class Moby final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_StartRTLogging() {
-      ::grpc::Service::MarkMethodCallback(35,
+      ::grpc::Service::MarkMethodCallback(38,
           new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Empty>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::Empty* response) { return this->StartRTLogging(context, request, response); }));}
     void SetMessageAllocatorFor_StartRTLogging(
         ::grpc::MessageAllocator< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Empty>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(35);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(38);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Empty>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -2707,13 +3026,13 @@ class Moby final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_EndRTLogging() {
-      ::grpc::Service::MarkMethodCallback(36,
+      ::grpc::Service::MarkMethodCallback(39,
           new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Empty>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::Empty* response) { return this->EndRTLogging(context, request, response); }));}
     void SetMessageAllocatorFor_EndRTLogging(
         ::grpc::MessageAllocator< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Empty>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(36);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(39);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Empty>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -2728,7 +3047,61 @@ class Moby final {
     virtual ::grpc::ServerUnaryReactor* EndRTLogging(
       ::grpc::CallbackServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::Empty* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_GetMobyState<WithCallbackMethod_GetMobyErrorState<WithCallbackMethod_Recover<WithCallbackMethod_GetMobyPose<WithCallbackMethod_GetMobyVel<WithCallbackMethod_ResetMobyPose<WithCallbackMethod_GetRotationAngleDeg<WithCallbackMethod_GetDriveSpeed<WithCallbackMethod_GetTargetVel<WithCallbackMethod_GetRotationZeroCount<WithCallbackMethod_GetGyroData<WithCallbackMethod_ResetGyroSensor<WithCallbackMethod_UseGyroForOdom<WithCallbackMethod_GetGyroFullData<WithCallbackMethod_GetIRSensorData<WithCallbackMethod_GetUSSensorData<WithCallbackMethod_GetBMSData<WithCallbackMethod_SetStepControl<WithCallbackMethod_StopMotion<WithCallbackMethod_SetRotationAngleDeg<WithCallbackMethod_DriveWheel<WithCallbackMethod_SetZeroPosAsCurrentPos<WithCallbackMethod_SetRotationVelAcc<WithCallbackMethod_SetRotationInterpolator<WithCallbackMethod_SetDriveAccDec<WithCallbackMethod_SetDriveInterpolatorOnOff<WithCallbackMethod_SetRotationControllerType<WithCallbackMethod_SetForceKinematics<WithCallbackMethod_GetForceKinematics<WithCallbackMethod_PauseBumper<WithCallbackMethod_TurnLightOnOff<WithCallbackMethod_TurnBuzzOnOff<WithCallbackMethod_SetExtraDO<WithCallbackMethod_SetControlParam<WithCallbackMethod_GetControlParam<WithCallbackMethod_StartRTLogging<WithCallbackMethod_EndRTLogging<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > CallbackService;
+  template <class BaseClass>
+  class WithCallbackMethod_GetControlSource : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_GetControlSource() {
+      ::grpc::Service::MarkMethodCallback(40,
+          new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::IntVal>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::IntVal* response) { return this->GetControlSource(context, request, response); }));}
+    void SetMessageAllocatorFor_GetControlSource(
+        ::grpc::MessageAllocator< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::IntVal>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(40);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::IntVal>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_GetControlSource() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetControlSource(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::IntVal* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GetControlSource(
+      ::grpc::CallbackServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::IntVal* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_SetControlSource : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_SetControlSource() {
+      ::grpc::Service::MarkMethodCallback(41,
+          new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::IntVal, ::Nrmk::IndyFramework::Empty>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::IntVal* request, ::Nrmk::IndyFramework::Empty* response) { return this->SetControlSource(context, request, response); }));}
+    void SetMessageAllocatorFor_SetControlSource(
+        ::grpc::MessageAllocator< ::Nrmk::IndyFramework::IntVal, ::Nrmk::IndyFramework::Empty>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(41);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::IntVal, ::Nrmk::IndyFramework::Empty>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_SetControlSource() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetControlSource(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::IntVal* /*request*/, ::Nrmk::IndyFramework::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* SetControlSource(
+      ::grpc::CallbackServerContext* /*context*/, const ::Nrmk::IndyFramework::IntVal* /*request*/, ::Nrmk::IndyFramework::Empty* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_GetMobyState<WithCallbackMethod_GetMobyErrorState<WithCallbackMethod_Recover<WithCallbackMethod_GetMobyPose<WithCallbackMethod_GetMobyVel<WithCallbackMethod_ResetMobyPose<WithCallbackMethod_GetRotationAngleDeg<WithCallbackMethod_GetDriveSpeed<WithCallbackMethod_GetTargetVel<WithCallbackMethod_GetRotationZeroCount<WithCallbackMethod_GetGyroData<WithCallbackMethod_ResetGyroSensor<WithCallbackMethod_UseGyroForOdom<WithCallbackMethod_GetGyroFullData<WithCallbackMethod_GetIRSensorData<WithCallbackMethod_GetUSSensorData<WithCallbackMethod_GetBMSData<WithCallbackMethod_SetStepControl<WithCallbackMethod_StopMotion<WithCallbackMethod_SetRotationAngleDeg<WithCallbackMethod_DriveWheel<WithCallbackMethod_SetZeroPosAsCurrentPos<WithCallbackMethod_SetRotationVelAcc<WithCallbackMethod_SetRotationInterpolator<WithCallbackMethod_SetDriveAccDec<WithCallbackMethod_SetDriveInterpolatorOnOff<WithCallbackMethod_SetRotationControllerType<WithCallbackMethod_SetForceKinematics<WithCallbackMethod_GetForceKinematics<WithCallbackMethod_MoveSteerToZero<WithCallbackMethod_PauseBumper<WithCallbackMethod_TurnLightOnOff<WithCallbackMethod_TurnBuzzOnOff<WithCallbackMethod_SetExtraDO<WithCallbackMethod_EnableExternalLEDControl<WithCallbackMethod_SetLEDMode<WithCallbackMethod_SetControlParam<WithCallbackMethod_GetControlParam<WithCallbackMethod_StartRTLogging<WithCallbackMethod_EndRTLogging<WithCallbackMethod_GetControlSource<WithCallbackMethod_SetControlSource<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_GetMobyState : public BaseClass {
@@ -3224,12 +3597,29 @@ class Moby final {
     }
   };
   template <class BaseClass>
+  class WithGenericMethod_MoveSteerToZero : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_MoveSteerToZero() {
+      ::grpc::Service::MarkMethodGeneric(29);
+    }
+    ~WithGenericMethod_MoveSteerToZero() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status MoveSteerToZero(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
   class WithGenericMethod_PauseBumper : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_PauseBumper() {
-      ::grpc::Service::MarkMethodGeneric(29);
+      ::grpc::Service::MarkMethodGeneric(30);
     }
     ~WithGenericMethod_PauseBumper() override {
       BaseClassMustBeDerivedFromService(this);
@@ -3246,7 +3636,7 @@ class Moby final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_TurnLightOnOff() {
-      ::grpc::Service::MarkMethodGeneric(30);
+      ::grpc::Service::MarkMethodGeneric(31);
     }
     ~WithGenericMethod_TurnLightOnOff() override {
       BaseClassMustBeDerivedFromService(this);
@@ -3263,7 +3653,7 @@ class Moby final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_TurnBuzzOnOff() {
-      ::grpc::Service::MarkMethodGeneric(31);
+      ::grpc::Service::MarkMethodGeneric(32);
     }
     ~WithGenericMethod_TurnBuzzOnOff() override {
       BaseClassMustBeDerivedFromService(this);
@@ -3280,7 +3670,7 @@ class Moby final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_SetExtraDO() {
-      ::grpc::Service::MarkMethodGeneric(32);
+      ::grpc::Service::MarkMethodGeneric(33);
     }
     ~WithGenericMethod_SetExtraDO() override {
       BaseClassMustBeDerivedFromService(this);
@@ -3292,12 +3682,46 @@ class Moby final {
     }
   };
   template <class BaseClass>
+  class WithGenericMethod_EnableExternalLEDControl : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_EnableExternalLEDControl() {
+      ::grpc::Service::MarkMethodGeneric(34);
+    }
+    ~WithGenericMethod_EnableExternalLEDControl() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status EnableExternalLEDControl(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::BoolVal* /*request*/, ::Nrmk::IndyFramework::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_SetLEDMode : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_SetLEDMode() {
+      ::grpc::Service::MarkMethodGeneric(35);
+    }
+    ~WithGenericMethod_SetLEDMode() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetLEDMode(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::LEDControlMode* /*request*/, ::Nrmk::IndyFramework::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
   class WithGenericMethod_SetControlParam : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_SetControlParam() {
-      ::grpc::Service::MarkMethodGeneric(33);
+      ::grpc::Service::MarkMethodGeneric(36);
     }
     ~WithGenericMethod_SetControlParam() override {
       BaseClassMustBeDerivedFromService(this);
@@ -3314,7 +3738,7 @@ class Moby final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetControlParam() {
-      ::grpc::Service::MarkMethodGeneric(34);
+      ::grpc::Service::MarkMethodGeneric(37);
     }
     ~WithGenericMethod_GetControlParam() override {
       BaseClassMustBeDerivedFromService(this);
@@ -3331,7 +3755,7 @@ class Moby final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_StartRTLogging() {
-      ::grpc::Service::MarkMethodGeneric(35);
+      ::grpc::Service::MarkMethodGeneric(38);
     }
     ~WithGenericMethod_StartRTLogging() override {
       BaseClassMustBeDerivedFromService(this);
@@ -3348,13 +3772,47 @@ class Moby final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_EndRTLogging() {
-      ::grpc::Service::MarkMethodGeneric(36);
+      ::grpc::Service::MarkMethodGeneric(39);
     }
     ~WithGenericMethod_EndRTLogging() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
     ::grpc::Status EndRTLogging(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_GetControlSource : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_GetControlSource() {
+      ::grpc::Service::MarkMethodGeneric(40);
+    }
+    ~WithGenericMethod_GetControlSource() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetControlSource(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::IntVal* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_SetControlSource : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_SetControlSource() {
+      ::grpc::Service::MarkMethodGeneric(41);
+    }
+    ~WithGenericMethod_SetControlSource() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetControlSource(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::IntVal* /*request*/, ::Nrmk::IndyFramework::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -3940,12 +4398,32 @@ class Moby final {
     }
   };
   template <class BaseClass>
+  class WithRawMethod_MoveSteerToZero : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_MoveSteerToZero() {
+      ::grpc::Service::MarkMethodRaw(29);
+    }
+    ~WithRawMethod_MoveSteerToZero() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status MoveSteerToZero(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestMoveSteerToZero(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(29, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithRawMethod_PauseBumper : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_PauseBumper() {
-      ::grpc::Service::MarkMethodRaw(29);
+      ::grpc::Service::MarkMethodRaw(30);
     }
     ~WithRawMethod_PauseBumper() override {
       BaseClassMustBeDerivedFromService(this);
@@ -3956,7 +4434,7 @@ class Moby final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPauseBumper(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(29, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(30, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -3965,7 +4443,7 @@ class Moby final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_TurnLightOnOff() {
-      ::grpc::Service::MarkMethodRaw(30);
+      ::grpc::Service::MarkMethodRaw(31);
     }
     ~WithRawMethod_TurnLightOnOff() override {
       BaseClassMustBeDerivedFromService(this);
@@ -3976,7 +4454,7 @@ class Moby final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestTurnLightOnOff(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(30, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(31, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -3985,7 +4463,7 @@ class Moby final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_TurnBuzzOnOff() {
-      ::grpc::Service::MarkMethodRaw(31);
+      ::grpc::Service::MarkMethodRaw(32);
     }
     ~WithRawMethod_TurnBuzzOnOff() override {
       BaseClassMustBeDerivedFromService(this);
@@ -3996,7 +4474,7 @@ class Moby final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestTurnBuzzOnOff(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(31, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(32, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -4005,7 +4483,7 @@ class Moby final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_SetExtraDO() {
-      ::grpc::Service::MarkMethodRaw(32);
+      ::grpc::Service::MarkMethodRaw(33);
     }
     ~WithRawMethod_SetExtraDO() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4016,7 +4494,47 @@ class Moby final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestSetExtraDO(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(32, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(33, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_EnableExternalLEDControl : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_EnableExternalLEDControl() {
+      ::grpc::Service::MarkMethodRaw(34);
+    }
+    ~WithRawMethod_EnableExternalLEDControl() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status EnableExternalLEDControl(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::BoolVal* /*request*/, ::Nrmk::IndyFramework::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestEnableExternalLEDControl(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(34, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_SetLEDMode : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_SetLEDMode() {
+      ::grpc::Service::MarkMethodRaw(35);
+    }
+    ~WithRawMethod_SetLEDMode() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetLEDMode(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::LEDControlMode* /*request*/, ::Nrmk::IndyFramework::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSetLEDMode(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(35, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -4025,7 +4543,7 @@ class Moby final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_SetControlParam() {
-      ::grpc::Service::MarkMethodRaw(33);
+      ::grpc::Service::MarkMethodRaw(36);
     }
     ~WithRawMethod_SetControlParam() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4036,7 +4554,7 @@ class Moby final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestSetControlParam(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(33, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(36, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -4045,7 +4563,7 @@ class Moby final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetControlParam() {
-      ::grpc::Service::MarkMethodRaw(34);
+      ::grpc::Service::MarkMethodRaw(37);
     }
     ~WithRawMethod_GetControlParam() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4056,7 +4574,7 @@ class Moby final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetControlParam(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(34, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(37, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -4065,7 +4583,7 @@ class Moby final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_StartRTLogging() {
-      ::grpc::Service::MarkMethodRaw(35);
+      ::grpc::Service::MarkMethodRaw(38);
     }
     ~WithRawMethod_StartRTLogging() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4076,7 +4594,7 @@ class Moby final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestStartRTLogging(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(35, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(38, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -4085,7 +4603,7 @@ class Moby final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_EndRTLogging() {
-      ::grpc::Service::MarkMethodRaw(36);
+      ::grpc::Service::MarkMethodRaw(39);
     }
     ~WithRawMethod_EndRTLogging() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4096,7 +4614,47 @@ class Moby final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestEndRTLogging(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(36, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(39, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_GetControlSource : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_GetControlSource() {
+      ::grpc::Service::MarkMethodRaw(40);
+    }
+    ~WithRawMethod_GetControlSource() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetControlSource(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::IntVal* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetControlSource(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(40, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_SetControlSource : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_SetControlSource() {
+      ::grpc::Service::MarkMethodRaw(41);
+    }
+    ~WithRawMethod_SetControlSource() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetControlSource(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::IntVal* /*request*/, ::Nrmk::IndyFramework::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSetControlSource(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(41, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -4738,12 +5296,34 @@ class Moby final {
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
+  class WithRawCallbackMethod_MoveSteerToZero : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_MoveSteerToZero() {
+      ::grpc::Service::MarkMethodRawCallback(29,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->MoveSteerToZero(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_MoveSteerToZero() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status MoveSteerToZero(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* MoveSteerToZero(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
   class WithRawCallbackMethod_PauseBumper : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_PauseBumper() {
-      ::grpc::Service::MarkMethodRawCallback(29,
+      ::grpc::Service::MarkMethodRawCallback(30,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->PauseBumper(context, request, response); }));
@@ -4765,7 +5345,7 @@ class Moby final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_TurnLightOnOff() {
-      ::grpc::Service::MarkMethodRawCallback(30,
+      ::grpc::Service::MarkMethodRawCallback(31,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->TurnLightOnOff(context, request, response); }));
@@ -4787,7 +5367,7 @@ class Moby final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_TurnBuzzOnOff() {
-      ::grpc::Service::MarkMethodRawCallback(31,
+      ::grpc::Service::MarkMethodRawCallback(32,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->TurnBuzzOnOff(context, request, response); }));
@@ -4809,7 +5389,7 @@ class Moby final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_SetExtraDO() {
-      ::grpc::Service::MarkMethodRawCallback(32,
+      ::grpc::Service::MarkMethodRawCallback(33,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SetExtraDO(context, request, response); }));
@@ -4826,12 +5406,56 @@ class Moby final {
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
+  class WithRawCallbackMethod_EnableExternalLEDControl : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_EnableExternalLEDControl() {
+      ::grpc::Service::MarkMethodRawCallback(34,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->EnableExternalLEDControl(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_EnableExternalLEDControl() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status EnableExternalLEDControl(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::BoolVal* /*request*/, ::Nrmk::IndyFramework::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* EnableExternalLEDControl(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_SetLEDMode : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_SetLEDMode() {
+      ::grpc::Service::MarkMethodRawCallback(35,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SetLEDMode(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_SetLEDMode() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetLEDMode(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::LEDControlMode* /*request*/, ::Nrmk::IndyFramework::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* SetLEDMode(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
   class WithRawCallbackMethod_SetControlParam : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_SetControlParam() {
-      ::grpc::Service::MarkMethodRawCallback(33,
+      ::grpc::Service::MarkMethodRawCallback(36,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SetControlParam(context, request, response); }));
@@ -4853,7 +5477,7 @@ class Moby final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetControlParam() {
-      ::grpc::Service::MarkMethodRawCallback(34,
+      ::grpc::Service::MarkMethodRawCallback(37,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetControlParam(context, request, response); }));
@@ -4875,7 +5499,7 @@ class Moby final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_StartRTLogging() {
-      ::grpc::Service::MarkMethodRawCallback(35,
+      ::grpc::Service::MarkMethodRawCallback(38,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->StartRTLogging(context, request, response); }));
@@ -4897,7 +5521,7 @@ class Moby final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_EndRTLogging() {
-      ::grpc::Service::MarkMethodRawCallback(36,
+      ::grpc::Service::MarkMethodRawCallback(39,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->EndRTLogging(context, request, response); }));
@@ -4911,6 +5535,50 @@ class Moby final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* EndRTLogging(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_GetControlSource : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_GetControlSource() {
+      ::grpc::Service::MarkMethodRawCallback(40,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetControlSource(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_GetControlSource() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetControlSource(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::IntVal* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GetControlSource(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_SetControlSource : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_SetControlSource() {
+      ::grpc::Service::MarkMethodRawCallback(41,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SetControlSource(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_SetControlSource() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetControlSource(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::IntVal* /*request*/, ::Nrmk::IndyFramework::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* SetControlSource(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
@@ -5697,12 +6365,39 @@ class Moby final {
     virtual ::grpc::Status StreamedGetForceKinematics(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Nrmk::IndyFramework::Empty,::Nrmk::IndyFramework::ForcedKinematicsData>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
+  class WithStreamedUnaryMethod_MoveSteerToZero : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_MoveSteerToZero() {
+      ::grpc::Service::MarkMethodStreamed(29,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Empty>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Empty>* streamer) {
+                       return this->StreamedMoveSteerToZero(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_MoveSteerToZero() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status MoveSteerToZero(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedMoveSteerToZero(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Nrmk::IndyFramework::Empty,::Nrmk::IndyFramework::Empty>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
   class WithStreamedUnaryMethod_PauseBumper : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_PauseBumper() {
-      ::grpc::Service::MarkMethodStreamed(29,
+      ::grpc::Service::MarkMethodStreamed(30,
         new ::grpc::internal::StreamedUnaryHandler<
           ::Nrmk::IndyFramework::BoolVal, ::Nrmk::IndyFramework::Empty>(
             [this](::grpc::ServerContext* context,
@@ -5729,7 +6424,7 @@ class Moby final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_TurnLightOnOff() {
-      ::grpc::Service::MarkMethodStreamed(30,
+      ::grpc::Service::MarkMethodStreamed(31,
         new ::grpc::internal::StreamedUnaryHandler<
           ::Nrmk::IndyFramework::BoolVal, ::Nrmk::IndyFramework::Empty>(
             [this](::grpc::ServerContext* context,
@@ -5756,7 +6451,7 @@ class Moby final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_TurnBuzzOnOff() {
-      ::grpc::Service::MarkMethodStreamed(31,
+      ::grpc::Service::MarkMethodStreamed(32,
         new ::grpc::internal::StreamedUnaryHandler<
           ::Nrmk::IndyFramework::BoolVal, ::Nrmk::IndyFramework::Empty>(
             [this](::grpc::ServerContext* context,
@@ -5783,7 +6478,7 @@ class Moby final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_SetExtraDO() {
-      ::grpc::Service::MarkMethodStreamed(32,
+      ::grpc::Service::MarkMethodStreamed(33,
         new ::grpc::internal::StreamedUnaryHandler<
           ::Nrmk::IndyFramework::BoolVals, ::Nrmk::IndyFramework::Empty>(
             [this](::grpc::ServerContext* context,
@@ -5805,12 +6500,66 @@ class Moby final {
     virtual ::grpc::Status StreamedSetExtraDO(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Nrmk::IndyFramework::BoolVals,::Nrmk::IndyFramework::Empty>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
+  class WithStreamedUnaryMethod_EnableExternalLEDControl : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_EnableExternalLEDControl() {
+      ::grpc::Service::MarkMethodStreamed(34,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::Nrmk::IndyFramework::BoolVal, ::Nrmk::IndyFramework::Empty>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::Nrmk::IndyFramework::BoolVal, ::Nrmk::IndyFramework::Empty>* streamer) {
+                       return this->StreamedEnableExternalLEDControl(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_EnableExternalLEDControl() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status EnableExternalLEDControl(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::BoolVal* /*request*/, ::Nrmk::IndyFramework::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedEnableExternalLEDControl(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Nrmk::IndyFramework::BoolVal,::Nrmk::IndyFramework::Empty>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_SetLEDMode : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_SetLEDMode() {
+      ::grpc::Service::MarkMethodStreamed(35,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::Nrmk::IndyFramework::LEDControlMode, ::Nrmk::IndyFramework::Empty>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::Nrmk::IndyFramework::LEDControlMode, ::Nrmk::IndyFramework::Empty>* streamer) {
+                       return this->StreamedSetLEDMode(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_SetLEDMode() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status SetLEDMode(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::LEDControlMode* /*request*/, ::Nrmk::IndyFramework::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedSetLEDMode(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Nrmk::IndyFramework::LEDControlMode,::Nrmk::IndyFramework::Empty>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
   class WithStreamedUnaryMethod_SetControlParam : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_SetControlParam() {
-      ::grpc::Service::MarkMethodStreamed(33,
+      ::grpc::Service::MarkMethodStreamed(36,
         new ::grpc::internal::StreamedUnaryHandler<
           ::Nrmk::IndyFramework::RotationGain, ::Nrmk::IndyFramework::Empty>(
             [this](::grpc::ServerContext* context,
@@ -5837,7 +6586,7 @@ class Moby final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetControlParam() {
-      ::grpc::Service::MarkMethodStreamed(34,
+      ::grpc::Service::MarkMethodStreamed(37,
         new ::grpc::internal::StreamedUnaryHandler<
           ::Nrmk::IndyFramework::IntVal, ::Nrmk::IndyFramework::RotationGain>(
             [this](::grpc::ServerContext* context,
@@ -5864,7 +6613,7 @@ class Moby final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_StartRTLogging() {
-      ::grpc::Service::MarkMethodStreamed(35,
+      ::grpc::Service::MarkMethodStreamed(38,
         new ::grpc::internal::StreamedUnaryHandler<
           ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Empty>(
             [this](::grpc::ServerContext* context,
@@ -5891,7 +6640,7 @@ class Moby final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_EndRTLogging() {
-      ::grpc::Service::MarkMethodStreamed(36,
+      ::grpc::Service::MarkMethodStreamed(39,
         new ::grpc::internal::StreamedUnaryHandler<
           ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Empty>(
             [this](::grpc::ServerContext* context,
@@ -5912,9 +6661,63 @@ class Moby final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedEndRTLogging(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Nrmk::IndyFramework::Empty,::Nrmk::IndyFramework::Empty>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_GetMobyState<WithStreamedUnaryMethod_GetMobyErrorState<WithStreamedUnaryMethod_Recover<WithStreamedUnaryMethod_GetMobyPose<WithStreamedUnaryMethod_GetMobyVel<WithStreamedUnaryMethod_ResetMobyPose<WithStreamedUnaryMethod_GetRotationAngleDeg<WithStreamedUnaryMethod_GetDriveSpeed<WithStreamedUnaryMethod_GetTargetVel<WithStreamedUnaryMethod_GetRotationZeroCount<WithStreamedUnaryMethod_GetGyroData<WithStreamedUnaryMethod_ResetGyroSensor<WithStreamedUnaryMethod_UseGyroForOdom<WithStreamedUnaryMethod_GetGyroFullData<WithStreamedUnaryMethod_GetIRSensorData<WithStreamedUnaryMethod_GetUSSensorData<WithStreamedUnaryMethod_GetBMSData<WithStreamedUnaryMethod_SetStepControl<WithStreamedUnaryMethod_StopMotion<WithStreamedUnaryMethod_SetRotationAngleDeg<WithStreamedUnaryMethod_DriveWheel<WithStreamedUnaryMethod_SetZeroPosAsCurrentPos<WithStreamedUnaryMethod_SetRotationVelAcc<WithStreamedUnaryMethod_SetRotationInterpolator<WithStreamedUnaryMethod_SetDriveAccDec<WithStreamedUnaryMethod_SetDriveInterpolatorOnOff<WithStreamedUnaryMethod_SetRotationControllerType<WithStreamedUnaryMethod_SetForceKinematics<WithStreamedUnaryMethod_GetForceKinematics<WithStreamedUnaryMethod_PauseBumper<WithStreamedUnaryMethod_TurnLightOnOff<WithStreamedUnaryMethod_TurnBuzzOnOff<WithStreamedUnaryMethod_SetExtraDO<WithStreamedUnaryMethod_SetControlParam<WithStreamedUnaryMethod_GetControlParam<WithStreamedUnaryMethod_StartRTLogging<WithStreamedUnaryMethod_EndRTLogging<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_GetControlSource : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_GetControlSource() {
+      ::grpc::Service::MarkMethodStreamed(40,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::IntVal>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::IntVal>* streamer) {
+                       return this->StreamedGetControlSource(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_GetControlSource() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status GetControlSource(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::IntVal* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedGetControlSource(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Nrmk::IndyFramework::Empty,::Nrmk::IndyFramework::IntVal>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_SetControlSource : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_SetControlSource() {
+      ::grpc::Service::MarkMethodStreamed(41,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::Nrmk::IndyFramework::IntVal, ::Nrmk::IndyFramework::Empty>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::Nrmk::IndyFramework::IntVal, ::Nrmk::IndyFramework::Empty>* streamer) {
+                       return this->StreamedSetControlSource(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_SetControlSource() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status SetControlSource(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::IntVal* /*request*/, ::Nrmk::IndyFramework::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedSetControlSource(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Nrmk::IndyFramework::IntVal,::Nrmk::IndyFramework::Empty>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_GetMobyState<WithStreamedUnaryMethod_GetMobyErrorState<WithStreamedUnaryMethod_Recover<WithStreamedUnaryMethod_GetMobyPose<WithStreamedUnaryMethod_GetMobyVel<WithStreamedUnaryMethod_ResetMobyPose<WithStreamedUnaryMethod_GetRotationAngleDeg<WithStreamedUnaryMethod_GetDriveSpeed<WithStreamedUnaryMethod_GetTargetVel<WithStreamedUnaryMethod_GetRotationZeroCount<WithStreamedUnaryMethod_GetGyroData<WithStreamedUnaryMethod_ResetGyroSensor<WithStreamedUnaryMethod_UseGyroForOdom<WithStreamedUnaryMethod_GetGyroFullData<WithStreamedUnaryMethod_GetIRSensorData<WithStreamedUnaryMethod_GetUSSensorData<WithStreamedUnaryMethod_GetBMSData<WithStreamedUnaryMethod_SetStepControl<WithStreamedUnaryMethod_StopMotion<WithStreamedUnaryMethod_SetRotationAngleDeg<WithStreamedUnaryMethod_DriveWheel<WithStreamedUnaryMethod_SetZeroPosAsCurrentPos<WithStreamedUnaryMethod_SetRotationVelAcc<WithStreamedUnaryMethod_SetRotationInterpolator<WithStreamedUnaryMethod_SetDriveAccDec<WithStreamedUnaryMethod_SetDriveInterpolatorOnOff<WithStreamedUnaryMethod_SetRotationControllerType<WithStreamedUnaryMethod_SetForceKinematics<WithStreamedUnaryMethod_GetForceKinematics<WithStreamedUnaryMethod_MoveSteerToZero<WithStreamedUnaryMethod_PauseBumper<WithStreamedUnaryMethod_TurnLightOnOff<WithStreamedUnaryMethod_TurnBuzzOnOff<WithStreamedUnaryMethod_SetExtraDO<WithStreamedUnaryMethod_EnableExternalLEDControl<WithStreamedUnaryMethod_SetLEDMode<WithStreamedUnaryMethod_SetControlParam<WithStreamedUnaryMethod_GetControlParam<WithStreamedUnaryMethod_StartRTLogging<WithStreamedUnaryMethod_EndRTLogging<WithStreamedUnaryMethod_GetControlSource<WithStreamedUnaryMethod_SetControlSource<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_GetMobyState<WithStreamedUnaryMethod_GetMobyErrorState<WithStreamedUnaryMethod_Recover<WithStreamedUnaryMethod_GetMobyPose<WithStreamedUnaryMethod_GetMobyVel<WithStreamedUnaryMethod_ResetMobyPose<WithStreamedUnaryMethod_GetRotationAngleDeg<WithStreamedUnaryMethod_GetDriveSpeed<WithStreamedUnaryMethod_GetTargetVel<WithStreamedUnaryMethod_GetRotationZeroCount<WithStreamedUnaryMethod_GetGyroData<WithStreamedUnaryMethod_ResetGyroSensor<WithStreamedUnaryMethod_UseGyroForOdom<WithStreamedUnaryMethod_GetGyroFullData<WithStreamedUnaryMethod_GetIRSensorData<WithStreamedUnaryMethod_GetUSSensorData<WithStreamedUnaryMethod_GetBMSData<WithStreamedUnaryMethod_SetStepControl<WithStreamedUnaryMethod_StopMotion<WithStreamedUnaryMethod_SetRotationAngleDeg<WithStreamedUnaryMethod_DriveWheel<WithStreamedUnaryMethod_SetZeroPosAsCurrentPos<WithStreamedUnaryMethod_SetRotationVelAcc<WithStreamedUnaryMethod_SetRotationInterpolator<WithStreamedUnaryMethod_SetDriveAccDec<WithStreamedUnaryMethod_SetDriveInterpolatorOnOff<WithStreamedUnaryMethod_SetRotationControllerType<WithStreamedUnaryMethod_SetForceKinematics<WithStreamedUnaryMethod_GetForceKinematics<WithStreamedUnaryMethod_PauseBumper<WithStreamedUnaryMethod_TurnLightOnOff<WithStreamedUnaryMethod_TurnBuzzOnOff<WithStreamedUnaryMethod_SetExtraDO<WithStreamedUnaryMethod_SetControlParam<WithStreamedUnaryMethod_GetControlParam<WithStreamedUnaryMethod_StartRTLogging<WithStreamedUnaryMethod_EndRTLogging<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_GetMobyState<WithStreamedUnaryMethod_GetMobyErrorState<WithStreamedUnaryMethod_Recover<WithStreamedUnaryMethod_GetMobyPose<WithStreamedUnaryMethod_GetMobyVel<WithStreamedUnaryMethod_ResetMobyPose<WithStreamedUnaryMethod_GetRotationAngleDeg<WithStreamedUnaryMethod_GetDriveSpeed<WithStreamedUnaryMethod_GetTargetVel<WithStreamedUnaryMethod_GetRotationZeroCount<WithStreamedUnaryMethod_GetGyroData<WithStreamedUnaryMethod_ResetGyroSensor<WithStreamedUnaryMethod_UseGyroForOdom<WithStreamedUnaryMethod_GetGyroFullData<WithStreamedUnaryMethod_GetIRSensorData<WithStreamedUnaryMethod_GetUSSensorData<WithStreamedUnaryMethod_GetBMSData<WithStreamedUnaryMethod_SetStepControl<WithStreamedUnaryMethod_StopMotion<WithStreamedUnaryMethod_SetRotationAngleDeg<WithStreamedUnaryMethod_DriveWheel<WithStreamedUnaryMethod_SetZeroPosAsCurrentPos<WithStreamedUnaryMethod_SetRotationVelAcc<WithStreamedUnaryMethod_SetRotationInterpolator<WithStreamedUnaryMethod_SetDriveAccDec<WithStreamedUnaryMethod_SetDriveInterpolatorOnOff<WithStreamedUnaryMethod_SetRotationControllerType<WithStreamedUnaryMethod_SetForceKinematics<WithStreamedUnaryMethod_GetForceKinematics<WithStreamedUnaryMethod_MoveSteerToZero<WithStreamedUnaryMethod_PauseBumper<WithStreamedUnaryMethod_TurnLightOnOff<WithStreamedUnaryMethod_TurnBuzzOnOff<WithStreamedUnaryMethod_SetExtraDO<WithStreamedUnaryMethod_EnableExternalLEDControl<WithStreamedUnaryMethod_SetLEDMode<WithStreamedUnaryMethod_SetControlParam<WithStreamedUnaryMethod_GetControlParam<WithStreamedUnaryMethod_StartRTLogging<WithStreamedUnaryMethod_EndRTLogging<WithStreamedUnaryMethod_GetControlSource<WithStreamedUnaryMethod_SetControlSource<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > StreamedService;
 };
 
 }  // namespace IndyFramework

@@ -27,9 +27,11 @@ PROTOBUF_CONSTEXPR BootStatus::BootStatus(::_pbi::ConstantInitialized)
     : _impl_{
       /*decltype(_impl_.ethercat_used_)*/ false,
       /*decltype(_impl_.safety_used_)*/ false,
+      /*decltype(_impl_.safety_mcu_)*/ false,
       /*decltype(_impl_.safety_connected_)*/ false,
       /*decltype(_impl_.main_pw_relay_on_)*/ false,
       /*decltype(_impl_.safety_pw_relay_on_)*/ false,
+      /*decltype(_impl_.robot_pw_supply_on_)*/ false,
       /*decltype(_impl_.ethercat_connected_)*/ false,
       /*decltype(_impl_.control_on_)*/ false,
       /*decltype(_impl_._cached_size_)*/ {},
@@ -63,9 +65,11 @@ const ::uint32_t TableStruct_boot_5fmsgs_2eproto::offsets[] PROTOBUF_SECTION_VAR
     ~0u,  // no sizeof(Split)
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::BootStatus, _impl_.ethercat_used_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::BootStatus, _impl_.safety_used_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::BootStatus, _impl_.safety_mcu_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::BootStatus, _impl_.safety_connected_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::BootStatus, _impl_.main_pw_relay_on_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::BootStatus, _impl_.safety_pw_relay_on_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::BootStatus, _impl_.robot_pw_supply_on_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::BootStatus, _impl_.ethercat_connected_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::BootStatus, _impl_.control_on_),
 };
@@ -80,12 +84,13 @@ static const ::_pb::Message* const file_default_instances[] = {
 };
 const char descriptor_table_protodef_boot_5fmsgs_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
     "\n\017boot_msgs.proto\022\022Nrmk.IndyFramework\032\021c"
-    "ommon_msgs.proto\"\270\001\n\nBootStatus\022\025\n\rether"
-    "cat_used\030\001 \001(\010\022\023\n\013safety_used\030\002 \001(\010\022\030\n\020s"
-    "afety_connected\030\013 \001(\010\022\030\n\020main_pw_relay_o"
-    "n\030\025 \001(\010\022\032\n\022safety_pw_relay_on\030\026 \001(\010\022\032\n\022e"
-    "thercat_connected\030\037 \001(\010\022\022\n\ncontrol_on\030d "
-    "\001(\010b\006proto3"
+    "ommon_msgs.proto\"\350\001\n\nBootStatus\022\025\n\rether"
+    "cat_used\030\001 \001(\010\022\023\n\013safety_used\030\002 \001(\010\022\022\n\ns"
+    "afety_mcu\030\003 \001(\010\022\030\n\020safety_connected\030\013 \001("
+    "\010\022\030\n\020main_pw_relay_on\030\025 \001(\010\022\032\n\022safety_pw"
+    "_relay_on\030\026 \001(\010\022\032\n\022robot_pw_supply_on\030\027 "
+    "\001(\010\022\032\n\022ethercat_connected\030\037 \001(\010\022\022\n\ncontr"
+    "ol_on\030d \001(\010b\006proto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_boot_5fmsgs_2eproto_deps[1] =
     {
@@ -95,7 +100,7 @@ static ::absl::once_flag descriptor_table_boot_5fmsgs_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_boot_5fmsgs_2eproto = {
     false,
     false,
-    251,
+    299,
     descriptor_table_protodef_boot_5fmsgs_2eproto,
     "boot_msgs.proto",
     &descriptor_table_boot_5fmsgs_2eproto_once,
@@ -151,9 +156,11 @@ inline void BootStatus::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_{
       decltype(_impl_.ethercat_used_){false},
       decltype(_impl_.safety_used_){false},
+      decltype(_impl_.safety_mcu_){false},
       decltype(_impl_.safety_connected_){false},
       decltype(_impl_.main_pw_relay_on_){false},
       decltype(_impl_.safety_pw_relay_on_){false},
+      decltype(_impl_.robot_pw_supply_on_){false},
       decltype(_impl_.ethercat_connected_){false},
       decltype(_impl_.control_on_){false},
       /*decltype(_impl_._cached_size_)*/ {},
@@ -191,15 +198,15 @@ const char* BootStatus::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<3, 7, 0, 0, 7> BootStatus::_table_ = {
+const ::_pbi::TcParseTable<4, 9, 0, 0, 7> BootStatus::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
-    100, 56,  // max_field_number, fast_idx_mask
+    100, 120,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    3218078716,  // skipmap
+    3213884408,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    7,  // num_field_entries
+    9,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
     &_BootStatus_default_instance_._instance,
@@ -212,9 +219,9 @@ const ::_pbi::TcParseTable<3, 7, 0, 0, 7> BootStatus::_table_ = {
     // bool safety_used = 2;
     {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(BootStatus, _impl_.safety_used_), 63>(),
      {16, 63, 0, PROTOBUF_FIELD_OFFSET(BootStatus, _impl_.safety_used_)}},
-    // bool safety_connected = 11;
-    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(BootStatus, _impl_.safety_connected_), 63>(),
-     {88, 63, 0, PROTOBUF_FIELD_OFFSET(BootStatus, _impl_.safety_connected_)}},
+    // bool safety_mcu = 3;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(BootStatus, _impl_.safety_mcu_), 63>(),
+     {24, 63, 0, PROTOBUF_FIELD_OFFSET(BootStatus, _impl_.safety_mcu_)}},
     // bool control_on = 100;
     {::_pbi::TcParser::FastV8S2,
      {1696, 63, 0, PROTOBUF_FIELD_OFFSET(BootStatus, _impl_.control_on_)}},
@@ -224,12 +231,24 @@ const ::_pbi::TcParseTable<3, 7, 0, 0, 7> BootStatus::_table_ = {
     // bool safety_pw_relay_on = 22;
     {::_pbi::TcParser::FastV8S2,
      {432, 63, 0, PROTOBUF_FIELD_OFFSET(BootStatus, _impl_.safety_pw_relay_on_)}},
+    // bool robot_pw_supply_on = 23;
+    {::_pbi::TcParser::FastV8S2,
+     {440, 63, 0, PROTOBUF_FIELD_OFFSET(BootStatus, _impl_.robot_pw_supply_on_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    // bool safety_connected = 11;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(BootStatus, _impl_.safety_connected_), 63>(),
+     {88, 63, 0, PROTOBUF_FIELD_OFFSET(BootStatus, _impl_.safety_connected_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
     // bool ethercat_connected = 31;
     {::_pbi::TcParser::FastV8S2,
      {504, 63, 0, PROTOBUF_FIELD_OFFSET(BootStatus, _impl_.ethercat_connected_)}},
   }}, {{
     100, 0, 1,
-    65534, 6,
+    65534, 8,
     65535, 65535
   }}, {{
     // bool ethercat_used = 1;
@@ -237,6 +256,9 @@ const ::_pbi::TcParseTable<3, 7, 0, 0, 7> BootStatus::_table_ = {
     (0 | ::_fl::kFcSingular | ::_fl::kBool)},
     // bool safety_used = 2;
     {PROTOBUF_FIELD_OFFSET(BootStatus, _impl_.safety_used_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
+    // bool safety_mcu = 3;
+    {PROTOBUF_FIELD_OFFSET(BootStatus, _impl_.safety_mcu_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBool)},
     // bool safety_connected = 11;
     {PROTOBUF_FIELD_OFFSET(BootStatus, _impl_.safety_connected_), 0, 0,
@@ -246,6 +268,9 @@ const ::_pbi::TcParseTable<3, 7, 0, 0, 7> BootStatus::_table_ = {
     (0 | ::_fl::kFcSingular | ::_fl::kBool)},
     // bool safety_pw_relay_on = 22;
     {PROTOBUF_FIELD_OFFSET(BootStatus, _impl_.safety_pw_relay_on_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
+    // bool robot_pw_supply_on = 23;
+    {PROTOBUF_FIELD_OFFSET(BootStatus, _impl_.robot_pw_supply_on_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBool)},
     // bool ethercat_connected = 31;
     {PROTOBUF_FIELD_OFFSET(BootStatus, _impl_.ethercat_connected_), 0, 0,
@@ -280,6 +305,13 @@ const ::_pbi::TcParseTable<3, 7, 0, 0, 7> BootStatus::_table_ = {
         2, this->_internal_safety_used(), target);
   }
 
+  // bool safety_mcu = 3;
+  if (this->_internal_safety_mcu() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(
+        3, this->_internal_safety_mcu(), target);
+  }
+
   // bool safety_connected = 11;
   if (this->_internal_safety_connected() != 0) {
     target = stream->EnsureSpace(target);
@@ -299,6 +331,13 @@ const ::_pbi::TcParseTable<3, 7, 0, 0, 7> BootStatus::_table_ = {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteBoolToArray(
         22, this->_internal_safety_pw_relay_on(), target);
+  }
+
+  // bool robot_pw_supply_on = 23;
+  if (this->_internal_robot_pw_supply_on() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(
+        23, this->_internal_robot_pw_supply_on(), target);
   }
 
   // bool ethercat_connected = 31;
@@ -342,6 +381,11 @@ const ::_pbi::TcParseTable<3, 7, 0, 0, 7> BootStatus::_table_ = {
     total_size += 2;
   }
 
+  // bool safety_mcu = 3;
+  if (this->_internal_safety_mcu() != 0) {
+    total_size += 2;
+  }
+
   // bool safety_connected = 11;
   if (this->_internal_safety_connected() != 0) {
     total_size += 2;
@@ -354,6 +398,11 @@ const ::_pbi::TcParseTable<3, 7, 0, 0, 7> BootStatus::_table_ = {
 
   // bool safety_pw_relay_on = 22;
   if (this->_internal_safety_pw_relay_on() != 0) {
+    total_size += 3;
+  }
+
+  // bool robot_pw_supply_on = 23;
+  if (this->_internal_robot_pw_supply_on() != 0) {
     total_size += 3;
   }
 
@@ -391,6 +440,9 @@ void BootStatus::MergeImpl(::google::protobuf::Message& to_msg, const ::google::
   if (from._internal_safety_used() != 0) {
     _this->_internal_set_safety_used(from._internal_safety_used());
   }
+  if (from._internal_safety_mcu() != 0) {
+    _this->_internal_set_safety_mcu(from._internal_safety_mcu());
+  }
   if (from._internal_safety_connected() != 0) {
     _this->_internal_set_safety_connected(from._internal_safety_connected());
   }
@@ -399,6 +451,9 @@ void BootStatus::MergeImpl(::google::protobuf::Message& to_msg, const ::google::
   }
   if (from._internal_safety_pw_relay_on() != 0) {
     _this->_internal_set_safety_pw_relay_on(from._internal_safety_pw_relay_on());
+  }
+  if (from._internal_robot_pw_supply_on() != 0) {
+    _this->_internal_set_robot_pw_supply_on(from._internal_robot_pw_supply_on());
   }
   if (from._internal_ethercat_connected() != 0) {
     _this->_internal_set_ethercat_connected(from._internal_ethercat_connected());

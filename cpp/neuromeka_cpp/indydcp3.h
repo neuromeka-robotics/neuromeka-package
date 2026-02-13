@@ -242,10 +242,26 @@ class IndyDCP3
                         const float acc_ratio=7.0,
                         const TeleMethod method=TeleMethod::TELE_JOINT_ABSOLUTE);
 
+        bool movetelej_abs(const std::vector<float>& jpos,
+                const float vel_ratio=0.8,
+                const float acc_ratio=7.0);
+
+        bool movetelej_rel(const std::vector<float>& jpos,
+                const float vel_ratio=0.8,
+                const float acc_ratio=7.0);
+
         bool movetelel(const std::array<float, 6>& tpos, 
                         const float vel_ratio=0.8, 
                         const float acc_ratio=7.0,
                         const TeleMethod method=TeleMethod::TELE_TASK_ABSOLUTE);
+
+        bool movetelel_abs(const std::array<float, 6>& tpos,
+                const float vel_ratio=0.8,
+                const float acc_ratio=7.0);
+
+        bool movetelel_rel(const std::array<float, 6>& tpos,
+                const float vel_ratio=0.8,
+                const float acc_ratio=7.0);
 
         //----------------------------------
         bool inverse_kin(const std::array<float, 6>& tpos, 
@@ -575,6 +591,99 @@ class IndyDCP3
 
         bool get_kinematics_params(Nrmk::IndyFramework::KinematicsParams& response);
         bool get_io_data(Nrmk::IndyFramework::IOData& response);
+
+        bool get_io_variable(Nrmk::IndyFramework::IOVars& response);
+        bool set_io_variable(const Nrmk::IndyFramework::IOVars& request);
+        bool get_variable_name_list(Nrmk::IndyFramework::AllVars& response);
+        bool set_variable_name_list(const Nrmk::IndyFramework::AllVars& request);
+        // bool set_modbus_variable_name_list(const Nrmk::IndyFramework::ModbusVariableList& request);
+        bool get_program_break_points(Nrmk::IndyFramework::ProgramBreakPoints& response);
+        bool set_program_break_points(const Nrmk::IndyFramework::ProgramBreakPoints& request);
+        bool get_program_breakpoints(Nrmk::IndyFramework::ProgramBreakPoints& response);
+        bool set_program_breakpoints(const Nrmk::IndyFramework::ProgramBreakPoints& request);
+        bool get_motion_j(const Nrmk::IndyFramework::GetMotionJReq& request,
+                          Nrmk::IndyFramework::GetMotionRes& response);
+        bool get_motion_l(const Nrmk::IndyFramework::GetMotionLReq& request,
+                          Nrmk::IndyFramework::GetMotionRes& response);
+        bool get_motion_c(const Nrmk::IndyFramework::GetMotionCReq& request,
+                          Nrmk::IndyFramework::GetMotionRes& response);
+        bool joint_to_tcp_transform(const Nrmk::IndyFramework::JointToTcpTransformReq& request,
+                                    Nrmk::IndyFramework::JointToTcpTransformRes& response);
+        bool movej_cond(const Nrmk::IndyFramework::MoveJCondReq& request);
+        bool pause_motion(const Nrmk::IndyFramework::PauseCat& request);
+        bool play_program_line(const Nrmk::IndyFramework::Program& request);
+        bool program_step_over();
+        bool program_step_into();
+        bool program_step_out();
+        bool reset();
+        bool search_program(const Nrmk::IndyFramework::Program& request,
+                            Nrmk::IndyFramework::ProgramInfo& response);
+        bool send_alarm(const Nrmk::IndyFramework::Message& request);
+        bool send_annotation(const Nrmk::IndyFramework::Message& request);
+
+        bool sim_di_config(const Nrmk::IndyFramework::DISignals& request);
+        bool set_di(const Nrmk::IndyFramework::DigitalList& request);
+        bool set_endtool_di(const Nrmk::IndyFramework::EndtoolSignalList& request);
+        bool set_ai(const Nrmk::IndyFramework::AnalogList& request);
+        bool set_endtool_ai(const Nrmk::IndyFramework::AnalogList& request);
+        bool get_conveyor_object_distances(Nrmk::IndyFramework::ConveyorObjectDistances& response);
+        bool configure_pickit3d(const Nrmk::IndyFramework::ConfigurePickit3DReq& request);
+        bool get_pickit3d_detection(const Nrmk::IndyFramework::VisionRequest& request,
+                                    Nrmk::IndyFramework::VisionResult& response);
+        bool get_pickit3d_retrieval(const Nrmk::IndyFramework::VisionRequest& request,
+                                    Nrmk::IndyFramework::VisionResult& response);
+        // bool socket_cmd_set_config(const Nrmk::IndyFramework::SocketCommandConfig& request);
+        // bool socket_cmd_get_config(Nrmk::IndyFramework::SocketCommandConfig& response);
+        // bool socket_cmd_start(Nrmk::IndyFramework::SocketCommandStatus& response);
+        // bool socket_cmd_stop(Nrmk::IndyFramework::SocketCommandStatus& response);
+        // bool socket_cmd_send_data(const Nrmk::IndyFramework::SocketPayload& request,
+        //                           Nrmk::IndyFramework::SocketCommandStatus& response);
+        // bool socket_cmd_get_latest_data(Nrmk::IndyFramework::SocketPayload& response);
+
+        // bool get_nonce(Nrmk::IndyFramework::Nonce& response);
+        // bool login(const Nrmk::IndyFramework::Digest& request,
+        //            Nrmk::IndyFramework::LoginRes& response);
+        // bool test_digest(const Nrmk::IndyFramework::Passwd& request,
+        //                  Nrmk::IndyFramework::Digest& response);
+        // bool verify_token(const Nrmk::IndyFramework::Token& request);
+        // bool change_password(const Nrmk::IndyFramework::ChangePasswordReq& request);
+        bool get_joint_limit_config(Nrmk::IndyFramework::JointLimitConfig& response);
+        bool set_joint_limit_config(const Nrmk::IndyFramework::JointLimitConfig& request);
+        bool get_original_joint_limit_config(Nrmk::IndyFramework::JointLimitConfig& response);
+        bool get_operation_mode_config(Nrmk::IndyFramework::OperationModeConfig& response);
+        bool set_operation_mode_config(const Nrmk::IndyFramework::OperationModeConfig& request);
+        bool get_new_controller_test_on_off_state(Nrmk::IndyFramework::NewControllerTestState& response);
+        bool set_new_controller_test_on_off(const Nrmk::IndyFramework::NewControllerTestState& request);
+        bool get_test_control_gain(Nrmk::IndyFramework::TestGainSet& response);
+        bool set_test_control_gain(const Nrmk::IndyFramework::TestGainSet& request);
+        bool get_tool_property_list(Nrmk::IndyFramework::ToolPropertyEntries& response);
+        bool set_tool_property_list(const Nrmk::IndyFramework::ToolPropertyEntries& request);
+        bool get_weld_position_list(Nrmk::IndyFramework::WeldPositionList& response);
+        bool set_weld_position_list(const Nrmk::IndyFramework::WeldPositionList& request);
+        bool get_welding_machine_config(Nrmk::IndyFramework::WeldingConfigInfo& response);
+        bool set_welding_machine_config(const Nrmk::IndyFramework::WeldingConfigInfo& request);
+        bool list_safety_snapshots(Nrmk::IndyFramework::SafetySnapshotList& response);
+        bool save_safety_snapshot(const Nrmk::IndyFramework::SaveSafetySnapshotReq& request,
+                                  Nrmk::IndyFramework::SafetySnapshotInfo& response);
+        bool restore_safety_snapshot(const Nrmk::IndyFramework::SafetySnapshotId& request);
+        bool delete_safety_snapshot(const Nrmk::IndyFramework::SafetySnapshotId& request);
+        bool restore_factory_control_gains();
+        bool restore_factory_safety_config();
+        bool get_imu_auto_mount(Nrmk::IndyFramework::MountingAngles& response);
+
+        // bool test_function(const Nrmk::IndyFramework::TestRequest& request,
+        //                    Nrmk::IndyFramework::TestResponse& response);
+
+        bool logout_cri_server();
+        bool generate_cri_token(const Nrmk::IndyFramework::SFDAccount& request);
+        bool save_cri_login_info(const Nrmk::IndyFramework::SFDAccount& request);
+        bool load_cri_login_info(Nrmk::IndyFramework::SFDAccount& response);
+        bool get_cri_login_info(Nrmk::IndyFramework::SFDAccount& response);
+        bool is_cri_target_valid(bool& is_valid);
+        bool release_cri_target(bool& is_released);
+        bool get_cri_target(Nrmk::IndyFramework::SFDTarget& response);
+        bool save_cri_auto_set(const Nrmk::IndyFramework::SFDAutoSet& request);
+        bool load_cri_auto_set(Nrmk::IndyFramework::SFDAutoSet& response);
 
         bool wait_io(const std::vector<Nrmk::IndyFramework::DigitalSignal>& di_signal_list,
             const std::vector<Nrmk::IndyFramework::DigitalSignal>& do_signal_list,

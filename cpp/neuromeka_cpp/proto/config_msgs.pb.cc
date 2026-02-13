@@ -285,6 +285,48 @@ struct JointPosDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 JointPosDefaultTypeInternal _JointPos_default_instance_;
         template <typename>
+PROTOBUF_CONSTEXPR JointLimitRange::JointLimitRange(::_pbi::ConstantInitialized)
+    : _impl_{
+      /*decltype(_impl_.min_)*/ {},
+      /*decltype(_impl_.max_)*/ {},
+      /*decltype(_impl_._cached_size_)*/ {},
+    } {}
+struct JointLimitRangeDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR JointLimitRangeDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~JointLimitRangeDefaultTypeInternal() {}
+  union {
+    JointLimitRange _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 JointLimitRangeDefaultTypeInternal _JointLimitRange_default_instance_;
+        template <typename>
+PROTOBUF_CONSTEXPR JointLimitConfig::JointLimitConfig(::_pbi::ConstantInitialized)
+    : _impl_{
+      /*decltype(_impl_._has_bits_)*/ {},
+      /*decltype(_impl_._cached_size_)*/ {},
+      /*decltype(_impl_.robot_name_)*/ {
+          &::_pbi::fixed_address_empty_string,
+          ::_pbi::ConstantInitialized{},
+      },
+      /*decltype(_impl_.source_file_)*/ {
+          &::_pbi::fixed_address_empty_string,
+          ::_pbi::ConstantInitialized{},
+      },
+      /*decltype(_impl_.joint_pos_limit_)*/ nullptr,
+    } {}
+struct JointLimitConfigDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR JointLimitConfigDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~JointLimitConfigDefaultTypeInternal() {}
+  union {
+    JointLimitConfig _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 JointLimitConfigDefaultTypeInternal _JointLimitConfig_default_instance_;
+        template <typename>
 PROTOBUF_CONSTEXPR PlanarFrame::PlanarFrame(::_pbi::ConstantInitialized)
     : _impl_{
       /*decltype(_impl_.fpos0_)*/ {},
@@ -625,6 +667,43 @@ struct ToolPropertiesDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ToolPropertiesDefaultTypeInternal _ToolProperties_default_instance_;
         template <typename>
+PROTOBUF_CONSTEXPR ToolPropertyEntry::ToolPropertyEntry(::_pbi::ConstantInitialized)
+    : _impl_{
+      /*decltype(_impl_._has_bits_)*/ {},
+      /*decltype(_impl_._cached_size_)*/ {},
+      /*decltype(_impl_.name_)*/ {
+          &::_pbi::fixed_address_empty_string,
+          ::_pbi::ConstantInitialized{},
+      },
+      /*decltype(_impl_.property_)*/ nullptr,
+    } {}
+struct ToolPropertyEntryDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR ToolPropertyEntryDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~ToolPropertyEntryDefaultTypeInternal() {}
+  union {
+    ToolPropertyEntry _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ToolPropertyEntryDefaultTypeInternal _ToolPropertyEntry_default_instance_;
+        template <typename>
+PROTOBUF_CONSTEXPR ToolPropertyEntries::ToolPropertyEntries(::_pbi::ConstantInitialized)
+    : _impl_{
+      /*decltype(_impl_.tools_)*/ {},
+      /*decltype(_impl_._cached_size_)*/ {},
+    } {}
+struct ToolPropertyEntriesDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR ToolPropertyEntriesDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~ToolPropertyEntriesDefaultTypeInternal() {}
+  union {
+    ToolPropertyEntries _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ToolPropertyEntriesDefaultTypeInternal _ToolPropertyEntries_default_instance_;
+        template <typename>
 PROTOBUF_CONSTEXPR CollisionSensLevel::CollisionSensLevel(::_pbi::ConstantInitialized)
     : _impl_{
       /*decltype(_impl_.level_)*/ 0u,
@@ -686,8 +765,9 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
         template <typename>
 PROTOBUF_CONSTEXPR OnStartProgramConfig::OnStartProgramConfig(::_pbi::ConstantInitialized)
     : _impl_{
-      /*decltype(_impl_.auto_run_)*/ false,
       /*decltype(_impl_.index_)*/ 0,
+      /*decltype(_impl_.auto_run_)*/ false,
+      /*decltype(_impl_.auto_boot_on_power_)*/ false,
       /*decltype(_impl_._cached_size_)*/ {},
     } {}
 struct OnStartProgramConfigDefaultTypeInternal {
@@ -748,6 +828,88 @@ struct SafetyStopConfigDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SafetyStopConfigDefaultTypeInternal _SafetyStopConfig_default_instance_;
+        template <typename>
+PROTOBUF_CONSTEXPR SafetySnapshotInfo::SafetySnapshotInfo(::_pbi::ConstantInitialized)
+    : _impl_{
+      /*decltype(_impl_.snapshot_id_)*/ {
+          &::_pbi::fixed_address_empty_string,
+          ::_pbi::ConstantInitialized{},
+      },
+      /*decltype(_impl_.label_)*/ {
+          &::_pbi::fixed_address_empty_string,
+          ::_pbi::ConstantInitialized{},
+      },
+      /*decltype(_impl_.created_at_)*/ {
+          &::_pbi::fixed_address_empty_string,
+          ::_pbi::ConstantInitialized{},
+      },
+      /*decltype(_impl_.immutable_)*/ false,
+      /*decltype(_impl_._cached_size_)*/ {},
+    } {}
+struct SafetySnapshotInfoDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SafetySnapshotInfoDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SafetySnapshotInfoDefaultTypeInternal() {}
+  union {
+    SafetySnapshotInfo _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SafetySnapshotInfoDefaultTypeInternal _SafetySnapshotInfo_default_instance_;
+        template <typename>
+PROTOBUF_CONSTEXPR SafetySnapshotList::SafetySnapshotList(::_pbi::ConstantInitialized)
+    : _impl_{
+      /*decltype(_impl_.snapshots_)*/ {},
+      /*decltype(_impl_._cached_size_)*/ {},
+    } {}
+struct SafetySnapshotListDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SafetySnapshotListDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SafetySnapshotListDefaultTypeInternal() {}
+  union {
+    SafetySnapshotList _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SafetySnapshotListDefaultTypeInternal _SafetySnapshotList_default_instance_;
+        template <typename>
+PROTOBUF_CONSTEXPR SaveSafetySnapshotReq::SaveSafetySnapshotReq(::_pbi::ConstantInitialized)
+    : _impl_{
+      /*decltype(_impl_.label_)*/ {
+          &::_pbi::fixed_address_empty_string,
+          ::_pbi::ConstantInitialized{},
+      },
+      /*decltype(_impl_._cached_size_)*/ {},
+    } {}
+struct SaveSafetySnapshotReqDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SaveSafetySnapshotReqDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SaveSafetySnapshotReqDefaultTypeInternal() {}
+  union {
+    SaveSafetySnapshotReq _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SaveSafetySnapshotReqDefaultTypeInternal _SaveSafetySnapshotReq_default_instance_;
+        template <typename>
+PROTOBUF_CONSTEXPR SafetySnapshotId::SafetySnapshotId(::_pbi::ConstantInitialized)
+    : _impl_{
+      /*decltype(_impl_.snapshot_id_)*/ {
+          &::_pbi::fixed_address_empty_string,
+          ::_pbi::ConstantInitialized{},
+      },
+      /*decltype(_impl_._cached_size_)*/ {},
+    } {}
+struct SafetySnapshotIdDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SafetySnapshotIdDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SafetySnapshotIdDefaultTypeInternal() {}
+  union {
+    SafetySnapshotId _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SafetySnapshotIdDefaultTypeInternal _SafetySnapshotId_default_instance_;
         template <typename>
 PROTOBUF_CONSTEXPR DIConfig::DIConfig(::_pbi::ConstantInitialized)
     : _impl_{
@@ -1143,9 +1305,94 @@ struct EnvironmentListDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 EnvironmentListDefaultTypeInternal _EnvironmentList_default_instance_;
+        template <typename>
+PROTOBUF_CONSTEXPR WeldingConfigInfo::WeldingConfigInfo(::_pbi::ConstantInitialized)
+    : _impl_{
+      /*decltype(_impl_.model_)*/ {
+          &::_pbi::fixed_address_empty_string,
+          ::_pbi::ConstantInitialized{},
+      },
+      /*decltype(_impl_.interface_)*/ {
+          &::_pbi::fixed_address_empty_string,
+          ::_pbi::ConstantInitialized{},
+      },
+      /*decltype(_impl_.modbus_ip_)*/ {
+          &::_pbi::fixed_address_empty_string,
+          ::_pbi::ConstantInitialized{},
+      },
+      /*decltype(_impl_.node_id_)*/ 0u,
+      /*decltype(_impl_.baud_rate_)*/ 0u,
+      /*decltype(_impl_.vision_)*/ false,
+      /*decltype(_impl_.modbus_port_)*/ 0u,
+      /*decltype(_impl_._cached_size_)*/ {},
+    } {}
+struct WeldingConfigInfoDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR WeldingConfigInfoDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~WeldingConfigInfoDefaultTypeInternal() {}
+  union {
+    WeldingConfigInfo _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 WeldingConfigInfoDefaultTypeInternal _WeldingConfigInfo_default_instance_;
+        template <typename>
+PROTOBUF_CONSTEXPR WeldPosition::WeldPosition(::_pbi::ConstantInitialized)
+    : _impl_{
+      /*decltype(_impl_.position_)*/ {},
+      /*decltype(_impl_.name_)*/ {
+          &::_pbi::fixed_address_empty_string,
+          ::_pbi::ConstantInitialized{},
+      },
+      /*decltype(_impl_._cached_size_)*/ {},
+    } {}
+struct WeldPositionDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR WeldPositionDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~WeldPositionDefaultTypeInternal() {}
+  union {
+    WeldPosition _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 WeldPositionDefaultTypeInternal _WeldPosition_default_instance_;
+        template <typename>
+PROTOBUF_CONSTEXPR WeldPositionList::WeldPositionList(::_pbi::ConstantInitialized)
+    : _impl_{
+      /*decltype(_impl_.positions_)*/ {},
+      /*decltype(_impl_._cached_size_)*/ {},
+    } {}
+struct WeldPositionListDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR WeldPositionListDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~WeldPositionListDefaultTypeInternal() {}
+  union {
+    WeldPositionList _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 WeldPositionListDefaultTypeInternal _WeldPositionList_default_instance_;
+        template <typename>
+PROTOBUF_CONSTEXPR OperationModeConfig::OperationModeConfig(::_pbi::ConstantInitialized)
+    : _impl_{
+      /*decltype(_impl_.use_ext_auto_mode_)*/ false,
+      /*decltype(_impl_.mode_locked_)*/ false,
+      /*decltype(_impl_.auto_mode_)*/ false,
+      /*decltype(_impl_._cached_size_)*/ {},
+    } {}
+struct OperationModeConfigDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR OperationModeConfigDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~OperationModeConfigDefaultTypeInternal() {}
+  union {
+    OperationModeConfig _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 OperationModeConfigDefaultTypeInternal _OperationModeConfig_default_instance_;
 }  // namespace IndyFramework
 }  // namespace Nrmk
-static ::_pb::Metadata file_level_metadata_config_5fmsgs_2eproto[58];
+static ::_pb::Metadata file_level_metadata_config_5fmsgs_2eproto[70];
 static const ::_pb::EnumDescriptor* file_level_enum_descriptors_config_5fmsgs_2eproto[7];
 static constexpr const ::_pb::ServiceDescriptor**
     file_level_service_descriptors_config_5fmsgs_2eproto = nullptr;
@@ -1287,6 +1534,30 @@ const ::uint32_t TableStruct_config_5fmsgs_2eproto::offsets[] PROTOBUF_SECTION_V
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::JointPos, _impl_.jpos_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::JointLimitRange, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::JointLimitRange, _impl_.min_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::JointLimitRange, _impl_.max_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::JointLimitConfig, _impl_._has_bits_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::JointLimitConfig, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::JointLimitConfig, _impl_.robot_name_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::JointLimitConfig, _impl_.joint_pos_limit_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::JointLimitConfig, _impl_.source_file_),
+    ~0u,
+    0,
+    ~0u,
     ~0u,  // no _has_bits_
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::PlanarFrame, _internal_metadata_),
     ~0u,  // no _extensions_
@@ -1500,6 +1771,27 @@ const ::uint32_t TableStruct_config_5fmsgs_2eproto::offsets[] PROTOBUF_SECTION_V
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ToolProperties, _impl_.mass_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ToolProperties, _impl_.center_of_mass_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ToolProperties, _impl_.inertia_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ToolPropertyEntry, _impl_._has_bits_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ToolPropertyEntry, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ToolPropertyEntry, _impl_.name_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ToolPropertyEntry, _impl_.property_),
+    ~0u,
+    0,
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ToolPropertyEntries, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ToolPropertyEntries, _impl_.tools_),
     ~0u,  // no _has_bits_
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::CollisionSensLevel, _internal_metadata_),
     ~0u,  // no _extensions_
@@ -1548,6 +1840,7 @@ const ::uint32_t TableStruct_config_5fmsgs_2eproto::offsets[] PROTOBUF_SECTION_V
     ~0u,  // no sizeof(Split)
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::OnStartProgramConfig, _impl_.auto_run_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::OnStartProgramConfig, _impl_.index_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::OnStartProgramConfig, _impl_.auto_boot_on_power_),
     ~0u,  // no _has_bits_
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::SafetyLimits, _internal_metadata_),
     ~0u,  // no _extensions_
@@ -1580,6 +1873,45 @@ const ::uint32_t TableStruct_config_5fmsgs_2eproto::offsets[] PROTOBUF_SECTION_V
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::SafetyStopConfig, _impl_.power_limit_stop_cat_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::SafetyStopConfig, _impl_.safegd_stop_cat_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::SafetyStopConfig, _impl_.safegd_type_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::SafetySnapshotInfo, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::SafetySnapshotInfo, _impl_.snapshot_id_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::SafetySnapshotInfo, _impl_.label_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::SafetySnapshotInfo, _impl_.created_at_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::SafetySnapshotInfo, _impl_.immutable_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::SafetySnapshotList, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::SafetySnapshotList, _impl_.snapshots_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::SaveSafetySnapshotReq, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::SaveSafetySnapshotReq, _impl_.label_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::SafetySnapshotId, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::SafetySnapshotId, _impl_.snapshot_id_),
     ~0u,  // no _has_bits_
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::DIConfig, _internal_metadata_),
     ~0u,  // no _extensions_
@@ -1813,6 +2145,51 @@ const ::uint32_t TableStruct_config_5fmsgs_2eproto::offsets[] PROTOBUF_SECTION_V
     ~0u,  // no sizeof(Split)
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::EnvironmentList, _impl_.environments_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::EnvironmentList, _impl_.default_name_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::WeldingConfigInfo, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::WeldingConfigInfo, _impl_.model_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::WeldingConfigInfo, _impl_.interface_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::WeldingConfigInfo, _impl_.node_id_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::WeldingConfigInfo, _impl_.baud_rate_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::WeldingConfigInfo, _impl_.vision_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::WeldingConfigInfo, _impl_.modbus_ip_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::WeldingConfigInfo, _impl_.modbus_port_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::WeldPosition, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::WeldPosition, _impl_.name_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::WeldPosition, _impl_.position_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::WeldPositionList, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::WeldPositionList, _impl_.positions_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::OperationModeConfig, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::OperationModeConfig, _impl_.use_ext_auto_mode_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::OperationModeConfig, _impl_.mode_locked_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::OperationModeConfig, _impl_.auto_mode_),
 };
 
 static const ::_pbi::MigrationSchema
@@ -1831,50 +2208,62 @@ static const ::_pbi::MigrationSchema
         {109, -1, -1, sizeof(::Nrmk::IndyFramework::ConveyorList)},
         {118, -1, -1, sizeof(::Nrmk::IndyFramework::Frame)},
         {127, -1, -1, sizeof(::Nrmk::IndyFramework::JointPos)},
-        {136, -1, -1, sizeof(::Nrmk::IndyFramework::PlanarFrame)},
-        {147, 157, -1, sizeof(::Nrmk::IndyFramework::FrameResult)},
-        {159, -1, -1, sizeof(::Nrmk::IndyFramework::VisionServerList)},
-        {168, -1, -1, sizeof(::Nrmk::IndyFramework::ModbusServerList)},
-        {177, -1, -1, sizeof(::Nrmk::IndyFramework::Ratio)},
-        {186, -1, -1, sizeof(::Nrmk::IndyFramework::AutoServoOffConfig)},
-        {196, -1, -1, sizeof(::Nrmk::IndyFramework::CollTuningConfig)},
-        {207, -1, -1, sizeof(::Nrmk::IndyFramework::JointGainSet)},
-        {218, -1, -1, sizeof(::Nrmk::IndyFramework::TaskGainSet)},
-        {229, -1, -1, sizeof(::Nrmk::IndyFramework::ImpedanceGainSet)},
-        {241, -1, -1, sizeof(::Nrmk::IndyFramework::ForceGainSet)},
-        {257, -1, -1, sizeof(::Nrmk::IndyFramework::TestGainSet)},
-        {271, -1, -1, sizeof(::Nrmk::IndyFramework::ComplianceGainSet)},
-        {288, -1, -1, sizeof(::Nrmk::IndyFramework::CustomGainSet)},
-        {306, -1, -1, sizeof(::Nrmk::IndyFramework::NewControllerTestState)},
-        {316, -1, -1, sizeof(::Nrmk::IndyFramework::FrictionCompSet)},
-        {328, -1, -1, sizeof(::Nrmk::IndyFramework::MountingAngles)},
-        {338, -1, -1, sizeof(::Nrmk::IndyFramework::ToolProperties)},
-        {349, -1, -1, sizeof(::Nrmk::IndyFramework::CollisionSensLevel)},
-        {358, -1, -1, sizeof(::Nrmk::IndyFramework::CollisionThresholds)},
-        {376, -1, -1, sizeof(::Nrmk::IndyFramework::CollisionPolicy)},
-        {387, -1, -1, sizeof(::Nrmk::IndyFramework::OnStartProgramConfig)},
-        {397, -1, -1, sizeof(::Nrmk::IndyFramework::SafetyLimits)},
-        {413, -1, -1, sizeof(::Nrmk::IndyFramework::SafetyStopConfig)},
-        {429, -1, -1, sizeof(::Nrmk::IndyFramework::DIConfig)},
-        {442, -1, -1, sizeof(::Nrmk::IndyFramework::DIConfigList)},
-        {451, -1, -1, sizeof(::Nrmk::IndyFramework::DOConfig)},
-        {463, -1, -1, sizeof(::Nrmk::IndyFramework::DOConfigList)},
-        {472, -1, -1, sizeof(::Nrmk::IndyFramework::GetReducedRatioRes)},
-        {482, -1, -1, sizeof(::Nrmk::IndyFramework::GetReducedSpeedRes)},
-        {492, -1, -1, sizeof(::Nrmk::IndyFramework::SetReducedSpeedReq)},
-        {501, -1, -1, sizeof(::Nrmk::IndyFramework::FTSensorDevice)},
-        {518, -1, -1, sizeof(::Nrmk::IndyFramework::FTSensorDeviceRes)},
-        {527, -1, -1, sizeof(::Nrmk::IndyFramework::TeleOpParams)},
-        {538, -1, -1, sizeof(::Nrmk::IndyFramework::KinematicsParams_MDH)},
-        {553, -1, -1, sizeof(::Nrmk::IndyFramework::KinematicsParams)},
-        {562, -1, -1, sizeof(::Nrmk::IndyFramework::CollisionModelMargin)},
-        {572, -1, -1, sizeof(::Nrmk::IndyFramework::Shape)},
-        {587, -1, -1, sizeof(::Nrmk::IndyFramework::SensorlessParams)},
-        {596, -1, -1, sizeof(::Nrmk::IndyFramework::NamedGeometry)},
-        {606, -1, -1, sizeof(::Nrmk::IndyFramework::ToolShapeList)},
-        {616, 633, -1, sizeof(::Nrmk::IndyFramework::Zone)},
-        {642, -1, -1, sizeof(::Nrmk::IndyFramework::NamedEnvironment)},
-        {652, -1, -1, sizeof(::Nrmk::IndyFramework::EnvironmentList)},
+        {136, -1, -1, sizeof(::Nrmk::IndyFramework::JointLimitRange)},
+        {146, 157, -1, sizeof(::Nrmk::IndyFramework::JointLimitConfig)},
+        {160, -1, -1, sizeof(::Nrmk::IndyFramework::PlanarFrame)},
+        {171, 181, -1, sizeof(::Nrmk::IndyFramework::FrameResult)},
+        {183, -1, -1, sizeof(::Nrmk::IndyFramework::VisionServerList)},
+        {192, -1, -1, sizeof(::Nrmk::IndyFramework::ModbusServerList)},
+        {201, -1, -1, sizeof(::Nrmk::IndyFramework::Ratio)},
+        {210, -1, -1, sizeof(::Nrmk::IndyFramework::AutoServoOffConfig)},
+        {220, -1, -1, sizeof(::Nrmk::IndyFramework::CollTuningConfig)},
+        {231, -1, -1, sizeof(::Nrmk::IndyFramework::JointGainSet)},
+        {242, -1, -1, sizeof(::Nrmk::IndyFramework::TaskGainSet)},
+        {253, -1, -1, sizeof(::Nrmk::IndyFramework::ImpedanceGainSet)},
+        {265, -1, -1, sizeof(::Nrmk::IndyFramework::ForceGainSet)},
+        {281, -1, -1, sizeof(::Nrmk::IndyFramework::TestGainSet)},
+        {295, -1, -1, sizeof(::Nrmk::IndyFramework::ComplianceGainSet)},
+        {312, -1, -1, sizeof(::Nrmk::IndyFramework::CustomGainSet)},
+        {330, -1, -1, sizeof(::Nrmk::IndyFramework::NewControllerTestState)},
+        {340, -1, -1, sizeof(::Nrmk::IndyFramework::FrictionCompSet)},
+        {352, -1, -1, sizeof(::Nrmk::IndyFramework::MountingAngles)},
+        {362, -1, -1, sizeof(::Nrmk::IndyFramework::ToolProperties)},
+        {373, 383, -1, sizeof(::Nrmk::IndyFramework::ToolPropertyEntry)},
+        {385, -1, -1, sizeof(::Nrmk::IndyFramework::ToolPropertyEntries)},
+        {394, -1, -1, sizeof(::Nrmk::IndyFramework::CollisionSensLevel)},
+        {403, -1, -1, sizeof(::Nrmk::IndyFramework::CollisionThresholds)},
+        {421, -1, -1, sizeof(::Nrmk::IndyFramework::CollisionPolicy)},
+        {432, -1, -1, sizeof(::Nrmk::IndyFramework::OnStartProgramConfig)},
+        {443, -1, -1, sizeof(::Nrmk::IndyFramework::SafetyLimits)},
+        {459, -1, -1, sizeof(::Nrmk::IndyFramework::SafetyStopConfig)},
+        {475, -1, -1, sizeof(::Nrmk::IndyFramework::SafetySnapshotInfo)},
+        {487, -1, -1, sizeof(::Nrmk::IndyFramework::SafetySnapshotList)},
+        {496, -1, -1, sizeof(::Nrmk::IndyFramework::SaveSafetySnapshotReq)},
+        {505, -1, -1, sizeof(::Nrmk::IndyFramework::SafetySnapshotId)},
+        {514, -1, -1, sizeof(::Nrmk::IndyFramework::DIConfig)},
+        {527, -1, -1, sizeof(::Nrmk::IndyFramework::DIConfigList)},
+        {536, -1, -1, sizeof(::Nrmk::IndyFramework::DOConfig)},
+        {548, -1, -1, sizeof(::Nrmk::IndyFramework::DOConfigList)},
+        {557, -1, -1, sizeof(::Nrmk::IndyFramework::GetReducedRatioRes)},
+        {567, -1, -1, sizeof(::Nrmk::IndyFramework::GetReducedSpeedRes)},
+        {577, -1, -1, sizeof(::Nrmk::IndyFramework::SetReducedSpeedReq)},
+        {586, -1, -1, sizeof(::Nrmk::IndyFramework::FTSensorDevice)},
+        {603, -1, -1, sizeof(::Nrmk::IndyFramework::FTSensorDeviceRes)},
+        {612, -1, -1, sizeof(::Nrmk::IndyFramework::TeleOpParams)},
+        {623, -1, -1, sizeof(::Nrmk::IndyFramework::KinematicsParams_MDH)},
+        {638, -1, -1, sizeof(::Nrmk::IndyFramework::KinematicsParams)},
+        {647, -1, -1, sizeof(::Nrmk::IndyFramework::CollisionModelMargin)},
+        {657, -1, -1, sizeof(::Nrmk::IndyFramework::Shape)},
+        {672, -1, -1, sizeof(::Nrmk::IndyFramework::SensorlessParams)},
+        {681, -1, -1, sizeof(::Nrmk::IndyFramework::NamedGeometry)},
+        {691, -1, -1, sizeof(::Nrmk::IndyFramework::ToolShapeList)},
+        {701, 718, -1, sizeof(::Nrmk::IndyFramework::Zone)},
+        {727, -1, -1, sizeof(::Nrmk::IndyFramework::NamedEnvironment)},
+        {737, -1, -1, sizeof(::Nrmk::IndyFramework::EnvironmentList)},
+        {747, -1, -1, sizeof(::Nrmk::IndyFramework::WeldingConfigInfo)},
+        {762, -1, -1, sizeof(::Nrmk::IndyFramework::WeldPosition)},
+        {772, -1, -1, sizeof(::Nrmk::IndyFramework::WeldPositionList)},
+        {781, -1, -1, sizeof(::Nrmk::IndyFramework::OperationModeConfig)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -1892,6 +2281,8 @@ static const ::_pb::Message* const file_default_instances[] = {
     &::Nrmk::IndyFramework::_ConveyorList_default_instance_._instance,
     &::Nrmk::IndyFramework::_Frame_default_instance_._instance,
     &::Nrmk::IndyFramework::_JointPos_default_instance_._instance,
+    &::Nrmk::IndyFramework::_JointLimitRange_default_instance_._instance,
+    &::Nrmk::IndyFramework::_JointLimitConfig_default_instance_._instance,
     &::Nrmk::IndyFramework::_PlanarFrame_default_instance_._instance,
     &::Nrmk::IndyFramework::_FrameResult_default_instance_._instance,
     &::Nrmk::IndyFramework::_VisionServerList_default_instance_._instance,
@@ -1910,12 +2301,18 @@ static const ::_pb::Message* const file_default_instances[] = {
     &::Nrmk::IndyFramework::_FrictionCompSet_default_instance_._instance,
     &::Nrmk::IndyFramework::_MountingAngles_default_instance_._instance,
     &::Nrmk::IndyFramework::_ToolProperties_default_instance_._instance,
+    &::Nrmk::IndyFramework::_ToolPropertyEntry_default_instance_._instance,
+    &::Nrmk::IndyFramework::_ToolPropertyEntries_default_instance_._instance,
     &::Nrmk::IndyFramework::_CollisionSensLevel_default_instance_._instance,
     &::Nrmk::IndyFramework::_CollisionThresholds_default_instance_._instance,
     &::Nrmk::IndyFramework::_CollisionPolicy_default_instance_._instance,
     &::Nrmk::IndyFramework::_OnStartProgramConfig_default_instance_._instance,
     &::Nrmk::IndyFramework::_SafetyLimits_default_instance_._instance,
     &::Nrmk::IndyFramework::_SafetyStopConfig_default_instance_._instance,
+    &::Nrmk::IndyFramework::_SafetySnapshotInfo_default_instance_._instance,
+    &::Nrmk::IndyFramework::_SafetySnapshotList_default_instance_._instance,
+    &::Nrmk::IndyFramework::_SaveSafetySnapshotReq_default_instance_._instance,
+    &::Nrmk::IndyFramework::_SafetySnapshotId_default_instance_._instance,
     &::Nrmk::IndyFramework::_DIConfig_default_instance_._instance,
     &::Nrmk::IndyFramework::_DIConfigList_default_instance_._instance,
     &::Nrmk::IndyFramework::_DOConfig_default_instance_._instance,
@@ -1936,6 +2333,10 @@ static const ::_pb::Message* const file_default_instances[] = {
     &::Nrmk::IndyFramework::_Zone_default_instance_._instance,
     &::Nrmk::IndyFramework::_NamedEnvironment_default_instance_._instance,
     &::Nrmk::IndyFramework::_EnvironmentList_default_instance_._instance,
+    &::Nrmk::IndyFramework::_WeldingConfigInfo_default_instance_._instance,
+    &::Nrmk::IndyFramework::_WeldPosition_default_instance_._instance,
+    &::Nrmk::IndyFramework::_WeldPositionList_default_instance_._instance,
+    &::Nrmk::IndyFramework::_OperationModeConfig_default_instance_._instance,
 };
 const char descriptor_table_protodef_config_5fmsgs_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
     "\n\021config_msgs.proto\022\022Nrmk.IndyFramework\032"
@@ -1954,68 +2355,77 @@ const char descriptor_table_protodef_config_5fmsgs_2eproto[] PROTOBUF_SECTION_VA
     "ework.NamedTaskPosition\022\024\n\014default_name\030"
     "\002 \001(\t\"d\n\014RefFrameList\022>\n\nref_frames\030\001 \003("
     "\0132*.Nrmk.IndyFramework.NamedReferencePos"
-    "ition\022\024\n\014default_name\030\002 \001(\t\"K\n\rCustomPos"
-    "List\022:\n\ncustom_pos\030\001 \003(\0132&.Nrmk.IndyFram"
-    "ework.NamedJointPosition\"C\n\014ConveyorList"
-    "\0223\n\rconveyor_list\030\001 \003(\0132\034.Nrmk.IndyFrame"
-    "work.Conveyor\"\025\n\005Frame\022\014\n\004fpos\030\001 \003(\002\"\030\n\010"
-    "JointPos\022\014\n\004jpos\030\001 \003(\002\":\n\013PlanarFrame\022\r\n"
-    "\005fpos0\030\001 \003(\002\022\r\n\005fpos1\030\002 \003(\002\022\r\n\005fpos2\030\003 \003"
-    "(\002\"K\n\013FrameResult\022\014\n\004fpos\030\001 \003(\002\022.\n\010respo"
-    "nse\030\002 \001(\0132\034.Nrmk.IndyFramework.Response\""
-    "L\n\020VisionServerList\0228\n\016vision_servers\030\001 "
-    "\003(\0132 .Nrmk.IndyFramework.VisionServer\"O\n"
-    "\020ModbusServerList\022;\n\016modbus_servers\030\001 \003("
-    "\0132#.Nrmk.IndyFramework.ModbusServerDef\"\026"
-    "\n\005Ratio\022\r\n\005ratio\030\001 \001(\r\"2\n\022AutoServoOffCo"
-    "nfig\022\016\n\006enable\030\001 \001(\010\022\014\n\004time\030\002 \001(\002\"\304\002\n\020C"
-    "ollTuningConfig\022G\n\tprecision\030\001 \001(\01624.Nrm"
-    "k.IndyFramework.CollTuningConfig.TuningP"
-    "recision\022F\n\014tuning_space\030\002 \001(\01620.Nrmk.In"
-    "dyFramework.CollTuningConfig.TuningSpace"
-    "\022\025\n\rvel_level_max\030\003 \001(\005\"\?\n\017TuningPrecisi"
-    "on\022\014\n\010LOW_TUNE\020\000\022\017\n\013MIDDLE_TUNE\020\001\022\r\n\tHIG"
-    "H_TUNE\020\002\"G\n\013TuningSpace\022\013\n\007NO_TUNE\020\000\022\016\n\n"
-    "JOINT_TUNE\020\001\022\r\n\tTASK_TUNE\020\002\022\014\n\010ALL_TUNE\020"
-    "\003\"3\n\014JointGainSet\022\n\n\002kp\030\001 \003(\002\022\n\n\002kv\030\002 \003("
-    "\002\022\013\n\003kl2\030\003 \003(\002\"2\n\013TaskGainSet\022\n\n\002kp\030\001 \003("
-    "\002\022\n\n\002kv\030\002 \003(\002\022\013\n\003kl2\030\003 \003(\002\"Q\n\020ImpedanceG"
-    "ainSet\022\014\n\004mass\030\001 \003(\002\022\017\n\007damping\030\002 \003(\002\022\021\n"
-    "\tstiffness\030\003 \003(\002\022\013\n\003kl2\030\004 \003(\002\"\177\n\014ForceGa"
-    "inSet\022\n\n\002kp\030\001 \003(\002\022\n\n\002kv\030\002 \003(\002\022\013\n\003kl2\030\003 \003"
-    "(\002\022\014\n\004mass\030\004 \003(\002\022\017\n\007damping\030\005 \003(\002\022\021\n\tsti"
-    "ffness\030\006 \003(\002\022\013\n\003kpf\030\007 \003(\002\022\013\n\003kif\030\010 \003(\002\"i"
-    "\n\013TestGainSet\022\r\n\005kpctc\030\001 \003(\002\022\r\n\005kvctc\030\002 "
-    "\003(\002\022\r\n\005kictc\030\003 \003(\002\022\r\n\005knric\030\004 \003(\002\022\016\n\006kpn"
-    "ric\030\005 \003(\002\022\016\n\006kinric\030\006 \003(\002\"\202\001\n\021Compliance"
-    "GainSet\022\n\n\002kp\030\001 \003(\002\022\n\n\002kv\030\002 \003(\002\022\013\n\003kl2\030\003"
-    " \003(\002\022\n\n\002kd\030\004 \003(\002\022\n\n\002bd\030\005 \003(\002\022\014\n\004rate\030\006 \003"
-    "(\002\022\n\n\002ki\030\007 \003(\002\022\n\n\002ks\030\010 \003(\002\022\n\n\002km\030\t \003(\002\"\245"
-    "\001\n\rCustomGainSet\022\r\n\005gain0\030\001 \003(\002\022\r\n\005gain1"
-    "\030\002 \003(\002\022\r\n\005gain2\030\003 \003(\002\022\r\n\005gain3\030\004 \003(\002\022\r\n\005"
-    "gain4\030\005 \003(\002\022\r\n\005gain5\030\006 \003(\002\022\r\n\005gain6\030\007 \003("
-    "\002\022\r\n\005gain7\030\010 \003(\002\022\r\n\005gain8\030\t \003(\002\022\r\n\005gain9"
-    "\030\n \003(\002\":\n\026NewControllerTestState\022\017\n\007Jena"
-    "ble\030\001 \001(\010\022\017\n\007Tenable\030\002 \001(\010\"\207\001\n\017FrictionC"
-    "ompSet\022\033\n\023control_comp_enable\030\001 \001(\010\022\033\n\023c"
-    "ontrol_comp_levels\030\002 \003(\005\022\034\n\024teaching_com"
-    "p_enable\030\003 \001(\010\022\034\n\024teaching_comp_levels\030\004"
-    " \003(\005\"(\n\016MountingAngles\022\n\n\002ry\030\001 \001(\002\022\n\n\002rz"
-    "\030\002 \001(\002\"G\n\016ToolProperties\022\014\n\004mass\030\001 \001(\002\022\026"
-    "\n\016center_of_mass\030\002 \003(\002\022\017\n\007inertia\030\003 \003(\002\""
-    "#\n\022CollisionSensLevel\022\r\n\005level\030\001 \001(\r\"\262\002\n"
-    "\023CollisionThresholds\022\026\n\016j_torque_bases\030\001"
-    " \003(\002\022\031\n\021j_torque_tangents\030\002 \003(\002\022\026\n\016t_tor"
-    "que_bases\030\003 \003(\002\022\031\n\021t_torque_tangents\030\004 \003"
-    "(\002\022\023\n\013error_bases\030\005 \003(\002\022\026\n\016error_tangent"
-    "s\030\006 \003(\002\022\037\n\027t_constvel_torque_bases\030\007 \003(\002"
-    "\022\"\n\032t_constvel_torque_tangents\030\010 \003(\002\022\037\n\027"
-    "t_conveyor_torque_bases\030\t \003(\002\022\"\n\032t_conve"
-    "yor_torque_tangents\030\n \003(\002\"t\n\017CollisionPo"
-    "licy\0227\n\006policy\030\001 \001(\0162\'.Nrmk.IndyFramewor"
-    "k.CollisionPolicyType\022\022\n\nsleep_time\030\002 \001("
-    "\002\022\024\n\014gravity_time\030\003 \001(\002\"7\n\024OnStartProgra"
-    "mConfig\022\020\n\010auto_run\030\001 \001(\010\022\r\n\005index\030\002 \001(\005"
+    "ition\022\024\n\014default_name\030\002 \001(\t\"I\n\rCustomPos"
+    "List\0228\n\ncustom_pos\030\001 \003(\0132$.Nrmk.IndyFram"
+    "ework.NamedPositionSet\"C\n\014ConveyorList\0223"
+    "\n\rconveyor_list\030\001 \003(\0132\034.Nrmk.IndyFramewo"
+    "rk.Conveyor\"\025\n\005Frame\022\014\n\004fpos\030\001 \003(\002\"\030\n\010Jo"
+    "intPos\022\014\n\004jpos\030\001 \003(\002\"+\n\017JointLimitRange\022"
+    "\013\n\003min\030\001 \003(\002\022\013\n\003max\030\002 \003(\002\"y\n\020JointLimitC"
+    "onfig\022\022\n\nrobot_name\030\001 \001(\t\022<\n\017joint_pos_l"
+    "imit\030\002 \001(\0132#.Nrmk.IndyFramework.JointLim"
+    "itRange\022\023\n\013source_file\030d \001(\t\":\n\013PlanarFr"
+    "ame\022\r\n\005fpos0\030\001 \003(\002\022\r\n\005fpos1\030\002 \003(\002\022\r\n\005fpo"
+    "s2\030\003 \003(\002\"K\n\013FrameResult\022\014\n\004fpos\030\001 \003(\002\022.\n"
+    "\010response\030\002 \001(\0132\034.Nrmk.IndyFramework.Res"
+    "ponse\"L\n\020VisionServerList\0228\n\016vision_serv"
+    "ers\030\001 \003(\0132 .Nrmk.IndyFramework.VisionSer"
+    "ver\"O\n\020ModbusServerList\022;\n\016modbus_server"
+    "s\030\001 \003(\0132#.Nrmk.IndyFramework.ModbusServe"
+    "rDef\"\026\n\005Ratio\022\r\n\005ratio\030\001 \001(\r\"2\n\022AutoServ"
+    "oOffConfig\022\016\n\006enable\030\001 \001(\010\022\014\n\004time\030\002 \001(\002"
+    "\"\304\002\n\020CollTuningConfig\022G\n\tprecision\030\001 \001(\016"
+    "24.Nrmk.IndyFramework.CollTuningConfig.T"
+    "uningPrecision\022F\n\014tuning_space\030\002 \001(\01620.N"
+    "rmk.IndyFramework.CollTuningConfig.Tunin"
+    "gSpace\022\025\n\rvel_level_max\030\003 \001(\005\"\?\n\017TuningP"
+    "recision\022\014\n\010LOW_TUNE\020\000\022\017\n\013MIDDLE_TUNE\020\001\022"
+    "\r\n\tHIGH_TUNE\020\002\"G\n\013TuningSpace\022\013\n\007NO_TUNE"
+    "\020\000\022\016\n\nJOINT_TUNE\020\001\022\r\n\tTASK_TUNE\020\002\022\014\n\010ALL"
+    "_TUNE\020\003\"3\n\014JointGainSet\022\n\n\002kp\030\001 \003(\002\022\n\n\002k"
+    "v\030\002 \003(\002\022\013\n\003kl2\030\003 \003(\002\"2\n\013TaskGainSet\022\n\n\002k"
+    "p\030\001 \003(\002\022\n\n\002kv\030\002 \003(\002\022\013\n\003kl2\030\003 \003(\002\"Q\n\020Impe"
+    "danceGainSet\022\014\n\004mass\030\001 \003(\002\022\017\n\007damping\030\002 "
+    "\003(\002\022\021\n\tstiffness\030\003 \003(\002\022\013\n\003kl2\030\004 \003(\002\"\177\n\014F"
+    "orceGainSet\022\n\n\002kp\030\001 \003(\002\022\n\n\002kv\030\002 \003(\002\022\013\n\003k"
+    "l2\030\003 \003(\002\022\014\n\004mass\030\004 \003(\002\022\017\n\007damping\030\005 \003(\002\022"
+    "\021\n\tstiffness\030\006 \003(\002\022\013\n\003kpf\030\007 \003(\002\022\013\n\003kif\030\010"
+    " \003(\002\"i\n\013TestGainSet\022\r\n\005kpctc\030\001 \003(\002\022\r\n\005kv"
+    "ctc\030\002 \003(\002\022\r\n\005kictc\030\003 \003(\002\022\r\n\005knric\030\004 \003(\002\022"
+    "\016\n\006kpnric\030\005 \003(\002\022\016\n\006kinric\030\006 \003(\002\"\202\001\n\021Comp"
+    "lianceGainSet\022\n\n\002kp\030\001 \003(\002\022\n\n\002kv\030\002 \003(\002\022\013\n"
+    "\003kl2\030\003 \003(\002\022\n\n\002kd\030\004 \003(\002\022\n\n\002bd\030\005 \003(\002\022\014\n\004ra"
+    "te\030\006 \003(\002\022\n\n\002ki\030\007 \003(\002\022\n\n\002ks\030\010 \003(\002\022\n\n\002km\030\t"
+    " \003(\002\"\245\001\n\rCustomGainSet\022\r\n\005gain0\030\001 \003(\002\022\r\n"
+    "\005gain1\030\002 \003(\002\022\r\n\005gain2\030\003 \003(\002\022\r\n\005gain3\030\004 \003"
+    "(\002\022\r\n\005gain4\030\005 \003(\002\022\r\n\005gain5\030\006 \003(\002\022\r\n\005gain"
+    "6\030\007 \003(\002\022\r\n\005gain7\030\010 \003(\002\022\r\n\005gain8\030\t \003(\002\022\r\n"
+    "\005gain9\030\n \003(\002\":\n\026NewControllerTestState\022\017"
+    "\n\007Jenable\030\001 \001(\010\022\017\n\007Tenable\030\002 \001(\010\"\207\001\n\017Fri"
+    "ctionCompSet\022\033\n\023control_comp_enable\030\001 \001("
+    "\010\022\033\n\023control_comp_levels\030\002 \003(\005\022\034\n\024teachi"
+    "ng_comp_enable\030\003 \001(\010\022\034\n\024teaching_comp_le"
+    "vels\030\004 \003(\005\"(\n\016MountingAngles\022\n\n\002ry\030\001 \001(\002"
+    "\022\n\n\002rz\030\002 \001(\002\"G\n\016ToolProperties\022\014\n\004mass\030\001"
+    " \001(\002\022\026\n\016center_of_mass\030\002 \003(\002\022\017\n\007inertia\030"
+    "\003 \003(\002\"W\n\021ToolPropertyEntry\022\014\n\004name\030\001 \001(\t"
+    "\0224\n\010property\030\002 \001(\0132\".Nrmk.IndyFramework."
+    "ToolProperties\"K\n\023ToolPropertyEntries\0224\n"
+    "\005tools\030\001 \003(\0132%.Nrmk.IndyFramework.ToolPr"
+    "opertyEntry\"#\n\022CollisionSensLevel\022\r\n\005lev"
+    "el\030\001 \001(\r\"\262\002\n\023CollisionThresholds\022\026\n\016j_to"
+    "rque_bases\030\001 \003(\002\022\031\n\021j_torque_tangents\030\002 "
+    "\003(\002\022\026\n\016t_torque_bases\030\003 \003(\002\022\031\n\021t_torque_"
+    "tangents\030\004 \003(\002\022\023\n\013error_bases\030\005 \003(\002\022\026\n\016e"
+    "rror_tangents\030\006 \003(\002\022\037\n\027t_constvel_torque"
+    "_bases\030\007 \003(\002\022\"\n\032t_constvel_torque_tangen"
+    "ts\030\010 \003(\002\022\037\n\027t_conveyor_torque_bases\030\t \003("
+    "\002\022\"\n\032t_conveyor_torque_tangents\030\n \003(\002\"t\n"
+    "\017CollisionPolicy\0227\n\006policy\030\001 \001(\0162\'.Nrmk."
+    "IndyFramework.CollisionPolicyType\022\022\n\nsle"
+    "ep_time\030\002 \001(\002\022\024\n\014gravity_time\030\003 \001(\002\"S\n\024O"
+    "nStartProgramConfig\022\020\n\010auto_run\030\001 \001(\010\022\r\n"
+    "\005index\030\002 \001(\005\022\032\n\022auto_boot_on_power\030\003 \001(\010"
     "\"\346\001\n\014SafetyLimits\022\023\n\013power_limit\030\001 \001(\002\022\031"
     "\n\021power_limit_ratio\030\002 \001(\002\022\027\n\017tcp_force_l"
     "imit\030\003 \001(\002\022\035\n\025tcp_force_limit_ratio\030\004 \001("
@@ -2035,75 +2445,90 @@ const char descriptor_table_protodef_config_5fmsgs_2eproto[] PROTOBUF_SECTION_VA
     "k.IndyFramework.StopCategory\0229\n\017safegd_s"
     "top_cat\030\007 \003(\0162 .Nrmk.IndyFramework.StopC"
     "ategory\0223\n\013safegd_type\030\n \003(\0162\036.Nrmk.Indy"
-    "Framework.SafeGdType\"\351\001\n\010DIConfig\022\025\n\rfun"
-    "ction_code\030\001 \001(\005\022\025\n\rfunction_name\030\002 \001(\t\022"
-    "9\n\016triggerSignals\030\003 \003(\0132!.Nrmk.IndyFrame"
-    "work.DigitalSignal\0229\n\016successSignals\030\004 \003"
+    "Framework.SafeGdType\"_\n\022SafetySnapshotIn"
+    "fo\022\023\n\013snapshot_id\030\001 \001(\t\022\r\n\005label\030\002 \001(\t\022\022"
+    "\n\ncreated_at\030\003 \001(\t\022\021\n\timmutable\030\004 \001(\010\"O\n"
+    "\022SafetySnapshotList\0229\n\tsnapshots\030\001 \003(\0132&"
+    ".Nrmk.IndyFramework.SafetySnapshotInfo\"&"
+    "\n\025SaveSafetySnapshotReq\022\r\n\005label\030\001 \001(\t\"\'"
+    "\n\020SafetySnapshotId\022\023\n\013snapshot_id\030\001 \001(\t\""
+    "\351\001\n\010DIConfig\022\025\n\rfunction_code\030\001 \001(\005\022\025\n\rf"
+    "unction_name\030\002 \001(\t\0229\n\016triggerSignals\030\003 \003"
     "(\0132!.Nrmk.IndyFramework.DigitalSignal\0229\n"
-    "\016failureSignals\030\005 \003(\0132!.Nrmk.IndyFramewo"
-    "rk.DigitalSignal\"@\n\014DIConfigList\0220\n\ndi_c"
-    "onfigs\030\001 \003(\0132\034.Nrmk.IndyFramework.DIConf"
-    "ig\"\237\001\n\010DOConfig\022\022\n\nstate_code\030\001 \001(\005\022\022\n\ns"
-    "tate_name\030\002 \001(\t\0224\n\tonSignals\030\003 \003(\0132!.Nrm"
-    "k.IndyFramework.DigitalSignal\0225\n\noffSign"
-    "als\030\004 \003(\0132!.Nrmk.IndyFramework.DigitalSi"
-    "gnal\"@\n\014DOConfigList\0220\n\ndo_configs\030\001 \003(\013"
-    "2\034.Nrmk.IndyFramework.DOConfig\"0\n\022GetRed"
-    "ucedRatioRes\022\r\n\005ratio\030\001 \001(\002\022\013\n\003msg\030d \001(\t"
-    "\"0\n\022GetReducedSpeedRes\022\r\n\005speed\030\001 \001(\002\022\013\n"
-    "\003msg\030d \001(\t\"#\n\022SetReducedSpeedReq\022\r\n\005spee"
-    "d\030\001 \001(\002\"\341\004\n\016FTSensorDevice\022G\n\010dev_type\030\001"
-    " \001(\01625.Nrmk.IndyFramework.FTSensorDevice"
-    ".FTSensorDeviceType\022J\n\010com_type\030\002 \001(\01628."
-    "Nrmk.IndyFramework.FTSensorDevice.FTSens"
-    "orDeviceComType\022\022\n\nip_address\030\003 \001(\t\022%\n\035f"
-    "t_frame_translation_offset_x\030\013 \001(\002\022%\n\035ft"
-    "_frame_translation_offset_y\030\014 \001(\002\022%\n\035ft_"
-    "frame_translation_offset_z\030\r \001(\002\022\"\n\032ft_f"
-    "rame_rotation_offset_r\030\016 \001(\002\022\"\n\032ft_frame"
-    "_rotation_offset_p\030\017 \001(\002\022\"\n\032ft_frame_rot"
-    "ation_offset_y\030\020 \001(\002\"q\n\022FTSensorDeviceTy"
-    "pe\022\010\n\004NONE\020\000\022\016\n\nAFT200_D80\020\001\022\021\n\rAFT200_D"
-    "80_EC\020\002\022\016\n\nRFT80_6A01\020\003\022\016\n\nRFT60_HA01\020\004\022"
-    "\016\n\nHEX_E_H_QC\020\005\"R\n\025FTSensorDeviceComType"
-    "\022\016\n\nENDTOOLCAN\020\000\022\t\n\005CBCAN\020\001\022\020\n\014MODBUSCLI"
-    "ENT\020\002\022\014\n\010ETHERCAT\020\003\" \n\021FTSensorDeviceRes"
-    "\022\013\n\003msg\030d \001(\t\"N\n\014TeleOpParams\022\025\n\rsmooth_"
-    "factor\030\001 \001(\002\022\023\n\013cutoff_freq\030\002 \001(\002\022\022\n\nerr"
-    "or_gain\030\003 \001(\002\"\231\002\n\020KinematicsParams\0225\n\003md"
-    "h\030\001 \003(\0132(.Nrmk.IndyFramework.KinematicsP"
-    "arams.MDH\032\230\001\n\003MDH\022\t\n\001a\030\001 \001(\002\022\r\n\005alpha\030\002 "
-    "\001(\002\022\n\n\002d0\030\003 \001(\002\022\016\n\006theta0\030\004 \001(\002\022<\n\004type\030"
-    "\005 \001(\0162..Nrmk.IndyFramework.KinematicsPar"
-    "ams.JointType\022\r\n\005index\030\n \001(\005\022\016\n\006parent\030\013"
-    " \001(\005\"3\n\tJointType\022\014\n\010REVOLUTE\020\000\022\r\n\tPRISM"
-    "ATIC\020\001\022\t\n\005FIXED\020\002\"H\n\024CollisionModelMargi"
-    "n\022\030\n\020collision_margin\030\001 \001(\002\022\026\n\016recover_m"
-    "argin\030\002 \001(\002\"\353\001\n\005Shape\0227\n\nshape_type\030\001 \001("
-    "\0162#.Nrmk.IndyFramework.Shape.ShapeType\022\020"
-    "\n\010position\030\002 \003(\002\022\023\n\013orientation\030\003 \003(\002\022\016\n"
-    "\006radius\030\n \001(\002\022\r\n\005width\030\013 \001(\002\022\r\n\005depth\030\014 "
-    "\001(\002\022\016\n\006height\030\r \001(\002\"D\n\tShapeType\022\n\n\006SPHE"
-    "RE\020\000\022\014\n\010CYLINDER\020\001\022\010\n\004CUBE\020\n\022\t\n\005PLANE\020\013\022"
-    "\010\n\004WALL\020\014\"%\n\020SensorlessParams\022\021\n\ttau_bou"
-    "nd\030\001 \003(\002\"H\n\rNamedGeometry\022)\n\006shapes\030\001 \003("
-    "\0132\031.Nrmk.IndyFramework.Shape\022\014\n\004name\030\n \001"
-    "(\t\"\\\n\rToolShapeList\0225\n\ngeometries\030\001 \003(\0132"
-    "!.Nrmk.IndyFramework.NamedGeometry\022\024\n\014de"
-    "fault_name\030\n \001(\t\"\276\002\n\004Zone\022(\n\005shape\030d \001(\013"
-    "2\031.Nrmk.IndyFramework.Shape\0222\n\007subject\030\310"
-    "\001 \001(\0162 .Nrmk.IndyFramework.Zone.Subject\022"
-    ".\n\004rule\030\254\002 \001(\0162\037.Nrmk.IndyFramework.Cont"
-    "actRule\022\023\n\ncoll_level\030\267\002 \001(\r\022\022\n\tvel_rati"
-    "o\030\301\002 \001(\002\022\022\n\tacc_ratio\030\302\002 \001(\002\022\024\n\013tool_vec"
-    "tor\030\313\002 \003(\002\022\023\n\nref_vector\030\314\002 \003(\002\022\026\n\rallow"
-    "ed_angle\030\315\002 \001(\002\"(\n\007Subject\022\016\n\nWHOLE_BODY"
-    "\020\000\022\r\n\tTOOL_ONLY\020\001\"I\n\020NamedEnvironment\022\'\n"
-    "\005zones\030\001 \003(\0132\030.Nrmk.IndyFramework.Zone\022\014"
-    "\n\004name\030\n \001(\t\"c\n\017EnvironmentList\022:\n\014envir"
-    "onments\030\001 \003(\0132$.Nrmk.IndyFramework.Named"
-    "Environment\022\024\n\014default_name\030\n \001(\tb\006proto"
-    "3"
+    "\016successSignals\030\004 \003(\0132!.Nrmk.IndyFramewo"
+    "rk.DigitalSignal\0229\n\016failureSignals\030\005 \003(\013"
+    "2!.Nrmk.IndyFramework.DigitalSignal\"@\n\014D"
+    "IConfigList\0220\n\ndi_configs\030\001 \003(\0132\034.Nrmk.I"
+    "ndyFramework.DIConfig\"\237\001\n\010DOConfig\022\022\n\nst"
+    "ate_code\030\001 \001(\005\022\022\n\nstate_name\030\002 \001(\t\0224\n\ton"
+    "Signals\030\003 \003(\0132!.Nrmk.IndyFramework.DOCha"
+    "nnelMode\0225\n\noffSignals\030\004 \003(\0132!.Nrmk.Indy"
+    "Framework.DOChannelMode\"@\n\014DOConfigList\022"
+    "0\n\ndo_configs\030\001 \003(\0132\034.Nrmk.IndyFramework"
+    ".DOConfig\"0\n\022GetReducedRatioRes\022\r\n\005ratio"
+    "\030\001 \001(\002\022\013\n\003msg\030d \001(\t\"0\n\022GetReducedSpeedRe"
+    "s\022\r\n\005speed\030\001 \001(\002\022\013\n\003msg\030d \001(\t\"#\n\022SetRedu"
+    "cedSpeedReq\022\r\n\005speed\030\001 \001(\002\"\341\004\n\016FTSensorD"
+    "evice\022G\n\010dev_type\030\001 \001(\01625.Nrmk.IndyFrame"
+    "work.FTSensorDevice.FTSensorDeviceType\022J"
+    "\n\010com_type\030\002 \001(\01628.Nrmk.IndyFramework.FT"
+    "SensorDevice.FTSensorDeviceComType\022\022\n\nip"
+    "_address\030\003 \001(\t\022%\n\035ft_frame_translation_o"
+    "ffset_x\030\013 \001(\002\022%\n\035ft_frame_translation_of"
+    "fset_y\030\014 \001(\002\022%\n\035ft_frame_translation_off"
+    "set_z\030\r \001(\002\022\"\n\032ft_frame_rotation_offset_"
+    "r\030\016 \001(\002\022\"\n\032ft_frame_rotation_offset_p\030\017 "
+    "\001(\002\022\"\n\032ft_frame_rotation_offset_y\030\020 \001(\002\""
+    "q\n\022FTSensorDeviceType\022\010\n\004NONE\020\000\022\016\n\nAFT20"
+    "0_D80\020\001\022\021\n\rAFT200_D80_EC\020\002\022\016\n\nRFT80_6A01"
+    "\020\003\022\016\n\nRFT60_HA01\020\004\022\016\n\nHEX_E_H_QC\020\005\"R\n\025FT"
+    "SensorDeviceComType\022\016\n\nENDTOOLCAN\020\000\022\t\n\005C"
+    "BCAN\020\001\022\020\n\014MODBUSCLIENT\020\002\022\014\n\010ETHERCAT\020\003\" "
+    "\n\021FTSensorDeviceRes\022\013\n\003msg\030d \001(\t\"N\n\014Tele"
+    "OpParams\022\025\n\rsmooth_factor\030\001 \001(\002\022\023\n\013cutof"
+    "f_freq\030\002 \001(\002\022\022\n\nerror_gain\030\003 \001(\002\"\231\002\n\020Kin"
+    "ematicsParams\0225\n\003mdh\030\001 \003(\0132(.Nrmk.IndyFr"
+    "amework.KinematicsParams.MDH\032\230\001\n\003MDH\022\t\n\001"
+    "a\030\001 \001(\002\022\r\n\005alpha\030\002 \001(\002\022\n\n\002d0\030\003 \001(\002\022\016\n\006th"
+    "eta0\030\004 \001(\002\022<\n\004type\030\005 \001(\0162..Nrmk.IndyFram"
+    "ework.KinematicsParams.JointType\022\r\n\005inde"
+    "x\030\n \001(\005\022\016\n\006parent\030\013 \001(\005\"3\n\tJointType\022\014\n\010"
+    "REVOLUTE\020\000\022\r\n\tPRISMATIC\020\001\022\t\n\005FIXED\020\002\"H\n\024"
+    "CollisionModelMargin\022\030\n\020collision_margin"
+    "\030\001 \001(\002\022\026\n\016recover_margin\030\002 \001(\002\"\353\001\n\005Shape"
+    "\0227\n\nshape_type\030\001 \001(\0162#.Nrmk.IndyFramewor"
+    "k.Shape.ShapeType\022\020\n\010position\030\002 \003(\002\022\023\n\013o"
+    "rientation\030\003 \003(\002\022\016\n\006radius\030\n \001(\002\022\r\n\005widt"
+    "h\030\013 \001(\002\022\r\n\005depth\030\014 \001(\002\022\016\n\006height\030\r \001(\002\"D"
+    "\n\tShapeType\022\n\n\006SPHERE\020\000\022\014\n\010CYLINDER\020\001\022\010\n"
+    "\004CUBE\020\n\022\t\n\005PLANE\020\013\022\010\n\004WALL\020\014\"%\n\020Sensorle"
+    "ssParams\022\021\n\ttau_bound\030\001 \003(\002\"H\n\rNamedGeom"
+    "etry\022)\n\006shapes\030\001 \003(\0132\031.Nrmk.IndyFramewor"
+    "k.Shape\022\014\n\004name\030\n \001(\t\"\\\n\rToolShapeList\0225"
+    "\n\ngeometries\030\001 \003(\0132!.Nrmk.IndyFramework."
+    "NamedGeometry\022\024\n\014default_name\030\n \001(\t\"\276\002\n\004"
+    "Zone\022(\n\005shape\030d \001(\0132\031.Nrmk.IndyFramework"
+    ".Shape\0222\n\007subject\030\310\001 \001(\0162 .Nrmk.IndyFram"
+    "ework.Zone.Subject\022.\n\004rule\030\254\002 \001(\0162\037.Nrmk"
+    ".IndyFramework.ContactRule\022\023\n\ncoll_level"
+    "\030\267\002 \001(\r\022\022\n\tvel_ratio\030\301\002 \001(\002\022\022\n\tacc_ratio"
+    "\030\302\002 \001(\002\022\024\n\013tool_vector\030\313\002 \003(\002\022\023\n\nref_vec"
+    "tor\030\314\002 \003(\002\022\026\n\rallowed_angle\030\315\002 \001(\002\"(\n\007Su"
+    "bject\022\016\n\nWHOLE_BODY\020\000\022\r\n\tTOOL_ONLY\020\001\"I\n\020"
+    "NamedEnvironment\022\'\n\005zones\030\001 \003(\0132\030.Nrmk.I"
+    "ndyFramework.Zone\022\014\n\004name\030\n \001(\t\"c\n\017Envir"
+    "onmentList\022:\n\014environments\030\001 \003(\0132$.Nrmk."
+    "IndyFramework.NamedEnvironment\022\024\n\014defaul"
+    "t_name\030\n \001(\t\"\221\001\n\021WeldingConfigInfo\022\r\n\005mo"
+    "del\030\001 \001(\t\022\021\n\tinterface\030\002 \001(\t\022\017\n\007node_id\030"
+    "\003 \001(\r\022\021\n\tbaud_rate\030\004 \001(\r\022\016\n\006vision\030\005 \001(\010"
+    "\022\021\n\tmodbus_ip\030\006 \001(\t\022\023\n\013modbus_port\030\007 \001(\r"
+    "\".\n\014WeldPosition\022\014\n\004name\030\001 \001(\t\022\020\n\010positi"
+    "on\030\002 \003(\002\"G\n\020WeldPositionList\0223\n\tposition"
+    "s\030\001 \003(\0132 .Nrmk.IndyFramework.WeldPositio"
+    "n\"X\n\023OperationModeConfig\022\031\n\021use_ext_auto"
+    "_mode\030\001 \001(\010\022\023\n\013mode_locked\030\002 \001(\010\022\021\n\tauto"
+    "_mode\030\003 \001(\010b\006proto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_config_5fmsgs_2eproto_deps[2] =
     {
@@ -2114,13 +2539,13 @@ static ::absl::once_flag descriptor_table_config_5fmsgs_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_config_5fmsgs_2eproto = {
     false,
     false,
-    6601,
+    7579,
     descriptor_table_protodef_config_5fmsgs_2eproto,
     "config_msgs.proto",
     &descriptor_table_config_5fmsgs_2eproto_once,
     descriptor_table_config_5fmsgs_2eproto_deps,
     2,
-    58,
+    70,
     schemas,
     file_default_instances,
     TableStruct_config_5fmsgs_2eproto::offsets,
@@ -4556,17 +4981,17 @@ const ::_pbi::TcParseTable<0, 1, 1, 0, 2> CustomPosList::_table_ = {
     &_CustomPosList_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
-    // repeated .Nrmk.IndyFramework.NamedJointPosition custom_pos = 1;
+    // repeated .Nrmk.IndyFramework.NamedPositionSet custom_pos = 1;
     {::_pbi::TcParser::FastMtR1,
      {10, 63, 0, PROTOBUF_FIELD_OFFSET(CustomPosList, _impl_.custom_pos_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // repeated .Nrmk.IndyFramework.NamedJointPosition custom_pos = 1;
+    // repeated .Nrmk.IndyFramework.NamedPositionSet custom_pos = 1;
     {PROTOBUF_FIELD_OFFSET(CustomPosList, _impl_.custom_pos_), 0, 0,
     (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
   }}, {{
-    {::_pbi::TcParser::GetTable<::Nrmk::IndyFramework::NamedJointPosition>()},
+    {::_pbi::TcParser::GetTable<::Nrmk::IndyFramework::NamedPositionSet>()},
   }}, {{
   }},
 };
@@ -4578,7 +5003,7 @@ const ::_pbi::TcParseTable<0, 1, 1, 0, 2> CustomPosList::_table_ = {
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
-  // repeated .Nrmk.IndyFramework.NamedJointPosition custom_pos = 1;
+  // repeated .Nrmk.IndyFramework.NamedPositionSet custom_pos = 1;
   for (unsigned i = 0,
       n = static_cast<unsigned>(this->_internal_custom_pos_size()); i < n; i++) {
     const auto& repfield = this->_internal_custom_pos().Get(i);
@@ -4603,7 +5028,7 @@ const ::_pbi::TcParseTable<0, 1, 1, 0, 2> CustomPosList::_table_ = {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // repeated .Nrmk.IndyFramework.NamedJointPosition custom_pos = 1;
+  // repeated .Nrmk.IndyFramework.NamedPositionSet custom_pos = 1;
   total_size += 1UL * this->_internal_custom_pos_size();
   for (const auto& msg : this->_internal_custom_pos()) {
     total_size +=
@@ -5180,6 +5605,497 @@ void JointPos::InternalSwap(JointPos* other) {
 }
 // ===================================================================
 
+class JointLimitRange::_Internal {
+ public:
+};
+
+JointLimitRange::JointLimitRange(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Nrmk.IndyFramework.JointLimitRange)
+}
+JointLimitRange::JointLimitRange(const JointLimitRange& from) : ::google::protobuf::Message() {
+  JointLimitRange* const _this = this;
+  (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.min_){from._impl_.min_},
+      decltype(_impl_.max_){from._impl_.max_},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+
+  // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.JointLimitRange)
+}
+inline void JointLimitRange::SharedCtor(::_pb::Arena* arena) {
+  (void)arena;
+  new (&_impl_) Impl_{
+      decltype(_impl_.min_){arena},
+      decltype(_impl_.max_){arena},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+}
+JointLimitRange::~JointLimitRange() {
+  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.JointLimitRange)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void JointLimitRange::SharedDtor() {
+  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.min_.~RepeatedField();
+  _impl_.max_.~RepeatedField();
+}
+void JointLimitRange::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+PROTOBUF_NOINLINE void JointLimitRange::Clear() {
+// @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.JointLimitRange)
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _internal_mutable_min()->Clear();
+  _internal_mutable_max()->Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* JointLimitRange::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 0, 2> JointLimitRange::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_JointLimitRange_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // repeated float max = 2;
+    {::_pbi::TcParser::FastF32P1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(JointLimitRange, _impl_.max_)}},
+    // repeated float min = 1;
+    {::_pbi::TcParser::FastF32P1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(JointLimitRange, _impl_.min_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // repeated float min = 1;
+    {PROTOBUF_FIELD_OFFSET(JointLimitRange, _impl_.min_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedFloat)},
+    // repeated float max = 2;
+    {PROTOBUF_FIELD_OFFSET(JointLimitRange, _impl_.max_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedFloat)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+
+::uint8_t* JointLimitRange::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.JointLimitRange)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // repeated float min = 1;
+  if (this->_internal_min_size() > 0) {
+    target = stream->WriteFixedPacked(1, _internal_min(), target);
+  }
+
+  // repeated float max = 2;
+  if (this->_internal_max_size() > 0) {
+    target = stream->WriteFixedPacked(2, _internal_max(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.JointLimitRange)
+  return target;
+}
+
+::size_t JointLimitRange::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.JointLimitRange)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated float min = 1;
+  {
+    std::size_t data_size = std::size_t{4} *
+        ::_pbi::FromIntSize(this->_internal_min_size())
+    ;
+    std::size_t tag_size = data_size == 0
+        ? 0
+        : 1 + ::_pbi::WireFormatLite::Int32Size(
+                            static_cast<int32_t>(data_size))
+    ;
+    total_size += tag_size + data_size;
+  }
+  // repeated float max = 2;
+  {
+    std::size_t data_size = std::size_t{4} *
+        ::_pbi::FromIntSize(this->_internal_max_size())
+    ;
+    std::size_t tag_size = data_size == 0
+        ? 0
+        : 1 + ::_pbi::WireFormatLite::Int32Size(
+                            static_cast<int32_t>(data_size))
+    ;
+    total_size += tag_size + data_size;
+  }
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData JointLimitRange::_class_data_ = {
+    ::google::protobuf::Message::CopyWithSourceCheck,
+    JointLimitRange::MergeImpl
+};
+const ::google::protobuf::Message::ClassData*JointLimitRange::GetClassData() const { return &_class_data_; }
+
+
+void JointLimitRange::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<JointLimitRange*>(&to_msg);
+  auto& from = static_cast<const JointLimitRange&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.JointLimitRange)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_internal_mutable_min()->MergeFrom(from._internal_min());
+  _this->_internal_mutable_max()->MergeFrom(from._internal_max());
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void JointLimitRange::CopyFrom(const JointLimitRange& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Nrmk.IndyFramework.JointLimitRange)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool JointLimitRange::IsInitialized() const {
+  return true;
+}
+
+void JointLimitRange::InternalSwap(JointLimitRange* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.min_.InternalSwap(&other->_impl_.min_);
+  _impl_.max_.InternalSwap(&other->_impl_.max_);
+}
+
+::google::protobuf::Metadata JointLimitRange::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
+      file_level_metadata_config_5fmsgs_2eproto[14]);
+}
+// ===================================================================
+
+class JointLimitConfig::_Internal {
+ public:
+  using HasBits = decltype(std::declval<JointLimitConfig>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+    8 * PROTOBUF_FIELD_OFFSET(JointLimitConfig, _impl_._has_bits_);
+  static const ::Nrmk::IndyFramework::JointLimitRange& joint_pos_limit(const JointLimitConfig* msg);
+  static void set_has_joint_pos_limit(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
+};
+
+const ::Nrmk::IndyFramework::JointLimitRange& JointLimitConfig::_Internal::joint_pos_limit(const JointLimitConfig* msg) {
+  return *msg->_impl_.joint_pos_limit_;
+}
+JointLimitConfig::JointLimitConfig(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Nrmk.IndyFramework.JointLimitConfig)
+}
+JointLimitConfig::JointLimitConfig(const JointLimitConfig& from) : ::google::protobuf::Message() {
+  JointLimitConfig* const _this = this;
+  (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){from._impl_._has_bits_},
+      /*decltype(_impl_._cached_size_)*/ {},
+      decltype(_impl_.robot_name_){},
+      decltype(_impl_.source_file_){},
+      decltype(_impl_.joint_pos_limit_){nullptr},
+  };
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  _impl_.robot_name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        _impl_.robot_name_.Set("", GetArenaForAllocation());
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_robot_name().empty()) {
+    _this->_impl_.robot_name_.Set(from._internal_robot_name(), _this->GetArenaForAllocation());
+  }
+  _impl_.source_file_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        _impl_.source_file_.Set("", GetArenaForAllocation());
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_source_file().empty()) {
+    _this->_impl_.source_file_.Set(from._internal_source_file(), _this->GetArenaForAllocation());
+  }
+  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
+    _this->_impl_.joint_pos_limit_ = new ::Nrmk::IndyFramework::JointLimitRange(*from._impl_.joint_pos_limit_);
+  }
+
+  // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.JointLimitConfig)
+}
+inline void JointLimitConfig::SharedCtor(::_pb::Arena* arena) {
+  (void)arena;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){},
+      /*decltype(_impl_._cached_size_)*/ {},
+      decltype(_impl_.robot_name_){},
+      decltype(_impl_.source_file_){},
+      decltype(_impl_.joint_pos_limit_){nullptr},
+  };
+  _impl_.robot_name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        _impl_.robot_name_.Set("", GetArenaForAllocation());
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.source_file_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        _impl_.source_file_.Set("", GetArenaForAllocation());
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+JointLimitConfig::~JointLimitConfig() {
+  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.JointLimitConfig)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void JointLimitConfig::SharedDtor() {
+  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.robot_name_.Destroy();
+  _impl_.source_file_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.joint_pos_limit_;
+}
+void JointLimitConfig::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+PROTOBUF_NOINLINE void JointLimitConfig::Clear() {
+// @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.JointLimitConfig)
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.robot_name_.ClearToEmpty();
+  _impl_.source_file_.ClearToEmpty();
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.joint_pos_limit_ != nullptr);
+    _impl_.joint_pos_limit_->Clear();
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* JointLimitConfig::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<2, 3, 1, 65, 7> JointLimitConfig::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(JointLimitConfig, _impl_._has_bits_),
+    0, // no _extensions_
+    100, 24,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    3,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_JointLimitConfig_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // string source_file = 100;
+    {::_pbi::TcParser::FastUS2,
+     {1698, 63, 0, PROTOBUF_FIELD_OFFSET(JointLimitConfig, _impl_.source_file_)}},
+    // string robot_name = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(JointLimitConfig, _impl_.robot_name_)}},
+    // .Nrmk.IndyFramework.JointLimitRange joint_pos_limit = 2;
+    {::_pbi::TcParser::FastMtS1,
+     {18, 0, 0, PROTOBUF_FIELD_OFFSET(JointLimitConfig, _impl_.joint_pos_limit_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+  }}, {{
+    100, 0, 1,
+    65534, 2,
+    65535, 65535
+  }}, {{
+    // string robot_name = 1;
+    {PROTOBUF_FIELD_OFFSET(JointLimitConfig, _impl_.robot_name_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // .Nrmk.IndyFramework.JointLimitRange joint_pos_limit = 2;
+    {PROTOBUF_FIELD_OFFSET(JointLimitConfig, _impl_.joint_pos_limit_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+    // string source_file = 100;
+    {PROTOBUF_FIELD_OFFSET(JointLimitConfig, _impl_.source_file_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::Nrmk::IndyFramework::JointLimitRange>()},
+  }}, {{
+    "\43\12\0\13\0\0\0\0"
+    "Nrmk.IndyFramework.JointLimitConfig"
+    "robot_name"
+    "source_file"
+  }},
+};
+
+::uint8_t* JointLimitConfig::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.JointLimitConfig)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // string robot_name = 1;
+  if (!this->_internal_robot_name().empty()) {
+    const std::string& _s = this->_internal_robot_name();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "Nrmk.IndyFramework.JointLimitConfig.robot_name");
+    target = stream->WriteStringMaybeAliased(1, _s, target);
+  }
+
+  cached_has_bits = _impl_._has_bits_[0];
+  // .Nrmk.IndyFramework.JointLimitRange joint_pos_limit = 2;
+  if (cached_has_bits & 0x00000001u) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessage(2, _Internal::joint_pos_limit(this),
+        _Internal::joint_pos_limit(this).GetCachedSize(), target, stream);
+  }
+
+  // string source_file = 100;
+  if (!this->_internal_source_file().empty()) {
+    const std::string& _s = this->_internal_source_file();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "Nrmk.IndyFramework.JointLimitConfig.source_file");
+    target = stream->WriteStringMaybeAliased(100, _s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.JointLimitConfig)
+  return target;
+}
+
+::size_t JointLimitConfig::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.JointLimitConfig)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string robot_name = 1;
+  if (!this->_internal_robot_name().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_robot_name());
+  }
+
+  // string source_file = 100;
+  if (!this->_internal_source_file().empty()) {
+    total_size += 2 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_source_file());
+  }
+
+  // .Nrmk.IndyFramework.JointLimitRange joint_pos_limit = 2;
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::MessageSize(
+        *_impl_.joint_pos_limit_);
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData JointLimitConfig::_class_data_ = {
+    ::google::protobuf::Message::CopyWithSourceCheck,
+    JointLimitConfig::MergeImpl
+};
+const ::google::protobuf::Message::ClassData*JointLimitConfig::GetClassData() const { return &_class_data_; }
+
+
+void JointLimitConfig::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<JointLimitConfig*>(&to_msg);
+  auto& from = static_cast<const JointLimitConfig&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.JointLimitConfig)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_robot_name().empty()) {
+    _this->_internal_set_robot_name(from._internal_robot_name());
+  }
+  if (!from._internal_source_file().empty()) {
+    _this->_internal_set_source_file(from._internal_source_file());
+  }
+  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
+    _this->_internal_mutable_joint_pos_limit()->::Nrmk::IndyFramework::JointLimitRange::MergeFrom(
+        from._internal_joint_pos_limit());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void JointLimitConfig::CopyFrom(const JointLimitConfig& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Nrmk.IndyFramework.JointLimitConfig)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool JointLimitConfig::IsInitialized() const {
+  return true;
+}
+
+void JointLimitConfig::InternalSwap(JointLimitConfig* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.robot_name_, lhs_arena,
+                                       &other->_impl_.robot_name_, rhs_arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.source_file_, lhs_arena,
+                                       &other->_impl_.source_file_, rhs_arena);
+  swap(_impl_.joint_pos_limit_, other->_impl_.joint_pos_limit_);
+}
+
+::google::protobuf::Metadata JointLimitConfig::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
+      file_level_metadata_config_5fmsgs_2eproto[15]);
+}
+// ===================================================================
+
 class PlanarFrame::_Internal {
  public:
 };
@@ -5410,7 +6326,7 @@ void PlanarFrame::InternalSwap(PlanarFrame* other) {
 ::google::protobuf::Metadata PlanarFrame::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[14]);
+      file_level_metadata_config_5fmsgs_2eproto[16]);
 }
 // ===================================================================
 
@@ -5641,7 +6557,7 @@ void FrameResult::InternalSwap(FrameResult* other) {
 ::google::protobuf::Metadata FrameResult::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[15]);
+      file_level_metadata_config_5fmsgs_2eproto[17]);
 }
 // ===================================================================
 
@@ -5816,7 +6732,7 @@ void VisionServerList::InternalSwap(VisionServerList* other) {
 ::google::protobuf::Metadata VisionServerList::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[16]);
+      file_level_metadata_config_5fmsgs_2eproto[18]);
 }
 // ===================================================================
 
@@ -5991,7 +6907,7 @@ void ModbusServerList::InternalSwap(ModbusServerList* other) {
 ::google::protobuf::Metadata ModbusServerList::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[17]);
+      file_level_metadata_config_5fmsgs_2eproto[19]);
 }
 // ===================================================================
 
@@ -6157,7 +7073,7 @@ void Ratio::InternalSwap(Ratio* other) {
 ::google::protobuf::Metadata Ratio::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[18]);
+      file_level_metadata_config_5fmsgs_2eproto[20]);
 }
 // ===================================================================
 
@@ -6366,7 +7282,7 @@ void AutoServoOffConfig::InternalSwap(AutoServoOffConfig* other) {
 ::google::protobuf::Metadata AutoServoOffConfig::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[19]);
+      file_level_metadata_config_5fmsgs_2eproto[21]);
 }
 // ===================================================================
 
@@ -6586,7 +7502,7 @@ void CollTuningConfig::InternalSwap(CollTuningConfig* other) {
 ::google::protobuf::Metadata CollTuningConfig::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[20]);
+      file_level_metadata_config_5fmsgs_2eproto[22]);
 }
 // ===================================================================
 
@@ -6820,7 +7736,7 @@ void JointGainSet::InternalSwap(JointGainSet* other) {
 ::google::protobuf::Metadata JointGainSet::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[21]);
+      file_level_metadata_config_5fmsgs_2eproto[23]);
 }
 // ===================================================================
 
@@ -7054,7 +7970,7 @@ void TaskGainSet::InternalSwap(TaskGainSet* other) {
 ::google::protobuf::Metadata TaskGainSet::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[22]);
+      file_level_metadata_config_5fmsgs_2eproto[24]);
 }
 // ===================================================================
 
@@ -7316,7 +8232,7 @@ void ImpedanceGainSet::InternalSwap(ImpedanceGainSet* other) {
 ::google::protobuf::Metadata ImpedanceGainSet::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[23]);
+      file_level_metadata_config_5fmsgs_2eproto[25]);
 }
 // ===================================================================
 
@@ -7694,7 +8610,7 @@ void ForceGainSet::InternalSwap(ForceGainSet* other) {
 ::google::protobuf::Metadata ForceGainSet::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[24]);
+      file_level_metadata_config_5fmsgs_2eproto[26]);
 }
 // ===================================================================
 
@@ -8016,7 +8932,7 @@ void TestGainSet::InternalSwap(TestGainSet* other) {
 ::google::protobuf::Metadata TestGainSet::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[25]);
+      file_level_metadata_config_5fmsgs_2eproto[27]);
 }
 // ===================================================================
 
@@ -8430,7 +9346,7 @@ void ComplianceGainSet::InternalSwap(ComplianceGainSet* other) {
 ::google::protobuf::Metadata ComplianceGainSet::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[26]);
+      file_level_metadata_config_5fmsgs_2eproto[28]);
 }
 // ===================================================================
 
@@ -8872,7 +9788,7 @@ void CustomGainSet::InternalSwap(CustomGainSet* other) {
 ::google::protobuf::Metadata CustomGainSet::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[27]);
+      file_level_metadata_config_5fmsgs_2eproto[29]);
 }
 // ===================================================================
 
@@ -9066,7 +9982,7 @@ void NewControllerTestState::InternalSwap(NewControllerTestState* other) {
 ::google::protobuf::Metadata NewControllerTestState::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[28]);
+      file_level_metadata_config_5fmsgs_2eproto[30]);
 }
 // ===================================================================
 
@@ -9342,7 +10258,7 @@ void FrictionCompSet::InternalSwap(FrictionCompSet* other) {
 ::google::protobuf::Metadata FrictionCompSet::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[29]);
+      file_level_metadata_config_5fmsgs_2eproto[31]);
 }
 // ===================================================================
 
@@ -9566,7 +10482,7 @@ void MountingAngles::InternalSwap(MountingAngles* other) {
 ::google::protobuf::Metadata MountingAngles::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[30]);
+      file_level_metadata_config_5fmsgs_2eproto[32]);
 }
 // ===================================================================
 
@@ -9812,7 +10728,422 @@ void ToolProperties::InternalSwap(ToolProperties* other) {
 ::google::protobuf::Metadata ToolProperties::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[31]);
+      file_level_metadata_config_5fmsgs_2eproto[33]);
+}
+// ===================================================================
+
+class ToolPropertyEntry::_Internal {
+ public:
+  using HasBits = decltype(std::declval<ToolPropertyEntry>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+    8 * PROTOBUF_FIELD_OFFSET(ToolPropertyEntry, _impl_._has_bits_);
+  static const ::Nrmk::IndyFramework::ToolProperties& property(const ToolPropertyEntry* msg);
+  static void set_has_property(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
+};
+
+const ::Nrmk::IndyFramework::ToolProperties& ToolPropertyEntry::_Internal::property(const ToolPropertyEntry* msg) {
+  return *msg->_impl_.property_;
+}
+ToolPropertyEntry::ToolPropertyEntry(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Nrmk.IndyFramework.ToolPropertyEntry)
+}
+ToolPropertyEntry::ToolPropertyEntry(const ToolPropertyEntry& from) : ::google::protobuf::Message() {
+  ToolPropertyEntry* const _this = this;
+  (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){from._impl_._has_bits_},
+      /*decltype(_impl_._cached_size_)*/ {},
+      decltype(_impl_.name_){},
+      decltype(_impl_.property_){nullptr},
+  };
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  _impl_.name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        _impl_.name_.Set("", GetArenaForAllocation());
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_name().empty()) {
+    _this->_impl_.name_.Set(from._internal_name(), _this->GetArenaForAllocation());
+  }
+  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
+    _this->_impl_.property_ = new ::Nrmk::IndyFramework::ToolProperties(*from._impl_.property_);
+  }
+
+  // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.ToolPropertyEntry)
+}
+inline void ToolPropertyEntry::SharedCtor(::_pb::Arena* arena) {
+  (void)arena;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){},
+      /*decltype(_impl_._cached_size_)*/ {},
+      decltype(_impl_.name_){},
+      decltype(_impl_.property_){nullptr},
+  };
+  _impl_.name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        _impl_.name_.Set("", GetArenaForAllocation());
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+ToolPropertyEntry::~ToolPropertyEntry() {
+  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.ToolPropertyEntry)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void ToolPropertyEntry::SharedDtor() {
+  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.name_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.property_;
+}
+void ToolPropertyEntry::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+PROTOBUF_NOINLINE void ToolPropertyEntry::Clear() {
+// @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.ToolPropertyEntry)
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.name_.ClearToEmpty();
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.property_ != nullptr);
+    _impl_.property_->Clear();
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* ToolPropertyEntry::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 1, 49, 2> ToolPropertyEntry::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(ToolPropertyEntry, _impl_._has_bits_),
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_ToolPropertyEntry_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // .Nrmk.IndyFramework.ToolProperties property = 2;
+    {::_pbi::TcParser::FastMtS1,
+     {18, 0, 0, PROTOBUF_FIELD_OFFSET(ToolPropertyEntry, _impl_.property_)}},
+    // string name = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(ToolPropertyEntry, _impl_.name_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string name = 1;
+    {PROTOBUF_FIELD_OFFSET(ToolPropertyEntry, _impl_.name_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // .Nrmk.IndyFramework.ToolProperties property = 2;
+    {PROTOBUF_FIELD_OFFSET(ToolPropertyEntry, _impl_.property_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::Nrmk::IndyFramework::ToolProperties>()},
+  }}, {{
+    "\44\4\0\0\0\0\0\0"
+    "Nrmk.IndyFramework.ToolPropertyEntry"
+    "name"
+  }},
+};
+
+::uint8_t* ToolPropertyEntry::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.ToolPropertyEntry)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // string name = 1;
+  if (!this->_internal_name().empty()) {
+    const std::string& _s = this->_internal_name();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "Nrmk.IndyFramework.ToolPropertyEntry.name");
+    target = stream->WriteStringMaybeAliased(1, _s, target);
+  }
+
+  cached_has_bits = _impl_._has_bits_[0];
+  // .Nrmk.IndyFramework.ToolProperties property = 2;
+  if (cached_has_bits & 0x00000001u) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessage(2, _Internal::property(this),
+        _Internal::property(this).GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.ToolPropertyEntry)
+  return target;
+}
+
+::size_t ToolPropertyEntry::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.ToolPropertyEntry)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string name = 1;
+  if (!this->_internal_name().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_name());
+  }
+
+  // .Nrmk.IndyFramework.ToolProperties property = 2;
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::MessageSize(
+        *_impl_.property_);
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData ToolPropertyEntry::_class_data_ = {
+    ::google::protobuf::Message::CopyWithSourceCheck,
+    ToolPropertyEntry::MergeImpl
+};
+const ::google::protobuf::Message::ClassData*ToolPropertyEntry::GetClassData() const { return &_class_data_; }
+
+
+void ToolPropertyEntry::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<ToolPropertyEntry*>(&to_msg);
+  auto& from = static_cast<const ToolPropertyEntry&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.ToolPropertyEntry)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_name().empty()) {
+    _this->_internal_set_name(from._internal_name());
+  }
+  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
+    _this->_internal_mutable_property()->::Nrmk::IndyFramework::ToolProperties::MergeFrom(
+        from._internal_property());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void ToolPropertyEntry::CopyFrom(const ToolPropertyEntry& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Nrmk.IndyFramework.ToolPropertyEntry)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool ToolPropertyEntry::IsInitialized() const {
+  return true;
+}
+
+void ToolPropertyEntry::InternalSwap(ToolPropertyEntry* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.name_, lhs_arena,
+                                       &other->_impl_.name_, rhs_arena);
+  swap(_impl_.property_, other->_impl_.property_);
+}
+
+::google::protobuf::Metadata ToolPropertyEntry::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
+      file_level_metadata_config_5fmsgs_2eproto[34]);
+}
+// ===================================================================
+
+class ToolPropertyEntries::_Internal {
+ public:
+};
+
+ToolPropertyEntries::ToolPropertyEntries(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Nrmk.IndyFramework.ToolPropertyEntries)
+}
+ToolPropertyEntries::ToolPropertyEntries(const ToolPropertyEntries& from) : ::google::protobuf::Message() {
+  ToolPropertyEntries* const _this = this;
+  (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.tools_){from._impl_.tools_},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+
+  // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.ToolPropertyEntries)
+}
+inline void ToolPropertyEntries::SharedCtor(::_pb::Arena* arena) {
+  (void)arena;
+  new (&_impl_) Impl_{
+      decltype(_impl_.tools_){arena},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+}
+ToolPropertyEntries::~ToolPropertyEntries() {
+  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.ToolPropertyEntries)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void ToolPropertyEntries::SharedDtor() {
+  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.tools_.~RepeatedPtrField();
+}
+void ToolPropertyEntries::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+PROTOBUF_NOINLINE void ToolPropertyEntries::Clear() {
+// @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.ToolPropertyEntries)
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _internal_mutable_tools()->Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* ToolPropertyEntries::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 1, 1, 0, 2> ToolPropertyEntries::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    1, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    1,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_ToolPropertyEntries_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // repeated .Nrmk.IndyFramework.ToolPropertyEntry tools = 1;
+    {::_pbi::TcParser::FastMtR1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(ToolPropertyEntries, _impl_.tools_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // repeated .Nrmk.IndyFramework.ToolPropertyEntry tools = 1;
+    {PROTOBUF_FIELD_OFFSET(ToolPropertyEntries, _impl_.tools_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::Nrmk::IndyFramework::ToolPropertyEntry>()},
+  }}, {{
+  }},
+};
+
+::uint8_t* ToolPropertyEntries::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.ToolPropertyEntries)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // repeated .Nrmk.IndyFramework.ToolPropertyEntry tools = 1;
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_tools_size()); i < n; i++) {
+    const auto& repfield = this->_internal_tools().Get(i);
+    target = ::google::protobuf::internal::WireFormatLite::
+        InternalWriteMessage(1, repfield, repfield.GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.ToolPropertyEntries)
+  return target;
+}
+
+::size_t ToolPropertyEntries::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.ToolPropertyEntries)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated .Nrmk.IndyFramework.ToolPropertyEntry tools = 1;
+  total_size += 1UL * this->_internal_tools_size();
+  for (const auto& msg : this->_internal_tools()) {
+    total_size +=
+      ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
+  }
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData ToolPropertyEntries::_class_data_ = {
+    ::google::protobuf::Message::CopyWithSourceCheck,
+    ToolPropertyEntries::MergeImpl
+};
+const ::google::protobuf::Message::ClassData*ToolPropertyEntries::GetClassData() const { return &_class_data_; }
+
+
+void ToolPropertyEntries::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<ToolPropertyEntries*>(&to_msg);
+  auto& from = static_cast<const ToolPropertyEntries&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.ToolPropertyEntries)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_internal_mutable_tools()->MergeFrom(from._internal_tools());
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void ToolPropertyEntries::CopyFrom(const ToolPropertyEntries& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Nrmk.IndyFramework.ToolPropertyEntries)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool ToolPropertyEntries::IsInitialized() const {
+  return true;
+}
+
+void ToolPropertyEntries::InternalSwap(ToolPropertyEntries* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.tools_.InternalSwap(&other->_impl_.tools_);
+}
+
+::google::protobuf::Metadata ToolPropertyEntries::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
+      file_level_metadata_config_5fmsgs_2eproto[35]);
 }
 // ===================================================================
 
@@ -9978,7 +11309,7 @@ void CollisionSensLevel::InternalSwap(CollisionSensLevel* other) {
 ::google::protobuf::Metadata CollisionSensLevel::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[32]);
+      file_level_metadata_config_5fmsgs_2eproto[36]);
 }
 // ===================================================================
 
@@ -10420,7 +11751,7 @@ void CollisionThresholds::InternalSwap(CollisionThresholds* other) {
 ::google::protobuf::Metadata CollisionThresholds::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[33]);
+      file_level_metadata_config_5fmsgs_2eproto[37]);
 }
 // ===================================================================
 
@@ -10668,7 +11999,7 @@ void CollisionPolicy::InternalSwap(CollisionPolicy* other) {
 ::google::protobuf::Metadata CollisionPolicy::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[34]);
+      file_level_metadata_config_5fmsgs_2eproto[38]);
 }
 // ===================================================================
 
@@ -10690,8 +12021,9 @@ OnStartProgramConfig::OnStartProgramConfig(const OnStartProgramConfig& from)
 inline void OnStartProgramConfig::SharedCtor(::_pb::Arena* arena) {
   (void)arena;
   new (&_impl_) Impl_{
-      decltype(_impl_.auto_run_){false},
       decltype(_impl_.index_){0},
+      decltype(_impl_.auto_run_){false},
+      decltype(_impl_.auto_boot_on_power_){false},
       /*decltype(_impl_._cached_size_)*/ {},
   };
 }
@@ -10713,9 +12045,9 @@ PROTOBUF_NOINLINE void OnStartProgramConfig::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  ::memset(&_impl_.auto_run_, 0, static_cast<::size_t>(
-      reinterpret_cast<char*>(&_impl_.index_) -
-      reinterpret_cast<char*>(&_impl_.auto_run_)) + sizeof(_impl_.index_));
+  ::memset(&_impl_.index_, 0, static_cast<::size_t>(
+      reinterpret_cast<char*>(&_impl_.auto_boot_on_power_) -
+      reinterpret_cast<char*>(&_impl_.index_)) + sizeof(_impl_.auto_boot_on_power_));
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -10727,26 +12059,30 @@ const char* OnStartProgramConfig::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 2, 0, 0, 2> OnStartProgramConfig::_table_ = {
+const ::_pbi::TcParseTable<2, 3, 0, 0, 2> OnStartProgramConfig::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
-    2, 8,  // max_field_number, fast_idx_mask
+    3, 24,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967292,  // skipmap
+    4294967288,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    2,  // num_field_entries
+    3,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
     &_OnStartProgramConfig_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
-    // int32 index = 2;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(OnStartProgramConfig, _impl_.index_), 63>(),
-     {16, 63, 0, PROTOBUF_FIELD_OFFSET(OnStartProgramConfig, _impl_.index_)}},
+    {::_pbi::TcParser::MiniParse, {}},
     // bool auto_run = 1;
     {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(OnStartProgramConfig, _impl_.auto_run_), 63>(),
      {8, 63, 0, PROTOBUF_FIELD_OFFSET(OnStartProgramConfig, _impl_.auto_run_)}},
+    // int32 index = 2;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(OnStartProgramConfig, _impl_.index_), 63>(),
+     {16, 63, 0, PROTOBUF_FIELD_OFFSET(OnStartProgramConfig, _impl_.index_)}},
+    // bool auto_boot_on_power = 3;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(OnStartProgramConfig, _impl_.auto_boot_on_power_), 63>(),
+     {24, 63, 0, PROTOBUF_FIELD_OFFSET(OnStartProgramConfig, _impl_.auto_boot_on_power_)}},
   }}, {{
     65535, 65535
   }}, {{
@@ -10756,6 +12092,9 @@ const ::_pbi::TcParseTable<1, 2, 0, 0, 2> OnStartProgramConfig::_table_ = {
     // int32 index = 2;
     {PROTOBUF_FIELD_OFFSET(OnStartProgramConfig, _impl_.index_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    // bool auto_boot_on_power = 3;
+    {PROTOBUF_FIELD_OFFSET(OnStartProgramConfig, _impl_.auto_boot_on_power_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
   }},
   // no aux_entries
   {{
@@ -10783,6 +12122,13 @@ const ::_pbi::TcParseTable<1, 2, 0, 0, 2> OnStartProgramConfig::_table_ = {
             stream, this->_internal_index(), target);
   }
 
+  // bool auto_boot_on_power = 3;
+  if (this->_internal_auto_boot_on_power() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(
+        3, this->_internal_auto_boot_on_power(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target =
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
@@ -10800,15 +12146,20 @@ const ::_pbi::TcParseTable<1, 2, 0, 0, 2> OnStartProgramConfig::_table_ = {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  // int32 index = 2;
+  if (this->_internal_index() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_index());
+  }
+
   // bool auto_run = 1;
   if (this->_internal_auto_run() != 0) {
     total_size += 2;
   }
 
-  // int32 index = 2;
-  if (this->_internal_index() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
-        this->_internal_index());
+  // bool auto_boot_on_power = 3;
+  if (this->_internal_auto_boot_on_power() != 0) {
+    total_size += 2;
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
@@ -10829,11 +12180,14 @@ void OnStartProgramConfig::MergeImpl(::google::protobuf::Message& to_msg, const 
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
+  if (from._internal_index() != 0) {
+    _this->_internal_set_index(from._internal_index());
+  }
   if (from._internal_auto_run() != 0) {
     _this->_internal_set_auto_run(from._internal_auto_run());
   }
-  if (from._internal_index() != 0) {
-    _this->_internal_set_index(from._internal_index());
+  if (from._internal_auto_boot_on_power() != 0) {
+    _this->_internal_set_auto_boot_on_power(from._internal_auto_boot_on_power());
   }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
@@ -10853,17 +12207,17 @@ void OnStartProgramConfig::InternalSwap(OnStartProgramConfig* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::google::protobuf::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(OnStartProgramConfig, _impl_.index_)
-      + sizeof(OnStartProgramConfig::_impl_.index_)
-      - PROTOBUF_FIELD_OFFSET(OnStartProgramConfig, _impl_.auto_run_)>(
-          reinterpret_cast<char*>(&_impl_.auto_run_),
-          reinterpret_cast<char*>(&other->_impl_.auto_run_));
+      PROTOBUF_FIELD_OFFSET(OnStartProgramConfig, _impl_.auto_boot_on_power_)
+      + sizeof(OnStartProgramConfig::_impl_.auto_boot_on_power_)
+      - PROTOBUF_FIELD_OFFSET(OnStartProgramConfig, _impl_.index_)>(
+          reinterpret_cast<char*>(&_impl_.index_),
+          reinterpret_cast<char*>(&other->_impl_.index_));
 }
 
 ::google::protobuf::Metadata OnStartProgramConfig::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[35]);
+      file_level_metadata_config_5fmsgs_2eproto[39]);
 }
 // ===================================================================
 
@@ -11307,7 +12661,7 @@ void SafetyLimits::InternalSwap(SafetyLimits* other) {
 ::google::protobuf::Metadata SafetyLimits::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[36]);
+      file_level_metadata_config_5fmsgs_2eproto[40]);
 }
 // ===================================================================
 
@@ -11697,7 +13051,860 @@ void SafetyStopConfig::InternalSwap(SafetyStopConfig* other) {
 ::google::protobuf::Metadata SafetyStopConfig::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[37]);
+      file_level_metadata_config_5fmsgs_2eproto[41]);
+}
+// ===================================================================
+
+class SafetySnapshotInfo::_Internal {
+ public:
+};
+
+SafetySnapshotInfo::SafetySnapshotInfo(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Nrmk.IndyFramework.SafetySnapshotInfo)
+}
+SafetySnapshotInfo::SafetySnapshotInfo(const SafetySnapshotInfo& from) : ::google::protobuf::Message() {
+  SafetySnapshotInfo* const _this = this;
+  (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.snapshot_id_){},
+      decltype(_impl_.label_){},
+      decltype(_impl_.created_at_){},
+      decltype(_impl_.immutable_){},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  _impl_.snapshot_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        _impl_.snapshot_id_.Set("", GetArenaForAllocation());
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_snapshot_id().empty()) {
+    _this->_impl_.snapshot_id_.Set(from._internal_snapshot_id(), _this->GetArenaForAllocation());
+  }
+  _impl_.label_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        _impl_.label_.Set("", GetArenaForAllocation());
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_label().empty()) {
+    _this->_impl_.label_.Set(from._internal_label(), _this->GetArenaForAllocation());
+  }
+  _impl_.created_at_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        _impl_.created_at_.Set("", GetArenaForAllocation());
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_created_at().empty()) {
+    _this->_impl_.created_at_.Set(from._internal_created_at(), _this->GetArenaForAllocation());
+  }
+  _this->_impl_.immutable_ = from._impl_.immutable_;
+
+  // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.SafetySnapshotInfo)
+}
+inline void SafetySnapshotInfo::SharedCtor(::_pb::Arena* arena) {
+  (void)arena;
+  new (&_impl_) Impl_{
+      decltype(_impl_.snapshot_id_){},
+      decltype(_impl_.label_){},
+      decltype(_impl_.created_at_){},
+      decltype(_impl_.immutable_){false},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+  _impl_.snapshot_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        _impl_.snapshot_id_.Set("", GetArenaForAllocation());
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.label_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        _impl_.label_.Set("", GetArenaForAllocation());
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.created_at_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        _impl_.created_at_.Set("", GetArenaForAllocation());
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+SafetySnapshotInfo::~SafetySnapshotInfo() {
+  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.SafetySnapshotInfo)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void SafetySnapshotInfo::SharedDtor() {
+  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.snapshot_id_.Destroy();
+  _impl_.label_.Destroy();
+  _impl_.created_at_.Destroy();
+}
+void SafetySnapshotInfo::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+PROTOBUF_NOINLINE void SafetySnapshotInfo::Clear() {
+// @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.SafetySnapshotInfo)
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.snapshot_id_.ClearToEmpty();
+  _impl_.label_.ClearToEmpty();
+  _impl_.created_at_.ClearToEmpty();
+  _impl_.immutable_ = false;
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* SafetySnapshotInfo::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<2, 4, 0, 72, 2> SafetySnapshotInfo::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    4, 24,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967280,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    4,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_SafetySnapshotInfo_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // bool immutable = 4;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(SafetySnapshotInfo, _impl_.immutable_), 63>(),
+     {32, 63, 0, PROTOBUF_FIELD_OFFSET(SafetySnapshotInfo, _impl_.immutable_)}},
+    // string snapshot_id = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(SafetySnapshotInfo, _impl_.snapshot_id_)}},
+    // string label = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(SafetySnapshotInfo, _impl_.label_)}},
+    // string created_at = 3;
+    {::_pbi::TcParser::FastUS1,
+     {26, 63, 0, PROTOBUF_FIELD_OFFSET(SafetySnapshotInfo, _impl_.created_at_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string snapshot_id = 1;
+    {PROTOBUF_FIELD_OFFSET(SafetySnapshotInfo, _impl_.snapshot_id_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string label = 2;
+    {PROTOBUF_FIELD_OFFSET(SafetySnapshotInfo, _impl_.label_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string created_at = 3;
+    {PROTOBUF_FIELD_OFFSET(SafetySnapshotInfo, _impl_.created_at_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // bool immutable = 4;
+    {PROTOBUF_FIELD_OFFSET(SafetySnapshotInfo, _impl_.immutable_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
+  }},
+  // no aux_entries
+  {{
+    "\45\13\5\12\0\0\0\0"
+    "Nrmk.IndyFramework.SafetySnapshotInfo"
+    "snapshot_id"
+    "label"
+    "created_at"
+  }},
+};
+
+::uint8_t* SafetySnapshotInfo::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.SafetySnapshotInfo)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // string snapshot_id = 1;
+  if (!this->_internal_snapshot_id().empty()) {
+    const std::string& _s = this->_internal_snapshot_id();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "Nrmk.IndyFramework.SafetySnapshotInfo.snapshot_id");
+    target = stream->WriteStringMaybeAliased(1, _s, target);
+  }
+
+  // string label = 2;
+  if (!this->_internal_label().empty()) {
+    const std::string& _s = this->_internal_label();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "Nrmk.IndyFramework.SafetySnapshotInfo.label");
+    target = stream->WriteStringMaybeAliased(2, _s, target);
+  }
+
+  // string created_at = 3;
+  if (!this->_internal_created_at().empty()) {
+    const std::string& _s = this->_internal_created_at();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "Nrmk.IndyFramework.SafetySnapshotInfo.created_at");
+    target = stream->WriteStringMaybeAliased(3, _s, target);
+  }
+
+  // bool immutable = 4;
+  if (this->_internal_immutable() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(
+        4, this->_internal_immutable(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.SafetySnapshotInfo)
+  return target;
+}
+
+::size_t SafetySnapshotInfo::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.SafetySnapshotInfo)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string snapshot_id = 1;
+  if (!this->_internal_snapshot_id().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_snapshot_id());
+  }
+
+  // string label = 2;
+  if (!this->_internal_label().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_label());
+  }
+
+  // string created_at = 3;
+  if (!this->_internal_created_at().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_created_at());
+  }
+
+  // bool immutable = 4;
+  if (this->_internal_immutable() != 0) {
+    total_size += 2;
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData SafetySnapshotInfo::_class_data_ = {
+    ::google::protobuf::Message::CopyWithSourceCheck,
+    SafetySnapshotInfo::MergeImpl
+};
+const ::google::protobuf::Message::ClassData*SafetySnapshotInfo::GetClassData() const { return &_class_data_; }
+
+
+void SafetySnapshotInfo::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<SafetySnapshotInfo*>(&to_msg);
+  auto& from = static_cast<const SafetySnapshotInfo&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.SafetySnapshotInfo)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_snapshot_id().empty()) {
+    _this->_internal_set_snapshot_id(from._internal_snapshot_id());
+  }
+  if (!from._internal_label().empty()) {
+    _this->_internal_set_label(from._internal_label());
+  }
+  if (!from._internal_created_at().empty()) {
+    _this->_internal_set_created_at(from._internal_created_at());
+  }
+  if (from._internal_immutable() != 0) {
+    _this->_internal_set_immutable(from._internal_immutable());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void SafetySnapshotInfo::CopyFrom(const SafetySnapshotInfo& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Nrmk.IndyFramework.SafetySnapshotInfo)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool SafetySnapshotInfo::IsInitialized() const {
+  return true;
+}
+
+void SafetySnapshotInfo::InternalSwap(SafetySnapshotInfo* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.snapshot_id_, lhs_arena,
+                                       &other->_impl_.snapshot_id_, rhs_arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.label_, lhs_arena,
+                                       &other->_impl_.label_, rhs_arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.created_at_, lhs_arena,
+                                       &other->_impl_.created_at_, rhs_arena);
+        swap(_impl_.immutable_, other->_impl_.immutable_);
+}
+
+::google::protobuf::Metadata SafetySnapshotInfo::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
+      file_level_metadata_config_5fmsgs_2eproto[42]);
+}
+// ===================================================================
+
+class SafetySnapshotList::_Internal {
+ public:
+};
+
+SafetySnapshotList::SafetySnapshotList(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Nrmk.IndyFramework.SafetySnapshotList)
+}
+SafetySnapshotList::SafetySnapshotList(const SafetySnapshotList& from) : ::google::protobuf::Message() {
+  SafetySnapshotList* const _this = this;
+  (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.snapshots_){from._impl_.snapshots_},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+
+  // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.SafetySnapshotList)
+}
+inline void SafetySnapshotList::SharedCtor(::_pb::Arena* arena) {
+  (void)arena;
+  new (&_impl_) Impl_{
+      decltype(_impl_.snapshots_){arena},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+}
+SafetySnapshotList::~SafetySnapshotList() {
+  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.SafetySnapshotList)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void SafetySnapshotList::SharedDtor() {
+  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.snapshots_.~RepeatedPtrField();
+}
+void SafetySnapshotList::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+PROTOBUF_NOINLINE void SafetySnapshotList::Clear() {
+// @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.SafetySnapshotList)
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _internal_mutable_snapshots()->Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* SafetySnapshotList::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 1, 1, 0, 2> SafetySnapshotList::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    1, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    1,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_SafetySnapshotList_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // repeated .Nrmk.IndyFramework.SafetySnapshotInfo snapshots = 1;
+    {::_pbi::TcParser::FastMtR1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(SafetySnapshotList, _impl_.snapshots_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // repeated .Nrmk.IndyFramework.SafetySnapshotInfo snapshots = 1;
+    {PROTOBUF_FIELD_OFFSET(SafetySnapshotList, _impl_.snapshots_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::Nrmk::IndyFramework::SafetySnapshotInfo>()},
+  }}, {{
+  }},
+};
+
+::uint8_t* SafetySnapshotList::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.SafetySnapshotList)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // repeated .Nrmk.IndyFramework.SafetySnapshotInfo snapshots = 1;
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_snapshots_size()); i < n; i++) {
+    const auto& repfield = this->_internal_snapshots().Get(i);
+    target = ::google::protobuf::internal::WireFormatLite::
+        InternalWriteMessage(1, repfield, repfield.GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.SafetySnapshotList)
+  return target;
+}
+
+::size_t SafetySnapshotList::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.SafetySnapshotList)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated .Nrmk.IndyFramework.SafetySnapshotInfo snapshots = 1;
+  total_size += 1UL * this->_internal_snapshots_size();
+  for (const auto& msg : this->_internal_snapshots()) {
+    total_size +=
+      ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
+  }
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData SafetySnapshotList::_class_data_ = {
+    ::google::protobuf::Message::CopyWithSourceCheck,
+    SafetySnapshotList::MergeImpl
+};
+const ::google::protobuf::Message::ClassData*SafetySnapshotList::GetClassData() const { return &_class_data_; }
+
+
+void SafetySnapshotList::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<SafetySnapshotList*>(&to_msg);
+  auto& from = static_cast<const SafetySnapshotList&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.SafetySnapshotList)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_internal_mutable_snapshots()->MergeFrom(from._internal_snapshots());
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void SafetySnapshotList::CopyFrom(const SafetySnapshotList& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Nrmk.IndyFramework.SafetySnapshotList)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool SafetySnapshotList::IsInitialized() const {
+  return true;
+}
+
+void SafetySnapshotList::InternalSwap(SafetySnapshotList* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.snapshots_.InternalSwap(&other->_impl_.snapshots_);
+}
+
+::google::protobuf::Metadata SafetySnapshotList::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
+      file_level_metadata_config_5fmsgs_2eproto[43]);
+}
+// ===================================================================
+
+class SaveSafetySnapshotReq::_Internal {
+ public:
+};
+
+SaveSafetySnapshotReq::SaveSafetySnapshotReq(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Nrmk.IndyFramework.SaveSafetySnapshotReq)
+}
+SaveSafetySnapshotReq::SaveSafetySnapshotReq(const SaveSafetySnapshotReq& from) : ::google::protobuf::Message() {
+  SaveSafetySnapshotReq* const _this = this;
+  (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.label_){},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  _impl_.label_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        _impl_.label_.Set("", GetArenaForAllocation());
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_label().empty()) {
+    _this->_impl_.label_.Set(from._internal_label(), _this->GetArenaForAllocation());
+  }
+
+  // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.SaveSafetySnapshotReq)
+}
+inline void SaveSafetySnapshotReq::SharedCtor(::_pb::Arena* arena) {
+  (void)arena;
+  new (&_impl_) Impl_{
+      decltype(_impl_.label_){},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+  _impl_.label_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        _impl_.label_.Set("", GetArenaForAllocation());
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+SaveSafetySnapshotReq::~SaveSafetySnapshotReq() {
+  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.SaveSafetySnapshotReq)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void SaveSafetySnapshotReq::SharedDtor() {
+  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.label_.Destroy();
+}
+void SaveSafetySnapshotReq::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+PROTOBUF_NOINLINE void SaveSafetySnapshotReq::Clear() {
+// @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.SaveSafetySnapshotReq)
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.label_.ClearToEmpty();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* SaveSafetySnapshotReq::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 1, 0, 54, 2> SaveSafetySnapshotReq::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    1, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    1,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_SaveSafetySnapshotReq_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // string label = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(SaveSafetySnapshotReq, _impl_.label_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string label = 1;
+    {PROTOBUF_FIELD_OFFSET(SaveSafetySnapshotReq, _impl_.label_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\50\5\0\0\0\0\0\0"
+    "Nrmk.IndyFramework.SaveSafetySnapshotReq"
+    "label"
+  }},
+};
+
+::uint8_t* SaveSafetySnapshotReq::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.SaveSafetySnapshotReq)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // string label = 1;
+  if (!this->_internal_label().empty()) {
+    const std::string& _s = this->_internal_label();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "Nrmk.IndyFramework.SaveSafetySnapshotReq.label");
+    target = stream->WriteStringMaybeAliased(1, _s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.SaveSafetySnapshotReq)
+  return target;
+}
+
+::size_t SaveSafetySnapshotReq::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.SaveSafetySnapshotReq)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string label = 1;
+  if (!this->_internal_label().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_label());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData SaveSafetySnapshotReq::_class_data_ = {
+    ::google::protobuf::Message::CopyWithSourceCheck,
+    SaveSafetySnapshotReq::MergeImpl
+};
+const ::google::protobuf::Message::ClassData*SaveSafetySnapshotReq::GetClassData() const { return &_class_data_; }
+
+
+void SaveSafetySnapshotReq::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<SaveSafetySnapshotReq*>(&to_msg);
+  auto& from = static_cast<const SaveSafetySnapshotReq&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.SaveSafetySnapshotReq)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_label().empty()) {
+    _this->_internal_set_label(from._internal_label());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void SaveSafetySnapshotReq::CopyFrom(const SaveSafetySnapshotReq& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Nrmk.IndyFramework.SaveSafetySnapshotReq)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool SaveSafetySnapshotReq::IsInitialized() const {
+  return true;
+}
+
+void SaveSafetySnapshotReq::InternalSwap(SaveSafetySnapshotReq* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.label_, lhs_arena,
+                                       &other->_impl_.label_, rhs_arena);
+}
+
+::google::protobuf::Metadata SaveSafetySnapshotReq::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
+      file_level_metadata_config_5fmsgs_2eproto[44]);
+}
+// ===================================================================
+
+class SafetySnapshotId::_Internal {
+ public:
+};
+
+SafetySnapshotId::SafetySnapshotId(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Nrmk.IndyFramework.SafetySnapshotId)
+}
+SafetySnapshotId::SafetySnapshotId(const SafetySnapshotId& from) : ::google::protobuf::Message() {
+  SafetySnapshotId* const _this = this;
+  (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.snapshot_id_){},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  _impl_.snapshot_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        _impl_.snapshot_id_.Set("", GetArenaForAllocation());
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_snapshot_id().empty()) {
+    _this->_impl_.snapshot_id_.Set(from._internal_snapshot_id(), _this->GetArenaForAllocation());
+  }
+
+  // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.SafetySnapshotId)
+}
+inline void SafetySnapshotId::SharedCtor(::_pb::Arena* arena) {
+  (void)arena;
+  new (&_impl_) Impl_{
+      decltype(_impl_.snapshot_id_){},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+  _impl_.snapshot_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        _impl_.snapshot_id_.Set("", GetArenaForAllocation());
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+SafetySnapshotId::~SafetySnapshotId() {
+  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.SafetySnapshotId)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void SafetySnapshotId::SharedDtor() {
+  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.snapshot_id_.Destroy();
+}
+void SafetySnapshotId::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+PROTOBUF_NOINLINE void SafetySnapshotId::Clear() {
+// @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.SafetySnapshotId)
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.snapshot_id_.ClearToEmpty();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* SafetySnapshotId::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 1, 0, 55, 2> SafetySnapshotId::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    1, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    1,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_SafetySnapshotId_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // string snapshot_id = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(SafetySnapshotId, _impl_.snapshot_id_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string snapshot_id = 1;
+    {PROTOBUF_FIELD_OFFSET(SafetySnapshotId, _impl_.snapshot_id_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\43\13\0\0\0\0\0\0"
+    "Nrmk.IndyFramework.SafetySnapshotId"
+    "snapshot_id"
+  }},
+};
+
+::uint8_t* SafetySnapshotId::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.SafetySnapshotId)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // string snapshot_id = 1;
+  if (!this->_internal_snapshot_id().empty()) {
+    const std::string& _s = this->_internal_snapshot_id();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "Nrmk.IndyFramework.SafetySnapshotId.snapshot_id");
+    target = stream->WriteStringMaybeAliased(1, _s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.SafetySnapshotId)
+  return target;
+}
+
+::size_t SafetySnapshotId::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.SafetySnapshotId)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string snapshot_id = 1;
+  if (!this->_internal_snapshot_id().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_snapshot_id());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData SafetySnapshotId::_class_data_ = {
+    ::google::protobuf::Message::CopyWithSourceCheck,
+    SafetySnapshotId::MergeImpl
+};
+const ::google::protobuf::Message::ClassData*SafetySnapshotId::GetClassData() const { return &_class_data_; }
+
+
+void SafetySnapshotId::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<SafetySnapshotId*>(&to_msg);
+  auto& from = static_cast<const SafetySnapshotId&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.SafetySnapshotId)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_snapshot_id().empty()) {
+    _this->_internal_set_snapshot_id(from._internal_snapshot_id());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void SafetySnapshotId::CopyFrom(const SafetySnapshotId& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Nrmk.IndyFramework.SafetySnapshotId)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool SafetySnapshotId::IsInitialized() const {
+  return true;
+}
+
+void SafetySnapshotId::InternalSwap(SafetySnapshotId* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.snapshot_id_, lhs_arena,
+                                       &other->_impl_.snapshot_id_, rhs_arena);
+}
+
+::google::protobuf::Metadata SafetySnapshotId::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
+      file_level_metadata_config_5fmsgs_2eproto[45]);
 }
 // ===================================================================
 
@@ -12007,7 +14214,7 @@ void DIConfig::InternalSwap(DIConfig* other) {
 ::google::protobuf::Metadata DIConfig::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[38]);
+      file_level_metadata_config_5fmsgs_2eproto[46]);
 }
 // ===================================================================
 
@@ -12179,7 +14386,7 @@ void DIConfigList::InternalSwap(DIConfigList* other) {
 ::google::protobuf::Metadata DIConfigList::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[39]);
+      file_level_metadata_config_5fmsgs_2eproto[47]);
 }
 // ===================================================================
 
@@ -12285,7 +14492,7 @@ const ::_pbi::TcParseTable<2, 4, 2, 46, 2> DOConfig::_table_ = {
     &_DOConfig_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
-    // repeated .Nrmk.IndyFramework.DigitalSignal offSignals = 4;
+    // repeated .Nrmk.IndyFramework.DOChannelMode offSignals = 4;
     {::_pbi::TcParser::FastMtR1,
      {34, 63, 1, PROTOBUF_FIELD_OFFSET(DOConfig, _impl_.offsignals_)}},
     // int32 state_code = 1;
@@ -12294,7 +14501,7 @@ const ::_pbi::TcParseTable<2, 4, 2, 46, 2> DOConfig::_table_ = {
     // string state_name = 2;
     {::_pbi::TcParser::FastUS1,
      {18, 63, 0, PROTOBUF_FIELD_OFFSET(DOConfig, _impl_.state_name_)}},
-    // repeated .Nrmk.IndyFramework.DigitalSignal onSignals = 3;
+    // repeated .Nrmk.IndyFramework.DOChannelMode onSignals = 3;
     {::_pbi::TcParser::FastMtR1,
      {26, 63, 0, PROTOBUF_FIELD_OFFSET(DOConfig, _impl_.onsignals_)}},
   }}, {{
@@ -12306,15 +14513,15 @@ const ::_pbi::TcParseTable<2, 4, 2, 46, 2> DOConfig::_table_ = {
     // string state_name = 2;
     {PROTOBUF_FIELD_OFFSET(DOConfig, _impl_.state_name_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // repeated .Nrmk.IndyFramework.DigitalSignal onSignals = 3;
+    // repeated .Nrmk.IndyFramework.DOChannelMode onSignals = 3;
     {PROTOBUF_FIELD_OFFSET(DOConfig, _impl_.onsignals_), 0, 0,
     (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
-    // repeated .Nrmk.IndyFramework.DigitalSignal offSignals = 4;
+    // repeated .Nrmk.IndyFramework.DOChannelMode offSignals = 4;
     {PROTOBUF_FIELD_OFFSET(DOConfig, _impl_.offsignals_), 0, 1,
     (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
   }}, {{
-    {::_pbi::TcParser::GetTable<::Nrmk::IndyFramework::DigitalSignal>()},
-    {::_pbi::TcParser::GetTable<::Nrmk::IndyFramework::DigitalSignal>()},
+    {::_pbi::TcParser::GetTable<::Nrmk::IndyFramework::DOChannelMode>()},
+    {::_pbi::TcParser::GetTable<::Nrmk::IndyFramework::DOChannelMode>()},
   }}, {{
     "\33\0\12\0\0\0\0\0"
     "Nrmk.IndyFramework.DOConfig"
@@ -12344,7 +14551,7 @@ const ::_pbi::TcParseTable<2, 4, 2, 46, 2> DOConfig::_table_ = {
     target = stream->WriteStringMaybeAliased(2, _s, target);
   }
 
-  // repeated .Nrmk.IndyFramework.DigitalSignal onSignals = 3;
+  // repeated .Nrmk.IndyFramework.DOChannelMode onSignals = 3;
   for (unsigned i = 0,
       n = static_cast<unsigned>(this->_internal_onsignals_size()); i < n; i++) {
     const auto& repfield = this->_internal_onsignals().Get(i);
@@ -12352,7 +14559,7 @@ const ::_pbi::TcParseTable<2, 4, 2, 46, 2> DOConfig::_table_ = {
         InternalWriteMessage(3, repfield, repfield.GetCachedSize(), target, stream);
   }
 
-  // repeated .Nrmk.IndyFramework.DigitalSignal offSignals = 4;
+  // repeated .Nrmk.IndyFramework.DOChannelMode offSignals = 4;
   for (unsigned i = 0,
       n = static_cast<unsigned>(this->_internal_offsignals_size()); i < n; i++) {
     const auto& repfield = this->_internal_offsignals().Get(i);
@@ -12377,13 +14584,13 @@ const ::_pbi::TcParseTable<2, 4, 2, 46, 2> DOConfig::_table_ = {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // repeated .Nrmk.IndyFramework.DigitalSignal onSignals = 3;
+  // repeated .Nrmk.IndyFramework.DOChannelMode onSignals = 3;
   total_size += 1UL * this->_internal_onsignals_size();
   for (const auto& msg : this->_internal_onsignals()) {
     total_size +=
       ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
   }
-  // repeated .Nrmk.IndyFramework.DigitalSignal offSignals = 4;
+  // repeated .Nrmk.IndyFramework.DOChannelMode offSignals = 4;
   total_size += 1UL * this->_internal_offsignals_size();
   for (const auto& msg : this->_internal_offsignals()) {
     total_size +=
@@ -12456,7 +14663,7 @@ void DOConfig::InternalSwap(DOConfig* other) {
 ::google::protobuf::Metadata DOConfig::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[40]);
+      file_level_metadata_config_5fmsgs_2eproto[48]);
 }
 // ===================================================================
 
@@ -12628,7 +14835,7 @@ void DOConfigList::InternalSwap(DOConfigList* other) {
 ::google::protobuf::Metadata DOConfigList::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[41]);
+      file_level_metadata_config_5fmsgs_2eproto[49]);
 }
 // ===================================================================
 
@@ -12862,7 +15069,7 @@ void GetReducedRatioRes::InternalSwap(GetReducedRatioRes* other) {
 ::google::protobuf::Metadata GetReducedRatioRes::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[42]);
+      file_level_metadata_config_5fmsgs_2eproto[50]);
 }
 // ===================================================================
 
@@ -13096,7 +15303,7 @@ void GetReducedSpeedRes::InternalSwap(GetReducedSpeedRes* other) {
 ::google::protobuf::Metadata GetReducedSpeedRes::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[43]);
+      file_level_metadata_config_5fmsgs_2eproto[51]);
 }
 // ===================================================================
 
@@ -13276,7 +15483,7 @@ void SetReducedSpeedReq::InternalSwap(SetReducedSpeedReq* other) {
 ::google::protobuf::Metadata SetReducedSpeedReq::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[44]);
+      file_level_metadata_config_5fmsgs_2eproto[52]);
 }
 // ===================================================================
 
@@ -13762,7 +15969,7 @@ void FTSensorDevice::InternalSwap(FTSensorDevice* other) {
 ::google::protobuf::Metadata FTSensorDevice::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[45]);
+      file_level_metadata_config_5fmsgs_2eproto[53]);
 }
 // ===================================================================
 
@@ -13955,7 +16162,7 @@ void FTSensorDeviceRes::InternalSwap(FTSensorDeviceRes* other) {
 ::google::protobuf::Metadata FTSensorDeviceRes::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[46]);
+      file_level_metadata_config_5fmsgs_2eproto[54]);
 }
 // ===================================================================
 
@@ -14217,7 +16424,7 @@ void TeleOpParams::InternalSwap(TeleOpParams* other) {
 ::google::protobuf::Metadata TeleOpParams::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[47]);
+      file_level_metadata_config_5fmsgs_2eproto[55]);
 }
 // ===================================================================
 
@@ -14581,7 +16788,7 @@ void KinematicsParams_MDH::InternalSwap(KinematicsParams_MDH* other) {
 ::google::protobuf::Metadata KinematicsParams_MDH::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[48]);
+      file_level_metadata_config_5fmsgs_2eproto[56]);
 }
 // ===================================================================
 
@@ -14753,7 +16960,7 @@ void KinematicsParams::InternalSwap(KinematicsParams* other) {
 ::google::protobuf::Metadata KinematicsParams::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[49]);
+      file_level_metadata_config_5fmsgs_2eproto[57]);
 }
 // ===================================================================
 
@@ -14977,7 +17184,7 @@ void CollisionModelMargin::InternalSwap(CollisionModelMargin* other) {
 ::google::protobuf::Metadata CollisionModelMargin::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[50]);
+      file_level_metadata_config_5fmsgs_2eproto[58]);
 }
 // ===================================================================
 
@@ -15366,7 +17573,7 @@ void Shape::InternalSwap(Shape* other) {
 ::google::protobuf::Metadata Shape::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[51]);
+      file_level_metadata_config_5fmsgs_2eproto[59]);
 }
 // ===================================================================
 
@@ -15541,7 +17748,7 @@ void SensorlessParams::InternalSwap(SensorlessParams* other) {
 ::google::protobuf::Metadata SensorlessParams::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[52]);
+      file_level_metadata_config_5fmsgs_2eproto[60]);
 }
 // ===================================================================
 
@@ -15758,7 +17965,7 @@ void NamedGeometry::InternalSwap(NamedGeometry* other) {
 ::google::protobuf::Metadata NamedGeometry::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[53]);
+      file_level_metadata_config_5fmsgs_2eproto[61]);
 }
 // ===================================================================
 
@@ -15975,7 +18182,7 @@ void ToolShapeList::InternalSwap(ToolShapeList* other) {
 ::google::protobuf::Metadata ToolShapeList::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[54]);
+      file_level_metadata_config_5fmsgs_2eproto[62]);
 }
 // ===================================================================
 
@@ -16437,7 +18644,7 @@ void Zone::InternalSwap(Zone* other) {
 ::google::protobuf::Metadata Zone::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[55]);
+      file_level_metadata_config_5fmsgs_2eproto[63]);
 }
 // ===================================================================
 
@@ -16654,7 +18861,7 @@ void NamedEnvironment::InternalSwap(NamedEnvironment* other) {
 ::google::protobuf::Metadata NamedEnvironment::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[56]);
+      file_level_metadata_config_5fmsgs_2eproto[64]);
 }
 // ===================================================================
 
@@ -16871,7 +19078,997 @@ void EnvironmentList::InternalSwap(EnvironmentList* other) {
 ::google::protobuf::Metadata EnvironmentList::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[57]);
+      file_level_metadata_config_5fmsgs_2eproto[65]);
+}
+// ===================================================================
+
+class WeldingConfigInfo::_Internal {
+ public:
+};
+
+WeldingConfigInfo::WeldingConfigInfo(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Nrmk.IndyFramework.WeldingConfigInfo)
+}
+WeldingConfigInfo::WeldingConfigInfo(const WeldingConfigInfo& from) : ::google::protobuf::Message() {
+  WeldingConfigInfo* const _this = this;
+  (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.model_){},
+      decltype(_impl_.interface_){},
+      decltype(_impl_.modbus_ip_){},
+      decltype(_impl_.node_id_){},
+      decltype(_impl_.baud_rate_){},
+      decltype(_impl_.vision_){},
+      decltype(_impl_.modbus_port_){},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  _impl_.model_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        _impl_.model_.Set("", GetArenaForAllocation());
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_model().empty()) {
+    _this->_impl_.model_.Set(from._internal_model(), _this->GetArenaForAllocation());
+  }
+  _impl_.interface_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        _impl_.interface_.Set("", GetArenaForAllocation());
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_interface().empty()) {
+    _this->_impl_.interface_.Set(from._internal_interface(), _this->GetArenaForAllocation());
+  }
+  _impl_.modbus_ip_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        _impl_.modbus_ip_.Set("", GetArenaForAllocation());
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_modbus_ip().empty()) {
+    _this->_impl_.modbus_ip_.Set(from._internal_modbus_ip(), _this->GetArenaForAllocation());
+  }
+  ::memcpy(&_impl_.node_id_, &from._impl_.node_id_,
+    static_cast<::size_t>(reinterpret_cast<char*>(&_impl_.modbus_port_) -
+    reinterpret_cast<char*>(&_impl_.node_id_)) + sizeof(_impl_.modbus_port_));
+
+  // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.WeldingConfigInfo)
+}
+inline void WeldingConfigInfo::SharedCtor(::_pb::Arena* arena) {
+  (void)arena;
+  new (&_impl_) Impl_{
+      decltype(_impl_.model_){},
+      decltype(_impl_.interface_){},
+      decltype(_impl_.modbus_ip_){},
+      decltype(_impl_.node_id_){0u},
+      decltype(_impl_.baud_rate_){0u},
+      decltype(_impl_.vision_){false},
+      decltype(_impl_.modbus_port_){0u},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+  _impl_.model_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        _impl_.model_.Set("", GetArenaForAllocation());
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.interface_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        _impl_.interface_.Set("", GetArenaForAllocation());
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.modbus_ip_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        _impl_.modbus_ip_.Set("", GetArenaForAllocation());
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+WeldingConfigInfo::~WeldingConfigInfo() {
+  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.WeldingConfigInfo)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void WeldingConfigInfo::SharedDtor() {
+  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.model_.Destroy();
+  _impl_.interface_.Destroy();
+  _impl_.modbus_ip_.Destroy();
+}
+void WeldingConfigInfo::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+PROTOBUF_NOINLINE void WeldingConfigInfo::Clear() {
+// @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.WeldingConfigInfo)
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.model_.ClearToEmpty();
+  _impl_.interface_.ClearToEmpty();
+  _impl_.modbus_ip_.ClearToEmpty();
+  ::memset(&_impl_.node_id_, 0, static_cast<::size_t>(
+      reinterpret_cast<char*>(&_impl_.modbus_port_) -
+      reinterpret_cast<char*>(&_impl_.node_id_)) + sizeof(_impl_.modbus_port_));
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* WeldingConfigInfo::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<3, 7, 0, 68, 2> WeldingConfigInfo::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    7, 56,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967168,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    7,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_WeldingConfigInfo_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // string model = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(WeldingConfigInfo, _impl_.model_)}},
+    // string interface = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(WeldingConfigInfo, _impl_.interface_)}},
+    // uint32 node_id = 3;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(WeldingConfigInfo, _impl_.node_id_), 63>(),
+     {24, 63, 0, PROTOBUF_FIELD_OFFSET(WeldingConfigInfo, _impl_.node_id_)}},
+    // uint32 baud_rate = 4;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(WeldingConfigInfo, _impl_.baud_rate_), 63>(),
+     {32, 63, 0, PROTOBUF_FIELD_OFFSET(WeldingConfigInfo, _impl_.baud_rate_)}},
+    // bool vision = 5;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(WeldingConfigInfo, _impl_.vision_), 63>(),
+     {40, 63, 0, PROTOBUF_FIELD_OFFSET(WeldingConfigInfo, _impl_.vision_)}},
+    // string modbus_ip = 6;
+    {::_pbi::TcParser::FastUS1,
+     {50, 63, 0, PROTOBUF_FIELD_OFFSET(WeldingConfigInfo, _impl_.modbus_ip_)}},
+    // uint32 modbus_port = 7;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(WeldingConfigInfo, _impl_.modbus_port_), 63>(),
+     {56, 63, 0, PROTOBUF_FIELD_OFFSET(WeldingConfigInfo, _impl_.modbus_port_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string model = 1;
+    {PROTOBUF_FIELD_OFFSET(WeldingConfigInfo, _impl_.model_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string interface = 2;
+    {PROTOBUF_FIELD_OFFSET(WeldingConfigInfo, _impl_.interface_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // uint32 node_id = 3;
+    {PROTOBUF_FIELD_OFFSET(WeldingConfigInfo, _impl_.node_id_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
+    // uint32 baud_rate = 4;
+    {PROTOBUF_FIELD_OFFSET(WeldingConfigInfo, _impl_.baud_rate_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
+    // bool vision = 5;
+    {PROTOBUF_FIELD_OFFSET(WeldingConfigInfo, _impl_.vision_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
+    // string modbus_ip = 6;
+    {PROTOBUF_FIELD_OFFSET(WeldingConfigInfo, _impl_.modbus_ip_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // uint32 modbus_port = 7;
+    {PROTOBUF_FIELD_OFFSET(WeldingConfigInfo, _impl_.modbus_port_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
+  }},
+  // no aux_entries
+  {{
+    "\44\5\11\0\0\0\11\0"
+    "Nrmk.IndyFramework.WeldingConfigInfo"
+    "model"
+    "interface"
+    "modbus_ip"
+  }},
+};
+
+::uint8_t* WeldingConfigInfo::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.WeldingConfigInfo)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // string model = 1;
+  if (!this->_internal_model().empty()) {
+    const std::string& _s = this->_internal_model();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "Nrmk.IndyFramework.WeldingConfigInfo.model");
+    target = stream->WriteStringMaybeAliased(1, _s, target);
+  }
+
+  // string interface = 2;
+  if (!this->_internal_interface().empty()) {
+    const std::string& _s = this->_internal_interface();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "Nrmk.IndyFramework.WeldingConfigInfo.interface");
+    target = stream->WriteStringMaybeAliased(2, _s, target);
+  }
+
+  // uint32 node_id = 3;
+  if (this->_internal_node_id() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+        3, this->_internal_node_id(), target);
+  }
+
+  // uint32 baud_rate = 4;
+  if (this->_internal_baud_rate() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+        4, this->_internal_baud_rate(), target);
+  }
+
+  // bool vision = 5;
+  if (this->_internal_vision() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(
+        5, this->_internal_vision(), target);
+  }
+
+  // string modbus_ip = 6;
+  if (!this->_internal_modbus_ip().empty()) {
+    const std::string& _s = this->_internal_modbus_ip();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "Nrmk.IndyFramework.WeldingConfigInfo.modbus_ip");
+    target = stream->WriteStringMaybeAliased(6, _s, target);
+  }
+
+  // uint32 modbus_port = 7;
+  if (this->_internal_modbus_port() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+        7, this->_internal_modbus_port(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.WeldingConfigInfo)
+  return target;
+}
+
+::size_t WeldingConfigInfo::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.WeldingConfigInfo)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string model = 1;
+  if (!this->_internal_model().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_model());
+  }
+
+  // string interface = 2;
+  if (!this->_internal_interface().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_interface());
+  }
+
+  // string modbus_ip = 6;
+  if (!this->_internal_modbus_ip().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_modbus_ip());
+  }
+
+  // uint32 node_id = 3;
+  if (this->_internal_node_id() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+        this->_internal_node_id());
+  }
+
+  // uint32 baud_rate = 4;
+  if (this->_internal_baud_rate() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+        this->_internal_baud_rate());
+  }
+
+  // bool vision = 5;
+  if (this->_internal_vision() != 0) {
+    total_size += 2;
+  }
+
+  // uint32 modbus_port = 7;
+  if (this->_internal_modbus_port() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+        this->_internal_modbus_port());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData WeldingConfigInfo::_class_data_ = {
+    ::google::protobuf::Message::CopyWithSourceCheck,
+    WeldingConfigInfo::MergeImpl
+};
+const ::google::protobuf::Message::ClassData*WeldingConfigInfo::GetClassData() const { return &_class_data_; }
+
+
+void WeldingConfigInfo::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<WeldingConfigInfo*>(&to_msg);
+  auto& from = static_cast<const WeldingConfigInfo&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.WeldingConfigInfo)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_model().empty()) {
+    _this->_internal_set_model(from._internal_model());
+  }
+  if (!from._internal_interface().empty()) {
+    _this->_internal_set_interface(from._internal_interface());
+  }
+  if (!from._internal_modbus_ip().empty()) {
+    _this->_internal_set_modbus_ip(from._internal_modbus_ip());
+  }
+  if (from._internal_node_id() != 0) {
+    _this->_internal_set_node_id(from._internal_node_id());
+  }
+  if (from._internal_baud_rate() != 0) {
+    _this->_internal_set_baud_rate(from._internal_baud_rate());
+  }
+  if (from._internal_vision() != 0) {
+    _this->_internal_set_vision(from._internal_vision());
+  }
+  if (from._internal_modbus_port() != 0) {
+    _this->_internal_set_modbus_port(from._internal_modbus_port());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void WeldingConfigInfo::CopyFrom(const WeldingConfigInfo& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Nrmk.IndyFramework.WeldingConfigInfo)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool WeldingConfigInfo::IsInitialized() const {
+  return true;
+}
+
+void WeldingConfigInfo::InternalSwap(WeldingConfigInfo* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.model_, lhs_arena,
+                                       &other->_impl_.model_, rhs_arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.interface_, lhs_arena,
+                                       &other->_impl_.interface_, rhs_arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.modbus_ip_, lhs_arena,
+                                       &other->_impl_.modbus_ip_, rhs_arena);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(WeldingConfigInfo, _impl_.modbus_port_)
+      + sizeof(WeldingConfigInfo::_impl_.modbus_port_)
+      - PROTOBUF_FIELD_OFFSET(WeldingConfigInfo, _impl_.node_id_)>(
+          reinterpret_cast<char*>(&_impl_.node_id_),
+          reinterpret_cast<char*>(&other->_impl_.node_id_));
+}
+
+::google::protobuf::Metadata WeldingConfigInfo::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
+      file_level_metadata_config_5fmsgs_2eproto[66]);
+}
+// ===================================================================
+
+class WeldPosition::_Internal {
+ public:
+};
+
+WeldPosition::WeldPosition(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Nrmk.IndyFramework.WeldPosition)
+}
+WeldPosition::WeldPosition(const WeldPosition& from) : ::google::protobuf::Message() {
+  WeldPosition* const _this = this;
+  (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.position_){from._impl_.position_},
+      decltype(_impl_.name_){},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  _impl_.name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        _impl_.name_.Set("", GetArenaForAllocation());
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_name().empty()) {
+    _this->_impl_.name_.Set(from._internal_name(), _this->GetArenaForAllocation());
+  }
+
+  // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.WeldPosition)
+}
+inline void WeldPosition::SharedCtor(::_pb::Arena* arena) {
+  (void)arena;
+  new (&_impl_) Impl_{
+      decltype(_impl_.position_){arena},
+      decltype(_impl_.name_){},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+  _impl_.name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        _impl_.name_.Set("", GetArenaForAllocation());
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+WeldPosition::~WeldPosition() {
+  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.WeldPosition)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void WeldPosition::SharedDtor() {
+  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.position_.~RepeatedField();
+  _impl_.name_.Destroy();
+}
+void WeldPosition::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+PROTOBUF_NOINLINE void WeldPosition::Clear() {
+// @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.WeldPosition)
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _internal_mutable_position()->Clear();
+  _impl_.name_.ClearToEmpty();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* WeldPosition::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 44, 2> WeldPosition::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_WeldPosition_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // repeated float position = 2;
+    {::_pbi::TcParser::FastF32P1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(WeldPosition, _impl_.position_)}},
+    // string name = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(WeldPosition, _impl_.name_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string name = 1;
+    {PROTOBUF_FIELD_OFFSET(WeldPosition, _impl_.name_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // repeated float position = 2;
+    {PROTOBUF_FIELD_OFFSET(WeldPosition, _impl_.position_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedFloat)},
+  }},
+  // no aux_entries
+  {{
+    "\37\4\0\0\0\0\0\0"
+    "Nrmk.IndyFramework.WeldPosition"
+    "name"
+  }},
+};
+
+::uint8_t* WeldPosition::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.WeldPosition)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // string name = 1;
+  if (!this->_internal_name().empty()) {
+    const std::string& _s = this->_internal_name();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "Nrmk.IndyFramework.WeldPosition.name");
+    target = stream->WriteStringMaybeAliased(1, _s, target);
+  }
+
+  // repeated float position = 2;
+  if (this->_internal_position_size() > 0) {
+    target = stream->WriteFixedPacked(2, _internal_position(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.WeldPosition)
+  return target;
+}
+
+::size_t WeldPosition::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.WeldPosition)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated float position = 2;
+  {
+    std::size_t data_size = std::size_t{4} *
+        ::_pbi::FromIntSize(this->_internal_position_size())
+    ;
+    std::size_t tag_size = data_size == 0
+        ? 0
+        : 1 + ::_pbi::WireFormatLite::Int32Size(
+                            static_cast<int32_t>(data_size))
+    ;
+    total_size += tag_size + data_size;
+  }
+  // string name = 1;
+  if (!this->_internal_name().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_name());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData WeldPosition::_class_data_ = {
+    ::google::protobuf::Message::CopyWithSourceCheck,
+    WeldPosition::MergeImpl
+};
+const ::google::protobuf::Message::ClassData*WeldPosition::GetClassData() const { return &_class_data_; }
+
+
+void WeldPosition::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<WeldPosition*>(&to_msg);
+  auto& from = static_cast<const WeldPosition&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.WeldPosition)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_internal_mutable_position()->MergeFrom(from._internal_position());
+  if (!from._internal_name().empty()) {
+    _this->_internal_set_name(from._internal_name());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void WeldPosition::CopyFrom(const WeldPosition& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Nrmk.IndyFramework.WeldPosition)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool WeldPosition::IsInitialized() const {
+  return true;
+}
+
+void WeldPosition::InternalSwap(WeldPosition* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.position_.InternalSwap(&other->_impl_.position_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.name_, lhs_arena,
+                                       &other->_impl_.name_, rhs_arena);
+}
+
+::google::protobuf::Metadata WeldPosition::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
+      file_level_metadata_config_5fmsgs_2eproto[67]);
+}
+// ===================================================================
+
+class WeldPositionList::_Internal {
+ public:
+};
+
+WeldPositionList::WeldPositionList(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Nrmk.IndyFramework.WeldPositionList)
+}
+WeldPositionList::WeldPositionList(const WeldPositionList& from) : ::google::protobuf::Message() {
+  WeldPositionList* const _this = this;
+  (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.positions_){from._impl_.positions_},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+
+  // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.WeldPositionList)
+}
+inline void WeldPositionList::SharedCtor(::_pb::Arena* arena) {
+  (void)arena;
+  new (&_impl_) Impl_{
+      decltype(_impl_.positions_){arena},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+}
+WeldPositionList::~WeldPositionList() {
+  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.WeldPositionList)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void WeldPositionList::SharedDtor() {
+  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.positions_.~RepeatedPtrField();
+}
+void WeldPositionList::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+PROTOBUF_NOINLINE void WeldPositionList::Clear() {
+// @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.WeldPositionList)
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _internal_mutable_positions()->Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* WeldPositionList::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 1, 1, 0, 2> WeldPositionList::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    1, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    1,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_WeldPositionList_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // repeated .Nrmk.IndyFramework.WeldPosition positions = 1;
+    {::_pbi::TcParser::FastMtR1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(WeldPositionList, _impl_.positions_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // repeated .Nrmk.IndyFramework.WeldPosition positions = 1;
+    {PROTOBUF_FIELD_OFFSET(WeldPositionList, _impl_.positions_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::Nrmk::IndyFramework::WeldPosition>()},
+  }}, {{
+  }},
+};
+
+::uint8_t* WeldPositionList::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.WeldPositionList)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // repeated .Nrmk.IndyFramework.WeldPosition positions = 1;
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_positions_size()); i < n; i++) {
+    const auto& repfield = this->_internal_positions().Get(i);
+    target = ::google::protobuf::internal::WireFormatLite::
+        InternalWriteMessage(1, repfield, repfield.GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.WeldPositionList)
+  return target;
+}
+
+::size_t WeldPositionList::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.WeldPositionList)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated .Nrmk.IndyFramework.WeldPosition positions = 1;
+  total_size += 1UL * this->_internal_positions_size();
+  for (const auto& msg : this->_internal_positions()) {
+    total_size +=
+      ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
+  }
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData WeldPositionList::_class_data_ = {
+    ::google::protobuf::Message::CopyWithSourceCheck,
+    WeldPositionList::MergeImpl
+};
+const ::google::protobuf::Message::ClassData*WeldPositionList::GetClassData() const { return &_class_data_; }
+
+
+void WeldPositionList::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<WeldPositionList*>(&to_msg);
+  auto& from = static_cast<const WeldPositionList&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.WeldPositionList)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_internal_mutable_positions()->MergeFrom(from._internal_positions());
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void WeldPositionList::CopyFrom(const WeldPositionList& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Nrmk.IndyFramework.WeldPositionList)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool WeldPositionList::IsInitialized() const {
+  return true;
+}
+
+void WeldPositionList::InternalSwap(WeldPositionList* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.positions_.InternalSwap(&other->_impl_.positions_);
+}
+
+::google::protobuf::Metadata WeldPositionList::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
+      file_level_metadata_config_5fmsgs_2eproto[68]);
+}
+// ===================================================================
+
+class OperationModeConfig::_Internal {
+ public:
+};
+
+OperationModeConfig::OperationModeConfig(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Nrmk.IndyFramework.OperationModeConfig)
+}
+OperationModeConfig::OperationModeConfig(const OperationModeConfig& from)
+    : ::google::protobuf::Message(), _impl_(from._impl_) {
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.OperationModeConfig)
+}
+inline void OperationModeConfig::SharedCtor(::_pb::Arena* arena) {
+  (void)arena;
+  new (&_impl_) Impl_{
+      decltype(_impl_.use_ext_auto_mode_){false},
+      decltype(_impl_.mode_locked_){false},
+      decltype(_impl_.auto_mode_){false},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+}
+OperationModeConfig::~OperationModeConfig() {
+  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.OperationModeConfig)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void OperationModeConfig::SharedDtor() {
+  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
+}
+void OperationModeConfig::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+PROTOBUF_NOINLINE void OperationModeConfig::Clear() {
+// @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.OperationModeConfig)
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ::memset(&_impl_.use_ext_auto_mode_, 0, static_cast<::size_t>(
+      reinterpret_cast<char*>(&_impl_.auto_mode_) -
+      reinterpret_cast<char*>(&_impl_.use_ext_auto_mode_)) + sizeof(_impl_.auto_mode_));
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* OperationModeConfig::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<2, 3, 0, 0, 2> OperationModeConfig::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    3, 24,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967288,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    3,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_OperationModeConfig_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // bool use_ext_auto_mode = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(OperationModeConfig, _impl_.use_ext_auto_mode_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(OperationModeConfig, _impl_.use_ext_auto_mode_)}},
+    // bool mode_locked = 2;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(OperationModeConfig, _impl_.mode_locked_), 63>(),
+     {16, 63, 0, PROTOBUF_FIELD_OFFSET(OperationModeConfig, _impl_.mode_locked_)}},
+    // bool auto_mode = 3;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(OperationModeConfig, _impl_.auto_mode_), 63>(),
+     {24, 63, 0, PROTOBUF_FIELD_OFFSET(OperationModeConfig, _impl_.auto_mode_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // bool use_ext_auto_mode = 1;
+    {PROTOBUF_FIELD_OFFSET(OperationModeConfig, _impl_.use_ext_auto_mode_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
+    // bool mode_locked = 2;
+    {PROTOBUF_FIELD_OFFSET(OperationModeConfig, _impl_.mode_locked_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
+    // bool auto_mode = 3;
+    {PROTOBUF_FIELD_OFFSET(OperationModeConfig, _impl_.auto_mode_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+
+::uint8_t* OperationModeConfig::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.OperationModeConfig)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // bool use_ext_auto_mode = 1;
+  if (this->_internal_use_ext_auto_mode() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(
+        1, this->_internal_use_ext_auto_mode(), target);
+  }
+
+  // bool mode_locked = 2;
+  if (this->_internal_mode_locked() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(
+        2, this->_internal_mode_locked(), target);
+  }
+
+  // bool auto_mode = 3;
+  if (this->_internal_auto_mode() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(
+        3, this->_internal_auto_mode(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.OperationModeConfig)
+  return target;
+}
+
+::size_t OperationModeConfig::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.OperationModeConfig)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // bool use_ext_auto_mode = 1;
+  if (this->_internal_use_ext_auto_mode() != 0) {
+    total_size += 2;
+  }
+
+  // bool mode_locked = 2;
+  if (this->_internal_mode_locked() != 0) {
+    total_size += 2;
+  }
+
+  // bool auto_mode = 3;
+  if (this->_internal_auto_mode() != 0) {
+    total_size += 2;
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData OperationModeConfig::_class_data_ = {
+    ::google::protobuf::Message::CopyWithSourceCheck,
+    OperationModeConfig::MergeImpl
+};
+const ::google::protobuf::Message::ClassData*OperationModeConfig::GetClassData() const { return &_class_data_; }
+
+
+void OperationModeConfig::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<OperationModeConfig*>(&to_msg);
+  auto& from = static_cast<const OperationModeConfig&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.OperationModeConfig)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from._internal_use_ext_auto_mode() != 0) {
+    _this->_internal_set_use_ext_auto_mode(from._internal_use_ext_auto_mode());
+  }
+  if (from._internal_mode_locked() != 0) {
+    _this->_internal_set_mode_locked(from._internal_mode_locked());
+  }
+  if (from._internal_auto_mode() != 0) {
+    _this->_internal_set_auto_mode(from._internal_auto_mode());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void OperationModeConfig::CopyFrom(const OperationModeConfig& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Nrmk.IndyFramework.OperationModeConfig)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool OperationModeConfig::IsInitialized() const {
+  return true;
+}
+
+void OperationModeConfig::InternalSwap(OperationModeConfig* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(OperationModeConfig, _impl_.auto_mode_)
+      + sizeof(OperationModeConfig::_impl_.auto_mode_)
+      - PROTOBUF_FIELD_OFFSET(OperationModeConfig, _impl_.use_ext_auto_mode_)>(
+          reinterpret_cast<char*>(&_impl_.use_ext_auto_mode_),
+          reinterpret_cast<char*>(&other->_impl_.use_ext_auto_mode_));
+}
+
+::google::protobuf::Metadata OperationModeConfig::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
+      file_level_metadata_config_5fmsgs_2eproto[69]);
 }
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace IndyFramework

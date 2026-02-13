@@ -55,6 +55,15 @@ extern const ::google::protobuf::internal::DescriptorTable
     descriptor_table_ethercat_5fmsgs_2eproto;
 namespace Nrmk {
 namespace IndyFramework {
+class AIOAnalogInput;
+struct AIOAnalogInputDefaultTypeInternal;
+extern AIOAnalogInputDefaultTypeInternal _AIOAnalogInput_default_instance_;
+class AIOAnalogOutput;
+struct AIOAnalogOutputDefaultTypeInternal;
+extern AIOAnalogOutputDefaultTypeInternal _AIOAnalogOutput_default_instance_;
+class AIOIndex;
+struct AIOIndexDefaultTypeInternal;
+extern AIOIndexDefaultTypeInternal _AIOIndex_default_instance_;
 class DIODigitalInput;
 struct DIODigitalInputDefaultTypeInternal;
 extern DIODigitalInputDefaultTypeInternal _DIODigitalInput_default_instance_;
@@ -5811,6 +5820,522 @@ class DIODigitalOutput final :
   friend struct ::TableStruct_ethercat_5fmsgs_2eproto;
 };// -------------------------------------------------------------------
 
+class AIOIndex final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.AIOIndex) */ {
+ public:
+  inline AIOIndex() : AIOIndex(nullptr) {}
+  ~AIOIndex() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR AIOIndex(::google::protobuf::internal::ConstantInitialized);
+
+  AIOIndex(const AIOIndex& from);
+  AIOIndex(AIOIndex&& from) noexcept
+    : AIOIndex() {
+    *this = ::std::move(from);
+  }
+
+  inline AIOIndex& operator=(const AIOIndex& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline AIOIndex& operator=(AIOIndex&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const AIOIndex& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const AIOIndex* internal_default_instance() {
+    return reinterpret_cast<const AIOIndex*>(
+               &_AIOIndex_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    29;
+
+  friend void swap(AIOIndex& a, AIOIndex& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(AIOIndex* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(AIOIndex* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  AIOIndex* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<AIOIndex>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const AIOIndex& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const AIOIndex& from) {
+    AIOIndex::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(AIOIndex* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "Nrmk.IndyFramework.AIOIndex";
+  }
+  protected:
+  explicit AIOIndex(::google::protobuf::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kAioIndexFieldNumber = 1,
+  };
+  // uint32 aioIndex = 1;
+  void clear_aioindex() ;
+  ::uint32_t aioindex() const;
+  void set_aioindex(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_aioindex() const;
+  void _internal_set_aioindex(::uint32_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.AIOIndex)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<0, 1, 0, 0, 2> _table_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::uint32_t aioindex_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_ethercat_5fmsgs_2eproto;
+};// -------------------------------------------------------------------
+
+class AIOAnalogInput final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.AIOAnalogInput) */ {
+ public:
+  inline AIOAnalogInput() : AIOAnalogInput(nullptr) {}
+  ~AIOAnalogInput() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR AIOAnalogInput(::google::protobuf::internal::ConstantInitialized);
+
+  AIOAnalogInput(const AIOAnalogInput& from);
+  AIOAnalogInput(AIOAnalogInput&& from) noexcept
+    : AIOAnalogInput() {
+    *this = ::std::move(from);
+  }
+
+  inline AIOAnalogInput& operator=(const AIOAnalogInput& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline AIOAnalogInput& operator=(AIOAnalogInput&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const AIOAnalogInput& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const AIOAnalogInput* internal_default_instance() {
+    return reinterpret_cast<const AIOAnalogInput*>(
+               &_AIOAnalogInput_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    30;
+
+  friend void swap(AIOAnalogInput& a, AIOAnalogInput& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(AIOAnalogInput* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(AIOAnalogInput* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  AIOAnalogInput* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<AIOAnalogInput>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const AIOAnalogInput& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const AIOAnalogInput& from) {
+    AIOAnalogInput::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(AIOAnalogInput* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "Nrmk.IndyFramework.AIOAnalogInput";
+  }
+  protected:
+  explicit AIOAnalogInput(::google::protobuf::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kAiListFieldNumber = 2,
+    kAioIndexFieldNumber = 1,
+  };
+  // repeated int32 ai_list = 2;
+  int ai_list_size() const;
+  private:
+  int _internal_ai_list_size() const;
+
+  public:
+  void clear_ai_list() ;
+  ::int32_t ai_list(int index) const;
+  void set_ai_list(int index, ::int32_t value);
+  void add_ai_list(::int32_t value);
+  const ::google::protobuf::RepeatedField<::int32_t>& ai_list() const;
+  ::google::protobuf::RepeatedField<::int32_t>* mutable_ai_list();
+
+  private:
+  const ::google::protobuf::RepeatedField<::int32_t>& _internal_ai_list() const;
+  ::google::protobuf::RepeatedField<::int32_t>* _internal_mutable_ai_list();
+
+  public:
+  // uint32 aioIndex = 1;
+  void clear_aioindex() ;
+  ::uint32_t aioindex() const;
+  void set_aioindex(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_aioindex() const;
+  void _internal_set_aioindex(::uint32_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.AIOAnalogInput)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<1, 2, 0, 0, 2> _table_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::google::protobuf::RepeatedField<::int32_t> ai_list_;
+    mutable ::google::protobuf::internal::CachedSize _ai_list_cached_byte_size_;
+    ::uint32_t aioindex_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_ethercat_5fmsgs_2eproto;
+};// -------------------------------------------------------------------
+
+class AIOAnalogOutput final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.AIOAnalogOutput) */ {
+ public:
+  inline AIOAnalogOutput() : AIOAnalogOutput(nullptr) {}
+  ~AIOAnalogOutput() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR AIOAnalogOutput(::google::protobuf::internal::ConstantInitialized);
+
+  AIOAnalogOutput(const AIOAnalogOutput& from);
+  AIOAnalogOutput(AIOAnalogOutput&& from) noexcept
+    : AIOAnalogOutput() {
+    *this = ::std::move(from);
+  }
+
+  inline AIOAnalogOutput& operator=(const AIOAnalogOutput& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline AIOAnalogOutput& operator=(AIOAnalogOutput&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const AIOAnalogOutput& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const AIOAnalogOutput* internal_default_instance() {
+    return reinterpret_cast<const AIOAnalogOutput*>(
+               &_AIOAnalogOutput_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    31;
+
+  friend void swap(AIOAnalogOutput& a, AIOAnalogOutput& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(AIOAnalogOutput* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(AIOAnalogOutput* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  AIOAnalogOutput* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<AIOAnalogOutput>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const AIOAnalogOutput& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const AIOAnalogOutput& from) {
+    AIOAnalogOutput::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(AIOAnalogOutput* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "Nrmk.IndyFramework.AIOAnalogOutput";
+  }
+  protected:
+  explicit AIOAnalogOutput(::google::protobuf::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kAoListFieldNumber = 2,
+    kAioIndexFieldNumber = 1,
+  };
+  // repeated int32 ao_list = 2;
+  int ao_list_size() const;
+  private:
+  int _internal_ao_list_size() const;
+
+  public:
+  void clear_ao_list() ;
+  ::int32_t ao_list(int index) const;
+  void set_ao_list(int index, ::int32_t value);
+  void add_ao_list(::int32_t value);
+  const ::google::protobuf::RepeatedField<::int32_t>& ao_list() const;
+  ::google::protobuf::RepeatedField<::int32_t>* mutable_ao_list();
+
+  private:
+  const ::google::protobuf::RepeatedField<::int32_t>& _internal_ao_list() const;
+  ::google::protobuf::RepeatedField<::int32_t>* _internal_mutable_ao_list();
+
+  public:
+  // uint32 aioIndex = 1;
+  void clear_aioindex() ;
+  ::uint32_t aioindex() const;
+  void set_aioindex(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_aioindex() const;
+  void _internal_set_aioindex(::uint32_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.AIOAnalogOutput)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<1, 2, 0, 0, 2> _table_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::google::protobuf::RepeatedField<::int32_t> ao_list_;
+    mutable ::google::protobuf::internal::CachedSize _ao_list_cached_byte_size_;
+    ::uint32_t aioindex_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_ethercat_5fmsgs_2eproto;
+};// -------------------------------------------------------------------
+
 class ServoParam final :
     public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.ServoParam) */ {
  public:
@@ -5867,7 +6392,7 @@ class ServoParam final :
                &_ServoParam_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    29;
+    32;
 
   friend void swap(ServoParam& a, ServoParam& b) {
     a.Swap(&b);
@@ -6037,7 +6562,7 @@ class SDOIntVal final :
                &_SDOIntVal_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    30;
+    33;
 
   friend void swap(SDOIntVal& a, SDOIntVal& b) {
     a.Swap(&b);
@@ -6195,7 +6720,7 @@ class RobotZeroCount final :
                &_RobotZeroCount_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    31;
+    34;
 
   friend void swap(RobotZeroCount& a, RobotZeroCount& b) {
     a.Swap(&b);
@@ -9283,6 +9808,168 @@ inline const ::google::protobuf::RepeatedField<::uint32_t>& DIODigitalOutput::_i
 inline ::google::protobuf::RepeatedField<::uint32_t>* DIODigitalOutput::_internal_mutable_do_list() {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return &_impl_.do_list_;
+}
+
+// -------------------------------------------------------------------
+
+// AIOIndex
+
+// uint32 aioIndex = 1;
+inline void AIOIndex::clear_aioindex() {
+  _impl_.aioindex_ = 0u;
+}
+inline ::uint32_t AIOIndex::aioindex() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.AIOIndex.aioIndex)
+  return _internal_aioindex();
+}
+inline void AIOIndex::set_aioindex(::uint32_t value) {
+  _internal_set_aioindex(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.AIOIndex.aioIndex)
+}
+inline ::uint32_t AIOIndex::_internal_aioindex() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.aioindex_;
+}
+inline void AIOIndex::_internal_set_aioindex(::uint32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.aioindex_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// AIOAnalogInput
+
+// uint32 aioIndex = 1;
+inline void AIOAnalogInput::clear_aioindex() {
+  _impl_.aioindex_ = 0u;
+}
+inline ::uint32_t AIOAnalogInput::aioindex() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.AIOAnalogInput.aioIndex)
+  return _internal_aioindex();
+}
+inline void AIOAnalogInput::set_aioindex(::uint32_t value) {
+  _internal_set_aioindex(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.AIOAnalogInput.aioIndex)
+}
+inline ::uint32_t AIOAnalogInput::_internal_aioindex() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.aioindex_;
+}
+inline void AIOAnalogInput::_internal_set_aioindex(::uint32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.aioindex_ = value;
+}
+
+// repeated int32 ai_list = 2;
+inline int AIOAnalogInput::_internal_ai_list_size() const {
+  return _internal_ai_list().size();
+}
+inline int AIOAnalogInput::ai_list_size() const {
+  return _internal_ai_list_size();
+}
+inline void AIOAnalogInput::clear_ai_list() {
+  _internal_mutable_ai_list()->Clear();
+}
+inline ::int32_t AIOAnalogInput::ai_list(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.AIOAnalogInput.ai_list)
+  return _internal_ai_list().Get(index);
+}
+inline void AIOAnalogInput::set_ai_list(int index, ::int32_t value) {
+  _internal_mutable_ai_list()->Set(index, value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.AIOAnalogInput.ai_list)
+}
+inline void AIOAnalogInput::add_ai_list(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_ai_list()->Add(value);
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.AIOAnalogInput.ai_list)
+}
+inline const ::google::protobuf::RepeatedField<::int32_t>& AIOAnalogInput::ai_list() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.AIOAnalogInput.ai_list)
+  return _internal_ai_list();
+}
+inline ::google::protobuf::RepeatedField<::int32_t>* AIOAnalogInput::mutable_ai_list() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.AIOAnalogInput.ai_list)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_ai_list();
+}
+
+inline const ::google::protobuf::RepeatedField<::int32_t>& AIOAnalogInput::_internal_ai_list() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.ai_list_;
+}
+inline ::google::protobuf::RepeatedField<::int32_t>* AIOAnalogInput::_internal_mutable_ai_list() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.ai_list_;
+}
+
+// -------------------------------------------------------------------
+
+// AIOAnalogOutput
+
+// uint32 aioIndex = 1;
+inline void AIOAnalogOutput::clear_aioindex() {
+  _impl_.aioindex_ = 0u;
+}
+inline ::uint32_t AIOAnalogOutput::aioindex() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.AIOAnalogOutput.aioIndex)
+  return _internal_aioindex();
+}
+inline void AIOAnalogOutput::set_aioindex(::uint32_t value) {
+  _internal_set_aioindex(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.AIOAnalogOutput.aioIndex)
+}
+inline ::uint32_t AIOAnalogOutput::_internal_aioindex() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.aioindex_;
+}
+inline void AIOAnalogOutput::_internal_set_aioindex(::uint32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.aioindex_ = value;
+}
+
+// repeated int32 ao_list = 2;
+inline int AIOAnalogOutput::_internal_ao_list_size() const {
+  return _internal_ao_list().size();
+}
+inline int AIOAnalogOutput::ao_list_size() const {
+  return _internal_ao_list_size();
+}
+inline void AIOAnalogOutput::clear_ao_list() {
+  _internal_mutable_ao_list()->Clear();
+}
+inline ::int32_t AIOAnalogOutput::ao_list(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.AIOAnalogOutput.ao_list)
+  return _internal_ao_list().Get(index);
+}
+inline void AIOAnalogOutput::set_ao_list(int index, ::int32_t value) {
+  _internal_mutable_ao_list()->Set(index, value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.AIOAnalogOutput.ao_list)
+}
+inline void AIOAnalogOutput::add_ao_list(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_ao_list()->Add(value);
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.AIOAnalogOutput.ao_list)
+}
+inline const ::google::protobuf::RepeatedField<::int32_t>& AIOAnalogOutput::ao_list() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.AIOAnalogOutput.ao_list)
+  return _internal_ao_list();
+}
+inline ::google::protobuf::RepeatedField<::int32_t>* AIOAnalogOutput::mutable_ao_list() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.AIOAnalogOutput.ao_list)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_ao_list();
+}
+
+inline const ::google::protobuf::RepeatedField<::int32_t>& AIOAnalogOutput::_internal_ao_list() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.ao_list_;
+}
+inline ::google::protobuf::RepeatedField<::int32_t>* AIOAnalogOutput::_internal_mutable_ao_list() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.ao_list_;
 }
 
 // -------------------------------------------------------------------

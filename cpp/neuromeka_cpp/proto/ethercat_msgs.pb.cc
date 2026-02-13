@@ -577,6 +577,58 @@ struct DIODigitalOutputDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 DIODigitalOutputDefaultTypeInternal _DIODigitalOutput_default_instance_;
         template <typename>
+PROTOBUF_CONSTEXPR AIOIndex::AIOIndex(::_pbi::ConstantInitialized)
+    : _impl_{
+      /*decltype(_impl_.aioindex_)*/ 0u,
+      /*decltype(_impl_._cached_size_)*/ {},
+    } {}
+struct AIOIndexDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR AIOIndexDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~AIOIndexDefaultTypeInternal() {}
+  union {
+    AIOIndex _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AIOIndexDefaultTypeInternal _AIOIndex_default_instance_;
+        template <typename>
+PROTOBUF_CONSTEXPR AIOAnalogInput::AIOAnalogInput(::_pbi::ConstantInitialized)
+    : _impl_{
+      /*decltype(_impl_.ai_list_)*/ {},
+      /* _impl_._ai_list_cached_byte_size_ = */ {0},
+      /*decltype(_impl_.aioindex_)*/ 0u,
+      /*decltype(_impl_._cached_size_)*/ {},
+    } {}
+struct AIOAnalogInputDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR AIOAnalogInputDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~AIOAnalogInputDefaultTypeInternal() {}
+  union {
+    AIOAnalogInput _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AIOAnalogInputDefaultTypeInternal _AIOAnalogInput_default_instance_;
+        template <typename>
+PROTOBUF_CONSTEXPR AIOAnalogOutput::AIOAnalogOutput(::_pbi::ConstantInitialized)
+    : _impl_{
+      /*decltype(_impl_.ao_list_)*/ {},
+      /* _impl_._ao_list_cached_byte_size_ = */ {0},
+      /*decltype(_impl_.aioindex_)*/ 0u,
+      /*decltype(_impl_._cached_size_)*/ {},
+    } {}
+struct AIOAnalogOutputDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR AIOAnalogOutputDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~AIOAnalogOutputDefaultTypeInternal() {}
+  union {
+    AIOAnalogOutput _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AIOAnalogOutputDefaultTypeInternal _AIOAnalogOutput_default_instance_;
+        template <typename>
 PROTOBUF_CONSTEXPR ServoParam::ServoParam(::_pbi::ConstantInitialized)
     : _impl_{
       /*decltype(_impl_.slaveidx_)*/ 0u,
@@ -627,7 +679,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RobotZeroCountDefaultTypeInternal _RobotZeroCount_default_instance_;
 }  // namespace IndyFramework
 }  // namespace Nrmk
-static ::_pb::Metadata file_level_metadata_ethercat_5fmsgs_2eproto[32];
+static ::_pb::Metadata file_level_metadata_ethercat_5fmsgs_2eproto[35];
 static constexpr const ::_pb::EnumDescriptor**
     file_level_enum_descriptors_ethercat_5fmsgs_2eproto = nullptr;
 static constexpr const ::_pb::ServiceDescriptor**
@@ -994,6 +1046,35 @@ const ::uint32_t TableStruct_ethercat_5fmsgs_2eproto::offsets[] PROTOBUF_SECTION
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::DIODigitalOutput, _impl_.dioindex_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::DIODigitalOutput, _impl_.do_list_),
     ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::AIOIndex, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::AIOIndex, _impl_.aioindex_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::AIOAnalogInput, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::AIOAnalogInput, _impl_.aioindex_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::AIOAnalogInput, _impl_.ai_list_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::AIOAnalogOutput, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::AIOAnalogOutput, _impl_.aioindex_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::AIOAnalogOutput, _impl_.ao_list_),
+    ~0u,  // no _has_bits_
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ServoParam, _internal_metadata_),
     ~0u,  // no _extensions_
     ~0u,  // no _oneof_case_
@@ -1054,9 +1135,12 @@ static const ::_pbi::MigrationSchema
         {330, -1, -1, sizeof(::Nrmk::IndyFramework::DIOIndex)},
         {339, -1, -1, sizeof(::Nrmk::IndyFramework::DIODigitalInput)},
         {349, -1, -1, sizeof(::Nrmk::IndyFramework::DIODigitalOutput)},
-        {359, -1, -1, sizeof(::Nrmk::IndyFramework::ServoParam)},
-        {369, -1, -1, sizeof(::Nrmk::IndyFramework::SDOIntVal)},
-        {378, -1, -1, sizeof(::Nrmk::IndyFramework::RobotZeroCount)},
+        {359, -1, -1, sizeof(::Nrmk::IndyFramework::AIOIndex)},
+        {368, -1, -1, sizeof(::Nrmk::IndyFramework::AIOAnalogInput)},
+        {378, -1, -1, sizeof(::Nrmk::IndyFramework::AIOAnalogOutput)},
+        {388, -1, -1, sizeof(::Nrmk::IndyFramework::ServoParam)},
+        {398, -1, -1, sizeof(::Nrmk::IndyFramework::SDOIntVal)},
+        {407, -1, -1, sizeof(::Nrmk::IndyFramework::RobotZeroCount)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -1089,6 +1173,9 @@ static const ::_pb::Message* const file_default_instances[] = {
     &::Nrmk::IndyFramework::_DIOIndex_default_instance_._instance,
     &::Nrmk::IndyFramework::_DIODigitalInput_default_instance_._instance,
     &::Nrmk::IndyFramework::_DIODigitalOutput_default_instance_._instance,
+    &::Nrmk::IndyFramework::_AIOIndex_default_instance_._instance,
+    &::Nrmk::IndyFramework::_AIOAnalogInput_default_instance_._instance,
+    &::Nrmk::IndyFramework::_AIOAnalogOutput_default_instance_._instance,
     &::Nrmk::IndyFramework::_ServoParam_default_instance_._instance,
     &::Nrmk::IndyFramework::_SDOIntVal_default_instance_._instance,
     &::Nrmk::IndyFramework::_RobotZeroCount_default_instance_._instance,
@@ -1162,22 +1249,25 @@ const char descriptor_table_protodef_ethercat_5fmsgs_2eproto[] PROTOBUF_SECTION_
     "param\030\006 \001(\r\"\034\n\010DIOIndex\022\020\n\010dioIndex\030\001 \001("
     "\r\"4\n\017DIODigitalInput\022\020\n\010dioIndex\030\001 \001(\r\022\017"
     "\n\007di_list\030\002 \003(\r\"5\n\020DIODigitalOutput\022\020\n\010d"
-    "ioIndex\030\001 \001(\r\022\017\n\007do_list\030\002 \003(\r\"+\n\nServoP"
-    "aram\022\020\n\010slaveIdx\030\001 \001(\r\022\013\n\003val\030\002 \001(\005\"\030\n\tS"
-    "DOIntVal\022\013\n\003val\030\001 \001(\005\"\037\n\016RobotZeroCount\022"
-    "\r\n\005count\030\001 \001(\005b\006proto3"
+    "ioIndex\030\001 \001(\r\022\017\n\007do_list\030\002 \003(\r\"\034\n\010AIOInd"
+    "ex\022\020\n\010aioIndex\030\001 \001(\r\"3\n\016AIOAnalogInput\022\020"
+    "\n\010aioIndex\030\001 \001(\r\022\017\n\007ai_list\030\002 \003(\005\"4\n\017AIO"
+    "AnalogOutput\022\020\n\010aioIndex\030\001 \001(\r\022\017\n\007ao_lis"
+    "t\030\002 \003(\005\"+\n\nServoParam\022\020\n\010slaveIdx\030\001 \001(\r\022"
+    "\013\n\003val\030\002 \001(\005\"\030\n\tSDOIntVal\022\013\n\003val\030\001 \001(\005\"\037"
+    "\n\016RobotZeroCount\022\r\n\005count\030\001 \001(\005b\006proto3"
 };
 static ::absl::once_flag descriptor_table_ethercat_5fmsgs_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_ethercat_5fmsgs_2eproto = {
     false,
     false,
-    2862,
+    2999,
     descriptor_table_protodef_ethercat_5fmsgs_2eproto,
     "ethercat_msgs.proto",
     &descriptor_table_ethercat_5fmsgs_2eproto_once,
     nullptr,
     0,
-    32,
+    35,
     schemas,
     file_default_instances,
     TableStruct_ethercat_5fmsgs_2eproto::offsets,
@@ -8325,6 +8415,590 @@ void DIODigitalOutput::InternalSwap(DIODigitalOutput* other) {
 }
 // ===================================================================
 
+class AIOIndex::_Internal {
+ public:
+};
+
+AIOIndex::AIOIndex(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Nrmk.IndyFramework.AIOIndex)
+}
+AIOIndex::AIOIndex(const AIOIndex& from)
+    : ::google::protobuf::Message(), _impl_(from._impl_) {
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.AIOIndex)
+}
+inline void AIOIndex::SharedCtor(::_pb::Arena* arena) {
+  (void)arena;
+  new (&_impl_) Impl_{
+      decltype(_impl_.aioindex_){0u},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+}
+AIOIndex::~AIOIndex() {
+  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.AIOIndex)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void AIOIndex::SharedDtor() {
+  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
+}
+void AIOIndex::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+PROTOBUF_NOINLINE void AIOIndex::Clear() {
+// @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.AIOIndex)
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.aioindex_ = 0u;
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* AIOIndex::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 1, 0, 0, 2> AIOIndex::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    1, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    1,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_AIOIndex_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // uint32 aioIndex = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(AIOIndex, _impl_.aioindex_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(AIOIndex, _impl_.aioindex_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // uint32 aioIndex = 1;
+    {PROTOBUF_FIELD_OFFSET(AIOIndex, _impl_.aioindex_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+
+::uint8_t* AIOIndex::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.AIOIndex)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // uint32 aioIndex = 1;
+  if (this->_internal_aioindex() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+        1, this->_internal_aioindex(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.AIOIndex)
+  return target;
+}
+
+::size_t AIOIndex::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.AIOIndex)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // uint32 aioIndex = 1;
+  if (this->_internal_aioindex() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+        this->_internal_aioindex());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData AIOIndex::_class_data_ = {
+    ::google::protobuf::Message::CopyWithSourceCheck,
+    AIOIndex::MergeImpl
+};
+const ::google::protobuf::Message::ClassData*AIOIndex::GetClassData() const { return &_class_data_; }
+
+
+void AIOIndex::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<AIOIndex*>(&to_msg);
+  auto& from = static_cast<const AIOIndex&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.AIOIndex)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from._internal_aioindex() != 0) {
+    _this->_internal_set_aioindex(from._internal_aioindex());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void AIOIndex::CopyFrom(const AIOIndex& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Nrmk.IndyFramework.AIOIndex)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool AIOIndex::IsInitialized() const {
+  return true;
+}
+
+void AIOIndex::InternalSwap(AIOIndex* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+        swap(_impl_.aioindex_, other->_impl_.aioindex_);
+}
+
+::google::protobuf::Metadata AIOIndex::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_ethercat_5fmsgs_2eproto_getter, &descriptor_table_ethercat_5fmsgs_2eproto_once,
+      file_level_metadata_ethercat_5fmsgs_2eproto[29]);
+}
+// ===================================================================
+
+class AIOAnalogInput::_Internal {
+ public:
+};
+
+AIOAnalogInput::AIOAnalogInput(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Nrmk.IndyFramework.AIOAnalogInput)
+}
+AIOAnalogInput::AIOAnalogInput(const AIOAnalogInput& from) : ::google::protobuf::Message() {
+  AIOAnalogInput* const _this = this;
+  (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.ai_list_){from._impl_.ai_list_},
+      /* _impl_._ai_list_cached_byte_size_ = */ {0},
+      decltype(_impl_.aioindex_){},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  _this->_impl_.aioindex_ = from._impl_.aioindex_;
+
+  // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.AIOAnalogInput)
+}
+inline void AIOAnalogInput::SharedCtor(::_pb::Arena* arena) {
+  (void)arena;
+  new (&_impl_) Impl_{
+      decltype(_impl_.ai_list_){arena},
+      /* _impl_._ai_list_cached_byte_size_ = */ {0},
+      decltype(_impl_.aioindex_){0u},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+}
+AIOAnalogInput::~AIOAnalogInput() {
+  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.AIOAnalogInput)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void AIOAnalogInput::SharedDtor() {
+  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.ai_list_.~RepeatedField();
+}
+void AIOAnalogInput::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+PROTOBUF_NOINLINE void AIOAnalogInput::Clear() {
+// @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.AIOAnalogInput)
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _internal_mutable_ai_list()->Clear();
+  _impl_.aioindex_ = 0u;
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* AIOAnalogInput::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 0, 2> AIOAnalogInput::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_AIOAnalogInput_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // repeated int32 ai_list = 2;
+    {::_pbi::TcParser::FastV32P1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(AIOAnalogInput, _impl_.ai_list_)}},
+    // uint32 aioIndex = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(AIOAnalogInput, _impl_.aioindex_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(AIOAnalogInput, _impl_.aioindex_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // uint32 aioIndex = 1;
+    {PROTOBUF_FIELD_OFFSET(AIOAnalogInput, _impl_.aioindex_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
+    // repeated int32 ai_list = 2;
+    {PROTOBUF_FIELD_OFFSET(AIOAnalogInput, _impl_.ai_list_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedInt32)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+
+::uint8_t* AIOAnalogInput::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.AIOAnalogInput)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // uint32 aioIndex = 1;
+  if (this->_internal_aioindex() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+        1, this->_internal_aioindex(), target);
+  }
+
+  // repeated int32 ai_list = 2;
+  {
+    int byte_size = _impl_._ai_list_cached_byte_size_.Get();
+    if (byte_size > 0) {
+      target = stream->WriteInt32Packed(2, _internal_ai_list(),
+                                                 byte_size, target);
+    }
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.AIOAnalogInput)
+  return target;
+}
+
+::size_t AIOAnalogInput::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.AIOAnalogInput)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated int32 ai_list = 2;
+  {
+    std::size_t data_size = ::_pbi::WireFormatLite::Int32Size(
+        this->_internal_ai_list())
+    ;
+    _impl_._ai_list_cached_byte_size_.Set(::_pbi::ToCachedSize(data_size));
+    std::size_t tag_size = data_size == 0
+        ? 0
+        : 1 + ::_pbi::WireFormatLite::Int32Size(
+                            static_cast<int32_t>(data_size))
+    ;
+    total_size += tag_size + data_size;
+  }
+  // uint32 aioIndex = 1;
+  if (this->_internal_aioindex() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+        this->_internal_aioindex());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData AIOAnalogInput::_class_data_ = {
+    ::google::protobuf::Message::CopyWithSourceCheck,
+    AIOAnalogInput::MergeImpl
+};
+const ::google::protobuf::Message::ClassData*AIOAnalogInput::GetClassData() const { return &_class_data_; }
+
+
+void AIOAnalogInput::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<AIOAnalogInput*>(&to_msg);
+  auto& from = static_cast<const AIOAnalogInput&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.AIOAnalogInput)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_internal_mutable_ai_list()->MergeFrom(from._internal_ai_list());
+  if (from._internal_aioindex() != 0) {
+    _this->_internal_set_aioindex(from._internal_aioindex());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void AIOAnalogInput::CopyFrom(const AIOAnalogInput& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Nrmk.IndyFramework.AIOAnalogInput)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool AIOAnalogInput::IsInitialized() const {
+  return true;
+}
+
+void AIOAnalogInput::InternalSwap(AIOAnalogInput* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.ai_list_.InternalSwap(&other->_impl_.ai_list_);
+        swap(_impl_.aioindex_, other->_impl_.aioindex_);
+}
+
+::google::protobuf::Metadata AIOAnalogInput::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_ethercat_5fmsgs_2eproto_getter, &descriptor_table_ethercat_5fmsgs_2eproto_once,
+      file_level_metadata_ethercat_5fmsgs_2eproto[30]);
+}
+// ===================================================================
+
+class AIOAnalogOutput::_Internal {
+ public:
+};
+
+AIOAnalogOutput::AIOAnalogOutput(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Nrmk.IndyFramework.AIOAnalogOutput)
+}
+AIOAnalogOutput::AIOAnalogOutput(const AIOAnalogOutput& from) : ::google::protobuf::Message() {
+  AIOAnalogOutput* const _this = this;
+  (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.ao_list_){from._impl_.ao_list_},
+      /* _impl_._ao_list_cached_byte_size_ = */ {0},
+      decltype(_impl_.aioindex_){},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  _this->_impl_.aioindex_ = from._impl_.aioindex_;
+
+  // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.AIOAnalogOutput)
+}
+inline void AIOAnalogOutput::SharedCtor(::_pb::Arena* arena) {
+  (void)arena;
+  new (&_impl_) Impl_{
+      decltype(_impl_.ao_list_){arena},
+      /* _impl_._ao_list_cached_byte_size_ = */ {0},
+      decltype(_impl_.aioindex_){0u},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+}
+AIOAnalogOutput::~AIOAnalogOutput() {
+  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.AIOAnalogOutput)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void AIOAnalogOutput::SharedDtor() {
+  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.ao_list_.~RepeatedField();
+}
+void AIOAnalogOutput::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+PROTOBUF_NOINLINE void AIOAnalogOutput::Clear() {
+// @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.AIOAnalogOutput)
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _internal_mutable_ao_list()->Clear();
+  _impl_.aioindex_ = 0u;
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* AIOAnalogOutput::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 0, 2> AIOAnalogOutput::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_AIOAnalogOutput_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // repeated int32 ao_list = 2;
+    {::_pbi::TcParser::FastV32P1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(AIOAnalogOutput, _impl_.ao_list_)}},
+    // uint32 aioIndex = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(AIOAnalogOutput, _impl_.aioindex_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(AIOAnalogOutput, _impl_.aioindex_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // uint32 aioIndex = 1;
+    {PROTOBUF_FIELD_OFFSET(AIOAnalogOutput, _impl_.aioindex_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
+    // repeated int32 ao_list = 2;
+    {PROTOBUF_FIELD_OFFSET(AIOAnalogOutput, _impl_.ao_list_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedInt32)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+
+::uint8_t* AIOAnalogOutput::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.AIOAnalogOutput)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // uint32 aioIndex = 1;
+  if (this->_internal_aioindex() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+        1, this->_internal_aioindex(), target);
+  }
+
+  // repeated int32 ao_list = 2;
+  {
+    int byte_size = _impl_._ao_list_cached_byte_size_.Get();
+    if (byte_size > 0) {
+      target = stream->WriteInt32Packed(2, _internal_ao_list(),
+                                                 byte_size, target);
+    }
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.AIOAnalogOutput)
+  return target;
+}
+
+::size_t AIOAnalogOutput::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.AIOAnalogOutput)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated int32 ao_list = 2;
+  {
+    std::size_t data_size = ::_pbi::WireFormatLite::Int32Size(
+        this->_internal_ao_list())
+    ;
+    _impl_._ao_list_cached_byte_size_.Set(::_pbi::ToCachedSize(data_size));
+    std::size_t tag_size = data_size == 0
+        ? 0
+        : 1 + ::_pbi::WireFormatLite::Int32Size(
+                            static_cast<int32_t>(data_size))
+    ;
+    total_size += tag_size + data_size;
+  }
+  // uint32 aioIndex = 1;
+  if (this->_internal_aioindex() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+        this->_internal_aioindex());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData AIOAnalogOutput::_class_data_ = {
+    ::google::protobuf::Message::CopyWithSourceCheck,
+    AIOAnalogOutput::MergeImpl
+};
+const ::google::protobuf::Message::ClassData*AIOAnalogOutput::GetClassData() const { return &_class_data_; }
+
+
+void AIOAnalogOutput::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<AIOAnalogOutput*>(&to_msg);
+  auto& from = static_cast<const AIOAnalogOutput&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.AIOAnalogOutput)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_internal_mutable_ao_list()->MergeFrom(from._internal_ao_list());
+  if (from._internal_aioindex() != 0) {
+    _this->_internal_set_aioindex(from._internal_aioindex());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void AIOAnalogOutput::CopyFrom(const AIOAnalogOutput& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Nrmk.IndyFramework.AIOAnalogOutput)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool AIOAnalogOutput::IsInitialized() const {
+  return true;
+}
+
+void AIOAnalogOutput::InternalSwap(AIOAnalogOutput* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.ao_list_.InternalSwap(&other->_impl_.ao_list_);
+        swap(_impl_.aioindex_, other->_impl_.aioindex_);
+}
+
+::google::protobuf::Metadata AIOAnalogOutput::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_ethercat_5fmsgs_2eproto_getter, &descriptor_table_ethercat_5fmsgs_2eproto_once,
+      file_level_metadata_ethercat_5fmsgs_2eproto[31]);
+}
+// ===================================================================
+
 class ServoParam::_Internal {
  public:
 };
@@ -8517,7 +9191,7 @@ void ServoParam::InternalSwap(ServoParam* other) {
 ::google::protobuf::Metadata ServoParam::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_ethercat_5fmsgs_2eproto_getter, &descriptor_table_ethercat_5fmsgs_2eproto_once,
-      file_level_metadata_ethercat_5fmsgs_2eproto[29]);
+      file_level_metadata_ethercat_5fmsgs_2eproto[32]);
 }
 // ===================================================================
 
@@ -8683,7 +9357,7 @@ void SDOIntVal::InternalSwap(SDOIntVal* other) {
 ::google::protobuf::Metadata SDOIntVal::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_ethercat_5fmsgs_2eproto_getter, &descriptor_table_ethercat_5fmsgs_2eproto_once,
-      file_level_metadata_ethercat_5fmsgs_2eproto[30]);
+      file_level_metadata_ethercat_5fmsgs_2eproto[33]);
 }
 // ===================================================================
 
@@ -8849,7 +9523,7 @@ void RobotZeroCount::InternalSwap(RobotZeroCount* other) {
 ::google::protobuf::Metadata RobotZeroCount::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_ethercat_5fmsgs_2eproto_getter, &descriptor_table_ethercat_5fmsgs_2eproto_once,
-      file_level_metadata_ethercat_5fmsgs_2eproto[31]);
+      file_level_metadata_ethercat_5fmsgs_2eproto[34]);
 }
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace IndyFramework
