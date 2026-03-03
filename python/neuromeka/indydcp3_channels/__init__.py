@@ -5,6 +5,7 @@ from ._device import DeviceChannelAPI
 from ._cri import CRIChannelAPI
 from ._control import ControlChannelAPI
 from ._config import ConfigChannelAPI
+from ._teleop import TeleopChannelAPI
 
 __all__ = [
     'HelpersChannelAPI',
@@ -14,4 +15,5 @@ __all__ = [
     'CRIChannelAPI',
     'ControlChannelAPI',
     'ConfigChannelAPI',
+    'TeleopChannelAPI',
 ]

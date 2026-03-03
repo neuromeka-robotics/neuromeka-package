@@ -22,6 +22,7 @@ from neuromeka.indydcp3_channels import (
     CRIChannelAPI,
     ControlChannelAPI,
     ConfigChannelAPI,
+    TeleopChannelAPI,
 )
 
 CONTROL_SOCKET_PORT = [20001, 30001]
@@ -30,6 +31,7 @@ CONFIG_SOCKET_PORT = [20003, 30003]
 RTDE_SOCKET_PORT = [20004, 30004]
 BOOT_SOCKET_PORT = [20010, 30010]
 CRI_SOCKET_PORT = [20181, 30181]
+TELEOP_SOCKET_PORT = [20400, 30400]
 
 
 class IndyDCP3(
@@ -40,6 +42,7 @@ class IndyDCP3(
     CRIChannelAPI,
     ControlChannelAPI,
     ConfigChannelAPI,
+    TeleopChannelAPI,
 ):
     def __init__(self, robot_ip='127.0.0.1', index=0):
         if index not in [0, 1]:
@@ -51,6 +54,7 @@ class IndyDCP3(
         self.config_channel = grpc.insecure_channel('{}:{}'.format(robot_ip, CONFIG_SOCKET_PORT[index]))
         self.rtde_channel = grpc.insecure_channel('{}:{}'.format(robot_ip, RTDE_SOCKET_PORT[index]))
         self.cri_channel = grpc.insecure_channel('{}:{}'.format(robot_ip, CRI_SOCKET_PORT[index]))
+        self.teleop_channel = grpc.insecure_channel('{}:{}'.format(robot_ip, TELEOP_SOCKET_PORT[index]))
 
         self.boot = BootStub(self.boot_channel)
         self.control = ControlStub(self.control_channel)
@@ -58,6 +62,7 @@ class IndyDCP3(
         self.config = ConfigStub(self.config_channel)
         self.rtde = RTDataExchangeStub(self.rtde_channel)
         self.cri = CRIStub(self.cri_channel)
+        self.teleop = TeleOpStub(self.teleop_channel)
 
         self._joint_waypoint = []
         self._task_waypoint = []
@@ -75,6 +80,8 @@ class IndyDCP3(
             self.rtde_channel.close()
         if self.cri_channel is not None:
             self.cri_channel.close()
+        if self.teleop_channel is not None:
+            self.teleop_channel.close()
 
     ############################
     # Cross-channel utility methods
