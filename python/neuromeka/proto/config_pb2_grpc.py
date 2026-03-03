@@ -235,6 +235,11 @@ class ConfigStub(object):
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
                 response_deserializer=config__msgs__pb2.CustomGainSet.FromString,
                 )
+        self.RestorFactoryControlGains = channel.unary_unary(
+                '/Nrmk.IndyFramework.Config/RestorFactoryControlGains',
+                request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=common__msgs__pb2.Response.FromString,
+                )
         self.SetNewControllerTestOnOff = channel.unary_unary(
                 '/Nrmk.IndyFramework.Config/SetNewControllerTestOnOff',
                 request_serializer=config__msgs__pb2.NewControllerTestState.SerializeToString,
@@ -275,6 +280,11 @@ class ConfigStub(object):
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
                 response_deserializer=config__msgs__pb2.MountingAngles.FromString,
                 )
+        self.GetIMUAutoMount = channel.unary_unary(
+                '/Nrmk.IndyFramework.Config/GetIMUAutoMount',
+                request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=config__msgs__pb2.MountingAngles.FromString,
+                )
         self.SetToolProperty = channel.unary_unary(
                 '/Nrmk.IndyFramework.Config/SetToolProperty',
                 request_serializer=config__msgs__pb2.ToolProperties.SerializeToString,
@@ -289,6 +299,16 @@ class ConfigStub(object):
                 '/Nrmk.IndyFramework.Config/GetToolPropertyAt',
                 request_serializer=common__msgs__pb2.Int.SerializeToString,
                 response_deserializer=config__msgs__pb2.ToolProperties.FromString,
+                )
+        self.SetToolPropertyList = channel.unary_unary(
+                '/Nrmk.IndyFramework.Config/SetToolPropertyList',
+                request_serializer=config__msgs__pb2.ToolPropertyEntries.SerializeToString,
+                response_deserializer=common__msgs__pb2.Response.FromString,
+                )
+        self.GetToolPropertyList = channel.unary_unary(
+                '/Nrmk.IndyFramework.Config/GetToolPropertyList',
+                request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=config__msgs__pb2.ToolPropertyEntries.FromString,
                 )
         self.GetToolFrameList = channel.unary_unary(
                 '/Nrmk.IndyFramework.Config/GetToolFrameList',
@@ -380,6 +400,21 @@ class ConfigStub(object):
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
                 response_deserializer=config__msgs__pb2.SafetyLimits.FromString,
                 )
+        self.GetJointLimitConfig = channel.unary_unary(
+                '/Nrmk.IndyFramework.Config/GetJointLimitConfig',
+                request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=config__msgs__pb2.JointLimitConfig.FromString,
+                )
+        self.SetJointLimitConfig = channel.unary_unary(
+                '/Nrmk.IndyFramework.Config/SetJointLimitConfig',
+                request_serializer=config__msgs__pb2.JointLimitConfig.SerializeToString,
+                response_deserializer=common__msgs__pb2.Response.FromString,
+                )
+        self.GetOriginalJointLimitConfig = channel.unary_unary(
+                '/Nrmk.IndyFramework.Config/GetOriginalJointLimitConfig',
+                request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=config__msgs__pb2.JointLimitConfig.FromString,
+                )
         self.SetSafetyStopConfig = channel.unary_unary(
                 '/Nrmk.IndyFramework.Config/SetSafetyStopConfig',
                 request_serializer=config__msgs__pb2.SafetyStopConfig.SerializeToString,
@@ -389,6 +424,31 @@ class ConfigStub(object):
                 '/Nrmk.IndyFramework.Config/GetSafetyStopConfig',
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
                 response_deserializer=config__msgs__pb2.SafetyStopConfig.FromString,
+                )
+        self.SaveSafetySnapshot = channel.unary_unary(
+                '/Nrmk.IndyFramework.Config/SaveSafetySnapshot',
+                request_serializer=config__msgs__pb2.SaveSafetySnapshotReq.SerializeToString,
+                response_deserializer=config__msgs__pb2.SafetySnapshotInfo.FromString,
+                )
+        self.ListSafetySnapshots = channel.unary_unary(
+                '/Nrmk.IndyFramework.Config/ListSafetySnapshots',
+                request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=config__msgs__pb2.SafetySnapshotList.FromString,
+                )
+        self.RestoreSafetySnapshot = channel.unary_unary(
+                '/Nrmk.IndyFramework.Config/RestoreSafetySnapshot',
+                request_serializer=config__msgs__pb2.SafetySnapshotId.SerializeToString,
+                response_deserializer=common__msgs__pb2.Response.FromString,
+                )
+        self.DeleteSafetySnapshot = channel.unary_unary(
+                '/Nrmk.IndyFramework.Config/DeleteSafetySnapshot',
+                request_serializer=config__msgs__pb2.SafetySnapshotId.SerializeToString,
+                response_deserializer=common__msgs__pb2.Response.FromString,
+                )
+        self.RestorFactorySafetyConfig = channel.unary_unary(
+                '/Nrmk.IndyFramework.Config/RestorFactorySafetyConfig',
+                request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=common__msgs__pb2.Response.FromString,
                 )
         self.GetReducedRatio = channel.unary_unary(
                 '/Nrmk.IndyFramework.Config/GetReducedRatio',
@@ -494,6 +554,16 @@ class ConfigStub(object):
                 '/Nrmk.IndyFramework.Config/SetWeldPositionList',
                 request_serializer=config__msgs__pb2.WeldPositionList.SerializeToString,
                 response_deserializer=common__msgs__pb2.Response.FromString,
+                )
+        self.SetOperationModeConfig = channel.unary_unary(
+                '/Nrmk.IndyFramework.Config/SetOperationModeConfig',
+                request_serializer=config__msgs__pb2.OperationModeConfig.SerializeToString,
+                response_deserializer=common__msgs__pb2.Response.FromString,
+                )
+        self.GetOperationModeConfig = channel.unary_unary(
+                '/Nrmk.IndyFramework.Config/GetOperationModeConfig',
+                request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=config__msgs__pb2.OperationModeConfig.FromString,
                 )
 
 
@@ -764,6 +834,12 @@ class ConfigServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def RestorFactoryControlGains(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def SetNewControllerTestOnOff(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -812,6 +888,12 @@ class ConfigServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetIMUAutoMount(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def SetToolProperty(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -825,6 +907,18 @@ class ConfigServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def GetToolPropertyAt(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SetToolPropertyList(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetToolPropertyList(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -938,6 +1032,24 @@ class ConfigServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetJointLimitConfig(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SetJointLimitConfig(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetOriginalJointLimitConfig(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def SetSafetyStopConfig(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -945,6 +1057,36 @@ class ConfigServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def GetSafetyStopConfig(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SaveSafetySnapshot(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def ListSafetySnapshots(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def RestoreSafetySnapshot(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def DeleteSafetySnapshot(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def RestorFactorySafetyConfig(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -1074,6 +1216,18 @@ class ConfigServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def SetWeldPositionList(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SetOperationModeConfig(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetOperationModeConfig(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -1302,6 +1456,11 @@ def add_ConfigServicer_to_server(servicer, server):
                     request_deserializer=common__msgs__pb2.Empty.FromString,
                     response_serializer=config__msgs__pb2.CustomGainSet.SerializeToString,
             ),
+            'RestorFactoryControlGains': grpc.unary_unary_rpc_method_handler(
+                    servicer.RestorFactoryControlGains,
+                    request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=common__msgs__pb2.Response.SerializeToString,
+            ),
             'SetNewControllerTestOnOff': grpc.unary_unary_rpc_method_handler(
                     servicer.SetNewControllerTestOnOff,
                     request_deserializer=config__msgs__pb2.NewControllerTestState.FromString,
@@ -1342,6 +1501,11 @@ def add_ConfigServicer_to_server(servicer, server):
                     request_deserializer=common__msgs__pb2.Empty.FromString,
                     response_serializer=config__msgs__pb2.MountingAngles.SerializeToString,
             ),
+            'GetIMUAutoMount': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetIMUAutoMount,
+                    request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=config__msgs__pb2.MountingAngles.SerializeToString,
+            ),
             'SetToolProperty': grpc.unary_unary_rpc_method_handler(
                     servicer.SetToolProperty,
                     request_deserializer=config__msgs__pb2.ToolProperties.FromString,
@@ -1356,6 +1520,16 @@ def add_ConfigServicer_to_server(servicer, server):
                     servicer.GetToolPropertyAt,
                     request_deserializer=common__msgs__pb2.Int.FromString,
                     response_serializer=config__msgs__pb2.ToolProperties.SerializeToString,
+            ),
+            'SetToolPropertyList': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetToolPropertyList,
+                    request_deserializer=config__msgs__pb2.ToolPropertyEntries.FromString,
+                    response_serializer=common__msgs__pb2.Response.SerializeToString,
+            ),
+            'GetToolPropertyList': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetToolPropertyList,
+                    request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=config__msgs__pb2.ToolPropertyEntries.SerializeToString,
             ),
             'GetToolFrameList': grpc.unary_unary_rpc_method_handler(
                     servicer.GetToolFrameList,
@@ -1447,6 +1621,21 @@ def add_ConfigServicer_to_server(servicer, server):
                     request_deserializer=common__msgs__pb2.Empty.FromString,
                     response_serializer=config__msgs__pb2.SafetyLimits.SerializeToString,
             ),
+            'GetJointLimitConfig': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetJointLimitConfig,
+                    request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=config__msgs__pb2.JointLimitConfig.SerializeToString,
+            ),
+            'SetJointLimitConfig': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetJointLimitConfig,
+                    request_deserializer=config__msgs__pb2.JointLimitConfig.FromString,
+                    response_serializer=common__msgs__pb2.Response.SerializeToString,
+            ),
+            'GetOriginalJointLimitConfig': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetOriginalJointLimitConfig,
+                    request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=config__msgs__pb2.JointLimitConfig.SerializeToString,
+            ),
             'SetSafetyStopConfig': grpc.unary_unary_rpc_method_handler(
                     servicer.SetSafetyStopConfig,
                     request_deserializer=config__msgs__pb2.SafetyStopConfig.FromString,
@@ -1456,6 +1645,31 @@ def add_ConfigServicer_to_server(servicer, server):
                     servicer.GetSafetyStopConfig,
                     request_deserializer=common__msgs__pb2.Empty.FromString,
                     response_serializer=config__msgs__pb2.SafetyStopConfig.SerializeToString,
+            ),
+            'SaveSafetySnapshot': grpc.unary_unary_rpc_method_handler(
+                    servicer.SaveSafetySnapshot,
+                    request_deserializer=config__msgs__pb2.SaveSafetySnapshotReq.FromString,
+                    response_serializer=config__msgs__pb2.SafetySnapshotInfo.SerializeToString,
+            ),
+            'ListSafetySnapshots': grpc.unary_unary_rpc_method_handler(
+                    servicer.ListSafetySnapshots,
+                    request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=config__msgs__pb2.SafetySnapshotList.SerializeToString,
+            ),
+            'RestoreSafetySnapshot': grpc.unary_unary_rpc_method_handler(
+                    servicer.RestoreSafetySnapshot,
+                    request_deserializer=config__msgs__pb2.SafetySnapshotId.FromString,
+                    response_serializer=common__msgs__pb2.Response.SerializeToString,
+            ),
+            'DeleteSafetySnapshot': grpc.unary_unary_rpc_method_handler(
+                    servicer.DeleteSafetySnapshot,
+                    request_deserializer=config__msgs__pb2.SafetySnapshotId.FromString,
+                    response_serializer=common__msgs__pb2.Response.SerializeToString,
+            ),
+            'RestorFactorySafetyConfig': grpc.unary_unary_rpc_method_handler(
+                    servicer.RestorFactorySafetyConfig,
+                    request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=common__msgs__pb2.Response.SerializeToString,
             ),
             'GetReducedRatio': grpc.unary_unary_rpc_method_handler(
                     servicer.GetReducedRatio,
@@ -1561,6 +1775,16 @@ def add_ConfigServicer_to_server(servicer, server):
                     servicer.SetWeldPositionList,
                     request_deserializer=config__msgs__pb2.WeldPositionList.FromString,
                     response_serializer=common__msgs__pb2.Response.SerializeToString,
+            ),
+            'SetOperationModeConfig': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetOperationModeConfig,
+                    request_deserializer=config__msgs__pb2.OperationModeConfig.FromString,
+                    response_serializer=common__msgs__pb2.Response.SerializeToString,
+            ),
+            'GetOperationModeConfig': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetOperationModeConfig,
+                    request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=config__msgs__pb2.OperationModeConfig.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -2321,6 +2545,23 @@ class Config(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
+    def RestorFactoryControlGains(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Config/RestorFactoryControlGains',
+            common__msgs__pb2.Empty.SerializeToString,
+            common__msgs__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
     def SetNewControllerTestOnOff(request,
             target,
             options=(),
@@ -2457,6 +2698,23 @@ class Config(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
+    def GetIMUAutoMount(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Config/GetIMUAutoMount',
+            common__msgs__pb2.Empty.SerializeToString,
+            config__msgs__pb2.MountingAngles.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
     def SetToolProperty(request,
             target,
             options=(),
@@ -2504,6 +2762,40 @@ class Config(object):
         return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Config/GetToolPropertyAt',
             common__msgs__pb2.Int.SerializeToString,
             config__msgs__pb2.ToolProperties.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SetToolPropertyList(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Config/SetToolPropertyList',
+            config__msgs__pb2.ToolPropertyEntries.SerializeToString,
+            common__msgs__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetToolPropertyList(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Config/GetToolPropertyList',
+            common__msgs__pb2.Empty.SerializeToString,
+            config__msgs__pb2.ToolPropertyEntries.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -2814,6 +3106,57 @@ class Config(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
+    def GetJointLimitConfig(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Config/GetJointLimitConfig',
+            common__msgs__pb2.Empty.SerializeToString,
+            config__msgs__pb2.JointLimitConfig.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SetJointLimitConfig(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Config/SetJointLimitConfig',
+            config__msgs__pb2.JointLimitConfig.SerializeToString,
+            common__msgs__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetOriginalJointLimitConfig(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Config/GetOriginalJointLimitConfig',
+            common__msgs__pb2.Empty.SerializeToString,
+            config__msgs__pb2.JointLimitConfig.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
     def SetSafetyStopConfig(request,
             target,
             options=(),
@@ -2844,6 +3187,91 @@ class Config(object):
         return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Config/GetSafetyStopConfig',
             common__msgs__pb2.Empty.SerializeToString,
             config__msgs__pb2.SafetyStopConfig.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SaveSafetySnapshot(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Config/SaveSafetySnapshot',
+            config__msgs__pb2.SaveSafetySnapshotReq.SerializeToString,
+            config__msgs__pb2.SafetySnapshotInfo.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def ListSafetySnapshots(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Config/ListSafetySnapshots',
+            common__msgs__pb2.Empty.SerializeToString,
+            config__msgs__pb2.SafetySnapshotList.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def RestoreSafetySnapshot(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Config/RestoreSafetySnapshot',
+            config__msgs__pb2.SafetySnapshotId.SerializeToString,
+            common__msgs__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def DeleteSafetySnapshot(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Config/DeleteSafetySnapshot',
+            config__msgs__pb2.SafetySnapshotId.SerializeToString,
+            common__msgs__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def RestorFactorySafetyConfig(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Config/RestorFactorySafetyConfig',
+            common__msgs__pb2.Empty.SerializeToString,
+            common__msgs__pb2.Response.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -3201,5 +3629,39 @@ class Config(object):
         return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Config/SetWeldPositionList',
             config__msgs__pb2.WeldPositionList.SerializeToString,
             common__msgs__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SetOperationModeConfig(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Config/SetOperationModeConfig',
+            config__msgs__pb2.OperationModeConfig.SerializeToString,
+            common__msgs__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetOperationModeConfig(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Config/GetOperationModeConfig',
+            common__msgs__pb2.Empty.SerializeToString,
+            config__msgs__pb2.OperationModeConfig.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
