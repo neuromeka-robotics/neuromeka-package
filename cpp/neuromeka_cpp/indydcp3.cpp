@@ -14,6 +14,7 @@ IndyDCP3::IndyDCP3(const std::string& robot_ip, int index)
         control_channel = grpc::CreateChannel(robot_ip + ":" + std::to_string(CONTROL_SOCKET_PORT[index]), grpc::InsecureChannelCredentials());
         config_channel  = grpc::CreateChannel(robot_ip + ":" + std::to_string(CONFIG_SOCKET_PORT[index]), grpc::InsecureChannelCredentials());
         rtde_channel    = grpc::CreateChannel(robot_ip + ":" + std::to_string(RTDE_SOCKET_PORT[index]), grpc::InsecureChannelCredentials());
+        teleop_channel  = grpc::CreateChannel(robot_ip + ":" + std::to_string(TELEOP_SOCKET_PORT[index]), grpc::InsecureChannelCredentials());
         cri_channel     = grpc::CreateChannel(robot_ip + ":" + std::to_string(CRI_SOCKET_PORT[index]), grpc::InsecureChannelCredentials());
         boot_channel    = grpc::CreateChannel(robot_ip + ":" + std::to_string(BOOT_SOCKET_PORT[index]), grpc::InsecureChannelCredentials());
 
@@ -21,6 +22,7 @@ IndyDCP3::IndyDCP3(const std::string& robot_ip, int index)
         control_stub    = Nrmk::IndyFramework::Control::NewStub(control_channel);
         config_stub     = Nrmk::IndyFramework::Config::NewStub(config_channel);
         rtde_stub       = Nrmk::IndyFramework::RTDataExchange::NewStub(rtde_channel);
+        teleop_stub     = Nrmk::IndyFramework::TeleOp::NewStub(teleop_channel);
         cri_stub        = Nrmk::IndyFramework::CRI::NewStub(cri_channel);
         boot_stub       = Nrmk::IndyFramework::Boot::NewStub(boot_channel);
 
@@ -5435,6 +5437,139 @@ bool IndyDCP3::read_teleop_input(Nrmk::IndyFramework::TeleP& teleop_input) {
     grpc::Status status = control_stub->ReadTeleOpInput(&context, request, &teleop_input);
     if (!status.ok()) {
         std::cerr << "ReadTeleOpInput RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::set_obstacle_info(const Nrmk::IndyFramework::ObstacleInfo& obstacle_info) {
+    Nrmk::IndyFramework::Empty response;
+    grpc::ClientContext context;
+
+    grpc::Status status = teleop_stub->SetObstacleInfo(&context, obstacle_info, &response);
+    if (!status.ok()) {
+        std::cerr << "SetObstacleInfo RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::get_obstacle_info(uint32_t idx, Nrmk::IndyFramework::ObstacleInfo& obstacle_info) {
+    Nrmk::IndyFramework::ObstacleIndex request;
+    grpc::ClientContext context;
+
+    request.set_idx(idx);
+    grpc::Status status = teleop_stub->GetObstacleInfo(&context, request, &obstacle_info);
+    if (!status.ok()) {
+        std::cerr << "GetObstacleInfo RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::get_collision_spheres(Nrmk::IndyFramework::CollisionSpheresInfo& collision_spheres_info) {
+    Nrmk::IndyFramework::Empty request;
+    grpc::ClientContext context;
+
+    grpc::Status status = teleop_stub->GetCollisionSpheres(&context, request, &collision_spheres_info);
+    if (!status.ok()) {
+        std::cerr << "GetCollisionSpheres RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::get_joint_constraint_config(Nrmk::IndyFramework::JointConstraintConfig& config) {
+    Nrmk::IndyFramework::Empty request;
+    grpc::ClientContext context;
+
+    grpc::Status status = teleop_stub->GetJointConstraintConfig(&context, request, &config);
+    if (!status.ok()) {
+        std::cerr << "GetJointConstraintConfig RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::get_self_collision_pairs(Nrmk::IndyFramework::SelfCollisionPairs& pairs) {
+    Nrmk::IndyFramework::Empty request;
+    grpc::ClientContext context;
+
+    grpc::Status status = teleop_stub->GetSelfCollisionPairs(&context, request, &pairs);
+    if (!status.ok()) {
+        std::cerr << "GetSelfCollisionPairs RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::get_plane_constraint_config(Nrmk::IndyFramework::PlaneConstraintConfig& config) {
+    Nrmk::IndyFramework::Empty request;
+    grpc::ClientContext context;
+
+    grpc::Status status = teleop_stub->GetPlaneConstraintConfig(&context, request, &config);
+    if (!status.ok()) {
+        std::cerr << "GetPlaneConstraintConfig RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::get_static_obstacle_constraint_config(Nrmk::IndyFramework::ObstacleConstraintConfig& config) {
+    Nrmk::IndyFramework::Empty request;
+    grpc::ClientContext context;
+
+    grpc::Status status = teleop_stub->GetStaticObstacleConstraintConfig(&context, request, &config);
+    if (!status.ok()) {
+        std::cerr << "GetStaticObstacleConstraintConfig RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::get_dynamic_obstacle_constraint_config(Nrmk::IndyFramework::ObstacleConstraintConfig& config) {
+    Nrmk::IndyFramework::Empty request;
+    grpc::ClientContext context;
+
+    grpc::Status status = teleop_stub->GetDynamicObstacleConstraintConfig(&context, request, &config);
+    if (!status.ok()) {
+        std::cerr << "GetDynamicObstacleConstraintConfig RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::get_orientation_deviation_config(Nrmk::IndyFramework::OrientationDeviationConfig& config) {
+    Nrmk::IndyFramework::Empty request;
+    grpc::ClientContext context;
+
+    grpc::Status status = teleop_stub->GetOrientationDeviationConfig(&context, request, &config);
+    if (!status.ok()) {
+        std::cerr << "GetOrientationDeviationConfig RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::get_desired_position(Nrmk::IndyFramework::DesiredPosition& position) {
+    Nrmk::IndyFramework::Empty request;
+    grpc::ClientContext context;
+
+    grpc::Status status = teleop_stub->GetDesiredPosition(&context, request, &position);
+    if (!status.ok()) {
+        std::cerr << "GetDesiredPosition RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool IndyDCP3::get_current_position(Nrmk::IndyFramework::CurrentPosition& position) {
+    Nrmk::IndyFramework::Empty request;
+    grpc::ClientContext context;
+
+    grpc::Status status = teleop_stub->GetCurrentPosition(&context, request, &position);
+    if (!status.ok()) {
+        std::cerr << "GetCurrentPosition RPC failed: " << status.error_message() << std::endl;
         return false;
     }
     return true;

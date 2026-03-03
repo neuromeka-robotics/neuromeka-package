@@ -85,6 +85,7 @@ else()
         neuromeka_cpp/proto/moby.pb.cc
         neuromeka_cpp/proto/rtde.pb.cc
         neuromeka_cpp/proto/cri.pb.cc
+        neuromeka_cpp/proto/teleop.pb.cc
 
         neuromeka_cpp/proto/boot.grpc.pb.cc
         neuromeka_cpp/proto/config.grpc.pb.cc
@@ -96,6 +97,7 @@ else()
         neuromeka_cpp/proto/moby.grpc.pb.cc
         neuromeka_cpp/proto/rtde.grpc.pb.cc
         neuromeka_cpp/proto/cri.grpc.pb.cc
+        neuromeka_cpp/proto/teleop.grpc.pb.cc
     )
 
     add_executable(example_indydcp3 src/example_indydcp3.cpp ${INDY_SOURCES})

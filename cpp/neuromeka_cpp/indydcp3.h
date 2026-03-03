@@ -23,6 +23,7 @@
 #include "proto/rtde.grpc.pb.h"
 #include "proto/cri.grpc.pb.h"
 #include "proto/boot.grpc.pb.h"
+#include "proto/teleop.grpc.pb.h"
 // #include "proto/hri.grpc.pb.h"
 
 using google::protobuf::util::MessageToJsonString;
@@ -623,6 +624,19 @@ class IndyDCP3
         bool disconnect_teleop_device();
         bool read_teleop_input(Nrmk::IndyFramework::TeleP& teleop_input);
 
+        // TeleOp server channel (teleop.proto)
+        bool set_obstacle_info(const Nrmk::IndyFramework::ObstacleInfo& obstacle_info);
+        bool get_obstacle_info(uint32_t idx, Nrmk::IndyFramework::ObstacleInfo& obstacle_info);
+        bool get_collision_spheres(Nrmk::IndyFramework::CollisionSpheresInfo& collision_spheres_info);
+        bool get_joint_constraint_config(Nrmk::IndyFramework::JointConstraintConfig& config);
+        bool get_self_collision_pairs(Nrmk::IndyFramework::SelfCollisionPairs& pairs);
+        bool get_plane_constraint_config(Nrmk::IndyFramework::PlaneConstraintConfig& config);
+        bool get_static_obstacle_constraint_config(Nrmk::IndyFramework::ObstacleConstraintConfig& config);
+        bool get_dynamic_obstacle_constraint_config(Nrmk::IndyFramework::ObstacleConstraintConfig& config);
+        bool get_orientation_deviation_config(Nrmk::IndyFramework::OrientationDeviationConfig& config);
+        bool get_desired_position(Nrmk::IndyFramework::DesiredPosition& position);
+        bool get_current_position(Nrmk::IndyFramework::CurrentPosition& position);
+
         bool set_play_rate(const float rate);
         bool get_play_rate(float& rate);
 
@@ -713,6 +727,7 @@ class IndyDCP3
         std::shared_ptr<grpc::Channel> rtde_channel;
         std::shared_ptr<grpc::Channel> cri_channel;
         std::shared_ptr<grpc::Channel> boot_channel;
+        std::shared_ptr<grpc::Channel> teleop_channel;
 
         std::unique_ptr<Nrmk::IndyFramework::Control::Stub> control_stub;
         std::unique_ptr<Nrmk::IndyFramework::Device::Stub> device_stub;
@@ -720,11 +735,13 @@ class IndyDCP3
         std::unique_ptr<Nrmk::IndyFramework::RTDataExchange::Stub> rtde_stub;
         std::unique_ptr<Nrmk::IndyFramework::CRI::Stub> cri_stub;
         std::unique_ptr<Nrmk::IndyFramework::Boot::Stub> boot_stub;
+        std::unique_ptr<Nrmk::IndyFramework::TeleOp::Stub> teleop_stub;
 
         const std::vector<int> CONTROL_SOCKET_PORT  = {20001, 30001};
         const std::vector<int> DEVICE_SOCKET_PORT   = {20002, 30002};
         const std::vector<int> CONFIG_SOCKET_PORT   = {20003, 30003};
         const std::vector<int> RTDE_SOCKET_PORT     = {20004, 30004};
+        const std::vector<int> TELEOP_SOCKET_PORT   = {20400, 30400};
         const std::vector<int> CRI_SOCKET_PORT      = {20181, 30181};
         const std::vector<int> BOOT_SOCKET_PORT     = {20010, 30010};
 };
