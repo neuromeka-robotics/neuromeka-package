@@ -1378,6 +1378,7 @@ class ControlData2 final :
     kTauJtsRaw1FieldNumber = 24,
     kTauJtsRaw2FieldNumber = 25,
     kResponseFieldNumber = 100,
+    kManipulabilityFieldNumber = 26,
   };
   // repeated float q = 1;
   int q_size() const;
@@ -1718,12 +1719,22 @@ class ControlData2 final :
   ::Nrmk::IndyFramework::Response* _internal_mutable_response();
 
   public:
+  // float manipulability = 26;
+  void clear_manipulability() ;
+  float manipulability() const;
+  void set_manipulability(float value);
+
+  private:
+  float _internal_manipulability() const;
+  void _internal_set_manipulability(float value);
+
+  public:
   // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.ControlData2)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<5, 19, 1, 0, 7> _table_;
+  static const ::google::protobuf::internal::TcParseTable<5, 20, 1, 0, 7> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
@@ -1749,6 +1760,7 @@ class ControlData2 final :
     ::google::protobuf::RepeatedField<float> tau_jts_raw1_;
     ::google::protobuf::RepeatedField<float> tau_jts_raw2_;
     ::Nrmk::IndyFramework::Response* response_;
+    float manipulability_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -6010,6 +6022,28 @@ inline const ::google::protobuf::RepeatedField<float>& ControlData2::_internal_t
 inline ::google::protobuf::RepeatedField<float>* ControlData2::_internal_mutable_tau_jts_raw2() {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return &_impl_.tau_jts_raw2_;
+}
+
+// float manipulability = 26;
+inline void ControlData2::clear_manipulability() {
+  _impl_.manipulability_ = 0;
+}
+inline float ControlData2::manipulability() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.ControlData2.manipulability)
+  return _internal_manipulability();
+}
+inline void ControlData2::set_manipulability(float value) {
+  _internal_set_manipulability(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.ControlData2.manipulability)
+}
+inline float ControlData2::_internal_manipulability() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.manipulability_;
+}
+inline void ControlData2::_internal_set_manipulability(float value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.manipulability_ = value;
 }
 
 // .Nrmk.IndyFramework.Response response = 100;

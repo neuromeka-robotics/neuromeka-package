@@ -871,11 +871,12 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
 PROTOBUF_CONSTEXPR DOChannelMode::DOChannelMode(::_pbi::ConstantInitialized)
     : _impl_{
       /*decltype(_impl_.address_)*/ 0u,
-      /*decltype(_impl_.do_mode_)*/ 0,
       /*decltype(_impl_.state_)*/ 0,
+      /*decltype(_impl_.do_mode_)*/ 0,
       /*decltype(_impl_.pulse_period_ms_)*/ 0u,
       /*decltype(_impl_.pwm_frequency_hz_)*/ 0u,
       /*decltype(_impl_.pwm_duty_percent_)*/ 0u,
+      /*decltype(_impl_.mirror_di_address_)*/ 0u,
       /*decltype(_impl_._cached_size_)*/ {},
     } {}
 struct DOChannelModeDefaultTypeInternal {
@@ -955,9 +956,63 @@ struct SocketPayloadDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SocketPayloadDefaultTypeInternal _SocketPayload_default_instance_;
+        template <typename>
+PROTOBUF_CONSTEXPR InspireHandCommand::InspireHandCommand(::_pbi::ConstantInitialized)
+    : _impl_{
+      /*decltype(_impl_.speeds_)*/ {},
+      /* _impl_._speeds_cached_byte_size_ = */ {0},
+      /*decltype(_impl_.forces_)*/ {},
+      /* _impl_._forces_cached_byte_size_ = */ {0},
+      /*decltype(_impl_.angles_)*/ {},
+      /* _impl_._angles_cached_byte_size_ = */ {0},
+      /*decltype(_impl_.tool_index_)*/ 0,
+      /*decltype(_impl_.slave_id_)*/ 0u,
+      /*decltype(_impl_.request_feedback_)*/ false,
+      /*decltype(_impl_.apply_speed_)*/ false,
+      /*decltype(_impl_.apply_force_)*/ false,
+      /*decltype(_impl_.apply_angle_)*/ false,
+      /*decltype(_impl_._cached_size_)*/ {},
+    } {}
+struct InspireHandCommandDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR InspireHandCommandDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~InspireHandCommandDefaultTypeInternal() {}
+  union {
+    InspireHandCommand _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 InspireHandCommandDefaultTypeInternal _InspireHandCommand_default_instance_;
+        template <typename>
+PROTOBUF_CONSTEXPR InspireHandState::InspireHandState(::_pbi::ConstantInitialized)
+    : _impl_{
+      /*decltype(_impl_._has_bits_)*/ {},
+      /*decltype(_impl_._cached_size_)*/ {},
+      /*decltype(_impl_.angles_)*/ {},
+      /* _impl_._angles_cached_byte_size_ = */ {0},
+      /*decltype(_impl_.msg_)*/ {
+          &::_pbi::fixed_address_empty_string,
+          ::_pbi::ConstantInitialized{},
+      },
+      /*decltype(_impl_.response_)*/ nullptr,
+      /*decltype(_impl_.tool_index_)*/ 0,
+      /*decltype(_impl_.slave_id_)*/ 0u,
+      /*decltype(_impl_.comm_ok_)*/ false,
+      /*decltype(_impl_.crc_error_count_)*/ 0u,
+    } {}
+struct InspireHandStateDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR InspireHandStateDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~InspireHandStateDefaultTypeInternal() {}
+  union {
+    InspireHandState _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 InspireHandStateDefaultTypeInternal _InspireHandState_default_instance_;
 }  // namespace IndyFramework
 }  // namespace Nrmk
-static ::_pb::Metadata file_level_metadata_device_5fmsgs_2eproto[44];
+static ::_pb::Metadata file_level_metadata_device_5fmsgs_2eproto[46];
 static const ::_pb::EnumDescriptor* file_level_enum_descriptors_device_5fmsgs_2eproto[12];
 static constexpr const ::_pb::ServiceDescriptor**
     file_level_service_descriptors_device_5fmsgs_2eproto = nullptr;
@@ -1507,11 +1562,12 @@ const ::uint32_t TableStruct_device_5fmsgs_2eproto::offsets[] PROTOBUF_SECTION_V
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::DOChannelMode, _impl_.address_),
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::DOChannelMode, _impl_.do_mode_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::DOChannelMode, _impl_.state_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::DOChannelMode, _impl_.do_mode_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::DOChannelMode, _impl_.pulse_period_ms_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::DOChannelMode, _impl_.pwm_frequency_hz_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::DOChannelMode, _impl_.pwm_duty_percent_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::DOChannelMode, _impl_.mirror_di_address_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::SocketCommandConfig, _impl_._has_bits_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::SocketCommandConfig, _internal_metadata_),
     ~0u,  // no _extensions_
@@ -1554,6 +1610,45 @@ const ::uint32_t TableStruct_device_5fmsgs_2eproto::offsets[] PROTOBUF_SECTION_V
     ~0u,  // no sizeof(Split)
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::SocketPayload, _impl_.data_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::SocketPayload, _impl_.response_),
+    ~0u,
+    0,
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::InspireHandCommand, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::InspireHandCommand, _impl_.tool_index_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::InspireHandCommand, _impl_.slave_id_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::InspireHandCommand, _impl_.speeds_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::InspireHandCommand, _impl_.forces_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::InspireHandCommand, _impl_.angles_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::InspireHandCommand, _impl_.request_feedback_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::InspireHandCommand, _impl_.apply_speed_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::InspireHandCommand, _impl_.apply_force_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::InspireHandCommand, _impl_.apply_angle_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::InspireHandState, _impl_._has_bits_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::InspireHandState, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::InspireHandState, _impl_.tool_index_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::InspireHandState, _impl_.slave_id_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::InspireHandState, _impl_.angles_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::InspireHandState, _impl_.comm_ok_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::InspireHandState, _impl_.crc_error_count_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::InspireHandState, _impl_.msg_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::InspireHandState, _impl_.response_),
+    ~0u,
+    ~0u,
+    ~0u,
+    ~0u,
+    ~0u,
     ~0u,
     0,
 };
@@ -1601,9 +1696,11 @@ static const ::_pbi::MigrationSchema
         {515, -1, -1, sizeof(::Nrmk::IndyFramework::DISignals)},
         {526, -1, -1, sizeof(::Nrmk::IndyFramework::DOMode)},
         {535, -1, -1, sizeof(::Nrmk::IndyFramework::DOChannelMode)},
-        {549, 562, -1, sizeof(::Nrmk::IndyFramework::SocketCommandConfig)},
-        {567, 578, -1, sizeof(::Nrmk::IndyFramework::SocketCommandStatus)},
-        {581, 591, -1, sizeof(::Nrmk::IndyFramework::SocketPayload)},
+        {550, 563, -1, sizeof(::Nrmk::IndyFramework::SocketCommandConfig)},
+        {568, 579, -1, sizeof(::Nrmk::IndyFramework::SocketCommandStatus)},
+        {582, 592, -1, sizeof(::Nrmk::IndyFramework::SocketPayload)},
+        {594, -1, -1, sizeof(::Nrmk::IndyFramework::InspireHandCommand)},
+        {611, 626, -1, sizeof(::Nrmk::IndyFramework::InspireHandState)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -1651,6 +1748,8 @@ static const ::_pb::Message* const file_default_instances[] = {
     &::Nrmk::IndyFramework::_SocketCommandConfig_default_instance_._instance,
     &::Nrmk::IndyFramework::_SocketCommandStatus_default_instance_._instance,
     &::Nrmk::IndyFramework::_SocketPayload_default_instance_._instance,
+    &::Nrmk::IndyFramework::_InspireHandCommand_default_instance_._instance,
+    &::Nrmk::IndyFramework::_InspireHandState_default_instance_._instance,
 };
 const char descriptor_table_protodef_device_5fmsgs_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
     "\n\021device_msgs.proto\022\022Nrmk.IndyFramework\032"
@@ -1792,30 +1891,40 @@ const char descriptor_table_protodef_device_5fmsgs_2eproto[] PROTOBUF_SECTION_VA
     "gnal\"@\n\tDISimMode\022\016\n\nSIM_DI_OFF\020\000\022\021\n\rSIM"
     "_DI_STEADY\020\001\022\020\n\014SIM_DI_PULSE\020\002\"B\n\006DOMode"
     "\0228\n\rchannel_modes\030\001 \003(\0132!.Nrmk.IndyFrame"
-    "work.DOChannelMode\"\214\002\n\rDOChannelMode\022\017\n\007"
-    "address\030\001 \001(\r\0229\n\007do_mode\030\002 \001(\0162(.Nrmk.In"
-    "dyFramework.DOChannelMode.DOMode\022/\n\005stat"
-    "e\030\003 \001(\0162 .Nrmk.IndyFramework.DigitalStat"
+    "work.DOChannelMode\"\247\002\n\rDOChannelMode\022\017\n\007"
+    "address\030\001 \001(\r\022/\n\005state\030\002 \001(\0162 .Nrmk.Indy"
+    "Framework.DigitalState\0229\n\007do_mode\030\003 \001(\0162"
+    "(.Nrmk.IndyFramework.DOChannelMode.DOMod"
     "e\022\027\n\017pulse_period_ms\030\004 \001(\r\022\030\n\020pwm_freque"
-    "ncy_hz\030\005 \001(\r\022\030\n\020pwm_duty_percent\030\006 \001(\r\"1"
-    "\n\006DOMode\022\r\n\tDO_STEADY\020\000\022\014\n\010DO_PULSE\020\001\022\n\n"
-    "\006DO_PWM\020\002\"\235\001\n\023SocketCommandConfig\022\021\n\trem"
-    "ote_ip\030\001 \001(\t\022\023\n\013remote_port\030\002 \001(\r\022\026\n\016aut"
-    "o_reconnect\030\003 \001(\010\022\026\n\016rx_buffer_size\030\004 \001("
-    "\r\022.\n\010response\030d \001(\0132\034.Nrmk.IndyFramework"
-    ".Response\"l\n\023SocketCommandStatus\022\021\n\tconn"
-    "ected\030\001 \001(\010\022\022\n\nlast_error\030\002 \001(\t\022.\n\010respo"
-    "nse\030d \001(\0132\034.Nrmk.IndyFramework.Response\""
-    "M\n\rSocketPayload\022\014\n\004data\030\001 \001(\014\022.\n\010respon"
-    "se\030d \001(\0132\034.Nrmk.IndyFramework.Response*P"
-    "\n\013GripperType\022\010\n\004NONE\020\000\022\023\n\017ROBOTIQ_GRIPP"
-    "ER\020\001\022\016\n\nDH_GRIPPER\020\002\022\022\n\016APICOO_SUSGRIP\020\003"
-    "*=\n\014DigitalState\022\r\n\tOFF_STATE\020\000\022\014\n\010ON_ST"
-    "ATE\020\001\022\020\n\014UNUSED_STATE\020\002*b\n\014EndtoolState\022"
-    "\n\n\006UNUSED\020\000\022\014\n\010HIGH_PNP\020\002\022\014\n\010HIGH_NPN\020\001\022"
-    "\024\n\007LOW_NPN\020\377\377\377\377\377\377\377\377\377\001\022\024\n\007LOW_PNP\020\376\377\377\377\377\377\377"
-    "\377\377\001*/\n\017VisionFrameType\022\n\n\006OBJECT\020\000\022\020\n\014EN"
-    "D_EFFECTOR\020\001b\006proto3"
+    "ncy_hz\030\005 \001(\r\022\030\n\020pwm_duty_percent\030\006 \001(\r\022\031"
+    "\n\021mirror_di_address\030\007 \001(\r\"1\n\006DOMode\022\r\n\tD"
+    "O_STEADY\020\000\022\014\n\010DO_PULSE\020\001\022\n\n\006DO_PWM\020\002\"\235\001\n"
+    "\023SocketCommandConfig\022\021\n\tremote_ip\030\001 \001(\t\022"
+    "\023\n\013remote_port\030\002 \001(\r\022\026\n\016auto_reconnect\030\003"
+    " \001(\010\022\026\n\016rx_buffer_size\030\004 \001(\r\022.\n\010response"
+    "\030d \001(\0132\034.Nrmk.IndyFramework.Response\"l\n\023"
+    "SocketCommandStatus\022\021\n\tconnected\030\001 \001(\010\022\022"
+    "\n\nlast_error\030\002 \001(\t\022.\n\010response\030d \001(\0132\034.N"
+    "rmk.IndyFramework.Response\"M\n\rSocketPayl"
+    "oad\022\014\n\004data\030\001 \001(\014\022.\n\010response\030d \001(\0132\034.Nr"
+    "mk.IndyFramework.Response\"\303\001\n\022InspireHan"
+    "dCommand\022\022\n\ntool_index\030\001 \001(\005\022\020\n\010slave_id"
+    "\030\002 \001(\r\022\016\n\006speeds\030\n \003(\005\022\016\n\006forces\030\013 \003(\005\022\016"
+    "\n\006angles\030\014 \003(\005\022\030\n\020request_feedback\030\024 \001(\010"
+    "\022\023\n\013apply_speed\030\036 \001(\010\022\023\n\013apply_force\030\037 \001"
+    "(\010\022\023\n\013apply_angle\030  \001(\010\"\257\001\n\020InspireHandS"
+    "tate\022\022\n\ntool_index\030\001 \001(\005\022\020\n\010slave_id\030\002 \001"
+    "(\r\022\016\n\006angles\030\n \003(\005\022\017\n\007comm_ok\030\024 \001(\010\022\027\n\017c"
+    "rc_error_count\030\025 \001(\r\022\013\n\003msg\030\026 \001(\t\022.\n\010res"
+    "ponse\030d \001(\0132\034.Nrmk.IndyFramework.Respons"
+    "e*P\n\013GripperType\022\010\n\004NONE\020\000\022\023\n\017ROBOTIQ_GR"
+    "IPPER\020\001\022\016\n\nDH_GRIPPER\020\002\022\022\n\016APICOO_SUSGRI"
+    "P\020\003*=\n\014DigitalState\022\r\n\tOFF_STATE\020\000\022\014\n\010ON"
+    "_STATE\020\001\022\020\n\014UNUSED_STATE\020\002*b\n\014EndtoolSta"
+    "te\022\n\n\006UNUSED\020\000\022\014\n\010HIGH_PNP\020\002\022\014\n\010HIGH_NPN"
+    "\020\001\022\024\n\007LOW_NPN\020\377\377\377\377\377\377\377\377\377\001\022\024\n\007LOW_PNP\020\376\377\377\377"
+    "\377\377\377\377\377\001*/\n\017VisionFrameType\022\n\n\006OBJECT\020\000\022\020\n"
+    "\014END_EFFECTOR\020\001b\006proto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_device_5fmsgs_2eproto_deps[1] =
     {
@@ -1825,13 +1934,13 @@ static ::absl::once_flag descriptor_table_device_5fmsgs_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_device_5fmsgs_2eproto = {
     false,
     false,
-    6500,
+    6903,
     descriptor_table_protodef_device_5fmsgs_2eproto,
     "device_msgs.proto",
     &descriptor_table_device_5fmsgs_2eproto_once,
     descriptor_table_device_5fmsgs_2eproto_deps,
     1,
-    44,
+    46,
     schemas,
     file_default_instances,
     TableStruct_device_5fmsgs_2eproto::offsets,
@@ -13164,11 +13273,12 @@ inline void DOChannelMode::SharedCtor(::_pb::Arena* arena) {
   (void)arena;
   new (&_impl_) Impl_{
       decltype(_impl_.address_){0u},
-      decltype(_impl_.do_mode_){0},
       decltype(_impl_.state_){0},
+      decltype(_impl_.do_mode_){0},
       decltype(_impl_.pulse_period_ms_){0u},
       decltype(_impl_.pwm_frequency_hz_){0u},
       decltype(_impl_.pwm_duty_percent_){0u},
+      decltype(_impl_.mirror_di_address_){0u},
       /*decltype(_impl_._cached_size_)*/ {},
   };
 }
@@ -13191,8 +13301,8 @@ PROTOBUF_NOINLINE void DOChannelMode::Clear() {
   (void) cached_has_bits;
 
   ::memset(&_impl_.address_, 0, static_cast<::size_t>(
-      reinterpret_cast<char*>(&_impl_.pwm_duty_percent_) -
-      reinterpret_cast<char*>(&_impl_.address_)) + sizeof(_impl_.pwm_duty_percent_));
+      reinterpret_cast<char*>(&_impl_.mirror_di_address_) -
+      reinterpret_cast<char*>(&_impl_.address_)) + sizeof(_impl_.mirror_di_address_));
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -13204,15 +13314,15 @@ const char* DOChannelMode::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<3, 6, 0, 0, 2> DOChannelMode::_table_ = {
+const ::_pbi::TcParseTable<3, 7, 0, 0, 2> DOChannelMode::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
-    6, 56,  // max_field_number, fast_idx_mask
+    7, 56,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967232,  // skipmap
+    4294967168,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    6,  // num_field_entries
+    7,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
     &_DOChannelMode_default_instance_._instance,
@@ -13222,12 +13332,12 @@ const ::_pbi::TcParseTable<3, 6, 0, 0, 2> DOChannelMode::_table_ = {
     // uint32 address = 1;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(DOChannelMode, _impl_.address_), 63>(),
      {8, 63, 0, PROTOBUF_FIELD_OFFSET(DOChannelMode, _impl_.address_)}},
-    // .Nrmk.IndyFramework.DOChannelMode.DOMode do_mode = 2;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(DOChannelMode, _impl_.do_mode_), 63>(),
-     {16, 63, 0, PROTOBUF_FIELD_OFFSET(DOChannelMode, _impl_.do_mode_)}},
-    // .Nrmk.IndyFramework.DigitalState state = 3;
+    // .Nrmk.IndyFramework.DigitalState state = 2;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(DOChannelMode, _impl_.state_), 63>(),
-     {24, 63, 0, PROTOBUF_FIELD_OFFSET(DOChannelMode, _impl_.state_)}},
+     {16, 63, 0, PROTOBUF_FIELD_OFFSET(DOChannelMode, _impl_.state_)}},
+    // .Nrmk.IndyFramework.DOChannelMode.DOMode do_mode = 3;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(DOChannelMode, _impl_.do_mode_), 63>(),
+     {24, 63, 0, PROTOBUF_FIELD_OFFSET(DOChannelMode, _impl_.do_mode_)}},
     // uint32 pulse_period_ms = 4;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(DOChannelMode, _impl_.pulse_period_ms_), 63>(),
      {32, 63, 0, PROTOBUF_FIELD_OFFSET(DOChannelMode, _impl_.pulse_period_ms_)}},
@@ -13237,18 +13347,20 @@ const ::_pbi::TcParseTable<3, 6, 0, 0, 2> DOChannelMode::_table_ = {
     // uint32 pwm_duty_percent = 6;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(DOChannelMode, _impl_.pwm_duty_percent_), 63>(),
      {48, 63, 0, PROTOBUF_FIELD_OFFSET(DOChannelMode, _impl_.pwm_duty_percent_)}},
-    {::_pbi::TcParser::MiniParse, {}},
+    // uint32 mirror_di_address = 7;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(DOChannelMode, _impl_.mirror_di_address_), 63>(),
+     {56, 63, 0, PROTOBUF_FIELD_OFFSET(DOChannelMode, _impl_.mirror_di_address_)}},
   }}, {{
     65535, 65535
   }}, {{
     // uint32 address = 1;
     {PROTOBUF_FIELD_OFFSET(DOChannelMode, _impl_.address_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
-    // .Nrmk.IndyFramework.DOChannelMode.DOMode do_mode = 2;
-    {PROTOBUF_FIELD_OFFSET(DOChannelMode, _impl_.do_mode_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
-    // .Nrmk.IndyFramework.DigitalState state = 3;
+    // .Nrmk.IndyFramework.DigitalState state = 2;
     {PROTOBUF_FIELD_OFFSET(DOChannelMode, _impl_.state_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
+    // .Nrmk.IndyFramework.DOChannelMode.DOMode do_mode = 3;
+    {PROTOBUF_FIELD_OFFSET(DOChannelMode, _impl_.do_mode_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
     // uint32 pulse_period_ms = 4;
     {PROTOBUF_FIELD_OFFSET(DOChannelMode, _impl_.pulse_period_ms_), 0, 0,
@@ -13258,6 +13370,9 @@ const ::_pbi::TcParseTable<3, 6, 0, 0, 2> DOChannelMode::_table_ = {
     (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
     // uint32 pwm_duty_percent = 6;
     {PROTOBUF_FIELD_OFFSET(DOChannelMode, _impl_.pwm_duty_percent_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
+    // uint32 mirror_di_address = 7;
+    {PROTOBUF_FIELD_OFFSET(DOChannelMode, _impl_.mirror_di_address_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
   }},
   // no aux_entries
@@ -13279,18 +13394,18 @@ const ::_pbi::TcParseTable<3, 6, 0, 0, 2> DOChannelMode::_table_ = {
         1, this->_internal_address(), target);
   }
 
-  // .Nrmk.IndyFramework.DOChannelMode.DOMode do_mode = 2;
-  if (this->_internal_do_mode() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteEnumToArray(
-        2, this->_internal_do_mode(), target);
-  }
-
-  // .Nrmk.IndyFramework.DigitalState state = 3;
+  // .Nrmk.IndyFramework.DigitalState state = 2;
   if (this->_internal_state() != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteEnumToArray(
-        3, this->_internal_state(), target);
+        2, this->_internal_state(), target);
+  }
+
+  // .Nrmk.IndyFramework.DOChannelMode.DOMode do_mode = 3;
+  if (this->_internal_do_mode() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+        3, this->_internal_do_mode(), target);
   }
 
   // uint32 pulse_period_ms = 4;
@@ -13312,6 +13427,13 @@ const ::_pbi::TcParseTable<3, 6, 0, 0, 2> DOChannelMode::_table_ = {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
         6, this->_internal_pwm_duty_percent(), target);
+  }
+
+  // uint32 mirror_di_address = 7;
+  if (this->_internal_mirror_di_address() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+        7, this->_internal_mirror_di_address(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -13337,16 +13459,16 @@ const ::_pbi::TcParseTable<3, 6, 0, 0, 2> DOChannelMode::_table_ = {
         this->_internal_address());
   }
 
-  // .Nrmk.IndyFramework.DOChannelMode.DOMode do_mode = 2;
-  if (this->_internal_do_mode() != 0) {
-    total_size += 1 +
-                  ::_pbi::WireFormatLite::EnumSize(this->_internal_do_mode());
-  }
-
-  // .Nrmk.IndyFramework.DigitalState state = 3;
+  // .Nrmk.IndyFramework.DigitalState state = 2;
   if (this->_internal_state() != 0) {
     total_size += 1 +
                   ::_pbi::WireFormatLite::EnumSize(this->_internal_state());
+  }
+
+  // .Nrmk.IndyFramework.DOChannelMode.DOMode do_mode = 3;
+  if (this->_internal_do_mode() != 0) {
+    total_size += 1 +
+                  ::_pbi::WireFormatLite::EnumSize(this->_internal_do_mode());
   }
 
   // uint32 pulse_period_ms = 4;
@@ -13365,6 +13487,12 @@ const ::_pbi::TcParseTable<3, 6, 0, 0, 2> DOChannelMode::_table_ = {
   if (this->_internal_pwm_duty_percent() != 0) {
     total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
         this->_internal_pwm_duty_percent());
+  }
+
+  // uint32 mirror_di_address = 7;
+  if (this->_internal_mirror_di_address() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+        this->_internal_mirror_di_address());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
@@ -13388,11 +13516,11 @@ void DOChannelMode::MergeImpl(::google::protobuf::Message& to_msg, const ::googl
   if (from._internal_address() != 0) {
     _this->_internal_set_address(from._internal_address());
   }
-  if (from._internal_do_mode() != 0) {
-    _this->_internal_set_do_mode(from._internal_do_mode());
-  }
   if (from._internal_state() != 0) {
     _this->_internal_set_state(from._internal_state());
+  }
+  if (from._internal_do_mode() != 0) {
+    _this->_internal_set_do_mode(from._internal_do_mode());
   }
   if (from._internal_pulse_period_ms() != 0) {
     _this->_internal_set_pulse_period_ms(from._internal_pulse_period_ms());
@@ -13402,6 +13530,9 @@ void DOChannelMode::MergeImpl(::google::protobuf::Message& to_msg, const ::googl
   }
   if (from._internal_pwm_duty_percent() != 0) {
     _this->_internal_set_pwm_duty_percent(from._internal_pwm_duty_percent());
+  }
+  if (from._internal_mirror_di_address() != 0) {
+    _this->_internal_set_mirror_di_address(from._internal_mirror_di_address());
   }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
@@ -13421,8 +13552,8 @@ void DOChannelMode::InternalSwap(DOChannelMode* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::google::protobuf::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(DOChannelMode, _impl_.pwm_duty_percent_)
-      + sizeof(DOChannelMode::_impl_.pwm_duty_percent_)
+      PROTOBUF_FIELD_OFFSET(DOChannelMode, _impl_.mirror_di_address_)
+      + sizeof(DOChannelMode::_impl_.mirror_di_address_)
       - PROTOBUF_FIELD_OFFSET(DOChannelMode, _impl_.address_)>(
           reinterpret_cast<char*>(&_impl_.address_),
           reinterpret_cast<char*>(&other->_impl_.address_));
@@ -14284,6 +14415,807 @@ void SocketPayload::InternalSwap(SocketPayload* other) {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_device_5fmsgs_2eproto_getter, &descriptor_table_device_5fmsgs_2eproto_once,
       file_level_metadata_device_5fmsgs_2eproto[43]);
+}
+// ===================================================================
+
+class InspireHandCommand::_Internal {
+ public:
+};
+
+InspireHandCommand::InspireHandCommand(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Nrmk.IndyFramework.InspireHandCommand)
+}
+InspireHandCommand::InspireHandCommand(const InspireHandCommand& from) : ::google::protobuf::Message() {
+  InspireHandCommand* const _this = this;
+  (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.speeds_){from._impl_.speeds_},
+      /* _impl_._speeds_cached_byte_size_ = */ {0},
+      decltype(_impl_.forces_){from._impl_.forces_},
+      /* _impl_._forces_cached_byte_size_ = */ {0},
+      decltype(_impl_.angles_){from._impl_.angles_},
+      /* _impl_._angles_cached_byte_size_ = */ {0},
+      decltype(_impl_.tool_index_){},
+      decltype(_impl_.slave_id_){},
+      decltype(_impl_.request_feedback_){},
+      decltype(_impl_.apply_speed_){},
+      decltype(_impl_.apply_force_){},
+      decltype(_impl_.apply_angle_){},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  ::memcpy(&_impl_.tool_index_, &from._impl_.tool_index_,
+    static_cast<::size_t>(reinterpret_cast<char*>(&_impl_.apply_angle_) -
+    reinterpret_cast<char*>(&_impl_.tool_index_)) + sizeof(_impl_.apply_angle_));
+
+  // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.InspireHandCommand)
+}
+inline void InspireHandCommand::SharedCtor(::_pb::Arena* arena) {
+  (void)arena;
+  new (&_impl_) Impl_{
+      decltype(_impl_.speeds_){arena},
+      /* _impl_._speeds_cached_byte_size_ = */ {0},
+      decltype(_impl_.forces_){arena},
+      /* _impl_._forces_cached_byte_size_ = */ {0},
+      decltype(_impl_.angles_){arena},
+      /* _impl_._angles_cached_byte_size_ = */ {0},
+      decltype(_impl_.tool_index_){0},
+      decltype(_impl_.slave_id_){0u},
+      decltype(_impl_.request_feedback_){false},
+      decltype(_impl_.apply_speed_){false},
+      decltype(_impl_.apply_force_){false},
+      decltype(_impl_.apply_angle_){false},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+}
+InspireHandCommand::~InspireHandCommand() {
+  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.InspireHandCommand)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void InspireHandCommand::SharedDtor() {
+  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.speeds_.~RepeatedField();
+  _impl_.forces_.~RepeatedField();
+  _impl_.angles_.~RepeatedField();
+}
+void InspireHandCommand::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+PROTOBUF_NOINLINE void InspireHandCommand::Clear() {
+// @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.InspireHandCommand)
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _internal_mutable_speeds()->Clear();
+  _internal_mutable_forces()->Clear();
+  _internal_mutable_angles()->Clear();
+  ::memset(&_impl_.tool_index_, 0, static_cast<::size_t>(
+      reinterpret_cast<char*>(&_impl_.apply_angle_) -
+      reinterpret_cast<char*>(&_impl_.tool_index_)) + sizeof(_impl_.apply_angle_));
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* InspireHandCommand::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<4, 9, 0, 0, 2> InspireHandCommand::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    32, 120,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    536343036,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    9,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_InspireHandCommand_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // bool apply_angle = 32;
+    {::_pbi::TcParser::FastV8S2,
+     {640, 63, 0, PROTOBUF_FIELD_OFFSET(InspireHandCommand, _impl_.apply_angle_)}},
+    // int32 tool_index = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(InspireHandCommand, _impl_.tool_index_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(InspireHandCommand, _impl_.tool_index_)}},
+    // uint32 slave_id = 2;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(InspireHandCommand, _impl_.slave_id_), 63>(),
+     {16, 63, 0, PROTOBUF_FIELD_OFFSET(InspireHandCommand, _impl_.slave_id_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+    // bool request_feedback = 20;
+    {::_pbi::TcParser::FastV8S2,
+     {416, 63, 0, PROTOBUF_FIELD_OFFSET(InspireHandCommand, _impl_.request_feedback_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    // repeated int32 speeds = 10;
+    {::_pbi::TcParser::FastV32P1,
+     {82, 63, 0, PROTOBUF_FIELD_OFFSET(InspireHandCommand, _impl_.speeds_)}},
+    // repeated int32 forces = 11;
+    {::_pbi::TcParser::FastV32P1,
+     {90, 63, 0, PROTOBUF_FIELD_OFFSET(InspireHandCommand, _impl_.forces_)}},
+    // repeated int32 angles = 12;
+    {::_pbi::TcParser::FastV32P1,
+     {98, 63, 0, PROTOBUF_FIELD_OFFSET(InspireHandCommand, _impl_.angles_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+    // bool apply_speed = 30;
+    {::_pbi::TcParser::FastV8S2,
+     {496, 63, 0, PROTOBUF_FIELD_OFFSET(InspireHandCommand, _impl_.apply_speed_)}},
+    // bool apply_force = 31;
+    {::_pbi::TcParser::FastV8S2,
+     {504, 63, 0, PROTOBUF_FIELD_OFFSET(InspireHandCommand, _impl_.apply_force_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // int32 tool_index = 1;
+    {PROTOBUF_FIELD_OFFSET(InspireHandCommand, _impl_.tool_index_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    // uint32 slave_id = 2;
+    {PROTOBUF_FIELD_OFFSET(InspireHandCommand, _impl_.slave_id_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
+    // repeated int32 speeds = 10;
+    {PROTOBUF_FIELD_OFFSET(InspireHandCommand, _impl_.speeds_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedInt32)},
+    // repeated int32 forces = 11;
+    {PROTOBUF_FIELD_OFFSET(InspireHandCommand, _impl_.forces_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedInt32)},
+    // repeated int32 angles = 12;
+    {PROTOBUF_FIELD_OFFSET(InspireHandCommand, _impl_.angles_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedInt32)},
+    // bool request_feedback = 20;
+    {PROTOBUF_FIELD_OFFSET(InspireHandCommand, _impl_.request_feedback_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
+    // bool apply_speed = 30;
+    {PROTOBUF_FIELD_OFFSET(InspireHandCommand, _impl_.apply_speed_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
+    // bool apply_force = 31;
+    {PROTOBUF_FIELD_OFFSET(InspireHandCommand, _impl_.apply_force_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
+    // bool apply_angle = 32;
+    {PROTOBUF_FIELD_OFFSET(InspireHandCommand, _impl_.apply_angle_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+
+::uint8_t* InspireHandCommand::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.InspireHandCommand)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // int32 tool_index = 1;
+  if (this->_internal_tool_index() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<1>(
+            stream, this->_internal_tool_index(), target);
+  }
+
+  // uint32 slave_id = 2;
+  if (this->_internal_slave_id() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+        2, this->_internal_slave_id(), target);
+  }
+
+  // repeated int32 speeds = 10;
+  {
+    int byte_size = _impl_._speeds_cached_byte_size_.Get();
+    if (byte_size > 0) {
+      target = stream->WriteInt32Packed(10, _internal_speeds(),
+                                                 byte_size, target);
+    }
+  }
+
+  // repeated int32 forces = 11;
+  {
+    int byte_size = _impl_._forces_cached_byte_size_.Get();
+    if (byte_size > 0) {
+      target = stream->WriteInt32Packed(11, _internal_forces(),
+                                                 byte_size, target);
+    }
+  }
+
+  // repeated int32 angles = 12;
+  {
+    int byte_size = _impl_._angles_cached_byte_size_.Get();
+    if (byte_size > 0) {
+      target = stream->WriteInt32Packed(12, _internal_angles(),
+                                                 byte_size, target);
+    }
+  }
+
+  // bool request_feedback = 20;
+  if (this->_internal_request_feedback() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(
+        20, this->_internal_request_feedback(), target);
+  }
+
+  // bool apply_speed = 30;
+  if (this->_internal_apply_speed() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(
+        30, this->_internal_apply_speed(), target);
+  }
+
+  // bool apply_force = 31;
+  if (this->_internal_apply_force() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(
+        31, this->_internal_apply_force(), target);
+  }
+
+  // bool apply_angle = 32;
+  if (this->_internal_apply_angle() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(
+        32, this->_internal_apply_angle(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.InspireHandCommand)
+  return target;
+}
+
+::size_t InspireHandCommand::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.InspireHandCommand)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated int32 speeds = 10;
+  {
+    std::size_t data_size = ::_pbi::WireFormatLite::Int32Size(
+        this->_internal_speeds())
+    ;
+    _impl_._speeds_cached_byte_size_.Set(::_pbi::ToCachedSize(data_size));
+    std::size_t tag_size = data_size == 0
+        ? 0
+        : 1 + ::_pbi::WireFormatLite::Int32Size(
+                            static_cast<int32_t>(data_size))
+    ;
+    total_size += tag_size + data_size;
+  }
+  // repeated int32 forces = 11;
+  {
+    std::size_t data_size = ::_pbi::WireFormatLite::Int32Size(
+        this->_internal_forces())
+    ;
+    _impl_._forces_cached_byte_size_.Set(::_pbi::ToCachedSize(data_size));
+    std::size_t tag_size = data_size == 0
+        ? 0
+        : 1 + ::_pbi::WireFormatLite::Int32Size(
+                            static_cast<int32_t>(data_size))
+    ;
+    total_size += tag_size + data_size;
+  }
+  // repeated int32 angles = 12;
+  {
+    std::size_t data_size = ::_pbi::WireFormatLite::Int32Size(
+        this->_internal_angles())
+    ;
+    _impl_._angles_cached_byte_size_.Set(::_pbi::ToCachedSize(data_size));
+    std::size_t tag_size = data_size == 0
+        ? 0
+        : 1 + ::_pbi::WireFormatLite::Int32Size(
+                            static_cast<int32_t>(data_size))
+    ;
+    total_size += tag_size + data_size;
+  }
+  // int32 tool_index = 1;
+  if (this->_internal_tool_index() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_tool_index());
+  }
+
+  // uint32 slave_id = 2;
+  if (this->_internal_slave_id() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+        this->_internal_slave_id());
+  }
+
+  // bool request_feedback = 20;
+  if (this->_internal_request_feedback() != 0) {
+    total_size += 3;
+  }
+
+  // bool apply_speed = 30;
+  if (this->_internal_apply_speed() != 0) {
+    total_size += 3;
+  }
+
+  // bool apply_force = 31;
+  if (this->_internal_apply_force() != 0) {
+    total_size += 3;
+  }
+
+  // bool apply_angle = 32;
+  if (this->_internal_apply_angle() != 0) {
+    total_size += 3;
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData InspireHandCommand::_class_data_ = {
+    ::google::protobuf::Message::CopyWithSourceCheck,
+    InspireHandCommand::MergeImpl
+};
+const ::google::protobuf::Message::ClassData*InspireHandCommand::GetClassData() const { return &_class_data_; }
+
+
+void InspireHandCommand::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<InspireHandCommand*>(&to_msg);
+  auto& from = static_cast<const InspireHandCommand&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.InspireHandCommand)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_internal_mutable_speeds()->MergeFrom(from._internal_speeds());
+  _this->_internal_mutable_forces()->MergeFrom(from._internal_forces());
+  _this->_internal_mutable_angles()->MergeFrom(from._internal_angles());
+  if (from._internal_tool_index() != 0) {
+    _this->_internal_set_tool_index(from._internal_tool_index());
+  }
+  if (from._internal_slave_id() != 0) {
+    _this->_internal_set_slave_id(from._internal_slave_id());
+  }
+  if (from._internal_request_feedback() != 0) {
+    _this->_internal_set_request_feedback(from._internal_request_feedback());
+  }
+  if (from._internal_apply_speed() != 0) {
+    _this->_internal_set_apply_speed(from._internal_apply_speed());
+  }
+  if (from._internal_apply_force() != 0) {
+    _this->_internal_set_apply_force(from._internal_apply_force());
+  }
+  if (from._internal_apply_angle() != 0) {
+    _this->_internal_set_apply_angle(from._internal_apply_angle());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void InspireHandCommand::CopyFrom(const InspireHandCommand& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Nrmk.IndyFramework.InspireHandCommand)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool InspireHandCommand::IsInitialized() const {
+  return true;
+}
+
+void InspireHandCommand::InternalSwap(InspireHandCommand* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.speeds_.InternalSwap(&other->_impl_.speeds_);
+  _impl_.forces_.InternalSwap(&other->_impl_.forces_);
+  _impl_.angles_.InternalSwap(&other->_impl_.angles_);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(InspireHandCommand, _impl_.apply_angle_)
+      + sizeof(InspireHandCommand::_impl_.apply_angle_)
+      - PROTOBUF_FIELD_OFFSET(InspireHandCommand, _impl_.tool_index_)>(
+          reinterpret_cast<char*>(&_impl_.tool_index_),
+          reinterpret_cast<char*>(&other->_impl_.tool_index_));
+}
+
+::google::protobuf::Metadata InspireHandCommand::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_device_5fmsgs_2eproto_getter, &descriptor_table_device_5fmsgs_2eproto_once,
+      file_level_metadata_device_5fmsgs_2eproto[44]);
+}
+// ===================================================================
+
+class InspireHandState::_Internal {
+ public:
+  using HasBits = decltype(std::declval<InspireHandState>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+    8 * PROTOBUF_FIELD_OFFSET(InspireHandState, _impl_._has_bits_);
+  static const ::Nrmk::IndyFramework::Response& response(const InspireHandState* msg);
+  static void set_has_response(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
+};
+
+const ::Nrmk::IndyFramework::Response& InspireHandState::_Internal::response(const InspireHandState* msg) {
+  return *msg->_impl_.response_;
+}
+void InspireHandState::clear_response() {
+  if (_impl_.response_ != nullptr) _impl_.response_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+InspireHandState::InspireHandState(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Nrmk.IndyFramework.InspireHandState)
+}
+InspireHandState::InspireHandState(const InspireHandState& from) : ::google::protobuf::Message() {
+  InspireHandState* const _this = this;
+  (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){from._impl_._has_bits_},
+      /*decltype(_impl_._cached_size_)*/ {},
+      decltype(_impl_.angles_){from._impl_.angles_},
+      /* _impl_._angles_cached_byte_size_ = */ {0},
+      decltype(_impl_.msg_){},
+      decltype(_impl_.response_){nullptr},
+      decltype(_impl_.tool_index_){},
+      decltype(_impl_.slave_id_){},
+      decltype(_impl_.comm_ok_){},
+      decltype(_impl_.crc_error_count_){},
+  };
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  _impl_.msg_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        _impl_.msg_.Set("", GetArenaForAllocation());
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_msg().empty()) {
+    _this->_impl_.msg_.Set(from._internal_msg(), _this->GetArenaForAllocation());
+  }
+  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
+    _this->_impl_.response_ = new ::Nrmk::IndyFramework::Response(*from._impl_.response_);
+  }
+  ::memcpy(&_impl_.tool_index_, &from._impl_.tool_index_,
+    static_cast<::size_t>(reinterpret_cast<char*>(&_impl_.crc_error_count_) -
+    reinterpret_cast<char*>(&_impl_.tool_index_)) + sizeof(_impl_.crc_error_count_));
+
+  // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.InspireHandState)
+}
+inline void InspireHandState::SharedCtor(::_pb::Arena* arena) {
+  (void)arena;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){},
+      /*decltype(_impl_._cached_size_)*/ {},
+      decltype(_impl_.angles_){arena},
+      /* _impl_._angles_cached_byte_size_ = */ {0},
+      decltype(_impl_.msg_){},
+      decltype(_impl_.response_){nullptr},
+      decltype(_impl_.tool_index_){0},
+      decltype(_impl_.slave_id_){0u},
+      decltype(_impl_.comm_ok_){false},
+      decltype(_impl_.crc_error_count_){0u},
+  };
+  _impl_.msg_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        _impl_.msg_.Set("", GetArenaForAllocation());
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+InspireHandState::~InspireHandState() {
+  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.InspireHandState)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void InspireHandState::SharedDtor() {
+  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.angles_.~RepeatedField();
+  _impl_.msg_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.response_;
+}
+void InspireHandState::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+PROTOBUF_NOINLINE void InspireHandState::Clear() {
+// @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.InspireHandState)
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _internal_mutable_angles()->Clear();
+  _impl_.msg_.ClearToEmpty();
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.response_ != nullptr);
+    _impl_.response_->Clear();
+  }
+  ::memset(&_impl_.tool_index_, 0, static_cast<::size_t>(
+      reinterpret_cast<char*>(&_impl_.crc_error_count_) -
+      reinterpret_cast<char*>(&_impl_.tool_index_)) + sizeof(_impl_.crc_error_count_));
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* InspireHandState::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<3, 7, 1, 47, 7> InspireHandState::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(InspireHandState, _impl_._has_bits_),
+    0, // no _extensions_
+    100, 56,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4291296764,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    7,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_InspireHandState_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // int32 tool_index = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(InspireHandState, _impl_.tool_index_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(InspireHandState, _impl_.tool_index_)}},
+    // uint32 slave_id = 2;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(InspireHandState, _impl_.slave_id_), 63>(),
+     {16, 63, 0, PROTOBUF_FIELD_OFFSET(InspireHandState, _impl_.slave_id_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+    // bool comm_ok = 20;
+    {::_pbi::TcParser::FastV8S2,
+     {416, 63, 0, PROTOBUF_FIELD_OFFSET(InspireHandState, _impl_.comm_ok_)}},
+    // uint32 crc_error_count = 21;
+    {::_pbi::TcParser::FastV32S2,
+     {424, 63, 0, PROTOBUF_FIELD_OFFSET(InspireHandState, _impl_.crc_error_count_)}},
+    // string msg = 22;
+    {::_pbi::TcParser::FastUS2,
+     {434, 63, 0, PROTOBUF_FIELD_OFFSET(InspireHandState, _impl_.msg_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+  }}, {{
+    100, 0, 1,
+    65534, 6,
+    65535, 65535
+  }}, {{
+    // int32 tool_index = 1;
+    {PROTOBUF_FIELD_OFFSET(InspireHandState, _impl_.tool_index_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    // uint32 slave_id = 2;
+    {PROTOBUF_FIELD_OFFSET(InspireHandState, _impl_.slave_id_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
+    // repeated int32 angles = 10;
+    {PROTOBUF_FIELD_OFFSET(InspireHandState, _impl_.angles_), -1, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedInt32)},
+    // bool comm_ok = 20;
+    {PROTOBUF_FIELD_OFFSET(InspireHandState, _impl_.comm_ok_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
+    // uint32 crc_error_count = 21;
+    {PROTOBUF_FIELD_OFFSET(InspireHandState, _impl_.crc_error_count_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
+    // string msg = 22;
+    {PROTOBUF_FIELD_OFFSET(InspireHandState, _impl_.msg_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // .Nrmk.IndyFramework.Response response = 100;
+    {PROTOBUF_FIELD_OFFSET(InspireHandState, _impl_.response_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::Nrmk::IndyFramework::Response>()},
+  }}, {{
+    "\43\0\0\0\0\0\3\0"
+    "Nrmk.IndyFramework.InspireHandState"
+    "msg"
+  }},
+};
+
+::uint8_t* InspireHandState::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.InspireHandState)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // int32 tool_index = 1;
+  if (this->_internal_tool_index() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<1>(
+            stream, this->_internal_tool_index(), target);
+  }
+
+  // uint32 slave_id = 2;
+  if (this->_internal_slave_id() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+        2, this->_internal_slave_id(), target);
+  }
+
+  // repeated int32 angles = 10;
+  {
+    int byte_size = _impl_._angles_cached_byte_size_.Get();
+    if (byte_size > 0) {
+      target = stream->WriteInt32Packed(10, _internal_angles(),
+                                                 byte_size, target);
+    }
+  }
+
+  // bool comm_ok = 20;
+  if (this->_internal_comm_ok() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(
+        20, this->_internal_comm_ok(), target);
+  }
+
+  // uint32 crc_error_count = 21;
+  if (this->_internal_crc_error_count() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+        21, this->_internal_crc_error_count(), target);
+  }
+
+  // string msg = 22;
+  if (!this->_internal_msg().empty()) {
+    const std::string& _s = this->_internal_msg();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "Nrmk.IndyFramework.InspireHandState.msg");
+    target = stream->WriteStringMaybeAliased(22, _s, target);
+  }
+
+  cached_has_bits = _impl_._has_bits_[0];
+  // .Nrmk.IndyFramework.Response response = 100;
+  if (cached_has_bits & 0x00000001u) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessage(100, _Internal::response(this),
+        _Internal::response(this).GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.InspireHandState)
+  return target;
+}
+
+::size_t InspireHandState::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.InspireHandState)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated int32 angles = 10;
+  {
+    std::size_t data_size = ::_pbi::WireFormatLite::Int32Size(
+        this->_internal_angles())
+    ;
+    _impl_._angles_cached_byte_size_.Set(::_pbi::ToCachedSize(data_size));
+    std::size_t tag_size = data_size == 0
+        ? 0
+        : 1 + ::_pbi::WireFormatLite::Int32Size(
+                            static_cast<int32_t>(data_size))
+    ;
+    total_size += tag_size + data_size;
+  }
+  // string msg = 22;
+  if (!this->_internal_msg().empty()) {
+    total_size += 2 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_msg());
+  }
+
+  // .Nrmk.IndyFramework.Response response = 100;
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size += 2 +
+      ::google::protobuf::internal::WireFormatLite::MessageSize(
+        *_impl_.response_);
+  }
+
+  // int32 tool_index = 1;
+  if (this->_internal_tool_index() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_tool_index());
+  }
+
+  // uint32 slave_id = 2;
+  if (this->_internal_slave_id() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+        this->_internal_slave_id());
+  }
+
+  // bool comm_ok = 20;
+  if (this->_internal_comm_ok() != 0) {
+    total_size += 3;
+  }
+
+  // uint32 crc_error_count = 21;
+  if (this->_internal_crc_error_count() != 0) {
+    total_size += 2 + ::_pbi::WireFormatLite::UInt32Size(
+                                    this->_internal_crc_error_count());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData InspireHandState::_class_data_ = {
+    ::google::protobuf::Message::CopyWithSourceCheck,
+    InspireHandState::MergeImpl
+};
+const ::google::protobuf::Message::ClassData*InspireHandState::GetClassData() const { return &_class_data_; }
+
+
+void InspireHandState::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<InspireHandState*>(&to_msg);
+  auto& from = static_cast<const InspireHandState&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.InspireHandState)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_internal_mutable_angles()->MergeFrom(from._internal_angles());
+  if (!from._internal_msg().empty()) {
+    _this->_internal_set_msg(from._internal_msg());
+  }
+  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
+    _this->_internal_mutable_response()->::Nrmk::IndyFramework::Response::MergeFrom(
+        from._internal_response());
+  }
+  if (from._internal_tool_index() != 0) {
+    _this->_internal_set_tool_index(from._internal_tool_index());
+  }
+  if (from._internal_slave_id() != 0) {
+    _this->_internal_set_slave_id(from._internal_slave_id());
+  }
+  if (from._internal_comm_ok() != 0) {
+    _this->_internal_set_comm_ok(from._internal_comm_ok());
+  }
+  if (from._internal_crc_error_count() != 0) {
+    _this->_internal_set_crc_error_count(from._internal_crc_error_count());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void InspireHandState::CopyFrom(const InspireHandState& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Nrmk.IndyFramework.InspireHandState)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool InspireHandState::IsInitialized() const {
+  return true;
+}
+
+void InspireHandState::InternalSwap(InspireHandState* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  _impl_.angles_.InternalSwap(&other->_impl_.angles_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.msg_, lhs_arena,
+                                       &other->_impl_.msg_, rhs_arena);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(InspireHandState, _impl_.crc_error_count_)
+      + sizeof(InspireHandState::_impl_.crc_error_count_)
+      - PROTOBUF_FIELD_OFFSET(InspireHandState, _impl_.response_)>(
+          reinterpret_cast<char*>(&_impl_.response_),
+          reinterpret_cast<char*>(&other->_impl_.response_));
+}
+
+::google::protobuf::Metadata InspireHandState::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_device_5fmsgs_2eproto_getter, &descriptor_table_device_5fmsgs_2eproto_once,
+      file_level_metadata_device_5fmsgs_2eproto[45]);
 }
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace IndyFramework

@@ -27,7 +27,6 @@ static const char* Device_method_names[] = {
   "/Nrmk.IndyFramework.Device/SetServoAll",
   "/Nrmk.IndyFramework.Device/SetServo",
   "/Nrmk.IndyFramework.Device/SimDIConfig",
-  "/Nrmk.IndyFramework.Device/DOModeConfig",
   "/Nrmk.IndyFramework.Device/SetDI",
   "/Nrmk.IndyFramework.Device/SetDO",
   "/Nrmk.IndyFramework.Device/SetEndDI",
@@ -95,6 +94,8 @@ static const char* Device_method_names[] = {
   "/Nrmk.IndyFramework.Device/SocketCmdStop",
   "/Nrmk.IndyFramework.Device/SocketCmdSendData",
   "/Nrmk.IndyFramework.Device/SocketCmdGetLatestData",
+  "/Nrmk.IndyFramework.Device/SetInspireHandCommand",
+  "/Nrmk.IndyFramework.Device/GetInspireHandState",
 };
 
 std::unique_ptr< Device::Stub> Device::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -108,74 +109,75 @@ Device::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, co
   , rpcmethod_SetServoAll_(Device_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_SetServo_(Device_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_SimDIConfig_(Device_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DOModeConfig_(Device_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetDI_(Device_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetDO_(Device_method_names[6], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetEndDI_(Device_method_names[7], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetEndDO_(Device_method_names[8], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetAI_(Device_method_names[9], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetAO_(Device_method_names[10], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetEndAI_(Device_method_names[11], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetEndAO_(Device_method_names[12], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ExecuteTool_(Device_method_names[13], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetEndRS485Rx_(Device_method_names[14], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetEndRS485Rx_(Device_method_names[15], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetEndRS485RxFor_(Device_method_names[16], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetEndRS485Tx_(Device_method_names[17], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetEndRS485TxFor_(Device_method_names[18], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetEndLedDim_(Device_method_names[19], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetDI_(Device_method_names[20], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetDO_(Device_method_names[21], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetEndDI_(Device_method_names[22], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetEndDO_(Device_method_names[23], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetAI_(Device_method_names[24], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetAO_(Device_method_names[25], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetEndAI_(Device_method_names[26], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetEndAO_(Device_method_names[27], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetDeviceInfo_(Device_method_names[28], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetBrakeControlStyle_(Device_method_names[29], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetSanderCommand_(Device_method_names[30], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetSanderCommand_(Device_method_names[31], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetSanderCommandFor_(Device_method_names[32], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetFTSensorData_(Device_method_names[33], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetFTSensorDataFor_(Device_method_names[34], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetConveyor_(Device_method_names[35], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetConveyorName_(Device_method_names[36], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetConveyorByName_(Device_method_names[37], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetConveyorEncoder_(Device_method_names[38], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetConveyorTrigger_(Device_method_names[39], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetConveyorOffset_(Device_method_names[40], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetConveyorLockedJoint_(Device_method_names[41], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetConveyorToolLink_(Device_method_names[42], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetConveyorArmIndex_(Device_method_names[43], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetConveyorStartingPose_(Device_method_names[44], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetConveyorTerminalPose_(Device_method_names[45], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetConveyorState_(Device_method_names[46], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetConveyorObjectDistances_(Device_method_names[47], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetLoadFactors_(Device_method_names[48], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetAutoMode_(Device_method_names[49], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_CheckAutoMode_(Device_method_names[50], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_CheckReducedMode_(Device_method_names[51], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetSafetyFunctionState_(Device_method_names[52], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_RequestSafetyFunction_(Device_method_names[53], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetSafetyControlData_(Device_method_names[54], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_CommitViolation_(Device_method_names[55], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetGripperData_(Device_method_names[56], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetGripperDataFor_(Device_method_names[57], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetGripperCommand_(Device_method_names[58], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_AddPhotoneoCalibPoint_(Device_method_names[59], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetPhotoneoDetection_(Device_method_names[60], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetPhotoneoRetrieval_(Device_method_names[61], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ConfigurePickit3D_(Device_method_names[62], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetPickit3DDetection_(Device_method_names[63], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetPickit3DRetrieval_(Device_method_names[64], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetRTTaskTimes_(Device_method_names[65], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SocketCmdSetConfig_(Device_method_names[66], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SocketCmdGetConfig_(Device_method_names[67], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SocketCmdStart_(Device_method_names[68], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SocketCmdStop_(Device_method_names[69], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SocketCmdSendData_(Device_method_names[70], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SocketCmdGetLatestData_(Device_method_names[71], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetDI_(Device_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetDO_(Device_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetEndDI_(Device_method_names[6], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetEndDO_(Device_method_names[7], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetAI_(Device_method_names[8], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetAO_(Device_method_names[9], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetEndAI_(Device_method_names[10], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetEndAO_(Device_method_names[11], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ExecuteTool_(Device_method_names[12], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetEndRS485Rx_(Device_method_names[13], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetEndRS485Rx_(Device_method_names[14], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetEndRS485RxFor_(Device_method_names[15], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetEndRS485Tx_(Device_method_names[16], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetEndRS485TxFor_(Device_method_names[17], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetEndLedDim_(Device_method_names[18], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetDI_(Device_method_names[19], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetDO_(Device_method_names[20], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetEndDI_(Device_method_names[21], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetEndDO_(Device_method_names[22], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetAI_(Device_method_names[23], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetAO_(Device_method_names[24], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetEndAI_(Device_method_names[25], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetEndAO_(Device_method_names[26], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetDeviceInfo_(Device_method_names[27], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetBrakeControlStyle_(Device_method_names[28], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetSanderCommand_(Device_method_names[29], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetSanderCommand_(Device_method_names[30], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetSanderCommandFor_(Device_method_names[31], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetFTSensorData_(Device_method_names[32], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetFTSensorDataFor_(Device_method_names[33], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetConveyor_(Device_method_names[34], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetConveyorName_(Device_method_names[35], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetConveyorByName_(Device_method_names[36], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetConveyorEncoder_(Device_method_names[37], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetConveyorTrigger_(Device_method_names[38], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetConveyorOffset_(Device_method_names[39], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetConveyorLockedJoint_(Device_method_names[40], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetConveyorToolLink_(Device_method_names[41], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetConveyorArmIndex_(Device_method_names[42], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetConveyorStartingPose_(Device_method_names[43], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetConveyorTerminalPose_(Device_method_names[44], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetConveyorState_(Device_method_names[45], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetConveyorObjectDistances_(Device_method_names[46], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetLoadFactors_(Device_method_names[47], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetAutoMode_(Device_method_names[48], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_CheckAutoMode_(Device_method_names[49], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_CheckReducedMode_(Device_method_names[50], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetSafetyFunctionState_(Device_method_names[51], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_RequestSafetyFunction_(Device_method_names[52], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetSafetyControlData_(Device_method_names[53], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_CommitViolation_(Device_method_names[54], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetGripperData_(Device_method_names[55], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetGripperDataFor_(Device_method_names[56], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetGripperCommand_(Device_method_names[57], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_AddPhotoneoCalibPoint_(Device_method_names[58], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetPhotoneoDetection_(Device_method_names[59], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetPhotoneoRetrieval_(Device_method_names[60], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ConfigurePickit3D_(Device_method_names[61], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetPickit3DDetection_(Device_method_names[62], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetPickit3DRetrieval_(Device_method_names[63], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetRTTaskTimes_(Device_method_names[64], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SocketCmdSetConfig_(Device_method_names[65], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SocketCmdGetConfig_(Device_method_names[66], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SocketCmdStart_(Device_method_names[67], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SocketCmdStop_(Device_method_names[68], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SocketCmdSendData_(Device_method_names[69], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SocketCmdGetLatestData_(Device_method_names[70], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetInspireHandCommand_(Device_method_names[71], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetInspireHandState_(Device_method_names[72], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status Device::Stub::SetBrakes(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::MotorList& request, ::Nrmk::IndyFramework::Response* response) {
@@ -266,29 +268,6 @@ void Device::Stub::async::SimDIConfig(::grpc::ClientContext* context, const ::Nr
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Device::Stub::AsyncSimDIConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DISignals& request, ::grpc::CompletionQueue* cq) {
   auto* result =
     this->PrepareAsyncSimDIConfigRaw(context, request, cq);
-  result->StartCall();
-  return result;
-}
-
-::grpc::Status Device::Stub::DOModeConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DOMode& request, ::Nrmk::IndyFramework::Response* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::DOMode, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_DOModeConfig_, context, request, response);
-}
-
-void Device::Stub::async::DOModeConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DOMode* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::DOMode, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DOModeConfig_, context, request, response, std::move(f));
-}
-
-void Device::Stub::async::DOModeConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DOMode* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DOModeConfig_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Device::Stub::PrepareAsyncDOModeConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DOMode& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Response, ::Nrmk::IndyFramework::DOMode, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_DOModeConfig_, context, request);
-}
-
-::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Device::Stub::AsyncDOModeConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::DOMode& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncDOModeConfigRaw(context, request, cq);
   result->StartCall();
   return result;
 }
@@ -1834,6 +1813,52 @@ void Device::Stub::async::SocketCmdGetLatestData(::grpc::ClientContext* context,
   return result;
 }
 
+::grpc::Status Device::Stub::SetInspireHandCommand(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::InspireHandCommand& request, ::Nrmk::IndyFramework::Response* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::InspireHandCommand, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetInspireHandCommand_, context, request, response);
+}
+
+void Device::Stub::async::SetInspireHandCommand(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::InspireHandCommand* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::InspireHandCommand, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetInspireHandCommand_, context, request, response, std::move(f));
+}
+
+void Device::Stub::async::SetInspireHandCommand(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::InspireHandCommand* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetInspireHandCommand_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Device::Stub::PrepareAsyncSetInspireHandCommandRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::InspireHandCommand& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Response, ::Nrmk::IndyFramework::InspireHandCommand, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetInspireHandCommand_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* Device::Stub::AsyncSetInspireHandCommandRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::InspireHandCommand& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetInspireHandCommandRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Device::Stub::GetInspireHandState(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Int& request, ::Nrmk::IndyFramework::InspireHandState* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Int, ::Nrmk::IndyFramework::InspireHandState, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetInspireHandState_, context, request, response);
+}
+
+void Device::Stub::async::GetInspireHandState(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Int* request, ::Nrmk::IndyFramework::InspireHandState* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Int, ::Nrmk::IndyFramework::InspireHandState, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetInspireHandState_, context, request, response, std::move(f));
+}
+
+void Device::Stub::async::GetInspireHandState(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Int* request, ::Nrmk::IndyFramework::InspireHandState* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetInspireHandState_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::InspireHandState>* Device::Stub::PrepareAsyncGetInspireHandStateRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Int& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::InspireHandState, ::Nrmk::IndyFramework::Int, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetInspireHandState_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::InspireHandState>* Device::Stub::AsyncGetInspireHandStateRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Int& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetInspireHandStateRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 Device::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Device_method_names[0],
@@ -1878,12 +1903,12 @@ Device::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Device_method_names[4],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::DOMode, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::DigitalList, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Device::Service* service,
              ::grpc::ServerContext* ctx,
-             const ::Nrmk::IndyFramework::DOMode* req,
+             const ::Nrmk::IndyFramework::DigitalList* req,
              ::Nrmk::IndyFramework::Response* resp) {
-               return service->DOModeConfig(ctx, req, resp);
+               return service->SetDI(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Device_method_names[5],
@@ -1893,20 +1918,10 @@ Device::Service::Service() {
              ::grpc::ServerContext* ctx,
              const ::Nrmk::IndyFramework::DigitalList* req,
              ::Nrmk::IndyFramework::Response* resp) {
-               return service->SetDI(ctx, req, resp);
-             }, this)));
-  AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Device_method_names[6],
-      ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::DigitalList, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](Device::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::Nrmk::IndyFramework::DigitalList* req,
-             ::Nrmk::IndyFramework::Response* resp) {
                return service->SetDO(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Device_method_names[7],
+      Device_method_names[6],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::EndtoolSignalList, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Device::Service* service,
@@ -1916,7 +1931,7 @@ Device::Service::Service() {
                return service->SetEndDI(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Device_method_names[8],
+      Device_method_names[7],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::EndtoolSignalList, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Device::Service* service,
@@ -1926,7 +1941,7 @@ Device::Service::Service() {
                return service->SetEndDO(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Device_method_names[9],
+      Device_method_names[8],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::AnalogList, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Device::Service* service,
@@ -1936,7 +1951,7 @@ Device::Service::Service() {
                return service->SetAI(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Device_method_names[10],
+      Device_method_names[9],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::AnalogList, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Device::Service* service,
@@ -1946,7 +1961,7 @@ Device::Service::Service() {
                return service->SetAO(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Device_method_names[11],
+      Device_method_names[10],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::AnalogList, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Device::Service* service,
@@ -1956,7 +1971,7 @@ Device::Service::Service() {
                return service->SetEndAI(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Device_method_names[12],
+      Device_method_names[11],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::AnalogList, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Device::Service* service,
@@ -1966,7 +1981,7 @@ Device::Service::Service() {
                return service->SetEndAO(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Device_method_names[13],
+      Device_method_names[12],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Name, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Device::Service* service,
@@ -1976,7 +1991,7 @@ Device::Service::Service() {
                return service->ExecuteTool(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Device_method_names[14],
+      Device_method_names[13],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::EndtoolRS485Rx, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Device::Service* service,
@@ -1986,7 +2001,7 @@ Device::Service::Service() {
                return service->SetEndRS485Rx(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Device_method_names[15],
+      Device_method_names[14],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::EndtoolRS485Rx, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Device::Service* service,
@@ -1996,7 +2011,7 @@ Device::Service::Service() {
                return service->GetEndRS485Rx(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Device_method_names[16],
+      Device_method_names[15],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Int, ::Nrmk::IndyFramework::EndtoolRS485Rx, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Device::Service* service,
@@ -2006,7 +2021,7 @@ Device::Service::Service() {
                return service->GetEndRS485RxFor(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Device_method_names[17],
+      Device_method_names[16],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::EndtoolRS485Tx, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Device::Service* service,
@@ -2016,7 +2031,7 @@ Device::Service::Service() {
                return service->GetEndRS485Tx(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Device_method_names[18],
+      Device_method_names[17],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Int, ::Nrmk::IndyFramework::EndtoolRS485Tx, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Device::Service* service,
@@ -2026,7 +2041,7 @@ Device::Service::Service() {
                return service->GetEndRS485TxFor(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Device_method_names[19],
+      Device_method_names[18],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::EndLedDim, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Device::Service* service,
@@ -2036,7 +2051,7 @@ Device::Service::Service() {
                return service->SetEndLedDim(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Device_method_names[20],
+      Device_method_names[19],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::DigitalList, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Device::Service* service,
@@ -2046,7 +2061,7 @@ Device::Service::Service() {
                return service->GetDI(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Device_method_names[21],
+      Device_method_names[20],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::DigitalList, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Device::Service* service,
@@ -2056,7 +2071,7 @@ Device::Service::Service() {
                return service->GetDO(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Device_method_names[22],
+      Device_method_names[21],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::EndtoolSignalList, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Device::Service* service,
@@ -2066,7 +2081,7 @@ Device::Service::Service() {
                return service->GetEndDI(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Device_method_names[23],
+      Device_method_names[22],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::EndtoolSignalList, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Device::Service* service,
@@ -2076,7 +2091,7 @@ Device::Service::Service() {
                return service->GetEndDO(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Device_method_names[24],
+      Device_method_names[23],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::AnalogList, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Device::Service* service,
@@ -2086,7 +2101,7 @@ Device::Service::Service() {
                return service->GetAI(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Device_method_names[25],
+      Device_method_names[24],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::AnalogList, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Device::Service* service,
@@ -2096,7 +2111,7 @@ Device::Service::Service() {
                return service->GetAO(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Device_method_names[26],
+      Device_method_names[25],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::AnalogList, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Device::Service* service,
@@ -2106,7 +2121,7 @@ Device::Service::Service() {
                return service->GetEndAI(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Device_method_names[27],
+      Device_method_names[26],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::AnalogList, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Device::Service* service,
@@ -2116,7 +2131,7 @@ Device::Service::Service() {
                return service->GetEndAO(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Device_method_names[28],
+      Device_method_names[27],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::DeviceInfo, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Device::Service* service,
@@ -2126,7 +2141,7 @@ Device::Service::Service() {
                return service->GetDeviceInfo(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Device_method_names[29],
+      Device_method_names[28],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::BrakeControlStyle, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Device::Service* service,
@@ -2136,7 +2151,7 @@ Device::Service::Service() {
                return service->GetBrakeControlStyle(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Device_method_names[30],
+      Device_method_names[29],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::SanderCommand, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Device::Service* service,
@@ -2146,7 +2161,7 @@ Device::Service::Service() {
                return service->SetSanderCommand(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Device_method_names[31],
+      Device_method_names[30],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::SanderCommand, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Device::Service* service,
@@ -2156,7 +2171,7 @@ Device::Service::Service() {
                return service->GetSanderCommand(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Device_method_names[32],
+      Device_method_names[31],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Int, ::Nrmk::IndyFramework::SanderCommand, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Device::Service* service,
@@ -2166,7 +2181,7 @@ Device::Service::Service() {
                return service->GetSanderCommandFor(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Device_method_names[33],
+      Device_method_names[32],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::FTSensorData, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Device::Service* service,
@@ -2176,7 +2191,7 @@ Device::Service::Service() {
                return service->GetFTSensorData(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Device_method_names[34],
+      Device_method_names[33],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Int, ::Nrmk::IndyFramework::FTSensorData, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Device::Service* service,
@@ -2186,7 +2201,7 @@ Device::Service::Service() {
                return service->GetFTSensorDataFor(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Device_method_names[35],
+      Device_method_names[34],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Conveyor, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Device::Service* service,
@@ -2196,7 +2211,7 @@ Device::Service::Service() {
                return service->GetConveyor(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Device_method_names[36],
+      Device_method_names[35],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Name, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Device::Service* service,
@@ -2206,7 +2221,7 @@ Device::Service::Service() {
                return service->SetConveyorName(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Device_method_names[37],
+      Device_method_names[36],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Name, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Device::Service* service,
@@ -2216,7 +2231,7 @@ Device::Service::Service() {
                return service->SetConveyorByName(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Device_method_names[38],
+      Device_method_names[37],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Encoder, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Device::Service* service,
@@ -2226,7 +2241,7 @@ Device::Service::Service() {
                return service->SetConveyorEncoder(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Device_method_names[39],
+      Device_method_names[38],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Trigger, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Device::Service* service,
@@ -2236,7 +2251,7 @@ Device::Service::Service() {
                return service->SetConveyorTrigger(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Device_method_names[40],
+      Device_method_names[39],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Float, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Device::Service* service,
@@ -2246,7 +2261,7 @@ Device::Service::Service() {
                return service->SetConveyorOffset(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Device_method_names[41],
+      Device_method_names[40],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Int, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Device::Service* service,
@@ -2256,7 +2271,7 @@ Device::Service::Service() {
                return service->SetConveyorLockedJoint(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Device_method_names[42],
+      Device_method_names[41],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Int, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Device::Service* service,
@@ -2266,7 +2281,7 @@ Device::Service::Service() {
                return service->SetConveyorToolLink(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Device_method_names[43],
+      Device_method_names[42],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Int, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Device::Service* service,
@@ -2276,7 +2291,7 @@ Device::Service::Service() {
                return service->SetConveyorArmIndex(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Device_method_names[44],
+      Device_method_names[43],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::PosePair, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Device::Service* service,
@@ -2286,7 +2301,7 @@ Device::Service::Service() {
                return service->SetConveyorStartingPose(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Device_method_names[45],
+      Device_method_names[44],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::PosePair, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Device::Service* service,
@@ -2296,7 +2311,7 @@ Device::Service::Service() {
                return service->SetConveyorTerminalPose(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Device_method_names[46],
+      Device_method_names[45],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ConveyorState, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Device::Service* service,
@@ -2306,7 +2321,7 @@ Device::Service::Service() {
                return service->GetConveyorState(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Device_method_names[47],
+      Device_method_names[46],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ConveyorObjectDistances, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Device::Service* service,
@@ -2316,7 +2331,7 @@ Device::Service::Service() {
                return service->GetConveyorObjectDistances(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Device_method_names[48],
+      Device_method_names[47],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::GetLoadFactorsRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Device::Service* service,
@@ -2326,7 +2341,7 @@ Device::Service::Service() {
                return service->GetLoadFactors(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Device_method_names[49],
+      Device_method_names[48],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::SetAutoModeReq, ::Nrmk::IndyFramework::SetAutoModeRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Device::Service* service,
@@ -2336,7 +2351,7 @@ Device::Service::Service() {
                return service->SetAutoMode(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Device_method_names[50],
+      Device_method_names[49],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::CheckAutoModeRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Device::Service* service,
@@ -2346,7 +2361,7 @@ Device::Service::Service() {
                return service->CheckAutoMode(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Device_method_names[51],
+      Device_method_names[50],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::CheckReducedModeRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Device::Service* service,
@@ -2356,7 +2371,7 @@ Device::Service::Service() {
                return service->CheckReducedMode(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Device_method_names[52],
+      Device_method_names[51],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::SafetyFunctionState, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Device::Service* service,
@@ -2366,7 +2381,7 @@ Device::Service::Service() {
                return service->GetSafetyFunctionState(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Device_method_names[53],
+      Device_method_names[52],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::SafetyFunctionState, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Device::Service* service,
@@ -2376,7 +2391,7 @@ Device::Service::Service() {
                return service->RequestSafetyFunction(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Device_method_names[54],
+      Device_method_names[53],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::SafetyControlData, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Device::Service* service,
@@ -2386,7 +2401,7 @@ Device::Service::Service() {
                return service->GetSafetyControlData(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Device_method_names[55],
+      Device_method_names[54],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::ViolationRequest, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Device::Service* service,
@@ -2396,7 +2411,7 @@ Device::Service::Service() {
                return service->CommitViolation(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Device_method_names[56],
+      Device_method_names[55],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::GripperData, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Device::Service* service,
@@ -2406,7 +2421,7 @@ Device::Service::Service() {
                return service->GetGripperData(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Device_method_names[57],
+      Device_method_names[56],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Int, ::Nrmk::IndyFramework::GripperData, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Device::Service* service,
@@ -2416,7 +2431,7 @@ Device::Service::Service() {
                return service->GetGripperDataFor(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Device_method_names[58],
+      Device_method_names[57],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::GripperCommand, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Device::Service* service,
@@ -2426,7 +2441,7 @@ Device::Service::Service() {
                return service->SetGripperCommand(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Device_method_names[59],
+      Device_method_names[58],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::AddPhotoneoCalibPointReq, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Device::Service* service,
@@ -2436,7 +2451,7 @@ Device::Service::Service() {
                return service->AddPhotoneoCalibPoint(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Device_method_names[60],
+      Device_method_names[59],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::VisionRequest, ::Nrmk::IndyFramework::VisionResult, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Device::Service* service,
@@ -2446,7 +2461,7 @@ Device::Service::Service() {
                return service->GetPhotoneoDetection(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Device_method_names[61],
+      Device_method_names[60],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::VisionRequest, ::Nrmk::IndyFramework::VisionResult, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Device::Service* service,
@@ -2456,7 +2471,7 @@ Device::Service::Service() {
                return service->GetPhotoneoRetrieval(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Device_method_names[62],
+      Device_method_names[61],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::ConfigurePickit3DReq, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Device::Service* service,
@@ -2466,7 +2481,7 @@ Device::Service::Service() {
                return service->ConfigurePickit3D(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Device_method_names[63],
+      Device_method_names[62],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::VisionRequest, ::Nrmk::IndyFramework::VisionResult, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Device::Service* service,
@@ -2476,7 +2491,7 @@ Device::Service::Service() {
                return service->GetPickit3DDetection(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Device_method_names[64],
+      Device_method_names[63],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::VisionRequest, ::Nrmk::IndyFramework::VisionResult, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Device::Service* service,
@@ -2486,7 +2501,7 @@ Device::Service::Service() {
                return service->GetPickit3DRetrieval(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Device_method_names[65],
+      Device_method_names[64],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::TaskTimes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Device::Service* service,
@@ -2496,7 +2511,7 @@ Device::Service::Service() {
                return service->GetRTTaskTimes(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Device_method_names[66],
+      Device_method_names[65],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::SocketCommandConfig, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Device::Service* service,
@@ -2506,7 +2521,7 @@ Device::Service::Service() {
                return service->SocketCmdSetConfig(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Device_method_names[67],
+      Device_method_names[66],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::SocketCommandConfig, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Device::Service* service,
@@ -2516,7 +2531,7 @@ Device::Service::Service() {
                return service->SocketCmdGetConfig(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Device_method_names[68],
+      Device_method_names[67],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::SocketCommandStatus, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Device::Service* service,
@@ -2526,7 +2541,7 @@ Device::Service::Service() {
                return service->SocketCmdStart(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Device_method_names[69],
+      Device_method_names[68],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::SocketCommandStatus, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Device::Service* service,
@@ -2536,7 +2551,7 @@ Device::Service::Service() {
                return service->SocketCmdStop(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Device_method_names[70],
+      Device_method_names[69],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::SocketPayload, ::Nrmk::IndyFramework::SocketCommandStatus, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Device::Service* service,
@@ -2546,7 +2561,7 @@ Device::Service::Service() {
                return service->SocketCmdSendData(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Device_method_names[71],
+      Device_method_names[70],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::SocketPayload, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Device::Service* service,
@@ -2554,6 +2569,26 @@ Device::Service::Service() {
              const ::Nrmk::IndyFramework::Empty* req,
              ::Nrmk::IndyFramework::SocketPayload* resp) {
                return service->SocketCmdGetLatestData(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Device_method_names[71],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::InspireHandCommand, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Device::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::InspireHandCommand* req,
+             ::Nrmk::IndyFramework::Response* resp) {
+               return service->SetInspireHandCommand(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Device_method_names[72],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Device::Service, ::Nrmk::IndyFramework::Int, ::Nrmk::IndyFramework::InspireHandState, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Device::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::Int* req,
+             ::Nrmk::IndyFramework::InspireHandState* resp) {
+               return service->GetInspireHandState(ctx, req, resp);
              }, this)));
 }
 
@@ -2582,13 +2617,6 @@ Device::Service::~Service() {
 }
 
 ::grpc::Status Device::Service::SimDIConfig(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::DISignals* request, ::Nrmk::IndyFramework::Response* response) {
-  (void) context;
-  (void) request;
-  (void) response;
-  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-}
-
-::grpc::Status Device::Service::DOModeConfig(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::DOMode* request, ::Nrmk::IndyFramework::Response* response) {
   (void) context;
   (void) request;
   (void) response;
@@ -3058,6 +3086,20 @@ Device::Service::~Service() {
 }
 
 ::grpc::Status Device::Service::SocketCmdGetLatestData(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::SocketPayload* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Device::Service::SetInspireHandCommand(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::InspireHandCommand* request, ::Nrmk::IndyFramework::Response* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Device::Service::GetInspireHandState(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Int* request, ::Nrmk::IndyFramework::InspireHandState* response) {
   (void) context;
   (void) request;
   (void) response;

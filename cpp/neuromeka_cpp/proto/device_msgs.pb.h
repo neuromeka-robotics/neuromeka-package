@@ -129,6 +129,12 @@ extern GripperCommandDefaultTypeInternal _GripperCommand_default_instance_;
 class GripperData;
 struct GripperDataDefaultTypeInternal;
 extern GripperDataDefaultTypeInternal _GripperData_default_instance_;
+class InspireHandCommand;
+struct InspireHandCommandDefaultTypeInternal;
+extern InspireHandCommandDefaultTypeInternal _InspireHandCommand_default_instance_;
+class InspireHandState;
+struct InspireHandStateDefaultTypeInternal;
+extern InspireHandStateDefaultTypeInternal _InspireHandState_default_instance_;
 class ModbusCommand;
 struct ModbusCommandDefaultTypeInternal;
 extern ModbusCommandDefaultTypeInternal _ModbusCommand_default_instance_;
@@ -9049,11 +9055,12 @@ class DOChannelMode final :
 
   enum : int {
     kAddressFieldNumber = 1,
-    kDoModeFieldNumber = 2,
-    kStateFieldNumber = 3,
+    kStateFieldNumber = 2,
+    kDoModeFieldNumber = 3,
     kPulsePeriodMsFieldNumber = 4,
     kPwmFrequencyHzFieldNumber = 5,
     kPwmDutyPercentFieldNumber = 6,
+    kMirrorDiAddressFieldNumber = 7,
   };
   // uint32 address = 1;
   void clear_address() ;
@@ -9065,17 +9072,7 @@ class DOChannelMode final :
   void _internal_set_address(::uint32_t value);
 
   public:
-  // .Nrmk.IndyFramework.DOChannelMode.DOMode do_mode = 2;
-  void clear_do_mode() ;
-  ::Nrmk::IndyFramework::DOChannelMode_DOMode do_mode() const;
-  void set_do_mode(::Nrmk::IndyFramework::DOChannelMode_DOMode value);
-
-  private:
-  ::Nrmk::IndyFramework::DOChannelMode_DOMode _internal_do_mode() const;
-  void _internal_set_do_mode(::Nrmk::IndyFramework::DOChannelMode_DOMode value);
-
-  public:
-  // .Nrmk.IndyFramework.DigitalState state = 3;
+  // .Nrmk.IndyFramework.DigitalState state = 2;
   void clear_state() ;
   ::Nrmk::IndyFramework::DigitalState state() const;
   void set_state(::Nrmk::IndyFramework::DigitalState value);
@@ -9083,6 +9080,16 @@ class DOChannelMode final :
   private:
   ::Nrmk::IndyFramework::DigitalState _internal_state() const;
   void _internal_set_state(::Nrmk::IndyFramework::DigitalState value);
+
+  public:
+  // .Nrmk.IndyFramework.DOChannelMode.DOMode do_mode = 3;
+  void clear_do_mode() ;
+  ::Nrmk::IndyFramework::DOChannelMode_DOMode do_mode() const;
+  void set_do_mode(::Nrmk::IndyFramework::DOChannelMode_DOMode value);
+
+  private:
+  ::Nrmk::IndyFramework::DOChannelMode_DOMode _internal_do_mode() const;
+  void _internal_set_do_mode(::Nrmk::IndyFramework::DOChannelMode_DOMode value);
 
   public:
   // uint32 pulse_period_ms = 4;
@@ -9115,22 +9122,33 @@ class DOChannelMode final :
   void _internal_set_pwm_duty_percent(::uint32_t value);
 
   public:
+  // uint32 mirror_di_address = 7;
+  void clear_mirror_di_address() ;
+  ::uint32_t mirror_di_address() const;
+  void set_mirror_di_address(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_mirror_di_address() const;
+  void _internal_set_mirror_di_address(::uint32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.DOChannelMode)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<3, 6, 0, 0, 2> _table_;
+  static const ::google::protobuf::internal::TcParseTable<3, 7, 0, 0, 2> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
     ::uint32_t address_;
-    int do_mode_;
     int state_;
+    int do_mode_;
     ::uint32_t pulse_period_ms_;
     ::uint32_t pwm_frequency_hz_;
     ::uint32_t pwm_duty_percent_;
+    ::uint32_t mirror_di_address_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -9726,6 +9744,538 @@ class SocketPayload final :
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::internal::ArenaStringPtr data_;
     ::Nrmk::IndyFramework::Response* response_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_device_5fmsgs_2eproto;
+};// -------------------------------------------------------------------
+
+class InspireHandCommand final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.InspireHandCommand) */ {
+ public:
+  inline InspireHandCommand() : InspireHandCommand(nullptr) {}
+  ~InspireHandCommand() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR InspireHandCommand(::google::protobuf::internal::ConstantInitialized);
+
+  InspireHandCommand(const InspireHandCommand& from);
+  InspireHandCommand(InspireHandCommand&& from) noexcept
+    : InspireHandCommand() {
+    *this = ::std::move(from);
+  }
+
+  inline InspireHandCommand& operator=(const InspireHandCommand& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline InspireHandCommand& operator=(InspireHandCommand&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const InspireHandCommand& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const InspireHandCommand* internal_default_instance() {
+    return reinterpret_cast<const InspireHandCommand*>(
+               &_InspireHandCommand_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    44;
+
+  friend void swap(InspireHandCommand& a, InspireHandCommand& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(InspireHandCommand* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(InspireHandCommand* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  InspireHandCommand* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<InspireHandCommand>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const InspireHandCommand& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const InspireHandCommand& from) {
+    InspireHandCommand::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(InspireHandCommand* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "Nrmk.IndyFramework.InspireHandCommand";
+  }
+  protected:
+  explicit InspireHandCommand(::google::protobuf::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kSpeedsFieldNumber = 10,
+    kForcesFieldNumber = 11,
+    kAnglesFieldNumber = 12,
+    kToolIndexFieldNumber = 1,
+    kSlaveIdFieldNumber = 2,
+    kRequestFeedbackFieldNumber = 20,
+    kApplySpeedFieldNumber = 30,
+    kApplyForceFieldNumber = 31,
+    kApplyAngleFieldNumber = 32,
+  };
+  // repeated int32 speeds = 10;
+  int speeds_size() const;
+  private:
+  int _internal_speeds_size() const;
+
+  public:
+  void clear_speeds() ;
+  ::int32_t speeds(int index) const;
+  void set_speeds(int index, ::int32_t value);
+  void add_speeds(::int32_t value);
+  const ::google::protobuf::RepeatedField<::int32_t>& speeds() const;
+  ::google::protobuf::RepeatedField<::int32_t>* mutable_speeds();
+
+  private:
+  const ::google::protobuf::RepeatedField<::int32_t>& _internal_speeds() const;
+  ::google::protobuf::RepeatedField<::int32_t>* _internal_mutable_speeds();
+
+  public:
+  // repeated int32 forces = 11;
+  int forces_size() const;
+  private:
+  int _internal_forces_size() const;
+
+  public:
+  void clear_forces() ;
+  ::int32_t forces(int index) const;
+  void set_forces(int index, ::int32_t value);
+  void add_forces(::int32_t value);
+  const ::google::protobuf::RepeatedField<::int32_t>& forces() const;
+  ::google::protobuf::RepeatedField<::int32_t>* mutable_forces();
+
+  private:
+  const ::google::protobuf::RepeatedField<::int32_t>& _internal_forces() const;
+  ::google::protobuf::RepeatedField<::int32_t>* _internal_mutable_forces();
+
+  public:
+  // repeated int32 angles = 12;
+  int angles_size() const;
+  private:
+  int _internal_angles_size() const;
+
+  public:
+  void clear_angles() ;
+  ::int32_t angles(int index) const;
+  void set_angles(int index, ::int32_t value);
+  void add_angles(::int32_t value);
+  const ::google::protobuf::RepeatedField<::int32_t>& angles() const;
+  ::google::protobuf::RepeatedField<::int32_t>* mutable_angles();
+
+  private:
+  const ::google::protobuf::RepeatedField<::int32_t>& _internal_angles() const;
+  ::google::protobuf::RepeatedField<::int32_t>* _internal_mutable_angles();
+
+  public:
+  // int32 tool_index = 1;
+  void clear_tool_index() ;
+  ::int32_t tool_index() const;
+  void set_tool_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_tool_index() const;
+  void _internal_set_tool_index(::int32_t value);
+
+  public:
+  // uint32 slave_id = 2;
+  void clear_slave_id() ;
+  ::uint32_t slave_id() const;
+  void set_slave_id(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_slave_id() const;
+  void _internal_set_slave_id(::uint32_t value);
+
+  public:
+  // bool request_feedback = 20;
+  void clear_request_feedback() ;
+  bool request_feedback() const;
+  void set_request_feedback(bool value);
+
+  private:
+  bool _internal_request_feedback() const;
+  void _internal_set_request_feedback(bool value);
+
+  public:
+  // bool apply_speed = 30;
+  void clear_apply_speed() ;
+  bool apply_speed() const;
+  void set_apply_speed(bool value);
+
+  private:
+  bool _internal_apply_speed() const;
+  void _internal_set_apply_speed(bool value);
+
+  public:
+  // bool apply_force = 31;
+  void clear_apply_force() ;
+  bool apply_force() const;
+  void set_apply_force(bool value);
+
+  private:
+  bool _internal_apply_force() const;
+  void _internal_set_apply_force(bool value);
+
+  public:
+  // bool apply_angle = 32;
+  void clear_apply_angle() ;
+  bool apply_angle() const;
+  void set_apply_angle(bool value);
+
+  private:
+  bool _internal_apply_angle() const;
+  void _internal_set_apply_angle(bool value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.InspireHandCommand)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<4, 9, 0, 0, 2> _table_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::google::protobuf::RepeatedField<::int32_t> speeds_;
+    mutable ::google::protobuf::internal::CachedSize _speeds_cached_byte_size_;
+    ::google::protobuf::RepeatedField<::int32_t> forces_;
+    mutable ::google::protobuf::internal::CachedSize _forces_cached_byte_size_;
+    ::google::protobuf::RepeatedField<::int32_t> angles_;
+    mutable ::google::protobuf::internal::CachedSize _angles_cached_byte_size_;
+    ::int32_t tool_index_;
+    ::uint32_t slave_id_;
+    bool request_feedback_;
+    bool apply_speed_;
+    bool apply_force_;
+    bool apply_angle_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_device_5fmsgs_2eproto;
+};// -------------------------------------------------------------------
+
+class InspireHandState final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.InspireHandState) */ {
+ public:
+  inline InspireHandState() : InspireHandState(nullptr) {}
+  ~InspireHandState() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR InspireHandState(::google::protobuf::internal::ConstantInitialized);
+
+  InspireHandState(const InspireHandState& from);
+  InspireHandState(InspireHandState&& from) noexcept
+    : InspireHandState() {
+    *this = ::std::move(from);
+  }
+
+  inline InspireHandState& operator=(const InspireHandState& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline InspireHandState& operator=(InspireHandState&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const InspireHandState& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const InspireHandState* internal_default_instance() {
+    return reinterpret_cast<const InspireHandState*>(
+               &_InspireHandState_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    45;
+
+  friend void swap(InspireHandState& a, InspireHandState& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(InspireHandState* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(InspireHandState* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  InspireHandState* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<InspireHandState>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const InspireHandState& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const InspireHandState& from) {
+    InspireHandState::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(InspireHandState* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "Nrmk.IndyFramework.InspireHandState";
+  }
+  protected:
+  explicit InspireHandState(::google::protobuf::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kAnglesFieldNumber = 10,
+    kMsgFieldNumber = 22,
+    kResponseFieldNumber = 100,
+    kToolIndexFieldNumber = 1,
+    kSlaveIdFieldNumber = 2,
+    kCommOkFieldNumber = 20,
+    kCrcErrorCountFieldNumber = 21,
+  };
+  // repeated int32 angles = 10;
+  int angles_size() const;
+  private:
+  int _internal_angles_size() const;
+
+  public:
+  void clear_angles() ;
+  ::int32_t angles(int index) const;
+  void set_angles(int index, ::int32_t value);
+  void add_angles(::int32_t value);
+  const ::google::protobuf::RepeatedField<::int32_t>& angles() const;
+  ::google::protobuf::RepeatedField<::int32_t>* mutable_angles();
+
+  private:
+  const ::google::protobuf::RepeatedField<::int32_t>& _internal_angles() const;
+  ::google::protobuf::RepeatedField<::int32_t>* _internal_mutable_angles();
+
+  public:
+  // string msg = 22;
+  void clear_msg() ;
+  const std::string& msg() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_msg(Arg_&& arg, Args_... args);
+  std::string* mutable_msg();
+  PROTOBUF_NODISCARD std::string* release_msg();
+  void set_allocated_msg(std::string* ptr);
+
+  private:
+  const std::string& _internal_msg() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_msg(
+      const std::string& value);
+  std::string* _internal_mutable_msg();
+
+  public:
+  // .Nrmk.IndyFramework.Response response = 100;
+  bool has_response() const;
+  void clear_response() ;
+  const ::Nrmk::IndyFramework::Response& response() const;
+  PROTOBUF_NODISCARD ::Nrmk::IndyFramework::Response* release_response();
+  ::Nrmk::IndyFramework::Response* mutable_response();
+  void set_allocated_response(::Nrmk::IndyFramework::Response* value);
+  void unsafe_arena_set_allocated_response(::Nrmk::IndyFramework::Response* value);
+  ::Nrmk::IndyFramework::Response* unsafe_arena_release_response();
+
+  private:
+  const ::Nrmk::IndyFramework::Response& _internal_response() const;
+  ::Nrmk::IndyFramework::Response* _internal_mutable_response();
+
+  public:
+  // int32 tool_index = 1;
+  void clear_tool_index() ;
+  ::int32_t tool_index() const;
+  void set_tool_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_tool_index() const;
+  void _internal_set_tool_index(::int32_t value);
+
+  public:
+  // uint32 slave_id = 2;
+  void clear_slave_id() ;
+  ::uint32_t slave_id() const;
+  void set_slave_id(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_slave_id() const;
+  void _internal_set_slave_id(::uint32_t value);
+
+  public:
+  // bool comm_ok = 20;
+  void clear_comm_ok() ;
+  bool comm_ok() const;
+  void set_comm_ok(bool value);
+
+  private:
+  bool _internal_comm_ok() const;
+  void _internal_set_comm_ok(bool value);
+
+  public:
+  // uint32 crc_error_count = 21;
+  void clear_crc_error_count() ;
+  ::uint32_t crc_error_count() const;
+  void set_crc_error_count(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_crc_error_count() const;
+  void _internal_set_crc_error_count(::uint32_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.InspireHandState)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<3, 7, 1, 47, 7> _table_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::RepeatedField<::int32_t> angles_;
+    mutable ::google::protobuf::internal::CachedSize _angles_cached_byte_size_;
+    ::google::protobuf::internal::ArenaStringPtr msg_;
+    ::Nrmk::IndyFramework::Response* response_;
+    ::int32_t tool_index_;
+    ::uint32_t slave_id_;
+    bool comm_ok_;
+    ::uint32_t crc_error_count_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -15698,29 +16248,7 @@ inline void DOChannelMode::_internal_set_address(::uint32_t value) {
   _impl_.address_ = value;
 }
 
-// .Nrmk.IndyFramework.DOChannelMode.DOMode do_mode = 2;
-inline void DOChannelMode::clear_do_mode() {
-  _impl_.do_mode_ = 0;
-}
-inline ::Nrmk::IndyFramework::DOChannelMode_DOMode DOChannelMode::do_mode() const {
-  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.DOChannelMode.do_mode)
-  return _internal_do_mode();
-}
-inline void DOChannelMode::set_do_mode(::Nrmk::IndyFramework::DOChannelMode_DOMode value) {
-  _internal_set_do_mode(value);
-  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.DOChannelMode.do_mode)
-}
-inline ::Nrmk::IndyFramework::DOChannelMode_DOMode DOChannelMode::_internal_do_mode() const {
-  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return static_cast<::Nrmk::IndyFramework::DOChannelMode_DOMode>(_impl_.do_mode_);
-}
-inline void DOChannelMode::_internal_set_do_mode(::Nrmk::IndyFramework::DOChannelMode_DOMode value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  _impl_.do_mode_ = value;
-}
-
-// .Nrmk.IndyFramework.DigitalState state = 3;
+// .Nrmk.IndyFramework.DigitalState state = 2;
 inline void DOChannelMode::clear_state() {
   _impl_.state_ = 0;
 }
@@ -15740,6 +16268,28 @@ inline void DOChannelMode::_internal_set_state(::Nrmk::IndyFramework::DigitalSta
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.state_ = value;
+}
+
+// .Nrmk.IndyFramework.DOChannelMode.DOMode do_mode = 3;
+inline void DOChannelMode::clear_do_mode() {
+  _impl_.do_mode_ = 0;
+}
+inline ::Nrmk::IndyFramework::DOChannelMode_DOMode DOChannelMode::do_mode() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.DOChannelMode.do_mode)
+  return _internal_do_mode();
+}
+inline void DOChannelMode::set_do_mode(::Nrmk::IndyFramework::DOChannelMode_DOMode value) {
+  _internal_set_do_mode(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.DOChannelMode.do_mode)
+}
+inline ::Nrmk::IndyFramework::DOChannelMode_DOMode DOChannelMode::_internal_do_mode() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return static_cast<::Nrmk::IndyFramework::DOChannelMode_DOMode>(_impl_.do_mode_);
+}
+inline void DOChannelMode::_internal_set_do_mode(::Nrmk::IndyFramework::DOChannelMode_DOMode value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.do_mode_ = value;
 }
 
 // uint32 pulse_period_ms = 4;
@@ -15806,6 +16356,28 @@ inline void DOChannelMode::_internal_set_pwm_duty_percent(::uint32_t value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.pwm_duty_percent_ = value;
+}
+
+// uint32 mirror_di_address = 7;
+inline void DOChannelMode::clear_mirror_di_address() {
+  _impl_.mirror_di_address_ = 0u;
+}
+inline ::uint32_t DOChannelMode::mirror_di_address() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.DOChannelMode.mirror_di_address)
+  return _internal_mirror_di_address();
+}
+inline void DOChannelMode::set_mirror_di_address(::uint32_t value) {
+  _internal_set_mirror_di_address(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.DOChannelMode.mirror_di_address)
+}
+inline ::uint32_t DOChannelMode::_internal_mirror_di_address() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.mirror_di_address_;
+}
+inline void DOChannelMode::_internal_set_mirror_di_address(::uint32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.mirror_di_address_ = value;
 }
 
 // -------------------------------------------------------------------
@@ -16335,6 +16907,545 @@ inline void SocketPayload::set_allocated_response(::Nrmk::IndyFramework::Respons
 
   _impl_.response_ = reinterpret_cast<::Nrmk::IndyFramework::Response*>(value);
   // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.SocketPayload.response)
+}
+
+// -------------------------------------------------------------------
+
+// InspireHandCommand
+
+// int32 tool_index = 1;
+inline void InspireHandCommand::clear_tool_index() {
+  _impl_.tool_index_ = 0;
+}
+inline ::int32_t InspireHandCommand::tool_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.InspireHandCommand.tool_index)
+  return _internal_tool_index();
+}
+inline void InspireHandCommand::set_tool_index(::int32_t value) {
+  _internal_set_tool_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.InspireHandCommand.tool_index)
+}
+inline ::int32_t InspireHandCommand::_internal_tool_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.tool_index_;
+}
+inline void InspireHandCommand::_internal_set_tool_index(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.tool_index_ = value;
+}
+
+// uint32 slave_id = 2;
+inline void InspireHandCommand::clear_slave_id() {
+  _impl_.slave_id_ = 0u;
+}
+inline ::uint32_t InspireHandCommand::slave_id() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.InspireHandCommand.slave_id)
+  return _internal_slave_id();
+}
+inline void InspireHandCommand::set_slave_id(::uint32_t value) {
+  _internal_set_slave_id(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.InspireHandCommand.slave_id)
+}
+inline ::uint32_t InspireHandCommand::_internal_slave_id() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.slave_id_;
+}
+inline void InspireHandCommand::_internal_set_slave_id(::uint32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.slave_id_ = value;
+}
+
+// repeated int32 speeds = 10;
+inline int InspireHandCommand::_internal_speeds_size() const {
+  return _internal_speeds().size();
+}
+inline int InspireHandCommand::speeds_size() const {
+  return _internal_speeds_size();
+}
+inline void InspireHandCommand::clear_speeds() {
+  _internal_mutable_speeds()->Clear();
+}
+inline ::int32_t InspireHandCommand::speeds(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.InspireHandCommand.speeds)
+  return _internal_speeds().Get(index);
+}
+inline void InspireHandCommand::set_speeds(int index, ::int32_t value) {
+  _internal_mutable_speeds()->Set(index, value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.InspireHandCommand.speeds)
+}
+inline void InspireHandCommand::add_speeds(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_speeds()->Add(value);
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.InspireHandCommand.speeds)
+}
+inline const ::google::protobuf::RepeatedField<::int32_t>& InspireHandCommand::speeds() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.InspireHandCommand.speeds)
+  return _internal_speeds();
+}
+inline ::google::protobuf::RepeatedField<::int32_t>* InspireHandCommand::mutable_speeds() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.InspireHandCommand.speeds)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_speeds();
+}
+
+inline const ::google::protobuf::RepeatedField<::int32_t>& InspireHandCommand::_internal_speeds() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.speeds_;
+}
+inline ::google::protobuf::RepeatedField<::int32_t>* InspireHandCommand::_internal_mutable_speeds() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.speeds_;
+}
+
+// repeated int32 forces = 11;
+inline int InspireHandCommand::_internal_forces_size() const {
+  return _internal_forces().size();
+}
+inline int InspireHandCommand::forces_size() const {
+  return _internal_forces_size();
+}
+inline void InspireHandCommand::clear_forces() {
+  _internal_mutable_forces()->Clear();
+}
+inline ::int32_t InspireHandCommand::forces(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.InspireHandCommand.forces)
+  return _internal_forces().Get(index);
+}
+inline void InspireHandCommand::set_forces(int index, ::int32_t value) {
+  _internal_mutable_forces()->Set(index, value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.InspireHandCommand.forces)
+}
+inline void InspireHandCommand::add_forces(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_forces()->Add(value);
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.InspireHandCommand.forces)
+}
+inline const ::google::protobuf::RepeatedField<::int32_t>& InspireHandCommand::forces() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.InspireHandCommand.forces)
+  return _internal_forces();
+}
+inline ::google::protobuf::RepeatedField<::int32_t>* InspireHandCommand::mutable_forces() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.InspireHandCommand.forces)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_forces();
+}
+
+inline const ::google::protobuf::RepeatedField<::int32_t>& InspireHandCommand::_internal_forces() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.forces_;
+}
+inline ::google::protobuf::RepeatedField<::int32_t>* InspireHandCommand::_internal_mutable_forces() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.forces_;
+}
+
+// repeated int32 angles = 12;
+inline int InspireHandCommand::_internal_angles_size() const {
+  return _internal_angles().size();
+}
+inline int InspireHandCommand::angles_size() const {
+  return _internal_angles_size();
+}
+inline void InspireHandCommand::clear_angles() {
+  _internal_mutable_angles()->Clear();
+}
+inline ::int32_t InspireHandCommand::angles(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.InspireHandCommand.angles)
+  return _internal_angles().Get(index);
+}
+inline void InspireHandCommand::set_angles(int index, ::int32_t value) {
+  _internal_mutable_angles()->Set(index, value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.InspireHandCommand.angles)
+}
+inline void InspireHandCommand::add_angles(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_angles()->Add(value);
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.InspireHandCommand.angles)
+}
+inline const ::google::protobuf::RepeatedField<::int32_t>& InspireHandCommand::angles() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.InspireHandCommand.angles)
+  return _internal_angles();
+}
+inline ::google::protobuf::RepeatedField<::int32_t>* InspireHandCommand::mutable_angles() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.InspireHandCommand.angles)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_angles();
+}
+
+inline const ::google::protobuf::RepeatedField<::int32_t>& InspireHandCommand::_internal_angles() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.angles_;
+}
+inline ::google::protobuf::RepeatedField<::int32_t>* InspireHandCommand::_internal_mutable_angles() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.angles_;
+}
+
+// bool request_feedback = 20;
+inline void InspireHandCommand::clear_request_feedback() {
+  _impl_.request_feedback_ = false;
+}
+inline bool InspireHandCommand::request_feedback() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.InspireHandCommand.request_feedback)
+  return _internal_request_feedback();
+}
+inline void InspireHandCommand::set_request_feedback(bool value) {
+  _internal_set_request_feedback(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.InspireHandCommand.request_feedback)
+}
+inline bool InspireHandCommand::_internal_request_feedback() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.request_feedback_;
+}
+inline void InspireHandCommand::_internal_set_request_feedback(bool value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.request_feedback_ = value;
+}
+
+// bool apply_speed = 30;
+inline void InspireHandCommand::clear_apply_speed() {
+  _impl_.apply_speed_ = false;
+}
+inline bool InspireHandCommand::apply_speed() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.InspireHandCommand.apply_speed)
+  return _internal_apply_speed();
+}
+inline void InspireHandCommand::set_apply_speed(bool value) {
+  _internal_set_apply_speed(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.InspireHandCommand.apply_speed)
+}
+inline bool InspireHandCommand::_internal_apply_speed() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.apply_speed_;
+}
+inline void InspireHandCommand::_internal_set_apply_speed(bool value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.apply_speed_ = value;
+}
+
+// bool apply_force = 31;
+inline void InspireHandCommand::clear_apply_force() {
+  _impl_.apply_force_ = false;
+}
+inline bool InspireHandCommand::apply_force() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.InspireHandCommand.apply_force)
+  return _internal_apply_force();
+}
+inline void InspireHandCommand::set_apply_force(bool value) {
+  _internal_set_apply_force(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.InspireHandCommand.apply_force)
+}
+inline bool InspireHandCommand::_internal_apply_force() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.apply_force_;
+}
+inline void InspireHandCommand::_internal_set_apply_force(bool value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.apply_force_ = value;
+}
+
+// bool apply_angle = 32;
+inline void InspireHandCommand::clear_apply_angle() {
+  _impl_.apply_angle_ = false;
+}
+inline bool InspireHandCommand::apply_angle() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.InspireHandCommand.apply_angle)
+  return _internal_apply_angle();
+}
+inline void InspireHandCommand::set_apply_angle(bool value) {
+  _internal_set_apply_angle(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.InspireHandCommand.apply_angle)
+}
+inline bool InspireHandCommand::_internal_apply_angle() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.apply_angle_;
+}
+inline void InspireHandCommand::_internal_set_apply_angle(bool value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.apply_angle_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// InspireHandState
+
+// int32 tool_index = 1;
+inline void InspireHandState::clear_tool_index() {
+  _impl_.tool_index_ = 0;
+}
+inline ::int32_t InspireHandState::tool_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.InspireHandState.tool_index)
+  return _internal_tool_index();
+}
+inline void InspireHandState::set_tool_index(::int32_t value) {
+  _internal_set_tool_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.InspireHandState.tool_index)
+}
+inline ::int32_t InspireHandState::_internal_tool_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.tool_index_;
+}
+inline void InspireHandState::_internal_set_tool_index(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.tool_index_ = value;
+}
+
+// uint32 slave_id = 2;
+inline void InspireHandState::clear_slave_id() {
+  _impl_.slave_id_ = 0u;
+}
+inline ::uint32_t InspireHandState::slave_id() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.InspireHandState.slave_id)
+  return _internal_slave_id();
+}
+inline void InspireHandState::set_slave_id(::uint32_t value) {
+  _internal_set_slave_id(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.InspireHandState.slave_id)
+}
+inline ::uint32_t InspireHandState::_internal_slave_id() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.slave_id_;
+}
+inline void InspireHandState::_internal_set_slave_id(::uint32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.slave_id_ = value;
+}
+
+// repeated int32 angles = 10;
+inline int InspireHandState::_internal_angles_size() const {
+  return _internal_angles().size();
+}
+inline int InspireHandState::angles_size() const {
+  return _internal_angles_size();
+}
+inline void InspireHandState::clear_angles() {
+  _internal_mutable_angles()->Clear();
+}
+inline ::int32_t InspireHandState::angles(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.InspireHandState.angles)
+  return _internal_angles().Get(index);
+}
+inline void InspireHandState::set_angles(int index, ::int32_t value) {
+  _internal_mutable_angles()->Set(index, value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.InspireHandState.angles)
+}
+inline void InspireHandState::add_angles(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_angles()->Add(value);
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.InspireHandState.angles)
+}
+inline const ::google::protobuf::RepeatedField<::int32_t>& InspireHandState::angles() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.InspireHandState.angles)
+  return _internal_angles();
+}
+inline ::google::protobuf::RepeatedField<::int32_t>* InspireHandState::mutable_angles() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.InspireHandState.angles)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_angles();
+}
+
+inline const ::google::protobuf::RepeatedField<::int32_t>& InspireHandState::_internal_angles() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.angles_;
+}
+inline ::google::protobuf::RepeatedField<::int32_t>* InspireHandState::_internal_mutable_angles() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.angles_;
+}
+
+// bool comm_ok = 20;
+inline void InspireHandState::clear_comm_ok() {
+  _impl_.comm_ok_ = false;
+}
+inline bool InspireHandState::comm_ok() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.InspireHandState.comm_ok)
+  return _internal_comm_ok();
+}
+inline void InspireHandState::set_comm_ok(bool value) {
+  _internal_set_comm_ok(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.InspireHandState.comm_ok)
+}
+inline bool InspireHandState::_internal_comm_ok() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.comm_ok_;
+}
+inline void InspireHandState::_internal_set_comm_ok(bool value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.comm_ok_ = value;
+}
+
+// uint32 crc_error_count = 21;
+inline void InspireHandState::clear_crc_error_count() {
+  _impl_.crc_error_count_ = 0u;
+}
+inline ::uint32_t InspireHandState::crc_error_count() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.InspireHandState.crc_error_count)
+  return _internal_crc_error_count();
+}
+inline void InspireHandState::set_crc_error_count(::uint32_t value) {
+  _internal_set_crc_error_count(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.InspireHandState.crc_error_count)
+}
+inline ::uint32_t InspireHandState::_internal_crc_error_count() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.crc_error_count_;
+}
+inline void InspireHandState::_internal_set_crc_error_count(::uint32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.crc_error_count_ = value;
+}
+
+// string msg = 22;
+inline void InspireHandState::clear_msg() {
+  _impl_.msg_.ClearToEmpty();
+}
+inline const std::string& InspireHandState::msg() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.InspireHandState.msg)
+  return _internal_msg();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void InspireHandState::set_msg(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.msg_.Set(static_cast<Arg_&&>(arg), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.InspireHandState.msg)
+}
+inline std::string* InspireHandState::mutable_msg() {
+  std::string* _s = _internal_mutable_msg();
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.InspireHandState.msg)
+  return _s;
+}
+inline const std::string& InspireHandState::_internal_msg() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.msg_.Get();
+}
+inline void InspireHandState::_internal_set_msg(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.msg_.Set(value, GetArenaForAllocation());
+}
+inline std::string* InspireHandState::_internal_mutable_msg() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.msg_.Mutable( GetArenaForAllocation());
+}
+inline std::string* InspireHandState::release_msg() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:Nrmk.IndyFramework.InspireHandState.msg)
+  return _impl_.msg_.Release();
+}
+inline void InspireHandState::set_allocated_msg(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.msg_.SetAllocated(value, GetArenaForAllocation());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.msg_.IsDefault()) {
+          _impl_.msg_.Set("", GetArenaForAllocation());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.InspireHandState.msg)
+}
+
+// .Nrmk.IndyFramework.Response response = 100;
+inline bool InspireHandState::has_response() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.response_ != nullptr);
+  return value;
+}
+inline const ::Nrmk::IndyFramework::Response& InspireHandState::_internal_response() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  const ::Nrmk::IndyFramework::Response* p = _impl_.response_;
+  return p != nullptr ? *p : reinterpret_cast<const ::Nrmk::IndyFramework::Response&>(::Nrmk::IndyFramework::_Response_default_instance_);
+}
+inline const ::Nrmk::IndyFramework::Response& InspireHandState::response() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.InspireHandState.response)
+  return _internal_response();
+}
+inline void InspireHandState::unsafe_arena_set_allocated_response(::Nrmk::IndyFramework::Response* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.response_);
+  }
+  _impl_.response_ = reinterpret_cast<::Nrmk::IndyFramework::Response*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Nrmk.IndyFramework.InspireHandState.response)
+}
+inline ::Nrmk::IndyFramework::Response* InspireHandState::release_response() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::Nrmk::IndyFramework::Response* released = _impl_.response_;
+  _impl_.response_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  if (GetArenaForAllocation() == nullptr) {
+    delete old;
+  }
+#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return released;
+}
+inline ::Nrmk::IndyFramework::Response* InspireHandState::unsafe_arena_release_response() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:Nrmk.IndyFramework.InspireHandState.response)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::Nrmk::IndyFramework::Response* temp = _impl_.response_;
+  _impl_.response_ = nullptr;
+  return temp;
+}
+inline ::Nrmk::IndyFramework::Response* InspireHandState::_internal_mutable_response() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  if (_impl_.response_ == nullptr) {
+    auto* p = CreateMaybeMessage<::Nrmk::IndyFramework::Response>(GetArenaForAllocation());
+    _impl_.response_ = reinterpret_cast<::Nrmk::IndyFramework::Response*>(p);
+  }
+  return _impl_.response_;
+}
+inline ::Nrmk::IndyFramework::Response* InspireHandState::mutable_response() {
+  ::Nrmk::IndyFramework::Response* _msg = _internal_mutable_response();
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.InspireHandState.response)
+  return _msg;
+}
+inline void InspireHandState::set_allocated_response(::Nrmk::IndyFramework::Response* value) {
+  ::google::protobuf::Arena* message_arena = GetArenaForAllocation();
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.response_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena =
+        ::google::protobuf::Arena::InternalGetOwningArena(reinterpret_cast<::google::protobuf::MessageLite*>(value));
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.response_ = reinterpret_cast<::Nrmk::IndyFramework::Response*>(value);
+  // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.InspireHandState.response)
 }
 
 #ifdef __GNUC__

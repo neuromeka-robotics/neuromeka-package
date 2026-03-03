@@ -10,3 +10,5 @@
 **/*.bak
 **/*.bk
 **/*.egg-info/
+**/tests/
+**/proto_files/

@@ -35,11 +35,6 @@ class DeviceStub(object):
                 request_serializer=device__msgs__pb2.DISignals.SerializeToString,
                 response_deserializer=common__msgs__pb2.Response.FromString,
                 )
-        self.DOModeConfig = channel.unary_unary(
-                '/Nrmk.IndyFramework.Device/DOModeConfig',
-                request_serializer=device__msgs__pb2.DOMode.SerializeToString,
-                response_deserializer=common__msgs__pb2.Response.FromString,
-                )
         self.SetDI = channel.unary_unary(
                 '/Nrmk.IndyFramework.Device/SetDI',
                 request_serializer=device__msgs__pb2.DigitalList.SerializeToString,
@@ -375,6 +370,16 @@ class DeviceStub(object):
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
                 response_deserializer=device__msgs__pb2.SocketPayload.FromString,
                 )
+        self.SetInspireHandCommand = channel.unary_unary(
+                '/Nrmk.IndyFramework.Device/SetInspireHandCommand',
+                request_serializer=device__msgs__pb2.InspireHandCommand.SerializeToString,
+                response_deserializer=common__msgs__pb2.Response.FromString,
+                )
+        self.GetInspireHandState = channel.unary_unary(
+                '/Nrmk.IndyFramework.Device/GetInspireHandState',
+                request_serializer=common__msgs__pb2.Int.SerializeToString,
+                response_deserializer=device__msgs__pb2.InspireHandState.FromString,
+                )
 
 
 class DeviceServicer(object):
@@ -399,12 +404,6 @@ class DeviceServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def SimDIConfig(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def DOModeConfig(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -821,6 +820,19 @@ class DeviceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def SetInspireHandCommand(self, request, context):
+        """/////////////Inspire Hand RH56//////////////////////
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetInspireHandState(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_DeviceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -842,11 +854,6 @@ def add_DeviceServicer_to_server(servicer, server):
             'SimDIConfig': grpc.unary_unary_rpc_method_handler(
                     servicer.SimDIConfig,
                     request_deserializer=device__msgs__pb2.DISignals.FromString,
-                    response_serializer=common__msgs__pb2.Response.SerializeToString,
-            ),
-            'DOModeConfig': grpc.unary_unary_rpc_method_handler(
-                    servicer.DOModeConfig,
-                    request_deserializer=device__msgs__pb2.DOMode.FromString,
                     response_serializer=common__msgs__pb2.Response.SerializeToString,
             ),
             'SetDI': grpc.unary_unary_rpc_method_handler(
@@ -1184,6 +1191,16 @@ def add_DeviceServicer_to_server(servicer, server):
                     request_deserializer=common__msgs__pb2.Empty.FromString,
                     response_serializer=device__msgs__pb2.SocketPayload.SerializeToString,
             ),
+            'SetInspireHandCommand': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetInspireHandCommand,
+                    request_deserializer=device__msgs__pb2.InspireHandCommand.FromString,
+                    response_serializer=common__msgs__pb2.Response.SerializeToString,
+            ),
+            'GetInspireHandState': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetInspireHandState,
+                    request_deserializer=common__msgs__pb2.Int.FromString,
+                    response_serializer=device__msgs__pb2.InspireHandState.SerializeToString,
+            ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
             'Nrmk.IndyFramework.Device', rpc_method_handlers)
@@ -1258,23 +1275,6 @@ class Device(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/SimDIConfig',
             device__msgs__pb2.DISignals.SerializeToString,
-            common__msgs__pb2.Response.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def DOModeConfig(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/DOModeConfig',
-            device__msgs__pb2.DOMode.SerializeToString,
             common__msgs__pb2.Response.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
@@ -2415,5 +2415,39 @@ class Device(object):
         return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/SocketCmdGetLatestData',
             common__msgs__pb2.Empty.SerializeToString,
             device__msgs__pb2.SocketPayload.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SetInspireHandCommand(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/SetInspireHandCommand',
+            device__msgs__pb2.InspireHandCommand.SerializeToString,
+            common__msgs__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetInspireHandState(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/GetInspireHandState',
+            common__msgs__pb2.Int.SerializeToString,
+            device__msgs__pb2.InspireHandState.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

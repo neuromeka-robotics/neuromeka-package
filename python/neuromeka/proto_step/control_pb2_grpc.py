@@ -336,6 +336,16 @@ class ControlStub(object):
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
                 response_deserializer=control__msgs__pb2.TPosVars.FromString,
                 )
+        self.SetIOVariable = channel.unary_unary(
+                '/Nrmk.IndyFramework.Control/SetIOVariable',
+                request_serializer=control__msgs__pb2.IOVars.SerializeToString,
+                response_deserializer=common__msgs__pb2.Empty.FromString,
+                )
+        self.GetIOVariable = channel.unary_unary(
+                '/Nrmk.IndyFramework.Control/GetIOVariable',
+                request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=control__msgs__pb2.IOVars.FromString,
+                )
         self.SetPluginBoolVariable = channel.unary_unary(
                 '/Nrmk.IndyFramework.Control/SetPluginBoolVariable',
                 request_serializer=common__msgs__pb2.NamedBool.SerializeToString,
@@ -980,6 +990,18 @@ class ControlServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def SetIOVariable(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetIOVariable(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def SetPluginBoolVariable(self, request, context):
         """---------------------------------------------------------------- //
         Plugin Variable
@@ -1613,6 +1635,16 @@ def add_ControlServicer_to_server(servicer, server):
                     servicer.GetTPosVariable,
                     request_deserializer=common__msgs__pb2.Empty.FromString,
                     response_serializer=control__msgs__pb2.TPosVars.SerializeToString,
+            ),
+            'SetIOVariable': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetIOVariable,
+                    request_deserializer=control__msgs__pb2.IOVars.FromString,
+                    response_serializer=common__msgs__pb2.Empty.SerializeToString,
+            ),
+            'GetIOVariable': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetIOVariable,
+                    request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=control__msgs__pb2.IOVars.SerializeToString,
             ),
             'SetPluginBoolVariable': grpc.unary_unary_rpc_method_handler(
                     servicer.SetPluginBoolVariable,
@@ -2949,6 +2981,40 @@ class Control(object):
         return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Control/GetTPosVariable',
             common__msgs__pb2.Empty.SerializeToString,
             control__msgs__pb2.TPosVars.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SetIOVariable(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Control/SetIOVariable',
+            control__msgs__pb2.IOVars.SerializeToString,
+            common__msgs__pb2.Empty.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetIOVariable(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Control/GetIOVariable',
+            common__msgs__pb2.Empty.SerializeToString,
+            control__msgs__pb2.IOVars.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

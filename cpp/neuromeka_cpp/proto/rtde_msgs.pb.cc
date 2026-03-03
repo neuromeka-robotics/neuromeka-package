@@ -150,6 +150,7 @@ PROTOBUF_CONSTEXPR ControlData2::ControlData2(::_pbi::ConstantInitialized)
       /*decltype(_impl_.tau_jts_raw1_)*/ {},
       /*decltype(_impl_.tau_jts_raw2_)*/ {},
       /*decltype(_impl_.response_)*/ nullptr,
+      /*decltype(_impl_.manipulability_)*/ 0,
     } {}
 struct ControlData2DefaultTypeInternal {
   PROTOBUF_CONSTEXPR ControlData2DefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
@@ -505,7 +506,9 @@ const ::uint32_t TableStruct_rtde_5fmsgs_2eproto::offsets[] PROTOBUF_SECTION_VAR
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ControlData2, _impl_.tau_jts_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ControlData2, _impl_.tau_jts_raw1_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ControlData2, _impl_.tau_jts_raw2_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ControlData2, _impl_.manipulability_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ControlData2, _impl_.response_),
+    ~0u,
     ~0u,
     ~0u,
     ~0u,
@@ -717,16 +720,16 @@ static const ::_pbi::MigrationSchema
         {10, -1, -1, sizeof(::Nrmk::IndyFramework::TestResponse)},
         {20, 41, -1, sizeof(::Nrmk::IndyFramework::MotionData)},
         {54, 79, -1, sizeof(::Nrmk::IndyFramework::ControlData)},
-        {96, 123, -1, sizeof(::Nrmk::IndyFramework::ControlData2)},
-        {142, 161, -1, sizeof(::Nrmk::IndyFramework::ReservedData)},
-        {172, 189, -1, sizeof(::Nrmk::IndyFramework::IOData)},
-        {198, 213, -1, sizeof(::Nrmk::IndyFramework::ViolationData)},
-        {220, 230, -1, sizeof(::Nrmk::IndyFramework::ViolationMessageQueue)},
-        {232, 248, -1, sizeof(::Nrmk::IndyFramework::ServoData)},
-        {256, 278, -1, sizeof(::Nrmk::IndyFramework::ProgramData)},
-        {292, 302, -1, sizeof(::Nrmk::IndyFramework::StopState)},
-        {304, -1, -1, sizeof(::Nrmk::IndyFramework::ModelCollision)},
-        {317, -1, -1, sizeof(::Nrmk::IndyFramework::CollisionModelState)},
+        {96, 124, -1, sizeof(::Nrmk::IndyFramework::ControlData2)},
+        {144, 163, -1, sizeof(::Nrmk::IndyFramework::ReservedData)},
+        {174, 191, -1, sizeof(::Nrmk::IndyFramework::IOData)},
+        {200, 215, -1, sizeof(::Nrmk::IndyFramework::ViolationData)},
+        {222, 232, -1, sizeof(::Nrmk::IndyFramework::ViolationMessageQueue)},
+        {234, 250, -1, sizeof(::Nrmk::IndyFramework::ServoData)},
+        {258, 280, -1, sizeof(::Nrmk::IndyFramework::ProgramData)},
+        {294, 304, -1, sizeof(::Nrmk::IndyFramework::StopState)},
+        {306, -1, -1, sizeof(::Nrmk::IndyFramework::ModelCollision)},
+        {319, -1, -1, sizeof(::Nrmk::IndyFramework::CollisionModelState)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -769,68 +772,68 @@ const char descriptor_table_protodef_rtde_5fmsgs_2eproto[] PROTOBUF_SECTION_VARI
     "tool_link\030\026 \001(\005\022\024\n\014locked_joint\030\027 \001(\005\022\022\n"
     "\ntool_links\030\031 \003(\005\022\025\n\rlocked_joints\030\032 \003(\005"
     "\022.\n\010response\030d \001(\0132\034.Nrmk.IndyFramework."
-    "Response\"\334\002\n\014ControlData2\022\t\n\001q\030\001 \003(\002\022\014\n\004"
+    "Response\"\364\002\n\014ControlData2\022\t\n\001q\030\001 \003(\002\022\014\n\004"
     "qdot\030\002 \003(\002\022\r\n\005qddot\030\003 \003(\002\022\014\n\004qdes\030\004 \003(\002\022"
     "\017\n\007qdotdes\030\005 \003(\002\022\020\n\010qddotdes\030\006 \003(\002\022\t\n\001p\030"
     "\n \003(\002\022\014\n\004pdot\030\013 \003(\002\022\r\n\005pddot\030\014 \003(\002\022\014\n\004pd"
     "es\030\r \003(\002\022\017\n\007pdotdes\030\016 \003(\002\022\020\n\010pddotdes\030\017 "
     "\003(\002\022\013\n\003tau\030\024 \003(\002\022\017\n\007tau_act\030\025 \003(\002\022\017\n\007tau"
     "_ext\030\026 \003(\002\022\017\n\007tau_jts\030\027 \003(\002\022\024\n\014tau_jts_r"
-    "aw1\030\030 \003(\002\022\024\n\014tau_jts_raw2\030\031 \003(\002\022.\n\010respo"
-    "nse\030d \001(\0132\034.Nrmk.IndyFramework.Response\""
-    "\344\001\n\014ReservedData\022\r\n\005qres1\030\001 \003(\002\022\r\n\005qres2"
-    "\030\002 \003(\002\022\020\n\010qdotres1\030\003 \003(\002\022\020\n\010qdotres2\030\004 \003"
-    "(\002\022\017\n\007taures1\030\005 \003(\002\022\017\n\007taures2\030\006 \003(\002\022\r\n\005"
-    "eres1\030\007 \003(\002\022\r\n\005eres2\030\010 \003(\002\022\020\n\010edotres1\030\t"
-    " \003(\002\022\020\n\010edotres2\030\n \003(\002\022.\n\010response\030d \001(\013"
-    "2\034.Nrmk.IndyFramework.Response\"\274\003\n\006IODat"
-    "a\022-\n\002di\030\001 \003(\0132!.Nrmk.IndyFramework.Digit"
-    "alSignal\022-\n\002do\030\002 \003(\0132!.Nrmk.IndyFramewor"
-    "k.DigitalSignal\022,\n\002ai\030\003 \003(\0132 .Nrmk.IndyF"
-    "ramework.AnalogSignal\022,\n\002ao\030\004 \003(\0132 .Nrmk"
-    ".IndyFramework.AnalogSignal\0221\n\006end_di\030\005 "
-    "\003(\0132!.Nrmk.IndyFramework.EndtoolSignal\0221"
-    "\n\006end_do\030\006 \003(\0132!.Nrmk.IndyFramework.Endt"
-    "oolSignal\0220\n\006end_ai\030\007 \003(\0132 .Nrmk.IndyFra"
-    "mework.AnalogSignal\0220\n\006end_ao\030\010 \003(\0132 .Nr"
-    "mk.IndyFramework.AnalogSignal\022.\n\010respons"
-    "e\030d \001(\0132\034.Nrmk.IndyFramework.Response\"\265\001"
-    "\n\rViolationData\022\026\n\016violation_code\030\001 \001(\004\022"
-    "\017\n\007j_index\030\002 \001(\r\022\016\n\006i_args\030\003 \003(\005\022\016\n\006f_ar"
-    "gs\030\004 \003(\002\022\025\n\rviolation_str\030\005 \001(\t\022\024\n\014viola"
-    "tion_id\030\013 \001(\004\022.\n\010response\030d \001(\0132\034.Nrmk.I"
-    "ndyFramework.Response\"\203\001\n\025ViolationMessa"
-    "geQueue\022:\n\017violation_queue\030\001 \003(\0132!.Nrmk."
-    "IndyFramework.ViolationData\022.\n\010response\030"
-    "d \001(\0132\034.Nrmk.IndyFramework.Response\"\312\001\n\t"
-    "ServoData\022\024\n\014status_codes\030\001 \003(\t\022\024\n\014tempe"
-    "ratures\030\002 \003(\002\022\020\n\010voltages\030\003 \003(\002\022\020\n\010curre"
-    "nts\030\004 \003(\002\022\017\n\007torques\030\005 \003(\002\022\025\n\rservo_acti"
-    "ves\030\n \003(\010\022\025\n\rbrake_actives\030\013 \003(\010\022.\n\010resp"
-    "onse\030d \001(\0132\034.Nrmk.IndyFramework.Response"
-    "\"\303\003\n\013ProgramData\0227\n\rprogram_state\030\001 \001(\0162"
-    " .Nrmk.IndyFramework.ProgramState\022\016\n\006cmd"
-    "_id\030\002 \001(\005\022\022\n\nsub_cmd_id\030\003 \001(\005\022\025\n\rrunning"
-    "_hours\030\004 \001(\r\022\024\n\014running_mins\030\005 \001(\r\022\024\n\014ru"
-    "nning_secs\030\006 \001(\r\022\024\n\014program_name\030\007 \001(\t\022\025"
-    "\n\rprogram_alarm\030\010 \001(\t\022\032\n\022program_annotat"
-    "ion\030\t \001(\t\022\023\n\013speed_ratio\030\n \001(\005\0229\n\020start_"
-    "line_index\030\013 \001(\0132\037.Nrmk.IndyFramework.Pr"
-    "ogramLine\0227\n\016end_line_index\030\014 \001(\0132\037.Nrmk"
-    ".IndyFramework.ProgramLine\022\022\n\ndebug_mode"
-    "\030\036 \001(\010\022.\n\010response\030d \001(\0132\034.Nrmk.IndyFram"
-    "ework.Response\"\325\001\n\tStopState\022<\n\010category"
-    "\030\001 \001(\0162*.Nrmk.IndyFramework.StopState.St"
-    "opCategory\022.\n\010response\030d \001(\0132\034.Nrmk.Indy"
-    "Framework.Response\"Z\n\014StopCategory\022\016\n\nST"
-    "OP_CAT_0\020\000\022\016\n\nSTOP_CAT_1\020\001\022\016\n\nSTOP_CAT_2"
-    "\020\002\022\032\n\rSTOP_CAT_NONE\020\377\377\377\377\377\377\377\377\377\001\"\200\001\n\016Model"
-    "Collision\022-\n\004rule\030\001 \001(\0162\037.Nrmk.IndyFrame"
-    "work.ContactRule\022\r\n\005link1\030\002 \001(\005\022\r\n\005link2"
-    "\030\003 \001(\005\022\020\n\010tool_idx\030\004 \001(\005\022\017\n\007env_idx\030\005 \001("
-    "\005\"M\n\023CollisionModelState\0226\n\ncollisions\030\001"
-    " \003(\0132\".Nrmk.IndyFramework.ModelCollision"
-    "b\006proto3"
+    "aw1\030\030 \003(\002\022\024\n\014tau_jts_raw2\030\031 \003(\002\022\026\n\016manip"
+    "ulability\030\032 \001(\002\022.\n\010response\030d \001(\0132\034.Nrmk"
+    ".IndyFramework.Response\"\344\001\n\014ReservedData"
+    "\022\r\n\005qres1\030\001 \003(\002\022\r\n\005qres2\030\002 \003(\002\022\020\n\010qdotre"
+    "s1\030\003 \003(\002\022\020\n\010qdotres2\030\004 \003(\002\022\017\n\007taures1\030\005 "
+    "\003(\002\022\017\n\007taures2\030\006 \003(\002\022\r\n\005eres1\030\007 \003(\002\022\r\n\005e"
+    "res2\030\010 \003(\002\022\020\n\010edotres1\030\t \003(\002\022\020\n\010edotres2"
+    "\030\n \003(\002\022.\n\010response\030d \001(\0132\034.Nrmk.IndyFram"
+    "ework.Response\"\274\003\n\006IOData\022-\n\002di\030\001 \003(\0132!."
+    "Nrmk.IndyFramework.DigitalSignal\022-\n\002do\030\002"
+    " \003(\0132!.Nrmk.IndyFramework.DigitalSignal\022"
+    ",\n\002ai\030\003 \003(\0132 .Nrmk.IndyFramework.AnalogS"
+    "ignal\022,\n\002ao\030\004 \003(\0132 .Nrmk.IndyFramework.A"
+    "nalogSignal\0221\n\006end_di\030\005 \003(\0132!.Nrmk.IndyF"
+    "ramework.EndtoolSignal\0221\n\006end_do\030\006 \003(\0132!"
+    ".Nrmk.IndyFramework.EndtoolSignal\0220\n\006end"
+    "_ai\030\007 \003(\0132 .Nrmk.IndyFramework.AnalogSig"
+    "nal\0220\n\006end_ao\030\010 \003(\0132 .Nrmk.IndyFramework"
+    ".AnalogSignal\022.\n\010response\030d \001(\0132\034.Nrmk.I"
+    "ndyFramework.Response\"\265\001\n\rViolationData\022"
+    "\026\n\016violation_code\030\001 \001(\004\022\017\n\007j_index\030\002 \001(\r"
+    "\022\016\n\006i_args\030\003 \003(\005\022\016\n\006f_args\030\004 \003(\002\022\025\n\rviol"
+    "ation_str\030\005 \001(\t\022\024\n\014violation_id\030\013 \001(\004\022.\n"
+    "\010response\030d \001(\0132\034.Nrmk.IndyFramework.Res"
+    "ponse\"\203\001\n\025ViolationMessageQueue\022:\n\017viola"
+    "tion_queue\030\001 \003(\0132!.Nrmk.IndyFramework.Vi"
+    "olationData\022.\n\010response\030d \001(\0132\034.Nrmk.Ind"
+    "yFramework.Response\"\312\001\n\tServoData\022\024\n\014sta"
+    "tus_codes\030\001 \003(\t\022\024\n\014temperatures\030\002 \003(\002\022\020\n"
+    "\010voltages\030\003 \003(\002\022\020\n\010currents\030\004 \003(\002\022\017\n\007tor"
+    "ques\030\005 \003(\002\022\025\n\rservo_actives\030\n \003(\010\022\025\n\rbra"
+    "ke_actives\030\013 \003(\010\022.\n\010response\030d \001(\0132\034.Nrm"
+    "k.IndyFramework.Response\"\303\003\n\013ProgramData"
+    "\0227\n\rprogram_state\030\001 \001(\0162 .Nrmk.IndyFrame"
+    "work.ProgramState\022\016\n\006cmd_id\030\002 \001(\005\022\022\n\nsub"
+    "_cmd_id\030\003 \001(\005\022\025\n\rrunning_hours\030\004 \001(\r\022\024\n\014"
+    "running_mins\030\005 \001(\r\022\024\n\014running_secs\030\006 \001(\r"
+    "\022\024\n\014program_name\030\007 \001(\t\022\025\n\rprogram_alarm\030"
+    "\010 \001(\t\022\032\n\022program_annotation\030\t \001(\t\022\023\n\013spe"
+    "ed_ratio\030\n \001(\005\0229\n\020start_line_index\030\013 \001(\013"
+    "2\037.Nrmk.IndyFramework.ProgramLine\0227\n\016end"
+    "_line_index\030\014 \001(\0132\037.Nrmk.IndyFramework.P"
+    "rogramLine\022\022\n\ndebug_mode\030\036 \001(\010\022.\n\010respon"
+    "se\030d \001(\0132\034.Nrmk.IndyFramework.Response\"\325"
+    "\001\n\tStopState\022<\n\010category\030\001 \001(\0162*.Nrmk.In"
+    "dyFramework.StopState.StopCategory\022.\n\010re"
+    "sponse\030d \001(\0132\034.Nrmk.IndyFramework.Respon"
+    "se\"Z\n\014StopCategory\022\016\n\nSTOP_CAT_0\020\000\022\016\n\nST"
+    "OP_CAT_1\020\001\022\016\n\nSTOP_CAT_2\020\002\022\032\n\rSTOP_CAT_N"
+    "ONE\020\377\377\377\377\377\377\377\377\377\001\"\200\001\n\016ModelCollision\022-\n\004rul"
+    "e\030\001 \001(\0162\037.Nrmk.IndyFramework.ContactRule"
+    "\022\r\n\005link1\030\002 \001(\005\022\r\n\005link2\030\003 \001(\005\022\020\n\010tool_i"
+    "dx\030\004 \001(\005\022\017\n\007env_idx\030\005 \001(\005\"M\n\023CollisionMo"
+    "delState\0226\n\ncollisions\030\001 \003(\0132\".Nrmk.Indy"
+    "Framework.ModelCollisionb\006proto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_rtde_5fmsgs_2eproto_deps[2] =
     {
@@ -841,7 +844,7 @@ static ::absl::once_flag descriptor_table_rtde_5fmsgs_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_rtde_5fmsgs_2eproto = {
     false,
     false,
-    3368,
+    3392,
     descriptor_table_protodef_rtde_5fmsgs_2eproto,
     "rtde_msgs.proto",
     &descriptor_table_rtde_5fmsgs_2eproto_once,
@@ -2566,12 +2569,14 @@ ControlData2::ControlData2(const ControlData2& from) : ::google::protobuf::Messa
       decltype(_impl_.tau_jts_raw1_){from._impl_.tau_jts_raw1_},
       decltype(_impl_.tau_jts_raw2_){from._impl_.tau_jts_raw2_},
       decltype(_impl_.response_){nullptr},
+      decltype(_impl_.manipulability_){},
   };
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
     _this->_impl_.response_ = new ::Nrmk::IndyFramework::Response(*from._impl_.response_);
   }
+  _this->_impl_.manipulability_ = from._impl_.manipulability_;
 
   // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.ControlData2)
 }
@@ -2599,6 +2604,7 @@ inline void ControlData2::SharedCtor(::_pb::Arena* arena) {
       decltype(_impl_.tau_jts_raw1_){arena},
       decltype(_impl_.tau_jts_raw2_){arena},
       decltype(_impl_.response_){nullptr},
+      decltype(_impl_.manipulability_){0},
   };
 }
 ControlData2::~ControlData2() {
@@ -2661,6 +2667,7 @@ PROTOBUF_NOINLINE void ControlData2::Clear() {
     ABSL_DCHECK(_impl_.response_ != nullptr);
     _impl_.response_->Clear();
   }
+  _impl_.manipulability_ = 0;
   _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
@@ -2673,15 +2680,15 @@ const char* ControlData2::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<5, 19, 1, 0, 7> ControlData2::_table_ = {
+const ::_pbi::TcParseTable<5, 20, 1, 0, 7> ControlData2::_table_ = {
   {
     PROTOBUF_FIELD_OFFSET(ControlData2, _impl_._has_bits_),
     0, // no _extensions_
     100, 248,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4261904832,  // skipmap
+    4228350400,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    19,  // num_field_entries
+    20,  // num_field_entries
     1,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     &_ControlData2_default_instance_._instance,
@@ -2749,7 +2756,9 @@ const ::_pbi::TcParseTable<5, 19, 1, 0, 7> ControlData2::_table_ = {
     // repeated float tau_jts_raw2 = 25;
     {::_pbi::TcParser::FastF32P2,
      {458, 63, 0, PROTOBUF_FIELD_OFFSET(ControlData2, _impl_.tau_jts_raw2_)}},
-    {::_pbi::TcParser::MiniParse, {}},
+    // float manipulability = 26;
+    {::_pbi::TcParser::FastF32S2,
+     {469, 63, 0, PROTOBUF_FIELD_OFFSET(ControlData2, _impl_.manipulability_)}},
     {::_pbi::TcParser::MiniParse, {}},
     {::_pbi::TcParser::MiniParse, {}},
     {::_pbi::TcParser::MiniParse, {}},
@@ -2757,7 +2766,7 @@ const ::_pbi::TcParseTable<5, 19, 1, 0, 7> ControlData2::_table_ = {
     {::_pbi::TcParser::MiniParse, {}},
   }}, {{
     100, 0, 1,
-    65534, 18,
+    65534, 19,
     65535, 65535
   }}, {{
     // repeated float q = 1;
@@ -2814,6 +2823,9 @@ const ::_pbi::TcParseTable<5, 19, 1, 0, 7> ControlData2::_table_ = {
     // repeated float tau_jts_raw2 = 25;
     {PROTOBUF_FIELD_OFFSET(ControlData2, _impl_.tau_jts_raw2_), -1, 0,
     (0 | ::_fl::kFcRepeated | ::_fl::kPackedFloat)},
+    // float manipulability = 26;
+    {PROTOBUF_FIELD_OFFSET(ControlData2, _impl_.manipulability_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kFloat)},
     // .Nrmk.IndyFramework.Response response = 100;
     {PROTOBUF_FIELD_OFFSET(ControlData2, _impl_.response_), _Internal::kHasBitsOffset + 0, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
@@ -2918,6 +2930,18 @@ const ::_pbi::TcParseTable<5, 19, 1, 0, 7> ControlData2::_table_ = {
   // repeated float tau_jts_raw2 = 25;
   if (this->_internal_tau_jts_raw2_size() > 0) {
     target = stream->WriteFixedPacked(25, _internal_tau_jts_raw2(), target);
+  }
+
+  // float manipulability = 26;
+  static_assert(sizeof(::uint32_t) == sizeof(float),
+                "Code assumes ::uint32_t and float are the same size.");
+  float tmp_manipulability = this->_internal_manipulability();
+  ::uint32_t raw_manipulability;
+  memcpy(&raw_manipulability, &tmp_manipulability, sizeof(tmp_manipulability));
+  if (raw_manipulability != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(
+        26, this->_internal_manipulability(), target);
   }
 
   cached_has_bits = _impl_._has_bits_[0];
@@ -3169,6 +3193,16 @@ const ::_pbi::TcParseTable<5, 19, 1, 0, 7> ControlData2::_table_ = {
         *_impl_.response_);
   }
 
+  // float manipulability = 26;
+  static_assert(sizeof(::uint32_t) == sizeof(float),
+                "Code assumes ::uint32_t and float are the same size.");
+  float tmp_manipulability = this->_internal_manipulability();
+  ::uint32_t raw_manipulability;
+  memcpy(&raw_manipulability, &tmp_manipulability, sizeof(tmp_manipulability));
+  if (raw_manipulability != 0) {
+    total_size += 6;
+  }
+
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
@@ -3209,6 +3243,14 @@ void ControlData2::MergeImpl(::google::protobuf::Message& to_msg, const ::google
     _this->_internal_mutable_response()->::Nrmk::IndyFramework::Response::MergeFrom(
         from._internal_response());
   }
+  static_assert(sizeof(::uint32_t) == sizeof(float),
+                "Code assumes ::uint32_t and float are the same size.");
+  float tmp_manipulability = from._internal_manipulability();
+  ::uint32_t raw_manipulability;
+  memcpy(&raw_manipulability, &tmp_manipulability, sizeof(tmp_manipulability));
+  if (raw_manipulability != 0) {
+    _this->_internal_set_manipulability(from._internal_manipulability());
+  }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -3245,7 +3287,12 @@ void ControlData2::InternalSwap(ControlData2* other) {
   _impl_.tau_jts_.InternalSwap(&other->_impl_.tau_jts_);
   _impl_.tau_jts_raw1_.InternalSwap(&other->_impl_.tau_jts_raw1_);
   _impl_.tau_jts_raw2_.InternalSwap(&other->_impl_.tau_jts_raw2_);
-  swap(_impl_.response_, other->_impl_.response_);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(ControlData2, _impl_.manipulability_)
+      + sizeof(ControlData2::_impl_.manipulability_)
+      - PROTOBUF_FIELD_OFFSET(ControlData2, _impl_.response_)>(
+          reinterpret_cast<char*>(&_impl_.response_),
+          reinterpret_cast<char*>(&other->_impl_.response_));
 }
 
 ::google::protobuf::Metadata ControlData2::GetMetadata() const {
