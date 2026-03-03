@@ -7,8 +7,8 @@ else:
 from google.protobuf import json_format
 
 
-class BootMixin:
-    """Mixin for Boot channel (port 20010/30010) methods."""
+class BootChannelAPI:
+    """ChannelAPI for Boot channel (port 20010/30010) methods."""
 
     def get_boot_status(self):
         response = self.boot.GetBootStatus(common_msgs.Empty())

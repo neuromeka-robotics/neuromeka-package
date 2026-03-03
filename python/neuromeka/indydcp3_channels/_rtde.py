@@ -7,8 +7,8 @@ else:
 from google.protobuf import json_format
 
 
-class RTDEMixin:
-    """Mixin for RTDE channel (port 20004/30004) methods."""
+class RTDEChannelAPI:
+    """ChannelAPI for RTDE channel (port 20004/30004) methods."""
 
     def get_robot_data(self):
         """

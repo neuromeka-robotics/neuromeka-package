@@ -10,8 +10,8 @@ from google.protobuf import json_format
 from google.protobuf.json_format import ParseDict
 
 
-class ConfigMixin:
-    """Mixin for Config channel (port 20003/30003) methods."""
+class ConfigChannelAPI:
+    """ChannelAPI for Config channel (port 20003/30003) methods."""
 
     def set_speed_ratio(self, speed_ratio: int):
         """

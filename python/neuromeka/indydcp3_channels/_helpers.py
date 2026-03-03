@@ -5,8 +5,8 @@ else:
     from neuromeka.proto_step import *
 
 
-class HelpersMixin:
-    """Mixin providing internal signal conversion helpers."""
+class HelpersChannelAPI:
+    """ChannelAPI providing internal signal conversion helpers."""
 
     def __to_digital_request_list__(self, digital_signal_list) -> list:
         req = []

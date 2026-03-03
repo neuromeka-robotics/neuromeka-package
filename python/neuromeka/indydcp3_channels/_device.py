@@ -7,8 +7,8 @@ else:
 from google.protobuf import json_format
 
 
-class DeviceMixin:
-    """Mixin for Device channel (port 20002/30002) methods."""
+class DeviceChannelAPI:
+    """ChannelAPI for Device channel (port 20002/30002) methods."""
 
     def commit_violation(self, violation: dict):
         req = device_msgs.ViolationRequest()

@@ -13,8 +13,8 @@ from google.protobuf import json_format
 from google.protobuf.json_format import ParseDict
 
 
-class ControlMixin:
-    """Mixin for Control channel (port 20001/30001) methods."""
+class ControlChannelAPI:
+    """ChannelAPI for Control channel (port 20001/30001) methods."""
 
     ############################
     # Motion Control (Move commands)

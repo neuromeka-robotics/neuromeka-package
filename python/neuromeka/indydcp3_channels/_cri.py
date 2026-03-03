@@ -7,8 +7,8 @@ else:
 from google.protobuf import json_format
 
 
-class CRIMixin:
-    """Mixin for CRI channel (port 20181/30181) methods."""
+class CRIChannelAPI:
+    """ChannelAPI for CRI channel (port 20181/30181) methods."""
 
     def activate_cri(self, on: bool) -> dict:
         response = self.cri.ActiveCRIVel(common_msgs.State(enable=on))

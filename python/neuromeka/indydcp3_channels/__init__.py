@@ -1,17 +1,17 @@
-from ._helpers import HelpersMixin
-from ._boot import BootMixin
-from ._rtde import RTDEMixin
-from ._device import DeviceMixin
-from ._cri import CRIMixin
-from ._control import ControlMixin
-from ._config import ConfigMixin
+from ._helpers import HelpersChannelAPI
+from ._boot import BootChannelAPI
+from ._rtde import RTDEChannelAPI
+from ._device import DeviceChannelAPI
+from ._cri import CRIChannelAPI
+from ._control import ControlChannelAPI
+from ._config import ConfigChannelAPI
 
 __all__ = [
-    'HelpersMixin',
-    'BootMixin',
-    'RTDEMixin',
-    'DeviceMixin',
-    'CRIMixin',
-    'ControlMixin',
-    'ConfigMixin',
+    'HelpersChannelAPI',
+    'BootChannelAPI',
+    'RTDEChannelAPI',
+    'DeviceChannelAPI',
+    'CRIChannelAPI',
+    'ControlChannelAPI',
+    'ConfigChannelAPI',
 ]

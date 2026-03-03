@@ -15,13 +15,13 @@ from google.protobuf import json_format
 from google.protobuf.json_format import ParseDict
 
 from neuromeka.indydcp3_channels import (
-    HelpersMixin,
-    BootMixin,
-    RTDEMixin,
-    DeviceMixin,
-    CRIMixin,
-    ControlMixin,
-    ConfigMixin,
+    HelpersChannelAPI,
+    BootChannelAPI,
+    RTDEChannelAPI,
+    DeviceChannelAPI,
+    CRIChannelAPI,
+    ControlChannelAPI,
+    ConfigChannelAPI,
 )
 
 CONTROL_SOCKET_PORT = [20001, 30001]
@@ -33,13 +33,13 @@ CRI_SOCKET_PORT = [20181, 30181]
 
 
 class IndyDCP3(
-    HelpersMixin,
-    BootMixin,
-    RTDEMixin,
-    DeviceMixin,
-    CRIMixin,
-    ControlMixin,
-    ConfigMixin,
+    HelpersChannelAPI,
+    BootChannelAPI,
+    RTDEChannelAPI,
+    DeviceChannelAPI,
+    CRIChannelAPI,
+    ControlChannelAPI,
+    ConfigChannelAPI,
 ):
     def __init__(self, robot_ip='127.0.0.1', index=0):
         if index not in [0, 1]:
