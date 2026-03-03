@@ -272,6 +272,7 @@ class IndyDCP3
 
         //----------------------------------
         bool play_program(const std::string& prog_name = "", int prog_idx = -1);
+        bool play_program_line(const Nrmk::IndyFramework::Program& program);
         bool pause_program();
         bool resume_program();
         bool stop_program();
@@ -516,6 +517,22 @@ class IndyDCP3
         bool set_do_config_list(const Nrmk::IndyFramework::DOConfigList& do_config_list);
         bool get_do_config_list(Nrmk::IndyFramework::DOConfigList& do_config_list);
 
+        bool restor_factory_control_gains();
+        bool get_imu_auto_mount(Nrmk::IndyFramework::MountingAngles& mounting_angles);
+        bool set_tool_property_list(const Nrmk::IndyFramework::ToolPropertyEntries& entries);
+        bool get_tool_property_list(Nrmk::IndyFramework::ToolPropertyEntries& entries);
+        bool get_joint_limit_config(Nrmk::IndyFramework::JointLimitConfig& config);
+        bool set_joint_limit_config(const Nrmk::IndyFramework::JointLimitConfig& config);
+        bool get_original_joint_limit_config(Nrmk::IndyFramework::JointLimitConfig& config);
+        bool save_safety_snapshot(const Nrmk::IndyFramework::SaveSafetySnapshotReq& request,
+                      Nrmk::IndyFramework::SafetySnapshotInfo& snapshot_info);
+        bool list_safety_snapshots(Nrmk::IndyFramework::SafetySnapshotList& snapshot_list);
+        bool restore_safety_snapshot(const Nrmk::IndyFramework::SafetySnapshotId& snapshot_id);
+        bool delete_safety_snapshot(const Nrmk::IndyFramework::SafetySnapshotId& snapshot_id);
+        bool restor_factory_safety_config();
+        bool set_operation_mode_config(const Nrmk::IndyFramework::OperationModeConfig& config);
+        bool get_operation_mode_config(Nrmk::IndyFramework::OperationModeConfig& config);
+
         bool move_recover_joint(const std::vector<float>& jtarget, 
                                 const int base_type=JointBaseType::ABSOLUTE_JOINT);
         bool get_control_info(Nrmk::IndyFramework::ControlInfo& control_info);
@@ -575,6 +592,18 @@ class IndyDCP3
 
         bool get_kinematics_params(Nrmk::IndyFramework::KinematicsParams& response);
         bool get_io_data(Nrmk::IndyFramework::IOData& response);
+        bool set_io_variable(const Nrmk::IndyFramework::IOVars& io_vars);
+        bool get_io_variable(Nrmk::IndyFramework::IOVars& io_vars);
+
+        bool socket_cmd_set_config(const Nrmk::IndyFramework::SocketCommandConfig& config);
+        bool socket_cmd_get_config(Nrmk::IndyFramework::SocketCommandConfig& config);
+        bool socket_cmd_start(Nrmk::IndyFramework::SocketCommandStatus& status);
+        bool socket_cmd_stop(Nrmk::IndyFramework::SocketCommandStatus& status);
+        bool socket_cmd_send_data(const Nrmk::IndyFramework::SocketPayload& payload,
+                                  Nrmk::IndyFramework::SocketCommandStatus& status);
+        bool socket_cmd_get_latest_data(Nrmk::IndyFramework::SocketPayload& payload);
+        bool set_inspire_hand_command(const Nrmk::IndyFramework::InspireHandCommand& command);
+        bool get_inspire_hand_state(int tool_index, Nrmk::IndyFramework::InspireHandState& state);
 
         bool wait_io(const std::vector<Nrmk::IndyFramework::DigitalSignal>& di_signal_list,
             const std::vector<Nrmk::IndyFramework::DigitalSignal>& do_signal_list,
