@@ -89,6 +89,9 @@ class IndyDCP3(
     def get_control_data(self):
         return self.get_robot_data()
 
+    def get_locked_joint(self):
+        return self.get_control_data()['locked_joint']
+
     def add_joint_waypoint(self, waypoint: list):
         self._joint_waypoint.append(waypoint)
         return True

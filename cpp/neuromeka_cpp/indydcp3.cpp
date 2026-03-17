@@ -738,6 +738,16 @@ bool IndyDCP3::set_locked_joint(int index) {
     return true;
 }
 
+bool IndyDCP3::get_locked_joint(int& index) {
+    Nrmk::IndyFramework::ControlData control_data;
+    if (!get_control_data(control_data)) {
+        return false;
+    }
+
+    index = control_data.locked_joint();
+    return true;
+}
+
 bool IndyDCP3::set_tool_link(int index) {
     Nrmk::IndyFramework::Int request;
     request.set_value(index);

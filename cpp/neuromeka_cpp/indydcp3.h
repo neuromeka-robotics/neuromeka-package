@@ -131,6 +131,7 @@ class IndyDCP3
         bool set_conveyor_tool_link(int index);
 
         bool set_locked_joint(int index);
+        bool get_locked_joint(int& index);
         bool set_tool_link(int index);
 
         //----------------------------------
