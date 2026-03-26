@@ -455,6 +455,7 @@ class IndyDCP3
         bool get_safety_control_data(Nrmk::IndyFramework::SafetyControlData& safety_control_data);
 
         bool get_gripper_data(Nrmk::IndyFramework::GripperData& gripper_data);
+        bool get_gripper_data_for(int tool_index, Nrmk::IndyFramework::GripperData& gripper_data);
         bool set_gripper_command(const Nrmk::IndyFramework::GripperCommand& gripper_command);
 
         bool activate_cri(const bool on);

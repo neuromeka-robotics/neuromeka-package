@@ -500,6 +500,13 @@ class DeviceChannelAPI:
                                          preserving_proto_field_name=True,
                                          use_integers_for_enums=True)
 
+    def get_gripper_data_for(self, index: int) -> dict:
+        response = self.device.GetGripperDataFor(common_msgs.Int(value=index))
+        return json_format.MessageToDict(response,
+                                         including_default_value_fields=True,
+                                         preserving_proto_field_name=True,
+                                         use_integers_for_enums=True)
+
     def set_gripper_command(self,
                             command,
                             gripper_type,
