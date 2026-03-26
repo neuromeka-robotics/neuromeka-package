@@ -4040,6 +4040,20 @@ bool IndyDCP3::get_gripper_data(Nrmk::IndyFramework::GripperData& gripper_data) 
     return true;
 }
 
+bool IndyDCP3::get_gripper_data_for(int tool_index, Nrmk::IndyFramework::GripperData& gripper_data) {
+    Nrmk::IndyFramework::Int request;
+    grpc::ClientContext context;
+
+    request.set_value(tool_index);
+
+    grpc::Status status = device_stub->GetGripperDataFor(&context, request, &gripper_data);
+    if (!status.ok()) {
+        std::cerr << "Get Gripper Data For RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+    return true;
+}
+
 bool IndyDCP3::set_gripper_command(const Nrmk::IndyFramework::GripperCommand& gripper_command) {
     Nrmk::IndyFramework::Empty response;
     grpc::ClientContext context;

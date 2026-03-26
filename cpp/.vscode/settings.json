@@ -4,7 +4,8 @@
         "-DCMAKE_BUILD_TYPE=Release",
     ],
     "cmake.buildDirectory": "${workspaceFolder}/build",
-    "cmake.generator": "Visual Studio 17 2022",
+    "cmake.generator": "Visual Studio 18 2026",
+    "cmake.generatorPlatform": "x64",
     "files.associations": {
         "algorithm": "cpp",
         "array": "cpp",
