@@ -416,6 +416,11 @@ class ControlStub(object):
                 request_serializer=control__msgs__pb2.ForwardKinematicsReq.SerializeToString,
                 response_deserializer=control__msgs__pb2.ForwardKinematicsRes.FromString,
                 )
+        self.JointToTcpTransform = channel.unary_unary(
+                '/Nrmk.IndyFramework.Control/JointToTcpTransform',
+                request_serializer=control__msgs__pb2.JointToTcpTransformReq.SerializeToString,
+                response_deserializer=control__msgs__pb2.JointToTcpTransformRes.FromString,
+                )
         self.CheckAproachRetractValid = channel.unary_unary(
                 '/Nrmk.IndyFramework.Control/CheckAproachRetractValid',
                 request_serializer=control__msgs__pb2.CheckAproachRetractValidReq.SerializeToString,
@@ -1096,6 +1101,12 @@ class ControlServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def JointToTcpTransform(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def CheckAproachRetractValid(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -1715,6 +1726,11 @@ def add_ControlServicer_to_server(servicer, server):
                     servicer.ForwardKinematics,
                     request_deserializer=control__msgs__pb2.ForwardKinematicsReq.FromString,
                     response_serializer=control__msgs__pb2.ForwardKinematicsRes.SerializeToString,
+            ),
+            'JointToTcpTransform': grpc.unary_unary_rpc_method_handler(
+                    servicer.JointToTcpTransform,
+                    request_deserializer=control__msgs__pb2.JointToTcpTransformReq.FromString,
+                    response_serializer=control__msgs__pb2.JointToTcpTransformRes.SerializeToString,
             ),
             'CheckAproachRetractValid': grpc.unary_unary_rpc_method_handler(
                     servicer.CheckAproachRetractValid,
@@ -3253,6 +3269,23 @@ class Control(object):
         return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Control/ForwardKinematics',
             control__msgs__pb2.ForwardKinematicsReq.SerializeToString,
             control__msgs__pb2.ForwardKinematicsRes.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def JointToTcpTransform(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Control/JointToTcpTransform',
+            control__msgs__pb2.JointToTcpTransformReq.SerializeToString,
+            control__msgs__pb2.JointToTcpTransformRes.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

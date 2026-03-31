@@ -4547,6 +4547,20 @@ bool IndyDCP3::forward_kin(const Nrmk::IndyFramework::ForwardKinematicsReq& requ
     return true;
 }
 
+bool IndyDCP3::joint_to_tcp_transform(const Nrmk::IndyFramework::JointToTcpTransformReq& request,
+                                      Nrmk::IndyFramework::JointToTcpTransformRes& response)
+{
+    grpc::ClientContext context;
+
+    grpc::Status status = control_stub->JointToTcpTransform(&context, request, &response);
+    if (!status.ok()) {
+        std::cerr << "JointToTcpTransform RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+
+    return true;
+}
+
 bool IndyDCP3::set_tact_time(const Nrmk::IndyFramework::TactTime& tact_time) {
     Nrmk::IndyFramework::Response response;
     grpc::ClientContext context;

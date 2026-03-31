@@ -511,6 +511,9 @@ class IndyDCP3
         bool forward_kin(const Nrmk::IndyFramework::ForwardKinematicsReq& request, 
                            Nrmk::IndyFramework::ForwardKinematicsRes& response);
 
+        bool joint_to_tcp_transform(const Nrmk::IndyFramework::JointToTcpTransformReq& request,
+                          Nrmk::IndyFramework::JointToTcpTransformRes& response);
+
         bool set_tact_time(const Nrmk::IndyFramework::TactTime& tact_time);
         bool get_tact_time(Nrmk::IndyFramework::TactTime& tact_time);
 

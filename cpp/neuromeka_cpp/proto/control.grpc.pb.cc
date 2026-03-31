@@ -103,6 +103,7 @@ static const char* Control_method_names[] = {
   "/Nrmk.IndyFramework.Control/CatchBusEvent",
   "/Nrmk.IndyFramework.Control/InverseKinematics",
   "/Nrmk.IndyFramework.Control/ForwardKinematics",
+  "/Nrmk.IndyFramework.Control/JointToTcpTransform",
   "/Nrmk.IndyFramework.Control/CheckAproachRetractValid",
   "/Nrmk.IndyFramework.Control/GetPalletPointList",
   "/Nrmk.IndyFramework.Control/CalculateRelativePose",
@@ -226,40 +227,41 @@ Control::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, c
   , rpcmethod_CatchBusEvent_(Control_method_names[77], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_InverseKinematics_(Control_method_names[78], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_ForwardKinematics_(Control_method_names[79], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_CheckAproachRetractValid_(Control_method_names[80], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetPalletPointList_(Control_method_names[81], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_CalculateRelativePose_(Control_method_names[82], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_CalculateCurrentPoseRel_(Control_method_names[83], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PingFromConty_(Control_method_names[84], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetTeleOpDevice_(Control_method_names[85], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetTeleOpState_(Control_method_names[86], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ConnectTeleOpDevice_(Control_method_names[87], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DisConnectTeleOpDevice_(Control_method_names[88], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ReadTeleOpInput_(Control_method_names[89], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ReadTeleOpInputFor_(Control_method_names[90], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetTeleCalibArm_(Control_method_names[91], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_StartTeleOp_(Control_method_names[92], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_StopTeleOp_(Control_method_names[93], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetPlayRate_(Control_method_names[94], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetPlayRate_(Control_method_names[95], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetTeleFileList_(Control_method_names[96], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SaveTeleMotion_(Control_method_names[97], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_LoadTeleMotion_(Control_method_names[98], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DeleteTeleMotion_(Control_method_names[99], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_EnableTeleKey_(Control_method_names[100], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_MoveTeleJ_(Control_method_names[101], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_MoveTeleL_(Control_method_names[102], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetForceMode_(Control_method_names[103], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetForceMode_(Control_method_names[104], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetTransformedFTSensorData_(Control_method_names[105], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetTransformedFTSensorDataFor_(Control_method_names[106], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_FTZero_(Control_method_names[107], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetMotionJ_(Control_method_names[108], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetMotionL_(Control_method_names[109], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetMotionC_(Control_method_names[110], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_MoveLF_(Control_method_names[111], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetControlInferenceData_(Control_method_names[112], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetControlInferenceData_(Control_method_names[113], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_JointToTcpTransform_(Control_method_names[80], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_CheckAproachRetractValid_(Control_method_names[81], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetPalletPointList_(Control_method_names[82], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_CalculateRelativePose_(Control_method_names[83], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_CalculateCurrentPoseRel_(Control_method_names[84], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PingFromConty_(Control_method_names[85], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetTeleOpDevice_(Control_method_names[86], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetTeleOpState_(Control_method_names[87], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ConnectTeleOpDevice_(Control_method_names[88], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DisConnectTeleOpDevice_(Control_method_names[89], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ReadTeleOpInput_(Control_method_names[90], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ReadTeleOpInputFor_(Control_method_names[91], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetTeleCalibArm_(Control_method_names[92], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_StartTeleOp_(Control_method_names[93], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_StopTeleOp_(Control_method_names[94], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetPlayRate_(Control_method_names[95], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetPlayRate_(Control_method_names[96], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetTeleFileList_(Control_method_names[97], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SaveTeleMotion_(Control_method_names[98], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_LoadTeleMotion_(Control_method_names[99], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteTeleMotion_(Control_method_names[100], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_EnableTeleKey_(Control_method_names[101], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_MoveTeleJ_(Control_method_names[102], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_MoveTeleL_(Control_method_names[103], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetForceMode_(Control_method_names[104], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetForceMode_(Control_method_names[105], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetTransformedFTSensorData_(Control_method_names[106], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetTransformedFTSensorDataFor_(Control_method_names[107], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_FTZero_(Control_method_names[108], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetMotionJ_(Control_method_names[109], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetMotionL_(Control_method_names[110], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetMotionC_(Control_method_names[111], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_MoveLF_(Control_method_names[112], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetControlInferenceData_(Control_method_names[113], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetControlInferenceData_(Control_method_names[114], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status Control::Stub::GetControlInfo(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::ControlInfo* response) {
@@ -2102,6 +2104,29 @@ void Control::Stub::async::ForwardKinematics(::grpc::ClientContext* context, con
   return result;
 }
 
+::grpc::Status Control::Stub::JointToTcpTransform(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::JointToTcpTransformReq& request, ::Nrmk::IndyFramework::JointToTcpTransformRes* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::JointToTcpTransformReq, ::Nrmk::IndyFramework::JointToTcpTransformRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_JointToTcpTransform_, context, request, response);
+}
+
+void Control::Stub::async::JointToTcpTransform(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::JointToTcpTransformReq* request, ::Nrmk::IndyFramework::JointToTcpTransformRes* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::JointToTcpTransformReq, ::Nrmk::IndyFramework::JointToTcpTransformRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_JointToTcpTransform_, context, request, response, std::move(f));
+}
+
+void Control::Stub::async::JointToTcpTransform(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::JointToTcpTransformReq* request, ::Nrmk::IndyFramework::JointToTcpTransformRes* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_JointToTcpTransform_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::JointToTcpTransformRes>* Control::Stub::PrepareAsyncJointToTcpTransformRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::JointToTcpTransformReq& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::JointToTcpTransformRes, ::Nrmk::IndyFramework::JointToTcpTransformReq, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_JointToTcpTransform_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::JointToTcpTransformRes>* Control::Stub::AsyncJointToTcpTransformRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::JointToTcpTransformReq& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncJointToTcpTransformRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 ::grpc::Status Control::Stub::CheckAproachRetractValid(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::CheckAproachRetractValidReq& request, ::Nrmk::IndyFramework::CheckAproachRetractValidRes* response) {
   return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::CheckAproachRetractValidReq, ::Nrmk::IndyFramework::CheckAproachRetractValidRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_CheckAproachRetractValid_, context, request, response);
 }
@@ -3688,6 +3713,16 @@ Control::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Control_method_names[80],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::JointToTcpTransformReq, ::Nrmk::IndyFramework::JointToTcpTransformRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Control::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::JointToTcpTransformReq* req,
+             ::Nrmk::IndyFramework::JointToTcpTransformRes* resp) {
+               return service->JointToTcpTransform(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Control_method_names[81],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::CheckAproachRetractValidReq, ::Nrmk::IndyFramework::CheckAproachRetractValidRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
              ::grpc::ServerContext* ctx,
@@ -3696,7 +3731,7 @@ Control::Service::Service() {
                return service->CheckAproachRetractValid(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[81],
+      Control_method_names[82],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::GetPalletPointListReq, ::Nrmk::IndyFramework::GetPalletPointListRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -3706,7 +3741,7 @@ Control::Service::Service() {
                return service->GetPalletPointList(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[82],
+      Control_method_names[83],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::CalculateRelativePoseReq, ::Nrmk::IndyFramework::CalculateRelativePoseRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -3716,7 +3751,7 @@ Control::Service::Service() {
                return service->CalculateRelativePose(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[83],
+      Control_method_names[84],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::CalculateCurrentPoseRelReq, ::Nrmk::IndyFramework::CalculateCurrentPoseRelRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -3726,7 +3761,7 @@ Control::Service::Service() {
                return service->CalculateCurrentPoseRel(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[84],
+      Control_method_names[85],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -3736,7 +3771,7 @@ Control::Service::Service() {
                return service->PingFromConty(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[85],
+      Control_method_names[86],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::TeleOpDevice, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -3746,7 +3781,7 @@ Control::Service::Service() {
                return service->GetTeleOpDevice(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[86],
+      Control_method_names[87],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::TeleOpState, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -3756,7 +3791,7 @@ Control::Service::Service() {
                return service->GetTeleOpState(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[87],
+      Control_method_names[88],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::TeleOpDevice, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -3766,7 +3801,7 @@ Control::Service::Service() {
                return service->ConnectTeleOpDevice(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[88],
+      Control_method_names[89],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -3776,7 +3811,7 @@ Control::Service::Service() {
                return service->DisConnectTeleOpDevice(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[89],
+      Control_method_names[90],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::TeleP, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -3786,7 +3821,7 @@ Control::Service::Service() {
                return service->ReadTeleOpInput(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[90],
+      Control_method_names[91],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::Int, ::Nrmk::IndyFramework::TeleP, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -3796,7 +3831,7 @@ Control::Service::Service() {
                return service->ReadTeleOpInputFor(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[91],
+      Control_method_names[92],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::UInt, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -3806,7 +3841,7 @@ Control::Service::Service() {
                return service->SetTeleCalibArm(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[92],
+      Control_method_names[93],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::TeleOpState, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -3816,7 +3851,7 @@ Control::Service::Service() {
                return service->StartTeleOp(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[93],
+      Control_method_names[94],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -3826,7 +3861,7 @@ Control::Service::Service() {
                return service->StopTeleOp(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[94],
+      Control_method_names[95],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::TelePlayRate, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -3836,7 +3871,7 @@ Control::Service::Service() {
                return service->SetPlayRate(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[95],
+      Control_method_names[96],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::TelePlayRate, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -3846,7 +3881,7 @@ Control::Service::Service() {
                return service->GetPlayRate(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[96],
+      Control_method_names[97],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::TeleOpFileList, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -3856,7 +3891,7 @@ Control::Service::Service() {
                return service->GetTeleFileList(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[97],
+      Control_method_names[98],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::TeleFileReq, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -3866,7 +3901,7 @@ Control::Service::Service() {
                return service->SaveTeleMotion(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[98],
+      Control_method_names[99],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::TeleFileReq, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -3876,7 +3911,7 @@ Control::Service::Service() {
                return service->LoadTeleMotion(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[99],
+      Control_method_names[100],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::TeleFileReq, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -3886,7 +3921,7 @@ Control::Service::Service() {
                return service->DeleteTeleMotion(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[100],
+      Control_method_names[101],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::State, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -3896,7 +3931,7 @@ Control::Service::Service() {
                return service->EnableTeleKey(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[101],
+      Control_method_names[102],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::MoveTeleJReq, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -3906,7 +3941,7 @@ Control::Service::Service() {
                return service->MoveTeleJ(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[102],
+      Control_method_names[103],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::MoveTeleLReq, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -3916,7 +3951,7 @@ Control::Service::Service() {
                return service->MoveTeleL(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[103],
+      Control_method_names[104],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::ForceModeReq, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -3926,7 +3961,7 @@ Control::Service::Service() {
                return service->SetForceMode(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[104],
+      Control_method_names[105],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ForceModeReq, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -3936,7 +3971,7 @@ Control::Service::Service() {
                return service->GetForceMode(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[105],
+      Control_method_names[106],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::TransformedFTSensorData, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -3946,7 +3981,7 @@ Control::Service::Service() {
                return service->GetTransformedFTSensorData(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[106],
+      Control_method_names[107],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::Int, ::Nrmk::IndyFramework::TransformedFTSensorData, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -3956,7 +3991,7 @@ Control::Service::Service() {
                return service->GetTransformedFTSensorDataFor(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[107],
+      Control_method_names[108],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -3966,7 +4001,7 @@ Control::Service::Service() {
                return service->FTZero(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[108],
+      Control_method_names[109],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::GetMotionJReq, ::Nrmk::IndyFramework::GetMotionRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -3976,7 +4011,7 @@ Control::Service::Service() {
                return service->GetMotionJ(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[109],
+      Control_method_names[110],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::GetMotionLReq, ::Nrmk::IndyFramework::GetMotionRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -3986,7 +4021,7 @@ Control::Service::Service() {
                return service->GetMotionL(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[110],
+      Control_method_names[111],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::GetMotionCReq, ::Nrmk::IndyFramework::GetMotionRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -3996,7 +4031,7 @@ Control::Service::Service() {
                return service->GetMotionC(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[111],
+      Control_method_names[112],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::MoveLFReq, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -4006,7 +4041,7 @@ Control::Service::Service() {
                return service->MoveLF(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[112],
+      Control_method_names[113],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::ControlInferenceDataSet, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -4016,7 +4051,7 @@ Control::Service::Service() {
                return service->SetControlInferenceData(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Control_method_names[113],
+      Control_method_names[114],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Control::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ControlInferenceDataSet, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Control::Service* service,
@@ -4584,6 +4619,13 @@ Control::Service::~Service() {
 }
 
 ::grpc::Status Control::Service::ForwardKinematics(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::ForwardKinematicsReq* request, ::Nrmk::IndyFramework::ForwardKinematicsRes* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Control::Service::JointToTcpTransform(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::JointToTcpTransformReq* request, ::Nrmk::IndyFramework::JointToTcpTransformRes* response) {
   (void) context;
   (void) request;
   (void) response;

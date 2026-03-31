@@ -723,6 +723,28 @@ class ControlChannelAPI:
                                          preserving_proto_field_name=True,
                                          use_integers_for_enums=True)
 
+    def joint_to_tcp_transform(self, jpos, joint_idx, joint_idx_is_body_index=False, arm_index=0) -> dict:
+        """
+        :param jpos:
+        :param joint_idx:
+        :param joint_idx_is_body_index:
+        :param arm_index:
+        :return:
+            'joint_to_tcp': []
+            'base_to_joint': []
+            'base_to_tcp': []
+        """
+        response = self.control.JointToTcpTransform(control_msgs.JointToTcpTransformReq(
+            jpos=list(jpos),
+            joint_idx=joint_idx,
+            joint_idx_is_body_index=joint_idx_is_body_index,
+            arm_index=arm_index
+        ))
+        return json_format.MessageToDict(response,
+                                         including_default_value_fields=True,
+                                         preserving_proto_field_name=True,
+                                         use_integers_for_enums=True)
+
     def set_direct_teaching(self, enable=True) -> dict:
         """
          enable = True | False
