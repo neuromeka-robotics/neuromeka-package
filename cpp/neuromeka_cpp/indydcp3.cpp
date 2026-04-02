@@ -5243,6 +5243,15 @@ bool IndyDCP3::set_reduced_speed(const float speed) {
 }
 
 bool IndyDCP3::set_teleop_params(const Nrmk::IndyFramework::TeleOpParams& request) {
+    // check request
+    if (request.cutoff_freq() < 0.1 || request.cutoff_freq() > 20.0) {
+        std::cerr << "Cutoff frequency must be between 0.1 and 20.0 Hz." << std::endl;
+        return false;
+    }
+
+    // warning smooth_factor and error_gain are deprecated
+    std::cerr << "Warning: smooth_factor and error_gain are deprecated and will be ignored." << std::endl;
+
     Nrmk::IndyFramework::Response response;
     grpc::ClientContext context;
 

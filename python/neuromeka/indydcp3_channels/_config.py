@@ -1053,11 +1053,21 @@ class ConfigChannelAPI:
     ############################
     # Teleop Params
     ############################
-    def set_teleop_params(self, smooth_factor, cutoff_freq, error_gain):
+    def set_teleop_params(self, cutoff_freq=None):
+        """
+        IO Data:
+            smooth_factor   -> float (deprecated)
+            cutoff_freq   -> float
+            error_gain  -> float (deprecated)
+        """
+
+        if cutoff_freq is None or (cutoff_freq < 0.1 or cutoff_freq > 20.0):
+            raise ValueError("cutoff_freq must be between 0.1 and 20.0")
+        
         response = self.config.SetTeleOpParams(
-            config_msgs.TeleOpParams(smooth_factor=smooth_factor,
+            config_msgs.TeleOpParams(smooth_factor=0.0,
                                      cutoff_freq=cutoff_freq,
-                                     error_gain=error_gain))
+                                     error_gain=0.0))
         return json_format.MessageToDict(response,
                                          including_default_value_fields=True,
                                          preserving_proto_field_name=True,
@@ -1066,15 +1076,17 @@ class ConfigChannelAPI:
     def get_teleop_params(self):
         """
         IO Data:
-            smooth_factor   -> float
+            smooth_factor   -> float (deprecated)
             cutoff_freq   -> float
-            error_gain  -> float
+            error_gain  -> float (deprecated)
         """
         response = self.config.GetTeleOpParams(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        
+        response_dict = json_format.MessageToDict(response,
+                                                 including_default_value_fields=True,
+                                                 preserving_proto_field_name=True,
+                                                 use_integers_for_enums=True)
+        return {'cutoff_freq': response_dict.get('cutoff_freq')}
 
     ############################
     # Kinematics
