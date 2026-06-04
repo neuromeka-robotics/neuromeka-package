@@ -239,6 +239,7 @@ PROTOBUF_CONSTEXPR DeviceInfo::DeviceInfo(::_pbi::ConstantInitialized)
       /*decltype(_impl_._has_bits_)*/ {},
       /*decltype(_impl_._cached_size_)*/ {},
       /*decltype(_impl_.core_board_fw_vers_)*/ {},
+      /*decltype(_impl_.safety_mcu_fw_vers_)*/ {},
       /*decltype(_impl_.robot_serial_)*/ {
           &::_pbi::fixed_address_empty_string,
           ::_pbi::ConstantInitialized{},
@@ -842,21 +843,21 @@ struct DISignalsDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 DISignalsDefaultTypeInternal _DISignals_default_instance_;
         template <typename>
-PROTOBUF_CONSTEXPR DOMode::DOMode(::_pbi::ConstantInitialized)
+PROTOBUF_CONSTEXPR DOChannelModes::DOChannelModes(::_pbi::ConstantInitialized)
     : _impl_{
       /*decltype(_impl_.channel_modes_)*/ {},
       /*decltype(_impl_._cached_size_)*/ {},
     } {}
-struct DOModeDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR DOModeDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~DOModeDefaultTypeInternal() {}
+struct DOChannelModesDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR DOChannelModesDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~DOChannelModesDefaultTypeInternal() {}
   union {
-    DOMode _instance;
+    DOChannelModes _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 DOModeDefaultTypeInternal _DOMode_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 DOChannelModesDefaultTypeInternal _DOChannelModes_default_instance_;
         template <typename>
 PROTOBUF_CONSTEXPR DOChannelMode::DOChannelMode(::_pbi::ConstantInitialized)
     : _impl_{
@@ -1102,7 +1103,9 @@ const ::uint32_t TableStruct_device_5fmsgs_2eproto::offsets[] PROTOBUF_SECTION_V
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::DeviceInfo, _impl_.use_indykey_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::DeviceInfo, _impl_.use_auto_mode_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::DeviceInfo, _impl_.use_safety_mcu_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::DeviceInfo, _impl_.safety_mcu_fw_vers_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::DeviceInfo, _impl_.response_),
+    ~0u,
     ~0u,
     ~0u,
     ~0u,
@@ -1469,14 +1472,14 @@ const ::uint32_t TableStruct_device_5fmsgs_2eproto::offsets[] PROTOBUF_SECTION_V
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::DISignals, _impl_.pulse_period_ms_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::DISignals, _impl_.signals_),
     ~0u,  // no _has_bits_
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::DOMode, _internal_metadata_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::DOChannelModes, _internal_metadata_),
     ~0u,  // no _extensions_
     ~0u,  // no _oneof_case_
     ~0u,  // no _weak_field_map_
     ~0u,  // no _inlined_string_donated_
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::DOMode, _impl_.channel_modes_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::DOChannelModes, _impl_.channel_modes_),
     ~0u,  // no _has_bits_
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::DOChannelMode, _internal_metadata_),
     ~0u,  // no _extensions_
@@ -1552,38 +1555,38 @@ static const ::_pbi::MigrationSchema
         {92, -1, -1, sizeof(::Nrmk::IndyFramework::DigitalList)},
         {101, -1, -1, sizeof(::Nrmk::IndyFramework::EndtoolSignalList)},
         {110, -1, -1, sizeof(::Nrmk::IndyFramework::AnalogList)},
-        {119, 149, -1, sizeof(::Nrmk::IndyFramework::DeviceInfo)},
-        {171, 181, -1, sizeof(::Nrmk::IndyFramework::BrakeControlStyle)},
-        {183, 198, -1, sizeof(::Nrmk::IndyFramework::FTSensorData)},
-        {205, 216, -1, sizeof(::Nrmk::IndyFramework::GetLoadFactorsRes)},
-        {219, -1, -1, sizeof(::Nrmk::IndyFramework::SetAutoModeReq)},
-        {228, -1, -1, sizeof(::Nrmk::IndyFramework::SetAutoModeRes)},
-        {237, -1, -1, sizeof(::Nrmk::IndyFramework::CheckAutoModeRes)},
-        {247, -1, -1, sizeof(::Nrmk::IndyFramework::CheckReducedModeRes)},
-        {257, 268, -1, sizeof(::Nrmk::IndyFramework::SafetyFunctionState)},
-        {271, 283, -1, sizeof(::Nrmk::IndyFramework::SafetyControlData)},
-        {287, -1, -1, sizeof(::Nrmk::IndyFramework::ViolationRequest)},
-        {304, -1, -1, sizeof(::Nrmk::IndyFramework::SanderCommand)},
-        {316, -1, -1, sizeof(::Nrmk::IndyFramework::Encoder)},
-        {331, -1, -1, sizeof(::Nrmk::IndyFramework::Trigger)},
-        {342, 359, -1, sizeof(::Nrmk::IndyFramework::Conveyor)},
-        {368, -1, -1, sizeof(::Nrmk::IndyFramework::ConveyorState)},
-        {378, -1, -1, sizeof(::Nrmk::IndyFramework::ConveyorObjectDistances)},
-        {387, -1, -1, sizeof(::Nrmk::IndyFramework::AddPhotoneoCalibPointReq)},
-        {399, -1, -1, sizeof(::Nrmk::IndyFramework::VisionServer)},
-        {411, 424, -1, sizeof(::Nrmk::IndyFramework::VisionRequest)},
-        {429, -1, -1, sizeof(::Nrmk::IndyFramework::VisionResult)},
-        {443, 454, -1, sizeof(::Nrmk::IndyFramework::ConfigurePickit3DReq)},
-        {457, -1, -1, sizeof(::Nrmk::IndyFramework::Tool)},
-        {474, -1, -1, sizeof(::Nrmk::IndyFramework::ModbusCommand)},
-        {484, -1, -1, sizeof(::Nrmk::IndyFramework::ModbusSignal)},
-        {494, -1, -1, sizeof(::Nrmk::IndyFramework::TaskTimes)},
-        {503, -1, -1, sizeof(::Nrmk::IndyFramework::DISignals)},
-        {514, -1, -1, sizeof(::Nrmk::IndyFramework::DOMode)},
-        {523, -1, -1, sizeof(::Nrmk::IndyFramework::DOChannelMode)},
-        {538, 551, -1, sizeof(::Nrmk::IndyFramework::SocketCommandConfig)},
-        {556, 567, -1, sizeof(::Nrmk::IndyFramework::SocketCommandStatus)},
-        {570, 580, -1, sizeof(::Nrmk::IndyFramework::SocketPayload)},
+        {119, 150, -1, sizeof(::Nrmk::IndyFramework::DeviceInfo)},
+        {173, 183, -1, sizeof(::Nrmk::IndyFramework::BrakeControlStyle)},
+        {185, 200, -1, sizeof(::Nrmk::IndyFramework::FTSensorData)},
+        {207, 218, -1, sizeof(::Nrmk::IndyFramework::GetLoadFactorsRes)},
+        {221, -1, -1, sizeof(::Nrmk::IndyFramework::SetAutoModeReq)},
+        {230, -1, -1, sizeof(::Nrmk::IndyFramework::SetAutoModeRes)},
+        {239, -1, -1, sizeof(::Nrmk::IndyFramework::CheckAutoModeRes)},
+        {249, -1, -1, sizeof(::Nrmk::IndyFramework::CheckReducedModeRes)},
+        {259, 270, -1, sizeof(::Nrmk::IndyFramework::SafetyFunctionState)},
+        {273, 285, -1, sizeof(::Nrmk::IndyFramework::SafetyControlData)},
+        {289, -1, -1, sizeof(::Nrmk::IndyFramework::ViolationRequest)},
+        {306, -1, -1, sizeof(::Nrmk::IndyFramework::SanderCommand)},
+        {318, -1, -1, sizeof(::Nrmk::IndyFramework::Encoder)},
+        {333, -1, -1, sizeof(::Nrmk::IndyFramework::Trigger)},
+        {344, 361, -1, sizeof(::Nrmk::IndyFramework::Conveyor)},
+        {370, -1, -1, sizeof(::Nrmk::IndyFramework::ConveyorState)},
+        {380, -1, -1, sizeof(::Nrmk::IndyFramework::ConveyorObjectDistances)},
+        {389, -1, -1, sizeof(::Nrmk::IndyFramework::AddPhotoneoCalibPointReq)},
+        {401, -1, -1, sizeof(::Nrmk::IndyFramework::VisionServer)},
+        {413, 426, -1, sizeof(::Nrmk::IndyFramework::VisionRequest)},
+        {431, -1, -1, sizeof(::Nrmk::IndyFramework::VisionResult)},
+        {445, 456, -1, sizeof(::Nrmk::IndyFramework::ConfigurePickit3DReq)},
+        {459, -1, -1, sizeof(::Nrmk::IndyFramework::Tool)},
+        {476, -1, -1, sizeof(::Nrmk::IndyFramework::ModbusCommand)},
+        {486, -1, -1, sizeof(::Nrmk::IndyFramework::ModbusSignal)},
+        {496, -1, -1, sizeof(::Nrmk::IndyFramework::TaskTimes)},
+        {505, -1, -1, sizeof(::Nrmk::IndyFramework::DISignals)},
+        {516, -1, -1, sizeof(::Nrmk::IndyFramework::DOChannelModes)},
+        {525, -1, -1, sizeof(::Nrmk::IndyFramework::DOChannelMode)},
+        {540, 553, -1, sizeof(::Nrmk::IndyFramework::SocketCommandConfig)},
+        {558, 569, -1, sizeof(::Nrmk::IndyFramework::SocketCommandStatus)},
+        {572, 582, -1, sizeof(::Nrmk::IndyFramework::SocketPayload)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -1626,7 +1629,7 @@ static const ::_pb::Message* const file_default_instances[] = {
     &::Nrmk::IndyFramework::_ModbusSignal_default_instance_._instance,
     &::Nrmk::IndyFramework::_TaskTimes_default_instance_._instance,
     &::Nrmk::IndyFramework::_DISignals_default_instance_._instance,
-    &::Nrmk::IndyFramework::_DOMode_default_instance_._instance,
+    &::Nrmk::IndyFramework::_DOChannelModes_default_instance_._instance,
     &::Nrmk::IndyFramework::_DOChannelMode_default_instance_._instance,
     &::Nrmk::IndyFramework::_SocketCommandConfig_default_instance_._instance,
     &::Nrmk::IndyFramework::_SocketCommandStatus_default_instance_._instance,
@@ -1660,7 +1663,7 @@ const char descriptor_table_protodef_device_5fmsgs_2eproto[] PROTOBUF_SECTION_VA
     "olSignalList\0222\n\007signals\030\001 \003(\0132!.Nrmk.Ind"
     "yFramework.EndtoolSignal\"\?\n\nAnalogList\0221"
     "\n\007signals\030\001 \003(\0132 .Nrmk.IndyFramework.Ana"
-    "logSignal\"\236\004\n\nDeviceInfo\022\022\n\nnum_joints\030\001"
+    "logSignal\"\272\004\n\nDeviceInfo\022\022\n\nnum_joints\030\001"
     " \001(\r\022\024\n\014robot_serial\030\002 \001(\t\022\017\n\007payload\030\003 "
     "\001(\002\022\021\n\trobot_dof\030\004 \001(\r\022\022\n\nrobot_name\030\005 \001"
     "(\t\022\021\n\tcb_serial\030\006 \001(\t\022\027\n\017io_board_fw_ver"
@@ -1672,125 +1675,126 @@ const char descriptor_table_protodef_device_5fmsgs_2eproto[] PROTOBUF_SECTION_VA
     "leop_loaded\030\036 \001(\010\022\022\n\ncalibrated\030\037 \001(\010\022\025\n"
     "\ruse_safety_io\030( \001(\010\022\020\n\010use_npad\030) \001(\010\022\023"
     "\n\013use_indykey\030* \001(\010\022\025\n\ruse_auto_mode\030+ \001"
-    "(\010\022\026\n\016use_safety_mcu\0302 \001(\010\022.\n\010response\030d"
-    " \001(\0132\034.Nrmk.IndyFramework.Response\"\307\001\n\021B"
-    "rakeControlStyle\022A\n\005style\030\001 \001(\01622.Nrmk.I"
-    "ndyFramework.BrakeControlStyle.ControlSt"
-    "yle\022.\n\010response\030d \001(\0132\034.Nrmk.IndyFramewo"
-    "rk.Response\"\?\n\014ControlStyle\022\017\n\013UNAVAILAB"
-    "LE\020\000\022\016\n\nCONCURRENT\020\001\022\016\n\nINDIVIDUAL\020\002\"\230\001\n"
-    "\014FTSensorData\022\r\n\005ft_Fx\030\001 \001(\002\022\r\n\005ft_Fy\030\002 "
-    "\001(\002\022\r\n\005ft_Fz\030\003 \001(\002\022\r\n\005ft_Tx\030\004 \001(\002\022\r\n\005ft_"
-    "Ty\030\005 \001(\002\022\r\n\005ft_Tz\030\006 \001(\002\022.\n\010response\030d \001("
-    "\0132\034.Nrmk.IndyFramework.Response\"f\n\021GetLo"
-    "adFactorsRes\022\020\n\010percents\030\001 \003(\005\022\017\n\007torque"
-    "s\030\002 \003(\002\022.\n\010response\030d \001(\0132\034.Nrmk.IndyFra"
-    "mework.Response\"\034\n\016SetAutoModeReq\022\n\n\002on\030"
-    "\001 \001(\010\"\035\n\016SetAutoModeRes\022\013\n\003msg\030d \001(\t\"+\n\020"
-    "CheckAutoModeRes\022\n\n\002on\030\001 \001(\010\022\013\n\003msg\030d \001("
-    "\t\".\n\023CheckReducedModeRes\022\n\n\002on\030\001 \001(\010\022\013\n\003"
-    "msg\030d \001(\t\"`\n\023SafetyFunctionState\022\n\n\002id\030\001"
-    " \001(\r\022\r\n\005state\030\002 \001(\r\022.\n\010response\030d \001(\0132\034."
-    "Nrmk.IndyFramework.Response\"\224\001\n\021SafetyCo"
-    "ntrolData\022\021\n\tauto_mode\030\001 \001(\010\022\024\n\014reduced_"
-    "mode\030\002 \001(\010\022\027\n\017enabler_pressed\030\003 \001(\010\022=\n\014s"
-    "afety_state\030\005 \001(\0132\'.Nrmk.IndyFramework.S"
-    "afetyFunctionState\"\346\001\n\020ViolationRequest\022"
-    "\026\n\016violation_type\030\001 \001(\004\0227\n\rstop_category"
-    "\030\002 \001(\0162 .Nrmk.IndyFramework.StopCategory"
-    "\022\016\n\006source\030\003 \001(\005\022\020\n\010axis_idx\030\013 \001(\005\022\023\n\013mi"
-    "sc_fvalue\030\014 \001(\001\022\023\n\013misc_ivalue\030\r \001(\003\022\020\n\010"
-    "misc_min\030\016 \001(\001\022\020\n\010misc_max\030\017 \001(\001\022\021\n\tmisc"
-    "_text\030\020 \001(\t\"\227\001\n\rSanderCommand\022:\n\004type\030\001 "
-    "\001(\0162,.Nrmk.IndyFramework.SanderCommand.S"
-    "anderType\022\n\n\002ip\030\002 \001(\t\022\r\n\005speed\030\003 \001(\002\022\r\n\005"
-    "state\030\n \001(\010\" \n\nSanderType\022\022\n\016SANDER_ONRO"
-    "BOT\020\000\"\211\002\n\007Encoder\0225\n\004type\030\001 \001(\0162\'.Nrmk.I"
-    "ndyFramework.Encoder.EncoderType\022\020\n\010chan"
-    "nel1\030\002 \001(\003\022\020\n\010channel2\030\003 \001(\003\022\022\n\nsample_n"
-    "um\030\004 \001(\003\022\023\n\013mm_per_tick\030\005 \001(\002\022\026\n\016vel_con"
-    "st_mmps\030\006 \001(\002\022\020\n\010reversed\030\007 \001(\010\"P\n\013Encod"
-    "erType\022\014\n\010CONSTANT\020\000\022\016\n\nQUADRATURE\020\001\022\n\n\006"
-    "RISING\020\002\022\013\n\007FALLING\020\003\022\n\n\006MODBUS\020\004\"\216\001\n\007Tr"
-    "igger\0225\n\004type\030\001 \001(\0162\'.Nrmk.IndyFramework"
-    ".Trigger.TriggerType\022\017\n\007channel\030\002 \001(\003\022\023\n"
-    "\013detect_rise\030\003 \001(\010\"&\n\013TriggerType\022\013\n\007DIG"
-    "ITAL\020\000\022\n\n\006MODBUS\020\001\"\313\002\n\010Conveyor\022\014\n\004name\030"
-    "\001 \001(\t\022,\n\007encoder\030\002 \001(\0132\033.Nrmk.IndyFramew"
-    "ork.Encoder\022,\n\007trigger\030\003 \001(\0132\033.Nrmk.Indy"
-    "Framework.Trigger\022\023\n\013offset_dist\030\004 \001(\002\022\024"
-    "\n\014working_dist\030\005 \001(\002\022-\n\tdirection\030\006 \001(\0132"
-    "\032.Nrmk.IndyFramework.Vector\0223\n\rstarting_"
-    "pose\030\n \001(\0132\034.Nrmk.IndyFramework.PosePair"
-    "\0223\n\rterminal_pose\030\013 \001(\0132\034.Nrmk.IndyFrame"
-    "work.PosePair\022\021\n\ttool_link\030\037 \001(\005\"4\n\rConv"
-    "eyorState\022\020\n\010velocity\030\001 \001(\002\022\021\n\ttriggered"
-    "\030\002 \001(\002\"(\n\027ConveyorObjectDistances\022\r\n\005dis"
-    "ts\030\001 \003(\002\"S\n\030AddPhotoneoCalibPointReq\022\023\n\013"
-    "vision_name\030\001 \001(\t\022\n\n\002px\030\002 \001(\001\022\n\n\002py\030\003 \001("
-    "\001\022\n\n\002pz\030\004 \001(\001\"\316\001\n\014VisionServer\022\014\n\004name\030\001"
-    " \001(\t\022M\n\022vision_server_type\030\002 \001(\01621.Nrmk."
-    "IndyFramework.VisionServer.VisionServerT"
-    "ype\022\n\n\002ip\030\003 \001(\t\022\014\n\004port\030\004 \001(\r\"G\n\020VisionS"
-    "erverType\022\013\n\007INDYEYE\020\000\022\014\n\010PHOTONEO\020\001\022\n\n\006"
-    "HELIOS\020\002\022\014\n\010PICKIT3D\020\003\"\271\001\n\rVisionRequest"
-    "\0227\n\rvision_server\030\001 \001(\0132 .Nrmk.IndyFrame"
-    "work.VisionServer\022\016\n\006object\030\002 \001(\t\0227\n\nfra"
-    "me_type\030\003 \001(\0162#.Nrmk.IndyFramework.Visio"
-    "nFrameType\022\023\n\013solution_id\030\004 \001(\r\022\021\n\tvisio"
-    "n_id\030\005 \001(\r\"\225\001\n\014VisionResult\022\r\n\005frame\030\001 \003"
-    "(\002\0227\n\nframe_type\030\002 \001(\0162#.Nrmk.IndyFramew"
-    "ork.VisionFrameType\022\016\n\006object\030\003 \001(\t\022\020\n\010d"
-    "etected\030\004 \001(\010\022\016\n\006passed\030\005 \001(\010\022\013\n\003msg\030d \001"
-    "(\t\"u\n\024ConfigurePickit3DReq\0227\n\rvision_ser"
-    "ver\030\001 \001(\0132 .Nrmk.IndyFramework.VisionSer"
-    "ver\022\020\n\010setup_id\030\002 \001(\r\022\022\n\nproduct_id\030\003 \001("
-    "\r\"\226\003\n\004Tool\022\014\n\004name\030\001 \001(\t\022\024\n\014execute_time"
-    "\030\002 \001(\002\0225\n\ndo_signals\030\003 \003(\0132!.Nrmk.IndyFr"
-    "amework.DigitalSignal\0228\n\renddo_signals\030\004"
-    " \003(\0132!.Nrmk.IndyFramework.EndtoolSignal\022"
-    "4\n\nao_signals\030\005 \003(\0132 .Nrmk.IndyFramework"
-    ".AnalogSignal\0227\n\rendao_signals\030\006 \003(\0132 .N"
-    "rmk.IndyFramework.AnalogSignal\022\022\n\nexpres"
-    "sion\030\007 \003(\t\022;\n\017gripper_signals\030\010 \003(\0132\".Nr"
-    "mk.IndyFramework.GripperCommand\0229\n\016modbu"
-    "s_signals\030\t \003(\0132!.Nrmk.IndyFramework.Mod"
-    "busCommand\"R\n\rModbusCommand\022\016\n\006server\030\001 "
-    "\001(\t\0221\n\007signals\030\002 \003(\0132 .Nrmk.IndyFramewor"
-    "k.ModbusSignal\"+\n\014ModbusSignal\022\014\n\004addr\030\001"
-    " \001(\005\022\r\n\005value\030\002 \001(\005\"\?\n\tTaskTimes\0222\n\ntask"
-    "_times\030\001 \003(\0132\036.Nrmk.IndyFramework.NamedF"
-    "loat\"\325\001\n\tDISignals\0229\n\010sim_mode\030\001 \001(\0162\'.N"
-    "rmk.IndyFramework.DISignals.DISimMode\022\027\n"
-    "\017pulse_period_ms\030\002 \001(\r\0222\n\007signals\030\003 \003(\0132"
-    "!.Nrmk.IndyFramework.DigitalSignal\"@\n\tDI"
-    "SimMode\022\016\n\nSIM_DI_OFF\020\000\022\021\n\rSIM_DI_STEADY"
-    "\020\001\022\020\n\014SIM_DI_PULSE\020\002\"B\n\006DOMode\0228\n\rchanne"
-    "l_modes\030\001 \003(\0132!.Nrmk.IndyFramework.DOCha"
-    "nnelMode\"\247\002\n\rDOChannelMode\022\017\n\007address\030\001 "
-    "\001(\r\022/\n\005state\030\002 \001(\0162 .Nrmk.IndyFramework."
-    "DigitalState\0229\n\007do_mode\030\003 \001(\0162(.Nrmk.Ind"
-    "yFramework.DOChannelMode.DOMode\022\027\n\017pulse"
-    "_period_ms\030\004 \001(\r\022\030\n\020pwm_frequency_hz\030\005 \001"
-    "(\r\022\030\n\020pwm_duty_percent\030\006 \001(\r\022\031\n\021mirror_d"
-    "i_address\030\007 \001(\r\"1\n\006DOMode\022\r\n\tDO_STEADY\020\000"
-    "\022\014\n\010DO_PULSE\020\001\022\n\n\006DO_PWM\020\002\"\235\001\n\023SocketCom"
-    "mandConfig\022\021\n\tremote_ip\030\001 \001(\t\022\023\n\013remote_"
-    "port\030\002 \001(\r\022\026\n\016auto_reconnect\030\003 \001(\010\022\026\n\016rx"
-    "_buffer_size\030\004 \001(\r\022.\n\010response\030d \001(\0132\034.N"
-    "rmk.IndyFramework.Response\"l\n\023SocketComm"
-    "andStatus\022\021\n\tconnected\030\001 \001(\010\022\022\n\nlast_err"
-    "or\030\002 \001(\t\022.\n\010response\030d \001(\0132\034.Nrmk.IndyFr"
-    "amework.Response\"M\n\rSocketPayload\022\014\n\004dat"
-    "a\030\001 \001(\014\022.\n\010response\030d \001(\0132\034.Nrmk.IndyFra"
-    "mework.Response*P\n\013GripperType\022\010\n\004NONE\020\000"
-    "\022\023\n\017ROBOTIQ_GRIPPER\020\001\022\016\n\nDH_GRIPPER\020\002\022\022\n"
-    "\016APICOO_SUSGRIP\020\003*=\n\014DigitalState\022\r\n\tOFF"
-    "_STATE\020\000\022\014\n\010ON_STATE\020\001\022\020\n\014UNUSED_STATE\020\002"
-    "*b\n\014EndtoolState\022\n\n\006UNUSED\020\000\022\014\n\010HIGH_PNP"
-    "\020\002\022\014\n\010HIGH_NPN\020\001\022\024\n\007LOW_NPN\020\377\377\377\377\377\377\377\377\377\001\022\024"
-    "\n\007LOW_PNP\020\376\377\377\377\377\377\377\377\377\001*/\n\017VisionFrameType\022"
-    "\n\n\006OBJECT\020\000\022\020\n\014END_EFFECTOR\020\001b\006proto3"
+    "(\010\022\026\n\016use_safety_mcu\0302 \001(\010\022\032\n\022safety_mcu"
+    "_fw_vers\0303 \003(\t\022.\n\010response\030d \001(\0132\034.Nrmk."
+    "IndyFramework.Response\"\307\001\n\021BrakeControlS"
+    "tyle\022A\n\005style\030\001 \001(\01622.Nrmk.IndyFramework"
+    ".BrakeControlStyle.ControlStyle\022.\n\010respo"
+    "nse\030d \001(\0132\034.Nrmk.IndyFramework.Response\""
+    "\?\n\014ControlStyle\022\017\n\013UNAVAILABLE\020\000\022\016\n\nCONC"
+    "URRENT\020\001\022\016\n\nINDIVIDUAL\020\002\"\230\001\n\014FTSensorDat"
+    "a\022\r\n\005ft_Fx\030\001 \001(\002\022\r\n\005ft_Fy\030\002 \001(\002\022\r\n\005ft_Fz"
+    "\030\003 \001(\002\022\r\n\005ft_Tx\030\004 \001(\002\022\r\n\005ft_Ty\030\005 \001(\002\022\r\n\005"
+    "ft_Tz\030\006 \001(\002\022.\n\010response\030d \001(\0132\034.Nrmk.Ind"
+    "yFramework.Response\"f\n\021GetLoadFactorsRes"
+    "\022\020\n\010percents\030\001 \003(\005\022\017\n\007torques\030\002 \003(\002\022.\n\010r"
+    "esponse\030d \001(\0132\034.Nrmk.IndyFramework.Respo"
+    "nse\"\034\n\016SetAutoModeReq\022\n\n\002on\030\001 \001(\010\"\035\n\016Set"
+    "AutoModeRes\022\013\n\003msg\030d \001(\t\"+\n\020CheckAutoMod"
+    "eRes\022\n\n\002on\030\001 \001(\010\022\013\n\003msg\030d \001(\t\".\n\023CheckRe"
+    "ducedModeRes\022\n\n\002on\030\001 \001(\010\022\013\n\003msg\030d \001(\t\"`\n"
+    "\023SafetyFunctionState\022\n\n\002id\030\001 \001(\r\022\r\n\005stat"
+    "e\030\002 \001(\r\022.\n\010response\030d \001(\0132\034.Nrmk.IndyFra"
+    "mework.Response\"\224\001\n\021SafetyControlData\022\021\n"
+    "\tauto_mode\030\001 \001(\010\022\024\n\014reduced_mode\030\002 \001(\010\022\027"
+    "\n\017enabler_pressed\030\003 \001(\010\022=\n\014safety_state\030"
+    "\005 \001(\0132\'.Nrmk.IndyFramework.SafetyFunctio"
+    "nState\"\346\001\n\020ViolationRequest\022\026\n\016violation"
+    "_type\030\001 \001(\004\0227\n\rstop_category\030\002 \001(\0162 .Nrm"
+    "k.IndyFramework.StopCategory\022\016\n\006source\030\003"
+    " \001(\005\022\020\n\010axis_idx\030\013 \001(\005\022\023\n\013misc_fvalue\030\014 "
+    "\001(\001\022\023\n\013misc_ivalue\030\r \001(\003\022\020\n\010misc_min\030\016 \001"
+    "(\001\022\020\n\010misc_max\030\017 \001(\001\022\021\n\tmisc_text\030\020 \001(\t\""
+    "\227\001\n\rSanderCommand\022:\n\004type\030\001 \001(\0162,.Nrmk.I"
+    "ndyFramework.SanderCommand.SanderType\022\n\n"
+    "\002ip\030\002 \001(\t\022\r\n\005speed\030\003 \001(\002\022\r\n\005state\030\n \001(\010\""
+    " \n\nSanderType\022\022\n\016SANDER_ONROBOT\020\000\"\211\002\n\007En"
+    "coder\0225\n\004type\030\001 \001(\0162\'.Nrmk.IndyFramework"
+    ".Encoder.EncoderType\022\020\n\010channel1\030\002 \001(\003\022\020"
+    "\n\010channel2\030\003 \001(\003\022\022\n\nsample_num\030\004 \001(\003\022\023\n\013"
+    "mm_per_tick\030\005 \001(\002\022\026\n\016vel_const_mmps\030\006 \001("
+    "\002\022\020\n\010reversed\030\007 \001(\010\"P\n\013EncoderType\022\014\n\010CO"
+    "NSTANT\020\000\022\016\n\nQUADRATURE\020\001\022\n\n\006RISING\020\002\022\013\n\007"
+    "FALLING\020\003\022\n\n\006MODBUS\020\004\"\216\001\n\007Trigger\0225\n\004typ"
+    "e\030\001 \001(\0162\'.Nrmk.IndyFramework.Trigger.Tri"
+    "ggerType\022\017\n\007channel\030\002 \001(\003\022\023\n\013detect_rise"
+    "\030\003 \001(\010\"&\n\013TriggerType\022\013\n\007DIGITAL\020\000\022\n\n\006MO"
+    "DBUS\020\001\"\313\002\n\010Conveyor\022\014\n\004name\030\001 \001(\t\022,\n\007enc"
+    "oder\030\002 \001(\0132\033.Nrmk.IndyFramework.Encoder\022"
+    ",\n\007trigger\030\003 \001(\0132\033.Nrmk.IndyFramework.Tr"
+    "igger\022\023\n\013offset_dist\030\004 \001(\002\022\024\n\014working_di"
+    "st\030\005 \001(\002\022-\n\tdirection\030\006 \001(\0132\032.Nrmk.IndyF"
+    "ramework.Vector\0223\n\rstarting_pose\030\n \001(\0132\034"
+    ".Nrmk.IndyFramework.PosePair\0223\n\rterminal"
+    "_pose\030\013 \001(\0132\034.Nrmk.IndyFramework.PosePai"
+    "r\022\021\n\ttool_link\030\037 \001(\005\"4\n\rConveyorState\022\020\n"
+    "\010velocity\030\001 \001(\002\022\021\n\ttriggered\030\002 \001(\002\"(\n\027Co"
+    "nveyorObjectDistances\022\r\n\005dists\030\001 \003(\002\"S\n\030"
+    "AddPhotoneoCalibPointReq\022\023\n\013vision_name\030"
+    "\001 \001(\t\022\n\n\002px\030\002 \001(\001\022\n\n\002py\030\003 \001(\001\022\n\n\002pz\030\004 \001("
+    "\001\"\316\001\n\014VisionServer\022\014\n\004name\030\001 \001(\t\022M\n\022visi"
+    "on_server_type\030\002 \001(\01621.Nrmk.IndyFramewor"
+    "k.VisionServer.VisionServerType\022\n\n\002ip\030\003 "
+    "\001(\t\022\014\n\004port\030\004 \001(\r\"G\n\020VisionServerType\022\013\n"
+    "\007INDYEYE\020\000\022\014\n\010PHOTONEO\020\001\022\n\n\006HELIOS\020\002\022\014\n\010"
+    "PICKIT3D\020\003\"\271\001\n\rVisionRequest\0227\n\rvision_s"
+    "erver\030\001 \001(\0132 .Nrmk.IndyFramework.VisionS"
+    "erver\022\016\n\006object\030\002 \001(\t\0227\n\nframe_type\030\003 \001("
+    "\0162#.Nrmk.IndyFramework.VisionFrameType\022\023"
+    "\n\013solution_id\030\004 \001(\r\022\021\n\tvision_id\030\005 \001(\r\"\225"
+    "\001\n\014VisionResult\022\r\n\005frame\030\001 \003(\002\0227\n\nframe_"
+    "type\030\002 \001(\0162#.Nrmk.IndyFramework.VisionFr"
+    "ameType\022\016\n\006object\030\003 \001(\t\022\020\n\010detected\030\004 \001("
+    "\010\022\016\n\006passed\030\005 \001(\010\022\013\n\003msg\030d \001(\t\"u\n\024Config"
+    "urePickit3DReq\0227\n\rvision_server\030\001 \001(\0132 ."
+    "Nrmk.IndyFramework.VisionServer\022\020\n\010setup"
+    "_id\030\002 \001(\r\022\022\n\nproduct_id\030\003 \001(\r\"\226\003\n\004Tool\022\014"
+    "\n\004name\030\001 \001(\t\022\024\n\014execute_time\030\002 \001(\002\0225\n\ndo"
+    "_signals\030\003 \003(\0132!.Nrmk.IndyFramework.Digi"
+    "talSignal\0228\n\renddo_signals\030\004 \003(\0132!.Nrmk."
+    "IndyFramework.EndtoolSignal\0224\n\nao_signal"
+    "s\030\005 \003(\0132 .Nrmk.IndyFramework.AnalogSigna"
+    "l\0227\n\rendao_signals\030\006 \003(\0132 .Nrmk.IndyFram"
+    "ework.AnalogSignal\022\022\n\nexpression\030\007 \003(\t\022;"
+    "\n\017gripper_signals\030\010 \003(\0132\".Nrmk.IndyFrame"
+    "work.GripperCommand\0229\n\016modbus_signals\030\t "
+    "\003(\0132!.Nrmk.IndyFramework.ModbusCommand\"R"
+    "\n\rModbusCommand\022\016\n\006server\030\001 \001(\t\0221\n\007signa"
+    "ls\030\002 \003(\0132 .Nrmk.IndyFramework.ModbusSign"
+    "al\"+\n\014ModbusSignal\022\014\n\004addr\030\001 \001(\005\022\r\n\005valu"
+    "e\030\002 \001(\005\"\?\n\tTaskTimes\0222\n\ntask_times\030\001 \003(\013"
+    "2\036.Nrmk.IndyFramework.NamedFloat\"\325\001\n\tDIS"
+    "ignals\0229\n\010sim_mode\030\001 \001(\0162\'.Nrmk.IndyFram"
+    "ework.DISignals.DISimMode\022\027\n\017pulse_perio"
+    "d_ms\030\002 \001(\r\0222\n\007signals\030\003 \003(\0132!.Nrmk.IndyF"
+    "ramework.DigitalSignal\"@\n\tDISimMode\022\016\n\nS"
+    "IM_DI_OFF\020\000\022\021\n\rSIM_DI_STEADY\020\001\022\020\n\014SIM_DI"
+    "_PULSE\020\002\"J\n\016DOChannelModes\0228\n\rchannel_mo"
+    "des\030\001 \003(\0132!.Nrmk.IndyFramework.DOChannel"
+    "Mode\"\247\002\n\rDOChannelMode\022\017\n\007address\030\001 \001(\r\022"
+    "/\n\005state\030\002 \001(\0162 .Nrmk.IndyFramework.Digi"
+    "talState\0229\n\007do_mode\030\003 \001(\0162(.Nrmk.IndyFra"
+    "mework.DOChannelMode.DOMode\022\027\n\017pulse_per"
+    "iod_ms\030\004 \001(\r\022\030\n\020pwm_frequency_hz\030\005 \001(\r\022\030"
+    "\n\020pwm_duty_percent\030\006 \001(\r\022\031\n\021mirror_di_ad"
+    "dress\030\007 \001(\r\"1\n\006DOMode\022\r\n\tDO_STEADY\020\000\022\014\n\010"
+    "DO_PULSE\020\001\022\n\n\006DO_PWM\020\002\"\235\001\n\023SocketCommand"
+    "Config\022\021\n\tremote_ip\030\001 \001(\t\022\023\n\013remote_port"
+    "\030\002 \001(\r\022\026\n\016auto_reconnect\030\003 \001(\010\022\026\n\016rx_buf"
+    "fer_size\030\004 \001(\r\022.\n\010response\030d \001(\0132\034.Nrmk."
+    "IndyFramework.Response\"l\n\023SocketCommandS"
+    "tatus\022\021\n\tconnected\030\001 \001(\010\022\022\n\nlast_error\030\002"
+    " \001(\t\022.\n\010response\030d \001(\0132\034.Nrmk.IndyFramew"
+    "ork.Response\"M\n\rSocketPayload\022\014\n\004data\030\001 "
+    "\001(\014\022.\n\010response\030d \001(\0132\034.Nrmk.IndyFramewo"
+    "rk.Response*P\n\013GripperType\022\010\n\004NONE\020\000\022\023\n\017"
+    "ROBOTIQ_GRIPPER\020\001\022\016\n\nDH_GRIPPER\020\002\022\022\n\016API"
+    "COO_SUSGRIP\020\003*=\n\014DigitalState\022\r\n\tOFF_STA"
+    "TE\020\000\022\014\n\010ON_STATE\020\001\022\020\n\014UNUSED_STATE\020\002*b\n\014"
+    "EndtoolState\022\n\n\006UNUSED\020\000\022\014\n\010HIGH_PNP\020\002\022\014"
+    "\n\010HIGH_NPN\020\001\022\024\n\007LOW_NPN\020\377\377\377\377\377\377\377\377\377\001\022\024\n\007LO"
+    "W_PNP\020\376\377\377\377\377\377\377\377\377\001*/\n\017VisionFrameType\022\n\n\006O"
+    "BJECT\020\000\022\020\n\014END_EFFECTOR\020\001b\006proto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_device_5fmsgs_2eproto_deps[1] =
     {
@@ -1800,7 +1804,7 @@ static ::absl::once_flag descriptor_table_device_5fmsgs_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_device_5fmsgs_2eproto = {
     false,
     false,
-    6317,
+    6353,
     descriptor_table_protodef_device_5fmsgs_2eproto,
     "device_msgs.proto",
     &descriptor_table_device_5fmsgs_2eproto_once,
@@ -4526,6 +4530,7 @@ DeviceInfo::DeviceInfo(const DeviceInfo& from) : ::google::protobuf::Message() {
       decltype(_impl_._has_bits_){from._impl_._has_bits_},
       /*decltype(_impl_._cached_size_)*/ {},
       decltype(_impl_.core_board_fw_vers_){from._impl_.core_board_fw_vers_},
+      decltype(_impl_.safety_mcu_fw_vers_){from._impl_.safety_mcu_fw_vers_},
       decltype(_impl_.robot_serial_){},
       decltype(_impl_.robot_name_){},
       decltype(_impl_.cb_serial_){},
@@ -4635,6 +4640,7 @@ inline void DeviceInfo::SharedCtor(::_pb::Arena* arena) {
       decltype(_impl_._has_bits_){},
       /*decltype(_impl_._cached_size_)*/ {},
       decltype(_impl_.core_board_fw_vers_){arena},
+      decltype(_impl_.safety_mcu_fw_vers_){arena},
       decltype(_impl_.robot_serial_){},
       decltype(_impl_.robot_name_){},
       decltype(_impl_.cb_serial_){},
@@ -4706,6 +4712,7 @@ DeviceInfo::~DeviceInfo() {
 inline void DeviceInfo::SharedDtor() {
   ABSL_DCHECK(GetArenaForAllocation() == nullptr);
   _internal_mutable_core_board_fw_vers()->~RepeatedPtrField();
+  _internal_mutable_safety_mcu_fw_vers()->~RepeatedPtrField();
   _impl_.robot_serial_.Destroy();
   _impl_.robot_name_.Destroy();
   _impl_.cb_serial_.Destroy();
@@ -4729,6 +4736,7 @@ PROTOBUF_NOINLINE void DeviceInfo::Clear() {
   (void) cached_has_bits;
 
   _internal_mutable_core_board_fw_vers()->Clear();
+  _internal_mutable_safety_mcu_fw_vers()->Clear();
   _impl_.robot_serial_.ClearToEmpty();
   _impl_.robot_name_.ClearToEmpty();
   _impl_.cb_serial_.ClearToEmpty();
@@ -4759,7 +4767,7 @@ const char* DeviceInfo::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<5, 22, 1, 218, 13> DeviceInfo::_table_ = {
+const ::_pbi::TcParseTable<5, 23, 1, 236, 13> DeviceInfo::_table_ = {
   {
     PROTOBUF_FIELD_OFFSET(DeviceInfo, _impl_._has_bits_),
     0, // no _extensions_
@@ -4767,7 +4775,7 @@ const ::_pbi::TcParseTable<5, 22, 1, 218, 13> DeviceInfo::_table_ = {
     offsetof(decltype(_table_), field_lookup_table),
     2668097984,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    22,  // num_field_entries
+    23,  // num_field_entries
     1,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     &_DeviceInfo_default_instance_._instance,
@@ -4812,7 +4820,9 @@ const ::_pbi::TcParseTable<5, 22, 1, 218, 13> DeviceInfo::_table_ = {
     // bool use_safety_mcu = 50;
     {::_pbi::TcParser::FastV8S2,
      {912, 63, 0, PROTOBUF_FIELD_OFFSET(DeviceInfo, _impl_.use_safety_mcu_)}},
-    {::_pbi::TcParser::MiniParse, {}},
+    // repeated string safety_mcu_fw_vers = 51;
+    {::_pbi::TcParser::FastUR2,
+     {922, 63, 0, PROTOBUF_FIELD_OFFSET(DeviceInfo, _impl_.safety_mcu_fw_vers_)}},
     // string controller_ver = 20;
     {::_pbi::TcParser::FastUS2,
      {418, 63, 0, PROTOBUF_FIELD_OFFSET(DeviceInfo, _impl_.controller_ver_)}},
@@ -4847,7 +4857,7 @@ const ::_pbi::TcParseTable<5, 22, 1, 218, 13> DeviceInfo::_table_ = {
      {504, 63, 0, PROTOBUF_FIELD_OFFSET(DeviceInfo, _impl_.calibrated_)}},
   }}, {{
     40, 0, 4,
-    64496, 16, 65535, 21, 65535, 21, 61439, 21,
+    62448, 16, 65535, 22, 65535, 22, 61439, 22,
     65535, 65535
   }}, {{
     // uint32 num_joints = 1;
@@ -4913,13 +4923,16 @@ const ::_pbi::TcParseTable<5, 22, 1, 218, 13> DeviceInfo::_table_ = {
     // bool use_safety_mcu = 50;
     {PROTOBUF_FIELD_OFFSET(DeviceInfo, _impl_.use_safety_mcu_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBool)},
+    // repeated string safety_mcu_fw_vers = 51;
+    {PROTOBUF_FIELD_OFFSET(DeviceInfo, _impl_.safety_mcu_fw_vers_), -1, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kUtf8String | ::_fl::kRepSString)},
     // .Nrmk.IndyFramework.Response response = 100;
     {PROTOBUF_FIELD_OFFSET(DeviceInfo, _impl_.response_), _Internal::kHasBitsOffset + 0, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
   }}, {{
     {::_pbi::TcParser::GetTable<::Nrmk::IndyFramework::Response>()},
   }}, {{
-    "\35\0\14\0\0\12\11\17\22\24\16\21\17\17\23\0\0\0\0\0\0\0\0\0"
+    "\35\0\14\0\0\12\11\17\22\24\16\21\17\17\23\0\0\0\0\0\0\0\22\0"
     "Nrmk.IndyFramework.DeviceInfo"
     "robot_serial"
     "robot_name"
@@ -4932,6 +4945,7 @@ const ::_pbi::TcParseTable<5, 22, 1, 218, 13> DeviceInfo::_table_ = {
     "controller_date"
     "controller_type"
     "controller_platform"
+    "safety_mcu_fw_vers"
   }},
 };
 
@@ -5105,6 +5119,14 @@ const ::_pbi::TcParseTable<5, 22, 1, 218, 13> DeviceInfo::_table_ = {
         50, this->_internal_use_safety_mcu(), target);
   }
 
+  // repeated string safety_mcu_fw_vers = 51;
+  for (int i = 0, n = this->_internal_safety_mcu_fw_vers_size(); i < n; ++i) {
+    const auto& s = this->_internal_safety_mcu_fw_vers().Get(i);
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        s.data(), static_cast<int>(s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "Nrmk.IndyFramework.DeviceInfo.safety_mcu_fw_vers");
+    target = stream->WriteString(51, s, target);
+  }
+
   cached_has_bits = _impl_._has_bits_[0];
   // .Nrmk.IndyFramework.Response response = 100;
   if (cached_has_bits & 0x00000001u) {
@@ -5135,6 +5157,12 @@ const ::_pbi::TcParseTable<5, 22, 1, 218, 13> DeviceInfo::_table_ = {
   for (int i = 0, n = _internal_core_board_fw_vers().size(); i < n; ++i) {
     total_size += ::google::protobuf::internal::WireFormatLite::StringSize(
         _internal_core_board_fw_vers().Get(i));
+  }
+  // repeated string safety_mcu_fw_vers = 51;
+  total_size += 2 * ::google::protobuf::internal::FromIntSize(_internal_safety_mcu_fw_vers().size());
+  for (int i = 0, n = _internal_safety_mcu_fw_vers().size(); i < n; ++i) {
+    total_size += ::google::protobuf::internal::WireFormatLite::StringSize(
+        _internal_safety_mcu_fw_vers().Get(i));
   }
   // string robot_serial = 2;
   if (!this->_internal_robot_serial().empty()) {
@@ -5280,6 +5308,7 @@ void DeviceInfo::MergeImpl(::google::protobuf::Message& to_msg, const ::google::
   (void) cached_has_bits;
 
   _this->_internal_mutable_core_board_fw_vers()->MergeFrom(from._internal_core_board_fw_vers());
+  _this->_internal_mutable_safety_mcu_fw_vers()->MergeFrom(from._internal_safety_mcu_fw_vers());
   if (!from._internal_robot_serial().empty()) {
     _this->_internal_set_robot_serial(from._internal_robot_serial());
   }
@@ -5370,6 +5399,7 @@ void DeviceInfo::InternalSwap(DeviceInfo* other) {
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
   _impl_.core_board_fw_vers_.InternalSwap(&other->_impl_.core_board_fw_vers_);
+  _impl_.safety_mcu_fw_vers_.InternalSwap(&other->_impl_.safety_mcu_fw_vers_);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.robot_serial_, lhs_arena,
                                        &other->_impl_.robot_serial_, rhs_arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.robot_name_, lhs_arena,
@@ -12718,17 +12748,17 @@ void DISignals::InternalSwap(DISignals* other) {
 }
 // ===================================================================
 
-class DOMode::_Internal {
+class DOChannelModes::_Internal {
  public:
 };
 
-DOMode::DOMode(::google::protobuf::Arena* arena)
+DOChannelModes::DOChannelModes(::google::protobuf::Arena* arena)
     : ::google::protobuf::Message(arena) {
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:Nrmk.IndyFramework.DOMode)
+  // @@protoc_insertion_point(arena_constructor:Nrmk.IndyFramework.DOChannelModes)
 }
-DOMode::DOMode(const DOMode& from) : ::google::protobuf::Message() {
-  DOMode* const _this = this;
+DOChannelModes::DOChannelModes(const DOChannelModes& from) : ::google::protobuf::Message() {
+  DOChannelModes* const _this = this;
   (void)_this;
   new (&_impl_) Impl_{
       decltype(_impl_.channel_modes_){from._impl_.channel_modes_},
@@ -12737,30 +12767,30 @@ DOMode::DOMode(const DOMode& from) : ::google::protobuf::Message() {
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
 
-  // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.DOMode)
+  // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.DOChannelModes)
 }
-inline void DOMode::SharedCtor(::_pb::Arena* arena) {
+inline void DOChannelModes::SharedCtor(::_pb::Arena* arena) {
   (void)arena;
   new (&_impl_) Impl_{
       decltype(_impl_.channel_modes_){arena},
       /*decltype(_impl_._cached_size_)*/ {},
   };
 }
-DOMode::~DOMode() {
-  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.DOMode)
+DOChannelModes::~DOChannelModes() {
+  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.DOChannelModes)
   _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-inline void DOMode::SharedDtor() {
+inline void DOChannelModes::SharedDtor() {
   ABSL_DCHECK(GetArenaForAllocation() == nullptr);
   _impl_.channel_modes_.~RepeatedPtrField();
 }
-void DOMode::SetCachedSize(int size) const {
+void DOChannelModes::SetCachedSize(int size) const {
   _impl_._cached_size_.Set(size);
 }
 
-PROTOBUF_NOINLINE void DOMode::Clear() {
-// @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.DOMode)
+PROTOBUF_NOINLINE void DOChannelModes::Clear() {
+// @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.DOChannelModes)
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
@@ -12769,7 +12799,7 @@ PROTOBUF_NOINLINE void DOMode::Clear() {
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* DOMode::_InternalParse(
+const char* DOChannelModes::_InternalParse(
     const char* ptr, ::_pbi::ParseContext* ctx) {
   ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
@@ -12777,7 +12807,7 @@ const char* DOMode::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<0, 1, 1, 0, 2> DOMode::_table_ = {
+const ::_pbi::TcParseTable<0, 1, 1, 0, 2> DOChannelModes::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -12788,17 +12818,17 @@ const ::_pbi::TcParseTable<0, 1, 1, 0, 2> DOMode::_table_ = {
     1,  // num_field_entries
     1,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
-    &_DOMode_default_instance_._instance,
+    &_DOChannelModes_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
     // repeated .Nrmk.IndyFramework.DOChannelMode channel_modes = 1;
     {::_pbi::TcParser::FastMtR1,
-     {10, 63, 0, PROTOBUF_FIELD_OFFSET(DOMode, _impl_.channel_modes_)}},
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(DOChannelModes, _impl_.channel_modes_)}},
   }}, {{
     65535, 65535
   }}, {{
     // repeated .Nrmk.IndyFramework.DOChannelMode channel_modes = 1;
-    {PROTOBUF_FIELD_OFFSET(DOMode, _impl_.channel_modes_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(DOChannelModes, _impl_.channel_modes_), 0, 0,
     (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
   }}, {{
     {::_pbi::TcParser::GetTable<::Nrmk::IndyFramework::DOChannelMode>()},
@@ -12806,10 +12836,10 @@ const ::_pbi::TcParseTable<0, 1, 1, 0, 2> DOMode::_table_ = {
   }},
 };
 
-::uint8_t* DOMode::_InternalSerialize(
+::uint8_t* DOChannelModes::_InternalSerialize(
     ::uint8_t* target,
     ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.DOMode)
+  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.DOChannelModes)
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
@@ -12826,12 +12856,12 @@ const ::_pbi::TcParseTable<0, 1, 1, 0, 2> DOMode::_table_ = {
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
             _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.DOMode)
+  // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.DOChannelModes)
   return target;
 }
 
-::size_t DOMode::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.DOMode)
+::size_t DOChannelModes::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.DOChannelModes)
   ::size_t total_size = 0;
 
   ::uint32_t cached_has_bits = 0;
@@ -12847,17 +12877,17 @@ const ::_pbi::TcParseTable<0, 1, 1, 0, 2> DOMode::_table_ = {
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::google::protobuf::Message::ClassData DOMode::_class_data_ = {
+const ::google::protobuf::Message::ClassData DOChannelModes::_class_data_ = {
     ::google::protobuf::Message::CopyWithSourceCheck,
-    DOMode::MergeImpl
+    DOChannelModes::MergeImpl
 };
-const ::google::protobuf::Message::ClassData*DOMode::GetClassData() const { return &_class_data_; }
+const ::google::protobuf::Message::ClassData*DOChannelModes::GetClassData() const { return &_class_data_; }
 
 
-void DOMode::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
-  auto* const _this = static_cast<DOMode*>(&to_msg);
-  auto& from = static_cast<const DOMode&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.DOMode)
+void DOChannelModes::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<DOChannelModes*>(&to_msg);
+  auto& from = static_cast<const DOChannelModes&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.DOChannelModes)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
@@ -12866,24 +12896,24 @@ void DOMode::MergeImpl(::google::protobuf::Message& to_msg, const ::google::prot
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void DOMode::CopyFrom(const DOMode& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:Nrmk.IndyFramework.DOMode)
+void DOChannelModes::CopyFrom(const DOChannelModes& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Nrmk.IndyFramework.DOChannelModes)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-PROTOBUF_NOINLINE bool DOMode::IsInitialized() const {
+PROTOBUF_NOINLINE bool DOChannelModes::IsInitialized() const {
   return true;
 }
 
-void DOMode::InternalSwap(DOMode* other) {
+void DOChannelModes::InternalSwap(DOChannelModes* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   _impl_.channel_modes_.InternalSwap(&other->_impl_.channel_modes_);
 }
 
-::google::protobuf::Metadata DOMode::GetMetadata() const {
+::google::protobuf::Metadata DOChannelModes::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_device_5fmsgs_2eproto_getter, &descriptor_table_device_5fmsgs_2eproto_once,
       file_level_metadata_device_5fmsgs_2eproto[39]);

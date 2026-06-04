@@ -40,6 +40,11 @@ class DeviceStub(object):
                 request_serializer=device__msgs__pb2.DigitalList.SerializeToString,
                 response_deserializer=common__msgs__pb2.Response.FromString,
                 )
+        self.SetDOChannels = channel.unary_unary(
+                '/Nrmk.IndyFramework.Device/SetDOChannels',
+                request_serializer=device__msgs__pb2.DOChannelModes.SerializeToString,
+                response_deserializer=common__msgs__pb2.Response.FromString,
+                )
         self.SetDO = channel.unary_unary(
                 '/Nrmk.IndyFramework.Device/SetDO',
                 request_serializer=device__msgs__pb2.DigitalList.SerializeToString,
@@ -370,6 +375,12 @@ class DeviceServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def SetDI(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SetDOChannels(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -772,6 +783,11 @@ def add_DeviceServicer_to_server(servicer, server):
                     request_deserializer=device__msgs__pb2.DigitalList.FromString,
                     response_serializer=common__msgs__pb2.Response.SerializeToString,
             ),
+            'SetDOChannels': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetDOChannels,
+                    request_deserializer=device__msgs__pb2.DOChannelModes.FromString,
+                    response_serializer=common__msgs__pb2.Response.SerializeToString,
+            ),
             'SetDO': grpc.unary_unary_rpc_method_handler(
                     servicer.SetDO,
                     request_deserializer=device__msgs__pb2.DigitalList.FromString,
@@ -1163,6 +1179,23 @@ class Device(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/SetDI',
             device__msgs__pb2.DigitalList.SerializeToString,
+            common__msgs__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SetDOChannels(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/SetDOChannels',
+            device__msgs__pb2.DOChannelModes.SerializeToString,
             common__msgs__pb2.Response.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

@@ -753,6 +753,7 @@ class IndyDCP3:
             use_indykey -> bool
             use_auto_mode -> bool
             use_safety_mcu -> bool
+            safety_mcu_fw_vers -> string[]
             response -> {code, msg}
         """
         response = self.device.GetDeviceInfo(common_msgs.Empty())

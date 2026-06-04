@@ -93,9 +93,9 @@ extern DISignalsDefaultTypeInternal _DISignals_default_instance_;
 class DOChannelMode;
 struct DOChannelModeDefaultTypeInternal;
 extern DOChannelModeDefaultTypeInternal _DOChannelMode_default_instance_;
-class DOMode;
-struct DOModeDefaultTypeInternal;
-extern DOModeDefaultTypeInternal _DOMode_default_instance_;
+class DOChannelModes;
+struct DOChannelModesDefaultTypeInternal;
+extern DOChannelModesDefaultTypeInternal _DOChannelModes_default_instance_;
 class DeviceInfo;
 struct DeviceInfoDefaultTypeInternal;
 extern DeviceInfoDefaultTypeInternal _DeviceInfo_default_instance_;
@@ -2845,6 +2845,7 @@ class DeviceInfo final :
 
   enum : int {
     kCoreBoardFwVersFieldNumber = 11,
+    kSafetyMcuFwVersFieldNumber = 51,
     kRobotSerialFieldNumber = 2,
     kRobotNameFieldNumber = 5,
     kCbSerialFieldNumber = 6,
@@ -2893,6 +2894,34 @@ class DeviceInfo final :
   private:
   const ::google::protobuf::RepeatedPtrField<std::string>& _internal_core_board_fw_vers() const;
   ::google::protobuf::RepeatedPtrField<std::string>* _internal_mutable_core_board_fw_vers();
+
+  public:
+  // repeated string safety_mcu_fw_vers = 51;
+  int safety_mcu_fw_vers_size() const;
+  private:
+  int _internal_safety_mcu_fw_vers_size() const;
+
+  public:
+  void clear_safety_mcu_fw_vers() ;
+  const std::string& safety_mcu_fw_vers(int index) const;
+  std::string* mutable_safety_mcu_fw_vers(int index);
+  void set_safety_mcu_fw_vers(int index, const std::string& value);
+  void set_safety_mcu_fw_vers(int index, std::string&& value);
+  void set_safety_mcu_fw_vers(int index, const char* value);
+  void set_safety_mcu_fw_vers(int index, const char* value, std::size_t size);
+  void set_safety_mcu_fw_vers(int index, absl::string_view value);
+  std::string* add_safety_mcu_fw_vers();
+  void add_safety_mcu_fw_vers(const std::string& value);
+  void add_safety_mcu_fw_vers(std::string&& value);
+  void add_safety_mcu_fw_vers(const char* value);
+  void add_safety_mcu_fw_vers(const char* value, std::size_t size);
+  void add_safety_mcu_fw_vers(absl::string_view value);
+  const ::google::protobuf::RepeatedPtrField<std::string>& safety_mcu_fw_vers() const;
+  ::google::protobuf::RepeatedPtrField<std::string>* mutable_safety_mcu_fw_vers();
+
+  private:
+  const ::google::protobuf::RepeatedPtrField<std::string>& _internal_safety_mcu_fw_vers() const;
+  ::google::protobuf::RepeatedPtrField<std::string>* _internal_mutable_safety_mcu_fw_vers();
 
   public:
   // string robot_serial = 2;
@@ -3175,7 +3204,7 @@ class DeviceInfo final :
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<5, 22, 1, 218, 13> _table_;
+  static const ::google::protobuf::internal::TcParseTable<5, 23, 1, 236, 13> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
@@ -3183,6 +3212,7 @@ class DeviceInfo final :
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::RepeatedPtrField<std::string> core_board_fw_vers_;
+    ::google::protobuf::RepeatedPtrField<std::string> safety_mcu_fw_vers_;
     ::google::protobuf::internal::ArenaStringPtr robot_serial_;
     ::google::protobuf::internal::ArenaStringPtr robot_name_;
     ::google::protobuf::internal::ArenaStringPtr cb_serial_;
@@ -8595,25 +8625,25 @@ class DISignals final :
   friend struct ::TableStruct_device_5fmsgs_2eproto;
 };// -------------------------------------------------------------------
 
-class DOMode final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.DOMode) */ {
+class DOChannelModes final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.DOChannelModes) */ {
  public:
-  inline DOMode() : DOMode(nullptr) {}
-  ~DOMode() override;
+  inline DOChannelModes() : DOChannelModes(nullptr) {}
+  ~DOChannelModes() override;
   template<typename = void>
-  explicit PROTOBUF_CONSTEXPR DOMode(::google::protobuf::internal::ConstantInitialized);
+  explicit PROTOBUF_CONSTEXPR DOChannelModes(::google::protobuf::internal::ConstantInitialized);
 
-  DOMode(const DOMode& from);
-  DOMode(DOMode&& from) noexcept
-    : DOMode() {
+  DOChannelModes(const DOChannelModes& from);
+  DOChannelModes(DOChannelModes&& from) noexcept
+    : DOChannelModes() {
     *this = ::std::move(from);
   }
 
-  inline DOMode& operator=(const DOMode& from) {
+  inline DOChannelModes& operator=(const DOChannelModes& from) {
     CopyFrom(from);
     return *this;
   }
-  inline DOMode& operator=(DOMode&& from) noexcept {
+  inline DOChannelModes& operator=(DOChannelModes&& from) noexcept {
     if (this == &from) return *this;
     if (GetOwningArena() == from.GetOwningArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -8643,20 +8673,20 @@ class DOMode final :
   static const ::google::protobuf::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const DOMode& default_instance() {
+  static const DOChannelModes& default_instance() {
     return *internal_default_instance();
   }
-  static inline const DOMode* internal_default_instance() {
-    return reinterpret_cast<const DOMode*>(
-               &_DOMode_default_instance_);
+  static inline const DOChannelModes* internal_default_instance() {
+    return reinterpret_cast<const DOChannelModes*>(
+               &_DOChannelModes_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     39;
 
-  friend void swap(DOMode& a, DOMode& b) {
+  friend void swap(DOChannelModes& a, DOChannelModes& b) {
     a.Swap(&b);
   }
-  inline void Swap(DOMode* other) {
+  inline void Swap(DOChannelModes* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetOwningArena() != nullptr &&
@@ -8669,7 +8699,7 @@ class DOMode final :
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(DOMode* other) {
+  void UnsafeArenaSwap(DOChannelModes* other) {
     if (other == this) return;
     ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
     InternalSwap(other);
@@ -8677,14 +8707,14 @@ class DOMode final :
 
   // implements Message ----------------------------------------------
 
-  DOMode* New(::google::protobuf::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<DOMode>(arena);
+  DOChannelModes* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<DOChannelModes>(arena);
   }
   using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const DOMode& from);
+  void CopyFrom(const DOChannelModes& from);
   using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom( const DOMode& from) {
-    DOMode::MergeImpl(*this, from);
+  void MergeFrom( const DOChannelModes& from) {
+    DOChannelModes::MergeImpl(*this, from);
   }
   private:
   static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
@@ -8702,15 +8732,15 @@ class DOMode final :
   void SharedCtor(::google::protobuf::Arena* arena);
   void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(DOMode* other);
+  void InternalSwap(DOChannelModes* other);
 
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "Nrmk.IndyFramework.DOMode";
+    return "Nrmk.IndyFramework.DOChannelModes";
   }
   protected:
-  explicit DOMode(::google::protobuf::Arena* arena);
+  explicit DOChannelModes(::google::protobuf::Arena* arena);
   public:
 
   static const ClassData _class_data_;
@@ -8743,7 +8773,7 @@ class DOMode final :
   ::Nrmk::IndyFramework::DOChannelMode* add_channel_modes();
   const ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::DOChannelMode >&
       channel_modes() const;
-  // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.DOMode)
+  // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.DOChannelModes)
  private:
   class _Internal;
 
@@ -11193,6 +11223,102 @@ inline void DeviceInfo::_internal_set_use_safety_mcu(bool value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.use_safety_mcu_ = value;
+}
+
+// repeated string safety_mcu_fw_vers = 51;
+inline int DeviceInfo::_internal_safety_mcu_fw_vers_size() const {
+  return _internal_safety_mcu_fw_vers().size();
+}
+inline int DeviceInfo::safety_mcu_fw_vers_size() const {
+  return _internal_safety_mcu_fw_vers_size();
+}
+inline void DeviceInfo::clear_safety_mcu_fw_vers() {
+  _internal_mutable_safety_mcu_fw_vers()->Clear();
+}
+inline std::string* DeviceInfo::add_safety_mcu_fw_vers() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  std::string* _s = _internal_mutable_safety_mcu_fw_vers()->Add();
+  // @@protoc_insertion_point(field_add_mutable:Nrmk.IndyFramework.DeviceInfo.safety_mcu_fw_vers)
+  return _s;
+}
+inline const std::string& DeviceInfo::safety_mcu_fw_vers(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.DeviceInfo.safety_mcu_fw_vers)
+  return _internal_safety_mcu_fw_vers().Get(index);
+}
+inline std::string* DeviceInfo::mutable_safety_mcu_fw_vers(int index) {
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.DeviceInfo.safety_mcu_fw_vers)
+  return _internal_mutable_safety_mcu_fw_vers()->Mutable(index);
+}
+inline void DeviceInfo::set_safety_mcu_fw_vers(int index, const std::string& value) {
+  _internal_mutable_safety_mcu_fw_vers()->Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.DeviceInfo.safety_mcu_fw_vers)
+}
+inline void DeviceInfo::set_safety_mcu_fw_vers(int index, std::string&& value) {
+  _internal_mutable_safety_mcu_fw_vers()->Mutable(index)->assign(std::move(value));
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.DeviceInfo.safety_mcu_fw_vers)
+}
+inline void DeviceInfo::set_safety_mcu_fw_vers(int index, const char* value) {
+  ABSL_DCHECK(value != nullptr);
+  _internal_mutable_safety_mcu_fw_vers()->Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:Nrmk.IndyFramework.DeviceInfo.safety_mcu_fw_vers)
+}
+inline void DeviceInfo::set_safety_mcu_fw_vers(int index, const char* value,
+                              std::size_t size) {
+  _internal_mutable_safety_mcu_fw_vers()->Mutable(index)->assign(
+      reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:Nrmk.IndyFramework.DeviceInfo.safety_mcu_fw_vers)
+}
+inline void DeviceInfo::set_safety_mcu_fw_vers(int index, absl::string_view value) {
+  _internal_mutable_safety_mcu_fw_vers()->Mutable(index)->assign(value.data(),
+                                                     value.size());
+  // @@protoc_insertion_point(field_set_string_piece:Nrmk.IndyFramework.DeviceInfo.safety_mcu_fw_vers)
+}
+inline void DeviceInfo::add_safety_mcu_fw_vers(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_safety_mcu_fw_vers()->Add()->assign(value);
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.DeviceInfo.safety_mcu_fw_vers)
+}
+inline void DeviceInfo::add_safety_mcu_fw_vers(std::string&& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_safety_mcu_fw_vers()->Add(std::move(value));
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.DeviceInfo.safety_mcu_fw_vers)
+}
+inline void DeviceInfo::add_safety_mcu_fw_vers(const char* value) {
+  ABSL_DCHECK(value != nullptr);
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_safety_mcu_fw_vers()->Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:Nrmk.IndyFramework.DeviceInfo.safety_mcu_fw_vers)
+}
+inline void DeviceInfo::add_safety_mcu_fw_vers(const char* value, std::size_t size) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_safety_mcu_fw_vers()->Add()->assign(
+      reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:Nrmk.IndyFramework.DeviceInfo.safety_mcu_fw_vers)
+}
+inline void DeviceInfo::add_safety_mcu_fw_vers(absl::string_view value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_safety_mcu_fw_vers()->Add()->assign(value.data(), value.size());
+  // @@protoc_insertion_point(field_add_string_piece:Nrmk.IndyFramework.DeviceInfo.safety_mcu_fw_vers)
+}
+inline const ::google::protobuf::RepeatedPtrField<std::string>&
+DeviceInfo::safety_mcu_fw_vers() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.DeviceInfo.safety_mcu_fw_vers)
+  return _internal_safety_mcu_fw_vers();
+}
+inline ::google::protobuf::RepeatedPtrField<std::string>* DeviceInfo::mutable_safety_mcu_fw_vers() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.DeviceInfo.safety_mcu_fw_vers)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_safety_mcu_fw_vers();
+}
+inline const ::google::protobuf::RepeatedPtrField<std::string>&
+DeviceInfo::_internal_safety_mcu_fw_vers() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.safety_mcu_fw_vers_;
+}
+inline ::google::protobuf::RepeatedPtrField<std::string>*
+DeviceInfo::_internal_mutable_safety_mcu_fw_vers() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.safety_mcu_fw_vers_;
 }
 
 // .Nrmk.IndyFramework.Response response = 100;
@@ -15204,50 +15330,50 @@ DISignals::_internal_mutable_signals() {
 
 // -------------------------------------------------------------------
 
-// DOMode
+// DOChannelModes
 
 // repeated .Nrmk.IndyFramework.DOChannelMode channel_modes = 1;
-inline int DOMode::_internal_channel_modes_size() const {
+inline int DOChannelModes::_internal_channel_modes_size() const {
   return _internal_channel_modes().size();
 }
-inline int DOMode::channel_modes_size() const {
+inline int DOChannelModes::channel_modes_size() const {
   return _internal_channel_modes_size();
 }
-inline void DOMode::clear_channel_modes() {
+inline void DOChannelModes::clear_channel_modes() {
   _internal_mutable_channel_modes()->Clear();
 }
-inline ::Nrmk::IndyFramework::DOChannelMode* DOMode::mutable_channel_modes(int index) {
-  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.DOMode.channel_modes)
+inline ::Nrmk::IndyFramework::DOChannelMode* DOChannelModes::mutable_channel_modes(int index) {
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.DOChannelModes.channel_modes)
   return _internal_mutable_channel_modes()->Mutable(index);
 }
 inline ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::DOChannelMode >*
-DOMode::mutable_channel_modes() {
-  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.DOMode.channel_modes)
+DOChannelModes::mutable_channel_modes() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.DOChannelModes.channel_modes)
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   return _internal_mutable_channel_modes();
 }
-inline const ::Nrmk::IndyFramework::DOChannelMode& DOMode::channel_modes(int index) const {
-  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.DOMode.channel_modes)
+inline const ::Nrmk::IndyFramework::DOChannelMode& DOChannelModes::channel_modes(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.DOChannelModes.channel_modes)
     return _internal_channel_modes().Get(index);
 }
-inline ::Nrmk::IndyFramework::DOChannelMode* DOMode::add_channel_modes() {
+inline ::Nrmk::IndyFramework::DOChannelMode* DOChannelModes::add_channel_modes() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ::Nrmk::IndyFramework::DOChannelMode* _add = _internal_mutable_channel_modes()->Add();
-  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.DOMode.channel_modes)
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.DOChannelModes.channel_modes)
   return _add;
 }
 inline const ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::DOChannelMode >&
-DOMode::channel_modes() const {
-  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.DOMode.channel_modes)
+DOChannelModes::channel_modes() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.DOChannelModes.channel_modes)
   return _internal_channel_modes();
 }
 inline const ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::DOChannelMode>&
-DOMode::_internal_channel_modes() const {
+DOChannelModes::_internal_channel_modes() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.channel_modes_;
 }
 inline ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::DOChannelMode>*
-DOMode::_internal_mutable_channel_modes() {
+DOChannelModes::_internal_mutable_channel_modes() {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return &_impl_.channel_modes_;
 }
