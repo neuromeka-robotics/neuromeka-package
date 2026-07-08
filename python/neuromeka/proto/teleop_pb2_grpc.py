@@ -3,7 +3,7 @@
 import grpc
 
 import common_msgs_pb2 as common__msgs__pb2
-import teleop_pb2 as teleop__pb2
+import teleop_msgs_pb2 as teleop__msgs__pb2
 
 
 class TeleOpStub(object):
@@ -17,58 +17,128 @@ class TeleOpStub(object):
         """
         self.SetObstacleInfo = channel.unary_unary(
                 '/Nrmk.IndyFramework.TeleOp/SetObstacleInfo',
-                request_serializer=teleop__pb2.ObstacleInfo.SerializeToString,
+                request_serializer=teleop__msgs__pb2.ObstacleInfo.SerializeToString,
                 response_deserializer=common__msgs__pb2.Empty.FromString,
                 )
         self.GetObstacleInfo = channel.unary_unary(
                 '/Nrmk.IndyFramework.TeleOp/GetObstacleInfo',
-                request_serializer=teleop__pb2.ObstacleIndex.SerializeToString,
-                response_deserializer=teleop__pb2.ObstacleInfo.FromString,
+                request_serializer=teleop__msgs__pb2.ObstacleIndex.SerializeToString,
+                response_deserializer=teleop__msgs__pb2.ObstacleInfo.FromString,
                 )
         self.GetCollisionSpheres = channel.unary_unary(
                 '/Nrmk.IndyFramework.TeleOp/GetCollisionSpheres',
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
-                response_deserializer=teleop__pb2.CollisionSpheresInfo.FromString,
+                response_deserializer=teleop__msgs__pb2.CollisionSpheresInfo.FromString,
                 )
         self.GetJointConstraintConfig = channel.unary_unary(
                 '/Nrmk.IndyFramework.TeleOp/GetJointConstraintConfig',
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
-                response_deserializer=teleop__pb2.JointConstraintConfig.FromString,
+                response_deserializer=teleop__msgs__pb2.JointConstraintConfig.FromString,
+                )
+        self.SetJointConstraintConfig = channel.unary_unary(
+                '/Nrmk.IndyFramework.TeleOp/SetJointConstraintConfig',
+                request_serializer=teleop__msgs__pb2.JointConstraintConfig.SerializeToString,
+                response_deserializer=common__msgs__pb2.Response.FromString,
                 )
         self.GetSelfCollisionPairs = channel.unary_unary(
                 '/Nrmk.IndyFramework.TeleOp/GetSelfCollisionPairs',
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
-                response_deserializer=teleop__pb2.SelfCollisionPairs.FromString,
+                response_deserializer=teleop__msgs__pb2.SelfCollisionPairs.FromString,
+                )
+        self.SetSelfCollisionPairs = channel.unary_unary(
+                '/Nrmk.IndyFramework.TeleOp/SetSelfCollisionPairs',
+                request_serializer=teleop__msgs__pb2.SelfCollisionPairs.SerializeToString,
+                response_deserializer=common__msgs__pb2.Response.FromString,
+                )
+        self.GetSelfCollisionConfig = channel.unary_unary(
+                '/Nrmk.IndyFramework.TeleOp/GetSelfCollisionConfig',
+                request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=teleop__msgs__pb2.SelfCollisionConstraintConfig.FromString,
+                )
+        self.SetSelfCollisionConfig = channel.unary_unary(
+                '/Nrmk.IndyFramework.TeleOp/SetSelfCollisionConfig',
+                request_serializer=teleop__msgs__pb2.SelfCollisionConstraintConfig.SerializeToString,
+                response_deserializer=common__msgs__pb2.Response.FromString,
                 )
         self.GetPlaneConstraintConfig = channel.unary_unary(
                 '/Nrmk.IndyFramework.TeleOp/GetPlaneConstraintConfig',
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
-                response_deserializer=teleop__pb2.PlaneConstraintConfig.FromString,
+                response_deserializer=teleop__msgs__pb2.PlaneConstraintConfig.FromString,
+                )
+        self.SetPlaneConstraintConfig = channel.unary_unary(
+                '/Nrmk.IndyFramework.TeleOp/SetPlaneConstraintConfig',
+                request_serializer=teleop__msgs__pb2.PlaneConstraintConfig.SerializeToString,
+                response_deserializer=common__msgs__pb2.Response.FromString,
                 )
         self.GetStaticObstacleConstraintConfig = channel.unary_unary(
                 '/Nrmk.IndyFramework.TeleOp/GetStaticObstacleConstraintConfig',
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
-                response_deserializer=teleop__pb2.ObstacleConstraintConfig.FromString,
+                response_deserializer=teleop__msgs__pb2.ObstacleConstraintConfig.FromString,
+                )
+        self.SetStaticObstacleConstraintConfig = channel.unary_unary(
+                '/Nrmk.IndyFramework.TeleOp/SetStaticObstacleConstraintConfig',
+                request_serializer=teleop__msgs__pb2.ObstacleConstraintConfig.SerializeToString,
+                response_deserializer=common__msgs__pb2.Response.FromString,
                 )
         self.GetDynamicObstacleConstraintConfig = channel.unary_unary(
                 '/Nrmk.IndyFramework.TeleOp/GetDynamicObstacleConstraintConfig',
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
-                response_deserializer=teleop__pb2.ObstacleConstraintConfig.FromString,
+                response_deserializer=teleop__msgs__pb2.ObstacleConstraintConfig.FromString,
+                )
+        self.SetDynamicObstacleConstraintConfig = channel.unary_unary(
+                '/Nrmk.IndyFramework.TeleOp/SetDynamicObstacleConstraintConfig',
+                request_serializer=teleop__msgs__pb2.ObstacleConstraintConfig.SerializeToString,
+                response_deserializer=common__msgs__pb2.Response.FromString,
                 )
         self.GetOrientationDeviationConfig = channel.unary_unary(
                 '/Nrmk.IndyFramework.TeleOp/GetOrientationDeviationConfig',
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
-                response_deserializer=teleop__pb2.OrientationDeviationConfig.FromString,
+                response_deserializer=teleop__msgs__pb2.OrientationDeviationConfig.FromString,
+                )
+        self.SetOrientationDeviationConfig = channel.unary_unary(
+                '/Nrmk.IndyFramework.TeleOp/SetOrientationDeviationConfig',
+                request_serializer=teleop__msgs__pb2.OrientationDeviationConfig.SerializeToString,
+                response_deserializer=common__msgs__pb2.Response.FromString,
+                )
+        self.ApplyTeleopConstraintBatch = channel.unary_unary(
+                '/Nrmk.IndyFramework.TeleOp/ApplyTeleopConstraintBatch',
+                request_serializer=teleop__msgs__pb2.ApplyTeleopConstraintBatchRequest.SerializeToString,
+                response_deserializer=common__msgs__pb2.Response.FromString,
+                )
+        self.GetTeleopConstraintRuntimeStatus = channel.unary_unary(
+                '/Nrmk.IndyFramework.TeleOp/GetTeleopConstraintRuntimeStatus',
+                request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=teleop__msgs__pb2.TeleopConstraintRuntimeStatus.FromString,
+                )
+        self.GetTeleopTuningParams = channel.unary_unary(
+                '/Nrmk.IndyFramework.TeleOp/GetTeleopTuningParams',
+                request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=teleop__msgs__pb2.TeleopTuningParams.FromString,
+                )
+        self.SetTeleopTuningParams = channel.unary_unary(
+                '/Nrmk.IndyFramework.TeleOp/SetTeleopTuningParams',
+                request_serializer=teleop__msgs__pb2.TeleopTuningParams.SerializeToString,
+                response_deserializer=common__msgs__pb2.Response.FromString,
                 )
         self.GetDesiredPosition = channel.unary_unary(
                 '/Nrmk.IndyFramework.TeleOp/GetDesiredPosition',
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
-                response_deserializer=teleop__pb2.DesiredPosition.FromString,
+                response_deserializer=teleop__msgs__pb2.DesiredPosition.FromString,
                 )
         self.GetCurrentPosition = channel.unary_unary(
                 '/Nrmk.IndyFramework.TeleOp/GetCurrentPosition',
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
-                response_deserializer=teleop__pb2.CurrentPosition.FromString,
+                response_deserializer=teleop__msgs__pb2.CurrentPosition.FromString,
+                )
+        self.GetToolCollisionSphereConfig = channel.unary_unary(
+                '/Nrmk.IndyFramework.TeleOp/GetToolCollisionSphereConfig',
+                request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=common__msgs__pb2.Message.FromString,
+                )
+        self.SetToolCollisionSphereConfig = channel.unary_unary(
+                '/Nrmk.IndyFramework.TeleOp/SetToolCollisionSphereConfig',
+                request_serializer=common__msgs__pb2.Message.SerializeToString,
+                response_deserializer=common__msgs__pb2.Response.FromString,
                 )
 
 
@@ -95,7 +165,7 @@ class TeleOpServicer(object):
 
     def GetJointConstraintConfig(self, request, context):
         """---------------------------------------------------------------------------
-        Read-only constraint introspection APIs (for visualization/debugging)
+        Constraint introspection/update APIs (for visualization/debugging/runtime tuning)
         Units:
         - Position: meters (m)
         - Velocity: m/s
@@ -111,7 +181,33 @@ class TeleOpServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def SetJointConstraintConfig(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def GetSelfCollisionPairs(self, request, context):
+        """Read-only preview of the resolved runtime self-collision pairs.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SetSelfCollisionPairs(self, request, context):
+        """Deprecated: direct pair editing is no longer supported.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetSelfCollisionConfig(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SetSelfCollisionConfig(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -123,7 +219,19 @@ class TeleOpServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def SetPlaneConstraintConfig(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def GetStaticObstacleConstraintConfig(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SetStaticObstacleConstraintConfig(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -135,7 +243,43 @@ class TeleOpServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def SetDynamicObstacleConstraintConfig(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def GetOrientationDeviationConfig(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SetOrientationDeviationConfig(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def ApplyTeleopConstraintBatch(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetTeleopConstraintRuntimeStatus(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetTeleopTuningParams(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SetTeleopTuningParams(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -153,63 +297,145 @@ class TeleOpServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetToolCollisionSphereConfig(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SetToolCollisionSphereConfig(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_TeleOpServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'SetObstacleInfo': grpc.unary_unary_rpc_method_handler(
                     servicer.SetObstacleInfo,
-                    request_deserializer=teleop__pb2.ObstacleInfo.FromString,
+                    request_deserializer=teleop__msgs__pb2.ObstacleInfo.FromString,
                     response_serializer=common__msgs__pb2.Empty.SerializeToString,
             ),
             'GetObstacleInfo': grpc.unary_unary_rpc_method_handler(
                     servicer.GetObstacleInfo,
-                    request_deserializer=teleop__pb2.ObstacleIndex.FromString,
-                    response_serializer=teleop__pb2.ObstacleInfo.SerializeToString,
+                    request_deserializer=teleop__msgs__pb2.ObstacleIndex.FromString,
+                    response_serializer=teleop__msgs__pb2.ObstacleInfo.SerializeToString,
             ),
             'GetCollisionSpheres': grpc.unary_unary_rpc_method_handler(
                     servicer.GetCollisionSpheres,
                     request_deserializer=common__msgs__pb2.Empty.FromString,
-                    response_serializer=teleop__pb2.CollisionSpheresInfo.SerializeToString,
+                    response_serializer=teleop__msgs__pb2.CollisionSpheresInfo.SerializeToString,
             ),
             'GetJointConstraintConfig': grpc.unary_unary_rpc_method_handler(
                     servicer.GetJointConstraintConfig,
                     request_deserializer=common__msgs__pb2.Empty.FromString,
-                    response_serializer=teleop__pb2.JointConstraintConfig.SerializeToString,
+                    response_serializer=teleop__msgs__pb2.JointConstraintConfig.SerializeToString,
+            ),
+            'SetJointConstraintConfig': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetJointConstraintConfig,
+                    request_deserializer=teleop__msgs__pb2.JointConstraintConfig.FromString,
+                    response_serializer=common__msgs__pb2.Response.SerializeToString,
             ),
             'GetSelfCollisionPairs': grpc.unary_unary_rpc_method_handler(
                     servicer.GetSelfCollisionPairs,
                     request_deserializer=common__msgs__pb2.Empty.FromString,
-                    response_serializer=teleop__pb2.SelfCollisionPairs.SerializeToString,
+                    response_serializer=teleop__msgs__pb2.SelfCollisionPairs.SerializeToString,
+            ),
+            'SetSelfCollisionPairs': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetSelfCollisionPairs,
+                    request_deserializer=teleop__msgs__pb2.SelfCollisionPairs.FromString,
+                    response_serializer=common__msgs__pb2.Response.SerializeToString,
+            ),
+            'GetSelfCollisionConfig': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetSelfCollisionConfig,
+                    request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=teleop__msgs__pb2.SelfCollisionConstraintConfig.SerializeToString,
+            ),
+            'SetSelfCollisionConfig': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetSelfCollisionConfig,
+                    request_deserializer=teleop__msgs__pb2.SelfCollisionConstraintConfig.FromString,
+                    response_serializer=common__msgs__pb2.Response.SerializeToString,
             ),
             'GetPlaneConstraintConfig': grpc.unary_unary_rpc_method_handler(
                     servicer.GetPlaneConstraintConfig,
                     request_deserializer=common__msgs__pb2.Empty.FromString,
-                    response_serializer=teleop__pb2.PlaneConstraintConfig.SerializeToString,
+                    response_serializer=teleop__msgs__pb2.PlaneConstraintConfig.SerializeToString,
+            ),
+            'SetPlaneConstraintConfig': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetPlaneConstraintConfig,
+                    request_deserializer=teleop__msgs__pb2.PlaneConstraintConfig.FromString,
+                    response_serializer=common__msgs__pb2.Response.SerializeToString,
             ),
             'GetStaticObstacleConstraintConfig': grpc.unary_unary_rpc_method_handler(
                     servicer.GetStaticObstacleConstraintConfig,
                     request_deserializer=common__msgs__pb2.Empty.FromString,
-                    response_serializer=teleop__pb2.ObstacleConstraintConfig.SerializeToString,
+                    response_serializer=teleop__msgs__pb2.ObstacleConstraintConfig.SerializeToString,
+            ),
+            'SetStaticObstacleConstraintConfig': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetStaticObstacleConstraintConfig,
+                    request_deserializer=teleop__msgs__pb2.ObstacleConstraintConfig.FromString,
+                    response_serializer=common__msgs__pb2.Response.SerializeToString,
             ),
             'GetDynamicObstacleConstraintConfig': grpc.unary_unary_rpc_method_handler(
                     servicer.GetDynamicObstacleConstraintConfig,
                     request_deserializer=common__msgs__pb2.Empty.FromString,
-                    response_serializer=teleop__pb2.ObstacleConstraintConfig.SerializeToString,
+                    response_serializer=teleop__msgs__pb2.ObstacleConstraintConfig.SerializeToString,
+            ),
+            'SetDynamicObstacleConstraintConfig': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetDynamicObstacleConstraintConfig,
+                    request_deserializer=teleop__msgs__pb2.ObstacleConstraintConfig.FromString,
+                    response_serializer=common__msgs__pb2.Response.SerializeToString,
             ),
             'GetOrientationDeviationConfig': grpc.unary_unary_rpc_method_handler(
                     servicer.GetOrientationDeviationConfig,
                     request_deserializer=common__msgs__pb2.Empty.FromString,
-                    response_serializer=teleop__pb2.OrientationDeviationConfig.SerializeToString,
+                    response_serializer=teleop__msgs__pb2.OrientationDeviationConfig.SerializeToString,
+            ),
+            'SetOrientationDeviationConfig': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetOrientationDeviationConfig,
+                    request_deserializer=teleop__msgs__pb2.OrientationDeviationConfig.FromString,
+                    response_serializer=common__msgs__pb2.Response.SerializeToString,
+            ),
+            'ApplyTeleopConstraintBatch': grpc.unary_unary_rpc_method_handler(
+                    servicer.ApplyTeleopConstraintBatch,
+                    request_deserializer=teleop__msgs__pb2.ApplyTeleopConstraintBatchRequest.FromString,
+                    response_serializer=common__msgs__pb2.Response.SerializeToString,
+            ),
+            'GetTeleopConstraintRuntimeStatus': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetTeleopConstraintRuntimeStatus,
+                    request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=teleop__msgs__pb2.TeleopConstraintRuntimeStatus.SerializeToString,
+            ),
+            'GetTeleopTuningParams': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetTeleopTuningParams,
+                    request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=teleop__msgs__pb2.TeleopTuningParams.SerializeToString,
+            ),
+            'SetTeleopTuningParams': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetTeleopTuningParams,
+                    request_deserializer=teleop__msgs__pb2.TeleopTuningParams.FromString,
+                    response_serializer=common__msgs__pb2.Response.SerializeToString,
             ),
             'GetDesiredPosition': grpc.unary_unary_rpc_method_handler(
                     servicer.GetDesiredPosition,
                     request_deserializer=common__msgs__pb2.Empty.FromString,
-                    response_serializer=teleop__pb2.DesiredPosition.SerializeToString,
+                    response_serializer=teleop__msgs__pb2.DesiredPosition.SerializeToString,
             ),
             'GetCurrentPosition': grpc.unary_unary_rpc_method_handler(
                     servicer.GetCurrentPosition,
                     request_deserializer=common__msgs__pb2.Empty.FromString,
-                    response_serializer=teleop__pb2.CurrentPosition.SerializeToString,
+                    response_serializer=teleop__msgs__pb2.CurrentPosition.SerializeToString,
+            ),
+            'GetToolCollisionSphereConfig': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetToolCollisionSphereConfig,
+                    request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=common__msgs__pb2.Message.SerializeToString,
+            ),
+            'SetToolCollisionSphereConfig': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetToolCollisionSphereConfig,
+                    request_deserializer=common__msgs__pb2.Message.FromString,
+                    response_serializer=common__msgs__pb2.Response.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -233,7 +459,7 @@ class TeleOp(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.TeleOp/SetObstacleInfo',
-            teleop__pb2.ObstacleInfo.SerializeToString,
+            teleop__msgs__pb2.ObstacleInfo.SerializeToString,
             common__msgs__pb2.Empty.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
@@ -250,8 +476,8 @@ class TeleOp(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.TeleOp/GetObstacleInfo',
-            teleop__pb2.ObstacleIndex.SerializeToString,
-            teleop__pb2.ObstacleInfo.FromString,
+            teleop__msgs__pb2.ObstacleIndex.SerializeToString,
+            teleop__msgs__pb2.ObstacleInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -268,7 +494,7 @@ class TeleOp(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.TeleOp/GetCollisionSpheres',
             common__msgs__pb2.Empty.SerializeToString,
-            teleop__pb2.CollisionSpheresInfo.FromString,
+            teleop__msgs__pb2.CollisionSpheresInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -285,7 +511,24 @@ class TeleOp(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.TeleOp/GetJointConstraintConfig',
             common__msgs__pb2.Empty.SerializeToString,
-            teleop__pb2.JointConstraintConfig.FromString,
+            teleop__msgs__pb2.JointConstraintConfig.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SetJointConstraintConfig(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.TeleOp/SetJointConstraintConfig',
+            teleop__msgs__pb2.JointConstraintConfig.SerializeToString,
+            common__msgs__pb2.Response.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -302,7 +545,58 @@ class TeleOp(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.TeleOp/GetSelfCollisionPairs',
             common__msgs__pb2.Empty.SerializeToString,
-            teleop__pb2.SelfCollisionPairs.FromString,
+            teleop__msgs__pb2.SelfCollisionPairs.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SetSelfCollisionPairs(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.TeleOp/SetSelfCollisionPairs',
+            teleop__msgs__pb2.SelfCollisionPairs.SerializeToString,
+            common__msgs__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetSelfCollisionConfig(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.TeleOp/GetSelfCollisionConfig',
+            common__msgs__pb2.Empty.SerializeToString,
+            teleop__msgs__pb2.SelfCollisionConstraintConfig.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SetSelfCollisionConfig(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.TeleOp/SetSelfCollisionConfig',
+            teleop__msgs__pb2.SelfCollisionConstraintConfig.SerializeToString,
+            common__msgs__pb2.Response.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -319,7 +613,24 @@ class TeleOp(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.TeleOp/GetPlaneConstraintConfig',
             common__msgs__pb2.Empty.SerializeToString,
-            teleop__pb2.PlaneConstraintConfig.FromString,
+            teleop__msgs__pb2.PlaneConstraintConfig.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SetPlaneConstraintConfig(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.TeleOp/SetPlaneConstraintConfig',
+            teleop__msgs__pb2.PlaneConstraintConfig.SerializeToString,
+            common__msgs__pb2.Response.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -336,7 +647,24 @@ class TeleOp(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.TeleOp/GetStaticObstacleConstraintConfig',
             common__msgs__pb2.Empty.SerializeToString,
-            teleop__pb2.ObstacleConstraintConfig.FromString,
+            teleop__msgs__pb2.ObstacleConstraintConfig.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SetStaticObstacleConstraintConfig(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.TeleOp/SetStaticObstacleConstraintConfig',
+            teleop__msgs__pb2.ObstacleConstraintConfig.SerializeToString,
+            common__msgs__pb2.Response.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -353,7 +681,24 @@ class TeleOp(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.TeleOp/GetDynamicObstacleConstraintConfig',
             common__msgs__pb2.Empty.SerializeToString,
-            teleop__pb2.ObstacleConstraintConfig.FromString,
+            teleop__msgs__pb2.ObstacleConstraintConfig.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SetDynamicObstacleConstraintConfig(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.TeleOp/SetDynamicObstacleConstraintConfig',
+            teleop__msgs__pb2.ObstacleConstraintConfig.SerializeToString,
+            common__msgs__pb2.Response.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -370,7 +715,92 @@ class TeleOp(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.TeleOp/GetOrientationDeviationConfig',
             common__msgs__pb2.Empty.SerializeToString,
-            teleop__pb2.OrientationDeviationConfig.FromString,
+            teleop__msgs__pb2.OrientationDeviationConfig.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SetOrientationDeviationConfig(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.TeleOp/SetOrientationDeviationConfig',
+            teleop__msgs__pb2.OrientationDeviationConfig.SerializeToString,
+            common__msgs__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def ApplyTeleopConstraintBatch(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.TeleOp/ApplyTeleopConstraintBatch',
+            teleop__msgs__pb2.ApplyTeleopConstraintBatchRequest.SerializeToString,
+            common__msgs__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetTeleopConstraintRuntimeStatus(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.TeleOp/GetTeleopConstraintRuntimeStatus',
+            common__msgs__pb2.Empty.SerializeToString,
+            teleop__msgs__pb2.TeleopConstraintRuntimeStatus.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetTeleopTuningParams(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.TeleOp/GetTeleopTuningParams',
+            common__msgs__pb2.Empty.SerializeToString,
+            teleop__msgs__pb2.TeleopTuningParams.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SetTeleopTuningParams(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.TeleOp/SetTeleopTuningParams',
+            teleop__msgs__pb2.TeleopTuningParams.SerializeToString,
+            common__msgs__pb2.Response.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -387,7 +817,7 @@ class TeleOp(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.TeleOp/GetDesiredPosition',
             common__msgs__pb2.Empty.SerializeToString,
-            teleop__pb2.DesiredPosition.FromString,
+            teleop__msgs__pb2.DesiredPosition.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -404,6 +834,40 @@ class TeleOp(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.TeleOp/GetCurrentPosition',
             common__msgs__pb2.Empty.SerializeToString,
-            teleop__pb2.CurrentPosition.FromString,
+            teleop__msgs__pb2.CurrentPosition.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetToolCollisionSphereConfig(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.TeleOp/GetToolCollisionSphereConfig',
+            common__msgs__pb2.Empty.SerializeToString,
+            common__msgs__pb2.Message.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SetToolCollisionSphereConfig(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.TeleOp/SetToolCollisionSphereConfig',
+            common__msgs__pb2.Message.SerializeToString,
+            common__msgs__pb2.Response.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

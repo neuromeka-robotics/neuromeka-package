@@ -96,6 +96,31 @@ class CRIStub(object):
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
                 response_deserializer=cri__msgs__pb2.SFDAutoSet.FromString,
                 )
+        self.StartCRIRecord = channel.unary_unary(
+                '/Nrmk.IndyFramework.CRI/StartCRIRecord',
+                request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=common__msgs__pb2.Response.FromString,
+                )
+        self.StopCRIRecord = channel.unary_unary(
+                '/Nrmk.IndyFramework.CRI/StopCRIRecord',
+                request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=common__msgs__pb2.Response.FromString,
+                )
+        self.StartCRIPlayback = channel.unary_unary(
+                '/Nrmk.IndyFramework.CRI/StartCRIPlayback',
+                request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=common__msgs__pb2.Response.FromString,
+                )
+        self.StopCRIPlayback = channel.unary_unary(
+                '/Nrmk.IndyFramework.CRI/StopCRIPlayback',
+                request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=common__msgs__pb2.Response.FromString,
+                )
+        self.GetCRIRecordMode = channel.unary_unary(
+                '/Nrmk.IndyFramework.CRI/GetCRIRecordMode',
+                request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=cri__msgs__pb2.CRIRecordModeState.FromString,
+                )
 
 
 class CRIServicer(object):
@@ -198,6 +223,37 @@ class CRIServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def StartCRIRecord(self, request, context):
+        """Record / Playback for CRI velocity ratio
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def StopCRIRecord(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def StartCRIPlayback(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def StopCRIPlayback(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetCRIRecordMode(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_CRIServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -280,6 +336,31 @@ def add_CRIServicer_to_server(servicer, server):
                     servicer.LoadSFDAutoSet,
                     request_deserializer=common__msgs__pb2.Empty.FromString,
                     response_serializer=cri__msgs__pb2.SFDAutoSet.SerializeToString,
+            ),
+            'StartCRIRecord': grpc.unary_unary_rpc_method_handler(
+                    servicer.StartCRIRecord,
+                    request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=common__msgs__pb2.Response.SerializeToString,
+            ),
+            'StopCRIRecord': grpc.unary_unary_rpc_method_handler(
+                    servicer.StopCRIRecord,
+                    request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=common__msgs__pb2.Response.SerializeToString,
+            ),
+            'StartCRIPlayback': grpc.unary_unary_rpc_method_handler(
+                    servicer.StartCRIPlayback,
+                    request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=common__msgs__pb2.Response.SerializeToString,
+            ),
+            'StopCRIPlayback': grpc.unary_unary_rpc_method_handler(
+                    servicer.StopCRIPlayback,
+                    request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=common__msgs__pb2.Response.SerializeToString,
+            ),
+            'GetCRIRecordMode': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetCRIRecordMode,
+                    request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=cri__msgs__pb2.CRIRecordModeState.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -561,5 +642,90 @@ class CRI(object):
         return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.CRI/LoadSFDAutoSet',
             common__msgs__pb2.Empty.SerializeToString,
             cri__msgs__pb2.SFDAutoSet.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def StartCRIRecord(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.CRI/StartCRIRecord',
+            common__msgs__pb2.Empty.SerializeToString,
+            common__msgs__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def StopCRIRecord(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.CRI/StopCRIRecord',
+            common__msgs__pb2.Empty.SerializeToString,
+            common__msgs__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def StartCRIPlayback(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.CRI/StartCRIPlayback',
+            common__msgs__pb2.Empty.SerializeToString,
+            common__msgs__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def StopCRIPlayback(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.CRI/StopCRIPlayback',
+            common__msgs__pb2.Empty.SerializeToString,
+            common__msgs__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetCRIRecordMode(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.CRI/GetCRIRecordMode',
+            common__msgs__pb2.Empty.SerializeToString,
+            cri__msgs__pb2.CRIRecordModeState.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

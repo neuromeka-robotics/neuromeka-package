@@ -5084,6 +5084,7 @@ class ModbusServerDef final :
     kSerialDataBitsFieldNumber = 8,
     kSerialStopBitsFieldNumber = 9,
     kRtuTransportFieldNumber = 10,
+    kToolIndexFieldNumber = 11,
   };
   // string name = 1;
   void clear_name() ;
@@ -5203,12 +5204,22 @@ class ModbusServerDef final :
   void _internal_set_rtu_transport(::int32_t value);
 
   public:
+  // int32 tool_index = 11;
+  void clear_tool_index() ;
+  ::int32_t tool_index() const;
+  void set_tool_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_tool_index() const;
+  void _internal_set_tool_index(::int32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.ModbusServerDef)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<4, 10, 0, 70, 2> _table_;
+  static const ::google::protobuf::internal::TcParseTable<4, 11, 0, 70, 2> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
@@ -5223,6 +5234,7 @@ class ModbusServerDef final :
     ::int32_t serial_data_bits_;
     ::int32_t serial_stop_bits_;
     ::int32_t rtu_transport_;
+    ::int32_t tool_index_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -7880,6 +7892,28 @@ inline void ModbusServerDef::_internal_set_rtu_transport(::int32_t value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.rtu_transport_ = value;
+}
+
+// int32 tool_index = 11;
+inline void ModbusServerDef::clear_tool_index() {
+  _impl_.tool_index_ = 0;
+}
+inline ::int32_t ModbusServerDef::tool_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.ModbusServerDef.tool_index)
+  return _internal_tool_index();
+}
+inline void ModbusServerDef::set_tool_index(::int32_t value) {
+  _internal_set_tool_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.ModbusServerDef.tool_index)
+}
+inline ::int32_t ModbusServerDef::_internal_tool_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.tool_index_;
+}
+inline void ModbusServerDef::_internal_set_tool_index(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.tool_index_ = value;
 }
 
 // -------------------------------------------------------------------

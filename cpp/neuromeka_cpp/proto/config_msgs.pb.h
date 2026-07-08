@@ -61,6 +61,9 @@ namespace IndyFramework {
 class AutoServoOffConfig;
 struct AutoServoOffConfigDefaultTypeInternal;
 extern AutoServoOffConfigDefaultTypeInternal _AutoServoOffConfig_default_instance_;
+class BinarySettings;
+struct BinarySettingsDefaultTypeInternal;
+extern BinarySettingsDefaultTypeInternal _BinarySettings_default_instance_;
 class ChangePasswordReq;
 struct ChangePasswordReqDefaultTypeInternal;
 extern ChangePasswordReqDefaultTypeInternal _ChangePasswordReq_default_instance_;
@@ -190,6 +193,9 @@ extern PathConfigDefaultTypeInternal _PathConfig_default_instance_;
 class PlanarFrame;
 struct PlanarFrameDefaultTypeInternal;
 extern PlanarFrameDefaultTypeInternal _PlanarFrame_default_instance_;
+class ProtocolStrategy;
+struct ProtocolStrategyDefaultTypeInternal;
+extern ProtocolStrategyDefaultTypeInternal _ProtocolStrategy_default_instance_;
 class Ratio;
 struct RatioDefaultTypeInternal;
 extern RatioDefaultTypeInternal _Ratio_default_instance_;
@@ -223,6 +229,21 @@ extern SetReducedSpeedReqDefaultTypeInternal _SetReducedSpeedReq_default_instanc
 class Shape;
 struct ShapeDefaultTypeInternal;
 extern ShapeDefaultTypeInternal _Shape_default_instance_;
+class SocketCommand;
+struct SocketCommandDefaultTypeInternal;
+extern SocketCommandDefaultTypeInternal _SocketCommand_default_instance_;
+class SocketCommandConfig;
+struct SocketCommandConfigDefaultTypeInternal;
+extern SocketCommandConfigDefaultTypeInternal _SocketCommandConfig_default_instance_;
+class SocketConnection;
+struct SocketConnectionDefaultTypeInternal;
+extern SocketConnectionDefaultTypeInternal _SocketConnection_default_instance_;
+class SocketFrameItem;
+struct SocketFrameItemDefaultTypeInternal;
+extern SocketFrameItemDefaultTypeInternal _SocketFrameItem_default_instance_;
+class SocketServerConfig;
+struct SocketServerConfigDefaultTypeInternal;
+extern SocketServerConfigDefaultTypeInternal _SocketServerConfig_default_instance_;
 class TaskGainSet;
 struct TaskGainSetDefaultTypeInternal;
 extern TaskGainSetDefaultTypeInternal _TaskGainSet_default_instance_;
@@ -232,6 +253,9 @@ extern TeleOpParamsDefaultTypeInternal _TeleOpParams_default_instance_;
 class TestGainSet;
 struct TestGainSetDefaultTypeInternal;
 extern TestGainSetDefaultTypeInternal _TestGainSet_default_instance_;
+class TextSettings;
+struct TextSettingsDefaultTypeInternal;
+extern TextSettingsDefaultTypeInternal _TextSettings_default_instance_;
 class Token;
 struct TokenDefaultTypeInternal;
 extern TokenDefaultTypeInternal _Token_default_instance_;
@@ -3941,6 +3965,1687 @@ class VisionServerList final :
   friend struct ::TableStruct_config_5fmsgs_2eproto;
 };// -------------------------------------------------------------------
 
+class SocketCommandConfig final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.SocketCommandConfig) */ {
+ public:
+  inline SocketCommandConfig() : SocketCommandConfig(nullptr) {}
+  ~SocketCommandConfig() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR SocketCommandConfig(::google::protobuf::internal::ConstantInitialized);
+
+  SocketCommandConfig(const SocketCommandConfig& from);
+  SocketCommandConfig(SocketCommandConfig&& from) noexcept
+    : SocketCommandConfig() {
+    *this = ::std::move(from);
+  }
+
+  inline SocketCommandConfig& operator=(const SocketCommandConfig& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline SocketCommandConfig& operator=(SocketCommandConfig&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const SocketCommandConfig& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const SocketCommandConfig* internal_default_instance() {
+    return reinterpret_cast<const SocketCommandConfig*>(
+               &_SocketCommandConfig_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    19;
+
+  friend void swap(SocketCommandConfig& a, SocketCommandConfig& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(SocketCommandConfig* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(SocketCommandConfig* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  SocketCommandConfig* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<SocketCommandConfig>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const SocketCommandConfig& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const SocketCommandConfig& from) {
+    SocketCommandConfig::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(SocketCommandConfig* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "Nrmk.IndyFramework.SocketCommandConfig";
+  }
+  protected:
+  explicit SocketCommandConfig(::google::protobuf::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kSocketServerConfigFieldNumber = 1,
+  };
+  // repeated .Nrmk.IndyFramework.SocketServerConfig socket_server_config = 1;
+  int socket_server_config_size() const;
+  private:
+  int _internal_socket_server_config_size() const;
+
+  public:
+  void clear_socket_server_config() ;
+  ::Nrmk::IndyFramework::SocketServerConfig* mutable_socket_server_config(int index);
+  ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::SocketServerConfig >*
+      mutable_socket_server_config();
+  private:
+  const ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::SocketServerConfig>& _internal_socket_server_config() const;
+  ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::SocketServerConfig>* _internal_mutable_socket_server_config();
+  public:
+  const ::Nrmk::IndyFramework::SocketServerConfig& socket_server_config(int index) const;
+  ::Nrmk::IndyFramework::SocketServerConfig* add_socket_server_config();
+  const ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::SocketServerConfig >&
+      socket_server_config() const;
+  // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.SocketCommandConfig)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<0, 1, 1, 0, 2> _table_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::SocketServerConfig > socket_server_config_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_config_5fmsgs_2eproto;
+};// -------------------------------------------------------------------
+
+class SocketServerConfig final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.SocketServerConfig) */ {
+ public:
+  inline SocketServerConfig() : SocketServerConfig(nullptr) {}
+  ~SocketServerConfig() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR SocketServerConfig(::google::protobuf::internal::ConstantInitialized);
+
+  SocketServerConfig(const SocketServerConfig& from);
+  SocketServerConfig(SocketServerConfig&& from) noexcept
+    : SocketServerConfig() {
+    *this = ::std::move(from);
+  }
+
+  inline SocketServerConfig& operator=(const SocketServerConfig& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline SocketServerConfig& operator=(SocketServerConfig&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const SocketServerConfig& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const SocketServerConfig* internal_default_instance() {
+    return reinterpret_cast<const SocketServerConfig*>(
+               &_SocketServerConfig_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    20;
+
+  friend void swap(SocketServerConfig& a, SocketServerConfig& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(SocketServerConfig* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(SocketServerConfig* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  SocketServerConfig* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<SocketServerConfig>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const SocketServerConfig& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const SocketServerConfig& from) {
+    SocketServerConfig::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(SocketServerConfig* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "Nrmk.IndyFramework.SocketServerConfig";
+  }
+  protected:
+  explicit SocketServerConfig(::google::protobuf::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kCommandsFieldNumber = 4,
+    kNameFieldNumber = 1,
+    kConnectionFieldNumber = 2,
+    kProtocolStrategyFieldNumber = 3,
+  };
+  // repeated .Nrmk.IndyFramework.SocketCommand commands = 4;
+  int commands_size() const;
+  private:
+  int _internal_commands_size() const;
+
+  public:
+  void clear_commands() ;
+  ::Nrmk::IndyFramework::SocketCommand* mutable_commands(int index);
+  ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::SocketCommand >*
+      mutable_commands();
+  private:
+  const ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::SocketCommand>& _internal_commands() const;
+  ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::SocketCommand>* _internal_mutable_commands();
+  public:
+  const ::Nrmk::IndyFramework::SocketCommand& commands(int index) const;
+  ::Nrmk::IndyFramework::SocketCommand* add_commands();
+  const ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::SocketCommand >&
+      commands() const;
+  // string name = 1;
+  void clear_name() ;
+  const std::string& name() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_name(Arg_&& arg, Args_... args);
+  std::string* mutable_name();
+  PROTOBUF_NODISCARD std::string* release_name();
+  void set_allocated_name(std::string* ptr);
+
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(
+      const std::string& value);
+  std::string* _internal_mutable_name();
+
+  public:
+  // .Nrmk.IndyFramework.SocketConnection connection = 2;
+  bool has_connection() const;
+  void clear_connection() ;
+  const ::Nrmk::IndyFramework::SocketConnection& connection() const;
+  PROTOBUF_NODISCARD ::Nrmk::IndyFramework::SocketConnection* release_connection();
+  ::Nrmk::IndyFramework::SocketConnection* mutable_connection();
+  void set_allocated_connection(::Nrmk::IndyFramework::SocketConnection* value);
+  void unsafe_arena_set_allocated_connection(::Nrmk::IndyFramework::SocketConnection* value);
+  ::Nrmk::IndyFramework::SocketConnection* unsafe_arena_release_connection();
+
+  private:
+  const ::Nrmk::IndyFramework::SocketConnection& _internal_connection() const;
+  ::Nrmk::IndyFramework::SocketConnection* _internal_mutable_connection();
+
+  public:
+  // .Nrmk.IndyFramework.ProtocolStrategy protocol_strategy = 3;
+  bool has_protocol_strategy() const;
+  void clear_protocol_strategy() ;
+  const ::Nrmk::IndyFramework::ProtocolStrategy& protocol_strategy() const;
+  PROTOBUF_NODISCARD ::Nrmk::IndyFramework::ProtocolStrategy* release_protocol_strategy();
+  ::Nrmk::IndyFramework::ProtocolStrategy* mutable_protocol_strategy();
+  void set_allocated_protocol_strategy(::Nrmk::IndyFramework::ProtocolStrategy* value);
+  void unsafe_arena_set_allocated_protocol_strategy(::Nrmk::IndyFramework::ProtocolStrategy* value);
+  ::Nrmk::IndyFramework::ProtocolStrategy* unsafe_arena_release_protocol_strategy();
+
+  private:
+  const ::Nrmk::IndyFramework::ProtocolStrategy& _internal_protocol_strategy() const;
+  ::Nrmk::IndyFramework::ProtocolStrategy* _internal_mutable_protocol_strategy();
+
+  public:
+  // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.SocketServerConfig)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<2, 4, 3, 50, 2> _table_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::SocketCommand > commands_;
+    ::google::protobuf::internal::ArenaStringPtr name_;
+    ::Nrmk::IndyFramework::SocketConnection* connection_;
+    ::Nrmk::IndyFramework::ProtocolStrategy* protocol_strategy_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_config_5fmsgs_2eproto;
+};// -------------------------------------------------------------------
+
+class SocketConnection final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.SocketConnection) */ {
+ public:
+  inline SocketConnection() : SocketConnection(nullptr) {}
+  ~SocketConnection() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR SocketConnection(::google::protobuf::internal::ConstantInitialized);
+
+  SocketConnection(const SocketConnection& from);
+  SocketConnection(SocketConnection&& from) noexcept
+    : SocketConnection() {
+    *this = ::std::move(from);
+  }
+
+  inline SocketConnection& operator=(const SocketConnection& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline SocketConnection& operator=(SocketConnection&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const SocketConnection& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const SocketConnection* internal_default_instance() {
+    return reinterpret_cast<const SocketConnection*>(
+               &_SocketConnection_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    21;
+
+  friend void swap(SocketConnection& a, SocketConnection& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(SocketConnection* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(SocketConnection* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  SocketConnection* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<SocketConnection>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const SocketConnection& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const SocketConnection& from) {
+    SocketConnection::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(SocketConnection* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "Nrmk.IndyFramework.SocketConnection";
+  }
+  protected:
+  explicit SocketConnection(::google::protobuf::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kIpFieldNumber = 1,
+    kPortFieldNumber = 2,
+    kTimeoutMsFieldNumber = 3,
+  };
+  // string ip = 1;
+  void clear_ip() ;
+  const std::string& ip() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_ip(Arg_&& arg, Args_... args);
+  std::string* mutable_ip();
+  PROTOBUF_NODISCARD std::string* release_ip();
+  void set_allocated_ip(std::string* ptr);
+
+  private:
+  const std::string& _internal_ip() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_ip(
+      const std::string& value);
+  std::string* _internal_mutable_ip();
+
+  public:
+  // uint32 port = 2;
+  void clear_port() ;
+  ::uint32_t port() const;
+  void set_port(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_port() const;
+  void _internal_set_port(::uint32_t value);
+
+  public:
+  // uint32 timeout_ms = 3;
+  void clear_timeout_ms() ;
+  ::uint32_t timeout_ms() const;
+  void set_timeout_ms(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_timeout_ms() const;
+  void _internal_set_timeout_ms(::uint32_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.SocketConnection)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<2, 3, 0, 46, 2> _table_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::google::protobuf::internal::ArenaStringPtr ip_;
+    ::uint32_t port_;
+    ::uint32_t timeout_ms_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_config_5fmsgs_2eproto;
+};// -------------------------------------------------------------------
+
+class ProtocolStrategy final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.ProtocolStrategy) */ {
+ public:
+  inline ProtocolStrategy() : ProtocolStrategy(nullptr) {}
+  ~ProtocolStrategy() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR ProtocolStrategy(::google::protobuf::internal::ConstantInitialized);
+
+  ProtocolStrategy(const ProtocolStrategy& from);
+  ProtocolStrategy(ProtocolStrategy&& from) noexcept
+    : ProtocolStrategy() {
+    *this = ::std::move(from);
+  }
+
+  inline ProtocolStrategy& operator=(const ProtocolStrategy& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ProtocolStrategy& operator=(ProtocolStrategy&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ProtocolStrategy& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ProtocolStrategy* internal_default_instance() {
+    return reinterpret_cast<const ProtocolStrategy*>(
+               &_ProtocolStrategy_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    22;
+
+  friend void swap(ProtocolStrategy& a, ProtocolStrategy& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ProtocolStrategy* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ProtocolStrategy* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ProtocolStrategy* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ProtocolStrategy>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const ProtocolStrategy& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const ProtocolStrategy& from) {
+    ProtocolStrategy::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ProtocolStrategy* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "Nrmk.IndyFramework.ProtocolStrategy";
+  }
+  protected:
+  explicit ProtocolStrategy(::google::protobuf::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kModeFieldNumber = 1,
+    kBinarySettingsFieldNumber = 2,
+    kTextSettingsFieldNumber = 3,
+  };
+  // string mode = 1;
+  void clear_mode() ;
+  const std::string& mode() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_mode(Arg_&& arg, Args_... args);
+  std::string* mutable_mode();
+  PROTOBUF_NODISCARD std::string* release_mode();
+  void set_allocated_mode(std::string* ptr);
+
+  private:
+  const std::string& _internal_mode() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_mode(
+      const std::string& value);
+  std::string* _internal_mutable_mode();
+
+  public:
+  // .Nrmk.IndyFramework.BinarySettings binary_settings = 2;
+  bool has_binary_settings() const;
+  void clear_binary_settings() ;
+  const ::Nrmk::IndyFramework::BinarySettings& binary_settings() const;
+  PROTOBUF_NODISCARD ::Nrmk::IndyFramework::BinarySettings* release_binary_settings();
+  ::Nrmk::IndyFramework::BinarySettings* mutable_binary_settings();
+  void set_allocated_binary_settings(::Nrmk::IndyFramework::BinarySettings* value);
+  void unsafe_arena_set_allocated_binary_settings(::Nrmk::IndyFramework::BinarySettings* value);
+  ::Nrmk::IndyFramework::BinarySettings* unsafe_arena_release_binary_settings();
+
+  private:
+  const ::Nrmk::IndyFramework::BinarySettings& _internal_binary_settings() const;
+  ::Nrmk::IndyFramework::BinarySettings* _internal_mutable_binary_settings();
+
+  public:
+  // .Nrmk.IndyFramework.TextSettings text_settings = 3;
+  bool has_text_settings() const;
+  void clear_text_settings() ;
+  const ::Nrmk::IndyFramework::TextSettings& text_settings() const;
+  PROTOBUF_NODISCARD ::Nrmk::IndyFramework::TextSettings* release_text_settings();
+  ::Nrmk::IndyFramework::TextSettings* mutable_text_settings();
+  void set_allocated_text_settings(::Nrmk::IndyFramework::TextSettings* value);
+  void unsafe_arena_set_allocated_text_settings(::Nrmk::IndyFramework::TextSettings* value);
+  ::Nrmk::IndyFramework::TextSettings* unsafe_arena_release_text_settings();
+
+  private:
+  const ::Nrmk::IndyFramework::TextSettings& _internal_text_settings() const;
+  ::Nrmk::IndyFramework::TextSettings* _internal_mutable_text_settings();
+
+  public:
+  // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.ProtocolStrategy)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<2, 3, 2, 48, 2> _table_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::ArenaStringPtr mode_;
+    ::Nrmk::IndyFramework::BinarySettings* binary_settings_;
+    ::Nrmk::IndyFramework::TextSettings* text_settings_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_config_5fmsgs_2eproto;
+};// -------------------------------------------------------------------
+
+class BinarySettings final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.BinarySettings) */ {
+ public:
+  inline BinarySettings() : BinarySettings(nullptr) {}
+  ~BinarySettings() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR BinarySettings(::google::protobuf::internal::ConstantInitialized);
+
+  BinarySettings(const BinarySettings& from);
+  BinarySettings(BinarySettings&& from) noexcept
+    : BinarySettings() {
+    *this = ::std::move(from);
+  }
+
+  inline BinarySettings& operator=(const BinarySettings& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline BinarySettings& operator=(BinarySettings&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const BinarySettings& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const BinarySettings* internal_default_instance() {
+    return reinterpret_cast<const BinarySettings*>(
+               &_BinarySettings_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    23;
+
+  friend void swap(BinarySettings& a, BinarySettings& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(BinarySettings* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(BinarySettings* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  BinarySettings* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<BinarySettings>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const BinarySettings& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const BinarySettings& from) {
+    BinarySettings::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(BinarySettings* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "Nrmk.IndyFramework.BinarySettings";
+  }
+  protected:
+  explicit BinarySettings(::google::protobuf::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kEndiannessFieldNumber = 1,
+    kAlignByteFieldNumber = 2,
+  };
+  // string endianness = 1;
+  void clear_endianness() ;
+  const std::string& endianness() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_endianness(Arg_&& arg, Args_... args);
+  std::string* mutable_endianness();
+  PROTOBUF_NODISCARD std::string* release_endianness();
+  void set_allocated_endianness(std::string* ptr);
+
+  private:
+  const std::string& _internal_endianness() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_endianness(
+      const std::string& value);
+  std::string* _internal_mutable_endianness();
+
+  public:
+  // uint32 align_byte = 2;
+  void clear_align_byte() ;
+  ::uint32_t align_byte() const;
+  void set_align_byte(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_align_byte() const;
+  void _internal_set_align_byte(::uint32_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.BinarySettings)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<1, 2, 0, 52, 2> _table_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::google::protobuf::internal::ArenaStringPtr endianness_;
+    ::uint32_t align_byte_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_config_5fmsgs_2eproto;
+};// -------------------------------------------------------------------
+
+class TextSettings final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.TextSettings) */ {
+ public:
+  inline TextSettings() : TextSettings(nullptr) {}
+  ~TextSettings() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR TextSettings(::google::protobuf::internal::ConstantInitialized);
+
+  TextSettings(const TextSettings& from);
+  TextSettings(TextSettings&& from) noexcept
+    : TextSettings() {
+    *this = ::std::move(from);
+  }
+
+  inline TextSettings& operator=(const TextSettings& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline TextSettings& operator=(TextSettings&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const TextSettings& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const TextSettings* internal_default_instance() {
+    return reinterpret_cast<const TextSettings*>(
+               &_TextSettings_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    24;
+
+  friend void swap(TextSettings& a, TextSettings& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(TextSettings* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(TextSettings* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  TextSettings* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<TextSettings>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const TextSettings& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const TextSettings& from) {
+    TextSettings::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(TextSettings* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "Nrmk.IndyFramework.TextSettings";
+  }
+  protected:
+  explicit TextSettings(::google::protobuf::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kEncodingFieldNumber = 1,
+    kEolFieldNumber = 2,
+    kSeparatorFieldNumber = 3,
+  };
+  // string encoding = 1;
+  void clear_encoding() ;
+  const std::string& encoding() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_encoding(Arg_&& arg, Args_... args);
+  std::string* mutable_encoding();
+  PROTOBUF_NODISCARD std::string* release_encoding();
+  void set_allocated_encoding(std::string* ptr);
+
+  private:
+  const std::string& _internal_encoding() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_encoding(
+      const std::string& value);
+  std::string* _internal_mutable_encoding();
+
+  public:
+  // string eol = 2;
+  void clear_eol() ;
+  const std::string& eol() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_eol(Arg_&& arg, Args_... args);
+  std::string* mutable_eol();
+  PROTOBUF_NODISCARD std::string* release_eol();
+  void set_allocated_eol(std::string* ptr);
+
+  private:
+  const std::string& _internal_eol() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_eol(
+      const std::string& value);
+  std::string* _internal_mutable_eol();
+
+  public:
+  // string separator = 3;
+  void clear_separator() ;
+  const std::string& separator() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_separator(Arg_&& arg, Args_... args);
+  std::string* mutable_separator();
+  PROTOBUF_NODISCARD std::string* release_separator();
+  void set_allocated_separator(std::string* ptr);
+
+  private:
+  const std::string& _internal_separator() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_separator(
+      const std::string& value);
+  std::string* _internal_mutable_separator();
+
+  public:
+  // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.TextSettings)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<2, 3, 0, 60, 2> _table_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::google::protobuf::internal::ArenaStringPtr encoding_;
+    ::google::protobuf::internal::ArenaStringPtr eol_;
+    ::google::protobuf::internal::ArenaStringPtr separator_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_config_5fmsgs_2eproto;
+};// -------------------------------------------------------------------
+
+class SocketCommand final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.SocketCommand) */ {
+ public:
+  inline SocketCommand() : SocketCommand(nullptr) {}
+  ~SocketCommand() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR SocketCommand(::google::protobuf::internal::ConstantInitialized);
+
+  SocketCommand(const SocketCommand& from);
+  SocketCommand(SocketCommand&& from) noexcept
+    : SocketCommand() {
+    *this = ::std::move(from);
+  }
+
+  inline SocketCommand& operator=(const SocketCommand& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline SocketCommand& operator=(SocketCommand&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const SocketCommand& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const SocketCommand* internal_default_instance() {
+    return reinterpret_cast<const SocketCommand*>(
+               &_SocketCommand_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    25;
+
+  friend void swap(SocketCommand& a, SocketCommand& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(SocketCommand* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(SocketCommand* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  SocketCommand* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<SocketCommand>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const SocketCommand& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const SocketCommand& from) {
+    SocketCommand::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(SocketCommand* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "Nrmk.IndyFramework.SocketCommand";
+  }
+  protected:
+  explicit SocketCommand(::google::protobuf::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kTxFrameFieldNumber = 2,
+    kRxFrameFieldNumber = 3,
+    kCommandNameFieldNumber = 1,
+  };
+  // repeated .Nrmk.IndyFramework.SocketFrameItem tx_frame = 2;
+  int tx_frame_size() const;
+  private:
+  int _internal_tx_frame_size() const;
+
+  public:
+  void clear_tx_frame() ;
+  ::Nrmk::IndyFramework::SocketFrameItem* mutable_tx_frame(int index);
+  ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::SocketFrameItem >*
+      mutable_tx_frame();
+  private:
+  const ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::SocketFrameItem>& _internal_tx_frame() const;
+  ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::SocketFrameItem>* _internal_mutable_tx_frame();
+  public:
+  const ::Nrmk::IndyFramework::SocketFrameItem& tx_frame(int index) const;
+  ::Nrmk::IndyFramework::SocketFrameItem* add_tx_frame();
+  const ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::SocketFrameItem >&
+      tx_frame() const;
+  // repeated .Nrmk.IndyFramework.SocketFrameItem rx_frame = 3;
+  int rx_frame_size() const;
+  private:
+  int _internal_rx_frame_size() const;
+
+  public:
+  void clear_rx_frame() ;
+  ::Nrmk::IndyFramework::SocketFrameItem* mutable_rx_frame(int index);
+  ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::SocketFrameItem >*
+      mutable_rx_frame();
+  private:
+  const ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::SocketFrameItem>& _internal_rx_frame() const;
+  ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::SocketFrameItem>* _internal_mutable_rx_frame();
+  public:
+  const ::Nrmk::IndyFramework::SocketFrameItem& rx_frame(int index) const;
+  ::Nrmk::IndyFramework::SocketFrameItem* add_rx_frame();
+  const ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::SocketFrameItem >&
+      rx_frame() const;
+  // string command_name = 1;
+  void clear_command_name() ;
+  const std::string& command_name() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_command_name(Arg_&& arg, Args_... args);
+  std::string* mutable_command_name();
+  PROTOBUF_NODISCARD std::string* release_command_name();
+  void set_allocated_command_name(std::string* ptr);
+
+  private:
+  const std::string& _internal_command_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_command_name(
+      const std::string& value);
+  std::string* _internal_mutable_command_name();
+
+  public:
+  // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.SocketCommand)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<2, 3, 2, 53, 2> _table_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::SocketFrameItem > tx_frame_;
+    ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::SocketFrameItem > rx_frame_;
+    ::google::protobuf::internal::ArenaStringPtr command_name_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_config_5fmsgs_2eproto;
+};// -------------------------------------------------------------------
+
+class SocketFrameItem final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.SocketFrameItem) */ {
+ public:
+  inline SocketFrameItem() : SocketFrameItem(nullptr) {}
+  ~SocketFrameItem() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR SocketFrameItem(::google::protobuf::internal::ConstantInitialized);
+
+  SocketFrameItem(const SocketFrameItem& from);
+  SocketFrameItem(SocketFrameItem&& from) noexcept
+    : SocketFrameItem() {
+    *this = ::std::move(from);
+  }
+
+  inline SocketFrameItem& operator=(const SocketFrameItem& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline SocketFrameItem& operator=(SocketFrameItem&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const SocketFrameItem& default_instance() {
+    return *internal_default_instance();
+  }
+  enum ValueCase {
+    kIntVal = 4,
+    kUintVal = 5,
+    kFloatVal = 6,
+    kStringVal = 7,
+    VALUE_NOT_SET = 0,
+  };
+
+  static inline const SocketFrameItem* internal_default_instance() {
+    return reinterpret_cast<const SocketFrameItem*>(
+               &_SocketFrameItem_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    26;
+
+  friend void swap(SocketFrameItem& a, SocketFrameItem& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(SocketFrameItem* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(SocketFrameItem* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  SocketFrameItem* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<SocketFrameItem>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const SocketFrameItem& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const SocketFrameItem& from) {
+    SocketFrameItem::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(SocketFrameItem* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "Nrmk.IndyFramework.SocketFrameItem";
+  }
+  protected:
+  explicit SocketFrameItem(::google::protobuf::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kTagFieldNumber = 1,
+    kDtypeFieldNumber = 2,
+    kTypeFieldNumber = 3,
+    kBindFieldNumber = 10,
+    kCountRefFieldNumber = 11,
+    kScopeStartFieldNumber = 12,
+    kIntValFieldNumber = 4,
+    kUintValFieldNumber = 5,
+    kFloatValFieldNumber = 6,
+    kStringValFieldNumber = 7,
+  };
+  // string tag = 1;
+  void clear_tag() ;
+  const std::string& tag() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_tag(Arg_&& arg, Args_... args);
+  std::string* mutable_tag();
+  PROTOBUF_NODISCARD std::string* release_tag();
+  void set_allocated_tag(std::string* ptr);
+
+  private:
+  const std::string& _internal_tag() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_tag(
+      const std::string& value);
+  std::string* _internal_mutable_tag();
+
+  public:
+  // string dtype = 2;
+  void clear_dtype() ;
+  const std::string& dtype() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_dtype(Arg_&& arg, Args_... args);
+  std::string* mutable_dtype();
+  PROTOBUF_NODISCARD std::string* release_dtype();
+  void set_allocated_dtype(std::string* ptr);
+
+  private:
+  const std::string& _internal_dtype() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_dtype(
+      const std::string& value);
+  std::string* _internal_mutable_dtype();
+
+  public:
+  // string type = 3;
+  void clear_type() ;
+  const std::string& type() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_type(Arg_&& arg, Args_... args);
+  std::string* mutable_type();
+  PROTOBUF_NODISCARD std::string* release_type();
+  void set_allocated_type(std::string* ptr);
+
+  private:
+  const std::string& _internal_type() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_type(
+      const std::string& value);
+  std::string* _internal_mutable_type();
+
+  public:
+  // string bind = 10;
+  void clear_bind() ;
+  const std::string& bind() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_bind(Arg_&& arg, Args_... args);
+  std::string* mutable_bind();
+  PROTOBUF_NODISCARD std::string* release_bind();
+  void set_allocated_bind(std::string* ptr);
+
+  private:
+  const std::string& _internal_bind() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_bind(
+      const std::string& value);
+  std::string* _internal_mutable_bind();
+
+  public:
+  // string count_ref = 11;
+  void clear_count_ref() ;
+  const std::string& count_ref() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_count_ref(Arg_&& arg, Args_... args);
+  std::string* mutable_count_ref();
+  PROTOBUF_NODISCARD std::string* release_count_ref();
+  void set_allocated_count_ref(std::string* ptr);
+
+  private:
+  const std::string& _internal_count_ref() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_count_ref(
+      const std::string& value);
+  std::string* _internal_mutable_count_ref();
+
+  public:
+  // int32 scope_start = 12;
+  void clear_scope_start() ;
+  ::int32_t scope_start() const;
+  void set_scope_start(::int32_t value);
+
+  private:
+  ::int32_t _internal_scope_start() const;
+  void _internal_set_scope_start(::int32_t value);
+
+  public:
+  // int64 int_val = 4;
+  bool has_int_val() const;
+  void clear_int_val() ;
+  ::int64_t int_val() const;
+  void set_int_val(::int64_t value);
+
+  private:
+  ::int64_t _internal_int_val() const;
+  void _internal_set_int_val(::int64_t value);
+
+  public:
+  // uint64 uint_val = 5;
+  bool has_uint_val() const;
+  void clear_uint_val() ;
+  ::uint64_t uint_val() const;
+  void set_uint_val(::uint64_t value);
+
+  private:
+  ::uint64_t _internal_uint_val() const;
+  void _internal_set_uint_val(::uint64_t value);
+
+  public:
+  // double float_val = 6;
+  bool has_float_val() const;
+  void clear_float_val() ;
+  double float_val() const;
+  void set_float_val(double value);
+
+  private:
+  double _internal_float_val() const;
+  void _internal_set_float_val(double value);
+
+  public:
+  // string string_val = 7;
+  bool has_string_val() const;
+  void clear_string_val() ;
+  const std::string& string_val() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_string_val(Arg_&& arg, Args_... args);
+  std::string* mutable_string_val();
+  PROTOBUF_NODISCARD std::string* release_string_val();
+  void set_allocated_string_val(std::string* ptr);
+
+  private:
+  const std::string& _internal_string_val() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_string_val(
+      const std::string& value);
+  std::string* _internal_mutable_string_val();
+
+  public:
+  void clear_value();
+  ValueCase value_case() const;
+  // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.SocketFrameItem)
+ private:
+  class _Internal;
+  void set_has_int_val();
+  void set_has_uint_val();
+  void set_has_float_val();
+  void set_has_string_val();
+
+  inline bool has_value() const;
+  inline void clear_has_value();
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<4, 10, 0, 86, 2> _table_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::google::protobuf::internal::ArenaStringPtr tag_;
+    ::google::protobuf::internal::ArenaStringPtr dtype_;
+    ::google::protobuf::internal::ArenaStringPtr type_;
+    ::google::protobuf::internal::ArenaStringPtr bind_;
+    ::google::protobuf::internal::ArenaStringPtr count_ref_;
+    ::int32_t scope_start_;
+    union ValueUnion {
+      constexpr ValueUnion() : _constinit_{} {}
+        ::google::protobuf::internal::ConstantInitialized _constinit_;
+      ::int64_t int_val_;
+      ::uint64_t uint_val_;
+      double float_val_;
+      ::google::protobuf::internal::ArenaStringPtr string_val_;
+    } value_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    ::uint32_t _oneof_case_[1];
+
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_config_5fmsgs_2eproto;
+};// -------------------------------------------------------------------
+
 class ModbusServerList final :
     public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.ModbusServerList) */ {
  public:
@@ -3997,7 +5702,7 @@ class ModbusServerList final :
                &_ModbusServerList_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    19;
+    27;
 
   friend void swap(ModbusServerList& a, ModbusServerList& b) {
     a.Swap(&b);
@@ -4163,7 +5868,7 @@ class Ratio final :
                &_Ratio_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    20;
+    28;
 
   friend void swap(Ratio& a, Ratio& b) {
     a.Swap(&b);
@@ -4321,7 +6026,7 @@ class AutoServoOffConfig final :
                &_AutoServoOffConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    21;
+    29;
 
   friend void swap(AutoServoOffConfig& a, AutoServoOffConfig& b) {
     a.Swap(&b);
@@ -4491,7 +6196,7 @@ class CollTuningConfig final :
                &_CollTuningConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    22;
+    30;
 
   friend void swap(CollTuningConfig& a, CollTuningConfig& b) {
     a.Swap(&b);
@@ -4716,7 +6421,7 @@ class JointGainSet final :
                &_JointGainSet_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    23;
+    31;
 
   friend void swap(JointGainSet& a, JointGainSet& b) {
     a.Swap(&b);
@@ -4922,7 +6627,7 @@ class TaskGainSet final :
                &_TaskGainSet_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    24;
+    32;
 
   friend void swap(TaskGainSet& a, TaskGainSet& b) {
     a.Swap(&b);
@@ -5128,7 +6833,7 @@ class ImpedanceGainSet final :
                &_ImpedanceGainSet_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    25;
+    33;
 
   friend void swap(ImpedanceGainSet& a, ImpedanceGainSet& b) {
     a.Swap(&b);
@@ -5354,7 +7059,7 @@ class ForceGainSet final :
                &_ForceGainSet_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    26;
+    34;
 
   friend void swap(ForceGainSet& a, ForceGainSet& b) {
     a.Swap(&b);
@@ -5660,7 +7365,7 @@ class TestGainSet final :
                &_TestGainSet_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    27;
+    35;
 
   friend void swap(TestGainSet& a, TestGainSet& b) {
     a.Swap(&b);
@@ -5926,7 +7631,7 @@ class ComplianceGainSet final :
                &_ComplianceGainSet_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    28;
+    36;
 
   friend void swap(ComplianceGainSet& a, ComplianceGainSet& b) {
     a.Swap(&b);
@@ -6252,7 +7957,7 @@ class CustomGainSet final :
                &_CustomGainSet_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    29;
+    37;
 
   friend void swap(CustomGainSet& a, CustomGainSet& b) {
     a.Swap(&b);
@@ -6598,7 +8303,7 @@ class NewControllerTestState final :
                &_NewControllerTestState_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    30;
+    38;
 
   friend void swap(NewControllerTestState& a, NewControllerTestState& b) {
     a.Swap(&b);
@@ -6768,7 +8473,7 @@ class FrictionCompSet final :
                &_FrictionCompSet_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    31;
+    39;
 
   friend void swap(FrictionCompSet& a, FrictionCompSet& b) {
     a.Swap(&b);
@@ -6980,7 +8685,7 @@ class MountingAngles final :
                &_MountingAngles_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    32;
+    40;
 
   friend void swap(MountingAngles& a, MountingAngles& b) {
     a.Swap(&b);
@@ -7150,7 +8855,7 @@ class ToolProperties final :
                &_ToolProperties_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    33;
+    41;
 
   friend void swap(ToolProperties& a, ToolProperties& b) {
     a.Swap(&b);
@@ -7360,7 +9065,7 @@ class ToolPropertyEntry final :
                &_ToolPropertyEntry_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    34;
+    42;
 
   friend void swap(ToolPropertyEntry& a, ToolPropertyEntry& b) {
     a.Swap(&b);
@@ -7542,7 +9247,7 @@ class ToolPropertyEntries final :
                &_ToolPropertyEntries_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    35;
+    43;
 
   friend void swap(ToolPropertyEntries& a, ToolPropertyEntries& b) {
     a.Swap(&b);
@@ -7708,7 +9413,7 @@ class CollisionSensLevel final :
                &_CollisionSensLevel_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    36;
+    44;
 
   friend void swap(CollisionSensLevel& a, CollisionSensLevel& b) {
     a.Swap(&b);
@@ -7866,7 +9571,7 @@ class CollisionThresholds final :
                &_CollisionThresholds_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    37;
+    45;
 
   friend void swap(CollisionThresholds& a, CollisionThresholds& b) {
     a.Swap(&b);
@@ -8212,7 +9917,7 @@ class CollisionPolicy final :
                &_CollisionPolicy_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    38;
+    46;
 
   friend void swap(CollisionPolicy& a, CollisionPolicy& b) {
     a.Swap(&b);
@@ -8394,7 +10099,7 @@ class OnStartProgramConfig final :
                &_OnStartProgramConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    39;
+    47;
 
   friend void swap(OnStartProgramConfig& a, OnStartProgramConfig& b) {
     a.Swap(&b);
@@ -8576,7 +10281,7 @@ class SafetyLimits final :
                &_SafetyLimits_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    40;
+    48;
 
   friend void swap(SafetyLimits& a, SafetyLimits& b) {
     a.Swap(&b);
@@ -8834,7 +10539,7 @@ class SafetyStopConfig final :
                &_SafetyStopConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    41;
+    49;
 
   friend void swap(SafetyStopConfig& a, SafetyStopConfig& b) {
     a.Swap(&b);
@@ -9096,7 +10801,7 @@ class SafetySnapshotInfo final :
                &_SafetySnapshotInfo_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    42;
+    50;
 
   friend void swap(SafetySnapshotInfo& a, SafetySnapshotInfo& b) {
     a.Swap(&b);
@@ -9308,7 +11013,7 @@ class SafetySnapshotList final :
                &_SafetySnapshotList_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    43;
+    51;
 
   friend void swap(SafetySnapshotList& a, SafetySnapshotList& b) {
     a.Swap(&b);
@@ -9474,7 +11179,7 @@ class SaveSafetySnapshotReq final :
                &_SaveSafetySnapshotReq_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    44;
+    52;
 
   friend void swap(SaveSafetySnapshotReq& a, SaveSafetySnapshotReq& b) {
     a.Swap(&b);
@@ -9638,7 +11343,7 @@ class SafetySnapshotId final :
                &_SafetySnapshotId_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    45;
+    53;
 
   friend void swap(SafetySnapshotId& a, SafetySnapshotId& b) {
     a.Swap(&b);
@@ -9802,7 +11507,7 @@ class DIConfig final :
                &_DIConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    46;
+    54;
 
   friend void swap(DIConfig& a, DIConfig& b) {
     a.Swap(&b);
@@ -10038,7 +11743,7 @@ class DIConfigList final :
                &_DIConfigList_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    47;
+    55;
 
   friend void swap(DIConfigList& a, DIConfigList& b) {
     a.Swap(&b);
@@ -10204,7 +11909,7 @@ class DOConfig final :
                &_DOConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    48;
+    56;
 
   friend void swap(DOConfig& a, DOConfig& b) {
     a.Swap(&b);
@@ -10420,7 +12125,7 @@ class DOConfigList final :
                &_DOConfigList_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    49;
+    57;
 
   friend void swap(DOConfigList& a, DOConfigList& b) {
     a.Swap(&b);
@@ -10586,7 +12291,7 @@ class GetReducedRatioRes final :
                &_GetReducedRatioRes_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    50;
+    58;
 
   friend void swap(GetReducedRatioRes& a, GetReducedRatioRes& b) {
     a.Swap(&b);
@@ -10762,7 +12467,7 @@ class GetReducedSpeedRes final :
                &_GetReducedSpeedRes_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    51;
+    59;
 
   friend void swap(GetReducedSpeedRes& a, GetReducedSpeedRes& b) {
     a.Swap(&b);
@@ -10938,7 +12643,7 @@ class SetReducedSpeedReq final :
                &_SetReducedSpeedReq_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    52;
+    60;
 
   friend void swap(SetReducedSpeedReq& a, SetReducedSpeedReq& b) {
     a.Swap(&b);
@@ -11096,7 +12801,7 @@ class FTSensorDevice final :
                &_FTSensorDevice_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    53;
+    61;
 
   friend void swap(FTSensorDevice& a, FTSensorDevice& b) {
     a.Swap(&b);
@@ -11414,7 +13119,7 @@ class FTSensorDeviceRes final :
                &_FTSensorDeviceRes_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    54;
+    62;
 
   friend void swap(FTSensorDeviceRes& a, FTSensorDeviceRes& b) {
     a.Swap(&b);
@@ -11578,7 +13283,7 @@ class TeleOpParams final :
                &_TeleOpParams_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    55;
+    63;
 
   friend void swap(TeleOpParams& a, TeleOpParams& b) {
     a.Swap(&b);
@@ -11650,38 +13355,16 @@ class TeleOpParams final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kSmoothFactorFieldNumber = 1,
-    kCutoffFreqFieldNumber = 2,
-    kErrorGainFieldNumber = 3,
+    kCutoffFreqInputFieldNumber = 11,
   };
-  // float smooth_factor = 1;
-  void clear_smooth_factor() ;
-  float smooth_factor() const;
-  void set_smooth_factor(float value);
+  // float cutoff_freq_input = 11;
+  void clear_cutoff_freq_input() ;
+  float cutoff_freq_input() const;
+  void set_cutoff_freq_input(float value);
 
   private:
-  float _internal_smooth_factor() const;
-  void _internal_set_smooth_factor(float value);
-
-  public:
-  // float cutoff_freq = 2;
-  void clear_cutoff_freq() ;
-  float cutoff_freq() const;
-  void set_cutoff_freq(float value);
-
-  private:
-  float _internal_cutoff_freq() const;
-  void _internal_set_cutoff_freq(float value);
-
-  public:
-  // float error_gain = 3;
-  void clear_error_gain() ;
-  float error_gain() const;
-  void set_error_gain(float value);
-
-  private:
-  float _internal_error_gain() const;
-  void _internal_set_error_gain(float value);
+  float _internal_cutoff_freq_input() const;
+  void _internal_set_cutoff_freq_input(float value);
 
   public:
   // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.TeleOpParams)
@@ -11689,14 +13372,12 @@ class TeleOpParams final :
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<2, 3, 0, 0, 2> _table_;
+  static const ::google::protobuf::internal::TcParseTable<0, 1, 0, 0, 2> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
-    float smooth_factor_;
-    float cutoff_freq_;
-    float error_gain_;
+    float cutoff_freq_input_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -11760,7 +13441,7 @@ class KinematicsParams_MDH final :
                &_KinematicsParams_MDH_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    56;
+    64;
 
   friend void swap(KinematicsParams_MDH& a, KinematicsParams_MDH& b) {
     a.Swap(&b);
@@ -11990,7 +13671,7 @@ class KinematicsParams final :
                &_KinematicsParams_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    57;
+    65;
 
   friend void swap(KinematicsParams& a, KinematicsParams& b) {
     a.Swap(&b);
@@ -12179,7 +13860,7 @@ class CollisionModelMargin final :
                &_CollisionModelMargin_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    58;
+    66;
 
   friend void swap(CollisionModelMargin& a, CollisionModelMargin& b) {
     a.Swap(&b);
@@ -12349,7 +14030,7 @@ class Shape final :
                &_Shape_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    59;
+    67;
 
   friend void swap(Shape& a, Shape& b) {
     a.Swap(&b);
@@ -12630,7 +14311,7 @@ class SensorlessParams final :
                &_SensorlessParams_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    60;
+    68;
 
   friend void swap(SensorlessParams& a, SensorlessParams& b) {
     a.Swap(&b);
@@ -12796,7 +14477,7 @@ class NamedGeometry final :
                &_NamedGeometry_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    61;
+    69;
 
   friend void swap(NamedGeometry& a, NamedGeometry& b) {
     a.Swap(&b);
@@ -12980,7 +14661,7 @@ class ToolShapeList final :
                &_ToolShapeList_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    62;
+    70;
 
   friend void swap(ToolShapeList& a, ToolShapeList& b) {
     a.Swap(&b);
@@ -13164,7 +14845,7 @@ class Zone final :
                &_Zone_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    63;
+    71;
 
   friend void swap(Zone& a, Zone& b) {
     a.Swap(&b);
@@ -13461,7 +15142,7 @@ class NamedEnvironment final :
                &_NamedEnvironment_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    64;
+    72;
 
   friend void swap(NamedEnvironment& a, NamedEnvironment& b) {
     a.Swap(&b);
@@ -13645,7 +15326,7 @@ class EnvironmentList final :
                &_EnvironmentList_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    65;
+    73;
 
   friend void swap(EnvironmentList& a, EnvironmentList& b) {
     a.Swap(&b);
@@ -13829,7 +15510,7 @@ class WeldingConfigInfo final :
                &_WeldingConfigInfo_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    66;
+    74;
 
   friend void swap(WeldingConfigInfo& a, WeldingConfigInfo& b) {
     a.Swap(&b);
@@ -14077,7 +15758,7 @@ class WeldPosition final :
                &_WeldPosition_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    67;
+    75;
 
   friend void swap(WeldPosition& a, WeldPosition& b) {
     a.Swap(&b);
@@ -14261,7 +15942,7 @@ class WeldPositionList final :
                &_WeldPositionList_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    68;
+    76;
 
   friend void swap(WeldPositionList& a, WeldPositionList& b) {
     a.Swap(&b);
@@ -14427,7 +16108,7 @@ class OperationModeConfig final :
                &_OperationModeConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    69;
+    77;
 
   friend void swap(OperationModeConfig& a, OperationModeConfig& b) {
     a.Swap(&b);
@@ -16403,6 +18084,1554 @@ VisionServerList::_internal_mutable_vision_servers() {
   return &_impl_.vision_servers_;
 }
 
+// -------------------------------------------------------------------
+
+// SocketCommandConfig
+
+// repeated .Nrmk.IndyFramework.SocketServerConfig socket_server_config = 1;
+inline int SocketCommandConfig::_internal_socket_server_config_size() const {
+  return _internal_socket_server_config().size();
+}
+inline int SocketCommandConfig::socket_server_config_size() const {
+  return _internal_socket_server_config_size();
+}
+inline void SocketCommandConfig::clear_socket_server_config() {
+  _internal_mutable_socket_server_config()->Clear();
+}
+inline ::Nrmk::IndyFramework::SocketServerConfig* SocketCommandConfig::mutable_socket_server_config(int index) {
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.SocketCommandConfig.socket_server_config)
+  return _internal_mutable_socket_server_config()->Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::SocketServerConfig >*
+SocketCommandConfig::mutable_socket_server_config() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.SocketCommandConfig.socket_server_config)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_socket_server_config();
+}
+inline const ::Nrmk::IndyFramework::SocketServerConfig& SocketCommandConfig::socket_server_config(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.SocketCommandConfig.socket_server_config)
+    return _internal_socket_server_config().Get(index);
+}
+inline ::Nrmk::IndyFramework::SocketServerConfig* SocketCommandConfig::add_socket_server_config() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::Nrmk::IndyFramework::SocketServerConfig* _add = _internal_mutable_socket_server_config()->Add();
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.SocketCommandConfig.socket_server_config)
+  return _add;
+}
+inline const ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::SocketServerConfig >&
+SocketCommandConfig::socket_server_config() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.SocketCommandConfig.socket_server_config)
+  return _internal_socket_server_config();
+}
+inline const ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::SocketServerConfig>&
+SocketCommandConfig::_internal_socket_server_config() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.socket_server_config_;
+}
+inline ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::SocketServerConfig>*
+SocketCommandConfig::_internal_mutable_socket_server_config() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.socket_server_config_;
+}
+
+// -------------------------------------------------------------------
+
+// SocketServerConfig
+
+// string name = 1;
+inline void SocketServerConfig::clear_name() {
+  _impl_.name_.ClearToEmpty();
+}
+inline const std::string& SocketServerConfig::name() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.SocketServerConfig.name)
+  return _internal_name();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void SocketServerConfig::set_name(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.name_.Set(static_cast<Arg_&&>(arg), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.SocketServerConfig.name)
+}
+inline std::string* SocketServerConfig::mutable_name() {
+  std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.SocketServerConfig.name)
+  return _s;
+}
+inline const std::string& SocketServerConfig::_internal_name() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.name_.Get();
+}
+inline void SocketServerConfig::_internal_set_name(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* SocketServerConfig::_internal_mutable_name() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.name_.Mutable( GetArenaForAllocation());
+}
+inline std::string* SocketServerConfig::release_name() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:Nrmk.IndyFramework.SocketServerConfig.name)
+  return _impl_.name_.Release();
+}
+inline void SocketServerConfig::set_allocated_name(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.name_.SetAllocated(value, GetArenaForAllocation());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.name_.IsDefault()) {
+          _impl_.name_.Set("", GetArenaForAllocation());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.SocketServerConfig.name)
+}
+
+// .Nrmk.IndyFramework.SocketConnection connection = 2;
+inline bool SocketServerConfig::has_connection() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.connection_ != nullptr);
+  return value;
+}
+inline void SocketServerConfig::clear_connection() {
+  if (_impl_.connection_ != nullptr) _impl_.connection_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::Nrmk::IndyFramework::SocketConnection& SocketServerConfig::_internal_connection() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  const ::Nrmk::IndyFramework::SocketConnection* p = _impl_.connection_;
+  return p != nullptr ? *p : reinterpret_cast<const ::Nrmk::IndyFramework::SocketConnection&>(::Nrmk::IndyFramework::_SocketConnection_default_instance_);
+}
+inline const ::Nrmk::IndyFramework::SocketConnection& SocketServerConfig::connection() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.SocketServerConfig.connection)
+  return _internal_connection();
+}
+inline void SocketServerConfig::unsafe_arena_set_allocated_connection(::Nrmk::IndyFramework::SocketConnection* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.connection_);
+  }
+  _impl_.connection_ = reinterpret_cast<::Nrmk::IndyFramework::SocketConnection*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Nrmk.IndyFramework.SocketServerConfig.connection)
+}
+inline ::Nrmk::IndyFramework::SocketConnection* SocketServerConfig::release_connection() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::Nrmk::IndyFramework::SocketConnection* released = _impl_.connection_;
+  _impl_.connection_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  if (GetArenaForAllocation() == nullptr) {
+    delete old;
+  }
+#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return released;
+}
+inline ::Nrmk::IndyFramework::SocketConnection* SocketServerConfig::unsafe_arena_release_connection() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:Nrmk.IndyFramework.SocketServerConfig.connection)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::Nrmk::IndyFramework::SocketConnection* temp = _impl_.connection_;
+  _impl_.connection_ = nullptr;
+  return temp;
+}
+inline ::Nrmk::IndyFramework::SocketConnection* SocketServerConfig::_internal_mutable_connection() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  if (_impl_.connection_ == nullptr) {
+    auto* p = CreateMaybeMessage<::Nrmk::IndyFramework::SocketConnection>(GetArenaForAllocation());
+    _impl_.connection_ = reinterpret_cast<::Nrmk::IndyFramework::SocketConnection*>(p);
+  }
+  return _impl_.connection_;
+}
+inline ::Nrmk::IndyFramework::SocketConnection* SocketServerConfig::mutable_connection() {
+  ::Nrmk::IndyFramework::SocketConnection* _msg = _internal_mutable_connection();
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.SocketServerConfig.connection)
+  return _msg;
+}
+inline void SocketServerConfig::set_allocated_connection(::Nrmk::IndyFramework::SocketConnection* value) {
+  ::google::protobuf::Arena* message_arena = GetArenaForAllocation();
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::Nrmk::IndyFramework::SocketConnection*>(_impl_.connection_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena =
+        ::google::protobuf::Arena::InternalGetOwningArena(reinterpret_cast<::Nrmk::IndyFramework::SocketConnection*>(value));
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.connection_ = reinterpret_cast<::Nrmk::IndyFramework::SocketConnection*>(value);
+  // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.SocketServerConfig.connection)
+}
+
+// .Nrmk.IndyFramework.ProtocolStrategy protocol_strategy = 3;
+inline bool SocketServerConfig::has_protocol_strategy() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.protocol_strategy_ != nullptr);
+  return value;
+}
+inline void SocketServerConfig::clear_protocol_strategy() {
+  if (_impl_.protocol_strategy_ != nullptr) _impl_.protocol_strategy_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000002u;
+}
+inline const ::Nrmk::IndyFramework::ProtocolStrategy& SocketServerConfig::_internal_protocol_strategy() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  const ::Nrmk::IndyFramework::ProtocolStrategy* p = _impl_.protocol_strategy_;
+  return p != nullptr ? *p : reinterpret_cast<const ::Nrmk::IndyFramework::ProtocolStrategy&>(::Nrmk::IndyFramework::_ProtocolStrategy_default_instance_);
+}
+inline const ::Nrmk::IndyFramework::ProtocolStrategy& SocketServerConfig::protocol_strategy() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.SocketServerConfig.protocol_strategy)
+  return _internal_protocol_strategy();
+}
+inline void SocketServerConfig::unsafe_arena_set_allocated_protocol_strategy(::Nrmk::IndyFramework::ProtocolStrategy* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.protocol_strategy_);
+  }
+  _impl_.protocol_strategy_ = reinterpret_cast<::Nrmk::IndyFramework::ProtocolStrategy*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Nrmk.IndyFramework.SocketServerConfig.protocol_strategy)
+}
+inline ::Nrmk::IndyFramework::ProtocolStrategy* SocketServerConfig::release_protocol_strategy() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  ::Nrmk::IndyFramework::ProtocolStrategy* released = _impl_.protocol_strategy_;
+  _impl_.protocol_strategy_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  if (GetArenaForAllocation() == nullptr) {
+    delete old;
+  }
+#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return released;
+}
+inline ::Nrmk::IndyFramework::ProtocolStrategy* SocketServerConfig::unsafe_arena_release_protocol_strategy() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:Nrmk.IndyFramework.SocketServerConfig.protocol_strategy)
+
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  ::Nrmk::IndyFramework::ProtocolStrategy* temp = _impl_.protocol_strategy_;
+  _impl_.protocol_strategy_ = nullptr;
+  return temp;
+}
+inline ::Nrmk::IndyFramework::ProtocolStrategy* SocketServerConfig::_internal_mutable_protocol_strategy() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  if (_impl_.protocol_strategy_ == nullptr) {
+    auto* p = CreateMaybeMessage<::Nrmk::IndyFramework::ProtocolStrategy>(GetArenaForAllocation());
+    _impl_.protocol_strategy_ = reinterpret_cast<::Nrmk::IndyFramework::ProtocolStrategy*>(p);
+  }
+  return _impl_.protocol_strategy_;
+}
+inline ::Nrmk::IndyFramework::ProtocolStrategy* SocketServerConfig::mutable_protocol_strategy() {
+  ::Nrmk::IndyFramework::ProtocolStrategy* _msg = _internal_mutable_protocol_strategy();
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.SocketServerConfig.protocol_strategy)
+  return _msg;
+}
+inline void SocketServerConfig::set_allocated_protocol_strategy(::Nrmk::IndyFramework::ProtocolStrategy* value) {
+  ::google::protobuf::Arena* message_arena = GetArenaForAllocation();
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::Nrmk::IndyFramework::ProtocolStrategy*>(_impl_.protocol_strategy_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena =
+        ::google::protobuf::Arena::InternalGetOwningArena(reinterpret_cast<::Nrmk::IndyFramework::ProtocolStrategy*>(value));
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+
+  _impl_.protocol_strategy_ = reinterpret_cast<::Nrmk::IndyFramework::ProtocolStrategy*>(value);
+  // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.SocketServerConfig.protocol_strategy)
+}
+
+// repeated .Nrmk.IndyFramework.SocketCommand commands = 4;
+inline int SocketServerConfig::_internal_commands_size() const {
+  return _internal_commands().size();
+}
+inline int SocketServerConfig::commands_size() const {
+  return _internal_commands_size();
+}
+inline void SocketServerConfig::clear_commands() {
+  _internal_mutable_commands()->Clear();
+}
+inline ::Nrmk::IndyFramework::SocketCommand* SocketServerConfig::mutable_commands(int index) {
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.SocketServerConfig.commands)
+  return _internal_mutable_commands()->Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::SocketCommand >*
+SocketServerConfig::mutable_commands() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.SocketServerConfig.commands)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_commands();
+}
+inline const ::Nrmk::IndyFramework::SocketCommand& SocketServerConfig::commands(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.SocketServerConfig.commands)
+    return _internal_commands().Get(index);
+}
+inline ::Nrmk::IndyFramework::SocketCommand* SocketServerConfig::add_commands() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::Nrmk::IndyFramework::SocketCommand* _add = _internal_mutable_commands()->Add();
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.SocketServerConfig.commands)
+  return _add;
+}
+inline const ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::SocketCommand >&
+SocketServerConfig::commands() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.SocketServerConfig.commands)
+  return _internal_commands();
+}
+inline const ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::SocketCommand>&
+SocketServerConfig::_internal_commands() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.commands_;
+}
+inline ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::SocketCommand>*
+SocketServerConfig::_internal_mutable_commands() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.commands_;
+}
+
+// -------------------------------------------------------------------
+
+// SocketConnection
+
+// string ip = 1;
+inline void SocketConnection::clear_ip() {
+  _impl_.ip_.ClearToEmpty();
+}
+inline const std::string& SocketConnection::ip() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.SocketConnection.ip)
+  return _internal_ip();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void SocketConnection::set_ip(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.ip_.Set(static_cast<Arg_&&>(arg), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.SocketConnection.ip)
+}
+inline std::string* SocketConnection::mutable_ip() {
+  std::string* _s = _internal_mutable_ip();
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.SocketConnection.ip)
+  return _s;
+}
+inline const std::string& SocketConnection::_internal_ip() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.ip_.Get();
+}
+inline void SocketConnection::_internal_set_ip(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.ip_.Set(value, GetArenaForAllocation());
+}
+inline std::string* SocketConnection::_internal_mutable_ip() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.ip_.Mutable( GetArenaForAllocation());
+}
+inline std::string* SocketConnection::release_ip() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:Nrmk.IndyFramework.SocketConnection.ip)
+  return _impl_.ip_.Release();
+}
+inline void SocketConnection::set_allocated_ip(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.ip_.SetAllocated(value, GetArenaForAllocation());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.ip_.IsDefault()) {
+          _impl_.ip_.Set("", GetArenaForAllocation());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.SocketConnection.ip)
+}
+
+// uint32 port = 2;
+inline void SocketConnection::clear_port() {
+  _impl_.port_ = 0u;
+}
+inline ::uint32_t SocketConnection::port() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.SocketConnection.port)
+  return _internal_port();
+}
+inline void SocketConnection::set_port(::uint32_t value) {
+  _internal_set_port(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.SocketConnection.port)
+}
+inline ::uint32_t SocketConnection::_internal_port() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.port_;
+}
+inline void SocketConnection::_internal_set_port(::uint32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.port_ = value;
+}
+
+// uint32 timeout_ms = 3;
+inline void SocketConnection::clear_timeout_ms() {
+  _impl_.timeout_ms_ = 0u;
+}
+inline ::uint32_t SocketConnection::timeout_ms() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.SocketConnection.timeout_ms)
+  return _internal_timeout_ms();
+}
+inline void SocketConnection::set_timeout_ms(::uint32_t value) {
+  _internal_set_timeout_ms(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.SocketConnection.timeout_ms)
+}
+inline ::uint32_t SocketConnection::_internal_timeout_ms() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.timeout_ms_;
+}
+inline void SocketConnection::_internal_set_timeout_ms(::uint32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.timeout_ms_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// ProtocolStrategy
+
+// string mode = 1;
+inline void ProtocolStrategy::clear_mode() {
+  _impl_.mode_.ClearToEmpty();
+}
+inline const std::string& ProtocolStrategy::mode() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.ProtocolStrategy.mode)
+  return _internal_mode();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void ProtocolStrategy::set_mode(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.mode_.Set(static_cast<Arg_&&>(arg), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.ProtocolStrategy.mode)
+}
+inline std::string* ProtocolStrategy::mutable_mode() {
+  std::string* _s = _internal_mutable_mode();
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.ProtocolStrategy.mode)
+  return _s;
+}
+inline const std::string& ProtocolStrategy::_internal_mode() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.mode_.Get();
+}
+inline void ProtocolStrategy::_internal_set_mode(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.mode_.Set(value, GetArenaForAllocation());
+}
+inline std::string* ProtocolStrategy::_internal_mutable_mode() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.mode_.Mutable( GetArenaForAllocation());
+}
+inline std::string* ProtocolStrategy::release_mode() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:Nrmk.IndyFramework.ProtocolStrategy.mode)
+  return _impl_.mode_.Release();
+}
+inline void ProtocolStrategy::set_allocated_mode(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.mode_.SetAllocated(value, GetArenaForAllocation());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.mode_.IsDefault()) {
+          _impl_.mode_.Set("", GetArenaForAllocation());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.ProtocolStrategy.mode)
+}
+
+// .Nrmk.IndyFramework.BinarySettings binary_settings = 2;
+inline bool ProtocolStrategy::has_binary_settings() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.binary_settings_ != nullptr);
+  return value;
+}
+inline void ProtocolStrategy::clear_binary_settings() {
+  if (_impl_.binary_settings_ != nullptr) _impl_.binary_settings_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::Nrmk::IndyFramework::BinarySettings& ProtocolStrategy::_internal_binary_settings() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  const ::Nrmk::IndyFramework::BinarySettings* p = _impl_.binary_settings_;
+  return p != nullptr ? *p : reinterpret_cast<const ::Nrmk::IndyFramework::BinarySettings&>(::Nrmk::IndyFramework::_BinarySettings_default_instance_);
+}
+inline const ::Nrmk::IndyFramework::BinarySettings& ProtocolStrategy::binary_settings() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.ProtocolStrategy.binary_settings)
+  return _internal_binary_settings();
+}
+inline void ProtocolStrategy::unsafe_arena_set_allocated_binary_settings(::Nrmk::IndyFramework::BinarySettings* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.binary_settings_);
+  }
+  _impl_.binary_settings_ = reinterpret_cast<::Nrmk::IndyFramework::BinarySettings*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Nrmk.IndyFramework.ProtocolStrategy.binary_settings)
+}
+inline ::Nrmk::IndyFramework::BinarySettings* ProtocolStrategy::release_binary_settings() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::Nrmk::IndyFramework::BinarySettings* released = _impl_.binary_settings_;
+  _impl_.binary_settings_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  if (GetArenaForAllocation() == nullptr) {
+    delete old;
+  }
+#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return released;
+}
+inline ::Nrmk::IndyFramework::BinarySettings* ProtocolStrategy::unsafe_arena_release_binary_settings() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:Nrmk.IndyFramework.ProtocolStrategy.binary_settings)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::Nrmk::IndyFramework::BinarySettings* temp = _impl_.binary_settings_;
+  _impl_.binary_settings_ = nullptr;
+  return temp;
+}
+inline ::Nrmk::IndyFramework::BinarySettings* ProtocolStrategy::_internal_mutable_binary_settings() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  if (_impl_.binary_settings_ == nullptr) {
+    auto* p = CreateMaybeMessage<::Nrmk::IndyFramework::BinarySettings>(GetArenaForAllocation());
+    _impl_.binary_settings_ = reinterpret_cast<::Nrmk::IndyFramework::BinarySettings*>(p);
+  }
+  return _impl_.binary_settings_;
+}
+inline ::Nrmk::IndyFramework::BinarySettings* ProtocolStrategy::mutable_binary_settings() {
+  ::Nrmk::IndyFramework::BinarySettings* _msg = _internal_mutable_binary_settings();
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.ProtocolStrategy.binary_settings)
+  return _msg;
+}
+inline void ProtocolStrategy::set_allocated_binary_settings(::Nrmk::IndyFramework::BinarySettings* value) {
+  ::google::protobuf::Arena* message_arena = GetArenaForAllocation();
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::Nrmk::IndyFramework::BinarySettings*>(_impl_.binary_settings_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena =
+        ::google::protobuf::Arena::InternalGetOwningArena(reinterpret_cast<::Nrmk::IndyFramework::BinarySettings*>(value));
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.binary_settings_ = reinterpret_cast<::Nrmk::IndyFramework::BinarySettings*>(value);
+  // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.ProtocolStrategy.binary_settings)
+}
+
+// .Nrmk.IndyFramework.TextSettings text_settings = 3;
+inline bool ProtocolStrategy::has_text_settings() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.text_settings_ != nullptr);
+  return value;
+}
+inline void ProtocolStrategy::clear_text_settings() {
+  if (_impl_.text_settings_ != nullptr) _impl_.text_settings_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000002u;
+}
+inline const ::Nrmk::IndyFramework::TextSettings& ProtocolStrategy::_internal_text_settings() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  const ::Nrmk::IndyFramework::TextSettings* p = _impl_.text_settings_;
+  return p != nullptr ? *p : reinterpret_cast<const ::Nrmk::IndyFramework::TextSettings&>(::Nrmk::IndyFramework::_TextSettings_default_instance_);
+}
+inline const ::Nrmk::IndyFramework::TextSettings& ProtocolStrategy::text_settings() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.ProtocolStrategy.text_settings)
+  return _internal_text_settings();
+}
+inline void ProtocolStrategy::unsafe_arena_set_allocated_text_settings(::Nrmk::IndyFramework::TextSettings* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.text_settings_);
+  }
+  _impl_.text_settings_ = reinterpret_cast<::Nrmk::IndyFramework::TextSettings*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Nrmk.IndyFramework.ProtocolStrategy.text_settings)
+}
+inline ::Nrmk::IndyFramework::TextSettings* ProtocolStrategy::release_text_settings() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  ::Nrmk::IndyFramework::TextSettings* released = _impl_.text_settings_;
+  _impl_.text_settings_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  if (GetArenaForAllocation() == nullptr) {
+    delete old;
+  }
+#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return released;
+}
+inline ::Nrmk::IndyFramework::TextSettings* ProtocolStrategy::unsafe_arena_release_text_settings() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:Nrmk.IndyFramework.ProtocolStrategy.text_settings)
+
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  ::Nrmk::IndyFramework::TextSettings* temp = _impl_.text_settings_;
+  _impl_.text_settings_ = nullptr;
+  return temp;
+}
+inline ::Nrmk::IndyFramework::TextSettings* ProtocolStrategy::_internal_mutable_text_settings() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  if (_impl_.text_settings_ == nullptr) {
+    auto* p = CreateMaybeMessage<::Nrmk::IndyFramework::TextSettings>(GetArenaForAllocation());
+    _impl_.text_settings_ = reinterpret_cast<::Nrmk::IndyFramework::TextSettings*>(p);
+  }
+  return _impl_.text_settings_;
+}
+inline ::Nrmk::IndyFramework::TextSettings* ProtocolStrategy::mutable_text_settings() {
+  ::Nrmk::IndyFramework::TextSettings* _msg = _internal_mutable_text_settings();
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.ProtocolStrategy.text_settings)
+  return _msg;
+}
+inline void ProtocolStrategy::set_allocated_text_settings(::Nrmk::IndyFramework::TextSettings* value) {
+  ::google::protobuf::Arena* message_arena = GetArenaForAllocation();
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::Nrmk::IndyFramework::TextSettings*>(_impl_.text_settings_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena =
+        ::google::protobuf::Arena::InternalGetOwningArena(reinterpret_cast<::Nrmk::IndyFramework::TextSettings*>(value));
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+
+  _impl_.text_settings_ = reinterpret_cast<::Nrmk::IndyFramework::TextSettings*>(value);
+  // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.ProtocolStrategy.text_settings)
+}
+
+// -------------------------------------------------------------------
+
+// BinarySettings
+
+// string endianness = 1;
+inline void BinarySettings::clear_endianness() {
+  _impl_.endianness_.ClearToEmpty();
+}
+inline const std::string& BinarySettings::endianness() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.BinarySettings.endianness)
+  return _internal_endianness();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void BinarySettings::set_endianness(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.endianness_.Set(static_cast<Arg_&&>(arg), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.BinarySettings.endianness)
+}
+inline std::string* BinarySettings::mutable_endianness() {
+  std::string* _s = _internal_mutable_endianness();
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.BinarySettings.endianness)
+  return _s;
+}
+inline const std::string& BinarySettings::_internal_endianness() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.endianness_.Get();
+}
+inline void BinarySettings::_internal_set_endianness(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.endianness_.Set(value, GetArenaForAllocation());
+}
+inline std::string* BinarySettings::_internal_mutable_endianness() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.endianness_.Mutable( GetArenaForAllocation());
+}
+inline std::string* BinarySettings::release_endianness() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:Nrmk.IndyFramework.BinarySettings.endianness)
+  return _impl_.endianness_.Release();
+}
+inline void BinarySettings::set_allocated_endianness(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.endianness_.SetAllocated(value, GetArenaForAllocation());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.endianness_.IsDefault()) {
+          _impl_.endianness_.Set("", GetArenaForAllocation());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.BinarySettings.endianness)
+}
+
+// uint32 align_byte = 2;
+inline void BinarySettings::clear_align_byte() {
+  _impl_.align_byte_ = 0u;
+}
+inline ::uint32_t BinarySettings::align_byte() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.BinarySettings.align_byte)
+  return _internal_align_byte();
+}
+inline void BinarySettings::set_align_byte(::uint32_t value) {
+  _internal_set_align_byte(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.BinarySettings.align_byte)
+}
+inline ::uint32_t BinarySettings::_internal_align_byte() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.align_byte_;
+}
+inline void BinarySettings::_internal_set_align_byte(::uint32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.align_byte_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// TextSettings
+
+// string encoding = 1;
+inline void TextSettings::clear_encoding() {
+  _impl_.encoding_.ClearToEmpty();
+}
+inline const std::string& TextSettings::encoding() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.TextSettings.encoding)
+  return _internal_encoding();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void TextSettings::set_encoding(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.encoding_.Set(static_cast<Arg_&&>(arg), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.TextSettings.encoding)
+}
+inline std::string* TextSettings::mutable_encoding() {
+  std::string* _s = _internal_mutable_encoding();
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.TextSettings.encoding)
+  return _s;
+}
+inline const std::string& TextSettings::_internal_encoding() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.encoding_.Get();
+}
+inline void TextSettings::_internal_set_encoding(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.encoding_.Set(value, GetArenaForAllocation());
+}
+inline std::string* TextSettings::_internal_mutable_encoding() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.encoding_.Mutable( GetArenaForAllocation());
+}
+inline std::string* TextSettings::release_encoding() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:Nrmk.IndyFramework.TextSettings.encoding)
+  return _impl_.encoding_.Release();
+}
+inline void TextSettings::set_allocated_encoding(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.encoding_.SetAllocated(value, GetArenaForAllocation());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.encoding_.IsDefault()) {
+          _impl_.encoding_.Set("", GetArenaForAllocation());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.TextSettings.encoding)
+}
+
+// string eol = 2;
+inline void TextSettings::clear_eol() {
+  _impl_.eol_.ClearToEmpty();
+}
+inline const std::string& TextSettings::eol() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.TextSettings.eol)
+  return _internal_eol();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void TextSettings::set_eol(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.eol_.Set(static_cast<Arg_&&>(arg), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.TextSettings.eol)
+}
+inline std::string* TextSettings::mutable_eol() {
+  std::string* _s = _internal_mutable_eol();
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.TextSettings.eol)
+  return _s;
+}
+inline const std::string& TextSettings::_internal_eol() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.eol_.Get();
+}
+inline void TextSettings::_internal_set_eol(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.eol_.Set(value, GetArenaForAllocation());
+}
+inline std::string* TextSettings::_internal_mutable_eol() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.eol_.Mutable( GetArenaForAllocation());
+}
+inline std::string* TextSettings::release_eol() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:Nrmk.IndyFramework.TextSettings.eol)
+  return _impl_.eol_.Release();
+}
+inline void TextSettings::set_allocated_eol(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.eol_.SetAllocated(value, GetArenaForAllocation());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.eol_.IsDefault()) {
+          _impl_.eol_.Set("", GetArenaForAllocation());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.TextSettings.eol)
+}
+
+// string separator = 3;
+inline void TextSettings::clear_separator() {
+  _impl_.separator_.ClearToEmpty();
+}
+inline const std::string& TextSettings::separator() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.TextSettings.separator)
+  return _internal_separator();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void TextSettings::set_separator(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.separator_.Set(static_cast<Arg_&&>(arg), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.TextSettings.separator)
+}
+inline std::string* TextSettings::mutable_separator() {
+  std::string* _s = _internal_mutable_separator();
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.TextSettings.separator)
+  return _s;
+}
+inline const std::string& TextSettings::_internal_separator() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.separator_.Get();
+}
+inline void TextSettings::_internal_set_separator(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.separator_.Set(value, GetArenaForAllocation());
+}
+inline std::string* TextSettings::_internal_mutable_separator() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.separator_.Mutable( GetArenaForAllocation());
+}
+inline std::string* TextSettings::release_separator() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:Nrmk.IndyFramework.TextSettings.separator)
+  return _impl_.separator_.Release();
+}
+inline void TextSettings::set_allocated_separator(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.separator_.SetAllocated(value, GetArenaForAllocation());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.separator_.IsDefault()) {
+          _impl_.separator_.Set("", GetArenaForAllocation());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.TextSettings.separator)
+}
+
+// -------------------------------------------------------------------
+
+// SocketCommand
+
+// string command_name = 1;
+inline void SocketCommand::clear_command_name() {
+  _impl_.command_name_.ClearToEmpty();
+}
+inline const std::string& SocketCommand::command_name() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.SocketCommand.command_name)
+  return _internal_command_name();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void SocketCommand::set_command_name(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.command_name_.Set(static_cast<Arg_&&>(arg), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.SocketCommand.command_name)
+}
+inline std::string* SocketCommand::mutable_command_name() {
+  std::string* _s = _internal_mutable_command_name();
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.SocketCommand.command_name)
+  return _s;
+}
+inline const std::string& SocketCommand::_internal_command_name() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.command_name_.Get();
+}
+inline void SocketCommand::_internal_set_command_name(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.command_name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* SocketCommand::_internal_mutable_command_name() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.command_name_.Mutable( GetArenaForAllocation());
+}
+inline std::string* SocketCommand::release_command_name() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:Nrmk.IndyFramework.SocketCommand.command_name)
+  return _impl_.command_name_.Release();
+}
+inline void SocketCommand::set_allocated_command_name(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.command_name_.SetAllocated(value, GetArenaForAllocation());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.command_name_.IsDefault()) {
+          _impl_.command_name_.Set("", GetArenaForAllocation());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.SocketCommand.command_name)
+}
+
+// repeated .Nrmk.IndyFramework.SocketFrameItem tx_frame = 2;
+inline int SocketCommand::_internal_tx_frame_size() const {
+  return _internal_tx_frame().size();
+}
+inline int SocketCommand::tx_frame_size() const {
+  return _internal_tx_frame_size();
+}
+inline void SocketCommand::clear_tx_frame() {
+  _internal_mutable_tx_frame()->Clear();
+}
+inline ::Nrmk::IndyFramework::SocketFrameItem* SocketCommand::mutable_tx_frame(int index) {
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.SocketCommand.tx_frame)
+  return _internal_mutable_tx_frame()->Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::SocketFrameItem >*
+SocketCommand::mutable_tx_frame() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.SocketCommand.tx_frame)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_tx_frame();
+}
+inline const ::Nrmk::IndyFramework::SocketFrameItem& SocketCommand::tx_frame(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.SocketCommand.tx_frame)
+    return _internal_tx_frame().Get(index);
+}
+inline ::Nrmk::IndyFramework::SocketFrameItem* SocketCommand::add_tx_frame() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::Nrmk::IndyFramework::SocketFrameItem* _add = _internal_mutable_tx_frame()->Add();
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.SocketCommand.tx_frame)
+  return _add;
+}
+inline const ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::SocketFrameItem >&
+SocketCommand::tx_frame() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.SocketCommand.tx_frame)
+  return _internal_tx_frame();
+}
+inline const ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::SocketFrameItem>&
+SocketCommand::_internal_tx_frame() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.tx_frame_;
+}
+inline ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::SocketFrameItem>*
+SocketCommand::_internal_mutable_tx_frame() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.tx_frame_;
+}
+
+// repeated .Nrmk.IndyFramework.SocketFrameItem rx_frame = 3;
+inline int SocketCommand::_internal_rx_frame_size() const {
+  return _internal_rx_frame().size();
+}
+inline int SocketCommand::rx_frame_size() const {
+  return _internal_rx_frame_size();
+}
+inline void SocketCommand::clear_rx_frame() {
+  _internal_mutable_rx_frame()->Clear();
+}
+inline ::Nrmk::IndyFramework::SocketFrameItem* SocketCommand::mutable_rx_frame(int index) {
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.SocketCommand.rx_frame)
+  return _internal_mutable_rx_frame()->Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::SocketFrameItem >*
+SocketCommand::mutable_rx_frame() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.SocketCommand.rx_frame)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_rx_frame();
+}
+inline const ::Nrmk::IndyFramework::SocketFrameItem& SocketCommand::rx_frame(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.SocketCommand.rx_frame)
+    return _internal_rx_frame().Get(index);
+}
+inline ::Nrmk::IndyFramework::SocketFrameItem* SocketCommand::add_rx_frame() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::Nrmk::IndyFramework::SocketFrameItem* _add = _internal_mutable_rx_frame()->Add();
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.SocketCommand.rx_frame)
+  return _add;
+}
+inline const ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::SocketFrameItem >&
+SocketCommand::rx_frame() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.SocketCommand.rx_frame)
+  return _internal_rx_frame();
+}
+inline const ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::SocketFrameItem>&
+SocketCommand::_internal_rx_frame() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.rx_frame_;
+}
+inline ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::SocketFrameItem>*
+SocketCommand::_internal_mutable_rx_frame() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.rx_frame_;
+}
+
+// -------------------------------------------------------------------
+
+// SocketFrameItem
+
+// string tag = 1;
+inline void SocketFrameItem::clear_tag() {
+  _impl_.tag_.ClearToEmpty();
+}
+inline const std::string& SocketFrameItem::tag() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.SocketFrameItem.tag)
+  return _internal_tag();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void SocketFrameItem::set_tag(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.tag_.Set(static_cast<Arg_&&>(arg), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.SocketFrameItem.tag)
+}
+inline std::string* SocketFrameItem::mutable_tag() {
+  std::string* _s = _internal_mutable_tag();
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.SocketFrameItem.tag)
+  return _s;
+}
+inline const std::string& SocketFrameItem::_internal_tag() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.tag_.Get();
+}
+inline void SocketFrameItem::_internal_set_tag(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.tag_.Set(value, GetArenaForAllocation());
+}
+inline std::string* SocketFrameItem::_internal_mutable_tag() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.tag_.Mutable( GetArenaForAllocation());
+}
+inline std::string* SocketFrameItem::release_tag() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:Nrmk.IndyFramework.SocketFrameItem.tag)
+  return _impl_.tag_.Release();
+}
+inline void SocketFrameItem::set_allocated_tag(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.tag_.SetAllocated(value, GetArenaForAllocation());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.tag_.IsDefault()) {
+          _impl_.tag_.Set("", GetArenaForAllocation());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.SocketFrameItem.tag)
+}
+
+// string dtype = 2;
+inline void SocketFrameItem::clear_dtype() {
+  _impl_.dtype_.ClearToEmpty();
+}
+inline const std::string& SocketFrameItem::dtype() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.SocketFrameItem.dtype)
+  return _internal_dtype();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void SocketFrameItem::set_dtype(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.dtype_.Set(static_cast<Arg_&&>(arg), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.SocketFrameItem.dtype)
+}
+inline std::string* SocketFrameItem::mutable_dtype() {
+  std::string* _s = _internal_mutable_dtype();
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.SocketFrameItem.dtype)
+  return _s;
+}
+inline const std::string& SocketFrameItem::_internal_dtype() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.dtype_.Get();
+}
+inline void SocketFrameItem::_internal_set_dtype(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.dtype_.Set(value, GetArenaForAllocation());
+}
+inline std::string* SocketFrameItem::_internal_mutable_dtype() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.dtype_.Mutable( GetArenaForAllocation());
+}
+inline std::string* SocketFrameItem::release_dtype() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:Nrmk.IndyFramework.SocketFrameItem.dtype)
+  return _impl_.dtype_.Release();
+}
+inline void SocketFrameItem::set_allocated_dtype(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.dtype_.SetAllocated(value, GetArenaForAllocation());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.dtype_.IsDefault()) {
+          _impl_.dtype_.Set("", GetArenaForAllocation());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.SocketFrameItem.dtype)
+}
+
+// string type = 3;
+inline void SocketFrameItem::clear_type() {
+  _impl_.type_.ClearToEmpty();
+}
+inline const std::string& SocketFrameItem::type() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.SocketFrameItem.type)
+  return _internal_type();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void SocketFrameItem::set_type(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.type_.Set(static_cast<Arg_&&>(arg), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.SocketFrameItem.type)
+}
+inline std::string* SocketFrameItem::mutable_type() {
+  std::string* _s = _internal_mutable_type();
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.SocketFrameItem.type)
+  return _s;
+}
+inline const std::string& SocketFrameItem::_internal_type() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.type_.Get();
+}
+inline void SocketFrameItem::_internal_set_type(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.type_.Set(value, GetArenaForAllocation());
+}
+inline std::string* SocketFrameItem::_internal_mutable_type() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.type_.Mutable( GetArenaForAllocation());
+}
+inline std::string* SocketFrameItem::release_type() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:Nrmk.IndyFramework.SocketFrameItem.type)
+  return _impl_.type_.Release();
+}
+inline void SocketFrameItem::set_allocated_type(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.type_.SetAllocated(value, GetArenaForAllocation());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.type_.IsDefault()) {
+          _impl_.type_.Set("", GetArenaForAllocation());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.SocketFrameItem.type)
+}
+
+// int64 int_val = 4;
+inline bool SocketFrameItem::has_int_val() const {
+  return value_case() == kIntVal;
+}
+inline void SocketFrameItem::set_has_int_val() {
+  _impl_._oneof_case_[0] = kIntVal;
+}
+inline void SocketFrameItem::clear_int_val() {
+  if (value_case() == kIntVal) {
+    _impl_.value_.int_val_ = ::int64_t{0};
+    clear_has_value();
+  }
+}
+inline ::int64_t SocketFrameItem::int_val() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.SocketFrameItem.int_val)
+  return _internal_int_val();
+}
+inline void SocketFrameItem::set_int_val(::int64_t value) {
+  _internal_set_int_val(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.SocketFrameItem.int_val)
+}
+inline ::int64_t SocketFrameItem::_internal_int_val() const {
+  if (value_case() == kIntVal) {
+    return _impl_.value_.int_val_;
+  }
+  return ::int64_t{0};
+}
+inline void SocketFrameItem::_internal_set_int_val(::int64_t value) {
+  if (value_case() != kIntVal) {
+    clear_value();
+    set_has_int_val();
+  }
+  _impl_.value_.int_val_ = value;
+}
+
+// uint64 uint_val = 5;
+inline bool SocketFrameItem::has_uint_val() const {
+  return value_case() == kUintVal;
+}
+inline void SocketFrameItem::set_has_uint_val() {
+  _impl_._oneof_case_[0] = kUintVal;
+}
+inline void SocketFrameItem::clear_uint_val() {
+  if (value_case() == kUintVal) {
+    _impl_.value_.uint_val_ = ::uint64_t{0u};
+    clear_has_value();
+  }
+}
+inline ::uint64_t SocketFrameItem::uint_val() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.SocketFrameItem.uint_val)
+  return _internal_uint_val();
+}
+inline void SocketFrameItem::set_uint_val(::uint64_t value) {
+  _internal_set_uint_val(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.SocketFrameItem.uint_val)
+}
+inline ::uint64_t SocketFrameItem::_internal_uint_val() const {
+  if (value_case() == kUintVal) {
+    return _impl_.value_.uint_val_;
+  }
+  return ::uint64_t{0u};
+}
+inline void SocketFrameItem::_internal_set_uint_val(::uint64_t value) {
+  if (value_case() != kUintVal) {
+    clear_value();
+    set_has_uint_val();
+  }
+  _impl_.value_.uint_val_ = value;
+}
+
+// double float_val = 6;
+inline bool SocketFrameItem::has_float_val() const {
+  return value_case() == kFloatVal;
+}
+inline void SocketFrameItem::set_has_float_val() {
+  _impl_._oneof_case_[0] = kFloatVal;
+}
+inline void SocketFrameItem::clear_float_val() {
+  if (value_case() == kFloatVal) {
+    _impl_.value_.float_val_ = 0;
+    clear_has_value();
+  }
+}
+inline double SocketFrameItem::float_val() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.SocketFrameItem.float_val)
+  return _internal_float_val();
+}
+inline void SocketFrameItem::set_float_val(double value) {
+  _internal_set_float_val(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.SocketFrameItem.float_val)
+}
+inline double SocketFrameItem::_internal_float_val() const {
+  if (value_case() == kFloatVal) {
+    return _impl_.value_.float_val_;
+  }
+  return 0;
+}
+inline void SocketFrameItem::_internal_set_float_val(double value) {
+  if (value_case() != kFloatVal) {
+    clear_value();
+    set_has_float_val();
+  }
+  _impl_.value_.float_val_ = value;
+}
+
+// string string_val = 7;
+inline bool SocketFrameItem::has_string_val() const {
+  return value_case() == kStringVal;
+}
+inline void SocketFrameItem::set_has_string_val() {
+  _impl_._oneof_case_[0] = kStringVal;
+}
+inline void SocketFrameItem::clear_string_val() {
+  if (value_case() == kStringVal) {
+    _impl_.value_.string_val_.Destroy();
+    clear_has_value();
+  }
+}
+inline const std::string& SocketFrameItem::string_val() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.SocketFrameItem.string_val)
+  return _internal_string_val();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void SocketFrameItem::set_string_val(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (value_case() != kStringVal) {
+    clear_value();
+
+    set_has_string_val();
+    _impl_.value_.string_val_.InitDefault();
+  }
+  _impl_.value_.string_val_.Set(static_cast<Arg_&&>(arg), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.SocketFrameItem.string_val)
+}
+inline std::string* SocketFrameItem::mutable_string_val() {
+  std::string* _s = _internal_mutable_string_val();
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.SocketFrameItem.string_val)
+  return _s;
+}
+inline const std::string& SocketFrameItem::_internal_string_val() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  if (value_case() != kStringVal) {
+    return ::google::protobuf::internal::GetEmptyStringAlreadyInited();
+  }
+  return _impl_.value_.string_val_.Get();
+}
+inline void SocketFrameItem::_internal_set_string_val(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (value_case() != kStringVal) {
+    clear_value();
+
+    set_has_string_val();
+    _impl_.value_.string_val_.InitDefault();
+  }
+  _impl_.value_.string_val_.Set(value, GetArenaForAllocation());
+}
+inline std::string* SocketFrameItem::_internal_mutable_string_val() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (value_case() != kStringVal) {
+    clear_value();
+
+    set_has_string_val();
+    _impl_.value_.string_val_.InitDefault();
+  }
+  return _impl_.value_.string_val_.Mutable( GetArenaForAllocation());
+}
+inline std::string* SocketFrameItem::release_string_val() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:Nrmk.IndyFramework.SocketFrameItem.string_val)
+  if (value_case() != kStringVal) {
+    return nullptr;
+  }
+  clear_has_value();
+  return _impl_.value_.string_val_.Release();
+}
+inline void SocketFrameItem::set_allocated_string_val(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (has_value()) {
+    clear_value();
+  }
+  if (value != nullptr) {
+    set_has_string_val();
+    _impl_.value_.string_val_.InitAllocated(value, GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.SocketFrameItem.string_val)
+}
+
+// string bind = 10;
+inline void SocketFrameItem::clear_bind() {
+  _impl_.bind_.ClearToEmpty();
+}
+inline const std::string& SocketFrameItem::bind() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.SocketFrameItem.bind)
+  return _internal_bind();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void SocketFrameItem::set_bind(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.bind_.Set(static_cast<Arg_&&>(arg), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.SocketFrameItem.bind)
+}
+inline std::string* SocketFrameItem::mutable_bind() {
+  std::string* _s = _internal_mutable_bind();
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.SocketFrameItem.bind)
+  return _s;
+}
+inline const std::string& SocketFrameItem::_internal_bind() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.bind_.Get();
+}
+inline void SocketFrameItem::_internal_set_bind(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.bind_.Set(value, GetArenaForAllocation());
+}
+inline std::string* SocketFrameItem::_internal_mutable_bind() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.bind_.Mutable( GetArenaForAllocation());
+}
+inline std::string* SocketFrameItem::release_bind() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:Nrmk.IndyFramework.SocketFrameItem.bind)
+  return _impl_.bind_.Release();
+}
+inline void SocketFrameItem::set_allocated_bind(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.bind_.SetAllocated(value, GetArenaForAllocation());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.bind_.IsDefault()) {
+          _impl_.bind_.Set("", GetArenaForAllocation());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.SocketFrameItem.bind)
+}
+
+// string count_ref = 11;
+inline void SocketFrameItem::clear_count_ref() {
+  _impl_.count_ref_.ClearToEmpty();
+}
+inline const std::string& SocketFrameItem::count_ref() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.SocketFrameItem.count_ref)
+  return _internal_count_ref();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void SocketFrameItem::set_count_ref(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.count_ref_.Set(static_cast<Arg_&&>(arg), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.SocketFrameItem.count_ref)
+}
+inline std::string* SocketFrameItem::mutable_count_ref() {
+  std::string* _s = _internal_mutable_count_ref();
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.SocketFrameItem.count_ref)
+  return _s;
+}
+inline const std::string& SocketFrameItem::_internal_count_ref() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.count_ref_.Get();
+}
+inline void SocketFrameItem::_internal_set_count_ref(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.count_ref_.Set(value, GetArenaForAllocation());
+}
+inline std::string* SocketFrameItem::_internal_mutable_count_ref() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.count_ref_.Mutable( GetArenaForAllocation());
+}
+inline std::string* SocketFrameItem::release_count_ref() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:Nrmk.IndyFramework.SocketFrameItem.count_ref)
+  return _impl_.count_ref_.Release();
+}
+inline void SocketFrameItem::set_allocated_count_ref(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.count_ref_.SetAllocated(value, GetArenaForAllocation());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.count_ref_.IsDefault()) {
+          _impl_.count_ref_.Set("", GetArenaForAllocation());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.SocketFrameItem.count_ref)
+}
+
+// int32 scope_start = 12;
+inline void SocketFrameItem::clear_scope_start() {
+  _impl_.scope_start_ = 0;
+}
+inline ::int32_t SocketFrameItem::scope_start() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.SocketFrameItem.scope_start)
+  return _internal_scope_start();
+}
+inline void SocketFrameItem::set_scope_start(::int32_t value) {
+  _internal_set_scope_start(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.SocketFrameItem.scope_start)
+}
+inline ::int32_t SocketFrameItem::_internal_scope_start() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.scope_start_;
+}
+inline void SocketFrameItem::_internal_set_scope_start(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.scope_start_ = value;
+}
+
+inline bool SocketFrameItem::has_value() const {
+  return value_case() != VALUE_NOT_SET;
+}
+inline void SocketFrameItem::clear_has_value() {
+  _impl_._oneof_case_[0] = VALUE_NOT_SET;
+}
+inline SocketFrameItem::ValueCase SocketFrameItem::value_case() const {
+  return SocketFrameItem::ValueCase(_impl_._oneof_case_[0]);
+}
 // -------------------------------------------------------------------
 
 // ModbusServerList
@@ -21317,70 +24546,26 @@ inline void FTSensorDeviceRes::set_allocated_msg(std::string* value) {
 
 // TeleOpParams
 
-// float smooth_factor = 1;
-inline void TeleOpParams::clear_smooth_factor() {
-  _impl_.smooth_factor_ = 0;
+// float cutoff_freq_input = 11;
+inline void TeleOpParams::clear_cutoff_freq_input() {
+  _impl_.cutoff_freq_input_ = 0;
 }
-inline float TeleOpParams::smooth_factor() const {
-  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.TeleOpParams.smooth_factor)
-  return _internal_smooth_factor();
+inline float TeleOpParams::cutoff_freq_input() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.TeleOpParams.cutoff_freq_input)
+  return _internal_cutoff_freq_input();
 }
-inline void TeleOpParams::set_smooth_factor(float value) {
-  _internal_set_smooth_factor(value);
-  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.TeleOpParams.smooth_factor)
+inline void TeleOpParams::set_cutoff_freq_input(float value) {
+  _internal_set_cutoff_freq_input(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.TeleOpParams.cutoff_freq_input)
 }
-inline float TeleOpParams::_internal_smooth_factor() const {
+inline float TeleOpParams::_internal_cutoff_freq_input() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.smooth_factor_;
+  return _impl_.cutoff_freq_input_;
 }
-inline void TeleOpParams::_internal_set_smooth_factor(float value) {
+inline void TeleOpParams::_internal_set_cutoff_freq_input(float value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.smooth_factor_ = value;
-}
-
-// float cutoff_freq = 2;
-inline void TeleOpParams::clear_cutoff_freq() {
-  _impl_.cutoff_freq_ = 0;
-}
-inline float TeleOpParams::cutoff_freq() const {
-  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.TeleOpParams.cutoff_freq)
-  return _internal_cutoff_freq();
-}
-inline void TeleOpParams::set_cutoff_freq(float value) {
-  _internal_set_cutoff_freq(value);
-  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.TeleOpParams.cutoff_freq)
-}
-inline float TeleOpParams::_internal_cutoff_freq() const {
-  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.cutoff_freq_;
-}
-inline void TeleOpParams::_internal_set_cutoff_freq(float value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  _impl_.cutoff_freq_ = value;
-}
-
-// float error_gain = 3;
-inline void TeleOpParams::clear_error_gain() {
-  _impl_.error_gain_ = 0;
-}
-inline float TeleOpParams::error_gain() const {
-  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.TeleOpParams.error_gain)
-  return _internal_error_gain();
-}
-inline void TeleOpParams::set_error_gain(float value) {
-  _internal_set_error_gain(value);
-  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.TeleOpParams.error_gain)
-}
-inline float TeleOpParams::_internal_error_gain() const {
-  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.error_gain_;
-}
-inline void TeleOpParams::_internal_set_error_gain(float value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  _impl_.error_gain_ = value;
+  _impl_.cutoff_freq_input_ = value;
 }
 
 // -------------------------------------------------------------------

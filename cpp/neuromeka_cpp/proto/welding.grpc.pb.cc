@@ -33,6 +33,9 @@ static const char* WeldingControl_method_names[] = {
   "/Nrmk.IndyFramework.WeldingControl/SetOperatingMode",
   "/Nrmk.IndyFramework.WeldingControl/SetProgram",
   "/Nrmk.IndyFramework.WeldingControl/SetJob",
+  "/Nrmk.IndyFramework.WeldingControl/SetSuperpuls",
+  "/Nrmk.IndyFramework.WeldingControl/SetPositionWeld",
+  "/Nrmk.IndyFramework.WeldingControl/SetExtendedOptions",
   "/Nrmk.IndyFramework.WeldingControl/GetWeldingData",
   "/Nrmk.IndyFramework.WeldingControl/GetFindCellInfo",
   "/Nrmk.IndyFramework.WeldingControl/GetShipBlockInfo",
@@ -57,11 +60,14 @@ WeldingControl::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& cha
   , rpcmethod_SetOperatingMode_(WeldingControl_method_names[7], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_SetProgram_(WeldingControl_method_names[8], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_SetJob_(WeldingControl_method_names[9], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetWeldingData_(WeldingControl_method_names[10], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetFindCellInfo_(WeldingControl_method_names[11], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetShipBlockInfo_(WeldingControl_method_names[12], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetTouchOrientation_(WeldingControl_method_names[13], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetWeldingOrientation_(WeldingControl_method_names[14], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetSuperpuls_(WeldingControl_method_names[10], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetPositionWeld_(WeldingControl_method_names[11], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetExtendedOptions_(WeldingControl_method_names[12], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetWeldingData_(WeldingControl_method_names[13], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetFindCellInfo_(WeldingControl_method_names[14], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetShipBlockInfo_(WeldingControl_method_names[15], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetTouchOrientation_(WeldingControl_method_names[16], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetWeldingOrientation_(WeldingControl_method_names[17], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status WeldingControl::Stub::UpdateWelderSetting(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::Response* response) {
@@ -294,6 +300,75 @@ void WeldingControl::Stub::async::SetJob(::grpc::ClientContext* context, const :
   return result;
 }
 
+::grpc::Status WeldingControl::Stub::SetSuperpuls(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SuperpulsMode& request, ::Nrmk::IndyFramework::Response* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::SuperpulsMode, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetSuperpuls_, context, request, response);
+}
+
+void WeldingControl::Stub::async::SetSuperpuls(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SuperpulsMode* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::SuperpulsMode, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetSuperpuls_, context, request, response, std::move(f));
+}
+
+void WeldingControl::Stub::async::SetSuperpuls(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SuperpulsMode* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetSuperpuls_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* WeldingControl::Stub::PrepareAsyncSetSuperpulsRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SuperpulsMode& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Response, ::Nrmk::IndyFramework::SuperpulsMode, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetSuperpuls_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* WeldingControl::Stub::AsyncSetSuperpulsRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SuperpulsMode& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetSuperpulsRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status WeldingControl::Stub::SetPositionWeld(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::PositionWeldMode& request, ::Nrmk::IndyFramework::Response* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::PositionWeldMode, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetPositionWeld_, context, request, response);
+}
+
+void WeldingControl::Stub::async::SetPositionWeld(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::PositionWeldMode* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::PositionWeldMode, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetPositionWeld_, context, request, response, std::move(f));
+}
+
+void WeldingControl::Stub::async::SetPositionWeld(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::PositionWeldMode* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetPositionWeld_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* WeldingControl::Stub::PrepareAsyncSetPositionWeldRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::PositionWeldMode& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Response, ::Nrmk::IndyFramework::PositionWeldMode, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetPositionWeld_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* WeldingControl::Stub::AsyncSetPositionWeldRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::PositionWeldMode& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetPositionWeldRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status WeldingControl::Stub::SetExtendedOptions(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ExtendedOptionRequest& request, ::Nrmk::IndyFramework::Response* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::ExtendedOptionRequest, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetExtendedOptions_, context, request, response);
+}
+
+void WeldingControl::Stub::async::SetExtendedOptions(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ExtendedOptionRequest* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::ExtendedOptionRequest, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetExtendedOptions_, context, request, response, std::move(f));
+}
+
+void WeldingControl::Stub::async::SetExtendedOptions(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ExtendedOptionRequest* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetExtendedOptions_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* WeldingControl::Stub::PrepareAsyncSetExtendedOptionsRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ExtendedOptionRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Response, ::Nrmk::IndyFramework::ExtendedOptionRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetExtendedOptions_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* WeldingControl::Stub::AsyncSetExtendedOptionsRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ExtendedOptionRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetExtendedOptionsRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 ::grpc::Status WeldingControl::Stub::GetWeldingData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::WeldingData* response) {
   return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::WeldingData, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetWeldingData_, context, request, response);
 }
@@ -513,6 +588,36 @@ WeldingControl::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       WeldingControl_method_names[10],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< WeldingControl::Service, ::Nrmk::IndyFramework::SuperpulsMode, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](WeldingControl::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::SuperpulsMode* req,
+             ::Nrmk::IndyFramework::Response* resp) {
+               return service->SetSuperpuls(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      WeldingControl_method_names[11],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< WeldingControl::Service, ::Nrmk::IndyFramework::PositionWeldMode, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](WeldingControl::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::PositionWeldMode* req,
+             ::Nrmk::IndyFramework::Response* resp) {
+               return service->SetPositionWeld(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      WeldingControl_method_names[12],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< WeldingControl::Service, ::Nrmk::IndyFramework::ExtendedOptionRequest, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](WeldingControl::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::ExtendedOptionRequest* req,
+             ::Nrmk::IndyFramework::Response* resp) {
+               return service->SetExtendedOptions(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      WeldingControl_method_names[13],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< WeldingControl::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::WeldingData, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](WeldingControl::Service* service,
              ::grpc::ServerContext* ctx,
@@ -521,7 +626,7 @@ WeldingControl::Service::Service() {
                return service->GetWeldingData(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      WeldingControl_method_names[11],
+      WeldingControl_method_names[14],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< WeldingControl::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::FindCellInfo, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](WeldingControl::Service* service,
@@ -531,7 +636,7 @@ WeldingControl::Service::Service() {
                return service->GetFindCellInfo(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      WeldingControl_method_names[12],
+      WeldingControl_method_names[15],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< WeldingControl::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ShipBlockInfo, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](WeldingControl::Service* service,
@@ -541,7 +646,7 @@ WeldingControl::Service::Service() {
                return service->GetShipBlockInfo(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      WeldingControl_method_names[13],
+      WeldingControl_method_names[16],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< WeldingControl::Service, ::Nrmk::IndyFramework::TouchOrientation, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](WeldingControl::Service* service,
@@ -551,7 +656,7 @@ WeldingControl::Service::Service() {
                return service->SetTouchOrientation(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      WeldingControl_method_names[14],
+      WeldingControl_method_names[17],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< WeldingControl::Service, ::Nrmk::IndyFramework::WeldingOrientationList, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](WeldingControl::Service* service,
@@ -629,6 +734,27 @@ WeldingControl::Service::~Service() {
 }
 
 ::grpc::Status WeldingControl::Service::SetJob(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::WeldJob* request, ::Nrmk::IndyFramework::Response* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status WeldingControl::Service::SetSuperpuls(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::SuperpulsMode* request, ::Nrmk::IndyFramework::Response* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status WeldingControl::Service::SetPositionWeld(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::PositionWeldMode* request, ::Nrmk::IndyFramework::Response* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status WeldingControl::Service::SetExtendedOptions(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::ExtendedOptionRequest* request, ::Nrmk::IndyFramework::Response* response) {
   (void) context;
   (void) request;
   (void) response;

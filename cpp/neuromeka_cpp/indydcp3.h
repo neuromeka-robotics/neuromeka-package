@@ -603,11 +603,6 @@ class IndyDCP3
 
         bool socket_cmd_set_config(const Nrmk::IndyFramework::SocketCommandConfig& config);
         bool socket_cmd_get_config(Nrmk::IndyFramework::SocketCommandConfig& config);
-        bool socket_cmd_start(Nrmk::IndyFramework::SocketCommandStatus& status);
-        bool socket_cmd_stop(Nrmk::IndyFramework::SocketCommandStatus& status);
-        bool socket_cmd_send_data(const Nrmk::IndyFramework::SocketPayload& payload,
-                                  Nrmk::IndyFramework::SocketCommandStatus& status);
-        bool socket_cmd_get_latest_data(Nrmk::IndyFramework::SocketPayload& payload);
         bool set_inspire_hand_command(const Nrmk::IndyFramework::InspireHandCommand& command);
         bool get_inspire_hand_state(int tool_index, Nrmk::IndyFramework::InspireHandState& state);
 

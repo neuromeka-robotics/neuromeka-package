@@ -27,13 +27,27 @@ static const char* TeleOp_method_names[] = {
   "/Nrmk.IndyFramework.TeleOp/GetObstacleInfo",
   "/Nrmk.IndyFramework.TeleOp/GetCollisionSpheres",
   "/Nrmk.IndyFramework.TeleOp/GetJointConstraintConfig",
+  "/Nrmk.IndyFramework.TeleOp/SetJointConstraintConfig",
   "/Nrmk.IndyFramework.TeleOp/GetSelfCollisionPairs",
+  "/Nrmk.IndyFramework.TeleOp/SetSelfCollisionPairs",
+  "/Nrmk.IndyFramework.TeleOp/GetSelfCollisionConfig",
+  "/Nrmk.IndyFramework.TeleOp/SetSelfCollisionConfig",
   "/Nrmk.IndyFramework.TeleOp/GetPlaneConstraintConfig",
+  "/Nrmk.IndyFramework.TeleOp/SetPlaneConstraintConfig",
   "/Nrmk.IndyFramework.TeleOp/GetStaticObstacleConstraintConfig",
+  "/Nrmk.IndyFramework.TeleOp/SetStaticObstacleConstraintConfig",
   "/Nrmk.IndyFramework.TeleOp/GetDynamicObstacleConstraintConfig",
+  "/Nrmk.IndyFramework.TeleOp/SetDynamicObstacleConstraintConfig",
   "/Nrmk.IndyFramework.TeleOp/GetOrientationDeviationConfig",
+  "/Nrmk.IndyFramework.TeleOp/SetOrientationDeviationConfig",
+  "/Nrmk.IndyFramework.TeleOp/ApplyTeleopConstraintBatch",
+  "/Nrmk.IndyFramework.TeleOp/GetTeleopConstraintRuntimeStatus",
+  "/Nrmk.IndyFramework.TeleOp/GetTeleopTuningParams",
+  "/Nrmk.IndyFramework.TeleOp/SetTeleopTuningParams",
   "/Nrmk.IndyFramework.TeleOp/GetDesiredPosition",
   "/Nrmk.IndyFramework.TeleOp/GetCurrentPosition",
+  "/Nrmk.IndyFramework.TeleOp/GetToolCollisionSphereConfig",
+  "/Nrmk.IndyFramework.TeleOp/SetToolCollisionSphereConfig",
 };
 
 std::unique_ptr< TeleOp::Stub> TeleOp::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -47,13 +61,27 @@ TeleOp::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, co
   , rpcmethod_GetObstacleInfo_(TeleOp_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_GetCollisionSpheres_(TeleOp_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_GetJointConstraintConfig_(TeleOp_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetSelfCollisionPairs_(TeleOp_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetPlaneConstraintConfig_(TeleOp_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetStaticObstacleConstraintConfig_(TeleOp_method_names[6], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetDynamicObstacleConstraintConfig_(TeleOp_method_names[7], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetOrientationDeviationConfig_(TeleOp_method_names[8], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetDesiredPosition_(TeleOp_method_names[9], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetCurrentPosition_(TeleOp_method_names[10], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetJointConstraintConfig_(TeleOp_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetSelfCollisionPairs_(TeleOp_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetSelfCollisionPairs_(TeleOp_method_names[6], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetSelfCollisionConfig_(TeleOp_method_names[7], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetSelfCollisionConfig_(TeleOp_method_names[8], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetPlaneConstraintConfig_(TeleOp_method_names[9], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetPlaneConstraintConfig_(TeleOp_method_names[10], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetStaticObstacleConstraintConfig_(TeleOp_method_names[11], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetStaticObstacleConstraintConfig_(TeleOp_method_names[12], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetDynamicObstacleConstraintConfig_(TeleOp_method_names[13], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetDynamicObstacleConstraintConfig_(TeleOp_method_names[14], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetOrientationDeviationConfig_(TeleOp_method_names[15], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetOrientationDeviationConfig_(TeleOp_method_names[16], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ApplyTeleopConstraintBatch_(TeleOp_method_names[17], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetTeleopConstraintRuntimeStatus_(TeleOp_method_names[18], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetTeleopTuningParams_(TeleOp_method_names[19], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetTeleopTuningParams_(TeleOp_method_names[20], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetDesiredPosition_(TeleOp_method_names[21], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetCurrentPosition_(TeleOp_method_names[22], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetToolCollisionSphereConfig_(TeleOp_method_names[23], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetToolCollisionSphereConfig_(TeleOp_method_names[24], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status TeleOp::Stub::SetObstacleInfo(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ObstacleInfo& request, ::Nrmk::IndyFramework::Empty* response) {
@@ -148,6 +176,29 @@ void TeleOp::Stub::async::GetJointConstraintConfig(::grpc::ClientContext* contex
   return result;
 }
 
+::grpc::Status TeleOp::Stub::SetJointConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::JointConstraintConfig& request, ::Nrmk::IndyFramework::Response* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::JointConstraintConfig, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetJointConstraintConfig_, context, request, response);
+}
+
+void TeleOp::Stub::async::SetJointConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::JointConstraintConfig* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::JointConstraintConfig, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetJointConstraintConfig_, context, request, response, std::move(f));
+}
+
+void TeleOp::Stub::async::SetJointConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::JointConstraintConfig* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetJointConstraintConfig_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* TeleOp::Stub::PrepareAsyncSetJointConstraintConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::JointConstraintConfig& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Response, ::Nrmk::IndyFramework::JointConstraintConfig, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetJointConstraintConfig_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* TeleOp::Stub::AsyncSetJointConstraintConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::JointConstraintConfig& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetJointConstraintConfigRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 ::grpc::Status TeleOp::Stub::GetSelfCollisionPairs(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::SelfCollisionPairs* response) {
   return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::SelfCollisionPairs, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetSelfCollisionPairs_, context, request, response);
 }
@@ -167,6 +218,75 @@ void TeleOp::Stub::async::GetSelfCollisionPairs(::grpc::ClientContext* context, 
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::SelfCollisionPairs>* TeleOp::Stub::AsyncGetSelfCollisionPairsRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
   auto* result =
     this->PrepareAsyncGetSelfCollisionPairsRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status TeleOp::Stub::SetSelfCollisionPairs(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SelfCollisionPairs& request, ::Nrmk::IndyFramework::Response* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::SelfCollisionPairs, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetSelfCollisionPairs_, context, request, response);
+}
+
+void TeleOp::Stub::async::SetSelfCollisionPairs(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SelfCollisionPairs* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::SelfCollisionPairs, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetSelfCollisionPairs_, context, request, response, std::move(f));
+}
+
+void TeleOp::Stub::async::SetSelfCollisionPairs(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SelfCollisionPairs* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetSelfCollisionPairs_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* TeleOp::Stub::PrepareAsyncSetSelfCollisionPairsRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SelfCollisionPairs& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Response, ::Nrmk::IndyFramework::SelfCollisionPairs, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetSelfCollisionPairs_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* TeleOp::Stub::AsyncSetSelfCollisionPairsRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SelfCollisionPairs& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetSelfCollisionPairsRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status TeleOp::Stub::GetSelfCollisionConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::SelfCollisionConstraintConfig* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::SelfCollisionConstraintConfig, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetSelfCollisionConfig_, context, request, response);
+}
+
+void TeleOp::Stub::async::GetSelfCollisionConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::SelfCollisionConstraintConfig* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::SelfCollisionConstraintConfig, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetSelfCollisionConfig_, context, request, response, std::move(f));
+}
+
+void TeleOp::Stub::async::GetSelfCollisionConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::SelfCollisionConstraintConfig* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetSelfCollisionConfig_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::SelfCollisionConstraintConfig>* TeleOp::Stub::PrepareAsyncGetSelfCollisionConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::SelfCollisionConstraintConfig, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetSelfCollisionConfig_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::SelfCollisionConstraintConfig>* TeleOp::Stub::AsyncGetSelfCollisionConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetSelfCollisionConfigRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status TeleOp::Stub::SetSelfCollisionConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SelfCollisionConstraintConfig& request, ::Nrmk::IndyFramework::Response* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::SelfCollisionConstraintConfig, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetSelfCollisionConfig_, context, request, response);
+}
+
+void TeleOp::Stub::async::SetSelfCollisionConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SelfCollisionConstraintConfig* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::SelfCollisionConstraintConfig, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetSelfCollisionConfig_, context, request, response, std::move(f));
+}
+
+void TeleOp::Stub::async::SetSelfCollisionConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SelfCollisionConstraintConfig* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetSelfCollisionConfig_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* TeleOp::Stub::PrepareAsyncSetSelfCollisionConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SelfCollisionConstraintConfig& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Response, ::Nrmk::IndyFramework::SelfCollisionConstraintConfig, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetSelfCollisionConfig_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* TeleOp::Stub::AsyncSetSelfCollisionConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SelfCollisionConstraintConfig& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetSelfCollisionConfigRaw(context, request, cq);
   result->StartCall();
   return result;
 }
@@ -194,6 +314,29 @@ void TeleOp::Stub::async::GetPlaneConstraintConfig(::grpc::ClientContext* contex
   return result;
 }
 
+::grpc::Status TeleOp::Stub::SetPlaneConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::PlaneConstraintConfig& request, ::Nrmk::IndyFramework::Response* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::PlaneConstraintConfig, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetPlaneConstraintConfig_, context, request, response);
+}
+
+void TeleOp::Stub::async::SetPlaneConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::PlaneConstraintConfig* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::PlaneConstraintConfig, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetPlaneConstraintConfig_, context, request, response, std::move(f));
+}
+
+void TeleOp::Stub::async::SetPlaneConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::PlaneConstraintConfig* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetPlaneConstraintConfig_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* TeleOp::Stub::PrepareAsyncSetPlaneConstraintConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::PlaneConstraintConfig& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Response, ::Nrmk::IndyFramework::PlaneConstraintConfig, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetPlaneConstraintConfig_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* TeleOp::Stub::AsyncSetPlaneConstraintConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::PlaneConstraintConfig& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetPlaneConstraintConfigRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 ::grpc::Status TeleOp::Stub::GetStaticObstacleConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::ObstacleConstraintConfig* response) {
   return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ObstacleConstraintConfig, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetStaticObstacleConstraintConfig_, context, request, response);
 }
@@ -213,6 +356,29 @@ void TeleOp::Stub::async::GetStaticObstacleConstraintConfig(::grpc::ClientContex
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ObstacleConstraintConfig>* TeleOp::Stub::AsyncGetStaticObstacleConstraintConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
   auto* result =
     this->PrepareAsyncGetStaticObstacleConstraintConfigRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status TeleOp::Stub::SetStaticObstacleConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ObstacleConstraintConfig& request, ::Nrmk::IndyFramework::Response* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::ObstacleConstraintConfig, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetStaticObstacleConstraintConfig_, context, request, response);
+}
+
+void TeleOp::Stub::async::SetStaticObstacleConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ObstacleConstraintConfig* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::ObstacleConstraintConfig, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetStaticObstacleConstraintConfig_, context, request, response, std::move(f));
+}
+
+void TeleOp::Stub::async::SetStaticObstacleConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ObstacleConstraintConfig* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetStaticObstacleConstraintConfig_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* TeleOp::Stub::PrepareAsyncSetStaticObstacleConstraintConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ObstacleConstraintConfig& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Response, ::Nrmk::IndyFramework::ObstacleConstraintConfig, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetStaticObstacleConstraintConfig_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* TeleOp::Stub::AsyncSetStaticObstacleConstraintConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ObstacleConstraintConfig& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetStaticObstacleConstraintConfigRaw(context, request, cq);
   result->StartCall();
   return result;
 }
@@ -240,6 +406,29 @@ void TeleOp::Stub::async::GetDynamicObstacleConstraintConfig(::grpc::ClientConte
   return result;
 }
 
+::grpc::Status TeleOp::Stub::SetDynamicObstacleConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ObstacleConstraintConfig& request, ::Nrmk::IndyFramework::Response* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::ObstacleConstraintConfig, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetDynamicObstacleConstraintConfig_, context, request, response);
+}
+
+void TeleOp::Stub::async::SetDynamicObstacleConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ObstacleConstraintConfig* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::ObstacleConstraintConfig, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetDynamicObstacleConstraintConfig_, context, request, response, std::move(f));
+}
+
+void TeleOp::Stub::async::SetDynamicObstacleConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ObstacleConstraintConfig* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetDynamicObstacleConstraintConfig_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* TeleOp::Stub::PrepareAsyncSetDynamicObstacleConstraintConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ObstacleConstraintConfig& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Response, ::Nrmk::IndyFramework::ObstacleConstraintConfig, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetDynamicObstacleConstraintConfig_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* TeleOp::Stub::AsyncSetDynamicObstacleConstraintConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ObstacleConstraintConfig& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetDynamicObstacleConstraintConfigRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 ::grpc::Status TeleOp::Stub::GetOrientationDeviationConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::OrientationDeviationConfig* response) {
   return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::OrientationDeviationConfig, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetOrientationDeviationConfig_, context, request, response);
 }
@@ -259,6 +448,121 @@ void TeleOp::Stub::async::GetOrientationDeviationConfig(::grpc::ClientContext* c
 ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::OrientationDeviationConfig>* TeleOp::Stub::AsyncGetOrientationDeviationConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
   auto* result =
     this->PrepareAsyncGetOrientationDeviationConfigRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status TeleOp::Stub::SetOrientationDeviationConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::OrientationDeviationConfig& request, ::Nrmk::IndyFramework::Response* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::OrientationDeviationConfig, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetOrientationDeviationConfig_, context, request, response);
+}
+
+void TeleOp::Stub::async::SetOrientationDeviationConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::OrientationDeviationConfig* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::OrientationDeviationConfig, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetOrientationDeviationConfig_, context, request, response, std::move(f));
+}
+
+void TeleOp::Stub::async::SetOrientationDeviationConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::OrientationDeviationConfig* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetOrientationDeviationConfig_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* TeleOp::Stub::PrepareAsyncSetOrientationDeviationConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::OrientationDeviationConfig& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Response, ::Nrmk::IndyFramework::OrientationDeviationConfig, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetOrientationDeviationConfig_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* TeleOp::Stub::AsyncSetOrientationDeviationConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::OrientationDeviationConfig& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetOrientationDeviationConfigRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status TeleOp::Stub::ApplyTeleopConstraintBatch(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ApplyTeleopConstraintBatchRequest& request, ::Nrmk::IndyFramework::Response* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::ApplyTeleopConstraintBatchRequest, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ApplyTeleopConstraintBatch_, context, request, response);
+}
+
+void TeleOp::Stub::async::ApplyTeleopConstraintBatch(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ApplyTeleopConstraintBatchRequest* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::ApplyTeleopConstraintBatchRequest, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ApplyTeleopConstraintBatch_, context, request, response, std::move(f));
+}
+
+void TeleOp::Stub::async::ApplyTeleopConstraintBatch(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ApplyTeleopConstraintBatchRequest* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ApplyTeleopConstraintBatch_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* TeleOp::Stub::PrepareAsyncApplyTeleopConstraintBatchRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ApplyTeleopConstraintBatchRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Response, ::Nrmk::IndyFramework::ApplyTeleopConstraintBatchRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ApplyTeleopConstraintBatch_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* TeleOp::Stub::AsyncApplyTeleopConstraintBatchRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ApplyTeleopConstraintBatchRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncApplyTeleopConstraintBatchRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status TeleOp::Stub::GetTeleopConstraintRuntimeStatus(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::TeleopConstraintRuntimeStatus* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::TeleopConstraintRuntimeStatus, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetTeleopConstraintRuntimeStatus_, context, request, response);
+}
+
+void TeleOp::Stub::async::GetTeleopConstraintRuntimeStatus(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::TeleopConstraintRuntimeStatus* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::TeleopConstraintRuntimeStatus, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetTeleopConstraintRuntimeStatus_, context, request, response, std::move(f));
+}
+
+void TeleOp::Stub::async::GetTeleopConstraintRuntimeStatus(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::TeleopConstraintRuntimeStatus* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetTeleopConstraintRuntimeStatus_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::TeleopConstraintRuntimeStatus>* TeleOp::Stub::PrepareAsyncGetTeleopConstraintRuntimeStatusRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::TeleopConstraintRuntimeStatus, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetTeleopConstraintRuntimeStatus_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::TeleopConstraintRuntimeStatus>* TeleOp::Stub::AsyncGetTeleopConstraintRuntimeStatusRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetTeleopConstraintRuntimeStatusRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status TeleOp::Stub::GetTeleopTuningParams(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::TeleopTuningParams* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::TeleopTuningParams, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetTeleopTuningParams_, context, request, response);
+}
+
+void TeleOp::Stub::async::GetTeleopTuningParams(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::TeleopTuningParams* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::TeleopTuningParams, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetTeleopTuningParams_, context, request, response, std::move(f));
+}
+
+void TeleOp::Stub::async::GetTeleopTuningParams(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::TeleopTuningParams* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetTeleopTuningParams_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::TeleopTuningParams>* TeleOp::Stub::PrepareAsyncGetTeleopTuningParamsRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::TeleopTuningParams, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetTeleopTuningParams_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::TeleopTuningParams>* TeleOp::Stub::AsyncGetTeleopTuningParamsRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetTeleopTuningParamsRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status TeleOp::Stub::SetTeleopTuningParams(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TeleopTuningParams& request, ::Nrmk::IndyFramework::Response* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::TeleopTuningParams, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetTeleopTuningParams_, context, request, response);
+}
+
+void TeleOp::Stub::async::SetTeleopTuningParams(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TeleopTuningParams* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::TeleopTuningParams, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetTeleopTuningParams_, context, request, response, std::move(f));
+}
+
+void TeleOp::Stub::async::SetTeleopTuningParams(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TeleopTuningParams* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetTeleopTuningParams_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* TeleOp::Stub::PrepareAsyncSetTeleopTuningParamsRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TeleopTuningParams& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Response, ::Nrmk::IndyFramework::TeleopTuningParams, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetTeleopTuningParams_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* TeleOp::Stub::AsyncSetTeleopTuningParamsRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TeleopTuningParams& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetTeleopTuningParamsRaw(context, request, cq);
   result->StartCall();
   return result;
 }
@@ -309,6 +613,52 @@ void TeleOp::Stub::async::GetCurrentPosition(::grpc::ClientContext* context, con
   return result;
 }
 
+::grpc::Status TeleOp::Stub::GetToolCollisionSphereConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::Message* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Message, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetToolCollisionSphereConfig_, context, request, response);
+}
+
+void TeleOp::Stub::async::GetToolCollisionSphereConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::Message* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Message, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetToolCollisionSphereConfig_, context, request, response, std::move(f));
+}
+
+void TeleOp::Stub::async::GetToolCollisionSphereConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::Message* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetToolCollisionSphereConfig_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Message>* TeleOp::Stub::PrepareAsyncGetToolCollisionSphereConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Message, ::Nrmk::IndyFramework::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetToolCollisionSphereConfig_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Message>* TeleOp::Stub::AsyncGetToolCollisionSphereConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetToolCollisionSphereConfigRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status TeleOp::Stub::SetToolCollisionSphereConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Message& request, ::Nrmk::IndyFramework::Response* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::Nrmk::IndyFramework::Message, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetToolCollisionSphereConfig_, context, request, response);
+}
+
+void TeleOp::Stub::async::SetToolCollisionSphereConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Message* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Nrmk::IndyFramework::Message, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetToolCollisionSphereConfig_, context, request, response, std::move(f));
+}
+
+void TeleOp::Stub::async::SetToolCollisionSphereConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Message* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetToolCollisionSphereConfig_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* TeleOp::Stub::PrepareAsyncSetToolCollisionSphereConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Message& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Nrmk::IndyFramework::Response, ::Nrmk::IndyFramework::Message, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetToolCollisionSphereConfig_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* TeleOp::Stub::AsyncSetToolCollisionSphereConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Message& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetToolCollisionSphereConfigRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 TeleOp::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       TeleOp_method_names[0],
@@ -353,6 +703,16 @@ TeleOp::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       TeleOp_method_names[4],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< TeleOp::Service, ::Nrmk::IndyFramework::JointConstraintConfig, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](TeleOp::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::JointConstraintConfig* req,
+             ::Nrmk::IndyFramework::Response* resp) {
+               return service->SetJointConstraintConfig(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      TeleOp_method_names[5],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< TeleOp::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::SelfCollisionPairs, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](TeleOp::Service* service,
              ::grpc::ServerContext* ctx,
@@ -361,7 +721,37 @@ TeleOp::Service::Service() {
                return service->GetSelfCollisionPairs(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      TeleOp_method_names[5],
+      TeleOp_method_names[6],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< TeleOp::Service, ::Nrmk::IndyFramework::SelfCollisionPairs, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](TeleOp::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::SelfCollisionPairs* req,
+             ::Nrmk::IndyFramework::Response* resp) {
+               return service->SetSelfCollisionPairs(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      TeleOp_method_names[7],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< TeleOp::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::SelfCollisionConstraintConfig, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](TeleOp::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::Empty* req,
+             ::Nrmk::IndyFramework::SelfCollisionConstraintConfig* resp) {
+               return service->GetSelfCollisionConfig(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      TeleOp_method_names[8],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< TeleOp::Service, ::Nrmk::IndyFramework::SelfCollisionConstraintConfig, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](TeleOp::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::SelfCollisionConstraintConfig* req,
+             ::Nrmk::IndyFramework::Response* resp) {
+               return service->SetSelfCollisionConfig(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      TeleOp_method_names[9],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< TeleOp::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::PlaneConstraintConfig, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](TeleOp::Service* service,
@@ -371,7 +761,17 @@ TeleOp::Service::Service() {
                return service->GetPlaneConstraintConfig(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      TeleOp_method_names[6],
+      TeleOp_method_names[10],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< TeleOp::Service, ::Nrmk::IndyFramework::PlaneConstraintConfig, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](TeleOp::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::PlaneConstraintConfig* req,
+             ::Nrmk::IndyFramework::Response* resp) {
+               return service->SetPlaneConstraintConfig(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      TeleOp_method_names[11],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< TeleOp::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ObstacleConstraintConfig, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](TeleOp::Service* service,
@@ -381,7 +781,17 @@ TeleOp::Service::Service() {
                return service->GetStaticObstacleConstraintConfig(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      TeleOp_method_names[7],
+      TeleOp_method_names[12],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< TeleOp::Service, ::Nrmk::IndyFramework::ObstacleConstraintConfig, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](TeleOp::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::ObstacleConstraintConfig* req,
+             ::Nrmk::IndyFramework::Response* resp) {
+               return service->SetStaticObstacleConstraintConfig(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      TeleOp_method_names[13],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< TeleOp::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ObstacleConstraintConfig, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](TeleOp::Service* service,
@@ -391,7 +801,17 @@ TeleOp::Service::Service() {
                return service->GetDynamicObstacleConstraintConfig(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      TeleOp_method_names[8],
+      TeleOp_method_names[14],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< TeleOp::Service, ::Nrmk::IndyFramework::ObstacleConstraintConfig, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](TeleOp::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::ObstacleConstraintConfig* req,
+             ::Nrmk::IndyFramework::Response* resp) {
+               return service->SetDynamicObstacleConstraintConfig(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      TeleOp_method_names[15],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< TeleOp::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::OrientationDeviationConfig, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](TeleOp::Service* service,
@@ -401,7 +821,57 @@ TeleOp::Service::Service() {
                return service->GetOrientationDeviationConfig(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      TeleOp_method_names[9],
+      TeleOp_method_names[16],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< TeleOp::Service, ::Nrmk::IndyFramework::OrientationDeviationConfig, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](TeleOp::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::OrientationDeviationConfig* req,
+             ::Nrmk::IndyFramework::Response* resp) {
+               return service->SetOrientationDeviationConfig(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      TeleOp_method_names[17],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< TeleOp::Service, ::Nrmk::IndyFramework::ApplyTeleopConstraintBatchRequest, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](TeleOp::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::ApplyTeleopConstraintBatchRequest* req,
+             ::Nrmk::IndyFramework::Response* resp) {
+               return service->ApplyTeleopConstraintBatch(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      TeleOp_method_names[18],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< TeleOp::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::TeleopConstraintRuntimeStatus, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](TeleOp::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::Empty* req,
+             ::Nrmk::IndyFramework::TeleopConstraintRuntimeStatus* resp) {
+               return service->GetTeleopConstraintRuntimeStatus(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      TeleOp_method_names[19],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< TeleOp::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::TeleopTuningParams, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](TeleOp::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::Empty* req,
+             ::Nrmk::IndyFramework::TeleopTuningParams* resp) {
+               return service->GetTeleopTuningParams(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      TeleOp_method_names[20],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< TeleOp::Service, ::Nrmk::IndyFramework::TeleopTuningParams, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](TeleOp::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::TeleopTuningParams* req,
+             ::Nrmk::IndyFramework::Response* resp) {
+               return service->SetTeleopTuningParams(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      TeleOp_method_names[21],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< TeleOp::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::DesiredPosition, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](TeleOp::Service* service,
@@ -411,7 +881,7 @@ TeleOp::Service::Service() {
                return service->GetDesiredPosition(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      TeleOp_method_names[10],
+      TeleOp_method_names[22],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< TeleOp::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::CurrentPosition, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](TeleOp::Service* service,
@@ -419,6 +889,26 @@ TeleOp::Service::Service() {
              const ::Nrmk::IndyFramework::Empty* req,
              ::Nrmk::IndyFramework::CurrentPosition* resp) {
                return service->GetCurrentPosition(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      TeleOp_method_names[23],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< TeleOp::Service, ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Message, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](TeleOp::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::Empty* req,
+             ::Nrmk::IndyFramework::Message* resp) {
+               return service->GetToolCollisionSphereConfig(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      TeleOp_method_names[24],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< TeleOp::Service, ::Nrmk::IndyFramework::Message, ::Nrmk::IndyFramework::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](TeleOp::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Nrmk::IndyFramework::Message* req,
+             ::Nrmk::IndyFramework::Response* resp) {
+               return service->SetToolCollisionSphereConfig(ctx, req, resp);
              }, this)));
 }
 
@@ -453,7 +943,35 @@ TeleOp::Service::~Service() {
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
+::grpc::Status TeleOp::Service::SetJointConstraintConfig(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::JointConstraintConfig* request, ::Nrmk::IndyFramework::Response* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
 ::grpc::Status TeleOp::Service::GetSelfCollisionPairs(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::SelfCollisionPairs* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status TeleOp::Service::SetSelfCollisionPairs(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::SelfCollisionPairs* request, ::Nrmk::IndyFramework::Response* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status TeleOp::Service::GetSelfCollisionConfig(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::SelfCollisionConstraintConfig* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status TeleOp::Service::SetSelfCollisionConfig(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::SelfCollisionConstraintConfig* request, ::Nrmk::IndyFramework::Response* response) {
   (void) context;
   (void) request;
   (void) response;
@@ -467,7 +985,21 @@ TeleOp::Service::~Service() {
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
+::grpc::Status TeleOp::Service::SetPlaneConstraintConfig(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::PlaneConstraintConfig* request, ::Nrmk::IndyFramework::Response* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
 ::grpc::Status TeleOp::Service::GetStaticObstacleConstraintConfig(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ObstacleConstraintConfig* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status TeleOp::Service::SetStaticObstacleConstraintConfig(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::ObstacleConstraintConfig* request, ::Nrmk::IndyFramework::Response* response) {
   (void) context;
   (void) request;
   (void) response;
@@ -481,7 +1013,49 @@ TeleOp::Service::~Service() {
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
+::grpc::Status TeleOp::Service::SetDynamicObstacleConstraintConfig(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::ObstacleConstraintConfig* request, ::Nrmk::IndyFramework::Response* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
 ::grpc::Status TeleOp::Service::GetOrientationDeviationConfig(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::OrientationDeviationConfig* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status TeleOp::Service::SetOrientationDeviationConfig(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::OrientationDeviationConfig* request, ::Nrmk::IndyFramework::Response* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status TeleOp::Service::ApplyTeleopConstraintBatch(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::ApplyTeleopConstraintBatchRequest* request, ::Nrmk::IndyFramework::Response* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status TeleOp::Service::GetTeleopConstraintRuntimeStatus(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::TeleopConstraintRuntimeStatus* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status TeleOp::Service::GetTeleopTuningParams(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::TeleopTuningParams* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status TeleOp::Service::SetTeleopTuningParams(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::TeleopTuningParams* request, ::Nrmk::IndyFramework::Response* response) {
   (void) context;
   (void) request;
   (void) response;
@@ -496,6 +1070,20 @@ TeleOp::Service::~Service() {
 }
 
 ::grpc::Status TeleOp::Service::GetCurrentPosition(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::CurrentPosition* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status TeleOp::Service::GetToolCollisionSphereConfig(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::Message* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status TeleOp::Service::SetToolCollisionSphereConfig(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Message* request, ::Nrmk::IndyFramework::Response* response) {
   (void) context;
   (void) request;
   (void) response;

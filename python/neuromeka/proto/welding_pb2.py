@@ -14,13 +14,15 @@ _sym_db = _symbol_database.Default()
 import common_msgs_pb2 as common__msgs__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\rwelding.proto\x12\x12Nrmk.IndyFramework\x1a\x11\x63ommon_msgs.proto\"3\n\x0eInchingRequest\x12\x0e\n\x06\x61\x63tive\x18\x01 \x01(\x08\x12\x11\n\tdirection\x18\x02 \x01(\x05\"\\\n\nArcRequest\x12\x0e\n\x06\x61\x63tive\x18\x01 \x01(\x08\x12\x17\n\x0fwelding_voltage\x18\x02 \x01(\x02\x12\x17\n\x0fwelding_current\x18\x03 \x01(\x02\x12\x0c\n\x04mode\x18\x04 \x01(\x05\"\x1c\n\nGasRequest\x12\x0e\n\x06\x61\x63tive\x18\x01 \x01(\x08\"\x1e\n\x0cTouchRequest\x12\x0e\n\x06\x61\x63tive\x18\x01 \x01(\x08\"\x1f\n\x0cTouchedState\x12\x0f\n\x07touched\x18\x01 \x01(\x08\"\x1b\n\x0bWeldingMode\x12\x0c\n\x04mode\x18\x01 \x01(\x05\"\x1a\n\nWeldOpMode\x12\x0c\n\x04mode\x18\x01 \x01(\x05\"\x1c\n\x0bWeldProgram\x12\r\n\x05index\x18\x01 \x01(\x05\"\x18\n\x07WeldJob\x12\r\n\x05index\x18\x01 \x01(\x05\"9\n\x0bWeldingData\x12\x10\n\x08\x66\x65\x65\x64\x62\x61\x63k\x18\x01 \x03(\x05\x12\x0b\n\x03\x63md\x18\x02 \x03(\x05\x12\x0b\n\x03msg\x18\x64 \x01(\t\"\x99\x01\n\x0c\x46indCellInfo\x12\x0c\n\x04name\x18\x01 \x03(\t\x12\x13\n\x0bstart_point\x18\x02 \x03(\x02\x12\x11\n\tend_point\x18\x03 \x03(\x02\x12\x12\n\ncell_types\x18\x04 \x03(\t\x12\x15\n\rplane_normals\x18\x05 \x03(\x02\x12\x13\n\x0b\x63ollar_type\x18\x06 \x03(\t\x12\x13\n\x0b\x65rror_state\x18\x64 \x01(\x08\"\x8d\x02\n\rShipBlockInfo\x12\x11\n\tleft_type\x18\x01 \x01(\t\x12\x14\n\x0cleft_height1\x18\x02 \x01(\x02\x12\x14\n\x0cleft_height2\x18\x03 \x01(\x02\x12\x14\n\x0cleft_length1\x18\x04 \x01(\x02\x12\x14\n\x0cleft_length2\x18\x05 \x01(\x02\x12\x12\n\nright_type\x18\x06 \x01(\t\x12\x15\n\rright_height1\x18\x07 \x01(\x02\x12\x15\n\rright_height2\x18\x08 \x01(\x02\x12\x15\n\rright_length1\x18\t \x01(\x02\x12\x15\n\rright_length2\x18\n \x01(\x02\x12\x14\n\x0ctotal_length\x18\x0b \x01(\x02\x12\x0b\n\x03msg\x18\x64 \x01(\t\"5\n\x10TouchOrientation\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x13\n\x0borientation\x18\x02 \x03(\x02\"7\n\x12WeldingOrientation\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x13\n\x0borientation\x18\x02 \x03(\x02\"Z\n\x16WeldingOrientationList\x12@\n\x10orientation_list\x18\x01 \x03(\x0b\x32&.Nrmk.IndyFramework.WeldingOrientation2\xda\t\n\x0eWeldingControl\x12P\n\x13UpdateWelderSetting\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12P\n\nSetInching\x12\".Nrmk.IndyFramework.InchingRequest\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12H\n\x06SetArc\x12\x1e.Nrmk.IndyFramework.ArcRequest\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12H\n\x06SetGas\x12\x1e.Nrmk.IndyFramework.GasRequest\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12L\n\x08SetTouch\x12 .Nrmk.IndyFramework.TouchRequest\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12M\n\x0c\x43heckTouched\x12\x19.Nrmk.IndyFramework.Empty\x1a .Nrmk.IndyFramework.TouchedState\"\x00\x12Q\n\x0eSetWeldingMode\x12\x1f.Nrmk.IndyFramework.WeldingMode\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12R\n\x10SetOperatingMode\x12\x1e.Nrmk.IndyFramework.WeldOpMode\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12M\n\nSetProgram\x12\x1f.Nrmk.IndyFramework.WeldProgram\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12\x45\n\x06SetJob\x12\x1b.Nrmk.IndyFramework.WeldJob\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12N\n\x0eGetWeldingData\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1f.Nrmk.IndyFramework.WeldingData\"\x00\x12P\n\x0fGetFindCellInfo\x12\x19.Nrmk.IndyFramework.Empty\x1a .Nrmk.IndyFramework.FindCellInfo\"\x00\x12R\n\x10GetShipBlockInfo\x12\x19.Nrmk.IndyFramework.Empty\x1a!.Nrmk.IndyFramework.ShipBlockInfo\"\x00\x12[\n\x13SetTouchOrientation\x12$.Nrmk.IndyFramework.TouchOrientation\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12\x63\n\x15SetWeldingOrientation\x12*.Nrmk.IndyFramework.WeldingOrientationList\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\rwelding.proto\x12\x12Nrmk.IndyFramework\x1a\x11\x63ommon_msgs.proto\"3\n\x0eInchingRequest\x12\x0e\n\x06\x61\x63tive\x18\x01 \x01(\x08\x12\x11\n\tdirection\x18\x02 \x01(\x05\"\\\n\nArcRequest\x12\x0e\n\x06\x61\x63tive\x18\x01 \x01(\x08\x12\x17\n\x0fwelding_voltage\x18\x02 \x01(\x02\x12\x17\n\x0fwelding_current\x18\x03 \x01(\x02\x12\x0c\n\x04mode\x18\x04 \x01(\x05\"\x1c\n\nGasRequest\x12\x0e\n\x06\x61\x63tive\x18\x01 \x01(\x08\"\x1e\n\x0cTouchRequest\x12\x0e\n\x06\x61\x63tive\x18\x01 \x01(\x08\"\x1f\n\x0cTouchedState\x12\x0f\n\x07touched\x18\x01 \x01(\x08\"\x1b\n\x0bWeldingMode\x12\x0c\n\x04mode\x18\x01 \x01(\x05\"\x1a\n\nWeldOpMode\x12\x0c\n\x04mode\x18\x01 \x01(\x05\"\x1c\n\x0bWeldProgram\x12\r\n\x05index\x18\x01 \x01(\x05\"\x18\n\x07WeldJob\x12\r\n\x05index\x18\x01 \x01(\x05\"\x1d\n\rSuperpulsMode\x12\x0c\n\x04mode\x18\x01 \x01(\x05\" \n\x10PositionWeldMode\x12\x0c\n\x04mode\x18\x01 \x01(\x05\"9\n\x0bWeldingData\x12\x10\n\x08\x66\x65\x65\x64\x62\x61\x63k\x18\x01 \x03(\x05\x12\x0b\n\x03\x63md\x18\x02 \x03(\x05\x12\x0b\n\x03msg\x18\x64 \x01(\t\"\x90\x01\n\x15\x45xtendedOptionRequest\x12G\n\x07options\x18\x01 \x03(\x0b\x32\x36.Nrmk.IndyFramework.ExtendedOptionRequest.OptionsEntry\x1a.\n\x0cOptionsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x05:\x02\x38\x01\"\x99\x01\n\x0c\x46indCellInfo\x12\x0c\n\x04name\x18\x01 \x03(\t\x12\x13\n\x0bstart_point\x18\x02 \x03(\x02\x12\x11\n\tend_point\x18\x03 \x03(\x02\x12\x12\n\ncell_types\x18\x04 \x03(\t\x12\x15\n\rplane_normals\x18\x05 \x03(\x02\x12\x13\n\x0b\x63ollar_type\x18\x06 \x03(\t\x12\x13\n\x0b\x65rror_state\x18\x64 \x01(\x08\"\x8d\x02\n\rShipBlockInfo\x12\x11\n\tleft_type\x18\x01 \x01(\t\x12\x14\n\x0cleft_height1\x18\x02 \x01(\x02\x12\x14\n\x0cleft_height2\x18\x03 \x01(\x02\x12\x14\n\x0cleft_length1\x18\x04 \x01(\x02\x12\x14\n\x0cleft_length2\x18\x05 \x01(\x02\x12\x12\n\nright_type\x18\x06 \x01(\t\x12\x15\n\rright_height1\x18\x07 \x01(\x02\x12\x15\n\rright_height2\x18\x08 \x01(\x02\x12\x15\n\rright_length1\x18\t \x01(\x02\x12\x15\n\rright_length2\x18\n \x01(\x02\x12\x14\n\x0ctotal_length\x18\x0b \x01(\x02\x12\x0b\n\x03msg\x18\x64 \x01(\t\"5\n\x10TouchOrientation\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x13\n\x0borientation\x18\x02 \x03(\x02\"7\n\x12WeldingOrientation\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x13\n\x0borientation\x18\x02 \x03(\x02\"Z\n\x16WeldingOrientationList\x12@\n\x10orientation_list\x18\x01 \x03(\x0b\x32&.Nrmk.IndyFramework.WeldingOrientation2\xe7\x0b\n\x0eWeldingControl\x12P\n\x13UpdateWelderSetting\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12P\n\nSetInching\x12\".Nrmk.IndyFramework.InchingRequest\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12H\n\x06SetArc\x12\x1e.Nrmk.IndyFramework.ArcRequest\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12H\n\x06SetGas\x12\x1e.Nrmk.IndyFramework.GasRequest\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12L\n\x08SetTouch\x12 .Nrmk.IndyFramework.TouchRequest\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12M\n\x0c\x43heckTouched\x12\x19.Nrmk.IndyFramework.Empty\x1a .Nrmk.IndyFramework.TouchedState\"\x00\x12Q\n\x0eSetWeldingMode\x12\x1f.Nrmk.IndyFramework.WeldingMode\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12R\n\x10SetOperatingMode\x12\x1e.Nrmk.IndyFramework.WeldOpMode\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12M\n\nSetProgram\x12\x1f.Nrmk.IndyFramework.WeldProgram\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12\x45\n\x06SetJob\x12\x1b.Nrmk.IndyFramework.WeldJob\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12Q\n\x0cSetSuperpuls\x12!.Nrmk.IndyFramework.SuperpulsMode\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12W\n\x0fSetPositionWeld\x12$.Nrmk.IndyFramework.PositionWeldMode\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12_\n\x12SetExtendedOptions\x12).Nrmk.IndyFramework.ExtendedOptionRequest\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12N\n\x0eGetWeldingData\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1f.Nrmk.IndyFramework.WeldingData\"\x00\x12P\n\x0fGetFindCellInfo\x12\x19.Nrmk.IndyFramework.Empty\x1a .Nrmk.IndyFramework.FindCellInfo\"\x00\x12R\n\x10GetShipBlockInfo\x12\x19.Nrmk.IndyFramework.Empty\x1a!.Nrmk.IndyFramework.ShipBlockInfo\"\x00\x12[\n\x13SetTouchOrientation\x12$.Nrmk.IndyFramework.TouchOrientation\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12\x63\n\x15SetWeldingOrientation\x12*.Nrmk.IndyFramework.WeldingOrientationList\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x62\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'welding_pb2', _globals)
 if _descriptor._USE_C_DESCRIPTORS == False:
   DESCRIPTOR._options = None
+  _EXTENDEDOPTIONREQUEST_OPTIONSENTRY._options = None
+  _EXTENDEDOPTIONREQUEST_OPTIONSENTRY._serialized_options = b'8\001'
   _globals['_INCHINGREQUEST']._serialized_start=56
   _globals['_INCHINGREQUEST']._serialized_end=107
   _globals['_ARCREQUEST']._serialized_start=109
@@ -39,18 +41,26 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _globals['_WELDPROGRAM']._serialized_end=383
   _globals['_WELDJOB']._serialized_start=385
   _globals['_WELDJOB']._serialized_end=409
-  _globals['_WELDINGDATA']._serialized_start=411
-  _globals['_WELDINGDATA']._serialized_end=468
-  _globals['_FINDCELLINFO']._serialized_start=471
-  _globals['_FINDCELLINFO']._serialized_end=624
-  _globals['_SHIPBLOCKINFO']._serialized_start=627
-  _globals['_SHIPBLOCKINFO']._serialized_end=896
-  _globals['_TOUCHORIENTATION']._serialized_start=898
-  _globals['_TOUCHORIENTATION']._serialized_end=951
-  _globals['_WELDINGORIENTATION']._serialized_start=953
-  _globals['_WELDINGORIENTATION']._serialized_end=1008
-  _globals['_WELDINGORIENTATIONLIST']._serialized_start=1010
-  _globals['_WELDINGORIENTATIONLIST']._serialized_end=1100
-  _globals['_WELDINGCONTROL']._serialized_start=1103
-  _globals['_WELDINGCONTROL']._serialized_end=2345
+  _globals['_SUPERPULSMODE']._serialized_start=411
+  _globals['_SUPERPULSMODE']._serialized_end=440
+  _globals['_POSITIONWELDMODE']._serialized_start=442
+  _globals['_POSITIONWELDMODE']._serialized_end=474
+  _globals['_WELDINGDATA']._serialized_start=476
+  _globals['_WELDINGDATA']._serialized_end=533
+  _globals['_EXTENDEDOPTIONREQUEST']._serialized_start=536
+  _globals['_EXTENDEDOPTIONREQUEST']._serialized_end=680
+  _globals['_EXTENDEDOPTIONREQUEST_OPTIONSENTRY']._serialized_start=634
+  _globals['_EXTENDEDOPTIONREQUEST_OPTIONSENTRY']._serialized_end=680
+  _globals['_FINDCELLINFO']._serialized_start=683
+  _globals['_FINDCELLINFO']._serialized_end=836
+  _globals['_SHIPBLOCKINFO']._serialized_start=839
+  _globals['_SHIPBLOCKINFO']._serialized_end=1108
+  _globals['_TOUCHORIENTATION']._serialized_start=1110
+  _globals['_TOUCHORIENTATION']._serialized_end=1163
+  _globals['_WELDINGORIENTATION']._serialized_start=1165
+  _globals['_WELDINGORIENTATION']._serialized_end=1220
+  _globals['_WELDINGORIENTATIONLIST']._serialized_start=1222
+  _globals['_WELDINGORIENTATIONLIST']._serialized_end=1312
+  _globals['_WELDINGCONTROL']._serialized_start=1315
+  _globals['_WELDINGCONTROL']._serialized_end=2826
 # @@protoc_insertion_point(module_scope)

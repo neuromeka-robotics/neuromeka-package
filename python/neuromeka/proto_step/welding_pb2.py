@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\rwelding.proto\x12\x12Nrmk.IndyFramework\x1a\x11\x63ommon_msgs.proto\"3\n\x0eInchingRequest\x12\x0e\n\x06\x61\x63tive\x18\x01 \x01(\x08\x12\x11\n\tdirection\x18\x02 \x01(\x05\"\\\n\nArcRequest\x12\x0e\n\x06\x61\x63tive\x18\x01 \x01(\x08\x12\x17\n\x0fwelding_voltage\x18\x02 \x01(\x02\x12\x17\n\x0fwelding_current\x18\x03 \x01(\x02\x12\x0c\n\x04mode\x18\x04 \x01(\x05\"\x1c\n\nGasRequest\x12\x0e\n\x06\x61\x63tive\x18\x01 \x01(\x08\"\x1e\n\x0cTouchRequest\x12\x0e\n\x06\x61\x63tive\x18\x01 \x01(\x08\"\x1f\n\x0cTouchedState\x12\x0f\n\x07touched\x18\x01 \x01(\x08\"\x1b\n\x0bWeldingMode\x12\x0c\n\x04mode\x18\x01 \x01(\x05\"\x1a\n\nWeldOpMode\x12\x0c\n\x04mode\x18\x01 \x01(\x05\"\x1c\n\x0bWeldProgram\x12\r\n\x05index\x18\x01 \x01(\x05\"\x18\n\x07WeldJob\x12\r\n\x05index\x18\x01 \x01(\x05\"9\n\x0bWeldingData\x12\x10\n\x08\x66\x65\x65\x64\x62\x61\x63k\x18\x01 \x03(\x05\x12\x0b\n\x03\x63md\x18\x02 \x03(\x05\x12\x0b\n\x03msg\x18\x64 \x01(\t\"\x99\x01\n\x0c\x46indCellInfo\x12\x0c\n\x04name\x18\x01 \x03(\t\x12\x13\n\x0bstart_point\x18\x02 \x03(\x02\x12\x11\n\tend_point\x18\x03 \x03(\x02\x12\x12\n\ncell_types\x18\x04 \x03(\t\x12\x15\n\rplane_normals\x18\x05 \x03(\x02\x12\x13\n\x0b\x63ollar_type\x18\x06 \x03(\t\x12\x13\n\x0b\x65rror_state\x18\x64 \x01(\x08\"\x8d\x02\n\rShipBlockInfo\x12\x11\n\tleft_type\x18\x01 \x01(\t\x12\x14\n\x0cleft_height1\x18\x02 \x01(\x02\x12\x14\n\x0cleft_height2\x18\x03 \x01(\x02\x12\x14\n\x0cleft_length1\x18\x04 \x01(\x02\x12\x14\n\x0cleft_length2\x18\x05 \x01(\x02\x12\x12\n\nright_type\x18\x06 \x01(\t\x12\x15\n\rright_height1\x18\x07 \x01(\x02\x12\x15\n\rright_height2\x18\x08 \x01(\x02\x12\x15\n\rright_length1\x18\t \x01(\x02\x12\x15\n\rright_length2\x18\n \x01(\x02\x12\x14\n\x0ctotal_length\x18\x0b \x01(\x02\x12\x0b\n\x03msg\x18\x64 \x01(\t\"5\n\x10TouchOrientation\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x13\n\x0borientation\x18\x02 \x03(\x02\"7\n\x12WeldingOrientation\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x13\n\x0borientation\x18\x02 \x03(\x02\"Z\n\x16WeldingOrientationList\x12@\n\x10orientation_list\x18\x01 \x03(\x0b\x32&.Nrmk.IndyFramework.WeldingOrientation2\xda\t\n\x0eWeldingControl\x12P\n\x13UpdateWelderSetting\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12P\n\nSetInching\x12\".Nrmk.IndyFramework.InchingRequest\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12H\n\x06SetArc\x12\x1e.Nrmk.IndyFramework.ArcRequest\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12H\n\x06SetGas\x12\x1e.Nrmk.IndyFramework.GasRequest\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12L\n\x08SetTouch\x12 .Nrmk.IndyFramework.TouchRequest\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12M\n\x0c\x43heckTouched\x12\x19.Nrmk.IndyFramework.Empty\x1a .Nrmk.IndyFramework.TouchedState\"\x00\x12Q\n\x0eSetWeldingMode\x12\x1f.Nrmk.IndyFramework.WeldingMode\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12R\n\x10SetOperatingMode\x12\x1e.Nrmk.IndyFramework.WeldOpMode\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12M\n\nSetProgram\x12\x1f.Nrmk.IndyFramework.WeldProgram\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12\x45\n\x06SetJob\x12\x1b.Nrmk.IndyFramework.WeldJob\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12N\n\x0eGetWeldingData\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1f.Nrmk.IndyFramework.WeldingData\"\x00\x12P\n\x0fGetFindCellInfo\x12\x19.Nrmk.IndyFramework.Empty\x1a .Nrmk.IndyFramework.FindCellInfo\"\x00\x12R\n\x10GetShipBlockInfo\x12\x19.Nrmk.IndyFramework.Empty\x1a!.Nrmk.IndyFramework.ShipBlockInfo\"\x00\x12[\n\x13SetTouchOrientation\x12$.Nrmk.IndyFramework.TouchOrientation\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12\x63\n\x15SetWeldingOrientation\x12*.Nrmk.IndyFramework.WeldingOrientationList\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x62\x06proto3'
+  serialized_pb=b'\n\rwelding.proto\x12\x12Nrmk.IndyFramework\x1a\x11\x63ommon_msgs.proto\"3\n\x0eInchingRequest\x12\x0e\n\x06\x61\x63tive\x18\x01 \x01(\x08\x12\x11\n\tdirection\x18\x02 \x01(\x05\"\\\n\nArcRequest\x12\x0e\n\x06\x61\x63tive\x18\x01 \x01(\x08\x12\x17\n\x0fwelding_voltage\x18\x02 \x01(\x02\x12\x17\n\x0fwelding_current\x18\x03 \x01(\x02\x12\x0c\n\x04mode\x18\x04 \x01(\x05\"\x1c\n\nGasRequest\x12\x0e\n\x06\x61\x63tive\x18\x01 \x01(\x08\"\x1e\n\x0cTouchRequest\x12\x0e\n\x06\x61\x63tive\x18\x01 \x01(\x08\"\x1f\n\x0cTouchedState\x12\x0f\n\x07touched\x18\x01 \x01(\x08\"\x1b\n\x0bWeldingMode\x12\x0c\n\x04mode\x18\x01 \x01(\x05\"\x1a\n\nWeldOpMode\x12\x0c\n\x04mode\x18\x01 \x01(\x05\"\x1c\n\x0bWeldProgram\x12\r\n\x05index\x18\x01 \x01(\x05\"\x18\n\x07WeldJob\x12\r\n\x05index\x18\x01 \x01(\x05\"\x1d\n\rSuperpulsMode\x12\x0c\n\x04mode\x18\x01 \x01(\x05\" \n\x10PositionWeldMode\x12\x0c\n\x04mode\x18\x01 \x01(\x05\"9\n\x0bWeldingData\x12\x10\n\x08\x66\x65\x65\x64\x62\x61\x63k\x18\x01 \x03(\x05\x12\x0b\n\x03\x63md\x18\x02 \x03(\x05\x12\x0b\n\x03msg\x18\x64 \x01(\t\"\x90\x01\n\x15\x45xtendedOptionRequest\x12G\n\x07options\x18\x01 \x03(\x0b\x32\x36.Nrmk.IndyFramework.ExtendedOptionRequest.OptionsEntry\x1a.\n\x0cOptionsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x05:\x02\x38\x01\"\x99\x01\n\x0c\x46indCellInfo\x12\x0c\n\x04name\x18\x01 \x03(\t\x12\x13\n\x0bstart_point\x18\x02 \x03(\x02\x12\x11\n\tend_point\x18\x03 \x03(\x02\x12\x12\n\ncell_types\x18\x04 \x03(\t\x12\x15\n\rplane_normals\x18\x05 \x03(\x02\x12\x13\n\x0b\x63ollar_type\x18\x06 \x03(\t\x12\x13\n\x0b\x65rror_state\x18\x64 \x01(\x08\"\x8d\x02\n\rShipBlockInfo\x12\x11\n\tleft_type\x18\x01 \x01(\t\x12\x14\n\x0cleft_height1\x18\x02 \x01(\x02\x12\x14\n\x0cleft_height2\x18\x03 \x01(\x02\x12\x14\n\x0cleft_length1\x18\x04 \x01(\x02\x12\x14\n\x0cleft_length2\x18\x05 \x01(\x02\x12\x12\n\nright_type\x18\x06 \x01(\t\x12\x15\n\rright_height1\x18\x07 \x01(\x02\x12\x15\n\rright_height2\x18\x08 \x01(\x02\x12\x15\n\rright_length1\x18\t \x01(\x02\x12\x15\n\rright_length2\x18\n \x01(\x02\x12\x14\n\x0ctotal_length\x18\x0b \x01(\x02\x12\x0b\n\x03msg\x18\x64 \x01(\t\"5\n\x10TouchOrientation\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x13\n\x0borientation\x18\x02 \x03(\x02\"7\n\x12WeldingOrientation\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x13\n\x0borientation\x18\x02 \x03(\x02\"Z\n\x16WeldingOrientationList\x12@\n\x10orientation_list\x18\x01 \x03(\x0b\x32&.Nrmk.IndyFramework.WeldingOrientation2\xe7\x0b\n\x0eWeldingControl\x12P\n\x13UpdateWelderSetting\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12P\n\nSetInching\x12\".Nrmk.IndyFramework.InchingRequest\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12H\n\x06SetArc\x12\x1e.Nrmk.IndyFramework.ArcRequest\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12H\n\x06SetGas\x12\x1e.Nrmk.IndyFramework.GasRequest\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12L\n\x08SetTouch\x12 .Nrmk.IndyFramework.TouchRequest\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12M\n\x0c\x43heckTouched\x12\x19.Nrmk.IndyFramework.Empty\x1a .Nrmk.IndyFramework.TouchedState\"\x00\x12Q\n\x0eSetWeldingMode\x12\x1f.Nrmk.IndyFramework.WeldingMode\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12R\n\x10SetOperatingMode\x12\x1e.Nrmk.IndyFramework.WeldOpMode\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12M\n\nSetProgram\x12\x1f.Nrmk.IndyFramework.WeldProgram\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12\x45\n\x06SetJob\x12\x1b.Nrmk.IndyFramework.WeldJob\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12Q\n\x0cSetSuperpuls\x12!.Nrmk.IndyFramework.SuperpulsMode\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12W\n\x0fSetPositionWeld\x12$.Nrmk.IndyFramework.PositionWeldMode\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12_\n\x12SetExtendedOptions\x12).Nrmk.IndyFramework.ExtendedOptionRequest\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12N\n\x0eGetWeldingData\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1f.Nrmk.IndyFramework.WeldingData\"\x00\x12P\n\x0fGetFindCellInfo\x12\x19.Nrmk.IndyFramework.Empty\x1a .Nrmk.IndyFramework.FindCellInfo\"\x00\x12R\n\x10GetShipBlockInfo\x12\x19.Nrmk.IndyFramework.Empty\x1a!.Nrmk.IndyFramework.ShipBlockInfo\"\x00\x12[\n\x13SetTouchOrientation\x12$.Nrmk.IndyFramework.TouchOrientation\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12\x63\n\x15SetWeldingOrientation\x12*.Nrmk.IndyFramework.WeldingOrientationList\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x62\x06proto3'
   ,
   dependencies=[common__msgs__pb2.DESCRIPTOR,])
 
@@ -343,6 +343,70 @@ _WELDJOB = _descriptor.Descriptor(
 )
 
 
+_SUPERPULSMODE = _descriptor.Descriptor(
+  name='SuperpulsMode',
+  full_name='Nrmk.IndyFramework.SuperpulsMode',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='mode', full_name='Nrmk.IndyFramework.SuperpulsMode.mode', index=0,
+      number=1, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=411,
+  serialized_end=440,
+)
+
+
+_POSITIONWELDMODE = _descriptor.Descriptor(
+  name='PositionWeldMode',
+  full_name='Nrmk.IndyFramework.PositionWeldMode',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='mode', full_name='Nrmk.IndyFramework.PositionWeldMode.mode', index=0,
+      number=1, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=442,
+  serialized_end=474,
+)
+
+
 _WELDINGDATA = _descriptor.Descriptor(
   name='WeldingData',
   full_name='Nrmk.IndyFramework.WeldingData',
@@ -384,8 +448,78 @@ _WELDINGDATA = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=411,
-  serialized_end=468,
+  serialized_start=476,
+  serialized_end=533,
+)
+
+
+_EXTENDEDOPTIONREQUEST_OPTIONSENTRY = _descriptor.Descriptor(
+  name='OptionsEntry',
+  full_name='Nrmk.IndyFramework.ExtendedOptionRequest.OptionsEntry',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='key', full_name='Nrmk.IndyFramework.ExtendedOptionRequest.OptionsEntry.key', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='value', full_name='Nrmk.IndyFramework.ExtendedOptionRequest.OptionsEntry.value', index=1,
+      number=2, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=b'8\001',
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=634,
+  serialized_end=680,
+)
+
+_EXTENDEDOPTIONREQUEST = _descriptor.Descriptor(
+  name='ExtendedOptionRequest',
+  full_name='Nrmk.IndyFramework.ExtendedOptionRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='options', full_name='Nrmk.IndyFramework.ExtendedOptionRequest.options', index=0,
+      number=1, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[_EXTENDEDOPTIONREQUEST_OPTIONSENTRY, ],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=536,
+  serialized_end=680,
 )
 
 
@@ -458,8 +592,8 @@ _FINDCELLINFO = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=471,
-  serialized_end=624,
+  serialized_start=683,
+  serialized_end=836,
 )
 
 
@@ -567,8 +701,8 @@ _SHIPBLOCKINFO = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=627,
-  serialized_end=896,
+  serialized_start=839,
+  serialized_end=1108,
 )
 
 
@@ -606,8 +740,8 @@ _TOUCHORIENTATION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=898,
-  serialized_end=951,
+  serialized_start=1110,
+  serialized_end=1163,
 )
 
 
@@ -645,8 +779,8 @@ _WELDINGORIENTATION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=953,
-  serialized_end=1008,
+  serialized_start=1165,
+  serialized_end=1220,
 )
 
 
@@ -677,10 +811,12 @@ _WELDINGORIENTATIONLIST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1010,
-  serialized_end=1100,
+  serialized_start=1222,
+  serialized_end=1312,
 )
 
+_EXTENDEDOPTIONREQUEST_OPTIONSENTRY.containing_type = _EXTENDEDOPTIONREQUEST
+_EXTENDEDOPTIONREQUEST.fields_by_name['options'].message_type = _EXTENDEDOPTIONREQUEST_OPTIONSENTRY
 _WELDINGORIENTATIONLIST.fields_by_name['orientation_list'].message_type = _WELDINGORIENTATION
 DESCRIPTOR.message_types_by_name['InchingRequest'] = _INCHINGREQUEST
 DESCRIPTOR.message_types_by_name['ArcRequest'] = _ARCREQUEST
@@ -691,7 +827,10 @@ DESCRIPTOR.message_types_by_name['WeldingMode'] = _WELDINGMODE
 DESCRIPTOR.message_types_by_name['WeldOpMode'] = _WELDOPMODE
 DESCRIPTOR.message_types_by_name['WeldProgram'] = _WELDPROGRAM
 DESCRIPTOR.message_types_by_name['WeldJob'] = _WELDJOB
+DESCRIPTOR.message_types_by_name['SuperpulsMode'] = _SUPERPULSMODE
+DESCRIPTOR.message_types_by_name['PositionWeldMode'] = _POSITIONWELDMODE
 DESCRIPTOR.message_types_by_name['WeldingData'] = _WELDINGDATA
+DESCRIPTOR.message_types_by_name['ExtendedOptionRequest'] = _EXTENDEDOPTIONREQUEST
 DESCRIPTOR.message_types_by_name['FindCellInfo'] = _FINDCELLINFO
 DESCRIPTOR.message_types_by_name['ShipBlockInfo'] = _SHIPBLOCKINFO
 DESCRIPTOR.message_types_by_name['TouchOrientation'] = _TOUCHORIENTATION
@@ -762,12 +901,41 @@ WeldJob = _reflection.GeneratedProtocolMessageType('WeldJob', (_message.Message,
   })
 _sym_db.RegisterMessage(WeldJob)
 
+SuperpulsMode = _reflection.GeneratedProtocolMessageType('SuperpulsMode', (_message.Message,), {
+  'DESCRIPTOR' : _SUPERPULSMODE,
+  '__module__' : 'welding_pb2'
+  # @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.SuperpulsMode)
+  })
+_sym_db.RegisterMessage(SuperpulsMode)
+
+PositionWeldMode = _reflection.GeneratedProtocolMessageType('PositionWeldMode', (_message.Message,), {
+  'DESCRIPTOR' : _POSITIONWELDMODE,
+  '__module__' : 'welding_pb2'
+  # @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.PositionWeldMode)
+  })
+_sym_db.RegisterMessage(PositionWeldMode)
+
 WeldingData = _reflection.GeneratedProtocolMessageType('WeldingData', (_message.Message,), {
   'DESCRIPTOR' : _WELDINGDATA,
   '__module__' : 'welding_pb2'
   # @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.WeldingData)
   })
 _sym_db.RegisterMessage(WeldingData)
+
+ExtendedOptionRequest = _reflection.GeneratedProtocolMessageType('ExtendedOptionRequest', (_message.Message,), {
+
+  'OptionsEntry' : _reflection.GeneratedProtocolMessageType('OptionsEntry', (_message.Message,), {
+    'DESCRIPTOR' : _EXTENDEDOPTIONREQUEST_OPTIONSENTRY,
+    '__module__' : 'welding_pb2'
+    # @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.ExtendedOptionRequest.OptionsEntry)
+    })
+  ,
+  'DESCRIPTOR' : _EXTENDEDOPTIONREQUEST,
+  '__module__' : 'welding_pb2'
+  # @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.ExtendedOptionRequest)
+  })
+_sym_db.RegisterMessage(ExtendedOptionRequest)
+_sym_db.RegisterMessage(ExtendedOptionRequest.OptionsEntry)
 
 FindCellInfo = _reflection.GeneratedProtocolMessageType('FindCellInfo', (_message.Message,), {
   'DESCRIPTOR' : _FINDCELLINFO,
@@ -805,6 +973,7 @@ WeldingOrientationList = _reflection.GeneratedProtocolMessageType('WeldingOrient
 _sym_db.RegisterMessage(WeldingOrientationList)
 
 
+_EXTENDEDOPTIONREQUEST_OPTIONSENTRY._options = None
 
 _WELDINGCONTROL = _descriptor.ServiceDescriptor(
   name='WeldingControl',
@@ -813,8 +982,8 @@ _WELDINGCONTROL = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=1103,
-  serialized_end=2345,
+  serialized_start=1315,
+  serialized_end=2826,
   methods=[
   _descriptor.MethodDescriptor(
     name='UpdateWelderSetting',
@@ -917,9 +1086,39 @@ _WELDINGCONTROL = _descriptor.ServiceDescriptor(
     create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
+    name='SetSuperpuls',
+    full_name='Nrmk.IndyFramework.WeldingControl.SetSuperpuls',
+    index=10,
+    containing_service=None,
+    input_type=_SUPERPULSMODE,
+    output_type=common__msgs__pb2._RESPONSE,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='SetPositionWeld',
+    full_name='Nrmk.IndyFramework.WeldingControl.SetPositionWeld',
+    index=11,
+    containing_service=None,
+    input_type=_POSITIONWELDMODE,
+    output_type=common__msgs__pb2._RESPONSE,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='SetExtendedOptions',
+    full_name='Nrmk.IndyFramework.WeldingControl.SetExtendedOptions',
+    index=12,
+    containing_service=None,
+    input_type=_EXTENDEDOPTIONREQUEST,
+    output_type=common__msgs__pb2._RESPONSE,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
     name='GetWeldingData',
     full_name='Nrmk.IndyFramework.WeldingControl.GetWeldingData',
-    index=10,
+    index=13,
     containing_service=None,
     input_type=common__msgs__pb2._EMPTY,
     output_type=_WELDINGDATA,
@@ -929,7 +1128,7 @@ _WELDINGCONTROL = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='GetFindCellInfo',
     full_name='Nrmk.IndyFramework.WeldingControl.GetFindCellInfo',
-    index=11,
+    index=14,
     containing_service=None,
     input_type=common__msgs__pb2._EMPTY,
     output_type=_FINDCELLINFO,
@@ -939,7 +1138,7 @@ _WELDINGCONTROL = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='GetShipBlockInfo',
     full_name='Nrmk.IndyFramework.WeldingControl.GetShipBlockInfo',
-    index=12,
+    index=15,
     containing_service=None,
     input_type=common__msgs__pb2._EMPTY,
     output_type=_SHIPBLOCKINFO,
@@ -949,7 +1148,7 @@ _WELDINGCONTROL = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SetTouchOrientation',
     full_name='Nrmk.IndyFramework.WeldingControl.SetTouchOrientation',
-    index=13,
+    index=16,
     containing_service=None,
     input_type=_TOUCHORIENTATION,
     output_type=common__msgs__pb2._RESPONSE,
@@ -959,7 +1158,7 @@ _WELDINGCONTROL = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SetWeldingOrientation',
     full_name='Nrmk.IndyFramework.WeldingControl.SetWeldingOrientation',
-    index=14,
+    index=17,
     containing_service=None,
     input_type=_WELDINGORIENTATIONLIST,
     output_type=common__msgs__pb2._RESPONSE,

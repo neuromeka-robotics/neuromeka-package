@@ -65,6 +65,21 @@ class WeldingControlStub(object):
                 request_serializer=welding__pb2.WeldJob.SerializeToString,
                 response_deserializer=common__msgs__pb2.Response.FromString,
                 )
+        self.SetSuperpuls = channel.unary_unary(
+                '/Nrmk.IndyFramework.WeldingControl/SetSuperpuls',
+                request_serializer=welding__pb2.SuperpulsMode.SerializeToString,
+                response_deserializer=common__msgs__pb2.Response.FromString,
+                )
+        self.SetPositionWeld = channel.unary_unary(
+                '/Nrmk.IndyFramework.WeldingControl/SetPositionWeld',
+                request_serializer=welding__pb2.PositionWeldMode.SerializeToString,
+                response_deserializer=common__msgs__pb2.Response.FromString,
+                )
+        self.SetExtendedOptions = channel.unary_unary(
+                '/Nrmk.IndyFramework.WeldingControl/SetExtendedOptions',
+                request_serializer=welding__pb2.ExtendedOptionRequest.SerializeToString,
+                response_deserializer=common__msgs__pb2.Response.FromString,
+                )
         self.GetWeldingData = channel.unary_unary(
                 '/Nrmk.IndyFramework.WeldingControl/GetWeldingData',
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
@@ -158,6 +173,24 @@ class WeldingControlServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def SetSuperpuls(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SetPositionWeld(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SetExtendedOptions(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def GetWeldingData(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -239,6 +272,21 @@ def add_WeldingControlServicer_to_server(servicer, server):
             'SetJob': grpc.unary_unary_rpc_method_handler(
                     servicer.SetJob,
                     request_deserializer=welding__pb2.WeldJob.FromString,
+                    response_serializer=common__msgs__pb2.Response.SerializeToString,
+            ),
+            'SetSuperpuls': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetSuperpuls,
+                    request_deserializer=welding__pb2.SuperpulsMode.FromString,
+                    response_serializer=common__msgs__pb2.Response.SerializeToString,
+            ),
+            'SetPositionWeld': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetPositionWeld,
+                    request_deserializer=welding__pb2.PositionWeldMode.FromString,
+                    response_serializer=common__msgs__pb2.Response.SerializeToString,
+            ),
+            'SetExtendedOptions': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetExtendedOptions,
+                    request_deserializer=welding__pb2.ExtendedOptionRequest.FromString,
                     response_serializer=common__msgs__pb2.Response.SerializeToString,
             ),
             'GetWeldingData': grpc.unary_unary_rpc_method_handler(
@@ -442,6 +490,57 @@ class WeldingControl(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.WeldingControl/SetJob',
             welding__pb2.WeldJob.SerializeToString,
+            common__msgs__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SetSuperpuls(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.WeldingControl/SetSuperpuls',
+            welding__pb2.SuperpulsMode.SerializeToString,
+            common__msgs__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SetPositionWeld(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.WeldingControl/SetPositionWeld',
+            welding__pb2.PositionWeldMode.SerializeToString,
+            common__msgs__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SetExtendedOptions(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.WeldingControl/SetExtendedOptions',
+            welding__pb2.ExtendedOptionRequest.SerializeToString,
             common__msgs__pb2.Response.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

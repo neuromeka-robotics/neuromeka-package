@@ -64,6 +64,7 @@ else()
         neuromeka_cpp/proto/moby_msgs.pb.cc
         neuromeka_cpp/proto/rtde_msgs.pb.cc
         neuromeka_cpp/proto/cri_msgs.pb.cc
+        neuromeka_cpp/proto/teleop_msgs.pb.cc
 
         neuromeka_cpp/proto/boot_msgs.grpc.pb.cc
         neuromeka_cpp/proto/common_msgs.grpc.pb.cc

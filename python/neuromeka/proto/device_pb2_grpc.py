@@ -40,6 +40,16 @@ class DeviceStub(object):
                 request_serializer=device__msgs__pb2.DigitalList.SerializeToString,
                 response_deserializer=common__msgs__pb2.Response.FromString,
                 )
+        self.GetDOChannels = channel.unary_unary(
+                '/Nrmk.IndyFramework.Device/GetDOChannels',
+                request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=device__msgs__pb2.DOChannelModes.FromString,
+                )
+        self.SetDOChannels = channel.unary_unary(
+                '/Nrmk.IndyFramework.Device/SetDOChannels',
+                request_serializer=device__msgs__pb2.DOChannelModes.SerializeToString,
+                response_deserializer=common__msgs__pb2.Response.FromString,
+                )
         self.SetDO = channel.unary_unary(
                 '/Nrmk.IndyFramework.Device/SetDO',
                 request_serializer=device__msgs__pb2.DigitalList.SerializeToString,
@@ -340,36 +350,6 @@ class DeviceStub(object):
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
                 response_deserializer=device__msgs__pb2.TaskTimes.FromString,
                 )
-        self.SocketCmdSetConfig = channel.unary_unary(
-                '/Nrmk.IndyFramework.Device/SocketCmdSetConfig',
-                request_serializer=device__msgs__pb2.SocketCommandConfig.SerializeToString,
-                response_deserializer=common__msgs__pb2.Response.FromString,
-                )
-        self.SocketCmdGetConfig = channel.unary_unary(
-                '/Nrmk.IndyFramework.Device/SocketCmdGetConfig',
-                request_serializer=common__msgs__pb2.Empty.SerializeToString,
-                response_deserializer=device__msgs__pb2.SocketCommandConfig.FromString,
-                )
-        self.SocketCmdStart = channel.unary_unary(
-                '/Nrmk.IndyFramework.Device/SocketCmdStart',
-                request_serializer=common__msgs__pb2.Empty.SerializeToString,
-                response_deserializer=device__msgs__pb2.SocketCommandStatus.FromString,
-                )
-        self.SocketCmdStop = channel.unary_unary(
-                '/Nrmk.IndyFramework.Device/SocketCmdStop',
-                request_serializer=common__msgs__pb2.Empty.SerializeToString,
-                response_deserializer=device__msgs__pb2.SocketCommandStatus.FromString,
-                )
-        self.SocketCmdSendData = channel.unary_unary(
-                '/Nrmk.IndyFramework.Device/SocketCmdSendData',
-                request_serializer=device__msgs__pb2.SocketPayload.SerializeToString,
-                response_deserializer=device__msgs__pb2.SocketCommandStatus.FromString,
-                )
-        self.SocketCmdGetLatestData = channel.unary_unary(
-                '/Nrmk.IndyFramework.Device/SocketCmdGetLatestData',
-                request_serializer=common__msgs__pb2.Empty.SerializeToString,
-                response_deserializer=device__msgs__pb2.SocketPayload.FromString,
-                )
         self.SetInspireHandCommand = channel.unary_unary(
                 '/Nrmk.IndyFramework.Device/SetInspireHandCommand',
                 request_serializer=device__msgs__pb2.InspireHandCommand.SerializeToString,
@@ -410,6 +390,18 @@ class DeviceServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def SetDI(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetDOChannels(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SetDOChannels(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -783,43 +775,6 @@ class DeviceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def SocketCmdSetConfig(self, request, context):
-        """/////////////Socket Command//////////////////////
-        """
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def SocketCmdGetConfig(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def SocketCmdStart(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def SocketCmdStop(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def SocketCmdSendData(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def SocketCmdGetLatestData(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
     def SetInspireHandCommand(self, request, context):
         """/////////////Inspire Hand RH56//////////////////////
         """
@@ -859,6 +814,16 @@ def add_DeviceServicer_to_server(servicer, server):
             'SetDI': grpc.unary_unary_rpc_method_handler(
                     servicer.SetDI,
                     request_deserializer=device__msgs__pb2.DigitalList.FromString,
+                    response_serializer=common__msgs__pb2.Response.SerializeToString,
+            ),
+            'GetDOChannels': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetDOChannels,
+                    request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=device__msgs__pb2.DOChannelModes.SerializeToString,
+            ),
+            'SetDOChannels': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetDOChannels,
+                    request_deserializer=device__msgs__pb2.DOChannelModes.FromString,
                     response_serializer=common__msgs__pb2.Response.SerializeToString,
             ),
             'SetDO': grpc.unary_unary_rpc_method_handler(
@@ -1161,36 +1126,6 @@ def add_DeviceServicer_to_server(servicer, server):
                     request_deserializer=common__msgs__pb2.Empty.FromString,
                     response_serializer=device__msgs__pb2.TaskTimes.SerializeToString,
             ),
-            'SocketCmdSetConfig': grpc.unary_unary_rpc_method_handler(
-                    servicer.SocketCmdSetConfig,
-                    request_deserializer=device__msgs__pb2.SocketCommandConfig.FromString,
-                    response_serializer=common__msgs__pb2.Response.SerializeToString,
-            ),
-            'SocketCmdGetConfig': grpc.unary_unary_rpc_method_handler(
-                    servicer.SocketCmdGetConfig,
-                    request_deserializer=common__msgs__pb2.Empty.FromString,
-                    response_serializer=device__msgs__pb2.SocketCommandConfig.SerializeToString,
-            ),
-            'SocketCmdStart': grpc.unary_unary_rpc_method_handler(
-                    servicer.SocketCmdStart,
-                    request_deserializer=common__msgs__pb2.Empty.FromString,
-                    response_serializer=device__msgs__pb2.SocketCommandStatus.SerializeToString,
-            ),
-            'SocketCmdStop': grpc.unary_unary_rpc_method_handler(
-                    servicer.SocketCmdStop,
-                    request_deserializer=common__msgs__pb2.Empty.FromString,
-                    response_serializer=device__msgs__pb2.SocketCommandStatus.SerializeToString,
-            ),
-            'SocketCmdSendData': grpc.unary_unary_rpc_method_handler(
-                    servicer.SocketCmdSendData,
-                    request_deserializer=device__msgs__pb2.SocketPayload.FromString,
-                    response_serializer=device__msgs__pb2.SocketCommandStatus.SerializeToString,
-            ),
-            'SocketCmdGetLatestData': grpc.unary_unary_rpc_method_handler(
-                    servicer.SocketCmdGetLatestData,
-                    request_deserializer=common__msgs__pb2.Empty.FromString,
-                    response_serializer=device__msgs__pb2.SocketPayload.SerializeToString,
-            ),
             'SetInspireHandCommand': grpc.unary_unary_rpc_method_handler(
                     servicer.SetInspireHandCommand,
                     request_deserializer=device__msgs__pb2.InspireHandCommand.FromString,
@@ -1292,6 +1227,40 @@ class Device(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/SetDI',
             device__msgs__pb2.DigitalList.SerializeToString,
+            common__msgs__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetDOChannels(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/GetDOChannels',
+            common__msgs__pb2.Empty.SerializeToString,
+            device__msgs__pb2.DOChannelModes.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SetDOChannels(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/SetDOChannels',
+            device__msgs__pb2.DOChannelModes.SerializeToString,
             common__msgs__pb2.Response.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
@@ -2313,108 +2282,6 @@ class Device(object):
         return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/GetRTTaskTimes',
             common__msgs__pb2.Empty.SerializeToString,
             device__msgs__pb2.TaskTimes.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def SocketCmdSetConfig(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/SocketCmdSetConfig',
-            device__msgs__pb2.SocketCommandConfig.SerializeToString,
-            common__msgs__pb2.Response.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def SocketCmdGetConfig(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/SocketCmdGetConfig',
-            common__msgs__pb2.Empty.SerializeToString,
-            device__msgs__pb2.SocketCommandConfig.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def SocketCmdStart(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/SocketCmdStart',
-            common__msgs__pb2.Empty.SerializeToString,
-            device__msgs__pb2.SocketCommandStatus.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def SocketCmdStop(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/SocketCmdStop',
-            common__msgs__pb2.Empty.SerializeToString,
-            device__msgs__pb2.SocketCommandStatus.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def SocketCmdSendData(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/SocketCmdSendData',
-            device__msgs__pb2.SocketPayload.SerializeToString,
-            device__msgs__pb2.SocketCommandStatus.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def SocketCmdGetLatestData(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/SocketCmdGetLatestData',
-            common__msgs__pb2.Empty.SerializeToString,
-            device__msgs__pb2.SocketPayload.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

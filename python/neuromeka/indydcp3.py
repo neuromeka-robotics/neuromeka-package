@@ -92,6 +92,16 @@ class IndyDCP3(
     def get_locked_joint(self):
         return self.get_control_data()['locked_joint']
 
+    def wait_motion_done(self, timeout=120):
+        t0 = time.time()
+        while True:
+            md = self.get_motion_data()
+            if md.get("is_target_reached") and not md.get("is_in_motion"):
+                return
+            if time.time() - t0 > timeout:
+                raise TimeoutError(md)
+            time.sleep(0.02)
+
     def add_joint_waypoint(self, waypoint: list):
         self._joint_waypoint.append(waypoint)
         return True
@@ -109,7 +119,8 @@ class IndyDCP3(
                 self.movej(jtarget=wp, blending_type=BlendingType.OVERRIDE)
             else:
                 self.movej_time(jtarget=wp, blending_type=BlendingType.OVERRIDE, move_time=move_time)
-            self.wait_progress(progress=100)
+            # self.wait_traj(traj_condition=100)
+            self.wait_motion_done()
         return True
 
     def add_task_waypoint(self, waypoint: list):
@@ -129,7 +140,8 @@ class IndyDCP3(
                 self.movel(ttarget=wp, blending_type=BlendingType.OVERRIDE)
             else:
                 self.movel_time(ttarget=wp, blending_type=BlendingType.OVERRIDE, move_time=move_time)
-            self.wait_progress(progress=100)
+            # self.wait_progress(progress=100)
+            self.wait_motion_done()
         return True
 
     def move_home(self):

@@ -3848,9 +3848,9 @@ bool IndyDCP3::socket_cmd_set_config(const Nrmk::IndyFramework::SocketCommandCon
     Nrmk::IndyFramework::Response response;
     grpc::ClientContext context;
 
-    grpc::Status status = device_stub->SocketCmdSetConfig(&context, config, &response);
+    grpc::Status status = config_stub->SetSocketCommandConfig(&context, config, &response);
     if (!status.ok()) {
-        std::cerr << "SocketCmdSetConfig RPC failed: " << status.error_message() << std::endl;
+        std::cerr << "SetSocketCommandConfig RPC failed: " << status.error_message() << std::endl;
         return false;
     }
     return true;
@@ -3860,57 +3860,9 @@ bool IndyDCP3::socket_cmd_get_config(Nrmk::IndyFramework::SocketCommandConfig& c
     Nrmk::IndyFramework::Empty request;
     grpc::ClientContext context;
 
-    grpc::Status status = device_stub->SocketCmdGetConfig(&context, request, &config);
+    grpc::Status status = config_stub->GetSocketCommandConfig(&context, request, &config);
     if (!status.ok()) {
-        std::cerr << "SocketCmdGetConfig RPC failed: " << status.error_message() << std::endl;
-        return false;
-    }
-    return true;
-}
-
-bool IndyDCP3::socket_cmd_start(Nrmk::IndyFramework::SocketCommandStatus& status_response) {
-    Nrmk::IndyFramework::Empty request;
-    grpc::ClientContext context;
-
-    grpc::Status status = device_stub->SocketCmdStart(&context, request, &status_response);
-    if (!status.ok()) {
-        std::cerr << "SocketCmdStart RPC failed: " << status.error_message() << std::endl;
-        return false;
-    }
-    return true;
-}
-
-bool IndyDCP3::socket_cmd_stop(Nrmk::IndyFramework::SocketCommandStatus& status_response) {
-    Nrmk::IndyFramework::Empty request;
-    grpc::ClientContext context;
-
-    grpc::Status status = device_stub->SocketCmdStop(&context, request, &status_response);
-    if (!status.ok()) {
-        std::cerr << "SocketCmdStop RPC failed: " << status.error_message() << std::endl;
-        return false;
-    }
-    return true;
-}
-
-bool IndyDCP3::socket_cmd_send_data(const Nrmk::IndyFramework::SocketPayload& payload,
-                                    Nrmk::IndyFramework::SocketCommandStatus& status_response) {
-    grpc::ClientContext context;
-
-    grpc::Status status = device_stub->SocketCmdSendData(&context, payload, &status_response);
-    if (!status.ok()) {
-        std::cerr << "SocketCmdSendData RPC failed: " << status.error_message() << std::endl;
-        return false;
-    }
-    return true;
-}
-
-bool IndyDCP3::socket_cmd_get_latest_data(Nrmk::IndyFramework::SocketPayload& payload) {
-    Nrmk::IndyFramework::Empty request;
-    grpc::ClientContext context;
-
-    grpc::Status status = device_stub->SocketCmdGetLatestData(&context, request, &payload);
-    if (!status.ok()) {
-        std::cerr << "SocketCmdGetLatestData RPC failed: " << status.error_message() << std::endl;
+        std::cerr << "GetSocketCommandConfig RPC failed: " << status.error_message() << std::endl;
         return false;
     }
     return true;
@@ -5244,13 +5196,10 @@ bool IndyDCP3::set_reduced_speed(const float speed) {
 
 bool IndyDCP3::set_teleop_params(const Nrmk::IndyFramework::TeleOpParams& request) {
     // check request
-    if (request.cutoff_freq() < 0.1 || request.cutoff_freq() > 20.0) {
+    if (request.cutoff_freq_input() < 0.1 || request.cutoff_freq_input() > 20.0) {
         std::cerr << "Cutoff frequency must be between 0.1 and 20.0 Hz." << std::endl;
         return false;
     }
-
-    // warning smooth_factor and error_gain are deprecated
-    std::cerr << "Warning: smooth_factor and error_gain are deprecated and will be ignored." << std::endl;
 
     Nrmk::IndyFramework::Response response;
     grpc::ClientContext context;
@@ -5266,9 +5215,7 @@ bool IndyDCP3::set_teleop_params(const Nrmk::IndyFramework::TeleOpParams& reques
 bool IndyDCP3::get_teleop_params(Nrmk::IndyFramework::TeleOpParams& response) {
     /*
         IO Data:
-        smooth_factor   -> float
-        cutoff_freq   -> float
-        error_gain  -> float
+        cutoff_freq_input -> float
     */
     Nrmk::IndyFramework::Empty request;
     grpc::ClientContext context;
@@ -6245,4 +6192,3 @@ bool IndyDCP3::get_photoneo_retrieval(const Nrmk::IndyFramework::VisionServer& v
     }
     return true;
 }
-

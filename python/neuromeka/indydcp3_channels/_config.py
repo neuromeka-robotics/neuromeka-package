@@ -1055,19 +1055,15 @@ class ConfigChannelAPI:
     ############################
     def set_teleop_params(self, cutoff_freq=None):
         """
-        IO Data:
-            smooth_factor   -> float (deprecated)
-            cutoff_freq   -> float
-            error_gain  -> float (deprecated)
+        TeleOp Params:
+            cutoff_freq -> float
         """
 
         if cutoff_freq is None or (cutoff_freq < 0.1 or cutoff_freq > 20.0):
             raise ValueError("cutoff_freq must be between 0.1 and 20.0")
         
         response = self.config.SetTeleOpParams(
-            config_msgs.TeleOpParams(smooth_factor=0.0,
-                                     cutoff_freq=cutoff_freq,
-                                     error_gain=0.0))
+            config_msgs.TeleOpParams(cutoff_freq_input=cutoff_freq))
         return json_format.MessageToDict(response,
                                          including_default_value_fields=True,
                                          preserving_proto_field_name=True,
@@ -1075,10 +1071,8 @@ class ConfigChannelAPI:
 
     def get_teleop_params(self):
         """
-        IO Data:
-            smooth_factor   -> float (deprecated)
-            cutoff_freq   -> float
-            error_gain  -> float (deprecated)
+        TeleOp Params:
+            cutoff_freq -> float
         """
         response = self.config.GetTeleOpParams(common_msgs.Empty())
         
@@ -1086,7 +1080,7 @@ class ConfigChannelAPI:
                                                  including_default_value_fields=True,
                                                  preserving_proto_field_name=True,
                                                  use_integers_for_enums=True)
-        return {'cutoff_freq': response_dict.get('cutoff_freq')}
+        return {'cutoff_freq': response_dict.get('cutoff_freq_input')}
 
     ############################
     # Kinematics

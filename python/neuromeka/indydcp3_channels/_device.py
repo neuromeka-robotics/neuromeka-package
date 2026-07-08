@@ -579,21 +579,35 @@ class DeviceChannelAPI:
     ############################
     # Socket Command
     ############################
-    def socket_cmd_set_config(self, remote_ip: str, remote_port: int,
-                              auto_reconnect: bool = False, rx_buffer_size: int = 1024):
+    def socket_cmd_set_config(self, remote_ip: str = None, remote_port: int = None,
+                              auto_reconnect: bool = False, rx_buffer_size: int = 1024,
+                              config: dict = None, name: str = "default", timeout_ms: int = 0):
         """
         Socket Command - Set Configuration:
-            remote_ip -> string
-            remote_port -> uint32
-            auto_reconnect -> bool
-            rx_buffer_size -> uint32
+            config -> dict matching config_msgs.SocketCommandConfig (preferred)
+            remote_ip -> string (legacy shortcut)
+            remote_port -> uint32 (legacy shortcut)
+            name -> string (legacy shortcut server name)
+            timeout_ms -> uint32 (legacy shortcut)
         """
-        response = self.device.SocketCmdSetConfig(device_msgs.SocketCommandConfig(
-            remote_ip=remote_ip,
-            remote_port=remote_port,
-            auto_reconnect=auto_reconnect,
-            rx_buffer_size=rx_buffer_size
-        ))
+        if auto_reconnect or rx_buffer_size != 1024:
+            raise ValueError(
+                "auto_reconnect and rx_buffer_size are not available in the current SocketCommandConfig proto"
+            )
+
+        req = config_msgs.SocketCommandConfig()
+        if config is not None:
+            json_format.ParseDict(config, req)
+        else:
+            if remote_ip is None or remote_port is None:
+                raise ValueError("remote_ip and remote_port are required when config is not provided")
+            server_config = req.socket_server_config.add()
+            server_config.name = name
+            server_config.connection.ip = remote_ip
+            server_config.connection.port = remote_port
+            server_config.connection.timeout_ms = timeout_ms
+
+        response = self.config.SetSocketCommandConfig(req)
         return json_format.MessageToDict(response,
                                          including_default_value_fields=True,
                                          preserving_proto_field_name=True,
@@ -602,68 +616,43 @@ class DeviceChannelAPI:
     def socket_cmd_get_config(self):
         """
         Socket Command - Get Configuration:
-            remote_ip -> string
-            remote_port -> uint32
-            auto_reconnect -> bool
-            rx_buffer_size -> uint32
+            returns config_msgs.SocketCommandConfig
         """
-        response = self.device.SocketCmdGetConfig(common_msgs.Empty())
+        response = self.config.GetSocketCommandConfig(common_msgs.Empty())
         return json_format.MessageToDict(response,
                                          including_default_value_fields=True,
                                          preserving_proto_field_name=True,
                                          use_integers_for_enums=True)
+
+    def _raise_socket_cmd_runtime_removed(self):
+        raise NotImplementedError(
+            "Socket command runtime RPCs were removed from the current proto. "
+            "Only GetSocketCommandConfig and SetSocketCommandConfig are available."
+        )
 
     def socket_cmd_start(self):
         """
-        Socket Command - Start connection.
-        Returns SocketCommandStatus:
-            connected -> bool
-            last_error -> string
+        Socket command runtime RPC removed from current proto.
         """
-        response = self.device.SocketCmdStart(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        self._raise_socket_cmd_runtime_removed()
 
     def socket_cmd_stop(self):
         """
-        Socket Command - Stop connection.
-        Returns SocketCommandStatus:
-            connected -> bool
-            last_error -> string
+        Socket command runtime RPC removed from current proto.
         """
-        response = self.device.SocketCmdStop(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        self._raise_socket_cmd_runtime_removed()
 
     def socket_cmd_send_data(self, data: bytes):
         """
-        Socket Command - Send data.
-            data -> bytes
-        Returns SocketCommandStatus:
-            connected -> bool
-            last_error -> string
+        Socket command runtime RPC removed from current proto.
         """
-        response = self.device.SocketCmdSendData(device_msgs.SocketPayload(data=data))
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        self._raise_socket_cmd_runtime_removed()
 
     def socket_cmd_get_latest_data(self):
         """
-        Socket Command - Get latest received data.
-        Returns SocketPayload:
-            data -> bytes
+        Socket command runtime RPC removed from current proto.
         """
-        response = self.device.SocketCmdGetLatestData(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        self._raise_socket_cmd_runtime_removed()
 
     ############################
     # Inspire Hand RH56

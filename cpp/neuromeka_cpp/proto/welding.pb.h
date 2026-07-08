@@ -31,6 +31,9 @@
 #include "google/protobuf/message.h"
 #include "google/protobuf/repeated_field.h"  // IWYU pragma: export
 #include "google/protobuf/extension_set.h"  // IWYU pragma: export
+#include "google/protobuf/map.h"  // IWYU pragma: export
+#include "google/protobuf/map_entry.h"
+#include "google/protobuf/map_field_inl.h"
 #include "google/protobuf/unknown_field_set.h"
 #include "common_msgs.pb.h"
 // @@protoc_insertion_point(includes)
@@ -59,6 +62,12 @@ namespace IndyFramework {
 class ArcRequest;
 struct ArcRequestDefaultTypeInternal;
 extern ArcRequestDefaultTypeInternal _ArcRequest_default_instance_;
+class ExtendedOptionRequest;
+struct ExtendedOptionRequestDefaultTypeInternal;
+extern ExtendedOptionRequestDefaultTypeInternal _ExtendedOptionRequest_default_instance_;
+class ExtendedOptionRequest_OptionsEntry_DoNotUse;
+struct ExtendedOptionRequest_OptionsEntry_DoNotUseDefaultTypeInternal;
+extern ExtendedOptionRequest_OptionsEntry_DoNotUseDefaultTypeInternal _ExtendedOptionRequest_OptionsEntry_DoNotUse_default_instance_;
 class FindCellInfo;
 struct FindCellInfoDefaultTypeInternal;
 extern FindCellInfoDefaultTypeInternal _FindCellInfo_default_instance_;
@@ -68,9 +77,15 @@ extern GasRequestDefaultTypeInternal _GasRequest_default_instance_;
 class InchingRequest;
 struct InchingRequestDefaultTypeInternal;
 extern InchingRequestDefaultTypeInternal _InchingRequest_default_instance_;
+class PositionWeldMode;
+struct PositionWeldModeDefaultTypeInternal;
+extern PositionWeldModeDefaultTypeInternal _PositionWeldMode_default_instance_;
 class ShipBlockInfo;
 struct ShipBlockInfoDefaultTypeInternal;
 extern ShipBlockInfoDefaultTypeInternal _ShipBlockInfo_default_instance_;
+class SuperpulsMode;
+struct SuperpulsModeDefaultTypeInternal;
+extern SuperpulsModeDefaultTypeInternal _SuperpulsMode_default_instance_;
 class TouchOrientation;
 struct TouchOrientationDefaultTypeInternal;
 extern TouchOrientationDefaultTypeInternal _TouchOrientation_default_instance_;
@@ -1586,6 +1601,322 @@ class WeldJob final :
   friend struct ::TableStruct_welding_2eproto;
 };// -------------------------------------------------------------------
 
+class SuperpulsMode final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.SuperpulsMode) */ {
+ public:
+  inline SuperpulsMode() : SuperpulsMode(nullptr) {}
+  ~SuperpulsMode() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR SuperpulsMode(::google::protobuf::internal::ConstantInitialized);
+
+  SuperpulsMode(const SuperpulsMode& from);
+  SuperpulsMode(SuperpulsMode&& from) noexcept
+    : SuperpulsMode() {
+    *this = ::std::move(from);
+  }
+
+  inline SuperpulsMode& operator=(const SuperpulsMode& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline SuperpulsMode& operator=(SuperpulsMode&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const SuperpulsMode& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const SuperpulsMode* internal_default_instance() {
+    return reinterpret_cast<const SuperpulsMode*>(
+               &_SuperpulsMode_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    9;
+
+  friend void swap(SuperpulsMode& a, SuperpulsMode& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(SuperpulsMode* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(SuperpulsMode* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  SuperpulsMode* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<SuperpulsMode>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const SuperpulsMode& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const SuperpulsMode& from) {
+    SuperpulsMode::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(SuperpulsMode* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "Nrmk.IndyFramework.SuperpulsMode";
+  }
+  protected:
+  explicit SuperpulsMode(::google::protobuf::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kModeFieldNumber = 1,
+  };
+  // int32 mode = 1;
+  void clear_mode() ;
+  ::int32_t mode() const;
+  void set_mode(::int32_t value);
+
+  private:
+  ::int32_t _internal_mode() const;
+  void _internal_set_mode(::int32_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.SuperpulsMode)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<0, 1, 0, 0, 2> _table_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::int32_t mode_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_welding_2eproto;
+};// -------------------------------------------------------------------
+
+class PositionWeldMode final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.PositionWeldMode) */ {
+ public:
+  inline PositionWeldMode() : PositionWeldMode(nullptr) {}
+  ~PositionWeldMode() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR PositionWeldMode(::google::protobuf::internal::ConstantInitialized);
+
+  PositionWeldMode(const PositionWeldMode& from);
+  PositionWeldMode(PositionWeldMode&& from) noexcept
+    : PositionWeldMode() {
+    *this = ::std::move(from);
+  }
+
+  inline PositionWeldMode& operator=(const PositionWeldMode& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline PositionWeldMode& operator=(PositionWeldMode&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const PositionWeldMode& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const PositionWeldMode* internal_default_instance() {
+    return reinterpret_cast<const PositionWeldMode*>(
+               &_PositionWeldMode_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    10;
+
+  friend void swap(PositionWeldMode& a, PositionWeldMode& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(PositionWeldMode* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(PositionWeldMode* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  PositionWeldMode* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<PositionWeldMode>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const PositionWeldMode& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const PositionWeldMode& from) {
+    PositionWeldMode::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(PositionWeldMode* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "Nrmk.IndyFramework.PositionWeldMode";
+  }
+  protected:
+  explicit PositionWeldMode(::google::protobuf::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kModeFieldNumber = 1,
+  };
+  // int32 mode = 1;
+  void clear_mode() ;
+  ::int32_t mode() const;
+  void set_mode(::int32_t value);
+
+  private:
+  ::int32_t _internal_mode() const;
+  void _internal_set_mode(::int32_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.PositionWeldMode)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<0, 1, 0, 0, 2> _table_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::int32_t mode_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_welding_2eproto;
+};// -------------------------------------------------------------------
+
 class WeldingData final :
     public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.WeldingData) */ {
  public:
@@ -1642,7 +1973,7 @@ class WeldingData final :
                &_WeldingData_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    9;
+    11;
 
   friend void swap(WeldingData& a, WeldingData& b) {
     a.Swap(&b);
@@ -1792,6 +2123,199 @@ class WeldingData final :
   friend struct ::TableStruct_welding_2eproto;
 };// -------------------------------------------------------------------
 
+class ExtendedOptionRequest_OptionsEntry_DoNotUse final : public ::google::protobuf::internal::MapEntry<ExtendedOptionRequest_OptionsEntry_DoNotUse, 
+    std::string, ::int32_t,
+    ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
+    ::google::protobuf::internal::WireFormatLite::TYPE_INT32> {
+public:
+  typedef ::google::protobuf::internal::MapEntry<ExtendedOptionRequest_OptionsEntry_DoNotUse, 
+    std::string, ::int32_t,
+    ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
+    ::google::protobuf::internal::WireFormatLite::TYPE_INT32> SuperType;
+  ExtendedOptionRequest_OptionsEntry_DoNotUse();
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR ExtendedOptionRequest_OptionsEntry_DoNotUse(
+      ::google::protobuf::internal::ConstantInitialized);
+  explicit ExtendedOptionRequest_OptionsEntry_DoNotUse(::google::protobuf::Arena* arena);
+  void MergeFrom(const ExtendedOptionRequest_OptionsEntry_DoNotUse& other);
+  static const ExtendedOptionRequest_OptionsEntry_DoNotUse* internal_default_instance() { return reinterpret_cast<const ExtendedOptionRequest_OptionsEntry_DoNotUse*>(&_ExtendedOptionRequest_OptionsEntry_DoNotUse_default_instance_); }
+  static bool ValidateKey(std::string* s) {
+    return ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::google::protobuf::internal::WireFormatLite::PARSE, "Nrmk.IndyFramework.ExtendedOptionRequest.OptionsEntry.key");
+ }
+  static bool ValidateValue(void*) { return true; }
+  using ::google::protobuf::Message::MergeFrom;
+  ::google::protobuf::Metadata GetMetadata() const final;
+  friend struct ::TableStruct_welding_2eproto;
+};
+// -------------------------------------------------------------------
+
+class ExtendedOptionRequest final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.ExtendedOptionRequest) */ {
+ public:
+  inline ExtendedOptionRequest() : ExtendedOptionRequest(nullptr) {}
+  ~ExtendedOptionRequest() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR ExtendedOptionRequest(::google::protobuf::internal::ConstantInitialized);
+
+  ExtendedOptionRequest(const ExtendedOptionRequest& from);
+  ExtendedOptionRequest(ExtendedOptionRequest&& from) noexcept
+    : ExtendedOptionRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline ExtendedOptionRequest& operator=(const ExtendedOptionRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ExtendedOptionRequest& operator=(ExtendedOptionRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ExtendedOptionRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ExtendedOptionRequest* internal_default_instance() {
+    return reinterpret_cast<const ExtendedOptionRequest*>(
+               &_ExtendedOptionRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    13;
+
+  friend void swap(ExtendedOptionRequest& a, ExtendedOptionRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ExtendedOptionRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ExtendedOptionRequest* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ExtendedOptionRequest* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ExtendedOptionRequest>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const ExtendedOptionRequest& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const ExtendedOptionRequest& from) {
+    ExtendedOptionRequest::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ExtendedOptionRequest* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "Nrmk.IndyFramework.ExtendedOptionRequest";
+  }
+  protected:
+  explicit ExtendedOptionRequest(::google::protobuf::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kOptionsFieldNumber = 1,
+  };
+  // map<string, int32> options = 1;
+  int options_size() const;
+  private:
+  int _internal_options_size() const;
+
+  public:
+  void clear_options() ;
+  const ::google::protobuf::Map<std::string, ::int32_t>& options() const;
+  ::google::protobuf::Map<std::string, ::int32_t>* mutable_options();
+
+  private:
+  const ::google::protobuf::Map<std::string, ::int32_t>& _internal_options() const;
+  ::google::protobuf::Map<std::string, ::int32_t>* _internal_mutable_options();
+
+  public:
+  // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.ExtendedOptionRequest)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<0, 1, 1, 56, 2> _table_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::google::protobuf::internal::MapField<ExtendedOptionRequest_OptionsEntry_DoNotUse, std::string, ::int32_t,
+                      ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
+                      ::google::protobuf::internal::WireFormatLite::TYPE_INT32>
+        options_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_welding_2eproto;
+};// -------------------------------------------------------------------
+
 class FindCellInfo final :
     public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.FindCellInfo) */ {
  public:
@@ -1848,7 +2372,7 @@ class FindCellInfo final :
                &_FindCellInfo_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    10;
+    14;
 
   friend void swap(FindCellInfo& a, FindCellInfo& b) {
     a.Swap(&b);
@@ -2156,7 +2680,7 @@ class ShipBlockInfo final :
                &_ShipBlockInfo_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    11;
+    15;
 
   friend void swap(ShipBlockInfo& a, ShipBlockInfo& b) {
     a.Swap(&b);
@@ -2464,7 +2988,7 @@ class TouchOrientation final :
                &_TouchOrientation_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    12;
+    16;
 
   friend void swap(TouchOrientation& a, TouchOrientation& b) {
     a.Swap(&b);
@@ -2648,7 +3172,7 @@ class WeldingOrientation final :
                &_WeldingOrientation_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    13;
+    17;
 
   friend void swap(WeldingOrientation& a, WeldingOrientation& b) {
     a.Swap(&b);
@@ -2832,7 +3356,7 @@ class WeldingOrientationList final :
                &_WeldingOrientationList_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    14;
+    18;
 
   friend void swap(WeldingOrientationList& a, WeldingOrientationList& b) {
     a.Swap(&b);
@@ -3278,6 +3802,58 @@ inline void WeldJob::_internal_set_index(::int32_t value) {
 
 // -------------------------------------------------------------------
 
+// SuperpulsMode
+
+// int32 mode = 1;
+inline void SuperpulsMode::clear_mode() {
+  _impl_.mode_ = 0;
+}
+inline ::int32_t SuperpulsMode::mode() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.SuperpulsMode.mode)
+  return _internal_mode();
+}
+inline void SuperpulsMode::set_mode(::int32_t value) {
+  _internal_set_mode(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.SuperpulsMode.mode)
+}
+inline ::int32_t SuperpulsMode::_internal_mode() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.mode_;
+}
+inline void SuperpulsMode::_internal_set_mode(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.mode_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// PositionWeldMode
+
+// int32 mode = 1;
+inline void PositionWeldMode::clear_mode() {
+  _impl_.mode_ = 0;
+}
+inline ::int32_t PositionWeldMode::mode() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.PositionWeldMode.mode)
+  return _internal_mode();
+}
+inline void PositionWeldMode::set_mode(::int32_t value) {
+  _internal_set_mode(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.PositionWeldMode.mode)
+}
+inline ::int32_t PositionWeldMode::_internal_mode() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.mode_;
+}
+inline void PositionWeldMode::_internal_set_mode(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.mode_ = value;
+}
+
+// -------------------------------------------------------------------
+
 // WeldingData
 
 // repeated int32 feedback = 1;
@@ -3413,6 +3989,39 @@ inline void WeldingData::set_allocated_msg(std::string* value) {
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.WeldingData.msg)
+}
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// ExtendedOptionRequest
+
+// map<string, int32> options = 1;
+inline int ExtendedOptionRequest::_internal_options_size() const {
+  return _internal_options().size();
+}
+inline int ExtendedOptionRequest::options_size() const {
+  return _internal_options_size();
+}
+inline void ExtendedOptionRequest::clear_options() {
+  _impl_.options_.Clear();
+}
+inline const ::google::protobuf::Map<std::string, ::int32_t>& ExtendedOptionRequest::_internal_options() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.options_.GetMap();
+}
+inline const ::google::protobuf::Map<std::string, ::int32_t>& ExtendedOptionRequest::options() const {
+  // @@protoc_insertion_point(field_map:Nrmk.IndyFramework.ExtendedOptionRequest.options)
+  return _internal_options();
+}
+inline ::google::protobuf::Map<std::string, ::int32_t>* ExtendedOptionRequest::_internal_mutable_options() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _impl_.options_.MutableMap();
+}
+inline ::google::protobuf::Map<std::string, ::int32_t>* ExtendedOptionRequest::mutable_options() {
+  // @@protoc_insertion_point(field_mutable_map:Nrmk.IndyFramework.ExtendedOptionRequest.options)
+  return _internal_mutable_options();
 }
 
 // -------------------------------------------------------------------

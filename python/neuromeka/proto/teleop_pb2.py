@@ -12,49 +12,16 @@ _sym_db = _symbol_database.Default()
 
 
 import common_msgs_pb2 as common__msgs__pb2
+import teleop_msgs_pb2 as teleop__msgs__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0cteleop.proto\x12\x12Nrmk.IndyFramework\x1a\x11\x63ommon_msgs.proto\"\x1c\n\rObstacleIndex\x12\x0b\n\x03idx\x18\x01 \x01(\r\"h\n\x0cObstacleInfo\x12.\n\x03idx\x18\x01 \x01(\x0b\x32!.Nrmk.IndyFramework.ObstacleIndex\x12\x0e\n\x06radius\x18\x02 \x01(\x01\x12\x0b\n\x03pos\x18\x03 \x03(\x01\x12\x0b\n\x03vel\x18\x04 \x03(\x01\"G\n\x0f\x43ollisionSphere\x12\x12\n\nlink_index\x18\x01 \x01(\r\x12\x0e\n\x06radius\x18\x02 \x01(\x01\x12\x10\n\x08position\x18\x03 \x03(\x01\"L\n\x14\x43ollisionSpheresInfo\x12\x34\n\x07spheres\x18\x01 \x03(\x0b\x32#.Nrmk.IndyFramework.CollisionSphere\"`\n\x10\x43onstraintStatus\x12\x0f\n\x07\x65nabled\x18\x01 \x01(\x08\x12\x0e\n\x06loaded\x18\x02 \x01(\x08\x12\x18\n\x10\x63onstraint_count\x18\x03 \x01(\r\x12\x11\n\tjson_path\x18\x04 \x01(\t\"\xd0\x01\n\x15JointConstraintConfig\x12\x34\n\x06status\x18\x01 \x01(\x0b\x32$.Nrmk.IndyFramework.ConstraintStatus\x12\x0b\n\x03\x64of\x18\x02 \x01(\r\x12\x12\n\nactive_dof\x18\x03 \x01(\r\x12\x0c\n\x04qmin\x18\n \x03(\x01\x12\x0c\n\x04qmax\x18\x0b \x03(\x01\x12\x0f\n\x07qdotmin\x18\x0c \x03(\x01\x12\x0f\n\x07qdotmax\x18\r \x03(\x01\x12\x10\n\x08qddotmin\x18\x0e \x03(\x01\x12\x10\n\x08qddotmax\x18\x0f \x03(\x01\"b\n\x08LinkPair\x12\x16\n\x0e\x61\x63tuated_link1\x18\x01 \x01(\x05\x12\x16\n\x0e\x61\x63tuated_link2\x18\x02 \x01(\x05\x12\x12\n\nfull_link1\x18\x03 \x01(\x05\x12\x12\n\nfull_link2\x18\x04 \x01(\x05\"w\n\x12SelfCollisionPairs\x12\x34\n\x06status\x18\x01 \x01(\x0b\x32$.Nrmk.IndyFramework.ConstraintStatus\x12+\n\x05pairs\x18\x02 \x03(\x0b\x32\x1c.Nrmk.IndyFramework.LinkPair\"e\n\x0fPlaneConstraint\x12-\n\x05plane\x18\x01 \x01(\x0e\x32\x1e.Nrmk.IndyFramework.PlaneIndex\x12\r\n\x05value\x18\x02 \x01(\x01\x12\x14\n\x0clink_indices\x18\x03 \x03(\x05\"\x82\x01\n\x15PlaneConstraintConfig\x12\x34\n\x06status\x18\x01 \x01(\x0b\x32$.Nrmk.IndyFramework.ConstraintStatus\x12\x33\n\x06planes\x18\x02 \x03(\x0b\x32#.Nrmk.IndyFramework.PlaneConstraint\"\xaf\x01\n\x18ObstacleConstraintConfig\x12\x34\n\x06status\x18\x01 \x01(\x0b\x32$.Nrmk.IndyFramework.ConstraintStatus\x12\x14\n\x0csphere_count\x18\x02 \x01(\r\x12\x14\n\x0clink_indices\x18\x03 \x03(\x05\x12\x31\n\x07spheres\x18\x04 \x03(\x0b\x32 .Nrmk.IndyFramework.ObstacleInfo\"=\n\x19OrientationDeviationEntry\x12\x0e\n\x06\x65\x65_idx\x18\x01 \x01(\x05\x12\x10\n\x08max_norm\x18\x02 \x01(\x01\"\xa6\x01\n\x1aOrientationDeviationConfig\x12\x34\n\x06status\x18\x01 \x01(\x0b\x32$.Nrmk.IndyFramework.ConstraintStatus\x12\x12\n\ntask_count\x18\x02 \x01(\r\x12>\n\x07\x65ntries\x18\x03 \x03(\x0b\x32-.Nrmk.IndyFramework.OrientationDeviationEntry\" \n\x0cTaskPosition\x12\x10\n\x08position\x18\x01 \x03(\x01\"B\n\x0f\x44\x65siredPosition\x12/\n\x05tasks\x18\x01 \x03(\x0b\x32 .Nrmk.IndyFramework.TaskPosition\"B\n\x0f\x43urrentPosition\x12/\n\x05tasks\x18\x01 \x03(\x0b\x32 .Nrmk.IndyFramework.TaskPosition*r\n\nPlaneIndex\x12\x0f\n\x0bPLANE_X_MIN\x10\x00\x12\x0f\n\x0bPLANE_X_MAX\x10\x01\x12\x0f\n\x0bPLANE_Y_MIN\x10\x02\x12\x0f\n\x0bPLANE_Y_MAX\x10\x03\x12\x0f\n\x0bPLANE_Z_MIN\x10\x04\x12\x0f\n\x0bPLANE_Z_MAX\x10\x05\x32\xb7\x08\n\x06TeleOp\x12P\n\x0fSetObstacleInfo\x12 .Nrmk.IndyFramework.ObstacleInfo\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12X\n\x0fGetObstacleInfo\x12!.Nrmk.IndyFramework.ObstacleIndex\x1a .Nrmk.IndyFramework.ObstacleInfo\"\x00\x12\\\n\x13GetCollisionSpheres\x12\x19.Nrmk.IndyFramework.Empty\x1a(.Nrmk.IndyFramework.CollisionSpheresInfo\"\x00\x12\x62\n\x18GetJointConstraintConfig\x12\x19.Nrmk.IndyFramework.Empty\x1a).Nrmk.IndyFramework.JointConstraintConfig\"\x00\x12\\\n\x15GetSelfCollisionPairs\x12\x19.Nrmk.IndyFramework.Empty\x1a&.Nrmk.IndyFramework.SelfCollisionPairs\"\x00\x12\x62\n\x18GetPlaneConstraintConfig\x12\x19.Nrmk.IndyFramework.Empty\x1a).Nrmk.IndyFramework.PlaneConstraintConfig\"\x00\x12n\n!GetStaticObstacleConstraintConfig\x12\x19.Nrmk.IndyFramework.Empty\x1a,.Nrmk.IndyFramework.ObstacleConstraintConfig\"\x00\x12o\n\"GetDynamicObstacleConstraintConfig\x12\x19.Nrmk.IndyFramework.Empty\x1a,.Nrmk.IndyFramework.ObstacleConstraintConfig\"\x00\x12l\n\x1dGetOrientationDeviationConfig\x12\x19.Nrmk.IndyFramework.Empty\x1a..Nrmk.IndyFramework.OrientationDeviationConfig\"\x00\x12V\n\x12GetDesiredPosition\x12\x19.Nrmk.IndyFramework.Empty\x1a#.Nrmk.IndyFramework.DesiredPosition\"\x00\x12V\n\x12GetCurrentPosition\x12\x19.Nrmk.IndyFramework.Empty\x1a#.Nrmk.IndyFramework.CurrentPosition\"\x00\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0cteleop.proto\x12\x12Nrmk.IndyFramework\x1a\x11\x63ommon_msgs.proto\x1a\x11teleop_msgs.proto2\xf4\x13\n\x06TeleOp\x12P\n\x0fSetObstacleInfo\x12 .Nrmk.IndyFramework.ObstacleInfo\x1a\x19.Nrmk.IndyFramework.Empty\"\x00\x12X\n\x0fGetObstacleInfo\x12!.Nrmk.IndyFramework.ObstacleIndex\x1a .Nrmk.IndyFramework.ObstacleInfo\"\x00\x12\\\n\x13GetCollisionSpheres\x12\x19.Nrmk.IndyFramework.Empty\x1a(.Nrmk.IndyFramework.CollisionSpheresInfo\"\x00\x12\x62\n\x18GetJointConstraintConfig\x12\x19.Nrmk.IndyFramework.Empty\x1a).Nrmk.IndyFramework.JointConstraintConfig\"\x00\x12\x65\n\x18SetJointConstraintConfig\x12).Nrmk.IndyFramework.JointConstraintConfig\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12\\\n\x15GetSelfCollisionPairs\x12\x19.Nrmk.IndyFramework.Empty\x1a&.Nrmk.IndyFramework.SelfCollisionPairs\"\x00\x12_\n\x15SetSelfCollisionPairs\x12&.Nrmk.IndyFramework.SelfCollisionPairs\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12h\n\x16GetSelfCollisionConfig\x12\x19.Nrmk.IndyFramework.Empty\x1a\x31.Nrmk.IndyFramework.SelfCollisionConstraintConfig\"\x00\x12k\n\x16SetSelfCollisionConfig\x12\x31.Nrmk.IndyFramework.SelfCollisionConstraintConfig\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12\x62\n\x18GetPlaneConstraintConfig\x12\x19.Nrmk.IndyFramework.Empty\x1a).Nrmk.IndyFramework.PlaneConstraintConfig\"\x00\x12\x65\n\x18SetPlaneConstraintConfig\x12).Nrmk.IndyFramework.PlaneConstraintConfig\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12n\n!GetStaticObstacleConstraintConfig\x12\x19.Nrmk.IndyFramework.Empty\x1a,.Nrmk.IndyFramework.ObstacleConstraintConfig\"\x00\x12q\n!SetStaticObstacleConstraintConfig\x12,.Nrmk.IndyFramework.ObstacleConstraintConfig\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12o\n\"GetDynamicObstacleConstraintConfig\x12\x19.Nrmk.IndyFramework.Empty\x1a,.Nrmk.IndyFramework.ObstacleConstraintConfig\"\x00\x12r\n\"SetDynamicObstacleConstraintConfig\x12,.Nrmk.IndyFramework.ObstacleConstraintConfig\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12l\n\x1dGetOrientationDeviationConfig\x12\x19.Nrmk.IndyFramework.Empty\x1a..Nrmk.IndyFramework.OrientationDeviationConfig\"\x00\x12o\n\x1dSetOrientationDeviationConfig\x12..Nrmk.IndyFramework.OrientationDeviationConfig\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12s\n\x1a\x41pplyTeleopConstraintBatch\x12\x35.Nrmk.IndyFramework.ApplyTeleopConstraintBatchRequest\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12r\n GetTeleopConstraintRuntimeStatus\x12\x19.Nrmk.IndyFramework.Empty\x1a\x31.Nrmk.IndyFramework.TeleopConstraintRuntimeStatus\"\x00\x12\\\n\x15GetTeleopTuningParams\x12\x19.Nrmk.IndyFramework.Empty\x1a&.Nrmk.IndyFramework.TeleopTuningParams\"\x00\x12_\n\x15SetTeleopTuningParams\x12&.Nrmk.IndyFramework.TeleopTuningParams\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x12V\n\x12GetDesiredPosition\x12\x19.Nrmk.IndyFramework.Empty\x1a#.Nrmk.IndyFramework.DesiredPosition\"\x00\x12V\n\x12GetCurrentPosition\x12\x19.Nrmk.IndyFramework.Empty\x1a#.Nrmk.IndyFramework.CurrentPosition\"\x00\x12X\n\x1cGetToolCollisionSphereConfig\x12\x19.Nrmk.IndyFramework.Empty\x1a\x1b.Nrmk.IndyFramework.Message\"\x00\x12[\n\x1cSetToolCollisionSphereConfig\x12\x1b.Nrmk.IndyFramework.Message\x1a\x1c.Nrmk.IndyFramework.Response\"\x00\x62\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'teleop_pb2', _globals)
 if _descriptor._USE_C_DESCRIPTORS == False:
   DESCRIPTOR._options = None
-  _globals['_PLANEINDEX']._serialized_start=1688
-  _globals['_PLANEINDEX']._serialized_end=1802
-  _globals['_OBSTACLEINDEX']._serialized_start=55
-  _globals['_OBSTACLEINDEX']._serialized_end=83
-  _globals['_OBSTACLEINFO']._serialized_start=85
-  _globals['_OBSTACLEINFO']._serialized_end=189
-  _globals['_COLLISIONSPHERE']._serialized_start=191
-  _globals['_COLLISIONSPHERE']._serialized_end=262
-  _globals['_COLLISIONSPHERESINFO']._serialized_start=264
-  _globals['_COLLISIONSPHERESINFO']._serialized_end=340
-  _globals['_CONSTRAINTSTATUS']._serialized_start=342
-  _globals['_CONSTRAINTSTATUS']._serialized_end=438
-  _globals['_JOINTCONSTRAINTCONFIG']._serialized_start=441
-  _globals['_JOINTCONSTRAINTCONFIG']._serialized_end=649
-  _globals['_LINKPAIR']._serialized_start=651
-  _globals['_LINKPAIR']._serialized_end=749
-  _globals['_SELFCOLLISIONPAIRS']._serialized_start=751
-  _globals['_SELFCOLLISIONPAIRS']._serialized_end=870
-  _globals['_PLANECONSTRAINT']._serialized_start=872
-  _globals['_PLANECONSTRAINT']._serialized_end=973
-  _globals['_PLANECONSTRAINTCONFIG']._serialized_start=976
-  _globals['_PLANECONSTRAINTCONFIG']._serialized_end=1106
-  _globals['_OBSTACLECONSTRAINTCONFIG']._serialized_start=1109
-  _globals['_OBSTACLECONSTRAINTCONFIG']._serialized_end=1284
-  _globals['_ORIENTATIONDEVIATIONENTRY']._serialized_start=1286
-  _globals['_ORIENTATIONDEVIATIONENTRY']._serialized_end=1347
-  _globals['_ORIENTATIONDEVIATIONCONFIG']._serialized_start=1350
-  _globals['_ORIENTATIONDEVIATIONCONFIG']._serialized_end=1516
-  _globals['_TASKPOSITION']._serialized_start=1518
-  _globals['_TASKPOSITION']._serialized_end=1550
-  _globals['_DESIREDPOSITION']._serialized_start=1552
-  _globals['_DESIREDPOSITION']._serialized_end=1618
-  _globals['_CURRENTPOSITION']._serialized_start=1620
-  _globals['_CURRENTPOSITION']._serialized_end=1686
-  _globals['_TELEOP']._serialized_start=1805
-  _globals['_TELEOP']._serialized_end=2884
+  _globals['_TELEOP']._serialized_start=75
+  _globals['_TELEOP']._serialized_end=2623
 # @@protoc_insertion_point(module_scope)

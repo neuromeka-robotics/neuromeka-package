@@ -33,7 +33,7 @@ static constexpr ::_pbi::MigrationSchema* schemas = nullptr;
 static constexpr ::_pb::Message* const* file_default_instances = nullptr;
 const char descriptor_table_protodef_cri_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
     "\n\tcri.proto\022\022Nrmk.IndyFramework\032\021common_"
-    "msgs.proto\032\016cri_msgs.proto2\341\t\n\003CRI\022J\n\010Lo"
+    "msgs.proto\032\016cri_msgs.proto2\360\014\n\003CRI\022J\n\010Lo"
     "ginSFD\022\036.Nrmk.IndyFramework.SFDAccount\032\034"
     ".Nrmk.IndyFramework.Response\"\000\022F\n\tLogout"
     "SFD\022\031.Nrmk.IndyFramework.Empty\032\034.Nrmk.In"
@@ -64,8 +64,18 @@ const char descriptor_table_protodef_cri_2eproto[] PROTOBUF_SECTION_VARIABLE(pro
     "\016SaveSFDAutoSet\022\036.Nrmk.IndyFramework.SFD"
     "AutoSet\032\034.Nrmk.IndyFramework.Response\"\000\022"
     "M\n\016LoadSFDAutoSet\022\031.Nrmk.IndyFramework.E"
-    "mpty\032\036.Nrmk.IndyFramework.SFDAutoSet\"\000b\006"
-    "proto3"
+    "mpty\032\036.Nrmk.IndyFramework.SFDAutoSet\"\000\022K"
+    "\n\016StartCRIRecord\022\031.Nrmk.IndyFramework.Em"
+    "pty\032\034.Nrmk.IndyFramework.Response\"\000\022J\n\rS"
+    "topCRIRecord\022\031.Nrmk.IndyFramework.Empty\032"
+    "\034.Nrmk.IndyFramework.Response\"\000\022M\n\020Start"
+    "CRIPlayback\022\031.Nrmk.IndyFramework.Empty\032\034"
+    ".Nrmk.IndyFramework.Response\"\000\022L\n\017StopCR"
+    "IPlayback\022\031.Nrmk.IndyFramework.Empty\032\034.N"
+    "rmk.IndyFramework.Response\"\000\022W\n\020GetCRIRe"
+    "cordMode\022\031.Nrmk.IndyFramework.Empty\032&.Nr"
+    "mk.IndyFramework.CRIRecordModeState\"\000b\006p"
+    "roto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_cri_2eproto_deps[2] =
     {
@@ -76,7 +86,7 @@ static ::absl::once_flag descriptor_table_cri_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_cri_2eproto = {
     false,
     false,
-    1326,
+    1725,
     descriptor_table_protodef_cri_2eproto,
     "cri.proto",
     &descriptor_table_cri_2eproto_once,

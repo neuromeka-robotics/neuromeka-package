@@ -109,6 +109,27 @@ class WeldingControl final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>> PrepareAsyncSetJob(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::WeldJob& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>>(PrepareAsyncSetJobRaw(context, request, cq));
     }
+    virtual ::grpc::Status SetSuperpuls(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SuperpulsMode& request, ::Nrmk::IndyFramework::Response* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>> AsyncSetSuperpuls(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SuperpulsMode& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>>(AsyncSetSuperpulsRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>> PrepareAsyncSetSuperpuls(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SuperpulsMode& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>>(PrepareAsyncSetSuperpulsRaw(context, request, cq));
+    }
+    virtual ::grpc::Status SetPositionWeld(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::PositionWeldMode& request, ::Nrmk::IndyFramework::Response* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>> AsyncSetPositionWeld(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::PositionWeldMode& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>>(AsyncSetPositionWeldRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>> PrepareAsyncSetPositionWeld(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::PositionWeldMode& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>>(PrepareAsyncSetPositionWeldRaw(context, request, cq));
+    }
+    virtual ::grpc::Status SetExtendedOptions(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ExtendedOptionRequest& request, ::Nrmk::IndyFramework::Response* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>> AsyncSetExtendedOptions(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ExtendedOptionRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>>(AsyncSetExtendedOptionsRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>> PrepareAsyncSetExtendedOptions(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ExtendedOptionRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>>(PrepareAsyncSetExtendedOptionsRaw(context, request, cq));
+    }
     virtual ::grpc::Status GetWeldingData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::WeldingData* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::WeldingData>> AsyncGetWeldingData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::WeldingData>>(AsyncGetWeldingDataRaw(context, request, cq));
@@ -170,6 +191,12 @@ class WeldingControl final {
       virtual void SetProgram(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::WeldProgram* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void SetJob(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::WeldJob* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)>) = 0;
       virtual void SetJob(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::WeldJob* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void SetSuperpuls(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SuperpulsMode* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void SetSuperpuls(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SuperpulsMode* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void SetPositionWeld(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::PositionWeldMode* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void SetPositionWeld(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::PositionWeldMode* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void SetExtendedOptions(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ExtendedOptionRequest* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void SetExtendedOptions(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ExtendedOptionRequest* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void GetWeldingData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::WeldingData* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetWeldingData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::WeldingData* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void GetFindCellInfo(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::FindCellInfo* response, std::function<void(::grpc::Status)>) = 0;
@@ -205,6 +232,12 @@ class WeldingControl final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>* PrepareAsyncSetProgramRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::WeldProgram& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>* AsyncSetJobRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::WeldJob& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>* PrepareAsyncSetJobRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::WeldJob& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>* AsyncSetSuperpulsRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SuperpulsMode& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>* PrepareAsyncSetSuperpulsRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SuperpulsMode& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>* AsyncSetPositionWeldRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::PositionWeldMode& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>* PrepareAsyncSetPositionWeldRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::PositionWeldMode& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>* AsyncSetExtendedOptionsRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ExtendedOptionRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>* PrepareAsyncSetExtendedOptionsRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ExtendedOptionRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::WeldingData>* AsyncGetWeldingDataRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::WeldingData>* PrepareAsyncGetWeldingDataRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::FindCellInfo>* AsyncGetFindCellInfoRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
@@ -289,6 +322,27 @@ class WeldingControl final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>> PrepareAsyncSetJob(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::WeldJob& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>>(PrepareAsyncSetJobRaw(context, request, cq));
     }
+    ::grpc::Status SetSuperpuls(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SuperpulsMode& request, ::Nrmk::IndyFramework::Response* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>> AsyncSetSuperpuls(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SuperpulsMode& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>>(AsyncSetSuperpulsRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>> PrepareAsyncSetSuperpuls(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SuperpulsMode& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>>(PrepareAsyncSetSuperpulsRaw(context, request, cq));
+    }
+    ::grpc::Status SetPositionWeld(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::PositionWeldMode& request, ::Nrmk::IndyFramework::Response* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>> AsyncSetPositionWeld(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::PositionWeldMode& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>>(AsyncSetPositionWeldRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>> PrepareAsyncSetPositionWeld(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::PositionWeldMode& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>>(PrepareAsyncSetPositionWeldRaw(context, request, cq));
+    }
+    ::grpc::Status SetExtendedOptions(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ExtendedOptionRequest& request, ::Nrmk::IndyFramework::Response* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>> AsyncSetExtendedOptions(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ExtendedOptionRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>>(AsyncSetExtendedOptionsRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>> PrepareAsyncSetExtendedOptions(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ExtendedOptionRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>>(PrepareAsyncSetExtendedOptionsRaw(context, request, cq));
+    }
     ::grpc::Status GetWeldingData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::WeldingData* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::WeldingData>> AsyncGetWeldingData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::WeldingData>>(AsyncGetWeldingDataRaw(context, request, cq));
@@ -347,6 +401,12 @@ class WeldingControl final {
       void SetProgram(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::WeldProgram* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) override;
       void SetJob(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::WeldJob* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)>) override;
       void SetJob(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::WeldJob* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void SetSuperpuls(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SuperpulsMode* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)>) override;
+      void SetSuperpuls(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SuperpulsMode* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void SetPositionWeld(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::PositionWeldMode* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)>) override;
+      void SetPositionWeld(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::PositionWeldMode* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void SetExtendedOptions(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ExtendedOptionRequest* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)>) override;
+      void SetExtendedOptions(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ExtendedOptionRequest* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) override;
       void GetWeldingData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::WeldingData* response, std::function<void(::grpc::Status)>) override;
       void GetWeldingData(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::WeldingData* response, ::grpc::ClientUnaryReactor* reactor) override;
       void GetFindCellInfo(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::FindCellInfo* response, std::function<void(::grpc::Status)>) override;
@@ -388,6 +448,12 @@ class WeldingControl final {
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* PrepareAsyncSetProgramRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::WeldProgram& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* AsyncSetJobRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::WeldJob& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* PrepareAsyncSetJobRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::WeldJob& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* AsyncSetSuperpulsRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SuperpulsMode& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* PrepareAsyncSetSuperpulsRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SuperpulsMode& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* AsyncSetPositionWeldRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::PositionWeldMode& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* PrepareAsyncSetPositionWeldRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::PositionWeldMode& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* AsyncSetExtendedOptionsRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ExtendedOptionRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* PrepareAsyncSetExtendedOptionsRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ExtendedOptionRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::WeldingData>* AsyncGetWeldingDataRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::WeldingData>* PrepareAsyncGetWeldingDataRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::FindCellInfo>* AsyncGetFindCellInfoRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
@@ -408,6 +474,9 @@ class WeldingControl final {
     const ::grpc::internal::RpcMethod rpcmethod_SetOperatingMode_;
     const ::grpc::internal::RpcMethod rpcmethod_SetProgram_;
     const ::grpc::internal::RpcMethod rpcmethod_SetJob_;
+    const ::grpc::internal::RpcMethod rpcmethod_SetSuperpuls_;
+    const ::grpc::internal::RpcMethod rpcmethod_SetPositionWeld_;
+    const ::grpc::internal::RpcMethod rpcmethod_SetExtendedOptions_;
     const ::grpc::internal::RpcMethod rpcmethod_GetWeldingData_;
     const ::grpc::internal::RpcMethod rpcmethod_GetFindCellInfo_;
     const ::grpc::internal::RpcMethod rpcmethod_GetShipBlockInfo_;
@@ -433,6 +502,9 @@ class WeldingControl final {
     virtual ::grpc::Status SetOperatingMode(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::WeldOpMode* request, ::Nrmk::IndyFramework::Response* response);
     virtual ::grpc::Status SetProgram(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::WeldProgram* request, ::Nrmk::IndyFramework::Response* response);
     virtual ::grpc::Status SetJob(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::WeldJob* request, ::Nrmk::IndyFramework::Response* response);
+    virtual ::grpc::Status SetSuperpuls(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::SuperpulsMode* request, ::Nrmk::IndyFramework::Response* response);
+    virtual ::grpc::Status SetPositionWeld(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::PositionWeldMode* request, ::Nrmk::IndyFramework::Response* response);
+    virtual ::grpc::Status SetExtendedOptions(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::ExtendedOptionRequest* request, ::Nrmk::IndyFramework::Response* response);
     virtual ::grpc::Status GetWeldingData(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::WeldingData* response);
     virtual ::grpc::Status GetFindCellInfo(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::FindCellInfo* response);
     virtual ::grpc::Status GetShipBlockInfo(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ShipBlockInfo* response);
@@ -640,12 +712,72 @@ class WeldingControl final {
     }
   };
   template <class BaseClass>
+  class WithAsyncMethod_SetSuperpuls : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_SetSuperpuls() {
+      ::grpc::Service::MarkMethodAsync(10);
+    }
+    ~WithAsyncMethod_SetSuperpuls() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetSuperpuls(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::SuperpulsMode* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSetSuperpuls(::grpc::ServerContext* context, ::Nrmk::IndyFramework::SuperpulsMode* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::Response>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(10, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_SetPositionWeld : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_SetPositionWeld() {
+      ::grpc::Service::MarkMethodAsync(11);
+    }
+    ~WithAsyncMethod_SetPositionWeld() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetPositionWeld(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::PositionWeldMode* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSetPositionWeld(::grpc::ServerContext* context, ::Nrmk::IndyFramework::PositionWeldMode* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::Response>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(11, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_SetExtendedOptions : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_SetExtendedOptions() {
+      ::grpc::Service::MarkMethodAsync(12);
+    }
+    ~WithAsyncMethod_SetExtendedOptions() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetExtendedOptions(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::ExtendedOptionRequest* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSetExtendedOptions(::grpc::ServerContext* context, ::Nrmk::IndyFramework::ExtendedOptionRequest* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::Response>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(12, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithAsyncMethod_GetWeldingData : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetWeldingData() {
-      ::grpc::Service::MarkMethodAsync(10);
+      ::grpc::Service::MarkMethodAsync(13);
     }
     ~WithAsyncMethod_GetWeldingData() override {
       BaseClassMustBeDerivedFromService(this);
@@ -656,7 +788,7 @@ class WeldingControl final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetWeldingData(::grpc::ServerContext* context, ::Nrmk::IndyFramework::Empty* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::WeldingData>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(10, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(13, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -665,7 +797,7 @@ class WeldingControl final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetFindCellInfo() {
-      ::grpc::Service::MarkMethodAsync(11);
+      ::grpc::Service::MarkMethodAsync(14);
     }
     ~WithAsyncMethod_GetFindCellInfo() override {
       BaseClassMustBeDerivedFromService(this);
@@ -676,7 +808,7 @@ class WeldingControl final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetFindCellInfo(::grpc::ServerContext* context, ::Nrmk::IndyFramework::Empty* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::FindCellInfo>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(11, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(14, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -685,7 +817,7 @@ class WeldingControl final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetShipBlockInfo() {
-      ::grpc::Service::MarkMethodAsync(12);
+      ::grpc::Service::MarkMethodAsync(15);
     }
     ~WithAsyncMethod_GetShipBlockInfo() override {
       BaseClassMustBeDerivedFromService(this);
@@ -696,7 +828,7 @@ class WeldingControl final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetShipBlockInfo(::grpc::ServerContext* context, ::Nrmk::IndyFramework::Empty* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::ShipBlockInfo>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(12, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(15, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -705,7 +837,7 @@ class WeldingControl final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_SetTouchOrientation() {
-      ::grpc::Service::MarkMethodAsync(13);
+      ::grpc::Service::MarkMethodAsync(16);
     }
     ~WithAsyncMethod_SetTouchOrientation() override {
       BaseClassMustBeDerivedFromService(this);
@@ -716,7 +848,7 @@ class WeldingControl final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestSetTouchOrientation(::grpc::ServerContext* context, ::Nrmk::IndyFramework::TouchOrientation* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::Response>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(13, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(16, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -725,7 +857,7 @@ class WeldingControl final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_SetWeldingOrientation() {
-      ::grpc::Service::MarkMethodAsync(14);
+      ::grpc::Service::MarkMethodAsync(17);
     }
     ~WithAsyncMethod_SetWeldingOrientation() override {
       BaseClassMustBeDerivedFromService(this);
@@ -736,10 +868,10 @@ class WeldingControl final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestSetWeldingOrientation(::grpc::ServerContext* context, ::Nrmk::IndyFramework::WeldingOrientationList* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::Response>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(14, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(17, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_UpdateWelderSetting<WithAsyncMethod_SetInching<WithAsyncMethod_SetArc<WithAsyncMethod_SetGas<WithAsyncMethod_SetTouch<WithAsyncMethod_CheckTouched<WithAsyncMethod_SetWeldingMode<WithAsyncMethod_SetOperatingMode<WithAsyncMethod_SetProgram<WithAsyncMethod_SetJob<WithAsyncMethod_GetWeldingData<WithAsyncMethod_GetFindCellInfo<WithAsyncMethod_GetShipBlockInfo<WithAsyncMethod_SetTouchOrientation<WithAsyncMethod_SetWeldingOrientation<Service > > > > > > > > > > > > > > > AsyncService;
+  typedef WithAsyncMethod_UpdateWelderSetting<WithAsyncMethod_SetInching<WithAsyncMethod_SetArc<WithAsyncMethod_SetGas<WithAsyncMethod_SetTouch<WithAsyncMethod_CheckTouched<WithAsyncMethod_SetWeldingMode<WithAsyncMethod_SetOperatingMode<WithAsyncMethod_SetProgram<WithAsyncMethod_SetJob<WithAsyncMethod_SetSuperpuls<WithAsyncMethod_SetPositionWeld<WithAsyncMethod_SetExtendedOptions<WithAsyncMethod_GetWeldingData<WithAsyncMethod_GetFindCellInfo<WithAsyncMethod_GetShipBlockInfo<WithAsyncMethod_SetTouchOrientation<WithAsyncMethod_SetWeldingOrientation<Service > > > > > > > > > > > > > > > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_UpdateWelderSetting : public BaseClass {
    private:
@@ -1011,18 +1143,99 @@ class WeldingControl final {
       ::grpc::CallbackServerContext* /*context*/, const ::Nrmk::IndyFramework::WeldJob* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
+  class WithCallbackMethod_SetSuperpuls : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_SetSuperpuls() {
+      ::grpc::Service::MarkMethodCallback(10,
+          new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::SuperpulsMode, ::Nrmk::IndyFramework::Response>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::SuperpulsMode* request, ::Nrmk::IndyFramework::Response* response) { return this->SetSuperpuls(context, request, response); }));}
+    void SetMessageAllocatorFor_SetSuperpuls(
+        ::grpc::MessageAllocator< ::Nrmk::IndyFramework::SuperpulsMode, ::Nrmk::IndyFramework::Response>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(10);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::SuperpulsMode, ::Nrmk::IndyFramework::Response>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_SetSuperpuls() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetSuperpuls(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::SuperpulsMode* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* SetSuperpuls(
+      ::grpc::CallbackServerContext* /*context*/, const ::Nrmk::IndyFramework::SuperpulsMode* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_SetPositionWeld : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_SetPositionWeld() {
+      ::grpc::Service::MarkMethodCallback(11,
+          new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::PositionWeldMode, ::Nrmk::IndyFramework::Response>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::PositionWeldMode* request, ::Nrmk::IndyFramework::Response* response) { return this->SetPositionWeld(context, request, response); }));}
+    void SetMessageAllocatorFor_SetPositionWeld(
+        ::grpc::MessageAllocator< ::Nrmk::IndyFramework::PositionWeldMode, ::Nrmk::IndyFramework::Response>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(11);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::PositionWeldMode, ::Nrmk::IndyFramework::Response>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_SetPositionWeld() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetPositionWeld(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::PositionWeldMode* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* SetPositionWeld(
+      ::grpc::CallbackServerContext* /*context*/, const ::Nrmk::IndyFramework::PositionWeldMode* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_SetExtendedOptions : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_SetExtendedOptions() {
+      ::grpc::Service::MarkMethodCallback(12,
+          new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::ExtendedOptionRequest, ::Nrmk::IndyFramework::Response>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::ExtendedOptionRequest* request, ::Nrmk::IndyFramework::Response* response) { return this->SetExtendedOptions(context, request, response); }));}
+    void SetMessageAllocatorFor_SetExtendedOptions(
+        ::grpc::MessageAllocator< ::Nrmk::IndyFramework::ExtendedOptionRequest, ::Nrmk::IndyFramework::Response>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(12);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::ExtendedOptionRequest, ::Nrmk::IndyFramework::Response>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_SetExtendedOptions() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetExtendedOptions(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::ExtendedOptionRequest* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* SetExtendedOptions(
+      ::grpc::CallbackServerContext* /*context*/, const ::Nrmk::IndyFramework::ExtendedOptionRequest* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
   class WithCallbackMethod_GetWeldingData : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetWeldingData() {
-      ::grpc::Service::MarkMethodCallback(10,
+      ::grpc::Service::MarkMethodCallback(13,
           new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::WeldingData>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::WeldingData* response) { return this->GetWeldingData(context, request, response); }));}
     void SetMessageAllocatorFor_GetWeldingData(
         ::grpc::MessageAllocator< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::WeldingData>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(10);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(13);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::WeldingData>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -1043,13 +1256,13 @@ class WeldingControl final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetFindCellInfo() {
-      ::grpc::Service::MarkMethodCallback(11,
+      ::grpc::Service::MarkMethodCallback(14,
           new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::FindCellInfo>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::FindCellInfo* response) { return this->GetFindCellInfo(context, request, response); }));}
     void SetMessageAllocatorFor_GetFindCellInfo(
         ::grpc::MessageAllocator< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::FindCellInfo>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(11);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(14);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::FindCellInfo>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -1070,13 +1283,13 @@ class WeldingControl final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetShipBlockInfo() {
-      ::grpc::Service::MarkMethodCallback(12,
+      ::grpc::Service::MarkMethodCallback(15,
           new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ShipBlockInfo>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ShipBlockInfo* response) { return this->GetShipBlockInfo(context, request, response); }));}
     void SetMessageAllocatorFor_GetShipBlockInfo(
         ::grpc::MessageAllocator< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ShipBlockInfo>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(12);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(15);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ShipBlockInfo>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -1097,13 +1310,13 @@ class WeldingControl final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_SetTouchOrientation() {
-      ::grpc::Service::MarkMethodCallback(13,
+      ::grpc::Service::MarkMethodCallback(16,
           new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::TouchOrientation, ::Nrmk::IndyFramework::Response>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::TouchOrientation* request, ::Nrmk::IndyFramework::Response* response) { return this->SetTouchOrientation(context, request, response); }));}
     void SetMessageAllocatorFor_SetTouchOrientation(
         ::grpc::MessageAllocator< ::Nrmk::IndyFramework::TouchOrientation, ::Nrmk::IndyFramework::Response>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(13);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(16);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::TouchOrientation, ::Nrmk::IndyFramework::Response>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -1124,13 +1337,13 @@ class WeldingControl final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_SetWeldingOrientation() {
-      ::grpc::Service::MarkMethodCallback(14,
+      ::grpc::Service::MarkMethodCallback(17,
           new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::WeldingOrientationList, ::Nrmk::IndyFramework::Response>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::WeldingOrientationList* request, ::Nrmk::IndyFramework::Response* response) { return this->SetWeldingOrientation(context, request, response); }));}
     void SetMessageAllocatorFor_SetWeldingOrientation(
         ::grpc::MessageAllocator< ::Nrmk::IndyFramework::WeldingOrientationList, ::Nrmk::IndyFramework::Response>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(14);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(17);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::WeldingOrientationList, ::Nrmk::IndyFramework::Response>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -1145,7 +1358,7 @@ class WeldingControl final {
     virtual ::grpc::ServerUnaryReactor* SetWeldingOrientation(
       ::grpc::CallbackServerContext* /*context*/, const ::Nrmk::IndyFramework::WeldingOrientationList* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_UpdateWelderSetting<WithCallbackMethod_SetInching<WithCallbackMethod_SetArc<WithCallbackMethod_SetGas<WithCallbackMethod_SetTouch<WithCallbackMethod_CheckTouched<WithCallbackMethod_SetWeldingMode<WithCallbackMethod_SetOperatingMode<WithCallbackMethod_SetProgram<WithCallbackMethod_SetJob<WithCallbackMethod_GetWeldingData<WithCallbackMethod_GetFindCellInfo<WithCallbackMethod_GetShipBlockInfo<WithCallbackMethod_SetTouchOrientation<WithCallbackMethod_SetWeldingOrientation<Service > > > > > > > > > > > > > > > CallbackService;
+  typedef WithCallbackMethod_UpdateWelderSetting<WithCallbackMethod_SetInching<WithCallbackMethod_SetArc<WithCallbackMethod_SetGas<WithCallbackMethod_SetTouch<WithCallbackMethod_CheckTouched<WithCallbackMethod_SetWeldingMode<WithCallbackMethod_SetOperatingMode<WithCallbackMethod_SetProgram<WithCallbackMethod_SetJob<WithCallbackMethod_SetSuperpuls<WithCallbackMethod_SetPositionWeld<WithCallbackMethod_SetExtendedOptions<WithCallbackMethod_GetWeldingData<WithCallbackMethod_GetFindCellInfo<WithCallbackMethod_GetShipBlockInfo<WithCallbackMethod_SetTouchOrientation<WithCallbackMethod_SetWeldingOrientation<Service > > > > > > > > > > > > > > > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_UpdateWelderSetting : public BaseClass {
@@ -1318,12 +1531,63 @@ class WeldingControl final {
     }
   };
   template <class BaseClass>
+  class WithGenericMethod_SetSuperpuls : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_SetSuperpuls() {
+      ::grpc::Service::MarkMethodGeneric(10);
+    }
+    ~WithGenericMethod_SetSuperpuls() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetSuperpuls(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::SuperpulsMode* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_SetPositionWeld : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_SetPositionWeld() {
+      ::grpc::Service::MarkMethodGeneric(11);
+    }
+    ~WithGenericMethod_SetPositionWeld() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetPositionWeld(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::PositionWeldMode* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_SetExtendedOptions : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_SetExtendedOptions() {
+      ::grpc::Service::MarkMethodGeneric(12);
+    }
+    ~WithGenericMethod_SetExtendedOptions() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetExtendedOptions(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::ExtendedOptionRequest* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
   class WithGenericMethod_GetWeldingData : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetWeldingData() {
-      ::grpc::Service::MarkMethodGeneric(10);
+      ::grpc::Service::MarkMethodGeneric(13);
     }
     ~WithGenericMethod_GetWeldingData() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1340,7 +1604,7 @@ class WeldingControl final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetFindCellInfo() {
-      ::grpc::Service::MarkMethodGeneric(11);
+      ::grpc::Service::MarkMethodGeneric(14);
     }
     ~WithGenericMethod_GetFindCellInfo() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1357,7 +1621,7 @@ class WeldingControl final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetShipBlockInfo() {
-      ::grpc::Service::MarkMethodGeneric(12);
+      ::grpc::Service::MarkMethodGeneric(15);
     }
     ~WithGenericMethod_GetShipBlockInfo() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1374,7 +1638,7 @@ class WeldingControl final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_SetTouchOrientation() {
-      ::grpc::Service::MarkMethodGeneric(13);
+      ::grpc::Service::MarkMethodGeneric(16);
     }
     ~WithGenericMethod_SetTouchOrientation() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1391,7 +1655,7 @@ class WeldingControl final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_SetWeldingOrientation() {
-      ::grpc::Service::MarkMethodGeneric(14);
+      ::grpc::Service::MarkMethodGeneric(17);
     }
     ~WithGenericMethod_SetWeldingOrientation() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1603,12 +1867,72 @@ class WeldingControl final {
     }
   };
   template <class BaseClass>
+  class WithRawMethod_SetSuperpuls : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_SetSuperpuls() {
+      ::grpc::Service::MarkMethodRaw(10);
+    }
+    ~WithRawMethod_SetSuperpuls() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetSuperpuls(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::SuperpulsMode* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSetSuperpuls(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(10, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_SetPositionWeld : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_SetPositionWeld() {
+      ::grpc::Service::MarkMethodRaw(11);
+    }
+    ~WithRawMethod_SetPositionWeld() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetPositionWeld(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::PositionWeldMode* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSetPositionWeld(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(11, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_SetExtendedOptions : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_SetExtendedOptions() {
+      ::grpc::Service::MarkMethodRaw(12);
+    }
+    ~WithRawMethod_SetExtendedOptions() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetExtendedOptions(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::ExtendedOptionRequest* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSetExtendedOptions(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(12, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithRawMethod_GetWeldingData : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetWeldingData() {
-      ::grpc::Service::MarkMethodRaw(10);
+      ::grpc::Service::MarkMethodRaw(13);
     }
     ~WithRawMethod_GetWeldingData() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1619,7 +1943,7 @@ class WeldingControl final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetWeldingData(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(10, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(13, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1628,7 +1952,7 @@ class WeldingControl final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetFindCellInfo() {
-      ::grpc::Service::MarkMethodRaw(11);
+      ::grpc::Service::MarkMethodRaw(14);
     }
     ~WithRawMethod_GetFindCellInfo() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1639,7 +1963,7 @@ class WeldingControl final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetFindCellInfo(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(11, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(14, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1648,7 +1972,7 @@ class WeldingControl final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetShipBlockInfo() {
-      ::grpc::Service::MarkMethodRaw(12);
+      ::grpc::Service::MarkMethodRaw(15);
     }
     ~WithRawMethod_GetShipBlockInfo() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1659,7 +1983,7 @@ class WeldingControl final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetShipBlockInfo(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(12, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(15, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1668,7 +1992,7 @@ class WeldingControl final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_SetTouchOrientation() {
-      ::grpc::Service::MarkMethodRaw(13);
+      ::grpc::Service::MarkMethodRaw(16);
     }
     ~WithRawMethod_SetTouchOrientation() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1679,7 +2003,7 @@ class WeldingControl final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestSetTouchOrientation(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(13, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(16, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1688,7 +2012,7 @@ class WeldingControl final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_SetWeldingOrientation() {
-      ::grpc::Service::MarkMethodRaw(14);
+      ::grpc::Service::MarkMethodRaw(17);
     }
     ~WithRawMethod_SetWeldingOrientation() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1699,7 +2023,7 @@ class WeldingControl final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestSetWeldingOrientation(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(14, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(17, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1923,12 +2247,78 @@ class WeldingControl final {
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
+  class WithRawCallbackMethod_SetSuperpuls : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_SetSuperpuls() {
+      ::grpc::Service::MarkMethodRawCallback(10,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SetSuperpuls(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_SetSuperpuls() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetSuperpuls(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::SuperpulsMode* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* SetSuperpuls(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_SetPositionWeld : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_SetPositionWeld() {
+      ::grpc::Service::MarkMethodRawCallback(11,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SetPositionWeld(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_SetPositionWeld() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetPositionWeld(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::PositionWeldMode* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* SetPositionWeld(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_SetExtendedOptions : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_SetExtendedOptions() {
+      ::grpc::Service::MarkMethodRawCallback(12,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SetExtendedOptions(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_SetExtendedOptions() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetExtendedOptions(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::ExtendedOptionRequest* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* SetExtendedOptions(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
   class WithRawCallbackMethod_GetWeldingData : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetWeldingData() {
-      ::grpc::Service::MarkMethodRawCallback(10,
+      ::grpc::Service::MarkMethodRawCallback(13,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetWeldingData(context, request, response); }));
@@ -1950,7 +2340,7 @@ class WeldingControl final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetFindCellInfo() {
-      ::grpc::Service::MarkMethodRawCallback(11,
+      ::grpc::Service::MarkMethodRawCallback(14,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetFindCellInfo(context, request, response); }));
@@ -1972,7 +2362,7 @@ class WeldingControl final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetShipBlockInfo() {
-      ::grpc::Service::MarkMethodRawCallback(12,
+      ::grpc::Service::MarkMethodRawCallback(15,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetShipBlockInfo(context, request, response); }));
@@ -1994,7 +2384,7 @@ class WeldingControl final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_SetTouchOrientation() {
-      ::grpc::Service::MarkMethodRawCallback(13,
+      ::grpc::Service::MarkMethodRawCallback(16,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SetTouchOrientation(context, request, response); }));
@@ -2016,7 +2406,7 @@ class WeldingControl final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_SetWeldingOrientation() {
-      ::grpc::Service::MarkMethodRawCallback(14,
+      ::grpc::Service::MarkMethodRawCallback(17,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SetWeldingOrientation(context, request, response); }));
@@ -2303,12 +2693,93 @@ class WeldingControl final {
     virtual ::grpc::Status StreamedSetJob(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Nrmk::IndyFramework::WeldJob,::Nrmk::IndyFramework::Response>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
+  class WithStreamedUnaryMethod_SetSuperpuls : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_SetSuperpuls() {
+      ::grpc::Service::MarkMethodStreamed(10,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::Nrmk::IndyFramework::SuperpulsMode, ::Nrmk::IndyFramework::Response>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::Nrmk::IndyFramework::SuperpulsMode, ::Nrmk::IndyFramework::Response>* streamer) {
+                       return this->StreamedSetSuperpuls(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_SetSuperpuls() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status SetSuperpuls(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::SuperpulsMode* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedSetSuperpuls(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Nrmk::IndyFramework::SuperpulsMode,::Nrmk::IndyFramework::Response>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_SetPositionWeld : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_SetPositionWeld() {
+      ::grpc::Service::MarkMethodStreamed(11,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::Nrmk::IndyFramework::PositionWeldMode, ::Nrmk::IndyFramework::Response>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::Nrmk::IndyFramework::PositionWeldMode, ::Nrmk::IndyFramework::Response>* streamer) {
+                       return this->StreamedSetPositionWeld(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_SetPositionWeld() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status SetPositionWeld(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::PositionWeldMode* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedSetPositionWeld(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Nrmk::IndyFramework::PositionWeldMode,::Nrmk::IndyFramework::Response>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_SetExtendedOptions : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_SetExtendedOptions() {
+      ::grpc::Service::MarkMethodStreamed(12,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::Nrmk::IndyFramework::ExtendedOptionRequest, ::Nrmk::IndyFramework::Response>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::Nrmk::IndyFramework::ExtendedOptionRequest, ::Nrmk::IndyFramework::Response>* streamer) {
+                       return this->StreamedSetExtendedOptions(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_SetExtendedOptions() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status SetExtendedOptions(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::ExtendedOptionRequest* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedSetExtendedOptions(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Nrmk::IndyFramework::ExtendedOptionRequest,::Nrmk::IndyFramework::Response>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
   class WithStreamedUnaryMethod_GetWeldingData : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetWeldingData() {
-      ::grpc::Service::MarkMethodStreamed(10,
+      ::grpc::Service::MarkMethodStreamed(13,
         new ::grpc::internal::StreamedUnaryHandler<
           ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::WeldingData>(
             [this](::grpc::ServerContext* context,
@@ -2335,7 +2806,7 @@ class WeldingControl final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetFindCellInfo() {
-      ::grpc::Service::MarkMethodStreamed(11,
+      ::grpc::Service::MarkMethodStreamed(14,
         new ::grpc::internal::StreamedUnaryHandler<
           ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::FindCellInfo>(
             [this](::grpc::ServerContext* context,
@@ -2362,7 +2833,7 @@ class WeldingControl final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetShipBlockInfo() {
-      ::grpc::Service::MarkMethodStreamed(12,
+      ::grpc::Service::MarkMethodStreamed(15,
         new ::grpc::internal::StreamedUnaryHandler<
           ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ShipBlockInfo>(
             [this](::grpc::ServerContext* context,
@@ -2389,7 +2860,7 @@ class WeldingControl final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_SetTouchOrientation() {
-      ::grpc::Service::MarkMethodStreamed(13,
+      ::grpc::Service::MarkMethodStreamed(16,
         new ::grpc::internal::StreamedUnaryHandler<
           ::Nrmk::IndyFramework::TouchOrientation, ::Nrmk::IndyFramework::Response>(
             [this](::grpc::ServerContext* context,
@@ -2416,7 +2887,7 @@ class WeldingControl final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_SetWeldingOrientation() {
-      ::grpc::Service::MarkMethodStreamed(14,
+      ::grpc::Service::MarkMethodStreamed(17,
         new ::grpc::internal::StreamedUnaryHandler<
           ::Nrmk::IndyFramework::WeldingOrientationList, ::Nrmk::IndyFramework::Response>(
             [this](::grpc::ServerContext* context,
@@ -2437,9 +2908,9 @@ class WeldingControl final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedSetWeldingOrientation(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Nrmk::IndyFramework::WeldingOrientationList,::Nrmk::IndyFramework::Response>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_UpdateWelderSetting<WithStreamedUnaryMethod_SetInching<WithStreamedUnaryMethod_SetArc<WithStreamedUnaryMethod_SetGas<WithStreamedUnaryMethod_SetTouch<WithStreamedUnaryMethod_CheckTouched<WithStreamedUnaryMethod_SetWeldingMode<WithStreamedUnaryMethod_SetOperatingMode<WithStreamedUnaryMethod_SetProgram<WithStreamedUnaryMethod_SetJob<WithStreamedUnaryMethod_GetWeldingData<WithStreamedUnaryMethod_GetFindCellInfo<WithStreamedUnaryMethod_GetShipBlockInfo<WithStreamedUnaryMethod_SetTouchOrientation<WithStreamedUnaryMethod_SetWeldingOrientation<Service > > > > > > > > > > > > > > > StreamedUnaryService;
+  typedef WithStreamedUnaryMethod_UpdateWelderSetting<WithStreamedUnaryMethod_SetInching<WithStreamedUnaryMethod_SetArc<WithStreamedUnaryMethod_SetGas<WithStreamedUnaryMethod_SetTouch<WithStreamedUnaryMethod_CheckTouched<WithStreamedUnaryMethod_SetWeldingMode<WithStreamedUnaryMethod_SetOperatingMode<WithStreamedUnaryMethod_SetProgram<WithStreamedUnaryMethod_SetJob<WithStreamedUnaryMethod_SetSuperpuls<WithStreamedUnaryMethod_SetPositionWeld<WithStreamedUnaryMethod_SetExtendedOptions<WithStreamedUnaryMethod_GetWeldingData<WithStreamedUnaryMethod_GetFindCellInfo<WithStreamedUnaryMethod_GetShipBlockInfo<WithStreamedUnaryMethod_SetTouchOrientation<WithStreamedUnaryMethod_SetWeldingOrientation<Service > > > > > > > > > > > > > > > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_UpdateWelderSetting<WithStreamedUnaryMethod_SetInching<WithStreamedUnaryMethod_SetArc<WithStreamedUnaryMethod_SetGas<WithStreamedUnaryMethod_SetTouch<WithStreamedUnaryMethod_CheckTouched<WithStreamedUnaryMethod_SetWeldingMode<WithStreamedUnaryMethod_SetOperatingMode<WithStreamedUnaryMethod_SetProgram<WithStreamedUnaryMethod_SetJob<WithStreamedUnaryMethod_GetWeldingData<WithStreamedUnaryMethod_GetFindCellInfo<WithStreamedUnaryMethod_GetShipBlockInfo<WithStreamedUnaryMethod_SetTouchOrientation<WithStreamedUnaryMethod_SetWeldingOrientation<Service > > > > > > > > > > > > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_UpdateWelderSetting<WithStreamedUnaryMethod_SetInching<WithStreamedUnaryMethod_SetArc<WithStreamedUnaryMethod_SetGas<WithStreamedUnaryMethod_SetTouch<WithStreamedUnaryMethod_CheckTouched<WithStreamedUnaryMethod_SetWeldingMode<WithStreamedUnaryMethod_SetOperatingMode<WithStreamedUnaryMethod_SetProgram<WithStreamedUnaryMethod_SetJob<WithStreamedUnaryMethod_SetSuperpuls<WithStreamedUnaryMethod_SetPositionWeld<WithStreamedUnaryMethod_SetExtendedOptions<WithStreamedUnaryMethod_GetWeldingData<WithStreamedUnaryMethod_GetFindCellInfo<WithStreamedUnaryMethod_GetShipBlockInfo<WithStreamedUnaryMethod_SetTouchOrientation<WithStreamedUnaryMethod_SetWeldingOrientation<Service > > > > > > > > > > > > > > > > > > StreamedService;
 };
 
 }  // namespace IndyFramework

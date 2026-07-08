@@ -2288,9 +2288,7 @@ void example_set_reduced_speed(IndyDCP3& indy) {
 
 void example_set_teleop_params(IndyDCP3& indy) {
     Nrmk::IndyFramework::TeleOpParams request;
-    request.set_smooth_factor(0.5f);
-    request.set_cutoff_freq(10.0f);
-    request.set_error_gain(1.0f);
+    request.set_cutoff_freq_input(10.0f);
     
     bool is_success = indy.set_teleop_params(request);
     
@@ -2307,9 +2305,7 @@ void example_get_teleop_params(IndyDCP3& indy) {
     
     if (is_success) {
         std::cout << "TeleOp parameters retrieved successfully." << std::endl;
-        std::cout << "Smooth Factor: " << response.smooth_factor() << std::endl;
-        std::cout << "Cutoff Frequency: " << response.cutoff_freq() << " Hz" << std::endl;
-        std::cout << "Error Gain: " << response.error_gain() << std::endl;
+        std::cout << "Cutoff Frequency Input: " << response.cutoff_freq_input() << " Hz" << std::endl;
     } else {
         std::cerr << "Failed to retrieve TeleOp parameters." << std::endl;
     }

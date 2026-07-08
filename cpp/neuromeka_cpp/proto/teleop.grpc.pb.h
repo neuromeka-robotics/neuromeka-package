@@ -58,7 +58,7 @@ class TeleOp final {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::CollisionSpheresInfo>>(PrepareAsyncGetCollisionSpheresRaw(context, request, cq));
     }
     // ---------------------------------------------------------------------------
-    // Read-only constraint introspection APIs (for visualization/debugging)
+    // Constraint introspection/update APIs (for visualization/debugging/runtime tuning)
     // Units:
     //  - Position: meters (m)
     //  - Velocity: m/s
@@ -76,12 +76,42 @@ class TeleOp final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::JointConstraintConfig>> PrepareAsyncGetJointConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::JointConstraintConfig>>(PrepareAsyncGetJointConstraintConfigRaw(context, request, cq));
     }
+    virtual ::grpc::Status SetJointConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::JointConstraintConfig& request, ::Nrmk::IndyFramework::Response* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>> AsyncSetJointConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::JointConstraintConfig& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>>(AsyncSetJointConstraintConfigRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>> PrepareAsyncSetJointConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::JointConstraintConfig& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>>(PrepareAsyncSetJointConstraintConfigRaw(context, request, cq));
+    }
+    // Read-only preview of the resolved runtime self-collision pairs.
     virtual ::grpc::Status GetSelfCollisionPairs(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::SelfCollisionPairs* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::SelfCollisionPairs>> AsyncGetSelfCollisionPairs(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::SelfCollisionPairs>>(AsyncGetSelfCollisionPairsRaw(context, request, cq));
     }
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::SelfCollisionPairs>> PrepareAsyncGetSelfCollisionPairs(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::SelfCollisionPairs>>(PrepareAsyncGetSelfCollisionPairsRaw(context, request, cq));
+    }
+    // Deprecated: direct pair editing is no longer supported.
+    virtual ::grpc::Status SetSelfCollisionPairs(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SelfCollisionPairs& request, ::Nrmk::IndyFramework::Response* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>> AsyncSetSelfCollisionPairs(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SelfCollisionPairs& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>>(AsyncSetSelfCollisionPairsRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>> PrepareAsyncSetSelfCollisionPairs(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SelfCollisionPairs& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>>(PrepareAsyncSetSelfCollisionPairsRaw(context, request, cq));
+    }
+    virtual ::grpc::Status GetSelfCollisionConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::SelfCollisionConstraintConfig* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::SelfCollisionConstraintConfig>> AsyncGetSelfCollisionConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::SelfCollisionConstraintConfig>>(AsyncGetSelfCollisionConfigRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::SelfCollisionConstraintConfig>> PrepareAsyncGetSelfCollisionConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::SelfCollisionConstraintConfig>>(PrepareAsyncGetSelfCollisionConfigRaw(context, request, cq));
+    }
+    virtual ::grpc::Status SetSelfCollisionConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SelfCollisionConstraintConfig& request, ::Nrmk::IndyFramework::Response* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>> AsyncSetSelfCollisionConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SelfCollisionConstraintConfig& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>>(AsyncSetSelfCollisionConfigRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>> PrepareAsyncSetSelfCollisionConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SelfCollisionConstraintConfig& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>>(PrepareAsyncSetSelfCollisionConfigRaw(context, request, cq));
     }
     virtual ::grpc::Status GetPlaneConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::PlaneConstraintConfig* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::PlaneConstraintConfig>> AsyncGetPlaneConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
@@ -90,12 +120,26 @@ class TeleOp final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::PlaneConstraintConfig>> PrepareAsyncGetPlaneConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::PlaneConstraintConfig>>(PrepareAsyncGetPlaneConstraintConfigRaw(context, request, cq));
     }
+    virtual ::grpc::Status SetPlaneConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::PlaneConstraintConfig& request, ::Nrmk::IndyFramework::Response* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>> AsyncSetPlaneConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::PlaneConstraintConfig& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>>(AsyncSetPlaneConstraintConfigRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>> PrepareAsyncSetPlaneConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::PlaneConstraintConfig& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>>(PrepareAsyncSetPlaneConstraintConfigRaw(context, request, cq));
+    }
     virtual ::grpc::Status GetStaticObstacleConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::ObstacleConstraintConfig* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::ObstacleConstraintConfig>> AsyncGetStaticObstacleConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::ObstacleConstraintConfig>>(AsyncGetStaticObstacleConstraintConfigRaw(context, request, cq));
     }
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::ObstacleConstraintConfig>> PrepareAsyncGetStaticObstacleConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::ObstacleConstraintConfig>>(PrepareAsyncGetStaticObstacleConstraintConfigRaw(context, request, cq));
+    }
+    virtual ::grpc::Status SetStaticObstacleConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ObstacleConstraintConfig& request, ::Nrmk::IndyFramework::Response* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>> AsyncSetStaticObstacleConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ObstacleConstraintConfig& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>>(AsyncSetStaticObstacleConstraintConfigRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>> PrepareAsyncSetStaticObstacleConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ObstacleConstraintConfig& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>>(PrepareAsyncSetStaticObstacleConstraintConfigRaw(context, request, cq));
     }
     virtual ::grpc::Status GetDynamicObstacleConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::ObstacleConstraintConfig* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::ObstacleConstraintConfig>> AsyncGetDynamicObstacleConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
@@ -104,12 +148,54 @@ class TeleOp final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::ObstacleConstraintConfig>> PrepareAsyncGetDynamicObstacleConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::ObstacleConstraintConfig>>(PrepareAsyncGetDynamicObstacleConstraintConfigRaw(context, request, cq));
     }
+    virtual ::grpc::Status SetDynamicObstacleConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ObstacleConstraintConfig& request, ::Nrmk::IndyFramework::Response* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>> AsyncSetDynamicObstacleConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ObstacleConstraintConfig& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>>(AsyncSetDynamicObstacleConstraintConfigRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>> PrepareAsyncSetDynamicObstacleConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ObstacleConstraintConfig& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>>(PrepareAsyncSetDynamicObstacleConstraintConfigRaw(context, request, cq));
+    }
     virtual ::grpc::Status GetOrientationDeviationConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::OrientationDeviationConfig* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::OrientationDeviationConfig>> AsyncGetOrientationDeviationConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::OrientationDeviationConfig>>(AsyncGetOrientationDeviationConfigRaw(context, request, cq));
     }
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::OrientationDeviationConfig>> PrepareAsyncGetOrientationDeviationConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::OrientationDeviationConfig>>(PrepareAsyncGetOrientationDeviationConfigRaw(context, request, cq));
+    }
+    virtual ::grpc::Status SetOrientationDeviationConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::OrientationDeviationConfig& request, ::Nrmk::IndyFramework::Response* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>> AsyncSetOrientationDeviationConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::OrientationDeviationConfig& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>>(AsyncSetOrientationDeviationConfigRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>> PrepareAsyncSetOrientationDeviationConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::OrientationDeviationConfig& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>>(PrepareAsyncSetOrientationDeviationConfigRaw(context, request, cq));
+    }
+    virtual ::grpc::Status ApplyTeleopConstraintBatch(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ApplyTeleopConstraintBatchRequest& request, ::Nrmk::IndyFramework::Response* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>> AsyncApplyTeleopConstraintBatch(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ApplyTeleopConstraintBatchRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>>(AsyncApplyTeleopConstraintBatchRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>> PrepareAsyncApplyTeleopConstraintBatch(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ApplyTeleopConstraintBatchRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>>(PrepareAsyncApplyTeleopConstraintBatchRaw(context, request, cq));
+    }
+    virtual ::grpc::Status GetTeleopConstraintRuntimeStatus(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::TeleopConstraintRuntimeStatus* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::TeleopConstraintRuntimeStatus>> AsyncGetTeleopConstraintRuntimeStatus(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::TeleopConstraintRuntimeStatus>>(AsyncGetTeleopConstraintRuntimeStatusRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::TeleopConstraintRuntimeStatus>> PrepareAsyncGetTeleopConstraintRuntimeStatus(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::TeleopConstraintRuntimeStatus>>(PrepareAsyncGetTeleopConstraintRuntimeStatusRaw(context, request, cq));
+    }
+    virtual ::grpc::Status GetTeleopTuningParams(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::TeleopTuningParams* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::TeleopTuningParams>> AsyncGetTeleopTuningParams(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::TeleopTuningParams>>(AsyncGetTeleopTuningParamsRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::TeleopTuningParams>> PrepareAsyncGetTeleopTuningParams(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::TeleopTuningParams>>(PrepareAsyncGetTeleopTuningParamsRaw(context, request, cq));
+    }
+    virtual ::grpc::Status SetTeleopTuningParams(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TeleopTuningParams& request, ::Nrmk::IndyFramework::Response* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>> AsyncSetTeleopTuningParams(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TeleopTuningParams& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>>(AsyncSetTeleopTuningParamsRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>> PrepareAsyncSetTeleopTuningParams(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TeleopTuningParams& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>>(PrepareAsyncSetTeleopTuningParamsRaw(context, request, cq));
     }
     virtual ::grpc::Status GetDesiredPosition(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::DesiredPosition* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::DesiredPosition>> AsyncGetDesiredPosition(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
@@ -125,6 +211,20 @@ class TeleOp final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::CurrentPosition>> PrepareAsyncGetCurrentPosition(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::CurrentPosition>>(PrepareAsyncGetCurrentPositionRaw(context, request, cq));
     }
+    virtual ::grpc::Status GetToolCollisionSphereConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::Message* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Message>> AsyncGetToolCollisionSphereConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Message>>(AsyncGetToolCollisionSphereConfigRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Message>> PrepareAsyncGetToolCollisionSphereConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Message>>(PrepareAsyncGetToolCollisionSphereConfigRaw(context, request, cq));
+    }
+    virtual ::grpc::Status SetToolCollisionSphereConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Message& request, ::Nrmk::IndyFramework::Response* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>> AsyncSetToolCollisionSphereConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Message& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>>(AsyncSetToolCollisionSphereConfigRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>> PrepareAsyncSetToolCollisionSphereConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Message& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>>(PrepareAsyncSetToolCollisionSphereConfigRaw(context, request, cq));
+    }
     class async_interface {
      public:
       virtual ~async_interface() {}
@@ -135,7 +235,7 @@ class TeleOp final {
       virtual void GetCollisionSpheres(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::CollisionSpheresInfo* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetCollisionSpheres(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::CollisionSpheresInfo* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       // ---------------------------------------------------------------------------
-      // Read-only constraint introspection APIs (for visualization/debugging)
+      // Constraint introspection/update APIs (for visualization/debugging/runtime tuning)
       // Units:
       //  - Position: meters (m)
       //  - Velocity: m/s
@@ -148,20 +248,50 @@ class TeleOp final {
       // ---------------------------------------------------------------------------
       virtual void GetJointConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::JointConstraintConfig* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetJointConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::JointConstraintConfig* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void SetJointConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::JointConstraintConfig* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void SetJointConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::JointConstraintConfig* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // Read-only preview of the resolved runtime self-collision pairs.
       virtual void GetSelfCollisionPairs(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::SelfCollisionPairs* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetSelfCollisionPairs(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::SelfCollisionPairs* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // Deprecated: direct pair editing is no longer supported.
+      virtual void SetSelfCollisionPairs(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SelfCollisionPairs* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void SetSelfCollisionPairs(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SelfCollisionPairs* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void GetSelfCollisionConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::SelfCollisionConstraintConfig* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetSelfCollisionConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::SelfCollisionConstraintConfig* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void SetSelfCollisionConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SelfCollisionConstraintConfig* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void SetSelfCollisionConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SelfCollisionConstraintConfig* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void GetPlaneConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::PlaneConstraintConfig* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetPlaneConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::PlaneConstraintConfig* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void SetPlaneConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::PlaneConstraintConfig* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void SetPlaneConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::PlaneConstraintConfig* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void GetStaticObstacleConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ObstacleConstraintConfig* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetStaticObstacleConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ObstacleConstraintConfig* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void SetStaticObstacleConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ObstacleConstraintConfig* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void SetStaticObstacleConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ObstacleConstraintConfig* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void GetDynamicObstacleConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ObstacleConstraintConfig* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetDynamicObstacleConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ObstacleConstraintConfig* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void SetDynamicObstacleConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ObstacleConstraintConfig* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void SetDynamicObstacleConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ObstacleConstraintConfig* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void GetOrientationDeviationConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::OrientationDeviationConfig* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetOrientationDeviationConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::OrientationDeviationConfig* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void SetOrientationDeviationConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::OrientationDeviationConfig* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void SetOrientationDeviationConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::OrientationDeviationConfig* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void ApplyTeleopConstraintBatch(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ApplyTeleopConstraintBatchRequest* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void ApplyTeleopConstraintBatch(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ApplyTeleopConstraintBatchRequest* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void GetTeleopConstraintRuntimeStatus(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::TeleopConstraintRuntimeStatus* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetTeleopConstraintRuntimeStatus(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::TeleopConstraintRuntimeStatus* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void GetTeleopTuningParams(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::TeleopTuningParams* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetTeleopTuningParams(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::TeleopTuningParams* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void SetTeleopTuningParams(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TeleopTuningParams* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void SetTeleopTuningParams(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TeleopTuningParams* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void GetDesiredPosition(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::DesiredPosition* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetDesiredPosition(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::DesiredPosition* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void GetCurrentPosition(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::CurrentPosition* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetCurrentPosition(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::CurrentPosition* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void GetToolCollisionSphereConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::Message* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetToolCollisionSphereConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::Message* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void SetToolCollisionSphereConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Message* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void SetToolCollisionSphereConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Message* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
@@ -175,20 +305,48 @@ class TeleOp final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::CollisionSpheresInfo>* PrepareAsyncGetCollisionSpheresRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::JointConstraintConfig>* AsyncGetJointConstraintConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::JointConstraintConfig>* PrepareAsyncGetJointConstraintConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>* AsyncSetJointConstraintConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::JointConstraintConfig& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>* PrepareAsyncSetJointConstraintConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::JointConstraintConfig& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::SelfCollisionPairs>* AsyncGetSelfCollisionPairsRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::SelfCollisionPairs>* PrepareAsyncGetSelfCollisionPairsRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>* AsyncSetSelfCollisionPairsRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SelfCollisionPairs& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>* PrepareAsyncSetSelfCollisionPairsRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SelfCollisionPairs& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::SelfCollisionConstraintConfig>* AsyncGetSelfCollisionConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::SelfCollisionConstraintConfig>* PrepareAsyncGetSelfCollisionConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>* AsyncSetSelfCollisionConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SelfCollisionConstraintConfig& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>* PrepareAsyncSetSelfCollisionConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SelfCollisionConstraintConfig& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::PlaneConstraintConfig>* AsyncGetPlaneConstraintConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::PlaneConstraintConfig>* PrepareAsyncGetPlaneConstraintConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>* AsyncSetPlaneConstraintConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::PlaneConstraintConfig& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>* PrepareAsyncSetPlaneConstraintConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::PlaneConstraintConfig& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::ObstacleConstraintConfig>* AsyncGetStaticObstacleConstraintConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::ObstacleConstraintConfig>* PrepareAsyncGetStaticObstacleConstraintConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>* AsyncSetStaticObstacleConstraintConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ObstacleConstraintConfig& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>* PrepareAsyncSetStaticObstacleConstraintConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ObstacleConstraintConfig& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::ObstacleConstraintConfig>* AsyncGetDynamicObstacleConstraintConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::ObstacleConstraintConfig>* PrepareAsyncGetDynamicObstacleConstraintConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>* AsyncSetDynamicObstacleConstraintConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ObstacleConstraintConfig& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>* PrepareAsyncSetDynamicObstacleConstraintConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ObstacleConstraintConfig& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::OrientationDeviationConfig>* AsyncGetOrientationDeviationConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::OrientationDeviationConfig>* PrepareAsyncGetOrientationDeviationConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>* AsyncSetOrientationDeviationConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::OrientationDeviationConfig& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>* PrepareAsyncSetOrientationDeviationConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::OrientationDeviationConfig& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>* AsyncApplyTeleopConstraintBatchRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ApplyTeleopConstraintBatchRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>* PrepareAsyncApplyTeleopConstraintBatchRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ApplyTeleopConstraintBatchRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::TeleopConstraintRuntimeStatus>* AsyncGetTeleopConstraintRuntimeStatusRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::TeleopConstraintRuntimeStatus>* PrepareAsyncGetTeleopConstraintRuntimeStatusRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::TeleopTuningParams>* AsyncGetTeleopTuningParamsRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::TeleopTuningParams>* PrepareAsyncGetTeleopTuningParamsRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>* AsyncSetTeleopTuningParamsRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TeleopTuningParams& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>* PrepareAsyncSetTeleopTuningParamsRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TeleopTuningParams& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::DesiredPosition>* AsyncGetDesiredPositionRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::DesiredPosition>* PrepareAsyncGetDesiredPositionRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::CurrentPosition>* AsyncGetCurrentPositionRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::CurrentPosition>* PrepareAsyncGetCurrentPositionRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Message>* AsyncGetToolCollisionSphereConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Message>* PrepareAsyncGetToolCollisionSphereConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>* AsyncSetToolCollisionSphereConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Message& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Nrmk::IndyFramework::Response>* PrepareAsyncSetToolCollisionSphereConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Message& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -221,12 +379,40 @@ class TeleOp final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::JointConstraintConfig>> PrepareAsyncGetJointConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::JointConstraintConfig>>(PrepareAsyncGetJointConstraintConfigRaw(context, request, cq));
     }
+    ::grpc::Status SetJointConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::JointConstraintConfig& request, ::Nrmk::IndyFramework::Response* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>> AsyncSetJointConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::JointConstraintConfig& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>>(AsyncSetJointConstraintConfigRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>> PrepareAsyncSetJointConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::JointConstraintConfig& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>>(PrepareAsyncSetJointConstraintConfigRaw(context, request, cq));
+    }
     ::grpc::Status GetSelfCollisionPairs(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::SelfCollisionPairs* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::SelfCollisionPairs>> AsyncGetSelfCollisionPairs(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::SelfCollisionPairs>>(AsyncGetSelfCollisionPairsRaw(context, request, cq));
     }
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::SelfCollisionPairs>> PrepareAsyncGetSelfCollisionPairs(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::SelfCollisionPairs>>(PrepareAsyncGetSelfCollisionPairsRaw(context, request, cq));
+    }
+    ::grpc::Status SetSelfCollisionPairs(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SelfCollisionPairs& request, ::Nrmk::IndyFramework::Response* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>> AsyncSetSelfCollisionPairs(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SelfCollisionPairs& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>>(AsyncSetSelfCollisionPairsRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>> PrepareAsyncSetSelfCollisionPairs(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SelfCollisionPairs& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>>(PrepareAsyncSetSelfCollisionPairsRaw(context, request, cq));
+    }
+    ::grpc::Status GetSelfCollisionConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::SelfCollisionConstraintConfig* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::SelfCollisionConstraintConfig>> AsyncGetSelfCollisionConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::SelfCollisionConstraintConfig>>(AsyncGetSelfCollisionConfigRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::SelfCollisionConstraintConfig>> PrepareAsyncGetSelfCollisionConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::SelfCollisionConstraintConfig>>(PrepareAsyncGetSelfCollisionConfigRaw(context, request, cq));
+    }
+    ::grpc::Status SetSelfCollisionConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SelfCollisionConstraintConfig& request, ::Nrmk::IndyFramework::Response* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>> AsyncSetSelfCollisionConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SelfCollisionConstraintConfig& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>>(AsyncSetSelfCollisionConfigRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>> PrepareAsyncSetSelfCollisionConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SelfCollisionConstraintConfig& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>>(PrepareAsyncSetSelfCollisionConfigRaw(context, request, cq));
     }
     ::grpc::Status GetPlaneConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::PlaneConstraintConfig* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::PlaneConstraintConfig>> AsyncGetPlaneConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
@@ -235,12 +421,26 @@ class TeleOp final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::PlaneConstraintConfig>> PrepareAsyncGetPlaneConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::PlaneConstraintConfig>>(PrepareAsyncGetPlaneConstraintConfigRaw(context, request, cq));
     }
+    ::grpc::Status SetPlaneConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::PlaneConstraintConfig& request, ::Nrmk::IndyFramework::Response* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>> AsyncSetPlaneConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::PlaneConstraintConfig& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>>(AsyncSetPlaneConstraintConfigRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>> PrepareAsyncSetPlaneConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::PlaneConstraintConfig& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>>(PrepareAsyncSetPlaneConstraintConfigRaw(context, request, cq));
+    }
     ::grpc::Status GetStaticObstacleConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::ObstacleConstraintConfig* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ObstacleConstraintConfig>> AsyncGetStaticObstacleConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ObstacleConstraintConfig>>(AsyncGetStaticObstacleConstraintConfigRaw(context, request, cq));
     }
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ObstacleConstraintConfig>> PrepareAsyncGetStaticObstacleConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ObstacleConstraintConfig>>(PrepareAsyncGetStaticObstacleConstraintConfigRaw(context, request, cq));
+    }
+    ::grpc::Status SetStaticObstacleConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ObstacleConstraintConfig& request, ::Nrmk::IndyFramework::Response* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>> AsyncSetStaticObstacleConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ObstacleConstraintConfig& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>>(AsyncSetStaticObstacleConstraintConfigRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>> PrepareAsyncSetStaticObstacleConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ObstacleConstraintConfig& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>>(PrepareAsyncSetStaticObstacleConstraintConfigRaw(context, request, cq));
     }
     ::grpc::Status GetDynamicObstacleConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::ObstacleConstraintConfig* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ObstacleConstraintConfig>> AsyncGetDynamicObstacleConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
@@ -249,12 +449,54 @@ class TeleOp final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ObstacleConstraintConfig>> PrepareAsyncGetDynamicObstacleConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ObstacleConstraintConfig>>(PrepareAsyncGetDynamicObstacleConstraintConfigRaw(context, request, cq));
     }
+    ::grpc::Status SetDynamicObstacleConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ObstacleConstraintConfig& request, ::Nrmk::IndyFramework::Response* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>> AsyncSetDynamicObstacleConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ObstacleConstraintConfig& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>>(AsyncSetDynamicObstacleConstraintConfigRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>> PrepareAsyncSetDynamicObstacleConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ObstacleConstraintConfig& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>>(PrepareAsyncSetDynamicObstacleConstraintConfigRaw(context, request, cq));
+    }
     ::grpc::Status GetOrientationDeviationConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::OrientationDeviationConfig* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::OrientationDeviationConfig>> AsyncGetOrientationDeviationConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::OrientationDeviationConfig>>(AsyncGetOrientationDeviationConfigRaw(context, request, cq));
     }
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::OrientationDeviationConfig>> PrepareAsyncGetOrientationDeviationConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::OrientationDeviationConfig>>(PrepareAsyncGetOrientationDeviationConfigRaw(context, request, cq));
+    }
+    ::grpc::Status SetOrientationDeviationConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::OrientationDeviationConfig& request, ::Nrmk::IndyFramework::Response* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>> AsyncSetOrientationDeviationConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::OrientationDeviationConfig& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>>(AsyncSetOrientationDeviationConfigRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>> PrepareAsyncSetOrientationDeviationConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::OrientationDeviationConfig& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>>(PrepareAsyncSetOrientationDeviationConfigRaw(context, request, cq));
+    }
+    ::grpc::Status ApplyTeleopConstraintBatch(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ApplyTeleopConstraintBatchRequest& request, ::Nrmk::IndyFramework::Response* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>> AsyncApplyTeleopConstraintBatch(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ApplyTeleopConstraintBatchRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>>(AsyncApplyTeleopConstraintBatchRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>> PrepareAsyncApplyTeleopConstraintBatch(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ApplyTeleopConstraintBatchRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>>(PrepareAsyncApplyTeleopConstraintBatchRaw(context, request, cq));
+    }
+    ::grpc::Status GetTeleopConstraintRuntimeStatus(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::TeleopConstraintRuntimeStatus* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::TeleopConstraintRuntimeStatus>> AsyncGetTeleopConstraintRuntimeStatus(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::TeleopConstraintRuntimeStatus>>(AsyncGetTeleopConstraintRuntimeStatusRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::TeleopConstraintRuntimeStatus>> PrepareAsyncGetTeleopConstraintRuntimeStatus(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::TeleopConstraintRuntimeStatus>>(PrepareAsyncGetTeleopConstraintRuntimeStatusRaw(context, request, cq));
+    }
+    ::grpc::Status GetTeleopTuningParams(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::TeleopTuningParams* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::TeleopTuningParams>> AsyncGetTeleopTuningParams(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::TeleopTuningParams>>(AsyncGetTeleopTuningParamsRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::TeleopTuningParams>> PrepareAsyncGetTeleopTuningParams(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::TeleopTuningParams>>(PrepareAsyncGetTeleopTuningParamsRaw(context, request, cq));
+    }
+    ::grpc::Status SetTeleopTuningParams(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TeleopTuningParams& request, ::Nrmk::IndyFramework::Response* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>> AsyncSetTeleopTuningParams(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TeleopTuningParams& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>>(AsyncSetTeleopTuningParamsRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>> PrepareAsyncSetTeleopTuningParams(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TeleopTuningParams& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>>(PrepareAsyncSetTeleopTuningParamsRaw(context, request, cq));
     }
     ::grpc::Status GetDesiredPosition(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::DesiredPosition* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::DesiredPosition>> AsyncGetDesiredPosition(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
@@ -270,6 +512,20 @@ class TeleOp final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::CurrentPosition>> PrepareAsyncGetCurrentPosition(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::CurrentPosition>>(PrepareAsyncGetCurrentPositionRaw(context, request, cq));
     }
+    ::grpc::Status GetToolCollisionSphereConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::Nrmk::IndyFramework::Message* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Message>> AsyncGetToolCollisionSphereConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Message>>(AsyncGetToolCollisionSphereConfigRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Message>> PrepareAsyncGetToolCollisionSphereConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Message>>(PrepareAsyncGetToolCollisionSphereConfigRaw(context, request, cq));
+    }
+    ::grpc::Status SetToolCollisionSphereConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Message& request, ::Nrmk::IndyFramework::Response* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>> AsyncSetToolCollisionSphereConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Message& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>>(AsyncSetToolCollisionSphereConfigRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>> PrepareAsyncSetToolCollisionSphereConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Message& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>>(PrepareAsyncSetToolCollisionSphereConfigRaw(context, request, cq));
+    }
     class async final :
       public StubInterface::async_interface {
      public:
@@ -281,20 +537,48 @@ class TeleOp final {
       void GetCollisionSpheres(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::CollisionSpheresInfo* response, ::grpc::ClientUnaryReactor* reactor) override;
       void GetJointConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::JointConstraintConfig* response, std::function<void(::grpc::Status)>) override;
       void GetJointConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::JointConstraintConfig* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void SetJointConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::JointConstraintConfig* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)>) override;
+      void SetJointConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::JointConstraintConfig* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) override;
       void GetSelfCollisionPairs(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::SelfCollisionPairs* response, std::function<void(::grpc::Status)>) override;
       void GetSelfCollisionPairs(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::SelfCollisionPairs* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void SetSelfCollisionPairs(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SelfCollisionPairs* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)>) override;
+      void SetSelfCollisionPairs(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SelfCollisionPairs* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void GetSelfCollisionConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::SelfCollisionConstraintConfig* response, std::function<void(::grpc::Status)>) override;
+      void GetSelfCollisionConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::SelfCollisionConstraintConfig* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void SetSelfCollisionConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SelfCollisionConstraintConfig* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)>) override;
+      void SetSelfCollisionConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SelfCollisionConstraintConfig* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) override;
       void GetPlaneConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::PlaneConstraintConfig* response, std::function<void(::grpc::Status)>) override;
       void GetPlaneConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::PlaneConstraintConfig* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void SetPlaneConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::PlaneConstraintConfig* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)>) override;
+      void SetPlaneConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::PlaneConstraintConfig* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) override;
       void GetStaticObstacleConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ObstacleConstraintConfig* response, std::function<void(::grpc::Status)>) override;
       void GetStaticObstacleConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ObstacleConstraintConfig* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void SetStaticObstacleConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ObstacleConstraintConfig* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)>) override;
+      void SetStaticObstacleConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ObstacleConstraintConfig* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) override;
       void GetDynamicObstacleConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ObstacleConstraintConfig* response, std::function<void(::grpc::Status)>) override;
       void GetDynamicObstacleConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ObstacleConstraintConfig* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void SetDynamicObstacleConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ObstacleConstraintConfig* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)>) override;
+      void SetDynamicObstacleConstraintConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ObstacleConstraintConfig* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) override;
       void GetOrientationDeviationConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::OrientationDeviationConfig* response, std::function<void(::grpc::Status)>) override;
       void GetOrientationDeviationConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::OrientationDeviationConfig* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void SetOrientationDeviationConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::OrientationDeviationConfig* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)>) override;
+      void SetOrientationDeviationConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::OrientationDeviationConfig* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void ApplyTeleopConstraintBatch(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ApplyTeleopConstraintBatchRequest* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)>) override;
+      void ApplyTeleopConstraintBatch(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ApplyTeleopConstraintBatchRequest* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void GetTeleopConstraintRuntimeStatus(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::TeleopConstraintRuntimeStatus* response, std::function<void(::grpc::Status)>) override;
+      void GetTeleopConstraintRuntimeStatus(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::TeleopConstraintRuntimeStatus* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void GetTeleopTuningParams(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::TeleopTuningParams* response, std::function<void(::grpc::Status)>) override;
+      void GetTeleopTuningParams(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::TeleopTuningParams* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void SetTeleopTuningParams(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TeleopTuningParams* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)>) override;
+      void SetTeleopTuningParams(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TeleopTuningParams* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) override;
       void GetDesiredPosition(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::DesiredPosition* response, std::function<void(::grpc::Status)>) override;
       void GetDesiredPosition(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::DesiredPosition* response, ::grpc::ClientUnaryReactor* reactor) override;
       void GetCurrentPosition(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::CurrentPosition* response, std::function<void(::grpc::Status)>) override;
       void GetCurrentPosition(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::CurrentPosition* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void GetToolCollisionSphereConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::Message* response, std::function<void(::grpc::Status)>) override;
+      void GetToolCollisionSphereConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::Message* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void SetToolCollisionSphereConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Message* request, ::Nrmk::IndyFramework::Response* response, std::function<void(::grpc::Status)>) override;
+      void SetToolCollisionSphereConfig(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Message* request, ::Nrmk::IndyFramework::Response* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -314,31 +598,73 @@ class TeleOp final {
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::CollisionSpheresInfo>* PrepareAsyncGetCollisionSpheresRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::JointConstraintConfig>* AsyncGetJointConstraintConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::JointConstraintConfig>* PrepareAsyncGetJointConstraintConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* AsyncSetJointConstraintConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::JointConstraintConfig& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* PrepareAsyncSetJointConstraintConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::JointConstraintConfig& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::SelfCollisionPairs>* AsyncGetSelfCollisionPairsRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::SelfCollisionPairs>* PrepareAsyncGetSelfCollisionPairsRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* AsyncSetSelfCollisionPairsRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SelfCollisionPairs& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* PrepareAsyncSetSelfCollisionPairsRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SelfCollisionPairs& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::SelfCollisionConstraintConfig>* AsyncGetSelfCollisionConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::SelfCollisionConstraintConfig>* PrepareAsyncGetSelfCollisionConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* AsyncSetSelfCollisionConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SelfCollisionConstraintConfig& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* PrepareAsyncSetSelfCollisionConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::SelfCollisionConstraintConfig& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::PlaneConstraintConfig>* AsyncGetPlaneConstraintConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::PlaneConstraintConfig>* PrepareAsyncGetPlaneConstraintConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* AsyncSetPlaneConstraintConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::PlaneConstraintConfig& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* PrepareAsyncSetPlaneConstraintConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::PlaneConstraintConfig& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ObstacleConstraintConfig>* AsyncGetStaticObstacleConstraintConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ObstacleConstraintConfig>* PrepareAsyncGetStaticObstacleConstraintConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* AsyncSetStaticObstacleConstraintConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ObstacleConstraintConfig& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* PrepareAsyncSetStaticObstacleConstraintConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ObstacleConstraintConfig& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ObstacleConstraintConfig>* AsyncGetDynamicObstacleConstraintConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::ObstacleConstraintConfig>* PrepareAsyncGetDynamicObstacleConstraintConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* AsyncSetDynamicObstacleConstraintConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ObstacleConstraintConfig& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* PrepareAsyncSetDynamicObstacleConstraintConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ObstacleConstraintConfig& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::OrientationDeviationConfig>* AsyncGetOrientationDeviationConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::OrientationDeviationConfig>* PrepareAsyncGetOrientationDeviationConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* AsyncSetOrientationDeviationConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::OrientationDeviationConfig& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* PrepareAsyncSetOrientationDeviationConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::OrientationDeviationConfig& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* AsyncApplyTeleopConstraintBatchRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ApplyTeleopConstraintBatchRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* PrepareAsyncApplyTeleopConstraintBatchRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::ApplyTeleopConstraintBatchRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::TeleopConstraintRuntimeStatus>* AsyncGetTeleopConstraintRuntimeStatusRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::TeleopConstraintRuntimeStatus>* PrepareAsyncGetTeleopConstraintRuntimeStatusRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::TeleopTuningParams>* AsyncGetTeleopTuningParamsRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::TeleopTuningParams>* PrepareAsyncGetTeleopTuningParamsRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* AsyncSetTeleopTuningParamsRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TeleopTuningParams& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* PrepareAsyncSetTeleopTuningParamsRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::TeleopTuningParams& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::DesiredPosition>* AsyncGetDesiredPositionRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::DesiredPosition>* PrepareAsyncGetDesiredPositionRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::CurrentPosition>* AsyncGetCurrentPositionRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::CurrentPosition>* PrepareAsyncGetCurrentPositionRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Message>* AsyncGetToolCollisionSphereConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Message>* PrepareAsyncGetToolCollisionSphereConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Empty& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* AsyncSetToolCollisionSphereConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Message& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Nrmk::IndyFramework::Response>* PrepareAsyncSetToolCollisionSphereConfigRaw(::grpc::ClientContext* context, const ::Nrmk::IndyFramework::Message& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_SetObstacleInfo_;
     const ::grpc::internal::RpcMethod rpcmethod_GetObstacleInfo_;
     const ::grpc::internal::RpcMethod rpcmethod_GetCollisionSpheres_;
     const ::grpc::internal::RpcMethod rpcmethod_GetJointConstraintConfig_;
+    const ::grpc::internal::RpcMethod rpcmethod_SetJointConstraintConfig_;
     const ::grpc::internal::RpcMethod rpcmethod_GetSelfCollisionPairs_;
+    const ::grpc::internal::RpcMethod rpcmethod_SetSelfCollisionPairs_;
+    const ::grpc::internal::RpcMethod rpcmethod_GetSelfCollisionConfig_;
+    const ::grpc::internal::RpcMethod rpcmethod_SetSelfCollisionConfig_;
     const ::grpc::internal::RpcMethod rpcmethod_GetPlaneConstraintConfig_;
+    const ::grpc::internal::RpcMethod rpcmethod_SetPlaneConstraintConfig_;
     const ::grpc::internal::RpcMethod rpcmethod_GetStaticObstacleConstraintConfig_;
+    const ::grpc::internal::RpcMethod rpcmethod_SetStaticObstacleConstraintConfig_;
     const ::grpc::internal::RpcMethod rpcmethod_GetDynamicObstacleConstraintConfig_;
+    const ::grpc::internal::RpcMethod rpcmethod_SetDynamicObstacleConstraintConfig_;
     const ::grpc::internal::RpcMethod rpcmethod_GetOrientationDeviationConfig_;
+    const ::grpc::internal::RpcMethod rpcmethod_SetOrientationDeviationConfig_;
+    const ::grpc::internal::RpcMethod rpcmethod_ApplyTeleopConstraintBatch_;
+    const ::grpc::internal::RpcMethod rpcmethod_GetTeleopConstraintRuntimeStatus_;
+    const ::grpc::internal::RpcMethod rpcmethod_GetTeleopTuningParams_;
+    const ::grpc::internal::RpcMethod rpcmethod_SetTeleopTuningParams_;
     const ::grpc::internal::RpcMethod rpcmethod_GetDesiredPosition_;
     const ::grpc::internal::RpcMethod rpcmethod_GetCurrentPosition_;
+    const ::grpc::internal::RpcMethod rpcmethod_GetToolCollisionSphereConfig_;
+    const ::grpc::internal::RpcMethod rpcmethod_SetToolCollisionSphereConfig_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -350,7 +676,7 @@ class TeleOp final {
     virtual ::grpc::Status GetObstacleInfo(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::ObstacleIndex* request, ::Nrmk::IndyFramework::ObstacleInfo* response);
     virtual ::grpc::Status GetCollisionSpheres(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::CollisionSpheresInfo* response);
     // ---------------------------------------------------------------------------
-    // Read-only constraint introspection APIs (for visualization/debugging)
+    // Constraint introspection/update APIs (for visualization/debugging/runtime tuning)
     // Units:
     //  - Position: meters (m)
     //  - Velocity: m/s
@@ -362,13 +688,29 @@ class TeleOp final {
     //  - full_* indices (if provided): full joint index in RobotTree (may include rigid joints)
     // ---------------------------------------------------------------------------
     virtual ::grpc::Status GetJointConstraintConfig(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::JointConstraintConfig* response);
+    virtual ::grpc::Status SetJointConstraintConfig(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::JointConstraintConfig* request, ::Nrmk::IndyFramework::Response* response);
+    // Read-only preview of the resolved runtime self-collision pairs.
     virtual ::grpc::Status GetSelfCollisionPairs(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::SelfCollisionPairs* response);
+    // Deprecated: direct pair editing is no longer supported.
+    virtual ::grpc::Status SetSelfCollisionPairs(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::SelfCollisionPairs* request, ::Nrmk::IndyFramework::Response* response);
+    virtual ::grpc::Status GetSelfCollisionConfig(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::SelfCollisionConstraintConfig* response);
+    virtual ::grpc::Status SetSelfCollisionConfig(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::SelfCollisionConstraintConfig* request, ::Nrmk::IndyFramework::Response* response);
     virtual ::grpc::Status GetPlaneConstraintConfig(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::PlaneConstraintConfig* response);
+    virtual ::grpc::Status SetPlaneConstraintConfig(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::PlaneConstraintConfig* request, ::Nrmk::IndyFramework::Response* response);
     virtual ::grpc::Status GetStaticObstacleConstraintConfig(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ObstacleConstraintConfig* response);
+    virtual ::grpc::Status SetStaticObstacleConstraintConfig(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::ObstacleConstraintConfig* request, ::Nrmk::IndyFramework::Response* response);
     virtual ::grpc::Status GetDynamicObstacleConstraintConfig(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ObstacleConstraintConfig* response);
+    virtual ::grpc::Status SetDynamicObstacleConstraintConfig(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::ObstacleConstraintConfig* request, ::Nrmk::IndyFramework::Response* response);
     virtual ::grpc::Status GetOrientationDeviationConfig(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::OrientationDeviationConfig* response);
+    virtual ::grpc::Status SetOrientationDeviationConfig(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::OrientationDeviationConfig* request, ::Nrmk::IndyFramework::Response* response);
+    virtual ::grpc::Status ApplyTeleopConstraintBatch(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::ApplyTeleopConstraintBatchRequest* request, ::Nrmk::IndyFramework::Response* response);
+    virtual ::grpc::Status GetTeleopConstraintRuntimeStatus(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::TeleopConstraintRuntimeStatus* response);
+    virtual ::grpc::Status GetTeleopTuningParams(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::TeleopTuningParams* response);
+    virtual ::grpc::Status SetTeleopTuningParams(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::TeleopTuningParams* request, ::Nrmk::IndyFramework::Response* response);
     virtual ::grpc::Status GetDesiredPosition(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::DesiredPosition* response);
     virtual ::grpc::Status GetCurrentPosition(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::CurrentPosition* response);
+    virtual ::grpc::Status GetToolCollisionSphereConfig(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::Message* response);
+    virtual ::grpc::Status SetToolCollisionSphereConfig(::grpc::ServerContext* context, const ::Nrmk::IndyFramework::Message* request, ::Nrmk::IndyFramework::Response* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_SetObstacleInfo : public BaseClass {
@@ -451,12 +793,32 @@ class TeleOp final {
     }
   };
   template <class BaseClass>
+  class WithAsyncMethod_SetJointConstraintConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_SetJointConstraintConfig() {
+      ::grpc::Service::MarkMethodAsync(4);
+    }
+    ~WithAsyncMethod_SetJointConstraintConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetJointConstraintConfig(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::JointConstraintConfig* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSetJointConstraintConfig(::grpc::ServerContext* context, ::Nrmk::IndyFramework::JointConstraintConfig* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::Response>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithAsyncMethod_GetSelfCollisionPairs : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetSelfCollisionPairs() {
-      ::grpc::Service::MarkMethodAsync(4);
+      ::grpc::Service::MarkMethodAsync(5);
     }
     ~WithAsyncMethod_GetSelfCollisionPairs() override {
       BaseClassMustBeDerivedFromService(this);
@@ -467,7 +829,67 @@ class TeleOp final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetSelfCollisionPairs(::grpc::ServerContext* context, ::Nrmk::IndyFramework::Empty* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::SelfCollisionPairs>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_SetSelfCollisionPairs : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_SetSelfCollisionPairs() {
+      ::grpc::Service::MarkMethodAsync(6);
+    }
+    ~WithAsyncMethod_SetSelfCollisionPairs() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetSelfCollisionPairs(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::SelfCollisionPairs* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSetSelfCollisionPairs(::grpc::ServerContext* context, ::Nrmk::IndyFramework::SelfCollisionPairs* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::Response>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_GetSelfCollisionConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_GetSelfCollisionConfig() {
+      ::grpc::Service::MarkMethodAsync(7);
+    }
+    ~WithAsyncMethod_GetSelfCollisionConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetSelfCollisionConfig(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::SelfCollisionConstraintConfig* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetSelfCollisionConfig(::grpc::ServerContext* context, ::Nrmk::IndyFramework::Empty* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::SelfCollisionConstraintConfig>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_SetSelfCollisionConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_SetSelfCollisionConfig() {
+      ::grpc::Service::MarkMethodAsync(8);
+    }
+    ~WithAsyncMethod_SetSelfCollisionConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetSelfCollisionConfig(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::SelfCollisionConstraintConfig* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSetSelfCollisionConfig(::grpc::ServerContext* context, ::Nrmk::IndyFramework::SelfCollisionConstraintConfig* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::Response>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(8, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -476,7 +898,7 @@ class TeleOp final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetPlaneConstraintConfig() {
-      ::grpc::Service::MarkMethodAsync(5);
+      ::grpc::Service::MarkMethodAsync(9);
     }
     ~WithAsyncMethod_GetPlaneConstraintConfig() override {
       BaseClassMustBeDerivedFromService(this);
@@ -487,7 +909,27 @@ class TeleOp final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetPlaneConstraintConfig(::grpc::ServerContext* context, ::Nrmk::IndyFramework::Empty* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::PlaneConstraintConfig>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(9, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_SetPlaneConstraintConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_SetPlaneConstraintConfig() {
+      ::grpc::Service::MarkMethodAsync(10);
+    }
+    ~WithAsyncMethod_SetPlaneConstraintConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetPlaneConstraintConfig(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::PlaneConstraintConfig* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSetPlaneConstraintConfig(::grpc::ServerContext* context, ::Nrmk::IndyFramework::PlaneConstraintConfig* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::Response>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(10, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -496,7 +938,7 @@ class TeleOp final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetStaticObstacleConstraintConfig() {
-      ::grpc::Service::MarkMethodAsync(6);
+      ::grpc::Service::MarkMethodAsync(11);
     }
     ~WithAsyncMethod_GetStaticObstacleConstraintConfig() override {
       BaseClassMustBeDerivedFromService(this);
@@ -507,7 +949,27 @@ class TeleOp final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetStaticObstacleConstraintConfig(::grpc::ServerContext* context, ::Nrmk::IndyFramework::Empty* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::ObstacleConstraintConfig>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(11, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_SetStaticObstacleConstraintConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_SetStaticObstacleConstraintConfig() {
+      ::grpc::Service::MarkMethodAsync(12);
+    }
+    ~WithAsyncMethod_SetStaticObstacleConstraintConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetStaticObstacleConstraintConfig(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::ObstacleConstraintConfig* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSetStaticObstacleConstraintConfig(::grpc::ServerContext* context, ::Nrmk::IndyFramework::ObstacleConstraintConfig* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::Response>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(12, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -516,7 +978,7 @@ class TeleOp final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetDynamicObstacleConstraintConfig() {
-      ::grpc::Service::MarkMethodAsync(7);
+      ::grpc::Service::MarkMethodAsync(13);
     }
     ~WithAsyncMethod_GetDynamicObstacleConstraintConfig() override {
       BaseClassMustBeDerivedFromService(this);
@@ -527,7 +989,27 @@ class TeleOp final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetDynamicObstacleConstraintConfig(::grpc::ServerContext* context, ::Nrmk::IndyFramework::Empty* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::ObstacleConstraintConfig>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(13, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_SetDynamicObstacleConstraintConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_SetDynamicObstacleConstraintConfig() {
+      ::grpc::Service::MarkMethodAsync(14);
+    }
+    ~WithAsyncMethod_SetDynamicObstacleConstraintConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetDynamicObstacleConstraintConfig(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::ObstacleConstraintConfig* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSetDynamicObstacleConstraintConfig(::grpc::ServerContext* context, ::Nrmk::IndyFramework::ObstacleConstraintConfig* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::Response>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(14, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -536,7 +1018,7 @@ class TeleOp final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetOrientationDeviationConfig() {
-      ::grpc::Service::MarkMethodAsync(8);
+      ::grpc::Service::MarkMethodAsync(15);
     }
     ~WithAsyncMethod_GetOrientationDeviationConfig() override {
       BaseClassMustBeDerivedFromService(this);
@@ -547,7 +1029,107 @@ class TeleOp final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetOrientationDeviationConfig(::grpc::ServerContext* context, ::Nrmk::IndyFramework::Empty* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::OrientationDeviationConfig>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(8, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(15, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_SetOrientationDeviationConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_SetOrientationDeviationConfig() {
+      ::grpc::Service::MarkMethodAsync(16);
+    }
+    ~WithAsyncMethod_SetOrientationDeviationConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetOrientationDeviationConfig(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::OrientationDeviationConfig* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSetOrientationDeviationConfig(::grpc::ServerContext* context, ::Nrmk::IndyFramework::OrientationDeviationConfig* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::Response>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(16, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_ApplyTeleopConstraintBatch : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_ApplyTeleopConstraintBatch() {
+      ::grpc::Service::MarkMethodAsync(17);
+    }
+    ~WithAsyncMethod_ApplyTeleopConstraintBatch() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ApplyTeleopConstraintBatch(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::ApplyTeleopConstraintBatchRequest* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestApplyTeleopConstraintBatch(::grpc::ServerContext* context, ::Nrmk::IndyFramework::ApplyTeleopConstraintBatchRequest* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::Response>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(17, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_GetTeleopConstraintRuntimeStatus : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_GetTeleopConstraintRuntimeStatus() {
+      ::grpc::Service::MarkMethodAsync(18);
+    }
+    ~WithAsyncMethod_GetTeleopConstraintRuntimeStatus() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetTeleopConstraintRuntimeStatus(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::TeleopConstraintRuntimeStatus* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetTeleopConstraintRuntimeStatus(::grpc::ServerContext* context, ::Nrmk::IndyFramework::Empty* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::TeleopConstraintRuntimeStatus>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(18, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_GetTeleopTuningParams : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_GetTeleopTuningParams() {
+      ::grpc::Service::MarkMethodAsync(19);
+    }
+    ~WithAsyncMethod_GetTeleopTuningParams() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetTeleopTuningParams(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::TeleopTuningParams* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetTeleopTuningParams(::grpc::ServerContext* context, ::Nrmk::IndyFramework::Empty* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::TeleopTuningParams>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(19, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_SetTeleopTuningParams : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_SetTeleopTuningParams() {
+      ::grpc::Service::MarkMethodAsync(20);
+    }
+    ~WithAsyncMethod_SetTeleopTuningParams() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetTeleopTuningParams(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::TeleopTuningParams* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSetTeleopTuningParams(::grpc::ServerContext* context, ::Nrmk::IndyFramework::TeleopTuningParams* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::Response>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(20, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -556,7 +1138,7 @@ class TeleOp final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetDesiredPosition() {
-      ::grpc::Service::MarkMethodAsync(9);
+      ::grpc::Service::MarkMethodAsync(21);
     }
     ~WithAsyncMethod_GetDesiredPosition() override {
       BaseClassMustBeDerivedFromService(this);
@@ -567,7 +1149,7 @@ class TeleOp final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetDesiredPosition(::grpc::ServerContext* context, ::Nrmk::IndyFramework::Empty* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::DesiredPosition>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(9, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(21, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -576,7 +1158,7 @@ class TeleOp final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetCurrentPosition() {
-      ::grpc::Service::MarkMethodAsync(10);
+      ::grpc::Service::MarkMethodAsync(22);
     }
     ~WithAsyncMethod_GetCurrentPosition() override {
       BaseClassMustBeDerivedFromService(this);
@@ -587,10 +1169,50 @@ class TeleOp final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetCurrentPosition(::grpc::ServerContext* context, ::Nrmk::IndyFramework::Empty* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::CurrentPosition>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(10, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(22, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_SetObstacleInfo<WithAsyncMethod_GetObstacleInfo<WithAsyncMethod_GetCollisionSpheres<WithAsyncMethod_GetJointConstraintConfig<WithAsyncMethod_GetSelfCollisionPairs<WithAsyncMethod_GetPlaneConstraintConfig<WithAsyncMethod_GetStaticObstacleConstraintConfig<WithAsyncMethod_GetDynamicObstacleConstraintConfig<WithAsyncMethod_GetOrientationDeviationConfig<WithAsyncMethod_GetDesiredPosition<WithAsyncMethod_GetCurrentPosition<Service > > > > > > > > > > > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_GetToolCollisionSphereConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_GetToolCollisionSphereConfig() {
+      ::grpc::Service::MarkMethodAsync(23);
+    }
+    ~WithAsyncMethod_GetToolCollisionSphereConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetToolCollisionSphereConfig(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::Message* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetToolCollisionSphereConfig(::grpc::ServerContext* context, ::Nrmk::IndyFramework::Empty* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::Message>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(23, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_SetToolCollisionSphereConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_SetToolCollisionSphereConfig() {
+      ::grpc::Service::MarkMethodAsync(24);
+    }
+    ~WithAsyncMethod_SetToolCollisionSphereConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetToolCollisionSphereConfig(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Message* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSetToolCollisionSphereConfig(::grpc::ServerContext* context, ::Nrmk::IndyFramework::Message* request, ::grpc::ServerAsyncResponseWriter< ::Nrmk::IndyFramework::Response>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(24, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_SetObstacleInfo<WithAsyncMethod_GetObstacleInfo<WithAsyncMethod_GetCollisionSpheres<WithAsyncMethod_GetJointConstraintConfig<WithAsyncMethod_SetJointConstraintConfig<WithAsyncMethod_GetSelfCollisionPairs<WithAsyncMethod_SetSelfCollisionPairs<WithAsyncMethod_GetSelfCollisionConfig<WithAsyncMethod_SetSelfCollisionConfig<WithAsyncMethod_GetPlaneConstraintConfig<WithAsyncMethod_SetPlaneConstraintConfig<WithAsyncMethod_GetStaticObstacleConstraintConfig<WithAsyncMethod_SetStaticObstacleConstraintConfig<WithAsyncMethod_GetDynamicObstacleConstraintConfig<WithAsyncMethod_SetDynamicObstacleConstraintConfig<WithAsyncMethod_GetOrientationDeviationConfig<WithAsyncMethod_SetOrientationDeviationConfig<WithAsyncMethod_ApplyTeleopConstraintBatch<WithAsyncMethod_GetTeleopConstraintRuntimeStatus<WithAsyncMethod_GetTeleopTuningParams<WithAsyncMethod_SetTeleopTuningParams<WithAsyncMethod_GetDesiredPosition<WithAsyncMethod_GetCurrentPosition<WithAsyncMethod_GetToolCollisionSphereConfig<WithAsyncMethod_SetToolCollisionSphereConfig<Service > > > > > > > > > > > > > > > > > > > > > > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_SetObstacleInfo : public BaseClass {
    private:
@@ -700,18 +1322,45 @@ class TeleOp final {
       ::grpc::CallbackServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::JointConstraintConfig* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
+  class WithCallbackMethod_SetJointConstraintConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_SetJointConstraintConfig() {
+      ::grpc::Service::MarkMethodCallback(4,
+          new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::JointConstraintConfig, ::Nrmk::IndyFramework::Response>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::JointConstraintConfig* request, ::Nrmk::IndyFramework::Response* response) { return this->SetJointConstraintConfig(context, request, response); }));}
+    void SetMessageAllocatorFor_SetJointConstraintConfig(
+        ::grpc::MessageAllocator< ::Nrmk::IndyFramework::JointConstraintConfig, ::Nrmk::IndyFramework::Response>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(4);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::JointConstraintConfig, ::Nrmk::IndyFramework::Response>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_SetJointConstraintConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetJointConstraintConfig(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::JointConstraintConfig* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* SetJointConstraintConfig(
+      ::grpc::CallbackServerContext* /*context*/, const ::Nrmk::IndyFramework::JointConstraintConfig* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
   class WithCallbackMethod_GetSelfCollisionPairs : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetSelfCollisionPairs() {
-      ::grpc::Service::MarkMethodCallback(4,
+      ::grpc::Service::MarkMethodCallback(5,
           new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::SelfCollisionPairs>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::SelfCollisionPairs* response) { return this->GetSelfCollisionPairs(context, request, response); }));}
     void SetMessageAllocatorFor_GetSelfCollisionPairs(
         ::grpc::MessageAllocator< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::SelfCollisionPairs>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(4);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(5);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::SelfCollisionPairs>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -727,18 +1376,99 @@ class TeleOp final {
       ::grpc::CallbackServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::SelfCollisionPairs* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
+  class WithCallbackMethod_SetSelfCollisionPairs : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_SetSelfCollisionPairs() {
+      ::grpc::Service::MarkMethodCallback(6,
+          new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::SelfCollisionPairs, ::Nrmk::IndyFramework::Response>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::SelfCollisionPairs* request, ::Nrmk::IndyFramework::Response* response) { return this->SetSelfCollisionPairs(context, request, response); }));}
+    void SetMessageAllocatorFor_SetSelfCollisionPairs(
+        ::grpc::MessageAllocator< ::Nrmk::IndyFramework::SelfCollisionPairs, ::Nrmk::IndyFramework::Response>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(6);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::SelfCollisionPairs, ::Nrmk::IndyFramework::Response>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_SetSelfCollisionPairs() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetSelfCollisionPairs(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::SelfCollisionPairs* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* SetSelfCollisionPairs(
+      ::grpc::CallbackServerContext* /*context*/, const ::Nrmk::IndyFramework::SelfCollisionPairs* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_GetSelfCollisionConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_GetSelfCollisionConfig() {
+      ::grpc::Service::MarkMethodCallback(7,
+          new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::SelfCollisionConstraintConfig>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::SelfCollisionConstraintConfig* response) { return this->GetSelfCollisionConfig(context, request, response); }));}
+    void SetMessageAllocatorFor_GetSelfCollisionConfig(
+        ::grpc::MessageAllocator< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::SelfCollisionConstraintConfig>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(7);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::SelfCollisionConstraintConfig>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_GetSelfCollisionConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetSelfCollisionConfig(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::SelfCollisionConstraintConfig* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GetSelfCollisionConfig(
+      ::grpc::CallbackServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::SelfCollisionConstraintConfig* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_SetSelfCollisionConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_SetSelfCollisionConfig() {
+      ::grpc::Service::MarkMethodCallback(8,
+          new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::SelfCollisionConstraintConfig, ::Nrmk::IndyFramework::Response>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::SelfCollisionConstraintConfig* request, ::Nrmk::IndyFramework::Response* response) { return this->SetSelfCollisionConfig(context, request, response); }));}
+    void SetMessageAllocatorFor_SetSelfCollisionConfig(
+        ::grpc::MessageAllocator< ::Nrmk::IndyFramework::SelfCollisionConstraintConfig, ::Nrmk::IndyFramework::Response>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(8);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::SelfCollisionConstraintConfig, ::Nrmk::IndyFramework::Response>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_SetSelfCollisionConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetSelfCollisionConfig(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::SelfCollisionConstraintConfig* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* SetSelfCollisionConfig(
+      ::grpc::CallbackServerContext* /*context*/, const ::Nrmk::IndyFramework::SelfCollisionConstraintConfig* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
   class WithCallbackMethod_GetPlaneConstraintConfig : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetPlaneConstraintConfig() {
-      ::grpc::Service::MarkMethodCallback(5,
+      ::grpc::Service::MarkMethodCallback(9,
           new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::PlaneConstraintConfig>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::PlaneConstraintConfig* response) { return this->GetPlaneConstraintConfig(context, request, response); }));}
     void SetMessageAllocatorFor_GetPlaneConstraintConfig(
         ::grpc::MessageAllocator< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::PlaneConstraintConfig>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(5);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(9);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::PlaneConstraintConfig>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -754,18 +1484,45 @@ class TeleOp final {
       ::grpc::CallbackServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::PlaneConstraintConfig* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
+  class WithCallbackMethod_SetPlaneConstraintConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_SetPlaneConstraintConfig() {
+      ::grpc::Service::MarkMethodCallback(10,
+          new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::PlaneConstraintConfig, ::Nrmk::IndyFramework::Response>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::PlaneConstraintConfig* request, ::Nrmk::IndyFramework::Response* response) { return this->SetPlaneConstraintConfig(context, request, response); }));}
+    void SetMessageAllocatorFor_SetPlaneConstraintConfig(
+        ::grpc::MessageAllocator< ::Nrmk::IndyFramework::PlaneConstraintConfig, ::Nrmk::IndyFramework::Response>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(10);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::PlaneConstraintConfig, ::Nrmk::IndyFramework::Response>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_SetPlaneConstraintConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetPlaneConstraintConfig(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::PlaneConstraintConfig* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* SetPlaneConstraintConfig(
+      ::grpc::CallbackServerContext* /*context*/, const ::Nrmk::IndyFramework::PlaneConstraintConfig* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
   class WithCallbackMethod_GetStaticObstacleConstraintConfig : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetStaticObstacleConstraintConfig() {
-      ::grpc::Service::MarkMethodCallback(6,
+      ::grpc::Service::MarkMethodCallback(11,
           new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ObstacleConstraintConfig>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ObstacleConstraintConfig* response) { return this->GetStaticObstacleConstraintConfig(context, request, response); }));}
     void SetMessageAllocatorFor_GetStaticObstacleConstraintConfig(
         ::grpc::MessageAllocator< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ObstacleConstraintConfig>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(6);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(11);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ObstacleConstraintConfig>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -781,18 +1538,45 @@ class TeleOp final {
       ::grpc::CallbackServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::ObstacleConstraintConfig* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
+  class WithCallbackMethod_SetStaticObstacleConstraintConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_SetStaticObstacleConstraintConfig() {
+      ::grpc::Service::MarkMethodCallback(12,
+          new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::ObstacleConstraintConfig, ::Nrmk::IndyFramework::Response>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::ObstacleConstraintConfig* request, ::Nrmk::IndyFramework::Response* response) { return this->SetStaticObstacleConstraintConfig(context, request, response); }));}
+    void SetMessageAllocatorFor_SetStaticObstacleConstraintConfig(
+        ::grpc::MessageAllocator< ::Nrmk::IndyFramework::ObstacleConstraintConfig, ::Nrmk::IndyFramework::Response>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(12);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::ObstacleConstraintConfig, ::Nrmk::IndyFramework::Response>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_SetStaticObstacleConstraintConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetStaticObstacleConstraintConfig(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::ObstacleConstraintConfig* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* SetStaticObstacleConstraintConfig(
+      ::grpc::CallbackServerContext* /*context*/, const ::Nrmk::IndyFramework::ObstacleConstraintConfig* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
   class WithCallbackMethod_GetDynamicObstacleConstraintConfig : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetDynamicObstacleConstraintConfig() {
-      ::grpc::Service::MarkMethodCallback(7,
+      ::grpc::Service::MarkMethodCallback(13,
           new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ObstacleConstraintConfig>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::ObstacleConstraintConfig* response) { return this->GetDynamicObstacleConstraintConfig(context, request, response); }));}
     void SetMessageAllocatorFor_GetDynamicObstacleConstraintConfig(
         ::grpc::MessageAllocator< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ObstacleConstraintConfig>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(7);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(13);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ObstacleConstraintConfig>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -808,18 +1592,45 @@ class TeleOp final {
       ::grpc::CallbackServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::ObstacleConstraintConfig* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
+  class WithCallbackMethod_SetDynamicObstacleConstraintConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_SetDynamicObstacleConstraintConfig() {
+      ::grpc::Service::MarkMethodCallback(14,
+          new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::ObstacleConstraintConfig, ::Nrmk::IndyFramework::Response>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::ObstacleConstraintConfig* request, ::Nrmk::IndyFramework::Response* response) { return this->SetDynamicObstacleConstraintConfig(context, request, response); }));}
+    void SetMessageAllocatorFor_SetDynamicObstacleConstraintConfig(
+        ::grpc::MessageAllocator< ::Nrmk::IndyFramework::ObstacleConstraintConfig, ::Nrmk::IndyFramework::Response>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(14);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::ObstacleConstraintConfig, ::Nrmk::IndyFramework::Response>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_SetDynamicObstacleConstraintConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetDynamicObstacleConstraintConfig(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::ObstacleConstraintConfig* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* SetDynamicObstacleConstraintConfig(
+      ::grpc::CallbackServerContext* /*context*/, const ::Nrmk::IndyFramework::ObstacleConstraintConfig* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
   class WithCallbackMethod_GetOrientationDeviationConfig : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetOrientationDeviationConfig() {
-      ::grpc::Service::MarkMethodCallback(8,
+      ::grpc::Service::MarkMethodCallback(15,
           new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::OrientationDeviationConfig>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::OrientationDeviationConfig* response) { return this->GetOrientationDeviationConfig(context, request, response); }));}
     void SetMessageAllocatorFor_GetOrientationDeviationConfig(
         ::grpc::MessageAllocator< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::OrientationDeviationConfig>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(8);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(15);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::OrientationDeviationConfig>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -835,18 +1646,153 @@ class TeleOp final {
       ::grpc::CallbackServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::OrientationDeviationConfig* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
+  class WithCallbackMethod_SetOrientationDeviationConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_SetOrientationDeviationConfig() {
+      ::grpc::Service::MarkMethodCallback(16,
+          new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::OrientationDeviationConfig, ::Nrmk::IndyFramework::Response>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::OrientationDeviationConfig* request, ::Nrmk::IndyFramework::Response* response) { return this->SetOrientationDeviationConfig(context, request, response); }));}
+    void SetMessageAllocatorFor_SetOrientationDeviationConfig(
+        ::grpc::MessageAllocator< ::Nrmk::IndyFramework::OrientationDeviationConfig, ::Nrmk::IndyFramework::Response>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(16);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::OrientationDeviationConfig, ::Nrmk::IndyFramework::Response>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_SetOrientationDeviationConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetOrientationDeviationConfig(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::OrientationDeviationConfig* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* SetOrientationDeviationConfig(
+      ::grpc::CallbackServerContext* /*context*/, const ::Nrmk::IndyFramework::OrientationDeviationConfig* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_ApplyTeleopConstraintBatch : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_ApplyTeleopConstraintBatch() {
+      ::grpc::Service::MarkMethodCallback(17,
+          new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::ApplyTeleopConstraintBatchRequest, ::Nrmk::IndyFramework::Response>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::ApplyTeleopConstraintBatchRequest* request, ::Nrmk::IndyFramework::Response* response) { return this->ApplyTeleopConstraintBatch(context, request, response); }));}
+    void SetMessageAllocatorFor_ApplyTeleopConstraintBatch(
+        ::grpc::MessageAllocator< ::Nrmk::IndyFramework::ApplyTeleopConstraintBatchRequest, ::Nrmk::IndyFramework::Response>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(17);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::ApplyTeleopConstraintBatchRequest, ::Nrmk::IndyFramework::Response>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_ApplyTeleopConstraintBatch() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ApplyTeleopConstraintBatch(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::ApplyTeleopConstraintBatchRequest* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* ApplyTeleopConstraintBatch(
+      ::grpc::CallbackServerContext* /*context*/, const ::Nrmk::IndyFramework::ApplyTeleopConstraintBatchRequest* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_GetTeleopConstraintRuntimeStatus : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_GetTeleopConstraintRuntimeStatus() {
+      ::grpc::Service::MarkMethodCallback(18,
+          new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::TeleopConstraintRuntimeStatus>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::TeleopConstraintRuntimeStatus* response) { return this->GetTeleopConstraintRuntimeStatus(context, request, response); }));}
+    void SetMessageAllocatorFor_GetTeleopConstraintRuntimeStatus(
+        ::grpc::MessageAllocator< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::TeleopConstraintRuntimeStatus>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(18);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::TeleopConstraintRuntimeStatus>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_GetTeleopConstraintRuntimeStatus() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetTeleopConstraintRuntimeStatus(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::TeleopConstraintRuntimeStatus* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GetTeleopConstraintRuntimeStatus(
+      ::grpc::CallbackServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::TeleopConstraintRuntimeStatus* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_GetTeleopTuningParams : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_GetTeleopTuningParams() {
+      ::grpc::Service::MarkMethodCallback(19,
+          new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::TeleopTuningParams>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::TeleopTuningParams* response) { return this->GetTeleopTuningParams(context, request, response); }));}
+    void SetMessageAllocatorFor_GetTeleopTuningParams(
+        ::grpc::MessageAllocator< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::TeleopTuningParams>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(19);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::TeleopTuningParams>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_GetTeleopTuningParams() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetTeleopTuningParams(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::TeleopTuningParams* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GetTeleopTuningParams(
+      ::grpc::CallbackServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::TeleopTuningParams* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_SetTeleopTuningParams : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_SetTeleopTuningParams() {
+      ::grpc::Service::MarkMethodCallback(20,
+          new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::TeleopTuningParams, ::Nrmk::IndyFramework::Response>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::TeleopTuningParams* request, ::Nrmk::IndyFramework::Response* response) { return this->SetTeleopTuningParams(context, request, response); }));}
+    void SetMessageAllocatorFor_SetTeleopTuningParams(
+        ::grpc::MessageAllocator< ::Nrmk::IndyFramework::TeleopTuningParams, ::Nrmk::IndyFramework::Response>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(20);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::TeleopTuningParams, ::Nrmk::IndyFramework::Response>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_SetTeleopTuningParams() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetTeleopTuningParams(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::TeleopTuningParams* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* SetTeleopTuningParams(
+      ::grpc::CallbackServerContext* /*context*/, const ::Nrmk::IndyFramework::TeleopTuningParams* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
   class WithCallbackMethod_GetDesiredPosition : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetDesiredPosition() {
-      ::grpc::Service::MarkMethodCallback(9,
+      ::grpc::Service::MarkMethodCallback(21,
           new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::DesiredPosition>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::DesiredPosition* response) { return this->GetDesiredPosition(context, request, response); }));}
     void SetMessageAllocatorFor_GetDesiredPosition(
         ::grpc::MessageAllocator< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::DesiredPosition>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(9);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(21);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::DesiredPosition>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -867,13 +1813,13 @@ class TeleOp final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetCurrentPosition() {
-      ::grpc::Service::MarkMethodCallback(10,
+      ::grpc::Service::MarkMethodCallback(22,
           new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::CurrentPosition>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::CurrentPosition* response) { return this->GetCurrentPosition(context, request, response); }));}
     void SetMessageAllocatorFor_GetCurrentPosition(
         ::grpc::MessageAllocator< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::CurrentPosition>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(10);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(22);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::CurrentPosition>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -888,7 +1834,61 @@ class TeleOp final {
     virtual ::grpc::ServerUnaryReactor* GetCurrentPosition(
       ::grpc::CallbackServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::CurrentPosition* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_SetObstacleInfo<WithCallbackMethod_GetObstacleInfo<WithCallbackMethod_GetCollisionSpheres<WithCallbackMethod_GetJointConstraintConfig<WithCallbackMethod_GetSelfCollisionPairs<WithCallbackMethod_GetPlaneConstraintConfig<WithCallbackMethod_GetStaticObstacleConstraintConfig<WithCallbackMethod_GetDynamicObstacleConstraintConfig<WithCallbackMethod_GetOrientationDeviationConfig<WithCallbackMethod_GetDesiredPosition<WithCallbackMethod_GetCurrentPosition<Service > > > > > > > > > > > CallbackService;
+  template <class BaseClass>
+  class WithCallbackMethod_GetToolCollisionSphereConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_GetToolCollisionSphereConfig() {
+      ::grpc::Service::MarkMethodCallback(23,
+          new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Message>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::Empty* request, ::Nrmk::IndyFramework::Message* response) { return this->GetToolCollisionSphereConfig(context, request, response); }));}
+    void SetMessageAllocatorFor_GetToolCollisionSphereConfig(
+        ::grpc::MessageAllocator< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Message>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(23);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Message>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_GetToolCollisionSphereConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetToolCollisionSphereConfig(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::Message* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GetToolCollisionSphereConfig(
+      ::grpc::CallbackServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::Message* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_SetToolCollisionSphereConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_SetToolCollisionSphereConfig() {
+      ::grpc::Service::MarkMethodCallback(24,
+          new ::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Message, ::Nrmk::IndyFramework::Response>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::Nrmk::IndyFramework::Message* request, ::Nrmk::IndyFramework::Response* response) { return this->SetToolCollisionSphereConfig(context, request, response); }));}
+    void SetMessageAllocatorFor_SetToolCollisionSphereConfig(
+        ::grpc::MessageAllocator< ::Nrmk::IndyFramework::Message, ::Nrmk::IndyFramework::Response>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(24);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::Nrmk::IndyFramework::Message, ::Nrmk::IndyFramework::Response>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_SetToolCollisionSphereConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetToolCollisionSphereConfig(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Message* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* SetToolCollisionSphereConfig(
+      ::grpc::CallbackServerContext* /*context*/, const ::Nrmk::IndyFramework::Message* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_SetObstacleInfo<WithCallbackMethod_GetObstacleInfo<WithCallbackMethod_GetCollisionSpheres<WithCallbackMethod_GetJointConstraintConfig<WithCallbackMethod_SetJointConstraintConfig<WithCallbackMethod_GetSelfCollisionPairs<WithCallbackMethod_SetSelfCollisionPairs<WithCallbackMethod_GetSelfCollisionConfig<WithCallbackMethod_SetSelfCollisionConfig<WithCallbackMethod_GetPlaneConstraintConfig<WithCallbackMethod_SetPlaneConstraintConfig<WithCallbackMethod_GetStaticObstacleConstraintConfig<WithCallbackMethod_SetStaticObstacleConstraintConfig<WithCallbackMethod_GetDynamicObstacleConstraintConfig<WithCallbackMethod_SetDynamicObstacleConstraintConfig<WithCallbackMethod_GetOrientationDeviationConfig<WithCallbackMethod_SetOrientationDeviationConfig<WithCallbackMethod_ApplyTeleopConstraintBatch<WithCallbackMethod_GetTeleopConstraintRuntimeStatus<WithCallbackMethod_GetTeleopTuningParams<WithCallbackMethod_SetTeleopTuningParams<WithCallbackMethod_GetDesiredPosition<WithCallbackMethod_GetCurrentPosition<WithCallbackMethod_GetToolCollisionSphereConfig<WithCallbackMethod_SetToolCollisionSphereConfig<Service > > > > > > > > > > > > > > > > > > > > > > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_SetObstacleInfo : public BaseClass {
@@ -959,12 +1959,29 @@ class TeleOp final {
     }
   };
   template <class BaseClass>
+  class WithGenericMethod_SetJointConstraintConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_SetJointConstraintConfig() {
+      ::grpc::Service::MarkMethodGeneric(4);
+    }
+    ~WithGenericMethod_SetJointConstraintConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetJointConstraintConfig(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::JointConstraintConfig* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
   class WithGenericMethod_GetSelfCollisionPairs : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetSelfCollisionPairs() {
-      ::grpc::Service::MarkMethodGeneric(4);
+      ::grpc::Service::MarkMethodGeneric(5);
     }
     ~WithGenericMethod_GetSelfCollisionPairs() override {
       BaseClassMustBeDerivedFromService(this);
@@ -976,12 +1993,63 @@ class TeleOp final {
     }
   };
   template <class BaseClass>
+  class WithGenericMethod_SetSelfCollisionPairs : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_SetSelfCollisionPairs() {
+      ::grpc::Service::MarkMethodGeneric(6);
+    }
+    ~WithGenericMethod_SetSelfCollisionPairs() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetSelfCollisionPairs(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::SelfCollisionPairs* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_GetSelfCollisionConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_GetSelfCollisionConfig() {
+      ::grpc::Service::MarkMethodGeneric(7);
+    }
+    ~WithGenericMethod_GetSelfCollisionConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetSelfCollisionConfig(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::SelfCollisionConstraintConfig* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_SetSelfCollisionConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_SetSelfCollisionConfig() {
+      ::grpc::Service::MarkMethodGeneric(8);
+    }
+    ~WithGenericMethod_SetSelfCollisionConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetSelfCollisionConfig(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::SelfCollisionConstraintConfig* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
   class WithGenericMethod_GetPlaneConstraintConfig : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetPlaneConstraintConfig() {
-      ::grpc::Service::MarkMethodGeneric(5);
+      ::grpc::Service::MarkMethodGeneric(9);
     }
     ~WithGenericMethod_GetPlaneConstraintConfig() override {
       BaseClassMustBeDerivedFromService(this);
@@ -993,12 +2061,29 @@ class TeleOp final {
     }
   };
   template <class BaseClass>
+  class WithGenericMethod_SetPlaneConstraintConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_SetPlaneConstraintConfig() {
+      ::grpc::Service::MarkMethodGeneric(10);
+    }
+    ~WithGenericMethod_SetPlaneConstraintConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetPlaneConstraintConfig(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::PlaneConstraintConfig* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
   class WithGenericMethod_GetStaticObstacleConstraintConfig : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetStaticObstacleConstraintConfig() {
-      ::grpc::Service::MarkMethodGeneric(6);
+      ::grpc::Service::MarkMethodGeneric(11);
     }
     ~WithGenericMethod_GetStaticObstacleConstraintConfig() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1010,12 +2095,29 @@ class TeleOp final {
     }
   };
   template <class BaseClass>
+  class WithGenericMethod_SetStaticObstacleConstraintConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_SetStaticObstacleConstraintConfig() {
+      ::grpc::Service::MarkMethodGeneric(12);
+    }
+    ~WithGenericMethod_SetStaticObstacleConstraintConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetStaticObstacleConstraintConfig(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::ObstacleConstraintConfig* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
   class WithGenericMethod_GetDynamicObstacleConstraintConfig : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetDynamicObstacleConstraintConfig() {
-      ::grpc::Service::MarkMethodGeneric(7);
+      ::grpc::Service::MarkMethodGeneric(13);
     }
     ~WithGenericMethod_GetDynamicObstacleConstraintConfig() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1027,12 +2129,29 @@ class TeleOp final {
     }
   };
   template <class BaseClass>
+  class WithGenericMethod_SetDynamicObstacleConstraintConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_SetDynamicObstacleConstraintConfig() {
+      ::grpc::Service::MarkMethodGeneric(14);
+    }
+    ~WithGenericMethod_SetDynamicObstacleConstraintConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetDynamicObstacleConstraintConfig(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::ObstacleConstraintConfig* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
   class WithGenericMethod_GetOrientationDeviationConfig : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetOrientationDeviationConfig() {
-      ::grpc::Service::MarkMethodGeneric(8);
+      ::grpc::Service::MarkMethodGeneric(15);
     }
     ~WithGenericMethod_GetOrientationDeviationConfig() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1044,12 +2163,97 @@ class TeleOp final {
     }
   };
   template <class BaseClass>
+  class WithGenericMethod_SetOrientationDeviationConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_SetOrientationDeviationConfig() {
+      ::grpc::Service::MarkMethodGeneric(16);
+    }
+    ~WithGenericMethod_SetOrientationDeviationConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetOrientationDeviationConfig(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::OrientationDeviationConfig* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_ApplyTeleopConstraintBatch : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_ApplyTeleopConstraintBatch() {
+      ::grpc::Service::MarkMethodGeneric(17);
+    }
+    ~WithGenericMethod_ApplyTeleopConstraintBatch() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ApplyTeleopConstraintBatch(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::ApplyTeleopConstraintBatchRequest* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_GetTeleopConstraintRuntimeStatus : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_GetTeleopConstraintRuntimeStatus() {
+      ::grpc::Service::MarkMethodGeneric(18);
+    }
+    ~WithGenericMethod_GetTeleopConstraintRuntimeStatus() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetTeleopConstraintRuntimeStatus(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::TeleopConstraintRuntimeStatus* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_GetTeleopTuningParams : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_GetTeleopTuningParams() {
+      ::grpc::Service::MarkMethodGeneric(19);
+    }
+    ~WithGenericMethod_GetTeleopTuningParams() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetTeleopTuningParams(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::TeleopTuningParams* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_SetTeleopTuningParams : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_SetTeleopTuningParams() {
+      ::grpc::Service::MarkMethodGeneric(20);
+    }
+    ~WithGenericMethod_SetTeleopTuningParams() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetTeleopTuningParams(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::TeleopTuningParams* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
   class WithGenericMethod_GetDesiredPosition : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetDesiredPosition() {
-      ::grpc::Service::MarkMethodGeneric(9);
+      ::grpc::Service::MarkMethodGeneric(21);
     }
     ~WithGenericMethod_GetDesiredPosition() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1066,13 +2270,47 @@ class TeleOp final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetCurrentPosition() {
-      ::grpc::Service::MarkMethodGeneric(10);
+      ::grpc::Service::MarkMethodGeneric(22);
     }
     ~WithGenericMethod_GetCurrentPosition() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
     ::grpc::Status GetCurrentPosition(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::CurrentPosition* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_GetToolCollisionSphereConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_GetToolCollisionSphereConfig() {
+      ::grpc::Service::MarkMethodGeneric(23);
+    }
+    ~WithGenericMethod_GetToolCollisionSphereConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetToolCollisionSphereConfig(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::Message* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_SetToolCollisionSphereConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_SetToolCollisionSphereConfig() {
+      ::grpc::Service::MarkMethodGeneric(24);
+    }
+    ~WithGenericMethod_SetToolCollisionSphereConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetToolCollisionSphereConfig(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Message* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -1158,12 +2396,32 @@ class TeleOp final {
     }
   };
   template <class BaseClass>
+  class WithRawMethod_SetJointConstraintConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_SetJointConstraintConfig() {
+      ::grpc::Service::MarkMethodRaw(4);
+    }
+    ~WithRawMethod_SetJointConstraintConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetJointConstraintConfig(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::JointConstraintConfig* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSetJointConstraintConfig(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithRawMethod_GetSelfCollisionPairs : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetSelfCollisionPairs() {
-      ::grpc::Service::MarkMethodRaw(4);
+      ::grpc::Service::MarkMethodRaw(5);
     }
     ~WithRawMethod_GetSelfCollisionPairs() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1174,7 +2432,67 @@ class TeleOp final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetSelfCollisionPairs(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_SetSelfCollisionPairs : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_SetSelfCollisionPairs() {
+      ::grpc::Service::MarkMethodRaw(6);
+    }
+    ~WithRawMethod_SetSelfCollisionPairs() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetSelfCollisionPairs(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::SelfCollisionPairs* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSetSelfCollisionPairs(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_GetSelfCollisionConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_GetSelfCollisionConfig() {
+      ::grpc::Service::MarkMethodRaw(7);
+    }
+    ~WithRawMethod_GetSelfCollisionConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetSelfCollisionConfig(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::SelfCollisionConstraintConfig* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetSelfCollisionConfig(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_SetSelfCollisionConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_SetSelfCollisionConfig() {
+      ::grpc::Service::MarkMethodRaw(8);
+    }
+    ~WithRawMethod_SetSelfCollisionConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetSelfCollisionConfig(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::SelfCollisionConstraintConfig* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSetSelfCollisionConfig(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(8, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1183,7 +2501,7 @@ class TeleOp final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetPlaneConstraintConfig() {
-      ::grpc::Service::MarkMethodRaw(5);
+      ::grpc::Service::MarkMethodRaw(9);
     }
     ~WithRawMethod_GetPlaneConstraintConfig() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1194,7 +2512,27 @@ class TeleOp final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetPlaneConstraintConfig(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(9, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_SetPlaneConstraintConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_SetPlaneConstraintConfig() {
+      ::grpc::Service::MarkMethodRaw(10);
+    }
+    ~WithRawMethod_SetPlaneConstraintConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetPlaneConstraintConfig(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::PlaneConstraintConfig* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSetPlaneConstraintConfig(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(10, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1203,7 +2541,7 @@ class TeleOp final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetStaticObstacleConstraintConfig() {
-      ::grpc::Service::MarkMethodRaw(6);
+      ::grpc::Service::MarkMethodRaw(11);
     }
     ~WithRawMethod_GetStaticObstacleConstraintConfig() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1214,7 +2552,27 @@ class TeleOp final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetStaticObstacleConstraintConfig(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(11, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_SetStaticObstacleConstraintConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_SetStaticObstacleConstraintConfig() {
+      ::grpc::Service::MarkMethodRaw(12);
+    }
+    ~WithRawMethod_SetStaticObstacleConstraintConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetStaticObstacleConstraintConfig(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::ObstacleConstraintConfig* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSetStaticObstacleConstraintConfig(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(12, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1223,7 +2581,7 @@ class TeleOp final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetDynamicObstacleConstraintConfig() {
-      ::grpc::Service::MarkMethodRaw(7);
+      ::grpc::Service::MarkMethodRaw(13);
     }
     ~WithRawMethod_GetDynamicObstacleConstraintConfig() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1234,7 +2592,27 @@ class TeleOp final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetDynamicObstacleConstraintConfig(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(13, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_SetDynamicObstacleConstraintConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_SetDynamicObstacleConstraintConfig() {
+      ::grpc::Service::MarkMethodRaw(14);
+    }
+    ~WithRawMethod_SetDynamicObstacleConstraintConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetDynamicObstacleConstraintConfig(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::ObstacleConstraintConfig* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSetDynamicObstacleConstraintConfig(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(14, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1243,7 +2621,7 @@ class TeleOp final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetOrientationDeviationConfig() {
-      ::grpc::Service::MarkMethodRaw(8);
+      ::grpc::Service::MarkMethodRaw(15);
     }
     ~WithRawMethod_GetOrientationDeviationConfig() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1254,7 +2632,107 @@ class TeleOp final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetOrientationDeviationConfig(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(8, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(15, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_SetOrientationDeviationConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_SetOrientationDeviationConfig() {
+      ::grpc::Service::MarkMethodRaw(16);
+    }
+    ~WithRawMethod_SetOrientationDeviationConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetOrientationDeviationConfig(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::OrientationDeviationConfig* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSetOrientationDeviationConfig(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(16, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_ApplyTeleopConstraintBatch : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_ApplyTeleopConstraintBatch() {
+      ::grpc::Service::MarkMethodRaw(17);
+    }
+    ~WithRawMethod_ApplyTeleopConstraintBatch() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ApplyTeleopConstraintBatch(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::ApplyTeleopConstraintBatchRequest* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestApplyTeleopConstraintBatch(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(17, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_GetTeleopConstraintRuntimeStatus : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_GetTeleopConstraintRuntimeStatus() {
+      ::grpc::Service::MarkMethodRaw(18);
+    }
+    ~WithRawMethod_GetTeleopConstraintRuntimeStatus() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetTeleopConstraintRuntimeStatus(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::TeleopConstraintRuntimeStatus* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetTeleopConstraintRuntimeStatus(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(18, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_GetTeleopTuningParams : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_GetTeleopTuningParams() {
+      ::grpc::Service::MarkMethodRaw(19);
+    }
+    ~WithRawMethod_GetTeleopTuningParams() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetTeleopTuningParams(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::TeleopTuningParams* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetTeleopTuningParams(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(19, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_SetTeleopTuningParams : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_SetTeleopTuningParams() {
+      ::grpc::Service::MarkMethodRaw(20);
+    }
+    ~WithRawMethod_SetTeleopTuningParams() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetTeleopTuningParams(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::TeleopTuningParams* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSetTeleopTuningParams(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(20, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1263,7 +2741,7 @@ class TeleOp final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetDesiredPosition() {
-      ::grpc::Service::MarkMethodRaw(9);
+      ::grpc::Service::MarkMethodRaw(21);
     }
     ~WithRawMethod_GetDesiredPosition() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1274,7 +2752,7 @@ class TeleOp final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetDesiredPosition(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(9, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(21, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1283,7 +2761,7 @@ class TeleOp final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetCurrentPosition() {
-      ::grpc::Service::MarkMethodRaw(10);
+      ::grpc::Service::MarkMethodRaw(22);
     }
     ~WithRawMethod_GetCurrentPosition() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1294,7 +2772,47 @@ class TeleOp final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetCurrentPosition(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(10, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(22, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_GetToolCollisionSphereConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_GetToolCollisionSphereConfig() {
+      ::grpc::Service::MarkMethodRaw(23);
+    }
+    ~WithRawMethod_GetToolCollisionSphereConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetToolCollisionSphereConfig(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::Message* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetToolCollisionSphereConfig(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(23, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_SetToolCollisionSphereConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_SetToolCollisionSphereConfig() {
+      ::grpc::Service::MarkMethodRaw(24);
+    }
+    ~WithRawMethod_SetToolCollisionSphereConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetToolCollisionSphereConfig(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Message* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSetToolCollisionSphereConfig(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(24, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1386,12 +2904,34 @@ class TeleOp final {
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
+  class WithRawCallbackMethod_SetJointConstraintConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_SetJointConstraintConfig() {
+      ::grpc::Service::MarkMethodRawCallback(4,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SetJointConstraintConfig(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_SetJointConstraintConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetJointConstraintConfig(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::JointConstraintConfig* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* SetJointConstraintConfig(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
   class WithRawCallbackMethod_GetSelfCollisionPairs : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetSelfCollisionPairs() {
-      ::grpc::Service::MarkMethodRawCallback(4,
+      ::grpc::Service::MarkMethodRawCallback(5,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetSelfCollisionPairs(context, request, response); }));
@@ -1408,12 +2948,78 @@ class TeleOp final {
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
+  class WithRawCallbackMethod_SetSelfCollisionPairs : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_SetSelfCollisionPairs() {
+      ::grpc::Service::MarkMethodRawCallback(6,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SetSelfCollisionPairs(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_SetSelfCollisionPairs() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetSelfCollisionPairs(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::SelfCollisionPairs* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* SetSelfCollisionPairs(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_GetSelfCollisionConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_GetSelfCollisionConfig() {
+      ::grpc::Service::MarkMethodRawCallback(7,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetSelfCollisionConfig(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_GetSelfCollisionConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetSelfCollisionConfig(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::SelfCollisionConstraintConfig* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GetSelfCollisionConfig(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_SetSelfCollisionConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_SetSelfCollisionConfig() {
+      ::grpc::Service::MarkMethodRawCallback(8,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SetSelfCollisionConfig(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_SetSelfCollisionConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetSelfCollisionConfig(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::SelfCollisionConstraintConfig* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* SetSelfCollisionConfig(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
   class WithRawCallbackMethod_GetPlaneConstraintConfig : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetPlaneConstraintConfig() {
-      ::grpc::Service::MarkMethodRawCallback(5,
+      ::grpc::Service::MarkMethodRawCallback(9,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetPlaneConstraintConfig(context, request, response); }));
@@ -1430,12 +3036,34 @@ class TeleOp final {
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
+  class WithRawCallbackMethod_SetPlaneConstraintConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_SetPlaneConstraintConfig() {
+      ::grpc::Service::MarkMethodRawCallback(10,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SetPlaneConstraintConfig(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_SetPlaneConstraintConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetPlaneConstraintConfig(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::PlaneConstraintConfig* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* SetPlaneConstraintConfig(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
   class WithRawCallbackMethod_GetStaticObstacleConstraintConfig : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetStaticObstacleConstraintConfig() {
-      ::grpc::Service::MarkMethodRawCallback(6,
+      ::grpc::Service::MarkMethodRawCallback(11,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetStaticObstacleConstraintConfig(context, request, response); }));
@@ -1452,12 +3080,34 @@ class TeleOp final {
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
+  class WithRawCallbackMethod_SetStaticObstacleConstraintConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_SetStaticObstacleConstraintConfig() {
+      ::grpc::Service::MarkMethodRawCallback(12,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SetStaticObstacleConstraintConfig(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_SetStaticObstacleConstraintConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetStaticObstacleConstraintConfig(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::ObstacleConstraintConfig* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* SetStaticObstacleConstraintConfig(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
   class WithRawCallbackMethod_GetDynamicObstacleConstraintConfig : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetDynamicObstacleConstraintConfig() {
-      ::grpc::Service::MarkMethodRawCallback(7,
+      ::grpc::Service::MarkMethodRawCallback(13,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetDynamicObstacleConstraintConfig(context, request, response); }));
@@ -1474,12 +3124,34 @@ class TeleOp final {
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
+  class WithRawCallbackMethod_SetDynamicObstacleConstraintConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_SetDynamicObstacleConstraintConfig() {
+      ::grpc::Service::MarkMethodRawCallback(14,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SetDynamicObstacleConstraintConfig(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_SetDynamicObstacleConstraintConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetDynamicObstacleConstraintConfig(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::ObstacleConstraintConfig* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* SetDynamicObstacleConstraintConfig(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
   class WithRawCallbackMethod_GetOrientationDeviationConfig : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetOrientationDeviationConfig() {
-      ::grpc::Service::MarkMethodRawCallback(8,
+      ::grpc::Service::MarkMethodRawCallback(15,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetOrientationDeviationConfig(context, request, response); }));
@@ -1496,12 +3168,122 @@ class TeleOp final {
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
+  class WithRawCallbackMethod_SetOrientationDeviationConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_SetOrientationDeviationConfig() {
+      ::grpc::Service::MarkMethodRawCallback(16,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SetOrientationDeviationConfig(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_SetOrientationDeviationConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetOrientationDeviationConfig(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::OrientationDeviationConfig* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* SetOrientationDeviationConfig(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_ApplyTeleopConstraintBatch : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_ApplyTeleopConstraintBatch() {
+      ::grpc::Service::MarkMethodRawCallback(17,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->ApplyTeleopConstraintBatch(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_ApplyTeleopConstraintBatch() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ApplyTeleopConstraintBatch(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::ApplyTeleopConstraintBatchRequest* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* ApplyTeleopConstraintBatch(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_GetTeleopConstraintRuntimeStatus : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_GetTeleopConstraintRuntimeStatus() {
+      ::grpc::Service::MarkMethodRawCallback(18,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetTeleopConstraintRuntimeStatus(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_GetTeleopConstraintRuntimeStatus() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetTeleopConstraintRuntimeStatus(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::TeleopConstraintRuntimeStatus* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GetTeleopConstraintRuntimeStatus(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_GetTeleopTuningParams : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_GetTeleopTuningParams() {
+      ::grpc::Service::MarkMethodRawCallback(19,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetTeleopTuningParams(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_GetTeleopTuningParams() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetTeleopTuningParams(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::TeleopTuningParams* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GetTeleopTuningParams(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_SetTeleopTuningParams : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_SetTeleopTuningParams() {
+      ::grpc::Service::MarkMethodRawCallback(20,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SetTeleopTuningParams(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_SetTeleopTuningParams() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetTeleopTuningParams(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::TeleopTuningParams* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* SetTeleopTuningParams(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
   class WithRawCallbackMethod_GetDesiredPosition : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetDesiredPosition() {
-      ::grpc::Service::MarkMethodRawCallback(9,
+      ::grpc::Service::MarkMethodRawCallback(21,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetDesiredPosition(context, request, response); }));
@@ -1523,7 +3305,7 @@ class TeleOp final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetCurrentPosition() {
-      ::grpc::Service::MarkMethodRawCallback(10,
+      ::grpc::Service::MarkMethodRawCallback(22,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetCurrentPosition(context, request, response); }));
@@ -1537,6 +3319,50 @@ class TeleOp final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* GetCurrentPosition(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_GetToolCollisionSphereConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_GetToolCollisionSphereConfig() {
+      ::grpc::Service::MarkMethodRawCallback(23,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetToolCollisionSphereConfig(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_GetToolCollisionSphereConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetToolCollisionSphereConfig(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::Message* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GetToolCollisionSphereConfig(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_SetToolCollisionSphereConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_SetToolCollisionSphereConfig() {
+      ::grpc::Service::MarkMethodRawCallback(24,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SetToolCollisionSphereConfig(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_SetToolCollisionSphereConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetToolCollisionSphereConfig(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Message* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* SetToolCollisionSphereConfig(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
@@ -1648,12 +3474,39 @@ class TeleOp final {
     virtual ::grpc::Status StreamedGetJointConstraintConfig(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Nrmk::IndyFramework::Empty,::Nrmk::IndyFramework::JointConstraintConfig>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
+  class WithStreamedUnaryMethod_SetJointConstraintConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_SetJointConstraintConfig() {
+      ::grpc::Service::MarkMethodStreamed(4,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::Nrmk::IndyFramework::JointConstraintConfig, ::Nrmk::IndyFramework::Response>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::Nrmk::IndyFramework::JointConstraintConfig, ::Nrmk::IndyFramework::Response>* streamer) {
+                       return this->StreamedSetJointConstraintConfig(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_SetJointConstraintConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status SetJointConstraintConfig(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::JointConstraintConfig* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedSetJointConstraintConfig(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Nrmk::IndyFramework::JointConstraintConfig,::Nrmk::IndyFramework::Response>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
   class WithStreamedUnaryMethod_GetSelfCollisionPairs : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetSelfCollisionPairs() {
-      ::grpc::Service::MarkMethodStreamed(4,
+      ::grpc::Service::MarkMethodStreamed(5,
         new ::grpc::internal::StreamedUnaryHandler<
           ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::SelfCollisionPairs>(
             [this](::grpc::ServerContext* context,
@@ -1675,12 +3528,93 @@ class TeleOp final {
     virtual ::grpc::Status StreamedGetSelfCollisionPairs(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Nrmk::IndyFramework::Empty,::Nrmk::IndyFramework::SelfCollisionPairs>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
+  class WithStreamedUnaryMethod_SetSelfCollisionPairs : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_SetSelfCollisionPairs() {
+      ::grpc::Service::MarkMethodStreamed(6,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::Nrmk::IndyFramework::SelfCollisionPairs, ::Nrmk::IndyFramework::Response>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::Nrmk::IndyFramework::SelfCollisionPairs, ::Nrmk::IndyFramework::Response>* streamer) {
+                       return this->StreamedSetSelfCollisionPairs(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_SetSelfCollisionPairs() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status SetSelfCollisionPairs(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::SelfCollisionPairs* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedSetSelfCollisionPairs(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Nrmk::IndyFramework::SelfCollisionPairs,::Nrmk::IndyFramework::Response>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_GetSelfCollisionConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_GetSelfCollisionConfig() {
+      ::grpc::Service::MarkMethodStreamed(7,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::SelfCollisionConstraintConfig>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::SelfCollisionConstraintConfig>* streamer) {
+                       return this->StreamedGetSelfCollisionConfig(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_GetSelfCollisionConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status GetSelfCollisionConfig(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::SelfCollisionConstraintConfig* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedGetSelfCollisionConfig(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Nrmk::IndyFramework::Empty,::Nrmk::IndyFramework::SelfCollisionConstraintConfig>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_SetSelfCollisionConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_SetSelfCollisionConfig() {
+      ::grpc::Service::MarkMethodStreamed(8,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::Nrmk::IndyFramework::SelfCollisionConstraintConfig, ::Nrmk::IndyFramework::Response>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::Nrmk::IndyFramework::SelfCollisionConstraintConfig, ::Nrmk::IndyFramework::Response>* streamer) {
+                       return this->StreamedSetSelfCollisionConfig(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_SetSelfCollisionConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status SetSelfCollisionConfig(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::SelfCollisionConstraintConfig* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedSetSelfCollisionConfig(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Nrmk::IndyFramework::SelfCollisionConstraintConfig,::Nrmk::IndyFramework::Response>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
   class WithStreamedUnaryMethod_GetPlaneConstraintConfig : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetPlaneConstraintConfig() {
-      ::grpc::Service::MarkMethodStreamed(5,
+      ::grpc::Service::MarkMethodStreamed(9,
         new ::grpc::internal::StreamedUnaryHandler<
           ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::PlaneConstraintConfig>(
             [this](::grpc::ServerContext* context,
@@ -1702,12 +3636,39 @@ class TeleOp final {
     virtual ::grpc::Status StreamedGetPlaneConstraintConfig(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Nrmk::IndyFramework::Empty,::Nrmk::IndyFramework::PlaneConstraintConfig>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
+  class WithStreamedUnaryMethod_SetPlaneConstraintConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_SetPlaneConstraintConfig() {
+      ::grpc::Service::MarkMethodStreamed(10,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::Nrmk::IndyFramework::PlaneConstraintConfig, ::Nrmk::IndyFramework::Response>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::Nrmk::IndyFramework::PlaneConstraintConfig, ::Nrmk::IndyFramework::Response>* streamer) {
+                       return this->StreamedSetPlaneConstraintConfig(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_SetPlaneConstraintConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status SetPlaneConstraintConfig(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::PlaneConstraintConfig* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedSetPlaneConstraintConfig(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Nrmk::IndyFramework::PlaneConstraintConfig,::Nrmk::IndyFramework::Response>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
   class WithStreamedUnaryMethod_GetStaticObstacleConstraintConfig : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetStaticObstacleConstraintConfig() {
-      ::grpc::Service::MarkMethodStreamed(6,
+      ::grpc::Service::MarkMethodStreamed(11,
         new ::grpc::internal::StreamedUnaryHandler<
           ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ObstacleConstraintConfig>(
             [this](::grpc::ServerContext* context,
@@ -1729,12 +3690,39 @@ class TeleOp final {
     virtual ::grpc::Status StreamedGetStaticObstacleConstraintConfig(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Nrmk::IndyFramework::Empty,::Nrmk::IndyFramework::ObstacleConstraintConfig>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
+  class WithStreamedUnaryMethod_SetStaticObstacleConstraintConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_SetStaticObstacleConstraintConfig() {
+      ::grpc::Service::MarkMethodStreamed(12,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::Nrmk::IndyFramework::ObstacleConstraintConfig, ::Nrmk::IndyFramework::Response>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::Nrmk::IndyFramework::ObstacleConstraintConfig, ::Nrmk::IndyFramework::Response>* streamer) {
+                       return this->StreamedSetStaticObstacleConstraintConfig(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_SetStaticObstacleConstraintConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status SetStaticObstacleConstraintConfig(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::ObstacleConstraintConfig* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedSetStaticObstacleConstraintConfig(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Nrmk::IndyFramework::ObstacleConstraintConfig,::Nrmk::IndyFramework::Response>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
   class WithStreamedUnaryMethod_GetDynamicObstacleConstraintConfig : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetDynamicObstacleConstraintConfig() {
-      ::grpc::Service::MarkMethodStreamed(7,
+      ::grpc::Service::MarkMethodStreamed(13,
         new ::grpc::internal::StreamedUnaryHandler<
           ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::ObstacleConstraintConfig>(
             [this](::grpc::ServerContext* context,
@@ -1756,12 +3744,39 @@ class TeleOp final {
     virtual ::grpc::Status StreamedGetDynamicObstacleConstraintConfig(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Nrmk::IndyFramework::Empty,::Nrmk::IndyFramework::ObstacleConstraintConfig>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
+  class WithStreamedUnaryMethod_SetDynamicObstacleConstraintConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_SetDynamicObstacleConstraintConfig() {
+      ::grpc::Service::MarkMethodStreamed(14,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::Nrmk::IndyFramework::ObstacleConstraintConfig, ::Nrmk::IndyFramework::Response>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::Nrmk::IndyFramework::ObstacleConstraintConfig, ::Nrmk::IndyFramework::Response>* streamer) {
+                       return this->StreamedSetDynamicObstacleConstraintConfig(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_SetDynamicObstacleConstraintConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status SetDynamicObstacleConstraintConfig(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::ObstacleConstraintConfig* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedSetDynamicObstacleConstraintConfig(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Nrmk::IndyFramework::ObstacleConstraintConfig,::Nrmk::IndyFramework::Response>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
   class WithStreamedUnaryMethod_GetOrientationDeviationConfig : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetOrientationDeviationConfig() {
-      ::grpc::Service::MarkMethodStreamed(8,
+      ::grpc::Service::MarkMethodStreamed(15,
         new ::grpc::internal::StreamedUnaryHandler<
           ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::OrientationDeviationConfig>(
             [this](::grpc::ServerContext* context,
@@ -1783,12 +3798,147 @@ class TeleOp final {
     virtual ::grpc::Status StreamedGetOrientationDeviationConfig(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Nrmk::IndyFramework::Empty,::Nrmk::IndyFramework::OrientationDeviationConfig>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
+  class WithStreamedUnaryMethod_SetOrientationDeviationConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_SetOrientationDeviationConfig() {
+      ::grpc::Service::MarkMethodStreamed(16,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::Nrmk::IndyFramework::OrientationDeviationConfig, ::Nrmk::IndyFramework::Response>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::Nrmk::IndyFramework::OrientationDeviationConfig, ::Nrmk::IndyFramework::Response>* streamer) {
+                       return this->StreamedSetOrientationDeviationConfig(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_SetOrientationDeviationConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status SetOrientationDeviationConfig(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::OrientationDeviationConfig* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedSetOrientationDeviationConfig(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Nrmk::IndyFramework::OrientationDeviationConfig,::Nrmk::IndyFramework::Response>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_ApplyTeleopConstraintBatch : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_ApplyTeleopConstraintBatch() {
+      ::grpc::Service::MarkMethodStreamed(17,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::Nrmk::IndyFramework::ApplyTeleopConstraintBatchRequest, ::Nrmk::IndyFramework::Response>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::Nrmk::IndyFramework::ApplyTeleopConstraintBatchRequest, ::Nrmk::IndyFramework::Response>* streamer) {
+                       return this->StreamedApplyTeleopConstraintBatch(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_ApplyTeleopConstraintBatch() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status ApplyTeleopConstraintBatch(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::ApplyTeleopConstraintBatchRequest* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedApplyTeleopConstraintBatch(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Nrmk::IndyFramework::ApplyTeleopConstraintBatchRequest,::Nrmk::IndyFramework::Response>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_GetTeleopConstraintRuntimeStatus : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_GetTeleopConstraintRuntimeStatus() {
+      ::grpc::Service::MarkMethodStreamed(18,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::TeleopConstraintRuntimeStatus>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::TeleopConstraintRuntimeStatus>* streamer) {
+                       return this->StreamedGetTeleopConstraintRuntimeStatus(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_GetTeleopConstraintRuntimeStatus() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status GetTeleopConstraintRuntimeStatus(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::TeleopConstraintRuntimeStatus* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedGetTeleopConstraintRuntimeStatus(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Nrmk::IndyFramework::Empty,::Nrmk::IndyFramework::TeleopConstraintRuntimeStatus>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_GetTeleopTuningParams : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_GetTeleopTuningParams() {
+      ::grpc::Service::MarkMethodStreamed(19,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::TeleopTuningParams>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::TeleopTuningParams>* streamer) {
+                       return this->StreamedGetTeleopTuningParams(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_GetTeleopTuningParams() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status GetTeleopTuningParams(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::TeleopTuningParams* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedGetTeleopTuningParams(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Nrmk::IndyFramework::Empty,::Nrmk::IndyFramework::TeleopTuningParams>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_SetTeleopTuningParams : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_SetTeleopTuningParams() {
+      ::grpc::Service::MarkMethodStreamed(20,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::Nrmk::IndyFramework::TeleopTuningParams, ::Nrmk::IndyFramework::Response>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::Nrmk::IndyFramework::TeleopTuningParams, ::Nrmk::IndyFramework::Response>* streamer) {
+                       return this->StreamedSetTeleopTuningParams(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_SetTeleopTuningParams() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status SetTeleopTuningParams(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::TeleopTuningParams* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedSetTeleopTuningParams(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Nrmk::IndyFramework::TeleopTuningParams,::Nrmk::IndyFramework::Response>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
   class WithStreamedUnaryMethod_GetDesiredPosition : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetDesiredPosition() {
-      ::grpc::Service::MarkMethodStreamed(9,
+      ::grpc::Service::MarkMethodStreamed(21,
         new ::grpc::internal::StreamedUnaryHandler<
           ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::DesiredPosition>(
             [this](::grpc::ServerContext* context,
@@ -1815,7 +3965,7 @@ class TeleOp final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetCurrentPosition() {
-      ::grpc::Service::MarkMethodStreamed(10,
+      ::grpc::Service::MarkMethodStreamed(22,
         new ::grpc::internal::StreamedUnaryHandler<
           ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::CurrentPosition>(
             [this](::grpc::ServerContext* context,
@@ -1836,9 +3986,63 @@ class TeleOp final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedGetCurrentPosition(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Nrmk::IndyFramework::Empty,::Nrmk::IndyFramework::CurrentPosition>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_SetObstacleInfo<WithStreamedUnaryMethod_GetObstacleInfo<WithStreamedUnaryMethod_GetCollisionSpheres<WithStreamedUnaryMethod_GetJointConstraintConfig<WithStreamedUnaryMethod_GetSelfCollisionPairs<WithStreamedUnaryMethod_GetPlaneConstraintConfig<WithStreamedUnaryMethod_GetStaticObstacleConstraintConfig<WithStreamedUnaryMethod_GetDynamicObstacleConstraintConfig<WithStreamedUnaryMethod_GetOrientationDeviationConfig<WithStreamedUnaryMethod_GetDesiredPosition<WithStreamedUnaryMethod_GetCurrentPosition<Service > > > > > > > > > > > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_GetToolCollisionSphereConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_GetToolCollisionSphereConfig() {
+      ::grpc::Service::MarkMethodStreamed(23,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Message>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::Nrmk::IndyFramework::Empty, ::Nrmk::IndyFramework::Message>* streamer) {
+                       return this->StreamedGetToolCollisionSphereConfig(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_GetToolCollisionSphereConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status GetToolCollisionSphereConfig(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Empty* /*request*/, ::Nrmk::IndyFramework::Message* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedGetToolCollisionSphereConfig(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Nrmk::IndyFramework::Empty,::Nrmk::IndyFramework::Message>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_SetToolCollisionSphereConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_SetToolCollisionSphereConfig() {
+      ::grpc::Service::MarkMethodStreamed(24,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::Nrmk::IndyFramework::Message, ::Nrmk::IndyFramework::Response>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::Nrmk::IndyFramework::Message, ::Nrmk::IndyFramework::Response>* streamer) {
+                       return this->StreamedSetToolCollisionSphereConfig(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_SetToolCollisionSphereConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status SetToolCollisionSphereConfig(::grpc::ServerContext* /*context*/, const ::Nrmk::IndyFramework::Message* /*request*/, ::Nrmk::IndyFramework::Response* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedSetToolCollisionSphereConfig(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Nrmk::IndyFramework::Message,::Nrmk::IndyFramework::Response>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_SetObstacleInfo<WithStreamedUnaryMethod_GetObstacleInfo<WithStreamedUnaryMethod_GetCollisionSpheres<WithStreamedUnaryMethod_GetJointConstraintConfig<WithStreamedUnaryMethod_SetJointConstraintConfig<WithStreamedUnaryMethod_GetSelfCollisionPairs<WithStreamedUnaryMethod_SetSelfCollisionPairs<WithStreamedUnaryMethod_GetSelfCollisionConfig<WithStreamedUnaryMethod_SetSelfCollisionConfig<WithStreamedUnaryMethod_GetPlaneConstraintConfig<WithStreamedUnaryMethod_SetPlaneConstraintConfig<WithStreamedUnaryMethod_GetStaticObstacleConstraintConfig<WithStreamedUnaryMethod_SetStaticObstacleConstraintConfig<WithStreamedUnaryMethod_GetDynamicObstacleConstraintConfig<WithStreamedUnaryMethod_SetDynamicObstacleConstraintConfig<WithStreamedUnaryMethod_GetOrientationDeviationConfig<WithStreamedUnaryMethod_SetOrientationDeviationConfig<WithStreamedUnaryMethod_ApplyTeleopConstraintBatch<WithStreamedUnaryMethod_GetTeleopConstraintRuntimeStatus<WithStreamedUnaryMethod_GetTeleopTuningParams<WithStreamedUnaryMethod_SetTeleopTuningParams<WithStreamedUnaryMethod_GetDesiredPosition<WithStreamedUnaryMethod_GetCurrentPosition<WithStreamedUnaryMethod_GetToolCollisionSphereConfig<WithStreamedUnaryMethod_SetToolCollisionSphereConfig<Service > > > > > > > > > > > > > > > > > > > > > > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_SetObstacleInfo<WithStreamedUnaryMethod_GetObstacleInfo<WithStreamedUnaryMethod_GetCollisionSpheres<WithStreamedUnaryMethod_GetJointConstraintConfig<WithStreamedUnaryMethod_GetSelfCollisionPairs<WithStreamedUnaryMethod_GetPlaneConstraintConfig<WithStreamedUnaryMethod_GetStaticObstacleConstraintConfig<WithStreamedUnaryMethod_GetDynamicObstacleConstraintConfig<WithStreamedUnaryMethod_GetOrientationDeviationConfig<WithStreamedUnaryMethod_GetDesiredPosition<WithStreamedUnaryMethod_GetCurrentPosition<Service > > > > > > > > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_SetObstacleInfo<WithStreamedUnaryMethod_GetObstacleInfo<WithStreamedUnaryMethod_GetCollisionSpheres<WithStreamedUnaryMethod_GetJointConstraintConfig<WithStreamedUnaryMethod_SetJointConstraintConfig<WithStreamedUnaryMethod_GetSelfCollisionPairs<WithStreamedUnaryMethod_SetSelfCollisionPairs<WithStreamedUnaryMethod_GetSelfCollisionConfig<WithStreamedUnaryMethod_SetSelfCollisionConfig<WithStreamedUnaryMethod_GetPlaneConstraintConfig<WithStreamedUnaryMethod_SetPlaneConstraintConfig<WithStreamedUnaryMethod_GetStaticObstacleConstraintConfig<WithStreamedUnaryMethod_SetStaticObstacleConstraintConfig<WithStreamedUnaryMethod_GetDynamicObstacleConstraintConfig<WithStreamedUnaryMethod_SetDynamicObstacleConstraintConfig<WithStreamedUnaryMethod_GetOrientationDeviationConfig<WithStreamedUnaryMethod_SetOrientationDeviationConfig<WithStreamedUnaryMethod_ApplyTeleopConstraintBatch<WithStreamedUnaryMethod_GetTeleopConstraintRuntimeStatus<WithStreamedUnaryMethod_GetTeleopTuningParams<WithStreamedUnaryMethod_SetTeleopTuningParams<WithStreamedUnaryMethod_GetDesiredPosition<WithStreamedUnaryMethod_GetCurrentPosition<WithStreamedUnaryMethod_GetToolCollisionSphereConfig<WithStreamedUnaryMethod_SetToolCollisionSphereConfig<Service > > > > > > > > > > > > > > > > > > > > > > > > > StreamedService;
 };
 
 }  // namespace IndyFramework

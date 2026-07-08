@@ -45,6 +45,11 @@ class ConfigStub(object):
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
                 response_deserializer=config__msgs__pb2.PathConfig.FromString,
                 )
+        self.SetLanguage = channel.unary_unary(
+                '/Nrmk.IndyFramework.Config/SetLanguage',
+                request_serializer=common__msgs__pb2.Name.SerializeToString,
+                response_deserializer=common__msgs__pb2.Response.FromString,
+                )
         self.GetRefFrame = channel.unary_unary(
                 '/Nrmk.IndyFramework.Config/GetRefFrame',
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
@@ -125,6 +130,11 @@ class ConfigStub(object):
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
                 response_deserializer=config__msgs__pb2.JointPos.FromString,
                 )
+        self.GetServoParamList = channel.unary_unary(
+                '/Nrmk.IndyFramework.Config/GetServoParamList',
+                request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=common__msgs__pb2.Vector.FromString,
+                )
         self.SetToolList = channel.unary_unary(
                 '/Nrmk.IndyFramework.Config/SetToolList',
                 request_serializer=config__msgs__pb2.ToolList.SerializeToString,
@@ -143,6 +153,16 @@ class ConfigStub(object):
         self.SetVisionServerList = channel.unary_unary(
                 '/Nrmk.IndyFramework.Config/SetVisionServerList',
                 request_serializer=config__msgs__pb2.VisionServerList.SerializeToString,
+                response_deserializer=common__msgs__pb2.Response.FromString,
+                )
+        self.GetSocketCommandConfig = channel.unary_unary(
+                '/Nrmk.IndyFramework.Config/GetSocketCommandConfig',
+                request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=config__msgs__pb2.SocketCommandConfig.FromString,
+                )
+        self.SetSocketCommandConfig = channel.unary_unary(
+                '/Nrmk.IndyFramework.Config/SetSocketCommandConfig',
+                request_serializer=config__msgs__pb2.SocketCommandConfig.SerializeToString,
                 response_deserializer=common__msgs__pb2.Response.FromString,
                 )
         self.GetModbusServerList = channel.unary_unary(
@@ -606,6 +626,12 @@ class ConfigServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def SetLanguage(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def GetRefFrame(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -702,6 +728,12 @@ class ConfigServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetServoParamList(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def SetToolList(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -721,6 +753,18 @@ class ConfigServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def SetVisionServerList(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetSocketCommandConfig(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SetSocketCommandConfig(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -1266,6 +1310,11 @@ def add_ConfigServicer_to_server(servicer, server):
                     request_deserializer=common__msgs__pb2.Empty.FromString,
                     response_serializer=config__msgs__pb2.PathConfig.SerializeToString,
             ),
+            'SetLanguage': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetLanguage,
+                    request_deserializer=common__msgs__pb2.Name.FromString,
+                    response_serializer=common__msgs__pb2.Response.SerializeToString,
+            ),
             'GetRefFrame': grpc.unary_unary_rpc_method_handler(
                     servicer.GetRefFrame,
                     request_deserializer=common__msgs__pb2.Empty.FromString,
@@ -1346,6 +1395,11 @@ def add_ConfigServicer_to_server(servicer, server):
                     request_deserializer=common__msgs__pb2.Empty.FromString,
                     response_serializer=config__msgs__pb2.JointPos.SerializeToString,
             ),
+            'GetServoParamList': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetServoParamList,
+                    request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=common__msgs__pb2.Vector.SerializeToString,
+            ),
             'SetToolList': grpc.unary_unary_rpc_method_handler(
                     servicer.SetToolList,
                     request_deserializer=config__msgs__pb2.ToolList.FromString,
@@ -1364,6 +1418,16 @@ def add_ConfigServicer_to_server(servicer, server):
             'SetVisionServerList': grpc.unary_unary_rpc_method_handler(
                     servicer.SetVisionServerList,
                     request_deserializer=config__msgs__pb2.VisionServerList.FromString,
+                    response_serializer=common__msgs__pb2.Response.SerializeToString,
+            ),
+            'GetSocketCommandConfig': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetSocketCommandConfig,
+                    request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=config__msgs__pb2.SocketCommandConfig.SerializeToString,
+            ),
+            'SetSocketCommandConfig': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetSocketCommandConfig,
+                    request_deserializer=config__msgs__pb2.SocketCommandConfig.FromString,
                     response_serializer=common__msgs__pb2.Response.SerializeToString,
             ),
             'GetModbusServerList': grpc.unary_unary_rpc_method_handler(
@@ -1899,6 +1963,23 @@ class Config(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
+    def SetLanguage(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Config/SetLanguage',
+            common__msgs__pb2.Name.SerializeToString,
+            common__msgs__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
     def GetRefFrame(request,
             target,
             options=(),
@@ -2171,6 +2252,23 @@ class Config(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
+    def GetServoParamList(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Config/GetServoParamList',
+            common__msgs__pb2.Empty.SerializeToString,
+            common__msgs__pb2.Vector.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
     def SetToolList(request,
             target,
             options=(),
@@ -2234,6 +2332,40 @@ class Config(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Config/SetVisionServerList',
             config__msgs__pb2.VisionServerList.SerializeToString,
+            common__msgs__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetSocketCommandConfig(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Config/GetSocketCommandConfig',
+            common__msgs__pb2.Empty.SerializeToString,
+            config__msgs__pb2.SocketCommandConfig.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SetSocketCommandConfig(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Config/SetSocketCommandConfig',
+            config__msgs__pb2.SocketCommandConfig.SerializeToString,
             common__msgs__pb2.Response.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

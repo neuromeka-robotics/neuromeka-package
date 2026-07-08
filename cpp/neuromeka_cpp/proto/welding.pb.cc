@@ -171,6 +171,38 @@ struct WeldJobDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 WeldJobDefaultTypeInternal _WeldJob_default_instance_;
         template <typename>
+PROTOBUF_CONSTEXPR SuperpulsMode::SuperpulsMode(::_pbi::ConstantInitialized)
+    : _impl_{
+      /*decltype(_impl_.mode_)*/ 0,
+      /*decltype(_impl_._cached_size_)*/ {},
+    } {}
+struct SuperpulsModeDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SuperpulsModeDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SuperpulsModeDefaultTypeInternal() {}
+  union {
+    SuperpulsMode _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SuperpulsModeDefaultTypeInternal _SuperpulsMode_default_instance_;
+        template <typename>
+PROTOBUF_CONSTEXPR PositionWeldMode::PositionWeldMode(::_pbi::ConstantInitialized)
+    : _impl_{
+      /*decltype(_impl_.mode_)*/ 0,
+      /*decltype(_impl_._cached_size_)*/ {},
+    } {}
+struct PositionWeldModeDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR PositionWeldModeDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~PositionWeldModeDefaultTypeInternal() {}
+  union {
+    PositionWeldMode _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PositionWeldModeDefaultTypeInternal _PositionWeldMode_default_instance_;
+        template <typename>
 PROTOBUF_CONSTEXPR WeldingData::WeldingData(::_pbi::ConstantInitialized)
     : _impl_{
       /*decltype(_impl_.feedback_)*/ {},
@@ -193,6 +225,34 @@ struct WeldingDataDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 WeldingDataDefaultTypeInternal _WeldingData_default_instance_;
+      template <typename>
+PROTOBUF_CONSTEXPR ExtendedOptionRequest_OptionsEntry_DoNotUse::ExtendedOptionRequest_OptionsEntry_DoNotUse(::_pbi::ConstantInitialized) {}
+struct ExtendedOptionRequest_OptionsEntry_DoNotUseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR ExtendedOptionRequest_OptionsEntry_DoNotUseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~ExtendedOptionRequest_OptionsEntry_DoNotUseDefaultTypeInternal() {}
+  union {
+    ExtendedOptionRequest_OptionsEntry_DoNotUse _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ExtendedOptionRequest_OptionsEntry_DoNotUseDefaultTypeInternal _ExtendedOptionRequest_OptionsEntry_DoNotUse_default_instance_;
+        template <typename>
+PROTOBUF_CONSTEXPR ExtendedOptionRequest::ExtendedOptionRequest(::_pbi::ConstantInitialized)
+    : _impl_{
+      /* decltype(_impl_.options_) */ {},
+      /*decltype(_impl_._cached_size_)*/ {},
+    } {}
+struct ExtendedOptionRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR ExtendedOptionRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~ExtendedOptionRequestDefaultTypeInternal() {}
+  union {
+    ExtendedOptionRequest _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ExtendedOptionRequestDefaultTypeInternal _ExtendedOptionRequest_default_instance_;
         template <typename>
 PROTOBUF_CONSTEXPR FindCellInfo::FindCellInfo(::_pbi::ConstantInitialized)
     : _impl_{
@@ -309,7 +369,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 WeldingOrientationListDefaultTypeInternal _WeldingOrientationList_default_instance_;
 }  // namespace IndyFramework
 }  // namespace Nrmk
-static ::_pb::Metadata file_level_metadata_welding_2eproto[15];
+static ::_pb::Metadata file_level_metadata_welding_2eproto[19];
 static constexpr const ::_pb::EnumDescriptor**
     file_level_enum_descriptors_welding_2eproto = nullptr;
 static constexpr const ::_pb::ServiceDescriptor**
@@ -402,6 +462,24 @@ const ::uint32_t TableStruct_welding_2eproto::offsets[] PROTOBUF_SECTION_VARIABL
     ~0u,  // no sizeof(Split)
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::WeldJob, _impl_.index_),
     ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::SuperpulsMode, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::SuperpulsMode, _impl_.mode_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::PositionWeldMode, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::PositionWeldMode, _impl_.mode_),
+    ~0u,  // no _has_bits_
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::WeldingData, _internal_metadata_),
     ~0u,  // no _extensions_
     ~0u,  // no _oneof_case_
@@ -412,6 +490,27 @@ const ::uint32_t TableStruct_welding_2eproto::offsets[] PROTOBUF_SECTION_VARIABL
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::WeldingData, _impl_.feedback_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::WeldingData, _impl_.cmd_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::WeldingData, _impl_.msg_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ExtendedOptionRequest_OptionsEntry_DoNotUse, _has_bits_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ExtendedOptionRequest_OptionsEntry_DoNotUse, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ExtendedOptionRequest_OptionsEntry_DoNotUse, key_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ExtendedOptionRequest_OptionsEntry_DoNotUse, value_),
+    0,
+    1,
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ExtendedOptionRequest, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ExtendedOptionRequest, _impl_.options_),
     ~0u,  // no _has_bits_
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::FindCellInfo, _internal_metadata_),
     ~0u,  // no _extensions_
@@ -489,12 +588,16 @@ static const ::_pbi::MigrationSchema
         {58, -1, -1, sizeof(::Nrmk::IndyFramework::WeldOpMode)},
         {67, -1, -1, sizeof(::Nrmk::IndyFramework::WeldProgram)},
         {76, -1, -1, sizeof(::Nrmk::IndyFramework::WeldJob)},
-        {85, -1, -1, sizeof(::Nrmk::IndyFramework::WeldingData)},
-        {96, -1, -1, sizeof(::Nrmk::IndyFramework::FindCellInfo)},
-        {111, -1, -1, sizeof(::Nrmk::IndyFramework::ShipBlockInfo)},
-        {131, -1, -1, sizeof(::Nrmk::IndyFramework::TouchOrientation)},
-        {141, -1, -1, sizeof(::Nrmk::IndyFramework::WeldingOrientation)},
-        {151, -1, -1, sizeof(::Nrmk::IndyFramework::WeldingOrientationList)},
+        {85, -1, -1, sizeof(::Nrmk::IndyFramework::SuperpulsMode)},
+        {94, -1, -1, sizeof(::Nrmk::IndyFramework::PositionWeldMode)},
+        {103, -1, -1, sizeof(::Nrmk::IndyFramework::WeldingData)},
+        {114, 124, -1, sizeof(::Nrmk::IndyFramework::ExtendedOptionRequest_OptionsEntry_DoNotUse)},
+        {126, -1, -1, sizeof(::Nrmk::IndyFramework::ExtendedOptionRequest)},
+        {135, -1, -1, sizeof(::Nrmk::IndyFramework::FindCellInfo)},
+        {150, -1, -1, sizeof(::Nrmk::IndyFramework::ShipBlockInfo)},
+        {170, -1, -1, sizeof(::Nrmk::IndyFramework::TouchOrientation)},
+        {180, -1, -1, sizeof(::Nrmk::IndyFramework::WeldingOrientation)},
+        {190, -1, -1, sizeof(::Nrmk::IndyFramework::WeldingOrientationList)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -507,7 +610,11 @@ static const ::_pb::Message* const file_default_instances[] = {
     &::Nrmk::IndyFramework::_WeldOpMode_default_instance_._instance,
     &::Nrmk::IndyFramework::_WeldProgram_default_instance_._instance,
     &::Nrmk::IndyFramework::_WeldJob_default_instance_._instance,
+    &::Nrmk::IndyFramework::_SuperpulsMode_default_instance_._instance,
+    &::Nrmk::IndyFramework::_PositionWeldMode_default_instance_._instance,
     &::Nrmk::IndyFramework::_WeldingData_default_instance_._instance,
+    &::Nrmk::IndyFramework::_ExtendedOptionRequest_OptionsEntry_DoNotUse_default_instance_._instance,
+    &::Nrmk::IndyFramework::_ExtendedOptionRequest_default_instance_._instance,
     &::Nrmk::IndyFramework::_FindCellInfo_default_instance_._instance,
     &::Nrmk::IndyFramework::_ShipBlockInfo_default_instance_._instance,
     &::Nrmk::IndyFramework::_TouchOrientation_default_instance_._instance,
@@ -525,55 +632,67 @@ const char descriptor_table_protodef_welding_2eproto[] PROTOBUF_SECTION_VARIABLE
     "\017\n\007touched\030\001 \001(\010\"\033\n\013WeldingMode\022\014\n\004mode\030"
     "\001 \001(\005\"\032\n\nWeldOpMode\022\014\n\004mode\030\001 \001(\005\"\034\n\013Wel"
     "dProgram\022\r\n\005index\030\001 \001(\005\"\030\n\007WeldJob\022\r\n\005in"
-    "dex\030\001 \001(\005\"9\n\013WeldingData\022\020\n\010feedback\030\001 \003"
-    "(\005\022\013\n\003cmd\030\002 \003(\005\022\013\n\003msg\030d \001(\t\"\231\001\n\014FindCel"
-    "lInfo\022\014\n\004name\030\001 \003(\t\022\023\n\013start_point\030\002 \003(\002"
-    "\022\021\n\tend_point\030\003 \003(\002\022\022\n\ncell_types\030\004 \003(\t\022"
-    "\025\n\rplane_normals\030\005 \003(\002\022\023\n\013collar_type\030\006 "
-    "\003(\t\022\023\n\013error_state\030d \001(\010\"\215\002\n\rShipBlockIn"
-    "fo\022\021\n\tleft_type\030\001 \001(\t\022\024\n\014left_height1\030\002 "
-    "\001(\002\022\024\n\014left_height2\030\003 \001(\002\022\024\n\014left_length"
-    "1\030\004 \001(\002\022\024\n\014left_length2\030\005 \001(\002\022\022\n\nright_t"
-    "ype\030\006 \001(\t\022\025\n\rright_height1\030\007 \001(\002\022\025\n\rrigh"
-    "t_height2\030\010 \001(\002\022\025\n\rright_length1\030\t \001(\002\022\025"
-    "\n\rright_length2\030\n \001(\002\022\024\n\014total_length\030\013 "
-    "\001(\002\022\013\n\003msg\030d \001(\t\"5\n\020TouchOrientation\022\014\n\004"
-    "name\030\001 \001(\t\022\023\n\013orientation\030\002 \003(\002\"7\n\022Weldi"
-    "ngOrientation\022\014\n\004name\030\001 \001(\t\022\023\n\013orientati"
-    "on\030\002 \003(\002\"Z\n\026WeldingOrientationList\022@\n\020or"
-    "ientation_list\030\001 \003(\0132&.Nrmk.IndyFramewor"
-    "k.WeldingOrientation2\332\t\n\016WeldingControl\022"
-    "P\n\023UpdateWelderSetting\022\031.Nrmk.IndyFramew"
-    "ork.Empty\032\034.Nrmk.IndyFramework.Response\""
-    "\000\022P\n\nSetInching\022\".Nrmk.IndyFramework.Inc"
-    "hingRequest\032\034.Nrmk.IndyFramework.Respons"
-    "e\"\000\022H\n\006SetArc\022\036.Nrmk.IndyFramework.ArcRe"
-    "quest\032\034.Nrmk.IndyFramework.Response\"\000\022H\n"
-    "\006SetGas\022\036.Nrmk.IndyFramework.GasRequest\032"
-    "\034.Nrmk.IndyFramework.Response\"\000\022L\n\010SetTo"
-    "uch\022 .Nrmk.IndyFramework.TouchRequest\032\034."
-    "Nrmk.IndyFramework.Response\"\000\022M\n\014CheckTo"
-    "uched\022\031.Nrmk.IndyFramework.Empty\032 .Nrmk."
-    "IndyFramework.TouchedState\"\000\022Q\n\016SetWeldi"
-    "ngMode\022\037.Nrmk.IndyFramework.WeldingMode\032"
-    "\034.Nrmk.IndyFramework.Response\"\000\022R\n\020SetOp"
-    "eratingMode\022\036.Nrmk.IndyFramework.WeldOpM"
-    "ode\032\034.Nrmk.IndyFramework.Response\"\000\022M\n\nS"
-    "etProgram\022\037.Nrmk.IndyFramework.WeldProgr"
-    "am\032\034.Nrmk.IndyFramework.Response\"\000\022E\n\006Se"
-    "tJob\022\033.Nrmk.IndyFramework.WeldJob\032\034.Nrmk"
-    ".IndyFramework.Response\"\000\022N\n\016GetWeldingD"
-    "ata\022\031.Nrmk.IndyFramework.Empty\032\037.Nrmk.In"
-    "dyFramework.WeldingData\"\000\022P\n\017GetFindCell"
-    "Info\022\031.Nrmk.IndyFramework.Empty\032 .Nrmk.I"
-    "ndyFramework.FindCellInfo\"\000\022R\n\020GetShipBl"
-    "ockInfo\022\031.Nrmk.IndyFramework.Empty\032!.Nrm"
-    "k.IndyFramework.ShipBlockInfo\"\000\022[\n\023SetTo"
-    "uchOrientation\022$.Nrmk.IndyFramework.Touc"
-    "hOrientation\032\034.Nrmk.IndyFramework.Respon"
-    "se\"\000\022c\n\025SetWeldingOrientation\022*.Nrmk.Ind"
-    "yFramework.WeldingOrientationList\032\034.Nrmk"
-    ".IndyFramework.Response\"\000b\006proto3"
+    "dex\030\001 \001(\005\"\035\n\rSuperpulsMode\022\014\n\004mode\030\001 \001(\005"
+    "\" \n\020PositionWeldMode\022\014\n\004mode\030\001 \001(\005\"9\n\013We"
+    "ldingData\022\020\n\010feedback\030\001 \003(\005\022\013\n\003cmd\030\002 \003(\005"
+    "\022\013\n\003msg\030d \001(\t\"\220\001\n\025ExtendedOptionRequest\022"
+    "G\n\007options\030\001 \003(\01326.Nrmk.IndyFramework.Ex"
+    "tendedOptionRequest.OptionsEntry\032.\n\014Opti"
+    "onsEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\005:\0028\001"
+    "\"\231\001\n\014FindCellInfo\022\014\n\004name\030\001 \003(\t\022\023\n\013start"
+    "_point\030\002 \003(\002\022\021\n\tend_point\030\003 \003(\002\022\022\n\ncell_"
+    "types\030\004 \003(\t\022\025\n\rplane_normals\030\005 \003(\002\022\023\n\013co"
+    "llar_type\030\006 \003(\t\022\023\n\013error_state\030d \001(\010\"\215\002\n"
+    "\rShipBlockInfo\022\021\n\tleft_type\030\001 \001(\t\022\024\n\014lef"
+    "t_height1\030\002 \001(\002\022\024\n\014left_height2\030\003 \001(\002\022\024\n"
+    "\014left_length1\030\004 \001(\002\022\024\n\014left_length2\030\005 \001("
+    "\002\022\022\n\nright_type\030\006 \001(\t\022\025\n\rright_height1\030\007"
+    " \001(\002\022\025\n\rright_height2\030\010 \001(\002\022\025\n\rright_len"
+    "gth1\030\t \001(\002\022\025\n\rright_length2\030\n \001(\002\022\024\n\014tot"
+    "al_length\030\013 \001(\002\022\013\n\003msg\030d \001(\t\"5\n\020TouchOri"
+    "entation\022\014\n\004name\030\001 \001(\t\022\023\n\013orientation\030\002 "
+    "\003(\002\"7\n\022WeldingOrientation\022\014\n\004name\030\001 \001(\t\022"
+    "\023\n\013orientation\030\002 \003(\002\"Z\n\026WeldingOrientati"
+    "onList\022@\n\020orientation_list\030\001 \003(\0132&.Nrmk."
+    "IndyFramework.WeldingOrientation2\347\013\n\016Wel"
+    "dingControl\022P\n\023UpdateWelderSetting\022\031.Nrm"
+    "k.IndyFramework.Empty\032\034.Nrmk.IndyFramewo"
+    "rk.Response\"\000\022P\n\nSetInching\022\".Nrmk.IndyF"
+    "ramework.InchingRequest\032\034.Nrmk.IndyFrame"
+    "work.Response\"\000\022H\n\006SetArc\022\036.Nrmk.IndyFra"
+    "mework.ArcRequest\032\034.Nrmk.IndyFramework.R"
+    "esponse\"\000\022H\n\006SetGas\022\036.Nrmk.IndyFramework"
+    ".GasRequest\032\034.Nrmk.IndyFramework.Respons"
+    "e\"\000\022L\n\010SetTouch\022 .Nrmk.IndyFramework.Tou"
+    "chRequest\032\034.Nrmk.IndyFramework.Response\""
+    "\000\022M\n\014CheckTouched\022\031.Nrmk.IndyFramework.E"
+    "mpty\032 .Nrmk.IndyFramework.TouchedState\"\000"
+    "\022Q\n\016SetWeldingMode\022\037.Nrmk.IndyFramework."
+    "WeldingMode\032\034.Nrmk.IndyFramework.Respons"
+    "e\"\000\022R\n\020SetOperatingMode\022\036.Nrmk.IndyFrame"
+    "work.WeldOpMode\032\034.Nrmk.IndyFramework.Res"
+    "ponse\"\000\022M\n\nSetProgram\022\037.Nrmk.IndyFramewo"
+    "rk.WeldProgram\032\034.Nrmk.IndyFramework.Resp"
+    "onse\"\000\022E\n\006SetJob\022\033.Nrmk.IndyFramework.We"
+    "ldJob\032\034.Nrmk.IndyFramework.Response\"\000\022Q\n"
+    "\014SetSuperpuls\022!.Nrmk.IndyFramework.Super"
+    "pulsMode\032\034.Nrmk.IndyFramework.Response\"\000"
+    "\022W\n\017SetPositionWeld\022$.Nrmk.IndyFramework"
+    ".PositionWeldMode\032\034.Nrmk.IndyFramework.R"
+    "esponse\"\000\022_\n\022SetExtendedOptions\022).Nrmk.I"
+    "ndyFramework.ExtendedOptionRequest\032\034.Nrm"
+    "k.IndyFramework.Response\"\000\022N\n\016GetWelding"
+    "Data\022\031.Nrmk.IndyFramework.Empty\032\037.Nrmk.I"
+    "ndyFramework.WeldingData\"\000\022P\n\017GetFindCel"
+    "lInfo\022\031.Nrmk.IndyFramework.Empty\032 .Nrmk."
+    "IndyFramework.FindCellInfo\"\000\022R\n\020GetShipB"
+    "lockInfo\022\031.Nrmk.IndyFramework.Empty\032!.Nr"
+    "mk.IndyFramework.ShipBlockInfo\"\000\022[\n\023SetT"
+    "ouchOrientation\022$.Nrmk.IndyFramework.Tou"
+    "chOrientation\032\034.Nrmk.IndyFramework.Respo"
+    "nse\"\000\022c\n\025SetWeldingOrientation\022*.Nrmk.In"
+    "dyFramework.WeldingOrientationList\032\034.Nrm"
+    "k.IndyFramework.Response\"\000b\006proto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_welding_2eproto_deps[1] =
     {
@@ -583,13 +702,13 @@ static ::absl::once_flag descriptor_table_welding_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_welding_2eproto = {
     false,
     false,
-    2353,
+    2834,
     descriptor_table_protodef_welding_2eproto,
     "welding.proto",
     &descriptor_table_welding_2eproto_once,
     descriptor_table_welding_2eproto_deps,
     1,
-    15,
+    19,
     schemas,
     file_default_instances,
     TableStruct_welding_2eproto::offsets,
@@ -2242,6 +2361,338 @@ void WeldJob::InternalSwap(WeldJob* other) {
 }
 // ===================================================================
 
+class SuperpulsMode::_Internal {
+ public:
+};
+
+SuperpulsMode::SuperpulsMode(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Nrmk.IndyFramework.SuperpulsMode)
+}
+SuperpulsMode::SuperpulsMode(const SuperpulsMode& from)
+    : ::google::protobuf::Message(), _impl_(from._impl_) {
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.SuperpulsMode)
+}
+inline void SuperpulsMode::SharedCtor(::_pb::Arena* arena) {
+  (void)arena;
+  new (&_impl_) Impl_{
+      decltype(_impl_.mode_){0},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+}
+SuperpulsMode::~SuperpulsMode() {
+  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.SuperpulsMode)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void SuperpulsMode::SharedDtor() {
+  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
+}
+void SuperpulsMode::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+PROTOBUF_NOINLINE void SuperpulsMode::Clear() {
+// @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.SuperpulsMode)
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.mode_ = 0;
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* SuperpulsMode::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 1, 0, 0, 2> SuperpulsMode::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    1, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    1,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_SuperpulsMode_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // int32 mode = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(SuperpulsMode, _impl_.mode_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(SuperpulsMode, _impl_.mode_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // int32 mode = 1;
+    {PROTOBUF_FIELD_OFFSET(SuperpulsMode, _impl_.mode_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+
+::uint8_t* SuperpulsMode::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.SuperpulsMode)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // int32 mode = 1;
+  if (this->_internal_mode() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<1>(
+            stream, this->_internal_mode(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.SuperpulsMode)
+  return target;
+}
+
+::size_t SuperpulsMode::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.SuperpulsMode)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // int32 mode = 1;
+  if (this->_internal_mode() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_mode());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData SuperpulsMode::_class_data_ = {
+    ::google::protobuf::Message::CopyWithSourceCheck,
+    SuperpulsMode::MergeImpl
+};
+const ::google::protobuf::Message::ClassData*SuperpulsMode::GetClassData() const { return &_class_data_; }
+
+
+void SuperpulsMode::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<SuperpulsMode*>(&to_msg);
+  auto& from = static_cast<const SuperpulsMode&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.SuperpulsMode)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from._internal_mode() != 0) {
+    _this->_internal_set_mode(from._internal_mode());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void SuperpulsMode::CopyFrom(const SuperpulsMode& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Nrmk.IndyFramework.SuperpulsMode)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool SuperpulsMode::IsInitialized() const {
+  return true;
+}
+
+void SuperpulsMode::InternalSwap(SuperpulsMode* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+        swap(_impl_.mode_, other->_impl_.mode_);
+}
+
+::google::protobuf::Metadata SuperpulsMode::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_welding_2eproto_getter, &descriptor_table_welding_2eproto_once,
+      file_level_metadata_welding_2eproto[9]);
+}
+// ===================================================================
+
+class PositionWeldMode::_Internal {
+ public:
+};
+
+PositionWeldMode::PositionWeldMode(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Nrmk.IndyFramework.PositionWeldMode)
+}
+PositionWeldMode::PositionWeldMode(const PositionWeldMode& from)
+    : ::google::protobuf::Message(), _impl_(from._impl_) {
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.PositionWeldMode)
+}
+inline void PositionWeldMode::SharedCtor(::_pb::Arena* arena) {
+  (void)arena;
+  new (&_impl_) Impl_{
+      decltype(_impl_.mode_){0},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+}
+PositionWeldMode::~PositionWeldMode() {
+  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.PositionWeldMode)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void PositionWeldMode::SharedDtor() {
+  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
+}
+void PositionWeldMode::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+PROTOBUF_NOINLINE void PositionWeldMode::Clear() {
+// @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.PositionWeldMode)
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.mode_ = 0;
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* PositionWeldMode::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 1, 0, 0, 2> PositionWeldMode::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    1, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    1,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_PositionWeldMode_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // int32 mode = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(PositionWeldMode, _impl_.mode_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(PositionWeldMode, _impl_.mode_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // int32 mode = 1;
+    {PROTOBUF_FIELD_OFFSET(PositionWeldMode, _impl_.mode_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+
+::uint8_t* PositionWeldMode::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.PositionWeldMode)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // int32 mode = 1;
+  if (this->_internal_mode() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<1>(
+            stream, this->_internal_mode(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.PositionWeldMode)
+  return target;
+}
+
+::size_t PositionWeldMode::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.PositionWeldMode)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // int32 mode = 1;
+  if (this->_internal_mode() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_mode());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData PositionWeldMode::_class_data_ = {
+    ::google::protobuf::Message::CopyWithSourceCheck,
+    PositionWeldMode::MergeImpl
+};
+const ::google::protobuf::Message::ClassData*PositionWeldMode::GetClassData() const { return &_class_data_; }
+
+
+void PositionWeldMode::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<PositionWeldMode*>(&to_msg);
+  auto& from = static_cast<const PositionWeldMode&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.PositionWeldMode)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from._internal_mode() != 0) {
+    _this->_internal_set_mode(from._internal_mode());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void PositionWeldMode::CopyFrom(const PositionWeldMode& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Nrmk.IndyFramework.PositionWeldMode)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool PositionWeldMode::IsInitialized() const {
+  return true;
+}
+
+void PositionWeldMode::InternalSwap(PositionWeldMode* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+        swap(_impl_.mode_, other->_impl_.mode_);
+}
+
+::google::protobuf::Metadata PositionWeldMode::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_welding_2eproto_getter, &descriptor_table_welding_2eproto_once,
+      file_level_metadata_welding_2eproto[10]);
+}
+// ===================================================================
+
 class WeldingData::_Internal {
  public:
 };
@@ -2504,7 +2955,210 @@ void WeldingData::InternalSwap(WeldingData* other) {
 ::google::protobuf::Metadata WeldingData::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_welding_2eproto_getter, &descriptor_table_welding_2eproto_once,
-      file_level_metadata_welding_2eproto[9]);
+      file_level_metadata_welding_2eproto[11]);
+}
+// ===================================================================
+
+ExtendedOptionRequest_OptionsEntry_DoNotUse::ExtendedOptionRequest_OptionsEntry_DoNotUse() {}
+ExtendedOptionRequest_OptionsEntry_DoNotUse::ExtendedOptionRequest_OptionsEntry_DoNotUse(::google::protobuf::Arena* arena)
+    : SuperType(arena) {}
+void ExtendedOptionRequest_OptionsEntry_DoNotUse::MergeFrom(const ExtendedOptionRequest_OptionsEntry_DoNotUse& other) {
+  MergeFromInternal(other);
+}
+::google::protobuf::Metadata ExtendedOptionRequest_OptionsEntry_DoNotUse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_welding_2eproto_getter, &descriptor_table_welding_2eproto_once,
+      file_level_metadata_welding_2eproto[12]);
+}
+// ===================================================================
+
+class ExtendedOptionRequest::_Internal {
+ public:
+};
+
+ExtendedOptionRequest::ExtendedOptionRequest(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Nrmk.IndyFramework.ExtendedOptionRequest)
+}
+ExtendedOptionRequest::ExtendedOptionRequest(const ExtendedOptionRequest& from) : ::google::protobuf::Message() {
+  ExtendedOptionRequest* const _this = this;
+  (void)_this;
+  new (&_impl_) Impl_{
+      /* decltype(_impl_.options_) */ {},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  _this->_impl_.options_.MergeFrom(from._impl_.options_);
+
+  // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.ExtendedOptionRequest)
+}
+inline void ExtendedOptionRequest::SharedCtor(::_pb::Arena* arena) {
+  (void)arena;
+  new (&_impl_) Impl_{
+      /* decltype(_impl_.options_) */ {::google::protobuf::internal::ArenaInitialized(), arena},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+}
+ExtendedOptionRequest::~ExtendedOptionRequest() {
+  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.ExtendedOptionRequest)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void ExtendedOptionRequest::SharedDtor() {
+  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.options_.~MapField();
+}
+void ExtendedOptionRequest::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+PROTOBUF_NOINLINE void ExtendedOptionRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.ExtendedOptionRequest)
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.options_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* ExtendedOptionRequest::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 1, 1, 56, 2> ExtendedOptionRequest::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    1, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    1,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_ExtendedOptionRequest_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // map<string, int32> options = 1;
+    {PROTOBUF_FIELD_OFFSET(ExtendedOptionRequest, _impl_.options_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kMap)},
+  }}, {{
+    {::_pbi::TcParser::GetMapAuxInfo<decltype(ExtendedOptionRequest()._impl_.options_)>(1, 0, 0)},
+  }}, {{
+    "\50\7\0\0\0\0\0\0"
+    "Nrmk.IndyFramework.ExtendedOptionRequest"
+    "options"
+  }},
+};
+
+::uint8_t* ExtendedOptionRequest::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.ExtendedOptionRequest)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // map<string, int32> options = 1;
+  if (!_internal_options().empty()) {
+    using MapType = ::google::protobuf::Map<std::string, ::int32_t>;
+    using WireHelper = ExtendedOptionRequest_OptionsEntry_DoNotUse::Funcs;
+    const auto& field = _internal_options();
+
+    if (stream->IsSerializationDeterministic() && field.size() > 1) {
+      for (const auto& entry : ::google::protobuf::internal::MapSorterPtr<MapType>(field)) {
+        target = WireHelper::InternalSerialize(
+            1, entry.first, entry.second, target, stream);
+        ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+            entry.first.data(), static_cast<int>(entry.first.length()),
+ ::google::protobuf::internal::WireFormatLite::SERIALIZE, "Nrmk.IndyFramework.ExtendedOptionRequest.options");
+      }
+    } else {
+      for (const auto& entry : field) {
+        target = WireHelper::InternalSerialize(
+            1, entry.first, entry.second, target, stream);
+        ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+            entry.first.data(), static_cast<int>(entry.first.length()),
+ ::google::protobuf::internal::WireFormatLite::SERIALIZE, "Nrmk.IndyFramework.ExtendedOptionRequest.options");
+      }
+    }
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.ExtendedOptionRequest)
+  return target;
+}
+
+::size_t ExtendedOptionRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.ExtendedOptionRequest)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // map<string, int32> options = 1;
+  total_size += 1 * ::google::protobuf::internal::FromIntSize(_internal_options_size());
+  for (const auto& entry : _internal_options()) {
+    total_size += ExtendedOptionRequest_OptionsEntry_DoNotUse::Funcs::ByteSizeLong(entry.first, entry.second);
+  }
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData ExtendedOptionRequest::_class_data_ = {
+    ::google::protobuf::Message::CopyWithSourceCheck,
+    ExtendedOptionRequest::MergeImpl
+};
+const ::google::protobuf::Message::ClassData*ExtendedOptionRequest::GetClassData() const { return &_class_data_; }
+
+
+void ExtendedOptionRequest::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<ExtendedOptionRequest*>(&to_msg);
+  auto& from = static_cast<const ExtendedOptionRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.ExtendedOptionRequest)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_impl_.options_.MergeFrom(from._impl_.options_);
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void ExtendedOptionRequest::CopyFrom(const ExtendedOptionRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Nrmk.IndyFramework.ExtendedOptionRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool ExtendedOptionRequest::IsInitialized() const {
+  return true;
+}
+
+void ExtendedOptionRequest::InternalSwap(ExtendedOptionRequest* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.options_.InternalSwap(&other->_impl_.options_);
+}
+
+::google::protobuf::Metadata ExtendedOptionRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_welding_2eproto_getter, &descriptor_table_welding_2eproto_once,
+      file_level_metadata_welding_2eproto[13]);
 }
 // ===================================================================
 
@@ -2847,7 +3501,7 @@ void FindCellInfo::InternalSwap(FindCellInfo* other) {
 ::google::protobuf::Metadata FindCellInfo::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_welding_2eproto_getter, &descriptor_table_welding_2eproto_once,
-      file_level_metadata_welding_2eproto[10]);
+      file_level_metadata_welding_2eproto[14]);
 }
 // ===================================================================
 
@@ -3478,7 +4132,7 @@ void ShipBlockInfo::InternalSwap(ShipBlockInfo* other) {
 ::google::protobuf::Metadata ShipBlockInfo::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_welding_2eproto_getter, &descriptor_table_welding_2eproto_once,
-      file_level_metadata_welding_2eproto[11]);
+      file_level_metadata_welding_2eproto[15]);
 }
 // ===================================================================
 
@@ -3698,7 +4352,7 @@ void TouchOrientation::InternalSwap(TouchOrientation* other) {
 ::google::protobuf::Metadata TouchOrientation::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_welding_2eproto_getter, &descriptor_table_welding_2eproto_once,
-      file_level_metadata_welding_2eproto[12]);
+      file_level_metadata_welding_2eproto[16]);
 }
 // ===================================================================
 
@@ -3918,7 +4572,7 @@ void WeldingOrientation::InternalSwap(WeldingOrientation* other) {
 ::google::protobuf::Metadata WeldingOrientation::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_welding_2eproto_getter, &descriptor_table_welding_2eproto_once,
-      file_level_metadata_welding_2eproto[13]);
+      file_level_metadata_welding_2eproto[17]);
 }
 // ===================================================================
 
@@ -4090,7 +4744,7 @@ void WeldingOrientationList::InternalSwap(WeldingOrientationList* other) {
 ::google::protobuf::Metadata WeldingOrientationList::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_welding_2eproto_getter, &descriptor_table_welding_2eproto_once,
-      file_level_metadata_welding_2eproto[14]);
+      file_level_metadata_welding_2eproto[18]);
 }
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace IndyFramework

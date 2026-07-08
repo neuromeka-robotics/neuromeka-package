@@ -493,6 +493,7 @@ PROTOBUF_CONSTEXPR ModbusServerDef::ModbusServerDef(::_pbi::ConstantInitialized)
       /*decltype(_impl_.serial_data_bits_)*/ 0,
       /*decltype(_impl_.serial_stop_bits_)*/ 0,
       /*decltype(_impl_.rtu_transport_)*/ 0,
+      /*decltype(_impl_.tool_index_)*/ 0,
       /*decltype(_impl_._cached_size_)*/ {},
     } {}
 struct ModbusServerDefDefaultTypeInternal {
@@ -815,6 +816,7 @@ const ::uint32_t TableStruct_common_5fmsgs_2eproto::offsets[] PROTOBUF_SECTION_V
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ModbusServerDef, _impl_.serial_data_bits_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ModbusServerDef, _impl_.serial_stop_bits_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ModbusServerDef, _impl_.rtu_transport_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ModbusServerDef, _impl_.tool_index_),
     ~0u,  // no _has_bits_
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ProgramLine, _internal_metadata_),
     ~0u,  // no _extensions_
@@ -863,8 +865,8 @@ static const ::_pbi::MigrationSchema
         {224, -1, -1, sizeof(::Nrmk::IndyFramework::NamedPositionSet)},
         {235, -1, -1, sizeof(::Nrmk::IndyFramework::NamedReferencePosition)},
         {251, -1, -1, sizeof(::Nrmk::IndyFramework::ModbusServerDef)},
-        {269, -1, -1, sizeof(::Nrmk::IndyFramework::ProgramLine)},
-        {279, -1, -1, sizeof(::Nrmk::IndyFramework::ProgramBreakPoints)},
+        {270, -1, -1, sizeof(::Nrmk::IndyFramework::ProgramLine)},
+        {280, -1, -1, sizeof(::Nrmk::IndyFramework::ProgramBreakPoints)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -929,56 +931,56 @@ const char descriptor_table_protodef_common_5fmsgs_2eproto[] PROTOBUF_SECTION_VA
     "\003(\002\"\216\001\n\026NamedReferencePosition\022\014\n\004name\030\001"
     " \001(\t\022\014\n\004tpos\030\002 \003(\002\022\r\n\005tpos0\030\003 \003(\002\022\r\n\005tpo"
     "s1\030\004 \003(\002\022\r\n\005tpos2\030\005 \003(\002\022\r\n\005jpos0\030\006 \003(\002\022\r"
-    "\n\005jpos1\030\007 \003(\002\022\r\n\005jpos2\030\010 \003(\002\"\324\001\n\017ModbusS"
+    "\n\005jpos1\030\007 \003(\002\022\r\n\005jpos2\030\010 \003(\002\"\350\001\n\017ModbusS"
     "erverDef\022\014\n\004name\030\001 \001(\t\022\n\n\002ip\030\002 \001(\t\022\014\n\004po"
     "rt\030\003 \001(\005\022\017\n\007unit_id\030\004 \001(\005\022\021\n\tconn_type\030\005"
     " \001(\005\022\023\n\013serial_baud\030\006 \001(\005\022\025\n\rserial_pari"
     "ty\030\007 \001(\t\022\030\n\020serial_data_bits\030\010 \001(\005\022\030\n\020se"
     "rial_stop_bits\030\t \001(\005\022\025\n\rrtu_transport\030\n "
-    "\001(\005\"1\n\013ProgramLine\022\016\n\006cmd_id\030\001 \001(\005\022\022\n\nsu"
-    "b_cmd_id\030\002 \001(\005\"J\n\022ProgramBreakPoints\0224\n\013"
-    "breakpoints\030\001 \003(\0132\037.Nrmk.IndyFramework.P"
-    "rogramLine*\327\002\n\007OpState\022\021\n\rOP_SYSTEM_OFF\020"
-    "\000\022\020\n\014OP_SYSTEM_ON\020\001\022\016\n\nOP_VIOLATE\020\002\022\023\n\017O"
-    "P_RECOVER_HARD\020\003\022\023\n\017OP_RECOVER_SOFT\020\004\022\013\n"
-    "\007OP_IDLE\020\005\022\r\n\tOP_MOVING\020\006\022\017\n\013OP_TEACHING"
-    "\020\007\022\020\n\014OP_COLLISION\020\010\022\023\n\017OP_STOP_AND_OFF\020"
-    "\t\022\021\n\rOP_COMPLIANCE\020\n\022\024\n\020OP_BRAKE_CONTROL"
-    "\020\013\022\023\n\017OP_SYSTEM_RESET\020\014\022\024\n\020OP_SYSTEM_SWI"
-    "TCH\020\r\022\020\n\014OP_POWER_OFF\020\017\022\025\n\021OP_MANUAL_REC"
-    "OVER\020\020\022\013\n\007TELE_OP\020\021\022\017\n\013TRAJ_MOVING\020\022*\260\001\n"
-    "\tTrajState\022\r\n\tTRAJ_NONE\020\000\022\r\n\tTRAJ_INIT\020\001"
-    "\022\r\n\tTRAJ_CALC\020\002\022\021\n\rTRAJ_STAND_BY\020\003\022\014\n\010TR"
-    "AJ_ACC\020\004\022\017\n\013TRAJ_CRUISE\020\005\022\014\n\010TRAJ_DEC\020\006\022"
-    "\023\n\017TRAJ_CANCELLING\020\007\022\021\n\rTRAJ_FINISHED\020\010\022"
-    "\016\n\nTRAJ_ERROR\020\t*Z\n\rTrajCondition\022\020\n\014TRAJ"
-    "_STARTED\020\000\022\021\n\rTRAJ_ACC_DONE\020\001\022\021\n\rTRAJ_CR"
-    "Z_DONE\020\002\022\021\n\rTRAJ_DEC_DONE\020\003*F\n\014StopCateg"
-    "ory\022\023\n\017IMMEDIATE_BRAKE\020\000\022\020\n\014SMOOTH_BRAKE"
-    "\020\001\022\017\n\013SMOOTH_ONLY\020\002*g\n\nSafeGdType\022\016\n\nGUA"
-    "RD_NONE\020\000\022\016\n\nGUARD_STOP\020\001\022\017\n\013GUARD_PAUSE"
-    "\020\002\022\026\n\022GUARD_PAUSE_RESUME\020\003\022\020\n\014REDUCED_MO"
-    "DE\020\004*6\n\rPauseCategory\022\020\n\014SMOOTH_PAUSE\020\000\022"
-    "\023\n\017IMMEDIATE_PAUSE\020\001*T\n\014ProgramState\022\r\n\t"
-    "PROG_IDLE\020\000\022\020\n\014PROG_RUNNING\020\001\022\020\n\014PROG_PA"
-    "USING\020\002\022\021\n\rPROG_STOPPING\020\003*e\n\023CollisionP"
-    "olicyType\022\022\n\016COLL_NO_DETECT\020\000\022\016\n\nCOLL_PA"
-    "USE\020\001\022\033\n\027COLL_RESUME_AFTER_SLEEP\020\002\022\r\n\tCO"
-    "LL_STOP\020\003*:\n\013TuningSpace\022\014\n\010TUNE_ALL\020\000\022\016"
-    "\n\nTUNE_JOINT\020\001\022\r\n\tTUNE_TASK\020\002*N\n\017TuningP"
-    "recision\022\021\n\rLOW_PRECISION\020\000\022\024\n\020MIDDLE_PR"
-    "ECISION\020\001\022\022\n\016HIGH_PRECISION\020\002*:\n\010AxisTyp"
-    "e\022\020\n\014MDH_REVOLUTE\020\000\022\021\n\rMDH_PRISMATIC\020\001\022\t"
-    "\n\005RIGID\020\002*f\n\013ContactRule\022\r\n\tCOLLISION\020\000\022"
-    "\023\n\017COLLISION_LEVEL\020\001\022\017\n\013SPEED_LIMIT\020\002\022\023\n"
-    "\017DIRECTION_LIMIT\020\003\022\r\n\tVIOLATION\020\004b\006proto"
-    "3"
+    "\001(\005\022\022\n\ntool_index\030\013 \001(\005\"1\n\013ProgramLine\022\016"
+    "\n\006cmd_id\030\001 \001(\005\022\022\n\nsub_cmd_id\030\002 \001(\005\"J\n\022Pr"
+    "ogramBreakPoints\0224\n\013breakpoints\030\001 \003(\0132\037."
+    "Nrmk.IndyFramework.ProgramLine*\327\002\n\007OpSta"
+    "te\022\021\n\rOP_SYSTEM_OFF\020\000\022\020\n\014OP_SYSTEM_ON\020\001\022"
+    "\016\n\nOP_VIOLATE\020\002\022\023\n\017OP_RECOVER_HARD\020\003\022\023\n\017"
+    "OP_RECOVER_SOFT\020\004\022\013\n\007OP_IDLE\020\005\022\r\n\tOP_MOV"
+    "ING\020\006\022\017\n\013OP_TEACHING\020\007\022\020\n\014OP_COLLISION\020\010"
+    "\022\023\n\017OP_STOP_AND_OFF\020\t\022\021\n\rOP_COMPLIANCE\020\n"
+    "\022\024\n\020OP_BRAKE_CONTROL\020\013\022\023\n\017OP_SYSTEM_RESE"
+    "T\020\014\022\024\n\020OP_SYSTEM_SWITCH\020\r\022\020\n\014OP_POWER_OF"
+    "F\020\017\022\025\n\021OP_MANUAL_RECOVER\020\020\022\013\n\007TELE_OP\020\021\022"
+    "\017\n\013TRAJ_MOVING\020\022*\260\001\n\tTrajState\022\r\n\tTRAJ_N"
+    "ONE\020\000\022\r\n\tTRAJ_INIT\020\001\022\r\n\tTRAJ_CALC\020\002\022\021\n\rT"
+    "RAJ_STAND_BY\020\003\022\014\n\010TRAJ_ACC\020\004\022\017\n\013TRAJ_CRU"
+    "ISE\020\005\022\014\n\010TRAJ_DEC\020\006\022\023\n\017TRAJ_CANCELLING\020\007"
+    "\022\021\n\rTRAJ_FINISHED\020\010\022\016\n\nTRAJ_ERROR\020\t*Z\n\rT"
+    "rajCondition\022\020\n\014TRAJ_STARTED\020\000\022\021\n\rTRAJ_A"
+    "CC_DONE\020\001\022\021\n\rTRAJ_CRZ_DONE\020\002\022\021\n\rTRAJ_DEC"
+    "_DONE\020\003*F\n\014StopCategory\022\023\n\017IMMEDIATE_BRA"
+    "KE\020\000\022\020\n\014SMOOTH_BRAKE\020\001\022\017\n\013SMOOTH_ONLY\020\002*"
+    "g\n\nSafeGdType\022\016\n\nGUARD_NONE\020\000\022\016\n\nGUARD_S"
+    "TOP\020\001\022\017\n\013GUARD_PAUSE\020\002\022\026\n\022GUARD_PAUSE_RE"
+    "SUME\020\003\022\020\n\014REDUCED_MODE\020\004*6\n\rPauseCategor"
+    "y\022\020\n\014SMOOTH_PAUSE\020\000\022\023\n\017IMMEDIATE_PAUSE\020\001"
+    "*T\n\014ProgramState\022\r\n\tPROG_IDLE\020\000\022\020\n\014PROG_"
+    "RUNNING\020\001\022\020\n\014PROG_PAUSING\020\002\022\021\n\rPROG_STOP"
+    "PING\020\003*e\n\023CollisionPolicyType\022\022\n\016COLL_NO"
+    "_DETECT\020\000\022\016\n\nCOLL_PAUSE\020\001\022\033\n\027COLL_RESUME"
+    "_AFTER_SLEEP\020\002\022\r\n\tCOLL_STOP\020\003*:\n\013TuningS"
+    "pace\022\014\n\010TUNE_ALL\020\000\022\016\n\nTUNE_JOINT\020\001\022\r\n\tTU"
+    "NE_TASK\020\002*N\n\017TuningPrecision\022\021\n\rLOW_PREC"
+    "ISION\020\000\022\024\n\020MIDDLE_PRECISION\020\001\022\022\n\016HIGH_PR"
+    "ECISION\020\002*:\n\010AxisType\022\020\n\014MDH_REVOLUTE\020\000\022"
+    "\021\n\rMDH_PRISMATIC\020\001\022\t\n\005RIGID\020\002*f\n\013Contact"
+    "Rule\022\r\n\tCOLLISION\020\000\022\023\n\017COLLISION_LEVEL\020\001"
+    "\022\017\n\013SPEED_LIMIT\020\002\022\023\n\017DIRECTION_LIMIT\020\003\022\r"
+    "\n\tVIOLATION\020\004b\006proto3"
 };
 static ::absl::once_flag descriptor_table_common_5fmsgs_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_common_5fmsgs_2eproto = {
     false,
     false,
-    3001,
+    3021,
     descriptor_table_protodef_common_5fmsgs_2eproto,
     "common_msgs.proto",
     &descriptor_table_common_5fmsgs_2eproto_once,
@@ -6383,6 +6385,7 @@ ModbusServerDef::ModbusServerDef(const ModbusServerDef& from) : ::google::protob
       decltype(_impl_.serial_data_bits_){},
       decltype(_impl_.serial_stop_bits_){},
       decltype(_impl_.rtu_transport_){},
+      decltype(_impl_.tool_index_){},
       /*decltype(_impl_._cached_size_)*/ {},
   };
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
@@ -6409,8 +6412,8 @@ ModbusServerDef::ModbusServerDef(const ModbusServerDef& from) : ::google::protob
     _this->_impl_.serial_parity_.Set(from._internal_serial_parity(), _this->GetArenaForAllocation());
   }
   ::memcpy(&_impl_.port_, &from._impl_.port_,
-    static_cast<::size_t>(reinterpret_cast<char*>(&_impl_.rtu_transport_) -
-    reinterpret_cast<char*>(&_impl_.port_)) + sizeof(_impl_.rtu_transport_));
+    static_cast<::size_t>(reinterpret_cast<char*>(&_impl_.tool_index_) -
+    reinterpret_cast<char*>(&_impl_.port_)) + sizeof(_impl_.tool_index_));
 
   // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.ModbusServerDef)
 }
@@ -6427,6 +6430,7 @@ inline void ModbusServerDef::SharedCtor(::_pb::Arena* arena) {
       decltype(_impl_.serial_data_bits_){0},
       decltype(_impl_.serial_stop_bits_){0},
       decltype(_impl_.rtu_transport_){0},
+      decltype(_impl_.tool_index_){0},
       /*decltype(_impl_._cached_size_)*/ {},
   };
   _impl_.name_.InitDefault();
@@ -6467,8 +6471,8 @@ PROTOBUF_NOINLINE void ModbusServerDef::Clear() {
   _impl_.ip_.ClearToEmpty();
   _impl_.serial_parity_.ClearToEmpty();
   ::memset(&_impl_.port_, 0, static_cast<::size_t>(
-      reinterpret_cast<char*>(&_impl_.rtu_transport_) -
-      reinterpret_cast<char*>(&_impl_.port_)) + sizeof(_impl_.rtu_transport_));
+      reinterpret_cast<char*>(&_impl_.tool_index_) -
+      reinterpret_cast<char*>(&_impl_.port_)) + sizeof(_impl_.tool_index_));
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -6480,15 +6484,15 @@ const char* ModbusServerDef::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<4, 10, 0, 70, 2> ModbusServerDef::_table_ = {
+const ::_pbi::TcParseTable<4, 11, 0, 70, 2> ModbusServerDef::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
-    10, 120,  // max_field_number, fast_idx_mask
+    11, 120,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294966272,  // skipmap
+    4294965248,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    10,  // num_field_entries
+    11,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
     &_ModbusServerDef_default_instance_._instance,
@@ -6525,7 +6529,9 @@ const ::_pbi::TcParseTable<4, 10, 0, 70, 2> ModbusServerDef::_table_ = {
     // int32 rtu_transport = 10;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(ModbusServerDef, _impl_.rtu_transport_), 63>(),
      {80, 63, 0, PROTOBUF_FIELD_OFFSET(ModbusServerDef, _impl_.rtu_transport_)}},
-    {::_pbi::TcParser::MiniParse, {}},
+    // int32 tool_index = 11;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(ModbusServerDef, _impl_.tool_index_), 63>(),
+     {88, 63, 0, PROTOBUF_FIELD_OFFSET(ModbusServerDef, _impl_.tool_index_)}},
     {::_pbi::TcParser::MiniParse, {}},
     {::_pbi::TcParser::MiniParse, {}},
     {::_pbi::TcParser::MiniParse, {}},
@@ -6562,6 +6568,9 @@ const ::_pbi::TcParseTable<4, 10, 0, 70, 2> ModbusServerDef::_table_ = {
     (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
     // int32 rtu_transport = 10;
     {PROTOBUF_FIELD_OFFSET(ModbusServerDef, _impl_.rtu_transport_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    // int32 tool_index = 11;
+    {PROTOBUF_FIELD_OFFSET(ModbusServerDef, _impl_.tool_index_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
   }},
   // no aux_entries
@@ -6654,6 +6663,13 @@ const ::_pbi::TcParseTable<4, 10, 0, 70, 2> ModbusServerDef::_table_ = {
             stream, this->_internal_rtu_transport(), target);
   }
 
+  // int32 tool_index = 11;
+  if (this->_internal_tool_index() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<11>(
+            stream, this->_internal_tool_index(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target =
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
@@ -6731,6 +6747,12 @@ const ::_pbi::TcParseTable<4, 10, 0, 70, 2> ModbusServerDef::_table_ = {
         this->_internal_rtu_transport());
   }
 
+  // int32 tool_index = 11;
+  if (this->_internal_tool_index() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_tool_index());
+  }
+
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
@@ -6779,6 +6801,9 @@ void ModbusServerDef::MergeImpl(::google::protobuf::Message& to_msg, const ::goo
   if (from._internal_rtu_transport() != 0) {
     _this->_internal_set_rtu_transport(from._internal_rtu_transport());
   }
+  if (from._internal_tool_index() != 0) {
+    _this->_internal_set_tool_index(from._internal_tool_index());
+  }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -6805,8 +6830,8 @@ void ModbusServerDef::InternalSwap(ModbusServerDef* other) {
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.serial_parity_, lhs_arena,
                                        &other->_impl_.serial_parity_, rhs_arena);
   ::google::protobuf::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(ModbusServerDef, _impl_.rtu_transport_)
-      + sizeof(ModbusServerDef::_impl_.rtu_transport_)
+      PROTOBUF_FIELD_OFFSET(ModbusServerDef, _impl_.tool_index_)
+      + sizeof(ModbusServerDef::_impl_.tool_index_)
       - PROTOBUF_FIELD_OFFSET(ModbusServerDef, _impl_.port_)>(
           reinterpret_cast<char*>(&_impl_.port_),
           reinterpret_cast<char*>(&other->_impl_.port_));

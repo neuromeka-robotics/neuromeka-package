@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x11\x63ommon_msgs.proto\x12\x12Nrmk.IndyFramework\"\x07\n\x05\x45mpty\"\x14\n\x04Name\x12\x0c\n\x04name\x18\x01 \x01(\t\"\x17\n\x05State\x12\x0e\n\x06\x65nable\x18\x01 \x01(\x08\"\x14\n\x03Int\x12\r\n\x05value\x18\x01 \x01(\x03\"\x15\n\x04UInt\x12\r\n\x05value\x18\x01 \x01(\x04\"\x16\n\x05\x46loat\x12\r\n\x05value\x18\x01 \x01(\x02\"\x17\n\x07IntMode\x12\x0c\n\x04mode\x18\x01 \x01(\x04\"=\n\x07StopCat\x12\x32\n\x08\x63\x61tegory\x18\x01 \x01(\x0e\x32 .Nrmk.IndyFramework.StopCategory\"?\n\x08PauseCat\x12\x33\n\x08\x63\x61tegory\x18\x01 \x01(\x0e\x32!.Nrmk.IndyFramework.PauseCategory\"%\n\x08Response\x12\x0c\n\x04\x63ode\x18\x01 \x01(\x03\x12\x0b\n\x03msg\x18\x02 \x01(\t\"\x1a\n\x07Message\x12\x0f\n\x07\x63ontent\x18\x01 \x01(\t\"\x18\n\x06Vector\x12\x0e\n\x06values\x18\x01 \x03(\x01\" \n\x08PosePair\x12\t\n\x01q\x18\x01 \x03(\x02\x12\t\n\x01p\x18\x02 \x03(\x02\"\x8c\x01\n\x0e\x45ndtoolRS485Tx\x12\r\n\x05word1\x18\x01 \x01(\r\x12\r\n\x05word2\x18\x02 \x01(\r\x12\r\n\x05word3\x18\x03 \x01(\r\x12\r\n\x05word4\x18\x04 \x01(\r\x12\r\n\x05word5\x18\x05 \x01(\r\x12\x0e\n\x06status\x18\x06 \x01(\r\x12\x0b\n\x03num\x18\x07 \x01(\r\x12\x12\n\ntool_index\x18\n \x01(\x05\"\x8d\x01\n\x0e\x45ndtoolRS485Rx\x12\r\n\x05word1\x18\x01 \x01(\r\x12\r\n\x05word2\x18\x02 \x01(\r\x12\r\n\x05word3\x18\x03 \x01(\r\x12\r\n\x05word4\x18\x04 \x01(\r\x12\r\n\x05word5\x18\x05 \x01(\r\x12\x0f\n\x07\x63ontrol\x18\x06 \x01(\r\x12\x0b\n\x03num\x18\x07 \x01(\r\x12\x12\n\ntool_index\x18\n \x01(\x05\"+\n\x08TactTime\x12\x0c\n\x04type\x18\x01 \x01(\t\x12\x11\n\ttact_time\x18\x02 \x01(\x02\"b\n\x08\x44\x61teTime\x12\x0c\n\x04year\x18\x01 \x01(\r\x12\r\n\x05month\x18\x02 \x01(\r\x12\x0b\n\x03\x64\x61y\x18\x03 \x01(\r\x12\x0c\n\x04hour\x18\x04 \x01(\r\x12\x0e\n\x06minute\x18\x05 \x01(\r\x12\x0e\n\x06second\x18\x06 \x01(\r\"(\n\tNamedBool\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x08\"\'\n\x08NamedInt\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x03\")\n\nNamedFloat\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x02\"/\n\x11NamedTaskPosition\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0c\n\x04tpos\x18\x02 \x03(\x02\"0\n\x12NamedJointPosition\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0c\n\x04jpos\x18\x02 \x03(\x02\"<\n\x10NamedPositionSet\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0c\n\x04jpos\x18\x02 \x03(\x02\x12\x0c\n\x04tpos\x18\x03 \x03(\x02\"\x8e\x01\n\x16NamedReferencePosition\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0c\n\x04tpos\x18\x02 \x03(\x02\x12\r\n\x05tpos0\x18\x03 \x03(\x02\x12\r\n\x05tpos1\x18\x04 \x03(\x02\x12\r\n\x05tpos2\x18\x05 \x03(\x02\x12\r\n\x05jpos0\x18\x06 \x03(\x02\x12\r\n\x05jpos1\x18\x07 \x03(\x02\x12\r\n\x05jpos2\x18\x08 \x03(\x02\"\xd4\x01\n\x0fModbusServerDef\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\n\n\x02ip\x18\x02 \x01(\t\x12\x0c\n\x04port\x18\x03 \x01(\x05\x12\x0f\n\x07unit_id\x18\x04 \x01(\x05\x12\x11\n\tconn_type\x18\x05 \x01(\x05\x12\x13\n\x0bserial_baud\x18\x06 \x01(\x05\x12\x15\n\rserial_parity\x18\x07 \x01(\t\x12\x18\n\x10serial_data_bits\x18\x08 \x01(\x05\x12\x18\n\x10serial_stop_bits\x18\t \x01(\x05\x12\x15\n\rrtu_transport\x18\n \x01(\x05\"1\n\x0bProgramLine\x12\x0e\n\x06\x63md_id\x18\x01 \x01(\x05\x12\x12\n\nsub_cmd_id\x18\x02 \x01(\x05\"J\n\x12ProgramBreakPoints\x12\x34\n\x0b\x62reakpoints\x18\x01 \x03(\x0b\x32\x1f.Nrmk.IndyFramework.ProgramLine*\xd7\x02\n\x07OpState\x12\x11\n\rOP_SYSTEM_OFF\x10\x00\x12\x10\n\x0cOP_SYSTEM_ON\x10\x01\x12\x0e\n\nOP_VIOLATE\x10\x02\x12\x13\n\x0fOP_RECOVER_HARD\x10\x03\x12\x13\n\x0fOP_RECOVER_SOFT\x10\x04\x12\x0b\n\x07OP_IDLE\x10\x05\x12\r\n\tOP_MOVING\x10\x06\x12\x0f\n\x0bOP_TEACHING\x10\x07\x12\x10\n\x0cOP_COLLISION\x10\x08\x12\x13\n\x0fOP_STOP_AND_OFF\x10\t\x12\x11\n\rOP_COMPLIANCE\x10\n\x12\x14\n\x10OP_BRAKE_CONTROL\x10\x0b\x12\x13\n\x0fOP_SYSTEM_RESET\x10\x0c\x12\x14\n\x10OP_SYSTEM_SWITCH\x10\r\x12\x10\n\x0cOP_POWER_OFF\x10\x0f\x12\x15\n\x11OP_MANUAL_RECOVER\x10\x10\x12\x0b\n\x07TELE_OP\x10\x11\x12\x0f\n\x0bTRAJ_MOVING\x10\x12*\xb0\x01\n\tTrajState\x12\r\n\tTRAJ_NONE\x10\x00\x12\r\n\tTRAJ_INIT\x10\x01\x12\r\n\tTRAJ_CALC\x10\x02\x12\x11\n\rTRAJ_STAND_BY\x10\x03\x12\x0c\n\x08TRAJ_ACC\x10\x04\x12\x0f\n\x0bTRAJ_CRUISE\x10\x05\x12\x0c\n\x08TRAJ_DEC\x10\x06\x12\x13\n\x0fTRAJ_CANCELLING\x10\x07\x12\x11\n\rTRAJ_FINISHED\x10\x08\x12\x0e\n\nTRAJ_ERROR\x10\t*Z\n\rTrajCondition\x12\x10\n\x0cTRAJ_STARTED\x10\x00\x12\x11\n\rTRAJ_ACC_DONE\x10\x01\x12\x11\n\rTRAJ_CRZ_DONE\x10\x02\x12\x11\n\rTRAJ_DEC_DONE\x10\x03*F\n\x0cStopCategory\x12\x13\n\x0fIMMEDIATE_BRAKE\x10\x00\x12\x10\n\x0cSMOOTH_BRAKE\x10\x01\x12\x0f\n\x0bSMOOTH_ONLY\x10\x02*g\n\nSafeGdType\x12\x0e\n\nGUARD_NONE\x10\x00\x12\x0e\n\nGUARD_STOP\x10\x01\x12\x0f\n\x0bGUARD_PAUSE\x10\x02\x12\x16\n\x12GUARD_PAUSE_RESUME\x10\x03\x12\x10\n\x0cREDUCED_MODE\x10\x04*6\n\rPauseCategory\x12\x10\n\x0cSMOOTH_PAUSE\x10\x00\x12\x13\n\x0fIMMEDIATE_PAUSE\x10\x01*T\n\x0cProgramState\x12\r\n\tPROG_IDLE\x10\x00\x12\x10\n\x0cPROG_RUNNING\x10\x01\x12\x10\n\x0cPROG_PAUSING\x10\x02\x12\x11\n\rPROG_STOPPING\x10\x03*e\n\x13\x43ollisionPolicyType\x12\x12\n\x0e\x43OLL_NO_DETECT\x10\x00\x12\x0e\n\nCOLL_PAUSE\x10\x01\x12\x1b\n\x17\x43OLL_RESUME_AFTER_SLEEP\x10\x02\x12\r\n\tCOLL_STOP\x10\x03*:\n\x0bTuningSpace\x12\x0c\n\x08TUNE_ALL\x10\x00\x12\x0e\n\nTUNE_JOINT\x10\x01\x12\r\n\tTUNE_TASK\x10\x02*N\n\x0fTuningPrecision\x12\x11\n\rLOW_PRECISION\x10\x00\x12\x14\n\x10MIDDLE_PRECISION\x10\x01\x12\x12\n\x0eHIGH_PRECISION\x10\x02*:\n\x08\x41xisType\x12\x10\n\x0cMDH_REVOLUTE\x10\x00\x12\x11\n\rMDH_PRISMATIC\x10\x01\x12\t\n\x05RIGID\x10\x02*f\n\x0b\x43ontactRule\x12\r\n\tCOLLISION\x10\x00\x12\x13\n\x0f\x43OLLISION_LEVEL\x10\x01\x12\x0f\n\x0bSPEED_LIMIT\x10\x02\x12\x13\n\x0f\x44IRECTION_LIMIT\x10\x03\x12\r\n\tVIOLATION\x10\x04\x62\x06proto3'
+  serialized_pb=b'\n\x11\x63ommon_msgs.proto\x12\x12Nrmk.IndyFramework\"\x07\n\x05\x45mpty\"\x14\n\x04Name\x12\x0c\n\x04name\x18\x01 \x01(\t\"\x17\n\x05State\x12\x0e\n\x06\x65nable\x18\x01 \x01(\x08\"\x14\n\x03Int\x12\r\n\x05value\x18\x01 \x01(\x03\"\x15\n\x04UInt\x12\r\n\x05value\x18\x01 \x01(\x04\"\x16\n\x05\x46loat\x12\r\n\x05value\x18\x01 \x01(\x02\"\x17\n\x07IntMode\x12\x0c\n\x04mode\x18\x01 \x01(\x04\"=\n\x07StopCat\x12\x32\n\x08\x63\x61tegory\x18\x01 \x01(\x0e\x32 .Nrmk.IndyFramework.StopCategory\"?\n\x08PauseCat\x12\x33\n\x08\x63\x61tegory\x18\x01 \x01(\x0e\x32!.Nrmk.IndyFramework.PauseCategory\"%\n\x08Response\x12\x0c\n\x04\x63ode\x18\x01 \x01(\x03\x12\x0b\n\x03msg\x18\x02 \x01(\t\"\x1a\n\x07Message\x12\x0f\n\x07\x63ontent\x18\x01 \x01(\t\"\x18\n\x06Vector\x12\x0e\n\x06values\x18\x01 \x03(\x01\" \n\x08PosePair\x12\t\n\x01q\x18\x01 \x03(\x02\x12\t\n\x01p\x18\x02 \x03(\x02\"\x8c\x01\n\x0e\x45ndtoolRS485Tx\x12\r\n\x05word1\x18\x01 \x01(\r\x12\r\n\x05word2\x18\x02 \x01(\r\x12\r\n\x05word3\x18\x03 \x01(\r\x12\r\n\x05word4\x18\x04 \x01(\r\x12\r\n\x05word5\x18\x05 \x01(\r\x12\x0e\n\x06status\x18\x06 \x01(\r\x12\x0b\n\x03num\x18\x07 \x01(\r\x12\x12\n\ntool_index\x18\n \x01(\x05\"\x8d\x01\n\x0e\x45ndtoolRS485Rx\x12\r\n\x05word1\x18\x01 \x01(\r\x12\r\n\x05word2\x18\x02 \x01(\r\x12\r\n\x05word3\x18\x03 \x01(\r\x12\r\n\x05word4\x18\x04 \x01(\r\x12\r\n\x05word5\x18\x05 \x01(\r\x12\x0f\n\x07\x63ontrol\x18\x06 \x01(\r\x12\x0b\n\x03num\x18\x07 \x01(\r\x12\x12\n\ntool_index\x18\n \x01(\x05\"+\n\x08TactTime\x12\x0c\n\x04type\x18\x01 \x01(\t\x12\x11\n\ttact_time\x18\x02 \x01(\x02\"b\n\x08\x44\x61teTime\x12\x0c\n\x04year\x18\x01 \x01(\r\x12\r\n\x05month\x18\x02 \x01(\r\x12\x0b\n\x03\x64\x61y\x18\x03 \x01(\r\x12\x0c\n\x04hour\x18\x04 \x01(\r\x12\x0e\n\x06minute\x18\x05 \x01(\r\x12\x0e\n\x06second\x18\x06 \x01(\r\"(\n\tNamedBool\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x08\"\'\n\x08NamedInt\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x03\")\n\nNamedFloat\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x02\"/\n\x11NamedTaskPosition\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0c\n\x04tpos\x18\x02 \x03(\x02\"0\n\x12NamedJointPosition\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0c\n\x04jpos\x18\x02 \x03(\x02\"<\n\x10NamedPositionSet\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0c\n\x04jpos\x18\x02 \x03(\x02\x12\x0c\n\x04tpos\x18\x03 \x03(\x02\"\x8e\x01\n\x16NamedReferencePosition\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0c\n\x04tpos\x18\x02 \x03(\x02\x12\r\n\x05tpos0\x18\x03 \x03(\x02\x12\r\n\x05tpos1\x18\x04 \x03(\x02\x12\r\n\x05tpos2\x18\x05 \x03(\x02\x12\r\n\x05jpos0\x18\x06 \x03(\x02\x12\r\n\x05jpos1\x18\x07 \x03(\x02\x12\r\n\x05jpos2\x18\x08 \x03(\x02\"\xe8\x01\n\x0fModbusServerDef\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\n\n\x02ip\x18\x02 \x01(\t\x12\x0c\n\x04port\x18\x03 \x01(\x05\x12\x0f\n\x07unit_id\x18\x04 \x01(\x05\x12\x11\n\tconn_type\x18\x05 \x01(\x05\x12\x13\n\x0bserial_baud\x18\x06 \x01(\x05\x12\x15\n\rserial_parity\x18\x07 \x01(\t\x12\x18\n\x10serial_data_bits\x18\x08 \x01(\x05\x12\x18\n\x10serial_stop_bits\x18\t \x01(\x05\x12\x15\n\rrtu_transport\x18\n \x01(\x05\x12\x12\n\ntool_index\x18\x0b \x01(\x05\"1\n\x0bProgramLine\x12\x0e\n\x06\x63md_id\x18\x01 \x01(\x05\x12\x12\n\nsub_cmd_id\x18\x02 \x01(\x05\"J\n\x12ProgramBreakPoints\x12\x34\n\x0b\x62reakpoints\x18\x01 \x03(\x0b\x32\x1f.Nrmk.IndyFramework.ProgramLine*\xd7\x02\n\x07OpState\x12\x11\n\rOP_SYSTEM_OFF\x10\x00\x12\x10\n\x0cOP_SYSTEM_ON\x10\x01\x12\x0e\n\nOP_VIOLATE\x10\x02\x12\x13\n\x0fOP_RECOVER_HARD\x10\x03\x12\x13\n\x0fOP_RECOVER_SOFT\x10\x04\x12\x0b\n\x07OP_IDLE\x10\x05\x12\r\n\tOP_MOVING\x10\x06\x12\x0f\n\x0bOP_TEACHING\x10\x07\x12\x10\n\x0cOP_COLLISION\x10\x08\x12\x13\n\x0fOP_STOP_AND_OFF\x10\t\x12\x11\n\rOP_COMPLIANCE\x10\n\x12\x14\n\x10OP_BRAKE_CONTROL\x10\x0b\x12\x13\n\x0fOP_SYSTEM_RESET\x10\x0c\x12\x14\n\x10OP_SYSTEM_SWITCH\x10\r\x12\x10\n\x0cOP_POWER_OFF\x10\x0f\x12\x15\n\x11OP_MANUAL_RECOVER\x10\x10\x12\x0b\n\x07TELE_OP\x10\x11\x12\x0f\n\x0bTRAJ_MOVING\x10\x12*\xb0\x01\n\tTrajState\x12\r\n\tTRAJ_NONE\x10\x00\x12\r\n\tTRAJ_INIT\x10\x01\x12\r\n\tTRAJ_CALC\x10\x02\x12\x11\n\rTRAJ_STAND_BY\x10\x03\x12\x0c\n\x08TRAJ_ACC\x10\x04\x12\x0f\n\x0bTRAJ_CRUISE\x10\x05\x12\x0c\n\x08TRAJ_DEC\x10\x06\x12\x13\n\x0fTRAJ_CANCELLING\x10\x07\x12\x11\n\rTRAJ_FINISHED\x10\x08\x12\x0e\n\nTRAJ_ERROR\x10\t*Z\n\rTrajCondition\x12\x10\n\x0cTRAJ_STARTED\x10\x00\x12\x11\n\rTRAJ_ACC_DONE\x10\x01\x12\x11\n\rTRAJ_CRZ_DONE\x10\x02\x12\x11\n\rTRAJ_DEC_DONE\x10\x03*F\n\x0cStopCategory\x12\x13\n\x0fIMMEDIATE_BRAKE\x10\x00\x12\x10\n\x0cSMOOTH_BRAKE\x10\x01\x12\x0f\n\x0bSMOOTH_ONLY\x10\x02*g\n\nSafeGdType\x12\x0e\n\nGUARD_NONE\x10\x00\x12\x0e\n\nGUARD_STOP\x10\x01\x12\x0f\n\x0bGUARD_PAUSE\x10\x02\x12\x16\n\x12GUARD_PAUSE_RESUME\x10\x03\x12\x10\n\x0cREDUCED_MODE\x10\x04*6\n\rPauseCategory\x12\x10\n\x0cSMOOTH_PAUSE\x10\x00\x12\x13\n\x0fIMMEDIATE_PAUSE\x10\x01*T\n\x0cProgramState\x12\r\n\tPROG_IDLE\x10\x00\x12\x10\n\x0cPROG_RUNNING\x10\x01\x12\x10\n\x0cPROG_PAUSING\x10\x02\x12\x11\n\rPROG_STOPPING\x10\x03*e\n\x13\x43ollisionPolicyType\x12\x12\n\x0e\x43OLL_NO_DETECT\x10\x00\x12\x0e\n\nCOLL_PAUSE\x10\x01\x12\x1b\n\x17\x43OLL_RESUME_AFTER_SLEEP\x10\x02\x12\r\n\tCOLL_STOP\x10\x03*:\n\x0bTuningSpace\x12\x0c\n\x08TUNE_ALL\x10\x00\x12\x0e\n\nTUNE_JOINT\x10\x01\x12\r\n\tTUNE_TASK\x10\x02*N\n\x0fTuningPrecision\x12\x11\n\rLOW_PRECISION\x10\x00\x12\x14\n\x10MIDDLE_PRECISION\x10\x01\x12\x12\n\x0eHIGH_PRECISION\x10\x02*:\n\x08\x41xisType\x12\x10\n\x0cMDH_REVOLUTE\x10\x00\x12\x11\n\rMDH_PRISMATIC\x10\x01\x12\t\n\x05RIGID\x10\x02*f\n\x0b\x43ontactRule\x12\r\n\tCOLLISION\x10\x00\x12\x13\n\x0f\x43OLLISION_LEVEL\x10\x01\x12\x0f\n\x0bSPEED_LIMIT\x10\x02\x12\x13\n\x0f\x44IRECTION_LIMIT\x10\x03\x12\r\n\tVIOLATION\x10\x04\x62\x06proto3'
 )
 
 _OPSTATE = _descriptor.EnumDescriptor(
@@ -123,8 +123,8 @@ _OPSTATE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=1653,
-  serialized_end=1996,
+  serialized_start=1673,
+  serialized_end=2016,
 )
 _sym_db.RegisterEnumDescriptor(_OPSTATE)
 
@@ -189,8 +189,8 @@ _TRAJSTATE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=1999,
-  serialized_end=2175,
+  serialized_start=2019,
+  serialized_end=2195,
 )
 _sym_db.RegisterEnumDescriptor(_TRAJSTATE)
 
@@ -225,8 +225,8 @@ _TRAJCONDITION = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=2177,
-  serialized_end=2267,
+  serialized_start=2197,
+  serialized_end=2287,
 )
 _sym_db.RegisterEnumDescriptor(_TRAJCONDITION)
 
@@ -256,8 +256,8 @@ _STOPCATEGORY = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=2269,
-  serialized_end=2339,
+  serialized_start=2289,
+  serialized_end=2359,
 )
 _sym_db.RegisterEnumDescriptor(_STOPCATEGORY)
 
@@ -297,8 +297,8 @@ _SAFEGDTYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=2341,
-  serialized_end=2444,
+  serialized_start=2361,
+  serialized_end=2464,
 )
 _sym_db.RegisterEnumDescriptor(_SAFEGDTYPE)
 
@@ -323,8 +323,8 @@ _PAUSECATEGORY = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=2446,
-  serialized_end=2500,
+  serialized_start=2466,
+  serialized_end=2520,
 )
 _sym_db.RegisterEnumDescriptor(_PAUSECATEGORY)
 
@@ -359,8 +359,8 @@ _PROGRAMSTATE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=2502,
-  serialized_end=2586,
+  serialized_start=2522,
+  serialized_end=2606,
 )
 _sym_db.RegisterEnumDescriptor(_PROGRAMSTATE)
 
@@ -395,8 +395,8 @@ _COLLISIONPOLICYTYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=2588,
-  serialized_end=2689,
+  serialized_start=2608,
+  serialized_end=2709,
 )
 _sym_db.RegisterEnumDescriptor(_COLLISIONPOLICYTYPE)
 
@@ -426,8 +426,8 @@ _TUNINGSPACE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=2691,
-  serialized_end=2749,
+  serialized_start=2711,
+  serialized_end=2769,
 )
 _sym_db.RegisterEnumDescriptor(_TUNINGSPACE)
 
@@ -457,8 +457,8 @@ _TUNINGPRECISION = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=2751,
-  serialized_end=2829,
+  serialized_start=2771,
+  serialized_end=2849,
 )
 _sym_db.RegisterEnumDescriptor(_TUNINGPRECISION)
 
@@ -488,8 +488,8 @@ _AXISTYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=2831,
-  serialized_end=2889,
+  serialized_start=2851,
+  serialized_end=2909,
 )
 _sym_db.RegisterEnumDescriptor(_AXISTYPE)
 
@@ -529,8 +529,8 @@ _CONTACTRULE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=2891,
-  serialized_end=2993,
+  serialized_start=2911,
+  serialized_end=3013,
 )
 _sym_db.RegisterEnumDescriptor(_CONTACTRULE)
 
@@ -1693,6 +1693,13 @@ _MODBUSSERVERDEF = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='tool_index', full_name='Nrmk.IndyFramework.ModbusServerDef.tool_index', index=10,
+      number=11, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -1706,7 +1713,7 @@ _MODBUSSERVERDEF = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=1311,
-  serialized_end=1523,
+  serialized_end=1543,
 )
 
 
@@ -1744,8 +1751,8 @@ _PROGRAMLINE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1525,
-  serialized_end=1574,
+  serialized_start=1545,
+  serialized_end=1594,
 )
 
 
@@ -1776,8 +1783,8 @@ _PROGRAMBREAKPOINTS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1576,
-  serialized_end=1650,
+  serialized_start=1596,
+  serialized_end=1670,
 )
 
 _STOPCAT.fields_by_name['category'].enum_type = _STOPCATEGORY

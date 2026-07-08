@@ -4,8 +4,8 @@ import sys
 with open("../README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
-if sys.version_info < (3, 12):
-    print("Please build with python 3.12")
+if sys.version_info < (3, 7) or sys.version_info >= (3, 13):
+    print("Please build with python 3.7 through 3.12")
 else:
     step_requires = [
         "grpcio>=1.34.1, <=1.39.0",
@@ -31,7 +31,7 @@ else:
     
     setup(
         name="neuromeka",
-        version="3.5.0.7",
+        version="3.5.0.8",
         author="Neuromeka",
         author_email="technical-support@neuromeka.com",
         description="Neuromeka client protocols for IndyDCP3, IndyEye, Moby, Ecat, and Motor",
@@ -51,7 +51,7 @@ else:
             "Programming Language :: Python :: 3.11",
             "Programming Language :: Python :: 3.12"
         ],
-        python_requires=">=3.7",
+        python_requires=">=3.7,<3.13",
         # install_requires=install_requires,
         extras_require={
         ':python_version < "3.9"': step_requires,

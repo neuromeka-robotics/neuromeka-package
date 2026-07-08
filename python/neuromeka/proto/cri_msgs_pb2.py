@@ -13,7 +13,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0e\x63ri_msgs.proto\x12\x12Nrmk.IndyFramework\"*\n\nSFDAccount\x12\r\n\x05\x65mail\x18\x01 \x01(\t\x12\r\n\x05token\x18\x02 \x01(\t\"<\n\tSFDTarget\x12\n\n\x02pn\x18\x01 \x01(\t\x12\n\n\x02\x66n\x18\x02 \x01(\t\x12\n\n\x02rn\x18\x03 \x01(\t\x12\x0b\n\x03iso\x18\x04 \x01(\x08\"6\n\x07\x43riData\x12\x0c\n\x04time\x18\x01 \x01(\x01\x12\x0b\n\x03\x63ri\x18\x02 \x01(\x01\x12\x10\n\x08velRatio\x18\x03 \x01(\x01\"\x1e\n\x0eSFDProjectList\x12\x0c\n\x04list\x18\x01 \x01(\t\"L\n\nSFDAutoSet\x12\r\n\x05login\x18\x01 \x01(\x08\x12\n\n\x02pn\x18\x02 \x01(\t\x12\n\n\x02\x66n\x18\x03 \x01(\t\x12\n\n\x02rn\x18\x04 \x01(\t\x12\x0b\n\x03iso\x18\x05 \x01(\x08\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0e\x63ri_msgs.proto\x12\x12Nrmk.IndyFramework\"*\n\nSFDAccount\x12\r\n\x05\x65mail\x18\x01 \x01(\t\x12\r\n\x05token\x18\x02 \x01(\t\"<\n\tSFDTarget\x12\n\n\x02pn\x18\x01 \x01(\t\x12\n\n\x02\x66n\x18\x02 \x01(\t\x12\n\n\x02rn\x18\x03 \x01(\t\x12\x0b\n\x03iso\x18\x04 \x01(\x08\"6\n\x07\x43riData\x12\x0c\n\x04time\x18\x01 \x01(\x01\x12\x0b\n\x03\x63ri\x18\x02 \x01(\x01\x12\x10\n\x08velRatio\x18\x03 \x01(\x01\"\x1e\n\x0eSFDProjectList\x12\x0c\n\x04list\x18\x01 \x01(\t\"L\n\nSFDAutoSet\x12\r\n\x05login\x18\x01 \x01(\x08\x12\n\n\x02pn\x18\x02 \x01(\t\x12\n\n\x02\x66n\x18\x03 \x01(\t\x12\n\n\x02rn\x18\x04 \x01(\t\x12\x0b\n\x03iso\x18\x05 \x01(\x08\"\x97\x01\n\x12\x43RIRecordModeState\x12\x39\n\x04mode\x18\x01 \x01(\x0e\x32+.Nrmk.IndyFramework.CRIRecordModeState.Mode\"F\n\x04Mode\x12\x12\n\x0e\x43RI_RECORD_OFF\x10\x00\x12\x11\n\rCRI_RECORD_ON\x10\x01\x12\x17\n\x13\x43RI_RECORD_PLAYBACK\x10\x02\x62\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -30,4 +30,8 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _globals['_SFDPROJECTLIST']._serialized_end=230
   _globals['_SFDAUTOSET']._serialized_start=232
   _globals['_SFDAUTOSET']._serialized_end=308
+  _globals['_CRIRECORDMODESTATE']._serialized_start=311
+  _globals['_CRIRECORDMODESTATE']._serialized_end=462
+  _globals['_CRIRECORDMODESTATE_MODE']._serialized_start=392
+  _globals['_CRIRECORDMODESTATE_MODE']._serialized_end=462
 # @@protoc_insertion_point(module_scope)
