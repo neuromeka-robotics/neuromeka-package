@@ -351,13 +351,15 @@ class ConfigChannelAPI:
                                          preserving_proto_field_name=True,
                                          use_integers_for_enums=True)
 
-    def set_ref_frame_planar(self, fpos0: list, fpos1: list, fpos2: list, arm_index: int = 0):
+    def set_ref_frame_planar(self, fpos0: list, fpos1: list, fpos2: list,
+                             arm_index: int = 0, link_index: int = 0):
         """
         Ref Frame
             fpos -> float[6]
         """
         response = self.config.SetRefFramePlanar(config_msgs.PlanarFrame(
-            fpos0=list(fpos0), fpos1=list(fpos1), fpos2=list(fpos2), arm_index=arm_index
+            fpos0=list(fpos0), fpos1=list(fpos1), fpos2=list(fpos2),
+            arm_index=arm_index, link_index=link_index
         ))
         return json_format.MessageToDict(response,
                                          including_default_value_fields=True,

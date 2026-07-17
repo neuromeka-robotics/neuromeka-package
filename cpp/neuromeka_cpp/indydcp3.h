@@ -348,8 +348,8 @@ class IndyDCP3
         bool get_tool_shape_list(Nrmk::IndyFramework::ToolShapeList& list);
 
         //----------------------------------
-        bool get_ref_frame(std::array<float, 6>& fpos);
-        bool set_ref_frame(const std::array<float, 6>& fpos);
+        bool get_ref_frame(std::array<float, 6>& fpos, int arm_index = 0, int* link_index = nullptr);
+        bool set_ref_frame(const std::array<float, 6>& fpos, int arm_index = 0, int link_index = 0);
 
         bool load_reference_frame(Nrmk::IndyFramework::RefFrameList& list);
         bool save_reference_frame(const Nrmk::IndyFramework::RefFrameList& list);
@@ -357,7 +357,8 @@ class IndyDCP3
         bool set_ref_frame_planar(std::array<float, 6>& fpos_out, 
                             const std::array<float, 6>& fpos0,
                             const std::array<float, 6>& fpos1, 
-                            const std::array<float, 6>& fpos2);
+                            const std::array<float, 6>& fpos2,
+                            int arm_index = 0, int link_index = 0);
 
         bool set_tool_frame(const std::array<float, 6>& fpos);
         //----------------------------------

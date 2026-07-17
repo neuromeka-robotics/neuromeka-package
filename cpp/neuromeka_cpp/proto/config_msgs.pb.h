@@ -3529,6 +3529,7 @@ class PlanarFrame final :
     kFpos1FieldNumber = 2,
     kFpos2FieldNumber = 3,
     kArmIndexFieldNumber = 10,
+    kLinkIndexFieldNumber = 11,
   };
   // repeated float fpos0 = 1;
   int fpos0_size() const;
@@ -3594,12 +3595,22 @@ class PlanarFrame final :
   void _internal_set_arm_index(::int32_t value);
 
   public:
+  // int32 link_index = 11;
+  void clear_link_index() ;
+  ::int32_t link_index() const;
+  void set_link_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_link_index() const;
+  void _internal_set_link_index(::int32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.PlanarFrame)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<2, 4, 0, 0, 2> _table_;
+  static const ::google::protobuf::internal::TcParseTable<2, 5, 0, 0, 2> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
@@ -3608,6 +3619,7 @@ class PlanarFrame final :
     ::google::protobuf::RepeatedField<float> fpos1_;
     ::google::protobuf::RepeatedField<float> fpos2_;
     ::int32_t arm_index_;
+    ::int32_t link_index_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -17897,6 +17909,28 @@ inline void PlanarFrame::_internal_set_arm_index(::int32_t value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.arm_index_ = value;
+}
+
+// int32 link_index = 11;
+inline void PlanarFrame::clear_link_index() {
+  _impl_.link_index_ = 0;
+}
+inline ::int32_t PlanarFrame::link_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.PlanarFrame.link_index)
+  return _internal_link_index();
+}
+inline void PlanarFrame::set_link_index(::int32_t value) {
+  _internal_set_link_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.PlanarFrame.link_index)
+}
+inline ::int32_t PlanarFrame::_internal_link_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.link_index_;
+}
+inline void PlanarFrame::_internal_set_link_index(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.link_index_ = value;
 }
 
 // -------------------------------------------------------------------

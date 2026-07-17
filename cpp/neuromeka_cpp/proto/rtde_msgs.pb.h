@@ -945,6 +945,7 @@ class ControlData final :
     kToolFrameFieldNumber = 21,
     kToolLinksFieldNumber = 25,
     kLockedJointsFieldNumber = 26,
+    kRefLinksFieldNumber = 27,
     kResponseFieldNumber = 100,
     kRunningHoursFieldNumber = 1,
     kRunningMinsFieldNumber = 2,
@@ -1099,6 +1100,24 @@ class ControlData final :
   ::google::protobuf::RepeatedField<::int32_t>* _internal_mutable_locked_joints();
 
   public:
+  // repeated int32 ref_links = 27;
+  int ref_links_size() const;
+  private:
+  int _internal_ref_links_size() const;
+
+  public:
+  void clear_ref_links() ;
+  ::int32_t ref_links(int index) const;
+  void set_ref_links(int index, ::int32_t value);
+  void add_ref_links(::int32_t value);
+  const ::google::protobuf::RepeatedField<::int32_t>& ref_links() const;
+  ::google::protobuf::RepeatedField<::int32_t>* mutable_ref_links();
+
+  private:
+  const ::google::protobuf::RepeatedField<::int32_t>& _internal_ref_links() const;
+  ::google::protobuf::RepeatedField<::int32_t>* _internal_mutable_ref_links();
+
+  public:
   // .Nrmk.IndyFramework.Response response = 100;
   bool has_response() const;
   void clear_response() ;
@@ -1199,7 +1218,7 @@ class ControlData final :
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<5, 17, 1, 0, 7> _table_;
+  static const ::google::protobuf::internal::TcParseTable<5, 18, 1, 0, 7> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
@@ -1216,6 +1235,8 @@ class ControlData final :
     mutable ::google::protobuf::internal::CachedSize _tool_links_cached_byte_size_;
     ::google::protobuf::RepeatedField<::int32_t> locked_joints_;
     mutable ::google::protobuf::internal::CachedSize _locked_joints_cached_byte_size_;
+    ::google::protobuf::RepeatedField<::int32_t> ref_links_;
+    mutable ::google::protobuf::internal::CachedSize _ref_links_cached_byte_size_;
     ::Nrmk::IndyFramework::Response* response_;
     ::uint32_t running_hours_;
     ::uint32_t running_mins_;
@@ -5170,6 +5191,48 @@ inline const ::google::protobuf::RepeatedField<::int32_t>& ControlData::_interna
 inline ::google::protobuf::RepeatedField<::int32_t>* ControlData::_internal_mutable_locked_joints() {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return &_impl_.locked_joints_;
+}
+
+// repeated int32 ref_links = 27;
+inline int ControlData::_internal_ref_links_size() const {
+  return _internal_ref_links().size();
+}
+inline int ControlData::ref_links_size() const {
+  return _internal_ref_links_size();
+}
+inline void ControlData::clear_ref_links() {
+  _internal_mutable_ref_links()->Clear();
+}
+inline ::int32_t ControlData::ref_links(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.ControlData.ref_links)
+  return _internal_ref_links().Get(index);
+}
+inline void ControlData::set_ref_links(int index, ::int32_t value) {
+  _internal_mutable_ref_links()->Set(index, value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.ControlData.ref_links)
+}
+inline void ControlData::add_ref_links(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_ref_links()->Add(value);
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.ControlData.ref_links)
+}
+inline const ::google::protobuf::RepeatedField<::int32_t>& ControlData::ref_links() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.ControlData.ref_links)
+  return _internal_ref_links();
+}
+inline ::google::protobuf::RepeatedField<::int32_t>* ControlData::mutable_ref_links() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.ControlData.ref_links)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_ref_links();
+}
+
+inline const ::google::protobuf::RepeatedField<::int32_t>& ControlData::_internal_ref_links() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.ref_links_;
+}
+inline ::google::protobuf::RepeatedField<::int32_t>* ControlData::_internal_mutable_ref_links() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.ref_links_;
 }
 
 // .Nrmk.IndyFramework.Response response = 100;

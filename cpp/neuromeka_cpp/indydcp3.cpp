@@ -2590,7 +2590,7 @@ bool IndyDCP3::set_home_pos(const Nrmk::IndyFramework::JointPos& home_jpos)
     return true;
 }
 
-bool IndyDCP3::get_ref_frame(std::array<float, 6>& fpos) 
+bool IndyDCP3::get_ref_frame(std::array<float, 6>& fpos, int arm_index, int* link_index)
 {
     /*
         Reference Frame
@@ -2599,9 +2599,10 @@ bool IndyDCP3::get_ref_frame(std::array<float, 6>& fpos)
 
     Nrmk::IndyFramework::Frame response;
     grpc::ClientContext context;
-    Nrmk::IndyFramework::Empty request;
+    Nrmk::IndyFramework::Int request;
+    request.set_value(arm_index);
 
-    grpc::Status status = config_stub->GetRefFrame(&context, request, &response);
+    grpc::Status status = config_stub->GetRefFrameFor(&context, request, &response);
     if (!status.ok()) {
         std::cerr << "GetRefFrame RPC failed: " << status.error_message() << std::endl;
         return false;
@@ -2610,11 +2611,12 @@ bool IndyDCP3::get_ref_frame(std::array<float, 6>& fpos)
     for (int i = 0; i < 6; ++i) {
         fpos[i] = response.fpos(i);
     }
+    if (link_index != nullptr) *link_index = response.link_index();
 
     return true;
 }
 
-bool IndyDCP3::set_ref_frame(const std::array<float, 6>& fpos) 
+bool IndyDCP3::set_ref_frame(const std::array<float, 6>& fpos, int arm_index, int link_index)
 {
     /*
         Reference Frame
@@ -2628,6 +2630,8 @@ bool IndyDCP3::set_ref_frame(const std::array<float, 6>& fpos)
     for (const auto& value : fpos) {
         request.add_fpos(value);
     }
+    request.set_arm_index(arm_index);
+    request.set_link_index(link_index);
 
     grpc::Status status = config_stub->SetRefFrame(&context, request, &response);
     if (!status.ok()) {
@@ -2661,7 +2665,8 @@ bool IndyDCP3::save_reference_frame(const Nrmk::IndyFramework::RefFrameList& lis
 }
 
 bool IndyDCP3::set_ref_frame_planar(std::array<float, 6>& fpos_out, const std::array<float, 6>& fpos0,
-                                    const std::array<float, 6>& fpos1, const std::array<float, 6>& fpos2) 
+                                    const std::array<float, 6>& fpos1, const std::array<float, 6>& fpos2,
+                                    int arm_index, int link_index)
 {
     /*
         Reference Frame (Planar)
@@ -2680,6 +2685,8 @@ bool IndyDCP3::set_ref_frame_planar(std::array<float, 6>& fpos_out, const std::a
         request.add_fpos1(fpos1[i]);
         request.add_fpos2(fpos2[i]);
     }
+    request.set_arm_index(arm_index);
+    request.set_link_index(link_index);
 
     grpc::Status status = config_stub->SetRefFramePlanar(&context, request, &response);
 
