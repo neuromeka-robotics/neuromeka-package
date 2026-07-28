@@ -5,6 +5,7 @@
 
 #include <iostream>
 #include <memory>
+#include <optional>
 #include <string>
 #include <vector>
 
@@ -135,6 +136,7 @@ class IndyDCP3
         bool set_tool_link(int index);
 
         //----------------------------------
+        // std::nullopt omits arm_index; passing 0 sends a present value of 0.
         bool movej(const std::vector<float>& jtarget,
                     const int base_type=JointBaseType::ABSOLUTE_JOINT,
                     const int blending_type=BlendingType_Type::BlendingType_Type_NONE,
@@ -146,7 +148,8 @@ class IndyDCP3
                     const int react_type=MotionCondition_ReactionType::MotionCondition_ReactionType_NONE_COND,
                     const DCPDICond di_condition={},
                     const DCPVarCond var_condition={},
-                    const bool teaching_mode=false);
+                    const bool teaching_mode=false,
+                    const std::optional<int> arm_index=std::nullopt);
         
         bool movej_time(const std::vector<float>& jtarget,
                     const int base_type=JointBaseType::ABSOLUTE_JOINT,
@@ -157,7 +160,8 @@ class IndyDCP3
                     const int cond_type=MotionCondition_ConditionType::MotionCondition_ConditionType_CONST_COND,
                     const int react_type=MotionCondition_ReactionType::MotionCondition_ReactionType_NONE_COND,
                     const DCPDICond di_condition={},
-                    const DCPVarCond var_condition={});
+                    const DCPVarCond var_condition={},
+                    const std::optional<int> arm_index=std::nullopt);
         
         bool movel(const std::array<float, 6>& ttarget,
                     const int base_type=TaskBaseType::ABSOLUTE_TASK,
@@ -277,6 +281,7 @@ class IndyDCP3
         bool play_program_line(const Nrmk::IndyFramework::Program& program);
         bool pause_program();
         bool resume_program();
+        bool resume_program_debug();
         bool stop_program();
 
         bool get_boot_status(Nrmk::IndyFramework::BootStatus& status);
@@ -357,7 +362,9 @@ class IndyDCP3
         bool set_ref_frame_planar(std::array<float, 6>& fpos_out, 
                             const std::array<float, 6>& fpos0,
                             const std::array<float, 6>& fpos1, 
-                            const std::array<float, 6>& fpos2);
+                            const std::array<float, 6>& fpos2,
+                            const int arm_index=0,
+                            const int link_index=0);
 
         bool set_tool_frame(const std::array<float, 6>& fpos);
         //----------------------------------

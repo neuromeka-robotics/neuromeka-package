@@ -193,6 +193,8 @@ PROTOBUF_CONSTEXPR MoveJReq::MoveJReq(::_pbi::ConstantInitialized)
       /*decltype(_impl_.vel_ratio_)*/ 0,
       /*decltype(_impl_.acc_ratio_)*/ 0,
       /*decltype(_impl_.teaching_mode_)*/ false,
+      /*decltype(_impl_.arm_index_presence_)*/ {},
+      /*decltype(_impl_._oneof_case_)*/ {},
     } {}
 struct MoveJReqDefaultTypeInternal {
   PROTOBUF_CONSTEXPR MoveJReqDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
@@ -215,6 +217,8 @@ PROTOBUF_CONSTEXPR MoveJCondReq::MoveJCondReq(::_pbi::ConstantInitialized)
       /*decltype(_impl_.vel_ratio_)*/ 0,
       /*decltype(_impl_.acc_ratio_)*/ 0,
       /*decltype(_impl_.teaching_mode_)*/ false,
+      /*decltype(_impl_.arm_index_presence_)*/ {},
+      /*decltype(_impl_._oneof_case_)*/ {},
     } {}
 struct MoveJCondReqDefaultTypeInternal {
   PROTOBUF_CONSTEXPR MoveJCondReqDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
@@ -235,6 +239,8 @@ PROTOBUF_CONSTEXPR MoveJTReq::MoveJTReq(::_pbi::ConstantInitialized)
       /*decltype(_impl_.blending_)*/ nullptr,
       /*decltype(_impl_.post_condition_)*/ nullptr,
       /*decltype(_impl_.time_)*/ 0,
+      /*decltype(_impl_.arm_index_presence_)*/ {},
+      /*decltype(_impl_._oneof_case_)*/ {},
     } {}
 struct MoveJTReqDefaultTypeInternal {
   PROTOBUF_CONSTEXPR MoveJTReqDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
@@ -1763,7 +1769,7 @@ const ::uint32_t TableStruct_control_5fmsgs_2eproto::offsets[] PROTOBUF_SECTION_
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::MoveJReq, _impl_._has_bits_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::MoveJReq, _internal_metadata_),
     ~0u,  // no _extensions_
-    ~0u,  // no _oneof_case_
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::MoveJReq, _impl_._oneof_case_[0]),
     ~0u,  // no _weak_field_map_
     ~0u,  // no _inlined_string_donated_
     ~0u,  // no _split_
@@ -1772,10 +1778,13 @@ const ::uint32_t TableStruct_control_5fmsgs_2eproto::offsets[] PROTOBUF_SECTION_
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::MoveJReq, _impl_.blending_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::MoveJReq, _impl_.vel_ratio_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::MoveJReq, _impl_.acc_ratio_),
+    ::_pbi::kInvalidFieldOffsetTag,
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::MoveJReq, _impl_.post_condition_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::MoveJReq, _impl_.teaching_mode_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::MoveJReq, _impl_.arm_index_presence_),
     0,
     1,
+    ~0u,
     ~0u,
     ~0u,
     2,
@@ -1783,7 +1792,7 @@ const ::uint32_t TableStruct_control_5fmsgs_2eproto::offsets[] PROTOBUF_SECTION_
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::MoveJCondReq, _impl_._has_bits_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::MoveJCondReq, _internal_metadata_),
     ~0u,  // no _extensions_
-    ~0u,  // no _oneof_case_
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::MoveJCondReq, _impl_._oneof_case_[0]),
     ~0u,  // no _weak_field_map_
     ~0u,  // no _inlined_string_donated_
     ~0u,  // no _split_
@@ -1792,10 +1801,13 @@ const ::uint32_t TableStruct_control_5fmsgs_2eproto::offsets[] PROTOBUF_SECTION_
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::MoveJCondReq, _impl_.blending_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::MoveJCondReq, _impl_.vel_ratio_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::MoveJCondReq, _impl_.acc_ratio_),
+    ::_pbi::kInvalidFieldOffsetTag,
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::MoveJCondReq, _impl_.post_condition_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::MoveJCondReq, _impl_.teaching_mode_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::MoveJCondReq, _impl_.arm_index_presence_),
     0,
     1,
+    ~0u,
     ~0u,
     ~0u,
     2,
@@ -1803,7 +1815,7 @@ const ::uint32_t TableStruct_control_5fmsgs_2eproto::offsets[] PROTOBUF_SECTION_
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::MoveJTReq, _impl_._has_bits_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::MoveJTReq, _internal_metadata_),
     ~0u,  // no _extensions_
-    ~0u,  // no _oneof_case_
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::MoveJTReq, _impl_._oneof_case_[0]),
     ~0u,  // no _weak_field_map_
     ~0u,  // no _inlined_string_donated_
     ~0u,  // no _split_
@@ -1811,9 +1823,12 @@ const ::uint32_t TableStruct_control_5fmsgs_2eproto::offsets[] PROTOBUF_SECTION_
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::MoveJTReq, _impl_.target_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::MoveJTReq, _impl_.blending_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::MoveJTReq, _impl_.time_),
+    ::_pbi::kInvalidFieldOffsetTag,
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::MoveJTReq, _impl_.post_condition_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::MoveJTReq, _impl_.arm_index_presence_),
     0,
     1,
+    ~0u,
     ~0u,
     2,
     ~0u,  // no _has_bits_
@@ -2784,81 +2799,81 @@ static const ::_pbi::MigrationSchema
         {60, 73, -1, sizeof(::Nrmk::IndyFramework::MotionCondition)},
         {78, -1, -1, sizeof(::Nrmk::IndyFramework::BlendingType)},
         {88, -1, -1, sizeof(::Nrmk::IndyFramework::TargetJ)},
-        {99, 113, -1, sizeof(::Nrmk::IndyFramework::MoveJReq)},
-        {119, 133, -1, sizeof(::Nrmk::IndyFramework::MoveJCondReq)},
-        {139, 151, -1, sizeof(::Nrmk::IndyFramework::MoveJTReq)},
-        {155, -1, -1, sizeof(::Nrmk::IndyFramework::TargetP)},
-        {166, -1, -1, sizeof(::Nrmk::IndyFramework::TargetC)},
-        {178, 195, -1, sizeof(::Nrmk::IndyFramework::MoveLReq)},
-        {204, 217, -1, sizeof(::Nrmk::IndyFramework::MoveLTReq)},
-        {222, -1, -1, sizeof(::Nrmk::IndyFramework::MoveAxisReq)},
-        {236, 256, -1, sizeof(::Nrmk::IndyFramework::MoveCReq)},
-        {268, 284, -1, sizeof(::Nrmk::IndyFramework::MoveCTReq)},
-        {292, -1, -1, sizeof(::Nrmk::IndyFramework::MoveJointTrajReq)},
-        {303, -1, -1, sizeof(::Nrmk::IndyFramework::MoveTaskTrajReq)},
-        {314, -1, -1, sizeof(::Nrmk::IndyFramework::MoveGcodeReq)},
-        {328, 340, -1, sizeof(::Nrmk::IndyFramework::MoveConveyorReq)},
-        {344, -1, -1, sizeof(::Nrmk::IndyFramework::WaitIOReq)},
-        {357, -1, -1, sizeof(::Nrmk::IndyFramework::WaitTimeReq)},
-        {366, -1, -1, sizeof(::Nrmk::IndyFramework::WaitProgressReq)},
-        {375, -1, -1, sizeof(::Nrmk::IndyFramework::WaitTrajReq)},
-        {384, -1, -1, sizeof(::Nrmk::IndyFramework::WaitRadiusReq)},
-        {393, 407, -1, sizeof(::Nrmk::IndyFramework::Program)},
-        {413, 425, -1, sizeof(::Nrmk::IndyFramework::TuningProgram)},
-        {429, -1, -1, sizeof(::Nrmk::IndyFramework::ProgramInfo)},
-        {440, -1, -1, sizeof(::Nrmk::IndyFramework::Variable)},
-        {452, -1, -1, sizeof(::Nrmk::IndyFramework::IntVariable)},
-        {462, -1, -1, sizeof(::Nrmk::IndyFramework::ModbusVariable)},
-        {474, -1, -1, sizeof(::Nrmk::IndyFramework::BoolVariable)},
-        {484, -1, -1, sizeof(::Nrmk::IndyFramework::FloatVariable)},
-        {494, -1, -1, sizeof(::Nrmk::IndyFramework::JPosVariable)},
-        {504, -1, -1, sizeof(::Nrmk::IndyFramework::TPosVariable)},
-        {514, -1, -1, sizeof(::Nrmk::IndyFramework::IOVariable)},
-        {525, -1, -1, sizeof(::Nrmk::IndyFramework::ModbusServer)},
-        {537, -1, -1, sizeof(::Nrmk::IndyFramework::ModbusVariableList)},
-        {546, -1, -1, sizeof(::Nrmk::IndyFramework::AllVars)},
-        {555, -1, -1, sizeof(::Nrmk::IndyFramework::IntVars)},
-        {564, -1, -1, sizeof(::Nrmk::IndyFramework::ModbusVars)},
-        {573, -1, -1, sizeof(::Nrmk::IndyFramework::BoolVars)},
-        {582, -1, -1, sizeof(::Nrmk::IndyFramework::FloatVars)},
-        {591, -1, -1, sizeof(::Nrmk::IndyFramework::JPosVars)},
-        {600, -1, -1, sizeof(::Nrmk::IndyFramework::TPosVars)},
-        {609, -1, -1, sizeof(::Nrmk::IndyFramework::IOVars)},
-        {618, -1, -1, sizeof(::Nrmk::IndyFramework::InverseKinematicsReq)},
-        {629, 640, -1, sizeof(::Nrmk::IndyFramework::InverseKinematicsRes)},
-        {643, -1, -1, sizeof(::Nrmk::IndyFramework::ForwardKinematicsReq)},
-        {653, 664, -1, sizeof(::Nrmk::IndyFramework::ForwardKinematicsRes)},
-        {667, -1, -1, sizeof(::Nrmk::IndyFramework::JointToTcpTransformReq)},
-        {679, 692, -1, sizeof(::Nrmk::IndyFramework::JointToTcpTransformRes)},
-        {697, -1, -1, sizeof(::Nrmk::IndyFramework::CheckAproachRetractValidReq)},
-        {710, 724, -1, sizeof(::Nrmk::IndyFramework::CheckAproachRetractValidRes)},
-        {730, -1, -1, sizeof(::Nrmk::IndyFramework::GetPalletPointListReq)},
-        {746, -1, -1, sizeof(::Nrmk::IndyFramework::PalletPoint)},
-        {758, 769, -1, sizeof(::Nrmk::IndyFramework::GetPalletPointListRes)},
-        {772, -1, -1, sizeof(::Nrmk::IndyFramework::CalculateRelativePoseReq)},
-        {783, 793, -1, sizeof(::Nrmk::IndyFramework::CalculateRelativePoseRes)},
-        {795, -1, -1, sizeof(::Nrmk::IndyFramework::CalculateCurrentPoseRelReq)},
-        {806, 816, -1, sizeof(::Nrmk::IndyFramework::CalculateCurrentPoseRelRes)},
-        {818, -1, -1, sizeof(::Nrmk::IndyFramework::TeleOpDevice)},
-        {831, -1, -1, sizeof(::Nrmk::IndyFramework::TeleOpState)},
-        {841, 852, -1, sizeof(::Nrmk::IndyFramework::TeleP)},
-        {855, 865, -1, sizeof(::Nrmk::IndyFramework::TeleOpFileList)},
-        {867, -1, -1, sizeof(::Nrmk::IndyFramework::TeleFileReq)},
-        {876, -1, -1, sizeof(::Nrmk::IndyFramework::TelePlayRate)},
-        {885, -1, -1, sizeof(::Nrmk::IndyFramework::MoveTeleJReq)},
-        {897, -1, -1, sizeof(::Nrmk::IndyFramework::MoveTeleLReq)},
-        {910, -1, -1, sizeof(::Nrmk::IndyFramework::ForceModeReq)},
-        {922, 937, -1, sizeof(::Nrmk::IndyFramework::TransformedFTSensorData)},
-        {944, -1, -1, sizeof(::Nrmk::IndyFramework::ComplianceMode)},
-        {954, -1, -1, sizeof(::Nrmk::IndyFramework::BusEvent)},
-        {967, -1, -1, sizeof(::Nrmk::IndyFramework::CatchBusEventReq)},
-        {977, 991, -1, sizeof(::Nrmk::IndyFramework::GetMotionJReq)},
-        {997, 1013, -1, sizeof(::Nrmk::IndyFramework::GetMotionLReq)},
-        {1021, 1040, -1, sizeof(::Nrmk::IndyFramework::GetMotionCReq)},
-        {1051, -1, -1, sizeof(::Nrmk::IndyFramework::GetMotionRes)},
-        {1062, 1079, -1, sizeof(::Nrmk::IndyFramework::MoveLFReq)},
-        {1088, -1, -1, sizeof(::Nrmk::IndyFramework::MoveFLRes)},
-        {1097, -1, -1, sizeof(::Nrmk::IndyFramework::ControlInferenceDataSet)},
+        {99, 115, -1, sizeof(::Nrmk::IndyFramework::MoveJReq)},
+        {122, 138, -1, sizeof(::Nrmk::IndyFramework::MoveJCondReq)},
+        {145, 159, -1, sizeof(::Nrmk::IndyFramework::MoveJTReq)},
+        {164, -1, -1, sizeof(::Nrmk::IndyFramework::TargetP)},
+        {175, -1, -1, sizeof(::Nrmk::IndyFramework::TargetC)},
+        {187, 204, -1, sizeof(::Nrmk::IndyFramework::MoveLReq)},
+        {213, 226, -1, sizeof(::Nrmk::IndyFramework::MoveLTReq)},
+        {231, -1, -1, sizeof(::Nrmk::IndyFramework::MoveAxisReq)},
+        {245, 265, -1, sizeof(::Nrmk::IndyFramework::MoveCReq)},
+        {277, 293, -1, sizeof(::Nrmk::IndyFramework::MoveCTReq)},
+        {301, -1, -1, sizeof(::Nrmk::IndyFramework::MoveJointTrajReq)},
+        {312, -1, -1, sizeof(::Nrmk::IndyFramework::MoveTaskTrajReq)},
+        {323, -1, -1, sizeof(::Nrmk::IndyFramework::MoveGcodeReq)},
+        {337, 349, -1, sizeof(::Nrmk::IndyFramework::MoveConveyorReq)},
+        {353, -1, -1, sizeof(::Nrmk::IndyFramework::WaitIOReq)},
+        {366, -1, -1, sizeof(::Nrmk::IndyFramework::WaitTimeReq)},
+        {375, -1, -1, sizeof(::Nrmk::IndyFramework::WaitProgressReq)},
+        {384, -1, -1, sizeof(::Nrmk::IndyFramework::WaitTrajReq)},
+        {393, -1, -1, sizeof(::Nrmk::IndyFramework::WaitRadiusReq)},
+        {402, 416, -1, sizeof(::Nrmk::IndyFramework::Program)},
+        {422, 434, -1, sizeof(::Nrmk::IndyFramework::TuningProgram)},
+        {438, -1, -1, sizeof(::Nrmk::IndyFramework::ProgramInfo)},
+        {449, -1, -1, sizeof(::Nrmk::IndyFramework::Variable)},
+        {461, -1, -1, sizeof(::Nrmk::IndyFramework::IntVariable)},
+        {471, -1, -1, sizeof(::Nrmk::IndyFramework::ModbusVariable)},
+        {483, -1, -1, sizeof(::Nrmk::IndyFramework::BoolVariable)},
+        {493, -1, -1, sizeof(::Nrmk::IndyFramework::FloatVariable)},
+        {503, -1, -1, sizeof(::Nrmk::IndyFramework::JPosVariable)},
+        {513, -1, -1, sizeof(::Nrmk::IndyFramework::TPosVariable)},
+        {523, -1, -1, sizeof(::Nrmk::IndyFramework::IOVariable)},
+        {534, -1, -1, sizeof(::Nrmk::IndyFramework::ModbusServer)},
+        {546, -1, -1, sizeof(::Nrmk::IndyFramework::ModbusVariableList)},
+        {555, -1, -1, sizeof(::Nrmk::IndyFramework::AllVars)},
+        {564, -1, -1, sizeof(::Nrmk::IndyFramework::IntVars)},
+        {573, -1, -1, sizeof(::Nrmk::IndyFramework::ModbusVars)},
+        {582, -1, -1, sizeof(::Nrmk::IndyFramework::BoolVars)},
+        {591, -1, -1, sizeof(::Nrmk::IndyFramework::FloatVars)},
+        {600, -1, -1, sizeof(::Nrmk::IndyFramework::JPosVars)},
+        {609, -1, -1, sizeof(::Nrmk::IndyFramework::TPosVars)},
+        {618, -1, -1, sizeof(::Nrmk::IndyFramework::IOVars)},
+        {627, -1, -1, sizeof(::Nrmk::IndyFramework::InverseKinematicsReq)},
+        {638, 649, -1, sizeof(::Nrmk::IndyFramework::InverseKinematicsRes)},
+        {652, -1, -1, sizeof(::Nrmk::IndyFramework::ForwardKinematicsReq)},
+        {662, 673, -1, sizeof(::Nrmk::IndyFramework::ForwardKinematicsRes)},
+        {676, -1, -1, sizeof(::Nrmk::IndyFramework::JointToTcpTransformReq)},
+        {688, 701, -1, sizeof(::Nrmk::IndyFramework::JointToTcpTransformRes)},
+        {706, -1, -1, sizeof(::Nrmk::IndyFramework::CheckAproachRetractValidReq)},
+        {719, 733, -1, sizeof(::Nrmk::IndyFramework::CheckAproachRetractValidRes)},
+        {739, -1, -1, sizeof(::Nrmk::IndyFramework::GetPalletPointListReq)},
+        {755, -1, -1, sizeof(::Nrmk::IndyFramework::PalletPoint)},
+        {767, 778, -1, sizeof(::Nrmk::IndyFramework::GetPalletPointListRes)},
+        {781, -1, -1, sizeof(::Nrmk::IndyFramework::CalculateRelativePoseReq)},
+        {792, 802, -1, sizeof(::Nrmk::IndyFramework::CalculateRelativePoseRes)},
+        {804, -1, -1, sizeof(::Nrmk::IndyFramework::CalculateCurrentPoseRelReq)},
+        {815, 825, -1, sizeof(::Nrmk::IndyFramework::CalculateCurrentPoseRelRes)},
+        {827, -1, -1, sizeof(::Nrmk::IndyFramework::TeleOpDevice)},
+        {840, -1, -1, sizeof(::Nrmk::IndyFramework::TeleOpState)},
+        {850, 861, -1, sizeof(::Nrmk::IndyFramework::TeleP)},
+        {864, 874, -1, sizeof(::Nrmk::IndyFramework::TeleOpFileList)},
+        {876, -1, -1, sizeof(::Nrmk::IndyFramework::TeleFileReq)},
+        {885, -1, -1, sizeof(::Nrmk::IndyFramework::TelePlayRate)},
+        {894, -1, -1, sizeof(::Nrmk::IndyFramework::MoveTeleJReq)},
+        {906, -1, -1, sizeof(::Nrmk::IndyFramework::MoveTeleLReq)},
+        {919, -1, -1, sizeof(::Nrmk::IndyFramework::ForceModeReq)},
+        {931, 946, -1, sizeof(::Nrmk::IndyFramework::TransformedFTSensorData)},
+        {953, -1, -1, sizeof(::Nrmk::IndyFramework::ComplianceMode)},
+        {963, -1, -1, sizeof(::Nrmk::IndyFramework::BusEvent)},
+        {976, -1, -1, sizeof(::Nrmk::IndyFramework::CatchBusEventReq)},
+        {986, 1000, -1, sizeof(::Nrmk::IndyFramework::GetMotionJReq)},
+        {1006, 1022, -1, sizeof(::Nrmk::IndyFramework::GetMotionLReq)},
+        {1030, 1049, -1, sizeof(::Nrmk::IndyFramework::GetMotionCReq)},
+        {1060, -1, -1, sizeof(::Nrmk::IndyFramework::GetMotionRes)},
+        {1071, 1088, -1, sizeof(::Nrmk::IndyFramework::MoveLFReq)},
+        {1097, -1, -1, sizeof(::Nrmk::IndyFramework::MoveFLRes)},
+        {1106, -1, -1, sizeof(::Nrmk::IndyFramework::ControlInferenceDataSet)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -2982,269 +2997,272 @@ const char descriptor_table_protodef_control_5fmsgs_2eproto[] PROTOBUF_SECTION_V
     "e\022\010\n\004NONE\020\000\022\014\n\010OVERRIDE\020\001\022\r\n\tDUPLICATE\020\002"
     "\"b\n\007TargetJ\022\017\n\007j_start\030\001 \003(\002\022\020\n\010j_target"
     "\030\002 \003(\002\0224\n\tbase_type\030\003 \001(\0162!.Nrmk.IndyFra"
-    "mework.JointBaseType\"\345\001\n\010MoveJReq\022+\n\006tar"
+    "mework.JointBaseType\"\220\002\n\010MoveJReq\022+\n\006tar"
     "get\030\001 \001(\0132\033.Nrmk.IndyFramework.TargetJ\0222"
     "\n\010blending\030\002 \001(\0132 .Nrmk.IndyFramework.Bl"
     "endingType\022\021\n\tvel_ratio\030\003 \001(\002\022\021\n\tacc_rat"
-    "io\030\004 \001(\002\022;\n\016post_condition\030\024 \001(\0132#.Nrmk."
-    "IndyFramework.MotionCondition\022\025\n\rteachin"
-    "g_mode\030\036 \001(\010\"\351\001\n\014MoveJCondReq\022+\n\006target\030"
-    "\001 \001(\0132\033.Nrmk.IndyFramework.TargetJ\0222\n\010bl"
-    "ending\030\002 \001(\0132 .Nrmk.IndyFramework.Blendi"
-    "ngType\022\021\n\tvel_ratio\030\003 \001(\002\022\021\n\tacc_ratio\030\004"
-    " \001(\002\022;\n\016post_condition\030\024 \001(\0132#.Nrmk.Indy"
-    "Framework.MotionCondition\022\025\n\rteaching_mo"
-    "de\030\036 \001(\010\"\267\001\n\tMoveJTReq\022+\n\006target\030\001 \001(\0132\033"
-    ".Nrmk.IndyFramework.TargetJ\0222\n\010blending\030"
-    "\002 \001(\0132 .Nrmk.IndyFramework.BlendingType\022"
-    "\014\n\004time\030\003 \001(\002\022;\n\016post_condition\030\024 \001(\0132#."
-    "Nrmk.IndyFramework.MotionCondition\"a\n\007Ta"
-    "rgetP\022\017\n\007t_start\030\001 \003(\002\022\020\n\010t_target\030\002 \003(\002"
-    "\0223\n\tbase_type\030\003 \001(\0162 .Nrmk.IndyFramework"
-    ".TaskBaseType\"o\n\007TargetC\022\017\n\007t_start\030\001 \003("
-    "\002\022\016\n\006t_pos0\030\002 \003(\002\022\016\n\006t_pos1\030\003 \003(\002\0223\n\tbas"
-    "e_type\030\004 \001(\0162 .Nrmk.IndyFramework.TaskBa"
-    "seType\"\311\002\n\010MoveLReq\022+\n\006target\030\001 \001(\0132\033.Nr"
-    "mk.IndyFramework.TargetP\0222\n\010blending\030\002 \001"
-    "(\0132 .Nrmk.IndyFramework.BlendingType\022\021\n\t"
-    "vel_ratio\030\003 \001(\002\022\021\n\tacc_ratio\030\004 \001(\002\0226\n\010ve"
-    "l_type\030\005 \001(\0162$.Nrmk.IndyFramework.Veloci"
-    "tyModeType\022\021\n\tarm_index\030\n \001(\005\022;\n\016post_co"
+    "io\030\004 \001(\002\022\023\n\tarm_index\030\n \001(\005H\000\022;\n\016post_co"
     "ndition\030\024 \001(\0132#.Nrmk.IndyFramework.Motio"
-    "nCondition\022\025\n\rteaching_mode\030\036 \001(\010\022\027\n\017byp"
-    "ass_singular\030( \001(\010\"\312\001\n\tMoveLTReq\022+\n\006targ"
-    "et\030\001 \001(\0132\033.Nrmk.IndyFramework.TargetP\0222\n"
+    "nCondition\022\025\n\rteaching_mode\030\036 \001(\010B\024\n\022arm"
+    "_index_presence\"\224\002\n\014MoveJCondReq\022+\n\006targ"
+    "et\030\001 \001(\0132\033.Nrmk.IndyFramework.TargetJ\0222\n"
     "\010blending\030\002 \001(\0132 .Nrmk.IndyFramework.Ble"
-    "ndingType\022\014\n\004time\030\003 \001(\002\022\021\n\tarm_index\030\n \001"
-    "(\005\022;\n\016post_condition\030\024 \001(\0132#.Nrmk.IndyFr"
-    "amework.MotionCondition\"\216\001\n\013MoveAxisReq\022"
-    "\020\n\010start_mm\030\001 \003(\002\022\021\n\ttarget_mm\030\002 \003(\002\022\026\n\016"
-    "vel_percentage\030\003 \001(\002\022\026\n\016acc_percentage\030\004"
-    " \001(\002\022\023\n\013is_absolute\030\005 \001(\010\022\025\n\rteaching_mo"
-    "de\030\n \001(\010\"\322\003\n\010MoveCReq\022+\n\006target\030\001 \001(\0132\033."
-    "Nrmk.IndyFramework.TargetC\0222\n\010blending\030\002"
-    " \001(\0132 .Nrmk.IndyFramework.BlendingType\022\r"
-    "\n\005angle\030\003 \001(\002\022=\n\014setting_type\030\n \001(\0162\'.Nr"
-    "mk.IndyFramework.CircularSettingType\0229\n\t"
-    "move_type\030\013 \001(\0162&.Nrmk.IndyFramework.Cir"
-    "cularMovingType\022\021\n\tarm_index\030\017 \001(\005\022\021\n\tve"
-    "l_ratio\030\024 \001(\002\022\021\n\tacc_ratio\030\025 \001(\002\0226\n\010vel_"
-    "type\030\026 \001(\0162$.Nrmk.IndyFramework.Velocity"
-    "ModeType\022;\n\016post_condition\030\031 \001(\0132#.Nrmk."
-    "IndyFramework.MotionCondition\022\025\n\rteachin"
-    "g_mode\030\036 \001(\010\022\027\n\017bypass_singular\030( \001(\010\"\323\002"
-    "\n\tMoveCTReq\022+\n\006target\030\001 \001(\0132\033.Nrmk.IndyF"
-    "ramework.TargetC\0222\n\010blending\030\002 \001(\0132 .Nrm"
-    "k.IndyFramework.BlendingType\022\r\n\005angle\030\003 "
-    "\001(\002\022=\n\014setting_type\030\n \001(\0162\'.Nrmk.IndyFra"
-    "mework.CircularSettingType\0229\n\tmove_type\030"
-    "\013 \001(\0162&.Nrmk.IndyFramework.CircularMovin"
-    "gType\022\021\n\tarm_index\030\017 \001(\005\022\014\n\004time\030\024 \001(\002\022;"
-    "\n\016post_condition\030\031 \001(\0132#.Nrmk.IndyFramew"
-    "ork.MotionCondition\"\235\001\n\020MoveJointTrajReq"
-    "\022*\n\006q_list\030\001 \003(\0132\032.Nrmk.IndyFramework.Ve"
-    "ctor\022-\n\tqdot_list\030\002 \003(\0132\032.Nrmk.IndyFrame"
-    "work.Vector\022.\n\nqddot_list\030\003 \003(\0132\032.Nrmk.I"
-    "ndyFramework.Vector\"\234\001\n\017MoveTaskTrajReq\022"
-    "*\n\006p_list\030\001 \003(\0132\032.Nrmk.IndyFramework.Vec"
-    "tor\022-\n\tpdot_list\030\002 \003(\0132\032.Nrmk.IndyFramew"
-    "ork.Vector\022.\n\npddot_list\030\003 \003(\0132\032.Nrmk.In"
-    "dyFramework.Vector\"\212\001\n\014MoveGcodeReq\022\022\n\ng"
-    "code_file\030\001 \001(\t\022\026\n\016is_smooth_mode\030\002 \001(\010\022"
-    "\025\n\rsmooth_radius\030\003 \001(\002\022\021\n\tvel_ratio\030\004 \001("
-    "\002\022\021\n\tacc_ratio\030\005 \001(\002\022\021\n\tarm_index\030\n \001(\005\""
-    "\221\001\n\017MoveConveyorReq\022\025\n\rteaching_mode\030\001 \001"
-    "(\010\022\027\n\017bypass_singular\030\002 \001(\010\022\021\n\tacc_ratio"
-    "\030\003 \001(\002\022;\n\016post_condition\030\n \001(\0132#.Nrmk.In"
-    "dyFramework.MotionCondition\"\370\001\n\tWaitIORe"
-    "q\0222\n\007di_list\030\001 \003(\0132!.Nrmk.IndyFramework."
-    "DigitalSignal\0222\n\007do_list\030\002 \003(\0132!.Nrmk.In"
-    "dyFramework.DigitalSignal\0226\n\013end_di_list"
-    "\030\003 \003(\0132!.Nrmk.IndyFramework.DigitalSigna"
-    "l\0226\n\013end_do_list\030\004 \003(\0132!.Nrmk.IndyFramew"
-    "ork.DigitalSignal\022\023\n\013conjunction\030\005 \001(\005\"\033"
-    "\n\013WaitTimeReq\022\014\n\004time\030\001 \001(\002\"#\n\017WaitProgr"
-    "essReq\022\020\n\010progress\030\001 \001(\005\"H\n\013WaitTrajReq\022"
-    "9\n\016traj_condition\030\001 \001(\0162!.Nrmk.IndyFrame"
-    "work.TrajCondition\"\037\n\rWaitRadiusReq\022\016\n\006r"
-    "adius\030\001 \001(\005\"\315\001\n\007Program\022\021\n\tprog_name\030\001 \001"
-    "(\t\022\020\n\010prog_idx\030\002 \001(\005\0229\n\020start_line_index"
-    "\030\013 \001(\0132\037.Nrmk.IndyFramework.ProgramLine\022"
-    "7\n\016end_line_index\030\014 \001(\0132\037.Nrmk.IndyFrame"
-    "work.ProgramLine\022\025\n\rteaching_mode\030\024 \001(\010\022"
-    "\022\n\ndebug_mode\030\036 \001(\010\"\303\001\n\rTuningProgram\022,\n"
-    "\007program\030\001 \001(\0132\033.Nrmk.IndyFramework.Prog"
-    "ram\0225\n\014tuning_space\030\002 \001(\0162\037.Nrmk.IndyFra"
-    "mework.TuningSpace\0226\n\tprecision\030\003 \001(\0162#."
-    "Nrmk.IndyFramework.TuningPrecision\022\025\n\rve"
-    "l_level_max\030\004 \001(\r\"<\n\013ProgramInfo\022\014\n\004path"
-    "\030\001 \001(\t\022\014\n\004size\030\002 \001(\004\022\021\n\ttimestamp\030\003 \001(\t\""
-    "I\n\010Variable\022\014\n\004name\030\001 \001(\t\022\014\n\004addr\030\002 \001(\005\022"
-    "\014\n\004type\030\003 \001(\t\022\023\n\013in_watching\030\004 \001(\010\"*\n\013In"
-    "tVariable\022\014\n\004addr\030\001 \001(\005\022\r\n\005value\030\002 \001(\003\"\317"
-    "\001\n\016ModbusVariable\022\014\n\004name\030\001 \001(\t\022\014\n\004addr\030"
-    "\002 \001(\005\022\r\n\005value\030\003 \001(\005\022B\n\013signal_type\030\004 \001("
-    "\0162-.Nrmk.IndyFramework.ModbusVariable.Si"
-    "gnalType\"N\n\nSignalType\022\014\n\010ReadCoil\020\000\022\r\n\t"
-    "WriteCoil\020\001\022\020\n\014ReadRegister\020\002\022\021\n\rWriteRe"
-    "gister\020\003\"+\n\014BoolVariable\022\014\n\004addr\030\001 \001(\005\022\r"
-    "\n\005value\030\002 \001(\010\",\n\rFloatVariable\022\014\n\004addr\030\001"
-    " \001(\005\022\r\n\005value\030\002 \001(\002\"*\n\014JPosVariable\022\014\n\004a"
-    "ddr\030\001 \001(\005\022\014\n\004jpos\030\002 \003(\002\"*\n\014TPosVariable\022"
-    "\014\n\004addr\030\001 \001(\005\022\014\n\004tpos\030\002 \003(\002\"\303\001\n\nIOVariab"
-    "le\022\014\n\004addr\030\001 \001(\005\022\r\n\005value\030\002 \001(\002\022>\n\013signa"
-    "l_type\030\003 \001(\0162).Nrmk.IndyFramework.IOVari"
-    "able.SignalType\"X\n\nSignalType\022\006\n\002DI\020\000\022\006\n"
-    "\002DO\020\001\022\006\n\002AI\020\002\022\006\n\002AO\020\003\022\t\n\005EndDI\020\004\022\t\n\005EndD"
-    "O\020\005\022\t\n\005EndAI\020\006\022\t\n\005EndAO\020\007\"x\n\014ModbusServe"
-    "r\022\023\n\013server_name\030\001 \001(\t\022\n\n\002ip\030\002 \001(\t\022\014\n\004po"
-    "rt\030\003 \001(\005\0229\n\rvariable_list\030\004 \003(\0132\".Nrmk.I"
-    "ndyFramework.ModbusVariable\"P\n\022ModbusVar"
-    "iableList\022:\n\020modbus_variables\030\001 \003(\0132 .Nr"
-    "mk.IndyFramework.ModbusServer\":\n\007AllVars"
-    "\022/\n\tvariables\030\001 \003(\0132\034.Nrmk.IndyFramework"
-    ".Variable\"=\n\007IntVars\0222\n\tvariables\030\001 \003(\0132"
-    "\037.Nrmk.IndyFramework.IntVariable\"C\n\nModb"
-    "usVars\0225\n\tvariables\030\001 \003(\0132\".Nrmk.IndyFra"
-    "mework.ModbusVariable\"\?\n\010BoolVars\0223\n\tvar"
-    "iables\030\001 \003(\0132 .Nrmk.IndyFramework.BoolVa"
-    "riable\"A\n\tFloatVars\0224\n\tvariables\030\001 \003(\0132!"
-    ".Nrmk.IndyFramework.FloatVariable\"\?\n\010JPo"
-    "sVars\0223\n\tvariables\030\001 \003(\0132 .Nrmk.IndyFram"
-    "ework.JPosVariable\"\?\n\010TPosVars\0223\n\tvariab"
-    "les\030\001 \003(\0132 .Nrmk.IndyFramework.TPosVaria"
-    "ble\";\n\006IOVars\0221\n\tvariables\030\001 \003(\0132\036.Nrmk."
-    "IndyFramework.IOVariable\"J\n\024InverseKinem"
-    "aticsReq\022\014\n\004tpos\030\001 \003(\002\022\021\n\tinit_jpos\030\002 \003("
-    "\002\022\021\n\tarm_index\030\n \001(\005\"g\n\024InverseKinematic"
-    "sRes\022\014\n\004jpos\030\001 \003(\002\022\021\n\tarm_index\030\n \001(\005\022.\n"
-    "\010response\030d \001(\0132\034.Nrmk.IndyFramework.Res"
-    "ponse\"7\n\024ForwardKinematicsReq\022\014\n\004jpos\030\001 "
-    "\003(\002\022\021\n\tarm_index\030\n \001(\005\"g\n\024ForwardKinemat"
-    "icsRes\022\014\n\004tpos\030\001 \003(\002\022\021\n\tarm_index\030\n \001(\005\022"
-    ".\n\010response\030d \001(\0132\034.Nrmk.IndyFramework.R"
-    "esponse\"m\n\026JointToTcpTransformReq\022\014\n\004jpo"
-    "s\030\001 \003(\002\022\021\n\tjoint_idx\030\002 \001(\005\022\037\n\027joint_idx_"
-    "is_body_index\030\003 \001(\010\022\021\n\tarm_index\030\n \001(\005\"\235"
-    "\001\n\026JointToTcpTransformRes\022\024\n\014joint_to_tc"
-    "p\030\001 \003(\002\022\025\n\rbase_to_joint\030\002 \003(\002\022\023\n\013base_t"
-    "o_tcp\030\003 \003(\002\022\021\n\tarm_index\030\n \001(\005\022.\n\010respon"
-    "se\030d \001(\0132\034.Nrmk.IndyFramework.Response\"v"
-    "\n\033CheckAproachRetractValidReq\022\014\n\004tpos\030\001 "
-    "\003(\002\022\021\n\tinit_jpos\030\002 \003(\002\022\020\n\010pre_tpos\030\003 \003(\002"
-    "\022\021\n\tpost_tpos\030\004 \003(\002\022\021\n\tarm_index\030\n \001(\005\"\256"
-    "\001\n\033CheckAproachRetractValidRes\022\020\n\010is_val"
-    "id\030\001 \001(\010\022\017\n\007tar_pos\030\002 \003(\002\022\024\n\014approach_po"
-    "s\030\003 \003(\002\022\023\n\013retract_pos\030\004 \003(\002\022\021\n\tarm_inde"
-    "x\030\n \001(\005\022.\n\010response\030d \001(\0132\034.Nrmk.IndyFra"
-    "mework.Response\"\242\001\n\025GetPalletPointListRe"
-    "q\022\014\n\004tpos\030\001 \003(\002\022\014\n\004jpos\030\002 \003(\002\022\020\n\010pre_tpo"
-    "s\030\003 \003(\002\022\021\n\tpost_tpos\030\004 \003(\002\022\026\n\016pallet_pat"
-    "tern\030\005 \001(\005\022\r\n\005width\030\006 \001(\005\022\016\n\006height\030\007 \001("
-    "\005\022\021\n\tarm_index\030\n \001(\005\"[\n\013PalletPoint\022\017\n\007t"
-    "ar_pos\030\001 \003(\002\022\024\n\014approach_pos\030\002 \003(\002\022\023\n\013re"
-    "tract_pos\030\003 \003(\002\022\020\n\010tar_jpos\030\004 \003(\002\"\222\001\n\025Ge"
-    "tPalletPointListRes\0226\n\rpallet_points\030\001 \003"
-    "(\0132\037.Nrmk.IndyFramework.PalletPoint\022\021\n\ta"
-    "rm_index\030\n \001(\005\022.\n\010response\030d \001(\0132\034.Nrmk."
-    "IndyFramework.Response\"s\n\030CalculateRelat"
-    "ivePoseReq\022\021\n\tstart_pos\030\001 \003(\002\022\017\n\007end_pos"
-    "\030\002 \003(\002\0223\n\tbase_type\030\003 \001(\0162 .Nrmk.IndyFra"
-    "mework.TaskBaseType\"`\n\030CalculateRelative"
-    "PoseRes\022\024\n\014relative_pos\030\001 \003(\002\022.\n\010respons"
-    "e\030d \001(\0132\034.Nrmk.IndyFramework.Response\"|\n"
-    "\032CalculateCurrentPoseRelReq\022\023\n\013current_p"
-    "os\030\001 \003(\002\022\024\n\014relative_pos\030\002 \003(\002\0223\n\tbase_t"
-    "ype\030\003 \001(\0162 .Nrmk.IndyFramework.TaskBaseT"
-    "ype\"d\n\032CalculateCurrentPoseRelRes\022\026\n\016cal"
-    "culated_pos\030\001 \003(\002\022.\n\010response\030d \001(\0132\034.Nr"
-    "mk.IndyFramework.Response\"\262\001\n\014TeleOpDevi"
-    "ce\022\014\n\004name\030\001 \001(\t\022\?\n\004type\030\002 \001(\01621.Nrmk.In"
-    "dyFramework.TeleOpDevice.TeleOpDeviceTyp"
-    "e\022\n\n\002ip\030\003 \001(\t\022\014\n\004port\030\004 \001(\r\022\021\n\tconnected"
-    "\030\005 \001(\010\"&\n\020TeleOpDeviceType\022\010\n\004NONE\020\000\022\010\n\004"
-    "VIVE\020\001\"i\n\013TeleOpState\022*\n\004mode\030\001 \001(\0162\034.Nr"
-    "mk.IndyFramework.TeleMode\022.\n\006method\030\002 \001("
-    "\0162\036.Nrmk.IndyFramework.TeleMethod\"X\n\005Tel"
-    "eP\022\014\n\004tpos\030\001 \003(\002\022\021\n\tarm_index\030\024 \001(\005\022.\n\010r"
-    "esponse\030d \001(\0132\034.Nrmk.IndyFramework.Respo"
-    "nse\"O\n\016TeleOpFileList\022\r\n\005files\030\001 \003(\t\022.\n\010"
-    "response\030d \001(\0132\034.Nrmk.IndyFramework.Resp"
-    "onse\"\033\n\013TeleFileReq\022\014\n\004name\030\001 \001(\t\"\034\n\014Tel"
-    "ePlayRate\022\014\n\004rate\030\001 \001(\002\"r\n\014MoveTeleJReq\022"
-    "\014\n\004jpos\030\001 \003(\002\022\021\n\tvel_ratio\030\002 \001(\002\022\021\n\tacc_"
-    "ratio\030\003 \001(\002\022.\n\006method\030\n \001(\0162\036.Nrmk.IndyF"
-    "ramework.TeleMethod\"\205\001\n\014MoveTeleLReq\022\014\n\004"
-    "tpos\030\001 \003(\002\022\021\n\tvel_ratio\030\002 \001(\002\022\021\n\tacc_rat"
-    "io\030\003 \001(\002\022.\n\006method\030\n \001(\0162\036.Nrmk.IndyFram"
-    "ework.TeleMethod\022\021\n\tarm_index\030\024 \001(\005\"[\n\014F"
-    "orceModeReq\022\016\n\006enable\030\001 \001(\010\022\021\n\tdes_force"
-    "\030\002 \003(\002\022\025\n\renabled_force\030\003 \003(\010\022\021\n\tarm_ind"
-    "ex\030\024 \001(\005\"\243\001\n\027TransformedFTSensorData\022\r\n\005"
-    "ft_Fx\030\001 \001(\002\022\r\n\005ft_Fy\030\002 \001(\002\022\r\n\005ft_Fz\030\003 \001("
-    "\002\022\r\n\005ft_Tx\030\004 \001(\002\022\r\n\005ft_Ty\030\005 \001(\002\022\r\n\005ft_Tz"
-    "\030\006 \001(\002\022.\n\010response\030d \001(\0132\034.Nrmk.IndyFram"
-    "ework.Response\"3\n\016ComplianceMode\022\016\n\006enab"
-    "le\030\001 \001(\010\022\021\n\tstiffness\030\002 \003(\005\"_\n\010BusEvent\022"
-    "\020\n\010event_id\030\001 \001(\004\022\016\n\006b_data\030\002 \003(\010\022\016\n\006i_d"
-    "ata\030\003 \003(\005\022\016\n\006f_data\030\004 \003(\002\022\021\n\ttext_data\030\005"
-    " \001(\t\"5\n\020CatchBusEventReq\022\020\n\010event_id\030\001 \001"
-    "(\004\022\017\n\007timeout\030\002 \001(\002\"\353\001\n\rGetMotionJReq\0220\n"
-    "\013target_list\030\001 \003(\0132\033.Nrmk.IndyFramework."
-    "TargetJ\0222\n\010blending\030\002 \001(\0132 .Nrmk.IndyFra"
-    "mework.BlendingType\022\021\n\tvel_ratio\030\003 \001(\002\022\021"
-    "\n\tacc_ratio\030\004 \001(\002\022;\n\016post_condition\030\024 \001("
-    "\0132#.Nrmk.IndyFramework.MotionCondition\022\021"
-    "\n\ttime_step\030\036 \001(\002\"\266\002\n\rGetMotionLReq\0220\n\013t"
-    "arget_list\030\001 \003(\0132\033.Nrmk.IndyFramework.Ta"
-    "rgetP\0222\n\010blending\030\002 \001(\0132 .Nrmk.IndyFrame"
-    "work.BlendingType\022\021\n\tvel_ratio\030\003 \001(\002\022\021\n\t"
-    "acc_ratio\030\004 \001(\002\0226\n\010vel_type\030\005 \001(\0162$.Nrmk"
-    ".IndyFramework.VelocityModeType\022\021\n\tarm_i"
-    "ndex\030\n \001(\005\022;\n\016post_condition\030\024 \001(\0132#.Nrm"
-    "k.IndyFramework.MotionCondition\022\021\n\ttime_"
-    "step\030\036 \001(\002\"\272\003\n\rGetMotionCReq\022+\n\006target\030\001"
-    " \001(\0132\033.Nrmk.IndyFramework.TargetC\0222\n\010ble"
-    "nding\030\002 \001(\0132 .Nrmk.IndyFramework.Blendin"
-    "gType\022\r\n\005angle\030\003 \001(\002\022=\n\014setting_type\030\n \001"
-    "(\0162\'.Nrmk.IndyFramework.CircularSettingT"
-    "ype\0229\n\tmove_type\030\013 \001(\0162&.Nrmk.IndyFramew"
-    "ork.CircularMovingType\022\021\n\tarm_index\030\017 \001("
-    "\005\022\021\n\tvel_ratio\030\024 \001(\002\022\021\n\tacc_ratio\030\025 \001(\002\022"
-    "6\n\010vel_type\030\026 \001(\0162$.Nrmk.IndyFramework.V"
-    "elocityModeType\022;\n\016post_condition\030\031 \001(\0132"
-    "#.Nrmk.IndyFramework.MotionCondition\022\021\n\t"
-    "time_step\030\036 \001(\002\"|\n\014GetMotionRes\022\021\n\ttimes"
-    "tamp\030\001 \003(\002\022*\n\006q_list\030\002 \003(\0132\032.Nrmk.IndyFr"
-    "amework.Vector\022-\n\tqdot_list\030\003 \003(\0132\032.Nrmk"
-    ".IndyFramework.Vector\"\310\002\n\tMoveLFReq\022+\n\006t"
-    "arget\030\001 \001(\0132\033.Nrmk.IndyFramework.TargetP"
-    "\0222\n\010blending\030\002 \001(\0132 .Nrmk.IndyFramework."
-    "BlendingType\022\021\n\tvel_ratio\030\003 \001(\002\022\021\n\tacc_r"
-    "atio\030\004 \001(\002\0226\n\010vel_type\030\005 \001(\0162$.Nrmk.Indy"
-    "Framework.VelocityModeType\022\021\n\tdes_force\030"
-    "\006 \003(\002\022\025\n\renabled_force\030\007 \003(\010\022;\n\016post_con"
+    "ndingType\022\021\n\tvel_ratio\030\003 \001(\002\022\021\n\tacc_rati"
+    "o\030\004 \001(\002\022\023\n\tarm_index\030\n \001(\005H\000\022;\n\016post_con"
     "dition\030\024 \001(\0132#.Nrmk.IndyFramework.Motion"
-    "Condition\022\025\n\rteaching_mode\030\036 \001(\010\"\030\n\tMove"
-    "FLRes\022\013\n\003msg\030d \001(\t\"\205\001\n\027ControlInferenceD"
-    "ataSet\022\020\n\010infdata0\030\001 \003(\002\022\020\n\010infdata1\030\002 \003"
-    "(\002\022\020\n\010infdata2\030\003 \003(\002\022\020\n\010infdata3\030\004 \003(\002\022\020"
-    "\n\010infdata4\030\005 \003(\002\022\020\n\010infdata5\030\006 \003(\002*7\n\rJo"
-    "intBaseType\022\022\n\016ABSOLUTE_JOINT\020\000\022\022\n\016RELAT"
-    "IVE_JOINT\020\001*B\n\014TaskBaseType\022\021\n\rABSOLUTE_"
-    "TASK\020\000\022\021\n\rRELATIVE_TASK\020\001\022\014\n\010TCP_TASK\020\002*"
-    "J\n\020VelocityModeType\022\021\n\rTIME_ORIENTED\020\000\022\021"
-    "\n\rDISP_ORIENTED\020\001\022\020\n\014ROT_ORIENTED\020\002*5\n\023C"
-    "ircularSettingType\022\r\n\tPOINT_SET\020\000\022\017\n\013CEN"
-    "TER_AXIS\020\001*:\n\022CircularMovingType\022\014\n\010CONS"
-    "TANT\020\000\022\n\n\006RADIAL\020\001\022\n\n\006SMOOTH\020\002*j\n\010TeleMo"
-    "de\022\021\n\rTELE_INACTIVE\020\000\022\016\n\nTELE_CALIB\020\001\022\017\n"
-    "\013TELE_RECORD\020\002\022\r\n\tTELE_PLAY\020\003\022\014\n\010TELE_RA"
-    "W\020\n\022\r\n\tTELE_MOVE\020\024*\233\001\n\nTeleMethod\022\026\n\022TEL"
-    "E_TASK_ABSOLUTE\020\000\022\026\n\022TELE_TASK_RELATIVE\020"
-    "\001\022\021\n\rTELE_TASK_TCP\020\002\022\027\n\023TELE_JOINT_ABSOL"
-    "UTE\020\n\022\027\n\023TELE_JOINT_RELATIVE\020\013\022\030\n\024TELE_R"
-    "ECORD_ABSOLUTE\020\024b\006proto3"
+    "Condition\022\025\n\rteaching_mode\030\036 \001(\010B\024\n\022arm_"
+    "index_presence\"\342\001\n\tMoveJTReq\022+\n\006target\030\001"
+    " \001(\0132\033.Nrmk.IndyFramework.TargetJ\0222\n\010ble"
+    "nding\030\002 \001(\0132 .Nrmk.IndyFramework.Blendin"
+    "gType\022\014\n\004time\030\003 \001(\002\022\023\n\tarm_index\030\n \001(\005H\000"
+    "\022;\n\016post_condition\030\024 \001(\0132#.Nrmk.IndyFram"
+    "ework.MotionConditionB\024\n\022arm_index_prese"
+    "nce\"a\n\007TargetP\022\017\n\007t_start\030\001 \003(\002\022\020\n\010t_tar"
+    "get\030\002 \003(\002\0223\n\tbase_type\030\003 \001(\0162 .Nrmk.Indy"
+    "Framework.TaskBaseType\"o\n\007TargetC\022\017\n\007t_s"
+    "tart\030\001 \003(\002\022\016\n\006t_pos0\030\002 \003(\002\022\016\n\006t_pos1\030\003 \003"
+    "(\002\0223\n\tbase_type\030\004 \001(\0162 .Nrmk.IndyFramewo"
+    "rk.TaskBaseType\"\311\002\n\010MoveLReq\022+\n\006target\030\001"
+    " \001(\0132\033.Nrmk.IndyFramework.TargetP\0222\n\010ble"
+    "nding\030\002 \001(\0132 .Nrmk.IndyFramework.Blendin"
+    "gType\022\021\n\tvel_ratio\030\003 \001(\002\022\021\n\tacc_ratio\030\004 "
+    "\001(\002\0226\n\010vel_type\030\005 \001(\0162$.Nrmk.IndyFramewo"
+    "rk.VelocityModeType\022\021\n\tarm_index\030\n \001(\005\022;"
+    "\n\016post_condition\030\024 \001(\0132#.Nrmk.IndyFramew"
+    "ork.MotionCondition\022\025\n\rteaching_mode\030\036 \001"
+    "(\010\022\027\n\017bypass_singular\030( \001(\010\"\312\001\n\tMoveLTRe"
+    "q\022+\n\006target\030\001 \001(\0132\033.Nrmk.IndyFramework.T"
+    "argetP\0222\n\010blending\030\002 \001(\0132 .Nrmk.IndyFram"
+    "ework.BlendingType\022\014\n\004time\030\003 \001(\002\022\021\n\tarm_"
+    "index\030\n \001(\005\022;\n\016post_condition\030\024 \001(\0132#.Nr"
+    "mk.IndyFramework.MotionCondition\"\216\001\n\013Mov"
+    "eAxisReq\022\020\n\010start_mm\030\001 \003(\002\022\021\n\ttarget_mm\030"
+    "\002 \003(\002\022\026\n\016vel_percentage\030\003 \001(\002\022\026\n\016acc_per"
+    "centage\030\004 \001(\002\022\023\n\013is_absolute\030\005 \001(\010\022\025\n\rte"
+    "aching_mode\030\n \001(\010\"\322\003\n\010MoveCReq\022+\n\006target"
+    "\030\001 \001(\0132\033.Nrmk.IndyFramework.TargetC\0222\n\010b"
+    "lending\030\002 \001(\0132 .Nrmk.IndyFramework.Blend"
+    "ingType\022\r\n\005angle\030\003 \001(\002\022=\n\014setting_type\030\n"
+    " \001(\0162\'.Nrmk.IndyFramework.CircularSettin"
+    "gType\0229\n\tmove_type\030\013 \001(\0162&.Nrmk.IndyFram"
+    "ework.CircularMovingType\022\021\n\tarm_index\030\017 "
+    "\001(\005\022\021\n\tvel_ratio\030\024 \001(\002\022\021\n\tacc_ratio\030\025 \001("
+    "\002\0226\n\010vel_type\030\026 \001(\0162$.Nrmk.IndyFramework"
+    ".VelocityModeType\022;\n\016post_condition\030\031 \001("
+    "\0132#.Nrmk.IndyFramework.MotionCondition\022\025"
+    "\n\rteaching_mode\030\036 \001(\010\022\027\n\017bypass_singular"
+    "\030( \001(\010\"\323\002\n\tMoveCTReq\022+\n\006target\030\001 \001(\0132\033.N"
+    "rmk.IndyFramework.TargetC\0222\n\010blending\030\002 "
+    "\001(\0132 .Nrmk.IndyFramework.BlendingType\022\r\n"
+    "\005angle\030\003 \001(\002\022=\n\014setting_type\030\n \001(\0162\'.Nrm"
+    "k.IndyFramework.CircularSettingType\0229\n\tm"
+    "ove_type\030\013 \001(\0162&.Nrmk.IndyFramework.Circ"
+    "ularMovingType\022\021\n\tarm_index\030\017 \001(\005\022\014\n\004tim"
+    "e\030\024 \001(\002\022;\n\016post_condition\030\031 \001(\0132#.Nrmk.I"
+    "ndyFramework.MotionCondition\"\235\001\n\020MoveJoi"
+    "ntTrajReq\022*\n\006q_list\030\001 \003(\0132\032.Nrmk.IndyFra"
+    "mework.Vector\022-\n\tqdot_list\030\002 \003(\0132\032.Nrmk."
+    "IndyFramework.Vector\022.\n\nqddot_list\030\003 \003(\013"
+    "2\032.Nrmk.IndyFramework.Vector\"\234\001\n\017MoveTas"
+    "kTrajReq\022*\n\006p_list\030\001 \003(\0132\032.Nrmk.IndyFram"
+    "ework.Vector\022-\n\tpdot_list\030\002 \003(\0132\032.Nrmk.I"
+    "ndyFramework.Vector\022.\n\npddot_list\030\003 \003(\0132"
+    "\032.Nrmk.IndyFramework.Vector\"\212\001\n\014MoveGcod"
+    "eReq\022\022\n\ngcode_file\030\001 \001(\t\022\026\n\016is_smooth_mo"
+    "de\030\002 \001(\010\022\025\n\rsmooth_radius\030\003 \001(\002\022\021\n\tvel_r"
+    "atio\030\004 \001(\002\022\021\n\tacc_ratio\030\005 \001(\002\022\021\n\tarm_ind"
+    "ex\030\n \001(\005\"\221\001\n\017MoveConveyorReq\022\025\n\rteaching"
+    "_mode\030\001 \001(\010\022\027\n\017bypass_singular\030\002 \001(\010\022\021\n\t"
+    "acc_ratio\030\003 \001(\002\022;\n\016post_condition\030\n \001(\0132"
+    "#.Nrmk.IndyFramework.MotionCondition\"\370\001\n"
+    "\tWaitIOReq\0222\n\007di_list\030\001 \003(\0132!.Nrmk.IndyF"
+    "ramework.DigitalSignal\0222\n\007do_list\030\002 \003(\0132"
+    "!.Nrmk.IndyFramework.DigitalSignal\0226\n\013en"
+    "d_di_list\030\003 \003(\0132!.Nrmk.IndyFramework.Dig"
+    "italSignal\0226\n\013end_do_list\030\004 \003(\0132!.Nrmk.I"
+    "ndyFramework.DigitalSignal\022\023\n\013conjunctio"
+    "n\030\005 \001(\005\"\033\n\013WaitTimeReq\022\014\n\004time\030\001 \001(\002\"#\n\017"
+    "WaitProgressReq\022\020\n\010progress\030\001 \001(\005\"H\n\013Wai"
+    "tTrajReq\0229\n\016traj_condition\030\001 \001(\0162!.Nrmk."
+    "IndyFramework.TrajCondition\"\037\n\rWaitRadiu"
+    "sReq\022\016\n\006radius\030\001 \001(\005\"\315\001\n\007Program\022\021\n\tprog"
+    "_name\030\001 \001(\t\022\020\n\010prog_idx\030\002 \001(\005\0229\n\020start_l"
+    "ine_index\030\013 \001(\0132\037.Nrmk.IndyFramework.Pro"
+    "gramLine\0227\n\016end_line_index\030\014 \001(\0132\037.Nrmk."
+    "IndyFramework.ProgramLine\022\025\n\rteaching_mo"
+    "de\030\024 \001(\010\022\022\n\ndebug_mode\030\036 \001(\010\"\303\001\n\rTuningP"
+    "rogram\022,\n\007program\030\001 \001(\0132\033.Nrmk.IndyFrame"
+    "work.Program\0225\n\014tuning_space\030\002 \001(\0162\037.Nrm"
+    "k.IndyFramework.TuningSpace\0226\n\tprecision"
+    "\030\003 \001(\0162#.Nrmk.IndyFramework.TuningPrecis"
+    "ion\022\025\n\rvel_level_max\030\004 \001(\r\"<\n\013ProgramInf"
+    "o\022\014\n\004path\030\001 \001(\t\022\014\n\004size\030\002 \001(\004\022\021\n\ttimesta"
+    "mp\030\003 \001(\t\"I\n\010Variable\022\014\n\004name\030\001 \001(\t\022\014\n\004ad"
+    "dr\030\002 \001(\005\022\014\n\004type\030\003 \001(\t\022\023\n\013in_watching\030\004 "
+    "\001(\010\"*\n\013IntVariable\022\014\n\004addr\030\001 \001(\005\022\r\n\005valu"
+    "e\030\002 \001(\003\"\317\001\n\016ModbusVariable\022\014\n\004name\030\001 \001(\t"
+    "\022\014\n\004addr\030\002 \001(\005\022\r\n\005value\030\003 \001(\005\022B\n\013signal_"
+    "type\030\004 \001(\0162-.Nrmk.IndyFramework.ModbusVa"
+    "riable.SignalType\"N\n\nSignalType\022\014\n\010ReadC"
+    "oil\020\000\022\r\n\tWriteCoil\020\001\022\020\n\014ReadRegister\020\002\022\021"
+    "\n\rWriteRegister\020\003\"+\n\014BoolVariable\022\014\n\004add"
+    "r\030\001 \001(\005\022\r\n\005value\030\002 \001(\010\",\n\rFloatVariable\022"
+    "\014\n\004addr\030\001 \001(\005\022\r\n\005value\030\002 \001(\002\"*\n\014JPosVari"
+    "able\022\014\n\004addr\030\001 \001(\005\022\014\n\004jpos\030\002 \003(\002\"*\n\014TPos"
+    "Variable\022\014\n\004addr\030\001 \001(\005\022\014\n\004tpos\030\002 \003(\002\"\303\001\n"
+    "\nIOVariable\022\014\n\004addr\030\001 \001(\005\022\r\n\005value\030\002 \001(\002"
+    "\022>\n\013signal_type\030\003 \001(\0162).Nrmk.IndyFramewo"
+    "rk.IOVariable.SignalType\"X\n\nSignalType\022\006"
+    "\n\002DI\020\000\022\006\n\002DO\020\001\022\006\n\002AI\020\002\022\006\n\002AO\020\003\022\t\n\005EndDI\020"
+    "\004\022\t\n\005EndDO\020\005\022\t\n\005EndAI\020\006\022\t\n\005EndAO\020\007\"x\n\014Mo"
+    "dbusServer\022\023\n\013server_name\030\001 \001(\t\022\n\n\002ip\030\002 "
+    "\001(\t\022\014\n\004port\030\003 \001(\005\0229\n\rvariable_list\030\004 \003(\013"
+    "2\".Nrmk.IndyFramework.ModbusVariable\"P\n\022"
+    "ModbusVariableList\022:\n\020modbus_variables\030\001"
+    " \003(\0132 .Nrmk.IndyFramework.ModbusServer\":"
+    "\n\007AllVars\022/\n\tvariables\030\001 \003(\0132\034.Nrmk.Indy"
+    "Framework.Variable\"=\n\007IntVars\0222\n\tvariabl"
+    "es\030\001 \003(\0132\037.Nrmk.IndyFramework.IntVariabl"
+    "e\"C\n\nModbusVars\0225\n\tvariables\030\001 \003(\0132\".Nrm"
+    "k.IndyFramework.ModbusVariable\"\?\n\010BoolVa"
+    "rs\0223\n\tvariables\030\001 \003(\0132 .Nrmk.IndyFramewo"
+    "rk.BoolVariable\"A\n\tFloatVars\0224\n\tvariable"
+    "s\030\001 \003(\0132!.Nrmk.IndyFramework.FloatVariab"
+    "le\"\?\n\010JPosVars\0223\n\tvariables\030\001 \003(\0132 .Nrmk"
+    ".IndyFramework.JPosVariable\"\?\n\010TPosVars\022"
+    "3\n\tvariables\030\001 \003(\0132 .Nrmk.IndyFramework."
+    "TPosVariable\";\n\006IOVars\0221\n\tvariables\030\001 \003("
+    "\0132\036.Nrmk.IndyFramework.IOVariable\"J\n\024Inv"
+    "erseKinematicsReq\022\014\n\004tpos\030\001 \003(\002\022\021\n\tinit_"
+    "jpos\030\002 \003(\002\022\021\n\tarm_index\030\n \001(\005\"g\n\024Inverse"
+    "KinematicsRes\022\014\n\004jpos\030\001 \003(\002\022\021\n\tarm_index"
+    "\030\n \001(\005\022.\n\010response\030d \001(\0132\034.Nrmk.IndyFram"
+    "ework.Response\"7\n\024ForwardKinematicsReq\022\014"
+    "\n\004jpos\030\001 \003(\002\022\021\n\tarm_index\030\n \001(\005\"g\n\024Forwa"
+    "rdKinematicsRes\022\014\n\004tpos\030\001 \003(\002\022\021\n\tarm_ind"
+    "ex\030\n \001(\005\022.\n\010response\030d \001(\0132\034.Nrmk.IndyFr"
+    "amework.Response\"m\n\026JointToTcpTransformR"
+    "eq\022\014\n\004jpos\030\001 \003(\002\022\021\n\tjoint_idx\030\002 \001(\005\022\037\n\027j"
+    "oint_idx_is_body_index\030\003 \001(\010\022\021\n\tarm_inde"
+    "x\030\n \001(\005\"\235\001\n\026JointToTcpTransformRes\022\024\n\014jo"
+    "int_to_tcp\030\001 \003(\002\022\025\n\rbase_to_joint\030\002 \003(\002\022"
+    "\023\n\013base_to_tcp\030\003 \003(\002\022\021\n\tarm_index\030\n \001(\005\022"
+    ".\n\010response\030d \001(\0132\034.Nrmk.IndyFramework.R"
+    "esponse\"v\n\033CheckAproachRetractValidReq\022\014"
+    "\n\004tpos\030\001 \003(\002\022\021\n\tinit_jpos\030\002 \003(\002\022\020\n\010pre_t"
+    "pos\030\003 \003(\002\022\021\n\tpost_tpos\030\004 \003(\002\022\021\n\tarm_inde"
+    "x\030\n \001(\005\"\256\001\n\033CheckAproachRetractValidRes\022"
+    "\020\n\010is_valid\030\001 \001(\010\022\017\n\007tar_pos\030\002 \003(\002\022\024\n\014ap"
+    "proach_pos\030\003 \003(\002\022\023\n\013retract_pos\030\004 \003(\002\022\021\n"
+    "\tarm_index\030\n \001(\005\022.\n\010response\030d \001(\0132\034.Nrm"
+    "k.IndyFramework.Response\"\242\001\n\025GetPalletPo"
+    "intListReq\022\014\n\004tpos\030\001 \003(\002\022\014\n\004jpos\030\002 \003(\002\022\020"
+    "\n\010pre_tpos\030\003 \003(\002\022\021\n\tpost_tpos\030\004 \003(\002\022\026\n\016p"
+    "allet_pattern\030\005 \001(\005\022\r\n\005width\030\006 \001(\005\022\016\n\006he"
+    "ight\030\007 \001(\005\022\021\n\tarm_index\030\n \001(\005\"[\n\013PalletP"
+    "oint\022\017\n\007tar_pos\030\001 \003(\002\022\024\n\014approach_pos\030\002 "
+    "\003(\002\022\023\n\013retract_pos\030\003 \003(\002\022\020\n\010tar_jpos\030\004 \003"
+    "(\002\"\222\001\n\025GetPalletPointListRes\0226\n\rpallet_p"
+    "oints\030\001 \003(\0132\037.Nrmk.IndyFramework.PalletP"
+    "oint\022\021\n\tarm_index\030\n \001(\005\022.\n\010response\030d \001("
+    "\0132\034.Nrmk.IndyFramework.Response\"s\n\030Calcu"
+    "lateRelativePoseReq\022\021\n\tstart_pos\030\001 \003(\002\022\017"
+    "\n\007end_pos\030\002 \003(\002\0223\n\tbase_type\030\003 \001(\0162 .Nrm"
+    "k.IndyFramework.TaskBaseType\"`\n\030Calculat"
+    "eRelativePoseRes\022\024\n\014relative_pos\030\001 \003(\002\022."
+    "\n\010response\030d \001(\0132\034.Nrmk.IndyFramework.Re"
+    "sponse\"|\n\032CalculateCurrentPoseRelReq\022\023\n\013"
+    "current_pos\030\001 \003(\002\022\024\n\014relative_pos\030\002 \003(\002\022"
+    "3\n\tbase_type\030\003 \001(\0162 .Nrmk.IndyFramework."
+    "TaskBaseType\"d\n\032CalculateCurrentPoseRelR"
+    "es\022\026\n\016calculated_pos\030\001 \003(\002\022.\n\010response\030d"
+    " \001(\0132\034.Nrmk.IndyFramework.Response\"\262\001\n\014T"
+    "eleOpDevice\022\014\n\004name\030\001 \001(\t\022\?\n\004type\030\002 \001(\0162"
+    "1.Nrmk.IndyFramework.TeleOpDevice.TeleOp"
+    "DeviceType\022\n\n\002ip\030\003 \001(\t\022\014\n\004port\030\004 \001(\r\022\021\n\t"
+    "connected\030\005 \001(\010\"&\n\020TeleOpDeviceType\022\010\n\004N"
+    "ONE\020\000\022\010\n\004VIVE\020\001\"i\n\013TeleOpState\022*\n\004mode\030\001"
+    " \001(\0162\034.Nrmk.IndyFramework.TeleMode\022.\n\006me"
+    "thod\030\002 \001(\0162\036.Nrmk.IndyFramework.TeleMeth"
+    "od\"X\n\005TeleP\022\014\n\004tpos\030\001 \003(\002\022\021\n\tarm_index\030\024"
+    " \001(\005\022.\n\010response\030d \001(\0132\034.Nrmk.IndyFramew"
+    "ork.Response\"O\n\016TeleOpFileList\022\r\n\005files\030"
+    "\001 \003(\t\022.\n\010response\030d \001(\0132\034.Nrmk.IndyFrame"
+    "work.Response\"\033\n\013TeleFileReq\022\014\n\004name\030\001 \001"
+    "(\t\"\034\n\014TelePlayRate\022\014\n\004rate\030\001 \001(\002\"r\n\014Move"
+    "TeleJReq\022\014\n\004jpos\030\001 \003(\002\022\021\n\tvel_ratio\030\002 \001("
+    "\002\022\021\n\tacc_ratio\030\003 \001(\002\022.\n\006method\030\n \001(\0162\036.N"
+    "rmk.IndyFramework.TeleMethod\"\205\001\n\014MoveTel"
+    "eLReq\022\014\n\004tpos\030\001 \003(\002\022\021\n\tvel_ratio\030\002 \001(\002\022\021"
+    "\n\tacc_ratio\030\003 \001(\002\022.\n\006method\030\n \001(\0162\036.Nrmk"
+    ".IndyFramework.TeleMethod\022\021\n\tarm_index\030\024"
+    " \001(\005\"[\n\014ForceModeReq\022\016\n\006enable\030\001 \001(\010\022\021\n\t"
+    "des_force\030\002 \003(\002\022\025\n\renabled_force\030\003 \003(\010\022\021"
+    "\n\tarm_index\030\024 \001(\005\"\243\001\n\027TransformedFTSenso"
+    "rData\022\r\n\005ft_Fx\030\001 \001(\002\022\r\n\005ft_Fy\030\002 \001(\002\022\r\n\005f"
+    "t_Fz\030\003 \001(\002\022\r\n\005ft_Tx\030\004 \001(\002\022\r\n\005ft_Ty\030\005 \001(\002"
+    "\022\r\n\005ft_Tz\030\006 \001(\002\022.\n\010response\030d \001(\0132\034.Nrmk"
+    ".IndyFramework.Response\"3\n\016ComplianceMod"
+    "e\022\016\n\006enable\030\001 \001(\010\022\021\n\tstiffness\030\002 \003(\005\"_\n\010"
+    "BusEvent\022\020\n\010event_id\030\001 \001(\004\022\016\n\006b_data\030\002 \003"
+    "(\010\022\016\n\006i_data\030\003 \003(\005\022\016\n\006f_data\030\004 \003(\002\022\021\n\tte"
+    "xt_data\030\005 \001(\t\"5\n\020CatchBusEventReq\022\020\n\010eve"
+    "nt_id\030\001 \001(\004\022\017\n\007timeout\030\002 \001(\002\"\353\001\n\rGetMoti"
+    "onJReq\0220\n\013target_list\030\001 \003(\0132\033.Nrmk.IndyF"
+    "ramework.TargetJ\0222\n\010blending\030\002 \001(\0132 .Nrm"
+    "k.IndyFramework.BlendingType\022\021\n\tvel_rati"
+    "o\030\003 \001(\002\022\021\n\tacc_ratio\030\004 \001(\002\022;\n\016post_condi"
+    "tion\030\024 \001(\0132#.Nrmk.IndyFramework.MotionCo"
+    "ndition\022\021\n\ttime_step\030\036 \001(\002\"\266\002\n\rGetMotion"
+    "LReq\0220\n\013target_list\030\001 \003(\0132\033.Nrmk.IndyFra"
+    "mework.TargetP\0222\n\010blending\030\002 \001(\0132 .Nrmk."
+    "IndyFramework.BlendingType\022\021\n\tvel_ratio\030"
+    "\003 \001(\002\022\021\n\tacc_ratio\030\004 \001(\002\0226\n\010vel_type\030\005 \001"
+    "(\0162$.Nrmk.IndyFramework.VelocityModeType"
+    "\022\021\n\tarm_index\030\n \001(\005\022;\n\016post_condition\030\024 "
+    "\001(\0132#.Nrmk.IndyFramework.MotionCondition"
+    "\022\021\n\ttime_step\030\036 \001(\002\"\272\003\n\rGetMotionCReq\022+\n"
+    "\006target\030\001 \001(\0132\033.Nrmk.IndyFramework.Targe"
+    "tC\0222\n\010blending\030\002 \001(\0132 .Nrmk.IndyFramewor"
+    "k.BlendingType\022\r\n\005angle\030\003 \001(\002\022=\n\014setting"
+    "_type\030\n \001(\0162\'.Nrmk.IndyFramework.Circula"
+    "rSettingType\0229\n\tmove_type\030\013 \001(\0162&.Nrmk.I"
+    "ndyFramework.CircularMovingType\022\021\n\tarm_i"
+    "ndex\030\017 \001(\005\022\021\n\tvel_ratio\030\024 \001(\002\022\021\n\tacc_rat"
+    "io\030\025 \001(\002\0226\n\010vel_type\030\026 \001(\0162$.Nrmk.IndyFr"
+    "amework.VelocityModeType\022;\n\016post_conditi"
+    "on\030\031 \001(\0132#.Nrmk.IndyFramework.MotionCond"
+    "ition\022\021\n\ttime_step\030\036 \001(\002\"|\n\014GetMotionRes"
+    "\022\021\n\ttimestamp\030\001 \003(\002\022*\n\006q_list\030\002 \003(\0132\032.Nr"
+    "mk.IndyFramework.Vector\022-\n\tqdot_list\030\003 \003"
+    "(\0132\032.Nrmk.IndyFramework.Vector\"\310\002\n\tMoveL"
+    "FReq\022+\n\006target\030\001 \001(\0132\033.Nrmk.IndyFramewor"
+    "k.TargetP\0222\n\010blending\030\002 \001(\0132 .Nrmk.IndyF"
+    "ramework.BlendingType\022\021\n\tvel_ratio\030\003 \001(\002"
+    "\022\021\n\tacc_ratio\030\004 \001(\002\0226\n\010vel_type\030\005 \001(\0162$."
+    "Nrmk.IndyFramework.VelocityModeType\022\021\n\td"
+    "es_force\030\006 \003(\002\022\025\n\renabled_force\030\007 \003(\010\022;\n"
+    "\016post_condition\030\024 \001(\0132#.Nrmk.IndyFramewo"
+    "rk.MotionCondition\022\025\n\rteaching_mode\030\036 \001("
+    "\010\"\030\n\tMoveFLRes\022\013\n\003msg\030d \001(\t\"\205\001\n\027ControlI"
+    "nferenceDataSet\022\020\n\010infdata0\030\001 \003(\002\022\020\n\010inf"
+    "data1\030\002 \003(\002\022\020\n\010infdata2\030\003 \003(\002\022\020\n\010infdata"
+    "3\030\004 \003(\002\022\020\n\010infdata4\030\005 \003(\002\022\020\n\010infdata5\030\006 "
+    "\003(\002*7\n\rJointBaseType\022\022\n\016ABSOLUTE_JOINT\020\000"
+    "\022\022\n\016RELATIVE_JOINT\020\001*B\n\014TaskBaseType\022\021\n\r"
+    "ABSOLUTE_TASK\020\000\022\021\n\rRELATIVE_TASK\020\001\022\014\n\010TC"
+    "P_TASK\020\002*J\n\020VelocityModeType\022\021\n\rTIME_ORI"
+    "ENTED\020\000\022\021\n\rDISP_ORIENTED\020\001\022\020\n\014ROT_ORIENT"
+    "ED\020\002*5\n\023CircularSettingType\022\r\n\tPOINT_SET"
+    "\020\000\022\017\n\013CENTER_AXIS\020\001*:\n\022CircularMovingTyp"
+    "e\022\014\n\010CONSTANT\020\000\022\n\n\006RADIAL\020\001\022\n\n\006SMOOTH\020\002*"
+    "j\n\010TeleMode\022\021\n\rTELE_INACTIVE\020\000\022\016\n\nTELE_C"
+    "ALIB\020\001\022\017\n\013TELE_RECORD\020\002\022\r\n\tTELE_PLAY\020\003\022\014"
+    "\n\010TELE_RAW\020\n\022\r\n\tTELE_MOVE\020\024*\233\001\n\nTeleMeth"
+    "od\022\026\n\022TELE_TASK_ABSOLUTE\020\000\022\026\n\022TELE_TASK_"
+    "RELATIVE\020\001\022\021\n\rTELE_TASK_TCP\020\002\022\027\n\023TELE_JO"
+    "INT_ABSOLUTE\020\n\022\027\n\023TELE_JOINT_RELATIVE\020\013\022"
+    "\030\n\024TELE_RECORD_ABSOLUTE\020\024b\006proto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_control_5fmsgs_2eproto_deps[2] =
     {
@@ -3255,7 +3273,7 @@ static ::absl::once_flag descriptor_table_control_5fmsgs_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_control_5fmsgs_2eproto = {
     false,
     false,
-    11904,
+    12033,
     descriptor_table_protodef_control_5fmsgs_2eproto,
     "control_msgs.proto",
     &descriptor_table_control_5fmsgs_2eproto_once,
@@ -5609,6 +5627,8 @@ class MoveJReq::_Internal {
   using HasBits = decltype(std::declval<MoveJReq>()._impl_._has_bits_);
   static constexpr ::int32_t kHasBitsOffset =
     8 * PROTOBUF_FIELD_OFFSET(MoveJReq, _impl_._has_bits_);
+  static constexpr ::int32_t kOneofCaseOffset =
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::MoveJReq, _impl_._oneof_case_);
   static const ::Nrmk::IndyFramework::TargetJ& target(const MoveJReq* msg);
   static void set_has_target(HasBits* has_bits) {
     (*has_bits)[0] |= 1u;
@@ -5649,6 +5669,8 @@ MoveJReq::MoveJReq(const MoveJReq& from) : ::google::protobuf::Message() {
       decltype(_impl_.vel_ratio_){},
       decltype(_impl_.acc_ratio_){},
       decltype(_impl_.teaching_mode_){},
+      decltype(_impl_.arm_index_presence_){},
+      /*decltype(_impl_._oneof_case_)*/ {},
   };
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
@@ -5664,6 +5686,16 @@ MoveJReq::MoveJReq(const MoveJReq& from) : ::google::protobuf::Message() {
   ::memcpy(&_impl_.vel_ratio_, &from._impl_.vel_ratio_,
     static_cast<::size_t>(reinterpret_cast<char*>(&_impl_.teaching_mode_) -
     reinterpret_cast<char*>(&_impl_.vel_ratio_)) + sizeof(_impl_.teaching_mode_));
+  clear_has_arm_index_presence();
+  switch (from.arm_index_presence_case()) {
+    case kArmIndex: {
+      _this->_internal_set_arm_index(from._internal_arm_index());
+      break;
+    }
+    case ARM_INDEX_PRESENCE_NOT_SET: {
+      break;
+    }
+  }
 
   // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.MoveJReq)
 }
@@ -5678,7 +5710,10 @@ inline void MoveJReq::SharedCtor(::_pb::Arena* arena) {
       decltype(_impl_.vel_ratio_){0},
       decltype(_impl_.acc_ratio_){0},
       decltype(_impl_.teaching_mode_){false},
+      decltype(_impl_.arm_index_presence_){},
+      /*decltype(_impl_._oneof_case_)*/ {},
   };
+  clear_has_arm_index_presence();
 }
 MoveJReq::~MoveJReq() {
   // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.MoveJReq)
@@ -5690,10 +5725,28 @@ inline void MoveJReq::SharedDtor() {
   if (this != internal_default_instance()) delete _impl_.target_;
   if (this != internal_default_instance()) delete _impl_.blending_;
   if (this != internal_default_instance()) delete _impl_.post_condition_;
+  if (has_arm_index_presence()) {
+    clear_arm_index_presence();
+  }
 }
 void MoveJReq::SetCachedSize(int size) const {
   _impl_._cached_size_.Set(size);
 }
+
+void MoveJReq::clear_arm_index_presence() {
+// @@protoc_insertion_point(one_of_clear_start:Nrmk.IndyFramework.MoveJReq)
+  switch (arm_index_presence_case()) {
+    case kArmIndex: {
+      // No need to clear
+      break;
+    }
+    case ARM_INDEX_PRESENCE_NOT_SET: {
+      break;
+    }
+  }
+  _impl_._oneof_case_[0] = ARM_INDEX_PRESENCE_NOT_SET;
+}
+
 
 PROTOBUF_NOINLINE void MoveJReq::Clear() {
 // @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.MoveJReq)
@@ -5719,6 +5772,7 @@ PROTOBUF_NOINLINE void MoveJReq::Clear() {
   ::memset(&_impl_.vel_ratio_, 0, static_cast<::size_t>(
       reinterpret_cast<char*>(&_impl_.teaching_mode_) -
       reinterpret_cast<char*>(&_impl_.vel_ratio_)) + sizeof(_impl_.teaching_mode_));
+  clear_arm_index_presence();
   _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
@@ -5731,15 +5785,15 @@ const char* MoveJReq::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<3, 6, 3, 0, 2> MoveJReq::_table_ = {
+const ::_pbi::TcParseTable<3, 7, 3, 0, 2> MoveJReq::_table_ = {
   {
     PROTOBUF_FIELD_OFFSET(MoveJReq, _impl_._has_bits_),
     0, // no _extensions_
     30, 56,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    3757572080,  // skipmap
+    3757571568,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    6,  // num_field_entries
+    7,  // num_field_entries
     3,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     &_MoveJReq_default_instance_._instance,
@@ -5778,6 +5832,9 @@ const ::_pbi::TcParseTable<3, 6, 3, 0, 2> MoveJReq::_table_ = {
     // float acc_ratio = 4;
     {PROTOBUF_FIELD_OFFSET(MoveJReq, _impl_.acc_ratio_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kFloat)},
+    // int32 arm_index = 10;
+    {PROTOBUF_FIELD_OFFSET(MoveJReq, _impl_.arm_index_presence_.arm_index_), _Internal::kOneofCaseOffset + 0, 0,
+    (0 | ::_fl::kFcOneof | ::_fl::kInt32)},
     // .Nrmk.IndyFramework.MotionCondition post_condition = 20;
     {PROTOBUF_FIELD_OFFSET(MoveJReq, _impl_.post_condition_), _Internal::kHasBitsOffset + 2, 2,
     (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
@@ -5836,6 +5893,13 @@ const ::_pbi::TcParseTable<3, 6, 3, 0, 2> MoveJReq::_table_ = {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteFloatToArray(
         4, this->_internal_acc_ratio(), target);
+  }
+
+  // int32 arm_index = 10;
+  if (arm_index_presence_case() == kArmIndex) {
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<10>(
+            stream, this->_internal_arm_index(), target);
   }
 
   // .Nrmk.IndyFramework.MotionCondition post_condition = 20;
@@ -5918,6 +5982,17 @@ const ::_pbi::TcParseTable<3, 6, 3, 0, 2> MoveJReq::_table_ = {
     total_size += 3;
   }
 
+  switch (arm_index_presence_case()) {
+    // int32 arm_index = 10;
+    case kArmIndex: {
+      total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+          this->_internal_arm_index());
+      break;
+    }
+    case ARM_INDEX_PRESENCE_NOT_SET: {
+      break;
+    }
+  }
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
@@ -5970,6 +6045,15 @@ void MoveJReq::MergeImpl(::google::protobuf::Message& to_msg, const ::google::pr
   if (from._internal_teaching_mode() != 0) {
     _this->_internal_set_teaching_mode(from._internal_teaching_mode());
   }
+  switch (from.arm_index_presence_case()) {
+    case kArmIndex: {
+      _this->_internal_set_arm_index(from._internal_arm_index());
+      break;
+    }
+    case ARM_INDEX_PRESENCE_NOT_SET: {
+      break;
+    }
+  }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -5994,6 +6078,8 @@ void MoveJReq::InternalSwap(MoveJReq* other) {
       - PROTOBUF_FIELD_OFFSET(MoveJReq, _impl_.target_)>(
           reinterpret_cast<char*>(&_impl_.target_),
           reinterpret_cast<char*>(&other->_impl_.target_));
+  swap(_impl_.arm_index_presence_, other->_impl_.arm_index_presence_);
+  swap(_impl_._oneof_case_[0], other->_impl_._oneof_case_[0]);
 }
 
 ::google::protobuf::Metadata MoveJReq::GetMetadata() const {
@@ -6008,6 +6094,8 @@ class MoveJCondReq::_Internal {
   using HasBits = decltype(std::declval<MoveJCondReq>()._impl_._has_bits_);
   static constexpr ::int32_t kHasBitsOffset =
     8 * PROTOBUF_FIELD_OFFSET(MoveJCondReq, _impl_._has_bits_);
+  static constexpr ::int32_t kOneofCaseOffset =
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::MoveJCondReq, _impl_._oneof_case_);
   static const ::Nrmk::IndyFramework::TargetJ& target(const MoveJCondReq* msg);
   static void set_has_target(HasBits* has_bits) {
     (*has_bits)[0] |= 1u;
@@ -6048,6 +6136,8 @@ MoveJCondReq::MoveJCondReq(const MoveJCondReq& from) : ::google::protobuf::Messa
       decltype(_impl_.vel_ratio_){},
       decltype(_impl_.acc_ratio_){},
       decltype(_impl_.teaching_mode_){},
+      decltype(_impl_.arm_index_presence_){},
+      /*decltype(_impl_._oneof_case_)*/ {},
   };
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
@@ -6063,6 +6153,16 @@ MoveJCondReq::MoveJCondReq(const MoveJCondReq& from) : ::google::protobuf::Messa
   ::memcpy(&_impl_.vel_ratio_, &from._impl_.vel_ratio_,
     static_cast<::size_t>(reinterpret_cast<char*>(&_impl_.teaching_mode_) -
     reinterpret_cast<char*>(&_impl_.vel_ratio_)) + sizeof(_impl_.teaching_mode_));
+  clear_has_arm_index_presence();
+  switch (from.arm_index_presence_case()) {
+    case kArmIndex: {
+      _this->_internal_set_arm_index(from._internal_arm_index());
+      break;
+    }
+    case ARM_INDEX_PRESENCE_NOT_SET: {
+      break;
+    }
+  }
 
   // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.MoveJCondReq)
 }
@@ -6077,7 +6177,10 @@ inline void MoveJCondReq::SharedCtor(::_pb::Arena* arena) {
       decltype(_impl_.vel_ratio_){0},
       decltype(_impl_.acc_ratio_){0},
       decltype(_impl_.teaching_mode_){false},
+      decltype(_impl_.arm_index_presence_){},
+      /*decltype(_impl_._oneof_case_)*/ {},
   };
+  clear_has_arm_index_presence();
 }
 MoveJCondReq::~MoveJCondReq() {
   // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.MoveJCondReq)
@@ -6089,10 +6192,28 @@ inline void MoveJCondReq::SharedDtor() {
   if (this != internal_default_instance()) delete _impl_.target_;
   if (this != internal_default_instance()) delete _impl_.blending_;
   if (this != internal_default_instance()) delete _impl_.post_condition_;
+  if (has_arm_index_presence()) {
+    clear_arm_index_presence();
+  }
 }
 void MoveJCondReq::SetCachedSize(int size) const {
   _impl_._cached_size_.Set(size);
 }
+
+void MoveJCondReq::clear_arm_index_presence() {
+// @@protoc_insertion_point(one_of_clear_start:Nrmk.IndyFramework.MoveJCondReq)
+  switch (arm_index_presence_case()) {
+    case kArmIndex: {
+      // No need to clear
+      break;
+    }
+    case ARM_INDEX_PRESENCE_NOT_SET: {
+      break;
+    }
+  }
+  _impl_._oneof_case_[0] = ARM_INDEX_PRESENCE_NOT_SET;
+}
+
 
 PROTOBUF_NOINLINE void MoveJCondReq::Clear() {
 // @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.MoveJCondReq)
@@ -6118,6 +6239,7 @@ PROTOBUF_NOINLINE void MoveJCondReq::Clear() {
   ::memset(&_impl_.vel_ratio_, 0, static_cast<::size_t>(
       reinterpret_cast<char*>(&_impl_.teaching_mode_) -
       reinterpret_cast<char*>(&_impl_.vel_ratio_)) + sizeof(_impl_.teaching_mode_));
+  clear_arm_index_presence();
   _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
@@ -6130,15 +6252,15 @@ const char* MoveJCondReq::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<3, 6, 3, 0, 2> MoveJCondReq::_table_ = {
+const ::_pbi::TcParseTable<3, 7, 3, 0, 2> MoveJCondReq::_table_ = {
   {
     PROTOBUF_FIELD_OFFSET(MoveJCondReq, _impl_._has_bits_),
     0, // no _extensions_
     30, 56,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    3757572080,  // skipmap
+    3757571568,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    6,  // num_field_entries
+    7,  // num_field_entries
     3,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     &_MoveJCondReq_default_instance_._instance,
@@ -6177,6 +6299,9 @@ const ::_pbi::TcParseTable<3, 6, 3, 0, 2> MoveJCondReq::_table_ = {
     // float acc_ratio = 4;
     {PROTOBUF_FIELD_OFFSET(MoveJCondReq, _impl_.acc_ratio_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kFloat)},
+    // int32 arm_index = 10;
+    {PROTOBUF_FIELD_OFFSET(MoveJCondReq, _impl_.arm_index_presence_.arm_index_), _Internal::kOneofCaseOffset + 0, 0,
+    (0 | ::_fl::kFcOneof | ::_fl::kInt32)},
     // .Nrmk.IndyFramework.MotionCondition post_condition = 20;
     {PROTOBUF_FIELD_OFFSET(MoveJCondReq, _impl_.post_condition_), _Internal::kHasBitsOffset + 2, 2,
     (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
@@ -6235,6 +6360,13 @@ const ::_pbi::TcParseTable<3, 6, 3, 0, 2> MoveJCondReq::_table_ = {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteFloatToArray(
         4, this->_internal_acc_ratio(), target);
+  }
+
+  // int32 arm_index = 10;
+  if (arm_index_presence_case() == kArmIndex) {
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<10>(
+            stream, this->_internal_arm_index(), target);
   }
 
   // .Nrmk.IndyFramework.MotionCondition post_condition = 20;
@@ -6317,6 +6449,17 @@ const ::_pbi::TcParseTable<3, 6, 3, 0, 2> MoveJCondReq::_table_ = {
     total_size += 3;
   }
 
+  switch (arm_index_presence_case()) {
+    // int32 arm_index = 10;
+    case kArmIndex: {
+      total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+          this->_internal_arm_index());
+      break;
+    }
+    case ARM_INDEX_PRESENCE_NOT_SET: {
+      break;
+    }
+  }
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
@@ -6369,6 +6512,15 @@ void MoveJCondReq::MergeImpl(::google::protobuf::Message& to_msg, const ::google
   if (from._internal_teaching_mode() != 0) {
     _this->_internal_set_teaching_mode(from._internal_teaching_mode());
   }
+  switch (from.arm_index_presence_case()) {
+    case kArmIndex: {
+      _this->_internal_set_arm_index(from._internal_arm_index());
+      break;
+    }
+    case ARM_INDEX_PRESENCE_NOT_SET: {
+      break;
+    }
+  }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -6393,6 +6545,8 @@ void MoveJCondReq::InternalSwap(MoveJCondReq* other) {
       - PROTOBUF_FIELD_OFFSET(MoveJCondReq, _impl_.target_)>(
           reinterpret_cast<char*>(&_impl_.target_),
           reinterpret_cast<char*>(&other->_impl_.target_));
+  swap(_impl_.arm_index_presence_, other->_impl_.arm_index_presence_);
+  swap(_impl_._oneof_case_[0], other->_impl_._oneof_case_[0]);
 }
 
 ::google::protobuf::Metadata MoveJCondReq::GetMetadata() const {
@@ -6407,6 +6561,8 @@ class MoveJTReq::_Internal {
   using HasBits = decltype(std::declval<MoveJTReq>()._impl_._has_bits_);
   static constexpr ::int32_t kHasBitsOffset =
     8 * PROTOBUF_FIELD_OFFSET(MoveJTReq, _impl_._has_bits_);
+  static constexpr ::int32_t kOneofCaseOffset =
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::MoveJTReq, _impl_._oneof_case_);
   static const ::Nrmk::IndyFramework::TargetJ& target(const MoveJTReq* msg);
   static void set_has_target(HasBits* has_bits) {
     (*has_bits)[0] |= 1u;
@@ -6445,6 +6601,8 @@ MoveJTReq::MoveJTReq(const MoveJTReq& from) : ::google::protobuf::Message() {
       decltype(_impl_.blending_){nullptr},
       decltype(_impl_.post_condition_){nullptr},
       decltype(_impl_.time_){},
+      decltype(_impl_.arm_index_presence_){},
+      /*decltype(_impl_._oneof_case_)*/ {},
   };
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
@@ -6458,6 +6616,16 @@ MoveJTReq::MoveJTReq(const MoveJTReq& from) : ::google::protobuf::Message() {
     _this->_impl_.post_condition_ = new ::Nrmk::IndyFramework::MotionCondition(*from._impl_.post_condition_);
   }
   _this->_impl_.time_ = from._impl_.time_;
+  clear_has_arm_index_presence();
+  switch (from.arm_index_presence_case()) {
+    case kArmIndex: {
+      _this->_internal_set_arm_index(from._internal_arm_index());
+      break;
+    }
+    case ARM_INDEX_PRESENCE_NOT_SET: {
+      break;
+    }
+  }
 
   // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.MoveJTReq)
 }
@@ -6470,7 +6638,10 @@ inline void MoveJTReq::SharedCtor(::_pb::Arena* arena) {
       decltype(_impl_.blending_){nullptr},
       decltype(_impl_.post_condition_){nullptr},
       decltype(_impl_.time_){0},
+      decltype(_impl_.arm_index_presence_){},
+      /*decltype(_impl_._oneof_case_)*/ {},
   };
+  clear_has_arm_index_presence();
 }
 MoveJTReq::~MoveJTReq() {
   // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.MoveJTReq)
@@ -6482,10 +6653,28 @@ inline void MoveJTReq::SharedDtor() {
   if (this != internal_default_instance()) delete _impl_.target_;
   if (this != internal_default_instance()) delete _impl_.blending_;
   if (this != internal_default_instance()) delete _impl_.post_condition_;
+  if (has_arm_index_presence()) {
+    clear_arm_index_presence();
+  }
 }
 void MoveJTReq::SetCachedSize(int size) const {
   _impl_._cached_size_.Set(size);
 }
+
+void MoveJTReq::clear_arm_index_presence() {
+// @@protoc_insertion_point(one_of_clear_start:Nrmk.IndyFramework.MoveJTReq)
+  switch (arm_index_presence_case()) {
+    case kArmIndex: {
+      // No need to clear
+      break;
+    }
+    case ARM_INDEX_PRESENCE_NOT_SET: {
+      break;
+    }
+  }
+  _impl_._oneof_case_[0] = ARM_INDEX_PRESENCE_NOT_SET;
+}
+
 
 PROTOBUF_NOINLINE void MoveJTReq::Clear() {
 // @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.MoveJTReq)
@@ -6509,6 +6698,7 @@ PROTOBUF_NOINLINE void MoveJTReq::Clear() {
     }
   }
   _impl_.time_ = 0;
+  clear_arm_index_presence();
   _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
@@ -6521,15 +6711,15 @@ const char* MoveJTReq::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<2, 4, 3, 0, 2> MoveJTReq::_table_ = {
+const ::_pbi::TcParseTable<2, 5, 3, 0, 2> MoveJTReq::_table_ = {
   {
     PROTOBUF_FIELD_OFFSET(MoveJTReq, _impl_._has_bits_),
     0, // no _extensions_
     20, 24,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294443000,  // skipmap
+    4294442488,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    4,  // num_field_entries
+    5,  // num_field_entries
     3,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     &_MoveJTReq_default_instance_._instance,
@@ -6559,6 +6749,9 @@ const ::_pbi::TcParseTable<2, 4, 3, 0, 2> MoveJTReq::_table_ = {
     // float time = 3;
     {PROTOBUF_FIELD_OFFSET(MoveJTReq, _impl_.time_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kFloat)},
+    // int32 arm_index = 10;
+    {PROTOBUF_FIELD_OFFSET(MoveJTReq, _impl_.arm_index_presence_.arm_index_), _Internal::kOneofCaseOffset + 0, 0,
+    (0 | ::_fl::kFcOneof | ::_fl::kInt32)},
     // .Nrmk.IndyFramework.MotionCondition post_condition = 20;
     {PROTOBUF_FIELD_OFFSET(MoveJTReq, _impl_.post_condition_), _Internal::kHasBitsOffset + 2, 2,
     (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
@@ -6602,6 +6795,13 @@ const ::_pbi::TcParseTable<2, 4, 3, 0, 2> MoveJTReq::_table_ = {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteFloatToArray(
         3, this->_internal_time(), target);
+  }
+
+  // int32 arm_index = 10;
+  if (arm_index_presence_case() == kArmIndex) {
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<10>(
+            stream, this->_internal_arm_index(), target);
   }
 
   // .Nrmk.IndyFramework.MotionCondition post_condition = 20;
@@ -6662,6 +6862,17 @@ const ::_pbi::TcParseTable<2, 4, 3, 0, 2> MoveJTReq::_table_ = {
     total_size += 5;
   }
 
+  switch (arm_index_presence_case()) {
+    // int32 arm_index = 10;
+    case kArmIndex: {
+      total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+          this->_internal_arm_index());
+      break;
+    }
+    case ARM_INDEX_PRESENCE_NOT_SET: {
+      break;
+    }
+  }
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
@@ -6703,6 +6914,15 @@ void MoveJTReq::MergeImpl(::google::protobuf::Message& to_msg, const ::google::p
   if (raw_time != 0) {
     _this->_internal_set_time(from._internal_time());
   }
+  switch (from.arm_index_presence_case()) {
+    case kArmIndex: {
+      _this->_internal_set_arm_index(from._internal_arm_index());
+      break;
+    }
+    case ARM_INDEX_PRESENCE_NOT_SET: {
+      break;
+    }
+  }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -6727,6 +6947,8 @@ void MoveJTReq::InternalSwap(MoveJTReq* other) {
       - PROTOBUF_FIELD_OFFSET(MoveJTReq, _impl_.target_)>(
           reinterpret_cast<char*>(&_impl_.target_),
           reinterpret_cast<char*>(&other->_impl_.target_));
+  swap(_impl_.arm_index_presence_, other->_impl_.arm_index_presence_);
+  swap(_impl_._oneof_case_[0], other->_impl_._oneof_case_[0]);
 }
 
 ::google::protobuf::Metadata MoveJTReq::GetMetadata() const {

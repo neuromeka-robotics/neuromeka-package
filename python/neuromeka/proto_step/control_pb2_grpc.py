@@ -211,6 +211,11 @@ class ControlStub(object):
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
                 response_deserializer=common__msgs__pb2.Response.FromString,
                 )
+        self.ResumeProgramDebug = channel.unary_unary(
+                '/Nrmk.IndyFramework.Control/ResumeProgramDebug',
+                request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=common__msgs__pb2.Response.FromString,
+                )
         self.StopProgram = channel.unary_unary(
                 '/Nrmk.IndyFramework.Control/StopProgram',
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
@@ -837,6 +842,12 @@ class ControlServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def ResumeProgram(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def ResumeProgramDebug(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -1519,6 +1530,11 @@ def add_ControlServicer_to_server(servicer, server):
             ),
             'ResumeProgram': grpc.unary_unary_rpc_method_handler(
                     servicer.ResumeProgram,
+                    request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=common__msgs__pb2.Response.SerializeToString,
+            ),
+            'ResumeProgramDebug': grpc.unary_unary_rpc_method_handler(
+                    servicer.ResumeProgramDebug,
                     request_deserializer=common__msgs__pb2.Empty.FromString,
                     response_serializer=common__msgs__pb2.Response.SerializeToString,
             ),
@@ -2570,6 +2586,23 @@ class Control(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Control/ResumeProgram',
+            common__msgs__pb2.Empty.SerializeToString,
+            common__msgs__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def ResumeProgramDebug(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Control/ResumeProgramDebug',
             common__msgs__pb2.Empty.SerializeToString,
             common__msgs__pb2.Response.FromString,
             options, channel_credentials,

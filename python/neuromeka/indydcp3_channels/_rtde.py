@@ -24,6 +24,7 @@ class RTDEChannelAPI:
             pdot  -> float[6]
             ref_frame  -> float[6]
             tool_frame  -> float[6]
+            ref_links  -> int[]
             response  -> Response
         """
         response = self.rtde.GetControlData(common_msgs.Empty())

@@ -3529,6 +3529,7 @@ class PlanarFrame final :
     kFpos1FieldNumber = 2,
     kFpos2FieldNumber = 3,
     kArmIndexFieldNumber = 10,
+    kLinkIndexFieldNumber = 11,
   };
   // repeated float fpos0 = 1;
   int fpos0_size() const;
@@ -3594,12 +3595,22 @@ class PlanarFrame final :
   void _internal_set_arm_index(::int32_t value);
 
   public:
+  // int32 link_index = 11;
+  void clear_link_index() ;
+  ::int32_t link_index() const;
+  void set_link_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_link_index() const;
+  void _internal_set_link_index(::int32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.PlanarFrame)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<2, 4, 0, 0, 2> _table_;
+  static const ::google::protobuf::internal::TcParseTable<2, 5, 0, 0, 2> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
@@ -3608,6 +3619,7 @@ class PlanarFrame final :
     ::google::protobuf::RepeatedField<float> fpos1_;
     ::google::protobuf::RepeatedField<float> fpos2_;
     ::int32_t arm_index_;
+    ::int32_t link_index_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -10355,6 +10367,7 @@ class SafetyLimits final :
   enum : int {
     kJointUpperLimitsFieldNumber = 7,
     kJointLowerLimitsFieldNumber = 8,
+    kJointL1LimitsFieldNumber = 9,
     kPowerLimitFieldNumber = 1,
     kPowerLimitRatioFieldNumber = 2,
     kTcpForceLimitFieldNumber = 3,
@@ -10396,6 +10409,24 @@ class SafetyLimits final :
   private:
   const ::google::protobuf::RepeatedField<float>& _internal_joint_lower_limits() const;
   ::google::protobuf::RepeatedField<float>* _internal_mutable_joint_lower_limits();
+
+  public:
+  // repeated float joint_l1_limits = 9;
+  int joint_l1_limits_size() const;
+  private:
+  int _internal_joint_l1_limits_size() const;
+
+  public:
+  void clear_joint_l1_limits() ;
+  float joint_l1_limits(int index) const;
+  void set_joint_l1_limits(int index, float value);
+  void add_joint_l1_limits(float value);
+  const ::google::protobuf::RepeatedField<float>& joint_l1_limits() const;
+  ::google::protobuf::RepeatedField<float>* mutable_joint_l1_limits();
+
+  private:
+  const ::google::protobuf::RepeatedField<float>& _internal_joint_l1_limits() const;
+  ::google::protobuf::RepeatedField<float>* _internal_mutable_joint_l1_limits();
 
   public:
   // float power_limit = 1;
@@ -10463,13 +10494,14 @@ class SafetyLimits final :
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<3, 8, 0, 0, 2> _table_;
+  static const ::google::protobuf::internal::TcParseTable<4, 9, 0, 0, 2> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
     ::google::protobuf::RepeatedField<float> joint_upper_limits_;
     ::google::protobuf::RepeatedField<float> joint_lower_limits_;
+    ::google::protobuf::RepeatedField<float> joint_l1_limits_;
     float power_limit_;
     float power_limit_ratio_;
     float tcp_force_limit_;
@@ -13767,6 +13799,7 @@ class KinematicsParams final :
 
   enum : int {
     kMdhFieldNumber = 1,
+    kDefaultLockedJointFieldNumber = 2,
   };
   // repeated .Nrmk.IndyFramework.KinematicsParams.MDH mdh = 1;
   int mdh_size() const;
@@ -13786,17 +13819,37 @@ class KinematicsParams final :
   ::Nrmk::IndyFramework::KinematicsParams_MDH* add_mdh();
   const ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::KinematicsParams_MDH >&
       mdh() const;
+  // repeated int32 default_locked_joint = 2;
+  int default_locked_joint_size() const;
+  private:
+  int _internal_default_locked_joint_size() const;
+
+  public:
+  void clear_default_locked_joint() ;
+  ::int32_t default_locked_joint(int index) const;
+  void set_default_locked_joint(int index, ::int32_t value);
+  void add_default_locked_joint(::int32_t value);
+  const ::google::protobuf::RepeatedField<::int32_t>& default_locked_joint() const;
+  ::google::protobuf::RepeatedField<::int32_t>* mutable_default_locked_joint();
+
+  private:
+  const ::google::protobuf::RepeatedField<::int32_t>& _internal_default_locked_joint() const;
+  ::google::protobuf::RepeatedField<::int32_t>* _internal_mutable_default_locked_joint();
+
+  public:
   // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.KinematicsParams)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<0, 1, 1, 0, 2> _table_;
+  static const ::google::protobuf::internal::TcParseTable<1, 2, 1, 0, 2> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
     ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::KinematicsParams_MDH > mdh_;
+    ::google::protobuf::RepeatedField<::int32_t> default_locked_joint_;
+    mutable ::google::protobuf::internal::CachedSize _default_locked_joint_cached_byte_size_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -17897,6 +17950,28 @@ inline void PlanarFrame::_internal_set_arm_index(::int32_t value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.arm_index_ = value;
+}
+
+// int32 link_index = 11;
+inline void PlanarFrame::clear_link_index() {
+  _impl_.link_index_ = 0;
+}
+inline ::int32_t PlanarFrame::link_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.PlanarFrame.link_index)
+  return _internal_link_index();
+}
+inline void PlanarFrame::set_link_index(::int32_t value) {
+  _internal_set_link_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.PlanarFrame.link_index)
+}
+inline ::int32_t PlanarFrame::_internal_link_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.link_index_;
+}
+inline void PlanarFrame::_internal_set_link_index(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.link_index_ = value;
 }
 
 // -------------------------------------------------------------------
@@ -23028,6 +23103,48 @@ inline ::google::protobuf::RepeatedField<float>* SafetyLimits::_internal_mutable
   return &_impl_.joint_lower_limits_;
 }
 
+// repeated float joint_l1_limits = 9;
+inline int SafetyLimits::_internal_joint_l1_limits_size() const {
+  return _internal_joint_l1_limits().size();
+}
+inline int SafetyLimits::joint_l1_limits_size() const {
+  return _internal_joint_l1_limits_size();
+}
+inline void SafetyLimits::clear_joint_l1_limits() {
+  _internal_mutable_joint_l1_limits()->Clear();
+}
+inline float SafetyLimits::joint_l1_limits(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.SafetyLimits.joint_l1_limits)
+  return _internal_joint_l1_limits().Get(index);
+}
+inline void SafetyLimits::set_joint_l1_limits(int index, float value) {
+  _internal_mutable_joint_l1_limits()->Set(index, value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.SafetyLimits.joint_l1_limits)
+}
+inline void SafetyLimits::add_joint_l1_limits(float value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_joint_l1_limits()->Add(value);
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.SafetyLimits.joint_l1_limits)
+}
+inline const ::google::protobuf::RepeatedField<float>& SafetyLimits::joint_l1_limits() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.SafetyLimits.joint_l1_limits)
+  return _internal_joint_l1_limits();
+}
+inline ::google::protobuf::RepeatedField<float>* SafetyLimits::mutable_joint_l1_limits() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.SafetyLimits.joint_l1_limits)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_joint_l1_limits();
+}
+
+inline const ::google::protobuf::RepeatedField<float>& SafetyLimits::_internal_joint_l1_limits() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.joint_l1_limits_;
+}
+inline ::google::protobuf::RepeatedField<float>* SafetyLimits::_internal_mutable_joint_l1_limits() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.joint_l1_limits_;
+}
+
 // -------------------------------------------------------------------
 
 // SafetyStopConfig
@@ -24774,6 +24891,48 @@ inline ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::KinematicsPar
 KinematicsParams::_internal_mutable_mdh() {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return &_impl_.mdh_;
+}
+
+// repeated int32 default_locked_joint = 2;
+inline int KinematicsParams::_internal_default_locked_joint_size() const {
+  return _internal_default_locked_joint().size();
+}
+inline int KinematicsParams::default_locked_joint_size() const {
+  return _internal_default_locked_joint_size();
+}
+inline void KinematicsParams::clear_default_locked_joint() {
+  _internal_mutable_default_locked_joint()->Clear();
+}
+inline ::int32_t KinematicsParams::default_locked_joint(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.KinematicsParams.default_locked_joint)
+  return _internal_default_locked_joint().Get(index);
+}
+inline void KinematicsParams::set_default_locked_joint(int index, ::int32_t value) {
+  _internal_mutable_default_locked_joint()->Set(index, value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.KinematicsParams.default_locked_joint)
+}
+inline void KinematicsParams::add_default_locked_joint(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_default_locked_joint()->Add(value);
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.KinematicsParams.default_locked_joint)
+}
+inline const ::google::protobuf::RepeatedField<::int32_t>& KinematicsParams::default_locked_joint() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.KinematicsParams.default_locked_joint)
+  return _internal_default_locked_joint();
+}
+inline ::google::protobuf::RepeatedField<::int32_t>* KinematicsParams::mutable_default_locked_joint() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.KinematicsParams.default_locked_joint)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_default_locked_joint();
+}
+
+inline const ::google::protobuf::RepeatedField<::int32_t>& KinematicsParams::_internal_default_locked_joint() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.default_locked_joint_;
+}
+inline ::google::protobuf::RepeatedField<::int32_t>* KinematicsParams::_internal_mutable_default_locked_joint() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.default_locked_joint_;
 }
 
 // -------------------------------------------------------------------

@@ -4,8 +4,8 @@ import sys
 with open("../README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
-if sys.version_info < (3, 7) or sys.version_info >= (3, 13):
-    print("Please build with python 3.7 through 3.12")
+if sys.version_info < (3, 12):
+    print("Please build with python 3.12")
 else:
     step_requires = [
         "grpcio>=1.34.1, <=1.39.0",
@@ -16,6 +16,7 @@ else:
         "numpy>=1.19.4, <=1.21.6",
         "pyModbusTCP==0.2.1",
         "netifaces==0.11.0",
+        "pyyaml==6.0.1",
     ]
     common_requires = [
         "grpcio==1.59.0",
@@ -27,11 +28,13 @@ else:
         "numpy>=1.21.6, <=1.26.4",
         "pyModbusTCP==0.2.1",
         "netifaces2",
+        "pyyaml==6.0.1",
     ]
     
     setup(
         name="neuromeka",
-        version="3.5.0.8",
+        version="3.5.0.9",
+        license="MIT",
         author="Neuromeka",
         author_email="technical-support@neuromeka.com",
         description="Neuromeka client protocols for IndyDCP3, IndyEye, Moby, Ecat, and Motor",
@@ -42,7 +45,7 @@ else:
         classifiers=[
             "Development Status :: 3 - Alpha",
             "Intended Audience :: Developers",
-            "License :: OSI Approved :: MIT License",
+            # "License :: OSI Approved :: MIT License",
             "Operating System :: OS Independent",
             "Programming Language :: Python :: 3.7",
             "Programming Language :: Python :: 3.8",
@@ -51,7 +54,7 @@ else:
             "Programming Language :: Python :: 3.11",
             "Programming Language :: Python :: 3.12"
         ],
-        python_requires=">=3.7,<3.13",
+        python_requires=">=3.7",
         # install_requires=install_requires,
         extras_require={
         ':python_version < "3.9"': step_requires,

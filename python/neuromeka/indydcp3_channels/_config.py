@@ -6,6 +6,8 @@ else:
 
 from neuromeka.enums import *
 
+from typing import List, Optional
+
 from google.protobuf import json_format
 from google.protobuf.json_format import ParseDict
 
@@ -351,13 +353,19 @@ class ConfigChannelAPI:
                                          preserving_proto_field_name=True,
                                          use_integers_for_enums=True)
 
-    def set_ref_frame_planar(self, fpos0: list, fpos1: list, fpos2: list, arm_index: int = 0):
+    def set_ref_frame_planar(self, fpos0: list, fpos1: list, fpos2: list,
+                             arm_index: int = 0, link_index: int = 0):
         """
         Ref Frame
-            fpos -> float[6]
+            fpos0 -> float[6]
+            fpos1 -> float[6]
+            fpos2 -> float[6]
+            arm_index -> int
+            link_index -> int
         """
         response = self.config.SetRefFramePlanar(config_msgs.PlanarFrame(
-            fpos0=list(fpos0), fpos1=list(fpos1), fpos2=list(fpos2), arm_index=arm_index
+            fpos0=list(fpos0), fpos1=list(fpos1), fpos2=list(fpos2),
+            arm_index=arm_index, link_index=link_index
         ))
         return json_format.MessageToDict(response,
                                          including_default_value_fields=True,
@@ -614,6 +622,7 @@ class ConfigChannelAPI:
             tcp_speed_limit_ratio   -> float
             joint_upper_limits   -> float[]
             joint_lower_limits   -> float[]
+            joint_l1_limits      -> float[]
         """
         response = self.config.GetSafetyLimits(common_msgs.Empty())
         return json_format.MessageToDict(response,
@@ -623,7 +632,10 @@ class ConfigChannelAPI:
 
     def set_safety_limits(self, power_limit: float, power_limit_ratio: float,
                           tcp_force_limit: float, tcp_force_limit_ratio: float,
-                          tcp_speed_limit: float, tcp_speed_limit_ratio: float):
+                          tcp_speed_limit: float, tcp_speed_limit_ratio: float,
+                          joint_upper_limits: Optional[List[float]] = None,
+                          joint_lower_limits: Optional[List[float]] = None,
+                          joint_l1_limits: Optional[List[float]] = None):
         """
         Safety Limits:
             power_limit             -> float
@@ -632,11 +644,17 @@ class ConfigChannelAPI:
             tcp_force_limit_ratio   -> float
             tcp_speed_limit         -> float
             tcp_speed_limit_ratio   -> float
+            joint_upper_limits      -> Optional[float[]]
+            joint_lower_limits      -> Optional[float[]]
+            joint_l1_limits         -> Optional[float[]]
         """
         response = self.config.SetSafetyLimits(config_msgs.SafetyLimits(
             power_limit=power_limit, power_limit_ratio=power_limit_ratio,
             tcp_force_limit=tcp_force_limit, tcp_force_limit_ratio=tcp_force_limit_ratio,
-            tcp_speed_limit=tcp_speed_limit, tcp_speed_limit_ratio=tcp_speed_limit_ratio
+            tcp_speed_limit=tcp_speed_limit, tcp_speed_limit_ratio=tcp_speed_limit_ratio,
+            joint_upper_limits=[] if joint_upper_limits is None else list(joint_upper_limits),
+            joint_lower_limits=[] if joint_lower_limits is None else list(joint_lower_limits),
+            joint_l1_limits=[] if joint_l1_limits is None else list(joint_l1_limits)
         ))
         return json_format.MessageToDict(response,
                                          including_default_value_fields=True,

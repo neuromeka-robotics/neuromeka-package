@@ -2457,6 +2457,11 @@ class MoveJReq final :
   static const MoveJReq& default_instance() {
     return *internal_default_instance();
   }
+  enum ArmIndexPresenceCase {
+    kArmIndex = 10,
+    ARM_INDEX_PRESENCE_NOT_SET = 0,
+  };
+
   static inline const MoveJReq* internal_default_instance() {
     return reinterpret_cast<const MoveJReq*>(
                &_MoveJReq_default_instance_);
@@ -2540,6 +2545,7 @@ class MoveJReq final :
     kVelRatioFieldNumber = 3,
     kAccRatioFieldNumber = 4,
     kTeachingModeFieldNumber = 30,
+    kArmIndexFieldNumber = 10,
   };
   // .Nrmk.IndyFramework.TargetJ target = 1;
   bool has_target() const;
@@ -2616,12 +2622,29 @@ class MoveJReq final :
   void _internal_set_teaching_mode(bool value);
 
   public:
+  // int32 arm_index = 10;
+  bool has_arm_index() const;
+  void clear_arm_index() ;
+  ::int32_t arm_index() const;
+  void set_arm_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_arm_index() const;
+  void _internal_set_arm_index(::int32_t value);
+
+  public:
+  void clear_arm_index_presence();
+  ArmIndexPresenceCase arm_index_presence_case() const;
   // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.MoveJReq)
  private:
   class _Internal;
+  void set_has_arm_index();
+
+  inline bool has_arm_index_presence() const;
+  inline void clear_has_arm_index_presence();
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<3, 6, 3, 0, 2> _table_;
+  static const ::google::protobuf::internal::TcParseTable<3, 7, 3, 0, 2> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
@@ -2634,6 +2657,13 @@ class MoveJReq final :
     float vel_ratio_;
     float acc_ratio_;
     bool teaching_mode_;
+    union ArmIndexPresenceUnion {
+      constexpr ArmIndexPresenceUnion() : _constinit_{} {}
+        ::google::protobuf::internal::ConstantInitialized _constinit_;
+      ::int32_t arm_index_;
+    } arm_index_presence_;
+    ::uint32_t _oneof_case_[1];
+
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -2691,6 +2721,11 @@ class MoveJCondReq final :
   static const MoveJCondReq& default_instance() {
     return *internal_default_instance();
   }
+  enum ArmIndexPresenceCase {
+    kArmIndex = 10,
+    ARM_INDEX_PRESENCE_NOT_SET = 0,
+  };
+
   static inline const MoveJCondReq* internal_default_instance() {
     return reinterpret_cast<const MoveJCondReq*>(
                &_MoveJCondReq_default_instance_);
@@ -2774,6 +2809,7 @@ class MoveJCondReq final :
     kVelRatioFieldNumber = 3,
     kAccRatioFieldNumber = 4,
     kTeachingModeFieldNumber = 30,
+    kArmIndexFieldNumber = 10,
   };
   // .Nrmk.IndyFramework.TargetJ target = 1;
   bool has_target() const;
@@ -2850,12 +2886,29 @@ class MoveJCondReq final :
   void _internal_set_teaching_mode(bool value);
 
   public:
+  // int32 arm_index = 10;
+  bool has_arm_index() const;
+  void clear_arm_index() ;
+  ::int32_t arm_index() const;
+  void set_arm_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_arm_index() const;
+  void _internal_set_arm_index(::int32_t value);
+
+  public:
+  void clear_arm_index_presence();
+  ArmIndexPresenceCase arm_index_presence_case() const;
   // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.MoveJCondReq)
  private:
   class _Internal;
+  void set_has_arm_index();
+
+  inline bool has_arm_index_presence() const;
+  inline void clear_has_arm_index_presence();
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<3, 6, 3, 0, 2> _table_;
+  static const ::google::protobuf::internal::TcParseTable<3, 7, 3, 0, 2> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
@@ -2868,6 +2921,13 @@ class MoveJCondReq final :
     float vel_ratio_;
     float acc_ratio_;
     bool teaching_mode_;
+    union ArmIndexPresenceUnion {
+      constexpr ArmIndexPresenceUnion() : _constinit_{} {}
+        ::google::protobuf::internal::ConstantInitialized _constinit_;
+      ::int32_t arm_index_;
+    } arm_index_presence_;
+    ::uint32_t _oneof_case_[1];
+
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -2925,6 +2985,11 @@ class MoveJTReq final :
   static const MoveJTReq& default_instance() {
     return *internal_default_instance();
   }
+  enum ArmIndexPresenceCase {
+    kArmIndex = 10,
+    ARM_INDEX_PRESENCE_NOT_SET = 0,
+  };
+
   static inline const MoveJTReq* internal_default_instance() {
     return reinterpret_cast<const MoveJTReq*>(
                &_MoveJTReq_default_instance_);
@@ -3006,6 +3071,7 @@ class MoveJTReq final :
     kBlendingFieldNumber = 2,
     kPostConditionFieldNumber = 20,
     kTimeFieldNumber = 3,
+    kArmIndexFieldNumber = 10,
   };
   // .Nrmk.IndyFramework.TargetJ target = 1;
   bool has_target() const;
@@ -3062,12 +3128,29 @@ class MoveJTReq final :
   void _internal_set_time(float value);
 
   public:
+  // int32 arm_index = 10;
+  bool has_arm_index() const;
+  void clear_arm_index() ;
+  ::int32_t arm_index() const;
+  void set_arm_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_arm_index() const;
+  void _internal_set_arm_index(::int32_t value);
+
+  public:
+  void clear_arm_index_presence();
+  ArmIndexPresenceCase arm_index_presence_case() const;
   // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.MoveJTReq)
  private:
   class _Internal;
+  void set_has_arm_index();
+
+  inline bool has_arm_index_presence() const;
+  inline void clear_has_arm_index_presence();
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<2, 4, 3, 0, 2> _table_;
+  static const ::google::protobuf::internal::TcParseTable<2, 5, 3, 0, 2> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
@@ -3078,6 +3161,13 @@ class MoveJTReq final :
     ::Nrmk::IndyFramework::BlendingType* blending_;
     ::Nrmk::IndyFramework::MotionCondition* post_condition_;
     float time_;
+    union ArmIndexPresenceUnion {
+      constexpr ArmIndexPresenceUnion() : _constinit_{} {}
+        ::google::protobuf::internal::ConstantInitialized _constinit_;
+      ::int32_t arm_index_;
+    } arm_index_presence_;
+    ::uint32_t _oneof_case_[1];
+
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -19233,6 +19323,41 @@ inline void MoveJReq::_internal_set_acc_ratio(float value) {
   _impl_.acc_ratio_ = value;
 }
 
+// int32 arm_index = 10;
+inline bool MoveJReq::has_arm_index() const {
+  return arm_index_presence_case() == kArmIndex;
+}
+inline void MoveJReq::set_has_arm_index() {
+  _impl_._oneof_case_[0] = kArmIndex;
+}
+inline void MoveJReq::clear_arm_index() {
+  if (arm_index_presence_case() == kArmIndex) {
+    _impl_.arm_index_presence_.arm_index_ = 0;
+    clear_has_arm_index_presence();
+  }
+}
+inline ::int32_t MoveJReq::arm_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.MoveJReq.arm_index)
+  return _internal_arm_index();
+}
+inline void MoveJReq::set_arm_index(::int32_t value) {
+  _internal_set_arm_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.MoveJReq.arm_index)
+}
+inline ::int32_t MoveJReq::_internal_arm_index() const {
+  if (arm_index_presence_case() == kArmIndex) {
+    return _impl_.arm_index_presence_.arm_index_;
+  }
+  return 0;
+}
+inline void MoveJReq::_internal_set_arm_index(::int32_t value) {
+  if (arm_index_presence_case() != kArmIndex) {
+    clear_arm_index_presence();
+    set_has_arm_index();
+  }
+  _impl_.arm_index_presence_.arm_index_ = value;
+}
+
 // .Nrmk.IndyFramework.MotionCondition post_condition = 20;
 inline bool MoveJReq::has_post_condition() const {
   bool value = (_impl_._has_bits_[0] & 0x00000004u) != 0;
@@ -19351,6 +19476,15 @@ inline void MoveJReq::_internal_set_teaching_mode(bool value) {
   _impl_.teaching_mode_ = value;
 }
 
+inline bool MoveJReq::has_arm_index_presence() const {
+  return arm_index_presence_case() != ARM_INDEX_PRESENCE_NOT_SET;
+}
+inline void MoveJReq::clear_has_arm_index_presence() {
+  _impl_._oneof_case_[0] = ARM_INDEX_PRESENCE_NOT_SET;
+}
+inline MoveJReq::ArmIndexPresenceCase MoveJReq::arm_index_presence_case() const {
+  return MoveJReq::ArmIndexPresenceCase(_impl_._oneof_case_[0]);
+}
 // -------------------------------------------------------------------
 
 // MoveJCondReq
@@ -19591,6 +19725,41 @@ inline void MoveJCondReq::_internal_set_acc_ratio(float value) {
   _impl_.acc_ratio_ = value;
 }
 
+// int32 arm_index = 10;
+inline bool MoveJCondReq::has_arm_index() const {
+  return arm_index_presence_case() == kArmIndex;
+}
+inline void MoveJCondReq::set_has_arm_index() {
+  _impl_._oneof_case_[0] = kArmIndex;
+}
+inline void MoveJCondReq::clear_arm_index() {
+  if (arm_index_presence_case() == kArmIndex) {
+    _impl_.arm_index_presence_.arm_index_ = 0;
+    clear_has_arm_index_presence();
+  }
+}
+inline ::int32_t MoveJCondReq::arm_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.MoveJCondReq.arm_index)
+  return _internal_arm_index();
+}
+inline void MoveJCondReq::set_arm_index(::int32_t value) {
+  _internal_set_arm_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.MoveJCondReq.arm_index)
+}
+inline ::int32_t MoveJCondReq::_internal_arm_index() const {
+  if (arm_index_presence_case() == kArmIndex) {
+    return _impl_.arm_index_presence_.arm_index_;
+  }
+  return 0;
+}
+inline void MoveJCondReq::_internal_set_arm_index(::int32_t value) {
+  if (arm_index_presence_case() != kArmIndex) {
+    clear_arm_index_presence();
+    set_has_arm_index();
+  }
+  _impl_.arm_index_presence_.arm_index_ = value;
+}
+
 // .Nrmk.IndyFramework.MotionCondition post_condition = 20;
 inline bool MoveJCondReq::has_post_condition() const {
   bool value = (_impl_._has_bits_[0] & 0x00000004u) != 0;
@@ -19709,6 +19878,15 @@ inline void MoveJCondReq::_internal_set_teaching_mode(bool value) {
   _impl_.teaching_mode_ = value;
 }
 
+inline bool MoveJCondReq::has_arm_index_presence() const {
+  return arm_index_presence_case() != ARM_INDEX_PRESENCE_NOT_SET;
+}
+inline void MoveJCondReq::clear_has_arm_index_presence() {
+  _impl_._oneof_case_[0] = ARM_INDEX_PRESENCE_NOT_SET;
+}
+inline MoveJCondReq::ArmIndexPresenceCase MoveJCondReq::arm_index_presence_case() const {
+  return MoveJCondReq::ArmIndexPresenceCase(_impl_._oneof_case_[0]);
+}
 // -------------------------------------------------------------------
 
 // MoveJTReq
@@ -19927,6 +20105,41 @@ inline void MoveJTReq::_internal_set_time(float value) {
   _impl_.time_ = value;
 }
 
+// int32 arm_index = 10;
+inline bool MoveJTReq::has_arm_index() const {
+  return arm_index_presence_case() == kArmIndex;
+}
+inline void MoveJTReq::set_has_arm_index() {
+  _impl_._oneof_case_[0] = kArmIndex;
+}
+inline void MoveJTReq::clear_arm_index() {
+  if (arm_index_presence_case() == kArmIndex) {
+    _impl_.arm_index_presence_.arm_index_ = 0;
+    clear_has_arm_index_presence();
+  }
+}
+inline ::int32_t MoveJTReq::arm_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.MoveJTReq.arm_index)
+  return _internal_arm_index();
+}
+inline void MoveJTReq::set_arm_index(::int32_t value) {
+  _internal_set_arm_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.MoveJTReq.arm_index)
+}
+inline ::int32_t MoveJTReq::_internal_arm_index() const {
+  if (arm_index_presence_case() == kArmIndex) {
+    return _impl_.arm_index_presence_.arm_index_;
+  }
+  return 0;
+}
+inline void MoveJTReq::_internal_set_arm_index(::int32_t value) {
+  if (arm_index_presence_case() != kArmIndex) {
+    clear_arm_index_presence();
+    set_has_arm_index();
+  }
+  _impl_.arm_index_presence_.arm_index_ = value;
+}
+
 // .Nrmk.IndyFramework.MotionCondition post_condition = 20;
 inline bool MoveJTReq::has_post_condition() const {
   bool value = (_impl_._has_bits_[0] & 0x00000004u) != 0;
@@ -20023,6 +20236,15 @@ inline void MoveJTReq::set_allocated_post_condition(::Nrmk::IndyFramework::Motio
   // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.MoveJTReq.post_condition)
 }
 
+inline bool MoveJTReq::has_arm_index_presence() const {
+  return arm_index_presence_case() != ARM_INDEX_PRESENCE_NOT_SET;
+}
+inline void MoveJTReq::clear_has_arm_index_presence() {
+  _impl_._oneof_case_[0] = ARM_INDEX_PRESENCE_NOT_SET;
+}
+inline MoveJTReq::ArmIndexPresenceCase MoveJTReq::arm_index_presence_case() const {
+  return MoveJTReq::ArmIndexPresenceCase(_impl_._oneof_case_[0]);
+}
 // -------------------------------------------------------------------
 
 // TargetP

@@ -55,6 +55,7 @@ bool IndyDCP3::get_robot_data(Nrmk::IndyFramework::ControlData &control_data) {
         pdot  -> float[6]
         ref_frame  -> float[6]
         tool_frame  -> float[6]
+        ref_links  -> int[]
         response  -> Response
     */
     Nrmk::IndyFramework::Empty request;
@@ -87,6 +88,11 @@ bool IndyDCP3::get_robot_data(Nrmk::IndyFramework::ControlData &control_data) {
 
         control_data.add_ref_frame(response.ref_frame(i));
         control_data.add_tool_frame(response.tool_frame(i));
+    }
+
+    control_data.clear_ref_links();
+    for (const auto link_index : response.ref_links()) {
+        control_data.add_ref_links(link_index);
     }
 
     return true;
@@ -772,7 +778,8 @@ bool IndyDCP3::movej(const std::vector<float>& jtarget,
                      const int react_type,
                      DCPDICond di_condition,
                      DCPVarCond var_condition,
-                     const bool teaching_mode)
+                     const bool teaching_mode,
+                     const std::optional<int> arm_index)
 {
     /*
         Joint Move:
@@ -786,6 +793,7 @@ bool IndyDCP3::movej(const std::vector<float>& jtarget,
             vel_ratio (0-100) -> float
             acc_ratio (0-100) -> float
             teaching_mode -> bool
+            arm_index -> optional<int>; nullopt omits the protobuf field
     */
 
     Nrmk::IndyFramework::MoveJReq request;
@@ -900,6 +908,9 @@ bool IndyDCP3::movej(const std::vector<float>& jtarget,
         request.set_vel_ratio(vel_ratio);
         request.set_acc_ratio(acc_ratio);
         request.set_teaching_mode(teaching_mode);
+        if (arm_index.has_value()) {
+            request.set_arm_index(*arm_index);
+        }
 
         grpc::Status status = control_stub->MoveJ(&context, request, &response);
         if (!status.ok()){
@@ -924,7 +935,8 @@ bool IndyDCP3::movej_time(const std::vector<float>& jtarget,
                      const int cond_type,
                      const int react_type,
                      DCPDICond di_condition,
-                     DCPVarCond var_condition)
+                     DCPVarCond var_condition,
+                     const std::optional<int> arm_index)
 {
     /*
         Joint Move Time:
@@ -936,6 +948,7 @@ bool IndyDCP3::movej_time(const std::vector<float>& jtarget,
                 ABSOLUTE
                 RELATIVE
             move_time -> float
+            arm_index -> optional<int>; nullopt omits the protobuf field
     */
 
     Nrmk::IndyFramework::MoveJTReq request;
@@ -1045,6 +1058,9 @@ bool IndyDCP3::movej_time(const std::vector<float>& jtarget,
         }
 
         request.set_time(move_time);
+        if (arm_index.has_value()) {
+            request.set_arm_index(*arm_index);
+        }
 
         grpc::Status status = control_stub->MoveJT(&context, request, &response);
         if (!status.ok()){
@@ -2112,6 +2128,25 @@ bool IndyDCP3::resume_program()
     return true;
 }
 
+bool IndyDCP3::resume_program_debug()
+{
+    /*
+        Resume Program Debug
+    */
+
+    Nrmk::IndyFramework::Empty request;
+    Nrmk::IndyFramework::Response response;
+    grpc::ClientContext context;
+
+    grpc::Status status = control_stub->ResumeProgramDebug(&context, request, &response);
+    if (!status.ok()) {
+        std::cerr << "ResumeProgramDebug RPC failed: " << status.error_message() << std::endl;
+        return false;
+    }
+
+    return true;
+}
+
 bool IndyDCP3::stop_program()
 {
     /*
@@ -2661,7 +2696,8 @@ bool IndyDCP3::save_reference_frame(const Nrmk::IndyFramework::RefFrameList& lis
 }
 
 bool IndyDCP3::set_ref_frame_planar(std::array<float, 6>& fpos_out, const std::array<float, 6>& fpos0,
-                                    const std::array<float, 6>& fpos1, const std::array<float, 6>& fpos2) 
+                                    const std::array<float, 6>& fpos1, const std::array<float, 6>& fpos2,
+                                    const int arm_index, const int link_index)
 {
     /*
         Reference Frame (Planar)
@@ -2669,6 +2705,8 @@ bool IndyDCP3::set_ref_frame_planar(std::array<float, 6>& fpos_out, const std::a
         fpos0 -> float[6]
         fpos1 -> float[6]
         fpos2 -> float[6]
+        arm_index -> int
+        link_index -> int
     */
 
     Nrmk::IndyFramework::PlanarFrame request;
@@ -2680,6 +2718,8 @@ bool IndyDCP3::set_ref_frame_planar(std::array<float, 6>& fpos_out, const std::a
         request.add_fpos1(fpos1[i]);
         request.add_fpos2(fpos2[i]);
     }
+    request.set_arm_index(arm_index);
+    request.set_link_index(link_index);
 
     grpc::Status status = config_stub->SetRefFramePlanar(&context, request, &response);
 

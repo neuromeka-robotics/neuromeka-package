@@ -40,7 +40,8 @@ class ControlChannelAPI:
               vel_ratio=Limits.JogVelRatioDefault,
               acc_ratio=Limits.JogAccRatioDefault,
               post_condition=PostCondition(),
-              teaching_mode=False) -> dict:
+              teaching_mode=False,
+              arm_index: Optional[int] = None) -> dict:
         """
          Joint Move:
             blending_type -> BlendingType.Type
@@ -54,6 +55,7 @@ class ControlChannelAPI:
             acc_ratio (0-100) -> int
             post_condition -> PostCondition
             teaching_mode -> bool
+            arm_index -> Optional[int]; None omits the protobuf field
 
         """
         if teaching_mode and base_type!=JointBaseType.ABSOLUTE:
@@ -75,13 +77,17 @@ class ControlChannelAPI:
                 ),
             )
 
-        response = self.control.MoveJ(control_msgs.MoveJReq(
+        request = control_msgs.MoveJReq(
             target=jtarget,
             blending=blending,
             vel_ratio=vel_ratio, acc_ratio=acc_ratio,
             post_condition=post_cond,
             teaching_mode=teaching_mode
-        ))
+        )
+        if arm_index is not None:
+            request.arm_index = arm_index
+
+        response = self.control.MoveJ(request)
         return json_format.MessageToDict(response,
                                          including_default_value_fields=True,
                                          preserving_proto_field_name=True,
@@ -92,10 +98,12 @@ class ControlChannelAPI:
                    base_type=JointBaseType.ABSOLUTE,
                    blending_radius=0.0,
                    move_time=5.0,
-                   post_condition=PostCondition()) -> dict:
+                   post_condition=PostCondition(),
+                   arm_index: Optional[int] = None) -> dict:
         """
         jtarget = [deg, deg, deg, deg, deg, deg]
         move_time = seconds
+        arm_index = Optional[int]; None omits the protobuf field
         """
         jtarget = control_msgs.TargetJ(j_start=[], j_target=list(jtarget), base_type=base_type)
         blending = control_msgs.BlendingType(type=blending_type, blending_radius=blending_radius)
@@ -111,12 +119,16 @@ class ControlChannelAPI:
                 ),
             )
 
-        response = self.control.MoveJT(control_msgs.MoveJTReq(
+        request = control_msgs.MoveJTReq(
             target=jtarget,
             blending=blending,
             time=move_time,
             post_condition=post_cond
-        ))
+        )
+        if arm_index is not None:
+            request.arm_index = arm_index
+
+        response = self.control.MoveJT(request)
         return json_format.MessageToDict(response,
                                          including_default_value_fields=True,
                                          preserving_proto_field_name=True,
@@ -846,6 +858,16 @@ class ControlChannelAPI:
          Resume program
         """
         response = self.control.ResumeProgram(common_msgs.Empty())
+        return json_format.MessageToDict(response,
+                                         including_default_value_fields=True,
+                                         preserving_proto_field_name=True,
+                                         use_integers_for_enums=True)
+
+    def resume_program_debug(self):
+        """
+         Resume a program paused in debug mode
+        """
+        response = self.control.ResumeProgramDebug(common_msgs.Empty())
         return json_format.MessageToDict(response,
                                          including_default_value_fields=True,
                                          preserving_proto_field_name=True,
