@@ -16,6 +16,7 @@ else:
         "numpy>=1.19.4, <=1.21.6",
         "pyModbusTCP==0.2.1",
         "netifaces==0.11.0",
+        "pyyaml==6.0.1",
     ]
     common_requires = [
         "grpcio==1.59.0",
@@ -27,11 +28,13 @@ else:
         "numpy>=1.21.6, <=1.26.4",
         "pyModbusTCP==0.2.1",
         "netifaces2",
+        "pyyaml==6.0.1",
     ]
     
     setup(
         name="neuromeka",
-        version="3.4.2.1",
+        version="3.4.2.2",
+        license="MIT",
         author="Neuromeka",
         author_email="technical-support@neuromeka.com",
         description="Neuromeka client protocols for IndyDCP3, IndyEye, Moby, Ecat, and Motor",
@@ -42,7 +45,7 @@ else:
         classifiers=[
             "Development Status :: 3 - Alpha",
             "Intended Audience :: Developers",
-            "License :: OSI Approved :: MIT License",
+            # "License :: OSI Approved :: MIT License",
             "Operating System :: OS Independent",
             "Programming Language :: Python :: 3.7",
             "Programming Language :: Python :: 3.8",
