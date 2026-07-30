@@ -1161,7 +1161,7 @@ class ConfigChannelAPI:
     ############################
     # Factory Reset / Control Gains
     ############################
-    def restor_factory_control_gains(self):
+    def restore_factory_control_gains(self):
         """Restore factory default control gains."""
         response = self.config.RestorFactoryControlGains(common_msgs.Empty())
         return json_format.MessageToDict(response,

@@ -530,7 +530,7 @@ class IndyDCP3
         bool set_do_config_list(const Nrmk::IndyFramework::DOConfigList& do_config_list);
         bool get_do_config_list(Nrmk::IndyFramework::DOConfigList& do_config_list);
 
-        bool restor_factory_control_gains();
+        bool restore_factory_control_gains();
         bool get_imu_auto_mount(Nrmk::IndyFramework::MountingAngles& mounting_angles);
         bool set_tool_property_list(const Nrmk::IndyFramework::ToolPropertyEntries& entries);
         bool get_tool_property_list(Nrmk::IndyFramework::ToolPropertyEntries& entries);

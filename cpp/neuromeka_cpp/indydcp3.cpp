@@ -4652,7 +4652,7 @@ bool IndyDCP3::get_do_config_list(Nrmk::IndyFramework::DOConfigList& do_config_l
     return true;
 }
 
-bool IndyDCP3::restor_factory_control_gains() {
+bool IndyDCP3::restore_factory_control_gains() {
     Nrmk::IndyFramework::Empty request;
     Nrmk::IndyFramework::Response response;
     grpc::ClientContext context;
