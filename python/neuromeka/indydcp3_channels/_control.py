@@ -593,7 +593,7 @@ class ControlChannelAPI:
                                          preserving_proto_field_name=True,
                                          use_integers_for_enums=True)
 
-    def movetelej_abs(self, jpos, vel_ratio=1.0, acc_ratio=1.0):
+    def movetelej_abs(self, jpos, vel_ratio=0.8, acc_ratio=7.0):
         """
         Joint Teleoperation - Absolute
         jpos = [deg, deg, deg, deg, deg, deg]
@@ -605,7 +605,7 @@ class ControlChannelAPI:
                                          preserving_proto_field_name=True,
                                          use_integers_for_enums=True)
 
-    def movetelej_rel(self, jpos, vel_ratio=1.0, acc_ratio=1.0):
+    def movetelej_rel(self, jpos, vel_ratio=0.8, acc_ratio=7.0):
         """
         Joint Teleoperation - Relative
         jpos = [deg, deg, deg, deg, deg, deg]
@@ -617,7 +617,7 @@ class ControlChannelAPI:
                                          preserving_proto_field_name=True,
                                          use_integers_for_enums=True)
 
-    def movetelel_abs(self, tpos, vel_ratio=1.0, acc_ratio=1.0, arm_index=0):
+    def movetelel_abs(self, tpos, vel_ratio=0.8, acc_ratio=7.0, arm_index=0):
         """
         Task Teleoperation - Absolute
         jpos = [mm, mm, mm, deg, deg, deg]
@@ -629,7 +629,7 @@ class ControlChannelAPI:
                                          preserving_proto_field_name=True,
                                          use_integers_for_enums=True)
 
-    def movetelel_rel(self, tpos, vel_ratio=1.0, acc_ratio=1.0, arm_index=0):
+    def movetelel_rel(self, tpos, vel_ratio=0.8, acc_ratio=7.0, arm_index=0):
         """
         Task Teleoperation - Relative
         jpos = [mm, mm, mm, deg, deg, deg]
