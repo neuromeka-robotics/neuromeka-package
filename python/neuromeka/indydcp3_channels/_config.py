@@ -10,6 +10,7 @@ from typing import List, Optional
 
 from google.protobuf import json_format
 from google.protobuf.json_format import ParseDict
+from ._helpers import _message_to_dict
 
 
 class ConfigChannelAPI:
@@ -23,10 +24,7 @@ class ConfigChannelAPI:
         response = self.config.SetSpeedRatio(config_msgs.Ratio(
             ratio=speed_ratio
         ))
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def get_pack_pos(self):
         """
@@ -34,261 +32,177 @@ class ConfigChannelAPI:
             jpos -> double[]
         """
         response = self.config.GetPackPosition(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def get_path_config(self):
         response = self.config.GetPathConfig(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
+
+    def get_language(self):
+        response = self.config.GetLanguage(common_msgs.Empty())
+        return _message_to_dict(response)
+
+    def set_language(self, language: str):
+        response = self.config.SetLanguage(common_msgs.Name(name=language))
+        return _message_to_dict(response)
 
     def set_locked_joint(self, index: int):
         response = self.config.SetLockedJoint(common_msgs.Int(value=index))
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
+
+    def set_locked_joint_for(self, arm_index: int, joint_index: int):
+        response = self.config.SetLockedJointFor(config_msgs.LockJointReq(
+            arm_index=arm_index,
+            joint_index=joint_index
+        ))
+        return _message_to_dict(response)
 
     def set_tool_link(self, index: int):
         response = self.config.SetToolLink(common_msgs.Int(value=index))
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def get_speed_ratio(self):
         response = self.config.GetSpeedRatio(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def set_tool_list(self, tool_list: dict):
         req = config_msgs.ToolList()
         ParseDict(tool_list, req)
         response = self.config.SetToolList(req)
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def get_tool_list(self):
         response = self.config.GetToolList(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def get_vision_server_list(self):
         response = self.config.GetVisionServerList(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def set_vision_server_list(self, vision_server_list: dict):
         req = config_msgs.VisionServerList()
         ParseDict(vision_server_list, req)
         response = self.config.SetVisionServerList(req)
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def get_modbus_server_list(self):
         response = self.config.GetModbusServerList(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def set_modbus_server_list(self, modbus_server_list: dict):
         req = config_msgs.ModbusServerList()
         ParseDict(modbus_server_list, req)
         response = self.config.SetModbusServerList(req)
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def get_conveyor_list(self):
         response = self.config.GetConveyorList(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def set_conveyor_list(self, conveyor_list: dict):
         req = config_msgs.ConveyorList()
         ParseDict(conveyor_list, req)
         response = self.config.SetConveyorList(req)
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def set_compliance_control_joint_gain(self, gains: dict):
         req = config_msgs.ComplianceGainSet()
         ParseDict(gains, req)
         response = self.config.SetComplianceControlJointGain(req)
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def get_compliance_control_joint_gain(self):
         response = self.config.GetComplianceControlJointGain(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def get_tool_frame_list(self):
         response = self.config.GetToolFrameList(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def set_tool_frame_list(self, tool_frame_list: dict):
         req = config_msgs.ToolFrameList()
         ParseDict(tool_frame_list, req)
         response = self.config.SetToolFrameList(req)
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def get_ref_frame_list(self):
         response = self.config.GetRefFrameList(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def set_ref_frame_list(self, ref_frame_list: dict):
         req = config_msgs.RefFrameList()
         ParseDict(ref_frame_list, req)
         response = self.config.SetRefFrameList(req)
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def get_custom_pos_list(self):
         response = self.config.GetCustomPosList(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def set_custom_pos_list(self, custom_pos_list: dict):
         req = config_msgs.CustomPosList()
         ParseDict(custom_pos_list, req)
         response = self.config.SetCustomPosList(req)
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def set_tool_shape_list(self, tool_shape_list: dict):
         req = config_msgs.ToolShapeList()
         ParseDict(tool_shape_list, req)
         response = self.config.SetToolShapeList(req)
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def get_tool_shape_list(self):
         response = self.config.GetToolShapeList(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def set_environment_list(self, environment_list: dict):
         req = config_msgs.EnvironmentList()
         ParseDict(environment_list, req)
         response = self.config.SetEnvironmentList(req)
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def get_environment_list(self):
         response = self.config.GetEnvironmentList(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def get_default_coll_sens_param(self):
         response = self.config.GetDefaultCollSensParam(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def set_sensorless_params(self, params: dict):
         req = config_msgs.SensorlessParams()
         ParseDict(params, req)
         response = self.config.SetSensorlessParams(req)
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def get_sensorless_params(self):
         response = self.config.GetSensorlessParams(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def set_on_start_program_config(self, config: dict):
         req = config_msgs.OnStartProgramConfig()
         ParseDict(config, req)
         response = self.config.SetOnStartProgramConfig(req)
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def get_on_start_program_config(self):
         response = self.config.GetOnStartProgramConfig(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def set_simple_coll_threshold(self):
         response = self.config.SetSimpleCollThreshold(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def get_collison_model_margin(self):
         response = self.config.GetCollisonModelMargin(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def set_collison_model_margin(self, collision_margin: float, recover_margin: float):
         response = self.config.SetCollisonModelMargin(
             config_msgs.CollisionModelMargin(collision_margin=collision_margin,
                                              recover_margin=recover_margin)
         )
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     ############################
     # Home / Frames
@@ -299,10 +213,7 @@ class ConfigChannelAPI:
             jpos -> double[]
         """
         response = self.config.GetHomePosition(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def set_home_pos(self, home_jpos: list):
         """
@@ -312,10 +223,7 @@ class ConfigChannelAPI:
         response = self.config.SetHomePosition(config_msgs.JointPos(
             jpos=home_jpos
         ))
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def get_ref_frame(self):
         """
@@ -323,10 +231,7 @@ class ConfigChannelAPI:
             fpos -> float[6]
         """
         response = self.config.GetRefFrame(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def get_ref_frame_for(self, index: int):
         """
@@ -335,10 +240,7 @@ class ConfigChannelAPI:
             returns Frame
         """
         response = self.config.GetRefFrameFor(common_msgs.Int(value=index))
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def set_ref_frame(self, fpos: list, arm_index: int = 0, link_index: int = 0):
         """
@@ -348,10 +250,7 @@ class ConfigChannelAPI:
         response = self.config.SetRefFrame(config_msgs.Frame(
             fpos=list(fpos), arm_index=arm_index, link_index=link_index
         ))
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def set_ref_frame_planar(self, fpos0: list, fpos1: list, fpos2: list,
                              arm_index: int = 0, link_index: int = 0):
@@ -367,10 +266,7 @@ class ConfigChannelAPI:
             fpos0=list(fpos0), fpos1=list(fpos1), fpos2=list(fpos2),
             arm_index=arm_index, link_index=link_index
         ))
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def set_tool_frame(self, fpos: list, arm_index: int = 0, link_index: int = 0):
         """
@@ -380,10 +276,7 @@ class ConfigChannelAPI:
         response = self.config.SetToolFrame(config_msgs.Frame(
             fpos=list(fpos), arm_index=arm_index, link_index=link_index
         ))
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     ############################
     # Friction Compensation Config
@@ -398,10 +291,7 @@ class ConfigChannelAPI:
             teaching_comp_levels   -> int32[6]
         """
         response = self.config.GetFrictionComp(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def set_friction_comp(self, control_comp: bool, control_comp_levels: list,
                           dt_comp: bool, dt_comp_levels: list):
@@ -418,10 +308,7 @@ class ConfigChannelAPI:
             teaching_comp_enable=dt_comp, teaching_comp_levels=list(dt_comp_levels)
         ))
 
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     ############################
     # Mounting
@@ -435,10 +322,7 @@ class ConfigChannelAPI:
         response = self.config.SetMountPos(config_msgs.MountingAngles(
             ry=rot_y, rz=rot_z
         ))
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def get_mount_pos(self):
         """
@@ -447,10 +331,7 @@ class ConfigChannelAPI:
             rot_z   -> float
         """
         response = self.config.GetMountPos(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     ############################
     # Tool Properties
@@ -465,10 +346,7 @@ class ConfigChannelAPI:
             link_index -> int (deprecated)
         """
         response = self.config.GetToolProperty(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def get_tool_property_at(self, index: int):
         """
@@ -477,10 +355,7 @@ class ConfigChannelAPI:
             returns ToolProperties (mass, center_of_mass[3], inertia[6], arm_index, link_index(deprecated))
         """
         response = self.config.GetToolPropertyAt(common_msgs.Int(value=index))
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def set_tool_property(self, mass: float, center_of_mass: list, inertia: list, arm_index: int = 0):
         """
@@ -494,10 +369,7 @@ class ConfigChannelAPI:
             mass=mass, center_of_mass=list(center_of_mass),
             inertia=list(inertia), arm_index=arm_index
         ))
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     ############################
     # Collision
@@ -508,10 +380,7 @@ class ConfigChannelAPI:
             level -> uint32
         """
         response = self.config.GetCollSensLevel(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def set_coll_sens_level(self, level: int):
         """
@@ -521,10 +390,7 @@ class ConfigChannelAPI:
         response = self.config.SetCollSensLevel(config_msgs.CollisionSensLevel(
             level=level
         ))
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def get_coll_sens_param(self):
         """
@@ -541,10 +407,7 @@ class ConfigChannelAPI:
             t_conveyor_torque_tangents      -> double[6]
         """
         response = self.config.GetCollSensParam(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def set_coll_sens_param(self, j_torque_bases, j_torque_tangents,
                             t_torque_bases, t_torque_tangents,
@@ -573,10 +436,7 @@ class ConfigChannelAPI:
             t_conveyor_torque_bases=list(t_conveyor_torque_bases),
             t_conveyor_torque_tangents=list(t_conveyor_torque_tangents)
         ))
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def get_coll_policy(self):
         """
@@ -586,10 +446,7 @@ class ConfigChannelAPI:
             gravity_time -> float
         """
         response = self.config.GetCollPolicy(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def set_coll_policy(self, policy=CollisionPolicyType.NONE,
                         sleep_time=0, gravity_time=0.1):
@@ -603,10 +460,7 @@ class ConfigChannelAPI:
         response = self.config.SetCollPolicy(config_msgs.CollisionPolicy(
             policy=policy, sleep_time=sleep_time, gravity_time=gravity_time
         ))
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     ############################
     # Safety Limits
@@ -625,10 +479,7 @@ class ConfigChannelAPI:
             joint_l1_limits      -> float[]
         """
         response = self.config.GetSafetyLimits(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def set_safety_limits(self, power_limit: float, power_limit_ratio: float,
                           tcp_force_limit: float, tcp_force_limit_ratio: float,
@@ -656,10 +507,7 @@ class ConfigChannelAPI:
             joint_lower_limits=[] if joint_lower_limits is None else list(joint_lower_limits),
             joint_l1_limits=[] if joint_l1_limits is None else list(joint_l1_limits)
         ))
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     ############################
     # Control Gains
@@ -679,12 +527,9 @@ class ConfigChannelAPI:
             gain9   -> float[6]
         """
         response = self.config.GetCustomControlGain(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
-    
-    def set_custom_control_gain(self, gain0=None, gain1=None, gain2=None, gain3=None, gain4=None, 
+        return _message_to_dict(response)
+
+    def set_custom_control_gain(self, gain0=None, gain1=None, gain2=None, gain3=None, gain4=None,
                                 gain5=None, gain6=None, gain7=None, gain8=None, gain9=None):
         """
         Set custom control gains with up to 10 gain arrays.
@@ -700,10 +545,7 @@ class ConfigChannelAPI:
             gain8=gains[8], gain9=gains[9]
         ))
 
-        return json_format.MessageToDict(response,
-                                        including_default_value_fields=True,
-                                        preserving_proto_field_name=True,
-                                        use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def set_joint_control_gain(self, kp: list, kv: list, kl2: list):
         """
@@ -715,10 +557,7 @@ class ConfigChannelAPI:
         response = self.config.SetJointControlGain(config_msgs.JointGainSet(
             kp=list(kp), kv=list(kv), kl2=list(kl2)
         ))
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def get_joint_control_gain(self):
         """
@@ -728,10 +567,7 @@ class ConfigChannelAPI:
             kl2  -> float[6]
         """
         response = self.config.GetJointControlGain(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def set_task_control_gain(self, kp, kv, kl2):
         """
@@ -743,10 +579,7 @@ class ConfigChannelAPI:
         response = self.config.SetTaskControlGain(config_msgs.TaskGainSet(
             kp=list(kp), kv=list(kv), kl2=list(kl2)
         ))
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def get_task_control_gain(self):
         """
@@ -756,10 +589,7 @@ class ConfigChannelAPI:
             kl2  -> float[6]
         """
         response = self.config.GetTaskControlGain(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def set_impedance_control_gain(self, mass, damping, stiffness, kl2):
         """
@@ -772,10 +602,7 @@ class ConfigChannelAPI:
         response = self.config.SetImpedanceControlGain(config_msgs.ImpedanceGainSet(
             mass=list(mass), damping=list(damping), stiffness=list(stiffness), kl2=list(kl2)
         ))
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def get_impedance_control_gain(self):
         """
@@ -786,10 +613,7 @@ class ConfigChannelAPI:
             kl2  -> float[6]
         """
         response = self.config.GetImpedanceControlGain(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def set_force_control_gain(self, kp, kv, kl2, mass, damping, stiffness, kpf, kif):
         """
@@ -803,10 +627,7 @@ class ConfigChannelAPI:
             kp=list(kp), kv=list(kv), kl2=list(kl2), mass=list(mass), damping=list(damping), stiffness=list(stiffness),
             kpf=list(kpf), kif=list(kif)
         ))
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def get_force_control_gain(self):
         """
@@ -817,10 +638,7 @@ class ConfigChannelAPI:
             kl2  -> float[6]
         """
         response = self.config.GetForceControlGain(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     ############################
     # IO Config
@@ -845,10 +663,7 @@ class ConfigChannelAPI:
 
         response = self.config.SetDOConfigList(do_list_request)
 
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def get_do_config_list(self):
         """
@@ -866,10 +681,7 @@ class ConfigChannelAPI:
         Note: onSignals/offSignals use DOChannelMode format.
         """
         response = self.config.GetDOConfigList(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def set_di_config_list(self, di_config_list: dict):
         """
@@ -890,10 +702,7 @@ class ConfigChannelAPI:
         ParseDict(di_config_list, di_list_request)
         response = self.config.SetDIConfigList(di_list_request)
 
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def get_di_config_list(self):
         """
@@ -911,10 +720,7 @@ class ConfigChannelAPI:
             }
         """
         response = self.config.GetDIConfigList(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     ############################
     # FT Sensor Config
@@ -937,17 +743,11 @@ class ConfigChannelAPI:
             ft_frame_rotation_offset_p=ft_frame_rotation_offset_p,
             ft_frame_rotation_offset_y=ft_frame_rotation_offset_y,
             arm_index=arm_index))
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def get_ft_sensor_config(self):
         response = self.config.GetFTSensorConfig(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def get_ft_sensor_config_for(self, index: int):
         """
@@ -956,10 +756,7 @@ class ConfigChannelAPI:
             returns FTSensorDevice
         """
         response = self.config.GetFTSensorConfigFor(common_msgs.Int(value=index))
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     ############################
     # Auto Servo-Off
@@ -973,10 +770,7 @@ class ConfigChannelAPI:
         response = self.config.SetAutoServoOff(config_msgs.AutoServoOffConfig(
             enable=enable, time=time
         ))
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def get_auto_servo_off(self):
         """
@@ -985,10 +779,7 @@ class ConfigChannelAPI:
             time -> float
         """
         response = self.config.GetAutoServoOff(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     ############################
     # Safety Stop Config
@@ -1023,10 +814,7 @@ class ConfigChannelAPI:
             safegd_stop_cat=(safegd_stop_cat or []),
             safegd_type=(safegd_type or [])
         ))
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def get_safety_stop_config(self):
         """
@@ -1039,34 +827,22 @@ class ConfigChannelAPI:
             power_limit_stop_cat = IMMEDIATE_BRAKE(0) | SMOOTH_BRAKE(1) | SMOOTH_ONLY(2)
         """
         response = self.config.GetSafetyStopConfig(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     ############################
     # Reduced Speed / Ratio
     ############################
     def get_reduced_ratio(self):
         response = self.config.GetReducedRatio(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def get_reduced_speed(self):
         response = self.config.GetReducedSpeed(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def set_reduced_speed(self, speed):
         response = self.config.SetReducedSpeed(config_msgs.SetReducedSpeedReq(speed=speed))
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     ############################
     # Teleop Params
@@ -1079,13 +855,10 @@ class ConfigChannelAPI:
 
         if cutoff_freq is None or (cutoff_freq < 0.1 or cutoff_freq > 20.0):
             raise ValueError("cutoff_freq must be between 0.1 and 20.0")
-        
+
         response = self.config.SetTeleOpParams(
             config_msgs.TeleOpParams(cutoff_freq_input=cutoff_freq))
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def get_teleop_params(self):
         """
@@ -1093,11 +866,8 @@ class ConfigChannelAPI:
             cutoff_freq -> float
         """
         response = self.config.GetTeleOpParams(common_msgs.Empty())
-        
-        response_dict = json_format.MessageToDict(response,
-                                                 including_default_value_fields=True,
-                                                 preserving_proto_field_name=True,
-                                                 use_integers_for_enums=True)
+
+        response_dict = _message_to_dict(response)
         return {'cutoff_freq': response_dict.get('cutoff_freq_input')}
 
     ############################
@@ -1105,21 +875,15 @@ class ConfigChannelAPI:
     ############################
     def get_kinematics_params(self):
         response = self.config.GetKinematicsParams(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     ############################
     # Reference Frame Shortcuts
     ############################
     def load_reference_frame(self):
         response = self.config.GetRefFrameList(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                    including_default_value_fields=True,
-                                    preserving_proto_field_name=True,
-                                    use_integers_for_enums=True)
-        
+        return _message_to_dict(response)
+
     def save_reference_frame(self, frames, default_name):
         """
         frames = [
@@ -1153,10 +917,7 @@ class ConfigChannelAPI:
         )
 
         response = self.config.SetRefFrameList(request)
-        return json_format.MessageToDict(response,
-                                    including_default_value_fields=True,
-                                    preserving_proto_field_name=True,
-                                    use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     ############################
     # Factory Reset / Control Gains
@@ -1164,10 +925,7 @@ class ConfigChannelAPI:
     def restore_factory_control_gains(self):
         """Restore factory default control gains."""
         response = self.config.RestorFactoryControlGains(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     ############################
     # IMU Auto Mount
@@ -1179,10 +937,7 @@ class ConfigChannelAPI:
             rz -> float
         """
         response = self.config.GetIMUAutoMount(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     ############################
     # Tool Property List
@@ -1207,10 +962,7 @@ class ConfigChannelAPI:
         req = config_msgs.ToolPropertyEntries()
         ParseDict(entries, req)
         response = self.config.SetToolPropertyList(req)
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def get_tool_property_list(self):
         """
@@ -1218,10 +970,7 @@ class ConfigChannelAPI:
             returns ToolPropertyEntries
         """
         response = self.config.GetToolPropertyList(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     ############################
     # Joint Limit Config
@@ -1235,10 +984,7 @@ class ConfigChannelAPI:
             source_file -> string
         """
         response = self.config.GetJointLimitConfig(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def set_joint_limit_config(self, config: dict):
         """
@@ -1252,10 +998,7 @@ class ConfigChannelAPI:
         req = config_msgs.JointLimitConfig()
         ParseDict(config, req)
         response = self.config.SetJointLimitConfig(req)
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def get_original_joint_limit_config(self):
         """
@@ -1266,10 +1009,7 @@ class ConfigChannelAPI:
             source_file -> string
         """
         response = self.config.GetOriginalJointLimitConfig(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     ############################
     # Safety Snapshots
@@ -1287,10 +1027,7 @@ class ConfigChannelAPI:
         response = self.config.SaveSafetySnapshot(
             config_msgs.SaveSafetySnapshotReq(label=label)
         )
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def list_safety_snapshots(self):
         """
@@ -1299,10 +1036,7 @@ class ConfigChannelAPI:
             snapshots -> list of SafetySnapshotInfo
         """
         response = self.config.ListSafetySnapshots(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def restore_safety_snapshot(self, snapshot_id: str):
         """
@@ -1312,10 +1046,7 @@ class ConfigChannelAPI:
         response = self.config.RestoreSafetySnapshot(
             config_msgs.SafetySnapshotId(snapshot_id=snapshot_id)
         )
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def delete_safety_snapshot(self, snapshot_id: str):
         """
@@ -1325,18 +1056,12 @@ class ConfigChannelAPI:
         response = self.config.DeleteSafetySnapshot(
             config_msgs.SafetySnapshotId(snapshot_id=snapshot_id)
         )
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def restor_factory_safety_config(self):
         """Restore factory default safety configuration."""
         response = self.config.RestorFactorySafetyConfig(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     ############################
     # Operation Mode Config
@@ -1357,10 +1082,7 @@ class ConfigChannelAPI:
                 auto_mode=auto_mode
             )
         )
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def get_operation_mode_config(self):
         """
@@ -1370,7 +1092,46 @@ class ConfigChannelAPI:
             auto_mode -> bool
         """
         response = self.config.GetOperationModeConfig(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
+
+    def get_nonce(self):
+        return _message_to_dict(self.config.GetNonce(common_msgs.Empty()))
+
+    def login(self, request):
+        return _message_to_dict(self.config.Login(request))
+
+    def test_digest(self, request):
+        return _message_to_dict(self.config.TestDigest(request))
+
+    def verify_token(self, request):
+        return _message_to_dict(self.config.VerifyToken(request))
+
+    def change_password(self, request):
+        return _message_to_dict(self.config.ChangePassword(request))
+
+    def get_servo_param_list(self):
+        return _message_to_dict(self.config.GetServoParamList(common_msgs.Empty()))
+
+    def set_test_control_gain(self, request):
+        return _message_to_dict(self.config.SetTestControlGain(request))
+
+    def get_test_control_gain(self):
+        return _message_to_dict(self.config.GetTestControlGain(common_msgs.Empty()))
+
+    def set_new_controller_test_on_off(self, request):
+        return _message_to_dict(self.config.SetNewControllerTestOnOff(request))
+
+    def get_new_controller_test_on_off_state(self):
+        return _message_to_dict(self.config.GetNewControllerTestOnOffState(common_msgs.Empty()))
+
+    def get_welding_machine_config(self):
+        return _message_to_dict(self.config.GetWeldingMachineConfig(common_msgs.Empty()))
+
+    def set_welding_machine_config(self, request):
+        return _message_to_dict(self.config.SetWeldingMachineConfig(request))
+
+    def get_weld_position_list(self):
+        return _message_to_dict(self.config.GetWeldPositionList(common_msgs.Empty()))
+
+    def set_weld_position_list(self, request):
+        return _message_to_dict(self.config.SetWeldPositionList(request))

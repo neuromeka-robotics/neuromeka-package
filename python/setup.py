@@ -33,7 +33,7 @@ else:
     
     setup(
         name="neuromeka",
-        version="3.5.0.9",
+        version="3.5.0.10",
         license="MIT",
         author="Neuromeka",
         author_email="technical-support@neuromeka.com",

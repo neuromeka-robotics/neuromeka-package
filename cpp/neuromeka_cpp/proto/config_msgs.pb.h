@@ -157,6 +157,9 @@ extern KinematicsParamsDefaultTypeInternal _KinematicsParams_default_instance_;
 class KinematicsParams_MDH;
 struct KinematicsParams_MDHDefaultTypeInternal;
 extern KinematicsParams_MDHDefaultTypeInternal _KinematicsParams_MDH_default_instance_;
+class LockJointReq;
+struct LockJointReqDefaultTypeInternal;
+extern LockJointReqDefaultTypeInternal _LockJointReq_default_instance_;
 class LoginRes;
 struct LoginResDefaultTypeInternal;
 extern LoginResDefaultTypeInternal _LoginRes_default_instance_;
@@ -2833,6 +2836,176 @@ class Frame final :
   friend struct ::TableStruct_config_5fmsgs_2eproto;
 };// -------------------------------------------------------------------
 
+class LockJointReq final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.LockJointReq) */ {
+ public:
+  inline LockJointReq() : LockJointReq(nullptr) {}
+  ~LockJointReq() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR LockJointReq(::google::protobuf::internal::ConstantInitialized);
+
+  LockJointReq(const LockJointReq& from);
+  LockJointReq(LockJointReq&& from) noexcept
+    : LockJointReq() {
+    *this = ::std::move(from);
+  }
+
+  inline LockJointReq& operator=(const LockJointReq& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline LockJointReq& operator=(LockJointReq&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const LockJointReq& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const LockJointReq* internal_default_instance() {
+    return reinterpret_cast<const LockJointReq*>(
+               &_LockJointReq_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    13;
+
+  friend void swap(LockJointReq& a, LockJointReq& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(LockJointReq* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(LockJointReq* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  LockJointReq* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<LockJointReq>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const LockJointReq& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const LockJointReq& from) {
+    LockJointReq::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(LockJointReq* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "Nrmk.IndyFramework.LockJointReq";
+  }
+  protected:
+  explicit LockJointReq(::google::protobuf::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kArmIndexFieldNumber = 1,
+    kJointIndexFieldNumber = 2,
+  };
+  // int32 arm_index = 1;
+  void clear_arm_index() ;
+  ::int32_t arm_index() const;
+  void set_arm_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_arm_index() const;
+  void _internal_set_arm_index(::int32_t value);
+
+  public:
+  // int32 joint_index = 2;
+  void clear_joint_index() ;
+  ::int32_t joint_index() const;
+  void set_joint_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_joint_index() const;
+  void _internal_set_joint_index(::int32_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.LockJointReq)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<1, 2, 0, 0, 2> _table_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::int32_t arm_index_;
+    ::int32_t joint_index_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_config_5fmsgs_2eproto;
+};// -------------------------------------------------------------------
+
 class JointPos final :
     public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.JointPos) */ {
  public:
@@ -2889,7 +3062,7 @@ class JointPos final :
                &_JointPos_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    13;
+    14;
 
   friend void swap(JointPos& a, JointPos& b) {
     a.Swap(&b);
@@ -3055,7 +3228,7 @@ class JointLimitRange final :
                &_JointLimitRange_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    14;
+    15;
 
   friend void swap(JointLimitRange& a, JointLimitRange& b) {
     a.Swap(&b);
@@ -3241,7 +3414,7 @@ class JointLimitConfig final :
                &_JointLimitConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    15;
+    16;
 
   friend void swap(JointLimitConfig& a, JointLimitConfig& b) {
     a.Swap(&b);
@@ -3453,7 +3626,7 @@ class PlanarFrame final :
                &_PlanarFrame_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    16;
+    17;
 
   friend void swap(PlanarFrame& a, PlanarFrame& b) {
     a.Swap(&b);
@@ -3683,7 +3856,7 @@ class FrameResult final :
                &_FrameResult_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    17;
+    18;
 
   friend void swap(FrameResult& a, FrameResult& b) {
     a.Swap(&b);
@@ -3867,7 +4040,7 @@ class VisionServerList final :
                &_VisionServerList_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    18;
+    19;
 
   friend void swap(VisionServerList& a, VisionServerList& b) {
     a.Swap(&b);
@@ -4033,7 +4206,7 @@ class SocketCommandConfig final :
                &_SocketCommandConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    19;
+    20;
 
   friend void swap(SocketCommandConfig& a, SocketCommandConfig& b) {
     a.Swap(&b);
@@ -4199,7 +4372,7 @@ class SocketServerConfig final :
                &_SocketServerConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    20;
+    21;
 
   friend void swap(SocketServerConfig& a, SocketServerConfig& b) {
     a.Swap(&b);
@@ -4418,7 +4591,7 @@ class SocketConnection final :
                &_SocketConnection_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    21;
+    22;
 
   friend void swap(SocketConnection& a, SocketConnection& b) {
     a.Swap(&b);
@@ -4606,7 +4779,7 @@ class ProtocolStrategy final :
                &_ProtocolStrategy_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    22;
+    23;
 
   friend void swap(ProtocolStrategy& a, ProtocolStrategy& b) {
     a.Swap(&b);
@@ -4805,7 +4978,7 @@ class BinarySettings final :
                &_BinarySettings_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    23;
+    24;
 
   friend void swap(BinarySettings& a, BinarySettings& b) {
     a.Swap(&b);
@@ -4981,7 +5154,7 @@ class TextSettings final :
                &_TextSettings_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    24;
+    25;
 
   friend void swap(TextSettings& a, TextSettings& b) {
     a.Swap(&b);
@@ -5181,7 +5354,7 @@ class SocketCommand final :
                &_SocketCommand_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    25;
+    26;
 
   friend void swap(SocketCommand& a, SocketCommand& b) {
     a.Swap(&b);
@@ -5393,7 +5566,7 @@ class SocketFrameItem final :
                &_SocketFrameItem_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    26;
+    27;
 
   friend void swap(SocketFrameItem& a, SocketFrameItem& b) {
     a.Swap(&b);
@@ -5714,7 +5887,7 @@ class ModbusServerList final :
                &_ModbusServerList_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    27;
+    28;
 
   friend void swap(ModbusServerList& a, ModbusServerList& b) {
     a.Swap(&b);
@@ -5880,7 +6053,7 @@ class Ratio final :
                &_Ratio_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    28;
+    29;
 
   friend void swap(Ratio& a, Ratio& b) {
     a.Swap(&b);
@@ -6038,7 +6211,7 @@ class AutoServoOffConfig final :
                &_AutoServoOffConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    29;
+    30;
 
   friend void swap(AutoServoOffConfig& a, AutoServoOffConfig& b) {
     a.Swap(&b);
@@ -6208,7 +6381,7 @@ class CollTuningConfig final :
                &_CollTuningConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    30;
+    31;
 
   friend void swap(CollTuningConfig& a, CollTuningConfig& b) {
     a.Swap(&b);
@@ -6433,7 +6606,7 @@ class JointGainSet final :
                &_JointGainSet_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    31;
+    32;
 
   friend void swap(JointGainSet& a, JointGainSet& b) {
     a.Swap(&b);
@@ -6639,7 +6812,7 @@ class TaskGainSet final :
                &_TaskGainSet_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    32;
+    33;
 
   friend void swap(TaskGainSet& a, TaskGainSet& b) {
     a.Swap(&b);
@@ -6845,7 +7018,7 @@ class ImpedanceGainSet final :
                &_ImpedanceGainSet_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    33;
+    34;
 
   friend void swap(ImpedanceGainSet& a, ImpedanceGainSet& b) {
     a.Swap(&b);
@@ -7071,7 +7244,7 @@ class ForceGainSet final :
                &_ForceGainSet_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    34;
+    35;
 
   friend void swap(ForceGainSet& a, ForceGainSet& b) {
     a.Swap(&b);
@@ -7377,7 +7550,7 @@ class TestGainSet final :
                &_TestGainSet_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    35;
+    36;
 
   friend void swap(TestGainSet& a, TestGainSet& b) {
     a.Swap(&b);
@@ -7643,7 +7816,7 @@ class ComplianceGainSet final :
                &_ComplianceGainSet_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    36;
+    37;
 
   friend void swap(ComplianceGainSet& a, ComplianceGainSet& b) {
     a.Swap(&b);
@@ -7969,7 +8142,7 @@ class CustomGainSet final :
                &_CustomGainSet_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    37;
+    38;
 
   friend void swap(CustomGainSet& a, CustomGainSet& b) {
     a.Swap(&b);
@@ -8315,7 +8488,7 @@ class NewControllerTestState final :
                &_NewControllerTestState_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    38;
+    39;
 
   friend void swap(NewControllerTestState& a, NewControllerTestState& b) {
     a.Swap(&b);
@@ -8485,7 +8658,7 @@ class FrictionCompSet final :
                &_FrictionCompSet_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    39;
+    40;
 
   friend void swap(FrictionCompSet& a, FrictionCompSet& b) {
     a.Swap(&b);
@@ -8697,7 +8870,7 @@ class MountingAngles final :
                &_MountingAngles_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    40;
+    41;
 
   friend void swap(MountingAngles& a, MountingAngles& b) {
     a.Swap(&b);
@@ -8867,7 +9040,7 @@ class ToolProperties final :
                &_ToolProperties_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    41;
+    42;
 
   friend void swap(ToolProperties& a, ToolProperties& b) {
     a.Swap(&b);
@@ -9077,7 +9250,7 @@ class ToolPropertyEntry final :
                &_ToolPropertyEntry_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    42;
+    43;
 
   friend void swap(ToolPropertyEntry& a, ToolPropertyEntry& b) {
     a.Swap(&b);
@@ -9259,7 +9432,7 @@ class ToolPropertyEntries final :
                &_ToolPropertyEntries_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    43;
+    44;
 
   friend void swap(ToolPropertyEntries& a, ToolPropertyEntries& b) {
     a.Swap(&b);
@@ -9425,7 +9598,7 @@ class CollisionSensLevel final :
                &_CollisionSensLevel_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    44;
+    45;
 
   friend void swap(CollisionSensLevel& a, CollisionSensLevel& b) {
     a.Swap(&b);
@@ -9583,7 +9756,7 @@ class CollisionThresholds final :
                &_CollisionThresholds_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    45;
+    46;
 
   friend void swap(CollisionThresholds& a, CollisionThresholds& b) {
     a.Swap(&b);
@@ -9929,7 +10102,7 @@ class CollisionPolicy final :
                &_CollisionPolicy_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    46;
+    47;
 
   friend void swap(CollisionPolicy& a, CollisionPolicy& b) {
     a.Swap(&b);
@@ -10111,7 +10284,7 @@ class OnStartProgramConfig final :
                &_OnStartProgramConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    47;
+    48;
 
   friend void swap(OnStartProgramConfig& a, OnStartProgramConfig& b) {
     a.Swap(&b);
@@ -10293,7 +10466,7 @@ class SafetyLimits final :
                &_SafetyLimits_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    48;
+    49;
 
   friend void swap(SafetyLimits& a, SafetyLimits& b) {
     a.Swap(&b);
@@ -10571,7 +10744,7 @@ class SafetyStopConfig final :
                &_SafetyStopConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    49;
+    50;
 
   friend void swap(SafetyStopConfig& a, SafetyStopConfig& b) {
     a.Swap(&b);
@@ -10833,7 +11006,7 @@ class SafetySnapshotInfo final :
                &_SafetySnapshotInfo_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    50;
+    51;
 
   friend void swap(SafetySnapshotInfo& a, SafetySnapshotInfo& b) {
     a.Swap(&b);
@@ -11045,7 +11218,7 @@ class SafetySnapshotList final :
                &_SafetySnapshotList_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    51;
+    52;
 
   friend void swap(SafetySnapshotList& a, SafetySnapshotList& b) {
     a.Swap(&b);
@@ -11211,7 +11384,7 @@ class SaveSafetySnapshotReq final :
                &_SaveSafetySnapshotReq_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    52;
+    53;
 
   friend void swap(SaveSafetySnapshotReq& a, SaveSafetySnapshotReq& b) {
     a.Swap(&b);
@@ -11375,7 +11548,7 @@ class SafetySnapshotId final :
                &_SafetySnapshotId_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    53;
+    54;
 
   friend void swap(SafetySnapshotId& a, SafetySnapshotId& b) {
     a.Swap(&b);
@@ -11539,7 +11712,7 @@ class DIConfig final :
                &_DIConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    54;
+    55;
 
   friend void swap(DIConfig& a, DIConfig& b) {
     a.Swap(&b);
@@ -11775,7 +11948,7 @@ class DIConfigList final :
                &_DIConfigList_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    55;
+    56;
 
   friend void swap(DIConfigList& a, DIConfigList& b) {
     a.Swap(&b);
@@ -11941,7 +12114,7 @@ class DOConfig final :
                &_DOConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    56;
+    57;
 
   friend void swap(DOConfig& a, DOConfig& b) {
     a.Swap(&b);
@@ -12157,7 +12330,7 @@ class DOConfigList final :
                &_DOConfigList_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    57;
+    58;
 
   friend void swap(DOConfigList& a, DOConfigList& b) {
     a.Swap(&b);
@@ -12323,7 +12496,7 @@ class GetReducedRatioRes final :
                &_GetReducedRatioRes_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    58;
+    59;
 
   friend void swap(GetReducedRatioRes& a, GetReducedRatioRes& b) {
     a.Swap(&b);
@@ -12499,7 +12672,7 @@ class GetReducedSpeedRes final :
                &_GetReducedSpeedRes_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    59;
+    60;
 
   friend void swap(GetReducedSpeedRes& a, GetReducedSpeedRes& b) {
     a.Swap(&b);
@@ -12675,7 +12848,7 @@ class SetReducedSpeedReq final :
                &_SetReducedSpeedReq_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    60;
+    61;
 
   friend void swap(SetReducedSpeedReq& a, SetReducedSpeedReq& b) {
     a.Swap(&b);
@@ -12833,7 +13006,7 @@ class FTSensorDevice final :
                &_FTSensorDevice_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    61;
+    62;
 
   friend void swap(FTSensorDevice& a, FTSensorDevice& b) {
     a.Swap(&b);
@@ -13151,7 +13324,7 @@ class FTSensorDeviceRes final :
                &_FTSensorDeviceRes_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    62;
+    63;
 
   friend void swap(FTSensorDeviceRes& a, FTSensorDeviceRes& b) {
     a.Swap(&b);
@@ -13315,7 +13488,7 @@ class TeleOpParams final :
                &_TeleOpParams_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    63;
+    64;
 
   friend void swap(TeleOpParams& a, TeleOpParams& b) {
     a.Swap(&b);
@@ -13473,7 +13646,7 @@ class KinematicsParams_MDH final :
                &_KinematicsParams_MDH_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    64;
+    65;
 
   friend void swap(KinematicsParams_MDH& a, KinematicsParams_MDH& b) {
     a.Swap(&b);
@@ -13703,7 +13876,7 @@ class KinematicsParams final :
                &_KinematicsParams_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    65;
+    66;
 
   friend void swap(KinematicsParams& a, KinematicsParams& b) {
     a.Swap(&b);
@@ -13913,7 +14086,7 @@ class CollisionModelMargin final :
                &_CollisionModelMargin_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    66;
+    67;
 
   friend void swap(CollisionModelMargin& a, CollisionModelMargin& b) {
     a.Swap(&b);
@@ -14083,7 +14256,7 @@ class Shape final :
                &_Shape_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    67;
+    68;
 
   friend void swap(Shape& a, Shape& b) {
     a.Swap(&b);
@@ -14364,7 +14537,7 @@ class SensorlessParams final :
                &_SensorlessParams_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    68;
+    69;
 
   friend void swap(SensorlessParams& a, SensorlessParams& b) {
     a.Swap(&b);
@@ -14530,7 +14703,7 @@ class NamedGeometry final :
                &_NamedGeometry_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    69;
+    70;
 
   friend void swap(NamedGeometry& a, NamedGeometry& b) {
     a.Swap(&b);
@@ -14714,7 +14887,7 @@ class ToolShapeList final :
                &_ToolShapeList_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    70;
+    71;
 
   friend void swap(ToolShapeList& a, ToolShapeList& b) {
     a.Swap(&b);
@@ -14898,7 +15071,7 @@ class Zone final :
                &_Zone_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    71;
+    72;
 
   friend void swap(Zone& a, Zone& b) {
     a.Swap(&b);
@@ -15195,7 +15368,7 @@ class NamedEnvironment final :
                &_NamedEnvironment_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    72;
+    73;
 
   friend void swap(NamedEnvironment& a, NamedEnvironment& b) {
     a.Swap(&b);
@@ -15379,7 +15552,7 @@ class EnvironmentList final :
                &_EnvironmentList_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    73;
+    74;
 
   friend void swap(EnvironmentList& a, EnvironmentList& b) {
     a.Swap(&b);
@@ -15563,7 +15736,7 @@ class WeldingConfigInfo final :
                &_WeldingConfigInfo_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    74;
+    75;
 
   friend void swap(WeldingConfigInfo& a, WeldingConfigInfo& b) {
     a.Swap(&b);
@@ -15811,7 +15984,7 @@ class WeldPosition final :
                &_WeldPosition_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    75;
+    76;
 
   friend void swap(WeldPosition& a, WeldPosition& b) {
     a.Swap(&b);
@@ -15995,7 +16168,7 @@ class WeldPositionList final :
                &_WeldPositionList_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    76;
+    77;
 
   friend void swap(WeldPositionList& a, WeldPositionList& b) {
     a.Swap(&b);
@@ -16161,7 +16334,7 @@ class OperationModeConfig final :
                &_OperationModeConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    77;
+    78;
 
   friend void swap(OperationModeConfig& a, OperationModeConfig& b) {
     a.Swap(&b);
@@ -17440,6 +17613,54 @@ inline void Frame::_internal_set_link_index(::int32_t value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.link_index_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// LockJointReq
+
+// int32 arm_index = 1;
+inline void LockJointReq::clear_arm_index() {
+  _impl_.arm_index_ = 0;
+}
+inline ::int32_t LockJointReq::arm_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.LockJointReq.arm_index)
+  return _internal_arm_index();
+}
+inline void LockJointReq::set_arm_index(::int32_t value) {
+  _internal_set_arm_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.LockJointReq.arm_index)
+}
+inline ::int32_t LockJointReq::_internal_arm_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.arm_index_;
+}
+inline void LockJointReq::_internal_set_arm_index(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.arm_index_ = value;
+}
+
+// int32 joint_index = 2;
+inline void LockJointReq::clear_joint_index() {
+  _impl_.joint_index_ = 0;
+}
+inline ::int32_t LockJointReq::joint_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.LockJointReq.joint_index)
+  return _internal_joint_index();
+}
+inline void LockJointReq::set_joint_index(::int32_t value) {
+  _internal_set_joint_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.LockJointReq.joint_index)
+}
+inline ::int32_t LockJointReq::_internal_joint_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.joint_index_;
+}
+inline void LockJointReq::_internal_set_joint_index(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.joint_index_ = value;
 }
 
 // -------------------------------------------------------------------

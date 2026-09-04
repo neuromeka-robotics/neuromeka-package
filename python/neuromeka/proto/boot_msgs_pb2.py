@@ -14,7 +14,7 @@ _sym_db = _symbol_database.Default()
 import common_msgs_pb2 as common__msgs__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0f\x62oot_msgs.proto\x12\x12Nrmk.IndyFramework\x1a\x11\x63ommon_msgs.proto\"\xe8\x01\n\nBootStatus\x12\x15\n\rethercat_used\x18\x01 \x01(\x08\x12\x13\n\x0bsafety_used\x18\x02 \x01(\x08\x12\x12\n\nsafety_mcu\x18\x03 \x01(\x08\x12\x18\n\x10safety_connected\x18\x0b \x01(\x08\x12\x18\n\x10main_pw_relay_on\x18\x15 \x01(\x08\x12\x1a\n\x12safety_pw_relay_on\x18\x16 \x01(\x08\x12\x1a\n\x12robot_pw_supply_on\x18\x17 \x01(\x08\x12\x1a\n\x12\x65thercat_connected\x18\x1f \x01(\x08\x12\x12\n\ncontrol_on\x18\x64 \x01(\x08\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0f\x62oot_msgs.proto\x12\x12Nrmk.IndyFramework\x1a\x11\x63ommon_msgs.proto\"\x97\x02\n\nBootStatus\x12\x15\n\rethercat_used\x18\x01 \x01(\x08\x12\x13\n\x0bsafety_used\x18\x02 \x01(\x08\x12\x12\n\nsafety_mcu\x18\x03 \x01(\x08\x12\x13\n\x0blinear_used\x18\x04 \x01(\x08\x12\x18\n\x10safety_connected\x18\x0b \x01(\x08\x12\x18\n\x10main_pw_relay_on\x18\x15 \x01(\x08\x12\x1a\n\x12safety_pw_relay_on\x18\x16 \x01(\x08\x12\x1a\n\x12robot_pw_supply_on\x18\x17 \x01(\x08\x12\x1a\n\x12\x65thercat_connected\x18\x1f \x01(\x08\x12\x18\n\x10linear_connected\x18  \x01(\x08\x12\x12\n\ncontrol_on\x18\x64 \x01(\x08\x62\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -22,5 +22,5 @@ _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'boot_msgs_pb2', _globals)
 if _descriptor._USE_C_DESCRIPTORS == False:
   DESCRIPTOR._options = None
   _globals['_BOOTSTATUS']._serialized_start=59
-  _globals['_BOOTSTATUS']._serialized_end=291
+  _globals['_BOOTSTATUS']._serialized_end=338
 # @@protoc_insertion_point(module_scope)

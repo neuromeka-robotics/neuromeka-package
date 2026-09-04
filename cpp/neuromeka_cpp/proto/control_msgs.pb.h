@@ -85,6 +85,18 @@ extern CalculateRelativePoseReqDefaultTypeInternal _CalculateRelativePoseReq_def
 class CalculateRelativePoseRes;
 struct CalculateRelativePoseResDefaultTypeInternal;
 extern CalculateRelativePoseResDefaultTypeInternal _CalculateRelativePoseRes_default_instance_;
+class CalculateTCPOrientationReq;
+struct CalculateTCPOrientationReqDefaultTypeInternal;
+extern CalculateTCPOrientationReqDefaultTypeInternal _CalculateTCPOrientationReq_default_instance_;
+class CalculateTCPOrientationRes;
+struct CalculateTCPOrientationResDefaultTypeInternal;
+extern CalculateTCPOrientationResDefaultTypeInternal _CalculateTCPOrientationRes_default_instance_;
+class CalculateTCPPositionReq;
+struct CalculateTCPPositionReqDefaultTypeInternal;
+extern CalculateTCPPositionReqDefaultTypeInternal _CalculateTCPPositionReq_default_instance_;
+class CalculateTCPPositionRes;
+struct CalculateTCPPositionResDefaultTypeInternal;
+extern CalculateTCPPositionResDefaultTypeInternal _CalculateTCPPositionRes_default_instance_;
 class CatchBusEventReq;
 struct CatchBusEventReqDefaultTypeInternal;
 extern CatchBusEventReqDefaultTypeInternal _CatchBusEventReq_default_instance_;
@@ -13577,6 +13589,744 @@ class CalculateCurrentPoseRelRes final :
   friend struct ::TableStruct_control_5fmsgs_2eproto;
 };// -------------------------------------------------------------------
 
+class CalculateTCPPositionReq final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.CalculateTCPPositionReq) */ {
+ public:
+  inline CalculateTCPPositionReq() : CalculateTCPPositionReq(nullptr) {}
+  ~CalculateTCPPositionReq() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR CalculateTCPPositionReq(::google::protobuf::internal::ConstantInitialized);
+
+  CalculateTCPPositionReq(const CalculateTCPPositionReq& from);
+  CalculateTCPPositionReq(CalculateTCPPositionReq&& from) noexcept
+    : CalculateTCPPositionReq() {
+    *this = ::std::move(from);
+  }
+
+  inline CalculateTCPPositionReq& operator=(const CalculateTCPPositionReq& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline CalculateTCPPositionReq& operator=(CalculateTCPPositionReq&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const CalculateTCPPositionReq& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const CalculateTCPPositionReq* internal_default_instance() {
+    return reinterpret_cast<const CalculateTCPPositionReq*>(
+               &_CalculateTCPPositionReq_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    63;
+
+  friend void swap(CalculateTCPPositionReq& a, CalculateTCPPositionReq& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(CalculateTCPPositionReq* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(CalculateTCPPositionReq* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  CalculateTCPPositionReq* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<CalculateTCPPositionReq>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const CalculateTCPPositionReq& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const CalculateTCPPositionReq& from) {
+    CalculateTCPPositionReq::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(CalculateTCPPositionReq* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "Nrmk.IndyFramework.CalculateTCPPositionReq";
+  }
+  protected:
+  explicit CalculateTCPPositionReq(::google::protobuf::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kRefPosFieldNumber = 1,
+  };
+  // repeated float ref_pos = 1;
+  int ref_pos_size() const;
+  private:
+  int _internal_ref_pos_size() const;
+
+  public:
+  void clear_ref_pos() ;
+  float ref_pos(int index) const;
+  void set_ref_pos(int index, float value);
+  void add_ref_pos(float value);
+  const ::google::protobuf::RepeatedField<float>& ref_pos() const;
+  ::google::protobuf::RepeatedField<float>* mutable_ref_pos();
+
+  private:
+  const ::google::protobuf::RepeatedField<float>& _internal_ref_pos() const;
+  ::google::protobuf::RepeatedField<float>* _internal_mutable_ref_pos();
+
+  public:
+  // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.CalculateTCPPositionReq)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<0, 1, 0, 0, 2> _table_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::google::protobuf::RepeatedField<float> ref_pos_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_control_5fmsgs_2eproto;
+};// -------------------------------------------------------------------
+
+class CalculateTCPPositionRes final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.CalculateTCPPositionRes) */ {
+ public:
+  inline CalculateTCPPositionRes() : CalculateTCPPositionRes(nullptr) {}
+  ~CalculateTCPPositionRes() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR CalculateTCPPositionRes(::google::protobuf::internal::ConstantInitialized);
+
+  CalculateTCPPositionRes(const CalculateTCPPositionRes& from);
+  CalculateTCPPositionRes(CalculateTCPPositionRes&& from) noexcept
+    : CalculateTCPPositionRes() {
+    *this = ::std::move(from);
+  }
+
+  inline CalculateTCPPositionRes& operator=(const CalculateTCPPositionRes& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline CalculateTCPPositionRes& operator=(CalculateTCPPositionRes&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const CalculateTCPPositionRes& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const CalculateTCPPositionRes* internal_default_instance() {
+    return reinterpret_cast<const CalculateTCPPositionRes*>(
+               &_CalculateTCPPositionRes_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    64;
+
+  friend void swap(CalculateTCPPositionRes& a, CalculateTCPPositionRes& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(CalculateTCPPositionRes* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(CalculateTCPPositionRes* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  CalculateTCPPositionRes* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<CalculateTCPPositionRes>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const CalculateTCPPositionRes& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const CalculateTCPPositionRes& from) {
+    CalculateTCPPositionRes::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(CalculateTCPPositionRes* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "Nrmk.IndyFramework.CalculateTCPPositionRes";
+  }
+  protected:
+  explicit CalculateTCPPositionRes(::google::protobuf::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kCalculatedPosFieldNumber = 1,
+    kCalResultFieldNumber = 2,
+    kMsgFieldNumber = 100,
+  };
+  // repeated float calculated_pos = 1;
+  int calculated_pos_size() const;
+  private:
+  int _internal_calculated_pos_size() const;
+
+  public:
+  void clear_calculated_pos() ;
+  float calculated_pos(int index) const;
+  void set_calculated_pos(int index, float value);
+  void add_calculated_pos(float value);
+  const ::google::protobuf::RepeatedField<float>& calculated_pos() const;
+  ::google::protobuf::RepeatedField<float>* mutable_calculated_pos();
+
+  private:
+  const ::google::protobuf::RepeatedField<float>& _internal_calculated_pos() const;
+  ::google::protobuf::RepeatedField<float>* _internal_mutable_calculated_pos();
+
+  public:
+  // string cal_result = 2;
+  void clear_cal_result() ;
+  const std::string& cal_result() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_cal_result(Arg_&& arg, Args_... args);
+  std::string* mutable_cal_result();
+  PROTOBUF_NODISCARD std::string* release_cal_result();
+  void set_allocated_cal_result(std::string* ptr);
+
+  private:
+  const std::string& _internal_cal_result() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_cal_result(
+      const std::string& value);
+  std::string* _internal_mutable_cal_result();
+
+  public:
+  // string msg = 100;
+  void clear_msg() ;
+  const std::string& msg() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_msg(Arg_&& arg, Args_... args);
+  std::string* mutable_msg();
+  PROTOBUF_NODISCARD std::string* release_msg();
+  void set_allocated_msg(std::string* ptr);
+
+  private:
+  const std::string& _internal_msg() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_msg(
+      const std::string& value);
+  std::string* _internal_mutable_msg();
+
+  public:
+  // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.CalculateTCPPositionRes)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<2, 3, 0, 64, 7> _table_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::google::protobuf::RepeatedField<float> calculated_pos_;
+    ::google::protobuf::internal::ArenaStringPtr cal_result_;
+    ::google::protobuf::internal::ArenaStringPtr msg_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_control_5fmsgs_2eproto;
+};// -------------------------------------------------------------------
+
+class CalculateTCPOrientationReq final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.CalculateTCPOrientationReq) */ {
+ public:
+  inline CalculateTCPOrientationReq() : CalculateTCPOrientationReq(nullptr) {}
+  ~CalculateTCPOrientationReq() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR CalculateTCPOrientationReq(::google::protobuf::internal::ConstantInitialized);
+
+  CalculateTCPOrientationReq(const CalculateTCPOrientationReq& from);
+  CalculateTCPOrientationReq(CalculateTCPOrientationReq&& from) noexcept
+    : CalculateTCPOrientationReq() {
+    *this = ::std::move(from);
+  }
+
+  inline CalculateTCPOrientationReq& operator=(const CalculateTCPOrientationReq& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline CalculateTCPOrientationReq& operator=(CalculateTCPOrientationReq&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const CalculateTCPOrientationReq& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const CalculateTCPOrientationReq* internal_default_instance() {
+    return reinterpret_cast<const CalculateTCPOrientationReq*>(
+               &_CalculateTCPOrientationReq_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    65;
+
+  friend void swap(CalculateTCPOrientationReq& a, CalculateTCPOrientationReq& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(CalculateTCPOrientationReq* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(CalculateTCPOrientationReq* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  CalculateTCPOrientationReq* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<CalculateTCPOrientationReq>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const CalculateTCPOrientationReq& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const CalculateTCPOrientationReq& from) {
+    CalculateTCPOrientationReq::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(CalculateTCPOrientationReq* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "Nrmk.IndyFramework.CalculateTCPOrientationReq";
+  }
+  protected:
+  explicit CalculateTCPOrientationReq(::google::protobuf::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kRefPosFieldNumber = 1,
+    kRefFrameFieldNumber = 2,
+  };
+  // repeated float ref_pos = 1;
+  int ref_pos_size() const;
+  private:
+  int _internal_ref_pos_size() const;
+
+  public:
+  void clear_ref_pos() ;
+  float ref_pos(int index) const;
+  void set_ref_pos(int index, float value);
+  void add_ref_pos(float value);
+  const ::google::protobuf::RepeatedField<float>& ref_pos() const;
+  ::google::protobuf::RepeatedField<float>* mutable_ref_pos();
+
+  private:
+  const ::google::protobuf::RepeatedField<float>& _internal_ref_pos() const;
+  ::google::protobuf::RepeatedField<float>* _internal_mutable_ref_pos();
+
+  public:
+  // repeated float ref_frame = 2;
+  int ref_frame_size() const;
+  private:
+  int _internal_ref_frame_size() const;
+
+  public:
+  void clear_ref_frame() ;
+  float ref_frame(int index) const;
+  void set_ref_frame(int index, float value);
+  void add_ref_frame(float value);
+  const ::google::protobuf::RepeatedField<float>& ref_frame() const;
+  ::google::protobuf::RepeatedField<float>* mutable_ref_frame();
+
+  private:
+  const ::google::protobuf::RepeatedField<float>& _internal_ref_frame() const;
+  ::google::protobuf::RepeatedField<float>* _internal_mutable_ref_frame();
+
+  public:
+  // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.CalculateTCPOrientationReq)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<1, 2, 0, 0, 2> _table_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::google::protobuf::RepeatedField<float> ref_pos_;
+    ::google::protobuf::RepeatedField<float> ref_frame_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_control_5fmsgs_2eproto;
+};// -------------------------------------------------------------------
+
+class CalculateTCPOrientationRes final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.CalculateTCPOrientationRes) */ {
+ public:
+  inline CalculateTCPOrientationRes() : CalculateTCPOrientationRes(nullptr) {}
+  ~CalculateTCPOrientationRes() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR CalculateTCPOrientationRes(::google::protobuf::internal::ConstantInitialized);
+
+  CalculateTCPOrientationRes(const CalculateTCPOrientationRes& from);
+  CalculateTCPOrientationRes(CalculateTCPOrientationRes&& from) noexcept
+    : CalculateTCPOrientationRes() {
+    *this = ::std::move(from);
+  }
+
+  inline CalculateTCPOrientationRes& operator=(const CalculateTCPOrientationRes& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline CalculateTCPOrientationRes& operator=(CalculateTCPOrientationRes&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const CalculateTCPOrientationRes& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const CalculateTCPOrientationRes* internal_default_instance() {
+    return reinterpret_cast<const CalculateTCPOrientationRes*>(
+               &_CalculateTCPOrientationRes_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    66;
+
+  friend void swap(CalculateTCPOrientationRes& a, CalculateTCPOrientationRes& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(CalculateTCPOrientationRes* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(CalculateTCPOrientationRes* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  CalculateTCPOrientationRes* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<CalculateTCPOrientationRes>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const CalculateTCPOrientationRes& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const CalculateTCPOrientationRes& from) {
+    CalculateTCPOrientationRes::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(CalculateTCPOrientationRes* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "Nrmk.IndyFramework.CalculateTCPOrientationRes";
+  }
+  protected:
+  explicit CalculateTCPOrientationRes(::google::protobuf::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kCalculatedPosFieldNumber = 1,
+    kMsgFieldNumber = 100,
+  };
+  // repeated float calculated_pos = 1;
+  int calculated_pos_size() const;
+  private:
+  int _internal_calculated_pos_size() const;
+
+  public:
+  void clear_calculated_pos() ;
+  float calculated_pos(int index) const;
+  void set_calculated_pos(int index, float value);
+  void add_calculated_pos(float value);
+  const ::google::protobuf::RepeatedField<float>& calculated_pos() const;
+  ::google::protobuf::RepeatedField<float>* mutable_calculated_pos();
+
+  private:
+  const ::google::protobuf::RepeatedField<float>& _internal_calculated_pos() const;
+  ::google::protobuf::RepeatedField<float>* _internal_mutable_calculated_pos();
+
+  public:
+  // string msg = 100;
+  void clear_msg() ;
+  const std::string& msg() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_msg(Arg_&& arg, Args_... args);
+  std::string* mutable_msg();
+  PROTOBUF_NODISCARD std::string* release_msg();
+  void set_allocated_msg(std::string* ptr);
+
+  private:
+  const std::string& _internal_msg() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_msg(
+      const std::string& value);
+  std::string* _internal_mutable_msg();
+
+  public:
+  // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.CalculateTCPOrientationRes)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<1, 2, 0, 57, 7> _table_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::google::protobuf::RepeatedField<float> calculated_pos_;
+    ::google::protobuf::internal::ArenaStringPtr msg_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_control_5fmsgs_2eproto;
+};// -------------------------------------------------------------------
+
 class TeleOpDevice final :
     public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.TeleOpDevice) */ {
  public:
@@ -13633,7 +14383,7 @@ class TeleOpDevice final :
                &_TeleOpDevice_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    63;
+    67;
 
   friend void swap(TeleOpDevice& a, TeleOpDevice& b) {
     a.Swap(&b);
@@ -13871,7 +14621,7 @@ class TeleOpState final :
                &_TeleOpState_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    64;
+    68;
 
   friend void swap(TeleOpState& a, TeleOpState& b) {
     a.Swap(&b);
@@ -14041,7 +14791,7 @@ class TeleP final :
                &_TeleP_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    65;
+    69;
 
   friend void swap(TeleP& a, TeleP& b) {
     a.Swap(&b);
@@ -14237,7 +14987,7 @@ class TeleOpFileList final :
                &_TeleOpFileList_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    66;
+    70;
 
   friend void swap(TeleOpFileList& a, TeleOpFileList& b) {
     a.Swap(&b);
@@ -14431,7 +15181,7 @@ class TeleFileReq final :
                &_TeleFileReq_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    67;
+    71;
 
   friend void swap(TeleFileReq& a, TeleFileReq& b) {
     a.Swap(&b);
@@ -14595,7 +15345,7 @@ class TelePlayRate final :
                &_TelePlayRate_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    68;
+    72;
 
   friend void swap(TelePlayRate& a, TelePlayRate& b) {
     a.Swap(&b);
@@ -14753,7 +15503,7 @@ class MoveTeleJReq final :
                &_MoveTeleJReq_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    69;
+    73;
 
   friend void swap(MoveTeleJReq& a, MoveTeleJReq& b) {
     a.Swap(&b);
@@ -14955,7 +15705,7 @@ class MoveTeleLReq final :
                &_MoveTeleLReq_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    70;
+    74;
 
   friend void swap(MoveTeleLReq& a, MoveTeleLReq& b) {
     a.Swap(&b);
@@ -15169,7 +15919,7 @@ class ForceModeReq final :
                &_ForceModeReq_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    71;
+    75;
 
   friend void swap(ForceModeReq& a, ForceModeReq& b) {
     a.Swap(&b);
@@ -15379,7 +16129,7 @@ class TransformedFTSensorData final :
                &_TransformedFTSensorData_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    72;
+    76;
 
   friend void swap(TransformedFTSensorData& a, TransformedFTSensorData& b) {
     a.Swap(&b);
@@ -15615,7 +16365,7 @@ class ComplianceMode final :
                &_ComplianceMode_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    73;
+    77;
 
   friend void swap(ComplianceMode& a, ComplianceMode& b) {
     a.Swap(&b);
@@ -15794,7 +16544,7 @@ class BusEvent final :
                &_BusEvent_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    74;
+    78;
 
   friend void swap(BusEvent& a, BusEvent& b) {
     a.Swap(&b);
@@ -16031,7 +16781,7 @@ class CatchBusEventReq final :
                &_CatchBusEventReq_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    75;
+    79;
 
   friend void swap(CatchBusEventReq& a, CatchBusEventReq& b) {
     a.Swap(&b);
@@ -16201,7 +16951,7 @@ class GetMotionJReq final :
                &_GetMotionJReq_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    76;
+    80;
 
   friend void swap(GetMotionJReq& a, GetMotionJReq& b) {
     a.Swap(&b);
@@ -16438,7 +17188,7 @@ class GetMotionLReq final :
                &_GetMotionLReq_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    77;
+    81;
 
   friend void swap(GetMotionLReq& a, GetMotionLReq& b) {
     a.Swap(&b);
@@ -16699,7 +17449,7 @@ class GetMotionCReq final :
                &_GetMotionCReq_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    78;
+    82;
 
   friend void swap(GetMotionCReq& a, GetMotionCReq& b) {
     a.Swap(&b);
@@ -16993,7 +17743,7 @@ class GetMotionRes final :
                &_GetMotionRes_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    79;
+    83;
 
   friend void swap(GetMotionRes& a, GetMotionRes& b) {
     a.Swap(&b);
@@ -17199,7 +17949,7 @@ class MoveLFReq final :
                &_MoveLFReq_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    80;
+    84;
 
   friend void swap(MoveLFReq& a, MoveLFReq& b) {
     a.Swap(&b);
@@ -17485,7 +18235,7 @@ class MoveFLRes final :
                &_MoveFLRes_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    81;
+    85;
 
   friend void swap(MoveFLRes& a, MoveFLRes& b) {
     a.Swap(&b);
@@ -17649,7 +18399,7 @@ class ControlInferenceDataSet final :
                &_ControlInferenceDataSet_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    82;
+    86;
 
   friend void swap(ControlInferenceDataSet& a, ControlInferenceDataSet& b) {
     a.Swap(&b);
@@ -27482,6 +28232,385 @@ inline void CalculateCurrentPoseRelRes::set_allocated_response(::Nrmk::IndyFrame
 
   _impl_.response_ = reinterpret_cast<::Nrmk::IndyFramework::Response*>(value);
   // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.CalculateCurrentPoseRelRes.response)
+}
+
+// -------------------------------------------------------------------
+
+// CalculateTCPPositionReq
+
+// repeated float ref_pos = 1;
+inline int CalculateTCPPositionReq::_internal_ref_pos_size() const {
+  return _internal_ref_pos().size();
+}
+inline int CalculateTCPPositionReq::ref_pos_size() const {
+  return _internal_ref_pos_size();
+}
+inline void CalculateTCPPositionReq::clear_ref_pos() {
+  _internal_mutable_ref_pos()->Clear();
+}
+inline float CalculateTCPPositionReq::ref_pos(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.CalculateTCPPositionReq.ref_pos)
+  return _internal_ref_pos().Get(index);
+}
+inline void CalculateTCPPositionReq::set_ref_pos(int index, float value) {
+  _internal_mutable_ref_pos()->Set(index, value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.CalculateTCPPositionReq.ref_pos)
+}
+inline void CalculateTCPPositionReq::add_ref_pos(float value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_ref_pos()->Add(value);
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.CalculateTCPPositionReq.ref_pos)
+}
+inline const ::google::protobuf::RepeatedField<float>& CalculateTCPPositionReq::ref_pos() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.CalculateTCPPositionReq.ref_pos)
+  return _internal_ref_pos();
+}
+inline ::google::protobuf::RepeatedField<float>* CalculateTCPPositionReq::mutable_ref_pos() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.CalculateTCPPositionReq.ref_pos)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_ref_pos();
+}
+
+inline const ::google::protobuf::RepeatedField<float>& CalculateTCPPositionReq::_internal_ref_pos() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.ref_pos_;
+}
+inline ::google::protobuf::RepeatedField<float>* CalculateTCPPositionReq::_internal_mutable_ref_pos() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.ref_pos_;
+}
+
+// -------------------------------------------------------------------
+
+// CalculateTCPPositionRes
+
+// repeated float calculated_pos = 1;
+inline int CalculateTCPPositionRes::_internal_calculated_pos_size() const {
+  return _internal_calculated_pos().size();
+}
+inline int CalculateTCPPositionRes::calculated_pos_size() const {
+  return _internal_calculated_pos_size();
+}
+inline void CalculateTCPPositionRes::clear_calculated_pos() {
+  _internal_mutable_calculated_pos()->Clear();
+}
+inline float CalculateTCPPositionRes::calculated_pos(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.CalculateTCPPositionRes.calculated_pos)
+  return _internal_calculated_pos().Get(index);
+}
+inline void CalculateTCPPositionRes::set_calculated_pos(int index, float value) {
+  _internal_mutable_calculated_pos()->Set(index, value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.CalculateTCPPositionRes.calculated_pos)
+}
+inline void CalculateTCPPositionRes::add_calculated_pos(float value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_calculated_pos()->Add(value);
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.CalculateTCPPositionRes.calculated_pos)
+}
+inline const ::google::protobuf::RepeatedField<float>& CalculateTCPPositionRes::calculated_pos() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.CalculateTCPPositionRes.calculated_pos)
+  return _internal_calculated_pos();
+}
+inline ::google::protobuf::RepeatedField<float>* CalculateTCPPositionRes::mutable_calculated_pos() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.CalculateTCPPositionRes.calculated_pos)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_calculated_pos();
+}
+
+inline const ::google::protobuf::RepeatedField<float>& CalculateTCPPositionRes::_internal_calculated_pos() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.calculated_pos_;
+}
+inline ::google::protobuf::RepeatedField<float>* CalculateTCPPositionRes::_internal_mutable_calculated_pos() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.calculated_pos_;
+}
+
+// string cal_result = 2;
+inline void CalculateTCPPositionRes::clear_cal_result() {
+  _impl_.cal_result_.ClearToEmpty();
+}
+inline const std::string& CalculateTCPPositionRes::cal_result() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.CalculateTCPPositionRes.cal_result)
+  return _internal_cal_result();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void CalculateTCPPositionRes::set_cal_result(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.cal_result_.Set(static_cast<Arg_&&>(arg), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.CalculateTCPPositionRes.cal_result)
+}
+inline std::string* CalculateTCPPositionRes::mutable_cal_result() {
+  std::string* _s = _internal_mutable_cal_result();
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.CalculateTCPPositionRes.cal_result)
+  return _s;
+}
+inline const std::string& CalculateTCPPositionRes::_internal_cal_result() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.cal_result_.Get();
+}
+inline void CalculateTCPPositionRes::_internal_set_cal_result(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.cal_result_.Set(value, GetArenaForAllocation());
+}
+inline std::string* CalculateTCPPositionRes::_internal_mutable_cal_result() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.cal_result_.Mutable( GetArenaForAllocation());
+}
+inline std::string* CalculateTCPPositionRes::release_cal_result() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:Nrmk.IndyFramework.CalculateTCPPositionRes.cal_result)
+  return _impl_.cal_result_.Release();
+}
+inline void CalculateTCPPositionRes::set_allocated_cal_result(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.cal_result_.SetAllocated(value, GetArenaForAllocation());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.cal_result_.IsDefault()) {
+          _impl_.cal_result_.Set("", GetArenaForAllocation());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.CalculateTCPPositionRes.cal_result)
+}
+
+// string msg = 100;
+inline void CalculateTCPPositionRes::clear_msg() {
+  _impl_.msg_.ClearToEmpty();
+}
+inline const std::string& CalculateTCPPositionRes::msg() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.CalculateTCPPositionRes.msg)
+  return _internal_msg();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void CalculateTCPPositionRes::set_msg(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.msg_.Set(static_cast<Arg_&&>(arg), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.CalculateTCPPositionRes.msg)
+}
+inline std::string* CalculateTCPPositionRes::mutable_msg() {
+  std::string* _s = _internal_mutable_msg();
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.CalculateTCPPositionRes.msg)
+  return _s;
+}
+inline const std::string& CalculateTCPPositionRes::_internal_msg() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.msg_.Get();
+}
+inline void CalculateTCPPositionRes::_internal_set_msg(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.msg_.Set(value, GetArenaForAllocation());
+}
+inline std::string* CalculateTCPPositionRes::_internal_mutable_msg() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.msg_.Mutable( GetArenaForAllocation());
+}
+inline std::string* CalculateTCPPositionRes::release_msg() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:Nrmk.IndyFramework.CalculateTCPPositionRes.msg)
+  return _impl_.msg_.Release();
+}
+inline void CalculateTCPPositionRes::set_allocated_msg(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.msg_.SetAllocated(value, GetArenaForAllocation());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.msg_.IsDefault()) {
+          _impl_.msg_.Set("", GetArenaForAllocation());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.CalculateTCPPositionRes.msg)
+}
+
+// -------------------------------------------------------------------
+
+// CalculateTCPOrientationReq
+
+// repeated float ref_pos = 1;
+inline int CalculateTCPOrientationReq::_internal_ref_pos_size() const {
+  return _internal_ref_pos().size();
+}
+inline int CalculateTCPOrientationReq::ref_pos_size() const {
+  return _internal_ref_pos_size();
+}
+inline void CalculateTCPOrientationReq::clear_ref_pos() {
+  _internal_mutable_ref_pos()->Clear();
+}
+inline float CalculateTCPOrientationReq::ref_pos(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.CalculateTCPOrientationReq.ref_pos)
+  return _internal_ref_pos().Get(index);
+}
+inline void CalculateTCPOrientationReq::set_ref_pos(int index, float value) {
+  _internal_mutable_ref_pos()->Set(index, value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.CalculateTCPOrientationReq.ref_pos)
+}
+inline void CalculateTCPOrientationReq::add_ref_pos(float value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_ref_pos()->Add(value);
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.CalculateTCPOrientationReq.ref_pos)
+}
+inline const ::google::protobuf::RepeatedField<float>& CalculateTCPOrientationReq::ref_pos() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.CalculateTCPOrientationReq.ref_pos)
+  return _internal_ref_pos();
+}
+inline ::google::protobuf::RepeatedField<float>* CalculateTCPOrientationReq::mutable_ref_pos() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.CalculateTCPOrientationReq.ref_pos)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_ref_pos();
+}
+
+inline const ::google::protobuf::RepeatedField<float>& CalculateTCPOrientationReq::_internal_ref_pos() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.ref_pos_;
+}
+inline ::google::protobuf::RepeatedField<float>* CalculateTCPOrientationReq::_internal_mutable_ref_pos() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.ref_pos_;
+}
+
+// repeated float ref_frame = 2;
+inline int CalculateTCPOrientationReq::_internal_ref_frame_size() const {
+  return _internal_ref_frame().size();
+}
+inline int CalculateTCPOrientationReq::ref_frame_size() const {
+  return _internal_ref_frame_size();
+}
+inline void CalculateTCPOrientationReq::clear_ref_frame() {
+  _internal_mutable_ref_frame()->Clear();
+}
+inline float CalculateTCPOrientationReq::ref_frame(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.CalculateTCPOrientationReq.ref_frame)
+  return _internal_ref_frame().Get(index);
+}
+inline void CalculateTCPOrientationReq::set_ref_frame(int index, float value) {
+  _internal_mutable_ref_frame()->Set(index, value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.CalculateTCPOrientationReq.ref_frame)
+}
+inline void CalculateTCPOrientationReq::add_ref_frame(float value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_ref_frame()->Add(value);
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.CalculateTCPOrientationReq.ref_frame)
+}
+inline const ::google::protobuf::RepeatedField<float>& CalculateTCPOrientationReq::ref_frame() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.CalculateTCPOrientationReq.ref_frame)
+  return _internal_ref_frame();
+}
+inline ::google::protobuf::RepeatedField<float>* CalculateTCPOrientationReq::mutable_ref_frame() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.CalculateTCPOrientationReq.ref_frame)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_ref_frame();
+}
+
+inline const ::google::protobuf::RepeatedField<float>& CalculateTCPOrientationReq::_internal_ref_frame() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.ref_frame_;
+}
+inline ::google::protobuf::RepeatedField<float>* CalculateTCPOrientationReq::_internal_mutable_ref_frame() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.ref_frame_;
+}
+
+// -------------------------------------------------------------------
+
+// CalculateTCPOrientationRes
+
+// repeated float calculated_pos = 1;
+inline int CalculateTCPOrientationRes::_internal_calculated_pos_size() const {
+  return _internal_calculated_pos().size();
+}
+inline int CalculateTCPOrientationRes::calculated_pos_size() const {
+  return _internal_calculated_pos_size();
+}
+inline void CalculateTCPOrientationRes::clear_calculated_pos() {
+  _internal_mutable_calculated_pos()->Clear();
+}
+inline float CalculateTCPOrientationRes::calculated_pos(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.CalculateTCPOrientationRes.calculated_pos)
+  return _internal_calculated_pos().Get(index);
+}
+inline void CalculateTCPOrientationRes::set_calculated_pos(int index, float value) {
+  _internal_mutable_calculated_pos()->Set(index, value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.CalculateTCPOrientationRes.calculated_pos)
+}
+inline void CalculateTCPOrientationRes::add_calculated_pos(float value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_calculated_pos()->Add(value);
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.CalculateTCPOrientationRes.calculated_pos)
+}
+inline const ::google::protobuf::RepeatedField<float>& CalculateTCPOrientationRes::calculated_pos() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.CalculateTCPOrientationRes.calculated_pos)
+  return _internal_calculated_pos();
+}
+inline ::google::protobuf::RepeatedField<float>* CalculateTCPOrientationRes::mutable_calculated_pos() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.CalculateTCPOrientationRes.calculated_pos)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_calculated_pos();
+}
+
+inline const ::google::protobuf::RepeatedField<float>& CalculateTCPOrientationRes::_internal_calculated_pos() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.calculated_pos_;
+}
+inline ::google::protobuf::RepeatedField<float>* CalculateTCPOrientationRes::_internal_mutable_calculated_pos() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.calculated_pos_;
+}
+
+// string msg = 100;
+inline void CalculateTCPOrientationRes::clear_msg() {
+  _impl_.msg_.ClearToEmpty();
+}
+inline const std::string& CalculateTCPOrientationRes::msg() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.CalculateTCPOrientationRes.msg)
+  return _internal_msg();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void CalculateTCPOrientationRes::set_msg(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.msg_.Set(static_cast<Arg_&&>(arg), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.CalculateTCPOrientationRes.msg)
+}
+inline std::string* CalculateTCPOrientationRes::mutable_msg() {
+  std::string* _s = _internal_mutable_msg();
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.CalculateTCPOrientationRes.msg)
+  return _s;
+}
+inline const std::string& CalculateTCPOrientationRes::_internal_msg() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.msg_.Get();
+}
+inline void CalculateTCPOrientationRes::_internal_set_msg(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.msg_.Set(value, GetArenaForAllocation());
+}
+inline std::string* CalculateTCPOrientationRes::_internal_mutable_msg() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.msg_.Mutable( GetArenaForAllocation());
+}
+inline std::string* CalculateTCPOrientationRes::release_msg() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:Nrmk.IndyFramework.CalculateTCPOrientationRes.msg)
+  return _impl_.msg_.Release();
+}
+inline void CalculateTCPOrientationRes::set_allocated_msg(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.msg_.SetAllocated(value, GetArenaForAllocation());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.msg_.IsDefault()) {
+          _impl_.msg_.Set("", GetArenaForAllocation());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.CalculateTCPOrientationRes.msg)
 }
 
 // -------------------------------------------------------------------

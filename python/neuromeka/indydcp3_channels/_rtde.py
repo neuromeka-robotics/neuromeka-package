@@ -5,6 +5,7 @@ else:
     from neuromeka.proto_step import *
 
 from google.protobuf import json_format
+from ._helpers import _message_to_dict
 
 
 class RTDEChannelAPI:
@@ -28,10 +29,7 @@ class RTDEChannelAPI:
             response  -> Response
         """
         response = self.rtde.GetControlData(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def get_control_state(self):
         """
@@ -54,10 +52,7 @@ class RTDEChannelAPI:
             tau_jts  -> float[]
         """
         response = self.rtde.GetControlState(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def get_motion_data(self):
         """
@@ -76,10 +71,7 @@ class RTDEChannelAPI:
             cur_traj_progress  -> int32
         """
         response = self.rtde.GetMotionData(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def get_servo_data(self):
         """
@@ -92,24 +84,15 @@ class RTDEChannelAPI:
             brake_actives  -> bool[]
         """
         response = self.rtde.GetServoData(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def get_collision_model_state(self):
         response = self.rtde.GetCollisionModelState(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def get_reserved_data(self):
         response = self.rtde.GetReservedData(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def get_violation_data(self):
         """
@@ -121,10 +104,7 @@ class RTDEChannelAPI:
             violation_str  -> string
         """
         response = self.rtde.GetViolationData(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def get_violation_message_queue(self):
         """
@@ -132,10 +112,7 @@ class RTDEChannelAPI:
             violation_queue   -> ViolationData[]
         """
         response = self.rtde.GetViolationMessageQueue(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def get_program_data(self):
         """
@@ -152,10 +129,7 @@ class RTDEChannelAPI:
             speed_ratio -> int32
         """
         response = self.rtde.GetProgramData(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def get_stop_state(self):
         """
@@ -163,10 +137,7 @@ class RTDEChannelAPI:
             category   -> StopCategory
         """
         response = self.rtde.GetStopState(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def get_io_data(self):
         """
@@ -182,7 +153,7 @@ class RTDEChannelAPI:
             response  -> Response
         """
         response = self.rtde.GetIOData(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
+
+    def test_function(self, request):
+        return _message_to_dict(self.rtde.TestFunction(request))

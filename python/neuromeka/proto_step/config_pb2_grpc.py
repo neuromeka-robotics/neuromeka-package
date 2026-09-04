@@ -50,6 +50,11 @@ class ConfigStub(object):
                 request_serializer=common__msgs__pb2.Name.SerializeToString,
                 response_deserializer=common__msgs__pb2.Response.FromString,
                 )
+        self.GetLanguage = channel.unary_unary(
+                '/Nrmk.IndyFramework.Config/GetLanguage',
+                request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=common__msgs__pb2.Name.FromString,
+                )
         self.GetRefFrame = channel.unary_unary(
                 '/Nrmk.IndyFramework.Config/GetRefFrame',
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
@@ -73,6 +78,11 @@ class ConfigStub(object):
         self.SetLockedJoint = channel.unary_unary(
                 '/Nrmk.IndyFramework.Config/SetLockedJoint',
                 request_serializer=common__msgs__pb2.Int.SerializeToString,
+                response_deserializer=common__msgs__pb2.Response.FromString,
+                )
+        self.SetLockedJointFor = channel.unary_unary(
+                '/Nrmk.IndyFramework.Config/SetLockedJointFor',
+                request_serializer=config__msgs__pb2.LockJointReq.SerializeToString,
                 response_deserializer=common__msgs__pb2.Response.FromString,
                 )
         self.SetToolLink = channel.unary_unary(
@@ -632,6 +642,12 @@ class ConfigServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetLanguage(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def GetRefFrame(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -657,6 +673,12 @@ class ConfigServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def SetLockedJoint(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SetLockedJointFor(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -1315,6 +1337,11 @@ def add_ConfigServicer_to_server(servicer, server):
                     request_deserializer=common__msgs__pb2.Name.FromString,
                     response_serializer=common__msgs__pb2.Response.SerializeToString,
             ),
+            'GetLanguage': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetLanguage,
+                    request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=common__msgs__pb2.Name.SerializeToString,
+            ),
             'GetRefFrame': grpc.unary_unary_rpc_method_handler(
                     servicer.GetRefFrame,
                     request_deserializer=common__msgs__pb2.Empty.FromString,
@@ -1338,6 +1365,11 @@ def add_ConfigServicer_to_server(servicer, server):
             'SetLockedJoint': grpc.unary_unary_rpc_method_handler(
                     servicer.SetLockedJoint,
                     request_deserializer=common__msgs__pb2.Int.FromString,
+                    response_serializer=common__msgs__pb2.Response.SerializeToString,
+            ),
+            'SetLockedJointFor': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetLockedJointFor,
+                    request_deserializer=config__msgs__pb2.LockJointReq.FromString,
                     response_serializer=common__msgs__pb2.Response.SerializeToString,
             ),
             'SetToolLink': grpc.unary_unary_rpc_method_handler(
@@ -1980,6 +2012,23 @@ class Config(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
+    def GetLanguage(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Config/GetLanguage',
+            common__msgs__pb2.Empty.SerializeToString,
+            common__msgs__pb2.Name.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
     def GetRefFrame(request,
             target,
             options=(),
@@ -2060,6 +2109,23 @@ class Config(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Config/SetLockedJoint',
             common__msgs__pb2.Int.SerializeToString,
+            common__msgs__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SetLockedJointFor(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Config/SetLockedJointFor',
+            config__msgs__pb2.LockJointReq.SerializeToString,
             common__msgs__pb2.Response.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

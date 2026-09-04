@@ -132,6 +132,7 @@ class IndyDCP3
         bool set_conveyor_tool_link(int index);
 
         bool set_locked_joint(int index);
+        bool set_locked_joint_for(int arm_index, int joint_index);
         bool get_locked_joint(int& index);
         bool set_tool_link(int index);
 
@@ -321,6 +322,8 @@ class IndyDCP3
 
         // Path/Tool/Vision/Modbus Config APIs
         bool get_path_config(Nrmk::IndyFramework::PathConfig& path_config);
+        bool get_language(std::string& language);
+        bool set_language(const std::string& language);
         bool set_tool_list(const Nrmk::IndyFramework::ToolList& tool_list);
         bool get_tool_list(Nrmk::IndyFramework::ToolList& tool_list);
         bool set_vision_server_list(const Nrmk::IndyFramework::VisionServerList& vision_server_list);
@@ -712,14 +715,113 @@ class IndyDCP3
         bool set_conveyor_terminal_pose(const std::vector<float>& jpos, const std::vector<float>& tpos);
 
         bool add_photoneo_calib_point(const std::string& vision_name, double px, double py, double pz);
-        bool get_photoneo_detection(const Nrmk::IndyFramework::VisionServer& vision_server, 
-                                    const std::string& object, 
-                                    const Nrmk::IndyFramework::VisionFrameType frame_type, 
-                                    Nrmk::IndyFramework::VisionResult& result);
-        bool get_photoneo_retrieval(const Nrmk::IndyFramework::VisionServer& vision_server, 
-                                    const std::string& object, 
-                                    const Nrmk::IndyFramework::VisionFrameType frame_type, 
-                                    Nrmk::IndyFramework::VisionResult& result);
+        bool get_photoneo_detection(const Nrmk::IndyFramework::VisionServer& vision_server,
+                                    const std::string& object,
+                                    const Nrmk::IndyFramework::VisionFrameType frame_type,
+                                    Nrmk::IndyFramework::VisionResult& result,
+                                    uint32_t arm_index=0);
+        bool get_photoneo_retrieval(const Nrmk::IndyFramework::VisionServer& vision_server,
+                                    const std::string& object,
+                                    const Nrmk::IndyFramework::VisionFrameType frame_type,
+                                    Nrmk::IndyFramework::VisionResult& result,
+                                    uint32_t arm_index=0);
+
+        // Config
+        bool change_password(const Nrmk::IndyFramework::ChangePasswordReq& request);
+        bool get_new_controller_test_on_off_state(Nrmk::IndyFramework::NewControllerTestState& response);
+        bool get_nonce(Nrmk::IndyFramework::Nonce& response);
+        bool get_servo_param_list(Nrmk::IndyFramework::Vector& response);
+        bool get_test_control_gain(Nrmk::IndyFramework::TestGainSet& response);
+        bool get_weld_position_list(Nrmk::IndyFramework::WeldPositionList& response);
+        bool get_welding_machine_config(Nrmk::IndyFramework::WeldingConfigInfo& response);
+        bool login(const Nrmk::IndyFramework::Digest& request, Nrmk::IndyFramework::LoginRes& response);
+        bool set_new_controller_test_on_off(const Nrmk::IndyFramework::NewControllerTestState& request);
+        bool set_test_control_gain(const Nrmk::IndyFramework::TestGainSet& request);
+        bool set_weld_position_list(const Nrmk::IndyFramework::WeldPositionList& request);
+        bool set_welding_machine_config(const Nrmk::IndyFramework::WeldingConfigInfo& request);
+        bool test_digest(const Nrmk::IndyFramework::Passwd& request, Nrmk::IndyFramework::Digest& response);
+        bool verify_token(const Nrmk::IndyFramework::Token& request);
+        bool get_ft_sensor_config_for(const Nrmk::IndyFramework::Int& request, Nrmk::IndyFramework::FTSensorDevice& response);
+        bool get_ref_frame_for(const Nrmk::IndyFramework::Int& request, Nrmk::IndyFramework::Frame& response);
+        bool get_tool_property_at(const Nrmk::IndyFramework::Int& request, Nrmk::IndyFramework::ToolProperties& response);
+
+        // Control
+        bool get_modbus_variable(Nrmk::IndyFramework::ModbusVars& response);
+        bool get_variable_name_list(Nrmk::IndyFramework::AllVars& response);
+        bool move_j_cond(const Nrmk::IndyFramework::MoveJCondReq& request);
+        bool pause_motion(const Nrmk::IndyFramework::PauseCat& request);
+        bool reset();
+        bool search_program(const Nrmk::IndyFramework::Program& request, Nrmk::IndyFramework::ProgramInfo& response);
+        bool send_alarm(const Nrmk::IndyFramework::Message& request);
+        bool send_annotation(const Nrmk::IndyFramework::Message& request);
+        bool set_modbus_variable(const Nrmk::IndyFramework::ModbusVars& request);
+        bool set_modbus_variable_name_list(const Nrmk::IndyFramework::ModbusVariableList& request);
+        bool set_tele_calib_arm(const Nrmk::IndyFramework::UInt& request);
+        bool set_variable_name_list(const Nrmk::IndyFramework::AllVars& request);
+        bool get_motion_c(const Nrmk::IndyFramework::GetMotionCReq& request, Nrmk::IndyFramework::GetMotionRes& response);
+        bool get_motion_j(const Nrmk::IndyFramework::GetMotionJReq& request, Nrmk::IndyFramework::GetMotionRes& response);
+        bool get_motion_l(const Nrmk::IndyFramework::GetMotionLReq& request, Nrmk::IndyFramework::GetMotionRes& response);
+        bool get_program_break_points(Nrmk::IndyFramework::ProgramBreakPoints& response);
+        bool get_transformed_ft_sensor_data_for(const Nrmk::IndyFramework::Int& request, Nrmk::IndyFramework::TransformedFTSensorData& response);
+        bool program_step_into();
+        bool program_step_out();
+        bool program_step_over();
+        bool read_teleop_input_for(const Nrmk::IndyFramework::Int& request, Nrmk::IndyFramework::TeleP& response);
+        bool set_program_break_points(const Nrmk::IndyFramework::ProgramBreakPoints& request);
+
+        // Device
+        bool configure_pickit_3d(const Nrmk::IndyFramework::ConfigurePickit3DReq& request);
+        bool get_conveyor_object_distances(Nrmk::IndyFramework::ConveyorObjectDistances& response);
+        bool get_do_channels(Nrmk::IndyFramework::DOChannelModes& response);
+        bool get_pickit_3d_detection(const Nrmk::IndyFramework::VisionRequest& request, Nrmk::IndyFramework::VisionResult& response);
+        bool get_pickit_3d_retrieval(const Nrmk::IndyFramework::VisionRequest& request, Nrmk::IndyFramework::VisionResult& response);
+        bool set_ai(const Nrmk::IndyFramework::AnalogList& request);
+        bool set_di(const Nrmk::IndyFramework::DigitalList& request);
+        bool set_do_channels(const Nrmk::IndyFramework::DOChannelModes& request);
+        bool set_end_ai(const Nrmk::IndyFramework::AnalogList& request);
+        bool set_end_di(const Nrmk::IndyFramework::EndtoolSignalList& request);
+        bool sim_di_config(const Nrmk::IndyFramework::DISignals& request);
+        bool get_end_rs485_rx_for(const Nrmk::IndyFramework::Int& request, Nrmk::IndyFramework::EndtoolRS485Rx& response);
+        bool get_end_rs485_tx_for(const Nrmk::IndyFramework::Int& request, Nrmk::IndyFramework::EndtoolRS485Tx& response);
+        bool get_ft_sensor_data_for(const Nrmk::IndyFramework::Int& request, Nrmk::IndyFramework::FTSensorData& response);
+        bool get_sander_command_for(const Nrmk::IndyFramework::Int& request, Nrmk::IndyFramework::SanderCommand& response);
+        bool set_conveyor_arm_index(const Nrmk::IndyFramework::Int& request);
+
+        // RTDataExchange
+        bool test_function(const Nrmk::IndyFramework::TestRequest& request, Nrmk::IndyFramework::TestResponse& response);
+
+        // CRI
+        bool generate_sfd_token(const Nrmk::IndyFramework::SFDAccount& request);
+        bool get_cri_record_mode(Nrmk::IndyFramework::CRIRecordModeState& response);
+        bool get_sfd_login_info(Nrmk::IndyFramework::SFDAccount& response);
+        bool get_sfd_target(Nrmk::IndyFramework::SFDTarget& response);
+        bool is_sfd_target_valid(Nrmk::IndyFramework::State& response);
+        bool load_sfd_auto_set(Nrmk::IndyFramework::SFDAutoSet& response);
+        bool load_sfd_login_info(Nrmk::IndyFramework::SFDAccount& response);
+        bool logout_sfd();
+        bool release_sfd_target(Nrmk::IndyFramework::State& response);
+        bool save_sfd_auto_set(const Nrmk::IndyFramework::SFDAutoSet& request);
+        bool save_sfd_login_info(const Nrmk::IndyFramework::SFDAccount& request);
+        bool start_cri_playback();
+        bool start_cri_record();
+        bool stop_cri_playback();
+        bool stop_cri_record();
+
+        // TeleOp
+        bool apply_teleop_constraint_batch(const Nrmk::IndyFramework::ApplyTeleopConstraintBatchRequest& request);
+        bool get_self_collision_config(Nrmk::IndyFramework::SelfCollisionConstraintConfig& response);
+        bool get_teleop_constraint_runtime_status(Nrmk::IndyFramework::TeleopConstraintRuntimeStatus& response);
+        bool get_teleop_tuning_params(Nrmk::IndyFramework::TeleopTuningParams& response);
+        bool get_tool_collision_sphere_config(Nrmk::IndyFramework::Message& response);
+        bool set_dynamic_obstacle_constraint_config(const Nrmk::IndyFramework::ObstacleConstraintConfig& request);
+        bool set_joint_constraint_config(const Nrmk::IndyFramework::JointConstraintConfig& request);
+        bool set_orientation_deviation_config(const Nrmk::IndyFramework::OrientationDeviationConfig& request);
+        bool set_plane_constraint_config(const Nrmk::IndyFramework::PlaneConstraintConfig& request);
+        bool set_self_collision_config(const Nrmk::IndyFramework::SelfCollisionConstraintConfig& request);
+        bool set_self_collision_pairs(const Nrmk::IndyFramework::SelfCollisionPairs& request);
+        bool set_static_obstacle_constraint_config(const Nrmk::IndyFramework::ObstacleConstraintConfig& request);
+        bool set_teleop_tuning_params(const Nrmk::IndyFramework::TeleopTuningParams& request);
+        bool set_tool_collision_sphere_config(const Nrmk::IndyFramework::Message& request);
 
     private:
         bool _isConnected;

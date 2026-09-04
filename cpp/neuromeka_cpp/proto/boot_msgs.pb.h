@@ -205,11 +205,13 @@ class BootStatus final :
     kEthercatUsedFieldNumber = 1,
     kSafetyUsedFieldNumber = 2,
     kSafetyMcuFieldNumber = 3,
+    kLinearUsedFieldNumber = 4,
     kSafetyConnectedFieldNumber = 11,
     kMainPwRelayOnFieldNumber = 21,
     kSafetyPwRelayOnFieldNumber = 22,
     kRobotPwSupplyOnFieldNumber = 23,
     kEthercatConnectedFieldNumber = 31,
+    kLinearConnectedFieldNumber = 32,
     kControlOnFieldNumber = 100,
   };
   // bool ethercat_used = 1;
@@ -240,6 +242,16 @@ class BootStatus final :
   private:
   bool _internal_safety_mcu() const;
   void _internal_set_safety_mcu(bool value);
+
+  public:
+  // bool linear_used = 4;
+  void clear_linear_used() ;
+  bool linear_used() const;
+  void set_linear_used(bool value);
+
+  private:
+  bool _internal_linear_used() const;
+  void _internal_set_linear_used(bool value);
 
   public:
   // bool safety_connected = 11;
@@ -292,6 +304,16 @@ class BootStatus final :
   void _internal_set_ethercat_connected(bool value);
 
   public:
+  // bool linear_connected = 32;
+  void clear_linear_connected() ;
+  bool linear_connected() const;
+  void set_linear_connected(bool value);
+
+  private:
+  bool _internal_linear_connected() const;
+  void _internal_set_linear_connected(bool value);
+
+  public:
   // bool control_on = 100;
   void clear_control_on() ;
   bool control_on() const;
@@ -307,7 +329,7 @@ class BootStatus final :
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<4, 9, 0, 0, 7> _table_;
+  static const ::google::protobuf::internal::TcParseTable<4, 11, 0, 0, 7> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
@@ -315,11 +337,13 @@ class BootStatus final :
     bool ethercat_used_;
     bool safety_used_;
     bool safety_mcu_;
+    bool linear_used_;
     bool safety_connected_;
     bool main_pw_relay_on_;
     bool safety_pw_relay_on_;
     bool robot_pw_supply_on_;
     bool ethercat_connected_;
+    bool linear_connected_;
     bool control_on_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
@@ -408,6 +432,28 @@ inline void BootStatus::_internal_set_safety_mcu(bool value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.safety_mcu_ = value;
+}
+
+// bool linear_used = 4;
+inline void BootStatus::clear_linear_used() {
+  _impl_.linear_used_ = false;
+}
+inline bool BootStatus::linear_used() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.BootStatus.linear_used)
+  return _internal_linear_used();
+}
+inline void BootStatus::set_linear_used(bool value) {
+  _internal_set_linear_used(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.BootStatus.linear_used)
+}
+inline bool BootStatus::_internal_linear_used() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.linear_used_;
+}
+inline void BootStatus::_internal_set_linear_used(bool value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.linear_used_ = value;
 }
 
 // bool safety_connected = 11;
@@ -518,6 +564,28 @@ inline void BootStatus::_internal_set_ethercat_connected(bool value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.ethercat_connected_ = value;
+}
+
+// bool linear_connected = 32;
+inline void BootStatus::clear_linear_connected() {
+  _impl_.linear_connected_ = false;
+}
+inline bool BootStatus::linear_connected() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.BootStatus.linear_connected)
+  return _internal_linear_connected();
+}
+inline void BootStatus::set_linear_connected(bool value) {
+  _internal_set_linear_connected(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.BootStatus.linear_connected)
+}
+inline bool BootStatus::_internal_linear_connected() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.linear_connected_;
+}
+inline void BootStatus::_internal_set_linear_connected(bool value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.linear_connected_ = value;
 }
 
 // bool control_on = 100;

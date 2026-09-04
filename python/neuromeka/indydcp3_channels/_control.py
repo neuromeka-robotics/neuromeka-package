@@ -11,6 +11,7 @@ from typing import Optional, List
 
 from google.protobuf import json_format
 from google.protobuf.json_format import ParseDict
+from ._helpers import _message_to_dict
 
 
 class ControlChannelAPI:
@@ -28,10 +29,7 @@ class ControlChannelAPI:
                 CAT2  = 2
         """
         response = self.control.StopMotion(common_msgs.StopCat(category=stop_category))
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def movej(self, jtarget,
               blending_type=BlendingType.NONE,
@@ -62,7 +60,7 @@ class ControlChannelAPI:
             if self.get_robot_data()['op_state'] == 6:
                 print("Robot is moving. Cannot execute movej with teaching_mode=True and base_type!=ABSOLUTE.")
                 return {"error": "Robot is in motion, command aborted."}
-            
+
         jtarget = control_msgs.TargetJ(j_start=[], j_target=list(jtarget), base_type=base_type)
         blending = control_msgs.BlendingType(type=blending_type, blending_radius=blending_radius)
         post_cond = control_msgs.MotionCondition()
@@ -88,10 +86,7 @@ class ControlChannelAPI:
             request.arm_index = arm_index
 
         response = self.control.MoveJ(request)
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def movej_time(self, jtarget,
                    blending_type=BlendingType.NONE,
@@ -129,11 +124,8 @@ class ControlChannelAPI:
             request.arm_index = arm_index
 
         response = self.control.MoveJT(request)
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
-    
+        return _message_to_dict(response)
+
     def movel(self, ttarget,
               blending_type=BlendingType.NONE,
               base_type=TaskBaseType.ABSOLUTE,
@@ -157,7 +149,7 @@ class ControlChannelAPI:
             if self.get_robot_data()['op_state'] == 6:
                 print("Robot is moving. Cannot execute movel with teaching_mode=True and base_type!=ABSOLUTE.")
                 return {"error": "Robot is in motion, command aborted."}
-        
+
         ptarget = control_msgs.TargetP(t_start=[], t_target=list(ttarget), base_type=base_type)
         blending = control_msgs.BlendingType(type=blending_type, blending_radius=blending_radius)
         post_cond = control_msgs.MotionCondition()
@@ -181,10 +173,7 @@ class ControlChannelAPI:
             bypass_singular=bypass_singular,
             arm_index=arm_index
         ))
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def movel_time(self, ttarget,
                    blending_type=BlendingType.NONE,
@@ -223,10 +212,7 @@ class ControlChannelAPI:
             post_condition=post_cond,
             arm_index=arm_index
         ))
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def movelf(self, ttarget, enabledaxis, desforce,
                blending_type=BlendingType.NONE,
@@ -263,10 +249,7 @@ class ControlChannelAPI:
             post_condition=post_cond,
             teaching_mode=teaching_mode
         ))
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def get_transformed_ft_sensor_data(self):
         """
@@ -278,17 +261,11 @@ class ControlChannelAPI:
         ft_Tz -> float N*m
         """
         response = self.control.GetTransformedFTSensorData(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def get_transformed_ft_sensor_data_for(self, index: int):
         response = self.control.GetTransformedFTSensorDataFor(common_msgs.Int(value=index))
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def movec(self, tpos0, tpos1,
               blending_type=BlendingType.NONE,
@@ -336,10 +313,7 @@ class ControlChannelAPI:
             bypass_singular=bypass_singular,
             arm_index=arm_index
         ))
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def movec_time(self, tpos0, tpos1,
                blending_type=BlendingType.NONE,
@@ -351,10 +325,10 @@ class ControlChannelAPI:
                move_time=5.0,
                post_condition=PostCondition(),
                arm_index: int = 0) -> dict:
-        
+
         ctarget = control_msgs.TargetC(t_start=[], t_pos0=list(tpos0), t_pos1=list(tpos1),
                                        base_type=base_type)
-        
+
         blending = control_msgs.BlendingType(type=blending_type, blending_radius=blending_radius)
         post_cond = control_msgs.MotionCondition()
         if post_condition is not None:
@@ -378,10 +352,7 @@ class ControlChannelAPI:
             post_condition=post_cond,
             arm_index=arm_index
         ))
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def move_gcode(self, gcode_file,
                    is_smooth_mode=False,
@@ -389,19 +360,16 @@ class ControlChannelAPI:
                    vel_ratio=Limits.JogVelRatioDefault,
                    acc_ratio=Limits.JogAccRatioDefault,
                    arm_index: int = 0) -> dict:
-        
+
         gcode_req = control_msgs.MoveGcodeReq(gcode_file=gcode_file,
                                               is_smooth_mode=is_smooth_mode,
                                               smooth_radius=smooth_radius,
                                               vel_ratio=vel_ratio,
                                               acc_ratio=acc_ratio,
                                               arm_index=arm_index)
-        
+
         response = self.control.MoveGcode(gcode_req)
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     ############################
     # Move Trajectory
@@ -420,10 +388,7 @@ class ControlChannelAPI:
                                                  qddot_list=list(
                                                      map(lambda x: common_msgs.Vector(values=x), qddot_list)))
         response = self.control.MoveJointTraj(traj_req)
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     ##
     # @brief move along joint trajectory
@@ -438,10 +403,7 @@ class ControlChannelAPI:
                                                 pddot_list=list(
                                                     map(lambda x: common_msgs.Vector(values=x), pddot_list)))
         response = self.control.MoveTaskTraj(traj_req)
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def move_conveyor(self,
                      post_condition=PostCondition(),
@@ -465,59 +427,38 @@ class ControlChannelAPI:
             acc_ratio=acc_ratio,
             post_condition=post_cond
         ))
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     ############################
     # Motion Control (Teleoperation)
     ############################
     def get_teleop_device(self):
         response = self.control.GetTeleOpDevice(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def get_teleop_state(self):
         response = self.control.GetTeleOpState(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def connect_teleop_device(self, name: str, type: control_msgs.TeleOpDevice, ip: str, port: int):
         response = self.control.ConnectTeleOpDevice(
             control_msgs.TeleOpDevice(name=name,type=type,ip=ip,port=port)
         )
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def disconnect_teleop_device(self):
         response = self.control.DisConnectTeleOpDevice(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def read_teleop_input(self):
         response = self.control.ReadTeleOpInput(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def read_teleop_input_for(self, index: int):
         """Read teleoperation input for specific index."""
         response = self.control.ReadTeleOpInputFor(common_msgs.Int(value=index))
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
-    
+        return _message_to_dict(response)
+
     def start_teleop(self, method):
         """
         Start tele op
@@ -529,69 +470,42 @@ class ControlChannelAPI:
         """
         response = self.control.StartTeleOp(
             control_msgs.TeleOpState(mode=control_msgs.TeleMode.TELE_RAW, method=method))
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def stop_teleop(self):
         """
         Stop tele op
         """
         response = self.control.StopTeleOp(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def set_play_rate(self, rate: float):
         response = self.control.SetPlayRate(control_msgs.TelePlayRate(rate=rate))
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def get_play_rate(self):
         response = self.control.GetPlayRate(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def get_tele_file_list(self):
         response = self.control.GetTeleFileList(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def save_tele_motion(self, name: str):
         response = self.control.SaveTeleMotion(control_msgs.TeleFileReq(name=name))
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def load_tele_motion(self, name: str):
         response = self.control.LoadTeleMotion(control_msgs.TeleFileReq(name=name))
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def delete_tele_motion(self, name: str):
         response = self.control.DeleteTeleMotion(control_msgs.TeleFileReq(name=name))
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def enable_tele_key(self, enable):
         response = self.control.EnableTeleKey(common_msgs.State(enable=enable))
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def movetelej_abs(self, jpos, vel_ratio=0.8, acc_ratio=7.0):
         """
@@ -600,10 +514,7 @@ class ControlChannelAPI:
         """
         response = self.control.MoveTeleJ(control_msgs.MoveTeleJReq(jpos=jpos, vel_ratio=vel_ratio, acc_ratio=acc_ratio,
                                                                     method=control_msgs.TELE_JOINT_ABSOLUTE))
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def movetelej_rel(self, jpos, vel_ratio=0.8, acc_ratio=7.0):
         """
@@ -612,10 +523,7 @@ class ControlChannelAPI:
         """
         response = self.control.MoveTeleJ(control_msgs.MoveTeleJReq(jpos=jpos, vel_ratio=vel_ratio, acc_ratio=acc_ratio,
                                                                     method=control_msgs.TELE_JOINT_RELATIVE))
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def movetelel_abs(self, tpos, vel_ratio=0.8, acc_ratio=7.0, arm_index=0):
         """
@@ -624,10 +532,7 @@ class ControlChannelAPI:
         """
         response = self.control.MoveTeleL(control_msgs.MoveTeleLReq(tpos=tpos, vel_ratio=vel_ratio, acc_ratio=acc_ratio,
                                                                     method=control_msgs.TELE_TASK_ABSOLUTE, arm_index=arm_index))
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def movetelel_rel(self, tpos, vel_ratio=0.8, acc_ratio=7.0, arm_index=0):
         """
@@ -636,11 +541,8 @@ class ControlChannelAPI:
         """
         response = self.control.MoveTeleL(control_msgs.MoveTeleLReq(tpos=tpos, vel_ratio=vel_ratio, acc_ratio=acc_ratio,
                                                                     method=control_msgs.TELE_TASK_RELATIVE, arm_index=arm_index))
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
-    
+        return _message_to_dict(response)
+
     def move_axis(self, start_mm, target_mm, is_absolute=True, vel_ratio=5, acc_ratio=100, teaching_mode=False):
         """
         start_mm = [mm, mm, mm] -> pos
@@ -659,10 +561,7 @@ class ControlChannelAPI:
             is_absolute=is_absolute,
             teaching_mode=teaching_mode
         ))
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     ############################
     # Kinematics & Teaching
@@ -679,10 +578,7 @@ class ControlChannelAPI:
             init_jpos=list(init_jpos),
             arm_index=arm_index
         ))
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def get_motion_j(self, req: dict):
         msg = control_msgs.GetMotionJReq()
@@ -691,10 +587,7 @@ class ControlChannelAPI:
         except Exception as e:
             return {'error': f'parse_error: {e}', 'input': req}
         response = self.control.GetMotionJ(msg)
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def get_motion_l(self, req: dict):
         msg = control_msgs.GetMotionLReq()
@@ -703,10 +596,7 @@ class ControlChannelAPI:
         except Exception as e:
             return {'error': f'parse_error: {e}', 'input': req}
         response = self.control.GetMotionL(msg)
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def get_motion_c(self, req: dict):
         msg = control_msgs.GetMotionCReq()
@@ -715,11 +605,8 @@ class ControlChannelAPI:
         except Exception as e:
             return {'error': f'parse_error: {e}', 'input': req}
         response = self.control.GetMotionC(msg)
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
-        
+        return _message_to_dict(response)
+
     def forward_kin(self, jpos, arm_index=0) -> dict:
         """
         :param tpos:
@@ -730,10 +617,7 @@ class ControlChannelAPI:
         response = self.control.ForwardKinematics(control_msgs.ForwardKinematicsReq(
             jpos=list(jpos), arm_index=arm_index
         ))
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def joint_to_tcp_transform(self, jpos, joint_idx, joint_idx_is_body_index=False, arm_index=0) -> dict:
         """
@@ -752,50 +636,35 @@ class ControlChannelAPI:
             joint_idx_is_body_index=joint_idx_is_body_index,
             arm_index=arm_index
         ))
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def set_direct_teaching(self, enable=True) -> dict:
         """
          enable = True | False
         """
         response = self.control.SetDirectTeaching(common_msgs.State(enable=enable))
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def set_simulation_mode(self, enable=True) -> dict:
         """
          Set simulation mode = True | False
         """
         response = self.control.SetSimulationMode(common_msgs.State(enable=enable))
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def recover(self) -> dict:
         """
          Recover from violation
         """
         response = self.control.Recover(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def set_manual_recovery(self, enable=True) -> dict:
         """
          Set manual recovery = True | False
         """
         response = self.control.SetManualRecovery(common_msgs.State(enable=enable))
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def calculate_relative_pose(self, start_pos, end_pos,
                                 base_type=TaskBaseType.ABSOLUTE):
@@ -807,10 +676,7 @@ class ControlChannelAPI:
             end_pos=list(end_pos),
             base_type=base_type
         ))
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def calculate_current_pose_rel(self, current_pos, relative_pos,
                                    base_type=TaskBaseType.ABSOLUTE):
@@ -822,10 +688,7 @@ class ControlChannelAPI:
             relative_pos=list(relative_pos),
             base_type=base_type
         ))
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     ############################
     # Program control
@@ -838,50 +701,35 @@ class ControlChannelAPI:
             prog_name=prog_name,
             prog_idx=prog_idx
         ))
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def pause_program(self):
         """
          Pause program
         """
         response = self.control.PauseProgram(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def resume_program(self):
         """
          Resume program
         """
         response = self.control.ResumeProgram(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def resume_program_debug(self):
         """
          Resume a program paused in debug mode
         """
         response = self.control.ResumeProgramDebug(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def stop_program(self):
         """
          Stop program
         """
         response = self.control.StopProgram(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     # --- Program Breakpoints & Stepping ---
     def set_program_breakpoints(self, breakpoints: dict):
@@ -891,38 +739,23 @@ class ControlChannelAPI:
         except Exception as e:
             return {'error': f'parse_error: {e}', 'input': breakpoints}
         response = self.control.SetProgramBreakPoints(msg)
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def get_program_breakpoints(self):
         response = self.control.GetProgramBreakPoints(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def program_step_over(self):
         response = self.control.ProgramStepOver(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def program_step_into(self):
         response = self.control.ProgramStepInto(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def program_step_out(self):
         response = self.control.ProgramStepOut(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def set_tact_time(self, type: str, tact_time: float):
         """
@@ -933,10 +766,7 @@ class ControlChannelAPI:
         response = self.control.SetTactTime(common_msgs.TactTime(
             type=type, tact_time=tact_time
         ))
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def get_tact_time(self):
         """
@@ -945,10 +775,7 @@ class ControlChannelAPI:
             tact_time -> float {seconds}
         """
         response = self.control.GetTactTime(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     ############################
     # Compliance Mode
@@ -965,10 +792,7 @@ class ControlChannelAPI:
                 stiffness=stiffness or []
             )
         )
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def get_compliance_mode(self):
         """
@@ -977,10 +801,7 @@ class ControlChannelAPI:
             stiffness -> int32[]
         """
         response = self.control.GetComplianceMode(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     ############################
     # Variables
@@ -994,10 +815,7 @@ class ControlChannelAPI:
             ]
         """
         response = self.control.GetBoolVariable(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def get_int_variable(self):
         """
@@ -1008,10 +826,7 @@ class ControlChannelAPI:
             ]
         """
         response = self.control.GetIntVariable(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def get_float_variable(self):
         """
@@ -1022,10 +837,7 @@ class ControlChannelAPI:
             ]
         """
         response = self.control.GetFloatVariable(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def get_jpos_variable(self):
         """
@@ -1036,10 +848,7 @@ class ControlChannelAPI:
             ]
         """
         response = self.control.GetJPosVariable(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)['variables']
+        return _message_to_dict(response)['variables']
 
     def get_tpos_variable(self):
         """
@@ -1050,10 +859,7 @@ class ControlChannelAPI:
             ]
         """
         response = self.control.GetTPosVariable(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def set_bool_variable(self, bool_variables: list):
         """
@@ -1070,10 +876,7 @@ class ControlChannelAPI:
         response = self.control.SetBoolVariable(
             control_msgs.BoolVars(variables=variable_list)
         )
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def set_int_variable(self, int_variables: list):
         """
@@ -1090,10 +893,7 @@ class ControlChannelAPI:
         response = self.control.SetIntVariable(
             control_msgs.IntVars(variables=variable_list)
         )
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def set_float_variable(self, float_variables: list):
         """
@@ -1110,10 +910,7 @@ class ControlChannelAPI:
         response = self.control.SetFloatVariable(
             control_msgs.FloatVars(variables=variable_list)
         )
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def set_jpos_variable(self, jpos_variables: list):
         """
@@ -1130,10 +927,7 @@ class ControlChannelAPI:
         response = self.control.SetJPosVariable(
             control_msgs.JPosVars(variables=variable_list)
         )
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def set_tpos_variable(self, tpos_variables: list):
         """
@@ -1150,10 +944,7 @@ class ControlChannelAPI:
         response = self.control.SetTPosVariable(
             control_msgs.TPosVars(variables=variable_list)
         )
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     ############################
     # Plugin Variables
@@ -1162,91 +953,61 @@ class ControlChannelAPI:
         response = self.control.SetPluginBoolVariable(
             common_msgs.NamedBool(name=name, value=value)
         )
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def get_plugin_bool_variable(self, name: str):
         response = self.control.GetPluginBoolVariable(
             common_msgs.Name(name=name)
         )
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def set_plugin_int_variable(self, name: str, value: int):
         response = self.control.SetPluginIntVariable(
             common_msgs.NamedInt(name=name, value=value)
         )
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def get_plugin_int_variable(self, name: str):
         response = self.control.GetPluginIntVariable(
             common_msgs.Name(name=name)
         )
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def set_plugin_float_variable(self, name: str, value: float):
         response = self.control.SetPluginFloatVariable(
             common_msgs.NamedFloat(name=name, value=value)
         )
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def get_plugin_float_variable(self, name: str):
         response = self.control.GetPluginFloatVariable(
             common_msgs.Name(name=name)
         )
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def set_plugin_jpos_variable(self, name: str, jpos: List[float]):
         response = self.control.SetPluginJPosVariable(
             common_msgs.NamedJointPosition(name=name, jpos=jpos)
         )
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def get_plugin_jpos_variable(self, name: str):
         response = self.control.GetPluginJPosVariable(
             common_msgs.Name(name=name)
         )
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def set_plugin_tpos_variable(self, name: str, tpos: List[float]):
         response = self.control.SetPluginTPosVariable(
             common_msgs.NamedTaskPosition(name=name, tpos=tpos)
         )
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def get_plugin_tpos_variable(self, name: str):
         response = self.control.GetPluginTPosVariable(
             common_msgs.Name(name=name)
         )
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     ############################
     # Bus Events
@@ -1264,18 +1025,12 @@ class ControlChannelAPI:
             text_data=text_data or ""
         )
         response = self.control.PushBusEvent(evt)
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def catch_bus_event(self, event_id: int, timeout: float):
         req = control_msgs.CatchBusEventReq(event_id=event_id, timeout=timeout)
         response = self.control.CatchBusEvent(req)
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     ############################
     # Force Mode
@@ -1288,34 +1043,22 @@ class ControlChannelAPI:
         msg = control_msgs.ForceModeReq()
         ParseDict(force_mode, msg)
         response = self.control.SetForceMode(msg)
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def get_force_mode(self):
         response = self.control.GetForceMode(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     ############################
     # Friction Compensation State
     ############################
     def set_friction_comp_state(self, enable=False) -> dict:
         response = self.control.SetFrictionCompensation(common_msgs.State(enable=enable))
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def get_friction_comp_state(self) -> dict:
         response = self.control.GetFrictionCompensationState(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     ############################
     # IndySDK related
@@ -1335,10 +1078,7 @@ class ControlChannelAPI:
         """
         response = self.control.ActivateIndySDK(
             control_msgs.SDKLicenseInfo(license_key=license_key, expire_date=expire_date))
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def set_custom_control_mode(self, mode):
         """
@@ -1347,29 +1087,23 @@ class ControlChannelAPI:
         - True (1): IndySDK's component is used
         """
         response = self.control.SetCustomControlMode(common_msgs.IntMode(mode=mode))
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def get_custom_control_mode(self):
         """
 
         """
         response = self.control.GetCustomControlMode(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     ############################
     # Wait Commands
     ############################
-    def wait_io(self, 
-                di_signal_list, 
-                do_signal_list, 
-                end_di_signal_list, 
-                end_do_signal_list, 
+    def wait_io(self,
+                di_signal_list,
+                do_signal_list,
+                end_di_signal_list,
+                end_do_signal_list,
                 conjunction=0):
         response = self.control.WaitIO(control_msgs.WaitIOReq(
             di_list=self.__to_digital_request_list__(di_signal_list),
@@ -1378,11 +1112,8 @@ class ControlChannelAPI:
             end_do_list=self.__to_digital_request_list__(end_do_signal_list),
             conjunction=conjunction
         ))
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
-    
+        return _message_to_dict(response)
+
     def wait_time(self, time: float):
         """
          Wait time [s]
@@ -1390,10 +1121,7 @@ class ControlChannelAPI:
         response = self.control.WaitTime(control_msgs.WaitTimeReq(
             time=time
         ))
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def wait_progress(self, progress: int):
         """
@@ -1402,10 +1130,7 @@ class ControlChannelAPI:
         response = self.control.WaitProgress(control_msgs.WaitProgressReq(
             progress=progress
         ))
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def wait_traj(self, traj_condition):
         """
@@ -1414,10 +1139,7 @@ class ControlChannelAPI:
         response = self.control.WaitTraj(control_msgs.WaitTrajReq(
             traj_condition=traj_condition
         ))
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def wait_radius(self, radius: int):
         """
@@ -1426,10 +1148,7 @@ class ControlChannelAPI:
         response = self.control.WaitRadius(control_msgs.WaitRadiusReq(
             radius=radius
         ))
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     ############################
     # Misc Control
@@ -1443,17 +1162,11 @@ class ControlChannelAPI:
         response = self.control.MoveRecoverJoint(
             control_msgs.TargetJ(j_target=list(jtarget), base_type=base_type)
         )
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def get_control_info(self):
         response = self.control.GetControlInfo(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def check_aproach_retract_valid(self, tpos, init_jpos, pre_tpos, post_tpos, arm_index=0):
         """
@@ -1466,10 +1179,7 @@ class ControlChannelAPI:
             post_tpos=list(post_tpos),
             arm_index=arm_index
         ))
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def get_pallet_point_list(self, tpos, jpos, pre_tpos, post_tpos, pallet_pattern, width, height, arm_index=0):
         """
@@ -1485,10 +1195,7 @@ class ControlChannelAPI:
             height=height,
             arm_index=arm_index
         ))
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def play_tuning_program(self, prog_name: str = '', prog_idx: int = -1,
                             tuning_space=common_msgs.TUNE_ALL, precision=common_msgs.HIGH_PRECISION,
@@ -1508,33 +1215,21 @@ class ControlChannelAPI:
 
         ParseDict(tuning_prog_dict, tuning_req)
         response = self.control.PlayTuningProgram(tuning_req)
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def ping_from_conty(self):
         response = self.control.PingFromConty(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                    including_default_value_fields=True,
-                                    preserving_proto_field_name=True,
-                                    use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     def get_ft_zero(self):
         response = self.control.FTZero(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
-        
+        return _message_to_dict(response)
+
     def get_inference_data(self):
         response = self.control.GetControlInferenceData(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
-    def set_inference_data(self, *args):        
+    def set_inference_data(self, *args):
 
         infdata = [[0.0] * 6 for _ in range(6)]
 
@@ -1555,10 +1250,7 @@ class ControlChannelAPI:
             infdata4=infdata[4],
             infdata5=infdata[5]
         ))
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     ############################
     # IO Variable
@@ -1585,10 +1277,7 @@ class ControlChannelAPI:
             returns list of IOVariable { addr, value, signal_type }
         """
         response = self.control.GetIOVariable(common_msgs.Empty())
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
 
     ############################
     # Program Line
@@ -1616,7 +1305,40 @@ class ControlChannelAPI:
             teaching_mode=teaching_mode,
             debug_mode=debug_mode
         ))
-        return json_format.MessageToDict(response,
-                                         including_default_value_fields=True,
-                                         preserving_proto_field_name=True,
-                                         use_integers_for_enums=True)
+        return _message_to_dict(response)
+
+    def get_variable_name_list(self):
+        return _message_to_dict(self.control.GetVariableNameList(common_msgs.Empty()))
+
+    def set_variable_name_list(self, request):
+        return _message_to_dict(self.control.SetVariableNameList(request))
+
+    def get_modbus_variable(self):
+        return _message_to_dict(self.control.GetModbusVariable(common_msgs.Empty()))
+
+    def set_modbus_variable(self, request):
+        return _message_to_dict(self.control.SetModbusVariable(request))
+
+    def set_modbus_variable_name_list(self, request):
+        return _message_to_dict(self.control.SetModbusVariableNameList(request))
+
+    def movej_cond(self, request):
+        return _message_to_dict(self.control.MoveJCond(request))
+
+    def pause_motion(self, request):
+        return _message_to_dict(self.control.PauseMotion(request))
+
+    def reset(self):
+        return _message_to_dict(self.control.Reset(common_msgs.Empty()))
+
+    def search_program(self, request):
+        return _message_to_dict(self.control.SearchProgram(request))
+
+    def send_alarm(self, request):
+        return _message_to_dict(self.control.SendAlarm(request))
+
+    def send_annotation(self, request):
+        return _message_to_dict(self.control.SendAnnotation(request))
+
+    def set_tele_calib_arm(self, arm_index: int):
+        return _message_to_dict(self.control.SetTeleCalibArm(common_msgs.UInt(value=arm_index)))

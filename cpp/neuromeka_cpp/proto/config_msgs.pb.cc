@@ -271,6 +271,23 @@ struct FrameDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 FrameDefaultTypeInternal _Frame_default_instance_;
         template <typename>
+PROTOBUF_CONSTEXPR LockJointReq::LockJointReq(::_pbi::ConstantInitialized)
+    : _impl_{
+      /*decltype(_impl_.arm_index_)*/ 0,
+      /*decltype(_impl_.joint_index_)*/ 0,
+      /*decltype(_impl_._cached_size_)*/ {},
+    } {}
+struct LockJointReqDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR LockJointReqDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~LockJointReqDefaultTypeInternal() {}
+  union {
+    LockJointReq _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 LockJointReqDefaultTypeInternal _LockJointReq_default_instance_;
+        template <typename>
 PROTOBUF_CONSTEXPR JointPos::JointPos(::_pbi::ConstantInitialized)
     : _impl_{
       /*decltype(_impl_.jpos_)*/ {},
@@ -1589,7 +1606,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 OperationModeConfigDefaultTypeInternal _OperationModeConfig_default_instance_;
 }  // namespace IndyFramework
 }  // namespace Nrmk
-static ::_pb::Metadata file_level_metadata_config_5fmsgs_2eproto[78];
+static ::_pb::Metadata file_level_metadata_config_5fmsgs_2eproto[79];
 static const ::_pb::EnumDescriptor* file_level_enum_descriptors_config_5fmsgs_2eproto[7];
 static constexpr const ::_pb::ServiceDescriptor**
     file_level_service_descriptors_config_5fmsgs_2eproto = nullptr;
@@ -1724,6 +1741,16 @@ const ::uint32_t TableStruct_config_5fmsgs_2eproto::offsets[] PROTOBUF_SECTION_V
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::Frame, _impl_.fpos_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::Frame, _impl_.arm_index_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::Frame, _impl_.link_index_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::LockJointReq, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::LockJointReq, _impl_.arm_index_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::LockJointReq, _impl_.joint_index_),
     ~0u,  // no _has_bits_
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::JointPos, _internal_metadata_),
     ~0u,  // no _extensions_
@@ -2514,71 +2541,72 @@ static const ::_pbi::MigrationSchema
         {100, -1, -1, sizeof(::Nrmk::IndyFramework::CustomPosList)},
         {109, -1, -1, sizeof(::Nrmk::IndyFramework::ConveyorList)},
         {118, -1, -1, sizeof(::Nrmk::IndyFramework::Frame)},
-        {129, -1, -1, sizeof(::Nrmk::IndyFramework::JointPos)},
-        {138, -1, -1, sizeof(::Nrmk::IndyFramework::JointLimitRange)},
-        {148, 160, -1, sizeof(::Nrmk::IndyFramework::JointLimitConfig)},
-        {164, -1, -1, sizeof(::Nrmk::IndyFramework::PlanarFrame)},
-        {177, 187, -1, sizeof(::Nrmk::IndyFramework::FrameResult)},
-        {189, -1, -1, sizeof(::Nrmk::IndyFramework::VisionServerList)},
-        {198, -1, -1, sizeof(::Nrmk::IndyFramework::SocketCommandConfig)},
-        {207, 219, -1, sizeof(::Nrmk::IndyFramework::SocketServerConfig)},
-        {223, -1, -1, sizeof(::Nrmk::IndyFramework::SocketConnection)},
-        {234, 245, -1, sizeof(::Nrmk::IndyFramework::ProtocolStrategy)},
-        {248, -1, -1, sizeof(::Nrmk::IndyFramework::BinarySettings)},
-        {258, -1, -1, sizeof(::Nrmk::IndyFramework::TextSettings)},
-        {269, -1, -1, sizeof(::Nrmk::IndyFramework::SocketCommand)},
-        {280, -1, -1, sizeof(::Nrmk::IndyFramework::SocketFrameItem)},
-        {299, -1, -1, sizeof(::Nrmk::IndyFramework::ModbusServerList)},
-        {308, -1, -1, sizeof(::Nrmk::IndyFramework::Ratio)},
-        {317, -1, -1, sizeof(::Nrmk::IndyFramework::AutoServoOffConfig)},
-        {327, -1, -1, sizeof(::Nrmk::IndyFramework::CollTuningConfig)},
-        {338, -1, -1, sizeof(::Nrmk::IndyFramework::JointGainSet)},
-        {349, -1, -1, sizeof(::Nrmk::IndyFramework::TaskGainSet)},
-        {360, -1, -1, sizeof(::Nrmk::IndyFramework::ImpedanceGainSet)},
-        {372, -1, -1, sizeof(::Nrmk::IndyFramework::ForceGainSet)},
-        {388, -1, -1, sizeof(::Nrmk::IndyFramework::TestGainSet)},
-        {402, -1, -1, sizeof(::Nrmk::IndyFramework::ComplianceGainSet)},
-        {419, -1, -1, sizeof(::Nrmk::IndyFramework::CustomGainSet)},
-        {437, -1, -1, sizeof(::Nrmk::IndyFramework::NewControllerTestState)},
-        {447, -1, -1, sizeof(::Nrmk::IndyFramework::FrictionCompSet)},
-        {459, -1, -1, sizeof(::Nrmk::IndyFramework::MountingAngles)},
-        {469, -1, -1, sizeof(::Nrmk::IndyFramework::ToolProperties)},
-        {481, 491, -1, sizeof(::Nrmk::IndyFramework::ToolPropertyEntry)},
-        {493, -1, -1, sizeof(::Nrmk::IndyFramework::ToolPropertyEntries)},
-        {502, -1, -1, sizeof(::Nrmk::IndyFramework::CollisionSensLevel)},
-        {511, -1, -1, sizeof(::Nrmk::IndyFramework::CollisionThresholds)},
-        {529, -1, -1, sizeof(::Nrmk::IndyFramework::CollisionPolicy)},
-        {540, -1, -1, sizeof(::Nrmk::IndyFramework::OnStartProgramConfig)},
-        {551, -1, -1, sizeof(::Nrmk::IndyFramework::SafetyLimits)},
-        {568, -1, -1, sizeof(::Nrmk::IndyFramework::SafetyStopConfig)},
-        {584, -1, -1, sizeof(::Nrmk::IndyFramework::SafetySnapshotInfo)},
-        {596, -1, -1, sizeof(::Nrmk::IndyFramework::SafetySnapshotList)},
-        {605, -1, -1, sizeof(::Nrmk::IndyFramework::SaveSafetySnapshotReq)},
-        {614, -1, -1, sizeof(::Nrmk::IndyFramework::SafetySnapshotId)},
-        {623, -1, -1, sizeof(::Nrmk::IndyFramework::DIConfig)},
-        {636, -1, -1, sizeof(::Nrmk::IndyFramework::DIConfigList)},
-        {645, -1, -1, sizeof(::Nrmk::IndyFramework::DOConfig)},
-        {657, -1, -1, sizeof(::Nrmk::IndyFramework::DOConfigList)},
-        {666, -1, -1, sizeof(::Nrmk::IndyFramework::GetReducedRatioRes)},
-        {676, -1, -1, sizeof(::Nrmk::IndyFramework::GetReducedSpeedRes)},
-        {686, -1, -1, sizeof(::Nrmk::IndyFramework::SetReducedSpeedReq)},
-        {695, -1, -1, sizeof(::Nrmk::IndyFramework::FTSensorDevice)},
-        {713, -1, -1, sizeof(::Nrmk::IndyFramework::FTSensorDeviceRes)},
-        {722, -1, -1, sizeof(::Nrmk::IndyFramework::TeleOpParams)},
-        {731, -1, -1, sizeof(::Nrmk::IndyFramework::KinematicsParams_MDH)},
-        {746, -1, -1, sizeof(::Nrmk::IndyFramework::KinematicsParams)},
-        {756, -1, -1, sizeof(::Nrmk::IndyFramework::CollisionModelMargin)},
-        {766, -1, -1, sizeof(::Nrmk::IndyFramework::Shape)},
-        {782, -1, -1, sizeof(::Nrmk::IndyFramework::SensorlessParams)},
-        {791, -1, -1, sizeof(::Nrmk::IndyFramework::NamedGeometry)},
-        {801, -1, -1, sizeof(::Nrmk::IndyFramework::ToolShapeList)},
-        {811, 828, -1, sizeof(::Nrmk::IndyFramework::Zone)},
-        {837, -1, -1, sizeof(::Nrmk::IndyFramework::NamedEnvironment)},
-        {847, -1, -1, sizeof(::Nrmk::IndyFramework::EnvironmentList)},
-        {857, -1, -1, sizeof(::Nrmk::IndyFramework::WeldingConfigInfo)},
-        {872, -1, -1, sizeof(::Nrmk::IndyFramework::WeldPosition)},
-        {882, -1, -1, sizeof(::Nrmk::IndyFramework::WeldPositionList)},
-        {891, -1, -1, sizeof(::Nrmk::IndyFramework::OperationModeConfig)},
+        {129, -1, -1, sizeof(::Nrmk::IndyFramework::LockJointReq)},
+        {139, -1, -1, sizeof(::Nrmk::IndyFramework::JointPos)},
+        {148, -1, -1, sizeof(::Nrmk::IndyFramework::JointLimitRange)},
+        {158, 170, -1, sizeof(::Nrmk::IndyFramework::JointLimitConfig)},
+        {174, -1, -1, sizeof(::Nrmk::IndyFramework::PlanarFrame)},
+        {187, 197, -1, sizeof(::Nrmk::IndyFramework::FrameResult)},
+        {199, -1, -1, sizeof(::Nrmk::IndyFramework::VisionServerList)},
+        {208, -1, -1, sizeof(::Nrmk::IndyFramework::SocketCommandConfig)},
+        {217, 229, -1, sizeof(::Nrmk::IndyFramework::SocketServerConfig)},
+        {233, -1, -1, sizeof(::Nrmk::IndyFramework::SocketConnection)},
+        {244, 255, -1, sizeof(::Nrmk::IndyFramework::ProtocolStrategy)},
+        {258, -1, -1, sizeof(::Nrmk::IndyFramework::BinarySettings)},
+        {268, -1, -1, sizeof(::Nrmk::IndyFramework::TextSettings)},
+        {279, -1, -1, sizeof(::Nrmk::IndyFramework::SocketCommand)},
+        {290, -1, -1, sizeof(::Nrmk::IndyFramework::SocketFrameItem)},
+        {309, -1, -1, sizeof(::Nrmk::IndyFramework::ModbusServerList)},
+        {318, -1, -1, sizeof(::Nrmk::IndyFramework::Ratio)},
+        {327, -1, -1, sizeof(::Nrmk::IndyFramework::AutoServoOffConfig)},
+        {337, -1, -1, sizeof(::Nrmk::IndyFramework::CollTuningConfig)},
+        {348, -1, -1, sizeof(::Nrmk::IndyFramework::JointGainSet)},
+        {359, -1, -1, sizeof(::Nrmk::IndyFramework::TaskGainSet)},
+        {370, -1, -1, sizeof(::Nrmk::IndyFramework::ImpedanceGainSet)},
+        {382, -1, -1, sizeof(::Nrmk::IndyFramework::ForceGainSet)},
+        {398, -1, -1, sizeof(::Nrmk::IndyFramework::TestGainSet)},
+        {412, -1, -1, sizeof(::Nrmk::IndyFramework::ComplianceGainSet)},
+        {429, -1, -1, sizeof(::Nrmk::IndyFramework::CustomGainSet)},
+        {447, -1, -1, sizeof(::Nrmk::IndyFramework::NewControllerTestState)},
+        {457, -1, -1, sizeof(::Nrmk::IndyFramework::FrictionCompSet)},
+        {469, -1, -1, sizeof(::Nrmk::IndyFramework::MountingAngles)},
+        {479, -1, -1, sizeof(::Nrmk::IndyFramework::ToolProperties)},
+        {491, 501, -1, sizeof(::Nrmk::IndyFramework::ToolPropertyEntry)},
+        {503, -1, -1, sizeof(::Nrmk::IndyFramework::ToolPropertyEntries)},
+        {512, -1, -1, sizeof(::Nrmk::IndyFramework::CollisionSensLevel)},
+        {521, -1, -1, sizeof(::Nrmk::IndyFramework::CollisionThresholds)},
+        {539, -1, -1, sizeof(::Nrmk::IndyFramework::CollisionPolicy)},
+        {550, -1, -1, sizeof(::Nrmk::IndyFramework::OnStartProgramConfig)},
+        {561, -1, -1, sizeof(::Nrmk::IndyFramework::SafetyLimits)},
+        {578, -1, -1, sizeof(::Nrmk::IndyFramework::SafetyStopConfig)},
+        {594, -1, -1, sizeof(::Nrmk::IndyFramework::SafetySnapshotInfo)},
+        {606, -1, -1, sizeof(::Nrmk::IndyFramework::SafetySnapshotList)},
+        {615, -1, -1, sizeof(::Nrmk::IndyFramework::SaveSafetySnapshotReq)},
+        {624, -1, -1, sizeof(::Nrmk::IndyFramework::SafetySnapshotId)},
+        {633, -1, -1, sizeof(::Nrmk::IndyFramework::DIConfig)},
+        {646, -1, -1, sizeof(::Nrmk::IndyFramework::DIConfigList)},
+        {655, -1, -1, sizeof(::Nrmk::IndyFramework::DOConfig)},
+        {667, -1, -1, sizeof(::Nrmk::IndyFramework::DOConfigList)},
+        {676, -1, -1, sizeof(::Nrmk::IndyFramework::GetReducedRatioRes)},
+        {686, -1, -1, sizeof(::Nrmk::IndyFramework::GetReducedSpeedRes)},
+        {696, -1, -1, sizeof(::Nrmk::IndyFramework::SetReducedSpeedReq)},
+        {705, -1, -1, sizeof(::Nrmk::IndyFramework::FTSensorDevice)},
+        {723, -1, -1, sizeof(::Nrmk::IndyFramework::FTSensorDeviceRes)},
+        {732, -1, -1, sizeof(::Nrmk::IndyFramework::TeleOpParams)},
+        {741, -1, -1, sizeof(::Nrmk::IndyFramework::KinematicsParams_MDH)},
+        {756, -1, -1, sizeof(::Nrmk::IndyFramework::KinematicsParams)},
+        {766, -1, -1, sizeof(::Nrmk::IndyFramework::CollisionModelMargin)},
+        {776, -1, -1, sizeof(::Nrmk::IndyFramework::Shape)},
+        {792, -1, -1, sizeof(::Nrmk::IndyFramework::SensorlessParams)},
+        {801, -1, -1, sizeof(::Nrmk::IndyFramework::NamedGeometry)},
+        {811, -1, -1, sizeof(::Nrmk::IndyFramework::ToolShapeList)},
+        {821, 838, -1, sizeof(::Nrmk::IndyFramework::Zone)},
+        {847, -1, -1, sizeof(::Nrmk::IndyFramework::NamedEnvironment)},
+        {857, -1, -1, sizeof(::Nrmk::IndyFramework::EnvironmentList)},
+        {867, -1, -1, sizeof(::Nrmk::IndyFramework::WeldingConfigInfo)},
+        {882, -1, -1, sizeof(::Nrmk::IndyFramework::WeldPosition)},
+        {892, -1, -1, sizeof(::Nrmk::IndyFramework::WeldPositionList)},
+        {901, -1, -1, sizeof(::Nrmk::IndyFramework::OperationModeConfig)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -2595,6 +2623,7 @@ static const ::_pb::Message* const file_default_instances[] = {
     &::Nrmk::IndyFramework::_CustomPosList_default_instance_._instance,
     &::Nrmk::IndyFramework::_ConveyorList_default_instance_._instance,
     &::Nrmk::IndyFramework::_Frame_default_instance_._instance,
+    &::Nrmk::IndyFramework::_LockJointReq_default_instance_._instance,
     &::Nrmk::IndyFramework::_JointPos_default_instance_._instance,
     &::Nrmk::IndyFramework::_JointLimitRange_default_instance_._instance,
     &::Nrmk::IndyFramework::_JointLimitConfig_default_instance_._instance,
@@ -2683,206 +2712,208 @@ const char descriptor_table_protodef_config_5fmsgs_2eproto[] PROTOBUF_SECTION_VA
     "ework.NamedPositionSet\"C\n\014ConveyorList\0223"
     "\n\rconveyor_list\030\001 \003(\0132\034.Nrmk.IndyFramewo"
     "rk.Conveyor\"<\n\005Frame\022\014\n\004fpos\030\001 \003(\002\022\021\n\tar"
-    "m_index\030\n \001(\005\022\022\n\nlink_index\030\013 \001(\005\"\030\n\010Joi"
-    "ntPos\022\014\n\004jpos\030\001 \003(\002\"+\n\017JointLimitRange\022\013"
-    "\n\003min\030\001 \003(\002\022\013\n\003max\030\002 \003(\002\"\214\001\n\020JointLimitC"
-    "onfig\022\022\n\nrobot_name\030\001 \001(\t\022<\n\017joint_pos_l"
-    "imit\030\002 \001(\0132#.Nrmk.IndyFramework.JointLim"
-    "itRange\022\021\n\tarm_index\030\n \001(\005\022\023\n\013source_fil"
-    "e\030d \001(\t\"a\n\013PlanarFrame\022\r\n\005fpos0\030\001 \003(\002\022\r\n"
-    "\005fpos1\030\002 \003(\002\022\r\n\005fpos2\030\003 \003(\002\022\021\n\tarm_index"
-    "\030\n \001(\005\022\022\n\nlink_index\030\013 \001(\005\"K\n\013FrameResul"
-    "t\022\014\n\004fpos\030\001 \003(\002\022.\n\010response\030\002 \001(\0132\034.Nrmk"
-    ".IndyFramework.Response\"L\n\020VisionServerL"
-    "ist\0228\n\016vision_servers\030\001 \003(\0132 .Nrmk.IndyF"
-    "ramework.VisionServer\"[\n\023SocketCommandCo"
-    "nfig\022D\n\024socket_server_config\030\001 \003(\0132&.Nrm"
-    "k.IndyFramework.SocketServerConfig\"\322\001\n\022S"
-    "ocketServerConfig\022\014\n\004name\030\001 \001(\t\0228\n\nconne"
-    "ction\030\002 \001(\0132$.Nrmk.IndyFramework.SocketC"
-    "onnection\022\?\n\021protocol_strategy\030\003 \001(\0132$.N"
-    "rmk.IndyFramework.ProtocolStrategy\0223\n\010co"
-    "mmands\030\004 \003(\0132!.Nrmk.IndyFramework.Socket"
-    "Command\"@\n\020SocketConnection\022\n\n\002ip\030\001 \001(\t\022"
-    "\014\n\004port\030\002 \001(\r\022\022\n\ntimeout_ms\030\003 \001(\r\"\226\001\n\020Pr"
-    "otocolStrategy\022\014\n\004mode\030\001 \001(\t\022;\n\017binary_s"
-    "ettings\030\002 \001(\0132\".Nrmk.IndyFramework.Binar"
-    "ySettings\0227\n\rtext_settings\030\003 \001(\0132 .Nrmk."
-    "IndyFramework.TextSettings\"8\n\016BinarySett"
-    "ings\022\022\n\nendianness\030\001 \001(\t\022\022\n\nalign_byte\030\002"
-    " \001(\r\"@\n\014TextSettings\022\020\n\010encoding\030\001 \001(\t\022\013"
-    "\n\003eol\030\002 \001(\t\022\021\n\tseparator\030\003 \001(\t\"\223\001\n\rSocke"
-    "tCommand\022\024\n\014command_name\030\001 \001(\t\0225\n\010tx_fra"
-    "me\030\002 \003(\0132#.Nrmk.IndyFramework.SocketFram"
-    "eItem\0225\n\010rx_frame\030\003 \003(\0132#.Nrmk.IndyFrame"
-    "work.SocketFrameItem\"\314\001\n\017SocketFrameItem"
-    "\022\013\n\003tag\030\001 \001(\t\022\r\n\005dtype\030\002 \001(\t\022\014\n\004type\030\003 \001"
-    "(\t\022\021\n\007int_val\030\004 \001(\003H\000\022\022\n\010uint_val\030\005 \001(\004H"
-    "\000\022\023\n\tfloat_val\030\006 \001(\001H\000\022\024\n\nstring_val\030\007 \001"
-    "(\tH\000\022\014\n\004bind\030\n \001(\t\022\021\n\tcount_ref\030\013 \001(\t\022\023\n"
-    "\013scope_start\030\014 \001(\005B\007\n\005value\"O\n\020ModbusSer"
-    "verList\022;\n\016modbus_servers\030\001 \003(\0132#.Nrmk.I"
-    "ndyFramework.ModbusServerDef\"\026\n\005Ratio\022\r\n"
-    "\005ratio\030\001 \001(\r\"2\n\022AutoServoOffConfig\022\016\n\006en"
-    "able\030\001 \001(\010\022\014\n\004time\030\002 \001(\002\"\304\002\n\020CollTuningC"
-    "onfig\022G\n\tprecision\030\001 \001(\01624.Nrmk.IndyFram"
-    "ework.CollTuningConfig.TuningPrecision\022F"
-    "\n\014tuning_space\030\002 \001(\01620.Nrmk.IndyFramewor"
-    "k.CollTuningConfig.TuningSpace\022\025\n\rvel_le"
-    "vel_max\030\003 \001(\005\"\?\n\017TuningPrecision\022\014\n\010LOW_"
-    "TUNE\020\000\022\017\n\013MIDDLE_TUNE\020\001\022\r\n\tHIGH_TUNE\020\002\"G"
-    "\n\013TuningSpace\022\013\n\007NO_TUNE\020\000\022\016\n\nJOINT_TUNE"
-    "\020\001\022\r\n\tTASK_TUNE\020\002\022\014\n\010ALL_TUNE\020\003\"3\n\014Joint"
-    "GainSet\022\n\n\002kp\030\001 \003(\002\022\n\n\002kv\030\002 \003(\002\022\013\n\003kl2\030\003"
-    " \003(\002\"2\n\013TaskGainSet\022\n\n\002kp\030\001 \003(\002\022\n\n\002kv\030\002 "
-    "\003(\002\022\013\n\003kl2\030\003 \003(\002\"Q\n\020ImpedanceGainSet\022\014\n\004"
-    "mass\030\001 \003(\002\022\017\n\007damping\030\002 \003(\002\022\021\n\tstiffness"
-    "\030\003 \003(\002\022\013\n\003kl2\030\004 \003(\002\"\177\n\014ForceGainSet\022\n\n\002k"
-    "p\030\001 \003(\002\022\n\n\002kv\030\002 \003(\002\022\013\n\003kl2\030\003 \003(\002\022\014\n\004mass"
-    "\030\004 \003(\002\022\017\n\007damping\030\005 \003(\002\022\021\n\tstiffness\030\006 \003"
-    "(\002\022\013\n\003kpf\030\007 \003(\002\022\013\n\003kif\030\010 \003(\002\"i\n\013TestGain"
-    "Set\022\r\n\005kpctc\030\001 \003(\002\022\r\n\005kvctc\030\002 \003(\002\022\r\n\005kic"
-    "tc\030\003 \003(\002\022\r\n\005knric\030\004 \003(\002\022\016\n\006kpnric\030\005 \003(\002\022"
-    "\016\n\006kinric\030\006 \003(\002\"\202\001\n\021ComplianceGainSet\022\n\n"
-    "\002kp\030\001 \003(\002\022\n\n\002kv\030\002 \003(\002\022\013\n\003kl2\030\003 \003(\002\022\n\n\002kd"
-    "\030\004 \003(\002\022\n\n\002bd\030\005 \003(\002\022\014\n\004rate\030\006 \003(\002\022\n\n\002ki\030\007"
-    " \003(\002\022\n\n\002ks\030\010 \003(\002\022\n\n\002km\030\t \003(\002\"\245\001\n\rCustomG"
-    "ainSet\022\r\n\005gain0\030\001 \003(\002\022\r\n\005gain1\030\002 \003(\002\022\r\n\005"
-    "gain2\030\003 \003(\002\022\r\n\005gain3\030\004 \003(\002\022\r\n\005gain4\030\005 \003("
-    "\002\022\r\n\005gain5\030\006 \003(\002\022\r\n\005gain6\030\007 \003(\002\022\r\n\005gain7"
-    "\030\010 \003(\002\022\r\n\005gain8\030\t \003(\002\022\r\n\005gain9\030\n \003(\002\":\n\026"
-    "NewControllerTestState\022\017\n\007Jenable\030\001 \001(\010\022"
-    "\017\n\007Tenable\030\002 \001(\010\"\207\001\n\017FrictionCompSet\022\033\n\023"
-    "control_comp_enable\030\001 \001(\010\022\033\n\023control_com"
-    "p_levels\030\002 \003(\005\022\034\n\024teaching_comp_enable\030\003"
-    " \001(\010\022\034\n\024teaching_comp_levels\030\004 \003(\005\"(\n\016Mo"
-    "untingAngles\022\n\n\002ry\030\001 \001(\002\022\n\n\002rz\030\002 \001(\002\"Z\n\016"
-    "ToolProperties\022\014\n\004mass\030\001 \001(\002\022\026\n\016center_o"
-    "f_mass\030\002 \003(\002\022\017\n\007inertia\030\003 \003(\002\022\021\n\tarm_ind"
-    "ex\030\n \001(\005\"W\n\021ToolPropertyEntry\022\014\n\004name\030\001 "
-    "\001(\t\0224\n\010property\030\002 \001(\0132\".Nrmk.IndyFramewo"
-    "rk.ToolProperties\"K\n\023ToolPropertyEntries"
-    "\0224\n\005tools\030\001 \003(\0132%.Nrmk.IndyFramework.Too"
-    "lPropertyEntry\"#\n\022CollisionSensLevel\022\r\n\005"
-    "level\030\001 \001(\r\"\262\002\n\023CollisionThresholds\022\026\n\016j"
-    "_torque_bases\030\001 \003(\002\022\031\n\021j_torque_tangents"
-    "\030\002 \003(\002\022\026\n\016t_torque_bases\030\003 \003(\002\022\031\n\021t_torq"
-    "ue_tangents\030\004 \003(\002\022\023\n\013error_bases\030\005 \003(\002\022\026"
-    "\n\016error_tangents\030\006 \003(\002\022\037\n\027t_constvel_tor"
-    "que_bases\030\007 \003(\002\022\"\n\032t_constvel_torque_tan"
-    "gents\030\010 \003(\002\022\037\n\027t_conveyor_torque_bases\030\t"
-    " \003(\002\022\"\n\032t_conveyor_torque_tangents\030\n \003(\002"
-    "\"t\n\017CollisionPolicy\0227\n\006policy\030\001 \001(\0162\'.Nr"
-    "mk.IndyFramework.CollisionPolicyType\022\022\n\n"
-    "sleep_time\030\002 \001(\002\022\024\n\014gravity_time\030\003 \001(\002\"S"
-    "\n\024OnStartProgramConfig\022\020\n\010auto_run\030\001 \001(\010"
-    "\022\r\n\005index\030\002 \001(\005\022\032\n\022auto_boot_on_power\030\003 "
-    "\001(\010\"\377\001\n\014SafetyLimits\022\023\n\013power_limit\030\001 \001("
-    "\002\022\031\n\021power_limit_ratio\030\002 \001(\002\022\027\n\017tcp_forc"
-    "e_limit\030\003 \001(\002\022\035\n\025tcp_force_limit_ratio\030\004"
-    " \001(\002\022\027\n\017tcp_speed_limit\030\005 \001(\002\022\035\n\025tcp_spe"
-    "ed_limit_ratio\030\006 \001(\002\022\032\n\022joint_upper_limi"
-    "ts\030\007 \003(\002\022\032\n\022joint_lower_limits\030\010 \003(\002\022\027\n\017"
-    "joint_l1_limits\030\t \003(\002\"\240\004\n\020SafetyStopConf"
-    "ig\022G\n\035joint_position_limit_stop_cat\030\001 \001("
-    "\0162 .Nrmk.IndyFramework.StopCategory\022D\n\032j"
-    "oint_speed_limit_stop_cat\030\002 \001(\0162 .Nrmk.I"
-    "ndyFramework.StopCategory\022E\n\033joint_torqu"
-    "e_limit_stop_cat\030\003 \001(\0162 .Nrmk.IndyFramew"
-    "ork.StopCategory\022B\n\030tcp_speed_limit_stop"
-    "_cat\030\004 \001(\0162 .Nrmk.IndyFramework.StopCate"
-    "gory\022B\n\030tcp_force_limit_stop_cat\030\005 \001(\0162 "
-    ".Nrmk.IndyFramework.StopCategory\022>\n\024powe"
-    "r_limit_stop_cat\030\006 \001(\0162 .Nrmk.IndyFramew"
-    "ork.StopCategory\0229\n\017safegd_stop_cat\030\007 \003("
-    "\0162 .Nrmk.IndyFramework.StopCategory\0223\n\013s"
-    "afegd_type\030\n \003(\0162\036.Nrmk.IndyFramework.Sa"
-    "feGdType\"_\n\022SafetySnapshotInfo\022\023\n\013snapsh"
-    "ot_id\030\001 \001(\t\022\r\n\005label\030\002 \001(\t\022\022\n\ncreated_at"
-    "\030\003 \001(\t\022\021\n\timmutable\030\004 \001(\010\"O\n\022SafetySnaps"
-    "hotList\0229\n\tsnapshots\030\001 \003(\0132&.Nrmk.IndyFr"
-    "amework.SafetySnapshotInfo\"&\n\025SaveSafety"
-    "SnapshotReq\022\r\n\005label\030\001 \001(\t\"\'\n\020SafetySnap"
-    "shotId\022\023\n\013snapshot_id\030\001 \001(\t\"\351\001\n\010DIConfig"
-    "\022\025\n\rfunction_code\030\001 \001(\005\022\025\n\rfunction_name"
-    "\030\002 \001(\t\0229\n\016triggerSignals\030\003 \003(\0132!.Nrmk.In"
-    "dyFramework.DigitalSignal\0229\n\016successSign"
-    "als\030\004 \003(\0132!.Nrmk.IndyFramework.DigitalSi"
-    "gnal\0229\n\016failureSignals\030\005 \003(\0132!.Nrmk.Indy"
-    "Framework.DigitalSignal\"@\n\014DIConfigList\022"
-    "0\n\ndi_configs\030\001 \003(\0132\034.Nrmk.IndyFramework"
-    ".DIConfig\"\237\001\n\010DOConfig\022\022\n\nstate_code\030\001 \001"
-    "(\005\022\022\n\nstate_name\030\002 \001(\t\0224\n\tonSignals\030\003 \003("
-    "\0132!.Nrmk.IndyFramework.DOChannelMode\0225\n\n"
-    "offSignals\030\004 \003(\0132!.Nrmk.IndyFramework.DO"
-    "ChannelMode\"@\n\014DOConfigList\0220\n\ndo_config"
-    "s\030\001 \003(\0132\034.Nrmk.IndyFramework.DOConfig\"0\n"
-    "\022GetReducedRatioRes\022\r\n\005ratio\030\001 \001(\002\022\013\n\003ms"
-    "g\030d \001(\t\"0\n\022GetReducedSpeedRes\022\r\n\005speed\030\001"
-    " \001(\002\022\013\n\003msg\030d \001(\t\"#\n\022SetReducedSpeedReq\022"
-    "\r\n\005speed\030\001 \001(\002\"\364\004\n\016FTSensorDevice\022G\n\010dev"
-    "_type\030\001 \001(\01625.Nrmk.IndyFramework.FTSenso"
-    "rDevice.FTSensorDeviceType\022J\n\010com_type\030\002"
-    " \001(\01628.Nrmk.IndyFramework.FTSensorDevice"
-    ".FTSensorDeviceComType\022\022\n\nip_address\030\003 \001"
-    "(\t\022%\n\035ft_frame_translation_offset_x\030\013 \001("
-    "\002\022%\n\035ft_frame_translation_offset_y\030\014 \001(\002"
-    "\022%\n\035ft_frame_translation_offset_z\030\r \001(\002\022"
-    "\"\n\032ft_frame_rotation_offset_r\030\016 \001(\002\022\"\n\032f"
-    "t_frame_rotation_offset_p\030\017 \001(\002\022\"\n\032ft_fr"
-    "ame_rotation_offset_y\030\020 \001(\002\022\021\n\tarm_index"
-    "\030\024 \001(\005\"q\n\022FTSensorDeviceType\022\010\n\004NONE\020\000\022\016"
-    "\n\nAFT200_D80\020\001\022\021\n\rAFT200_D80_EC\020\002\022\016\n\nRFT"
-    "80_6A01\020\003\022\016\n\nRFT60_HA01\020\004\022\016\n\nHEX_E_H_QC\020"
-    "\005\"R\n\025FTSensorDeviceComType\022\016\n\nENDTOOLCAN"
-    "\020\000\022\t\n\005CBCAN\020\001\022\020\n\014MODBUSCLIENT\020\002\022\014\n\010ETHER"
-    "CAT\020\003\" \n\021FTSensorDeviceRes\022\013\n\003msg\030d \001(\t\""
-    "c\n\014TeleOpParams\022\031\n\021cutoff_freq_input\030\013 \001"
-    "(\002J\004\010\001\020\002J\004\010\002\020\003J\004\010\003\020\004R\rsmooth_factorR\013cut"
-    "off_freqR\nerror_gain\"\267\002\n\020KinematicsParam"
-    "s\0225\n\003mdh\030\001 \003(\0132(.Nrmk.IndyFramework.Kine"
-    "maticsParams.MDH\022\034\n\024default_locked_joint"
-    "\030\002 \003(\005\032\230\001\n\003MDH\022\t\n\001a\030\001 \001(\002\022\r\n\005alpha\030\002 \001(\002"
-    "\022\n\n\002d0\030\003 \001(\002\022\016\n\006theta0\030\004 \001(\002\022<\n\004type\030\005 \001"
-    "(\0162..Nrmk.IndyFramework.KinematicsParams"
-    ".JointType\022\r\n\005index\030\n \001(\005\022\016\n\006parent\030\013 \001("
-    "\005\"3\n\tJointType\022\014\n\010REVOLUTE\020\000\022\r\n\tPRISMATI"
-    "C\020\001\022\t\n\005FIXED\020\002\"H\n\024CollisionModelMargin\022\030"
-    "\n\020collision_margin\030\001 \001(\002\022\026\n\016recover_marg"
-    "in\030\002 \001(\002\"\376\001\n\005Shape\0227\n\nshape_type\030\001 \001(\0162#"
-    ".Nrmk.IndyFramework.Shape.ShapeType\022\020\n\010p"
-    "osition\030\002 \003(\002\022\023\n\013orientation\030\003 \003(\002\022\016\n\006ra"
-    "dius\030\n \001(\002\022\r\n\005width\030\013 \001(\002\022\r\n\005depth\030\014 \001(\002"
-    "\022\016\n\006height\030\r \001(\002\022\021\n\tarm_index\030\024 \001(\005\"D\n\tS"
-    "hapeType\022\n\n\006SPHERE\020\000\022\014\n\010CYLINDER\020\001\022\010\n\004CU"
-    "BE\020\n\022\t\n\005PLANE\020\013\022\010\n\004WALL\020\014\"%\n\020SensorlessP"
-    "arams\022\021\n\ttau_bound\030\001 \003(\002\"H\n\rNamedGeometr"
-    "y\022)\n\006shapes\030\001 \003(\0132\031.Nrmk.IndyFramework.S"
-    "hape\022\014\n\004name\030\n \001(\t\"\\\n\rToolShapeList\0225\n\ng"
-    "eometries\030\001 \003(\0132!.Nrmk.IndyFramework.Nam"
-    "edGeometry\022\024\n\014default_name\030\n \001(\t\"\315\002\n\004Zon"
-    "e\022(\n\005shape\030d \001(\0132\031.Nrmk.IndyFramework.Sh"
-    "ape\0222\n\007subject\030\310\001 \001(\0162 .Nrmk.IndyFramewo"
-    "rk.Zone.Subject\022.\n\004rule\030\254\002 \001(\0162\037.Nrmk.In"
-    "dyFramework.ContactRule\022\023\n\ncoll_level\030\267\002"
-    " \001(\r\022\022\n\tvel_ratio\030\301\002 \001(\002\022\022\n\tacc_ratio\030\302\002"
-    " \001(\002\022\024\n\013tool_vector\030\313\002 \003(\002\022\023\n\nref_vector"
-    "\030\314\002 \003(\002\022\026\n\rallowed_angle\030\315\002 \001(\002\"7\n\007Subje"
-    "ct\022\016\n\nWHOLE_BODY\020\000\022\r\n\tTOOL_ONLY\020\001\022\r\n\tEND"
-    "_POINT\020\002\"I\n\020NamedEnvironment\022\'\n\005zones\030\001 "
-    "\003(\0132\030.Nrmk.IndyFramework.Zone\022\014\n\004name\030\n "
-    "\001(\t\"c\n\017EnvironmentList\022:\n\014environments\030\001"
-    " \003(\0132$.Nrmk.IndyFramework.NamedEnvironme"
-    "nt\022\024\n\014default_name\030\n \001(\t\"\221\001\n\021WeldingConf"
-    "igInfo\022\r\n\005model\030\001 \001(\t\022\021\n\tinterface\030\002 \001(\t"
-    "\022\017\n\007node_id\030\003 \001(\r\022\021\n\tbaud_rate\030\004 \001(\r\022\016\n\006"
-    "vision\030\005 \001(\010\022\021\n\tmodbus_ip\030\006 \001(\t\022\023\n\013modbu"
-    "s_port\030\007 \001(\r\".\n\014WeldPosition\022\014\n\004name\030\001 \001"
-    "(\t\022\020\n\010position\030\002 \003(\002\"G\n\020WeldPositionList"
-    "\0223\n\tpositions\030\001 \003(\0132 .Nrmk.IndyFramework"
-    ".WeldPosition\"X\n\023OperationModeConfig\022\031\n\021"
-    "use_ext_auto_mode\030\001 \001(\010\022\023\n\013mode_locked\030\002"
-    " \001(\010\022\021\n\tauto_mode\030\003 \001(\010b\006proto3"
+    "m_index\030\n \001(\005\022\022\n\nlink_index\030\013 \001(\005\"6\n\014Loc"
+    "kJointReq\022\021\n\tarm_index\030\001 \001(\005\022\023\n\013joint_in"
+    "dex\030\002 \001(\005\"\030\n\010JointPos\022\014\n\004jpos\030\001 \003(\002\"+\n\017J"
+    "ointLimitRange\022\013\n\003min\030\001 \003(\002\022\013\n\003max\030\002 \003(\002"
+    "\"\214\001\n\020JointLimitConfig\022\022\n\nrobot_name\030\001 \001("
+    "\t\022<\n\017joint_pos_limit\030\002 \001(\0132#.Nrmk.IndyFr"
+    "amework.JointLimitRange\022\021\n\tarm_index\030\n \001"
+    "(\005\022\023\n\013source_file\030d \001(\t\"a\n\013PlanarFrame\022\r"
+    "\n\005fpos0\030\001 \003(\002\022\r\n\005fpos1\030\002 \003(\002\022\r\n\005fpos2\030\003 "
+    "\003(\002\022\021\n\tarm_index\030\n \001(\005\022\022\n\nlink_index\030\013 \001"
+    "(\005\"K\n\013FrameResult\022\014\n\004fpos\030\001 \003(\002\022.\n\010respo"
+    "nse\030\002 \001(\0132\034.Nrmk.IndyFramework.Response\""
+    "L\n\020VisionServerList\0228\n\016vision_servers\030\001 "
+    "\003(\0132 .Nrmk.IndyFramework.VisionServer\"[\n"
+    "\023SocketCommandConfig\022D\n\024socket_server_co"
+    "nfig\030\001 \003(\0132&.Nrmk.IndyFramework.SocketSe"
+    "rverConfig\"\322\001\n\022SocketServerConfig\022\014\n\004nam"
+    "e\030\001 \001(\t\0228\n\nconnection\030\002 \001(\0132$.Nrmk.IndyF"
+    "ramework.SocketConnection\022\?\n\021protocol_st"
+    "rategy\030\003 \001(\0132$.Nrmk.IndyFramework.Protoc"
+    "olStrategy\0223\n\010commands\030\004 \003(\0132!.Nrmk.Indy"
+    "Framework.SocketCommand\"@\n\020SocketConnect"
+    "ion\022\n\n\002ip\030\001 \001(\t\022\014\n\004port\030\002 \001(\r\022\022\n\ntimeout"
+    "_ms\030\003 \001(\r\"\226\001\n\020ProtocolStrategy\022\014\n\004mode\030\001"
+    " \001(\t\022;\n\017binary_settings\030\002 \001(\0132\".Nrmk.Ind"
+    "yFramework.BinarySettings\0227\n\rtext_settin"
+    "gs\030\003 \001(\0132 .Nrmk.IndyFramework.TextSettin"
+    "gs\"8\n\016BinarySettings\022\022\n\nendianness\030\001 \001(\t"
+    "\022\022\n\nalign_byte\030\002 \001(\r\"@\n\014TextSettings\022\020\n\010"
+    "encoding\030\001 \001(\t\022\013\n\003eol\030\002 \001(\t\022\021\n\tseparator"
+    "\030\003 \001(\t\"\223\001\n\rSocketCommand\022\024\n\014command_name"
+    "\030\001 \001(\t\0225\n\010tx_frame\030\002 \003(\0132#.Nrmk.IndyFram"
+    "ework.SocketFrameItem\0225\n\010rx_frame\030\003 \003(\0132"
+    "#.Nrmk.IndyFramework.SocketFrameItem\"\314\001\n"
+    "\017SocketFrameItem\022\013\n\003tag\030\001 \001(\t\022\r\n\005dtype\030\002"
+    " \001(\t\022\014\n\004type\030\003 \001(\t\022\021\n\007int_val\030\004 \001(\003H\000\022\022\n"
+    "\010uint_val\030\005 \001(\004H\000\022\023\n\tfloat_val\030\006 \001(\001H\000\022\024"
+    "\n\nstring_val\030\007 \001(\tH\000\022\014\n\004bind\030\n \001(\t\022\021\n\tco"
+    "unt_ref\030\013 \001(\t\022\023\n\013scope_start\030\014 \001(\005B\007\n\005va"
+    "lue\"O\n\020ModbusServerList\022;\n\016modbus_server"
+    "s\030\001 \003(\0132#.Nrmk.IndyFramework.ModbusServe"
+    "rDef\"\026\n\005Ratio\022\r\n\005ratio\030\001 \001(\r\"2\n\022AutoServ"
+    "oOffConfig\022\016\n\006enable\030\001 \001(\010\022\014\n\004time\030\002 \001(\002"
+    "\"\304\002\n\020CollTuningConfig\022G\n\tprecision\030\001 \001(\016"
+    "24.Nrmk.IndyFramework.CollTuningConfig.T"
+    "uningPrecision\022F\n\014tuning_space\030\002 \001(\01620.N"
+    "rmk.IndyFramework.CollTuningConfig.Tunin"
+    "gSpace\022\025\n\rvel_level_max\030\003 \001(\005\"\?\n\017TuningP"
+    "recision\022\014\n\010LOW_TUNE\020\000\022\017\n\013MIDDLE_TUNE\020\001\022"
+    "\r\n\tHIGH_TUNE\020\002\"G\n\013TuningSpace\022\013\n\007NO_TUNE"
+    "\020\000\022\016\n\nJOINT_TUNE\020\001\022\r\n\tTASK_TUNE\020\002\022\014\n\010ALL"
+    "_TUNE\020\003\"3\n\014JointGainSet\022\n\n\002kp\030\001 \003(\002\022\n\n\002k"
+    "v\030\002 \003(\002\022\013\n\003kl2\030\003 \003(\002\"2\n\013TaskGainSet\022\n\n\002k"
+    "p\030\001 \003(\002\022\n\n\002kv\030\002 \003(\002\022\013\n\003kl2\030\003 \003(\002\"Q\n\020Impe"
+    "danceGainSet\022\014\n\004mass\030\001 \003(\002\022\017\n\007damping\030\002 "
+    "\003(\002\022\021\n\tstiffness\030\003 \003(\002\022\013\n\003kl2\030\004 \003(\002\"\177\n\014F"
+    "orceGainSet\022\n\n\002kp\030\001 \003(\002\022\n\n\002kv\030\002 \003(\002\022\013\n\003k"
+    "l2\030\003 \003(\002\022\014\n\004mass\030\004 \003(\002\022\017\n\007damping\030\005 \003(\002\022"
+    "\021\n\tstiffness\030\006 \003(\002\022\013\n\003kpf\030\007 \003(\002\022\013\n\003kif\030\010"
+    " \003(\002\"i\n\013TestGainSet\022\r\n\005kpctc\030\001 \003(\002\022\r\n\005kv"
+    "ctc\030\002 \003(\002\022\r\n\005kictc\030\003 \003(\002\022\r\n\005knric\030\004 \003(\002\022"
+    "\016\n\006kpnric\030\005 \003(\002\022\016\n\006kinric\030\006 \003(\002\"\202\001\n\021Comp"
+    "lianceGainSet\022\n\n\002kp\030\001 \003(\002\022\n\n\002kv\030\002 \003(\002\022\013\n"
+    "\003kl2\030\003 \003(\002\022\n\n\002kd\030\004 \003(\002\022\n\n\002bd\030\005 \003(\002\022\014\n\004ra"
+    "te\030\006 \003(\002\022\n\n\002ki\030\007 \003(\002\022\n\n\002ks\030\010 \003(\002\022\n\n\002km\030\t"
+    " \003(\002\"\245\001\n\rCustomGainSet\022\r\n\005gain0\030\001 \003(\002\022\r\n"
+    "\005gain1\030\002 \003(\002\022\r\n\005gain2\030\003 \003(\002\022\r\n\005gain3\030\004 \003"
+    "(\002\022\r\n\005gain4\030\005 \003(\002\022\r\n\005gain5\030\006 \003(\002\022\r\n\005gain"
+    "6\030\007 \003(\002\022\r\n\005gain7\030\010 \003(\002\022\r\n\005gain8\030\t \003(\002\022\r\n"
+    "\005gain9\030\n \003(\002\":\n\026NewControllerTestState\022\017"
+    "\n\007Jenable\030\001 \001(\010\022\017\n\007Tenable\030\002 \001(\010\"\207\001\n\017Fri"
+    "ctionCompSet\022\033\n\023control_comp_enable\030\001 \001("
+    "\010\022\033\n\023control_comp_levels\030\002 \003(\005\022\034\n\024teachi"
+    "ng_comp_enable\030\003 \001(\010\022\034\n\024teaching_comp_le"
+    "vels\030\004 \003(\005\"(\n\016MountingAngles\022\n\n\002ry\030\001 \001(\002"
+    "\022\n\n\002rz\030\002 \001(\002\"Z\n\016ToolProperties\022\014\n\004mass\030\001"
+    " \001(\002\022\026\n\016center_of_mass\030\002 \003(\002\022\017\n\007inertia\030"
+    "\003 \003(\002\022\021\n\tarm_index\030\n \001(\005\"W\n\021ToolProperty"
+    "Entry\022\014\n\004name\030\001 \001(\t\0224\n\010property\030\002 \001(\0132\"."
+    "Nrmk.IndyFramework.ToolProperties\"K\n\023Too"
+    "lPropertyEntries\0224\n\005tools\030\001 \003(\0132%.Nrmk.I"
+    "ndyFramework.ToolPropertyEntry\"#\n\022Collis"
+    "ionSensLevel\022\r\n\005level\030\001 \001(\r\"\262\002\n\023Collisio"
+    "nThresholds\022\026\n\016j_torque_bases\030\001 \003(\002\022\031\n\021j"
+    "_torque_tangents\030\002 \003(\002\022\026\n\016t_torque_bases"
+    "\030\003 \003(\002\022\031\n\021t_torque_tangents\030\004 \003(\002\022\023\n\013err"
+    "or_bases\030\005 \003(\002\022\026\n\016error_tangents\030\006 \003(\002\022\037"
+    "\n\027t_constvel_torque_bases\030\007 \003(\002\022\"\n\032t_con"
+    "stvel_torque_tangents\030\010 \003(\002\022\037\n\027t_conveyo"
+    "r_torque_bases\030\t \003(\002\022\"\n\032t_conveyor_torqu"
+    "e_tangents\030\n \003(\002\"t\n\017CollisionPolicy\0227\n\006p"
+    "olicy\030\001 \001(\0162\'.Nrmk.IndyFramework.Collisi"
+    "onPolicyType\022\022\n\nsleep_time\030\002 \001(\002\022\024\n\014grav"
+    "ity_time\030\003 \001(\002\"S\n\024OnStartProgramConfig\022\020"
+    "\n\010auto_run\030\001 \001(\010\022\r\n\005index\030\002 \001(\005\022\032\n\022auto_"
+    "boot_on_power\030\003 \001(\010\"\377\001\n\014SafetyLimits\022\023\n\013"
+    "power_limit\030\001 \001(\002\022\031\n\021power_limit_ratio\030\002"
+    " \001(\002\022\027\n\017tcp_force_limit\030\003 \001(\002\022\035\n\025tcp_for"
+    "ce_limit_ratio\030\004 \001(\002\022\027\n\017tcp_speed_limit\030"
+    "\005 \001(\002\022\035\n\025tcp_speed_limit_ratio\030\006 \001(\002\022\032\n\022"
+    "joint_upper_limits\030\007 \003(\002\022\032\n\022joint_lower_"
+    "limits\030\010 \003(\002\022\027\n\017joint_l1_limits\030\t \003(\002\"\240\004"
+    "\n\020SafetyStopConfig\022G\n\035joint_position_lim"
+    "it_stop_cat\030\001 \001(\0162 .Nrmk.IndyFramework.S"
+    "topCategory\022D\n\032joint_speed_limit_stop_ca"
+    "t\030\002 \001(\0162 .Nrmk.IndyFramework.StopCategor"
+    "y\022E\n\033joint_torque_limit_stop_cat\030\003 \001(\0162 "
+    ".Nrmk.IndyFramework.StopCategory\022B\n\030tcp_"
+    "speed_limit_stop_cat\030\004 \001(\0162 .Nrmk.IndyFr"
+    "amework.StopCategory\022B\n\030tcp_force_limit_"
+    "stop_cat\030\005 \001(\0162 .Nrmk.IndyFramework.Stop"
+    "Category\022>\n\024power_limit_stop_cat\030\006 \001(\0162 "
+    ".Nrmk.IndyFramework.StopCategory\0229\n\017safe"
+    "gd_stop_cat\030\007 \003(\0162 .Nrmk.IndyFramework.S"
+    "topCategory\0223\n\013safegd_type\030\n \003(\0162\036.Nrmk."
+    "IndyFramework.SafeGdType\"_\n\022SafetySnapsh"
+    "otInfo\022\023\n\013snapshot_id\030\001 \001(\t\022\r\n\005label\030\002 \001"
+    "(\t\022\022\n\ncreated_at\030\003 \001(\t\022\021\n\timmutable\030\004 \001("
+    "\010\"O\n\022SafetySnapshotList\0229\n\tsnapshots\030\001 \003"
+    "(\0132&.Nrmk.IndyFramework.SafetySnapshotIn"
+    "fo\"&\n\025SaveSafetySnapshotReq\022\r\n\005label\030\001 \001"
+    "(\t\"\'\n\020SafetySnapshotId\022\023\n\013snapshot_id\030\001 "
+    "\001(\t\"\351\001\n\010DIConfig\022\025\n\rfunction_code\030\001 \001(\005\022"
+    "\025\n\rfunction_name\030\002 \001(\t\0229\n\016triggerSignals"
+    "\030\003 \003(\0132!.Nrmk.IndyFramework.DigitalSigna"
+    "l\0229\n\016successSignals\030\004 \003(\0132!.Nrmk.IndyFra"
+    "mework.DigitalSignal\0229\n\016failureSignals\030\005"
+    " \003(\0132!.Nrmk.IndyFramework.DigitalSignal\""
+    "@\n\014DIConfigList\0220\n\ndi_configs\030\001 \003(\0132\034.Nr"
+    "mk.IndyFramework.DIConfig\"\237\001\n\010DOConfig\022\022"
+    "\n\nstate_code\030\001 \001(\005\022\022\n\nstate_name\030\002 \001(\t\0224"
+    "\n\tonSignals\030\003 \003(\0132!.Nrmk.IndyFramework.D"
+    "OChannelMode\0225\n\noffSignals\030\004 \003(\0132!.Nrmk."
+    "IndyFramework.DOChannelMode\"@\n\014DOConfigL"
+    "ist\0220\n\ndo_configs\030\001 \003(\0132\034.Nrmk.IndyFrame"
+    "work.DOConfig\"0\n\022GetReducedRatioRes\022\r\n\005r"
+    "atio\030\001 \001(\002\022\013\n\003msg\030d \001(\t\"0\n\022GetReducedSpe"
+    "edRes\022\r\n\005speed\030\001 \001(\002\022\013\n\003msg\030d \001(\t\"#\n\022Set"
+    "ReducedSpeedReq\022\r\n\005speed\030\001 \001(\002\"\364\004\n\016FTSen"
+    "sorDevice\022G\n\010dev_type\030\001 \001(\01625.Nrmk.IndyF"
+    "ramework.FTSensorDevice.FTSensorDeviceTy"
+    "pe\022J\n\010com_type\030\002 \001(\01628.Nrmk.IndyFramewor"
+    "k.FTSensorDevice.FTSensorDeviceComType\022\022"
+    "\n\nip_address\030\003 \001(\t\022%\n\035ft_frame_translati"
+    "on_offset_x\030\013 \001(\002\022%\n\035ft_frame_translatio"
+    "n_offset_y\030\014 \001(\002\022%\n\035ft_frame_translation"
+    "_offset_z\030\r \001(\002\022\"\n\032ft_frame_rotation_off"
+    "set_r\030\016 \001(\002\022\"\n\032ft_frame_rotation_offset_"
+    "p\030\017 \001(\002\022\"\n\032ft_frame_rotation_offset_y\030\020 "
+    "\001(\002\022\021\n\tarm_index\030\024 \001(\005\"q\n\022FTSensorDevice"
+    "Type\022\010\n\004NONE\020\000\022\016\n\nAFT200_D80\020\001\022\021\n\rAFT200"
+    "_D80_EC\020\002\022\016\n\nRFT80_6A01\020\003\022\016\n\nRFT60_HA01\020"
+    "\004\022\016\n\nHEX_E_H_QC\020\005\"R\n\025FTSensorDeviceComTy"
+    "pe\022\016\n\nENDTOOLCAN\020\000\022\t\n\005CBCAN\020\001\022\020\n\014MODBUSC"
+    "LIENT\020\002\022\014\n\010ETHERCAT\020\003\" \n\021FTSensorDeviceR"
+    "es\022\013\n\003msg\030d \001(\t\"c\n\014TeleOpParams\022\031\n\021cutof"
+    "f_freq_input\030\013 \001(\002J\004\010\001\020\002J\004\010\002\020\003J\004\010\003\020\004R\rsm"
+    "ooth_factorR\013cutoff_freqR\nerror_gain\"\267\002\n"
+    "\020KinematicsParams\0225\n\003mdh\030\001 \003(\0132(.Nrmk.In"
+    "dyFramework.KinematicsParams.MDH\022\034\n\024defa"
+    "ult_locked_joint\030\002 \003(\005\032\230\001\n\003MDH\022\t\n\001a\030\001 \001("
+    "\002\022\r\n\005alpha\030\002 \001(\002\022\n\n\002d0\030\003 \001(\002\022\016\n\006theta0\030\004"
+    " \001(\002\022<\n\004type\030\005 \001(\0162..Nrmk.IndyFramework."
+    "KinematicsParams.JointType\022\r\n\005index\030\n \001("
+    "\005\022\016\n\006parent\030\013 \001(\005\"3\n\tJointType\022\014\n\010REVOLU"
+    "TE\020\000\022\r\n\tPRISMATIC\020\001\022\t\n\005FIXED\020\002\"H\n\024Collis"
+    "ionModelMargin\022\030\n\020collision_margin\030\001 \001(\002"
+    "\022\026\n\016recover_margin\030\002 \001(\002\"\376\001\n\005Shape\0227\n\nsh"
+    "ape_type\030\001 \001(\0162#.Nrmk.IndyFramework.Shap"
+    "e.ShapeType\022\020\n\010position\030\002 \003(\002\022\023\n\013orienta"
+    "tion\030\003 \003(\002\022\016\n\006radius\030\n \001(\002\022\r\n\005width\030\013 \001("
+    "\002\022\r\n\005depth\030\014 \001(\002\022\016\n\006height\030\r \001(\002\022\021\n\tarm_"
+    "index\030\024 \001(\005\"D\n\tShapeType\022\n\n\006SPHERE\020\000\022\014\n\010"
+    "CYLINDER\020\001\022\010\n\004CUBE\020\n\022\t\n\005PLANE\020\013\022\010\n\004WALL\020"
+    "\014\"%\n\020SensorlessParams\022\021\n\ttau_bound\030\001 \003(\002"
+    "\"H\n\rNamedGeometry\022)\n\006shapes\030\001 \003(\0132\031.Nrmk"
+    ".IndyFramework.Shape\022\014\n\004name\030\n \001(\t\"\\\n\rTo"
+    "olShapeList\0225\n\ngeometries\030\001 \003(\0132!.Nrmk.I"
+    "ndyFramework.NamedGeometry\022\024\n\014default_na"
+    "me\030\n \001(\t\"\315\002\n\004Zone\022(\n\005shape\030d \001(\0132\031.Nrmk."
+    "IndyFramework.Shape\0222\n\007subject\030\310\001 \001(\0162 ."
+    "Nrmk.IndyFramework.Zone.Subject\022.\n\004rule\030"
+    "\254\002 \001(\0162\037.Nrmk.IndyFramework.ContactRule\022"
+    "\023\n\ncoll_level\030\267\002 \001(\r\022\022\n\tvel_ratio\030\301\002 \001(\002"
+    "\022\022\n\tacc_ratio\030\302\002 \001(\002\022\024\n\013tool_vector\030\313\002 \003"
+    "(\002\022\023\n\nref_vector\030\314\002 \003(\002\022\026\n\rallowed_angle"
+    "\030\315\002 \001(\002\"7\n\007Subject\022\016\n\nWHOLE_BODY\020\000\022\r\n\tTO"
+    "OL_ONLY\020\001\022\r\n\tEND_POINT\020\002\"I\n\020NamedEnviron"
+    "ment\022\'\n\005zones\030\001 \003(\0132\030.Nrmk.IndyFramework"
+    ".Zone\022\014\n\004name\030\n \001(\t\"c\n\017EnvironmentList\022:"
+    "\n\014environments\030\001 \003(\0132$.Nrmk.IndyFramewor"
+    "k.NamedEnvironment\022\024\n\014default_name\030\n \001(\t"
+    "\"\221\001\n\021WeldingConfigInfo\022\r\n\005model\030\001 \001(\t\022\021\n"
+    "\tinterface\030\002 \001(\t\022\017\n\007node_id\030\003 \001(\r\022\021\n\tbau"
+    "d_rate\030\004 \001(\r\022\016\n\006vision\030\005 \001(\010\022\021\n\tmodbus_i"
+    "p\030\006 \001(\t\022\023\n\013modbus_port\030\007 \001(\r\".\n\014WeldPosi"
+    "tion\022\014\n\004name\030\001 \001(\t\022\020\n\010position\030\002 \003(\002\"G\n\020"
+    "WeldPositionList\0223\n\tpositions\030\001 \003(\0132 .Nr"
+    "mk.IndyFramework.WeldPosition\"X\n\023Operati"
+    "onModeConfig\022\031\n\021use_ext_auto_mode\030\001 \001(\010\022"
+    "\023\n\013mode_locked\030\002 \001(\010\022\021\n\tauto_mode\030\003 \001(\010b"
+    "\006proto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_config_5fmsgs_2eproto_deps[2] =
     {
@@ -2893,13 +2924,13 @@ static ::absl::once_flag descriptor_table_config_5fmsgs_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_config_5fmsgs_2eproto = {
     false,
     false,
-    8831,
+    8887,
     descriptor_table_protodef_config_5fmsgs_2eproto,
     "config_msgs.proto",
     &descriptor_table_config_5fmsgs_2eproto_once,
     descriptor_table_config_5fmsgs_2eproto_deps,
     2,
-    78,
+    79,
     schemas,
     file_default_instances,
     TableStruct_config_5fmsgs_2eproto::offsets,
@@ -5847,6 +5878,202 @@ void Frame::InternalSwap(Frame* other) {
 }
 // ===================================================================
 
+class LockJointReq::_Internal {
+ public:
+};
+
+LockJointReq::LockJointReq(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Nrmk.IndyFramework.LockJointReq)
+}
+LockJointReq::LockJointReq(const LockJointReq& from)
+    : ::google::protobuf::Message(), _impl_(from._impl_) {
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.LockJointReq)
+}
+inline void LockJointReq::SharedCtor(::_pb::Arena* arena) {
+  (void)arena;
+  new (&_impl_) Impl_{
+      decltype(_impl_.arm_index_){0},
+      decltype(_impl_.joint_index_){0},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+}
+LockJointReq::~LockJointReq() {
+  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.LockJointReq)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void LockJointReq::SharedDtor() {
+  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
+}
+void LockJointReq::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+PROTOBUF_NOINLINE void LockJointReq::Clear() {
+// @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.LockJointReq)
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ::memset(&_impl_.arm_index_, 0, static_cast<::size_t>(
+      reinterpret_cast<char*>(&_impl_.joint_index_) -
+      reinterpret_cast<char*>(&_impl_.arm_index_)) + sizeof(_impl_.joint_index_));
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* LockJointReq::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 0, 2> LockJointReq::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_LockJointReq_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // int32 joint_index = 2;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(LockJointReq, _impl_.joint_index_), 63>(),
+     {16, 63, 0, PROTOBUF_FIELD_OFFSET(LockJointReq, _impl_.joint_index_)}},
+    // int32 arm_index = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(LockJointReq, _impl_.arm_index_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(LockJointReq, _impl_.arm_index_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // int32 arm_index = 1;
+    {PROTOBUF_FIELD_OFFSET(LockJointReq, _impl_.arm_index_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    // int32 joint_index = 2;
+    {PROTOBUF_FIELD_OFFSET(LockJointReq, _impl_.joint_index_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+
+::uint8_t* LockJointReq::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.LockJointReq)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // int32 arm_index = 1;
+  if (this->_internal_arm_index() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<1>(
+            stream, this->_internal_arm_index(), target);
+  }
+
+  // int32 joint_index = 2;
+  if (this->_internal_joint_index() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<2>(
+            stream, this->_internal_joint_index(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.LockJointReq)
+  return target;
+}
+
+::size_t LockJointReq::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.LockJointReq)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // int32 arm_index = 1;
+  if (this->_internal_arm_index() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_arm_index());
+  }
+
+  // int32 joint_index = 2;
+  if (this->_internal_joint_index() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_joint_index());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData LockJointReq::_class_data_ = {
+    ::google::protobuf::Message::CopyWithSourceCheck,
+    LockJointReq::MergeImpl
+};
+const ::google::protobuf::Message::ClassData*LockJointReq::GetClassData() const { return &_class_data_; }
+
+
+void LockJointReq::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<LockJointReq*>(&to_msg);
+  auto& from = static_cast<const LockJointReq&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.LockJointReq)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from._internal_arm_index() != 0) {
+    _this->_internal_set_arm_index(from._internal_arm_index());
+  }
+  if (from._internal_joint_index() != 0) {
+    _this->_internal_set_joint_index(from._internal_joint_index());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void LockJointReq::CopyFrom(const LockJointReq& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Nrmk.IndyFramework.LockJointReq)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool LockJointReq::IsInitialized() const {
+  return true;
+}
+
+void LockJointReq::InternalSwap(LockJointReq* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(LockJointReq, _impl_.joint_index_)
+      + sizeof(LockJointReq::_impl_.joint_index_)
+      - PROTOBUF_FIELD_OFFSET(LockJointReq, _impl_.arm_index_)>(
+          reinterpret_cast<char*>(&_impl_.arm_index_),
+          reinterpret_cast<char*>(&other->_impl_.arm_index_));
+}
+
+::google::protobuf::Metadata LockJointReq::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
+      file_level_metadata_config_5fmsgs_2eproto[13]);
+}
+// ===================================================================
+
 class JointPos::_Internal {
  public:
 };
@@ -6018,7 +6245,7 @@ void JointPos::InternalSwap(JointPos* other) {
 ::google::protobuf::Metadata JointPos::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[13]);
+      file_level_metadata_config_5fmsgs_2eproto[14]);
 }
 // ===================================================================
 
@@ -6222,7 +6449,7 @@ void JointLimitRange::InternalSwap(JointLimitRange* other) {
 ::google::protobuf::Metadata JointLimitRange::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[14]);
+      file_level_metadata_config_5fmsgs_2eproto[15]);
 }
 // ===================================================================
 
@@ -6537,7 +6764,7 @@ void JointLimitConfig::InternalSwap(JointLimitConfig* other) {
 ::google::protobuf::Metadata JointLimitConfig::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[15]);
+      file_level_metadata_config_5fmsgs_2eproto[16]);
 }
 // ===================================================================
 
@@ -6825,7 +7052,7 @@ void PlanarFrame::InternalSwap(PlanarFrame* other) {
 ::google::protobuf::Metadata PlanarFrame::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[16]);
+      file_level_metadata_config_5fmsgs_2eproto[17]);
 }
 // ===================================================================
 
@@ -7056,7 +7283,7 @@ void FrameResult::InternalSwap(FrameResult* other) {
 ::google::protobuf::Metadata FrameResult::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[17]);
+      file_level_metadata_config_5fmsgs_2eproto[18]);
 }
 // ===================================================================
 
@@ -7231,7 +7458,7 @@ void VisionServerList::InternalSwap(VisionServerList* other) {
 ::google::protobuf::Metadata VisionServerList::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[18]);
+      file_level_metadata_config_5fmsgs_2eproto[19]);
 }
 // ===================================================================
 
@@ -7403,7 +7630,7 @@ void SocketCommandConfig::InternalSwap(SocketCommandConfig* other) {
 ::google::protobuf::Metadata SocketCommandConfig::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[19]);
+      file_level_metadata_config_5fmsgs_2eproto[20]);
 }
 // ===================================================================
 
@@ -7727,7 +7954,7 @@ void SocketServerConfig::InternalSwap(SocketServerConfig* other) {
 ::google::protobuf::Metadata SocketServerConfig::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[20]);
+      file_level_metadata_config_5fmsgs_2eproto[21]);
 }
 // ===================================================================
 
@@ -7979,7 +8206,7 @@ void SocketConnection::InternalSwap(SocketConnection* other) {
 ::google::protobuf::Metadata SocketConnection::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[21]);
+      file_level_metadata_config_5fmsgs_2eproto[22]);
 }
 // ===================================================================
 
@@ -8277,7 +8504,7 @@ void ProtocolStrategy::InternalSwap(ProtocolStrategy* other) {
 ::google::protobuf::Metadata ProtocolStrategy::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[22]);
+      file_level_metadata_config_5fmsgs_2eproto[23]);
 }
 // ===================================================================
 
@@ -8495,7 +8722,7 @@ void BinarySettings::InternalSwap(BinarySettings* other) {
 ::google::protobuf::Metadata BinarySettings::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[23]);
+      file_level_metadata_config_5fmsgs_2eproto[24]);
 }
 // ===================================================================
 
@@ -8769,7 +8996,7 @@ void TextSettings::InternalSwap(TextSettings* other) {
 ::google::protobuf::Metadata TextSettings::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[24]);
+      file_level_metadata_config_5fmsgs_2eproto[25]);
 }
 // ===================================================================
 
@@ -9014,7 +9241,7 @@ void SocketCommand::InternalSwap(SocketCommand* other) {
 ::google::protobuf::Metadata SocketCommand::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[25]);
+      file_level_metadata_config_5fmsgs_2eproto[26]);
 }
 // ===================================================================
 
@@ -9559,7 +9786,7 @@ void SocketFrameItem::InternalSwap(SocketFrameItem* other) {
 ::google::protobuf::Metadata SocketFrameItem::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[26]);
+      file_level_metadata_config_5fmsgs_2eproto[27]);
 }
 // ===================================================================
 
@@ -9734,7 +9961,7 @@ void ModbusServerList::InternalSwap(ModbusServerList* other) {
 ::google::protobuf::Metadata ModbusServerList::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[27]);
+      file_level_metadata_config_5fmsgs_2eproto[28]);
 }
 // ===================================================================
 
@@ -9900,7 +10127,7 @@ void Ratio::InternalSwap(Ratio* other) {
 ::google::protobuf::Metadata Ratio::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[28]);
+      file_level_metadata_config_5fmsgs_2eproto[29]);
 }
 // ===================================================================
 
@@ -10109,7 +10336,7 @@ void AutoServoOffConfig::InternalSwap(AutoServoOffConfig* other) {
 ::google::protobuf::Metadata AutoServoOffConfig::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[29]);
+      file_level_metadata_config_5fmsgs_2eproto[30]);
 }
 // ===================================================================
 
@@ -10329,7 +10556,7 @@ void CollTuningConfig::InternalSwap(CollTuningConfig* other) {
 ::google::protobuf::Metadata CollTuningConfig::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[30]);
+      file_level_metadata_config_5fmsgs_2eproto[31]);
 }
 // ===================================================================
 
@@ -10563,7 +10790,7 @@ void JointGainSet::InternalSwap(JointGainSet* other) {
 ::google::protobuf::Metadata JointGainSet::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[31]);
+      file_level_metadata_config_5fmsgs_2eproto[32]);
 }
 // ===================================================================
 
@@ -10797,7 +11024,7 @@ void TaskGainSet::InternalSwap(TaskGainSet* other) {
 ::google::protobuf::Metadata TaskGainSet::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[32]);
+      file_level_metadata_config_5fmsgs_2eproto[33]);
 }
 // ===================================================================
 
@@ -11059,7 +11286,7 @@ void ImpedanceGainSet::InternalSwap(ImpedanceGainSet* other) {
 ::google::protobuf::Metadata ImpedanceGainSet::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[33]);
+      file_level_metadata_config_5fmsgs_2eproto[34]);
 }
 // ===================================================================
 
@@ -11437,7 +11664,7 @@ void ForceGainSet::InternalSwap(ForceGainSet* other) {
 ::google::protobuf::Metadata ForceGainSet::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[34]);
+      file_level_metadata_config_5fmsgs_2eproto[35]);
 }
 // ===================================================================
 
@@ -11759,7 +11986,7 @@ void TestGainSet::InternalSwap(TestGainSet* other) {
 ::google::protobuf::Metadata TestGainSet::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[35]);
+      file_level_metadata_config_5fmsgs_2eproto[36]);
 }
 // ===================================================================
 
@@ -12173,7 +12400,7 @@ void ComplianceGainSet::InternalSwap(ComplianceGainSet* other) {
 ::google::protobuf::Metadata ComplianceGainSet::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[36]);
+      file_level_metadata_config_5fmsgs_2eproto[37]);
 }
 // ===================================================================
 
@@ -12615,7 +12842,7 @@ void CustomGainSet::InternalSwap(CustomGainSet* other) {
 ::google::protobuf::Metadata CustomGainSet::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[37]);
+      file_level_metadata_config_5fmsgs_2eproto[38]);
 }
 // ===================================================================
 
@@ -12809,7 +13036,7 @@ void NewControllerTestState::InternalSwap(NewControllerTestState* other) {
 ::google::protobuf::Metadata NewControllerTestState::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[38]);
+      file_level_metadata_config_5fmsgs_2eproto[39]);
 }
 // ===================================================================
 
@@ -13085,7 +13312,7 @@ void FrictionCompSet::InternalSwap(FrictionCompSet* other) {
 ::google::protobuf::Metadata FrictionCompSet::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[39]);
+      file_level_metadata_config_5fmsgs_2eproto[40]);
 }
 // ===================================================================
 
@@ -13309,7 +13536,7 @@ void MountingAngles::InternalSwap(MountingAngles* other) {
 ::google::protobuf::Metadata MountingAngles::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[40]);
+      file_level_metadata_config_5fmsgs_2eproto[41]);
 }
 // ===================================================================
 
@@ -13585,7 +13812,7 @@ void ToolProperties::InternalSwap(ToolProperties* other) {
 ::google::protobuf::Metadata ToolProperties::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[41]);
+      file_level_metadata_config_5fmsgs_2eproto[42]);
 }
 // ===================================================================
 
@@ -13828,7 +14055,7 @@ void ToolPropertyEntry::InternalSwap(ToolPropertyEntry* other) {
 ::google::protobuf::Metadata ToolPropertyEntry::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[42]);
+      file_level_metadata_config_5fmsgs_2eproto[43]);
 }
 // ===================================================================
 
@@ -14000,7 +14227,7 @@ void ToolPropertyEntries::InternalSwap(ToolPropertyEntries* other) {
 ::google::protobuf::Metadata ToolPropertyEntries::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[43]);
+      file_level_metadata_config_5fmsgs_2eproto[44]);
 }
 // ===================================================================
 
@@ -14166,7 +14393,7 @@ void CollisionSensLevel::InternalSwap(CollisionSensLevel* other) {
 ::google::protobuf::Metadata CollisionSensLevel::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[44]);
+      file_level_metadata_config_5fmsgs_2eproto[45]);
 }
 // ===================================================================
 
@@ -14608,7 +14835,7 @@ void CollisionThresholds::InternalSwap(CollisionThresholds* other) {
 ::google::protobuf::Metadata CollisionThresholds::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[45]);
+      file_level_metadata_config_5fmsgs_2eproto[46]);
 }
 // ===================================================================
 
@@ -14856,7 +15083,7 @@ void CollisionPolicy::InternalSwap(CollisionPolicy* other) {
 ::google::protobuf::Metadata CollisionPolicy::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[46]);
+      file_level_metadata_config_5fmsgs_2eproto[47]);
 }
 // ===================================================================
 
@@ -15074,7 +15301,7 @@ void OnStartProgramConfig::InternalSwap(OnStartProgramConfig* other) {
 ::google::protobuf::Metadata OnStartProgramConfig::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[47]);
+      file_level_metadata_config_5fmsgs_2eproto[48]);
 }
 // ===================================================================
 
@@ -15554,7 +15781,7 @@ void SafetyLimits::InternalSwap(SafetyLimits* other) {
 ::google::protobuf::Metadata SafetyLimits::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[48]);
+      file_level_metadata_config_5fmsgs_2eproto[49]);
 }
 // ===================================================================
 
@@ -15944,7 +16171,7 @@ void SafetyStopConfig::InternalSwap(SafetyStopConfig* other) {
 ::google::protobuf::Metadata SafetyStopConfig::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[49]);
+      file_level_metadata_config_5fmsgs_2eproto[50]);
 }
 // ===================================================================
 
@@ -16243,7 +16470,7 @@ void SafetySnapshotInfo::InternalSwap(SafetySnapshotInfo* other) {
 ::google::protobuf::Metadata SafetySnapshotInfo::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[50]);
+      file_level_metadata_config_5fmsgs_2eproto[51]);
 }
 // ===================================================================
 
@@ -16415,7 +16642,7 @@ void SafetySnapshotList::InternalSwap(SafetySnapshotList* other) {
 ::google::protobuf::Metadata SafetySnapshotList::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[51]);
+      file_level_metadata_config_5fmsgs_2eproto[52]);
 }
 // ===================================================================
 
@@ -16606,7 +16833,7 @@ void SaveSafetySnapshotReq::InternalSwap(SaveSafetySnapshotReq* other) {
 ::google::protobuf::Metadata SaveSafetySnapshotReq::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[52]);
+      file_level_metadata_config_5fmsgs_2eproto[53]);
 }
 // ===================================================================
 
@@ -16797,7 +17024,7 @@ void SafetySnapshotId::InternalSwap(SafetySnapshotId* other) {
 ::google::protobuf::Metadata SafetySnapshotId::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[53]);
+      file_level_metadata_config_5fmsgs_2eproto[54]);
 }
 // ===================================================================
 
@@ -17107,7 +17334,7 @@ void DIConfig::InternalSwap(DIConfig* other) {
 ::google::protobuf::Metadata DIConfig::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[54]);
+      file_level_metadata_config_5fmsgs_2eproto[55]);
 }
 // ===================================================================
 
@@ -17279,7 +17506,7 @@ void DIConfigList::InternalSwap(DIConfigList* other) {
 ::google::protobuf::Metadata DIConfigList::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[55]);
+      file_level_metadata_config_5fmsgs_2eproto[56]);
 }
 // ===================================================================
 
@@ -17556,7 +17783,7 @@ void DOConfig::InternalSwap(DOConfig* other) {
 ::google::protobuf::Metadata DOConfig::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[56]);
+      file_level_metadata_config_5fmsgs_2eproto[57]);
 }
 // ===================================================================
 
@@ -17728,7 +17955,7 @@ void DOConfigList::InternalSwap(DOConfigList* other) {
 ::google::protobuf::Metadata DOConfigList::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[57]);
+      file_level_metadata_config_5fmsgs_2eproto[58]);
 }
 // ===================================================================
 
@@ -17962,7 +18189,7 @@ void GetReducedRatioRes::InternalSwap(GetReducedRatioRes* other) {
 ::google::protobuf::Metadata GetReducedRatioRes::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[58]);
+      file_level_metadata_config_5fmsgs_2eproto[59]);
 }
 // ===================================================================
 
@@ -18196,7 +18423,7 @@ void GetReducedSpeedRes::InternalSwap(GetReducedSpeedRes* other) {
 ::google::protobuf::Metadata GetReducedSpeedRes::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[59]);
+      file_level_metadata_config_5fmsgs_2eproto[60]);
 }
 // ===================================================================
 
@@ -18376,7 +18603,7 @@ void SetReducedSpeedReq::InternalSwap(SetReducedSpeedReq* other) {
 ::google::protobuf::Metadata SetReducedSpeedReq::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[60]);
+      file_level_metadata_config_5fmsgs_2eproto[61]);
 }
 // ===================================================================
 
@@ -18885,7 +19112,7 @@ void FTSensorDevice::InternalSwap(FTSensorDevice* other) {
 ::google::protobuf::Metadata FTSensorDevice::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[61]);
+      file_level_metadata_config_5fmsgs_2eproto[62]);
 }
 // ===================================================================
 
@@ -19078,7 +19305,7 @@ void FTSensorDeviceRes::InternalSwap(FTSensorDeviceRes* other) {
 ::google::protobuf::Metadata FTSensorDeviceRes::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[62]);
+      file_level_metadata_config_5fmsgs_2eproto[63]);
 }
 // ===================================================================
 
@@ -19258,7 +19485,7 @@ void TeleOpParams::InternalSwap(TeleOpParams* other) {
 ::google::protobuf::Metadata TeleOpParams::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[63]);
+      file_level_metadata_config_5fmsgs_2eproto[64]);
 }
 // ===================================================================
 
@@ -19622,7 +19849,7 @@ void KinematicsParams_MDH::InternalSwap(KinematicsParams_MDH* other) {
 ::google::protobuf::Metadata KinematicsParams_MDH::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[64]);
+      file_level_metadata_config_5fmsgs_2eproto[65]);
 }
 // ===================================================================
 
@@ -19830,7 +20057,7 @@ void KinematicsParams::InternalSwap(KinematicsParams* other) {
 ::google::protobuf::Metadata KinematicsParams::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[65]);
+      file_level_metadata_config_5fmsgs_2eproto[66]);
 }
 // ===================================================================
 
@@ -20054,7 +20281,7 @@ void CollisionModelMargin::InternalSwap(CollisionModelMargin* other) {
 ::google::protobuf::Metadata CollisionModelMargin::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[66]);
+      file_level_metadata_config_5fmsgs_2eproto[67]);
 }
 // ===================================================================
 
@@ -20478,7 +20705,7 @@ void Shape::InternalSwap(Shape* other) {
 ::google::protobuf::Metadata Shape::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[67]);
+      file_level_metadata_config_5fmsgs_2eproto[68]);
 }
 // ===================================================================
 
@@ -20653,7 +20880,7 @@ void SensorlessParams::InternalSwap(SensorlessParams* other) {
 ::google::protobuf::Metadata SensorlessParams::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[68]);
+      file_level_metadata_config_5fmsgs_2eproto[69]);
 }
 // ===================================================================
 
@@ -20870,7 +21097,7 @@ void NamedGeometry::InternalSwap(NamedGeometry* other) {
 ::google::protobuf::Metadata NamedGeometry::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[69]);
+      file_level_metadata_config_5fmsgs_2eproto[70]);
 }
 // ===================================================================
 
@@ -21087,7 +21314,7 @@ void ToolShapeList::InternalSwap(ToolShapeList* other) {
 ::google::protobuf::Metadata ToolShapeList::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[70]);
+      file_level_metadata_config_5fmsgs_2eproto[71]);
 }
 // ===================================================================
 
@@ -21549,7 +21776,7 @@ void Zone::InternalSwap(Zone* other) {
 ::google::protobuf::Metadata Zone::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[71]);
+      file_level_metadata_config_5fmsgs_2eproto[72]);
 }
 // ===================================================================
 
@@ -21766,7 +21993,7 @@ void NamedEnvironment::InternalSwap(NamedEnvironment* other) {
 ::google::protobuf::Metadata NamedEnvironment::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[72]);
+      file_level_metadata_config_5fmsgs_2eproto[73]);
 }
 // ===================================================================
 
@@ -21983,7 +22210,7 @@ void EnvironmentList::InternalSwap(EnvironmentList* other) {
 ::google::protobuf::Metadata EnvironmentList::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[73]);
+      file_level_metadata_config_5fmsgs_2eproto[74]);
 }
 // ===================================================================
 
@@ -22364,7 +22591,7 @@ void WeldingConfigInfo::InternalSwap(WeldingConfigInfo* other) {
 ::google::protobuf::Metadata WeldingConfigInfo::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[74]);
+      file_level_metadata_config_5fmsgs_2eproto[75]);
 }
 // ===================================================================
 
@@ -22584,7 +22811,7 @@ void WeldPosition::InternalSwap(WeldPosition* other) {
 ::google::protobuf::Metadata WeldPosition::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[75]);
+      file_level_metadata_config_5fmsgs_2eproto[76]);
 }
 // ===================================================================
 
@@ -22756,7 +22983,7 @@ void WeldPositionList::InternalSwap(WeldPositionList* other) {
 ::google::protobuf::Metadata WeldPositionList::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[76]);
+      file_level_metadata_config_5fmsgs_2eproto[77]);
 }
 // ===================================================================
 
@@ -22973,7 +23200,7 @@ void OperationModeConfig::InternalSwap(OperationModeConfig* other) {
 ::google::protobuf::Metadata OperationModeConfig::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_config_5fmsgs_2eproto_getter, &descriptor_table_config_5fmsgs_2eproto_once,
-      file_level_metadata_config_5fmsgs_2eproto[77]);
+      file_level_metadata_config_5fmsgs_2eproto[78]);
 }
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace IndyFramework

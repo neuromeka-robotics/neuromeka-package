@@ -55,6 +55,13 @@ if(BUILD_PROTO)
 else()
     set(INDY_SOURCES
         neuromeka_cpp/indydcp3.cpp
+        neuromeka_cpp/indydcp3_boot.cpp
+        neuromeka_cpp/indydcp3_config.cpp
+        neuromeka_cpp/indydcp3_control.cpp
+        neuromeka_cpp/indydcp3_device.cpp
+        neuromeka_cpp/indydcp3_rtde.cpp
+        neuromeka_cpp/indydcp3_cri.cpp
+        neuromeka_cpp/indydcp3_teleop.cpp
         neuromeka_cpp/proto/boot_msgs.pb.cc
         neuromeka_cpp/proto/common_msgs.pb.cc
         neuromeka_cpp/proto/config_msgs.pb.cc

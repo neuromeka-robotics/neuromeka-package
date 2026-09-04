@@ -7193,6 +7193,7 @@ class VisionRequest final :
     kFrameTypeFieldNumber = 3,
     kSolutionIdFieldNumber = 4,
     kVisionIdFieldNumber = 5,
+    kArmIndexFieldNumber = 10,
   };
   // string object = 2;
   void clear_object() ;
@@ -7255,12 +7256,22 @@ class VisionRequest final :
   void _internal_set_vision_id(::uint32_t value);
 
   public:
+  // uint32 arm_index = 10;
+  void clear_arm_index() ;
+  ::uint32_t arm_index() const;
+  void set_arm_index(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_arm_index() const;
+  void _internal_set_arm_index(::uint32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.VisionRequest)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<3, 5, 1, 47, 2> _table_;
+  static const ::google::protobuf::internal::TcParseTable<3, 6, 1, 47, 2> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
@@ -7272,6 +7283,7 @@ class VisionRequest final :
     int frame_type_;
     ::uint32_t solution_id_;
     ::uint32_t vision_id_;
+    ::uint32_t arm_index_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -14597,6 +14609,28 @@ inline void VisionRequest::_internal_set_vision_id(::uint32_t value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.vision_id_ = value;
+}
+
+// uint32 arm_index = 10;
+inline void VisionRequest::clear_arm_index() {
+  _impl_.arm_index_ = 0u;
+}
+inline ::uint32_t VisionRequest::arm_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.VisionRequest.arm_index)
+  return _internal_arm_index();
+}
+inline void VisionRequest::set_arm_index(::uint32_t value) {
+  _internal_set_arm_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.VisionRequest.arm_index)
+}
+inline ::uint32_t VisionRequest::_internal_arm_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.arm_index_;
+}
+inline void VisionRequest::_internal_set_arm_index(::uint32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.arm_index_ = value;
 }
 
 // -------------------------------------------------------------------
