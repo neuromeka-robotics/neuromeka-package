@@ -373,11 +373,13 @@ bool IndyDCP3::set_ref_frame_planar(std::array<float, 6>& fpos_out, const std::a
     return true;
 }
 
-bool IndyDCP3::set_tool_frame(const std::array<float, 6>& fpos)
+bool IndyDCP3::set_tool_frame(const std::array<float, 6>& fpos, const int arm_index, const int link_index)
 {
     /*
         Tool Frame
         fpos -> float[6]
+        arm_index -> int
+        link_index -> int
     */
 
     Nrmk::IndyFramework::Frame request;
@@ -387,6 +389,9 @@ bool IndyDCP3::set_tool_frame(const std::array<float, 6>& fpos)
     for (const auto& value : fpos) {
         request.add_fpos(value);
     }
+
+    request.set_arm_index(arm_index);
+    request.set_link_index(link_index);
 
     grpc::Status status = config_stub->SetToolFrame(&context, request, &response);
     if (!status.ok()) {

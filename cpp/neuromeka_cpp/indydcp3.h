@@ -371,7 +371,9 @@ class IndyDCP3
                             const int arm_index=0,
                             const int link_index=0);
 
-        bool set_tool_frame(const std::array<float, 6>& fpos);
+        bool set_tool_frame(const std::array<float, 6>& fpos,
+                            const int arm_index=0,
+                            const int link_index=0);
         //----------------------------------
 
         bool get_friction_comp(Nrmk::IndyFramework::FrictionCompSet& friction_comp);

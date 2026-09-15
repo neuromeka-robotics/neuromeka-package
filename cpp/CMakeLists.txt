@@ -116,4 +116,13 @@ else()
                         ${_GRPC_GRPCPP}
                         ${_PROTOBUF_LIBPROTOBUF}
                         )
+
+    add_executable(example_indydcp3_frame src/example_indydcp3_frame.cpp ${INDY_SOURCES})
+    target_link_libraries(example_indydcp3_frame
+                        ${Protobuf_LIBRARIES}
+                        ${gRPC_LIBRARIES}
+                        ${_REFLECTION}
+                        ${_GRPC_GRPCPP}
+                        ${_PROTOBUF_LIBPROTOBUF}
+                        )
 endif()
