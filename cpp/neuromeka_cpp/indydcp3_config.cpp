@@ -282,11 +282,13 @@ bool IndyDCP3::get_ref_frame(std::array<float, 6>& fpos)
     return true;
 }
 
-bool IndyDCP3::set_ref_frame(const std::array<float, 6>& fpos)
+bool IndyDCP3::set_ref_frame(const std::array<float, 6>& fpos, const int arm_index, const int link_index)
 {
     /*
         Reference Frame
         fpos -> float[6]
+        arm_index -> int
+        link_index -> int
     */
 
     Nrmk::IndyFramework::Frame request;
@@ -296,6 +298,9 @@ bool IndyDCP3::set_ref_frame(const std::array<float, 6>& fpos)
     for (const auto& value : fpos) {
         request.add_fpos(value);
     }
+
+    request.set_arm_index(arm_index);
+    request.set_link_index(link_index);
 
     grpc::Status status = config_stub->SetRefFrame(&context, request, &response);
     if (!status.ok()) {

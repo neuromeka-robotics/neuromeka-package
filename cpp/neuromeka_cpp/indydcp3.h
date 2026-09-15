@@ -357,7 +357,9 @@ class IndyDCP3
 
         //----------------------------------
         bool get_ref_frame(std::array<float, 6>& fpos);
-        bool set_ref_frame(const std::array<float, 6>& fpos);
+        bool set_ref_frame(const std::array<float, 6>& fpos,
+                           const int arm_index=0,
+                           const int link_index=0);
 
         bool load_reference_frame(Nrmk::IndyFramework::RefFrameList& list);
         bool save_reference_frame(const Nrmk::IndyFramework::RefFrameList& list);
