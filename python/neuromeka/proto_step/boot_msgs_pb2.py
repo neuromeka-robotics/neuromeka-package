@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x0f\x62oot_msgs.proto\x12\x12Nrmk.IndyFramework\x1a\x11\x63ommon_msgs.proto\"\xe8\x01\n\nBootStatus\x12\x15\n\rethercat_used\x18\x01 \x01(\x08\x12\x13\n\x0bsafety_used\x18\x02 \x01(\x08\x12\x12\n\nsafety_mcu\x18\x03 \x01(\x08\x12\x18\n\x10safety_connected\x18\x0b \x01(\x08\x12\x18\n\x10main_pw_relay_on\x18\x15 \x01(\x08\x12\x1a\n\x12safety_pw_relay_on\x18\x16 \x01(\x08\x12\x1a\n\x12robot_pw_supply_on\x18\x17 \x01(\x08\x12\x1a\n\x12\x65thercat_connected\x18\x1f \x01(\x08\x12\x12\n\ncontrol_on\x18\x64 \x01(\x08\x62\x06proto3'
+  serialized_pb=b'\n\x0f\x62oot_msgs.proto\x12\x12Nrmk.IndyFramework\x1a\x11\x63ommon_msgs.proto\"\x97\x02\n\nBootStatus\x12\x15\n\rethercat_used\x18\x01 \x01(\x08\x12\x13\n\x0bsafety_used\x18\x02 \x01(\x08\x12\x12\n\nsafety_mcu\x18\x03 \x01(\x08\x12\x13\n\x0blinear_used\x18\x04 \x01(\x08\x12\x18\n\x10safety_connected\x18\x0b \x01(\x08\x12\x18\n\x10main_pw_relay_on\x18\x15 \x01(\x08\x12\x1a\n\x12safety_pw_relay_on\x18\x16 \x01(\x08\x12\x1a\n\x12robot_pw_supply_on\x18\x17 \x01(\x08\x12\x1a\n\x12\x65thercat_connected\x18\x1f \x01(\x08\x12\x18\n\x10linear_connected\x18  \x01(\x08\x12\x12\n\ncontrol_on\x18\x64 \x01(\x08\x62\x06proto3'
   ,
   dependencies=[common__msgs__pb2.DESCRIPTOR,])
 
@@ -57,42 +57,56 @@ _BOOTSTATUS = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='safety_connected', full_name='Nrmk.IndyFramework.BootStatus.safety_connected', index=3,
+      name='linear_used', full_name='Nrmk.IndyFramework.BootStatus.linear_used', index=3,
+      number=4, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='safety_connected', full_name='Nrmk.IndyFramework.BootStatus.safety_connected', index=4,
       number=11, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='main_pw_relay_on', full_name='Nrmk.IndyFramework.BootStatus.main_pw_relay_on', index=4,
+      name='main_pw_relay_on', full_name='Nrmk.IndyFramework.BootStatus.main_pw_relay_on', index=5,
       number=21, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='safety_pw_relay_on', full_name='Nrmk.IndyFramework.BootStatus.safety_pw_relay_on', index=5,
+      name='safety_pw_relay_on', full_name='Nrmk.IndyFramework.BootStatus.safety_pw_relay_on', index=6,
       number=22, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='robot_pw_supply_on', full_name='Nrmk.IndyFramework.BootStatus.robot_pw_supply_on', index=6,
+      name='robot_pw_supply_on', full_name='Nrmk.IndyFramework.BootStatus.robot_pw_supply_on', index=7,
       number=23, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='ethercat_connected', full_name='Nrmk.IndyFramework.BootStatus.ethercat_connected', index=7,
+      name='ethercat_connected', full_name='Nrmk.IndyFramework.BootStatus.ethercat_connected', index=8,
       number=31, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='control_on', full_name='Nrmk.IndyFramework.BootStatus.control_on', index=8,
+      name='linear_connected', full_name='Nrmk.IndyFramework.BootStatus.linear_connected', index=9,
+      number=32, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='control_on', full_name='Nrmk.IndyFramework.BootStatus.control_on', index=10,
       number=100, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
@@ -111,7 +125,7 @@ _BOOTSTATUS = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=59,
-  serialized_end=291,
+  serialized_end=338,
 )
 
 DESCRIPTOR.message_types_by_name['BootStatus'] = _BOOTSTATUS

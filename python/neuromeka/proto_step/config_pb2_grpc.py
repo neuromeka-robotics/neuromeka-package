@@ -45,9 +45,24 @@ class ConfigStub(object):
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
                 response_deserializer=config__msgs__pb2.PathConfig.FromString,
                 )
+        self.SetLanguage = channel.unary_unary(
+                '/Nrmk.IndyFramework.Config/SetLanguage',
+                request_serializer=common__msgs__pb2.Name.SerializeToString,
+                response_deserializer=common__msgs__pb2.Response.FromString,
+                )
+        self.GetLanguage = channel.unary_unary(
+                '/Nrmk.IndyFramework.Config/GetLanguage',
+                request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=common__msgs__pb2.Name.FromString,
+                )
         self.GetRefFrame = channel.unary_unary(
                 '/Nrmk.IndyFramework.Config/GetRefFrame',
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=config__msgs__pb2.Frame.FromString,
+                )
+        self.GetRefFrameFor = channel.unary_unary(
+                '/Nrmk.IndyFramework.Config/GetRefFrameFor',
+                request_serializer=common__msgs__pb2.Int.SerializeToString,
                 response_deserializer=config__msgs__pb2.Frame.FromString,
                 )
         self.SetRefFrame = channel.unary_unary(
@@ -63,6 +78,11 @@ class ConfigStub(object):
         self.SetLockedJoint = channel.unary_unary(
                 '/Nrmk.IndyFramework.Config/SetLockedJoint',
                 request_serializer=common__msgs__pb2.Int.SerializeToString,
+                response_deserializer=common__msgs__pb2.Response.FromString,
+                )
+        self.SetLockedJointFor = channel.unary_unary(
+                '/Nrmk.IndyFramework.Config/SetLockedJointFor',
+                request_serializer=config__msgs__pb2.LockJointReq.SerializeToString,
                 response_deserializer=common__msgs__pb2.Response.FromString,
                 )
         self.SetToolLink = channel.unary_unary(
@@ -120,6 +140,11 @@ class ConfigStub(object):
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
                 response_deserializer=config__msgs__pb2.JointPos.FromString,
                 )
+        self.GetServoParamList = channel.unary_unary(
+                '/Nrmk.IndyFramework.Config/GetServoParamList',
+                request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=common__msgs__pb2.Vector.FromString,
+                )
         self.SetToolList = channel.unary_unary(
                 '/Nrmk.IndyFramework.Config/SetToolList',
                 request_serializer=config__msgs__pb2.ToolList.SerializeToString,
@@ -138,6 +163,16 @@ class ConfigStub(object):
         self.SetVisionServerList = channel.unary_unary(
                 '/Nrmk.IndyFramework.Config/SetVisionServerList',
                 request_serializer=config__msgs__pb2.VisionServerList.SerializeToString,
+                response_deserializer=common__msgs__pb2.Response.FromString,
+                )
+        self.GetSocketCommandConfig = channel.unary_unary(
+                '/Nrmk.IndyFramework.Config/GetSocketCommandConfig',
+                request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=config__msgs__pb2.SocketCommandConfig.FromString,
+                )
+        self.SetSocketCommandConfig = channel.unary_unary(
+                '/Nrmk.IndyFramework.Config/SetSocketCommandConfig',
+                request_serializer=config__msgs__pb2.SocketCommandConfig.SerializeToString,
                 response_deserializer=common__msgs__pb2.Response.FromString,
                 )
         self.GetModbusServerList = channel.unary_unary(
@@ -288,6 +323,11 @@ class ConfigStub(object):
         self.GetToolProperty = channel.unary_unary(
                 '/Nrmk.IndyFramework.Config/GetToolProperty',
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=config__msgs__pb2.ToolProperties.FromString,
+                )
+        self.GetToolPropertyAt = channel.unary_unary(
+                '/Nrmk.IndyFramework.Config/GetToolPropertyAt',
+                request_serializer=common__msgs__pb2.Int.SerializeToString,
                 response_deserializer=config__msgs__pb2.ToolProperties.FromString,
                 )
         self.SetToolPropertyList = channel.unary_unary(
@@ -465,6 +505,11 @@ class ConfigStub(object):
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
                 response_deserializer=config__msgs__pb2.FTSensorDevice.FromString,
                 )
+        self.GetFTSensorConfigFor = channel.unary_unary(
+                '/Nrmk.IndyFramework.Config/GetFTSensorConfigFor',
+                request_serializer=common__msgs__pb2.Int.SerializeToString,
+                response_deserializer=config__msgs__pb2.FTSensorDevice.FromString,
+                )
         self.SetTeleOpParams = channel.unary_unary(
                 '/Nrmk.IndyFramework.Config/SetTeleOpParams',
                 request_serializer=config__msgs__pb2.TeleOpParams.SerializeToString,
@@ -591,7 +636,25 @@ class ConfigServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def SetLanguage(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetLanguage(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def GetRefFrame(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetRefFrameFor(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -610,6 +673,12 @@ class ConfigServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def SetLockedJoint(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SetLockedJointFor(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -681,6 +750,12 @@ class ConfigServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetServoParamList(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def SetToolList(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -700,6 +775,18 @@ class ConfigServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def SetVisionServerList(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetSocketCommandConfig(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SetSocketCommandConfig(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -880,6 +967,12 @@ class ConfigServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def GetToolProperty(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetToolPropertyAt(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -1095,6 +1188,12 @@ class ConfigServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetFTSensorConfigFor(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def SetTeleOpParams(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -1233,9 +1332,24 @@ def add_ConfigServicer_to_server(servicer, server):
                     request_deserializer=common__msgs__pb2.Empty.FromString,
                     response_serializer=config__msgs__pb2.PathConfig.SerializeToString,
             ),
+            'SetLanguage': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetLanguage,
+                    request_deserializer=common__msgs__pb2.Name.FromString,
+                    response_serializer=common__msgs__pb2.Response.SerializeToString,
+            ),
+            'GetLanguage': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetLanguage,
+                    request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=common__msgs__pb2.Name.SerializeToString,
+            ),
             'GetRefFrame': grpc.unary_unary_rpc_method_handler(
                     servicer.GetRefFrame,
                     request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=config__msgs__pb2.Frame.SerializeToString,
+            ),
+            'GetRefFrameFor': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetRefFrameFor,
+                    request_deserializer=common__msgs__pb2.Int.FromString,
                     response_serializer=config__msgs__pb2.Frame.SerializeToString,
             ),
             'SetRefFrame': grpc.unary_unary_rpc_method_handler(
@@ -1251,6 +1365,11 @@ def add_ConfigServicer_to_server(servicer, server):
             'SetLockedJoint': grpc.unary_unary_rpc_method_handler(
                     servicer.SetLockedJoint,
                     request_deserializer=common__msgs__pb2.Int.FromString,
+                    response_serializer=common__msgs__pb2.Response.SerializeToString,
+            ),
+            'SetLockedJointFor': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetLockedJointFor,
+                    request_deserializer=config__msgs__pb2.LockJointReq.FromString,
                     response_serializer=common__msgs__pb2.Response.SerializeToString,
             ),
             'SetToolLink': grpc.unary_unary_rpc_method_handler(
@@ -1308,6 +1427,11 @@ def add_ConfigServicer_to_server(servicer, server):
                     request_deserializer=common__msgs__pb2.Empty.FromString,
                     response_serializer=config__msgs__pb2.JointPos.SerializeToString,
             ),
+            'GetServoParamList': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetServoParamList,
+                    request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=common__msgs__pb2.Vector.SerializeToString,
+            ),
             'SetToolList': grpc.unary_unary_rpc_method_handler(
                     servicer.SetToolList,
                     request_deserializer=config__msgs__pb2.ToolList.FromString,
@@ -1326,6 +1450,16 @@ def add_ConfigServicer_to_server(servicer, server):
             'SetVisionServerList': grpc.unary_unary_rpc_method_handler(
                     servicer.SetVisionServerList,
                     request_deserializer=config__msgs__pb2.VisionServerList.FromString,
+                    response_serializer=common__msgs__pb2.Response.SerializeToString,
+            ),
+            'GetSocketCommandConfig': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetSocketCommandConfig,
+                    request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=config__msgs__pb2.SocketCommandConfig.SerializeToString,
+            ),
+            'SetSocketCommandConfig': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetSocketCommandConfig,
+                    request_deserializer=config__msgs__pb2.SocketCommandConfig.FromString,
                     response_serializer=common__msgs__pb2.Response.SerializeToString,
             ),
             'GetModbusServerList': grpc.unary_unary_rpc_method_handler(
@@ -1476,6 +1610,11 @@ def add_ConfigServicer_to_server(servicer, server):
             'GetToolProperty': grpc.unary_unary_rpc_method_handler(
                     servicer.GetToolProperty,
                     request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=config__msgs__pb2.ToolProperties.SerializeToString,
+            ),
+            'GetToolPropertyAt': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetToolPropertyAt,
+                    request_deserializer=common__msgs__pb2.Int.FromString,
                     response_serializer=config__msgs__pb2.ToolProperties.SerializeToString,
             ),
             'SetToolPropertyList': grpc.unary_unary_rpc_method_handler(
@@ -1651,6 +1790,11 @@ def add_ConfigServicer_to_server(servicer, server):
             'GetFTSensorConfig': grpc.unary_unary_rpc_method_handler(
                     servicer.GetFTSensorConfig,
                     request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=config__msgs__pb2.FTSensorDevice.SerializeToString,
+            ),
+            'GetFTSensorConfigFor': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetFTSensorConfigFor,
+                    request_deserializer=common__msgs__pb2.Int.FromString,
                     response_serializer=config__msgs__pb2.FTSensorDevice.SerializeToString,
             ),
             'SetTeleOpParams': grpc.unary_unary_rpc_method_handler(
@@ -1851,6 +1995,40 @@ class Config(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
+    def SetLanguage(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Config/SetLanguage',
+            common__msgs__pb2.Name.SerializeToString,
+            common__msgs__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetLanguage(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Config/GetLanguage',
+            common__msgs__pb2.Empty.SerializeToString,
+            common__msgs__pb2.Name.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
     def GetRefFrame(request,
             target,
             options=(),
@@ -1863,6 +2041,23 @@ class Config(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Config/GetRefFrame',
             common__msgs__pb2.Empty.SerializeToString,
+            config__msgs__pb2.Frame.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetRefFrameFor(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Config/GetRefFrameFor',
+            common__msgs__pb2.Int.SerializeToString,
             config__msgs__pb2.Frame.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
@@ -1914,6 +2109,23 @@ class Config(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Config/SetLockedJoint',
             common__msgs__pb2.Int.SerializeToString,
+            common__msgs__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SetLockedJointFor(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Config/SetLockedJointFor',
+            config__msgs__pb2.LockJointReq.SerializeToString,
             common__msgs__pb2.Response.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
@@ -2106,6 +2318,23 @@ class Config(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
+    def GetServoParamList(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Config/GetServoParamList',
+            common__msgs__pb2.Empty.SerializeToString,
+            common__msgs__pb2.Vector.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
     def SetToolList(request,
             target,
             options=(),
@@ -2169,6 +2398,40 @@ class Config(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Config/SetVisionServerList',
             config__msgs__pb2.VisionServerList.SerializeToString,
+            common__msgs__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetSocketCommandConfig(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Config/GetSocketCommandConfig',
+            common__msgs__pb2.Empty.SerializeToString,
+            config__msgs__pb2.SocketCommandConfig.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SetSocketCommandConfig(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Config/SetSocketCommandConfig',
+            config__msgs__pb2.SocketCommandConfig.SerializeToString,
             common__msgs__pb2.Response.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
@@ -2679,6 +2942,23 @@ class Config(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Config/GetToolProperty',
             common__msgs__pb2.Empty.SerializeToString,
+            config__msgs__pb2.ToolProperties.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetToolPropertyAt(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Config/GetToolPropertyAt',
+            common__msgs__pb2.Int.SerializeToString,
             config__msgs__pb2.ToolProperties.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
@@ -3274,6 +3554,23 @@ class Config(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Config/GetFTSensorConfig',
             common__msgs__pb2.Empty.SerializeToString,
+            config__msgs__pb2.FTSensorDevice.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetFTSensorConfigFor(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Config/GetFTSensorConfigFor',
+            common__msgs__pb2.Int.SerializeToString,
             config__msgs__pb2.FTSensorDevice.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

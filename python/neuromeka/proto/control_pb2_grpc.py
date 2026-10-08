@@ -211,6 +211,11 @@ class ControlStub(object):
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
                 response_deserializer=common__msgs__pb2.Response.FromString,
                 )
+        self.ResumeProgramDebug = channel.unary_unary(
+                '/Nrmk.IndyFramework.Control/ResumeProgramDebug',
+                request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=common__msgs__pb2.Response.FromString,
+                )
         self.StopProgram = channel.unary_unary(
                 '/Nrmk.IndyFramework.Control/StopProgram',
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
@@ -416,6 +421,11 @@ class ControlStub(object):
                 request_serializer=control__msgs__pb2.ForwardKinematicsReq.SerializeToString,
                 response_deserializer=control__msgs__pb2.ForwardKinematicsRes.FromString,
                 )
+        self.JointToTcpTransform = channel.unary_unary(
+                '/Nrmk.IndyFramework.Control/JointToTcpTransform',
+                request_serializer=control__msgs__pb2.JointToTcpTransformReq.SerializeToString,
+                response_deserializer=control__msgs__pb2.JointToTcpTransformRes.FromString,
+                )
         self.CheckAproachRetractValid = channel.unary_unary(
                 '/Nrmk.IndyFramework.Control/CheckAproachRetractValid',
                 request_serializer=control__msgs__pb2.CheckAproachRetractValidReq.SerializeToString,
@@ -465,6 +475,16 @@ class ControlStub(object):
                 '/Nrmk.IndyFramework.Control/ReadTeleOpInput',
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
                 response_deserializer=control__msgs__pb2.TeleP.FromString,
+                )
+        self.ReadTeleOpInputFor = channel.unary_unary(
+                '/Nrmk.IndyFramework.Control/ReadTeleOpInputFor',
+                request_serializer=common__msgs__pb2.Int.SerializeToString,
+                response_deserializer=control__msgs__pb2.TeleP.FromString,
+                )
+        self.SetTeleCalibArm = channel.unary_unary(
+                '/Nrmk.IndyFramework.Control/SetTeleCalibArm',
+                request_serializer=common__msgs__pb2.UInt.SerializeToString,
+                response_deserializer=common__msgs__pb2.Response.FromString,
                 )
         self.StartTeleOp = channel.unary_unary(
                 '/Nrmk.IndyFramework.Control/StartTeleOp',
@@ -534,6 +554,11 @@ class ControlStub(object):
         self.GetTransformedFTSensorData = channel.unary_unary(
                 '/Nrmk.IndyFramework.Control/GetTransformedFTSensorData',
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=control__msgs__pb2.TransformedFTSensorData.FromString,
+                )
+        self.GetTransformedFTSensorDataFor = channel.unary_unary(
+                '/Nrmk.IndyFramework.Control/GetTransformedFTSensorDataFor',
+                request_serializer=common__msgs__pb2.Int.SerializeToString,
                 response_deserializer=control__msgs__pb2.TransformedFTSensorData.FromString,
                 )
         self.FTZero = channel.unary_unary(
@@ -822,6 +847,12 @@ class ControlServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def ResumeProgramDebug(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def StopProgram(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -1081,6 +1112,12 @@ class ControlServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def JointToTcpTransform(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def CheckAproachRetractValid(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -1139,6 +1176,18 @@ class ControlServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def ReadTeleOpInput(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def ReadTeleOpInputFor(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SetTeleCalibArm(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -1223,6 +1272,12 @@ class ControlServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def GetTransformedFTSensorData(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetTransformedFTSensorDataFor(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -1478,6 +1533,11 @@ def add_ControlServicer_to_server(servicer, server):
                     request_deserializer=common__msgs__pb2.Empty.FromString,
                     response_serializer=common__msgs__pb2.Response.SerializeToString,
             ),
+            'ResumeProgramDebug': grpc.unary_unary_rpc_method_handler(
+                    servicer.ResumeProgramDebug,
+                    request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=common__msgs__pb2.Response.SerializeToString,
+            ),
             'StopProgram': grpc.unary_unary_rpc_method_handler(
                     servicer.StopProgram,
                     request_deserializer=common__msgs__pb2.Empty.FromString,
@@ -1683,6 +1743,11 @@ def add_ControlServicer_to_server(servicer, server):
                     request_deserializer=control__msgs__pb2.ForwardKinematicsReq.FromString,
                     response_serializer=control__msgs__pb2.ForwardKinematicsRes.SerializeToString,
             ),
+            'JointToTcpTransform': grpc.unary_unary_rpc_method_handler(
+                    servicer.JointToTcpTransform,
+                    request_deserializer=control__msgs__pb2.JointToTcpTransformReq.FromString,
+                    response_serializer=control__msgs__pb2.JointToTcpTransformRes.SerializeToString,
+            ),
             'CheckAproachRetractValid': grpc.unary_unary_rpc_method_handler(
                     servicer.CheckAproachRetractValid,
                     request_deserializer=control__msgs__pb2.CheckAproachRetractValidReq.FromString,
@@ -1732,6 +1797,16 @@ def add_ControlServicer_to_server(servicer, server):
                     servicer.ReadTeleOpInput,
                     request_deserializer=common__msgs__pb2.Empty.FromString,
                     response_serializer=control__msgs__pb2.TeleP.SerializeToString,
+            ),
+            'ReadTeleOpInputFor': grpc.unary_unary_rpc_method_handler(
+                    servicer.ReadTeleOpInputFor,
+                    request_deserializer=common__msgs__pb2.Int.FromString,
+                    response_serializer=control__msgs__pb2.TeleP.SerializeToString,
+            ),
+            'SetTeleCalibArm': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetTeleCalibArm,
+                    request_deserializer=common__msgs__pb2.UInt.FromString,
+                    response_serializer=common__msgs__pb2.Response.SerializeToString,
             ),
             'StartTeleOp': grpc.unary_unary_rpc_method_handler(
                     servicer.StartTeleOp,
@@ -1801,6 +1876,11 @@ def add_ControlServicer_to_server(servicer, server):
             'GetTransformedFTSensorData': grpc.unary_unary_rpc_method_handler(
                     servicer.GetTransformedFTSensorData,
                     request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=control__msgs__pb2.TransformedFTSensorData.SerializeToString,
+            ),
+            'GetTransformedFTSensorDataFor': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetTransformedFTSensorDataFor,
+                    request_deserializer=common__msgs__pb2.Int.FromString,
                     response_serializer=control__msgs__pb2.TransformedFTSensorData.SerializeToString,
             ),
             'FTZero': grpc.unary_unary_rpc_method_handler(
@@ -2512,6 +2592,23 @@ class Control(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
+    def ResumeProgramDebug(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Control/ResumeProgramDebug',
+            common__msgs__pb2.Empty.SerializeToString,
+            common__msgs__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
     def StopProgram(request,
             target,
             options=(),
@@ -3209,6 +3306,23 @@ class Control(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
+    def JointToTcpTransform(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Control/JointToTcpTransform',
+            control__msgs__pb2.JointToTcpTransformReq.SerializeToString,
+            control__msgs__pb2.JointToTcpTransformRes.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
     def CheckAproachRetractValid(request,
             target,
             options=(),
@@ -3375,6 +3489,40 @@ class Control(object):
         return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Control/ReadTeleOpInput',
             common__msgs__pb2.Empty.SerializeToString,
             control__msgs__pb2.TeleP.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def ReadTeleOpInputFor(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Control/ReadTeleOpInputFor',
+            common__msgs__pb2.Int.SerializeToString,
+            control__msgs__pb2.TeleP.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SetTeleCalibArm(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Control/SetTeleCalibArm',
+            common__msgs__pb2.UInt.SerializeToString,
+            common__msgs__pb2.Response.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -3612,6 +3760,23 @@ class Control(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Control/GetTransformedFTSensorData',
             common__msgs__pb2.Empty.SerializeToString,
+            control__msgs__pb2.TransformedFTSensorData.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetTransformedFTSensorDataFor(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Control/GetTransformedFTSensorDataFor',
+            common__msgs__pb2.Int.SerializeToString,
             control__msgs__pb2.TransformedFTSensorData.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

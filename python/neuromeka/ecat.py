@@ -378,7 +378,7 @@ class EtherCAT:
         ao2 = ioboard_rx["ao2"]
         ft_param = ioboard_rx["ft_param"]
         return self.__ethercat_stub.SetIOBoardRx(
-            ethercat_msgs.EndtoolRx(do5v=do5v, do24v1=do24v1, do24v2=do24v2, ao1=ao1, ao2=ao2, ft_param=ft_param))
+            ethercat_msgs.IOBoardRx(do5v=do5v, do24v1=do24v1, do24v2=do24v2, ao1=ao1, ao2=ao2, ft_param=ft_param))
 
 
     @Utils.exception_handler

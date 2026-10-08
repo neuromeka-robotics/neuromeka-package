@@ -129,6 +129,12 @@ extern GripperCommandDefaultTypeInternal _GripperCommand_default_instance_;
 class GripperData;
 struct GripperDataDefaultTypeInternal;
 extern GripperDataDefaultTypeInternal _GripperData_default_instance_;
+class InspireHandCommand;
+struct InspireHandCommandDefaultTypeInternal;
+extern InspireHandCommandDefaultTypeInternal _InspireHandCommand_default_instance_;
+class InspireHandState;
+struct InspireHandStateDefaultTypeInternal;
+extern InspireHandStateDefaultTypeInternal _InspireHandState_default_instance_;
 class ModbusCommand;
 struct ModbusCommandDefaultTypeInternal;
 extern ModbusCommandDefaultTypeInternal _ModbusCommand_default_instance_;
@@ -159,15 +165,6 @@ extern SetAutoModeReqDefaultTypeInternal _SetAutoModeReq_default_instance_;
 class SetAutoModeRes;
 struct SetAutoModeResDefaultTypeInternal;
 extern SetAutoModeResDefaultTypeInternal _SetAutoModeRes_default_instance_;
-class SocketCommandConfig;
-struct SocketCommandConfigDefaultTypeInternal;
-extern SocketCommandConfigDefaultTypeInternal _SocketCommandConfig_default_instance_;
-class SocketCommandStatus;
-struct SocketCommandStatusDefaultTypeInternal;
-extern SocketCommandStatusDefaultTypeInternal _SocketCommandStatus_default_instance_;
-class SocketPayload;
-struct SocketPayloadDefaultTypeInternal;
-extern SocketPayloadDefaultTypeInternal _SocketPayload_default_instance_;
 class TaskTimes;
 struct TaskTimesDefaultTypeInternal;
 extern TaskTimesDefaultTypeInternal _TaskTimes_default_instance_;
@@ -201,7 +198,7 @@ namespace IndyFramework {
 enum GripperCommand_GripperCommandType : int {
   GripperCommand_GripperCommandType_AUTO_DETECT = 0,
   GripperCommand_GripperCommandType_ACTIVATE = 1,
-  GripperCommand_GripperCommandType_RE_ACTIVATE = 2,
+  GripperCommand_GripperCommandType_DEACTIVATE = 2,
   GripperCommand_GripperCommandType_SET_PVT = 3,
   GripperCommand_GripperCommandType_GripperCommand_GripperCommandType_INT_MIN_SENTINEL_DO_NOT_USE_ =
       std::numeric_limits<::int32_t>::min(),
@@ -468,6 +465,7 @@ enum GripperType : int {
   ROBOTIQ_GRIPPER = 1,
   DH_GRIPPER = 2,
   APICOO_SUSGRIP = 3,
+  APICOO_SUSGRIP_V2 = 4,
   GripperType_INT_MIN_SENTINEL_DO_NOT_USE_ =
       std::numeric_limits<::int32_t>::min(),
   GripperType_INT_MAX_SENTINEL_DO_NOT_USE_ =
@@ -476,8 +474,8 @@ enum GripperType : int {
 
 bool GripperType_IsValid(int value);
 constexpr GripperType GripperType_MIN = static_cast<GripperType>(0);
-constexpr GripperType GripperType_MAX = static_cast<GripperType>(3);
-constexpr int GripperType_ARRAYSIZE = 3 + 1;
+constexpr GripperType GripperType_MAX = static_cast<GripperType>(4);
+constexpr int GripperType_ARRAYSIZE = 4 + 1;
 const ::google::protobuf::EnumDescriptor*
 GripperType_descriptor();
 template <typename T>
@@ -490,7 +488,7 @@ const std::string& GripperType_Name(T value) {
 template <>
 inline const std::string& GripperType_Name(GripperType value) {
   return ::google::protobuf::internal::NameOfDenseEnum<GripperType_descriptor,
-                                                 0, 3>(
+                                                 0, 4>(
       static_cast<int>(value));
 }
 inline bool GripperType_Parse(absl::string_view name, GripperType* value) {
@@ -1074,6 +1072,7 @@ class GripperData final :
     kGripperTypeFieldNumber = 1,
     kGripperPositionFieldNumber = 2,
     kGripperStateFieldNumber = 3,
+    kToolIndexFieldNumber = 10,
   };
   // .Nrmk.IndyFramework.GripperType gripper_type = 1;
   void clear_gripper_type() ;
@@ -1105,12 +1104,22 @@ class GripperData final :
   void _internal_set_gripper_state(::int32_t value);
 
   public:
+  // int32 tool_index = 10;
+  void clear_tool_index() ;
+  ::int32_t tool_index() const;
+  void set_tool_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_tool_index() const;
+  void _internal_set_tool_index(::int32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.GripperData)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<2, 3, 0, 0, 2> _table_;
+  static const ::google::protobuf::internal::TcParseTable<2, 4, 0, 0, 2> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
@@ -1118,6 +1127,7 @@ class GripperData final :
     int gripper_type_;
     ::int32_t gripper_position_;
     ::int32_t gripper_state_;
+    ::int32_t tool_index_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -1253,7 +1263,7 @@ class GripperCommand final :
   using GripperCommandType = GripperCommand_GripperCommandType;
   static constexpr GripperCommandType AUTO_DETECT = GripperCommand_GripperCommandType_AUTO_DETECT;
   static constexpr GripperCommandType ACTIVATE = GripperCommand_GripperCommandType_ACTIVATE;
-  static constexpr GripperCommandType RE_ACTIVATE = GripperCommand_GripperCommandType_RE_ACTIVATE;
+  static constexpr GripperCommandType DEACTIVATE = GripperCommand_GripperCommandType_DEACTIVATE;
   static constexpr GripperCommandType SET_PVT = GripperCommand_GripperCommandType_SET_PVT;
   static inline bool GripperCommandType_IsValid(int value) {
     return GripperCommand_GripperCommandType_IsValid(value);
@@ -1280,6 +1290,7 @@ class GripperCommand final :
     kGripperCommandFieldNumber = 1,
     kGripperTypeFieldNumber = 2,
     kGripperModbusUseFieldNumber = 10,
+    kToolIndexFieldNumber = 100,
   };
   // repeated int32 gripper_pvt_data = 3;
   int gripper_pvt_data_size() const;
@@ -1345,12 +1356,22 @@ class GripperCommand final :
   void _internal_set_gripper_modbus_use(bool value);
 
   public:
+  // int32 tool_index = 100;
+  void clear_tool_index() ;
+  ::int32_t tool_index() const;
+  void set_tool_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_tool_index() const;
+  void _internal_set_tool_index(::int32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.GripperCommand)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<2, 5, 0, 68, 2> _table_;
+  static const ::google::protobuf::internal::TcParseTable<2, 6, 0, 68, 7> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
@@ -1361,6 +1382,7 @@ class GripperCommand final :
     int gripper_command_;
     int gripper_type_;
     bool gripper_modbus_use_;
+    ::int32_t tool_index_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -1498,6 +1520,7 @@ class DigitalSignal final :
   enum : int {
     kAddressFieldNumber = 1,
     kStateFieldNumber = 2,
+    kToolIndexFieldNumber = 10,
   };
   // uint32 address = 1;
   void clear_address() ;
@@ -1519,18 +1542,29 @@ class DigitalSignal final :
   void _internal_set_state(::Nrmk::IndyFramework::DigitalState value);
 
   public:
+  // int32 tool_index = 10;
+  void clear_tool_index() ;
+  ::int32_t tool_index() const;
+  void set_tool_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_tool_index() const;
+  void _internal_set_tool_index(::int32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.DigitalSignal)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<1, 2, 0, 0, 2> _table_;
+  static const ::google::protobuf::internal::TcParseTable<1, 3, 0, 0, 2> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
     ::uint32_t address_;
     int state_;
+    ::int32_t tool_index_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -1667,6 +1701,7 @@ class EndLedDim final :
 
   enum : int {
     kLedDimFieldNumber = 1,
+    kToolIndexFieldNumber = 10,
   };
   // uint32 led_dim = 1;
   void clear_led_dim() ;
@@ -1678,17 +1713,28 @@ class EndLedDim final :
   void _internal_set_led_dim(::uint32_t value);
 
   public:
+  // int32 tool_index = 10;
+  void clear_tool_index() ;
+  ::int32_t tool_index() const;
+  void set_tool_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_tool_index() const;
+  void _internal_set_tool_index(::int32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.EndLedDim)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<0, 1, 0, 0, 2> _table_;
+  static const ::google::protobuf::internal::TcParseTable<1, 2, 0, 0, 2> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
     ::uint32_t led_dim_;
+    ::int32_t tool_index_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -1826,6 +1872,7 @@ class EndtoolSignal final :
   enum : int {
     kStatesFieldNumber = 2,
     kPortFieldNumber = 1,
+    kToolIndexFieldNumber = 10,
   };
   // repeated .Nrmk.IndyFramework.EndtoolState states = 2;
   int states_size() const;
@@ -1862,12 +1909,22 @@ class EndtoolSignal final :
   std::string* _internal_mutable_port();
 
   public:
+  // int32 tool_index = 10;
+  void clear_tool_index() ;
+  ::int32_t tool_index() const;
+  void set_tool_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_tool_index() const;
+  void _internal_set_tool_index(::int32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.EndtoolSignal)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<1, 2, 0, 45, 2> _table_;
+  static const ::google::protobuf::internal::TcParseTable<1, 3, 0, 45, 2> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
@@ -1875,6 +1932,7 @@ class EndtoolSignal final :
     ::google::protobuf::RepeatedField<int> states_;
     mutable ::google::protobuf::internal::CachedSize _states_cached_byte_size_;
     ::google::protobuf::internal::ArenaStringPtr port_;
+    ::int32_t tool_index_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -2012,6 +2070,7 @@ class AnalogSignal final :
   enum : int {
     kAddressFieldNumber = 1,
     kVoltageFieldNumber = 2,
+    kToolIndexFieldNumber = 10,
   };
   // uint32 address = 1;
   void clear_address() ;
@@ -2033,18 +2092,29 @@ class AnalogSignal final :
   void _internal_set_voltage(::int32_t value);
 
   public:
+  // int32 tool_index = 10;
+  void clear_tool_index() ;
+  ::int32_t tool_index() const;
+  void set_tool_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_tool_index() const;
+  void _internal_set_tool_index(::int32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.AnalogSignal)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<1, 2, 0, 0, 2> _table_;
+  static const ::google::protobuf::internal::TcParseTable<1, 3, 0, 0, 2> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
     ::uint32_t address_;
     ::int32_t voltage_;
+    ::int32_t tool_index_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -2845,6 +2915,7 @@ class DeviceInfo final :
 
   enum : int {
     kCoreBoardFwVersFieldNumber = 11,
+    kEndtoolBoardFwVersFieldNumber = 13,
     kSafetyMcuFwVersFieldNumber = 51,
     kRobotSerialFieldNumber = 2,
     kRobotNameFieldNumber = 5,
@@ -2894,6 +2965,34 @@ class DeviceInfo final :
   private:
   const ::google::protobuf::RepeatedPtrField<std::string>& _internal_core_board_fw_vers() const;
   ::google::protobuf::RepeatedPtrField<std::string>* _internal_mutable_core_board_fw_vers();
+
+  public:
+  // repeated string endtool_board_fw_vers = 13;
+  int endtool_board_fw_vers_size() const;
+  private:
+  int _internal_endtool_board_fw_vers_size() const;
+
+  public:
+  void clear_endtool_board_fw_vers() ;
+  const std::string& endtool_board_fw_vers(int index) const;
+  std::string* mutable_endtool_board_fw_vers(int index);
+  void set_endtool_board_fw_vers(int index, const std::string& value);
+  void set_endtool_board_fw_vers(int index, std::string&& value);
+  void set_endtool_board_fw_vers(int index, const char* value);
+  void set_endtool_board_fw_vers(int index, const char* value, std::size_t size);
+  void set_endtool_board_fw_vers(int index, absl::string_view value);
+  std::string* add_endtool_board_fw_vers();
+  void add_endtool_board_fw_vers(const std::string& value);
+  void add_endtool_board_fw_vers(std::string&& value);
+  void add_endtool_board_fw_vers(const char* value);
+  void add_endtool_board_fw_vers(const char* value, std::size_t size);
+  void add_endtool_board_fw_vers(absl::string_view value);
+  const ::google::protobuf::RepeatedPtrField<std::string>& endtool_board_fw_vers() const;
+  ::google::protobuf::RepeatedPtrField<std::string>* mutable_endtool_board_fw_vers();
+
+  private:
+  const ::google::protobuf::RepeatedPtrField<std::string>& _internal_endtool_board_fw_vers() const;
+  ::google::protobuf::RepeatedPtrField<std::string>* _internal_mutable_endtool_board_fw_vers();
 
   public:
   // repeated string safety_mcu_fw_vers = 51;
@@ -3204,7 +3303,7 @@ class DeviceInfo final :
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<5, 23, 1, 236, 13> _table_;
+  static const ::google::protobuf::internal::TcParseTable<5, 24, 1, 265, 13> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
@@ -3212,6 +3311,7 @@ class DeviceInfo final :
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::RepeatedPtrField<std::string> core_board_fw_vers_;
+    ::google::protobuf::RepeatedPtrField<std::string> endtool_board_fw_vers_;
     ::google::protobuf::RepeatedPtrField<std::string> safety_mcu_fw_vers_;
     ::google::protobuf::internal::ArenaStringPtr robot_serial_;
     ::google::protobuf::internal::ArenaStringPtr robot_name_;
@@ -5351,6 +5451,7 @@ class SanderCommand final :
     kTypeFieldNumber = 1,
     kSpeedFieldNumber = 3,
     kStateFieldNumber = 10,
+    kToolIndexFieldNumber = 20,
   };
   // string ip = 2;
   void clear_ip() ;
@@ -5398,12 +5499,22 @@ class SanderCommand final :
   void _internal_set_state(bool value);
 
   public:
+  // int32 tool_index = 20;
+  void clear_tool_index() ;
+  ::int32_t tool_index() const;
+  void set_tool_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_tool_index() const;
+  void _internal_set_tool_index(::int32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.SanderCommand)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<2, 4, 0, 43, 2> _table_;
+  static const ::google::protobuf::internal::TcParseTable<2, 5, 0, 43, 2> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
@@ -5412,6 +5523,7 @@ class SanderCommand final :
     int type_;
     float speed_;
     bool state_;
+    ::int32_t tool_index_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -6010,6 +6122,7 @@ class Conveyor final :
     kTerminalPoseFieldNumber = 11,
     kOffsetDistFieldNumber = 4,
     kWorkingDistFieldNumber = 5,
+    kArmIndexFieldNumber = 20,
     kToolLinkFieldNumber = 31,
   };
   // string name = 1;
@@ -6123,6 +6236,16 @@ class Conveyor final :
   void _internal_set_working_dist(float value);
 
   public:
+  // int32 arm_index = 20;
+  void clear_arm_index() ;
+  ::int32_t arm_index() const;
+  void set_arm_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_arm_index() const;
+  void _internal_set_arm_index(::int32_t value);
+
+  public:
   // int32 tool_link = 31;
   void clear_tool_link() ;
   ::int32_t tool_link() const;
@@ -6138,7 +6261,7 @@ class Conveyor final :
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<4, 9, 5, 48, 2> _table_;
+  static const ::google::protobuf::internal::TcParseTable<4, 10, 5, 48, 2> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
@@ -6153,6 +6276,7 @@ class Conveyor final :
     ::Nrmk::IndyFramework::PosePair* terminal_pose_;
     float offset_dist_;
     float working_dist_;
+    ::int32_t arm_index_;
     ::int32_t tool_link_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -6628,6 +6752,7 @@ class AddPhotoneoCalibPointReq final :
     kPxFieldNumber = 2,
     kPyFieldNumber = 3,
     kPzFieldNumber = 4,
+    kArmIndexFieldNumber = 10,
   };
   // string vision_name = 1;
   void clear_vision_name() ;
@@ -6675,12 +6800,22 @@ class AddPhotoneoCalibPointReq final :
   void _internal_set_pz(double value);
 
   public:
+  // int32 arm_index = 10;
+  void clear_arm_index() ;
+  ::int32_t arm_index() const;
+  void set_arm_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_arm_index() const;
+  void _internal_set_arm_index(::int32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.AddPhotoneoCalibPointReq)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<2, 4, 0, 63, 2> _table_;
+  static const ::google::protobuf::internal::TcParseTable<2, 5, 0, 63, 2> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
@@ -6689,6 +6824,7 @@ class AddPhotoneoCalibPointReq final :
     double px_;
     double py_;
     double pz_;
+    ::int32_t arm_index_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -7057,6 +7193,7 @@ class VisionRequest final :
     kFrameTypeFieldNumber = 3,
     kSolutionIdFieldNumber = 4,
     kVisionIdFieldNumber = 5,
+    kArmIndexFieldNumber = 10,
   };
   // string object = 2;
   void clear_object() ;
@@ -7119,12 +7256,22 @@ class VisionRequest final :
   void _internal_set_vision_id(::uint32_t value);
 
   public:
+  // uint32 arm_index = 10;
+  void clear_arm_index() ;
+  ::uint32_t arm_index() const;
+  void set_arm_index(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_arm_index() const;
+  void _internal_set_arm_index(::uint32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.VisionRequest)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<3, 5, 1, 47, 2> _table_;
+  static const ::google::protobuf::internal::TcParseTable<3, 6, 1, 47, 2> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
@@ -7136,6 +7283,7 @@ class VisionRequest final :
     int frame_type_;
     ::uint32_t solution_id_;
     ::uint32_t vision_id_;
+    ::uint32_t arm_index_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -8565,7 +8713,7 @@ class DISignals final :
   enum : int {
     kSignalsFieldNumber = 3,
     kSimModeFieldNumber = 1,
-    kPulsePeriodMsFieldNumber = 2,
+    kPulseWidthMsFieldNumber = 2,
   };
   // repeated .Nrmk.IndyFramework.DigitalSignal signals = 3;
   int signals_size() const;
@@ -8595,14 +8743,14 @@ class DISignals final :
   void _internal_set_sim_mode(::Nrmk::IndyFramework::DISignals_DISimMode value);
 
   public:
-  // uint32 pulse_period_ms = 2;
-  void clear_pulse_period_ms() ;
-  ::uint32_t pulse_period_ms() const;
-  void set_pulse_period_ms(::uint32_t value);
+  // uint32 pulse_width_ms = 2;
+  void clear_pulse_width_ms() ;
+  ::uint32_t pulse_width_ms() const;
+  void set_pulse_width_ms(::uint32_t value);
 
   private:
-  ::uint32_t _internal_pulse_period_ms() const;
-  void _internal_set_pulse_period_ms(::uint32_t value);
+  ::uint32_t _internal_pulse_width_ms() const;
+  void _internal_set_pulse_width_ms(::uint32_t value);
 
   public:
   // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.DISignals)
@@ -8617,7 +8765,7 @@ class DISignals final :
   struct Impl_ {
     ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::DigitalSignal > signals_;
     int sim_mode_;
-    ::uint32_t pulse_period_ms_;
+    ::uint32_t pulse_width_ms_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -8943,7 +9091,7 @@ class DOChannelMode final :
     kAddressFieldNumber = 1,
     kStateFieldNumber = 2,
     kDoModeFieldNumber = 3,
-    kPulsePeriodMsFieldNumber = 4,
+    kPulseWidthMsFieldNumber = 4,
     kPwmFrequencyHzFieldNumber = 5,
     kPwmDutyPercentFieldNumber = 6,
     kMirrorDiAddressFieldNumber = 7,
@@ -8978,14 +9126,14 @@ class DOChannelMode final :
   void _internal_set_do_mode(::Nrmk::IndyFramework::DOChannelMode_DOMode value);
 
   public:
-  // uint32 pulse_period_ms = 4;
-  void clear_pulse_period_ms() ;
-  ::uint32_t pulse_period_ms() const;
-  void set_pulse_period_ms(::uint32_t value);
+  // uint32 pulse_width_ms = 4;
+  void clear_pulse_width_ms() ;
+  ::uint32_t pulse_width_ms() const;
+  void set_pulse_width_ms(::uint32_t value);
 
   private:
-  ::uint32_t _internal_pulse_period_ms() const;
-  void _internal_set_pulse_period_ms(::uint32_t value);
+  ::uint32_t _internal_pulse_width_ms() const;
+  void _internal_set_pulse_width_ms(::uint32_t value);
 
   public:
   // uint32 pwm_frequency_hz = 5;
@@ -9031,7 +9179,7 @@ class DOChannelMode final :
     ::uint32_t address_;
     int state_;
     int do_mode_;
-    ::uint32_t pulse_period_ms_;
+    ::uint32_t pulse_width_ms_;
     ::uint32_t pwm_frequency_hz_;
     ::uint32_t pwm_duty_percent_;
     ::uint32_t mirror_di_address_;
@@ -9042,25 +9190,25 @@ class DOChannelMode final :
   friend struct ::TableStruct_device_5fmsgs_2eproto;
 };// -------------------------------------------------------------------
 
-class SocketCommandConfig final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.SocketCommandConfig) */ {
+class InspireHandCommand final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.InspireHandCommand) */ {
  public:
-  inline SocketCommandConfig() : SocketCommandConfig(nullptr) {}
-  ~SocketCommandConfig() override;
+  inline InspireHandCommand() : InspireHandCommand(nullptr) {}
+  ~InspireHandCommand() override;
   template<typename = void>
-  explicit PROTOBUF_CONSTEXPR SocketCommandConfig(::google::protobuf::internal::ConstantInitialized);
+  explicit PROTOBUF_CONSTEXPR InspireHandCommand(::google::protobuf::internal::ConstantInitialized);
 
-  SocketCommandConfig(const SocketCommandConfig& from);
-  SocketCommandConfig(SocketCommandConfig&& from) noexcept
-    : SocketCommandConfig() {
+  InspireHandCommand(const InspireHandCommand& from);
+  InspireHandCommand(InspireHandCommand&& from) noexcept
+    : InspireHandCommand() {
     *this = ::std::move(from);
   }
 
-  inline SocketCommandConfig& operator=(const SocketCommandConfig& from) {
+  inline InspireHandCommand& operator=(const InspireHandCommand& from) {
     CopyFrom(from);
     return *this;
   }
-  inline SocketCommandConfig& operator=(SocketCommandConfig&& from) noexcept {
+  inline InspireHandCommand& operator=(InspireHandCommand&& from) noexcept {
     if (this == &from) return *this;
     if (GetOwningArena() == from.GetOwningArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -9090,20 +9238,20 @@ class SocketCommandConfig final :
   static const ::google::protobuf::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const SocketCommandConfig& default_instance() {
+  static const InspireHandCommand& default_instance() {
     return *internal_default_instance();
   }
-  static inline const SocketCommandConfig* internal_default_instance() {
-    return reinterpret_cast<const SocketCommandConfig*>(
-               &_SocketCommandConfig_default_instance_);
+  static inline const InspireHandCommand* internal_default_instance() {
+    return reinterpret_cast<const InspireHandCommand*>(
+               &_InspireHandCommand_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     41;
 
-  friend void swap(SocketCommandConfig& a, SocketCommandConfig& b) {
+  friend void swap(InspireHandCommand& a, InspireHandCommand& b) {
     a.Swap(&b);
   }
-  inline void Swap(SocketCommandConfig* other) {
+  inline void Swap(InspireHandCommand* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetOwningArena() != nullptr &&
@@ -9116,7 +9264,7 @@ class SocketCommandConfig final :
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(SocketCommandConfig* other) {
+  void UnsafeArenaSwap(InspireHandCommand* other) {
     if (other == this) return;
     ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
     InternalSwap(other);
@@ -9124,14 +9272,14 @@ class SocketCommandConfig final :
 
   // implements Message ----------------------------------------------
 
-  SocketCommandConfig* New(::google::protobuf::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<SocketCommandConfig>(arena);
+  InspireHandCommand* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<InspireHandCommand>(arena);
   }
   using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const SocketCommandConfig& from);
+  void CopyFrom(const InspireHandCommand& from);
   using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom( const SocketCommandConfig& from) {
-    SocketCommandConfig::MergeImpl(*this, from);
+  void MergeFrom( const InspireHandCommand& from) {
+    InspireHandCommand::MergeImpl(*this, from);
   }
   private:
   static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
@@ -9149,15 +9297,15 @@ class SocketCommandConfig final :
   void SharedCtor(::google::protobuf::Arena* arena);
   void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(SocketCommandConfig* other);
+  void InternalSwap(InspireHandCommand* other);
 
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "Nrmk.IndyFramework.SocketCommandConfig";
+    return "Nrmk.IndyFramework.InspireHandCommand";
   }
   protected:
-  explicit SocketCommandConfig(::google::protobuf::Arena* arena);
+  explicit InspireHandCommand(::google::protobuf::Arena* arena);
   public:
 
   static const ClassData _class_data_;
@@ -9170,115 +9318,178 @@ class SocketCommandConfig final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kRemoteIpFieldNumber = 1,
-    kResponseFieldNumber = 100,
-    kRemotePortFieldNumber = 2,
-    kAutoReconnectFieldNumber = 3,
-    kRxBufferSizeFieldNumber = 4,
+    kSpeedsFieldNumber = 10,
+    kForcesFieldNumber = 11,
+    kAnglesFieldNumber = 12,
+    kToolIndexFieldNumber = 1,
+    kSlaveIdFieldNumber = 2,
+    kRequestFeedbackFieldNumber = 20,
+    kApplySpeedFieldNumber = 30,
+    kApplyForceFieldNumber = 31,
+    kApplyAngleFieldNumber = 32,
   };
-  // string remote_ip = 1;
-  void clear_remote_ip() ;
-  const std::string& remote_ip() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_remote_ip(Arg_&& arg, Args_... args);
-  std::string* mutable_remote_ip();
-  PROTOBUF_NODISCARD std::string* release_remote_ip();
-  void set_allocated_remote_ip(std::string* ptr);
-
+  // repeated int32 speeds = 10;
+  int speeds_size() const;
   private:
-  const std::string& _internal_remote_ip() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_remote_ip(
-      const std::string& value);
-  std::string* _internal_mutable_remote_ip();
+  int _internal_speeds_size() const;
 
   public:
-  // .Nrmk.IndyFramework.Response response = 100;
-  bool has_response() const;
-  void clear_response() ;
-  const ::Nrmk::IndyFramework::Response& response() const;
-  PROTOBUF_NODISCARD ::Nrmk::IndyFramework::Response* release_response();
-  ::Nrmk::IndyFramework::Response* mutable_response();
-  void set_allocated_response(::Nrmk::IndyFramework::Response* value);
-  void unsafe_arena_set_allocated_response(::Nrmk::IndyFramework::Response* value);
-  ::Nrmk::IndyFramework::Response* unsafe_arena_release_response();
+  void clear_speeds() ;
+  ::int32_t speeds(int index) const;
+  void set_speeds(int index, ::int32_t value);
+  void add_speeds(::int32_t value);
+  const ::google::protobuf::RepeatedField<::int32_t>& speeds() const;
+  ::google::protobuf::RepeatedField<::int32_t>* mutable_speeds();
 
   private:
-  const ::Nrmk::IndyFramework::Response& _internal_response() const;
-  ::Nrmk::IndyFramework::Response* _internal_mutable_response();
+  const ::google::protobuf::RepeatedField<::int32_t>& _internal_speeds() const;
+  ::google::protobuf::RepeatedField<::int32_t>* _internal_mutable_speeds();
 
   public:
-  // uint32 remote_port = 2;
-  void clear_remote_port() ;
-  ::uint32_t remote_port() const;
-  void set_remote_port(::uint32_t value);
+  // repeated int32 forces = 11;
+  int forces_size() const;
+  private:
+  int _internal_forces_size() const;
+
+  public:
+  void clear_forces() ;
+  ::int32_t forces(int index) const;
+  void set_forces(int index, ::int32_t value);
+  void add_forces(::int32_t value);
+  const ::google::protobuf::RepeatedField<::int32_t>& forces() const;
+  ::google::protobuf::RepeatedField<::int32_t>* mutable_forces();
 
   private:
-  ::uint32_t _internal_remote_port() const;
-  void _internal_set_remote_port(::uint32_t value);
+  const ::google::protobuf::RepeatedField<::int32_t>& _internal_forces() const;
+  ::google::protobuf::RepeatedField<::int32_t>* _internal_mutable_forces();
 
   public:
-  // bool auto_reconnect = 3;
-  void clear_auto_reconnect() ;
-  bool auto_reconnect() const;
-  void set_auto_reconnect(bool value);
+  // repeated int32 angles = 12;
+  int angles_size() const;
+  private:
+  int _internal_angles_size() const;
+
+  public:
+  void clear_angles() ;
+  ::int32_t angles(int index) const;
+  void set_angles(int index, ::int32_t value);
+  void add_angles(::int32_t value);
+  const ::google::protobuf::RepeatedField<::int32_t>& angles() const;
+  ::google::protobuf::RepeatedField<::int32_t>* mutable_angles();
 
   private:
-  bool _internal_auto_reconnect() const;
-  void _internal_set_auto_reconnect(bool value);
+  const ::google::protobuf::RepeatedField<::int32_t>& _internal_angles() const;
+  ::google::protobuf::RepeatedField<::int32_t>* _internal_mutable_angles();
 
   public:
-  // uint32 rx_buffer_size = 4;
-  void clear_rx_buffer_size() ;
-  ::uint32_t rx_buffer_size() const;
-  void set_rx_buffer_size(::uint32_t value);
+  // int32 tool_index = 1;
+  void clear_tool_index() ;
+  ::int32_t tool_index() const;
+  void set_tool_index(::int32_t value);
 
   private:
-  ::uint32_t _internal_rx_buffer_size() const;
-  void _internal_set_rx_buffer_size(::uint32_t value);
+  ::int32_t _internal_tool_index() const;
+  void _internal_set_tool_index(::int32_t value);
 
   public:
-  // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.SocketCommandConfig)
+  // uint32 slave_id = 2;
+  void clear_slave_id() ;
+  ::uint32_t slave_id() const;
+  void set_slave_id(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_slave_id() const;
+  void _internal_set_slave_id(::uint32_t value);
+
+  public:
+  // bool request_feedback = 20;
+  void clear_request_feedback() ;
+  bool request_feedback() const;
+  void set_request_feedback(bool value);
+
+  private:
+  bool _internal_request_feedback() const;
+  void _internal_set_request_feedback(bool value);
+
+  public:
+  // bool apply_speed = 30;
+  void clear_apply_speed() ;
+  bool apply_speed() const;
+  void set_apply_speed(bool value);
+
+  private:
+  bool _internal_apply_speed() const;
+  void _internal_set_apply_speed(bool value);
+
+  public:
+  // bool apply_force = 31;
+  void clear_apply_force() ;
+  bool apply_force() const;
+  void set_apply_force(bool value);
+
+  private:
+  bool _internal_apply_force() const;
+  void _internal_set_apply_force(bool value);
+
+  public:
+  // bool apply_angle = 32;
+  void clear_apply_angle() ;
+  bool apply_angle() const;
+  void set_apply_angle(bool value);
+
+  private:
+  bool _internal_apply_angle() const;
+  void _internal_set_apply_angle(bool value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.InspireHandCommand)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<2, 5, 1, 56, 7> _table_;
+  static const ::google::protobuf::internal::TcParseTable<4, 9, 0, 0, 2> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
-    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::RepeatedField<::int32_t> speeds_;
+    mutable ::google::protobuf::internal::CachedSize _speeds_cached_byte_size_;
+    ::google::protobuf::RepeatedField<::int32_t> forces_;
+    mutable ::google::protobuf::internal::CachedSize _forces_cached_byte_size_;
+    ::google::protobuf::RepeatedField<::int32_t> angles_;
+    mutable ::google::protobuf::internal::CachedSize _angles_cached_byte_size_;
+    ::int32_t tool_index_;
+    ::uint32_t slave_id_;
+    bool request_feedback_;
+    bool apply_speed_;
+    bool apply_force_;
+    bool apply_angle_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
-    ::google::protobuf::internal::ArenaStringPtr remote_ip_;
-    ::Nrmk::IndyFramework::Response* response_;
-    ::uint32_t remote_port_;
-    bool auto_reconnect_;
-    ::uint32_t rx_buffer_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
   friend struct ::TableStruct_device_5fmsgs_2eproto;
 };// -------------------------------------------------------------------
 
-class SocketCommandStatus final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.SocketCommandStatus) */ {
+class InspireHandState final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.InspireHandState) */ {
  public:
-  inline SocketCommandStatus() : SocketCommandStatus(nullptr) {}
-  ~SocketCommandStatus() override;
+  inline InspireHandState() : InspireHandState(nullptr) {}
+  ~InspireHandState() override;
   template<typename = void>
-  explicit PROTOBUF_CONSTEXPR SocketCommandStatus(::google::protobuf::internal::ConstantInitialized);
+  explicit PROTOBUF_CONSTEXPR InspireHandState(::google::protobuf::internal::ConstantInitialized);
 
-  SocketCommandStatus(const SocketCommandStatus& from);
-  SocketCommandStatus(SocketCommandStatus&& from) noexcept
-    : SocketCommandStatus() {
+  InspireHandState(const InspireHandState& from);
+  InspireHandState(InspireHandState&& from) noexcept
+    : InspireHandState() {
     *this = ::std::move(from);
   }
 
-  inline SocketCommandStatus& operator=(const SocketCommandStatus& from) {
+  inline InspireHandState& operator=(const InspireHandState& from) {
     CopyFrom(from);
     return *this;
   }
-  inline SocketCommandStatus& operator=(SocketCommandStatus&& from) noexcept {
+  inline InspireHandState& operator=(InspireHandState&& from) noexcept {
     if (this == &from) return *this;
     if (GetOwningArena() == from.GetOwningArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -9308,20 +9519,20 @@ class SocketCommandStatus final :
   static const ::google::protobuf::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const SocketCommandStatus& default_instance() {
+  static const InspireHandState& default_instance() {
     return *internal_default_instance();
   }
-  static inline const SocketCommandStatus* internal_default_instance() {
-    return reinterpret_cast<const SocketCommandStatus*>(
-               &_SocketCommandStatus_default_instance_);
+  static inline const InspireHandState* internal_default_instance() {
+    return reinterpret_cast<const InspireHandState*>(
+               &_InspireHandState_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     42;
 
-  friend void swap(SocketCommandStatus& a, SocketCommandStatus& b) {
+  friend void swap(InspireHandState& a, InspireHandState& b) {
     a.Swap(&b);
   }
-  inline void Swap(SocketCommandStatus* other) {
+  inline void Swap(InspireHandState* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetOwningArena() != nullptr &&
@@ -9334,7 +9545,7 @@ class SocketCommandStatus final :
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(SocketCommandStatus* other) {
+  void UnsafeArenaSwap(InspireHandState* other) {
     if (other == this) return;
     ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
     InternalSwap(other);
@@ -9342,14 +9553,14 @@ class SocketCommandStatus final :
 
   // implements Message ----------------------------------------------
 
-  SocketCommandStatus* New(::google::protobuf::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<SocketCommandStatus>(arena);
+  InspireHandState* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<InspireHandState>(arena);
   }
   using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const SocketCommandStatus& from);
+  void CopyFrom(const InspireHandState& from);
   using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom( const SocketCommandStatus& from) {
-    SocketCommandStatus::MergeImpl(*this, from);
+  void MergeFrom( const InspireHandState& from) {
+    InspireHandState::MergeImpl(*this, from);
   }
   private:
   static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
@@ -9367,15 +9578,15 @@ class SocketCommandStatus final :
   void SharedCtor(::google::protobuf::Arena* arena);
   void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(SocketCommandStatus* other);
+  void InternalSwap(InspireHandState* other);
 
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "Nrmk.IndyFramework.SocketCommandStatus";
+    return "Nrmk.IndyFramework.InspireHandState";
   }
   protected:
-  explicit SocketCommandStatus(::google::protobuf::Arena* arena);
+  explicit InspireHandState(::google::protobuf::Arena* arena);
   public:
 
   static const ClassData _class_data_;
@@ -9388,24 +9599,46 @@ class SocketCommandStatus final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kLastErrorFieldNumber = 2,
+    kAnglesFieldNumber = 10,
+    kMsgFieldNumber = 22,
     kResponseFieldNumber = 100,
-    kConnectedFieldNumber = 1,
+    kToolIndexFieldNumber = 1,
+    kSlaveIdFieldNumber = 2,
+    kCommOkFieldNumber = 20,
+    kCrcErrorCountFieldNumber = 21,
   };
-  // string last_error = 2;
-  void clear_last_error() ;
-  const std::string& last_error() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_last_error(Arg_&& arg, Args_... args);
-  std::string* mutable_last_error();
-  PROTOBUF_NODISCARD std::string* release_last_error();
-  void set_allocated_last_error(std::string* ptr);
+  // repeated int32 angles = 10;
+  int angles_size() const;
+  private:
+  int _internal_angles_size() const;
+
+  public:
+  void clear_angles() ;
+  ::int32_t angles(int index) const;
+  void set_angles(int index, ::int32_t value);
+  void add_angles(::int32_t value);
+  const ::google::protobuf::RepeatedField<::int32_t>& angles() const;
+  ::google::protobuf::RepeatedField<::int32_t>* mutable_angles();
 
   private:
-  const std::string& _internal_last_error() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_last_error(
+  const ::google::protobuf::RepeatedField<::int32_t>& _internal_angles() const;
+  ::google::protobuf::RepeatedField<::int32_t>* _internal_mutable_angles();
+
+  public:
+  // string msg = 22;
+  void clear_msg() ;
+  const std::string& msg() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_msg(Arg_&& arg, Args_... args);
+  std::string* mutable_msg();
+  PROTOBUF_NODISCARD std::string* release_msg();
+  void set_allocated_msg(std::string* ptr);
+
+  private:
+  const std::string& _internal_msg() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_msg(
       const std::string& value);
-  std::string* _internal_mutable_last_error();
+  std::string* _internal_mutable_msg();
 
   public:
   // .Nrmk.IndyFramework.Response response = 100;
@@ -9423,213 +9656,66 @@ class SocketCommandStatus final :
   ::Nrmk::IndyFramework::Response* _internal_mutable_response();
 
   public:
-  // bool connected = 1;
-  void clear_connected() ;
-  bool connected() const;
-  void set_connected(bool value);
+  // int32 tool_index = 1;
+  void clear_tool_index() ;
+  ::int32_t tool_index() const;
+  void set_tool_index(::int32_t value);
 
   private:
-  bool _internal_connected() const;
-  void _internal_set_connected(bool value);
+  ::int32_t _internal_tool_index() const;
+  void _internal_set_tool_index(::int32_t value);
 
   public:
-  // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.SocketCommandStatus)
+  // uint32 slave_id = 2;
+  void clear_slave_id() ;
+  ::uint32_t slave_id() const;
+  void set_slave_id(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_slave_id() const;
+  void _internal_set_slave_id(::uint32_t value);
+
+  public:
+  // bool comm_ok = 20;
+  void clear_comm_ok() ;
+  bool comm_ok() const;
+  void set_comm_ok(bool value);
+
+  private:
+  bool _internal_comm_ok() const;
+  void _internal_set_comm_ok(bool value);
+
+  public:
+  // uint32 crc_error_count = 21;
+  void clear_crc_error_count() ;
+  ::uint32_t crc_error_count() const;
+  void set_crc_error_count(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_crc_error_count() const;
+  void _internal_set_crc_error_count(::uint32_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.InspireHandState)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<2, 3, 1, 57, 7> _table_;
+  static const ::google::protobuf::internal::TcParseTable<3, 7, 1, 47, 7> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
-    ::google::protobuf::internal::ArenaStringPtr last_error_;
+    ::google::protobuf::RepeatedField<::int32_t> angles_;
+    mutable ::google::protobuf::internal::CachedSize _angles_cached_byte_size_;
+    ::google::protobuf::internal::ArenaStringPtr msg_;
     ::Nrmk::IndyFramework::Response* response_;
-    bool connected_;
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_device_5fmsgs_2eproto;
-};// -------------------------------------------------------------------
-
-class SocketPayload final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.SocketPayload) */ {
- public:
-  inline SocketPayload() : SocketPayload(nullptr) {}
-  ~SocketPayload() override;
-  template<typename = void>
-  explicit PROTOBUF_CONSTEXPR SocketPayload(::google::protobuf::internal::ConstantInitialized);
-
-  SocketPayload(const SocketPayload& from);
-  SocketPayload(SocketPayload&& from) noexcept
-    : SocketPayload() {
-    *this = ::std::move(from);
-  }
-
-  inline SocketPayload& operator=(const SocketPayload& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline SocketPayload& operator=(SocketPayload&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetOwningArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const SocketPayload& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const SocketPayload* internal_default_instance() {
-    return reinterpret_cast<const SocketPayload*>(
-               &_SocketPayload_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    43;
-
-  friend void swap(SocketPayload& a, SocketPayload& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(SocketPayload* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() != nullptr &&
-        GetOwningArena() == other->GetOwningArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() == other->GetOwningArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(SocketPayload* other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  SocketPayload* New(::google::protobuf::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<SocketPayload>(arena);
-  }
-  using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const SocketPayload& from);
-  using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom( const SocketPayload& from) {
-    SocketPayload::MergeImpl(*this, from);
-  }
-  private:
-  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  ::size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::google::protobuf::Arena* arena);
-  void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(SocketPayload* other);
-
-  private:
-  friend class ::google::protobuf::internal::AnyMetadata;
-  static ::absl::string_view FullMessageName() {
-    return "Nrmk.IndyFramework.SocketPayload";
-  }
-  protected:
-  explicit SocketPayload(::google::protobuf::Arena* arena);
-  public:
-
-  static const ClassData _class_data_;
-  const ::google::protobuf::Message::ClassData*GetClassData() const final;
-
-  ::google::protobuf::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kDataFieldNumber = 1,
-    kResponseFieldNumber = 100,
-  };
-  // bytes data = 1;
-  void clear_data() ;
-  const std::string& data() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_data(Arg_&& arg, Args_... args);
-  std::string* mutable_data();
-  PROTOBUF_NODISCARD std::string* release_data();
-  void set_allocated_data(std::string* ptr);
-
-  private:
-  const std::string& _internal_data() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_data(
-      const std::string& value);
-  std::string* _internal_mutable_data();
-
-  public:
-  // .Nrmk.IndyFramework.Response response = 100;
-  bool has_response() const;
-  void clear_response() ;
-  const ::Nrmk::IndyFramework::Response& response() const;
-  PROTOBUF_NODISCARD ::Nrmk::IndyFramework::Response* release_response();
-  ::Nrmk::IndyFramework::Response* mutable_response();
-  void set_allocated_response(::Nrmk::IndyFramework::Response* value);
-  void unsafe_arena_set_allocated_response(::Nrmk::IndyFramework::Response* value);
-  ::Nrmk::IndyFramework::Response* unsafe_arena_release_response();
-
-  private:
-  const ::Nrmk::IndyFramework::Response& _internal_response() const;
-  ::Nrmk::IndyFramework::Response* _internal_mutable_response();
-
-  public:
-  // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.SocketPayload)
- private:
-  class _Internal;
-
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<1, 2, 1, 0, 7> _table_;
-  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  struct Impl_ {
-    ::google::protobuf::internal::HasBits<1> _has_bits_;
-    mutable ::google::protobuf::internal::CachedSize _cached_size_;
-    ::google::protobuf::internal::ArenaStringPtr data_;
-    ::Nrmk::IndyFramework::Response* response_;
+    ::int32_t tool_index_;
+    ::uint32_t slave_id_;
+    bool comm_ok_;
+    ::uint32_t crc_error_count_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -9814,6 +9900,28 @@ inline void GripperData::_internal_set_gripper_state(::int32_t value) {
   _impl_.gripper_state_ = value;
 }
 
+// int32 tool_index = 10;
+inline void GripperData::clear_tool_index() {
+  _impl_.tool_index_ = 0;
+}
+inline ::int32_t GripperData::tool_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.GripperData.tool_index)
+  return _internal_tool_index();
+}
+inline void GripperData::set_tool_index(::int32_t value) {
+  _internal_set_tool_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.GripperData.tool_index)
+}
+inline ::int32_t GripperData::_internal_tool_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.tool_index_;
+}
+inline void GripperData::_internal_set_tool_index(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.tool_index_ = value;
+}
+
 // -------------------------------------------------------------------
 
 // GripperCommand
@@ -9977,6 +10085,28 @@ inline void GripperCommand::set_allocated_gripper_modbus_server_name(std::string
   // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.GripperCommand.gripper_modbus_server_name)
 }
 
+// int32 tool_index = 100;
+inline void GripperCommand::clear_tool_index() {
+  _impl_.tool_index_ = 0;
+}
+inline ::int32_t GripperCommand::tool_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.GripperCommand.tool_index)
+  return _internal_tool_index();
+}
+inline void GripperCommand::set_tool_index(::int32_t value) {
+  _internal_set_tool_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.GripperCommand.tool_index)
+}
+inline ::int32_t GripperCommand::_internal_tool_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.tool_index_;
+}
+inline void GripperCommand::_internal_set_tool_index(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.tool_index_ = value;
+}
+
 // -------------------------------------------------------------------
 
 // DigitalSignal
@@ -10025,6 +10155,28 @@ inline void DigitalSignal::_internal_set_state(::Nrmk::IndyFramework::DigitalSta
   _impl_.state_ = value;
 }
 
+// int32 tool_index = 10;
+inline void DigitalSignal::clear_tool_index() {
+  _impl_.tool_index_ = 0;
+}
+inline ::int32_t DigitalSignal::tool_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.DigitalSignal.tool_index)
+  return _internal_tool_index();
+}
+inline void DigitalSignal::set_tool_index(::int32_t value) {
+  _internal_set_tool_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.DigitalSignal.tool_index)
+}
+inline ::int32_t DigitalSignal::_internal_tool_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.tool_index_;
+}
+inline void DigitalSignal::_internal_set_tool_index(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.tool_index_ = value;
+}
+
 // -------------------------------------------------------------------
 
 // EndLedDim
@@ -10049,6 +10201,28 @@ inline void EndLedDim::_internal_set_led_dim(::uint32_t value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.led_dim_ = value;
+}
+
+// int32 tool_index = 10;
+inline void EndLedDim::clear_tool_index() {
+  _impl_.tool_index_ = 0;
+}
+inline ::int32_t EndLedDim::tool_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.EndLedDim.tool_index)
+  return _internal_tool_index();
+}
+inline void EndLedDim::set_tool_index(::int32_t value) {
+  _internal_set_tool_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.EndLedDim.tool_index)
+}
+inline ::int32_t EndLedDim::_internal_tool_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.tool_index_;
+}
+inline void EndLedDim::_internal_set_tool_index(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.tool_index_ = value;
 }
 
 // -------------------------------------------------------------------
@@ -10147,6 +10321,28 @@ inline ::google::protobuf::RepeatedField<int>* EndtoolSignal::_internal_mutable_
   return &_impl_.states_;
 }
 
+// int32 tool_index = 10;
+inline void EndtoolSignal::clear_tool_index() {
+  _impl_.tool_index_ = 0;
+}
+inline ::int32_t EndtoolSignal::tool_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.EndtoolSignal.tool_index)
+  return _internal_tool_index();
+}
+inline void EndtoolSignal::set_tool_index(::int32_t value) {
+  _internal_set_tool_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.EndtoolSignal.tool_index)
+}
+inline ::int32_t EndtoolSignal::_internal_tool_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.tool_index_;
+}
+inline void EndtoolSignal::_internal_set_tool_index(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.tool_index_ = value;
+}
+
 // -------------------------------------------------------------------
 
 // AnalogSignal
@@ -10193,6 +10389,28 @@ inline void AnalogSignal::_internal_set_voltage(::int32_t value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.voltage_ = value;
+}
+
+// int32 tool_index = 10;
+inline void AnalogSignal::clear_tool_index() {
+  _impl_.tool_index_ = 0;
+}
+inline ::int32_t AnalogSignal::tool_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.AnalogSignal.tool_index)
+  return _internal_tool_index();
+}
+inline void AnalogSignal::set_tool_index(::int32_t value) {
+  _internal_set_tool_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.AnalogSignal.tool_index)
+}
+inline ::int32_t AnalogSignal::_internal_tool_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.tool_index_;
+}
+inline void AnalogSignal::_internal_set_tool_index(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.tool_index_ = value;
 }
 
 // -------------------------------------------------------------------
@@ -10814,6 +11032,102 @@ inline void DeviceInfo::set_allocated_endtool_board_fw_ver(std::string* value) {
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.DeviceInfo.endtool_board_fw_ver)
+}
+
+// repeated string endtool_board_fw_vers = 13;
+inline int DeviceInfo::_internal_endtool_board_fw_vers_size() const {
+  return _internal_endtool_board_fw_vers().size();
+}
+inline int DeviceInfo::endtool_board_fw_vers_size() const {
+  return _internal_endtool_board_fw_vers_size();
+}
+inline void DeviceInfo::clear_endtool_board_fw_vers() {
+  _internal_mutable_endtool_board_fw_vers()->Clear();
+}
+inline std::string* DeviceInfo::add_endtool_board_fw_vers() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  std::string* _s = _internal_mutable_endtool_board_fw_vers()->Add();
+  // @@protoc_insertion_point(field_add_mutable:Nrmk.IndyFramework.DeviceInfo.endtool_board_fw_vers)
+  return _s;
+}
+inline const std::string& DeviceInfo::endtool_board_fw_vers(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.DeviceInfo.endtool_board_fw_vers)
+  return _internal_endtool_board_fw_vers().Get(index);
+}
+inline std::string* DeviceInfo::mutable_endtool_board_fw_vers(int index) {
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.DeviceInfo.endtool_board_fw_vers)
+  return _internal_mutable_endtool_board_fw_vers()->Mutable(index);
+}
+inline void DeviceInfo::set_endtool_board_fw_vers(int index, const std::string& value) {
+  _internal_mutable_endtool_board_fw_vers()->Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.DeviceInfo.endtool_board_fw_vers)
+}
+inline void DeviceInfo::set_endtool_board_fw_vers(int index, std::string&& value) {
+  _internal_mutable_endtool_board_fw_vers()->Mutable(index)->assign(std::move(value));
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.DeviceInfo.endtool_board_fw_vers)
+}
+inline void DeviceInfo::set_endtool_board_fw_vers(int index, const char* value) {
+  ABSL_DCHECK(value != nullptr);
+  _internal_mutable_endtool_board_fw_vers()->Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:Nrmk.IndyFramework.DeviceInfo.endtool_board_fw_vers)
+}
+inline void DeviceInfo::set_endtool_board_fw_vers(int index, const char* value,
+                              std::size_t size) {
+  _internal_mutable_endtool_board_fw_vers()->Mutable(index)->assign(
+      reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:Nrmk.IndyFramework.DeviceInfo.endtool_board_fw_vers)
+}
+inline void DeviceInfo::set_endtool_board_fw_vers(int index, absl::string_view value) {
+  _internal_mutable_endtool_board_fw_vers()->Mutable(index)->assign(value.data(),
+                                                     value.size());
+  // @@protoc_insertion_point(field_set_string_piece:Nrmk.IndyFramework.DeviceInfo.endtool_board_fw_vers)
+}
+inline void DeviceInfo::add_endtool_board_fw_vers(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_endtool_board_fw_vers()->Add()->assign(value);
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.DeviceInfo.endtool_board_fw_vers)
+}
+inline void DeviceInfo::add_endtool_board_fw_vers(std::string&& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_endtool_board_fw_vers()->Add(std::move(value));
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.DeviceInfo.endtool_board_fw_vers)
+}
+inline void DeviceInfo::add_endtool_board_fw_vers(const char* value) {
+  ABSL_DCHECK(value != nullptr);
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_endtool_board_fw_vers()->Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:Nrmk.IndyFramework.DeviceInfo.endtool_board_fw_vers)
+}
+inline void DeviceInfo::add_endtool_board_fw_vers(const char* value, std::size_t size) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_endtool_board_fw_vers()->Add()->assign(
+      reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:Nrmk.IndyFramework.DeviceInfo.endtool_board_fw_vers)
+}
+inline void DeviceInfo::add_endtool_board_fw_vers(absl::string_view value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_endtool_board_fw_vers()->Add()->assign(value.data(), value.size());
+  // @@protoc_insertion_point(field_add_string_piece:Nrmk.IndyFramework.DeviceInfo.endtool_board_fw_vers)
+}
+inline const ::google::protobuf::RepeatedPtrField<std::string>&
+DeviceInfo::endtool_board_fw_vers() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.DeviceInfo.endtool_board_fw_vers)
+  return _internal_endtool_board_fw_vers();
+}
+inline ::google::protobuf::RepeatedPtrField<std::string>* DeviceInfo::mutable_endtool_board_fw_vers() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.DeviceInfo.endtool_board_fw_vers)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_endtool_board_fw_vers();
+}
+inline const ::google::protobuf::RepeatedPtrField<std::string>&
+DeviceInfo::_internal_endtool_board_fw_vers() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.endtool_board_fw_vers_;
+}
+inline ::google::protobuf::RepeatedPtrField<std::string>*
+DeviceInfo::_internal_mutable_endtool_board_fw_vers() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.endtool_board_fw_vers_;
 }
 
 // string controller_ver = 20;
@@ -12832,6 +13146,28 @@ inline void SanderCommand::_internal_set_state(bool value) {
   _impl_.state_ = value;
 }
 
+// int32 tool_index = 20;
+inline void SanderCommand::clear_tool_index() {
+  _impl_.tool_index_ = 0;
+}
+inline ::int32_t SanderCommand::tool_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.SanderCommand.tool_index)
+  return _internal_tool_index();
+}
+inline void SanderCommand::set_tool_index(::int32_t value) {
+  _internal_set_tool_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.SanderCommand.tool_index)
+}
+inline ::int32_t SanderCommand::_internal_tool_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.tool_index_;
+}
+inline void SanderCommand::_internal_set_tool_index(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.tool_index_ = value;
+}
+
 // -------------------------------------------------------------------
 
 // Encoder
@@ -13627,6 +13963,28 @@ inline void Conveyor::set_allocated_terminal_pose(::Nrmk::IndyFramework::PosePai
   // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.Conveyor.terminal_pose)
 }
 
+// int32 arm_index = 20;
+inline void Conveyor::clear_arm_index() {
+  _impl_.arm_index_ = 0;
+}
+inline ::int32_t Conveyor::arm_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.Conveyor.arm_index)
+  return _internal_arm_index();
+}
+inline void Conveyor::set_arm_index(::int32_t value) {
+  _internal_set_arm_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.Conveyor.arm_index)
+}
+inline ::int32_t Conveyor::_internal_arm_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.arm_index_;
+}
+inline void Conveyor::_internal_set_arm_index(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.arm_index_ = value;
+}
+
 // int32 tool_link = 31;
 inline void Conveyor::clear_tool_link() {
   _impl_.tool_link_ = 0;
@@ -13862,6 +14220,28 @@ inline void AddPhotoneoCalibPointReq::_internal_set_pz(double value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.pz_ = value;
+}
+
+// int32 arm_index = 10;
+inline void AddPhotoneoCalibPointReq::clear_arm_index() {
+  _impl_.arm_index_ = 0;
+}
+inline ::int32_t AddPhotoneoCalibPointReq::arm_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.AddPhotoneoCalibPointReq.arm_index)
+  return _internal_arm_index();
+}
+inline void AddPhotoneoCalibPointReq::set_arm_index(::int32_t value) {
+  _internal_set_arm_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.AddPhotoneoCalibPointReq.arm_index)
+}
+inline ::int32_t AddPhotoneoCalibPointReq::_internal_arm_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.arm_index_;
+}
+inline void AddPhotoneoCalibPointReq::_internal_set_arm_index(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.arm_index_ = value;
 }
 
 // -------------------------------------------------------------------
@@ -14229,6 +14609,28 @@ inline void VisionRequest::_internal_set_vision_id(::uint32_t value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.vision_id_ = value;
+}
+
+// uint32 arm_index = 10;
+inline void VisionRequest::clear_arm_index() {
+  _impl_.arm_index_ = 0u;
+}
+inline ::uint32_t VisionRequest::arm_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.VisionRequest.arm_index)
+  return _internal_arm_index();
+}
+inline void VisionRequest::set_arm_index(::uint32_t value) {
+  _internal_set_arm_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.VisionRequest.arm_index)
+}
+inline ::uint32_t VisionRequest::_internal_arm_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.arm_index_;
+}
+inline void VisionRequest::_internal_set_arm_index(::uint32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.arm_index_ = value;
 }
 
 // -------------------------------------------------------------------
@@ -15260,26 +15662,26 @@ inline void DISignals::_internal_set_sim_mode(::Nrmk::IndyFramework::DISignals_D
   _impl_.sim_mode_ = value;
 }
 
-// uint32 pulse_period_ms = 2;
-inline void DISignals::clear_pulse_period_ms() {
-  _impl_.pulse_period_ms_ = 0u;
+// uint32 pulse_width_ms = 2;
+inline void DISignals::clear_pulse_width_ms() {
+  _impl_.pulse_width_ms_ = 0u;
 }
-inline ::uint32_t DISignals::pulse_period_ms() const {
-  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.DISignals.pulse_period_ms)
-  return _internal_pulse_period_ms();
+inline ::uint32_t DISignals::pulse_width_ms() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.DISignals.pulse_width_ms)
+  return _internal_pulse_width_ms();
 }
-inline void DISignals::set_pulse_period_ms(::uint32_t value) {
-  _internal_set_pulse_period_ms(value);
-  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.DISignals.pulse_period_ms)
+inline void DISignals::set_pulse_width_ms(::uint32_t value) {
+  _internal_set_pulse_width_ms(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.DISignals.pulse_width_ms)
 }
-inline ::uint32_t DISignals::_internal_pulse_period_ms() const {
+inline ::uint32_t DISignals::_internal_pulse_width_ms() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.pulse_period_ms_;
+  return _impl_.pulse_width_ms_;
 }
-inline void DISignals::_internal_set_pulse_period_ms(::uint32_t value) {
+inline void DISignals::_internal_set_pulse_width_ms(::uint32_t value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.pulse_period_ms_ = value;
+  _impl_.pulse_width_ms_ = value;
 }
 
 // repeated .Nrmk.IndyFramework.DigitalSignal signals = 3;
@@ -15448,26 +15850,26 @@ inline void DOChannelMode::_internal_set_do_mode(::Nrmk::IndyFramework::DOChanne
   _impl_.do_mode_ = value;
 }
 
-// uint32 pulse_period_ms = 4;
-inline void DOChannelMode::clear_pulse_period_ms() {
-  _impl_.pulse_period_ms_ = 0u;
+// uint32 pulse_width_ms = 4;
+inline void DOChannelMode::clear_pulse_width_ms() {
+  _impl_.pulse_width_ms_ = 0u;
 }
-inline ::uint32_t DOChannelMode::pulse_period_ms() const {
-  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.DOChannelMode.pulse_period_ms)
-  return _internal_pulse_period_ms();
+inline ::uint32_t DOChannelMode::pulse_width_ms() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.DOChannelMode.pulse_width_ms)
+  return _internal_pulse_width_ms();
 }
-inline void DOChannelMode::set_pulse_period_ms(::uint32_t value) {
-  _internal_set_pulse_period_ms(value);
-  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.DOChannelMode.pulse_period_ms)
+inline void DOChannelMode::set_pulse_width_ms(::uint32_t value) {
+  _internal_set_pulse_width_ms(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.DOChannelMode.pulse_width_ms)
 }
-inline ::uint32_t DOChannelMode::_internal_pulse_period_ms() const {
+inline ::uint32_t DOChannelMode::_internal_pulse_width_ms() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.pulse_period_ms_;
+  return _impl_.pulse_width_ms_;
 }
-inline void DOChannelMode::_internal_set_pulse_period_ms(::uint32_t value) {
+inline void DOChannelMode::_internal_set_pulse_width_ms(::uint32_t value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.pulse_period_ms_ = value;
+  _impl_.pulse_width_ms_ = value;
 }
 
 // uint32 pwm_frequency_hz = 5;
@@ -15538,310 +15940,467 @@ inline void DOChannelMode::_internal_set_mirror_di_address(::uint32_t value) {
 
 // -------------------------------------------------------------------
 
-// SocketCommandConfig
+// InspireHandCommand
 
-// string remote_ip = 1;
-inline void SocketCommandConfig::clear_remote_ip() {
-  _impl_.remote_ip_.ClearToEmpty();
+// int32 tool_index = 1;
+inline void InspireHandCommand::clear_tool_index() {
+  _impl_.tool_index_ = 0;
 }
-inline const std::string& SocketCommandConfig::remote_ip() const {
-  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.SocketCommandConfig.remote_ip)
-  return _internal_remote_ip();
+inline ::int32_t InspireHandCommand::tool_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.InspireHandCommand.tool_index)
+  return _internal_tool_index();
 }
-template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void SocketCommandConfig::set_remote_ip(Arg_&& arg,
-                                                     Args_... args) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  _impl_.remote_ip_.Set(static_cast<Arg_&&>(arg), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.SocketCommandConfig.remote_ip)
+inline void InspireHandCommand::set_tool_index(::int32_t value) {
+  _internal_set_tool_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.InspireHandCommand.tool_index)
 }
-inline std::string* SocketCommandConfig::mutable_remote_ip() {
-  std::string* _s = _internal_mutable_remote_ip();
-  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.SocketCommandConfig.remote_ip)
-  return _s;
-}
-inline const std::string& SocketCommandConfig::_internal_remote_ip() const {
+inline ::int32_t InspireHandCommand::_internal_tool_index() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.remote_ip_.Get();
+  return _impl_.tool_index_;
 }
-inline void SocketCommandConfig::_internal_set_remote_ip(const std::string& value) {
+inline void InspireHandCommand::_internal_set_tool_index(::int32_t value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.remote_ip_.Set(value, GetArenaForAllocation());
-}
-inline std::string* SocketCommandConfig::_internal_mutable_remote_ip() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  return _impl_.remote_ip_.Mutable( GetArenaForAllocation());
-}
-inline std::string* SocketCommandConfig::release_remote_ip() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:Nrmk.IndyFramework.SocketCommandConfig.remote_ip)
-  return _impl_.remote_ip_.Release();
-}
-inline void SocketCommandConfig::set_allocated_remote_ip(std::string* value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.remote_ip_.SetAllocated(value, GetArenaForAllocation());
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        if (_impl_.remote_ip_.IsDefault()) {
-          _impl_.remote_ip_.Set("", GetArenaForAllocation());
-        }
-  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.SocketCommandConfig.remote_ip)
+  _impl_.tool_index_ = value;
 }
 
-// uint32 remote_port = 2;
-inline void SocketCommandConfig::clear_remote_port() {
-  _impl_.remote_port_ = 0u;
+// uint32 slave_id = 2;
+inline void InspireHandCommand::clear_slave_id() {
+  _impl_.slave_id_ = 0u;
 }
-inline ::uint32_t SocketCommandConfig::remote_port() const {
-  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.SocketCommandConfig.remote_port)
-  return _internal_remote_port();
+inline ::uint32_t InspireHandCommand::slave_id() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.InspireHandCommand.slave_id)
+  return _internal_slave_id();
 }
-inline void SocketCommandConfig::set_remote_port(::uint32_t value) {
-  _internal_set_remote_port(value);
-  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.SocketCommandConfig.remote_port)
+inline void InspireHandCommand::set_slave_id(::uint32_t value) {
+  _internal_set_slave_id(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.InspireHandCommand.slave_id)
 }
-inline ::uint32_t SocketCommandConfig::_internal_remote_port() const {
+inline ::uint32_t InspireHandCommand::_internal_slave_id() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.remote_port_;
+  return _impl_.slave_id_;
 }
-inline void SocketCommandConfig::_internal_set_remote_port(::uint32_t value) {
+inline void InspireHandCommand::_internal_set_slave_id(::uint32_t value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.remote_port_ = value;
+  _impl_.slave_id_ = value;
 }
 
-// bool auto_reconnect = 3;
-inline void SocketCommandConfig::clear_auto_reconnect() {
-  _impl_.auto_reconnect_ = false;
+// repeated int32 speeds = 10;
+inline int InspireHandCommand::_internal_speeds_size() const {
+  return _internal_speeds().size();
 }
-inline bool SocketCommandConfig::auto_reconnect() const {
-  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.SocketCommandConfig.auto_reconnect)
-  return _internal_auto_reconnect();
+inline int InspireHandCommand::speeds_size() const {
+  return _internal_speeds_size();
 }
-inline void SocketCommandConfig::set_auto_reconnect(bool value) {
-  _internal_set_auto_reconnect(value);
-  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.SocketCommandConfig.auto_reconnect)
+inline void InspireHandCommand::clear_speeds() {
+  _internal_mutable_speeds()->Clear();
 }
-inline bool SocketCommandConfig::_internal_auto_reconnect() const {
+inline ::int32_t InspireHandCommand::speeds(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.InspireHandCommand.speeds)
+  return _internal_speeds().Get(index);
+}
+inline void InspireHandCommand::set_speeds(int index, ::int32_t value) {
+  _internal_mutable_speeds()->Set(index, value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.InspireHandCommand.speeds)
+}
+inline void InspireHandCommand::add_speeds(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_speeds()->Add(value);
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.InspireHandCommand.speeds)
+}
+inline const ::google::protobuf::RepeatedField<::int32_t>& InspireHandCommand::speeds() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.InspireHandCommand.speeds)
+  return _internal_speeds();
+}
+inline ::google::protobuf::RepeatedField<::int32_t>* InspireHandCommand::mutable_speeds() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.InspireHandCommand.speeds)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_speeds();
+}
+
+inline const ::google::protobuf::RepeatedField<::int32_t>& InspireHandCommand::_internal_speeds() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.auto_reconnect_;
+  return _impl_.speeds_;
 }
-inline void SocketCommandConfig::_internal_set_auto_reconnect(bool value) {
+inline ::google::protobuf::RepeatedField<::int32_t>* InspireHandCommand::_internal_mutable_speeds() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.speeds_;
+}
+
+// repeated int32 forces = 11;
+inline int InspireHandCommand::_internal_forces_size() const {
+  return _internal_forces().size();
+}
+inline int InspireHandCommand::forces_size() const {
+  return _internal_forces_size();
+}
+inline void InspireHandCommand::clear_forces() {
+  _internal_mutable_forces()->Clear();
+}
+inline ::int32_t InspireHandCommand::forces(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.InspireHandCommand.forces)
+  return _internal_forces().Get(index);
+}
+inline void InspireHandCommand::set_forces(int index, ::int32_t value) {
+  _internal_mutable_forces()->Set(index, value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.InspireHandCommand.forces)
+}
+inline void InspireHandCommand::add_forces(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_forces()->Add(value);
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.InspireHandCommand.forces)
+}
+inline const ::google::protobuf::RepeatedField<::int32_t>& InspireHandCommand::forces() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.InspireHandCommand.forces)
+  return _internal_forces();
+}
+inline ::google::protobuf::RepeatedField<::int32_t>* InspireHandCommand::mutable_forces() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.InspireHandCommand.forces)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_forces();
+}
+
+inline const ::google::protobuf::RepeatedField<::int32_t>& InspireHandCommand::_internal_forces() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.forces_;
+}
+inline ::google::protobuf::RepeatedField<::int32_t>* InspireHandCommand::_internal_mutable_forces() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.forces_;
+}
+
+// repeated int32 angles = 12;
+inline int InspireHandCommand::_internal_angles_size() const {
+  return _internal_angles().size();
+}
+inline int InspireHandCommand::angles_size() const {
+  return _internal_angles_size();
+}
+inline void InspireHandCommand::clear_angles() {
+  _internal_mutable_angles()->Clear();
+}
+inline ::int32_t InspireHandCommand::angles(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.InspireHandCommand.angles)
+  return _internal_angles().Get(index);
+}
+inline void InspireHandCommand::set_angles(int index, ::int32_t value) {
+  _internal_mutable_angles()->Set(index, value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.InspireHandCommand.angles)
+}
+inline void InspireHandCommand::add_angles(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_angles()->Add(value);
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.InspireHandCommand.angles)
+}
+inline const ::google::protobuf::RepeatedField<::int32_t>& InspireHandCommand::angles() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.InspireHandCommand.angles)
+  return _internal_angles();
+}
+inline ::google::protobuf::RepeatedField<::int32_t>* InspireHandCommand::mutable_angles() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.InspireHandCommand.angles)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_angles();
+}
+
+inline const ::google::protobuf::RepeatedField<::int32_t>& InspireHandCommand::_internal_angles() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.angles_;
+}
+inline ::google::protobuf::RepeatedField<::int32_t>* InspireHandCommand::_internal_mutable_angles() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.angles_;
+}
+
+// bool request_feedback = 20;
+inline void InspireHandCommand::clear_request_feedback() {
+  _impl_.request_feedback_ = false;
+}
+inline bool InspireHandCommand::request_feedback() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.InspireHandCommand.request_feedback)
+  return _internal_request_feedback();
+}
+inline void InspireHandCommand::set_request_feedback(bool value) {
+  _internal_set_request_feedback(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.InspireHandCommand.request_feedback)
+}
+inline bool InspireHandCommand::_internal_request_feedback() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.request_feedback_;
+}
+inline void InspireHandCommand::_internal_set_request_feedback(bool value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.auto_reconnect_ = value;
+  _impl_.request_feedback_ = value;
 }
 
-// uint32 rx_buffer_size = 4;
-inline void SocketCommandConfig::clear_rx_buffer_size() {
-  _impl_.rx_buffer_size_ = 0u;
+// bool apply_speed = 30;
+inline void InspireHandCommand::clear_apply_speed() {
+  _impl_.apply_speed_ = false;
 }
-inline ::uint32_t SocketCommandConfig::rx_buffer_size() const {
-  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.SocketCommandConfig.rx_buffer_size)
-  return _internal_rx_buffer_size();
+inline bool InspireHandCommand::apply_speed() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.InspireHandCommand.apply_speed)
+  return _internal_apply_speed();
 }
-inline void SocketCommandConfig::set_rx_buffer_size(::uint32_t value) {
-  _internal_set_rx_buffer_size(value);
-  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.SocketCommandConfig.rx_buffer_size)
+inline void InspireHandCommand::set_apply_speed(bool value) {
+  _internal_set_apply_speed(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.InspireHandCommand.apply_speed)
 }
-inline ::uint32_t SocketCommandConfig::_internal_rx_buffer_size() const {
+inline bool InspireHandCommand::_internal_apply_speed() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.rx_buffer_size_;
+  return _impl_.apply_speed_;
 }
-inline void SocketCommandConfig::_internal_set_rx_buffer_size(::uint32_t value) {
+inline void InspireHandCommand::_internal_set_apply_speed(bool value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.rx_buffer_size_ = value;
+  _impl_.apply_speed_ = value;
 }
 
-// .Nrmk.IndyFramework.Response response = 100;
-inline bool SocketCommandConfig::has_response() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
-  PROTOBUF_ASSUME(!value || _impl_.response_ != nullptr);
-  return value;
+// bool apply_force = 31;
+inline void InspireHandCommand::clear_apply_force() {
+  _impl_.apply_force_ = false;
 }
-inline const ::Nrmk::IndyFramework::Response& SocketCommandConfig::_internal_response() const {
+inline bool InspireHandCommand::apply_force() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.InspireHandCommand.apply_force)
+  return _internal_apply_force();
+}
+inline void InspireHandCommand::set_apply_force(bool value) {
+  _internal_set_apply_force(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.InspireHandCommand.apply_force)
+}
+inline bool InspireHandCommand::_internal_apply_force() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  const ::Nrmk::IndyFramework::Response* p = _impl_.response_;
-  return p != nullptr ? *p : reinterpret_cast<const ::Nrmk::IndyFramework::Response&>(::Nrmk::IndyFramework::_Response_default_instance_);
+  return _impl_.apply_force_;
 }
-inline const ::Nrmk::IndyFramework::Response& SocketCommandConfig::response() const {
-  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.SocketCommandConfig.response)
-  return _internal_response();
-}
-inline void SocketCommandConfig::unsafe_arena_set_allocated_response(::Nrmk::IndyFramework::Response* value) {
+inline void InspireHandCommand::_internal_set_apply_force(bool value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  if (GetArenaForAllocation() == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.response_);
-  }
-  _impl_.response_ = reinterpret_cast<::Nrmk::IndyFramework::Response*>(value);
-  if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000001u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000001u;
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Nrmk.IndyFramework.SocketCommandConfig.response)
+  ;
+  _impl_.apply_force_ = value;
 }
-inline ::Nrmk::IndyFramework::Response* SocketCommandConfig::release_response() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
 
-  _impl_._has_bits_[0] &= ~0x00000001u;
-  ::Nrmk::IndyFramework::Response* released = _impl_.response_;
-  _impl_.response_ = nullptr;
-#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
-  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
-  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
-  if (GetArenaForAllocation() == nullptr) {
-    delete old;
-  }
-#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
-  if (GetArenaForAllocation() != nullptr) {
-    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
-  }
-#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
-  return released;
+// bool apply_angle = 32;
+inline void InspireHandCommand::clear_apply_angle() {
+  _impl_.apply_angle_ = false;
 }
-inline ::Nrmk::IndyFramework::Response* SocketCommandConfig::unsafe_arena_release_response() {
+inline bool InspireHandCommand::apply_angle() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.InspireHandCommand.apply_angle)
+  return _internal_apply_angle();
+}
+inline void InspireHandCommand::set_apply_angle(bool value) {
+  _internal_set_apply_angle(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.InspireHandCommand.apply_angle)
+}
+inline bool InspireHandCommand::_internal_apply_angle() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.apply_angle_;
+}
+inline void InspireHandCommand::_internal_set_apply_angle(bool value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:Nrmk.IndyFramework.SocketCommandConfig.response)
-
-  _impl_._has_bits_[0] &= ~0x00000001u;
-  ::Nrmk::IndyFramework::Response* temp = _impl_.response_;
-  _impl_.response_ = nullptr;
-  return temp;
-}
-inline ::Nrmk::IndyFramework::Response* SocketCommandConfig::_internal_mutable_response() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_._has_bits_[0] |= 0x00000001u;
-  if (_impl_.response_ == nullptr) {
-    auto* p = CreateMaybeMessage<::Nrmk::IndyFramework::Response>(GetArenaForAllocation());
-    _impl_.response_ = reinterpret_cast<::Nrmk::IndyFramework::Response*>(p);
-  }
-  return _impl_.response_;
-}
-inline ::Nrmk::IndyFramework::Response* SocketCommandConfig::mutable_response() {
-  ::Nrmk::IndyFramework::Response* _msg = _internal_mutable_response();
-  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.SocketCommandConfig.response)
-  return _msg;
-}
-inline void SocketCommandConfig::set_allocated_response(::Nrmk::IndyFramework::Response* value) {
-  ::google::protobuf::Arena* message_arena = GetArenaForAllocation();
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  if (message_arena == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.response_);
-  }
-
-  if (value != nullptr) {
-    ::google::protobuf::Arena* submessage_arena =
-        ::google::protobuf::Arena::InternalGetOwningArena(reinterpret_cast<::google::protobuf::MessageLite*>(value));
-    if (message_arena != submessage_arena) {
-      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
-    }
-    _impl_._has_bits_[0] |= 0x00000001u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000001u;
-  }
-
-  _impl_.response_ = reinterpret_cast<::Nrmk::IndyFramework::Response*>(value);
-  // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.SocketCommandConfig.response)
+  ;
+  _impl_.apply_angle_ = value;
 }
 
 // -------------------------------------------------------------------
 
-// SocketCommandStatus
+// InspireHandState
 
-// bool connected = 1;
-inline void SocketCommandStatus::clear_connected() {
-  _impl_.connected_ = false;
+// int32 tool_index = 1;
+inline void InspireHandState::clear_tool_index() {
+  _impl_.tool_index_ = 0;
 }
-inline bool SocketCommandStatus::connected() const {
-  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.SocketCommandStatus.connected)
-  return _internal_connected();
+inline ::int32_t InspireHandState::tool_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.InspireHandState.tool_index)
+  return _internal_tool_index();
 }
-inline void SocketCommandStatus::set_connected(bool value) {
-  _internal_set_connected(value);
-  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.SocketCommandStatus.connected)
+inline void InspireHandState::set_tool_index(::int32_t value) {
+  _internal_set_tool_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.InspireHandState.tool_index)
 }
-inline bool SocketCommandStatus::_internal_connected() const {
+inline ::int32_t InspireHandState::_internal_tool_index() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.connected_;
+  return _impl_.tool_index_;
 }
-inline void SocketCommandStatus::_internal_set_connected(bool value) {
+inline void InspireHandState::_internal_set_tool_index(::int32_t value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.connected_ = value;
+  _impl_.tool_index_ = value;
 }
 
-// string last_error = 2;
-inline void SocketCommandStatus::clear_last_error() {
-  _impl_.last_error_.ClearToEmpty();
+// uint32 slave_id = 2;
+inline void InspireHandState::clear_slave_id() {
+  _impl_.slave_id_ = 0u;
 }
-inline const std::string& SocketCommandStatus::last_error() const {
-  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.SocketCommandStatus.last_error)
-  return _internal_last_error();
+inline ::uint32_t InspireHandState::slave_id() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.InspireHandState.slave_id)
+  return _internal_slave_id();
+}
+inline void InspireHandState::set_slave_id(::uint32_t value) {
+  _internal_set_slave_id(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.InspireHandState.slave_id)
+}
+inline ::uint32_t InspireHandState::_internal_slave_id() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.slave_id_;
+}
+inline void InspireHandState::_internal_set_slave_id(::uint32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.slave_id_ = value;
+}
+
+// repeated int32 angles = 10;
+inline int InspireHandState::_internal_angles_size() const {
+  return _internal_angles().size();
+}
+inline int InspireHandState::angles_size() const {
+  return _internal_angles_size();
+}
+inline void InspireHandState::clear_angles() {
+  _internal_mutable_angles()->Clear();
+}
+inline ::int32_t InspireHandState::angles(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.InspireHandState.angles)
+  return _internal_angles().Get(index);
+}
+inline void InspireHandState::set_angles(int index, ::int32_t value) {
+  _internal_mutable_angles()->Set(index, value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.InspireHandState.angles)
+}
+inline void InspireHandState::add_angles(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_angles()->Add(value);
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.InspireHandState.angles)
+}
+inline const ::google::protobuf::RepeatedField<::int32_t>& InspireHandState::angles() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.InspireHandState.angles)
+  return _internal_angles();
+}
+inline ::google::protobuf::RepeatedField<::int32_t>* InspireHandState::mutable_angles() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.InspireHandState.angles)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_angles();
+}
+
+inline const ::google::protobuf::RepeatedField<::int32_t>& InspireHandState::_internal_angles() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.angles_;
+}
+inline ::google::protobuf::RepeatedField<::int32_t>* InspireHandState::_internal_mutable_angles() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.angles_;
+}
+
+// bool comm_ok = 20;
+inline void InspireHandState::clear_comm_ok() {
+  _impl_.comm_ok_ = false;
+}
+inline bool InspireHandState::comm_ok() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.InspireHandState.comm_ok)
+  return _internal_comm_ok();
+}
+inline void InspireHandState::set_comm_ok(bool value) {
+  _internal_set_comm_ok(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.InspireHandState.comm_ok)
+}
+inline bool InspireHandState::_internal_comm_ok() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.comm_ok_;
+}
+inline void InspireHandState::_internal_set_comm_ok(bool value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.comm_ok_ = value;
+}
+
+// uint32 crc_error_count = 21;
+inline void InspireHandState::clear_crc_error_count() {
+  _impl_.crc_error_count_ = 0u;
+}
+inline ::uint32_t InspireHandState::crc_error_count() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.InspireHandState.crc_error_count)
+  return _internal_crc_error_count();
+}
+inline void InspireHandState::set_crc_error_count(::uint32_t value) {
+  _internal_set_crc_error_count(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.InspireHandState.crc_error_count)
+}
+inline ::uint32_t InspireHandState::_internal_crc_error_count() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.crc_error_count_;
+}
+inline void InspireHandState::_internal_set_crc_error_count(::uint32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.crc_error_count_ = value;
+}
+
+// string msg = 22;
+inline void InspireHandState::clear_msg() {
+  _impl_.msg_.ClearToEmpty();
+}
+inline const std::string& InspireHandState::msg() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.InspireHandState.msg)
+  return _internal_msg();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void SocketCommandStatus::set_last_error(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void InspireHandState::set_msg(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.last_error_.Set(static_cast<Arg_&&>(arg), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.SocketCommandStatus.last_error)
+  _impl_.msg_.Set(static_cast<Arg_&&>(arg), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.InspireHandState.msg)
 }
-inline std::string* SocketCommandStatus::mutable_last_error() {
-  std::string* _s = _internal_mutable_last_error();
-  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.SocketCommandStatus.last_error)
+inline std::string* InspireHandState::mutable_msg() {
+  std::string* _s = _internal_mutable_msg();
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.InspireHandState.msg)
   return _s;
 }
-inline const std::string& SocketCommandStatus::_internal_last_error() const {
+inline const std::string& InspireHandState::_internal_msg() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.last_error_.Get();
+  return _impl_.msg_.Get();
 }
-inline void SocketCommandStatus::_internal_set_last_error(const std::string& value) {
+inline void InspireHandState::_internal_set_msg(const std::string& value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.last_error_.Set(value, GetArenaForAllocation());
+  _impl_.msg_.Set(value, GetArenaForAllocation());
 }
-inline std::string* SocketCommandStatus::_internal_mutable_last_error() {
+inline std::string* InspireHandState::_internal_mutable_msg() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  return _impl_.last_error_.Mutable( GetArenaForAllocation());
+  return _impl_.msg_.Mutable( GetArenaForAllocation());
 }
-inline std::string* SocketCommandStatus::release_last_error() {
+inline std::string* InspireHandState::release_msg() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:Nrmk.IndyFramework.SocketCommandStatus.last_error)
-  return _impl_.last_error_.Release();
+  // @@protoc_insertion_point(field_release:Nrmk.IndyFramework.InspireHandState.msg)
+  return _impl_.msg_.Release();
 }
-inline void SocketCommandStatus::set_allocated_last_error(std::string* value) {
+inline void InspireHandState::set_allocated_msg(std::string* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.last_error_.SetAllocated(value, GetArenaForAllocation());
+  _impl_.msg_.SetAllocated(value, GetArenaForAllocation());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        if (_impl_.last_error_.IsDefault()) {
-          _impl_.last_error_.Set("", GetArenaForAllocation());
+        if (_impl_.msg_.IsDefault()) {
+          _impl_.msg_.Set("", GetArenaForAllocation());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.SocketCommandStatus.last_error)
+  // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.InspireHandState.msg)
 }
 
 // .Nrmk.IndyFramework.Response response = 100;
-inline bool SocketCommandStatus::has_response() const {
+inline bool InspireHandState::has_response() const {
   bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.response_ != nullptr);
   return value;
 }
-inline const ::Nrmk::IndyFramework::Response& SocketCommandStatus::_internal_response() const {
+inline const ::Nrmk::IndyFramework::Response& InspireHandState::_internal_response() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   const ::Nrmk::IndyFramework::Response* p = _impl_.response_;
   return p != nullptr ? *p : reinterpret_cast<const ::Nrmk::IndyFramework::Response&>(::Nrmk::IndyFramework::_Response_default_instance_);
 }
-inline const ::Nrmk::IndyFramework::Response& SocketCommandStatus::response() const {
-  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.SocketCommandStatus.response)
+inline const ::Nrmk::IndyFramework::Response& InspireHandState::response() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.InspireHandState.response)
   return _internal_response();
 }
-inline void SocketCommandStatus::unsafe_arena_set_allocated_response(::Nrmk::IndyFramework::Response* value) {
+inline void InspireHandState::unsafe_arena_set_allocated_response(::Nrmk::IndyFramework::Response* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (GetArenaForAllocation() == nullptr) {
     delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.response_);
@@ -15852,9 +16411,9 @@ inline void SocketCommandStatus::unsafe_arena_set_allocated_response(::Nrmk::Ind
   } else {
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Nrmk.IndyFramework.SocketCommandStatus.response)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Nrmk.IndyFramework.InspireHandState.response)
 }
-inline ::Nrmk::IndyFramework::Response* SocketCommandStatus::release_response() {
+inline ::Nrmk::IndyFramework::Response* InspireHandState::release_response() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
 
   _impl_._has_bits_[0] &= ~0x00000001u;
@@ -15873,16 +16432,16 @@ inline ::Nrmk::IndyFramework::Response* SocketCommandStatus::release_response() 
 #endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
   return released;
 }
-inline ::Nrmk::IndyFramework::Response* SocketCommandStatus::unsafe_arena_release_response() {
+inline ::Nrmk::IndyFramework::Response* InspireHandState::unsafe_arena_release_response() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:Nrmk.IndyFramework.SocketCommandStatus.response)
+  // @@protoc_insertion_point(field_release:Nrmk.IndyFramework.InspireHandState.response)
 
   _impl_._has_bits_[0] &= ~0x00000001u;
   ::Nrmk::IndyFramework::Response* temp = _impl_.response_;
   _impl_.response_ = nullptr;
   return temp;
 }
-inline ::Nrmk::IndyFramework::Response* SocketCommandStatus::_internal_mutable_response() {
+inline ::Nrmk::IndyFramework::Response* InspireHandState::_internal_mutable_response() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_._has_bits_[0] |= 0x00000001u;
   if (_impl_.response_ == nullptr) {
@@ -15891,12 +16450,12 @@ inline ::Nrmk::IndyFramework::Response* SocketCommandStatus::_internal_mutable_r
   }
   return _impl_.response_;
 }
-inline ::Nrmk::IndyFramework::Response* SocketCommandStatus::mutable_response() {
+inline ::Nrmk::IndyFramework::Response* InspireHandState::mutable_response() {
   ::Nrmk::IndyFramework::Response* _msg = _internal_mutable_response();
-  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.SocketCommandStatus.response)
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.InspireHandState.response)
   return _msg;
 }
-inline void SocketCommandStatus::set_allocated_response(::Nrmk::IndyFramework::Response* value) {
+inline void InspireHandState::set_allocated_response(::Nrmk::IndyFramework::Response* value) {
   ::google::protobuf::Arena* message_arena = GetArenaForAllocation();
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (message_arena == nullptr) {
@@ -15915,154 +16474,7 @@ inline void SocketCommandStatus::set_allocated_response(::Nrmk::IndyFramework::R
   }
 
   _impl_.response_ = reinterpret_cast<::Nrmk::IndyFramework::Response*>(value);
-  // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.SocketCommandStatus.response)
-}
-
-// -------------------------------------------------------------------
-
-// SocketPayload
-
-// bytes data = 1;
-inline void SocketPayload::clear_data() {
-  _impl_.data_.ClearToEmpty();
-}
-inline const std::string& SocketPayload::data() const {
-  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.SocketPayload.data)
-  return _internal_data();
-}
-template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void SocketPayload::set_data(Arg_&& arg,
-                                                     Args_... args) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  _impl_.data_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.SocketPayload.data)
-}
-inline std::string* SocketPayload::mutable_data() {
-  std::string* _s = _internal_mutable_data();
-  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.SocketPayload.data)
-  return _s;
-}
-inline const std::string& SocketPayload::_internal_data() const {
-  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.data_.Get();
-}
-inline void SocketPayload::_internal_set_data(const std::string& value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  _impl_.data_.Set(value, GetArenaForAllocation());
-}
-inline std::string* SocketPayload::_internal_mutable_data() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  return _impl_.data_.Mutable( GetArenaForAllocation());
-}
-inline std::string* SocketPayload::release_data() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:Nrmk.IndyFramework.SocketPayload.data)
-  return _impl_.data_.Release();
-}
-inline void SocketPayload::set_allocated_data(std::string* value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.data_.SetAllocated(value, GetArenaForAllocation());
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        if (_impl_.data_.IsDefault()) {
-          _impl_.data_.Set("", GetArenaForAllocation());
-        }
-  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.SocketPayload.data)
-}
-
-// .Nrmk.IndyFramework.Response response = 100;
-inline bool SocketPayload::has_response() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
-  PROTOBUF_ASSUME(!value || _impl_.response_ != nullptr);
-  return value;
-}
-inline const ::Nrmk::IndyFramework::Response& SocketPayload::_internal_response() const {
-  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  const ::Nrmk::IndyFramework::Response* p = _impl_.response_;
-  return p != nullptr ? *p : reinterpret_cast<const ::Nrmk::IndyFramework::Response&>(::Nrmk::IndyFramework::_Response_default_instance_);
-}
-inline const ::Nrmk::IndyFramework::Response& SocketPayload::response() const {
-  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.SocketPayload.response)
-  return _internal_response();
-}
-inline void SocketPayload::unsafe_arena_set_allocated_response(::Nrmk::IndyFramework::Response* value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  if (GetArenaForAllocation() == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.response_);
-  }
-  _impl_.response_ = reinterpret_cast<::Nrmk::IndyFramework::Response*>(value);
-  if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000001u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000001u;
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Nrmk.IndyFramework.SocketPayload.response)
-}
-inline ::Nrmk::IndyFramework::Response* SocketPayload::release_response() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-
-  _impl_._has_bits_[0] &= ~0x00000001u;
-  ::Nrmk::IndyFramework::Response* released = _impl_.response_;
-  _impl_.response_ = nullptr;
-#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
-  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
-  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
-  if (GetArenaForAllocation() == nullptr) {
-    delete old;
-  }
-#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
-  if (GetArenaForAllocation() != nullptr) {
-    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
-  }
-#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
-  return released;
-}
-inline ::Nrmk::IndyFramework::Response* SocketPayload::unsafe_arena_release_response() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:Nrmk.IndyFramework.SocketPayload.response)
-
-  _impl_._has_bits_[0] &= ~0x00000001u;
-  ::Nrmk::IndyFramework::Response* temp = _impl_.response_;
-  _impl_.response_ = nullptr;
-  return temp;
-}
-inline ::Nrmk::IndyFramework::Response* SocketPayload::_internal_mutable_response() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_._has_bits_[0] |= 0x00000001u;
-  if (_impl_.response_ == nullptr) {
-    auto* p = CreateMaybeMessage<::Nrmk::IndyFramework::Response>(GetArenaForAllocation());
-    _impl_.response_ = reinterpret_cast<::Nrmk::IndyFramework::Response*>(p);
-  }
-  return _impl_.response_;
-}
-inline ::Nrmk::IndyFramework::Response* SocketPayload::mutable_response() {
-  ::Nrmk::IndyFramework::Response* _msg = _internal_mutable_response();
-  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.SocketPayload.response)
-  return _msg;
-}
-inline void SocketPayload::set_allocated_response(::Nrmk::IndyFramework::Response* value) {
-  ::google::protobuf::Arena* message_arena = GetArenaForAllocation();
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  if (message_arena == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.response_);
-  }
-
-  if (value != nullptr) {
-    ::google::protobuf::Arena* submessage_arena =
-        ::google::protobuf::Arena::InternalGetOwningArena(reinterpret_cast<::google::protobuf::MessageLite*>(value));
-    if (message_arena != submessage_arena) {
-      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
-    }
-    _impl_._has_bits_[0] |= 0x00000001u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000001u;
-  }
-
-  _impl_.response_ = reinterpret_cast<::Nrmk::IndyFramework::Response*>(value);
-  // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.SocketPayload.response)
+  // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.InspireHandState.response)
 }
 
 #ifdef __GNUC__

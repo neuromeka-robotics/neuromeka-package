@@ -55,6 +55,13 @@ if(BUILD_PROTO)
 else()
     set(INDY_SOURCES
         neuromeka_cpp/indydcp3.cpp
+        neuromeka_cpp/indydcp3_boot.cpp
+        neuromeka_cpp/indydcp3_config.cpp
+        neuromeka_cpp/indydcp3_control.cpp
+        neuromeka_cpp/indydcp3_device.cpp
+        neuromeka_cpp/indydcp3_rtde.cpp
+        neuromeka_cpp/indydcp3_cri.cpp
+        neuromeka_cpp/indydcp3_teleop.cpp
         neuromeka_cpp/proto/boot_msgs.pb.cc
         neuromeka_cpp/proto/common_msgs.pb.cc
         neuromeka_cpp/proto/config_msgs.pb.cc
@@ -64,6 +71,7 @@ else()
         neuromeka_cpp/proto/moby_msgs.pb.cc
         neuromeka_cpp/proto/rtde_msgs.pb.cc
         neuromeka_cpp/proto/cri_msgs.pb.cc
+        neuromeka_cpp/proto/teleop_msgs.pb.cc
 
         neuromeka_cpp/proto/boot_msgs.grpc.pb.cc
         neuromeka_cpp/proto/common_msgs.grpc.pb.cc
@@ -85,6 +93,7 @@ else()
         neuromeka_cpp/proto/moby.pb.cc
         neuromeka_cpp/proto/rtde.pb.cc
         neuromeka_cpp/proto/cri.pb.cc
+        neuromeka_cpp/proto/teleop.pb.cc
 
         neuromeka_cpp/proto/boot.grpc.pb.cc
         neuromeka_cpp/proto/config.grpc.pb.cc
@@ -96,11 +105,21 @@ else()
         neuromeka_cpp/proto/moby.grpc.pb.cc
         neuromeka_cpp/proto/rtde.grpc.pb.cc
         neuromeka_cpp/proto/cri.grpc.pb.cc
+        neuromeka_cpp/proto/teleop.grpc.pb.cc
     )
 
     add_executable(example_indydcp3 src/example_indydcp3.cpp ${INDY_SOURCES})
     target_link_libraries(example_indydcp3 
                         ${Protobuf_LIBRARIES} 
+                        ${gRPC_LIBRARIES}
+                        ${_REFLECTION}
+                        ${_GRPC_GRPCPP}
+                        ${_PROTOBUF_LIBPROTOBUF}
+                        )
+
+    add_executable(example_indydcp3_frame src/example_indydcp3_frame.cpp ${INDY_SOURCES})
+    target_link_libraries(example_indydcp3_frame
+                        ${Protobuf_LIBRARIES}
                         ${gRPC_LIBRARIES}
                         ${_REFLECTION}
                         ${_GRPC_GRPCPP}

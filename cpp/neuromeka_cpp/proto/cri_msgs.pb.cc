@@ -139,11 +139,26 @@ struct SFDAutoSetDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SFDAutoSetDefaultTypeInternal _SFDAutoSet_default_instance_;
+        template <typename>
+PROTOBUF_CONSTEXPR CRIRecordModeState::CRIRecordModeState(::_pbi::ConstantInitialized)
+    : _impl_{
+      /*decltype(_impl_.mode_)*/ 0,
+      /*decltype(_impl_._cached_size_)*/ {},
+    } {}
+struct CRIRecordModeStateDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR CRIRecordModeStateDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~CRIRecordModeStateDefaultTypeInternal() {}
+  union {
+    CRIRecordModeState _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 CRIRecordModeStateDefaultTypeInternal _CRIRecordModeState_default_instance_;
 }  // namespace IndyFramework
 }  // namespace Nrmk
-static ::_pb::Metadata file_level_metadata_cri_5fmsgs_2eproto[5];
-static constexpr const ::_pb::EnumDescriptor**
-    file_level_enum_descriptors_cri_5fmsgs_2eproto = nullptr;
+static ::_pb::Metadata file_level_metadata_cri_5fmsgs_2eproto[6];
+static const ::_pb::EnumDescriptor* file_level_enum_descriptors_cri_5fmsgs_2eproto[1];
 static constexpr const ::_pb::ServiceDescriptor**
     file_level_service_descriptors_cri_5fmsgs_2eproto = nullptr;
 const ::uint32_t TableStruct_cri_5fmsgs_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(
@@ -203,6 +218,15 @@ const ::uint32_t TableStruct_cri_5fmsgs_2eproto::offsets[] PROTOBUF_SECTION_VARI
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::SFDAutoSet, _impl_.fn_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::SFDAutoSet, _impl_.rn_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::SFDAutoSet, _impl_.iso_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::CRIRecordModeState, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::CRIRecordModeState, _impl_.mode_),
 };
 
 static const ::_pbi::MigrationSchema
@@ -212,6 +236,7 @@ static const ::_pbi::MigrationSchema
         {22, -1, -1, sizeof(::Nrmk::IndyFramework::CriData)},
         {33, -1, -1, sizeof(::Nrmk::IndyFramework::SFDProjectList)},
         {42, -1, -1, sizeof(::Nrmk::IndyFramework::SFDAutoSet)},
+        {55, -1, -1, sizeof(::Nrmk::IndyFramework::CRIRecordModeState)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -220,6 +245,7 @@ static const ::_pb::Message* const file_default_instances[] = {
     &::Nrmk::IndyFramework::_CriData_default_instance_._instance,
     &::Nrmk::IndyFramework::_SFDProjectList_default_instance_._instance,
     &::Nrmk::IndyFramework::_SFDAutoSet_default_instance_._instance,
+    &::Nrmk::IndyFramework::_CRIRecordModeState_default_instance_._instance,
 };
 const char descriptor_table_protodef_cri_5fmsgs_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
     "\n\016cri_msgs.proto\022\022Nrmk.IndyFramework\"*\n\n"
@@ -229,19 +255,23 @@ const char descriptor_table_protodef_cri_5fmsgs_2eproto[] PROTOBUF_SECTION_VARIA
     "e\030\001 \001(\001\022\013\n\003cri\030\002 \001(\001\022\020\n\010velRatio\030\003 \001(\001\"\036"
     "\n\016SFDProjectList\022\014\n\004list\030\001 \001(\t\"L\n\nSFDAut"
     "oSet\022\r\n\005login\030\001 \001(\010\022\n\n\002pn\030\002 \001(\t\022\n\n\002fn\030\003 "
-    "\001(\t\022\n\n\002rn\030\004 \001(\t\022\013\n\003iso\030\005 \001(\010b\006proto3"
+    "\001(\t\022\n\n\002rn\030\004 \001(\t\022\013\n\003iso\030\005 \001(\010\"\227\001\n\022CRIReco"
+    "rdModeState\0229\n\004mode\030\001 \001(\0162+.Nrmk.IndyFra"
+    "mework.CRIRecordModeState.Mode\"F\n\004Mode\022\022"
+    "\n\016CRI_RECORD_OFF\020\000\022\021\n\rCRI_RECORD_ON\020\001\022\027\n"
+    "\023CRI_RECORD_PLAYBACK\020\002b\006proto3"
 };
 static ::absl::once_flag descriptor_table_cri_5fmsgs_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_cri_5fmsgs_2eproto = {
     false,
     false,
-    316,
+    470,
     descriptor_table_protodef_cri_5fmsgs_2eproto,
     "cri_msgs.proto",
     &descriptor_table_cri_5fmsgs_2eproto_once,
     nullptr,
     0,
-    5,
+    6,
     schemas,
     file_default_instances,
     TableStruct_cri_5fmsgs_2eproto::offsets,
@@ -269,6 +299,32 @@ PROTOBUF_ATTRIBUTE_INIT_PRIORITY2
 static ::_pbi::AddDescriptorsRunner dynamic_init_dummy_cri_5fmsgs_2eproto(&descriptor_table_cri_5fmsgs_2eproto);
 namespace Nrmk {
 namespace IndyFramework {
+const ::google::protobuf::EnumDescriptor* CRIRecordModeState_Mode_descriptor() {
+  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_cri_5fmsgs_2eproto);
+  return file_level_enum_descriptors_cri_5fmsgs_2eproto[0];
+}
+bool CRIRecordModeState_Mode_IsValid(int value) {
+  switch (value) {
+    case 0:
+    case 1:
+    case 2:
+      return true;
+    default:
+      return false;
+  }
+}
+#if (__cplusplus < 201703) && \
+  (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+
+constexpr CRIRecordModeState_Mode CRIRecordModeState::CRI_RECORD_OFF;
+constexpr CRIRecordModeState_Mode CRIRecordModeState::CRI_RECORD_ON;
+constexpr CRIRecordModeState_Mode CRIRecordModeState::CRI_RECORD_PLAYBACK;
+constexpr CRIRecordModeState_Mode CRIRecordModeState::Mode_MIN;
+constexpr CRIRecordModeState_Mode CRIRecordModeState::Mode_MAX;
+constexpr int CRIRecordModeState::Mode_ARRAYSIZE;
+
+#endif  // (__cplusplus < 201703) &&
+        // (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
 // ===================================================================
 
 class SFDAccount::_Internal {
@@ -1586,6 +1642,172 @@ void SFDAutoSet::InternalSwap(SFDAutoSet* other) {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_cri_5fmsgs_2eproto_getter, &descriptor_table_cri_5fmsgs_2eproto_once,
       file_level_metadata_cri_5fmsgs_2eproto[4]);
+}
+// ===================================================================
+
+class CRIRecordModeState::_Internal {
+ public:
+};
+
+CRIRecordModeState::CRIRecordModeState(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Nrmk.IndyFramework.CRIRecordModeState)
+}
+CRIRecordModeState::CRIRecordModeState(const CRIRecordModeState& from)
+    : ::google::protobuf::Message(), _impl_(from._impl_) {
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.CRIRecordModeState)
+}
+inline void CRIRecordModeState::SharedCtor(::_pb::Arena* arena) {
+  (void)arena;
+  new (&_impl_) Impl_{
+      decltype(_impl_.mode_){0},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+}
+CRIRecordModeState::~CRIRecordModeState() {
+  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.CRIRecordModeState)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void CRIRecordModeState::SharedDtor() {
+  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
+}
+void CRIRecordModeState::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+PROTOBUF_NOINLINE void CRIRecordModeState::Clear() {
+// @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.CRIRecordModeState)
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.mode_ = 0;
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* CRIRecordModeState::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 1, 0, 0, 2> CRIRecordModeState::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    1, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    1,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_CRIRecordModeState_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // .Nrmk.IndyFramework.CRIRecordModeState.Mode mode = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(CRIRecordModeState, _impl_.mode_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(CRIRecordModeState, _impl_.mode_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // .Nrmk.IndyFramework.CRIRecordModeState.Mode mode = 1;
+    {PROTOBUF_FIELD_OFFSET(CRIRecordModeState, _impl_.mode_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+
+::uint8_t* CRIRecordModeState::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.CRIRecordModeState)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // .Nrmk.IndyFramework.CRIRecordModeState.Mode mode = 1;
+  if (this->_internal_mode() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+        1, this->_internal_mode(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.CRIRecordModeState)
+  return target;
+}
+
+::size_t CRIRecordModeState::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.CRIRecordModeState)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // .Nrmk.IndyFramework.CRIRecordModeState.Mode mode = 1;
+  if (this->_internal_mode() != 0) {
+    total_size += 1 +
+                  ::_pbi::WireFormatLite::EnumSize(this->_internal_mode());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData CRIRecordModeState::_class_data_ = {
+    ::google::protobuf::Message::CopyWithSourceCheck,
+    CRIRecordModeState::MergeImpl
+};
+const ::google::protobuf::Message::ClassData*CRIRecordModeState::GetClassData() const { return &_class_data_; }
+
+
+void CRIRecordModeState::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<CRIRecordModeState*>(&to_msg);
+  auto& from = static_cast<const CRIRecordModeState&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.CRIRecordModeState)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from._internal_mode() != 0) {
+    _this->_internal_set_mode(from._internal_mode());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void CRIRecordModeState::CopyFrom(const CRIRecordModeState& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Nrmk.IndyFramework.CRIRecordModeState)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool CRIRecordModeState::IsInitialized() const {
+  return true;
+}
+
+void CRIRecordModeState::InternalSwap(CRIRecordModeState* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_.mode_, other->_impl_.mode_);
+}
+
+::google::protobuf::Metadata CRIRecordModeState::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_cri_5fmsgs_2eproto_getter, &descriptor_table_cri_5fmsgs_2eproto_once,
+      file_level_metadata_cri_5fmsgs_2eproto[5]);
 }
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace IndyFramework

@@ -40,6 +40,11 @@ class DeviceStub(object):
                 request_serializer=device__msgs__pb2.DigitalList.SerializeToString,
                 response_deserializer=common__msgs__pb2.Response.FromString,
                 )
+        self.GetDOChannels = channel.unary_unary(
+                '/Nrmk.IndyFramework.Device/GetDOChannels',
+                request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=device__msgs__pb2.DOChannelModes.FromString,
+                )
         self.SetDOChannels = channel.unary_unary(
                 '/Nrmk.IndyFramework.Device/SetDOChannels',
                 request_serializer=device__msgs__pb2.DOChannelModes.SerializeToString,
@@ -95,9 +100,19 @@ class DeviceStub(object):
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
                 response_deserializer=common__msgs__pb2.EndtoolRS485Rx.FromString,
                 )
+        self.GetEndRS485RxFor = channel.unary_unary(
+                '/Nrmk.IndyFramework.Device/GetEndRS485RxFor',
+                request_serializer=common__msgs__pb2.Int.SerializeToString,
+                response_deserializer=common__msgs__pb2.EndtoolRS485Rx.FromString,
+                )
         self.GetEndRS485Tx = channel.unary_unary(
                 '/Nrmk.IndyFramework.Device/GetEndRS485Tx',
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=common__msgs__pb2.EndtoolRS485Tx.FromString,
+                )
+        self.GetEndRS485TxFor = channel.unary_unary(
+                '/Nrmk.IndyFramework.Device/GetEndRS485TxFor',
+                request_serializer=common__msgs__pb2.Int.SerializeToString,
                 response_deserializer=common__msgs__pb2.EndtoolRS485Tx.FromString,
                 )
         self.SetEndLedDim = channel.unary_unary(
@@ -165,9 +180,19 @@ class DeviceStub(object):
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
                 response_deserializer=device__msgs__pb2.SanderCommand.FromString,
                 )
+        self.GetSanderCommandFor = channel.unary_unary(
+                '/Nrmk.IndyFramework.Device/GetSanderCommandFor',
+                request_serializer=common__msgs__pb2.Int.SerializeToString,
+                response_deserializer=device__msgs__pb2.SanderCommand.FromString,
+                )
         self.GetFTSensorData = channel.unary_unary(
                 '/Nrmk.IndyFramework.Device/GetFTSensorData',
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=device__msgs__pb2.FTSensorData.FromString,
+                )
+        self.GetFTSensorDataFor = channel.unary_unary(
+                '/Nrmk.IndyFramework.Device/GetFTSensorDataFor',
+                request_serializer=common__msgs__pb2.Int.SerializeToString,
                 response_deserializer=device__msgs__pb2.FTSensorData.FromString,
                 )
         self.GetConveyor = channel.unary_unary(
@@ -207,6 +232,11 @@ class DeviceStub(object):
                 )
         self.SetConveyorToolLink = channel.unary_unary(
                 '/Nrmk.IndyFramework.Device/SetConveyorToolLink',
+                request_serializer=common__msgs__pb2.Int.SerializeToString,
+                response_deserializer=common__msgs__pb2.Response.FromString,
+                )
+        self.SetConveyorArmIndex = channel.unary_unary(
+                '/Nrmk.IndyFramework.Device/SetConveyorArmIndex',
                 request_serializer=common__msgs__pb2.Int.SerializeToString,
                 response_deserializer=common__msgs__pb2.Response.FromString,
                 )
@@ -275,6 +305,11 @@ class DeviceStub(object):
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
                 response_deserializer=device__msgs__pb2.GripperData.FromString,
                 )
+        self.GetGripperDataFor = channel.unary_unary(
+                '/Nrmk.IndyFramework.Device/GetGripperDataFor',
+                request_serializer=common__msgs__pb2.Int.SerializeToString,
+                response_deserializer=device__msgs__pb2.GripperData.FromString,
+                )
         self.SetGripperCommand = channel.unary_unary(
                 '/Nrmk.IndyFramework.Device/SetGripperCommand',
                 request_serializer=device__msgs__pb2.GripperCommand.SerializeToString,
@@ -315,35 +350,15 @@ class DeviceStub(object):
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
                 response_deserializer=device__msgs__pb2.TaskTimes.FromString,
                 )
-        self.SocketCmdSetConfig = channel.unary_unary(
-                '/Nrmk.IndyFramework.Device/SocketCmdSetConfig',
-                request_serializer=device__msgs__pb2.SocketCommandConfig.SerializeToString,
+        self.SetInspireHandCommand = channel.unary_unary(
+                '/Nrmk.IndyFramework.Device/SetInspireHandCommand',
+                request_serializer=device__msgs__pb2.InspireHandCommand.SerializeToString,
                 response_deserializer=common__msgs__pb2.Response.FromString,
                 )
-        self.SocketCmdGetConfig = channel.unary_unary(
-                '/Nrmk.IndyFramework.Device/SocketCmdGetConfig',
-                request_serializer=common__msgs__pb2.Empty.SerializeToString,
-                response_deserializer=device__msgs__pb2.SocketCommandConfig.FromString,
-                )
-        self.SocketCmdStart = channel.unary_unary(
-                '/Nrmk.IndyFramework.Device/SocketCmdStart',
-                request_serializer=common__msgs__pb2.Empty.SerializeToString,
-                response_deserializer=device__msgs__pb2.SocketCommandStatus.FromString,
-                )
-        self.SocketCmdStop = channel.unary_unary(
-                '/Nrmk.IndyFramework.Device/SocketCmdStop',
-                request_serializer=common__msgs__pb2.Empty.SerializeToString,
-                response_deserializer=device__msgs__pb2.SocketCommandStatus.FromString,
-                )
-        self.SocketCmdSendData = channel.unary_unary(
-                '/Nrmk.IndyFramework.Device/SocketCmdSendData',
-                request_serializer=device__msgs__pb2.SocketPayload.SerializeToString,
-                response_deserializer=device__msgs__pb2.SocketCommandStatus.FromString,
-                )
-        self.SocketCmdGetLatestData = channel.unary_unary(
-                '/Nrmk.IndyFramework.Device/SocketCmdGetLatestData',
-                request_serializer=common__msgs__pb2.Empty.SerializeToString,
-                response_deserializer=device__msgs__pb2.SocketPayload.FromString,
+        self.GetInspireHandState = channel.unary_unary(
+                '/Nrmk.IndyFramework.Device/GetInspireHandState',
+                request_serializer=common__msgs__pb2.Int.SerializeToString,
+                response_deserializer=device__msgs__pb2.InspireHandState.FromString,
                 )
 
 
@@ -375,6 +390,12 @@ class DeviceServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def SetDI(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetDOChannels(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -446,7 +467,19 @@ class DeviceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetEndRS485RxFor(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def GetEndRS485Tx(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetEndRS485TxFor(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -531,7 +564,19 @@ class DeviceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetSanderCommandFor(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def GetFTSensorData(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetFTSensorDataFor(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -581,6 +626,12 @@ class DeviceServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def SetConveyorToolLink(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SetConveyorArmIndex(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -666,6 +717,12 @@ class DeviceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetGripperDataFor(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def SetGripperCommand(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -718,38 +775,14 @@ class DeviceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def SocketCmdSetConfig(self, request, context):
-        """/////////////Socket Command//////////////////////
+    def SetInspireHandCommand(self, request, context):
+        """/////////////Inspire Hand RH56//////////////////////
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def SocketCmdGetConfig(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def SocketCmdStart(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def SocketCmdStop(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def SocketCmdSendData(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def SocketCmdGetLatestData(self, request, context):
+    def GetInspireHandState(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -782,6 +815,11 @@ def add_DeviceServicer_to_server(servicer, server):
                     servicer.SetDI,
                     request_deserializer=device__msgs__pb2.DigitalList.FromString,
                     response_serializer=common__msgs__pb2.Response.SerializeToString,
+            ),
+            'GetDOChannels': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetDOChannels,
+                    request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=device__msgs__pb2.DOChannelModes.SerializeToString,
             ),
             'SetDOChannels': grpc.unary_unary_rpc_method_handler(
                     servicer.SetDOChannels,
@@ -838,9 +876,19 @@ def add_DeviceServicer_to_server(servicer, server):
                     request_deserializer=common__msgs__pb2.Empty.FromString,
                     response_serializer=common__msgs__pb2.EndtoolRS485Rx.SerializeToString,
             ),
+            'GetEndRS485RxFor': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetEndRS485RxFor,
+                    request_deserializer=common__msgs__pb2.Int.FromString,
+                    response_serializer=common__msgs__pb2.EndtoolRS485Rx.SerializeToString,
+            ),
             'GetEndRS485Tx': grpc.unary_unary_rpc_method_handler(
                     servicer.GetEndRS485Tx,
                     request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=common__msgs__pb2.EndtoolRS485Tx.SerializeToString,
+            ),
+            'GetEndRS485TxFor': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetEndRS485TxFor,
+                    request_deserializer=common__msgs__pb2.Int.FromString,
                     response_serializer=common__msgs__pb2.EndtoolRS485Tx.SerializeToString,
             ),
             'SetEndLedDim': grpc.unary_unary_rpc_method_handler(
@@ -908,9 +956,19 @@ def add_DeviceServicer_to_server(servicer, server):
                     request_deserializer=common__msgs__pb2.Empty.FromString,
                     response_serializer=device__msgs__pb2.SanderCommand.SerializeToString,
             ),
+            'GetSanderCommandFor': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetSanderCommandFor,
+                    request_deserializer=common__msgs__pb2.Int.FromString,
+                    response_serializer=device__msgs__pb2.SanderCommand.SerializeToString,
+            ),
             'GetFTSensorData': grpc.unary_unary_rpc_method_handler(
                     servicer.GetFTSensorData,
                     request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=device__msgs__pb2.FTSensorData.SerializeToString,
+            ),
+            'GetFTSensorDataFor': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetFTSensorDataFor,
+                    request_deserializer=common__msgs__pb2.Int.FromString,
                     response_serializer=device__msgs__pb2.FTSensorData.SerializeToString,
             ),
             'GetConveyor': grpc.unary_unary_rpc_method_handler(
@@ -950,6 +1008,11 @@ def add_DeviceServicer_to_server(servicer, server):
             ),
             'SetConveyorToolLink': grpc.unary_unary_rpc_method_handler(
                     servicer.SetConveyorToolLink,
+                    request_deserializer=common__msgs__pb2.Int.FromString,
+                    response_serializer=common__msgs__pb2.Response.SerializeToString,
+            ),
+            'SetConveyorArmIndex': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetConveyorArmIndex,
                     request_deserializer=common__msgs__pb2.Int.FromString,
                     response_serializer=common__msgs__pb2.Response.SerializeToString,
             ),
@@ -1018,6 +1081,11 @@ def add_DeviceServicer_to_server(servicer, server):
                     request_deserializer=common__msgs__pb2.Empty.FromString,
                     response_serializer=device__msgs__pb2.GripperData.SerializeToString,
             ),
+            'GetGripperDataFor': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetGripperDataFor,
+                    request_deserializer=common__msgs__pb2.Int.FromString,
+                    response_serializer=device__msgs__pb2.GripperData.SerializeToString,
+            ),
             'SetGripperCommand': grpc.unary_unary_rpc_method_handler(
                     servicer.SetGripperCommand,
                     request_deserializer=device__msgs__pb2.GripperCommand.FromString,
@@ -1058,35 +1126,15 @@ def add_DeviceServicer_to_server(servicer, server):
                     request_deserializer=common__msgs__pb2.Empty.FromString,
                     response_serializer=device__msgs__pb2.TaskTimes.SerializeToString,
             ),
-            'SocketCmdSetConfig': grpc.unary_unary_rpc_method_handler(
-                    servicer.SocketCmdSetConfig,
-                    request_deserializer=device__msgs__pb2.SocketCommandConfig.FromString,
+            'SetInspireHandCommand': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetInspireHandCommand,
+                    request_deserializer=device__msgs__pb2.InspireHandCommand.FromString,
                     response_serializer=common__msgs__pb2.Response.SerializeToString,
             ),
-            'SocketCmdGetConfig': grpc.unary_unary_rpc_method_handler(
-                    servicer.SocketCmdGetConfig,
-                    request_deserializer=common__msgs__pb2.Empty.FromString,
-                    response_serializer=device__msgs__pb2.SocketCommandConfig.SerializeToString,
-            ),
-            'SocketCmdStart': grpc.unary_unary_rpc_method_handler(
-                    servicer.SocketCmdStart,
-                    request_deserializer=common__msgs__pb2.Empty.FromString,
-                    response_serializer=device__msgs__pb2.SocketCommandStatus.SerializeToString,
-            ),
-            'SocketCmdStop': grpc.unary_unary_rpc_method_handler(
-                    servicer.SocketCmdStop,
-                    request_deserializer=common__msgs__pb2.Empty.FromString,
-                    response_serializer=device__msgs__pb2.SocketCommandStatus.SerializeToString,
-            ),
-            'SocketCmdSendData': grpc.unary_unary_rpc_method_handler(
-                    servicer.SocketCmdSendData,
-                    request_deserializer=device__msgs__pb2.SocketPayload.FromString,
-                    response_serializer=device__msgs__pb2.SocketCommandStatus.SerializeToString,
-            ),
-            'SocketCmdGetLatestData': grpc.unary_unary_rpc_method_handler(
-                    servicer.SocketCmdGetLatestData,
-                    request_deserializer=common__msgs__pb2.Empty.FromString,
-                    response_serializer=device__msgs__pb2.SocketPayload.SerializeToString,
+            'GetInspireHandState': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetInspireHandState,
+                    request_deserializer=common__msgs__pb2.Int.FromString,
+                    response_serializer=device__msgs__pb2.InspireHandState.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -1180,6 +1228,23 @@ class Device(object):
         return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/SetDI',
             device__msgs__pb2.DigitalList.SerializeToString,
             common__msgs__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetDOChannels(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/GetDOChannels',
+            common__msgs__pb2.Empty.SerializeToString,
+            device__msgs__pb2.DOChannelModes.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -1371,6 +1436,23 @@ class Device(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
+    def GetEndRS485RxFor(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/GetEndRS485RxFor',
+            common__msgs__pb2.Int.SerializeToString,
+            common__msgs__pb2.EndtoolRS485Rx.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
     def GetEndRS485Tx(request,
             target,
             options=(),
@@ -1383,6 +1465,23 @@ class Device(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/GetEndRS485Tx',
             common__msgs__pb2.Empty.SerializeToString,
+            common__msgs__pb2.EndtoolRS485Tx.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetEndRS485TxFor(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/GetEndRS485TxFor',
+            common__msgs__pb2.Int.SerializeToString,
             common__msgs__pb2.EndtoolRS485Tx.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
@@ -1609,6 +1708,23 @@ class Device(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
+    def GetSanderCommandFor(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/GetSanderCommandFor',
+            common__msgs__pb2.Int.SerializeToString,
+            device__msgs__pb2.SanderCommand.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
     def GetFTSensorData(request,
             target,
             options=(),
@@ -1621,6 +1737,23 @@ class Device(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/GetFTSensorData',
             common__msgs__pb2.Empty.SerializeToString,
+            device__msgs__pb2.FTSensorData.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetFTSensorDataFor(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/GetFTSensorDataFor',
+            common__msgs__pb2.Int.SerializeToString,
             device__msgs__pb2.FTSensorData.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
@@ -1756,6 +1889,23 @@ class Device(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/SetConveyorToolLink',
+            common__msgs__pb2.Int.SerializeToString,
+            common__msgs__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SetConveyorArmIndex(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/SetConveyorArmIndex',
             common__msgs__pb2.Int.SerializeToString,
             common__msgs__pb2.Response.FromString,
             options, channel_credentials,
@@ -1983,6 +2133,23 @@ class Device(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
+    def GetGripperDataFor(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/GetGripperDataFor',
+            common__msgs__pb2.Int.SerializeToString,
+            device__msgs__pb2.GripperData.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
     def SetGripperCommand(request,
             target,
             options=(),
@@ -2119,7 +2286,7 @@ class Device(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def SocketCmdSetConfig(request,
+    def SetInspireHandCommand(request,
             target,
             options=(),
             channel_credentials=None,
@@ -2129,14 +2296,14 @@ class Device(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/SocketCmdSetConfig',
-            device__msgs__pb2.SocketCommandConfig.SerializeToString,
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/SetInspireHandCommand',
+            device__msgs__pb2.InspireHandCommand.SerializeToString,
             common__msgs__pb2.Response.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def SocketCmdGetConfig(request,
+    def GetInspireHandState(request,
             target,
             options=(),
             channel_credentials=None,
@@ -2146,76 +2313,8 @@ class Device(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/SocketCmdGetConfig',
-            common__msgs__pb2.Empty.SerializeToString,
-            device__msgs__pb2.SocketCommandConfig.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def SocketCmdStart(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/SocketCmdStart',
-            common__msgs__pb2.Empty.SerializeToString,
-            device__msgs__pb2.SocketCommandStatus.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def SocketCmdStop(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/SocketCmdStop',
-            common__msgs__pb2.Empty.SerializeToString,
-            device__msgs__pb2.SocketCommandStatus.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def SocketCmdSendData(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/SocketCmdSendData',
-            device__msgs__pb2.SocketPayload.SerializeToString,
-            device__msgs__pb2.SocketCommandStatus.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def SocketCmdGetLatestData(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/SocketCmdGetLatestData',
-            common__msgs__pb2.Empty.SerializeToString,
-            device__msgs__pb2.SocketPayload.FromString,
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.Device/GetInspireHandState',
+            common__msgs__pb2.Int.SerializeToString,
+            device__msgs__pb2.InspireHandState.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

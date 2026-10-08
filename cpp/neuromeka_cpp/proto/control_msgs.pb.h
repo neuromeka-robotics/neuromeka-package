@@ -85,6 +85,18 @@ extern CalculateRelativePoseReqDefaultTypeInternal _CalculateRelativePoseReq_def
 class CalculateRelativePoseRes;
 struct CalculateRelativePoseResDefaultTypeInternal;
 extern CalculateRelativePoseResDefaultTypeInternal _CalculateRelativePoseRes_default_instance_;
+class CalculateTCPOrientationReq;
+struct CalculateTCPOrientationReqDefaultTypeInternal;
+extern CalculateTCPOrientationReqDefaultTypeInternal _CalculateTCPOrientationReq_default_instance_;
+class CalculateTCPOrientationRes;
+struct CalculateTCPOrientationResDefaultTypeInternal;
+extern CalculateTCPOrientationResDefaultTypeInternal _CalculateTCPOrientationRes_default_instance_;
+class CalculateTCPPositionReq;
+struct CalculateTCPPositionReqDefaultTypeInternal;
+extern CalculateTCPPositionReqDefaultTypeInternal _CalculateTCPPositionReq_default_instance_;
+class CalculateTCPPositionRes;
+struct CalculateTCPPositionResDefaultTypeInternal;
+extern CalculateTCPPositionResDefaultTypeInternal _CalculateTCPPositionRes_default_instance_;
 class CatchBusEventReq;
 struct CatchBusEventReqDefaultTypeInternal;
 extern CatchBusEventReqDefaultTypeInternal _CatchBusEventReq_default_instance_;
@@ -163,6 +175,12 @@ extern JPosVariableDefaultTypeInternal _JPosVariable_default_instance_;
 class JPosVars;
 struct JPosVarsDefaultTypeInternal;
 extern JPosVarsDefaultTypeInternal _JPosVars_default_instance_;
+class JointToTcpTransformReq;
+struct JointToTcpTransformReqDefaultTypeInternal;
+extern JointToTcpTransformReqDefaultTypeInternal _JointToTcpTransformReq_default_instance_;
+class JointToTcpTransformRes;
+struct JointToTcpTransformResDefaultTypeInternal;
+extern JointToTcpTransformResDefaultTypeInternal _JointToTcpTransformRes_default_instance_;
 class ModbusServer;
 struct ModbusServerDefaultTypeInternal;
 extern ModbusServerDefaultTypeInternal _ModbusServer_default_instance_;
@@ -2451,6 +2469,11 @@ class MoveJReq final :
   static const MoveJReq& default_instance() {
     return *internal_default_instance();
   }
+  enum ArmIndexPresenceCase {
+    kArmIndex = 10,
+    ARM_INDEX_PRESENCE_NOT_SET = 0,
+  };
+
   static inline const MoveJReq* internal_default_instance() {
     return reinterpret_cast<const MoveJReq*>(
                &_MoveJReq_default_instance_);
@@ -2534,6 +2557,7 @@ class MoveJReq final :
     kVelRatioFieldNumber = 3,
     kAccRatioFieldNumber = 4,
     kTeachingModeFieldNumber = 30,
+    kArmIndexFieldNumber = 10,
   };
   // .Nrmk.IndyFramework.TargetJ target = 1;
   bool has_target() const;
@@ -2610,12 +2634,29 @@ class MoveJReq final :
   void _internal_set_teaching_mode(bool value);
 
   public:
+  // int32 arm_index = 10;
+  bool has_arm_index() const;
+  void clear_arm_index() ;
+  ::int32_t arm_index() const;
+  void set_arm_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_arm_index() const;
+  void _internal_set_arm_index(::int32_t value);
+
+  public:
+  void clear_arm_index_presence();
+  ArmIndexPresenceCase arm_index_presence_case() const;
   // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.MoveJReq)
  private:
   class _Internal;
+  void set_has_arm_index();
+
+  inline bool has_arm_index_presence() const;
+  inline void clear_has_arm_index_presence();
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<3, 6, 3, 0, 2> _table_;
+  static const ::google::protobuf::internal::TcParseTable<3, 7, 3, 0, 2> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
@@ -2628,6 +2669,13 @@ class MoveJReq final :
     float vel_ratio_;
     float acc_ratio_;
     bool teaching_mode_;
+    union ArmIndexPresenceUnion {
+      constexpr ArmIndexPresenceUnion() : _constinit_{} {}
+        ::google::protobuf::internal::ConstantInitialized _constinit_;
+      ::int32_t arm_index_;
+    } arm_index_presence_;
+    ::uint32_t _oneof_case_[1];
+
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -2685,6 +2733,11 @@ class MoveJCondReq final :
   static const MoveJCondReq& default_instance() {
     return *internal_default_instance();
   }
+  enum ArmIndexPresenceCase {
+    kArmIndex = 10,
+    ARM_INDEX_PRESENCE_NOT_SET = 0,
+  };
+
   static inline const MoveJCondReq* internal_default_instance() {
     return reinterpret_cast<const MoveJCondReq*>(
                &_MoveJCondReq_default_instance_);
@@ -2768,6 +2821,7 @@ class MoveJCondReq final :
     kVelRatioFieldNumber = 3,
     kAccRatioFieldNumber = 4,
     kTeachingModeFieldNumber = 30,
+    kArmIndexFieldNumber = 10,
   };
   // .Nrmk.IndyFramework.TargetJ target = 1;
   bool has_target() const;
@@ -2844,12 +2898,29 @@ class MoveJCondReq final :
   void _internal_set_teaching_mode(bool value);
 
   public:
+  // int32 arm_index = 10;
+  bool has_arm_index() const;
+  void clear_arm_index() ;
+  ::int32_t arm_index() const;
+  void set_arm_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_arm_index() const;
+  void _internal_set_arm_index(::int32_t value);
+
+  public:
+  void clear_arm_index_presence();
+  ArmIndexPresenceCase arm_index_presence_case() const;
   // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.MoveJCondReq)
  private:
   class _Internal;
+  void set_has_arm_index();
+
+  inline bool has_arm_index_presence() const;
+  inline void clear_has_arm_index_presence();
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<3, 6, 3, 0, 2> _table_;
+  static const ::google::protobuf::internal::TcParseTable<3, 7, 3, 0, 2> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
@@ -2862,6 +2933,13 @@ class MoveJCondReq final :
     float vel_ratio_;
     float acc_ratio_;
     bool teaching_mode_;
+    union ArmIndexPresenceUnion {
+      constexpr ArmIndexPresenceUnion() : _constinit_{} {}
+        ::google::protobuf::internal::ConstantInitialized _constinit_;
+      ::int32_t arm_index_;
+    } arm_index_presence_;
+    ::uint32_t _oneof_case_[1];
+
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -2919,6 +2997,11 @@ class MoveJTReq final :
   static const MoveJTReq& default_instance() {
     return *internal_default_instance();
   }
+  enum ArmIndexPresenceCase {
+    kArmIndex = 10,
+    ARM_INDEX_PRESENCE_NOT_SET = 0,
+  };
+
   static inline const MoveJTReq* internal_default_instance() {
     return reinterpret_cast<const MoveJTReq*>(
                &_MoveJTReq_default_instance_);
@@ -3000,6 +3083,7 @@ class MoveJTReq final :
     kBlendingFieldNumber = 2,
     kPostConditionFieldNumber = 20,
     kTimeFieldNumber = 3,
+    kArmIndexFieldNumber = 10,
   };
   // .Nrmk.IndyFramework.TargetJ target = 1;
   bool has_target() const;
@@ -3056,12 +3140,29 @@ class MoveJTReq final :
   void _internal_set_time(float value);
 
   public:
+  // int32 arm_index = 10;
+  bool has_arm_index() const;
+  void clear_arm_index() ;
+  ::int32_t arm_index() const;
+  void set_arm_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_arm_index() const;
+  void _internal_set_arm_index(::int32_t value);
+
+  public:
+  void clear_arm_index_presence();
+  ArmIndexPresenceCase arm_index_presence_case() const;
   // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.MoveJTReq)
  private:
   class _Internal;
+  void set_has_arm_index();
+
+  inline bool has_arm_index_presence() const;
+  inline void clear_has_arm_index_presence();
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<2, 4, 3, 0, 2> _table_;
+  static const ::google::protobuf::internal::TcParseTable<2, 5, 3, 0, 2> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
@@ -3072,6 +3173,13 @@ class MoveJTReq final :
     ::Nrmk::IndyFramework::BlendingType* blending_;
     ::Nrmk::IndyFramework::MotionCondition* post_condition_;
     float time_;
+    union ArmIndexPresenceUnion {
+      constexpr ArmIndexPresenceUnion() : _constinit_{} {}
+        ::google::protobuf::internal::ConstantInitialized _constinit_;
+      ::int32_t arm_index_;
+    } arm_index_presence_;
+    ::uint32_t _oneof_case_[1];
+
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -3628,6 +3736,7 @@ class MoveLReq final :
     kVelRatioFieldNumber = 3,
     kAccRatioFieldNumber = 4,
     kVelTypeFieldNumber = 5,
+    kArmIndexFieldNumber = 10,
     kTeachingModeFieldNumber = 30,
     kBypassSingularFieldNumber = 40,
   };
@@ -3706,6 +3815,16 @@ class MoveLReq final :
   void _internal_set_vel_type(::Nrmk::IndyFramework::VelocityModeType value);
 
   public:
+  // int32 arm_index = 10;
+  void clear_arm_index() ;
+  ::int32_t arm_index() const;
+  void set_arm_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_arm_index() const;
+  void _internal_set_arm_index(::int32_t value);
+
+  public:
   // bool teaching_mode = 30;
   void clear_teaching_mode() ;
   bool teaching_mode() const;
@@ -3731,7 +3850,7 @@ class MoveLReq final :
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<3, 8, 3, 0, 7> _table_;
+  static const ::google::protobuf::internal::TcParseTable<4, 9, 3, 0, 7> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
@@ -3744,6 +3863,7 @@ class MoveLReq final :
     float vel_ratio_;
     float acc_ratio_;
     int vel_type_;
+    ::int32_t arm_index_;
     bool teaching_mode_;
     bool bypass_singular_;
     PROTOBUF_TSAN_DECLARE_MEMBER
@@ -3884,6 +4004,7 @@ class MoveLTReq final :
     kBlendingFieldNumber = 2,
     kPostConditionFieldNumber = 20,
     kTimeFieldNumber = 3,
+    kArmIndexFieldNumber = 10,
   };
   // .Nrmk.IndyFramework.TargetP target = 1;
   bool has_target() const;
@@ -3940,12 +4061,22 @@ class MoveLTReq final :
   void _internal_set_time(float value);
 
   public:
+  // int32 arm_index = 10;
+  void clear_arm_index() ;
+  ::int32_t arm_index() const;
+  void set_arm_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_arm_index() const;
+  void _internal_set_arm_index(::int32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.MoveLTReq)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<2, 4, 3, 0, 2> _table_;
+  static const ::google::protobuf::internal::TcParseTable<2, 5, 3, 0, 2> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
@@ -3956,6 +4087,7 @@ class MoveLTReq final :
     ::Nrmk::IndyFramework::BlendingType* blending_;
     ::Nrmk::IndyFramework::MotionCondition* post_condition_;
     float time_;
+    ::int32_t arm_index_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -4330,6 +4462,7 @@ class MoveCReq final :
     kAngleFieldNumber = 3,
     kSettingTypeFieldNumber = 10,
     kMoveTypeFieldNumber = 11,
+    kArmIndexFieldNumber = 15,
     kVelRatioFieldNumber = 20,
     kAccRatioFieldNumber = 21,
     kVelTypeFieldNumber = 22,
@@ -4411,6 +4544,16 @@ class MoveCReq final :
   void _internal_set_move_type(::Nrmk::IndyFramework::CircularMovingType value);
 
   public:
+  // int32 arm_index = 15;
+  void clear_arm_index() ;
+  ::int32_t arm_index() const;
+  void set_arm_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_arm_index() const;
+  void _internal_set_arm_index(::int32_t value);
+
+  public:
   // float vel_ratio = 20;
   void clear_vel_ratio() ;
   float vel_ratio() const;
@@ -4466,7 +4609,7 @@ class MoveCReq final :
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<4, 11, 3, 0, 7> _table_;
+  static const ::google::protobuf::internal::TcParseTable<4, 12, 3, 0, 7> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
@@ -4479,6 +4622,7 @@ class MoveCReq final :
     float angle_;
     int setting_type_;
     int move_type_;
+    ::int32_t arm_index_;
     float vel_ratio_;
     float acc_ratio_;
     int vel_type_;
@@ -4624,6 +4768,7 @@ class MoveCTReq final :
     kAngleFieldNumber = 3,
     kSettingTypeFieldNumber = 10,
     kMoveTypeFieldNumber = 11,
+    kArmIndexFieldNumber = 15,
     kTimeFieldNumber = 20,
   };
   // .Nrmk.IndyFramework.TargetC target = 1;
@@ -4701,6 +4846,16 @@ class MoveCTReq final :
   void _internal_set_move_type(::Nrmk::IndyFramework::CircularMovingType value);
 
   public:
+  // int32 arm_index = 15;
+  void clear_arm_index() ;
+  ::int32_t arm_index() const;
+  void set_arm_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_arm_index() const;
+  void _internal_set_arm_index(::int32_t value);
+
+  public:
   // float time = 20;
   void clear_time() ;
   float time() const;
@@ -4716,7 +4871,7 @@ class MoveCTReq final :
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<2, 7, 3, 0, 2> _table_;
+  static const ::google::protobuf::internal::TcParseTable<4, 8, 3, 0, 2> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
@@ -4729,6 +4884,7 @@ class MoveCTReq final :
     float angle_;
     int setting_type_;
     int move_type_;
+    ::int32_t arm_index_;
     float time_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -5281,6 +5437,7 @@ class MoveGcodeReq final :
     kSmoothRadiusFieldNumber = 3,
     kVelRatioFieldNumber = 4,
     kAccRatioFieldNumber = 5,
+    kArmIndexFieldNumber = 10,
   };
   // string gcode_file = 1;
   void clear_gcode_file() ;
@@ -5338,12 +5495,22 @@ class MoveGcodeReq final :
   void _internal_set_acc_ratio(float value);
 
   public:
+  // int32 arm_index = 10;
+  void clear_arm_index() ;
+  ::int32_t arm_index() const;
+  void set_arm_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_arm_index() const;
+  void _internal_set_arm_index(::int32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.MoveGcodeReq)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<3, 5, 0, 50, 2> _table_;
+  static const ::google::protobuf::internal::TcParseTable<3, 6, 0, 50, 2> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
@@ -5353,6 +5520,7 @@ class MoveGcodeReq final :
     float smooth_radius_;
     float vel_ratio_;
     float acc_ratio_;
+    ::int32_t arm_index_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -10399,6 +10567,7 @@ class InverseKinematicsReq final :
   enum : int {
     kTposFieldNumber = 1,
     kInitJposFieldNumber = 2,
+    kArmIndexFieldNumber = 10,
   };
   // repeated float tpos = 1;
   int tpos_size() const;
@@ -10436,18 +10605,29 @@ class InverseKinematicsReq final :
   ::google::protobuf::RepeatedField<float>* _internal_mutable_init_jpos();
 
   public:
+  // int32 arm_index = 10;
+  void clear_arm_index() ;
+  ::int32_t arm_index() const;
+  void set_arm_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_arm_index() const;
+  void _internal_set_arm_index(::int32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.InverseKinematicsReq)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<1, 2, 0, 0, 2> _table_;
+  static const ::google::protobuf::internal::TcParseTable<1, 3, 0, 0, 2> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
     ::google::protobuf::RepeatedField<float> tpos_;
     ::google::protobuf::RepeatedField<float> init_jpos_;
+    ::int32_t arm_index_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -10585,6 +10765,7 @@ class InverseKinematicsRes final :
   enum : int {
     kJposFieldNumber = 1,
     kResponseFieldNumber = 100,
+    kArmIndexFieldNumber = 10,
   };
   // repeated float jpos = 1;
   int jpos_size() const;
@@ -10619,12 +10800,22 @@ class InverseKinematicsRes final :
   ::Nrmk::IndyFramework::Response* _internal_mutable_response();
 
   public:
+  // int32 arm_index = 10;
+  void clear_arm_index() ;
+  ::int32_t arm_index() const;
+  void set_arm_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_arm_index() const;
+  void _internal_set_arm_index(::int32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.InverseKinematicsRes)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<1, 2, 1, 0, 7> _table_;
+  static const ::google::protobuf::internal::TcParseTable<2, 3, 1, 0, 7> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
@@ -10633,6 +10824,7 @@ class InverseKinematicsRes final :
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::RepeatedField<float> jpos_;
     ::Nrmk::IndyFramework::Response* response_;
+    ::int32_t arm_index_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -10768,6 +10960,7 @@ class ForwardKinematicsReq final :
 
   enum : int {
     kJposFieldNumber = 1,
+    kArmIndexFieldNumber = 10,
   };
   // repeated float jpos = 1;
   int jpos_size() const;
@@ -10787,17 +10980,28 @@ class ForwardKinematicsReq final :
   ::google::protobuf::RepeatedField<float>* _internal_mutable_jpos();
 
   public:
+  // int32 arm_index = 10;
+  void clear_arm_index() ;
+  ::int32_t arm_index() const;
+  void set_arm_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_arm_index() const;
+  void _internal_set_arm_index(::int32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.ForwardKinematicsReq)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<0, 1, 0, 0, 2> _table_;
+  static const ::google::protobuf::internal::TcParseTable<1, 2, 0, 0, 2> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
     ::google::protobuf::RepeatedField<float> jpos_;
+    ::int32_t arm_index_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -10935,6 +11139,7 @@ class ForwardKinematicsRes final :
   enum : int {
     kTposFieldNumber = 1,
     kResponseFieldNumber = 100,
+    kArmIndexFieldNumber = 10,
   };
   // repeated float tpos = 1;
   int tpos_size() const;
@@ -10969,12 +11174,22 @@ class ForwardKinematicsRes final :
   ::Nrmk::IndyFramework::Response* _internal_mutable_response();
 
   public:
+  // int32 arm_index = 10;
+  void clear_arm_index() ;
+  ::int32_t arm_index() const;
+  void set_arm_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_arm_index() const;
+  void _internal_set_arm_index(::int32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.ForwardKinematicsRes)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<1, 2, 1, 0, 7> _table_;
+  static const ::google::protobuf::internal::TcParseTable<2, 3, 1, 0, 7> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
@@ -10983,6 +11198,445 @@ class ForwardKinematicsRes final :
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::RepeatedField<float> tpos_;
     ::Nrmk::IndyFramework::Response* response_;
+    ::int32_t arm_index_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_control_5fmsgs_2eproto;
+};// -------------------------------------------------------------------
+
+class JointToTcpTransformReq final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.JointToTcpTransformReq) */ {
+ public:
+  inline JointToTcpTransformReq() : JointToTcpTransformReq(nullptr) {}
+  ~JointToTcpTransformReq() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR JointToTcpTransformReq(::google::protobuf::internal::ConstantInitialized);
+
+  JointToTcpTransformReq(const JointToTcpTransformReq& from);
+  JointToTcpTransformReq(JointToTcpTransformReq&& from) noexcept
+    : JointToTcpTransformReq() {
+    *this = ::std::move(from);
+  }
+
+  inline JointToTcpTransformReq& operator=(const JointToTcpTransformReq& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline JointToTcpTransformReq& operator=(JointToTcpTransformReq&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const JointToTcpTransformReq& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const JointToTcpTransformReq* internal_default_instance() {
+    return reinterpret_cast<const JointToTcpTransformReq*>(
+               &_JointToTcpTransformReq_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    52;
+
+  friend void swap(JointToTcpTransformReq& a, JointToTcpTransformReq& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(JointToTcpTransformReq* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(JointToTcpTransformReq* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  JointToTcpTransformReq* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<JointToTcpTransformReq>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const JointToTcpTransformReq& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const JointToTcpTransformReq& from) {
+    JointToTcpTransformReq::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(JointToTcpTransformReq* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "Nrmk.IndyFramework.JointToTcpTransformReq";
+  }
+  protected:
+  explicit JointToTcpTransformReq(::google::protobuf::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kJposFieldNumber = 1,
+    kJointIdxFieldNumber = 2,
+    kJointIdxIsBodyIndexFieldNumber = 3,
+    kArmIndexFieldNumber = 10,
+  };
+  // repeated float jpos = 1;
+  int jpos_size() const;
+  private:
+  int _internal_jpos_size() const;
+
+  public:
+  void clear_jpos() ;
+  float jpos(int index) const;
+  void set_jpos(int index, float value);
+  void add_jpos(float value);
+  const ::google::protobuf::RepeatedField<float>& jpos() const;
+  ::google::protobuf::RepeatedField<float>* mutable_jpos();
+
+  private:
+  const ::google::protobuf::RepeatedField<float>& _internal_jpos() const;
+  ::google::protobuf::RepeatedField<float>* _internal_mutable_jpos();
+
+  public:
+  // int32 joint_idx = 2;
+  void clear_joint_idx() ;
+  ::int32_t joint_idx() const;
+  void set_joint_idx(::int32_t value);
+
+  private:
+  ::int32_t _internal_joint_idx() const;
+  void _internal_set_joint_idx(::int32_t value);
+
+  public:
+  // bool joint_idx_is_body_index = 3;
+  void clear_joint_idx_is_body_index() ;
+  bool joint_idx_is_body_index() const;
+  void set_joint_idx_is_body_index(bool value);
+
+  private:
+  bool _internal_joint_idx_is_body_index() const;
+  void _internal_set_joint_idx_is_body_index(bool value);
+
+  public:
+  // int32 arm_index = 10;
+  void clear_arm_index() ;
+  ::int32_t arm_index() const;
+  void set_arm_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_arm_index() const;
+  void _internal_set_arm_index(::int32_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.JointToTcpTransformReq)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<2, 4, 0, 0, 2> _table_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::google::protobuf::RepeatedField<float> jpos_;
+    ::int32_t joint_idx_;
+    bool joint_idx_is_body_index_;
+    ::int32_t arm_index_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_control_5fmsgs_2eproto;
+};// -------------------------------------------------------------------
+
+class JointToTcpTransformRes final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.JointToTcpTransformRes) */ {
+ public:
+  inline JointToTcpTransformRes() : JointToTcpTransformRes(nullptr) {}
+  ~JointToTcpTransformRes() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR JointToTcpTransformRes(::google::protobuf::internal::ConstantInitialized);
+
+  JointToTcpTransformRes(const JointToTcpTransformRes& from);
+  JointToTcpTransformRes(JointToTcpTransformRes&& from) noexcept
+    : JointToTcpTransformRes() {
+    *this = ::std::move(from);
+  }
+
+  inline JointToTcpTransformRes& operator=(const JointToTcpTransformRes& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline JointToTcpTransformRes& operator=(JointToTcpTransformRes&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const JointToTcpTransformRes& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const JointToTcpTransformRes* internal_default_instance() {
+    return reinterpret_cast<const JointToTcpTransformRes*>(
+               &_JointToTcpTransformRes_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    53;
+
+  friend void swap(JointToTcpTransformRes& a, JointToTcpTransformRes& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(JointToTcpTransformRes* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(JointToTcpTransformRes* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  JointToTcpTransformRes* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<JointToTcpTransformRes>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const JointToTcpTransformRes& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const JointToTcpTransformRes& from) {
+    JointToTcpTransformRes::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(JointToTcpTransformRes* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "Nrmk.IndyFramework.JointToTcpTransformRes";
+  }
+  protected:
+  explicit JointToTcpTransformRes(::google::protobuf::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kJointToTcpFieldNumber = 1,
+    kBaseToJointFieldNumber = 2,
+    kBaseToTcpFieldNumber = 3,
+    kResponseFieldNumber = 100,
+    kArmIndexFieldNumber = 10,
+  };
+  // repeated float joint_to_tcp = 1;
+  int joint_to_tcp_size() const;
+  private:
+  int _internal_joint_to_tcp_size() const;
+
+  public:
+  void clear_joint_to_tcp() ;
+  float joint_to_tcp(int index) const;
+  void set_joint_to_tcp(int index, float value);
+  void add_joint_to_tcp(float value);
+  const ::google::protobuf::RepeatedField<float>& joint_to_tcp() const;
+  ::google::protobuf::RepeatedField<float>* mutable_joint_to_tcp();
+
+  private:
+  const ::google::protobuf::RepeatedField<float>& _internal_joint_to_tcp() const;
+  ::google::protobuf::RepeatedField<float>* _internal_mutable_joint_to_tcp();
+
+  public:
+  // repeated float base_to_joint = 2;
+  int base_to_joint_size() const;
+  private:
+  int _internal_base_to_joint_size() const;
+
+  public:
+  void clear_base_to_joint() ;
+  float base_to_joint(int index) const;
+  void set_base_to_joint(int index, float value);
+  void add_base_to_joint(float value);
+  const ::google::protobuf::RepeatedField<float>& base_to_joint() const;
+  ::google::protobuf::RepeatedField<float>* mutable_base_to_joint();
+
+  private:
+  const ::google::protobuf::RepeatedField<float>& _internal_base_to_joint() const;
+  ::google::protobuf::RepeatedField<float>* _internal_mutable_base_to_joint();
+
+  public:
+  // repeated float base_to_tcp = 3;
+  int base_to_tcp_size() const;
+  private:
+  int _internal_base_to_tcp_size() const;
+
+  public:
+  void clear_base_to_tcp() ;
+  float base_to_tcp(int index) const;
+  void set_base_to_tcp(int index, float value);
+  void add_base_to_tcp(float value);
+  const ::google::protobuf::RepeatedField<float>& base_to_tcp() const;
+  ::google::protobuf::RepeatedField<float>* mutable_base_to_tcp();
+
+  private:
+  const ::google::protobuf::RepeatedField<float>& _internal_base_to_tcp() const;
+  ::google::protobuf::RepeatedField<float>* _internal_mutable_base_to_tcp();
+
+  public:
+  // .Nrmk.IndyFramework.Response response = 100;
+  bool has_response() const;
+  void clear_response() ;
+  const ::Nrmk::IndyFramework::Response& response() const;
+  PROTOBUF_NODISCARD ::Nrmk::IndyFramework::Response* release_response();
+  ::Nrmk::IndyFramework::Response* mutable_response();
+  void set_allocated_response(::Nrmk::IndyFramework::Response* value);
+  void unsafe_arena_set_allocated_response(::Nrmk::IndyFramework::Response* value);
+  ::Nrmk::IndyFramework::Response* unsafe_arena_release_response();
+
+  private:
+  const ::Nrmk::IndyFramework::Response& _internal_response() const;
+  ::Nrmk::IndyFramework::Response* _internal_mutable_response();
+
+  public:
+  // int32 arm_index = 10;
+  void clear_arm_index() ;
+  ::int32_t arm_index() const;
+  void set_arm_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_arm_index() const;
+  void _internal_set_arm_index(::int32_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.JointToTcpTransformRes)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<2, 5, 1, 0, 7> _table_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::RepeatedField<float> joint_to_tcp_;
+    ::google::protobuf::RepeatedField<float> base_to_joint_;
+    ::google::protobuf::RepeatedField<float> base_to_tcp_;
+    ::Nrmk::IndyFramework::Response* response_;
+    ::int32_t arm_index_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -11045,7 +11699,7 @@ class CheckAproachRetractValidReq final :
                &_CheckAproachRetractValidReq_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    52;
+    54;
 
   friend void swap(CheckAproachRetractValidReq& a, CheckAproachRetractValidReq& b) {
     a.Swap(&b);
@@ -11121,6 +11775,7 @@ class CheckAproachRetractValidReq final :
     kInitJposFieldNumber = 2,
     kPreTposFieldNumber = 3,
     kPostTposFieldNumber = 4,
+    kArmIndexFieldNumber = 10,
   };
   // repeated float tpos = 1;
   int tpos_size() const;
@@ -11194,12 +11849,22 @@ class CheckAproachRetractValidReq final :
   ::google::protobuf::RepeatedField<float>* _internal_mutable_post_tpos();
 
   public:
+  // int32 arm_index = 10;
+  void clear_arm_index() ;
+  ::int32_t arm_index() const;
+  void set_arm_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_arm_index() const;
+  void _internal_set_arm_index(::int32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.CheckAproachRetractValidReq)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<2, 4, 0, 0, 2> _table_;
+  static const ::google::protobuf::internal::TcParseTable<2, 5, 0, 0, 2> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
@@ -11208,6 +11873,7 @@ class CheckAproachRetractValidReq final :
     ::google::protobuf::RepeatedField<float> init_jpos_;
     ::google::protobuf::RepeatedField<float> pre_tpos_;
     ::google::protobuf::RepeatedField<float> post_tpos_;
+    ::int32_t arm_index_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -11271,7 +11937,7 @@ class CheckAproachRetractValidRes final :
                &_CheckAproachRetractValidRes_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    53;
+    55;
 
   friend void swap(CheckAproachRetractValidRes& a, CheckAproachRetractValidRes& b) {
     a.Swap(&b);
@@ -11348,6 +12014,7 @@ class CheckAproachRetractValidRes final :
     kRetractPosFieldNumber = 4,
     kResponseFieldNumber = 100,
     kIsValidFieldNumber = 1,
+    kArmIndexFieldNumber = 10,
   };
   // repeated float tar_pos = 2;
   int tar_pos_size() const;
@@ -11428,12 +12095,22 @@ class CheckAproachRetractValidRes final :
   void _internal_set_is_valid(bool value);
 
   public:
+  // int32 arm_index = 10;
+  void clear_arm_index() ;
+  ::int32_t arm_index() const;
+  void set_arm_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_arm_index() const;
+  void _internal_set_arm_index(::int32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.CheckAproachRetractValidRes)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<2, 5, 1, 0, 7> _table_;
+  static const ::google::protobuf::internal::TcParseTable<2, 6, 1, 0, 7> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
@@ -11445,6 +12122,7 @@ class CheckAproachRetractValidRes final :
     ::google::protobuf::RepeatedField<float> retract_pos_;
     ::Nrmk::IndyFramework::Response* response_;
     bool is_valid_;
+    ::int32_t arm_index_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -11507,7 +12185,7 @@ class GetPalletPointListReq final :
                &_GetPalletPointListReq_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    54;
+    56;
 
   friend void swap(GetPalletPointListReq& a, GetPalletPointListReq& b) {
     a.Swap(&b);
@@ -11586,6 +12264,7 @@ class GetPalletPointListReq final :
     kPalletPatternFieldNumber = 5,
     kWidthFieldNumber = 6,
     kHeightFieldNumber = 7,
+    kArmIndexFieldNumber = 10,
   };
   // repeated float tpos = 1;
   int tpos_size() const;
@@ -11689,12 +12368,22 @@ class GetPalletPointListReq final :
   void _internal_set_height(::int32_t value);
 
   public:
+  // int32 arm_index = 10;
+  void clear_arm_index() ;
+  ::int32_t arm_index() const;
+  void set_arm_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_arm_index() const;
+  void _internal_set_arm_index(::int32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.GetPalletPointListReq)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<3, 7, 0, 0, 2> _table_;
+  static const ::google::protobuf::internal::TcParseTable<4, 8, 0, 0, 2> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
@@ -11706,6 +12395,7 @@ class GetPalletPointListReq final :
     ::int32_t pallet_pattern_;
     ::int32_t width_;
     ::int32_t height_;
+    ::int32_t arm_index_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -11769,7 +12459,7 @@ class PalletPoint final :
                &_PalletPoint_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    55;
+    57;
 
   friend void swap(PalletPoint& a, PalletPoint& b) {
     a.Swap(&b);
@@ -11995,7 +12685,7 @@ class GetPalletPointListRes final :
                &_GetPalletPointListRes_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    56;
+    58;
 
   friend void swap(GetPalletPointListRes& a, GetPalletPointListRes& b) {
     a.Swap(&b);
@@ -12069,6 +12759,7 @@ class GetPalletPointListRes final :
   enum : int {
     kPalletPointsFieldNumber = 1,
     kResponseFieldNumber = 100,
+    kArmIndexFieldNumber = 10,
   };
   // repeated .Nrmk.IndyFramework.PalletPoint pallet_points = 1;
   int pallet_points_size() const;
@@ -12103,12 +12794,22 @@ class GetPalletPointListRes final :
   ::Nrmk::IndyFramework::Response* _internal_mutable_response();
 
   public:
+  // int32 arm_index = 10;
+  void clear_arm_index() ;
+  ::int32_t arm_index() const;
+  void set_arm_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_arm_index() const;
+  void _internal_set_arm_index(::int32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.GetPalletPointListRes)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<1, 2, 2, 0, 7> _table_;
+  static const ::google::protobuf::internal::TcParseTable<2, 3, 2, 0, 7> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
@@ -12117,6 +12818,7 @@ class GetPalletPointListRes final :
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::RepeatedPtrField< ::Nrmk::IndyFramework::PalletPoint > pallet_points_;
     ::Nrmk::IndyFramework::Response* response_;
+    ::int32_t arm_index_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -12179,7 +12881,7 @@ class CalculateRelativePoseReq final :
                &_CalculateRelativePoseReq_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    57;
+    59;
 
   friend void swap(CalculateRelativePoseReq& a, CalculateRelativePoseReq& b) {
     a.Swap(&b);
@@ -12377,7 +13079,7 @@ class CalculateRelativePoseRes final :
                &_CalculateRelativePoseRes_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    58;
+    60;
 
   friend void swap(CalculateRelativePoseRes& a, CalculateRelativePoseRes& b) {
     a.Swap(&b);
@@ -12561,7 +13263,7 @@ class CalculateCurrentPoseRelReq final :
                &_CalculateCurrentPoseRelReq_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    59;
+    61;
 
   friend void swap(CalculateCurrentPoseRelReq& a, CalculateCurrentPoseRelReq& b) {
     a.Swap(&b);
@@ -12759,7 +13461,7 @@ class CalculateCurrentPoseRelRes final :
                &_CalculateCurrentPoseRelRes_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    60;
+    62;
 
   friend void swap(CalculateCurrentPoseRelRes& a, CalculateCurrentPoseRelRes& b) {
     a.Swap(&b);
@@ -12887,6 +13589,744 @@ class CalculateCurrentPoseRelRes final :
   friend struct ::TableStruct_control_5fmsgs_2eproto;
 };// -------------------------------------------------------------------
 
+class CalculateTCPPositionReq final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.CalculateTCPPositionReq) */ {
+ public:
+  inline CalculateTCPPositionReq() : CalculateTCPPositionReq(nullptr) {}
+  ~CalculateTCPPositionReq() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR CalculateTCPPositionReq(::google::protobuf::internal::ConstantInitialized);
+
+  CalculateTCPPositionReq(const CalculateTCPPositionReq& from);
+  CalculateTCPPositionReq(CalculateTCPPositionReq&& from) noexcept
+    : CalculateTCPPositionReq() {
+    *this = ::std::move(from);
+  }
+
+  inline CalculateTCPPositionReq& operator=(const CalculateTCPPositionReq& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline CalculateTCPPositionReq& operator=(CalculateTCPPositionReq&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const CalculateTCPPositionReq& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const CalculateTCPPositionReq* internal_default_instance() {
+    return reinterpret_cast<const CalculateTCPPositionReq*>(
+               &_CalculateTCPPositionReq_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    63;
+
+  friend void swap(CalculateTCPPositionReq& a, CalculateTCPPositionReq& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(CalculateTCPPositionReq* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(CalculateTCPPositionReq* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  CalculateTCPPositionReq* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<CalculateTCPPositionReq>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const CalculateTCPPositionReq& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const CalculateTCPPositionReq& from) {
+    CalculateTCPPositionReq::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(CalculateTCPPositionReq* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "Nrmk.IndyFramework.CalculateTCPPositionReq";
+  }
+  protected:
+  explicit CalculateTCPPositionReq(::google::protobuf::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kRefPosFieldNumber = 1,
+  };
+  // repeated float ref_pos = 1;
+  int ref_pos_size() const;
+  private:
+  int _internal_ref_pos_size() const;
+
+  public:
+  void clear_ref_pos() ;
+  float ref_pos(int index) const;
+  void set_ref_pos(int index, float value);
+  void add_ref_pos(float value);
+  const ::google::protobuf::RepeatedField<float>& ref_pos() const;
+  ::google::protobuf::RepeatedField<float>* mutable_ref_pos();
+
+  private:
+  const ::google::protobuf::RepeatedField<float>& _internal_ref_pos() const;
+  ::google::protobuf::RepeatedField<float>* _internal_mutable_ref_pos();
+
+  public:
+  // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.CalculateTCPPositionReq)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<0, 1, 0, 0, 2> _table_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::google::protobuf::RepeatedField<float> ref_pos_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_control_5fmsgs_2eproto;
+};// -------------------------------------------------------------------
+
+class CalculateTCPPositionRes final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.CalculateTCPPositionRes) */ {
+ public:
+  inline CalculateTCPPositionRes() : CalculateTCPPositionRes(nullptr) {}
+  ~CalculateTCPPositionRes() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR CalculateTCPPositionRes(::google::protobuf::internal::ConstantInitialized);
+
+  CalculateTCPPositionRes(const CalculateTCPPositionRes& from);
+  CalculateTCPPositionRes(CalculateTCPPositionRes&& from) noexcept
+    : CalculateTCPPositionRes() {
+    *this = ::std::move(from);
+  }
+
+  inline CalculateTCPPositionRes& operator=(const CalculateTCPPositionRes& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline CalculateTCPPositionRes& operator=(CalculateTCPPositionRes&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const CalculateTCPPositionRes& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const CalculateTCPPositionRes* internal_default_instance() {
+    return reinterpret_cast<const CalculateTCPPositionRes*>(
+               &_CalculateTCPPositionRes_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    64;
+
+  friend void swap(CalculateTCPPositionRes& a, CalculateTCPPositionRes& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(CalculateTCPPositionRes* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(CalculateTCPPositionRes* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  CalculateTCPPositionRes* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<CalculateTCPPositionRes>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const CalculateTCPPositionRes& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const CalculateTCPPositionRes& from) {
+    CalculateTCPPositionRes::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(CalculateTCPPositionRes* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "Nrmk.IndyFramework.CalculateTCPPositionRes";
+  }
+  protected:
+  explicit CalculateTCPPositionRes(::google::protobuf::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kCalculatedPosFieldNumber = 1,
+    kCalResultFieldNumber = 2,
+    kMsgFieldNumber = 100,
+  };
+  // repeated float calculated_pos = 1;
+  int calculated_pos_size() const;
+  private:
+  int _internal_calculated_pos_size() const;
+
+  public:
+  void clear_calculated_pos() ;
+  float calculated_pos(int index) const;
+  void set_calculated_pos(int index, float value);
+  void add_calculated_pos(float value);
+  const ::google::protobuf::RepeatedField<float>& calculated_pos() const;
+  ::google::protobuf::RepeatedField<float>* mutable_calculated_pos();
+
+  private:
+  const ::google::protobuf::RepeatedField<float>& _internal_calculated_pos() const;
+  ::google::protobuf::RepeatedField<float>* _internal_mutable_calculated_pos();
+
+  public:
+  // string cal_result = 2;
+  void clear_cal_result() ;
+  const std::string& cal_result() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_cal_result(Arg_&& arg, Args_... args);
+  std::string* mutable_cal_result();
+  PROTOBUF_NODISCARD std::string* release_cal_result();
+  void set_allocated_cal_result(std::string* ptr);
+
+  private:
+  const std::string& _internal_cal_result() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_cal_result(
+      const std::string& value);
+  std::string* _internal_mutable_cal_result();
+
+  public:
+  // string msg = 100;
+  void clear_msg() ;
+  const std::string& msg() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_msg(Arg_&& arg, Args_... args);
+  std::string* mutable_msg();
+  PROTOBUF_NODISCARD std::string* release_msg();
+  void set_allocated_msg(std::string* ptr);
+
+  private:
+  const std::string& _internal_msg() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_msg(
+      const std::string& value);
+  std::string* _internal_mutable_msg();
+
+  public:
+  // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.CalculateTCPPositionRes)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<2, 3, 0, 64, 7> _table_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::google::protobuf::RepeatedField<float> calculated_pos_;
+    ::google::protobuf::internal::ArenaStringPtr cal_result_;
+    ::google::protobuf::internal::ArenaStringPtr msg_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_control_5fmsgs_2eproto;
+};// -------------------------------------------------------------------
+
+class CalculateTCPOrientationReq final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.CalculateTCPOrientationReq) */ {
+ public:
+  inline CalculateTCPOrientationReq() : CalculateTCPOrientationReq(nullptr) {}
+  ~CalculateTCPOrientationReq() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR CalculateTCPOrientationReq(::google::protobuf::internal::ConstantInitialized);
+
+  CalculateTCPOrientationReq(const CalculateTCPOrientationReq& from);
+  CalculateTCPOrientationReq(CalculateTCPOrientationReq&& from) noexcept
+    : CalculateTCPOrientationReq() {
+    *this = ::std::move(from);
+  }
+
+  inline CalculateTCPOrientationReq& operator=(const CalculateTCPOrientationReq& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline CalculateTCPOrientationReq& operator=(CalculateTCPOrientationReq&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const CalculateTCPOrientationReq& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const CalculateTCPOrientationReq* internal_default_instance() {
+    return reinterpret_cast<const CalculateTCPOrientationReq*>(
+               &_CalculateTCPOrientationReq_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    65;
+
+  friend void swap(CalculateTCPOrientationReq& a, CalculateTCPOrientationReq& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(CalculateTCPOrientationReq* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(CalculateTCPOrientationReq* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  CalculateTCPOrientationReq* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<CalculateTCPOrientationReq>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const CalculateTCPOrientationReq& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const CalculateTCPOrientationReq& from) {
+    CalculateTCPOrientationReq::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(CalculateTCPOrientationReq* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "Nrmk.IndyFramework.CalculateTCPOrientationReq";
+  }
+  protected:
+  explicit CalculateTCPOrientationReq(::google::protobuf::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kRefPosFieldNumber = 1,
+    kRefFrameFieldNumber = 2,
+  };
+  // repeated float ref_pos = 1;
+  int ref_pos_size() const;
+  private:
+  int _internal_ref_pos_size() const;
+
+  public:
+  void clear_ref_pos() ;
+  float ref_pos(int index) const;
+  void set_ref_pos(int index, float value);
+  void add_ref_pos(float value);
+  const ::google::protobuf::RepeatedField<float>& ref_pos() const;
+  ::google::protobuf::RepeatedField<float>* mutable_ref_pos();
+
+  private:
+  const ::google::protobuf::RepeatedField<float>& _internal_ref_pos() const;
+  ::google::protobuf::RepeatedField<float>* _internal_mutable_ref_pos();
+
+  public:
+  // repeated float ref_frame = 2;
+  int ref_frame_size() const;
+  private:
+  int _internal_ref_frame_size() const;
+
+  public:
+  void clear_ref_frame() ;
+  float ref_frame(int index) const;
+  void set_ref_frame(int index, float value);
+  void add_ref_frame(float value);
+  const ::google::protobuf::RepeatedField<float>& ref_frame() const;
+  ::google::protobuf::RepeatedField<float>* mutable_ref_frame();
+
+  private:
+  const ::google::protobuf::RepeatedField<float>& _internal_ref_frame() const;
+  ::google::protobuf::RepeatedField<float>* _internal_mutable_ref_frame();
+
+  public:
+  // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.CalculateTCPOrientationReq)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<1, 2, 0, 0, 2> _table_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::google::protobuf::RepeatedField<float> ref_pos_;
+    ::google::protobuf::RepeatedField<float> ref_frame_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_control_5fmsgs_2eproto;
+};// -------------------------------------------------------------------
+
+class CalculateTCPOrientationRes final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.CalculateTCPOrientationRes) */ {
+ public:
+  inline CalculateTCPOrientationRes() : CalculateTCPOrientationRes(nullptr) {}
+  ~CalculateTCPOrientationRes() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR CalculateTCPOrientationRes(::google::protobuf::internal::ConstantInitialized);
+
+  CalculateTCPOrientationRes(const CalculateTCPOrientationRes& from);
+  CalculateTCPOrientationRes(CalculateTCPOrientationRes&& from) noexcept
+    : CalculateTCPOrientationRes() {
+    *this = ::std::move(from);
+  }
+
+  inline CalculateTCPOrientationRes& operator=(const CalculateTCPOrientationRes& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline CalculateTCPOrientationRes& operator=(CalculateTCPOrientationRes&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const CalculateTCPOrientationRes& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const CalculateTCPOrientationRes* internal_default_instance() {
+    return reinterpret_cast<const CalculateTCPOrientationRes*>(
+               &_CalculateTCPOrientationRes_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    66;
+
+  friend void swap(CalculateTCPOrientationRes& a, CalculateTCPOrientationRes& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(CalculateTCPOrientationRes* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(CalculateTCPOrientationRes* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  CalculateTCPOrientationRes* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<CalculateTCPOrientationRes>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const CalculateTCPOrientationRes& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const CalculateTCPOrientationRes& from) {
+    CalculateTCPOrientationRes::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(CalculateTCPOrientationRes* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "Nrmk.IndyFramework.CalculateTCPOrientationRes";
+  }
+  protected:
+  explicit CalculateTCPOrientationRes(::google::protobuf::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kCalculatedPosFieldNumber = 1,
+    kMsgFieldNumber = 100,
+  };
+  // repeated float calculated_pos = 1;
+  int calculated_pos_size() const;
+  private:
+  int _internal_calculated_pos_size() const;
+
+  public:
+  void clear_calculated_pos() ;
+  float calculated_pos(int index) const;
+  void set_calculated_pos(int index, float value);
+  void add_calculated_pos(float value);
+  const ::google::protobuf::RepeatedField<float>& calculated_pos() const;
+  ::google::protobuf::RepeatedField<float>* mutable_calculated_pos();
+
+  private:
+  const ::google::protobuf::RepeatedField<float>& _internal_calculated_pos() const;
+  ::google::protobuf::RepeatedField<float>* _internal_mutable_calculated_pos();
+
+  public:
+  // string msg = 100;
+  void clear_msg() ;
+  const std::string& msg() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_msg(Arg_&& arg, Args_... args);
+  std::string* mutable_msg();
+  PROTOBUF_NODISCARD std::string* release_msg();
+  void set_allocated_msg(std::string* ptr);
+
+  private:
+  const std::string& _internal_msg() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_msg(
+      const std::string& value);
+  std::string* _internal_mutable_msg();
+
+  public:
+  // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.CalculateTCPOrientationRes)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<1, 2, 0, 57, 7> _table_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::google::protobuf::RepeatedField<float> calculated_pos_;
+    ::google::protobuf::internal::ArenaStringPtr msg_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_control_5fmsgs_2eproto;
+};// -------------------------------------------------------------------
+
 class TeleOpDevice final :
     public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.TeleOpDevice) */ {
  public:
@@ -12943,7 +14383,7 @@ class TeleOpDevice final :
                &_TeleOpDevice_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    61;
+    67;
 
   friend void swap(TeleOpDevice& a, TeleOpDevice& b) {
     a.Swap(&b);
@@ -13181,7 +14621,7 @@ class TeleOpState final :
                &_TeleOpState_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    62;
+    68;
 
   friend void swap(TeleOpState& a, TeleOpState& b) {
     a.Swap(&b);
@@ -13351,7 +14791,7 @@ class TeleP final :
                &_TeleP_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    63;
+    69;
 
   friend void swap(TeleP& a, TeleP& b) {
     a.Swap(&b);
@@ -13425,6 +14865,7 @@ class TeleP final :
   enum : int {
     kTposFieldNumber = 1,
     kResponseFieldNumber = 100,
+    kArmIndexFieldNumber = 20,
   };
   // repeated float tpos = 1;
   int tpos_size() const;
@@ -13459,12 +14900,22 @@ class TeleP final :
   ::Nrmk::IndyFramework::Response* _internal_mutable_response();
 
   public:
+  // int32 arm_index = 20;
+  void clear_arm_index() ;
+  ::int32_t arm_index() const;
+  void set_arm_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_arm_index() const;
+  void _internal_set_arm_index(::int32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.TeleP)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<1, 2, 1, 0, 7> _table_;
+  static const ::google::protobuf::internal::TcParseTable<1, 3, 1, 0, 7> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
@@ -13473,6 +14924,7 @@ class TeleP final :
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::RepeatedField<float> tpos_;
     ::Nrmk::IndyFramework::Response* response_;
+    ::int32_t arm_index_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -13535,7 +14987,7 @@ class TeleOpFileList final :
                &_TeleOpFileList_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    64;
+    70;
 
   friend void swap(TeleOpFileList& a, TeleOpFileList& b) {
     a.Swap(&b);
@@ -13729,7 +15181,7 @@ class TeleFileReq final :
                &_TeleFileReq_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    65;
+    71;
 
   friend void swap(TeleFileReq& a, TeleFileReq& b) {
     a.Swap(&b);
@@ -13893,7 +15345,7 @@ class TelePlayRate final :
                &_TelePlayRate_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    66;
+    72;
 
   friend void swap(TelePlayRate& a, TelePlayRate& b) {
     a.Swap(&b);
@@ -14051,7 +15503,7 @@ class MoveTeleJReq final :
                &_MoveTeleJReq_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    67;
+    73;
 
   friend void swap(MoveTeleJReq& a, MoveTeleJReq& b) {
     a.Swap(&b);
@@ -14253,7 +15705,7 @@ class MoveTeleLReq final :
                &_MoveTeleLReq_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    68;
+    74;
 
   friend void swap(MoveTeleLReq& a, MoveTeleLReq& b) {
     a.Swap(&b);
@@ -14329,6 +15781,7 @@ class MoveTeleLReq final :
     kVelRatioFieldNumber = 2,
     kAccRatioFieldNumber = 3,
     kMethodFieldNumber = 10,
+    kArmIndexFieldNumber = 20,
   };
   // repeated float tpos = 1;
   int tpos_size() const;
@@ -14378,12 +15831,22 @@ class MoveTeleLReq final :
   void _internal_set_method(::Nrmk::IndyFramework::TeleMethod value);
 
   public:
+  // int32 arm_index = 20;
+  void clear_arm_index() ;
+  ::int32_t arm_index() const;
+  void set_arm_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_arm_index() const;
+  void _internal_set_arm_index(::int32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.MoveTeleLReq)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<2, 4, 0, 0, 2> _table_;
+  static const ::google::protobuf::internal::TcParseTable<2, 5, 0, 0, 2> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
@@ -14392,6 +15855,7 @@ class MoveTeleLReq final :
     float vel_ratio_;
     float acc_ratio_;
     int method_;
+    ::int32_t arm_index_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -14455,7 +15919,7 @@ class ForceModeReq final :
                &_ForceModeReq_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    69;
+    75;
 
   friend void swap(ForceModeReq& a, ForceModeReq& b) {
     a.Swap(&b);
@@ -14530,6 +15994,7 @@ class ForceModeReq final :
     kDesForceFieldNumber = 2,
     kEnabledForceFieldNumber = 3,
     kEnableFieldNumber = 1,
+    kArmIndexFieldNumber = 20,
   };
   // repeated float des_force = 2;
   int des_force_size() const;
@@ -14577,12 +16042,22 @@ class ForceModeReq final :
   void _internal_set_enable(bool value);
 
   public:
+  // int32 arm_index = 20;
+  void clear_arm_index() ;
+  ::int32_t arm_index() const;
+  void set_arm_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_arm_index() const;
+  void _internal_set_arm_index(::int32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.ForceModeReq)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<2, 3, 0, 0, 2> _table_;
+  static const ::google::protobuf::internal::TcParseTable<2, 4, 0, 0, 2> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
@@ -14590,6 +16065,7 @@ class ForceModeReq final :
     ::google::protobuf::RepeatedField<float> des_force_;
     ::google::protobuf::RepeatedField<bool> enabled_force_;
     bool enable_;
+    ::int32_t arm_index_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -14653,7 +16129,7 @@ class TransformedFTSensorData final :
                &_TransformedFTSensorData_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    70;
+    76;
 
   friend void swap(TransformedFTSensorData& a, TransformedFTSensorData& b) {
     a.Swap(&b);
@@ -14889,7 +16365,7 @@ class ComplianceMode final :
                &_ComplianceMode_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    71;
+    77;
 
   friend void swap(ComplianceMode& a, ComplianceMode& b) {
     a.Swap(&b);
@@ -15068,7 +16544,7 @@ class BusEvent final :
                &_BusEvent_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    72;
+    78;
 
   friend void swap(BusEvent& a, BusEvent& b) {
     a.Swap(&b);
@@ -15305,7 +16781,7 @@ class CatchBusEventReq final :
                &_CatchBusEventReq_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    73;
+    79;
 
   friend void swap(CatchBusEventReq& a, CatchBusEventReq& b) {
     a.Swap(&b);
@@ -15475,7 +16951,7 @@ class GetMotionJReq final :
                &_GetMotionJReq_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    74;
+    80;
 
   friend void swap(GetMotionJReq& a, GetMotionJReq& b) {
     a.Swap(&b);
@@ -15712,7 +17188,7 @@ class GetMotionLReq final :
                &_GetMotionLReq_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    75;
+    81;
 
   friend void swap(GetMotionLReq& a, GetMotionLReq& b) {
     a.Swap(&b);
@@ -15790,6 +17266,7 @@ class GetMotionLReq final :
     kVelRatioFieldNumber = 3,
     kAccRatioFieldNumber = 4,
     kVelTypeFieldNumber = 5,
+    kArmIndexFieldNumber = 10,
     kTimeStepFieldNumber = 30,
   };
   // repeated .Nrmk.IndyFramework.TargetP target_list = 1;
@@ -15870,6 +17347,16 @@ class GetMotionLReq final :
   void _internal_set_vel_type(::Nrmk::IndyFramework::VelocityModeType value);
 
   public:
+  // int32 arm_index = 10;
+  void clear_arm_index() ;
+  ::int32_t arm_index() const;
+  void set_arm_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_arm_index() const;
+  void _internal_set_arm_index(::int32_t value);
+
+  public:
   // float time_step = 30;
   void clear_time_step() ;
   float time_step() const;
@@ -15885,7 +17372,7 @@ class GetMotionLReq final :
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<3, 7, 3, 0, 2> _table_;
+  static const ::google::protobuf::internal::TcParseTable<4, 8, 3, 0, 2> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
@@ -15898,6 +17385,7 @@ class GetMotionLReq final :
     float vel_ratio_;
     float acc_ratio_;
     int vel_type_;
+    ::int32_t arm_index_;
     float time_step_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -15961,7 +17449,7 @@ class GetMotionCReq final :
                &_GetMotionCReq_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    76;
+    82;
 
   friend void swap(GetMotionCReq& a, GetMotionCReq& b) {
     a.Swap(&b);
@@ -16039,6 +17527,7 @@ class GetMotionCReq final :
     kAngleFieldNumber = 3,
     kSettingTypeFieldNumber = 10,
     kMoveTypeFieldNumber = 11,
+    kArmIndexFieldNumber = 15,
     kVelRatioFieldNumber = 20,
     kAccRatioFieldNumber = 21,
     kVelTypeFieldNumber = 22,
@@ -16119,6 +17608,16 @@ class GetMotionCReq final :
   void _internal_set_move_type(::Nrmk::IndyFramework::CircularMovingType value);
 
   public:
+  // int32 arm_index = 15;
+  void clear_arm_index() ;
+  ::int32_t arm_index() const;
+  void set_arm_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_arm_index() const;
+  void _internal_set_arm_index(::int32_t value);
+
+  public:
   // float vel_ratio = 20;
   void clear_vel_ratio() ;
   float vel_ratio() const;
@@ -16164,7 +17663,7 @@ class GetMotionCReq final :
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<4, 10, 3, 0, 2> _table_;
+  static const ::google::protobuf::internal::TcParseTable<4, 11, 3, 0, 2> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
@@ -16177,6 +17676,7 @@ class GetMotionCReq final :
     float angle_;
     int setting_type_;
     int move_type_;
+    ::int32_t arm_index_;
     float vel_ratio_;
     float acc_ratio_;
     int vel_type_;
@@ -16243,7 +17743,7 @@ class GetMotionRes final :
                &_GetMotionRes_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    77;
+    83;
 
   friend void swap(GetMotionRes& a, GetMotionRes& b) {
     a.Swap(&b);
@@ -16449,7 +17949,7 @@ class MoveLFReq final :
                &_MoveLFReq_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    78;
+    84;
 
   friend void swap(MoveLFReq& a, MoveLFReq& b) {
     a.Swap(&b);
@@ -16735,7 +18235,7 @@ class MoveFLRes final :
                &_MoveFLRes_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    79;
+    85;
 
   friend void swap(MoveFLRes& a, MoveFLRes& b) {
     a.Swap(&b);
@@ -16899,7 +18399,7 @@ class ControlInferenceDataSet final :
                &_ControlInferenceDataSet_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    80;
+    86;
 
   friend void swap(ControlInferenceDataSet& a, ControlInferenceDataSet& b) {
     a.Swap(&b);
@@ -18573,6 +20073,41 @@ inline void MoveJReq::_internal_set_acc_ratio(float value) {
   _impl_.acc_ratio_ = value;
 }
 
+// int32 arm_index = 10;
+inline bool MoveJReq::has_arm_index() const {
+  return arm_index_presence_case() == kArmIndex;
+}
+inline void MoveJReq::set_has_arm_index() {
+  _impl_._oneof_case_[0] = kArmIndex;
+}
+inline void MoveJReq::clear_arm_index() {
+  if (arm_index_presence_case() == kArmIndex) {
+    _impl_.arm_index_presence_.arm_index_ = 0;
+    clear_has_arm_index_presence();
+  }
+}
+inline ::int32_t MoveJReq::arm_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.MoveJReq.arm_index)
+  return _internal_arm_index();
+}
+inline void MoveJReq::set_arm_index(::int32_t value) {
+  _internal_set_arm_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.MoveJReq.arm_index)
+}
+inline ::int32_t MoveJReq::_internal_arm_index() const {
+  if (arm_index_presence_case() == kArmIndex) {
+    return _impl_.arm_index_presence_.arm_index_;
+  }
+  return 0;
+}
+inline void MoveJReq::_internal_set_arm_index(::int32_t value) {
+  if (arm_index_presence_case() != kArmIndex) {
+    clear_arm_index_presence();
+    set_has_arm_index();
+  }
+  _impl_.arm_index_presence_.arm_index_ = value;
+}
+
 // .Nrmk.IndyFramework.MotionCondition post_condition = 20;
 inline bool MoveJReq::has_post_condition() const {
   bool value = (_impl_._has_bits_[0] & 0x00000004u) != 0;
@@ -18691,6 +20226,15 @@ inline void MoveJReq::_internal_set_teaching_mode(bool value) {
   _impl_.teaching_mode_ = value;
 }
 
+inline bool MoveJReq::has_arm_index_presence() const {
+  return arm_index_presence_case() != ARM_INDEX_PRESENCE_NOT_SET;
+}
+inline void MoveJReq::clear_has_arm_index_presence() {
+  _impl_._oneof_case_[0] = ARM_INDEX_PRESENCE_NOT_SET;
+}
+inline MoveJReq::ArmIndexPresenceCase MoveJReq::arm_index_presence_case() const {
+  return MoveJReq::ArmIndexPresenceCase(_impl_._oneof_case_[0]);
+}
 // -------------------------------------------------------------------
 
 // MoveJCondReq
@@ -18931,6 +20475,41 @@ inline void MoveJCondReq::_internal_set_acc_ratio(float value) {
   _impl_.acc_ratio_ = value;
 }
 
+// int32 arm_index = 10;
+inline bool MoveJCondReq::has_arm_index() const {
+  return arm_index_presence_case() == kArmIndex;
+}
+inline void MoveJCondReq::set_has_arm_index() {
+  _impl_._oneof_case_[0] = kArmIndex;
+}
+inline void MoveJCondReq::clear_arm_index() {
+  if (arm_index_presence_case() == kArmIndex) {
+    _impl_.arm_index_presence_.arm_index_ = 0;
+    clear_has_arm_index_presence();
+  }
+}
+inline ::int32_t MoveJCondReq::arm_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.MoveJCondReq.arm_index)
+  return _internal_arm_index();
+}
+inline void MoveJCondReq::set_arm_index(::int32_t value) {
+  _internal_set_arm_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.MoveJCondReq.arm_index)
+}
+inline ::int32_t MoveJCondReq::_internal_arm_index() const {
+  if (arm_index_presence_case() == kArmIndex) {
+    return _impl_.arm_index_presence_.arm_index_;
+  }
+  return 0;
+}
+inline void MoveJCondReq::_internal_set_arm_index(::int32_t value) {
+  if (arm_index_presence_case() != kArmIndex) {
+    clear_arm_index_presence();
+    set_has_arm_index();
+  }
+  _impl_.arm_index_presence_.arm_index_ = value;
+}
+
 // .Nrmk.IndyFramework.MotionCondition post_condition = 20;
 inline bool MoveJCondReq::has_post_condition() const {
   bool value = (_impl_._has_bits_[0] & 0x00000004u) != 0;
@@ -19049,6 +20628,15 @@ inline void MoveJCondReq::_internal_set_teaching_mode(bool value) {
   _impl_.teaching_mode_ = value;
 }
 
+inline bool MoveJCondReq::has_arm_index_presence() const {
+  return arm_index_presence_case() != ARM_INDEX_PRESENCE_NOT_SET;
+}
+inline void MoveJCondReq::clear_has_arm_index_presence() {
+  _impl_._oneof_case_[0] = ARM_INDEX_PRESENCE_NOT_SET;
+}
+inline MoveJCondReq::ArmIndexPresenceCase MoveJCondReq::arm_index_presence_case() const {
+  return MoveJCondReq::ArmIndexPresenceCase(_impl_._oneof_case_[0]);
+}
 // -------------------------------------------------------------------
 
 // MoveJTReq
@@ -19267,6 +20855,41 @@ inline void MoveJTReq::_internal_set_time(float value) {
   _impl_.time_ = value;
 }
 
+// int32 arm_index = 10;
+inline bool MoveJTReq::has_arm_index() const {
+  return arm_index_presence_case() == kArmIndex;
+}
+inline void MoveJTReq::set_has_arm_index() {
+  _impl_._oneof_case_[0] = kArmIndex;
+}
+inline void MoveJTReq::clear_arm_index() {
+  if (arm_index_presence_case() == kArmIndex) {
+    _impl_.arm_index_presence_.arm_index_ = 0;
+    clear_has_arm_index_presence();
+  }
+}
+inline ::int32_t MoveJTReq::arm_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.MoveJTReq.arm_index)
+  return _internal_arm_index();
+}
+inline void MoveJTReq::set_arm_index(::int32_t value) {
+  _internal_set_arm_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.MoveJTReq.arm_index)
+}
+inline ::int32_t MoveJTReq::_internal_arm_index() const {
+  if (arm_index_presence_case() == kArmIndex) {
+    return _impl_.arm_index_presence_.arm_index_;
+  }
+  return 0;
+}
+inline void MoveJTReq::_internal_set_arm_index(::int32_t value) {
+  if (arm_index_presence_case() != kArmIndex) {
+    clear_arm_index_presence();
+    set_has_arm_index();
+  }
+  _impl_.arm_index_presence_.arm_index_ = value;
+}
+
 // .Nrmk.IndyFramework.MotionCondition post_condition = 20;
 inline bool MoveJTReq::has_post_condition() const {
   bool value = (_impl_._has_bits_[0] & 0x00000004u) != 0;
@@ -19363,6 +20986,15 @@ inline void MoveJTReq::set_allocated_post_condition(::Nrmk::IndyFramework::Motio
   // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.MoveJTReq.post_condition)
 }
 
+inline bool MoveJTReq::has_arm_index_presence() const {
+  return arm_index_presence_case() != ARM_INDEX_PRESENCE_NOT_SET;
+}
+inline void MoveJTReq::clear_has_arm_index_presence() {
+  _impl_._oneof_case_[0] = ARM_INDEX_PRESENCE_NOT_SET;
+}
+inline MoveJTReq::ArmIndexPresenceCase MoveJTReq::arm_index_presence_case() const {
+  return MoveJTReq::ArmIndexPresenceCase(_impl_._oneof_case_[0]);
+}
 // -------------------------------------------------------------------
 
 // TargetP
@@ -19887,6 +21519,28 @@ inline void MoveLReq::_internal_set_vel_type(::Nrmk::IndyFramework::VelocityMode
   _impl_.vel_type_ = value;
 }
 
+// int32 arm_index = 10;
+inline void MoveLReq::clear_arm_index() {
+  _impl_.arm_index_ = 0;
+}
+inline ::int32_t MoveLReq::arm_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.MoveLReq.arm_index)
+  return _internal_arm_index();
+}
+inline void MoveLReq::set_arm_index(::int32_t value) {
+  _internal_set_arm_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.MoveLReq.arm_index)
+}
+inline ::int32_t MoveLReq::_internal_arm_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.arm_index_;
+}
+inline void MoveLReq::_internal_set_arm_index(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.arm_index_ = value;
+}
+
 // .Nrmk.IndyFramework.MotionCondition post_condition = 20;
 inline bool MoveLReq::has_post_condition() const {
   bool value = (_impl_._has_bits_[0] & 0x00000004u) != 0;
@@ -20243,6 +21897,28 @@ inline void MoveLTReq::_internal_set_time(float value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.time_ = value;
+}
+
+// int32 arm_index = 10;
+inline void MoveLTReq::clear_arm_index() {
+  _impl_.arm_index_ = 0;
+}
+inline ::int32_t MoveLTReq::arm_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.MoveLTReq.arm_index)
+  return _internal_arm_index();
+}
+inline void MoveLTReq::set_arm_index(::int32_t value) {
+  _internal_set_arm_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.MoveLTReq.arm_index)
+}
+inline ::int32_t MoveLTReq::_internal_arm_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.arm_index_;
+}
+inline void MoveLTReq::_internal_set_arm_index(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.arm_index_ = value;
 }
 
 // .Nrmk.IndyFramework.MotionCondition post_condition = 20;
@@ -20779,6 +22455,28 @@ inline void MoveCReq::_internal_set_move_type(::Nrmk::IndyFramework::CircularMov
   _impl_.move_type_ = value;
 }
 
+// int32 arm_index = 15;
+inline void MoveCReq::clear_arm_index() {
+  _impl_.arm_index_ = 0;
+}
+inline ::int32_t MoveCReq::arm_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.MoveCReq.arm_index)
+  return _internal_arm_index();
+}
+inline void MoveCReq::set_arm_index(::int32_t value) {
+  _internal_set_arm_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.MoveCReq.arm_index)
+}
+inline ::int32_t MoveCReq::_internal_arm_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.arm_index_;
+}
+inline void MoveCReq::_internal_set_arm_index(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.arm_index_ = value;
+}
+
 // float vel_ratio = 20;
 inline void MoveCReq::clear_vel_ratio() {
   _impl_.vel_ratio_ = 0;
@@ -21245,6 +22943,28 @@ inline void MoveCTReq::_internal_set_move_type(::Nrmk::IndyFramework::CircularMo
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.move_type_ = value;
+}
+
+// int32 arm_index = 15;
+inline void MoveCTReq::clear_arm_index() {
+  _impl_.arm_index_ = 0;
+}
+inline ::int32_t MoveCTReq::arm_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.MoveCTReq.arm_index)
+  return _internal_arm_index();
+}
+inline void MoveCTReq::set_arm_index(::int32_t value) {
+  _internal_set_arm_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.MoveCTReq.arm_index)
+}
+inline ::int32_t MoveCTReq::_internal_arm_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.arm_index_;
+}
+inline void MoveCTReq::_internal_set_arm_index(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.arm_index_ = value;
 }
 
 // float time = 20;
@@ -21772,6 +23492,28 @@ inline void MoveGcodeReq::_internal_set_acc_ratio(float value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.acc_ratio_ = value;
+}
+
+// int32 arm_index = 10;
+inline void MoveGcodeReq::clear_arm_index() {
+  _impl_.arm_index_ = 0;
+}
+inline ::int32_t MoveGcodeReq::arm_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.MoveGcodeReq.arm_index)
+  return _internal_arm_index();
+}
+inline void MoveGcodeReq::set_arm_index(::int32_t value) {
+  _internal_set_arm_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.MoveGcodeReq.arm_index)
+}
+inline ::int32_t MoveGcodeReq::_internal_arm_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.arm_index_;
+}
+inline void MoveGcodeReq::_internal_set_arm_index(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.arm_index_ = value;
 }
 
 // -------------------------------------------------------------------
@@ -24174,6 +25916,28 @@ inline ::google::protobuf::RepeatedField<float>* InverseKinematicsReq::_internal
   return &_impl_.init_jpos_;
 }
 
+// int32 arm_index = 10;
+inline void InverseKinematicsReq::clear_arm_index() {
+  _impl_.arm_index_ = 0;
+}
+inline ::int32_t InverseKinematicsReq::arm_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.InverseKinematicsReq.arm_index)
+  return _internal_arm_index();
+}
+inline void InverseKinematicsReq::set_arm_index(::int32_t value) {
+  _internal_set_arm_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.InverseKinematicsReq.arm_index)
+}
+inline ::int32_t InverseKinematicsReq::_internal_arm_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.arm_index_;
+}
+inline void InverseKinematicsReq::_internal_set_arm_index(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.arm_index_ = value;
+}
+
 // -------------------------------------------------------------------
 
 // InverseKinematicsRes
@@ -24218,6 +25982,28 @@ inline const ::google::protobuf::RepeatedField<float>& InverseKinematicsRes::_in
 inline ::google::protobuf::RepeatedField<float>* InverseKinematicsRes::_internal_mutable_jpos() {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return &_impl_.jpos_;
+}
+
+// int32 arm_index = 10;
+inline void InverseKinematicsRes::clear_arm_index() {
+  _impl_.arm_index_ = 0;
+}
+inline ::int32_t InverseKinematicsRes::arm_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.InverseKinematicsRes.arm_index)
+  return _internal_arm_index();
+}
+inline void InverseKinematicsRes::set_arm_index(::int32_t value) {
+  _internal_set_arm_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.InverseKinematicsRes.arm_index)
+}
+inline ::int32_t InverseKinematicsRes::_internal_arm_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.arm_index_;
+}
+inline void InverseKinematicsRes::_internal_set_arm_index(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.arm_index_ = value;
 }
 
 // .Nrmk.IndyFramework.Response response = 100;
@@ -24358,6 +26144,28 @@ inline ::google::protobuf::RepeatedField<float>* ForwardKinematicsReq::_internal
   return &_impl_.jpos_;
 }
 
+// int32 arm_index = 10;
+inline void ForwardKinematicsReq::clear_arm_index() {
+  _impl_.arm_index_ = 0;
+}
+inline ::int32_t ForwardKinematicsReq::arm_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.ForwardKinematicsReq.arm_index)
+  return _internal_arm_index();
+}
+inline void ForwardKinematicsReq::set_arm_index(::int32_t value) {
+  _internal_set_arm_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.ForwardKinematicsReq.arm_index)
+}
+inline ::int32_t ForwardKinematicsReq::_internal_arm_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.arm_index_;
+}
+inline void ForwardKinematicsReq::_internal_set_arm_index(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.arm_index_ = value;
+}
+
 // -------------------------------------------------------------------
 
 // ForwardKinematicsRes
@@ -24402,6 +26210,28 @@ inline const ::google::protobuf::RepeatedField<float>& ForwardKinematicsRes::_in
 inline ::google::protobuf::RepeatedField<float>* ForwardKinematicsRes::_internal_mutable_tpos() {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return &_impl_.tpos_;
+}
+
+// int32 arm_index = 10;
+inline void ForwardKinematicsRes::clear_arm_index() {
+  _impl_.arm_index_ = 0;
+}
+inline ::int32_t ForwardKinematicsRes::arm_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.ForwardKinematicsRes.arm_index)
+  return _internal_arm_index();
+}
+inline void ForwardKinematicsRes::set_arm_index(::int32_t value) {
+  _internal_set_arm_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.ForwardKinematicsRes.arm_index)
+}
+inline ::int32_t ForwardKinematicsRes::_internal_arm_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.arm_index_;
+}
+inline void ForwardKinematicsRes::_internal_set_arm_index(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.arm_index_ = value;
 }
 
 // .Nrmk.IndyFramework.Response response = 100;
@@ -24494,6 +26324,362 @@ inline void ForwardKinematicsRes::set_allocated_response(::Nrmk::IndyFramework::
 
   _impl_.response_ = reinterpret_cast<::Nrmk::IndyFramework::Response*>(value);
   // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.ForwardKinematicsRes.response)
+}
+
+// -------------------------------------------------------------------
+
+// JointToTcpTransformReq
+
+// repeated float jpos = 1;
+inline int JointToTcpTransformReq::_internal_jpos_size() const {
+  return _internal_jpos().size();
+}
+inline int JointToTcpTransformReq::jpos_size() const {
+  return _internal_jpos_size();
+}
+inline void JointToTcpTransformReq::clear_jpos() {
+  _internal_mutable_jpos()->Clear();
+}
+inline float JointToTcpTransformReq::jpos(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.JointToTcpTransformReq.jpos)
+  return _internal_jpos().Get(index);
+}
+inline void JointToTcpTransformReq::set_jpos(int index, float value) {
+  _internal_mutable_jpos()->Set(index, value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.JointToTcpTransformReq.jpos)
+}
+inline void JointToTcpTransformReq::add_jpos(float value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_jpos()->Add(value);
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.JointToTcpTransformReq.jpos)
+}
+inline const ::google::protobuf::RepeatedField<float>& JointToTcpTransformReq::jpos() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.JointToTcpTransformReq.jpos)
+  return _internal_jpos();
+}
+inline ::google::protobuf::RepeatedField<float>* JointToTcpTransformReq::mutable_jpos() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.JointToTcpTransformReq.jpos)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_jpos();
+}
+
+inline const ::google::protobuf::RepeatedField<float>& JointToTcpTransformReq::_internal_jpos() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.jpos_;
+}
+inline ::google::protobuf::RepeatedField<float>* JointToTcpTransformReq::_internal_mutable_jpos() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.jpos_;
+}
+
+// int32 joint_idx = 2;
+inline void JointToTcpTransformReq::clear_joint_idx() {
+  _impl_.joint_idx_ = 0;
+}
+inline ::int32_t JointToTcpTransformReq::joint_idx() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.JointToTcpTransformReq.joint_idx)
+  return _internal_joint_idx();
+}
+inline void JointToTcpTransformReq::set_joint_idx(::int32_t value) {
+  _internal_set_joint_idx(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.JointToTcpTransformReq.joint_idx)
+}
+inline ::int32_t JointToTcpTransformReq::_internal_joint_idx() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.joint_idx_;
+}
+inline void JointToTcpTransformReq::_internal_set_joint_idx(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.joint_idx_ = value;
+}
+
+// bool joint_idx_is_body_index = 3;
+inline void JointToTcpTransformReq::clear_joint_idx_is_body_index() {
+  _impl_.joint_idx_is_body_index_ = false;
+}
+inline bool JointToTcpTransformReq::joint_idx_is_body_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.JointToTcpTransformReq.joint_idx_is_body_index)
+  return _internal_joint_idx_is_body_index();
+}
+inline void JointToTcpTransformReq::set_joint_idx_is_body_index(bool value) {
+  _internal_set_joint_idx_is_body_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.JointToTcpTransformReq.joint_idx_is_body_index)
+}
+inline bool JointToTcpTransformReq::_internal_joint_idx_is_body_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.joint_idx_is_body_index_;
+}
+inline void JointToTcpTransformReq::_internal_set_joint_idx_is_body_index(bool value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.joint_idx_is_body_index_ = value;
+}
+
+// int32 arm_index = 10;
+inline void JointToTcpTransformReq::clear_arm_index() {
+  _impl_.arm_index_ = 0;
+}
+inline ::int32_t JointToTcpTransformReq::arm_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.JointToTcpTransformReq.arm_index)
+  return _internal_arm_index();
+}
+inline void JointToTcpTransformReq::set_arm_index(::int32_t value) {
+  _internal_set_arm_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.JointToTcpTransformReq.arm_index)
+}
+inline ::int32_t JointToTcpTransformReq::_internal_arm_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.arm_index_;
+}
+inline void JointToTcpTransformReq::_internal_set_arm_index(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.arm_index_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// JointToTcpTransformRes
+
+// repeated float joint_to_tcp = 1;
+inline int JointToTcpTransformRes::_internal_joint_to_tcp_size() const {
+  return _internal_joint_to_tcp().size();
+}
+inline int JointToTcpTransformRes::joint_to_tcp_size() const {
+  return _internal_joint_to_tcp_size();
+}
+inline void JointToTcpTransformRes::clear_joint_to_tcp() {
+  _internal_mutable_joint_to_tcp()->Clear();
+}
+inline float JointToTcpTransformRes::joint_to_tcp(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.JointToTcpTransformRes.joint_to_tcp)
+  return _internal_joint_to_tcp().Get(index);
+}
+inline void JointToTcpTransformRes::set_joint_to_tcp(int index, float value) {
+  _internal_mutable_joint_to_tcp()->Set(index, value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.JointToTcpTransformRes.joint_to_tcp)
+}
+inline void JointToTcpTransformRes::add_joint_to_tcp(float value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_joint_to_tcp()->Add(value);
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.JointToTcpTransformRes.joint_to_tcp)
+}
+inline const ::google::protobuf::RepeatedField<float>& JointToTcpTransformRes::joint_to_tcp() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.JointToTcpTransformRes.joint_to_tcp)
+  return _internal_joint_to_tcp();
+}
+inline ::google::protobuf::RepeatedField<float>* JointToTcpTransformRes::mutable_joint_to_tcp() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.JointToTcpTransformRes.joint_to_tcp)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_joint_to_tcp();
+}
+
+inline const ::google::protobuf::RepeatedField<float>& JointToTcpTransformRes::_internal_joint_to_tcp() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.joint_to_tcp_;
+}
+inline ::google::protobuf::RepeatedField<float>* JointToTcpTransformRes::_internal_mutable_joint_to_tcp() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.joint_to_tcp_;
+}
+
+// repeated float base_to_joint = 2;
+inline int JointToTcpTransformRes::_internal_base_to_joint_size() const {
+  return _internal_base_to_joint().size();
+}
+inline int JointToTcpTransformRes::base_to_joint_size() const {
+  return _internal_base_to_joint_size();
+}
+inline void JointToTcpTransformRes::clear_base_to_joint() {
+  _internal_mutable_base_to_joint()->Clear();
+}
+inline float JointToTcpTransformRes::base_to_joint(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.JointToTcpTransformRes.base_to_joint)
+  return _internal_base_to_joint().Get(index);
+}
+inline void JointToTcpTransformRes::set_base_to_joint(int index, float value) {
+  _internal_mutable_base_to_joint()->Set(index, value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.JointToTcpTransformRes.base_to_joint)
+}
+inline void JointToTcpTransformRes::add_base_to_joint(float value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_base_to_joint()->Add(value);
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.JointToTcpTransformRes.base_to_joint)
+}
+inline const ::google::protobuf::RepeatedField<float>& JointToTcpTransformRes::base_to_joint() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.JointToTcpTransformRes.base_to_joint)
+  return _internal_base_to_joint();
+}
+inline ::google::protobuf::RepeatedField<float>* JointToTcpTransformRes::mutable_base_to_joint() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.JointToTcpTransformRes.base_to_joint)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_base_to_joint();
+}
+
+inline const ::google::protobuf::RepeatedField<float>& JointToTcpTransformRes::_internal_base_to_joint() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.base_to_joint_;
+}
+inline ::google::protobuf::RepeatedField<float>* JointToTcpTransformRes::_internal_mutable_base_to_joint() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.base_to_joint_;
+}
+
+// repeated float base_to_tcp = 3;
+inline int JointToTcpTransformRes::_internal_base_to_tcp_size() const {
+  return _internal_base_to_tcp().size();
+}
+inline int JointToTcpTransformRes::base_to_tcp_size() const {
+  return _internal_base_to_tcp_size();
+}
+inline void JointToTcpTransformRes::clear_base_to_tcp() {
+  _internal_mutable_base_to_tcp()->Clear();
+}
+inline float JointToTcpTransformRes::base_to_tcp(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.JointToTcpTransformRes.base_to_tcp)
+  return _internal_base_to_tcp().Get(index);
+}
+inline void JointToTcpTransformRes::set_base_to_tcp(int index, float value) {
+  _internal_mutable_base_to_tcp()->Set(index, value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.JointToTcpTransformRes.base_to_tcp)
+}
+inline void JointToTcpTransformRes::add_base_to_tcp(float value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_base_to_tcp()->Add(value);
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.JointToTcpTransformRes.base_to_tcp)
+}
+inline const ::google::protobuf::RepeatedField<float>& JointToTcpTransformRes::base_to_tcp() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.JointToTcpTransformRes.base_to_tcp)
+  return _internal_base_to_tcp();
+}
+inline ::google::protobuf::RepeatedField<float>* JointToTcpTransformRes::mutable_base_to_tcp() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.JointToTcpTransformRes.base_to_tcp)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_base_to_tcp();
+}
+
+inline const ::google::protobuf::RepeatedField<float>& JointToTcpTransformRes::_internal_base_to_tcp() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.base_to_tcp_;
+}
+inline ::google::protobuf::RepeatedField<float>* JointToTcpTransformRes::_internal_mutable_base_to_tcp() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.base_to_tcp_;
+}
+
+// int32 arm_index = 10;
+inline void JointToTcpTransformRes::clear_arm_index() {
+  _impl_.arm_index_ = 0;
+}
+inline ::int32_t JointToTcpTransformRes::arm_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.JointToTcpTransformRes.arm_index)
+  return _internal_arm_index();
+}
+inline void JointToTcpTransformRes::set_arm_index(::int32_t value) {
+  _internal_set_arm_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.JointToTcpTransformRes.arm_index)
+}
+inline ::int32_t JointToTcpTransformRes::_internal_arm_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.arm_index_;
+}
+inline void JointToTcpTransformRes::_internal_set_arm_index(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.arm_index_ = value;
+}
+
+// .Nrmk.IndyFramework.Response response = 100;
+inline bool JointToTcpTransformRes::has_response() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.response_ != nullptr);
+  return value;
+}
+inline const ::Nrmk::IndyFramework::Response& JointToTcpTransformRes::_internal_response() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  const ::Nrmk::IndyFramework::Response* p = _impl_.response_;
+  return p != nullptr ? *p : reinterpret_cast<const ::Nrmk::IndyFramework::Response&>(::Nrmk::IndyFramework::_Response_default_instance_);
+}
+inline const ::Nrmk::IndyFramework::Response& JointToTcpTransformRes::response() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.JointToTcpTransformRes.response)
+  return _internal_response();
+}
+inline void JointToTcpTransformRes::unsafe_arena_set_allocated_response(::Nrmk::IndyFramework::Response* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.response_);
+  }
+  _impl_.response_ = reinterpret_cast<::Nrmk::IndyFramework::Response*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Nrmk.IndyFramework.JointToTcpTransformRes.response)
+}
+inline ::Nrmk::IndyFramework::Response* JointToTcpTransformRes::release_response() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::Nrmk::IndyFramework::Response* released = _impl_.response_;
+  _impl_.response_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  if (GetArenaForAllocation() == nullptr) {
+    delete old;
+  }
+#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return released;
+}
+inline ::Nrmk::IndyFramework::Response* JointToTcpTransformRes::unsafe_arena_release_response() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:Nrmk.IndyFramework.JointToTcpTransformRes.response)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::Nrmk::IndyFramework::Response* temp = _impl_.response_;
+  _impl_.response_ = nullptr;
+  return temp;
+}
+inline ::Nrmk::IndyFramework::Response* JointToTcpTransformRes::_internal_mutable_response() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  if (_impl_.response_ == nullptr) {
+    auto* p = CreateMaybeMessage<::Nrmk::IndyFramework::Response>(GetArenaForAllocation());
+    _impl_.response_ = reinterpret_cast<::Nrmk::IndyFramework::Response*>(p);
+  }
+  return _impl_.response_;
+}
+inline ::Nrmk::IndyFramework::Response* JointToTcpTransformRes::mutable_response() {
+  ::Nrmk::IndyFramework::Response* _msg = _internal_mutable_response();
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.JointToTcpTransformRes.response)
+  return _msg;
+}
+inline void JointToTcpTransformRes::set_allocated_response(::Nrmk::IndyFramework::Response* value) {
+  ::google::protobuf::Arena* message_arena = GetArenaForAllocation();
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.response_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena =
+        ::google::protobuf::Arena::InternalGetOwningArena(reinterpret_cast<::google::protobuf::MessageLite*>(value));
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.response_ = reinterpret_cast<::Nrmk::IndyFramework::Response*>(value);
+  // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.JointToTcpTransformRes.response)
 }
 
 // -------------------------------------------------------------------
@@ -24668,6 +26854,28 @@ inline ::google::protobuf::RepeatedField<float>* CheckAproachRetractValidReq::_i
   return &_impl_.post_tpos_;
 }
 
+// int32 arm_index = 10;
+inline void CheckAproachRetractValidReq::clear_arm_index() {
+  _impl_.arm_index_ = 0;
+}
+inline ::int32_t CheckAproachRetractValidReq::arm_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.CheckAproachRetractValidReq.arm_index)
+  return _internal_arm_index();
+}
+inline void CheckAproachRetractValidReq::set_arm_index(::int32_t value) {
+  _internal_set_arm_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.CheckAproachRetractValidReq.arm_index)
+}
+inline ::int32_t CheckAproachRetractValidReq::_internal_arm_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.arm_index_;
+}
+inline void CheckAproachRetractValidReq::_internal_set_arm_index(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.arm_index_ = value;
+}
+
 // -------------------------------------------------------------------
 
 // CheckAproachRetractValidRes
@@ -24818,6 +27026,28 @@ inline const ::google::protobuf::RepeatedField<float>& CheckAproachRetractValidR
 inline ::google::protobuf::RepeatedField<float>* CheckAproachRetractValidRes::_internal_mutable_retract_pos() {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return &_impl_.retract_pos_;
+}
+
+// int32 arm_index = 10;
+inline void CheckAproachRetractValidRes::clear_arm_index() {
+  _impl_.arm_index_ = 0;
+}
+inline ::int32_t CheckAproachRetractValidRes::arm_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.CheckAproachRetractValidRes.arm_index)
+  return _internal_arm_index();
+}
+inline void CheckAproachRetractValidRes::set_arm_index(::int32_t value) {
+  _internal_set_arm_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.CheckAproachRetractValidRes.arm_index)
+}
+inline ::int32_t CheckAproachRetractValidRes::_internal_arm_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.arm_index_;
+}
+inline void CheckAproachRetractValidRes::_internal_set_arm_index(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.arm_index_ = value;
 }
 
 // .Nrmk.IndyFramework.Response response = 100;
@@ -25150,6 +27380,28 @@ inline void GetPalletPointListReq::_internal_set_height(::int32_t value) {
   _impl_.height_ = value;
 }
 
+// int32 arm_index = 10;
+inline void GetPalletPointListReq::clear_arm_index() {
+  _impl_.arm_index_ = 0;
+}
+inline ::int32_t GetPalletPointListReq::arm_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.GetPalletPointListReq.arm_index)
+  return _internal_arm_index();
+}
+inline void GetPalletPointListReq::set_arm_index(::int32_t value) {
+  _internal_set_arm_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.GetPalletPointListReq.arm_index)
+}
+inline ::int32_t GetPalletPointListReq::_internal_arm_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.arm_index_;
+}
+inline void GetPalletPointListReq::_internal_set_arm_index(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.arm_index_ = value;
+}
+
 // -------------------------------------------------------------------
 
 // PalletPoint
@@ -25370,6 +27622,28 @@ inline ::google::protobuf::RepeatedPtrField<::Nrmk::IndyFramework::PalletPoint>*
 GetPalletPointListRes::_internal_mutable_pallet_points() {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return &_impl_.pallet_points_;
+}
+
+// int32 arm_index = 10;
+inline void GetPalletPointListRes::clear_arm_index() {
+  _impl_.arm_index_ = 0;
+}
+inline ::int32_t GetPalletPointListRes::arm_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.GetPalletPointListRes.arm_index)
+  return _internal_arm_index();
+}
+inline void GetPalletPointListRes::set_arm_index(::int32_t value) {
+  _internal_set_arm_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.GetPalletPointListRes.arm_index)
+}
+inline ::int32_t GetPalletPointListRes::_internal_arm_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.arm_index_;
+}
+inline void GetPalletPointListRes::_internal_set_arm_index(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.arm_index_ = value;
 }
 
 // .Nrmk.IndyFramework.Response response = 100;
@@ -25962,6 +28236,385 @@ inline void CalculateCurrentPoseRelRes::set_allocated_response(::Nrmk::IndyFrame
 
 // -------------------------------------------------------------------
 
+// CalculateTCPPositionReq
+
+// repeated float ref_pos = 1;
+inline int CalculateTCPPositionReq::_internal_ref_pos_size() const {
+  return _internal_ref_pos().size();
+}
+inline int CalculateTCPPositionReq::ref_pos_size() const {
+  return _internal_ref_pos_size();
+}
+inline void CalculateTCPPositionReq::clear_ref_pos() {
+  _internal_mutable_ref_pos()->Clear();
+}
+inline float CalculateTCPPositionReq::ref_pos(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.CalculateTCPPositionReq.ref_pos)
+  return _internal_ref_pos().Get(index);
+}
+inline void CalculateTCPPositionReq::set_ref_pos(int index, float value) {
+  _internal_mutable_ref_pos()->Set(index, value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.CalculateTCPPositionReq.ref_pos)
+}
+inline void CalculateTCPPositionReq::add_ref_pos(float value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_ref_pos()->Add(value);
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.CalculateTCPPositionReq.ref_pos)
+}
+inline const ::google::protobuf::RepeatedField<float>& CalculateTCPPositionReq::ref_pos() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.CalculateTCPPositionReq.ref_pos)
+  return _internal_ref_pos();
+}
+inline ::google::protobuf::RepeatedField<float>* CalculateTCPPositionReq::mutable_ref_pos() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.CalculateTCPPositionReq.ref_pos)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_ref_pos();
+}
+
+inline const ::google::protobuf::RepeatedField<float>& CalculateTCPPositionReq::_internal_ref_pos() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.ref_pos_;
+}
+inline ::google::protobuf::RepeatedField<float>* CalculateTCPPositionReq::_internal_mutable_ref_pos() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.ref_pos_;
+}
+
+// -------------------------------------------------------------------
+
+// CalculateTCPPositionRes
+
+// repeated float calculated_pos = 1;
+inline int CalculateTCPPositionRes::_internal_calculated_pos_size() const {
+  return _internal_calculated_pos().size();
+}
+inline int CalculateTCPPositionRes::calculated_pos_size() const {
+  return _internal_calculated_pos_size();
+}
+inline void CalculateTCPPositionRes::clear_calculated_pos() {
+  _internal_mutable_calculated_pos()->Clear();
+}
+inline float CalculateTCPPositionRes::calculated_pos(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.CalculateTCPPositionRes.calculated_pos)
+  return _internal_calculated_pos().Get(index);
+}
+inline void CalculateTCPPositionRes::set_calculated_pos(int index, float value) {
+  _internal_mutable_calculated_pos()->Set(index, value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.CalculateTCPPositionRes.calculated_pos)
+}
+inline void CalculateTCPPositionRes::add_calculated_pos(float value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_calculated_pos()->Add(value);
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.CalculateTCPPositionRes.calculated_pos)
+}
+inline const ::google::protobuf::RepeatedField<float>& CalculateTCPPositionRes::calculated_pos() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.CalculateTCPPositionRes.calculated_pos)
+  return _internal_calculated_pos();
+}
+inline ::google::protobuf::RepeatedField<float>* CalculateTCPPositionRes::mutable_calculated_pos() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.CalculateTCPPositionRes.calculated_pos)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_calculated_pos();
+}
+
+inline const ::google::protobuf::RepeatedField<float>& CalculateTCPPositionRes::_internal_calculated_pos() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.calculated_pos_;
+}
+inline ::google::protobuf::RepeatedField<float>* CalculateTCPPositionRes::_internal_mutable_calculated_pos() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.calculated_pos_;
+}
+
+// string cal_result = 2;
+inline void CalculateTCPPositionRes::clear_cal_result() {
+  _impl_.cal_result_.ClearToEmpty();
+}
+inline const std::string& CalculateTCPPositionRes::cal_result() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.CalculateTCPPositionRes.cal_result)
+  return _internal_cal_result();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void CalculateTCPPositionRes::set_cal_result(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.cal_result_.Set(static_cast<Arg_&&>(arg), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.CalculateTCPPositionRes.cal_result)
+}
+inline std::string* CalculateTCPPositionRes::mutable_cal_result() {
+  std::string* _s = _internal_mutable_cal_result();
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.CalculateTCPPositionRes.cal_result)
+  return _s;
+}
+inline const std::string& CalculateTCPPositionRes::_internal_cal_result() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.cal_result_.Get();
+}
+inline void CalculateTCPPositionRes::_internal_set_cal_result(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.cal_result_.Set(value, GetArenaForAllocation());
+}
+inline std::string* CalculateTCPPositionRes::_internal_mutable_cal_result() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.cal_result_.Mutable( GetArenaForAllocation());
+}
+inline std::string* CalculateTCPPositionRes::release_cal_result() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:Nrmk.IndyFramework.CalculateTCPPositionRes.cal_result)
+  return _impl_.cal_result_.Release();
+}
+inline void CalculateTCPPositionRes::set_allocated_cal_result(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.cal_result_.SetAllocated(value, GetArenaForAllocation());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.cal_result_.IsDefault()) {
+          _impl_.cal_result_.Set("", GetArenaForAllocation());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.CalculateTCPPositionRes.cal_result)
+}
+
+// string msg = 100;
+inline void CalculateTCPPositionRes::clear_msg() {
+  _impl_.msg_.ClearToEmpty();
+}
+inline const std::string& CalculateTCPPositionRes::msg() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.CalculateTCPPositionRes.msg)
+  return _internal_msg();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void CalculateTCPPositionRes::set_msg(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.msg_.Set(static_cast<Arg_&&>(arg), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.CalculateTCPPositionRes.msg)
+}
+inline std::string* CalculateTCPPositionRes::mutable_msg() {
+  std::string* _s = _internal_mutable_msg();
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.CalculateTCPPositionRes.msg)
+  return _s;
+}
+inline const std::string& CalculateTCPPositionRes::_internal_msg() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.msg_.Get();
+}
+inline void CalculateTCPPositionRes::_internal_set_msg(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.msg_.Set(value, GetArenaForAllocation());
+}
+inline std::string* CalculateTCPPositionRes::_internal_mutable_msg() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.msg_.Mutable( GetArenaForAllocation());
+}
+inline std::string* CalculateTCPPositionRes::release_msg() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:Nrmk.IndyFramework.CalculateTCPPositionRes.msg)
+  return _impl_.msg_.Release();
+}
+inline void CalculateTCPPositionRes::set_allocated_msg(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.msg_.SetAllocated(value, GetArenaForAllocation());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.msg_.IsDefault()) {
+          _impl_.msg_.Set("", GetArenaForAllocation());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.CalculateTCPPositionRes.msg)
+}
+
+// -------------------------------------------------------------------
+
+// CalculateTCPOrientationReq
+
+// repeated float ref_pos = 1;
+inline int CalculateTCPOrientationReq::_internal_ref_pos_size() const {
+  return _internal_ref_pos().size();
+}
+inline int CalculateTCPOrientationReq::ref_pos_size() const {
+  return _internal_ref_pos_size();
+}
+inline void CalculateTCPOrientationReq::clear_ref_pos() {
+  _internal_mutable_ref_pos()->Clear();
+}
+inline float CalculateTCPOrientationReq::ref_pos(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.CalculateTCPOrientationReq.ref_pos)
+  return _internal_ref_pos().Get(index);
+}
+inline void CalculateTCPOrientationReq::set_ref_pos(int index, float value) {
+  _internal_mutable_ref_pos()->Set(index, value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.CalculateTCPOrientationReq.ref_pos)
+}
+inline void CalculateTCPOrientationReq::add_ref_pos(float value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_ref_pos()->Add(value);
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.CalculateTCPOrientationReq.ref_pos)
+}
+inline const ::google::protobuf::RepeatedField<float>& CalculateTCPOrientationReq::ref_pos() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.CalculateTCPOrientationReq.ref_pos)
+  return _internal_ref_pos();
+}
+inline ::google::protobuf::RepeatedField<float>* CalculateTCPOrientationReq::mutable_ref_pos() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.CalculateTCPOrientationReq.ref_pos)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_ref_pos();
+}
+
+inline const ::google::protobuf::RepeatedField<float>& CalculateTCPOrientationReq::_internal_ref_pos() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.ref_pos_;
+}
+inline ::google::protobuf::RepeatedField<float>* CalculateTCPOrientationReq::_internal_mutable_ref_pos() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.ref_pos_;
+}
+
+// repeated float ref_frame = 2;
+inline int CalculateTCPOrientationReq::_internal_ref_frame_size() const {
+  return _internal_ref_frame().size();
+}
+inline int CalculateTCPOrientationReq::ref_frame_size() const {
+  return _internal_ref_frame_size();
+}
+inline void CalculateTCPOrientationReq::clear_ref_frame() {
+  _internal_mutable_ref_frame()->Clear();
+}
+inline float CalculateTCPOrientationReq::ref_frame(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.CalculateTCPOrientationReq.ref_frame)
+  return _internal_ref_frame().Get(index);
+}
+inline void CalculateTCPOrientationReq::set_ref_frame(int index, float value) {
+  _internal_mutable_ref_frame()->Set(index, value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.CalculateTCPOrientationReq.ref_frame)
+}
+inline void CalculateTCPOrientationReq::add_ref_frame(float value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_ref_frame()->Add(value);
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.CalculateTCPOrientationReq.ref_frame)
+}
+inline const ::google::protobuf::RepeatedField<float>& CalculateTCPOrientationReq::ref_frame() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.CalculateTCPOrientationReq.ref_frame)
+  return _internal_ref_frame();
+}
+inline ::google::protobuf::RepeatedField<float>* CalculateTCPOrientationReq::mutable_ref_frame() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.CalculateTCPOrientationReq.ref_frame)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_ref_frame();
+}
+
+inline const ::google::protobuf::RepeatedField<float>& CalculateTCPOrientationReq::_internal_ref_frame() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.ref_frame_;
+}
+inline ::google::protobuf::RepeatedField<float>* CalculateTCPOrientationReq::_internal_mutable_ref_frame() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.ref_frame_;
+}
+
+// -------------------------------------------------------------------
+
+// CalculateTCPOrientationRes
+
+// repeated float calculated_pos = 1;
+inline int CalculateTCPOrientationRes::_internal_calculated_pos_size() const {
+  return _internal_calculated_pos().size();
+}
+inline int CalculateTCPOrientationRes::calculated_pos_size() const {
+  return _internal_calculated_pos_size();
+}
+inline void CalculateTCPOrientationRes::clear_calculated_pos() {
+  _internal_mutable_calculated_pos()->Clear();
+}
+inline float CalculateTCPOrientationRes::calculated_pos(int index) const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.CalculateTCPOrientationRes.calculated_pos)
+  return _internal_calculated_pos().Get(index);
+}
+inline void CalculateTCPOrientationRes::set_calculated_pos(int index, float value) {
+  _internal_mutable_calculated_pos()->Set(index, value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.CalculateTCPOrientationRes.calculated_pos)
+}
+inline void CalculateTCPOrientationRes::add_calculated_pos(float value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_calculated_pos()->Add(value);
+  // @@protoc_insertion_point(field_add:Nrmk.IndyFramework.CalculateTCPOrientationRes.calculated_pos)
+}
+inline const ::google::protobuf::RepeatedField<float>& CalculateTCPOrientationRes::calculated_pos() const {
+  // @@protoc_insertion_point(field_list:Nrmk.IndyFramework.CalculateTCPOrientationRes.calculated_pos)
+  return _internal_calculated_pos();
+}
+inline ::google::protobuf::RepeatedField<float>* CalculateTCPOrientationRes::mutable_calculated_pos() {
+  // @@protoc_insertion_point(field_mutable_list:Nrmk.IndyFramework.CalculateTCPOrientationRes.calculated_pos)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_calculated_pos();
+}
+
+inline const ::google::protobuf::RepeatedField<float>& CalculateTCPOrientationRes::_internal_calculated_pos() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.calculated_pos_;
+}
+inline ::google::protobuf::RepeatedField<float>* CalculateTCPOrientationRes::_internal_mutable_calculated_pos() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.calculated_pos_;
+}
+
+// string msg = 100;
+inline void CalculateTCPOrientationRes::clear_msg() {
+  _impl_.msg_.ClearToEmpty();
+}
+inline const std::string& CalculateTCPOrientationRes::msg() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.CalculateTCPOrientationRes.msg)
+  return _internal_msg();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void CalculateTCPOrientationRes::set_msg(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.msg_.Set(static_cast<Arg_&&>(arg), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.CalculateTCPOrientationRes.msg)
+}
+inline std::string* CalculateTCPOrientationRes::mutable_msg() {
+  std::string* _s = _internal_mutable_msg();
+  // @@protoc_insertion_point(field_mutable:Nrmk.IndyFramework.CalculateTCPOrientationRes.msg)
+  return _s;
+}
+inline const std::string& CalculateTCPOrientationRes::_internal_msg() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.msg_.Get();
+}
+inline void CalculateTCPOrientationRes::_internal_set_msg(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.msg_.Set(value, GetArenaForAllocation());
+}
+inline std::string* CalculateTCPOrientationRes::_internal_mutable_msg() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.msg_.Mutable( GetArenaForAllocation());
+}
+inline std::string* CalculateTCPOrientationRes::release_msg() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:Nrmk.IndyFramework.CalculateTCPOrientationRes.msg)
+  return _impl_.msg_.Release();
+}
+inline void CalculateTCPOrientationRes::set_allocated_msg(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.msg_.SetAllocated(value, GetArenaForAllocation());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.msg_.IsDefault()) {
+          _impl_.msg_.Set("", GetArenaForAllocation());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:Nrmk.IndyFramework.CalculateTCPOrientationRes.msg)
+}
+
+// -------------------------------------------------------------------
+
 // TeleOpDevice
 
 // string name = 1;
@@ -26224,6 +28877,28 @@ inline const ::google::protobuf::RepeatedField<float>& TeleP::_internal_tpos() c
 inline ::google::protobuf::RepeatedField<float>* TeleP::_internal_mutable_tpos() {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return &_impl_.tpos_;
+}
+
+// int32 arm_index = 20;
+inline void TeleP::clear_arm_index() {
+  _impl_.arm_index_ = 0;
+}
+inline ::int32_t TeleP::arm_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.TeleP.arm_index)
+  return _internal_arm_index();
+}
+inline void TeleP::set_arm_index(::int32_t value) {
+  _internal_set_arm_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.TeleP.arm_index)
+}
+inline ::int32_t TeleP::_internal_arm_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.arm_index_;
+}
+inline void TeleP::_internal_set_arm_index(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.arm_index_ = value;
 }
 
 // .Nrmk.IndyFramework.Response response = 100;
@@ -26815,6 +29490,28 @@ inline void MoveTeleLReq::_internal_set_method(::Nrmk::IndyFramework::TeleMethod
   _impl_.method_ = value;
 }
 
+// int32 arm_index = 20;
+inline void MoveTeleLReq::clear_arm_index() {
+  _impl_.arm_index_ = 0;
+}
+inline ::int32_t MoveTeleLReq::arm_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.MoveTeleLReq.arm_index)
+  return _internal_arm_index();
+}
+inline void MoveTeleLReq::set_arm_index(::int32_t value) {
+  _internal_set_arm_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.MoveTeleLReq.arm_index)
+}
+inline ::int32_t MoveTeleLReq::_internal_arm_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.arm_index_;
+}
+inline void MoveTeleLReq::_internal_set_arm_index(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.arm_index_ = value;
+}
+
 // -------------------------------------------------------------------
 
 // ForceModeReq
@@ -26923,6 +29620,28 @@ inline const ::google::protobuf::RepeatedField<bool>& ForceModeReq::_internal_en
 inline ::google::protobuf::RepeatedField<bool>* ForceModeReq::_internal_mutable_enabled_force() {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return &_impl_.enabled_force_;
+}
+
+// int32 arm_index = 20;
+inline void ForceModeReq::clear_arm_index() {
+  _impl_.arm_index_ = 0;
+}
+inline ::int32_t ForceModeReq::arm_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.ForceModeReq.arm_index)
+  return _internal_arm_index();
+}
+inline void ForceModeReq::set_arm_index(::int32_t value) {
+  _internal_set_arm_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.ForceModeReq.arm_index)
+}
+inline ::int32_t ForceModeReq::_internal_arm_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.arm_index_;
+}
+inline void ForceModeReq::_internal_set_arm_index(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.arm_index_ = value;
 }
 
 // -------------------------------------------------------------------
@@ -27992,6 +30711,28 @@ inline void GetMotionLReq::_internal_set_vel_type(::Nrmk::IndyFramework::Velocit
   _impl_.vel_type_ = value;
 }
 
+// int32 arm_index = 10;
+inline void GetMotionLReq::clear_arm_index() {
+  _impl_.arm_index_ = 0;
+}
+inline ::int32_t GetMotionLReq::arm_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.GetMotionLReq.arm_index)
+  return _internal_arm_index();
+}
+inline void GetMotionLReq::set_arm_index(::int32_t value) {
+  _internal_set_arm_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.GetMotionLReq.arm_index)
+}
+inline ::int32_t GetMotionLReq::_internal_arm_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.arm_index_;
+}
+inline void GetMotionLReq::_internal_set_arm_index(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.arm_index_ = value;
+}
+
 // .Nrmk.IndyFramework.MotionCondition post_condition = 20;
 inline bool GetMotionLReq::has_post_condition() const {
   bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
@@ -28370,6 +31111,28 @@ inline void GetMotionCReq::_internal_set_move_type(::Nrmk::IndyFramework::Circul
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.move_type_ = value;
+}
+
+// int32 arm_index = 15;
+inline void GetMotionCReq::clear_arm_index() {
+  _impl_.arm_index_ = 0;
+}
+inline ::int32_t GetMotionCReq::arm_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.GetMotionCReq.arm_index)
+  return _internal_arm_index();
+}
+inline void GetMotionCReq::set_arm_index(::int32_t value) {
+  _internal_set_arm_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.GetMotionCReq.arm_index)
+}
+inline ::int32_t GetMotionCReq::_internal_arm_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.arm_index_;
+}
+inline void GetMotionCReq::_internal_set_arm_index(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.arm_index_ = value;
 }
 
 // float vel_ratio = 20;

@@ -31,6 +31,7 @@
 #include "google/protobuf/message.h"
 #include "google/protobuf/repeated_field.h"  // IWYU pragma: export
 #include "google/protobuf/extension_set.h"  // IWYU pragma: export
+#include "google/protobuf/generated_enum_reflection.h"
 #include "google/protobuf/unknown_field_set.h"
 // @@protoc_insertion_point(includes)
 
@@ -55,6 +56,9 @@ extern const ::google::protobuf::internal::DescriptorTable
     descriptor_table_cri_5fmsgs_2eproto;
 namespace Nrmk {
 namespace IndyFramework {
+class CRIRecordModeState;
+struct CRIRecordModeStateDefaultTypeInternal;
+extern CRIRecordModeStateDefaultTypeInternal _CRIRecordModeState_default_instance_;
 class CriData;
 struct CriDataDefaultTypeInternal;
 extern CriDataDefaultTypeInternal _CriData_default_instance_;
@@ -79,6 +83,39 @@ namespace protobuf {
 
 namespace Nrmk {
 namespace IndyFramework {
+enum CRIRecordModeState_Mode : int {
+  CRIRecordModeState_Mode_CRI_RECORD_OFF = 0,
+  CRIRecordModeState_Mode_CRI_RECORD_ON = 1,
+  CRIRecordModeState_Mode_CRI_RECORD_PLAYBACK = 2,
+  CRIRecordModeState_Mode_CRIRecordModeState_Mode_INT_MIN_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::min(),
+  CRIRecordModeState_Mode_CRIRecordModeState_Mode_INT_MAX_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::max(),
+};
+
+bool CRIRecordModeState_Mode_IsValid(int value);
+constexpr CRIRecordModeState_Mode CRIRecordModeState_Mode_Mode_MIN = static_cast<CRIRecordModeState_Mode>(0);
+constexpr CRIRecordModeState_Mode CRIRecordModeState_Mode_Mode_MAX = static_cast<CRIRecordModeState_Mode>(2);
+constexpr int CRIRecordModeState_Mode_Mode_ARRAYSIZE = 2 + 1;
+const ::google::protobuf::EnumDescriptor*
+CRIRecordModeState_Mode_descriptor();
+template <typename T>
+const std::string& CRIRecordModeState_Mode_Name(T value) {
+  static_assert(std::is_same<T, CRIRecordModeState_Mode>::value ||
+                    std::is_integral<T>::value,
+                "Incorrect type passed to Mode_Name().");
+  return CRIRecordModeState_Mode_Name(static_cast<CRIRecordModeState_Mode>(value));
+}
+template <>
+inline const std::string& CRIRecordModeState_Mode_Name(CRIRecordModeState_Mode value) {
+  return ::google::protobuf::internal::NameOfDenseEnum<CRIRecordModeState_Mode_descriptor,
+                                                 0, 2>(
+      static_cast<int>(value));
+}
+inline bool CRIRecordModeState_Mode_Parse(absl::string_view name, CRIRecordModeState_Mode* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<CRIRecordModeState_Mode>(
+      CRIRecordModeState_Mode_descriptor(), name, value);
+}
 
 // ===================================================================
 
@@ -1047,6 +1084,185 @@ class SFDAutoSet final :
   };
   union { Impl_ _impl_; };
   friend struct ::TableStruct_cri_5fmsgs_2eproto;
+};// -------------------------------------------------------------------
+
+class CRIRecordModeState final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.CRIRecordModeState) */ {
+ public:
+  inline CRIRecordModeState() : CRIRecordModeState(nullptr) {}
+  ~CRIRecordModeState() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR CRIRecordModeState(::google::protobuf::internal::ConstantInitialized);
+
+  CRIRecordModeState(const CRIRecordModeState& from);
+  CRIRecordModeState(CRIRecordModeState&& from) noexcept
+    : CRIRecordModeState() {
+    *this = ::std::move(from);
+  }
+
+  inline CRIRecordModeState& operator=(const CRIRecordModeState& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline CRIRecordModeState& operator=(CRIRecordModeState&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const CRIRecordModeState& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const CRIRecordModeState* internal_default_instance() {
+    return reinterpret_cast<const CRIRecordModeState*>(
+               &_CRIRecordModeState_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    5;
+
+  friend void swap(CRIRecordModeState& a, CRIRecordModeState& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(CRIRecordModeState* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(CRIRecordModeState* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  CRIRecordModeState* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<CRIRecordModeState>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const CRIRecordModeState& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const CRIRecordModeState& from) {
+    CRIRecordModeState::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(CRIRecordModeState* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "Nrmk.IndyFramework.CRIRecordModeState";
+  }
+  protected:
+  explicit CRIRecordModeState(::google::protobuf::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  using Mode = CRIRecordModeState_Mode;
+  static constexpr Mode CRI_RECORD_OFF = CRIRecordModeState_Mode_CRI_RECORD_OFF;
+  static constexpr Mode CRI_RECORD_ON = CRIRecordModeState_Mode_CRI_RECORD_ON;
+  static constexpr Mode CRI_RECORD_PLAYBACK = CRIRecordModeState_Mode_CRI_RECORD_PLAYBACK;
+  static inline bool Mode_IsValid(int value) {
+    return CRIRecordModeState_Mode_IsValid(value);
+  }
+  static constexpr Mode Mode_MIN = CRIRecordModeState_Mode_Mode_MIN;
+  static constexpr Mode Mode_MAX = CRIRecordModeState_Mode_Mode_MAX;
+  static constexpr int Mode_ARRAYSIZE = CRIRecordModeState_Mode_Mode_ARRAYSIZE;
+  static inline const ::google::protobuf::EnumDescriptor* Mode_descriptor() {
+    return CRIRecordModeState_Mode_descriptor();
+  }
+  template <typename T>
+  static inline const std::string& Mode_Name(T value) {
+    return CRIRecordModeState_Mode_Name(value);
+  }
+  static inline bool Mode_Parse(absl::string_view name, Mode* value) {
+    return CRIRecordModeState_Mode_Parse(name, value);
+  }
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kModeFieldNumber = 1,
+  };
+  // .Nrmk.IndyFramework.CRIRecordModeState.Mode mode = 1;
+  void clear_mode() ;
+  ::Nrmk::IndyFramework::CRIRecordModeState_Mode mode() const;
+  void set_mode(::Nrmk::IndyFramework::CRIRecordModeState_Mode value);
+
+  private:
+  ::Nrmk::IndyFramework::CRIRecordModeState_Mode _internal_mode() const;
+  void _internal_set_mode(::Nrmk::IndyFramework::CRIRecordModeState_Mode value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.CRIRecordModeState)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<0, 1, 0, 0, 2> _table_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    int mode_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_cri_5fmsgs_2eproto;
 };
 
 // ===================================================================
@@ -1672,6 +1888,32 @@ inline void SFDAutoSet::_internal_set_iso(bool value) {
   _impl_.iso_ = value;
 }
 
+// -------------------------------------------------------------------
+
+// CRIRecordModeState
+
+// .Nrmk.IndyFramework.CRIRecordModeState.Mode mode = 1;
+inline void CRIRecordModeState::clear_mode() {
+  _impl_.mode_ = 0;
+}
+inline ::Nrmk::IndyFramework::CRIRecordModeState_Mode CRIRecordModeState::mode() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.CRIRecordModeState.mode)
+  return _internal_mode();
+}
+inline void CRIRecordModeState::set_mode(::Nrmk::IndyFramework::CRIRecordModeState_Mode value) {
+  _internal_set_mode(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.CRIRecordModeState.mode)
+}
+inline ::Nrmk::IndyFramework::CRIRecordModeState_Mode CRIRecordModeState::_internal_mode() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return static_cast<::Nrmk::IndyFramework::CRIRecordModeState_Mode>(_impl_.mode_);
+}
+inline void CRIRecordModeState::_internal_set_mode(::Nrmk::IndyFramework::CRIRecordModeState_Mode value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.mode_ = value;
+}
+
 #ifdef __GNUC__
 #pragma GCC diagnostic pop
 #endif  // __GNUC__
@@ -1680,6 +1922,19 @@ inline void SFDAutoSet::_internal_set_iso(bool value) {
 }  // namespace IndyFramework
 }  // namespace Nrmk
 
+
+namespace google {
+namespace protobuf {
+
+template <>
+struct is_proto_enum<::Nrmk::IndyFramework::CRIRecordModeState_Mode> : std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor<::Nrmk::IndyFramework::CRIRecordModeState_Mode>() {
+  return ::Nrmk::IndyFramework::CRIRecordModeState_Mode_descriptor();
+}
+
+}  // namespace protobuf
+}  // namespace google
 
 // @@protoc_insertion_point(global_scope)
 

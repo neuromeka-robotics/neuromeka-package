@@ -14,7 +14,7 @@ This package provides client protocols for users to interact with Neuromeka's ro
 Build with python 3.12
 
 ```bash
-python -m build –wheel
+python -m build --wheel
 ```
 
 ## Installation

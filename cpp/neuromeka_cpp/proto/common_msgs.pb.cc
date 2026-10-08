@@ -86,6 +86,22 @@ struct IntDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 IntDefaultTypeInternal _Int_default_instance_;
         template <typename>
+PROTOBUF_CONSTEXPR UInt::UInt(::_pbi::ConstantInitialized)
+    : _impl_{
+      /*decltype(_impl_.value_)*/ ::uint64_t{0u},
+      /*decltype(_impl_._cached_size_)*/ {},
+    } {}
+struct UIntDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR UIntDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~UIntDefaultTypeInternal() {}
+  union {
+    UInt _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UIntDefaultTypeInternal _UInt_default_instance_;
+        template <typename>
 PROTOBUF_CONSTEXPR Float::Float(::_pbi::ConstantInitialized)
     : _impl_{
       /*decltype(_impl_.value_)*/ 0,
@@ -231,6 +247,7 @@ PROTOBUF_CONSTEXPR EndtoolRS485Tx::EndtoolRS485Tx(::_pbi::ConstantInitialized)
       /*decltype(_impl_.word5_)*/ 0u,
       /*decltype(_impl_.status_)*/ 0u,
       /*decltype(_impl_.num_)*/ 0u,
+      /*decltype(_impl_.tool_index_)*/ 0,
       /*decltype(_impl_._cached_size_)*/ {},
     } {}
 struct EndtoolRS485TxDefaultTypeInternal {
@@ -253,6 +270,7 @@ PROTOBUF_CONSTEXPR EndtoolRS485Rx::EndtoolRS485Rx(::_pbi::ConstantInitialized)
       /*decltype(_impl_.word5_)*/ 0u,
       /*decltype(_impl_.control_)*/ 0u,
       /*decltype(_impl_.num_)*/ 0u,
+      /*decltype(_impl_.tool_index_)*/ 0,
       /*decltype(_impl_._cached_size_)*/ {},
     } {}
 struct EndtoolRS485RxDefaultTypeInternal {
@@ -475,6 +493,7 @@ PROTOBUF_CONSTEXPR ModbusServerDef::ModbusServerDef(::_pbi::ConstantInitialized)
       /*decltype(_impl_.serial_data_bits_)*/ 0,
       /*decltype(_impl_.serial_stop_bits_)*/ 0,
       /*decltype(_impl_.rtu_transport_)*/ 0,
+      /*decltype(_impl_.tool_index_)*/ 0,
       /*decltype(_impl_._cached_size_)*/ {},
     } {}
 struct ModbusServerDefDefaultTypeInternal {
@@ -522,7 +541,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ProgramBreakPointsDefaultTypeInternal _ProgramBreakPoints_default_instance_;
 }  // namespace IndyFramework
 }  // namespace Nrmk
-static ::_pb::Metadata file_level_metadata_common_5fmsgs_2eproto[26];
+static ::_pb::Metadata file_level_metadata_common_5fmsgs_2eproto[27];
 static const ::_pb::EnumDescriptor* file_level_enum_descriptors_common_5fmsgs_2eproto[12];
 static constexpr const ::_pb::ServiceDescriptor**
     file_level_service_descriptors_common_5fmsgs_2eproto = nullptr;
@@ -563,6 +582,15 @@ const ::uint32_t TableStruct_common_5fmsgs_2eproto::offsets[] PROTOBUF_SECTION_V
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::Int, _impl_.value_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::UInt, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::UInt, _impl_.value_),
     ~0u,  // no _has_bits_
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::Float, _internal_metadata_),
     ~0u,  // no _extensions_
@@ -652,6 +680,7 @@ const ::uint32_t TableStruct_common_5fmsgs_2eproto::offsets[] PROTOBUF_SECTION_V
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::EndtoolRS485Tx, _impl_.word5_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::EndtoolRS485Tx, _impl_.status_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::EndtoolRS485Tx, _impl_.num_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::EndtoolRS485Tx, _impl_.tool_index_),
     ~0u,  // no _has_bits_
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::EndtoolRS485Rx, _internal_metadata_),
     ~0u,  // no _extensions_
@@ -667,6 +696,7 @@ const ::uint32_t TableStruct_common_5fmsgs_2eproto::offsets[] PROTOBUF_SECTION_V
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::EndtoolRS485Rx, _impl_.word5_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::EndtoolRS485Rx, _impl_.control_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::EndtoolRS485Rx, _impl_.num_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::EndtoolRS485Rx, _impl_.tool_index_),
     ~0u,  // no _has_bits_
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::TactTime, _internal_metadata_),
     ~0u,  // no _extensions_
@@ -786,6 +816,7 @@ const ::uint32_t TableStruct_common_5fmsgs_2eproto::offsets[] PROTOBUF_SECTION_V
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ModbusServerDef, _impl_.serial_data_bits_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ModbusServerDef, _impl_.serial_stop_bits_),
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ModbusServerDef, _impl_.rtu_transport_),
+    PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ModbusServerDef, _impl_.tool_index_),
     ~0u,  // no _has_bits_
     PROTOBUF_FIELD_OFFSET(::Nrmk::IndyFramework::ProgramLine, _internal_metadata_),
     ~0u,  // no _extensions_
@@ -813,28 +844,29 @@ static const ::_pbi::MigrationSchema
         {8, -1, -1, sizeof(::Nrmk::IndyFramework::Name)},
         {17, -1, -1, sizeof(::Nrmk::IndyFramework::State)},
         {26, -1, -1, sizeof(::Nrmk::IndyFramework::Int)},
-        {35, -1, -1, sizeof(::Nrmk::IndyFramework::Float)},
-        {44, -1, -1, sizeof(::Nrmk::IndyFramework::IntMode)},
-        {53, -1, -1, sizeof(::Nrmk::IndyFramework::StopCat)},
-        {62, -1, -1, sizeof(::Nrmk::IndyFramework::PauseCat)},
-        {71, -1, -1, sizeof(::Nrmk::IndyFramework::Response)},
-        {81, -1, -1, sizeof(::Nrmk::IndyFramework::Message)},
-        {90, -1, -1, sizeof(::Nrmk::IndyFramework::Vector)},
-        {99, -1, -1, sizeof(::Nrmk::IndyFramework::PosePair)},
-        {109, -1, -1, sizeof(::Nrmk::IndyFramework::EndtoolRS485Tx)},
-        {124, -1, -1, sizeof(::Nrmk::IndyFramework::EndtoolRS485Rx)},
-        {139, -1, -1, sizeof(::Nrmk::IndyFramework::TactTime)},
-        {149, -1, -1, sizeof(::Nrmk::IndyFramework::DateTime)},
-        {163, -1, -1, sizeof(::Nrmk::IndyFramework::NamedBool)},
-        {173, -1, -1, sizeof(::Nrmk::IndyFramework::NamedInt)},
-        {183, -1, -1, sizeof(::Nrmk::IndyFramework::NamedFloat)},
-        {193, -1, -1, sizeof(::Nrmk::IndyFramework::NamedTaskPosition)},
-        {203, -1, -1, sizeof(::Nrmk::IndyFramework::NamedJointPosition)},
-        {213, -1, -1, sizeof(::Nrmk::IndyFramework::NamedPositionSet)},
-        {224, -1, -1, sizeof(::Nrmk::IndyFramework::NamedReferencePosition)},
-        {240, -1, -1, sizeof(::Nrmk::IndyFramework::ModbusServerDef)},
-        {258, -1, -1, sizeof(::Nrmk::IndyFramework::ProgramLine)},
-        {268, -1, -1, sizeof(::Nrmk::IndyFramework::ProgramBreakPoints)},
+        {35, -1, -1, sizeof(::Nrmk::IndyFramework::UInt)},
+        {44, -1, -1, sizeof(::Nrmk::IndyFramework::Float)},
+        {53, -1, -1, sizeof(::Nrmk::IndyFramework::IntMode)},
+        {62, -1, -1, sizeof(::Nrmk::IndyFramework::StopCat)},
+        {71, -1, -1, sizeof(::Nrmk::IndyFramework::PauseCat)},
+        {80, -1, -1, sizeof(::Nrmk::IndyFramework::Response)},
+        {90, -1, -1, sizeof(::Nrmk::IndyFramework::Message)},
+        {99, -1, -1, sizeof(::Nrmk::IndyFramework::Vector)},
+        {108, -1, -1, sizeof(::Nrmk::IndyFramework::PosePair)},
+        {118, -1, -1, sizeof(::Nrmk::IndyFramework::EndtoolRS485Tx)},
+        {134, -1, -1, sizeof(::Nrmk::IndyFramework::EndtoolRS485Rx)},
+        {150, -1, -1, sizeof(::Nrmk::IndyFramework::TactTime)},
+        {160, -1, -1, sizeof(::Nrmk::IndyFramework::DateTime)},
+        {174, -1, -1, sizeof(::Nrmk::IndyFramework::NamedBool)},
+        {184, -1, -1, sizeof(::Nrmk::IndyFramework::NamedInt)},
+        {194, -1, -1, sizeof(::Nrmk::IndyFramework::NamedFloat)},
+        {204, -1, -1, sizeof(::Nrmk::IndyFramework::NamedTaskPosition)},
+        {214, -1, -1, sizeof(::Nrmk::IndyFramework::NamedJointPosition)},
+        {224, -1, -1, sizeof(::Nrmk::IndyFramework::NamedPositionSet)},
+        {235, -1, -1, sizeof(::Nrmk::IndyFramework::NamedReferencePosition)},
+        {251, -1, -1, sizeof(::Nrmk::IndyFramework::ModbusServerDef)},
+        {270, -1, -1, sizeof(::Nrmk::IndyFramework::ProgramLine)},
+        {280, -1, -1, sizeof(::Nrmk::IndyFramework::ProgramBreakPoints)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -842,6 +874,7 @@ static const ::_pb::Message* const file_default_instances[] = {
     &::Nrmk::IndyFramework::_Name_default_instance_._instance,
     &::Nrmk::IndyFramework::_State_default_instance_._instance,
     &::Nrmk::IndyFramework::_Int_default_instance_._instance,
+    &::Nrmk::IndyFramework::_UInt_default_instance_._instance,
     &::Nrmk::IndyFramework::_Float_default_instance_._instance,
     &::Nrmk::IndyFramework::_IntMode_default_instance_._instance,
     &::Nrmk::IndyFramework::_StopCat_default_instance_._instance,
@@ -868,90 +901,92 @@ static const ::_pb::Message* const file_default_instances[] = {
 const char descriptor_table_protodef_common_5fmsgs_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
     "\n\021common_msgs.proto\022\022Nrmk.IndyFramework\""
     "\007\n\005Empty\"\024\n\004Name\022\014\n\004name\030\001 \001(\t\"\027\n\005State\022"
-    "\016\n\006enable\030\001 \001(\010\"\024\n\003Int\022\r\n\005value\030\001 \001(\003\"\026\n"
-    "\005Float\022\r\n\005value\030\001 \001(\002\"\027\n\007IntMode\022\014\n\004mode"
-    "\030\001 \001(\004\"=\n\007StopCat\0222\n\010category\030\001 \001(\0162 .Nr"
-    "mk.IndyFramework.StopCategory\"\?\n\010PauseCa"
-    "t\0223\n\010category\030\001 \001(\0162!.Nrmk.IndyFramework"
-    ".PauseCategory\"%\n\010Response\022\014\n\004code\030\001 \001(\003"
-    "\022\013\n\003msg\030\002 \001(\t\"\032\n\007Message\022\017\n\007content\030\001 \001("
-    "\t\"\030\n\006Vector\022\016\n\006values\030\001 \003(\001\" \n\010PosePair\022"
-    "\t\n\001q\030\001 \003(\002\022\t\n\001p\030\002 \003(\002\"x\n\016EndtoolRS485Tx\022"
-    "\r\n\005word1\030\001 \001(\r\022\r\n\005word2\030\002 \001(\r\022\r\n\005word3\030\003"
-    " \001(\r\022\r\n\005word4\030\004 \001(\r\022\r\n\005word5\030\005 \001(\r\022\016\n\006st"
-    "atus\030\006 \001(\r\022\013\n\003num\030\007 \001(\r\"y\n\016EndtoolRS485R"
-    "x\022\r\n\005word1\030\001 \001(\r\022\r\n\005word2\030\002 \001(\r\022\r\n\005word3"
-    "\030\003 \001(\r\022\r\n\005word4\030\004 \001(\r\022\r\n\005word5\030\005 \001(\r\022\017\n\007"
-    "control\030\006 \001(\r\022\013\n\003num\030\007 \001(\r\"+\n\010TactTime\022\014"
-    "\n\004type\030\001 \001(\t\022\021\n\ttact_time\030\002 \001(\002\"b\n\010DateT"
-    "ime\022\014\n\004year\030\001 \001(\r\022\r\n\005month\030\002 \001(\r\022\013\n\003day\030"
-    "\003 \001(\r\022\014\n\004hour\030\004 \001(\r\022\016\n\006minute\030\005 \001(\r\022\016\n\006s"
-    "econd\030\006 \001(\r\"(\n\tNamedBool\022\014\n\004name\030\001 \001(\t\022\r"
-    "\n\005value\030\002 \001(\010\"\'\n\010NamedInt\022\014\n\004name\030\001 \001(\t\022"
-    "\r\n\005value\030\002 \001(\003\")\n\nNamedFloat\022\014\n\004name\030\001 \001"
-    "(\t\022\r\n\005value\030\002 \001(\002\"/\n\021NamedTaskPosition\022\014"
-    "\n\004name\030\001 \001(\t\022\014\n\004tpos\030\002 \003(\002\"0\n\022NamedJoint"
-    "Position\022\014\n\004name\030\001 \001(\t\022\014\n\004jpos\030\002 \003(\002\"<\n\020"
-    "NamedPositionSet\022\014\n\004name\030\001 \001(\t\022\014\n\004jpos\030\002"
-    " \003(\002\022\014\n\004tpos\030\003 \003(\002\"\216\001\n\026NamedReferencePos"
-    "ition\022\014\n\004name\030\001 \001(\t\022\014\n\004tpos\030\002 \003(\002\022\r\n\005tpo"
-    "s0\030\003 \003(\002\022\r\n\005tpos1\030\004 \003(\002\022\r\n\005tpos2\030\005 \003(\002\022\r"
-    "\n\005jpos0\030\006 \003(\002\022\r\n\005jpos1\030\007 \003(\002\022\r\n\005jpos2\030\010 "
-    "\003(\002\"\324\001\n\017ModbusServerDef\022\014\n\004name\030\001 \001(\t\022\n\n"
-    "\002ip\030\002 \001(\t\022\014\n\004port\030\003 \001(\005\022\017\n\007unit_id\030\004 \001(\005"
-    "\022\021\n\tconn_type\030\005 \001(\005\022\023\n\013serial_baud\030\006 \001(\005"
-    "\022\025\n\rserial_parity\030\007 \001(\t\022\030\n\020serial_data_b"
-    "its\030\010 \001(\005\022\030\n\020serial_stop_bits\030\t \001(\005\022\025\n\rr"
-    "tu_transport\030\n \001(\005\"1\n\013ProgramLine\022\016\n\006cmd"
-    "_id\030\001 \001(\005\022\022\n\nsub_cmd_id\030\002 \001(\005\"J\n\022Program"
-    "BreakPoints\0224\n\013breakpoints\030\001 \003(\0132\037.Nrmk."
-    "IndyFramework.ProgramLine*\327\002\n\007OpState\022\021\n"
-    "\rOP_SYSTEM_OFF\020\000\022\020\n\014OP_SYSTEM_ON\020\001\022\016\n\nOP"
-    "_VIOLATE\020\002\022\023\n\017OP_RECOVER_HARD\020\003\022\023\n\017OP_RE"
-    "COVER_SOFT\020\004\022\013\n\007OP_IDLE\020\005\022\r\n\tOP_MOVING\020\006"
-    "\022\017\n\013OP_TEACHING\020\007\022\020\n\014OP_COLLISION\020\010\022\023\n\017O"
-    "P_STOP_AND_OFF\020\t\022\021\n\rOP_COMPLIANCE\020\n\022\024\n\020O"
-    "P_BRAKE_CONTROL\020\013\022\023\n\017OP_SYSTEM_RESET\020\014\022\024"
-    "\n\020OP_SYSTEM_SWITCH\020\r\022\020\n\014OP_POWER_OFF\020\017\022\025"
-    "\n\021OP_MANUAL_RECOVER\020\020\022\013\n\007TELE_OP\020\021\022\017\n\013TR"
-    "AJ_MOVING\020\022*\260\001\n\tTrajState\022\r\n\tTRAJ_NONE\020\000"
-    "\022\r\n\tTRAJ_INIT\020\001\022\r\n\tTRAJ_CALC\020\002\022\021\n\rTRAJ_S"
-    "TAND_BY\020\003\022\014\n\010TRAJ_ACC\020\004\022\017\n\013TRAJ_CRUISE\020\005"
-    "\022\014\n\010TRAJ_DEC\020\006\022\023\n\017TRAJ_CANCELLING\020\007\022\021\n\rT"
-    "RAJ_FINISHED\020\010\022\016\n\nTRAJ_ERROR\020\t*Z\n\rTrajCo"
-    "ndition\022\020\n\014TRAJ_STARTED\020\000\022\021\n\rTRAJ_ACC_DO"
-    "NE\020\001\022\021\n\rTRAJ_CRZ_DONE\020\002\022\021\n\rTRAJ_DEC_DONE"
-    "\020\003*F\n\014StopCategory\022\023\n\017IMMEDIATE_BRAKE\020\000\022"
-    "\020\n\014SMOOTH_BRAKE\020\001\022\017\n\013SMOOTH_ONLY\020\002*g\n\nSa"
-    "feGdType\022\016\n\nGUARD_NONE\020\000\022\016\n\nGUARD_STOP\020\001"
-    "\022\017\n\013GUARD_PAUSE\020\002\022\026\n\022GUARD_PAUSE_RESUME\020"
-    "\003\022\020\n\014REDUCED_MODE\020\004*6\n\rPauseCategory\022\020\n\014"
-    "SMOOTH_PAUSE\020\000\022\023\n\017IMMEDIATE_PAUSE\020\001*T\n\014P"
-    "rogramState\022\r\n\tPROG_IDLE\020\000\022\020\n\014PROG_RUNNI"
-    "NG\020\001\022\020\n\014PROG_PAUSING\020\002\022\021\n\rPROG_STOPPING\020"
-    "\003*e\n\023CollisionPolicyType\022\022\n\016COLL_NO_DETE"
-    "CT\020\000\022\016\n\nCOLL_PAUSE\020\001\022\033\n\027COLL_RESUME_AFTE"
-    "R_SLEEP\020\002\022\r\n\tCOLL_STOP\020\003*:\n\013TuningSpace\022"
-    "\014\n\010TUNE_ALL\020\000\022\016\n\nTUNE_JOINT\020\001\022\r\n\tTUNE_TA"
-    "SK\020\002*N\n\017TuningPrecision\022\021\n\rLOW_PRECISION"
-    "\020\000\022\024\n\020MIDDLE_PRECISION\020\001\022\022\n\016HIGH_PRECISI"
-    "ON\020\002*:\n\010AxisType\022\020\n\014MDH_REVOLUTE\020\000\022\021\n\rMD"
-    "H_PRISMATIC\020\001\022\t\n\005RIGID\020\002*W\n\013ContactRule\022"
-    "\r\n\tVIOLATION\020\000\022\023\n\017COLLISION_LEVEL\020\001\022\017\n\013S"
-    "PEED_LIMIT\020\002\022\023\n\017DIRECTION_LIMIT\020\003b\006proto"
-    "3"
+    "\016\n\006enable\030\001 \001(\010\"\024\n\003Int\022\r\n\005value\030\001 \001(\003\"\025\n"
+    "\004UInt\022\r\n\005value\030\001 \001(\004\"\026\n\005Float\022\r\n\005value\030\001"
+    " \001(\002\"\027\n\007IntMode\022\014\n\004mode\030\001 \001(\004\"=\n\007StopCat"
+    "\0222\n\010category\030\001 \001(\0162 .Nrmk.IndyFramework."
+    "StopCategory\"\?\n\010PauseCat\0223\n\010category\030\001 \001"
+    "(\0162!.Nrmk.IndyFramework.PauseCategory\"%\n"
+    "\010Response\022\014\n\004code\030\001 \001(\003\022\013\n\003msg\030\002 \001(\t\"\032\n\007"
+    "Message\022\017\n\007content\030\001 \001(\t\"\030\n\006Vector\022\016\n\006va"
+    "lues\030\001 \003(\001\" \n\010PosePair\022\t\n\001q\030\001 \003(\002\022\t\n\001p\030\002"
+    " \003(\002\"\214\001\n\016EndtoolRS485Tx\022\r\n\005word1\030\001 \001(\r\022\r"
+    "\n\005word2\030\002 \001(\r\022\r\n\005word3\030\003 \001(\r\022\r\n\005word4\030\004 "
+    "\001(\r\022\r\n\005word5\030\005 \001(\r\022\016\n\006status\030\006 \001(\r\022\013\n\003nu"
+    "m\030\007 \001(\r\022\022\n\ntool_index\030\n \001(\005\"\215\001\n\016EndtoolR"
+    "S485Rx\022\r\n\005word1\030\001 \001(\r\022\r\n\005word2\030\002 \001(\r\022\r\n\005"
+    "word3\030\003 \001(\r\022\r\n\005word4\030\004 \001(\r\022\r\n\005word5\030\005 \001("
+    "\r\022\017\n\007control\030\006 \001(\r\022\013\n\003num\030\007 \001(\r\022\022\n\ntool_"
+    "index\030\n \001(\005\"+\n\010TactTime\022\014\n\004type\030\001 \001(\t\022\021\n"
+    "\ttact_time\030\002 \001(\002\"b\n\010DateTime\022\014\n\004year\030\001 \001"
+    "(\r\022\r\n\005month\030\002 \001(\r\022\013\n\003day\030\003 \001(\r\022\014\n\004hour\030\004"
+    " \001(\r\022\016\n\006minute\030\005 \001(\r\022\016\n\006second\030\006 \001(\r\"(\n\t"
+    "NamedBool\022\014\n\004name\030\001 \001(\t\022\r\n\005value\030\002 \001(\010\"\'"
+    "\n\010NamedInt\022\014\n\004name\030\001 \001(\t\022\r\n\005value\030\002 \001(\003\""
+    ")\n\nNamedFloat\022\014\n\004name\030\001 \001(\t\022\r\n\005value\030\002 \001"
+    "(\002\"/\n\021NamedTaskPosition\022\014\n\004name\030\001 \001(\t\022\014\n"
+    "\004tpos\030\002 \003(\002\"0\n\022NamedJointPosition\022\014\n\004nam"
+    "e\030\001 \001(\t\022\014\n\004jpos\030\002 \003(\002\"<\n\020NamedPositionSe"
+    "t\022\014\n\004name\030\001 \001(\t\022\014\n\004jpos\030\002 \003(\002\022\014\n\004tpos\030\003 "
+    "\003(\002\"\216\001\n\026NamedReferencePosition\022\014\n\004name\030\001"
+    " \001(\t\022\014\n\004tpos\030\002 \003(\002\022\r\n\005tpos0\030\003 \003(\002\022\r\n\005tpo"
+    "s1\030\004 \003(\002\022\r\n\005tpos2\030\005 \003(\002\022\r\n\005jpos0\030\006 \003(\002\022\r"
+    "\n\005jpos1\030\007 \003(\002\022\r\n\005jpos2\030\010 \003(\002\"\350\001\n\017ModbusS"
+    "erverDef\022\014\n\004name\030\001 \001(\t\022\n\n\002ip\030\002 \001(\t\022\014\n\004po"
+    "rt\030\003 \001(\005\022\017\n\007unit_id\030\004 \001(\005\022\021\n\tconn_type\030\005"
+    " \001(\005\022\023\n\013serial_baud\030\006 \001(\005\022\025\n\rserial_pari"
+    "ty\030\007 \001(\t\022\030\n\020serial_data_bits\030\010 \001(\005\022\030\n\020se"
+    "rial_stop_bits\030\t \001(\005\022\025\n\rrtu_transport\030\n "
+    "\001(\005\022\022\n\ntool_index\030\013 \001(\005\"1\n\013ProgramLine\022\016"
+    "\n\006cmd_id\030\001 \001(\005\022\022\n\nsub_cmd_id\030\002 \001(\005\"J\n\022Pr"
+    "ogramBreakPoints\0224\n\013breakpoints\030\001 \003(\0132\037."
+    "Nrmk.IndyFramework.ProgramLine*\327\002\n\007OpSta"
+    "te\022\021\n\rOP_SYSTEM_OFF\020\000\022\020\n\014OP_SYSTEM_ON\020\001\022"
+    "\016\n\nOP_VIOLATE\020\002\022\023\n\017OP_RECOVER_HARD\020\003\022\023\n\017"
+    "OP_RECOVER_SOFT\020\004\022\013\n\007OP_IDLE\020\005\022\r\n\tOP_MOV"
+    "ING\020\006\022\017\n\013OP_TEACHING\020\007\022\020\n\014OP_COLLISION\020\010"
+    "\022\023\n\017OP_STOP_AND_OFF\020\t\022\021\n\rOP_COMPLIANCE\020\n"
+    "\022\024\n\020OP_BRAKE_CONTROL\020\013\022\023\n\017OP_SYSTEM_RESE"
+    "T\020\014\022\024\n\020OP_SYSTEM_SWITCH\020\r\022\020\n\014OP_POWER_OF"
+    "F\020\017\022\025\n\021OP_MANUAL_RECOVER\020\020\022\013\n\007TELE_OP\020\021\022"
+    "\017\n\013TRAJ_MOVING\020\022*\260\001\n\tTrajState\022\r\n\tTRAJ_N"
+    "ONE\020\000\022\r\n\tTRAJ_INIT\020\001\022\r\n\tTRAJ_CALC\020\002\022\021\n\rT"
+    "RAJ_STAND_BY\020\003\022\014\n\010TRAJ_ACC\020\004\022\017\n\013TRAJ_CRU"
+    "ISE\020\005\022\014\n\010TRAJ_DEC\020\006\022\023\n\017TRAJ_CANCELLING\020\007"
+    "\022\021\n\rTRAJ_FINISHED\020\010\022\016\n\nTRAJ_ERROR\020\t*Z\n\rT"
+    "rajCondition\022\020\n\014TRAJ_STARTED\020\000\022\021\n\rTRAJ_A"
+    "CC_DONE\020\001\022\021\n\rTRAJ_CRZ_DONE\020\002\022\021\n\rTRAJ_DEC"
+    "_DONE\020\003*F\n\014StopCategory\022\023\n\017IMMEDIATE_BRA"
+    "KE\020\000\022\020\n\014SMOOTH_BRAKE\020\001\022\017\n\013SMOOTH_ONLY\020\002*"
+    "g\n\nSafeGdType\022\016\n\nGUARD_NONE\020\000\022\016\n\nGUARD_S"
+    "TOP\020\001\022\017\n\013GUARD_PAUSE\020\002\022\026\n\022GUARD_PAUSE_RE"
+    "SUME\020\003\022\020\n\014REDUCED_MODE\020\004*6\n\rPauseCategor"
+    "y\022\020\n\014SMOOTH_PAUSE\020\000\022\023\n\017IMMEDIATE_PAUSE\020\001"
+    "*T\n\014ProgramState\022\r\n\tPROG_IDLE\020\000\022\020\n\014PROG_"
+    "RUNNING\020\001\022\020\n\014PROG_PAUSING\020\002\022\021\n\rPROG_STOP"
+    "PING\020\003*e\n\023CollisionPolicyType\022\022\n\016COLL_NO"
+    "_DETECT\020\000\022\016\n\nCOLL_PAUSE\020\001\022\033\n\027COLL_RESUME"
+    "_AFTER_SLEEP\020\002\022\r\n\tCOLL_STOP\020\003*:\n\013TuningS"
+    "pace\022\014\n\010TUNE_ALL\020\000\022\016\n\nTUNE_JOINT\020\001\022\r\n\tTU"
+    "NE_TASK\020\002*N\n\017TuningPrecision\022\021\n\rLOW_PREC"
+    "ISION\020\000\022\024\n\020MIDDLE_PRECISION\020\001\022\022\n\016HIGH_PR"
+    "ECISION\020\002*:\n\010AxisType\022\020\n\014MDH_REVOLUTE\020\000\022"
+    "\021\n\rMDH_PRISMATIC\020\001\022\t\n\005RIGID\020\002*f\n\013Contact"
+    "Rule\022\r\n\tCOLLISION\020\000\022\023\n\017COLLISION_LEVEL\020\001"
+    "\022\017\n\013SPEED_LIMIT\020\002\022\023\n\017DIRECTION_LIMIT\020\003\022\r"
+    "\n\tVIOLATION\020\004b\006proto3"
 };
 static ::absl::once_flag descriptor_table_common_5fmsgs_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_common_5fmsgs_2eproto = {
     false,
     false,
-    2921,
+    3021,
     descriptor_table_protodef_common_5fmsgs_2eproto,
     "common_msgs.proto",
     &descriptor_table_common_5fmsgs_2eproto_once,
     nullptr,
     0,
-    26,
+    27,
     schemas,
     file_default_instances,
     TableStruct_common_5fmsgs_2eproto::offsets,
@@ -1169,6 +1204,7 @@ bool ContactRule_IsValid(int value) {
     case 1:
     case 2:
     case 3:
+    case 4:
       return true;
     default:
       return false;
@@ -1737,6 +1773,172 @@ void Int::InternalSwap(Int* other) {
 }
 // ===================================================================
 
+class UInt::_Internal {
+ public:
+};
+
+UInt::UInt(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Nrmk.IndyFramework.UInt)
+}
+UInt::UInt(const UInt& from)
+    : ::google::protobuf::Message(), _impl_(from._impl_) {
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.UInt)
+}
+inline void UInt::SharedCtor(::_pb::Arena* arena) {
+  (void)arena;
+  new (&_impl_) Impl_{
+      decltype(_impl_.value_){::uint64_t{0u}},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+}
+UInt::~UInt() {
+  // @@protoc_insertion_point(destructor:Nrmk.IndyFramework.UInt)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void UInt::SharedDtor() {
+  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
+}
+void UInt::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+PROTOBUF_NOINLINE void UInt::Clear() {
+// @@protoc_insertion_point(message_clear_start:Nrmk.IndyFramework.UInt)
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.value_ = ::uint64_t{0u};
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* UInt::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 1, 0, 0, 2> UInt::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    1, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    1,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_UInt_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // uint64 value = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(UInt, _impl_.value_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(UInt, _impl_.value_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // uint64 value = 1;
+    {PROTOBUF_FIELD_OFFSET(UInt, _impl_.value_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt64)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+
+::uint8_t* UInt::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Nrmk.IndyFramework.UInt)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // uint64 value = 1;
+  if (this->_internal_value() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(
+        1, this->_internal_value(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Nrmk.IndyFramework.UInt)
+  return target;
+}
+
+::size_t UInt::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Nrmk.IndyFramework.UInt)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // uint64 value = 1;
+  if (this->_internal_value() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(
+        this->_internal_value());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData UInt::_class_data_ = {
+    ::google::protobuf::Message::CopyWithSourceCheck,
+    UInt::MergeImpl
+};
+const ::google::protobuf::Message::ClassData*UInt::GetClassData() const { return &_class_data_; }
+
+
+void UInt::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<UInt*>(&to_msg);
+  auto& from = static_cast<const UInt&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:Nrmk.IndyFramework.UInt)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from._internal_value() != 0) {
+    _this->_internal_set_value(from._internal_value());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void UInt::CopyFrom(const UInt& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Nrmk.IndyFramework.UInt)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool UInt::IsInitialized() const {
+  return true;
+}
+
+void UInt::InternalSwap(UInt* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+        swap(_impl_.value_, other->_impl_.value_);
+}
+
+::google::protobuf::Metadata UInt::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_common_5fmsgs_2eproto_getter, &descriptor_table_common_5fmsgs_2eproto_once,
+      file_level_metadata_common_5fmsgs_2eproto[4]);
+}
+// ===================================================================
+
 class Float::_Internal {
  public:
 };
@@ -1913,7 +2115,7 @@ void Float::InternalSwap(Float* other) {
 ::google::protobuf::Metadata Float::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_5fmsgs_2eproto_getter, &descriptor_table_common_5fmsgs_2eproto_once,
-      file_level_metadata_common_5fmsgs_2eproto[4]);
+      file_level_metadata_common_5fmsgs_2eproto[5]);
 }
 // ===================================================================
 
@@ -2079,7 +2281,7 @@ void IntMode::InternalSwap(IntMode* other) {
 ::google::protobuf::Metadata IntMode::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_5fmsgs_2eproto_getter, &descriptor_table_common_5fmsgs_2eproto_once,
-      file_level_metadata_common_5fmsgs_2eproto[5]);
+      file_level_metadata_common_5fmsgs_2eproto[6]);
 }
 // ===================================================================
 
@@ -2245,7 +2447,7 @@ void StopCat::InternalSwap(StopCat* other) {
 ::google::protobuf::Metadata StopCat::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_5fmsgs_2eproto_getter, &descriptor_table_common_5fmsgs_2eproto_once,
-      file_level_metadata_common_5fmsgs_2eproto[6]);
+      file_level_metadata_common_5fmsgs_2eproto[7]);
 }
 // ===================================================================
 
@@ -2411,7 +2613,7 @@ void PauseCat::InternalSwap(PauseCat* other) {
 ::google::protobuf::Metadata PauseCat::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_5fmsgs_2eproto_getter, &descriptor_table_common_5fmsgs_2eproto_once,
-      file_level_metadata_common_5fmsgs_2eproto[7]);
+      file_level_metadata_common_5fmsgs_2eproto[8]);
 }
 // ===================================================================
 
@@ -2629,7 +2831,7 @@ void Response::InternalSwap(Response* other) {
 ::google::protobuf::Metadata Response::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_5fmsgs_2eproto_getter, &descriptor_table_common_5fmsgs_2eproto_once,
-      file_level_metadata_common_5fmsgs_2eproto[8]);
+      file_level_metadata_common_5fmsgs_2eproto[9]);
 }
 // ===================================================================
 
@@ -2820,7 +3022,7 @@ void Message::InternalSwap(Message* other) {
 ::google::protobuf::Metadata Message::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_5fmsgs_2eproto_getter, &descriptor_table_common_5fmsgs_2eproto_once,
-      file_level_metadata_common_5fmsgs_2eproto[9]);
+      file_level_metadata_common_5fmsgs_2eproto[10]);
 }
 // ===================================================================
 
@@ -2995,7 +3197,7 @@ void Vector::InternalSwap(Vector* other) {
 ::google::protobuf::Metadata Vector::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_5fmsgs_2eproto_getter, &descriptor_table_common_5fmsgs_2eproto_once,
-      file_level_metadata_common_5fmsgs_2eproto[10]);
+      file_level_metadata_common_5fmsgs_2eproto[11]);
 }
 // ===================================================================
 
@@ -3199,7 +3401,7 @@ void PosePair::InternalSwap(PosePair* other) {
 ::google::protobuf::Metadata PosePair::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_5fmsgs_2eproto_getter, &descriptor_table_common_5fmsgs_2eproto_once,
-      file_level_metadata_common_5fmsgs_2eproto[11]);
+      file_level_metadata_common_5fmsgs_2eproto[12]);
 }
 // ===================================================================
 
@@ -3228,6 +3430,7 @@ inline void EndtoolRS485Tx::SharedCtor(::_pb::Arena* arena) {
       decltype(_impl_.word5_){0u},
       decltype(_impl_.status_){0u},
       decltype(_impl_.num_){0u},
+      decltype(_impl_.tool_index_){0},
       /*decltype(_impl_._cached_size_)*/ {},
   };
 }
@@ -3250,8 +3453,8 @@ PROTOBUF_NOINLINE void EndtoolRS485Tx::Clear() {
   (void) cached_has_bits;
 
   ::memset(&_impl_.word1_, 0, static_cast<::size_t>(
-      reinterpret_cast<char*>(&_impl_.num_) -
-      reinterpret_cast<char*>(&_impl_.word1_)) + sizeof(_impl_.num_));
+      reinterpret_cast<char*>(&_impl_.tool_index_) -
+      reinterpret_cast<char*>(&_impl_.word1_)) + sizeof(_impl_.tool_index_));
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -3263,15 +3466,15 @@ const char* EndtoolRS485Tx::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<3, 7, 0, 0, 2> EndtoolRS485Tx::_table_ = {
+const ::_pbi::TcParseTable<4, 8, 0, 0, 2> EndtoolRS485Tx::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
-    7, 56,  // max_field_number, fast_idx_mask
+    10, 120,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967168,  // skipmap
+    4294966656,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    7,  // num_field_entries
+    8,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
     &_EndtoolRS485Tx_default_instance_._instance,
@@ -3299,6 +3502,16 @@ const ::_pbi::TcParseTable<3, 7, 0, 0, 2> EndtoolRS485Tx::_table_ = {
     // uint32 num = 7;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(EndtoolRS485Tx, _impl_.num_), 63>(),
      {56, 63, 0, PROTOBUF_FIELD_OFFSET(EndtoolRS485Tx, _impl_.num_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    // int32 tool_index = 10;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(EndtoolRS485Tx, _impl_.tool_index_), 63>(),
+     {80, 63, 0, PROTOBUF_FIELD_OFFSET(EndtoolRS485Tx, _impl_.tool_index_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
   }}, {{
     65535, 65535
   }}, {{
@@ -3323,6 +3536,9 @@ const ::_pbi::TcParseTable<3, 7, 0, 0, 2> EndtoolRS485Tx::_table_ = {
     // uint32 num = 7;
     {PROTOBUF_FIELD_OFFSET(EndtoolRS485Tx, _impl_.num_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
+    // int32 tool_index = 10;
+    {PROTOBUF_FIELD_OFFSET(EndtoolRS485Tx, _impl_.tool_index_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
   }},
   // no aux_entries
   {{
@@ -3385,6 +3601,13 @@ const ::_pbi::TcParseTable<3, 7, 0, 0, 2> EndtoolRS485Tx::_table_ = {
         7, this->_internal_num(), target);
   }
 
+  // int32 tool_index = 10;
+  if (this->_internal_tool_index() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<10>(
+            stream, this->_internal_tool_index(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target =
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
@@ -3444,6 +3667,12 @@ const ::_pbi::TcParseTable<3, 7, 0, 0, 2> EndtoolRS485Tx::_table_ = {
         this->_internal_num());
   }
 
+  // int32 tool_index = 10;
+  if (this->_internal_tool_index() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_tool_index());
+  }
+
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
@@ -3483,6 +3712,9 @@ void EndtoolRS485Tx::MergeImpl(::google::protobuf::Message& to_msg, const ::goog
   if (from._internal_num() != 0) {
     _this->_internal_set_num(from._internal_num());
   }
+  if (from._internal_tool_index() != 0) {
+    _this->_internal_set_tool_index(from._internal_tool_index());
+  }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -3501,8 +3733,8 @@ void EndtoolRS485Tx::InternalSwap(EndtoolRS485Tx* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::google::protobuf::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(EndtoolRS485Tx, _impl_.num_)
-      + sizeof(EndtoolRS485Tx::_impl_.num_)
+      PROTOBUF_FIELD_OFFSET(EndtoolRS485Tx, _impl_.tool_index_)
+      + sizeof(EndtoolRS485Tx::_impl_.tool_index_)
       - PROTOBUF_FIELD_OFFSET(EndtoolRS485Tx, _impl_.word1_)>(
           reinterpret_cast<char*>(&_impl_.word1_),
           reinterpret_cast<char*>(&other->_impl_.word1_));
@@ -3511,7 +3743,7 @@ void EndtoolRS485Tx::InternalSwap(EndtoolRS485Tx* other) {
 ::google::protobuf::Metadata EndtoolRS485Tx::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_5fmsgs_2eproto_getter, &descriptor_table_common_5fmsgs_2eproto_once,
-      file_level_metadata_common_5fmsgs_2eproto[12]);
+      file_level_metadata_common_5fmsgs_2eproto[13]);
 }
 // ===================================================================
 
@@ -3540,6 +3772,7 @@ inline void EndtoolRS485Rx::SharedCtor(::_pb::Arena* arena) {
       decltype(_impl_.word5_){0u},
       decltype(_impl_.control_){0u},
       decltype(_impl_.num_){0u},
+      decltype(_impl_.tool_index_){0},
       /*decltype(_impl_._cached_size_)*/ {},
   };
 }
@@ -3562,8 +3795,8 @@ PROTOBUF_NOINLINE void EndtoolRS485Rx::Clear() {
   (void) cached_has_bits;
 
   ::memset(&_impl_.word1_, 0, static_cast<::size_t>(
-      reinterpret_cast<char*>(&_impl_.num_) -
-      reinterpret_cast<char*>(&_impl_.word1_)) + sizeof(_impl_.num_));
+      reinterpret_cast<char*>(&_impl_.tool_index_) -
+      reinterpret_cast<char*>(&_impl_.word1_)) + sizeof(_impl_.tool_index_));
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -3575,15 +3808,15 @@ const char* EndtoolRS485Rx::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<3, 7, 0, 0, 2> EndtoolRS485Rx::_table_ = {
+const ::_pbi::TcParseTable<4, 8, 0, 0, 2> EndtoolRS485Rx::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
-    7, 56,  // max_field_number, fast_idx_mask
+    10, 120,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967168,  // skipmap
+    4294966656,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    7,  // num_field_entries
+    8,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
     &_EndtoolRS485Rx_default_instance_._instance,
@@ -3611,6 +3844,16 @@ const ::_pbi::TcParseTable<3, 7, 0, 0, 2> EndtoolRS485Rx::_table_ = {
     // uint32 num = 7;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(EndtoolRS485Rx, _impl_.num_), 63>(),
      {56, 63, 0, PROTOBUF_FIELD_OFFSET(EndtoolRS485Rx, _impl_.num_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    // int32 tool_index = 10;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(EndtoolRS485Rx, _impl_.tool_index_), 63>(),
+     {80, 63, 0, PROTOBUF_FIELD_OFFSET(EndtoolRS485Rx, _impl_.tool_index_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
   }}, {{
     65535, 65535
   }}, {{
@@ -3635,6 +3878,9 @@ const ::_pbi::TcParseTable<3, 7, 0, 0, 2> EndtoolRS485Rx::_table_ = {
     // uint32 num = 7;
     {PROTOBUF_FIELD_OFFSET(EndtoolRS485Rx, _impl_.num_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
+    // int32 tool_index = 10;
+    {PROTOBUF_FIELD_OFFSET(EndtoolRS485Rx, _impl_.tool_index_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
   }},
   // no aux_entries
   {{
@@ -3697,6 +3943,13 @@ const ::_pbi::TcParseTable<3, 7, 0, 0, 2> EndtoolRS485Rx::_table_ = {
         7, this->_internal_num(), target);
   }
 
+  // int32 tool_index = 10;
+  if (this->_internal_tool_index() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<10>(
+            stream, this->_internal_tool_index(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target =
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
@@ -3756,6 +4009,12 @@ const ::_pbi::TcParseTable<3, 7, 0, 0, 2> EndtoolRS485Rx::_table_ = {
         this->_internal_num());
   }
 
+  // int32 tool_index = 10;
+  if (this->_internal_tool_index() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_tool_index());
+  }
+
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
@@ -3795,6 +4054,9 @@ void EndtoolRS485Rx::MergeImpl(::google::protobuf::Message& to_msg, const ::goog
   if (from._internal_num() != 0) {
     _this->_internal_set_num(from._internal_num());
   }
+  if (from._internal_tool_index() != 0) {
+    _this->_internal_set_tool_index(from._internal_tool_index());
+  }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -3813,8 +4075,8 @@ void EndtoolRS485Rx::InternalSwap(EndtoolRS485Rx* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::google::protobuf::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(EndtoolRS485Rx, _impl_.num_)
-      + sizeof(EndtoolRS485Rx::_impl_.num_)
+      PROTOBUF_FIELD_OFFSET(EndtoolRS485Rx, _impl_.tool_index_)
+      + sizeof(EndtoolRS485Rx::_impl_.tool_index_)
       - PROTOBUF_FIELD_OFFSET(EndtoolRS485Rx, _impl_.word1_)>(
           reinterpret_cast<char*>(&_impl_.word1_),
           reinterpret_cast<char*>(&other->_impl_.word1_));
@@ -3823,7 +4085,7 @@ void EndtoolRS485Rx::InternalSwap(EndtoolRS485Rx* other) {
 ::google::protobuf::Metadata EndtoolRS485Rx::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_5fmsgs_2eproto_getter, &descriptor_table_common_5fmsgs_2eproto_once,
-      file_level_metadata_common_5fmsgs_2eproto[13]);
+      file_level_metadata_common_5fmsgs_2eproto[14]);
 }
 // ===================================================================
 
@@ -4055,7 +4317,7 @@ void TactTime::InternalSwap(TactTime* other) {
 ::google::protobuf::Metadata TactTime::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_5fmsgs_2eproto_getter, &descriptor_table_common_5fmsgs_2eproto_once,
-      file_level_metadata_common_5fmsgs_2eproto[14]);
+      file_level_metadata_common_5fmsgs_2eproto[15]);
 }
 // ===================================================================
 
@@ -4345,7 +4607,7 @@ void DateTime::InternalSwap(DateTime* other) {
 ::google::protobuf::Metadata DateTime::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_5fmsgs_2eproto_getter, &descriptor_table_common_5fmsgs_2eproto_once,
-      file_level_metadata_common_5fmsgs_2eproto[15]);
+      file_level_metadata_common_5fmsgs_2eproto[16]);
 }
 // ===================================================================
 
@@ -4562,7 +4824,7 @@ void NamedBool::InternalSwap(NamedBool* other) {
 ::google::protobuf::Metadata NamedBool::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_5fmsgs_2eproto_getter, &descriptor_table_common_5fmsgs_2eproto_once,
-      file_level_metadata_common_5fmsgs_2eproto[16]);
+      file_level_metadata_common_5fmsgs_2eproto[17]);
 }
 // ===================================================================
 
@@ -4780,7 +5042,7 @@ void NamedInt::InternalSwap(NamedInt* other) {
 ::google::protobuf::Metadata NamedInt::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_5fmsgs_2eproto_getter, &descriptor_table_common_5fmsgs_2eproto_once,
-      file_level_metadata_common_5fmsgs_2eproto[17]);
+      file_level_metadata_common_5fmsgs_2eproto[18]);
 }
 // ===================================================================
 
@@ -5012,7 +5274,7 @@ void NamedFloat::InternalSwap(NamedFloat* other) {
 ::google::protobuf::Metadata NamedFloat::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_5fmsgs_2eproto_getter, &descriptor_table_common_5fmsgs_2eproto_once,
-      file_level_metadata_common_5fmsgs_2eproto[18]);
+      file_level_metadata_common_5fmsgs_2eproto[19]);
 }
 // ===================================================================
 
@@ -5232,7 +5494,7 @@ void NamedTaskPosition::InternalSwap(NamedTaskPosition* other) {
 ::google::protobuf::Metadata NamedTaskPosition::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_5fmsgs_2eproto_getter, &descriptor_table_common_5fmsgs_2eproto_once,
-      file_level_metadata_common_5fmsgs_2eproto[19]);
+      file_level_metadata_common_5fmsgs_2eproto[20]);
 }
 // ===================================================================
 
@@ -5452,7 +5714,7 @@ void NamedJointPosition::InternalSwap(NamedJointPosition* other) {
 ::google::protobuf::Metadata NamedJointPosition::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_5fmsgs_2eproto_getter, &descriptor_table_common_5fmsgs_2eproto_once,
-      file_level_metadata_common_5fmsgs_2eproto[20]);
+      file_level_metadata_common_5fmsgs_2eproto[21]);
 }
 // ===================================================================
 
@@ -5702,7 +5964,7 @@ void NamedPositionSet::InternalSwap(NamedPositionSet* other) {
 ::google::protobuf::Metadata NamedPositionSet::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_5fmsgs_2eproto_getter, &descriptor_table_common_5fmsgs_2eproto_once,
-      file_level_metadata_common_5fmsgs_2eproto[21]);
+      file_level_metadata_common_5fmsgs_2eproto[22]);
 }
 // ===================================================================
 
@@ -6096,7 +6358,7 @@ void NamedReferencePosition::InternalSwap(NamedReferencePosition* other) {
 ::google::protobuf::Metadata NamedReferencePosition::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_5fmsgs_2eproto_getter, &descriptor_table_common_5fmsgs_2eproto_once,
-      file_level_metadata_common_5fmsgs_2eproto[22]);
+      file_level_metadata_common_5fmsgs_2eproto[23]);
 }
 // ===================================================================
 
@@ -6123,6 +6385,7 @@ ModbusServerDef::ModbusServerDef(const ModbusServerDef& from) : ::google::protob
       decltype(_impl_.serial_data_bits_){},
       decltype(_impl_.serial_stop_bits_){},
       decltype(_impl_.rtu_transport_){},
+      decltype(_impl_.tool_index_){},
       /*decltype(_impl_._cached_size_)*/ {},
   };
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
@@ -6149,8 +6412,8 @@ ModbusServerDef::ModbusServerDef(const ModbusServerDef& from) : ::google::protob
     _this->_impl_.serial_parity_.Set(from._internal_serial_parity(), _this->GetArenaForAllocation());
   }
   ::memcpy(&_impl_.port_, &from._impl_.port_,
-    static_cast<::size_t>(reinterpret_cast<char*>(&_impl_.rtu_transport_) -
-    reinterpret_cast<char*>(&_impl_.port_)) + sizeof(_impl_.rtu_transport_));
+    static_cast<::size_t>(reinterpret_cast<char*>(&_impl_.tool_index_) -
+    reinterpret_cast<char*>(&_impl_.port_)) + sizeof(_impl_.tool_index_));
 
   // @@protoc_insertion_point(copy_constructor:Nrmk.IndyFramework.ModbusServerDef)
 }
@@ -6167,6 +6430,7 @@ inline void ModbusServerDef::SharedCtor(::_pb::Arena* arena) {
       decltype(_impl_.serial_data_bits_){0},
       decltype(_impl_.serial_stop_bits_){0},
       decltype(_impl_.rtu_transport_){0},
+      decltype(_impl_.tool_index_){0},
       /*decltype(_impl_._cached_size_)*/ {},
   };
   _impl_.name_.InitDefault();
@@ -6207,8 +6471,8 @@ PROTOBUF_NOINLINE void ModbusServerDef::Clear() {
   _impl_.ip_.ClearToEmpty();
   _impl_.serial_parity_.ClearToEmpty();
   ::memset(&_impl_.port_, 0, static_cast<::size_t>(
-      reinterpret_cast<char*>(&_impl_.rtu_transport_) -
-      reinterpret_cast<char*>(&_impl_.port_)) + sizeof(_impl_.rtu_transport_));
+      reinterpret_cast<char*>(&_impl_.tool_index_) -
+      reinterpret_cast<char*>(&_impl_.port_)) + sizeof(_impl_.tool_index_));
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -6220,15 +6484,15 @@ const char* ModbusServerDef::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<4, 10, 0, 70, 2> ModbusServerDef::_table_ = {
+const ::_pbi::TcParseTable<4, 11, 0, 70, 2> ModbusServerDef::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
-    10, 120,  // max_field_number, fast_idx_mask
+    11, 120,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294966272,  // skipmap
+    4294965248,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    10,  // num_field_entries
+    11,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
     &_ModbusServerDef_default_instance_._instance,
@@ -6265,7 +6529,9 @@ const ::_pbi::TcParseTable<4, 10, 0, 70, 2> ModbusServerDef::_table_ = {
     // int32 rtu_transport = 10;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(ModbusServerDef, _impl_.rtu_transport_), 63>(),
      {80, 63, 0, PROTOBUF_FIELD_OFFSET(ModbusServerDef, _impl_.rtu_transport_)}},
-    {::_pbi::TcParser::MiniParse, {}},
+    // int32 tool_index = 11;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(ModbusServerDef, _impl_.tool_index_), 63>(),
+     {88, 63, 0, PROTOBUF_FIELD_OFFSET(ModbusServerDef, _impl_.tool_index_)}},
     {::_pbi::TcParser::MiniParse, {}},
     {::_pbi::TcParser::MiniParse, {}},
     {::_pbi::TcParser::MiniParse, {}},
@@ -6302,6 +6568,9 @@ const ::_pbi::TcParseTable<4, 10, 0, 70, 2> ModbusServerDef::_table_ = {
     (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
     // int32 rtu_transport = 10;
     {PROTOBUF_FIELD_OFFSET(ModbusServerDef, _impl_.rtu_transport_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    // int32 tool_index = 11;
+    {PROTOBUF_FIELD_OFFSET(ModbusServerDef, _impl_.tool_index_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
   }},
   // no aux_entries
@@ -6394,6 +6663,13 @@ const ::_pbi::TcParseTable<4, 10, 0, 70, 2> ModbusServerDef::_table_ = {
             stream, this->_internal_rtu_transport(), target);
   }
 
+  // int32 tool_index = 11;
+  if (this->_internal_tool_index() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<11>(
+            stream, this->_internal_tool_index(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target =
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
@@ -6471,6 +6747,12 @@ const ::_pbi::TcParseTable<4, 10, 0, 70, 2> ModbusServerDef::_table_ = {
         this->_internal_rtu_transport());
   }
 
+  // int32 tool_index = 11;
+  if (this->_internal_tool_index() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_tool_index());
+  }
+
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
@@ -6519,6 +6801,9 @@ void ModbusServerDef::MergeImpl(::google::protobuf::Message& to_msg, const ::goo
   if (from._internal_rtu_transport() != 0) {
     _this->_internal_set_rtu_transport(from._internal_rtu_transport());
   }
+  if (from._internal_tool_index() != 0) {
+    _this->_internal_set_tool_index(from._internal_tool_index());
+  }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -6545,8 +6830,8 @@ void ModbusServerDef::InternalSwap(ModbusServerDef* other) {
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.serial_parity_, lhs_arena,
                                        &other->_impl_.serial_parity_, rhs_arena);
   ::google::protobuf::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(ModbusServerDef, _impl_.rtu_transport_)
-      + sizeof(ModbusServerDef::_impl_.rtu_transport_)
+      PROTOBUF_FIELD_OFFSET(ModbusServerDef, _impl_.tool_index_)
+      + sizeof(ModbusServerDef::_impl_.tool_index_)
       - PROTOBUF_FIELD_OFFSET(ModbusServerDef, _impl_.port_)>(
           reinterpret_cast<char*>(&_impl_.port_),
           reinterpret_cast<char*>(&other->_impl_.port_));
@@ -6555,7 +6840,7 @@ void ModbusServerDef::InternalSwap(ModbusServerDef* other) {
 ::google::protobuf::Metadata ModbusServerDef::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_5fmsgs_2eproto_getter, &descriptor_table_common_5fmsgs_2eproto_once,
-      file_level_metadata_common_5fmsgs_2eproto[23]);
+      file_level_metadata_common_5fmsgs_2eproto[24]);
 }
 // ===================================================================
 
@@ -6751,7 +7036,7 @@ void ProgramLine::InternalSwap(ProgramLine* other) {
 ::google::protobuf::Metadata ProgramLine::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_5fmsgs_2eproto_getter, &descriptor_table_common_5fmsgs_2eproto_once,
-      file_level_metadata_common_5fmsgs_2eproto[24]);
+      file_level_metadata_common_5fmsgs_2eproto[25]);
 }
 // ===================================================================
 
@@ -6923,7 +7208,7 @@ void ProgramBreakPoints::InternalSwap(ProgramBreakPoints* other) {
 ::google::protobuf::Metadata ProgramBreakPoints::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_5fmsgs_2eproto_getter, &descriptor_table_common_5fmsgs_2eproto_once,
-      file_level_metadata_common_5fmsgs_2eproto[25]);
+      file_level_metadata_common_5fmsgs_2eproto[26]);
 }
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace IndyFramework

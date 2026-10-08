@@ -150,9 +150,19 @@ class EtherCATStub(object):
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
                 response_deserializer=common__msgs__pb2.EndtoolRS485Rx.FromString,
                 )
+        self.GetEndtoolRS485RxFor = channel.unary_unary(
+                '/Nrmk.IndyFramework.EtherCAT/GetEndtoolRS485RxFor',
+                request_serializer=common__msgs__pb2.Int.SerializeToString,
+                response_deserializer=common__msgs__pb2.EndtoolRS485Rx.FromString,
+                )
         self.GetEndtoolRS485Tx = channel.unary_unary(
                 '/Nrmk.IndyFramework.EtherCAT/GetEndtoolRS485Tx',
                 request_serializer=common__msgs__pb2.Empty.SerializeToString,
+                response_deserializer=common__msgs__pb2.EndtoolRS485Tx.FromString,
+                )
+        self.GetEndtoolRS485TxFor = channel.unary_unary(
+                '/Nrmk.IndyFramework.EtherCAT/GetEndtoolRS485TxFor',
+                request_serializer=common__msgs__pb2.Int.SerializeToString,
                 response_deserializer=common__msgs__pb2.EndtoolRS485Tx.FromString,
                 )
         self.SetEndtoolLedDim = channel.unary_unary(
@@ -219,6 +229,26 @@ class EtherCATStub(object):
                 '/Nrmk.IndyFramework.EtherCAT/SetAO',
                 request_serializer=ethercat__msgs__pb2.AIOAnalogOutput.SerializeToString,
                 response_deserializer=common__msgs__pb2.Empty.FromString,
+                )
+        self.SetZenHandRx = channel.unary_unary(
+                '/Nrmk.IndyFramework.EtherCAT/SetZenHandRx',
+                request_serializer=ethercat__msgs__pb2.ZenHandRx.SerializeToString,
+                response_deserializer=common__msgs__pb2.Empty.FromString,
+                )
+        self.GetZenHandTx = channel.unary_unary(
+                '/Nrmk.IndyFramework.EtherCAT/GetZenHandTx',
+                request_serializer=ethercat__msgs__pb2.HandIndex.SerializeToString,
+                response_deserializer=ethercat__msgs__pb2.ZenHandTx.FromString,
+                )
+        self.GetZenHandRx = channel.unary_unary(
+                '/Nrmk.IndyFramework.EtherCAT/GetZenHandRx',
+                request_serializer=ethercat__msgs__pb2.HandIndex.SerializeToString,
+                response_deserializer=ethercat__msgs__pb2.ZenHandRx.FromString,
+                )
+        self.GetZenHandSensor = channel.unary_unary(
+                '/Nrmk.IndyFramework.EtherCAT/GetZenHandSensor',
+                request_serializer=ethercat__msgs__pb2.HandIndex.SerializeToString,
+                response_deserializer=ethercat__msgs__pb2.ZenHandSensor.FromString,
                 )
         self.GetMaxTorqueSDO = channel.unary_unary(
                 '/Nrmk.IndyFramework.EtherCAT/GetMaxTorqueSDO',
@@ -441,7 +471,19 @@ class EtherCATServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetEndtoolRS485RxFor(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def GetEndtoolRS485Tx(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetEndtoolRS485TxFor(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -523,6 +565,31 @@ class EtherCATServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def SetAO(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SetZenHandRx(self, request, context):
+        """ZenHand PDO
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetZenHandTx(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetZenHandRx(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetZenHandSensor(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -727,9 +794,19 @@ def add_EtherCATServicer_to_server(servicer, server):
                     request_deserializer=common__msgs__pb2.Empty.FromString,
                     response_serializer=common__msgs__pb2.EndtoolRS485Rx.SerializeToString,
             ),
+            'GetEndtoolRS485RxFor': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetEndtoolRS485RxFor,
+                    request_deserializer=common__msgs__pb2.Int.FromString,
+                    response_serializer=common__msgs__pb2.EndtoolRS485Rx.SerializeToString,
+            ),
             'GetEndtoolRS485Tx': grpc.unary_unary_rpc_method_handler(
                     servicer.GetEndtoolRS485Tx,
                     request_deserializer=common__msgs__pb2.Empty.FromString,
+                    response_serializer=common__msgs__pb2.EndtoolRS485Tx.SerializeToString,
+            ),
+            'GetEndtoolRS485TxFor': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetEndtoolRS485TxFor,
+                    request_deserializer=common__msgs__pb2.Int.FromString,
                     response_serializer=common__msgs__pb2.EndtoolRS485Tx.SerializeToString,
             ),
             'SetEndtoolLedDim': grpc.unary_unary_rpc_method_handler(
@@ -796,6 +873,26 @@ def add_EtherCATServicer_to_server(servicer, server):
                     servicer.SetAO,
                     request_deserializer=ethercat__msgs__pb2.AIOAnalogOutput.FromString,
                     response_serializer=common__msgs__pb2.Empty.SerializeToString,
+            ),
+            'SetZenHandRx': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetZenHandRx,
+                    request_deserializer=ethercat__msgs__pb2.ZenHandRx.FromString,
+                    response_serializer=common__msgs__pb2.Empty.SerializeToString,
+            ),
+            'GetZenHandTx': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetZenHandTx,
+                    request_deserializer=ethercat__msgs__pb2.HandIndex.FromString,
+                    response_serializer=ethercat__msgs__pb2.ZenHandTx.SerializeToString,
+            ),
+            'GetZenHandRx': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetZenHandRx,
+                    request_deserializer=ethercat__msgs__pb2.HandIndex.FromString,
+                    response_serializer=ethercat__msgs__pb2.ZenHandRx.SerializeToString,
+            ),
+            'GetZenHandSensor': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetZenHandSensor,
+                    request_deserializer=ethercat__msgs__pb2.HandIndex.FromString,
+                    response_serializer=ethercat__msgs__pb2.ZenHandSensor.SerializeToString,
             ),
             'GetMaxTorqueSDO': grpc.unary_unary_rpc_method_handler(
                     servicer.GetMaxTorqueSDO,
@@ -1317,6 +1414,23 @@ class EtherCAT(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
+    def GetEndtoolRS485RxFor(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.EtherCAT/GetEndtoolRS485RxFor',
+            common__msgs__pb2.Int.SerializeToString,
+            common__msgs__pb2.EndtoolRS485Rx.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
     def GetEndtoolRS485Tx(request,
             target,
             options=(),
@@ -1329,6 +1443,23 @@ class EtherCAT(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.EtherCAT/GetEndtoolRS485Tx',
             common__msgs__pb2.Empty.SerializeToString,
+            common__msgs__pb2.EndtoolRS485Tx.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetEndtoolRS485TxFor(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.EtherCAT/GetEndtoolRS485TxFor',
+            common__msgs__pb2.Int.SerializeToString,
             common__msgs__pb2.EndtoolRS485Tx.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
@@ -1551,6 +1682,74 @@ class EtherCAT(object):
         return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.EtherCAT/SetAO',
             ethercat__msgs__pb2.AIOAnalogOutput.SerializeToString,
             common__msgs__pb2.Empty.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SetZenHandRx(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.EtherCAT/SetZenHandRx',
+            ethercat__msgs__pb2.ZenHandRx.SerializeToString,
+            common__msgs__pb2.Empty.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetZenHandTx(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.EtherCAT/GetZenHandTx',
+            ethercat__msgs__pb2.HandIndex.SerializeToString,
+            ethercat__msgs__pb2.ZenHandTx.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetZenHandRx(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.EtherCAT/GetZenHandRx',
+            ethercat__msgs__pb2.HandIndex.SerializeToString,
+            ethercat__msgs__pb2.ZenHandRx.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetZenHandSensor(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Nrmk.IndyFramework.EtherCAT/GetZenHandSensor',
+            ethercat__msgs__pb2.HandIndex.SerializeToString,
+            ethercat__msgs__pb2.ZenHandSensor.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

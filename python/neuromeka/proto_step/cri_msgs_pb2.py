@@ -19,10 +19,40 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x0e\x63ri_msgs.proto\x12\x12Nrmk.IndyFramework\"*\n\nSFDAccount\x12\r\n\x05\x65mail\x18\x01 \x01(\t\x12\r\n\x05token\x18\x02 \x01(\t\"<\n\tSFDTarget\x12\n\n\x02pn\x18\x01 \x01(\t\x12\n\n\x02\x66n\x18\x02 \x01(\t\x12\n\n\x02rn\x18\x03 \x01(\t\x12\x0b\n\x03iso\x18\x04 \x01(\x08\"6\n\x07\x43riData\x12\x0c\n\x04time\x18\x01 \x01(\x01\x12\x0b\n\x03\x63ri\x18\x02 \x01(\x01\x12\x10\n\x08velRatio\x18\x03 \x01(\x01\"\x1e\n\x0eSFDProjectList\x12\x0c\n\x04list\x18\x01 \x01(\t\"L\n\nSFDAutoSet\x12\r\n\x05login\x18\x01 \x01(\x08\x12\n\n\x02pn\x18\x02 \x01(\t\x12\n\n\x02\x66n\x18\x03 \x01(\t\x12\n\n\x02rn\x18\x04 \x01(\t\x12\x0b\n\x03iso\x18\x05 \x01(\x08\x62\x06proto3'
+  serialized_pb=b'\n\x0e\x63ri_msgs.proto\x12\x12Nrmk.IndyFramework\"*\n\nSFDAccount\x12\r\n\x05\x65mail\x18\x01 \x01(\t\x12\r\n\x05token\x18\x02 \x01(\t\"<\n\tSFDTarget\x12\n\n\x02pn\x18\x01 \x01(\t\x12\n\n\x02\x66n\x18\x02 \x01(\t\x12\n\n\x02rn\x18\x03 \x01(\t\x12\x0b\n\x03iso\x18\x04 \x01(\x08\"6\n\x07\x43riData\x12\x0c\n\x04time\x18\x01 \x01(\x01\x12\x0b\n\x03\x63ri\x18\x02 \x01(\x01\x12\x10\n\x08velRatio\x18\x03 \x01(\x01\"\x1e\n\x0eSFDProjectList\x12\x0c\n\x04list\x18\x01 \x01(\t\"L\n\nSFDAutoSet\x12\r\n\x05login\x18\x01 \x01(\x08\x12\n\n\x02pn\x18\x02 \x01(\t\x12\n\n\x02\x66n\x18\x03 \x01(\t\x12\n\n\x02rn\x18\x04 \x01(\t\x12\x0b\n\x03iso\x18\x05 \x01(\x08\"\x97\x01\n\x12\x43RIRecordModeState\x12\x39\n\x04mode\x18\x01 \x01(\x0e\x32+.Nrmk.IndyFramework.CRIRecordModeState.Mode\"F\n\x04Mode\x12\x12\n\x0e\x43RI_RECORD_OFF\x10\x00\x12\x11\n\rCRI_RECORD_ON\x10\x01\x12\x17\n\x13\x43RI_RECORD_PLAYBACK\x10\x02\x62\x06proto3'
 )
 
 
+
+_CRIRECORDMODESTATE_MODE = _descriptor.EnumDescriptor(
+  name='Mode',
+  full_name='Nrmk.IndyFramework.CRIRecordModeState.Mode',
+  filename=None,
+  file=DESCRIPTOR,
+  create_key=_descriptor._internal_create_key,
+  values=[
+    _descriptor.EnumValueDescriptor(
+      name='CRI_RECORD_OFF', index=0, number=0,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+    _descriptor.EnumValueDescriptor(
+      name='CRI_RECORD_ON', index=1, number=1,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+    _descriptor.EnumValueDescriptor(
+      name='CRI_RECORD_PLAYBACK', index=2, number=2,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+  ],
+  containing_type=None,
+  serialized_options=None,
+  serialized_start=392,
+  serialized_end=462,
+)
+_sym_db.RegisterEnumDescriptor(_CRIRECORDMODESTATE_MODE)
 
 
 _SFDACCOUNT = _descriptor.Descriptor(
@@ -254,11 +284,47 @@ _SFDAUTOSET = _descriptor.Descriptor(
   serialized_end=308,
 )
 
+
+_CRIRECORDMODESTATE = _descriptor.Descriptor(
+  name='CRIRecordModeState',
+  full_name='Nrmk.IndyFramework.CRIRecordModeState',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='mode', full_name='Nrmk.IndyFramework.CRIRecordModeState.mode', index=0,
+      number=1, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+    _CRIRECORDMODESTATE_MODE,
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=311,
+  serialized_end=462,
+)
+
+_CRIRECORDMODESTATE.fields_by_name['mode'].enum_type = _CRIRECORDMODESTATE_MODE
+_CRIRECORDMODESTATE_MODE.containing_type = _CRIRECORDMODESTATE
 DESCRIPTOR.message_types_by_name['SFDAccount'] = _SFDACCOUNT
 DESCRIPTOR.message_types_by_name['SFDTarget'] = _SFDTARGET
 DESCRIPTOR.message_types_by_name['CriData'] = _CRIDATA
 DESCRIPTOR.message_types_by_name['SFDProjectList'] = _SFDPROJECTLIST
 DESCRIPTOR.message_types_by_name['SFDAutoSet'] = _SFDAUTOSET
+DESCRIPTOR.message_types_by_name['CRIRecordModeState'] = _CRIRECORDMODESTATE
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 SFDAccount = _reflection.GeneratedProtocolMessageType('SFDAccount', (_message.Message,), {
@@ -295,6 +361,13 @@ SFDAutoSet = _reflection.GeneratedProtocolMessageType('SFDAutoSet', (_message.Me
   # @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.SFDAutoSet)
   })
 _sym_db.RegisterMessage(SFDAutoSet)
+
+CRIRecordModeState = _reflection.GeneratedProtocolMessageType('CRIRecordModeState', (_message.Message,), {
+  'DESCRIPTOR' : _CRIRECORDMODESTATE,
+  '__module__' : 'cri_msgs_pb2'
+  # @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.CRIRecordModeState)
+  })
+_sym_db.RegisterMessage(CRIRecordModeState)
 
 
 # @@protoc_insertion_point(module_scope)

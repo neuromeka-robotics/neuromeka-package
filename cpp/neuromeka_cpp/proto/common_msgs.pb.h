@@ -132,6 +132,9 @@ extern StopCatDefaultTypeInternal _StopCat_default_instance_;
 class TactTime;
 struct TactTimeDefaultTypeInternal;
 extern TactTimeDefaultTypeInternal _TactTime_default_instance_;
+class UInt;
+struct UIntDefaultTypeInternal;
+extern UIntDefaultTypeInternal _UInt_default_instance_;
 class Vector;
 struct VectorDefaultTypeInternal;
 extern VectorDefaultTypeInternal _Vector_default_instance_;
@@ -534,10 +537,11 @@ inline bool AxisType_Parse(absl::string_view name, AxisType* value) {
       AxisType_descriptor(), name, value);
 }
 enum ContactRule : int {
-  VIOLATION = 0,
+  COLLISION = 0,
   COLLISION_LEVEL = 1,
   SPEED_LIMIT = 2,
   DIRECTION_LIMIT = 3,
+  VIOLATION = 4,
   ContactRule_INT_MIN_SENTINEL_DO_NOT_USE_ =
       std::numeric_limits<::int32_t>::min(),
   ContactRule_INT_MAX_SENTINEL_DO_NOT_USE_ =
@@ -546,8 +550,8 @@ enum ContactRule : int {
 
 bool ContactRule_IsValid(int value);
 constexpr ContactRule ContactRule_MIN = static_cast<ContactRule>(0);
-constexpr ContactRule ContactRule_MAX = static_cast<ContactRule>(3);
-constexpr int ContactRule_ARRAYSIZE = 3 + 1;
+constexpr ContactRule ContactRule_MAX = static_cast<ContactRule>(4);
+constexpr int ContactRule_ARRAYSIZE = 4 + 1;
 const ::google::protobuf::EnumDescriptor*
 ContactRule_descriptor();
 template <typename T>
@@ -560,7 +564,7 @@ const std::string& ContactRule_Name(T value) {
 template <>
 inline const std::string& ContactRule_Name(ContactRule value) {
   return ::google::protobuf::internal::NameOfDenseEnum<ContactRule_descriptor,
-                                                 0, 3>(
+                                                 0, 4>(
       static_cast<int>(value));
 }
 inline bool ContactRule_Parse(absl::string_view name, ContactRule* value) {
@@ -1178,6 +1182,164 @@ class Int final :
   friend struct ::TableStruct_common_5fmsgs_2eproto;
 };// -------------------------------------------------------------------
 
+class UInt final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.UInt) */ {
+ public:
+  inline UInt() : UInt(nullptr) {}
+  ~UInt() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR UInt(::google::protobuf::internal::ConstantInitialized);
+
+  UInt(const UInt& from);
+  UInt(UInt&& from) noexcept
+    : UInt() {
+    *this = ::std::move(from);
+  }
+
+  inline UInt& operator=(const UInt& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline UInt& operator=(UInt&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const UInt& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const UInt* internal_default_instance() {
+    return reinterpret_cast<const UInt*>(
+               &_UInt_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    4;
+
+  friend void swap(UInt& a, UInt& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(UInt* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(UInt* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  UInt* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<UInt>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const UInt& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const UInt& from) {
+    UInt::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(UInt* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "Nrmk.IndyFramework.UInt";
+  }
+  protected:
+  explicit UInt(::google::protobuf::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kValueFieldNumber = 1,
+  };
+  // uint64 value = 1;
+  void clear_value() ;
+  ::uint64_t value() const;
+  void set_value(::uint64_t value);
+
+  private:
+  ::uint64_t _internal_value() const;
+  void _internal_set_value(::uint64_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.UInt)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<0, 1, 0, 0, 2> _table_;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::uint64_t value_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_common_5fmsgs_2eproto;
+};// -------------------------------------------------------------------
+
 class Float final :
     public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Nrmk.IndyFramework.Float) */ {
  public:
@@ -1234,7 +1396,7 @@ class Float final :
                &_Float_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    4;
+    5;
 
   friend void swap(Float& a, Float& b) {
     a.Swap(&b);
@@ -1392,7 +1554,7 @@ class IntMode final :
                &_IntMode_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    5;
+    6;
 
   friend void swap(IntMode& a, IntMode& b) {
     a.Swap(&b);
@@ -1550,7 +1712,7 @@ class StopCat final :
                &_StopCat_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    6;
+    7;
 
   friend void swap(StopCat& a, StopCat& b) {
     a.Swap(&b);
@@ -1708,7 +1870,7 @@ class PauseCat final :
                &_PauseCat_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    7;
+    8;
 
   friend void swap(PauseCat& a, PauseCat& b) {
     a.Swap(&b);
@@ -1866,7 +2028,7 @@ class Response final :
                &_Response_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    8;
+    9;
 
   friend void swap(Response& a, Response& b) {
     a.Swap(&b);
@@ -2042,7 +2204,7 @@ class Message final :
                &_Message_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    9;
+    10;
 
   friend void swap(Message& a, Message& b) {
     a.Swap(&b);
@@ -2206,7 +2368,7 @@ class Vector final :
                &_Vector_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    10;
+    11;
 
   friend void swap(Vector& a, Vector& b) {
     a.Swap(&b);
@@ -2372,7 +2534,7 @@ class PosePair final :
                &_PosePair_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    11;
+    12;
 
   friend void swap(PosePair& a, PosePair& b) {
     a.Swap(&b);
@@ -2558,7 +2720,7 @@ class EndtoolRS485Tx final :
                &_EndtoolRS485Tx_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    12;
+    13;
 
   friend void swap(EndtoolRS485Tx& a, EndtoolRS485Tx& b) {
     a.Swap(&b);
@@ -2637,6 +2799,7 @@ class EndtoolRS485Tx final :
     kWord5FieldNumber = 5,
     kStatusFieldNumber = 6,
     kNumFieldNumber = 7,
+    kToolIndexFieldNumber = 10,
   };
   // uint32 word1 = 1;
   void clear_word1() ;
@@ -2708,12 +2871,22 @@ class EndtoolRS485Tx final :
   void _internal_set_num(::uint32_t value);
 
   public:
+  // int32 tool_index = 10;
+  void clear_tool_index() ;
+  ::int32_t tool_index() const;
+  void set_tool_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_tool_index() const;
+  void _internal_set_tool_index(::int32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.EndtoolRS485Tx)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<3, 7, 0, 0, 2> _table_;
+  static const ::google::protobuf::internal::TcParseTable<4, 8, 0, 0, 2> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
@@ -2725,6 +2898,7 @@ class EndtoolRS485Tx final :
     ::uint32_t word5_;
     ::uint32_t status_;
     ::uint32_t num_;
+    ::int32_t tool_index_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -2788,7 +2962,7 @@ class EndtoolRS485Rx final :
                &_EndtoolRS485Rx_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    13;
+    14;
 
   friend void swap(EndtoolRS485Rx& a, EndtoolRS485Rx& b) {
     a.Swap(&b);
@@ -2867,6 +3041,7 @@ class EndtoolRS485Rx final :
     kWord5FieldNumber = 5,
     kControlFieldNumber = 6,
     kNumFieldNumber = 7,
+    kToolIndexFieldNumber = 10,
   };
   // uint32 word1 = 1;
   void clear_word1() ;
@@ -2938,12 +3113,22 @@ class EndtoolRS485Rx final :
   void _internal_set_num(::uint32_t value);
 
   public:
+  // int32 tool_index = 10;
+  void clear_tool_index() ;
+  ::int32_t tool_index() const;
+  void set_tool_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_tool_index() const;
+  void _internal_set_tool_index(::int32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.EndtoolRS485Rx)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<3, 7, 0, 0, 2> _table_;
+  static const ::google::protobuf::internal::TcParseTable<4, 8, 0, 0, 2> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
@@ -2955,6 +3140,7 @@ class EndtoolRS485Rx final :
     ::uint32_t word5_;
     ::uint32_t control_;
     ::uint32_t num_;
+    ::int32_t tool_index_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -3018,7 +3204,7 @@ class TactTime final :
                &_TactTime_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    14;
+    15;
 
   friend void swap(TactTime& a, TactTime& b) {
     a.Swap(&b);
@@ -3194,7 +3380,7 @@ class DateTime final :
                &_DateTime_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    15;
+    16;
 
   friend void swap(DateTime& a, DateTime& b) {
     a.Swap(&b);
@@ -3412,7 +3598,7 @@ class NamedBool final :
                &_NamedBool_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    16;
+    17;
 
   friend void swap(NamedBool& a, NamedBool& b) {
     a.Swap(&b);
@@ -3588,7 +3774,7 @@ class NamedInt final :
                &_NamedInt_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    17;
+    18;
 
   friend void swap(NamedInt& a, NamedInt& b) {
     a.Swap(&b);
@@ -3764,7 +3950,7 @@ class NamedFloat final :
                &_NamedFloat_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    18;
+    19;
 
   friend void swap(NamedFloat& a, NamedFloat& b) {
     a.Swap(&b);
@@ -3940,7 +4126,7 @@ class NamedTaskPosition final :
                &_NamedTaskPosition_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    19;
+    20;
 
   friend void swap(NamedTaskPosition& a, NamedTaskPosition& b) {
     a.Swap(&b);
@@ -4124,7 +4310,7 @@ class NamedJointPosition final :
                &_NamedJointPosition_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    20;
+    21;
 
   friend void swap(NamedJointPosition& a, NamedJointPosition& b) {
     a.Swap(&b);
@@ -4308,7 +4494,7 @@ class NamedPositionSet final :
                &_NamedPositionSet_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    21;
+    22;
 
   friend void swap(NamedPositionSet& a, NamedPositionSet& b) {
     a.Swap(&b);
@@ -4512,7 +4698,7 @@ class NamedReferencePosition final :
                &_NamedReferencePosition_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    22;
+    23;
 
   friend void swap(NamedReferencePosition& a, NamedReferencePosition& b) {
     a.Swap(&b);
@@ -4816,7 +5002,7 @@ class ModbusServerDef final :
                &_ModbusServerDef_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    23;
+    24;
 
   friend void swap(ModbusServerDef& a, ModbusServerDef& b) {
     a.Swap(&b);
@@ -4898,6 +5084,7 @@ class ModbusServerDef final :
     kSerialDataBitsFieldNumber = 8,
     kSerialStopBitsFieldNumber = 9,
     kRtuTransportFieldNumber = 10,
+    kToolIndexFieldNumber = 11,
   };
   // string name = 1;
   void clear_name() ;
@@ -5017,12 +5204,22 @@ class ModbusServerDef final :
   void _internal_set_rtu_transport(::int32_t value);
 
   public:
+  // int32 tool_index = 11;
+  void clear_tool_index() ;
+  ::int32_t tool_index() const;
+  void set_tool_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_tool_index() const;
+  void _internal_set_tool_index(::int32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:Nrmk.IndyFramework.ModbusServerDef)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<4, 10, 0, 70, 2> _table_;
+  static const ::google::protobuf::internal::TcParseTable<4, 11, 0, 70, 2> _table_;
   template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
@@ -5037,6 +5234,7 @@ class ModbusServerDef final :
     ::int32_t serial_data_bits_;
     ::int32_t serial_stop_bits_;
     ::int32_t rtu_transport_;
+    ::int32_t tool_index_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -5100,7 +5298,7 @@ class ProgramLine final :
                &_ProgramLine_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    24;
+    25;
 
   friend void swap(ProgramLine& a, ProgramLine& b) {
     a.Swap(&b);
@@ -5270,7 +5468,7 @@ class ProgramBreakPoints final :
                &_ProgramBreakPoints_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    25;
+    26;
 
   friend void swap(ProgramBreakPoints& a, ProgramBreakPoints& b) {
     a.Swap(&b);
@@ -5498,6 +5696,32 @@ inline ::int64_t Int::_internal_value() const {
   return _impl_.value_;
 }
 inline void Int::_internal_set_value(::int64_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.value_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// UInt
+
+// uint64 value = 1;
+inline void UInt::clear_value() {
+  _impl_.value_ = ::uint64_t{0u};
+}
+inline ::uint64_t UInt::value() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.UInt.value)
+  return _internal_value();
+}
+inline void UInt::set_value(::uint64_t value) {
+  _internal_set_value(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.UInt.value)
+}
+inline ::uint64_t UInt::_internal_value() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.value_;
+}
+inline void UInt::_internal_set_value(::uint64_t value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.value_ = value;
@@ -6031,6 +6255,28 @@ inline void EndtoolRS485Tx::_internal_set_num(::uint32_t value) {
   _impl_.num_ = value;
 }
 
+// int32 tool_index = 10;
+inline void EndtoolRS485Tx::clear_tool_index() {
+  _impl_.tool_index_ = 0;
+}
+inline ::int32_t EndtoolRS485Tx::tool_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.EndtoolRS485Tx.tool_index)
+  return _internal_tool_index();
+}
+inline void EndtoolRS485Tx::set_tool_index(::int32_t value) {
+  _internal_set_tool_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.EndtoolRS485Tx.tool_index)
+}
+inline ::int32_t EndtoolRS485Tx::_internal_tool_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.tool_index_;
+}
+inline void EndtoolRS485Tx::_internal_set_tool_index(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.tool_index_ = value;
+}
+
 // -------------------------------------------------------------------
 
 // EndtoolRS485Rx
@@ -6187,6 +6433,28 @@ inline void EndtoolRS485Rx::_internal_set_num(::uint32_t value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.num_ = value;
+}
+
+// int32 tool_index = 10;
+inline void EndtoolRS485Rx::clear_tool_index() {
+  _impl_.tool_index_ = 0;
+}
+inline ::int32_t EndtoolRS485Rx::tool_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.EndtoolRS485Rx.tool_index)
+  return _internal_tool_index();
+}
+inline void EndtoolRS485Rx::set_tool_index(::int32_t value) {
+  _internal_set_tool_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.EndtoolRS485Rx.tool_index)
+}
+inline ::int32_t EndtoolRS485Rx::_internal_tool_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.tool_index_;
+}
+inline void EndtoolRS485Rx::_internal_set_tool_index(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.tool_index_ = value;
 }
 
 // -------------------------------------------------------------------
@@ -7624,6 +7892,28 @@ inline void ModbusServerDef::_internal_set_rtu_transport(::int32_t value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.rtu_transport_ = value;
+}
+
+// int32 tool_index = 11;
+inline void ModbusServerDef::clear_tool_index() {
+  _impl_.tool_index_ = 0;
+}
+inline ::int32_t ModbusServerDef::tool_index() const {
+  // @@protoc_insertion_point(field_get:Nrmk.IndyFramework.ModbusServerDef.tool_index)
+  return _internal_tool_index();
+}
+inline void ModbusServerDef::set_tool_index(::int32_t value) {
+  _internal_set_tool_index(value);
+  // @@protoc_insertion_point(field_set:Nrmk.IndyFramework.ModbusServerDef.tool_index)
+}
+inline ::int32_t ModbusServerDef::_internal_tool_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.tool_index_;
+}
+inline void ModbusServerDef::_internal_set_tool_index(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.tool_index_ = value;
 }
 
 // -------------------------------------------------------------------

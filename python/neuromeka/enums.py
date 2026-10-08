@@ -16,7 +16,6 @@ from typing import List, Tuple
 
 
 class OpState:
-    _OP_VIOLATE_HARD = getattr(common_msgs, 'OP_VIOLATE_HARD', getattr(common_msgs, 'OP_POWER_OFF', common_msgs.OP_VIOLATE))
     SYSTEM_OFF = common_msgs.OP_SYSTEM_OFF
     SYSTEM_ON = common_msgs.OP_SYSTEM_ON
     VIOLATE = common_msgs.OP_VIOLATE
@@ -31,7 +30,9 @@ class OpState:
     BRAKE_CONTROL = common_msgs.OP_BRAKE_CONTROL
     SYSTEM_RESET = common_msgs.OP_SYSTEM_RESET
     SYSTEM_SWITCH = common_msgs.OP_SYSTEM_SWITCH
-    VIOLATE_HARD = _OP_VIOLATE_HARD
+    # VIOLATE_HARD = common_msgs.OP_VIOLATE_HARD
+    # Backward/forward compatibility: some proto versions may not define OP_VIOLATE_HARD.
+    VIOLATE_HARD = getattr(common_msgs, 'OP_VIOLATE_HARD', common_msgs.OP_VIOLATE)
     MANUAL_RECOVER = common_msgs.OP_MANUAL_RECOVER
     TELE_OP = common_msgs.TELE_OP
 
