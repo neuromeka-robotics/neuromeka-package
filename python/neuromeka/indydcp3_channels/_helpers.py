@@ -4,15 +4,32 @@ if sys.version_info >= (3, 9):
 else:
     from neuromeka.proto_step import *
 
+# from google.protobuf import json_format
+
+
+# def _message_to_dict(response):
+#     return json_format.MessageToDict(response,
+#                                      including_default_value_fields=True,
+#                                      preserving_proto_field_name=True,
+#                                      use_integers_for_enums=True)
+
+import inspect
+
 from google.protobuf import json_format
 
 
+_DEFAULT_FIELDS_ARGUMENT = (
+    'always_print_fields_with_no_presence'
+    if 'always_print_fields_with_no_presence' in
+       inspect.signature(json_format.MessageToDict).parameters
+    else 'including_default_value_fields'
+)
+
 def _message_to_dict(response):
     return json_format.MessageToDict(response,
-                                     including_default_value_fields=True,
                                      preserving_proto_field_name=True,
-                                     use_integers_for_enums=True)
-
+                                     use_integers_for_enums=True,
+                                     **{_DEFAULT_FIELDS_ARGUMENT: True})
 
 class HelpersChannelAPI:
     """ChannelAPI providing internal signal conversion helpers."""

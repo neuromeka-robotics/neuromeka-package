@@ -5,7 +5,7 @@ with open("../README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 if sys.version_info < (3, 12):
-    print("Please build with python 3.12")
+    print("Please build with python 3.12 or higher.")
 else:
     step_requires = [
         "grpcio>=1.34.1, <=1.39.0",
@@ -19,21 +19,23 @@ else:
         "pyyaml==6.0.1",
     ]
     common_requires = [
-        "grpcio==1.59.0",
-        "grpcio-tools==1.59.0",
-        "protobuf>=4.24.4, <=4.25.4",
+        "grpcio==1.80.0",
+        "grpcio-tools==1.80.0",
+        "protobuf>=6.31.1, <7.0.0",
         "requests>=2.31.0, <=2.32.0",
         "urllib3>=2.0.7, <=2.2.2",
-        "Pillow==9.5.0",
-        "numpy>=1.21.6, <=1.26.4",
+        "Pillow==11.3.0",
+        # NumPy's Python 3.14 wheels require a newer series than Python 3.9 supports.
+        "numpy==2.0.2; python_version < '3.13'",
+        "numpy==2.3.5; python_version >= '3.13'",
         "pyModbusTCP==0.2.1",
         "netifaces2",
-        "pyyaml==6.0.1",
+        "pyyaml==6.0.3",
     ]
     
     setup(
         name="neuromeka",
-        version="3.5.0.10",
+        version="3.5.0.11",
         license="MIT",
         author="Neuromeka",
         author_email="technical-support@neuromeka.com",
@@ -52,7 +54,9 @@ else:
             "Programming Language :: Python :: 3.9",
             "Programming Language :: Python :: 3.10",
             "Programming Language :: Python :: 3.11",
-            "Programming Language :: Python :: 3.12"
+            "Programming Language :: Python :: 3.12",
+            "Programming Language :: Python :: 3.13",
+            "Programming Language :: Python :: 3.14"
         ],
         python_requires=">=3.7",
         # install_requires=install_requires,

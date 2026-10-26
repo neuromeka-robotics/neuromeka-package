@@ -11,7 +11,7 @@ This package provides client protocols for users to interact with Neuromeka's ro
 
 ## How to build wheel
 
-Build with python 3.12
+Build with python 3.12 or above
 
 ```bash
 python -m build --wheel
@@ -19,7 +19,7 @@ python -m build --wheel
 
 ## Installation
 
-The current default grpc version for both python and c++ is 1.59.
+Python 3.9 and newer use gRPC 1.80.0. The C++ use gRPC 1.59.
 
 ### Python installation
 
